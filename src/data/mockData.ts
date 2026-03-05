@@ -166,5 +166,7 @@ export const mockContributors: (TeamMember & { category: string })[] = [
         category: 'Content',
         social: { twitter: 'https://x.com/1004yukichan' },
     },
-    ...telegramContributors,
+    ...telegramContributors.filter(tc =>
+        !['gen', 'wonjae', 'bosul mun'].includes(tc.name.toLowerCase()),
+    ),
 ];
