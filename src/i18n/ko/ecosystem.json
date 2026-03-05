@@ -1,37 +1,10 @@
 {
-  "mission": {
-    "label": "Public Good",
-    "title": "한국 이더리움 <br />생태계를 위한 <accent>공공재</accent>.",
-    "description": "The Ticker is ETH는 리서치 발행, 뉴스 큐레이션, 커뮤니티 이벤트를 통해 한국 이더리움 생태계의 공공재를 만들어가는 비영리 그룹입니다.",
-    "communityDrivenTitle": "Community-Driven",
-    "communityDriven": "한국의 다양한 이더리움 빌더들이 자신의 인사이트와 리서치를 공유합니다. 누구나 기여자가 될 수 있으며, 커뮤니티가 함께 만들어갑니다.",
-    "builderEcosystemTitle": "Builder Ecosystem",
-    "builderEcosystem": "이더리움 프로토콜, L2, 인프라 빌더들의 최신 동향과 뉴스를 전달합니다. 한국 개발자들이 글로벌 생태계와 연결될 수 있도록 다리 역할을 합니다.",
-    "initiativeTitle": "Initiative",
-    "initiative": "밋업, 스터디, 해커톤 등 다양한 이니셔티브를 커뮤니티와 함께 기획하고 실행합니다. 아이디어를 현실로 만드는 실행 플랫폼입니다."
-  },
-  "hero": {
-    "badge": "KOREA ETHEREUM COMMUNITY",
-    "learnMore": "Learn More",
-    "explore": "Explore"
-  },
-  "cta": {
-    "title": "공공재를 함께 만들어요.",
-    "description": "리서치 작성, 뉴스 큐레이션, 이벤트 기획, 개발 기여.\n당신의 인사이트가 한국 이더리움 생태계의 공공재가 됩니다.",
-    "contributor": "기여자 되기",
-    "telegram": "텔레그램 채널 구독하기"
-  },
-  "updates": {
-    "badge": "From the Builders",
-    "title": "빌더들의 최신 인사이트",
-    "viewAll": "모든 업데이트 보기",
-    "readArticle": "아티클 읽기"
-  },
   "ecosystem": {
     "badge": "Ecosystem",
     "title": "이더리움 <accent>생태계 도구</accent> 모음",
     "description": "이더리움 생태계의 필수 서비스와 도구들을 한눈에 확인하세요.",
     "all": "전체",
+    "highlight": "추천 도구",
     "categories": {
       "explorer": "Explorer",
       "defi": "DeFi",

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Hero from '../components/home/Hero';
 import MissionSection from '../components/home/MissionSection';
 import UpdatesSection from '../components/home/UpdatesSection';
+import EcosystemSection from '../components/home/EcosystemSection';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { ArrowRight, MessageCircle } from 'lucide-react';
@@ -33,6 +34,7 @@ const Home: React.FC = () => {
             >
                 <MissionSection />
                 <UpdatesSection />
+                <EcosystemSection />
 
                 {/* CTA Section — Team Preview Style */}
                 <section className="py-24 px-6 relative overflow-hidden">

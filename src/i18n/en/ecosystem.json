@@ -1,37 +1,10 @@
 {
-  "mission": {
-    "label": "Public Good",
-    "title": "A <accent>Public Good</accent> <br />for Korea's Ethereum Ecosystem.",
-    "description": "The Ticker is ETH is a non-profit group building public goods for Korea's Ethereum ecosystem through research, news curation, and community events.",
-    "communityDrivenTitle": "Community-Driven",
-    "communityDriven": "Diverse Ethereum builders in Korea share their insights and research. Anyone can become a contributor, and the community builds it together.",
-    "builderEcosystemTitle": "Builder Ecosystem",
-    "builderEcosystem": "We deliver the latest trends and news from Ethereum protocol, L2, and infrastructure builders. We serve as a bridge connecting Korean developers to the global ecosystem.",
-    "initiativeTitle": "Initiative",
-    "initiative": "We plan and execute diverse initiatives — meetups, study groups, hackathons — together with the community. A platform that turns ideas into reality."
-  },
-  "hero": {
-    "badge": "KOREA ETHEREUM COMMUNITY",
-    "learnMore": "Learn More",
-    "explore": "Explore"
-  },
-  "cta": {
-    "title": "Build the Public Good Together.",
-    "description": "Write research, curate news, plan events, contribute code.\nYour insights become a public good for Korea's Ethereum ecosystem.",
-    "contributor": "Become a Contributor",
-    "telegram": "Subscribe to Telegram"
-  },
-  "updates": {
-    "badge": "From the Builders",
-    "title": "Latest Insights from Builders",
-    "viewAll": "View all updates",
-    "readArticle": "Read Article"
-  },
   "ecosystem": {
     "badge": "Ecosystem",
     "title": "Ethereum <accent>Ecosystem Tools</accent>",
     "description": "Discover essential services and tools across the Ethereum ecosystem.",
     "all": "All",
+    "highlight": "Featured",
     "categories": {
       "explorer": "Explorer",
       "defi": "DeFi",

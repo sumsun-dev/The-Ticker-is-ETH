@@ -15,6 +15,7 @@ const NewsDetail = React.lazy(() => import('./pages/NewsDetail'));
 const Research = React.lazy(() => import('./pages/Research'));
 const ResearchDetail = React.lazy(() => import('./pages/ResearchDetail'));
 const WriteResearch = React.lazy(() => import('./pages/WriteResearch'));
+const Ecosystem = React.lazy(() => import('./pages/Ecosystem'));
 const AdminLogin = React.lazy(() => import('./pages/AdminLogin'));
 
 const ScrollToTop: React.FC = () => {
@@ -37,6 +38,7 @@ function App() {
               <Route path="/team/:id" element={<MemberDetail />} />
               <Route path="/contributors" element={<Contributors />} />
               <Route path="/contributors/:id" element={<MemberDetail />} />
+              <Route path="/ecosystem" element={<Ecosystem />} />
               <Route path="/events" element={<Events />} />
               <Route path="/news" element={<News />} />
               <Route path="/news/:id" element={<NewsDetail />} />

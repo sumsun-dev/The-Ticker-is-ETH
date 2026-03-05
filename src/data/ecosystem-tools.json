@@ -1,0 +1,248 @@
+{
+  "categories": [
+    { "id": "explorer", "labelKey": "ecosystem.categories.explorer", "icon": "Search" },
+    { "id": "defi", "labelKey": "ecosystem.categories.defi", "icon": "Landmark" },
+    { "id": "dex", "labelKey": "ecosystem.categories.dex", "icon": "ArrowLeftRight" },
+    { "id": "wallet", "labelKey": "ecosystem.categories.wallet", "icon": "Wallet" },
+    { "id": "bridge", "labelKey": "ecosystem.categories.bridge", "icon": "Cable" },
+    { "id": "analytics", "labelKey": "ecosystem.categories.analytics", "icon": "BarChart3" },
+    { "id": "dev-tools", "labelKey": "ecosystem.categories.devTools", "icon": "Code" },
+    { "id": "nft", "labelKey": "ecosystem.categories.nft", "icon": "Image" }
+  ],
+  "tools": [
+    {
+      "id": "etherscan",
+      "name": "Etherscan",
+      "descriptionKey": "ecosystem.tools.etherscan",
+      "url": "https://etherscan.io",
+      "category": "explorer"
+    },
+    {
+      "id": "beaconcha-in",
+      "name": "beaconcha.in",
+      "descriptionKey": "ecosystem.tools.beaconchain",
+      "url": "https://beaconcha.in",
+      "category": "explorer"
+    },
+    {
+      "id": "blockscout",
+      "name": "Blockscout",
+      "descriptionKey": "ecosystem.tools.blockscout",
+      "url": "https://www.blockscout.com",
+      "category": "explorer"
+    },
+    {
+      "id": "aave",
+      "name": "Aave",
+      "descriptionKey": "ecosystem.tools.aave",
+      "url": "https://aave.com",
+      "category": "defi"
+    },
+    {
+      "id": "lido",
+      "name": "Lido",
+      "descriptionKey": "ecosystem.tools.lido",
+      "url": "https://lido.fi",
+      "category": "defi"
+    },
+    {
+      "id": "eigenlayer",
+      "name": "EigenLayer",
+      "descriptionKey": "ecosystem.tools.eigenlayer",
+      "url": "https://www.eigenlayer.xyz",
+      "category": "defi"
+    },
+    {
+      "id": "maker",
+      "name": "Sky (Maker)",
+      "descriptionKey": "ecosystem.tools.maker",
+      "url": "https://sky.money",
+      "category": "defi"
+    },
+    {
+      "id": "uniswap",
+      "name": "Uniswap",
+      "descriptionKey": "ecosystem.tools.uniswap",
+      "url": "https://app.uniswap.org",
+      "category": "dex"
+    },
+    {
+      "id": "curve",
+      "name": "Curve",
+      "descriptionKey": "ecosystem.tools.curve",
+      "url": "https://curve.fi",
+      "category": "dex"
+    },
+    {
+      "id": "1inch",
+      "name": "1inch",
+      "descriptionKey": "ecosystem.tools.1inch",
+      "url": "https://1inch.io",
+      "category": "dex"
+    },
+    {
+      "id": "cowswap",
+      "name": "CoW Swap",
+      "descriptionKey": "ecosystem.tools.cowswap",
+      "url": "https://swap.cow.fi",
+      "category": "dex"
+    },
+    {
+      "id": "metamask",
+      "name": "MetaMask",
+      "descriptionKey": "ecosystem.tools.metamask",
+      "url": "https://metamask.io",
+      "category": "wallet"
+    },
+    {
+      "id": "rainbow",
+      "name": "Rainbow",
+      "descriptionKey": "ecosystem.tools.rainbow",
+      "url": "https://rainbow.me",
+      "category": "wallet"
+    },
+    {
+      "id": "safe",
+      "name": "Safe",
+      "descriptionKey": "ecosystem.tools.safe",
+      "url": "https://safe.global",
+      "category": "wallet"
+    },
+    {
+      "id": "rabby",
+      "name": "Rabby",
+      "descriptionKey": "ecosystem.tools.rabby",
+      "url": "https://rabby.io",
+      "category": "wallet"
+    },
+    {
+      "id": "across",
+      "name": "Across",
+      "descriptionKey": "ecosystem.tools.across",
+      "url": "https://across.to",
+      "category": "bridge"
+    },
+    {
+      "id": "stargate",
+      "name": "Stargate",
+      "descriptionKey": "ecosystem.tools.stargate",
+      "url": "https://stargate.finance",
+      "category": "bridge"
+    },
+    {
+      "id": "hop",
+      "name": "Hop Protocol",
+      "descriptionKey": "ecosystem.tools.hop",
+      "url": "https://hop.exchange",
+      "category": "bridge"
+    },
+    {
+      "id": "orbiter",
+      "name": "Orbiter Finance",
+      "descriptionKey": "ecosystem.tools.orbiter",
+      "url": "https://www.orbiter.finance",
+      "category": "bridge"
+    },
+    {
+      "id": "dune",
+      "name": "Dune",
+      "descriptionKey": "ecosystem.tools.dune",
+      "url": "https://dune.com",
+      "category": "analytics"
+    },
+    {
+      "id": "defillama",
+      "name": "DefiLlama",
+      "descriptionKey": "ecosystem.tools.defillama",
+      "url": "https://defillama.com",
+      "category": "analytics"
+    },
+    {
+      "id": "l2beat",
+      "name": "L2BEAT",
+      "descriptionKey": "ecosystem.tools.l2beat",
+      "url": "https://l2beat.com",
+      "category": "analytics"
+    },
+    {
+      "id": "ultrasound",
+      "name": "ultrasound.money",
+      "descriptionKey": "ecosystem.tools.ultrasound",
+      "url": "https://ultrasound.money",
+      "category": "analytics"
+    },
+    {
+      "id": "hardhat",
+      "name": "Hardhat",
+      "descriptionKey": "ecosystem.tools.hardhat",
+      "url": "https://hardhat.org",
+      "category": "dev-tools"
+    },
+    {
+      "id": "foundry",
+      "name": "Foundry",
+      "descriptionKey": "ecosystem.tools.foundry",
+      "url": "https://book.getfoundry.sh",
+      "category": "dev-tools"
+    },
+    {
+      "id": "remix",
+      "name": "Remix IDE",
+      "descriptionKey": "ecosystem.tools.remix",
+      "url": "https://remix.ethereum.org",
+      "category": "dev-tools"
+    },
+    {
+      "id": "tenderly",
+      "name": "Tenderly",
+      "descriptionKey": "ecosystem.tools.tenderly",
+      "url": "https://tenderly.co",
+      "category": "dev-tools"
+    },
+    {
+      "id": "ethereum-magicians",
+      "name": "Ethereum Magicians",
+      "descriptionKey": "ecosystem.tools.ethereumMagicians",
+      "url": "https://ethereum-magicians.org/",
+      "category": "dev-tools",
+      "highlight": true
+    },
+    {
+      "id": "etherealize",
+      "name": "Etherealize",
+      "descriptionKey": "ecosystem.tools.etherealize",
+      "url": "https://www.etherealize.com/",
+      "category": "dev-tools",
+      "highlight": true
+    },
+    {
+      "id": "ethereum-pm",
+      "name": "Ethereum PM",
+      "descriptionKey": "ecosystem.tools.ethereumPm",
+      "url": "https://github.com/ethereum/pm/issues",
+      "category": "dev-tools",
+      "highlight": true
+    },
+    {
+      "id": "opensea",
+      "name": "OpenSea",
+      "descriptionKey": "ecosystem.tools.opensea",
+      "url": "https://opensea.io",
+      "category": "nft"
+    },
+    {
+      "id": "ens",
+      "name": "ENS",
+      "descriptionKey": "ecosystem.tools.ens",
+      "url": "https://ens.domains",
+      "category": "nft"
+    },
+    {
+      "id": "zora",
+      "name": "Zora",
+      "descriptionKey": "ecosystem.tools.zora",
+      "url": "https://zora.co",
+      "category": "nft"
+    }
+  ]
+}
