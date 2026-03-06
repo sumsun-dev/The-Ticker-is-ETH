@@ -39,6 +39,7 @@
       "defillama": "DeFi TVL tracker and protocol comparison analytics",
       "l2beat": "L2 rollup risk analysis and TVL tracking",
       "ultrasound": "Real-time ETH issuance, burn, and supply dashboard",
+      "ethereumAdoption": "Database tracking enterprise and institutional Ethereum adoption",
       "hardhat": "Ethereum dev environment — test, deploy, debug",
       "foundry": "Rust-based high-speed smart contract development toolkit",
       "remix": "Browser-based Solidity IDE — instant compile and deploy",

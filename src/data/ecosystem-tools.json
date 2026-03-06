@@ -172,6 +172,14 @@
       "category": "analytics"
     },
     {
+      "id": "ethereum-adoption",
+      "name": "Ethereum Adoption",
+      "descriptionKey": "ecosystem.tools.ethereumAdoption",
+      "url": "https://ethereumadoption.com/",
+      "category": "analytics",
+      "highlight": true
+    },
+    {
       "id": "hardhat",
       "name": "Hardhat",
       "descriptionKey": "ecosystem.tools.hardhat",
