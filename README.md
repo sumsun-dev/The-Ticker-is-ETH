@@ -12,6 +12,7 @@
 - **Routing**: React Router DOM 7
 - **Data**: Telegram API 기반 실데이터 매핑
 - **i18n**: react-i18next (한국어/영어 전환)
+- **Auth**: Privy (지갑/Google/Twitter 로그인 + 임베디드 지갑)
 - **Sanitization**: DOMPurify (XSS 방지)
 
 ## Features
@@ -25,20 +26,21 @@
 - 이더리움 다이아몬드 커스텀 커서 + Trail 효과 (데스크탑)
 - Telegram 채널 메시지 기반 기여도 분석
 - Route 기반 Code-Splitting (React.lazy + Suspense)
+- Privy 지갑/소셜 로그인 + 프로필 페이지
 
 ## Project Structure
 
 ```
 src/
 ├── components/
-│   ├── common/          # LanguageToggle, AnimatedNumber
+│   ├── common/          # LanguageToggle, AnimatedNumber, AuthButton
 │   ├── cursor/          # 커스텀 커서 (ETH 다이아몬드 + trail)
 │   ├── home/            # Hero, KoreanFlagFlow, MemberAvatarFlow
 │   └── team/            # MemberCard, ContributionGraph
 ├── i18n/                # i18n 초기화 + 번역 JSON (ko/, en/)
 ├── data/                # mockData, researchData, 전처리 JSON (team-enrichment, research-index, articles/)
 ├── layouts/             # MainLayout
-├── pages/               # Home, About, Team, Contributors, Research, News, Events
+├── pages/               # Home, About, Team, Contributors, Research, News, Events, Profile
 ├── types/               # TypeScript 타입 정의
 └── utils/               # 공유 헬퍼 (telegram, members)
 ```
@@ -47,6 +49,7 @@ src/
 
 ```bash
 npm install
+cp .env.example .env.local  # VITE_PRIVY_APP_ID 설정
 npm run dev
 ```
 
@@ -72,6 +75,12 @@ GitHub Actions cron이 매일 KST 09:00에 Telegram 채널 데이터를 수집 �
 수동 실행: Actions 탭 → Sync Telegram Data → Run workflow.
 
 필요한 GitHub Secrets: `TELEGRAM_API_ID`, `TELEGRAM_API_HASH`, `TELEGRAM_SESSION`
+
+## Environment Variables
+
+| 변수 | 위치 | 용도 |
+|------|------|------|
+| `VITE_PRIVY_APP_ID` | 프론트엔드 | Privy SDK 초기화 (지갑/소셜 로그인) |
 
 ## Contributing
 
