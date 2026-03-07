@@ -70,7 +70,8 @@
     "loginButton": "지갑 또는 소셜 계정으로 로그인하세요",
     "link": "연결",
     "unlink": "해제",
-    "noWallet": "연결된 지갑이 없습니다"
+    "noWallet": "연결된 지갑이 없습니다",
+    "addWallet": "지갑 추가"
   },
   "newsDetail": {
     "notFound": "리포트를 찾을 수 없습니다",

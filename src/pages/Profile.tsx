@@ -3,8 +3,8 @@ import type { WalletWithMetadata, TwitterOAuthWithMetadata, TelegramWithMetadata
 import { useTranslation } from 'react-i18next';
 
 const Profile: React.FC = () => {
-  const { ready, authenticated, login, user, unlinkTwitter, unlinkTelegram } = usePrivy();
-  const { linkTwitter, linkTelegram } = useLinkAccount();
+  const { ready, authenticated, login, user, unlinkTwitter, unlinkTelegram, unlinkWallet } = usePrivy();
+  const { linkWallet, linkTwitter, linkTelegram } = useLinkAccount();
   const { t } = useTranslation();
 
   if (!ready) return null;
@@ -48,15 +48,29 @@ const Profile: React.FC = () => {
             {wallets.map((w) => (
               <li
                 key={w.address}
-                className="bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-sm text-gray-300 font-mono break-all"
+                className="flex items-center justify-between bg-white/5 border border-white/10 rounded-xl px-5 py-4"
               >
-                {w.address}
+                <span className="text-sm text-gray-300 font-mono break-all">{w.address}</span>
+                {wallets.length > 1 && (
+                  <button
+                    onClick={() => unlinkWallet(w.address)}
+                    className="ml-4 text-sm text-red-400 hover:text-red-300 transition-colors shrink-0"
+                  >
+                    {t('auth.unlink')}
+                  </button>
+                )}
               </li>
             ))}
           </ul>
         ) : (
           <p className="text-gray-500 text-sm">{t('auth.noWallet')}</p>
         )}
+        <button
+          onClick={() => linkWallet()}
+          className="mt-4 text-sm text-brand-accent hover:text-brand-accent/80 transition-colors"
+        >
+          + {t('auth.addWallet')}
+        </button>
       </div>
 
       {/* Linked Accounts */}

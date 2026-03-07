@@ -70,7 +70,8 @@
     "loginButton": "Sign in with wallet or social account",
     "link": "Link",
     "unlink": "Unlink",
-    "noWallet": "No wallet connected"
+    "noWallet": "No wallet connected",
+    "addWallet": "Add Wallet"
   },
   "newsDetail": {
     "notFound": "Report not found",
