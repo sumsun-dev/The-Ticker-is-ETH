@@ -5,6 +5,7 @@ import { Menu, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import EthCursorTrail from '../components/cursor/EthCursorTrail';
 import LanguageToggle from '../components/common/LanguageToggle';
+import AuthButton from '../components/common/AuthButton';
 
 const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -82,6 +83,7 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                             </Link>
                         ))}
                         <LanguageToggle />
+                        <AuthButton />
                         <a href="https://t.me/thetickeriseth" target="_blank" rel="noopener noreferrer" className="bg-white/10 hover:bg-white/20 text-white px-5 py-2 rounded-full text-sm font-medium transition-colors border border-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent">
                             {t('nav.subscribe')}
                         </a>
@@ -120,8 +122,9 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                                         {link.name}
                                     </Link>
                                 ))}
-                                <div className="pt-4 border-t border-white/10">
+                                <div className="pt-4 border-t border-white/10 flex items-center gap-4">
                                     <LanguageToggle />
+                                    <AuthButton />
                                 </div>
                             </div>
                         </motion.div>

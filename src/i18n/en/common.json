@@ -60,6 +60,18 @@
     "welcome": "Welcome",
     "notice": "Authorized personnel only. All access attempts are logged."
   },
+  "auth": {
+    "connect": "Connect",
+    "logout": "Logout",
+    "profile": "Profile",
+    "walletAddress": "Wallet Address",
+    "linkedAccounts": "Linked Accounts",
+    "loginRequired": "Login Required",
+    "loginButton": "Sign in with wallet or social account",
+    "link": "Link",
+    "unlink": "Unlink",
+    "noWallet": "No wallet connected"
+  },
   "newsDetail": {
     "notFound": "Report not found",
     "backToNews": "Back to News",

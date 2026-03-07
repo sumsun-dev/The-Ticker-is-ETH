@@ -17,6 +17,7 @@ const ResearchDetail = React.lazy(() => import('./pages/ResearchDetail'));
 const WriteResearch = React.lazy(() => import('./pages/WriteResearch'));
 const Ecosystem = React.lazy(() => import('./pages/Ecosystem'));
 const AdminLogin = React.lazy(() => import('./pages/AdminLogin'));
+const Profile = React.lazy(() => import('./pages/Profile'));
 
 const ScrollToTop: React.FC = () => {
   const { pathname } = useLocation();
@@ -45,6 +46,7 @@ function App() {
               <Route path="/research" element={<Research />} />
               <Route path="/research/:id" element={<ResearchDetail />} />
               <Route path="/research/write" element={<WriteResearch />} />
+              <Route path="/profile" element={<Profile />} />
               <Route path="/admin" element={<AdminLogin />} />
             </Routes>
           </Suspense>

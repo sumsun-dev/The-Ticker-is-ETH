@@ -16,6 +16,7 @@
     "@blocknote/core": "^0.47.0",
     "@blocknote/mantine": "^0.47.0",
     "@blocknote/react": "^0.47.0",
+    "@privy-io/react-auth": "^3.16.0",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.5.0",
     "class-variance-authority": "^0.7.1",

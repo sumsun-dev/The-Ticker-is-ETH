@@ -16,6 +16,7 @@ export default defineConfig({
           sanitize: ['dompurify'],
           icons: ['lucide-react'],
           router: ['react-router-dom'],
+          privy: ['@privy-io/react-auth'],
         },
       },
     },
