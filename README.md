@@ -13,7 +13,11 @@
 - **Data**: Telegram API 기반 실데이터 매핑
 - **i18n**: react-i18next (한국어/영어 전환)
 - **Auth**: Privy (지갑/Google/Twitter 로그인 + 임베디드 지갑)
+- **On-chain**: thirdweb (ERC-1155 배지 시스템 — Base + Ethereum 멀티체인)
+- **Testing**: Vitest + Testing Library
 - **Sanitization**: DOMPurify (XSS 방지)
+- **Toast**: Sonner (다크/라이트 테마 반응형)
+- **Theme**: 다크/라이트 모드 (CSS 변수 + Tailwind `dark:` class)
 
 ## Features
 
@@ -27,20 +31,30 @@
 - Telegram 채널 메시지 기반 기여도 분석
 - Route 기반 Code-Splitting (React.lazy + Suspense)
 - Privy 지갑/소셜 로그인 + 프로필 페이지
+- 온체인 기여자 배지 (thirdweb ERC-1155, Base + Ethereum 멀티체인 지원)
+- 404 Not Found 페이지 + ErrorBoundary i18n
+- 다크/라이트 테마 토글 (localStorage 저장, prefers-color-scheme 연동)
+- 소셜 공유 버튼 (Twitter, Telegram, 링크 복사) — Research/News 상세 페이지
+- 토스트 알림 (sonner) — 클레임/민트 성공·실패 피드백
+- Research 검색: 저자 필터 + 디바운싱
+- 접근성 개선: Skip nav i18n, 포커스 트랩, label 연결, aria-live
 
 ## Project Structure
 
 ```
 src/
 ├── components/
-│   ├── common/          # LanguageToggle, AnimatedNumber, AuthButton
+│   ├── common/          # LanguageToggle, ThemeToggle, ShareButtons, AuthButton, ErrorBoundary
+│   ├── rewards/         # BadgeGrid, ClaimCard, MintForm, ChainSelector
 │   ├── cursor/          # 커스텀 커서 (ETH 다이아몬드 + trail)
 │   ├── home/            # Hero, KoreanFlagFlow, MemberAvatarFlow
 │   └── team/            # MemberCard, ContributionGraph
 ├── i18n/                # i18n 초기화 + 번역 JSON (ko/, en/)
 ├── data/                # mockData, researchData, 전처리 JSON (team-enrichment, research-index, articles/)
 ├── layouts/             # MainLayout
-├── pages/               # Home, About, Team, Contributors, Research, News, Events, Profile
+├── hooks/               # usePageMeta, useOwnedBadges, useThirdwebAccount, useTheme
+├── lib/                 # thirdweb client 초기화
+├── pages/               # Home, About, Team, Contributors, Research, News, Events, Profile, Claim, AdminRewards, NotFound
 ├── types/               # TypeScript 타입 정의
 └── utils/               # 공유 헬퍼 (telegram, members)
 ```
@@ -60,7 +74,11 @@ npm run dev
 | `npm run dev` | 개발 서버 실행 |
 | `npm run build` | 프로덕션 빌드 |
 | `npm run preview` | 빌드 결과 미리보기 |
+| `npm run test` | Vitest watch 모드 |
+| `npm run test:run` | 테스트 1회 실행 |
+| `npm run test:coverage` | 커버리지 포함 테스트 |
 | `npm run lint` | ESLint 실행 |
+| `npm run analyze` | 번들 크기 분석 (visualizer) |
 | `npm run fetch:telegram` | Telegram 채널 데이터 수집 (로컬) |
 | `npm run preprocess:telegram` | Telegram 데이터 전처리 (team-enrichment + research-index + 개별 article .md 생성) |
 | `npm run fetch:news` | RSS 뉴스 피드 수집 (eth.rejamong.com) |
@@ -81,6 +99,20 @@ GitHub Actions cron이 매일 KST 09:00에 Telegram 채널 데이터를 수집 �
 | 변수 | 위치 | 용도 |
 |------|------|------|
 | `VITE_PRIVY_APP_ID` | 프론트엔드 | Privy SDK 초기화 (지갑/소셜 로그인) |
+| `VITE_THIRDWEB_CLIENT_ID` | 프론트엔드 | thirdweb SDK (온체인 배지) |
+| `VITE_BADGE_CONTRACT_ADDRESS_BASE` | 프론트엔드 | ERC-1155 배지 컨트랙트 주소 (Base) |
+| `VITE_BADGE_CONTRACT_ADDRESS_ETH` | 프론트엔드 | ERC-1155 배지 컨트랙트 주소 (Ethereum) |
+
+## TODO
+
+- [ ] **배지 이미지 디자인** — 4종 (Core Contributor, Translator, Event Attendee, Research Author)
+  - PNG 1000×1000px (NFT 메타데이터용) + SVG (웹 UI용)
+  - 공통: 이더리움 다이아몬드 포함, 원형/방패형 메달 스타일
+  - 색상: Core=골드, Translator=블루, Event=그린, Research=퍼플
+  - 완료 후 SVG → `public/assets/badges/`, PNG → thirdweb 토큰 mint 시 업로드
+- [ ] **Ethereum Mainnet ERC-1155 컨트랙트 배포** — thirdweb Edition Drop
+- [ ] **환경변수 전환** — `VITE_BADGE_CONTRACT_ADDRESS` → `_BASE` / `_ETH` 분리 적용
+- [ ] **Vercel 환경변수 동기화**
 
 ## Contributing
 
