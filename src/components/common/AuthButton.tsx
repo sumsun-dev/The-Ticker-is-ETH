@@ -46,23 +46,23 @@ const AuthButton: React.FC = () => {
     <div ref={dropdownRef} className="relative">
       <button
         onClick={() => setIsOpen((prev) => !prev)}
-        className="bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-full text-sm font-medium transition-colors border border-white/10"
+        className="bg-theme-surface hover:bg-theme-surface-hover text-theme-text px-4 py-2 rounded-full text-sm font-medium transition-colors border border-theme-border"
       >
         {displayLabel}
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-44 bg-brand-dark border border-white/10 rounded-xl shadow-xl overflow-hidden z-50">
+        <div className="absolute right-0 mt-2 w-44 bg-theme-bg border border-theme-border rounded-xl shadow-xl overflow-hidden z-50">
           <Link
             to="/profile"
             onClick={() => setIsOpen(false)}
-            className="block px-4 py-3 text-sm text-gray-300 hover:bg-white/5 hover:text-white transition-colors"
+            className="block px-4 py-3 text-sm text-theme-text-secondary hover:bg-theme-surface hover:text-theme-text transition-colors"
           >
             {t('auth.profile')}
           </Link>
           <button
             onClick={() => { logout(); setIsOpen(false); }}
-            className="w-full text-left px-4 py-3 text-sm text-gray-300 hover:bg-white/5 hover:text-white transition-colors border-t border-white/5"
+            className="w-full text-left px-4 py-3 text-sm text-theme-text-secondary hover:bg-theme-surface hover:text-theme-text transition-colors border-t border-theme-border-secondary"
           >
             {t('auth.logout')}
           </button>

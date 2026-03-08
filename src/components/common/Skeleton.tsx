@@ -5,11 +5,11 @@ interface SkeletonProps {
 }
 
 const Skeleton: React.FC<SkeletonProps> = ({ className = '' }) => (
-    <div className={`animate-pulse bg-white/5 rounded-lg ${className}`} />
+    <div className={`animate-pulse bg-theme-surface rounded-lg ${className}`} />
 );
 
 export const CardSkeleton: React.FC = () => (
-    <div className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-4">
+    <div className="bg-theme-surface border border-theme-border rounded-2xl p-6 space-y-4">
         <div className="flex items-center gap-4">
             <Skeleton className="w-16 h-16 rounded-full" />
             <div className="flex-1 space-y-2">

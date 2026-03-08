@@ -11,12 +11,12 @@ const LanguageToggle: React.FC = () => {
     return (
         <button
             onClick={toggle}
-            className="flex items-center gap-1 text-sm font-medium text-gray-400 hover:text-white transition-colors"
-            aria-label="Toggle language"
+            className="flex items-center gap-1 text-sm font-medium text-theme-text-muted hover:text-theme-text transition-colors"
+            aria-label={isKo ? 'Switch to English' : '한국어로 변경'}
         >
-            <span className={isKo ? 'text-white font-bold' : ''}>KO</span>
-            <span className="text-gray-600">/</span>
-            <span className={!isKo ? 'text-white font-bold' : ''}>EN</span>
+            <span className={isKo ? 'text-theme-text font-bold' : ''}>KO</span>
+            <span className="text-theme-text-muted">/</span>
+            <span className={!isKo ? 'text-theme-text font-bold' : ''}>EN</span>
         </button>
     );
 };
