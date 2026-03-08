@@ -3,6 +3,18 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --bg-primary: #050508;
+    --bg-secondary: #020204;
+    --bg-surface: #0a0a12;
+    --bg-surface-hover: #1a1a2e;
+    --text-primary: #F5F5FA;
+    --text-secondary: #d1d5db;
+    --text-muted: #9ca3af;
+    --border-primary: rgba(255, 255, 255, 0.1);
+    --border-secondary: rgba(255, 255, 255, 0.05);
+  }
+
   body {
     @apply bg-brand-dark text-brand-light font-sans antialiased;
   }
