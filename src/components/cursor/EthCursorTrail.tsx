@@ -164,7 +164,7 @@ const EthCursorTrail: React.FC = () => {
         const rotation = progress * 30;
 
         p.el.style.opacity = String(opacity);
-        p.el.style.transform = `translate3d(${p.x - PARTICLE_SIZE / 2}px, ${p.y - PARTICLE_SIZE / 2}px, 0) scale(${scale}) rotate(${rotation}deg)`;
+        p.el.style.transform = `translate3d(${p.x - PARTICLE_SIZE / 2}px, ${p.y}px, 0) scale(${scale}) rotate(${rotation}deg)`;
       }
 
       // Update click particles (Taegeuk)
@@ -186,7 +186,7 @@ const EthCursorTrail: React.FC = () => {
         const drift = eased * 30;
 
         cp.el.style.opacity = String(opacity);
-        cp.el.style.transform = `translate3d(${cp.x - CLICK_SIZE / 2}px, ${cp.y - CLICK_SIZE / 2 - drift}px, 0) scale(${scale}) rotate(${rotation}deg)`;
+        cp.el.style.transform = `translate3d(${cp.x - CLICK_SIZE / 2}px, ${cp.y - drift}px, 0) scale(${scale}) rotate(${rotation}deg)`;
       }
 
       rafRef.current = requestAnimationFrame(animateRef.current!);
