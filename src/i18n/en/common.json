@@ -3,11 +3,11 @@
     "about": "About",
     "coreTeam": "Core Team",
     "contributors": "Contributors",
-    "research": "Research",
-    "news": "News",
+    "contents": "Contents",
     "events": "Events",
     "ecosystem": "Ecosystem",
-    "subscribe": "Subscribe"
+    "subscribe": "Subscribe",
+    "skipToContent": "Skip to main content"
   },
   "footer": {
     "description": "A non-profit group helping grow Korea's Ethereum ecosystem through research, news curation, community events, and education.",
@@ -73,11 +73,54 @@
     "noWallet": "No wallet connected",
     "addWallet": "Add Wallet"
   },
-  "newsDetail": {
-    "notFound": "Report not found",
-    "backToNews": "Back to News",
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "The page you requested does not exist or has been moved.",
+    "backHome": "Back to Home",
+    "quickLinks": "Quick Links"
+  },
+  "error": {
+    "title": "Something went wrong",
+    "description": "An unexpected error occurred.",
+    "retry": "Try Again",
+    "backHome": "Back to Home"
+  },
+  "rewards": {
+    "badges": "On-chain Badges",
+    "owned": "Owned",
+    "claim": "Claim",
+    "claiming": "Claiming...",
+    "claimSuccess": "Badge claimed successfully!",
+    "claimError": "An error occurred while claiming.",
+    "alreadyClaimed": "Already Owned",
+    "claimTitle": "Claim Contributor Badges",
+    "claimDescription": "Claim on-chain badges for your community contributions.",
+    "loginToClaim": "Please login to claim badges.",
+    "adminTitle": "Rewards Admin",
+    "adminDescription": "Mint badges for contributors.",
+    "mintBadge": "Mint Badge",
+    "recipientAddress": "Recipient Address",
+    "selectBadge": "Select Badge",
+    "mint": "Mint",
+    "minting": "Minting...",
+    "mintSuccess": "Badge minted successfully!",
+    "mintError": "An error occurred while minting.",
+    "walletRequired": "Wallet connection required.",
+    "selectChain": "Select Chain",
+    "chainBase": "Base",
+    "chainEthereum": "Ethereum"
+  },
+  "contentsDetail": {
+    "notFound": "Content not found",
+    "backToContents": "Back to Contents",
     "by": "by",
-    "allReports": "← All Reports",
+    "allContents": "← All Contents",
     "viewOriginal": "View Original"
+  },
+  "share": {
+    "twitter": "Share on Twitter",
+    "telegram": "Share on Telegram",
+    "copyLink": "Copy Link",
+    "copied": "Link copied!"
   }
 }

@@ -4,6 +4,8 @@ import { ArrowLeft, Send, Eye, PenLine, Loader2, ChevronDown } from 'lucide-reac
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 import { mockMembers, mockContributors } from '../data/mockData';
 import BlockNoteEditor from '../components/editor/BlockNoteEditor';
 
@@ -17,11 +19,11 @@ const WriteResearch: React.FC = () => {
     const [previewMode, setPreviewMode] = useState(false);
     const [isPublishing, setIsPublishing] = useState(false);
     const [publishError, setPublishError] = useState('');
-    const { t } = useTranslation('research');
+    const { t } = useTranslation('contents');
     React.useEffect(() => {
         const isAdmin = localStorage.getItem('isAdmin') === 'true';
         if (!isAdmin) {
-            navigate('/research');
+            navigate('/contents');
         }
     }, [navigate]);
 
@@ -96,7 +98,7 @@ const WriteResearch: React.FC = () => {
             entries.push({ ...publishedEntry, _content: formData.content });
             sessionStorage.setItem('publishedEntries', JSON.stringify(entries));
 
-            navigate(`/research/${publishedEntry.id}`, {
+            navigate(`/contents/${publishedEntry.id}`, {
                 state: { publishedEntry, publishedContent: formData.content },
             });
         } catch (err) {
@@ -111,11 +113,11 @@ const WriteResearch: React.FC = () => {
             <div className="container mx-auto max-w-5xl">
                 <div className="flex items-center justify-between mb-12">
                     <Link
-                        to="/research"
+                        to="/contents"
                         className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors group"
                     >
                         <ArrowLeft size={20} className="transition-transform group-hover:-translate-x-1" />
-                        {t('write.backToResearch')}
+                        {t('write.backToContents')}
                     </Link>
                     <div className="flex gap-4">
                         <button
@@ -237,7 +239,7 @@ const WriteResearch: React.FC = () => {
                                 <p className="text-xl text-gray-400 font-light italic mt-4">{formData.summary || 'No Summary'}</p>
                             </div>
                             <div className="prose prose-invert prose-brand lg:prose-xl max-w-none">
-                                <ReactMarkdown>{formData.content || '_No content yet. Start writing..._'}</ReactMarkdown>
+                                <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>{formData.content || '_No content yet. Start writing..._'}</ReactMarkdown>
                             </div>
                         </div>
                     </motion.div>

@@ -3,11 +3,11 @@
     "about": "About",
     "coreTeam": "Core Team",
     "contributors": "Contributors",
-    "research": "Research",
-    "news": "News",
+    "contents": "Contents",
     "events": "Events",
     "ecosystem": "Ecosystem",
-    "subscribe": "Subscribe"
+    "subscribe": "Subscribe",
+    "skipToContent": "본문으로 바로가기"
   },
   "footer": {
     "description": "이더리움 리서치, 뉴스 큐레이션, 커뮤니티 이벤트, 교육을 통해 한국 이더리움 생태계의 성장을 돕는 비영리 그룹입니다.",
@@ -73,11 +73,54 @@
     "noWallet": "연결된 지갑이 없습니다",
     "addWallet": "지갑 추가"
   },
-  "newsDetail": {
-    "notFound": "리포트를 찾을 수 없습니다",
-    "backToNews": "뉴스로 돌아가기",
+  "notFound": {
+    "title": "페이지를 찾을 수 없습니다",
+    "description": "요청하신 페이지가 존재하지 않거나 이동되었습니다.",
+    "backHome": "홈으로 돌아가기",
+    "quickLinks": "바로가기"
+  },
+  "error": {
+    "title": "문제가 발생했습니다",
+    "description": "예기치 않은 오류가 발생했습니다.",
+    "retry": "다시 시도",
+    "backHome": "홈으로 돌아가기"
+  },
+  "rewards": {
+    "badges": "온체인 배지",
+    "owned": "보유 중",
+    "claim": "클레임",
+    "claiming": "클레임 중...",
+    "claimSuccess": "배지를 성공적으로 클레임했습니다!",
+    "claimError": "클레임 중 오류가 발생했습니다.",
+    "alreadyClaimed": "이미 보유 중",
+    "claimTitle": "기여자 배지 클레임",
+    "claimDescription": "커뮤니티 기여에 대한 온체인 배지를 클레임하세요.",
+    "loginToClaim": "배지를 클레임하려면 로그인하세요.",
+    "adminTitle": "보상 관리",
+    "adminDescription": "기여자에게 배지를 발급하세요.",
+    "mintBadge": "배지 발급",
+    "recipientAddress": "수신자 주소",
+    "selectBadge": "배지 선택",
+    "mint": "발급",
+    "minting": "발급 중...",
+    "mintSuccess": "배지가 성공적으로 발급되었습니다!",
+    "mintError": "발급 중 오류가 발생했습니다.",
+    "walletRequired": "지갑 연결이 필요합니다.",
+    "selectChain": "체인 선택",
+    "chainBase": "Base",
+    "chainEthereum": "Ethereum"
+  },
+  "contentsDetail": {
+    "notFound": "콘텐츠를 찾을 수 없습니다",
+    "backToContents": "콘텐츠로 돌아가기",
     "by": "작성자",
-    "allReports": "← 모든 리포트",
+    "allContents": "← 모든 콘텐츠",
     "viewOriginal": "원본 보기"
+  },
+  "share": {
+    "twitter": "트위터에 공유",
+    "telegram": "텔레그램에 공유",
+    "copyLink": "링크 복사",
+    "copied": "링크가 복사되었습니다!"
   }
 }

@@ -6,8 +6,7 @@ import koCommon from './ko/common.json';
 import koHome from './ko/home.json';
 import koAbout from './ko/about.json';
 import koTeam from './ko/team.json';
-import koResearch from './ko/research.json';
-import koNews from './ko/news.json';
+import koContents from './ko/contents.json';
 import koEvents from './ko/events.json';
 import koEcosystem from './ko/ecosystem.json';
 
@@ -15,8 +14,7 @@ import enCommon from './en/common.json';
 import enHome from './en/home.json';
 import enAbout from './en/about.json';
 import enTeam from './en/team.json';
-import enResearch from './en/research.json';
-import enNews from './en/news.json';
+import enContents from './en/contents.json';
 import enEvents from './en/events.json';
 import enEcosystem from './en/ecosystem.json';
 
@@ -30,8 +28,7 @@ i18n
         home: koHome,
         about: koAbout,
         team: koTeam,
-        research: koResearch,
-        news: koNews,
+        contents: koContents,
         events: koEvents,
         ecosystem: koEcosystem,
       },
@@ -40,15 +37,14 @@ i18n
         home: enHome,
         about: enAbout,
         team: enTeam,
-        research: enResearch,
-        news: enNews,
+        contents: enContents,
         events: enEvents,
         ecosystem: enEcosystem,
       },
     },
     fallbackLng: 'ko',
     defaultNS: 'common',
-    ns: ['common', 'home', 'about', 'team', 'research', 'news', 'events', 'ecosystem'],
+    ns: ['common', 'home', 'about', 'team', 'contents', 'events', 'ecosystem'],
     interpolation: {
       escapeValue: false,
     },

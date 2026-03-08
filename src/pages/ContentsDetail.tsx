@@ -1,26 +1,45 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { useParams, Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Calendar, Trash2, Loader2 } from 'lucide-react';
+import { ArrowLeft, Calendar, Trash2, Loader2, ExternalLink } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
-import { loadResearchIndex, loadResearchContent, type ResearchIndexItem } from '../data/researchData';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
+import DOMPurify from 'dompurify';
+import { loadContentsIndex, loadResearchContent, type ResearchIndexItem } from '../data/researchData';
 import { getAvatarFallbackUrl } from '../utils/members';
 import EthThumbnail from '../components/shared/EthThumbnail';
+import ShareButtons from '../components/common/ShareButtons';
+import type { NewsFeedData } from '../types/news';
 
-const ResearchDetail: React.FC = () => {
-    const { t } = useTranslation('research');
+const ALLOWED_TAGS = [
+    'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+    'p', 'br', 'hr',
+    'ul', 'ol', 'li',
+    'table', 'thead', 'tbody', 'tr', 'th', 'td',
+    'strong', 'em', 'a', 'code', 'pre', 'blockquote',
+    'div', 'span', 'img',
+];
+
+const ALLOWED_ATTR = ['href', 'target', 'rel', 'src', 'alt', 'id', 'class'];
+
+const ContentsDetail: React.FC = () => {
+    const { t } = useTranslation('contents');
     const { id } = useParams<{ id: string }>();
     const navigate = useNavigate();
     const location = useLocation();
     const [content, setContent] = useState<string>('');
+    const [htmlContent, setHtmlContent] = useState<string>('');
     const [isDeleting, setIsDeleting] = useState(false);
     const [deleteError, setDeleteError] = useState('');
-    const [researchItems, setResearchItems] = useState<ResearchIndexItem[]>([]);
+    const [contentsItems, setContentsItems] = useState<ResearchIndexItem[]>([]);
     const isAdmin = localStorage.getItem('isAdmin') === 'true';
 
+    const isNewsItem = id?.startsWith('news-') ?? false;
+
     useEffect(() => {
-        loadResearchIndex().then(setResearchItems);
+        loadContentsIndex().then(setContentsItems);
     }, []);
 
     const handleDelete = async () => {
@@ -52,7 +71,7 @@ const ResearchDetail: React.FC = () => {
             ids.push(id!);
             sessionStorage.setItem('deletedIds', JSON.stringify(ids));
 
-            navigate('/research');
+            navigate('/contents');
         } catch (err) {
             setDeleteError(err instanceof Error ? err.message : t('detail.deleteError'));
         } finally {
@@ -72,7 +91,7 @@ const ResearchDetail: React.FC = () => {
     }, [id]);
 
     const post = useMemo(() => {
-        const found = researchItems.find(p => p.id === id);
+        const found = contentsItems.find(p => p.id === id);
         if (found) return found;
         const state = location.state as { publishedEntry?: Record<string, unknown> } | null;
         if (state?.publishedEntry && state.publishedEntry.id === id) {
@@ -82,10 +101,23 @@ const ResearchDetail: React.FC = () => {
             return sessionEntry as unknown as ResearchIndexItem;
         }
         return undefined;
-    }, [id, location.state, sessionEntry, researchItems]);
+    }, [id, location.state, sessionEntry, contentsItems]);
 
     useEffect(() => {
         if (!id) return;
+
+        if (isNewsItem) {
+            const newsId = id.replace('news-', '');
+            import('../data/news-feed.json').then(({ default: data }) => {
+                const feed = data as NewsFeedData;
+                const item = feed.items.find(i => i.id === newsId);
+                if (item) {
+                    setHtmlContent(DOMPurify.sanitize(item.content, { ALLOWED_TAGS, ALLOWED_ATTR }));
+                }
+            });
+            return;
+        }
+
         const state = location.state as { publishedContent?: string } | null;
         if (state?.publishedContent) {
             setContent(state.publishedContent);
@@ -96,21 +128,21 @@ const ResearchDetail: React.FC = () => {
             return;
         }
         loadResearchContent(id).then(c => setContent(c ?? ''));
-    }, [id, location.state, sessionEntry]);
+    }, [id, location.state, sessionEntry, isNewsItem]);
 
     if (!post) {
         return (
-            <div className="min-h-screen flex items-center justify-center text-white">
+            <div className="min-h-screen flex items-center justify-center text-theme-text">
                 <div className="text-center">
                     <h1 className="text-4xl font-bold mb-4">{t('detail.notFound')}</h1>
-                    <Link to="/research" className="text-brand-primary hover:underline">{t('detail.backToResearch')}</Link>
+                    <Link to="/contents" className="text-brand-primary hover:underline">{t('detail.backToContents')}</Link>
                 </div>
             </div>
         );
     }
 
     return (
-        <div className="min-h-screen bg-brand-dark pb-20 overflow-x-hidden">
+        <div className="min-h-screen pb-20 overflow-x-hidden" style={{ backgroundColor: 'var(--bg-primary)' }}>
             {/* Hero Header */}
             <div className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
                 {post.thumbnailUrl ? (
@@ -123,7 +155,7 @@ const ResearchDetail: React.FC = () => {
                 ) : (
                     <EthThumbnail articleId={post.id} />
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-primary)] via-[var(--bg-primary)]/40 to-transparent" />
 
                 <div className="absolute inset-0 flex flex-col justify-end">
                     <div className="container mx-auto px-6 pb-12">
@@ -133,11 +165,11 @@ const ResearchDetail: React.FC = () => {
                             className="max-w-4xl"
                         >
                             <Link
-                                to="/research"
+                                to="/contents"
                                 className="inline-flex items-center gap-2 text-brand-primary mb-6 hover:text-white transition-colors group"
                             >
                                 <ArrowLeft size={18} className="transition-transform group-hover:-translate-x-1" />
-                                {t('detail.backToResearch')}
+                                {t('detail.backToContents')}
                             </Link>
                             <div className="flex items-center gap-3 mb-6">
                                 <span className="px-3 py-1 rounded-full bg-brand-primary/20 backdrop-blur-md border border-white/10 text-xs font-bold text-brand-primary uppercase">
@@ -148,12 +180,12 @@ const ResearchDetail: React.FC = () => {
                                         via {post.forwardedFrom === 'Unknown' ? t('forwardedFromUnknown') : post.forwardedFrom}
                                     </span>
                                 )}
-                                <span className="text-gray-400 text-sm">{post.readTime} {t('detail.read')}</span>
+                                <span className="text-theme-text-muted text-sm">{post.readTime} {t('detail.read')}</span>
                             </div>
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 leading-tight">
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-theme-text mb-8 leading-tight">
                                 {post.title}
                             </h1>
-                            <div className="flex items-center gap-6 text-gray-300">
+                            <div className="flex items-center gap-6 text-theme-text-secondary">
                                 <div className="flex items-center gap-2">
                                     <img
                                         src={post.authorAvatar}
@@ -161,7 +193,7 @@ const ResearchDetail: React.FC = () => {
                                         decoding="async"
                                         width={40}
                                         height={40}
-                                        className="w-10 h-10 rounded-full object-cover border-2 border-white/10"
+                                        className="w-10 h-10 rounded-full object-cover border-2 border-theme-border"
                                         onError={(e) => {
                                             (e.target as HTMLImageElement).src = getAvatarFallbackUrl(post.author, 40);
                                         }}
@@ -185,10 +217,33 @@ const ResearchDetail: React.FC = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.3 }}
-                        className="prose prose-invert prose-brand lg:prose-xl max-w-none"
                     >
-                        <ReactMarkdown>{content}</ReactMarkdown>
+                        {isNewsItem ? (
+                            <div
+                                className="news-content prose prose-invert prose-brand lg:prose-xl max-w-none"
+                                dangerouslySetInnerHTML={{ __html: htmlContent }}
+                            />
+                        ) : (
+                            <div className="prose prose-invert prose-brand lg:prose-xl max-w-none">
+                                <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>{content}</ReactMarkdown>
+                            </div>
+                        )}
                     </motion.div>
+
+                    {/* View Original link for Weekly Report */}
+                    {post.originalLink && (
+                        <div className="mt-8">
+                            <a
+                                href={post.originalLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 text-brand-accent hover:underline"
+                            >
+                                <ExternalLink size={16} />
+                                {t('viewOriginal')}
+                            </a>
+                        </div>
+                    )}
 
                     {deleteError && (
                         <div className="mt-8 p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-sm">
@@ -196,9 +251,13 @@ const ResearchDetail: React.FC = () => {
                         </div>
                     )}
 
-                    <div className="mt-20 pt-10 border-t border-white/5 flex items-center justify-between">
+                    <div className="mt-12 flex justify-end">
+                        <ShareButtons url={window.location.href} title={post.title} />
+                    </div>
+
+                    <div className="mt-8 pt-10 border-t border-theme-border-secondary flex items-center justify-between">
                         <div className="flex items-center gap-4">
-                            {isAdmin && (
+                            {isAdmin && !isNewsItem && (
                                 <button
                                     onClick={handleDelete}
                                     disabled={isDeleting}
@@ -209,7 +268,7 @@ const ResearchDetail: React.FC = () => {
                                 </button>
                             )}
                         </div>
-                        <div className="flex items-center gap-2 text-sm text-gray-500">
+                        <div className="flex items-center gap-2 text-sm text-theme-text-muted">
                             ID: {post.id}
                         </div>
                     </div>
@@ -219,4 +278,4 @@ const ResearchDetail: React.FC = () => {
     );
 };
 
-export default ResearchDetail;
+export default ContentsDetail;

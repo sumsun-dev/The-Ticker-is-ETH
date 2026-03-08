@@ -30,7 +30,7 @@ const AdminLogin: React.FC = () => {
                 sessionStorage.setItem('publishKey', passphrase);
                 localStorage.setItem('isAdmin', 'true');
                 setIsSuccess(true);
-                setTimeout(() => navigate('/research'), 1500);
+                setTimeout(() => navigate('/contents'), 1500);
             } else {
                 setError(true);
                 setTimeout(() => setError(false), 2000);

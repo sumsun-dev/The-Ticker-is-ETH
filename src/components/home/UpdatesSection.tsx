@@ -28,7 +28,7 @@ const UpdatesSection: React.FC = () => {
                         </motion.span>
                         <h2 className="text-3xl md:text-4xl font-bold text-white">{t('updates.title')}</h2>
                     </div>
-                    <Link to="/research" className="flex items-center gap-2 text-brand-primary hover:text-brand-accent transition-colors font-semibold group">
+                    <Link to="/contents" className="flex items-center gap-2 text-brand-primary hover:text-brand-accent transition-colors font-semibold group">
                         {t('updates.viewAll')} <ArrowUpRight size={20} className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
                     </Link>
                 </div>
@@ -36,12 +36,12 @@ const UpdatesSection: React.FC = () => {
                 {latestUpdates.length === 0 ? (
                     <div className="grid md:grid-cols-3 gap-8">
                         {[0, 1, 2].map(i => (
-                            <div key={i} className="bg-white/5 border border-white/10 rounded-3xl overflow-hidden animate-pulse">
-                                <div className="h-48 bg-white/5" />
+                            <div key={i} className="bg-theme-surface border border-theme-border rounded-3xl overflow-hidden animate-pulse">
+                                <div className="h-48 bg-theme-surface" />
                                 <div className="p-6 space-y-3">
-                                    <div className="h-3 w-20 bg-white/10 rounded" />
-                                    <div className="h-5 w-full bg-white/10 rounded" />
-                                    <div className="h-4 w-3/4 bg-white/10 rounded" />
+                                    <div className="h-3 w-20 bg-theme-surface-hover rounded" />
+                                    <div className="h-5 w-full bg-theme-surface-hover rounded" />
+                                    <div className="h-4 w-3/4 bg-theme-surface-hover rounded" />
                                 </div>
                             </div>
                         ))}
@@ -55,9 +55,9 @@ const UpdatesSection: React.FC = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: i * 0.1 }}
-                            className="bg-white/5 border border-white/10 rounded-3xl overflow-hidden group hover:border-brand-primary/50 transition-all hover:-translate-y-2"
+                            className="bg-theme-surface border border-theme-border rounded-3xl overflow-hidden group hover:border-brand-primary/50 transition-all hover:-translate-y-2"
                         >
-                            <Link to={`/research/${item.id}`} className="block h-48 relative overflow-hidden">
+                            <Link to={`/contents/${item.id}`} className="block h-48 relative overflow-hidden">
                                 {item.thumbnailUrl ? (
                                     <img
                                         src={item.thumbnailUrl}
@@ -76,19 +76,19 @@ const UpdatesSection: React.FC = () => {
                                 </div>
                             </Link>
                             <div className="p-6">
-                                <div className="flex items-center gap-2 text-gray-500 text-xs mb-3">
+                                <div className="flex items-center gap-2 text-theme-text-muted text-xs mb-3">
                                     <Calendar size={14} />
                                     {item.date}
                                 </div>
-                                <Link to={`/research/${item.id}`}>
+                                <Link to={`/contents/${item.id}`}>
                                     <h3 className="text-xl font-bold text-white mb-4 group-hover:text-brand-accent transition-colors line-clamp-2">
                                         {item.title}
                                     </h3>
                                 </Link>
-                                <p className="text-gray-400 text-sm mb-6 line-clamp-2">
+                                <p className="text-theme-text-muted text-sm mb-6 line-clamp-2">
                                     {item.summary}
                                 </p>
-                                <Link to={`/research/${item.id}`} className="text-sm font-bold text-white flex items-center gap-2 group/btn">
+                                <Link to={`/contents/${item.id}`} className="text-sm font-bold text-white flex items-center gap-2 group/btn">
                                     {t('updates.readArticle')} <ArrowUpRight size={16} className="text-brand-primary group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
                                 </Link>
                             </div>
