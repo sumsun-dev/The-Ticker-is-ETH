@@ -16,8 +16,6 @@ const WriteResearch = React.lazy(() => import('./pages/WriteResearch'));
 const Ecosystem = React.lazy(() => import('./pages/Ecosystem'));
 const AdminLogin = React.lazy(() => import('./pages/AdminLogin'));
 const Profile = React.lazy(() => import('./pages/Profile'));
-const Claim = React.lazy(() => import('./pages/Claim'));
-const AdminRewards = React.lazy(() => import('./pages/AdminRewards'));
 const NotFound = React.lazy(() => import('./pages/NotFound'));
 
 const ScrollToTop: React.FC = () => {
@@ -52,9 +50,7 @@ function App() {
               <Route path="/contents/:id" element={<ContentsDetail />} />
               <Route path="/contents/write" element={<WriteResearch />} />
               <Route path="/profile" element={<Profile />} />
-              <Route path="/claim" element={<Claim />} />
               <Route path="/admin" element={<AdminLogin />} />
-              <Route path="/admin/rewards" element={<AdminRewards />} />
               {/* Backward-compatible redirects */}
               <Route path="/research" element={<Navigate to="/contents" replace />} />
               <Route path="/research/write" element={<Navigate to="/contents/write" replace />} />

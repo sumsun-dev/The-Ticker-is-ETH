@@ -10,7 +10,6 @@ import DOMPurify from 'dompurify';
 import { loadContentsIndex, loadResearchContent, type ResearchIndexItem } from '../data/researchData';
 import { getAvatarFallbackUrl } from '../utils/members';
 import EthThumbnail from '../components/shared/EthThumbnail';
-import ShareButtons from '../components/common/ShareButtons';
 import type { NewsFeedData } from '../types/news';
 
 const ALLOWED_TAGS = [
@@ -250,10 +249,6 @@ const ContentsDetail: React.FC = () => {
                             {deleteError}
                         </div>
                     )}
-
-                    <div className="mt-12 flex justify-end">
-                        <ShareButtons url={window.location.href} title={post.title} />
-                    </div>
 
                     <div className="mt-8 pt-10 border-t border-theme-border-secondary flex items-center justify-between">
                         <div className="flex items-center gap-4">
