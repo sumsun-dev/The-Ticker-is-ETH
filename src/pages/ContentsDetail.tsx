@@ -141,7 +141,7 @@ const ContentsDetail: React.FC = () => {
     }
 
     return (
-        <div className="min-h-screen pb-20 overflow-x-hidden" style={{ backgroundColor: 'var(--bg-primary)' }}>
+        <div className="min-h-screen pb-20 overflow-x-hidden bg-theme-bg">
             {/* Hero Header */}
             <div className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
                 {post.thumbnailUrl ? (
@@ -165,17 +165,17 @@ const ContentsDetail: React.FC = () => {
                         >
                             <Link
                                 to="/contents"
-                                className="inline-flex items-center gap-2 text-brand-primary mb-6 hover:text-white transition-colors group"
+                                className="inline-flex items-center gap-2 text-brand-primary mb-6 hover:text-theme-text transition-colors group"
                             >
                                 <ArrowLeft size={18} className="transition-transform group-hover:-translate-x-1" />
                                 {t('detail.backToContents')}
                             </Link>
                             <div className="flex items-center gap-3 mb-6">
-                                <span className="px-3 py-1 rounded-full bg-brand-primary/20 backdrop-blur-md border border-white/10 text-xs font-bold text-brand-primary uppercase">
+                                <span className="px-3 py-1 rounded-full bg-brand-primary/20 backdrop-blur-md border border-theme-border text-xs font-bold text-brand-primary uppercase">
                                     {post.category}
                                 </span>
                                 {'forwardedFrom' in post && post.forwardedFrom && (
-                                    <span className="px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-xs text-gray-300">
+                                    <span className="px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-theme-border text-xs text-theme-text-secondary">
                                         via {post.forwardedFrom === 'Unknown' ? t('forwardedFromUnknown') : post.forwardedFrom}
                                     </span>
                                 )}
@@ -219,7 +219,7 @@ const ContentsDetail: React.FC = () => {
                     >
                         {isNewsItem ? (
                             <div
-                                className="news-content prose prose-invert prose-brand lg:prose-xl max-w-none"
+                                className="prose-news prose prose-invert prose-brand lg:prose-xl max-w-none"
                                 dangerouslySetInnerHTML={{ __html: htmlContent }}
                             />
                         ) : (

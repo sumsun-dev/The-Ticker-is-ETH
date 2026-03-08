@@ -219,7 +219,7 @@ const Contents: React.FC = () => {
                                 )}
                                 <div className="absolute inset-0 bg-gradient-to-t from-brand-dark to-transparent opacity-60" />
                                 <div className="absolute top-4 left-4 flex items-center gap-2">
-                                    <span className="px-3 py-1 rounded-full bg-brand-primary/20 backdrop-blur-md border border-white/10 text-xs font-bold text-brand-primary uppercase">
+                                    <span className="px-3 py-1 rounded-full bg-brand-primary/20 backdrop-blur-md border border-theme-border text-xs font-bold text-brand-primary uppercase">
                                         {t(`categories.${item.category}`)}
                                     </span>
                                     {'forwardedFrom' in item && item.forwardedFrom && (
@@ -264,7 +264,7 @@ const Contents: React.FC = () => {
                                     </div>
                                     <Link
                                         to={`/contents/${item.id}`}
-                                        className="text-brand-primary hover:text-white transition-colors p-2"
+                                        className="text-brand-primary hover:text-theme-text transition-colors p-2"
                                     >
                                         <ArrowRight size={20} />
                                     </Link>

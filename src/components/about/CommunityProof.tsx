@@ -36,7 +36,7 @@ const CommunityProof: React.FC = () => {
             icon: <Github size={24} />,
             title: t('community.github'),
             description: t('community.githubDescription'),
-            color: 'text-white',
+            color: 'text-theme-text',
             stat: null,
         },
     ];
@@ -58,7 +58,7 @@ const CommunityProof: React.FC = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-3xl md:text-4xl font-bold text-white"
+                        className="text-3xl md:text-4xl font-bold text-theme-text"
                     >
                         {t('community.title')}
                     </motion.h2>
@@ -78,14 +78,14 @@ const CommunityProof: React.FC = () => {
                                 <div className={`${proof.color} mb-4`}>
                                     {proof.icon}
                                 </div>
-                                <h3 className="text-lg font-bold text-white mb-2">{proof.title}</h3>
+                                <h3 className="text-lg font-bold text-theme-text mb-2">{proof.title}</h3>
                                 {proof.stat !== null && (
-                                    <div className="text-3xl font-black text-white mb-2 tabular-nums">
+                                    <div className="text-3xl font-black text-theme-text mb-2 tabular-nums">
                                         <AnimatedNumber value={proof.stat} />
                                         <span className="text-brand-primary text-lg ml-1">{t('community.daysUnit')}</span>
                                     </div>
                                 )}
-                                <p className="text-sm text-gray-400 font-light leading-relaxed mt-auto">
+                                <p className="text-sm text-theme-text-secondary font-light leading-relaxed mt-auto">
                                     {proof.description}
                                 </p>
                             </div>

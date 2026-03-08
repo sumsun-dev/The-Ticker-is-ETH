@@ -23,7 +23,7 @@ const Home: React.FC = () => {
     }, []);
 
     return (
-        <div className="bg-brand-dark">
+        <div className="bg-theme-bg">
             <Hero />
 
             <motion.div
@@ -44,7 +44,7 @@ const Home: React.FC = () => {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight"
+                            className="text-3xl md:text-4xl font-bold text-theme-text mb-4 tracking-tight"
                         >
                             {t('cta.title')}
                         </motion.h2>
@@ -53,7 +53,7 @@ const Home: React.FC = () => {
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.15 }}
-                            className="text-gray-400 font-light mb-10 max-w-xl mx-auto leading-relaxed whitespace-pre-line"
+                            className="text-theme-text-muted font-light mb-10 max-w-xl mx-auto leading-relaxed whitespace-pre-line"
                         >
                             {t('cta.description')}
                         </motion.p>
@@ -69,7 +69,7 @@ const Home: React.FC = () => {
                                     transition={{ delay: idx * 0.04, duration: 0.35 }}
                                     className="group relative"
                                 >
-                                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden border-2 border-white/5 ring-2 ring-transparent group-hover:ring-brand-primary/50 group-hover:-translate-y-2 transition-all duration-300">
+                                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden border-2 border-theme-border-secondary ring-2 ring-transparent group-hover:ring-brand-primary/50 group-hover:-translate-y-2 transition-all duration-300">
                                         <img
                                             src={member.avatarUrl}
                                             alt={member.name}
@@ -81,7 +81,7 @@ const Home: React.FC = () => {
                                         />
                                     </div>
                                     <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-                                        <span className="text-[10px] text-gray-400 bg-brand-dark/90 px-2 py-0.5 rounded">{member.name}</span>
+                                        <span className="text-[10px] text-theme-text-muted bg-brand-dark/90 px-2 py-0.5 rounded">{member.name}</span>
                                     </div>
                                 </motion.div>
                             ))}
@@ -106,7 +106,7 @@ const Home: React.FC = () => {
                                 href="https://t.me/thetickeriseth"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group inline-flex items-center gap-2 px-7 py-3 rounded-full border border-white/10 text-gray-300 font-medium text-sm hover:border-brand-primary/40 hover:text-white transition-all"
+                                className="group inline-flex items-center gap-2 px-7 py-3 rounded-full border border-theme-border text-theme-text-secondary font-medium text-sm hover:border-brand-primary/40 hover:text-theme-text transition-all"
                             >
                                 <MessageCircle size={16} />
                                 {t('cta.telegram')}

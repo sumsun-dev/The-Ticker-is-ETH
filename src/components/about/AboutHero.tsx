@@ -52,7 +52,7 @@ const AboutHero: React.FC = () => {
                         <EthDiamond className="w-3 h-auto" />
                         {t('badge')}
                     </motion.span>
-                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-10 leading-tight tracking-tight text-white">
+                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-10 leading-tight tracking-tight text-theme-text">
                         <Trans
                             i18nKey="about:heroTitle"
                             components={{
@@ -61,7 +61,7 @@ const AboutHero: React.FC = () => {
                             }}
                         />
                     </h1>
-                    <p className="text-xl text-gray-400 font-light leading-relaxed max-w-2xl mx-auto">
+                    <p className="text-xl text-theme-text-secondary font-light leading-relaxed max-w-2xl mx-auto">
                         {t('heroDescription')}
                     </p>
                 </motion.div>

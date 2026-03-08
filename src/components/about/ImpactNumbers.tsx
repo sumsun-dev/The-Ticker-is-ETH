@@ -73,7 +73,7 @@ const ImpactNumbers: React.FC = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-3xl md:text-4xl font-bold text-white"
+                        className="text-3xl md:text-4xl font-bold text-theme-text"
                     >
                         {t('impact.title')}
                     </motion.h2>
@@ -92,11 +92,11 @@ const ImpactNumbers: React.FC = () => {
                             <div className="text-brand-accent mb-4">
                                 {stat.icon}
                             </div>
-                            <div className="text-4xl md:text-5xl font-black text-white mb-2 tabular-nums">
+                            <div className="text-4xl md:text-5xl font-black text-theme-text mb-2 tabular-nums">
                                 <AnimatedNumber value={stat.value} />
                                 <span className="text-brand-primary">{stat.suffix}</span>
                             </div>
-                            <span className="text-xs font-semibold text-gray-500 uppercase tracking-widest">
+                            <span className="text-xs font-semibold text-theme-text-muted uppercase tracking-widest">
                                 {stat.label}
                             </span>
                         </motion.div>

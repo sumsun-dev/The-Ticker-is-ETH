@@ -30,7 +30,7 @@ const MemberCard: React.FC<MemberCardProps> = ({ member }) => {
             layout
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-brand-accent/30 transition-all group hover:bg-white/[0.07]"
+            className="bg-white/5 border border-theme-border rounded-2xl p-6 hover:border-brand-accent/30 transition-all group hover:bg-white/[0.07]"
         >
             <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center gap-4">
@@ -48,47 +48,47 @@ const MemberCard: React.FC<MemberCardProps> = ({ member }) => {
                             }}
                         />
                         {member.isCurrent && (
-                            <div className="absolute bottom-0 right-0 w-4 h-4 bg-green-500 border-2 border-brand-dark rounded-full" title="Active Object" />
+                            <div className="absolute bottom-0 right-0 w-4 h-4 bg-green-500 border-2 border-theme-bg rounded-full" title="Active Object" />
                         )}
                     </div>
                     <div>
-                        <h3 className="text-xl font-bold text-white group-hover:text-brand-accent transition-colors">
+                        <h3 className="text-xl font-bold text-theme-text group-hover:text-brand-accent transition-colors">
                             {member.name}
                         </h3>
                         <p className="text-sm text-brand-primary font-medium">{member.role}</p>
-                        <p className="text-xs text-gray-500 mt-1">{member.period}</p>
+                        <p className="text-xs text-theme-text-muted mt-1">{member.period}</p>
                     </div>
                 </div>
                 <div className="flex gap-2">
                     {member.social.github && (
-                        <a href={member.social.github} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                        <a href={member.social.github} target="_blank" rel="noopener noreferrer" className="text-theme-text-secondary hover:text-theme-text transition-colors">
                             <Github size={18} />
                         </a>
                     )}
                     {member.social.twitter && (
-                        <a href={member.social.twitter} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                        <a href={member.social.twitter} target="_blank" rel="noopener noreferrer" className="text-theme-text-secondary hover:text-theme-text transition-colors">
                             <Twitter size={18} />
                         </a>
                     )}
                     {member.social.telegram && (
-                        <a href={member.social.telegram} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-social-telegram transition-colors">
+                        <a href={member.social.telegram} target="_blank" rel="noopener noreferrer" className="text-theme-text-secondary hover:text-social-telegram transition-colors">
                             <Send size={18} />
                         </a>
                     )}
                     {member.social.linkedin && (
-                        <a href={member.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                        <a href={member.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-theme-text-secondary hover:text-theme-text transition-colors">
                             <Linkedin size={18} />
                         </a>
                     )}
                     {member.social.website && (
-                        <a href={member.social.website} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                        <a href={member.social.website} target="_blank" rel="noopener noreferrer" className="text-theme-text-secondary hover:text-theme-text transition-colors">
                             <Globe size={18} />
                         </a>
                     )}
                 </div>
             </div>
 
-            <p className="text-gray-400 text-sm mb-4 line-clamp-2">
+            <p className="text-theme-text-secondary text-sm mb-4 line-clamp-2">
                 {t(bioKey, { defaultValue: member.bio })}
             </p>
 
@@ -102,12 +102,12 @@ const MemberCard: React.FC<MemberCardProps> = ({ member }) => {
                                     href={h.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-xs text-gray-400 hover:text-white transition-colors truncate"
+                                    className="text-xs text-theme-text-secondary hover:text-theme-text transition-colors truncate"
                                 >
                                     {h.title}
                                 </a>
                             ) : (
-                                <span className="text-xs text-gray-400 truncate">{h.title}</span>
+                                <span className="text-xs text-theme-text-secondary truncate">{h.title}</span>
                             )}
                         </div>
                     ))}
@@ -116,7 +116,7 @@ const MemberCard: React.FC<MemberCardProps> = ({ member }) => {
 
             <div className="mb-4">
                 <div className="flex justify-between items-center mb-2">
-                    <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">{t('recentActivity')}</span>
+                    <span className="text-xs font-semibold text-theme-text-muted uppercase tracking-wider">{t('recentActivity')}</span>
                     <span className="text-xs text-brand-accent">
                         {getTotalContributions(member.contributions)} {t('contributions')}
                     </span>
@@ -126,7 +126,7 @@ const MemberCard: React.FC<MemberCardProps> = ({ member }) => {
 
             <Link
                 to={member.memberType === 'core' ? `/team/${member.id}` : `/contributors/${member.id}`}
-                className="block w-full text-center py-2 rounded-lg bg-white/5 hover:bg-white/10 text-sm font-medium text-white transition-colors border border-transparent hover:border-white/10"
+                className="block w-full text-center py-2 rounded-lg bg-white/5 hover:bg-white/10 text-sm font-medium text-theme-text transition-colors border border-transparent hover:border-theme-border"
             >
                 {t('viewProfile')}
             </Link>

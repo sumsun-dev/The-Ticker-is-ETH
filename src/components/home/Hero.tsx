@@ -18,11 +18,11 @@ const Hero: React.FC = () => {
     const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
     return (
-        <div ref={containerRef} className="relative min-h-screen flex flex-col items-center justify-start overflow-hidden bg-brand-dark text-white pt-24 lg:pt-32">
+        <div ref={containerRef} className="relative min-h-screen flex flex-col items-center justify-start overflow-hidden bg-theme-bg text-theme-text pt-24 lg:pt-32">
             {/* Background Effects: Deep Premium Atmosphere */}
             <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] bg-brand-primary/10 rounded-full blur-[160px] opacity-20" />
-                <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '60px 60px' }} />
+                <div className="absolute inset-0 opacity-[0.02] bg-grid-pattern" />
             </div>
 
             <div className="container mx-auto px-6 relative z-10 flex flex-col items-center text-center">
@@ -33,13 +33,13 @@ const Hero: React.FC = () => {
                     style={{ opacity }}
                     className="max-w-4xl"
                 >
-                    <span className="text-xs font-medium uppercase tracking-[0.4em] text-gray-500 mb-6 block">
+                    <span className="text-xs font-medium uppercase tracking-[0.4em] text-theme-text-muted mb-6 block">
                         {t('hero.badge')}
                     </span>
 
-                    <h1 className="text-5xl md:text-7xl lg:text-[100px] font-black mb-10 tracking-[-0.04em] leading-[0.9] uppercase italic text-white">
+                    <h1 className="text-5xl md:text-7xl lg:text-[100px] font-black mb-10 tracking-[-0.04em] leading-[0.9] uppercase italic text-theme-text">
                         The ticker <br />
-                        is <span className="text-white">ETH</span>
+                        is <span className="text-theme-text">ETH</span>
                     </h1>
 
                     {/* SNS Icons */}
@@ -56,7 +56,7 @@ const Hero: React.FC = () => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 whileHover={{ y: -4, scale: 1.1 }}
-                                className="p-2.5 rounded-full bg-white/5 border border-white/10 text-white/40 hover:text-white hover:border-white/30 hover:bg-white/10 transition-all duration-300 group"
+                                className="p-2.5 rounded-full bg-theme-surface border border-theme-border text-white/40 hover:text-theme-text hover:border-white/30 hover:bg-theme-surface-hover transition-all duration-300 group"
                                 title={sns.label}
                             >
                                 <sns.icon size={16} strokeWidth={1.5} />
@@ -65,11 +65,11 @@ const Hero: React.FC = () => {
                     </div>
 
                     <div className="flex justify-center mb-0">
-                        <Link to="/about" className="group relative px-12 py-4 bg-transparent border border-white/10 rounded-full overflow-hidden transition-all duration-500 hover:border-white/40 inline-block">
-                            <span className="relative z-10 text-xs font-bold tracking-[0.3em] uppercase transition-colors duration-500 group-hover:text-white">
+                        <Link to="/about" className="group relative px-12 py-4 bg-transparent border border-theme-border rounded-full overflow-hidden transition-all duration-500 hover:border-white/40 inline-block">
+                            <span className="relative z-10 text-xs font-bold tracking-[0.3em] uppercase transition-colors duration-500 group-hover:text-theme-text">
                                 {t('hero.learnMore')}
                             </span>
-                            <div className="absolute inset-0 bg-white/5 translate-y-full transition-transform duration-500 group-hover:translate-y-0" />
+                            <div className="absolute inset-0 bg-theme-surface translate-y-full transition-transform duration-500 group-hover:translate-y-0" />
                         </Link>
                     </div>
                 </motion.div>
@@ -87,7 +87,7 @@ const Hero: React.FC = () => {
 
                 <div className="relative z-20">
                     {/* Backglow for the logo */}
-                    <div className="absolute inset-0 bg-white/5 blur-3xl rounded-full scale-75" />
+                    <div className="absolute inset-0 bg-theme-surface blur-3xl rounded-full scale-75" />
 
                     <motion.img
                         initial={{ opacity: 0, scale: 0.95 }}
@@ -95,11 +95,7 @@ const Hero: React.FC = () => {
                         transition={{ duration: 1.2, ease: "easeOut" }}
                         src="/assets/ticker-eth-logo.svg"
                         alt="The Ticker is ETH"
-                        className="w-full h-auto object-contain mx-auto relative mix-blend-screen"
-                        style={{
-                            maskImage: 'radial-gradient(ellipse 85% 85% at 50% 45%, black 65%, transparent 100%)',
-                            WebkitMaskImage: 'radial-gradient(ellipse 85% 85% at 50% 45%, black 65%, transparent 100%)',
-                        }}
+                        className="w-full h-auto object-contain mx-auto relative mix-blend-screen mask-logo-fade"
                     />
                 </div>
 

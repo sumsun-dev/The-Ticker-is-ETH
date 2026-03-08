@@ -25,7 +25,7 @@ const MissionSection: React.FC = () => {
     ];
 
     return (
-        <section className="py-24 relative overflow-hidden bg-brand-dark">
+        <section className="py-24 relative overflow-hidden bg-theme-bg">
             <div className="container mx-auto px-6 relative z-10">
                 <div className="max-w-4xl mx-auto text-center mb-20">
                     <motion.span
@@ -46,7 +46,7 @@ const MissionSection: React.FC = () => {
                         <Trans
                             i18nKey="home:mission.title"
                             components={{
-                                white: <span className="text-white" />,
+                                white: <span className="text-theme-text" />,
                                 accent: <span className="text-brand-accent" />,
                                 br: <br />,
                             }}
@@ -57,7 +57,7 @@ const MissionSection: React.FC = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="text-gray-400 text-lg md:text-xl leading-relaxed"
+                        className="text-theme-text-muted text-lg md:text-xl leading-relaxed"
                     >
                         {t('mission.description')}
                     </motion.p>
@@ -71,13 +71,13 @@ const MissionSection: React.FC = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: i * 0.1 }}
-                            className="p-8 rounded-[2.5rem] border border-white/5 bg-white/[0.02] backdrop-blur-md hover:border-brand-primary/30 transition-all group"
+                            className="p-8 rounded-[2.5rem] border border-theme-border-secondary bg-theme-surface backdrop-blur-md hover:border-brand-primary/30 transition-all group"
                         >
-                            <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <div className="w-14 h-14 bg-theme-surface rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                                 {v.icon}
                             </div>
-                            <h3 className="text-xl font-bold text-white mb-4">{v.title}</h3>
-                            <p className="text-gray-400 leading-relaxed text-sm font-light">
+                            <h3 className="text-xl font-bold text-theme-text mb-4">{v.title}</h3>
+                            <p className="text-theme-text-muted leading-relaxed text-sm font-light">
                                 {v.description}
                             </p>
                         </motion.div>

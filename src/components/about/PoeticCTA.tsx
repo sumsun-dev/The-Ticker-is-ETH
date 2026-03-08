@@ -21,11 +21,11 @@ const PoeticCTA: React.FC = () => {
                 >
                     <EthDiamond className="w-6 h-auto text-brand-primary/30 mx-auto mb-8" />
                     <blockquote className="mb-8">
-                        <p className="text-xl md:text-2xl text-gray-400 font-light leading-loose">
+                        <p className="text-xl md:text-2xl text-theme-text-secondary font-light leading-loose">
                             <Trans
                                 i18nKey="about:poeticQuote"
                                 components={{
-                                    seed: <span className="text-white font-medium" />,
+                                    seed: <span className="text-theme-text font-medium" />,
                                     br: <br />,
                                 }}
                             />
@@ -56,7 +56,7 @@ const PoeticCTA: React.FC = () => {
                             href="https://t.me/thetickeriseth"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group inline-flex items-center gap-2.5 px-7 py-3 rounded-full border border-white/10 text-gray-300 font-medium text-sm hover:border-brand-primary/40 hover:text-white transition-all"
+                            className="group inline-flex items-center gap-2.5 px-7 py-3 rounded-full border border-theme-border text-theme-text-secondary font-medium text-sm hover:border-brand-primary/40 hover:text-theme-text transition-all"
                         >
                             <MessageCircle size={16} />
                             {t('cta.telegram')}

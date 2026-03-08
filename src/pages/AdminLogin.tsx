@@ -44,7 +44,7 @@ const AdminLogin: React.FC = () => {
     };
 
     return (
-        <div className="min-h-screen bg-brand-dark flex items-center justify-center px-6">
+        <div className="min-h-screen bg-theme-bg flex items-center justify-center px-6">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-brand-primary/10 via-transparent to-transparent pointer-none" />
 
             <motion.div
@@ -52,13 +52,13 @@ const AdminLogin: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="w-full max-w-md relative z-10"
             >
-                <div className="bg-white/[0.03] border border-white/10 backdrop-blur-xl rounded-[2.5rem] p-10 md:p-12 shadow-2xl">
+                <div className="bg-white/[0.03] border border-theme-border backdrop-blur-xl rounded-[2.5rem] p-10 md:p-12 shadow-2xl">
                     <div className="flex flex-col items-center text-center mb-10">
                         <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-all duration-500 ${isSuccess ? 'bg-green-500/20 text-green-500' : 'bg-brand-primary/10 text-brand-primary'}`}>
                             {isSuccess ? <ShieldCheck size={32} /> : <Lock size={32} />}
                         </div>
-                        <h1 className="text-3xl font-bold text-white mb-2">{t('admin.title')}</h1>
-                        <p className="text-gray-400 font-light">
+                        <h1 className="text-3xl font-bold text-theme-text mb-2">{t('admin.title')}</h1>
+                        <p className="text-theme-text-secondary font-light">
                             {isSuccess ? t('admin.authSuccess') : t('admin.enterPassphrase')}
                         </p>
                     </div>
@@ -70,7 +70,7 @@ const AdminLogin: React.FC = () => {
                                 placeholder={t('admin.passphrasePlaceholder')}
                                 value={passphrase}
                                 onChange={(e) => setPassphrase(e.target.value)}
-                                className={`w-full bg-white/5 border rounded-2xl py-4 px-6 text-white text-lg focus:outline-none transition-all placeholder:text-gray-600 ${error ? 'border-red-500/50 bg-red-500/5' : 'border-white/10 focus:border-brand-accent/50 focus:bg-white/10'}`}
+                                className={`w-full bg-white/5 border rounded-2xl py-4 px-6 text-theme-text text-lg focus:outline-none transition-all placeholder:text-theme-text-muted ${error ? 'border-red-500/50 bg-red-500/5' : 'border-theme-border focus:border-brand-accent/50 focus:bg-white/10'}`}
                                 autoFocus
                             />
                             {error && (
@@ -96,7 +96,7 @@ const AdminLogin: React.FC = () => {
                     </form>
                 </div>
 
-                <p className="text-center text-gray-600 text-xs mt-8">
+                <p className="text-center text-theme-text-muted text-xs mt-8">
                     {t('admin.notice')}
                 </p>
             </motion.div>

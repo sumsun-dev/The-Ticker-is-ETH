@@ -26,7 +26,7 @@ const UpdatesSection: React.FC = () => {
                         >
                             {t('updates.badge')}
                         </motion.span>
-                        <h2 className="text-3xl md:text-4xl font-bold text-white">{t('updates.title')}</h2>
+                        <h2 className="text-3xl md:text-4xl font-bold text-theme-text">{t('updates.title')}</h2>
                     </div>
                     <Link to="/contents" className="flex items-center gap-2 text-brand-primary hover:text-brand-accent transition-colors font-semibold group">
                         {t('updates.viewAll')} <ArrowUpRight size={20} className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
@@ -70,7 +70,7 @@ const UpdatesSection: React.FC = () => {
                                     <EthThumbnail articleId={item.id} className="grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" />
                                 )}
                                 <div className="absolute top-4 left-4">
-                                    <span className="bg-brand-primary/80 backdrop-blur-md text-[10px] font-bold text-white px-3 py-1 rounded-full uppercase tracking-widest">
+                                    <span className="bg-brand-primary/80 backdrop-blur-md text-[10px] font-bold text-theme-text px-3 py-1 rounded-full uppercase tracking-widest">
                                         {item.category}
                                     </span>
                                 </div>
@@ -81,14 +81,14 @@ const UpdatesSection: React.FC = () => {
                                     {item.date}
                                 </div>
                                 <Link to={`/contents/${item.id}`}>
-                                    <h3 className="text-xl font-bold text-white mb-4 group-hover:text-brand-accent transition-colors line-clamp-2">
+                                    <h3 className="text-xl font-bold text-theme-text mb-4 group-hover:text-brand-accent transition-colors line-clamp-2">
                                         {item.title}
                                     </h3>
                                 </Link>
                                 <p className="text-theme-text-muted text-sm mb-6 line-clamp-2">
                                     {item.summary}
                                 </p>
-                                <Link to={`/contents/${item.id}`} className="text-sm font-bold text-white flex items-center gap-2 group/btn">
+                                <Link to={`/contents/${item.id}`} className="text-sm font-bold text-theme-text flex items-center gap-2 group/btn">
                                     {t('updates.readArticle')} <ArrowUpRight size={16} className="text-brand-primary group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
                                 </Link>
                             </div>

@@ -50,19 +50,19 @@ const Contributors: React.FC = () => {
     }, [filter, searchQuery, sortBy]);
 
     return (
-        <div className="min-h-screen pt-28 pb-20 px-6 container mx-auto text-white">
+        <div className="min-h-screen pt-28 pb-20 px-6 container mx-auto text-theme-text">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="text-center mb-16"
             >
-                <div className="inline-block px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm text-sm font-medium text-brand-primary mb-4">
+                <div className="inline-block px-4 py-1.5 rounded-full border border-theme-border bg-theme-surface backdrop-blur-sm text-sm font-medium text-brand-primary mb-4">
                     {t('contributorBadge')}
                 </div>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-brand-accent">
                     {t('contributorTitle')}
                 </h1>
-                <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed font-light">
+                <p className="text-theme-text-muted max-w-2xl mx-auto text-lg leading-relaxed font-light">
                     {t('contributorDescription')}
                 </p>
             </motion.div>
@@ -83,10 +83,10 @@ const Contributors: React.FC = () => {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3 + i * 0.1 }}
-                        className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center backdrop-blur-sm"
+                        className="bg-theme-surface border border-theme-border rounded-2xl p-6 text-center backdrop-blur-sm"
                     >
                         <AnimatedNumber value={stat.value} className="text-3xl font-bold text-brand-accent" />
-                        <div className="text-sm text-gray-400 mt-1">{stat.label}</div>
+                        <div className="text-sm text-theme-text-muted mt-1">{stat.label}</div>
                     </motion.div>
                 ))}
             </motion.div>
@@ -99,8 +99,8 @@ const Contributors: React.FC = () => {
                             key={cat}
                             onClick={() => setFilter(cat)}
                             className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${filter === cat
-                                ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/25'
-                                : 'bg-white/5 text-gray-400 hover:text-white hover:bg-white/10'
+                                ? 'bg-brand-primary text-theme-text shadow-lg shadow-brand-primary/25'
+                                : 'bg-theme-surface text-theme-text-muted hover:text-theme-text hover:bg-theme-surface-hover'
                                 }`}
                         >
                             {cat.charAt(0).toUpperCase() + cat.slice(1)}
@@ -111,13 +111,13 @@ const Contributors: React.FC = () => {
                 <div className="flex flex-col md:flex-row justify-center items-center gap-4">
                     {/* Search */}
                     <div className="relative w-full md:w-[28rem] group">
-                        <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-brand-accent transition-colors" size={18} />
+                        <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-theme-text-muted group-focus-within:text-brand-accent transition-colors" size={18} />
                         <input
                             type="text"
                             placeholder={t('common:search.contributorPlaceholder')}
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full bg-white/5 border border-white/10 rounded-2xl py-3.5 pl-14 pr-6 text-white text-base focus:outline-none focus:border-brand-accent/50 focus:bg-white/10 transition-all font-light"
+                            className="w-full bg-white/5 border border-theme-border rounded-2xl py-3.5 pl-14 pr-6 text-theme-text text-base focus:outline-none focus:border-brand-accent/50 focus:bg-white/10 transition-all font-light"
                         />
                     </div>
 
@@ -126,12 +126,12 @@ const Contributors: React.FC = () => {
                         <select
                             value={sortBy}
                             onChange={(e) => setSortBy(e.target.value as SortOption)}
-                            className="appearance-none w-full md:w-56 bg-white/5 border border-white/10 rounded-2xl py-3.5 pl-6 pr-12 text-white font-light focus:outline-none focus:border-brand-accent/50 transition-all shadow-xl cursor-pointer text-sm"
+                            className="appearance-none w-full md:w-56 bg-white/5 border border-theme-border rounded-2xl py-3.5 pl-6 pr-12 text-theme-text font-light focus:outline-none focus:border-brand-accent/50 transition-all shadow-xl cursor-pointer text-sm"
                         >
-                            <option value="contributions" className="bg-brand-dark">{t('common:sort.contributions')}</option>
-                            <option value="seniority" className="bg-brand-dark">{t('common:sort.seniority')}</option>
+                            <option value="contributions" className="bg-theme-bg">{t('common:sort.contributions')}</option>
+                            <option value="seniority" className="bg-theme-bg">{t('common:sort.seniority')}</option>
                         </select>
-                        <ChevronDown className="absolute right-6 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" size={16} />
+                        <ChevronDown className="absolute right-6 top-1/2 -translate-y-1/2 text-theme-text-muted pointer-events-none" size={16} />
                     </div>
                 </div>
             </div>
@@ -140,7 +140,7 @@ const Contributors: React.FC = () => {
                 <div className="mb-16">
                     <div className="flex items-center gap-3 mb-6">
                         <div className="w-2.5 h-2.5 bg-green-500 rounded-full" />
-                        <h2 className="text-xl font-semibold text-white">{t('sections.active')} <span className="text-gray-500 font-normal text-base ml-1">{activeContributors.length}</span></h2>
+                        <h2 className="text-xl font-semibold text-theme-text">{t('sections.active')} <span className="text-theme-text-muted font-normal text-base ml-1">{activeContributors.length}</span></h2>
                     </div>
                     <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                         <AnimatePresence mode="popLayout">
@@ -156,7 +156,7 @@ const Contributors: React.FC = () => {
                 <div className="mb-16">
                     <div className="flex items-center gap-3 mb-6">
                         <div className="w-2.5 h-2.5 bg-gray-500 rounded-full" />
-                        <h2 className="text-xl font-semibold text-white">{t('sections.inactive')} <span className="text-gray-500 font-normal text-base ml-1">{inactiveContributors.length}</span></h2>
+                        <h2 className="text-xl font-semibold text-theme-text">{t('sections.inactive')} <span className="text-theme-text-muted font-normal text-base ml-1">{inactiveContributors.length}</span></h2>
                     </div>
                     <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 opacity-60">
                         <AnimatePresence mode="popLayout">
@@ -171,7 +171,7 @@ const Contributors: React.FC = () => {
             {activeContributors.length === 0 && inactiveContributors.length === 0 && (
                 <div className="text-center py-20">
                     <Users className="mx-auto text-gray-700 mb-4" size={48} />
-                    <p className="text-gray-500 text-lg italic font-light tracking-tight">{t('contributorNoResults')}</p>
+                    <p className="text-theme-text-muted text-lg italic font-light tracking-tight">{t('contributorNoResults')}</p>
                 </div>
             )}
         </div>

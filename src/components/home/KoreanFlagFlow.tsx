@@ -61,7 +61,7 @@ const FlagParticle: React.FC<{ delay: number; duration: number; pathId: number }
             style={{ width: '48px', height: '48px' }}
         >
             {/* Spherical Data Orb Wrapper */}
-            <div className="relative w-full h-full flex items-center justify-center rounded-full overflow-hidden border border-white/30 bg-white/5 backdrop-blur-sm shadow-[inset_0_0_15px_rgba(255,255,255,0.2)]">
+            <div className="relative w-full h-full flex items-center justify-center rounded-full overflow-hidden border border-theme-border bg-theme-surface backdrop-blur-sm shadow-[inset_0_0_15px_rgba(255,255,255,0.2)]">
                 <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-50" />
                 <img
                     src={krFlag}

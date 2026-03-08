@@ -57,7 +57,7 @@ const EcosystemSection: React.FC = () => {
   );
 
   return (
-    <section className="py-24 relative overflow-hidden bg-brand-dark">
+    <section className="py-24 relative overflow-hidden bg-theme-bg">
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="max-w-4xl mx-auto text-center mb-16">
@@ -88,7 +88,7 @@ const EcosystemSection: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-gray-400 text-lg md:text-xl leading-relaxed"
+            className="text-theme-text-muted text-lg md:text-xl leading-relaxed"
           >
             {t('ecosystem.description')}
           </motion.p>
@@ -107,7 +107,7 @@ const EcosystemSection: React.FC = () => {
             className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
               activeCategory === 'all'
                 ? 'bg-brand-primary/20 text-brand-primary border border-brand-primary/40'
-                : 'bg-white/[0.03] text-gray-400 border border-white/5 hover:border-white/20 hover:text-white'
+                : 'bg-theme-surface text-theme-text-muted border border-theme-border-secondary hover:border-theme-border hover:text-theme-text'
             }`}
           >
             <Layers size={16} />
@@ -120,7 +120,7 @@ const EcosystemSection: React.FC = () => {
               className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
                 activeCategory === cat.id
                   ? 'bg-brand-primary/20 text-brand-primary border border-brand-primary/40'
-                  : 'bg-white/[0.03] text-gray-400 border border-white/5 hover:border-white/20 hover:text-white'
+                  : 'bg-theme-surface text-theme-text-muted border border-theme-border-secondary hover:border-theme-border hover:text-theme-text'
               }`}
             >
               {iconMap[cat.icon]}
@@ -144,10 +144,10 @@ const EcosystemSection: React.FC = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.3 }}
-                className="group p-5 md:p-6 rounded-2xl border border-white/5 bg-white/[0.02] backdrop-blur-md hover:border-brand-primary/30 hover:-translate-y-1 transition-all"
+                className="group p-5 md:p-6 rounded-2xl border border-theme-border-secondary bg-theme-surface backdrop-blur-md hover:border-brand-primary/30 hover:-translate-y-1 transition-all"
               >
                 <div className="flex items-start justify-between mb-3">
-                  <div className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <div className="w-10 h-10 bg-theme-surface rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                     <img
                       src={getFaviconUrl(tool.url)}
                       alt={`${tool.name} logo`}
@@ -161,13 +161,13 @@ const EcosystemSection: React.FC = () => {
                   </div>
                   <ExternalLink
                     size={14}
-                    className="text-gray-600 group-hover:text-brand-primary transition-colors mt-1"
+                    className="text-theme-text-muted group-hover:text-brand-primary transition-colors mt-1"
                   />
                 </div>
-                <h3 className="text-white font-semibold text-sm md:text-base mb-1.5">
+                <h3 className="text-theme-text font-semibold text-sm md:text-base mb-1.5">
                   {tool.name}
                 </h3>
-                <p className="text-gray-500 text-xs md:text-sm leading-relaxed line-clamp-2 font-light">
+                <p className="text-theme-text-muted text-xs md:text-sm leading-relaxed line-clamp-2 font-light">
                   {t(tool.descriptionKey)}
                 </p>
               </motion.a>

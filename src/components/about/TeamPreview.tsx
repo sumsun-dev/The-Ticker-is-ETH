@@ -17,7 +17,7 @@ const TeamPreview: React.FC = () => {
     }, []);
 
     return (
-        <section className="py-24 px-6 border-y border-white/5 bg-white/[0.01] relative overflow-hidden">
+        <section className="py-24 px-6 border-y border-theme-border-secondary bg-white/[0.01] relative overflow-hidden">
             <div className="absolute top-10 right-10 opacity-[0.02]">
                 <EthDiamond className="w-72 h-auto text-brand-primary" />
             </div>
@@ -34,7 +34,7 @@ const TeamPreview: React.FC = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-3xl md:text-4xl font-bold text-white mb-4"
+                    className="text-3xl md:text-4xl font-bold text-theme-text mb-4"
                 >
                     {t('teamPreview.title')}
                 </motion.h2>
@@ -43,7 +43,7 @@ const TeamPreview: React.FC = () => {
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.2 }}
-                    className="text-gray-400 font-light mb-12 max-w-lg mx-auto"
+                    className="text-theme-text-secondary font-light mb-12 max-w-lg mx-auto"
                 >
                     {t('teamPreview.description')}
                 </motion.p>
@@ -60,7 +60,7 @@ const TeamPreview: React.FC = () => {
                             transition={{ delay: idx * 0.05, duration: 0.4 }}
                             className="group relative"
                         >
-                            <div className="w-14 h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/5 ring-2 ring-transparent group-hover:ring-brand-primary/50 group-hover:-translate-y-2 transition-all duration-300">
+                            <div className="w-14 h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-theme-border-secondary ring-2 ring-transparent group-hover:ring-brand-primary/50 group-hover:-translate-y-2 transition-all duration-300">
                                 <img
                                     src={member.avatarUrl}
                                     alt={member.name}
@@ -73,7 +73,7 @@ const TeamPreview: React.FC = () => {
                             </div>
                             {/* Tooltip */}
                             <div className="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-                                <span className="text-[10px] text-gray-400 bg-brand-dark/90 px-2 py-0.5 rounded">{member.name}</span>
+                                <span className="text-[10px] text-theme-text-secondary bg-brand-dark/90 px-2 py-0.5 rounded">{member.name}</span>
                             </div>
                         </motion.a>
                     ))}

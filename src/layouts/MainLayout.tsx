@@ -70,11 +70,11 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     ];
 
     return (
-        <div className="min-h-screen flex flex-col overflow-x-hidden" style={{ backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
+        <div className="min-h-screen flex flex-col overflow-x-hidden bg-theme-bg text-theme-text">
             {/* Skip Navigation */}
             <a
                 href="#main-content"
-                className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[60] focus:px-4 focus:py-2 focus:bg-brand-primary focus:text-white focus:rounded-lg focus:outline-none"
+                className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[60] focus:px-4 focus:py-2 focus:bg-brand-primary focus:text-theme-text focus:rounded-lg focus:outline-none"
             >
                 {t('nav.skipToContent')}
             </a>
@@ -82,9 +82,8 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             <EthCursorTrail />
             <nav
                 aria-label="Main navigation"
-                className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'backdrop-blur-md py-4' : 'bg-transparent py-6'
+                className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'backdrop-blur-md py-4 bg-primary-80 border-b border-theme-border-secondary' : 'bg-transparent py-6'
                     }`}
-                style={isScrolled ? { backgroundColor: 'color-mix(in srgb, var(--bg-primary) 80%, transparent)', borderBottom: '1px solid var(--border-secondary)' } : undefined}
             >
                 <div className="container mx-auto px-6 flex justify-between items-center">
                     <Link to="/" className="flex items-center gap-2.5" aria-label="Home">
@@ -104,7 +103,7 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                             <Link
                                 key={link.path}
                                 to={link.path}
-                                className="text-sm font-medium text-theme-text-secondary hover:text-theme-text focus-visible:text-theme-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark rounded transition-colors relative group"
+                                className="text-sm font-medium text-theme-text-secondary hover:text-theme-text focus-visible:text-theme-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-theme-bg rounded transition-colors relative group"
                             >
                                 {link.name}
                                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-accent transition-all group-hover:w-full" />
@@ -136,8 +135,7 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: 'auto' }}
                             exit={{ opacity: 0, height: 0 }}
-                            className="md:hidden backdrop-blur-xl overflow-hidden"
-                            style={{ backgroundColor: 'color-mix(in srgb, var(--bg-primary) 95%, transparent)', borderTop: '1px solid var(--border-secondary)' }}
+                            className="md:hidden backdrop-blur-xl overflow-hidden bg-primary-95 border-t border-theme-border-secondary"
                             role="menu"
                         >
                             <div ref={mobileMenuRef} className="flex flex-col p-6 gap-4">
@@ -166,7 +164,7 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 {children}
             </main>
 
-            <footer className="py-12" role="contentinfo" style={{ backgroundColor: 'var(--bg-secondary)', borderTop: '1px solid var(--border-secondary)' }}>
+            <footer className="py-12 bg-theme-bg-secondary border-t border-theme-border-secondary" role="contentinfo">
                 <div className="container mx-auto px-6">
                     <div className="grid md:grid-cols-4 gap-8">
                         <div className="md:col-span-2">

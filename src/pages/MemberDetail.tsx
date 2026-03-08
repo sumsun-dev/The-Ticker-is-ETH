@@ -36,8 +36,8 @@ const MemberDetail: React.FC = () => {
 
     if (!member) {
         return (
-            <div className="min-h-screen pt-28 pb-20 px-6 container mx-auto text-white">
-                <Link to="/team" className="inline-flex items-center text-gray-400 hover:text-white mb-8 transition-colors">
+            <div className="min-h-screen pt-28 pb-20 px-6 container mx-auto text-theme-text">
+                <Link to="/team" className="inline-flex items-center text-theme-text-muted hover:text-theme-text mb-8 transition-colors">
                     <ArrowLeft size={20} className="mr-2" /> {t('backToTeam')}
                 </Link>
                 <div className="text-center text-xl font-light">{t('memberNotFound')}</div>
@@ -48,7 +48,7 @@ const MemberDetail: React.FC = () => {
     const getActivityIcon = (type: string) => {
         switch (type) {
             case 'telegram': return <MessageCircle size={16} className="text-blue-400" />;
-            case 'github': return <Github size={16} className="text-gray-400" />;
+            case 'github': return <Github size={16} className="text-theme-text-secondary" />;
             case 'blog': return <PenTool size={16} className="text-brand-accent" />;
             default: return <MessageCircle size={16} />;
         }
@@ -69,7 +69,7 @@ const MemberDetail: React.FC = () => {
 
     return (
         <div className="min-h-screen pt-28 pb-20 px-6 container mx-auto">
-            <Link to={backLink} className="inline-flex items-center text-gray-400 hover:text-white mb-8 transition-colors group">
+            <Link to={backLink} className="inline-flex items-center text-theme-text-muted hover:text-theme-text mb-8 transition-colors group">
                 <ArrowLeft size={20} className="mr-2 group-hover:-translate-x-1 transition-transform" /> {backLabel}
             </Link>
 
@@ -79,7 +79,7 @@ const MemberDetail: React.FC = () => {
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        className="bg-white/5 border border-white/10 rounded-3xl p-8 sticky top-28 backdrop-blur-md"
+                        className="bg-theme-surface border border-theme-border rounded-3xl p-8 sticky top-28 backdrop-blur-md"
                     >
                         <div className="relative w-32 h-32 mx-auto mb-6">
                             <img
@@ -88,70 +88,70 @@ const MemberDetail: React.FC = () => {
                                 width={128}
                                 height={128}
                                 decoding="async"
-                                className="w-full h-full rounded-full object-cover border-4 border-brand-dark shadow-2xl"
+                                className="w-full h-full rounded-full object-cover border-4 border-theme-bg shadow-2xl"
                                 onError={(e) => {
                                     (e.target as HTMLImageElement).src = getAvatarFallbackUrl(member.name, 128);
                                 }}
                             />
                             {member.isCurrent && (
-                                <div className="absolute bottom-1 right-1 w-6 h-6 bg-green-500 border-4 border-brand-dark rounded-full" />
+                                <div className="absolute bottom-1 right-1 w-6 h-6 bg-green-500 border-4 border-theme-bg rounded-full" />
                             )}
                         </div>
 
-                        <h1 className="text-3xl font-bold text-center text-white mb-2">{member.name}</h1>
+                        <h1 className="text-3xl font-bold text-center text-theme-text mb-2">{member.name}</h1>
                         <p className="text-center text-brand-primary font-semibold mb-6 uppercase tracking-wider text-xs">{member.role}</p>
 
                         <div className="flex justify-center gap-3 mb-8">
                             {member.social.twitter && (
-                                <a href={member.social.twitter} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all" title="Twitter">
+                                <a href={member.social.twitter} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-theme-surface flex items-center justify-center text-theme-text-muted hover:text-theme-text hover:bg-theme-surface-hover transition-all" title="Twitter">
                                     <Twitter size={20} />
                                 </a>
                             )}
                             {member.social.github && (
-                                <a href={member.social.github} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all" title="GitHub">
+                                <a href={member.social.github} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-theme-surface flex items-center justify-center text-theme-text-muted hover:text-theme-text hover:bg-theme-surface-hover transition-all" title="GitHub">
                                     <Github size={20} />
                                 </a>
                             )}
                             {member.social.linkedin && (
-                                <a href={member.social.linkedin} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all" title="LinkedIn">
+                                <a href={member.social.linkedin} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-theme-surface flex items-center justify-center text-theme-text-muted hover:text-theme-text hover:bg-theme-surface-hover transition-all" title="LinkedIn">
                                     <Linkedin size={20} />
                                 </a>
                             )}
                             {member.social.telegram && (
-                                <a href={member.social.telegram} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all" title="Telegram">
+                                <a href={member.social.telegram} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-theme-surface flex items-center justify-center text-theme-text-muted hover:text-theme-text hover:bg-theme-surface-hover transition-all" title="Telegram">
                                     <Send size={20} />
                                 </a>
                             )}
                             {member.social.website && (
-                                <a href={member.social.website} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all" title="Website">
+                                <a href={member.social.website} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-theme-surface flex items-center justify-center text-theme-text-muted hover:text-theme-text hover:bg-theme-surface-hover transition-all" title="Website">
                                     <Globe size={20} />
                                 </a>
                             )}
                         </div>
 
-                        <div className="space-y-4 text-sm text-gray-400 mb-8 border-t border-white/5 pt-8">
+                        <div className="space-y-4 text-sm text-theme-text-muted mb-8 border-t border-theme-border-secondary pt-8">
                             <div className="flex justify-between">
                                 <span>{t('membership')}</span>
-                                <span className={member.isCurrent ? "text-green-400 font-medium" : "text-gray-500"}>
+                                <span className={member.isCurrent ? "text-green-400 font-medium" : "text-theme-text-muted"}>
                                     {member.isCurrent ? (member.memberType === 'core' ? t('activeCore') : t('activeContributor')) : t('alumni')}
                                 </span>
                             </div>
                             <div className="flex justify-between">
                                 <span>{t('contributionPeriod')}</span>
-                                <span className="text-white">{member.period}</span>
+                                <span className="text-theme-text">{member.period}</span>
                             </div>
                         </div>
 
-                        <div className="bg-white/5 rounded-2xl p-4 mb-8">
-                            <p className="text-gray-300 text-sm leading-relaxed italic">
+                        <div className="bg-theme-surface rounded-2xl p-4 mb-8">
+                            <p className="text-theme-text-secondary text-sm leading-relaxed italic">
                                 "{t(bioKey, { defaultValue: member.bio })}"
                             </p>
                         </div>
 
                         {/* Highlight Contributions */}
                         {member.highlights && member.highlights.length > 0 && (
-                            <div className="mb-8 border-t border-white/5 pt-6">
-                                <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-3 flex items-center gap-1.5">
+                            <div className="mb-8 border-t border-theme-border-secondary pt-6">
+                                <h4 className="text-xs font-semibold text-theme-text-muted uppercase tracking-widest mb-3 flex items-center gap-1.5">
                                     <EthIcon size={12} className="opacity-80" />
                                     {t('highlights')}
                                 </h4>
@@ -164,12 +164,12 @@ const MemberDetail: React.FC = () => {
                                                     href={h.url}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="text-sm text-gray-300 hover:text-white transition-colors leading-snug"
+                                                    className="text-sm text-theme-text-secondary hover:text-theme-text transition-colors leading-snug"
                                                 >
                                                     {h.title}
                                                 </a>
                                             ) : (
-                                                <span className="text-sm text-gray-300 leading-snug">{h.title}</span>
+                                                <span className="text-sm text-theme-text-secondary leading-snug">{h.title}</span>
                                             )}
                                         </div>
                                     ))}
@@ -179,17 +179,17 @@ const MemberDetail: React.FC = () => {
 
                         {/* Contribution Stats */}
                         <div className="grid grid-cols-3 gap-3">
-                            <div className="bg-white/5 rounded-xl p-3 text-center">
-                                <div className="text-xl font-bold text-white">{totalMessages}</div>
-                                <div className="text-[10px] text-gray-500 mt-1">{t('total')}</div>
+                            <div className="bg-theme-surface rounded-xl p-3 text-center">
+                                <div className="text-xl font-bold text-theme-text">{totalMessages}</div>
+                                <div className="text-[10px] text-theme-text-muted mt-1">{t('total')}</div>
                             </div>
-                            <div className="bg-white/5 rounded-xl p-3 text-center">
+                            <div className="bg-theme-surface rounded-xl p-3 text-center">
                                 <div className="text-xl font-bold text-brand-accent">{last30}</div>
-                                <div className="text-[10px] text-gray-500 mt-1">{t('last30d')}</div>
+                                <div className="text-[10px] text-theme-text-muted mt-1">{t('last30d')}</div>
                             </div>
-                            <div className="bg-white/5 rounded-xl p-3 text-center">
+                            <div className="bg-theme-surface rounded-xl p-3 text-center">
                                 <div className="text-xl font-bold text-brand-primary">{last14}</div>
-                                <div className="text-[10px] text-gray-500 mt-1">{t('last14d')}</div>
+                                <div className="text-[10px] text-theme-text-muted mt-1">{t('last14d')}</div>
                             </div>
                         </div>
                     </motion.div>
@@ -202,10 +202,10 @@ const MemberDetail: React.FC = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
-                        className="bg-brand-dark/30 border border-white/10 rounded-3xl p-8 backdrop-blur-sm"
+                        className="bg-brand-dark/30 border border-theme-border rounded-3xl p-8 backdrop-blur-sm"
                     >
                         <div className="flex justify-between items-center mb-6">
-                            <h3 className="text-xl font-bold flex items-center gap-2 text-white">
+                            <h3 className="text-xl font-bold flex items-center gap-2 text-theme-text">
                                 {t('contributionPulse')}
                             </h3>
                             <span className="text-xs font-semibold text-brand-accent bg-brand-accent/10 px-3 py-1 rounded-full uppercase tracking-widest">
@@ -218,8 +218,8 @@ const MemberDetail: React.FC = () => {
                     {/* Activity Log */}
                     <div>
                         <div className="flex justify-between items-center mb-6">
-                            <h3 className="text-xl font-bold text-white">{t('recentContributions')}</h3>
-                            <span className="text-xs text-gray-500">
+                            <h3 className="text-xl font-bold text-theme-text">{t('recentContributions')}</h3>
+                            <span className="text-xs text-theme-text-muted">
                                 {t('messagesInWeeks', { count: getTotalContributions(member.contributions), weeks: Math.ceil(member.contributions.length / 7) })}
                             </span>
                         </div>
@@ -232,32 +232,32 @@ const MemberDetail: React.FC = () => {
                                         key={activity.id}
                                         initial={{ opacity: 0, x: -8 }}
                                         animate={{ opacity: 1, x: 0 }}
-                                        className="group relative pl-8 border-l border-white/10 pb-6 last:pb-0 last:border-0"
+                                        className="group relative pl-8 border-l border-theme-border pb-6 last:pb-0 last:border-0"
                                     >
                                         {/* Timeline dot */}
-                                        <div className="absolute -left-2.5 top-0 w-5 h-5 rounded-full bg-brand-dark border border-white/20 flex items-center justify-center">
+                                        <div className="absolute -left-2.5 top-0 w-5 h-5 rounded-full bg-theme-bg border border-white/20 flex items-center justify-center">
                                             {getActivityIcon(activity.type)}
                                         </div>
 
                                         {/* Content card */}
-                                        <div className="bg-white/[0.02] group-hover:bg-white/[0.05] border border-transparent group-hover:border-white/5 rounded-xl p-4 transition-all duration-200">
+                                        <div className="bg-white/[0.02] group-hover:bg-white/[0.05] border border-transparent group-hover:border-theme-border-secondary rounded-xl p-4 transition-all duration-200">
                                             {/* Date + meta row */}
                                             <div className="flex items-center gap-3 mb-2">
-                                                <span className="text-[11px] text-gray-500 font-medium">{activity.date}</span>
+                                                <span className="text-[11px] text-theme-text-muted font-medium">{activity.date}</span>
                                                 {activity.views != null && activity.views > 0 && (
-                                                    <span className="flex items-center gap-1 text-[10px] text-gray-600">
+                                                    <span className="flex items-center gap-1 text-[10px] text-theme-text-muted">
                                                         <Eye size={10} /> {activity.views.toLocaleString()}
                                                     </span>
                                                 )}
                                                 {activity.forwards != null && activity.forwards > 0 && (
-                                                    <span className="flex items-center gap-1 text-[10px] text-gray-600">
+                                                    <span className="flex items-center gap-1 text-[10px] text-theme-text-muted">
                                                         <Share2 size={10} /> {activity.forwards}
                                                     </span>
                                                 )}
                                             </div>
 
                                             {/* Content text */}
-                                            <p className="text-sm text-gray-200 leading-relaxed mb-2">
+                                            <p className="text-sm text-theme-text-secondary leading-relaxed mb-2">
                                                 {activity.content}
                                             </p>
 
@@ -268,7 +268,7 @@ const MemberDetail: React.FC = () => {
                                                         href={activity.sourceUrl}
                                                         target="_blank"
                                                         rel="noopener noreferrer"
-                                                        className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-white/5 text-[10px] text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
+                                                        className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-white/5 text-[10px] text-theme-text-secondary hover:text-theme-text hover:bg-white/10 transition-colors"
                                                     >
                                                         <ExternalLink size={9} />
                                                         {domain}

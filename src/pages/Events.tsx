@@ -79,7 +79,7 @@ const EventCard: React.FC<{ event: EventItem; index: number; upcoming?: boolean 
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
             className={`bg-white/5 border rounded-2xl overflow-hidden transition-colors ${
-                upcoming ? 'border-brand-accent/30 hover:border-brand-accent/60' : 'border-white/10 hover:border-white/20'
+                upcoming ? 'border-brand-accent/30 hover:border-brand-accent/60' : 'border-theme-border hover:border-white/20'
             }`}
         >
             {/* Image */}
@@ -105,16 +105,16 @@ const EventCard: React.FC<{ event: EventItem; index: number; upcoming?: boolean 
                 </div>
                 <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-3 mb-2">
-                        <h3 className="text-xl font-bold text-white">{event.title}</h3>
+                        <h3 className="text-xl font-bold text-theme-text">{event.title}</h3>
                         {event.tag && (
                             <span className="text-[10px] font-bold uppercase tracking-widest text-brand-accent bg-brand-accent/10 px-2 py-0.5 rounded-full">
                                 {event.tag}
                             </span>
                         )}
                     </div>
-                    <p className="text-gray-400 text-sm leading-relaxed">{t(`descriptions.${event.descriptionKey}`)}</p>
+                    <p className="text-theme-text-secondary text-sm leading-relaxed">{t(`descriptions.${event.descriptionKey}`)}</p>
                     {event.location && (
-                        <div className="flex items-center gap-1 mt-2 text-xs text-gray-500">
+                        <div className="flex items-center gap-1 mt-2 text-xs text-theme-text-muted">
                             <MapPin size={12} /> {event.location}
                         </div>
                     )}
@@ -141,8 +141,8 @@ const Events: React.FC = () => {
                 className="max-w-3xl mx-auto"
             >
                 {/* Upcoming Events */}
-                <h1 className="text-4xl font-bold mb-3 text-center text-white">{t('upcoming')}</h1>
-                <p className="text-center text-gray-500 text-sm mb-12">{t('upcomingSubtitle')}</p>
+                <h1 className="text-4xl font-bold mb-3 text-center text-theme-text">{t('upcoming')}</h1>
+                <p className="text-center text-theme-text-muted text-sm mb-12">{t('upcomingSubtitle')}</p>
 
                 <div className="space-y-6 mb-20">
                     {upcomingEvents.map((event, index) => (
@@ -152,7 +152,7 @@ const Events: React.FC = () => {
 
                 {/* Past Events */}
                 <div className="flex items-center gap-4 mb-8">
-                    <h2 className="text-2xl font-bold text-white whitespace-nowrap">{t('past')}</h2>
+                    <h2 className="text-2xl font-bold text-theme-text whitespace-nowrap">{t('past')}</h2>
                     <div className="flex-1 h-px bg-white/10" />
                 </div>
 
@@ -163,9 +163,9 @@ const Events: React.FC = () => {
                 </div>
 
                 {/* CTA */}
-                <div className="mt-20 text-center p-8 bg-gradient-to-br from-brand-primary/10 to-transparent rounded-3xl border border-white/5">
+                <div className="mt-20 text-center p-8 bg-gradient-to-br from-brand-primary/10 to-transparent rounded-3xl border border-theme-border-secondary">
                     <h3 className="text-xl font-bold mb-4">{t('ctaTitle')}</h3>
-                    <p className="text-gray-400 mb-6">{t('ctaDescription')}</p>
+                    <p className="text-theme-text-secondary mb-6">{t('ctaDescription')}</p>
                     <a href="https://t.me/thetickerisethchat" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition-colors inline-block">
                         {t('contactUs')}
                     </a>

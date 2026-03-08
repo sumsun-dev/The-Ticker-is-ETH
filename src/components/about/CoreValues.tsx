@@ -36,7 +36,7 @@ const CoreValues: React.FC = () => {
             <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/2 w-96 h-96 bg-brand-primary/5 rounded-full blur-[120px]" />
             <div className="container mx-auto relative z-10">
                 <div className="text-center mb-24">
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{t('philosophy')}</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold text-theme-text mb-4">{t('philosophy')}</h2>
                     <div className="h-0.5 w-12 bg-gradient-to-r from-brand-primary to-brand-accent mx-auto" />
                 </div>
 
@@ -50,7 +50,7 @@ const CoreValues: React.FC = () => {
                             transition={{ delay: idx * 0.15, duration: 0.6 }}
                             className="group relative p-[1px] rounded-[2rem] bg-gradient-to-b from-white/10 to-transparent hover:from-brand-primary/40 transition-all duration-500"
                         >
-                            <div className="relative bg-brand-dark rounded-[2rem] p-8 h-full flex flex-col items-center text-center overflow-hidden">
+                            <div className="relative bg-theme-bg rounded-[2rem] p-8 h-full flex flex-col items-center text-center overflow-hidden">
                                 {/* Hover gradient bar */}
                                 <div className="absolute top-0 left-1/2 -translate-x-1/2 h-[2px] w-0 group-hover:w-3/4 bg-gradient-to-r from-brand-primary to-brand-accent transition-all duration-500" />
 
@@ -59,12 +59,12 @@ const CoreValues: React.FC = () => {
                                     <EthDiamond className="w-48 h-auto text-brand-accent" />
                                 </div>
 
-                                <div className={`relative z-10 w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-8 ${item.color} group-hover:scale-110 transition-transform duration-300`}>
+                                <div className={`relative z-10 w-14 h-14 rounded-2xl bg-white/5 border border-theme-border flex items-center justify-center mb-8 ${item.color} group-hover:scale-110 transition-transform duration-300`}>
                                     {item.icon}
                                 </div>
-                                <h3 className="relative z-10 text-xl font-bold text-white mb-2">{item.title}</h3>
-                                <span className="relative z-10 text-xs font-semibold text-gray-500 uppercase tracking-widest mb-4">{item.subtitle}</span>
-                                <p className="relative z-10 text-gray-400 font-light leading-relaxed text-sm">
+                                <h3 className="relative z-10 text-xl font-bold text-theme-text mb-2">{item.title}</h3>
+                                <span className="relative z-10 text-xs font-semibold text-theme-text-muted uppercase tracking-widest mb-4">{item.subtitle}</span>
+                                <p className="relative z-10 text-theme-text-secondary font-light leading-relaxed text-sm">
                                     {item.description}
                                 </p>
                             </div>

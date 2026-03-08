@@ -64,7 +64,7 @@ const ContributionGraph: React.FC<ContributionGraphProps> = ({ data }) => {
                 {monthLabels.map(({ weekIndex, label }) => (
                     <span
                         key={weekIndex}
-                        className="absolute text-[10px] text-gray-500 font-medium whitespace-nowrap"
+                        className="absolute text-[10px] text-theme-text-muted font-medium whitespace-nowrap"
                         style={{ left: weekIndex * COL_WIDTH, top: 0 }}
                     >
                         {label}
@@ -76,7 +76,7 @@ const ContributionGraph: React.FC<ContributionGraphProps> = ({ data }) => {
                 {/* Day labels */}
                 <div className="flex flex-col shrink-0 gap-[3px]" style={{ width: 36 }}>
                     {DAY_LABELS.map((label, i) => (
-                        <div key={i} className="text-[10px] text-gray-500 flex items-center justify-end pr-2" style={{ height: CELL_SIZE }}>
+                        <div key={i} className="text-[10px] text-theme-text-muted flex items-center justify-end pr-2" style={{ height: CELL_SIZE }}>
                             {label}
                         </div>
                     ))}
@@ -127,7 +127,7 @@ const ContributionGraph: React.FC<ContributionGraphProps> = ({ data }) => {
             {/* Tooltip */}
             {tooltip && (
                 <div
-                    className="absolute pointer-events-none z-50 px-2.5 py-1.5 rounded-lg text-[11px] text-gray-200 bg-brand-surface-light border border-white/10 whitespace-nowrap shadow-lg"
+                    className="absolute pointer-events-none z-50 px-2.5 py-1.5 rounded-lg text-[11px] text-theme-text-secondary bg-brand-surface-light border border-theme-border whitespace-nowrap shadow-lg"
                     style={{
                         left: tooltip.x,
                         top: tooltip.y,
@@ -139,7 +139,7 @@ const ContributionGraph: React.FC<ContributionGraphProps> = ({ data }) => {
             )}
 
             {/* Legend */}
-            <div className="mt-3 flex items-center justify-end gap-2 text-[11px] text-gray-500">
+            <div className="mt-3 flex items-center justify-end gap-2 text-[11px] text-theme-text-muted">
                 <span>Less</span>
                 <div className="flex gap-1">
                     {[0, 1, 2, 3, 5].map(c => (
