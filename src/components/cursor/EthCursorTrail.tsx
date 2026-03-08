@@ -1,4 +1,5 @@
 import { useEffect, useRef, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 
 // --- Constants ---
 const POOL_SIZE = 15;
@@ -256,7 +257,7 @@ const EthCursorTrail: React.FC = () => {
     return null;
   }
 
-  return (
+  return createPortal(
     <>
       {/* Particle container */}
       <div ref={containerRef} style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 9998 }} />
@@ -283,7 +284,8 @@ const EthCursorTrail: React.FC = () => {
           style={{ width: '100%', height: '100%' }}
         />
       </div>
-    </>
+    </>,
+    document.body,
   );
 };
 
