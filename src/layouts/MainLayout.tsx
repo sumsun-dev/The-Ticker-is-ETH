@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+
 import { Menu, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import EthCursorTrail from '../components/cursor/EthCursorTrail';
@@ -129,35 +129,31 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 </div>
 
                 {/* Mobile Nav Menu */}
-                <AnimatePresence>
-                    {isMobileMenuOpen && (
-                        <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: 'auto' }}
-                            exit={{ opacity: 0, height: 0 }}
-                            className="md:hidden backdrop-blur-xl overflow-hidden bg-primary-95 border-t border-theme-border-secondary"
-                            role="menu"
-                        >
-                            <div ref={mobileMenuRef} className="flex flex-col p-6 gap-4">
-                                {navLinks.map((link) => (
-                                    <Link
-                                        key={link.path}
-                                        to={link.path}
-                                        role="menuitem"
-                                        onClick={() => setIsMobileMenuOpen(false)}
-                                        className="text-lg font-medium text-theme-text-secondary hover:text-theme-text focus-visible:text-theme-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent rounded"
-                                    >
-                                        {link.name}
-                                    </Link>
-                                ))}
-                                <div className="pt-4 border-t border-theme-border flex items-center gap-4">
-                                    <LanguageToggle />
-                                    <AuthButton />
-                                </div>
-                            </div>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
+                <div
+                    className={`md:hidden backdrop-blur-xl overflow-hidden bg-primary-95 border-t border-theme-border-secondary
+                        transition-[max-height,opacity] duration-300 ease-in-out
+                        ${isMobileMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}
+                    role="menu"
+                    aria-hidden={!isMobileMenuOpen}
+                >
+                    <div ref={mobileMenuRef} className="flex flex-col p-6 gap-4">
+                        {navLinks.map((link) => (
+                            <Link
+                                key={link.path}
+                                to={link.path}
+                                role="menuitem"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                                className="text-lg font-medium text-theme-text-secondary hover:text-theme-text focus-visible:text-theme-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent rounded"
+                            >
+                                {link.name}
+                            </Link>
+                        ))}
+                        <div className="pt-4 border-t border-theme-border flex items-center gap-4">
+                            <LanguageToggle />
+                            <AuthButton />
+                        </div>
+                    </div>
+                </div>
             </nav>
 
             <main id="main-content" className="flex-grow pt-20" role="main">

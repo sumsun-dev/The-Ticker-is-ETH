@@ -52,6 +52,7 @@ src/
 ├── i18n/                # i18n 초기화 + 번역 JSON (ko/, en/)
 ├── data/                # mockData, researchData, 전처리 JSON (team-enrichment, research-index, articles/)
 ├── layouts/             # MainLayout
+├── providers/           # PrivyWrapper (lazy-loaded auth provider)
 ├── hooks/               # usePageMeta, useOwnedBadges, useThirdwebAccount, useTheme
 ├── lib/                 # thirdweb client 초기화
 ├── pages/               # Home, About, Team, Contributors, Research, News, Events, Profile, Claim, AdminRewards, NotFound

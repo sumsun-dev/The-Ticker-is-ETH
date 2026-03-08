@@ -1,29 +1,17 @@
-import { StrictMode } from 'react'
+import React, { StrictMode, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
-import { PrivyProvider } from '@privy-io/react-auth'
 import './i18n'
 import './index.css'
 import App from './App.tsx'
 
-const PRIVY_APP_ID = import.meta.env.VITE_PRIVY_APP_ID as string
+const PrivyWrapper = React.lazy(() => import('./providers/PrivyWrapper'));
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <PrivyProvider
-      appId={PRIVY_APP_ID}
-      config={{
-        loginMethods: ['wallet', 'google', 'twitter', 'telegram'],
-        appearance: {
-          theme: 'dark',
-        },
-        embeddedWallets: {
-          ethereum: {
-            createOnLogin: 'users-without-wallets',
-          },
-        },
-      }}
-    >
-      <App />
-    </PrivyProvider>
+    <Suspense fallback={<div className="min-h-screen bg-[#050508]" />}>
+      <PrivyWrapper>
+        <App />
+      </PrivyWrapper>
+    </Suspense>
   </StrictMode>,
 )
