@@ -70,7 +70,7 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     ];
 
     return (
-        <div className="min-h-screen flex flex-col overflow-x-hidden cursor-none-desktop" style={{ backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
+        <div className="min-h-screen flex flex-col overflow-x-hidden" style={{ backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
             {/* Skip Navigation */}
             <a
                 href="#main-content"

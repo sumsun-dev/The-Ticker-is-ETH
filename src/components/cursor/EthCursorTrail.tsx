@@ -48,19 +48,12 @@ const TAEGEUK_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 20
 const encodedSvg = `data:image/svg+xml,${encodeURIComponent(ETH_SVG)}`;
 const encodedTaegeuk = `data:image/svg+xml,${encodeURIComponent(TAEGEUK_SVG)}`;
 
-// --- Touch detection ---
-function isTouchDevice(): boolean {
-  if (typeof window === 'undefined') return true;
-  return (
-    window.matchMedia('(pointer: coarse)').matches ||
-    'ontouchstart' in window ||
-    navigator.maxTouchPoints > 0
-  );
-}
-
-function prefersReducedMotion(): boolean {
+// --- Detection ---
+function shouldShowCustomCursor(): boolean {
   if (typeof window === 'undefined') return false;
-  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false;
+  // Only use pointer media query - navigator.maxTouchPoints is unreliable on Windows
+  return window.matchMedia('(pointer: fine)').matches;
 }
 
 // --- Component ---
@@ -73,7 +66,6 @@ const EthCursorTrail: React.FC = () => {
   const lastSpawnRef = useRef(0);
   const rafRef = useRef(0);
   const animateRef = useRef<((now: number) => void) | null>(null);
-  const isTouchRef = useRef(true);
 
   const initPool = useCallback(() => {
     const container = containerRef.current;
@@ -213,11 +205,10 @@ const EthCursorTrail: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (isTouchDevice() || prefersReducedMotion()) {
-      isTouchRef.current = true;
-      return;
-    }
-    isTouchRef.current = false;
+    if (!shouldShowCustomCursor()) return;
+
+    // Hide native cursor only when custom cursor is active
+    document.documentElement.style.cursor = 'none';
 
     initPool();
 
@@ -245,6 +236,7 @@ const EthCursorTrail: React.FC = () => {
     rafRef.current = requestAnimationFrame(startAnimate);
 
     return () => {
+      document.documentElement.style.cursor = '';
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('click', handleClick);
       document.removeEventListener('visibilitychange', handleVisibility);
@@ -253,7 +245,7 @@ const EthCursorTrail: React.FC = () => {
   }, [initPool, handleClick]);
 
   // Don't render on touch devices or when reduced motion is preferred
-  if (typeof window !== 'undefined' && (isTouchDevice() || prefersReducedMotion())) {
+  if (!shouldShowCustomCursor()) {
     return null;
   }
 

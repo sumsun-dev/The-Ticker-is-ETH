@@ -172,33 +172,4 @@
   @apply text-brand-muted;
 }
 
-/* Custom Ethereum cursor - hide default on desktop */
-@media (pointer: fine) {
-  .cursor-none-desktop {
-    cursor: none !important;
-  }
-  /* Restore default cursor on interactive elements */
-  .cursor-none-desktop a,
-  .cursor-none-desktop button,
-  .cursor-none-desktop input,
-  .cursor-none-desktop textarea,
-  .cursor-none-desktop select,
-  .cursor-none-desktop [role="button"],
-  .cursor-none-desktop label {
-    cursor: pointer !important;
-  }
-  .cursor-none-desktop input[type="text"],
-  .cursor-none-desktop input[type="email"],
-  .cursor-none-desktop input[type="password"],
-  .cursor-none-desktop input[type="search"],
-  .cursor-none-desktop textarea {
-    cursor: text !important;
-  }
-}
-
-@media (pointer: coarse) {
-  .cursor-none-desktop,
-  .cursor-none-desktop * {
-    cursor: auto !important;
-  }
-}
+/* Custom Ethereum cursor - native cursor hidden dynamically via JS (EthCursorTrail) */
