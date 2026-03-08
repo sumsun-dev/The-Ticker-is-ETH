@@ -129,9 +129,9 @@ const EthCursorTrail: React.FC = () => {
       const pool = poolRef.current;
       const clickPool = clickPoolRef.current;
 
-      // Update cursor position (top-left aligned so the tip matches the pointer)
+      // Update cursor position (top-center of ETH diamond aligns with pointer)
       if (cursor) {
-        cursor.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+        cursor.style.transform = `translate3d(${x - CURSOR_SIZE / 2}px, ${y}px, 0)`;
       }
 
       // Spawn new trail particle
