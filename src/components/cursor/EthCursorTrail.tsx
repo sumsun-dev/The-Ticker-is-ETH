@@ -1,5 +1,6 @@
 import { useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
+import { useModalStatus } from '@privy-io/react-auth';
 
 // --- Constants ---
 const POOL_SIZE = 15;
@@ -58,6 +59,7 @@ function shouldShowCustomCursor(): boolean {
 
 // --- Component ---
 const EthCursorTrail: React.FC = () => {
+  const { isOpen: isPrivyModalOpen } = useModalStatus();
   const containerRef = useRef<HTMLDivElement>(null);
   const cursorRef = useRef<HTMLDivElement>(null);
   const poolRef = useRef<Particle[]>([]);
@@ -203,6 +205,23 @@ const EthCursorTrail: React.FC = () => {
       inactive.y = e.clientY;
     }
   }, []);
+
+  // Hide custom cursor while Privy modal is open
+  useEffect(() => {
+    if (!shouldShowCustomCursor()) return;
+
+    const cursor = cursorRef.current;
+    const container = containerRef.current;
+    if (isPrivyModalOpen) {
+      document.documentElement.style.cursor = '';
+      if (cursor) cursor.style.display = 'none';
+      if (container) container.style.display = 'none';
+    } else {
+      document.documentElement.style.cursor = 'none';
+      if (cursor) cursor.style.display = '';
+      if (container) container.style.display = '';
+    }
+  }, [isPrivyModalOpen]);
 
   useEffect(() => {
     if (!shouldShowCustomCursor()) return;

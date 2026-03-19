@@ -1,10 +1,11 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import Hero from '../components/home/Hero';
 import MissionSection from '../components/home/MissionSection';
-import UpdatesSection from '../components/home/UpdatesSection';
-import EcosystemSection from '../components/home/EcosystemSection';
 import { motion } from 'framer-motion';
+
+const UpdatesSection = lazy(() => import('../components/home/UpdatesSection'));
+const EcosystemSection = lazy(() => import('../components/home/EcosystemSection'));
 import { useTranslation } from 'react-i18next';
 import { ArrowRight, MessageCircle } from 'lucide-react';
 import { mockMembers, mockContributors } from '../data/mockData';
@@ -33,8 +34,10 @@ const Home: React.FC = () => {
                 transition={{ duration: 1 }}
             >
                 <MissionSection />
-                <UpdatesSection />
-                <EcosystemSection />
+                <Suspense fallback={null}>
+                    <UpdatesSection />
+                    <EcosystemSection />
+                </Suspense>
 
                 {/* CTA Section — Team Preview Style */}
                 <section className="py-24 px-6 relative overflow-hidden">
