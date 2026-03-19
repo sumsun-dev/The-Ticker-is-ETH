@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { usePrivy, useLinkAccount } from '@privy-io/react-auth';
 import type { WalletWithMetadata, TwitterOAuthWithMetadata, TelegramWithMetadata } from '@privy-io/react-auth';
 import { useTranslation } from 'react-i18next';
+import { Navigate } from 'react-router-dom';
 import { useOwnedBadges } from '../hooks/useOwnedBadges';
 import BadgeGrid from '../components/rewards/BadgeGrid';
 import ChainSelector from '../components/rewards/ChainSelector';
@@ -10,42 +11,31 @@ import { DEFAULT_CHAIN } from '../lib/thirdweb';
 import type { ChainKey } from '../types/rewards';
 
 const Profile: React.FC = () => {
-  const { ready, authenticated, login, user, unlinkTwitter, unlinkTelegram, unlinkWallet } = usePrivy();
+  const { ready, authenticated, user, unlinkTwitter, unlinkTelegram, unlinkWallet } = usePrivy();
   const { linkWallet, linkTwitter, linkTelegram } = useLinkAccount();
   const { t } = useTranslation();
   const [selectedChain, setSelectedChain] = useState<ChainKey>(DEFAULT_CHAIN);
 
-  if (!ready) return null;
-
-  if (!authenticated || !user) {
-    return (
-      <section className="min-h-[60vh] flex flex-col items-center justify-center px-6">
-        <h1 className="text-2xl font-bold text-theme-text mb-4">{t('auth.loginRequired')}</h1>
-        <p className="text-theme-text-muted mb-8">{t('auth.loginButton')}</p>
-        <button
-          onClick={login}
-          className="bg-brand-accent hover:bg-brand-accent/80 text-white px-6 py-3 rounded-full font-medium transition-colors"
-        >
-          {t('auth.connect')}
-        </button>
-      </section>
-    );
-  }
-
-  const wallets = user.linkedAccounts.filter(
+  const wallets = user?.linkedAccounts.filter(
     (a): a is WalletWithMetadata => a.type === 'wallet',
-  );
+  ) ?? [];
 
-  const twitterAccount = user.linkedAccounts.find(
+  const twitterAccount = user?.linkedAccounts.find(
     (a): a is TwitterOAuthWithMetadata => a.type === 'twitter_oauth',
   );
 
-  const telegramAccount = user.linkedAccounts.find(
+  const telegramAccount = user?.linkedAccounts.find(
     (a): a is TelegramWithMetadata => a.type === 'telegram',
   );
 
   const primaryWalletAddress = wallets.length > 0 ? wallets[0].address : undefined;
   const { badges, isLoading: badgesLoading } = useOwnedBadges(primaryWalletAddress, selectedChain);
+
+  if (!ready) return null;
+
+  if (!authenticated || !user) {
+    return <Navigate to="/" replace />;
+  }
 
   return (
     <section className="max-w-2xl mx-auto px-6 py-16">
