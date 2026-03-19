@@ -1,7 +1,5 @@
-import React, { useMemo, useState } from 'react';
-import { useFrame } from '@react-three/fiber';
+import React, { useMemo } from 'react';
 import { CatmullRomCurve3, Vector3 } from 'three';
-import * as THREE from 'three';
 import Ethereum3DLogo from './Ethereum3DLogo';
 
 // Pre-compute deterministic path data outside component
@@ -27,18 +25,11 @@ function createPaths(count: number): CatmullRomCurve3[] {
 }
 
 const NetworkCoordination: React.FC = () => {
-    const [glowIntensity, setGlowIntensity] = useState(1);
     const paths = useMemo(() => createPaths(6), []);
-
-    useFrame(() => {
-        if (glowIntensity > 1) {
-            setGlowIntensity(prev => THREE.MathUtils.lerp(prev, 1, 0.05));
-        }
-    });
 
     return (
         <group scale={1.5}>
-            <Ethereum3DLogo glowIntensity={glowIntensity} />
+            <Ethereum3DLogo />
 
             {/* Render items around the logo */}
             {paths.map((path, i) => (
