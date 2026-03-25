@@ -5,6 +5,10 @@
     "description": "Discover essential services and tools across the Ethereum ecosystem.",
     "all": "All",
     "highlight": "Featured",
+    "twitterSection": "Recommended Twitter(X) Accounts",
+    "twitterAll": "All",
+    "twitterOfficial": "Official",
+    "twitterPerson": "People",
     "categories": {
       "explorer": "Explorer",
       "defi": "DeFi",
@@ -50,6 +54,17 @@
       "opensea": "World's largest NFT marketplace",
       "ens": "Ethereum Name Service — .eth domains",
       "zora": "Decentralized NFT minting platform for creators"
+    },
+    "twitter": {
+      "vitalik": "Ethereum co-founder — sharing protocol vision and technical direction",
+      "ethereum": "The universal platform for crypto, blockchain apps, stablecoins & decentralized tech — maintained by @ethereumfndn",
+      "etherscan": "Ethereum block explorer — on-chain insights and tool updates",
+      "ethdotorg": "The portal to Ethereum, built by and for our growing global community",
+      "ryanberckmans": "Ethereum community member and ETH investor",
+      "ethDaily": "Daily Ethereum news and curated ecosystem updates",
+      "etherealizeIo": "Ethereum accessibility project — institutional adoption and infrastructure news",
+      "hwwonx": "Ethereum Foundation Co-Executive Director — Bulbasaur Study",
+      "ethereumfndn": "Official Ethereum Foundation account — protocol development and ecosystem support"
     }
   }
 }

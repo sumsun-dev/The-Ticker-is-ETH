@@ -12,10 +12,13 @@ import {
   ExternalLink,
   Layers,
   Star,
+  Twitter,
+  Building2,
+  User,
 } from 'lucide-react';
 import { useTranslation, Trans } from 'react-i18next';
 import usePageMeta from '../hooks/usePageMeta';
-import type { EcosystemCategory, EcosystemCategoryInfo, EcosystemTool } from '../types/ecosystem';
+import type { EcosystemCategory, EcosystemCategoryInfo, EcosystemTool, EcosystemTwitterAccount, TwitterCategory } from '../types/ecosystem';
 import ecosystemData from '../data/ecosystem-tools.json';
 
 const iconMap: Record<string, React.ReactNode> = {
@@ -31,6 +34,7 @@ const iconMap: Record<string, React.ReactNode> = {
 
 const categories = ecosystemData.categories as EcosystemCategoryInfo[];
 const tools = ecosystemData.tools as EcosystemTool[];
+const twitterAccounts = ecosystemData.twitterAccounts as EcosystemTwitterAccount[];
 
 function getFaviconUrl(toolUrl: string): string {
   try {
@@ -49,6 +53,7 @@ function handleImgError(e: React.SyntheticEvent<HTMLImageElement>) {
 const Ecosystem: React.FC = () => {
   const { t } = useTranslation('ecosystem');
   const [activeCategory, setActiveCategory] = useState<EcosystemCategory | 'all' | 'highlight'>('all');
+  const [activeTwitterCategory, setActiveTwitterCategory] = useState<TwitterCategory | 'all'>('all');
 
   usePageMeta({
     title: 'Ecosystem',
@@ -56,6 +61,14 @@ const Ecosystem: React.FC = () => {
   });
 
   const highlightTools = useMemo(() => tools.filter((tool) => tool.highlight), []);
+
+  const filteredTwitterAccounts = useMemo(
+    () =>
+      activeTwitterCategory === 'all'
+        ? twitterAccounts
+        : twitterAccounts.filter((account) => account.category === activeTwitterCategory),
+    [activeTwitterCategory],
+  );
 
   const filteredTools = useMemo(
     () =>
@@ -151,6 +164,89 @@ const Ecosystem: React.FC = () => {
             ))}
           </div>
         </motion.div>
+
+        {/* Twitter Accounts Section */}
+        {twitterAccounts.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.35 }}
+            className="mb-16"
+          >
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+              <h2 className="text-xl md:text-2xl font-bold flex items-center gap-2">
+                <Twitter size={20} className="text-[#1d9bf0]" />
+                {t('ecosystem.twitterSection')}
+              </h2>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setActiveTwitterCategory('all')}
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
+                    activeTwitterCategory === 'all'
+                      ? 'bg-[#1d9bf0]/20 text-[#1d9bf0] border border-[#1d9bf0]/40'
+                      : 'bg-white/[0.03] text-theme-text-secondary border border-theme-border-secondary hover:border-white/20 hover:text-theme-text'
+                  }`}
+                >
+                  <Layers size={14} />
+                  {t('ecosystem.twitterAll')}
+                </button>
+                <button
+                  onClick={() => setActiveTwitterCategory('official')}
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
+                    activeTwitterCategory === 'official'
+                      ? 'bg-[#1d9bf0]/20 text-[#1d9bf0] border border-[#1d9bf0]/40'
+                      : 'bg-white/[0.03] text-theme-text-secondary border border-theme-border-secondary hover:border-white/20 hover:text-theme-text'
+                  }`}
+                >
+                  <Building2 size={14} />
+                  {t('ecosystem.twitterOfficial')}
+                </button>
+                <button
+                  onClick={() => setActiveTwitterCategory('person')}
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
+                    activeTwitterCategory === 'person'
+                      ? 'bg-[#1d9bf0]/20 text-[#1d9bf0] border border-[#1d9bf0]/40'
+                      : 'bg-white/[0.03] text-theme-text-secondary border border-theme-border-secondary hover:border-white/20 hover:text-theme-text'
+                  }`}
+                >
+                  <User size={14} />
+                  {t('ecosystem.twitterPerson')}
+                </button>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-5">
+              {filteredTwitterAccounts.map((account) => (
+                <a
+                  key={account.id}
+                  href={account.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${account.name} (${account.handle})`}
+                  className="group p-5 rounded-2xl border border-[#1d9bf0]/20 bg-[#1d9bf0]/[0.03] backdrop-blur-md hover:border-[#1d9bf0]/50 hover:-translate-y-1 transition-all"
+                >
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="w-10 h-10 bg-[#1d9bf0]/10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <Twitter size={20} className="text-[#1d9bf0]" />
+                    </div>
+                    <ExternalLink
+                      size={14}
+                      className="text-theme-text-muted group-hover:text-[#1d9bf0] transition-colors mt-1"
+                    />
+                  </div>
+                  <h3 className="text-theme-text font-semibold text-sm md:text-base mb-1">
+                    {account.name}
+                  </h3>
+                  <p className="text-[#1d9bf0] text-xs mb-2 font-medium">
+                    {account.handle}
+                  </p>
+                  <p className="text-theme-text-secondary text-xs leading-relaxed line-clamp-2 font-light">
+                    {t(account.descriptionKey)}
+                  </p>
+                </a>
+              ))}
+            </div>
+          </motion.div>
+        )}
 
         {/* Category Tabs */}
         <motion.div

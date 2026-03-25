@@ -1,4 +1,78 @@
 {
+  "twitterAccounts": [
+    {
+      "id": "ethereum",
+      "name": "Ethereum",
+      "handle": "@ethereum",
+      "descriptionKey": "ecosystem.twitter.ethereum",
+      "url": "https://x.com/ethereum",
+      "category": "official"
+    },
+    {
+      "id": "ethereumfndn",
+      "name": "Ethereum Foundation",
+      "handle": "@ethereumfndn",
+      "descriptionKey": "ecosystem.twitter.ethereumfndn",
+      "url": "https://x.com/ethereumfndn",
+      "category": "official"
+    },
+    {
+      "id": "etherealize-io",
+      "name": "Etherealize",
+      "handle": "@Etherealize_io",
+      "descriptionKey": "ecosystem.twitter.etherealizeIo",
+      "url": "https://x.com/Etherealize_io",
+      "category": "official"
+    },
+    {
+      "id": "vitalik",
+      "name": "Vitalik Buterin",
+      "handle": "@VitalikButerin",
+      "descriptionKey": "ecosystem.twitter.vitalik",
+      "url": "https://x.com/VitalikButerin",
+      "category": "person"
+    },
+    {
+      "id": "hwwonx",
+      "name": "Hsiao-Wei Wang (hww.eth)",
+      "handle": "@hwwonx",
+      "descriptionKey": "ecosystem.twitter.hwwonx",
+      "url": "https://x.com/hwwonx",
+      "category": "person"
+    },
+    {
+      "id": "ethdotorg",
+      "name": "ethereum.org Community",
+      "handle": "@ethdotorg",
+      "descriptionKey": "ecosystem.twitter.ethdotorg",
+      "url": "https://x.com/ethdotorg",
+      "category": "official"
+    },
+    {
+      "id": "etherscan",
+      "name": "Etherscan",
+      "handle": "@etherscan",
+      "descriptionKey": "ecosystem.twitter.etherscan",
+      "url": "https://x.com/etherscan",
+      "category": "official"
+    },
+    {
+      "id": "eth-daily",
+      "name": "ETH Daily",
+      "handle": "@ETH_Daily",
+      "descriptionKey": "ecosystem.twitter.ethDaily",
+      "url": "https://x.com/ETH_Daily",
+      "category": "official"
+    },
+    {
+      "id": "ryanberckmans",
+      "name": "⟠ Ryan Berckmans",
+      "handle": "@ryanberckmans",
+      "descriptionKey": "ecosystem.twitter.ryanberckmans",
+      "url": "https://x.com/ryanberckmans",
+      "category": "person"
+    }
+  ],
   "categories": [
     { "id": "explorer", "labelKey": "ecosystem.categories.explorer", "icon": "Search" },
     { "id": "defi", "labelKey": "ecosystem.categories.defi", "icon": "Landmark" },

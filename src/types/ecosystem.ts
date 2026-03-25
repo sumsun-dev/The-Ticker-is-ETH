@@ -22,3 +22,14 @@ export interface EcosystemCategoryInfo {
   labelKey: string;
   icon: string;
 }
+
+export type TwitterCategory = 'official' | 'person';
+
+export interface EcosystemTwitterAccount {
+  id: string;
+  name: string;
+  handle: string;
+  descriptionKey: string;
+  url: string;
+  category: TwitterCategory;
+}

@@ -5,6 +5,10 @@
     "description": "이더리움 생태계의 필수 서비스와 도구들을 한눈에 확인하세요.",
     "all": "전체",
     "highlight": "추천 도구",
+    "twitterSection": "추천 트위터(X) 계정",
+    "twitterAll": "전체",
+    "twitterOfficial": "공식",
+    "twitterPerson": "인물",
     "categories": {
       "explorer": "Explorer",
       "defi": "DeFi",
@@ -50,6 +54,17 @@
       "opensea": "세계 최대 NFT 마켓플레이스",
       "ens": "이더리움 네임 서비스 - .eth 도메인",
       "zora": "크리에이터를 위한 탈중앙화 NFT 민팅 플랫폼"
+    },
+    "twitter": {
+      "vitalik": "이더리움 공동 창시자 — 프로토콜 비전과 기술 방향 공유",
+      "ethereum": "이더리움 재단 공식 계정 — 크립토·블록체인·스테이블코인·탈중앙화 기술의 범용 플랫폼",
+      "etherscan": "이더리움 블록 익스플로러 — 온체인 인사이트 및 도구 업데이트",
+      "ethdotorg": "글로벌 커뮤니티가 함께 만드는 이더리움 포털",
+      "ryanberckmans": "이더리움 커뮤니티 멤버 및 ETH 투자자",
+      "ethDaily": "이더리움 일일 뉴스 및 생태계 핵심 업데이트 큐레이션",
+      "etherealizeIo": "이더리움 생태계 접근성 향상 프로젝트 — 기관 채택 및 인프라 소식",
+      "hwwonx": "이더리움 재단 공동 이사 — Bulbasaur Study 운영",
+      "ethereumfndn": "이더리움 재단 공식 계정 — 프로토콜 개발 및 생태계 지원 소식"
     }
   }
 }
