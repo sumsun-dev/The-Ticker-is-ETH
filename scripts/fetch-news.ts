@@ -56,8 +56,8 @@ async function main() {
 
   const response = await fetch(RSS_URL);
   if (!response.ok) {
-    console.error(`Failed to fetch RSS: ${response.status} ${response.statusText}`);
-    process.exit(1);
+    console.warn(`[WARN] RSS fetch failed: ${response.status} ${response.statusText} — keeping existing news-feed.json`);
+    process.exit(0);
   }
 
   const xml = await response.text();
@@ -73,8 +73,8 @@ async function main() {
   const feed = parsed.feed;
 
   if (!feed) {
-    console.error('Invalid Atom feed: no <feed> element found');
-    process.exit(1);
+    console.warn('[WARN] Invalid Atom feed: no <feed> element found — keeping existing news-feed.json');
+    process.exit(0);
   }
 
   const entries = Array.isArray(feed.entry) ? feed.entry : feed.entry ? [feed.entry] : [];
@@ -111,6 +111,6 @@ async function main() {
 }
 
 main().catch((err) => {
-  console.error('Error fetching news:', err);
-  process.exit(1);
+  console.warn('[WARN] Error fetching news:', err instanceof Error ? err.message : err, '— keeping existing news-feed.json');
+  process.exit(0);
 });
