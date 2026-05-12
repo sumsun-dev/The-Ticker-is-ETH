@@ -9,7 +9,7 @@ import PoeticCTA from '../components/about/PoeticCTA';
 import usePageMeta from '../hooks/usePageMeta';
 
 const About: React.FC = () => {
-    usePageMeta({ title: 'About', description: 'The Ticker is ETH의 미션과 비전' });
+    usePageMeta({ title: 'About', description: 'ECK(Ethereum Collective Korea)의 미션과 비전' });
     return (
     <div className="min-h-screen bg-theme-bg">
         <AboutHero />

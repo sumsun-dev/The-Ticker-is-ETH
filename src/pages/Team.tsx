@@ -14,7 +14,7 @@ const Team: React.FC = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [sortBy, setSortBy] = useState<SortOption>('contributions');
     const { t } = useTranslation('team');
-    usePageMeta({ title: 'Core Team', description: 'The Ticker is ETH 코어팀 멤버' });
+    usePageMeta({ title: 'Core Team', description: 'ECK(Ethereum Collective Korea) 코어팀 멤버' });
 
     const currentMembers = useMemo(() => {
         const filtered = mockMembers.filter(member =>

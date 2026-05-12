@@ -15,7 +15,7 @@ const Contributors: React.FC = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [sortBy, setSortBy] = useState<SortOption>('contributions');
     const { t } = useTranslation('team');
-    usePageMeta({ title: 'Contributors', description: 'The Ticker is ETH 기여자 목록' });
+    usePageMeta({ title: 'Contributors', description: 'ECK(Ethereum Collective Korea) 기여자 목록' });
 
     const [now] = useState(() => Date.now());
     const stats = useMemo(() => {
