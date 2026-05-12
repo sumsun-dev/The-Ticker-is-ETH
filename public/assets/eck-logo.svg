@@ -20,16 +20,12 @@
     }
   </style>
 
-  <defs>
-    <linearGradient id="eck-eth-top" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="currentColor" stop-opacity="0.95" />
-      <stop offset="100%" stop-color="currentColor" stop-opacity="0.75" />
-    </linearGradient>
-    <linearGradient id="eck-eth-bottom" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="currentColor" stop-opacity="0.55" />
-      <stop offset="100%" stop-color="currentColor" stop-opacity="0.35" />
-    </linearGradient>
-  </defs>
+  <!--
+    Gradients were removed: linearGradient stop-color="currentColor" is
+    unreliable inside <img src="…svg"> (some WebKit versions fall back to
+    black). Facet contrast is now expressed via per-path fill-opacity only,
+    which fully inherits the .eck-fg color cascade.
+  -->
 
   <g class="eck-fg">
     <!-- ECK monogram -->
@@ -61,13 +57,13 @@
       letter-spacing="8"
     >COLLECTIVE</text>
 
-    <!-- Ethereum diamond centerpiece -->
+    <!-- Ethereum diamond centerpiece — facets via fill-opacity, no gradients -->
     <g transform="translate(253 555)">
-      <path d="M0,-175 L-130,40 L0,-35 Z" fill="url(#eck-eth-top)" />
+      <path d="M0,-175 L-130,40 L0,-35 Z" fill="currentColor" fill-opacity="0.72" />
       <path d="M0,-175 L0,-35 L130,40 Z" fill="currentColor" fill-opacity="0.95" />
       <line x1="-130" y1="40" x2="130" y2="40" stroke="currentColor" stroke-width="1.5" stroke-opacity="0.2" />
-      <path d="M0,65 L-130,65 L0,225 Z" fill="url(#eck-eth-bottom)" />
-      <path d="M0,65 L0,225 L130,65 Z" fill="currentColor" fill-opacity="0.55" />
+      <path d="M0,65 L-130,65 L0,225 Z" fill="currentColor" fill-opacity="0.4" />
+      <path d="M0,65 L0,225 L130,65 Z" fill="currentColor" fill-opacity="0.6" />
     </g>
 
     <!-- KOREA wordmark -->
