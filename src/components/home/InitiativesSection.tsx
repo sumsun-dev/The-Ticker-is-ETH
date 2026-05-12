@@ -1,21 +1,42 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Send, Flag, Mail } from 'lucide-react';
+import { Send, Mail } from 'lucide-react';
 import { useTranslation, Trans } from 'react-i18next';
+
+type InitiativeItem = {
+    icon: React.ReactNode;
+    title: string;
+    description: string;
+    href?: string;
+};
 
 const InitiativesSection: React.FC = () => {
     const { t } = useTranslation('home');
 
-    const items = [
+    const items: InitiativeItem[] = [
         {
             icon: <Send className="text-brand-accent" size={24} />,
             title: t('initiatives.tickerEthTitle'),
             description: t('initiatives.tickerEth'),
         },
         {
-            icon: <Flag className="text-brand-primary" size={24} />,
+            icon: (
+                <>
+                    <img
+                        src="/assets/ethereum-korea-logo-dark.png"
+                        alt={t('initiatives.ethereumKoreaTitle')}
+                        className="block dark:hidden h-10 w-auto max-w-full object-contain"
+                    />
+                    <img
+                        src="/assets/ethereum-korea-logo-white.png"
+                        alt={t('initiatives.ethereumKoreaTitle')}
+                        className="hidden dark:block h-10 w-auto max-w-full object-contain"
+                    />
+                </>
+            ),
             title: t('initiatives.ethereumKoreaTitle'),
             description: t('initiatives.ethereumKorea'),
+            href: 'https://ethereumkorea.io/',
         },
         {
             icon: <Mail className="text-pink-400" size={24} />,
@@ -55,24 +76,48 @@ const InitiativesSection: React.FC = () => {
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-8">
-                    {items.map((v, i) => (
-                        <motion.div
-                            key={v.title}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: i * 0.1 }}
-                            className="p-8 rounded-[2.5rem] border border-theme-border-secondary bg-theme-surface backdrop-blur-md hover:border-brand-primary/30 transition-all group"
-                        >
-                            <div className="w-14 h-14 bg-theme-surface rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                                {v.icon}
-                            </div>
-                            <h3 className="text-xl font-bold text-theme-text mb-4">{v.title}</h3>
-                            <p className="text-theme-text-muted leading-relaxed text-sm font-light">
-                                {v.description}
-                            </p>
-                        </motion.div>
-                    ))}
+                    {items.map((v, i) => {
+                        const cardClass = "p-8 rounded-[2.5rem] border border-theme-border-secondary bg-theme-surface backdrop-blur-md hover:border-brand-primary/30 transition-all group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent";
+                        const cardInner = (
+                            <>
+                                <div className="w-14 h-14 bg-theme-surface rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform overflow-hidden">
+                                    {v.icon}
+                                </div>
+                                <h3 className="text-xl font-bold text-theme-text mb-4">{v.title}</h3>
+                                <p className="text-theme-text-muted leading-relaxed text-sm font-light">
+                                    {v.description}
+                                </p>
+                            </>
+                        );
+                        const motionProps = {
+                            initial: { opacity: 0, y: 30 },
+                            whileInView: { opacity: 1, y: 0 },
+                            viewport: { once: true },
+                            transition: { duration: 0.5, delay: i * 0.1 },
+                        };
+
+                        return v.href ? (
+                            <motion.a
+                                key={v.title}
+                                href={v.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={v.title}
+                                className={`${cardClass} block`}
+                                {...motionProps}
+                            >
+                                {cardInner}
+                            </motion.a>
+                        ) : (
+                            <motion.div
+                                key={v.title}
+                                className={cardClass}
+                                {...motionProps}
+                            >
+                                {cardInner}
+                            </motion.div>
+                        );
+                    })}
                 </div>
             </div>
 
