@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Users, Globe, Rocket } from 'lucide-react';
+import { Users, Globe, Rocket, Send, Flag, Mail } from 'lucide-react';
 import { useTranslation, Trans } from 'react-i18next';
 
 const MissionSection: React.FC = () => {
@@ -21,6 +21,21 @@ const MissionSection: React.FC = () => {
             icon: <Rocket className="text-pink-400" size={24} />,
             title: t('mission.initiativeTitle'),
             description: t('mission.initiative'),
+        },
+        {
+            icon: <Send className="text-brand-accent" size={24} />,
+            title: t('mission.tickerEthTitle'),
+            description: t('mission.tickerEth'),
+        },
+        {
+            icon: <Flag className="text-brand-primary" size={24} />,
+            title: t('mission.ethereumKoreaTitle'),
+            description: t('mission.ethereumKorea'),
+        },
+        {
+            icon: <Mail className="text-pink-400" size={24} />,
+            title: t('mission.newsletterTitle'),
+            description: t('mission.newsletter'),
         },
     ];
 
@@ -52,15 +67,6 @@ const MissionSection: React.FC = () => {
                             }}
                         />
                     </motion.h2>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        className="text-theme-text-muted text-lg md:text-xl leading-relaxed"
-                    >
-                        {t('mission.description')}
-                    </motion.p>
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-8">
