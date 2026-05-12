@@ -2,6 +2,7 @@ import React, { useMemo, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import Hero from '../components/home/Hero';
 import MissionSection from '../components/home/MissionSection';
+import InitiativesSection from '../components/home/InitiativesSection';
 import { motion } from 'framer-motion';
 
 const UpdatesSection = lazy(() => import('../components/home/UpdatesSection'));
@@ -34,6 +35,7 @@ const Home: React.FC = () => {
                 transition={{ duration: 1 }}
             >
                 <MissionSection />
+                <InitiativesSection />
                 <Suspense fallback={null}>
                     <UpdatesSection />
                     <EcosystemSection />
