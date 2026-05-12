@@ -89,7 +89,7 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 <div className="container mx-auto px-6 flex justify-between items-center">
                     <Link to="/" className="flex items-center gap-2.5" aria-label="Ethereum Collective Korea Home">
                         <img
-                            src="/assets/ticker-eth-logo.svg"
+                            src="/assets/eck-icon.svg"
                             alt=""
                             role="presentation"
                             className="h-6 md:h-7 w-auto"
@@ -167,7 +167,7 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                     <div className="grid md:grid-cols-4 gap-8">
                         <div className="md:col-span-2">
                             <div className="flex items-center gap-3 mb-4">
-                                <img src="/assets/ticker-eth-logo.svg" alt="" role="presentation" className="h-8 w-auto" />
+                                <img src="/assets/eck-icon.svg" alt="" role="presentation" className="h-8 w-auto" />
                                 <h3 className="text-xl font-bold text-theme-text">Ethereum Collective Korea</h3>
                             </div>
                             <p className="text-theme-text-muted max-w-sm">
