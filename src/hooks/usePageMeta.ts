@@ -28,6 +28,19 @@ export default function usePageMeta({ title, description }: PageMeta) {
             if (ogDesc) ogDesc.setAttribute('content', description);
         }
 
+        // canonical + og:url 을 현재 페이지로 갱신 (라우트별 SEO)
+        const url = `${window.location.origin}${window.location.pathname}`;
+        let canonical = document.querySelector('link[rel="canonical"]');
+        if (!canonical) {
+            canonical = document.createElement('link');
+            canonical.setAttribute('rel', 'canonical');
+            document.head.appendChild(canonical);
+        }
+        canonical.setAttribute('href', url);
+
+        const ogUrl = document.querySelector('meta[property="og:url"]');
+        if (ogUrl) ogUrl.setAttribute('content', url);
+
         return () => {
             document.title = SITE_NAME;
         };
