@@ -7,7 +7,11 @@
     "builderEcosystemTitle": "Builder Ecosystem",
     "builderEcosystem": "이더리움 프로토콜, L2, 인프라 빌더들의 최신 동향과 뉴스를 전달합니다. 한국 개발자들이 글로벌 생태계와 연결될 수 있도록 다리 역할을 합니다.",
     "initiativeTitle": "Initiative",
-    "initiative": "밋업, 스터디, 해커톤 등 다양한 이니셔티브를 커뮤니티와 함께 기획하고 실행합니다. 아이디어를 현실로 만드는 실행 플랫폼입니다.",
+    "initiative": "밋업, 스터디, 해커톤 등 다양한 이니셔티브를 커뮤니티와 함께 기획하고 실행합니다. 아이디어를 현실로 만드는 실행 플랫폼입니다."
+  },
+  "initiatives": {
+    "label": "Initiatives",
+    "title": "ECK가 운영하는 <accent>이니셔티브</accent>",
     "tickerEthTitle": "The Ticker is ETH",
     "tickerEth": "한국 빌더들에게 매일 이더리움 인사이트를 전달하는 ECK 텔레그램 채널 이니셔티브입니다.",
     "ethereumKoreaTitle": "Ethereum Korea",

@@ -7,7 +7,11 @@
     "builderEcosystemTitle": "Builder Ecosystem",
     "builderEcosystem": "We deliver the latest trends and news from Ethereum protocol, L2, and infrastructure builders. We serve as a bridge connecting Korean developers to the global ecosystem.",
     "initiativeTitle": "Initiative",
-    "initiative": "We plan and execute diverse initiatives — meetups, study groups, hackathons — together with the community. A platform that turns ideas into reality.",
+    "initiative": "We plan and execute diverse initiatives — meetups, study groups, hackathons — together with the community. A platform that turns ideas into reality."
+  },
+  "initiatives": {
+    "label": "Initiatives",
+    "title": "ECK <accent>Initiatives</accent>",
     "tickerEthTitle": "The Ticker is ETH",
     "tickerEth": "ECK's Telegram channel initiative — delivering daily Ethereum insights to Korean builders.",
     "ethereumKoreaTitle": "Ethereum Korea",

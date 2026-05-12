@@ -1,31 +1,31 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Users, Globe, Rocket } from 'lucide-react';
+import { Send, Flag, Mail } from 'lucide-react';
 import { useTranslation, Trans } from 'react-i18next';
 
-const MissionSection: React.FC = () => {
+const InitiativesSection: React.FC = () => {
     const { t } = useTranslation('home');
 
-    const values = [
+    const items = [
         {
-            icon: <Users className="text-brand-accent" size={24} />,
-            title: t('mission.communityDrivenTitle'),
-            description: t('mission.communityDriven'),
+            icon: <Send className="text-brand-accent" size={24} />,
+            title: t('initiatives.tickerEthTitle'),
+            description: t('initiatives.tickerEth'),
         },
         {
-            icon: <Globe className="text-brand-primary" size={24} />,
-            title: t('mission.builderEcosystemTitle'),
-            description: t('mission.builderEcosystem'),
+            icon: <Flag className="text-brand-primary" size={24} />,
+            title: t('initiatives.ethereumKoreaTitle'),
+            description: t('initiatives.ethereumKorea'),
         },
         {
-            icon: <Rocket className="text-pink-400" size={24} />,
-            title: t('mission.initiativeTitle'),
-            description: t('mission.initiative'),
+            icon: <Mail className="text-pink-400" size={24} />,
+            title: t('initiatives.newsletterTitle'),
+            description: t('initiatives.newsletter'),
         },
     ];
 
     return (
-        <section className="py-24 relative overflow-hidden bg-theme-bg">
+        <section className="py-24 relative overflow-hidden bg-theme-bg-secondary">
             <div className="container mx-auto px-6 relative z-10">
                 <div className="max-w-4xl mx-auto text-center mb-20">
                     <motion.span
@@ -34,7 +34,7 @@ const MissionSection: React.FC = () => {
                         viewport={{ once: true }}
                         className="text-brand-primary font-bold tracking-widest uppercase text-sm mb-4 block"
                     >
-                        {t('mission.label')}
+                        {t('initiatives.label')}
                     </motion.span>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
@@ -44,7 +44,7 @@ const MissionSection: React.FC = () => {
                         className="text-3xl md:text-5xl font-bold mb-8 leading-tight"
                     >
                         <Trans
-                            i18nKey="home:mission.title"
+                            i18nKey="home:initiatives.title"
                             components={{
                                 white: <span className="text-theme-text" />,
                                 accent: <span className="text-brand-accent" />,
@@ -55,7 +55,7 @@ const MissionSection: React.FC = () => {
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-8">
-                    {values.map((v, i) => (
+                    {items.map((v, i) => (
                         <motion.div
                             key={v.title}
                             initial={{ opacity: 0, y: 30 }}
@@ -77,9 +77,9 @@ const MissionSection: React.FC = () => {
             </div>
 
             {/* Background Decoration */}
-            <div className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-primary/5 rounded-full blur-[100px]" />
+            <div className="absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-accent/5 rounded-full blur-[100px]" />
         </section>
     );
 };
 
-export default MissionSection;
+export default InitiativesSection;
