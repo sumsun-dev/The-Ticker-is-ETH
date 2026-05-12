@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Disallow admin routes from being indexed
+Disallow: /admin/
+Disallow: /admin-login
+
+Sitemap: https://ethcollective.xyz/sitemap.xml
+Host: https://ethcollective.xyz
