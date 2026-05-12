@@ -90,11 +90,12 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                     <Link to="/" className="flex items-center gap-2.5" aria-label="Ethereum Collective Korea Home">
                         <img
                             src="/assets/ticker-eth-logo.svg"
-                            alt="Ethereum Collective Korea"
+                            alt=""
+                            role="presentation"
                             className="h-6 md:h-7 w-auto"
                         />
                         <span className="text-lg md:text-xl font-black tracking-[-0.02em] text-theme-text uppercase italic">
-                            ECK<span className="hidden sm:inline text-theme-text-secondary normal-case not-italic font-medium text-xs md:text-sm tracking-normal ml-2">Ethereum Collective Korea</span>
+                            ECK<span className="inline text-theme-text-secondary normal-case not-italic font-medium text-[10px] sm:text-xs md:text-sm tracking-normal ml-2">Ethereum Collective Korea</span>
                         </span>
                     </Link>
 
@@ -166,7 +167,7 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                     <div className="grid md:grid-cols-4 gap-8">
                         <div className="md:col-span-2">
                             <div className="flex items-center gap-3 mb-4">
-                                <img src="/assets/ticker-eth-logo.svg" alt="Ethereum Collective Korea" className="h-8 w-auto" />
+                                <img src="/assets/ticker-eth-logo.svg" alt="" role="presentation" className="h-8 w-auto" />
                                 <h3 className="text-xl font-bold text-theme-text">Ethereum Collective Korea</h3>
                             </div>
                             <p className="text-theme-text-muted max-w-sm">

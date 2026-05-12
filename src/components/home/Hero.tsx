@@ -100,7 +100,8 @@ const Hero: React.FC = () => {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 1.2, ease: "easeOut" }}
                         src="/assets/ticker-eth-logo.svg"
-                        alt="Ethereum Collective Korea"
+                        alt=""
+                        role="presentation"
                         className="w-full h-auto object-contain mx-auto relative mix-blend-screen mask-logo-fade"
                     />
                 </div>
