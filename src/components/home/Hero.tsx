@@ -100,8 +100,7 @@ const Hero: React.FC = () => {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 1.2, ease: "easeOut" }}
                         src="/assets/eck-logo.svg"
-                        alt=""
-                        role="presentation"
+                        alt={t('hero.logoAlt')}
                         className="w-full h-auto object-contain mx-auto relative mask-logo-fade"
                     />
                 </div>
