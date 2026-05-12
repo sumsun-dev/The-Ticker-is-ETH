@@ -2,13 +2,18 @@
   "mission": {
     "label": "Public Good",
     "title": "A <accent>Public Good</accent> <br />for Korea's Ethereum Ecosystem.",
-    "description": "ECK (Ethereum Collective Korea) is a non-profit collective building public goods for Korea's Ethereum ecosystem through research, news curation, and community events. ‘The Ticker is ETH’ is ECK's Telegram channel initiative.",
     "communityDrivenTitle": "Community-Driven",
     "communityDriven": "Diverse Ethereum builders in Korea share their insights and research. Anyone can become a contributor, and the community builds it together.",
     "builderEcosystemTitle": "Builder Ecosystem",
     "builderEcosystem": "We deliver the latest trends and news from Ethereum protocol, L2, and infrastructure builders. We serve as a bridge connecting Korean developers to the global ecosystem.",
     "initiativeTitle": "Initiative",
-    "initiative": "We plan and execute diverse initiatives — meetups, study groups, hackathons — together with the community. A platform that turns ideas into reality."
+    "initiative": "We plan and execute diverse initiatives — meetups, study groups, hackathons — together with the community. A platform that turns ideas into reality.",
+    "tickerEthTitle": "The Ticker is ETH",
+    "tickerEth": "ECK's Telegram channel initiative — delivering daily Ethereum insights to Korean builders.",
+    "ethereumKoreaTitle": "Ethereum Korea",
+    "ethereumKorea": "A community hub where builders, researchers, and contributors of Korea's Ethereum ecosystem meet and collaborate.",
+    "newsletterTitle": "Newsletter",
+    "newsletter": "A weekly digest of Ethereum protocol, L2, and EIP developments — delivered straight to your inbox."
   },
   "hero": {
     "badge": "ETHEREUM COLLECTIVE KOREA",
