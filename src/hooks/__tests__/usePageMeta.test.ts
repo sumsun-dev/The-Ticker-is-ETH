@@ -3,7 +3,7 @@ import { renderHook } from '@testing-library/react'
 import usePageMeta from '../usePageMeta'
 
 describe('usePageMeta', () => {
-  const SITE_NAME = 'The Ticker is ETH'
+  const SITE_NAME = 'ECK — Ethereum Collective Korea'
 
   afterEach(() => {
     document.title = SITE_NAME

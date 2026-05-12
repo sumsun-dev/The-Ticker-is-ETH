@@ -2,7 +2,7 @@
   "mission": {
     "label": "Public Good",
     "title": "한국 이더리움 <br />생태계를 위한 <accent>공공재</accent>.",
-    "description": "The Ticker is ETH는 리서치 발행, 뉴스 큐레이션, 커뮤니티 이벤트를 통해 한국 이더리움 생태계의 공공재를 만들어가는 비영리 그룹입니다.",
+    "description": "ECK(Ethereum Collective Korea)는 리서치 발행, 뉴스 큐레이션, 커뮤니티 이벤트를 통해 한국 이더리움 생태계의 공공재를 만들어가는 비영리 콜렉티브입니다. ‘The Ticker is ETH’는 ECK가 운영하는 텔레그램 채널 이니셔티브입니다.",
     "communityDrivenTitle": "Community-Driven",
     "communityDriven": "한국의 다양한 이더리움 빌더들이 자신의 인사이트와 리서치를 공유합니다. 누구나 기여자가 될 수 있으며, 커뮤니티가 함께 만들어갑니다.",
     "builderEcosystemTitle": "Builder Ecosystem",
@@ -11,7 +11,9 @@
     "initiative": "밋업, 스터디, 해커톤 등 다양한 이니셔티브를 커뮤니티와 함께 기획하고 실행합니다. 아이디어를 현실로 만드는 실행 플랫폼입니다."
   },
   "hero": {
-    "badge": "KOREA ETHEREUM COMMUNITY",
+    "badge": "ETHEREUM COLLECTIVE KOREA",
+    "tagline": "한국 이더리움 생태계의 콜렉티브.",
+    "subTagline": "‘The Ticker is ETH’ 텔레그램 채널을 비롯한 ECK 이니셔티브들이 함께합니다.",
     "learnMore": "Learn More",
     "explore": "Explore"
   },

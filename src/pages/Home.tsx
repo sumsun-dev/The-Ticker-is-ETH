@@ -13,7 +13,7 @@ import usePageMeta from '../hooks/usePageMeta';
 
 const Home: React.FC = () => {
     const { t } = useTranslation('home');
-    usePageMeta({ title: '', description: '한국 이더리움 커뮤니티 비영리 단체 The Ticker is ETH' });
+    usePageMeta({ title: '', description: 'ECK(Ethereum Collective Korea) — 한국 이더리움 생태계 공공재 콜렉티브' });
 
     const allMembers = useMemo(() => {
         const coreNames = new Set(mockMembers.map(m => m.name.toLowerCase()));

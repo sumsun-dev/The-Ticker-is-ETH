@@ -5,7 +5,7 @@ interface PageMeta {
     description?: string;
 }
 
-const SITE_NAME = 'The Ticker is ETH';
+const SITE_NAME = 'ECK — Ethereum Collective Korea';
 
 export default function usePageMeta({ title, description }: PageMeta) {
     useEffect(() => {

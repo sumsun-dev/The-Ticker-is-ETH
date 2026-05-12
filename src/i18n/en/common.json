@@ -10,13 +10,16 @@
     "skipToContent": "Skip to main content"
   },
   "footer": {
-    "description": "A non-profit group helping grow Korea's Ethereum ecosystem through research, news curation, community events, and education.",
+    "description": "ECK (Ethereum Collective Korea) is a non-profit collective growing Korea's Ethereum ecosystem through research, news curation, community events, and education.",
+    "initiative": "‘The Ticker is ETH’ is ECK's Telegram channel initiative.",
+    "telegramChannel": "Telegram Channel (The Ticker is ETH)",
+    "telegramChat": "Telegram Chat",
     "community": "Community",
     "resources": "Resources",
     "blog": "Blog",
     "newsletter": "Newsletter",
     "contact": "Contact",
-    "copyright": "© {{year}} The ticker is ETH. All rights reserved."
+    "copyright": "© {{year}} Ethereum Collective Korea. All rights reserved."
   },
   "sort": {
     "contributions": "Most Contributions",

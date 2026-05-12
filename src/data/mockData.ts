@@ -127,7 +127,7 @@ export const mockContributors: (TeamMember & { category: string })[] = [
             count: 0,
         })),
         recentActivity: [],
-        bio: 'The Ticker is ETH 커뮤니티 기여자입니다.',
+        bio: 'ECK(Ethereum Collective Korea) 커뮤니티 기여자입니다.',
         memberType: 'contributor' as const,
         category: 'Content',
         social: { website: 'https://maily.so/asthedaysgoby' },
