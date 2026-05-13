@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import EthCursorTrail from '../components/cursor/EthCursorTrail';
 import LanguageToggle from '../components/common/LanguageToggle';
 
-import AuthButton from '../components/common/AuthButton';
+// import AuthButton from '../components/common/AuthButton'; // temporarily disabled
 
 const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -112,7 +112,7 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                             </Link>
                         ))}
                         <LanguageToggle />
-                        <AuthButton />
+                        {/* <AuthButton /> temporarily disabled */}
                         <a href="https://t.me/thetickeriseth" target="_blank" rel="noopener noreferrer" className="bg-theme-surface hover:bg-theme-surface-hover text-theme-text px-5 py-2 rounded-full text-sm font-medium transition-colors border border-theme-border-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent">
                             {t('nav.subscribe')}
                         </a>
@@ -152,7 +152,7 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                         ))}
                         <div className="pt-4 border-t border-theme-border flex items-center gap-4">
                             <LanguageToggle />
-                            <AuthButton />
+                            {/* <AuthButton /> temporarily disabled */}
                         </div>
                     </div>
                 </div>
