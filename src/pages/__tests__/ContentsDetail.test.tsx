@@ -40,8 +40,7 @@ describe('ContentsDetail', () => {
       search: '',
       hash: '',
       key: 'default',
-      unstable_mask: undefined,
-    })
+    } as ReturnType<typeof useLocation>)
     localStorage.clear()
     sessionStorage.clear()
   })
@@ -99,8 +98,7 @@ describe('ContentsDetail', () => {
       search: '',
       hash: '',
       key: 'default',
-      unstable_mask: undefined,
-    })
+    } as ReturnType<typeof useLocation>)
     renderWithProviders(<ContentsDetail />)
     await waitFor(() => {
       expect(screen.getByText('Test Research Article')).toBeInTheDocument()
