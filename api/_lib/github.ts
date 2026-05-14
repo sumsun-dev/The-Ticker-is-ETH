@@ -1,9 +1,10 @@
 const GITHUB_API = 'https://api.github.com';
 
 function getEnv(key: string): string {
-  const value = process.env[key];
-  if (!value) throw new Error(`Missing environment variable: ${key}`);
-  return value;
+  const raw = process.env[key];
+  if (!raw) throw new Error(`Missing environment variable: ${key}`);
+  // Vercel UI 등에서 복붙 시 흔히 섞이는 따옴표/공백/줄바꿈을 제거
+  return raw.trim().replace(/^["']|["']$/g, '');
 }
 
 function headers(): Record<string, string> {

@@ -113,10 +113,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       }
     }
 
-    const detail = error instanceof Error ? error.message.slice(0, 200) : 'Unknown error';
+    const rawDetail = error instanceof Error ? error.message : 'Unknown error';
+    const detail = rawDetail.slice(0, 200);
+    const hint = /\b401\b|Bad credentials/i.test(rawDetail)
+      ? 'GITHUB_PAT may be invalid/expired or have wrong scope. Verify Vercel env (no quotes/whitespace) and the PAT has Contents: Read & Write on this repo.'
+      : undefined;
+
     return res.status(500).json({
       error: 'Publish failed. Please try again.',
       detail,
+      ...(hint ? { hint } : {}),
     });
   }
 }
