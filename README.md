@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-ECK(Ethereum Collective Korea) 공식 홈페이지. 한국 이더리움 생태계의 공공재를 만드는 비영리 콜렉티브의 리서치/뉴스/이벤트 허브입니다.
+ECK(Ethereum Collective Korea) 공식 홈페이지. 한국 이더리움 생태계의 공공재를 만드는 비영리 팀의 리서치/뉴스/이벤트 허브입니다.
 
 > ‘The Ticker is ETH’는 ECK가 운영하는 텔레그램 채널 이니셔티브입니다.
 
