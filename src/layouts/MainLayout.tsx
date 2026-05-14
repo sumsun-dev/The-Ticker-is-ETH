@@ -176,6 +176,9 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                             <p className="text-theme-text-muted/70 max-w-sm text-xs mt-3">
                                 {t('footer.initiative')}
                             </p>
+                            <p className="text-theme-text-muted/70 max-w-sm text-xs mt-2">
+                                {t('footer.consortium')}
+                            </p>
                         </div>
                         <div>
                             <h4 className="text-theme-text font-semibold mb-4">{t('footer.community')}</h4>
