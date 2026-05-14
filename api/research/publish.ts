@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { randomBytes, timingSafeEqual } from 'crypto';
-import { getFileContent, createFile, updateFile } from '../_lib/github.js';
+import { getFileContent, createFile, updateFile, deleteFile } from '../_lib/github.js';
 
 interface PublishBody {
   password: string;
@@ -49,21 +49,24 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(401).json({ error: 'Invalid password' });
   }
 
+  const id = generateId();
+  const articlePath = `src/data/articles/${id}.md`;
+  const indexPath = 'src/data/research-index.json';
+  let articleCreated = false;
+
   try {
-    const id = generateId();
     const now = new Date();
     const dateStr = `${now.getFullYear()}.${String(now.getMonth() + 1).padStart(2, '0')}.${String(now.getDate()).padStart(2, '0')}`;
 
     // 1. Create article markdown file
-    const articlePath = `src/data/articles/${id}.md`;
     await createFile(
       articlePath,
       body.content,
       `docs(research): publish "${body.title}"`,
     );
+    articleCreated = true;
 
     // 2. Update research-index.json
-    const indexPath = 'src/data/research-index.json';
     const indexFile = await getFileContent(indexPath);
     const indexContent = Buffer.from(indexFile.content, 'base64').toString('utf-8');
     const indexData = JSON.parse(indexContent) as Array<Record<string, unknown>>;
@@ -94,6 +97,26 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(200).json({ id, ...newEntry });
   } catch (error) {
     console.error('[PUBLISH ERROR]', error);
-    return res.status(500).json({ error: 'Publish failed. Please try again.' });
+
+    // Rollback: orphaned article md (created but index update failed)
+    if (articleCreated) {
+      try {
+        const orphan = await getFileContent(articlePath);
+        await deleteFile(
+          articlePath,
+          orphan.sha,
+          `revert(research): rollback orphaned article ${id}`,
+        );
+        console.error('[PUBLISH ROLLBACK] removed orphaned', articlePath);
+      } catch (rollbackErr) {
+        console.error('[PUBLISH ROLLBACK FAILED]', rollbackErr);
+      }
+    }
+
+    const detail = error instanceof Error ? error.message.slice(0, 200) : 'Unknown error';
+    return res.status(500).json({
+      error: 'Publish failed. Please try again.',
+      detail,
+    });
   }
 }

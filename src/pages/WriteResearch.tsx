@@ -87,8 +87,9 @@ const WriteResearch: React.FC = () => {
             });
 
             if (!res.ok) {
-                const data = await res.json();
-                throw new Error(data.error || 'Publish failed');
+                const data = await res.json() as { error?: string; detail?: string };
+                const baseMsg = data.error || 'Publish failed';
+                throw new Error(data.detail ? `${baseMsg} — ${data.detail}` : baseMsg);
             }
 
             const publishedEntry = await res.json() as Record<string, unknown>;
