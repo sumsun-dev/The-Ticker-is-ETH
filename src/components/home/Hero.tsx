@@ -38,8 +38,8 @@ const Hero: React.FC = () => {
                     </span>
 
                     <h1 className="text-5xl md:text-7xl lg:text-[100px] font-black mb-6 tracking-[-0.04em] leading-[0.9] uppercase italic text-theme-text">
-                        Ethereum <br />
-                        Collective <span className="text-brand-accent">Korea</span>
+                        <span className="text-brand-accent">E</span>thereum <br />
+                        <span className="text-brand-accent">C</span>ollective <span className="text-brand-accent">K</span>orea
                     </h1>
                     <p className="text-base md:text-lg text-theme-text-secondary max-w-2xl mx-auto mb-4 leading-relaxed">
                         {t('hero.tagline')}
