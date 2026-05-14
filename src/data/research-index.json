@@ -1,18 +1,5 @@
 [
   {
-    "id": "research-20260514-f4714af8",
-    "title": "dddd",
-    "author": "Sose",
-    "authorId": "sose",
-    "date": "2026.05.14",
-    "category": "Research",
-    "summary": "dddd",
-    "content": "",
-    "thumbnailUrl": "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&q=80&w=2832",
-    "readTime": "1 min",
-    "authorAvatar": "/assets/team/sose.jpg"
-  },
-  {
     "id": "tg-1396",
     "title": "이더리움 - Upgrading Finality - Edition 1",
     "author": "sose",
