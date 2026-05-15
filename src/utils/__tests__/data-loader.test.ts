@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { lazyLoadJson, loadArticleContent } from '../data-loader'
 
 describe('lazyLoadJson', () => {
@@ -28,45 +28,19 @@ describe('lazyLoadJson', () => {
 })
 
 describe('loadArticleContent', () => {
-  beforeEach(() => {
-    vi.restoreAllMocks()
+  it('returns raw markdown for an existing article id', async () => {
+    const result = await loadArticleContent('tg-1000')
+    expect(typeof result).toBe('string')
+    expect((result ?? '').length).toBeGreaterThan(0)
   })
 
-  it('returns text content on success', async () => {
-    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({
-      ok: true,
-      headers: new Headers({ 'content-type': 'text/plain' }),
-      text: () => Promise.resolve('# Article Content'),
-    }))
-
-    const result = await loadArticleContent('test-id')
-    expect(result).toBe('# Article Content')
-  })
-
-  it('returns undefined on HTTP error', async () => {
-    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({
-      ok: false,
-      headers: new Headers(),
-    }))
-
-    const result = await loadArticleContent('bad-id')
+  it('returns undefined for an unknown article id', async () => {
+    const result = await loadArticleContent('does-not-exist')
     expect(result).toBeUndefined()
   })
 
-  it('returns undefined when content-type is text/html', async () => {
-    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({
-      ok: true,
-      headers: new Headers({ 'content-type': 'text/html' }),
-    }))
-
-    const result = await loadArticleContent('html-id')
-    expect(result).toBeUndefined()
-  })
-
-  it('returns undefined on network error', async () => {
-    vi.stubGlobal('fetch', vi.fn().mockRejectedValue(new Error('Network error')))
-
-    const result = await loadArticleContent('error-id')
+  it('returns undefined when id contains path traversal', async () => {
+    const result = await loadArticleContent('../secrets')
     expect(result).toBeUndefined()
   })
 })

@@ -21,32 +21,18 @@ export function loadTeamEnrichment() {
   );
 }
 
-/**
- * Load article content by ID.
- * Dev: fetches local .md file via Vite asset serving.
- * Prod: fetches from Vercel serverless API (GitHub-backed).
- */
+// Bundles every article markdown at build time as lazy raw chunks.
+// Removes runtime dependency on GitHub Contents API + PAT for reads.
+const articleModules = import.meta.glob('../data/articles/*.md', {
+  query: '?raw',
+  import: 'default',
+}) as Record<string, () => Promise<string>>;
+
 export async function loadArticleContent(id: string): Promise<string | undefined> {
-  const isDev = import.meta.env.DEV;
-
-  if (isDev) {
-    try {
-      const res = await fetch(`/src/data/articles/${id}.md`);
-      if (!res.ok) return undefined;
-      const text = await res.text();
-      if (text.startsWith('import ') || text.startsWith('export ')) return undefined;
-      return text;
-    } catch {
-      return undefined;
-    }
-  }
-
+  const loader = articleModules[`../data/articles/${id}.md`];
+  if (!loader) return undefined;
   try {
-    const res = await fetch(`/api/research/content?id=${encodeURIComponent(id)}`);
-    if (!res.ok) return undefined;
-    const contentType = res.headers.get('content-type') ?? '';
-    if (contentType.includes('text/html')) return undefined;
-    return await res.text();
+    return await loader();
   } catch {
     return undefined;
   }
