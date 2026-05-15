@@ -28,7 +28,12 @@ const articleModules = import.meta.glob('../data/articles/*.md', {
   import: 'default',
 }) as Record<string, () => Promise<string>>;
 
+// glob key lookup already rejects invalid keys, but the explicit guard
+// documents intent and stays correct if the function is reused elsewhere.
+const VALID_ARTICLE_ID = /^[\w-]{1,80}$/;
+
 export async function loadArticleContent(id: string): Promise<string | undefined> {
+  if (!VALID_ARTICLE_ID.test(id)) return undefined;
   const loader = articleModules[`../data/articles/${id}.md`];
   if (!loader) return undefined;
   try {
