@@ -65,4 +65,50 @@ describe('ErrorBoundary', () => {
     await user.click(screen.getByRole('button', { name: /try again|다시 시도/i }))
     expect(screen.getByText('Recovered')).toBeInTheDocument()
   })
+
+  it('resets error state when resetKey prop changes', () => {
+    let shouldThrow = true
+    const MaybeThrow = () => {
+      if (shouldThrow) throw new Error('Boom')
+      return <div>Recovered</div>
+    }
+
+    const { rerender } = render(
+      <ErrorBoundary resetKey="/old">
+        <MaybeThrow />
+      </ErrorBoundary>,
+    )
+    expect(screen.getByText(/문제가 발생|something went wrong/i)).toBeInTheDocument()
+
+    shouldThrow = false
+    rerender(
+      <ErrorBoundary resetKey="/new">
+        <MaybeThrow />
+      </ErrorBoundary>,
+    )
+    expect(screen.getByText('Recovered')).toBeInTheDocument()
+  })
+
+  it('keeps error state when resetKey does not change', () => {
+    let shouldThrow = true
+    const MaybeThrow = () => {
+      if (shouldThrow) throw new Error('Boom')
+      return <div>Recovered</div>
+    }
+
+    const { rerender } = render(
+      <ErrorBoundary resetKey="/same">
+        <MaybeThrow />
+      </ErrorBoundary>,
+    )
+    expect(screen.getByText(/문제가 발생|something went wrong/i)).toBeInTheDocument()
+
+    shouldThrow = false
+    rerender(
+      <ErrorBoundary resetKey="/same">
+        <MaybeThrow />
+      </ErrorBoundary>,
+    )
+    expect(screen.getByText(/문제가 발생|something went wrong/i)).toBeInTheDocument()
+  })
 })

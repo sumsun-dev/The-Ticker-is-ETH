@@ -29,38 +29,45 @@ const RedirectWithParams: React.FC<{ base: string }> = ({ base }) => {
   return <Navigate to={id ? `${base}/${id}` : base} replace />;
 };
 
+const AppRoutes: React.FC = () => {
+  const { pathname } = useLocation();
+  return (
+    <ErrorBoundary resetKey={pathname}>
+      <Suspense fallback={<PageSkeleton />}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/team" element={<Team />} />
+          <Route path="/team/:id" element={<MemberDetail />} />
+          <Route path="/contributors" element={<Contributors />} />
+          <Route path="/contributors/:id" element={<MemberDetail />} />
+          <Route path="/ecosystem" element={<Ecosystem />} />
+          <Route path="/events" element={<Events />} />
+          <Route path="/contents" element={<Contents />} />
+          <Route path="/contents/:id" element={<ContentsDetail />} />
+          <Route path="/contents/write" element={<WriteResearch />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/admin" element={<AdminLogin />} />
+          {/* Backward-compatible redirects */}
+          <Route path="/research" element={<Navigate to="/contents" replace />} />
+          <Route path="/research/write" element={<Navigate to="/contents/write" replace />} />
+          <Route path="/research/:id" element={<RedirectWithParams base="/contents" />} />
+          <Route path="/news" element={<Navigate to="/contents" replace />} />
+          <Route path="/news/:id" element={<RedirectWithParams base="/contents" />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
+    </ErrorBoundary>
+  );
+};
+
 function App() {
   return (
     <Router>
       <ScrollToTop />
       <Toaster theme="dark" position="bottom-right" richColors />
       <MainLayout>
-        <ErrorBoundary>
-          <Suspense fallback={<PageSkeleton />}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/team" element={<Team />} />
-              <Route path="/team/:id" element={<MemberDetail />} />
-              <Route path="/contributors" element={<Contributors />} />
-              <Route path="/contributors/:id" element={<MemberDetail />} />
-              <Route path="/ecosystem" element={<Ecosystem />} />
-              <Route path="/events" element={<Events />} />
-              <Route path="/contents" element={<Contents />} />
-              <Route path="/contents/:id" element={<ContentsDetail />} />
-              <Route path="/contents/write" element={<WriteResearch />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/admin" element={<AdminLogin />} />
-              {/* Backward-compatible redirects */}
-              <Route path="/research" element={<Navigate to="/contents" replace />} />
-              <Route path="/research/write" element={<Navigate to="/contents/write" replace />} />
-              <Route path="/research/:id" element={<RedirectWithParams base="/contents" />} />
-              <Route path="/news" element={<Navigate to="/contents" replace />} />
-              <Route path="/news/:id" element={<RedirectWithParams base="/contents" />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
-        </ErrorBoundary>
+        <AppRoutes />
       </MainLayout>
     </Router>
   );
