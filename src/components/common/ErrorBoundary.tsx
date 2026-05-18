@@ -4,6 +4,7 @@ import i18n from '../../i18n';
 interface Props {
     children: React.ReactNode;
     fallback?: React.ReactNode;
+    resetKey?: string;
 }
 
 interface State {
@@ -20,8 +21,16 @@ class ErrorBoundary extends React.Component<Props, State> {
         return { hasError: true };
     }
 
+    componentDidUpdate(prevProps: Props) {
+        if (this.state.hasError && prevProps.resetKey !== this.props.resetKey) {
+            this.setState({ hasError: false });
+        }
+    }
+
     componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-        console.error('[ErrorBoundary]', error.message, errorInfo.componentStack);
+        if (import.meta.env.DEV) {
+            console.error('[ErrorBoundary]', error.message, errorInfo.componentStack);
+        }
     }
 
     render() {
