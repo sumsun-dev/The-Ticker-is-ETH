@@ -178,6 +178,21 @@ function main() {
     fs.mkdirSync(articlesDir, { recursive: true });
   }
 
+  // Preserve manually-published entries (research-* IDs) so the sync run
+  // does not wipe entries added via the publish API.
+  const preservedEntries: Omit<ResearchArticle, 'content'>[] = [];
+  if (fs.existsSync(researchIndexPath)) {
+    try {
+      const existingRaw = fs.readFileSync(researchIndexPath, 'utf-8');
+      const existing = JSON.parse(existingRaw) as Array<Omit<ResearchArticle, 'content'>>;
+      for (const entry of existing) {
+        if (!entry.id?.startsWith('tg-')) preservedEntries.push(entry);
+      }
+    } catch (err) {
+      console.warn('[preprocess-telegram] failed to parse existing research-index.json:', err);
+    }
+  }
+
   const index: Omit<ResearchArticle, 'content'>[] = [];
   let articlesWritten = 0;
 
@@ -224,9 +239,10 @@ function main() {
     }
   }
 
-  index.sort((a, b) => b.date.localeCompare(a.date));
+  const merged = [...preservedEntries, ...index];
+  merged.sort((a, b) => b.date.localeCompare(a.date));
 
-  fs.writeFileSync(researchIndexPath, JSON.stringify(index), 'utf-8');
+  fs.writeFileSync(researchIndexPath, JSON.stringify(merged), 'utf-8');
   const indexSize = (fs.statSync(researchIndexPath).size / 1024).toFixed(1);
   console.log(`Written: research-index.json (${indexSize} KB)`);
   console.log(`Written: ${articlesWritten} article .md files → src/data/articles/`);
