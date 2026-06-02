@@ -11,6 +11,9 @@ import { loadContentsIndex, loadResearchContent, type ResearchIndexItem } from '
 import { getAvatarFallbackUrl } from '../utils/members';
 import EthThumbnail from '../components/shared/EthThumbnail';
 import type { NewsFeedData } from '../types/news';
+import usePageMeta from '../hooks/usePageMeta';
+import JsonLd from '../components/common/JsonLd';
+import { articleLd, breadcrumbLd } from '../utils/structuredData';
 
 const ALLOWED_TAGS = [
     'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
@@ -102,6 +105,31 @@ const ContentsDetail: React.FC = () => {
         return undefined;
     }, [id, location.state, sessionEntry, contentsItems]);
 
+    usePageMeta({
+        title: post?.title ?? 'Contents',
+        description: post?.summary,
+        image: post?.thumbnailUrl || undefined,
+        canonical: id ? `/contents/${id}` : undefined,
+        type: 'article',
+        publishedTime: post?.date,
+        author: post?.author,
+    });
+
+    const structuredData = useMemo(
+        () =>
+            post
+                ? [
+                      articleLd(post),
+                      breadcrumbLd([
+                          { name: 'Home', url: '/' },
+                          { name: 'Contents', url: '/contents' },
+                          { name: post.title, url: `/contents/${post.id}` },
+                      ]),
+                  ]
+                : null,
+        [post],
+    );
+
     useEffect(() => {
         if (!id) return;
 
@@ -142,6 +170,7 @@ const ContentsDetail: React.FC = () => {
 
     return (
         <div className="min-h-screen pb-20 overflow-x-hidden bg-theme-bg">
+            {structuredData && <JsonLd data={structuredData} id="contents-detail" />}
             {/* Hero Header */}
             <div className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
                 {post.thumbnailUrl ? (

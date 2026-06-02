@@ -17,6 +17,9 @@ import { useTranslation } from 'react-i18next';
 import ContributionGraph from '../components/team/ContributionGraph';
 import { mockMembers, mockContributors } from '../data/mockData';
 import { getAvatarFallbackUrl, getTotalContributions } from '../utils/members';
+import usePageMeta from '../hooks/usePageMeta';
+import JsonLd from '../components/common/JsonLd';
+import { personLd, breadcrumbLd } from '../utils/structuredData';
 
 function extractDomain(url: string): string {
     try {
@@ -33,6 +36,35 @@ const MemberDetail: React.FC = () => {
     const [now] = React.useState(() => Date.now());
 
     const member = [...mockMembers, ...mockContributors].find(m => m.id === id);
+
+    const memberBase = member?.memberType === 'core' ? '/team' : '/contributors';
+    usePageMeta({
+        title: member?.name ?? 'Member',
+        description: member
+            ? `${member.role} · ${member.bio ?? ''}`.trim().slice(0, 200)
+            : undefined,
+        image: member?.avatarUrl || undefined,
+        canonical: member ? `${memberBase}/${member.id}` : undefined,
+        type: 'profile',
+    });
+
+    const structuredData = React.useMemo(
+        () =>
+            member
+                ? [
+                      personLd(member),
+                      breadcrumbLd([
+                          { name: 'Home', url: '/' },
+                          {
+                              name: member.memberType === 'core' ? 'Core Team' : 'Contributors',
+                              url: memberBase,
+                          },
+                          { name: member.name, url: `${memberBase}/${member.id}` },
+                      ]),
+                  ]
+                : null,
+        [member, memberBase],
+    );
 
     if (!member) {
         return (
@@ -69,6 +101,7 @@ const MemberDetail: React.FC = () => {
 
     return (
         <div className="min-h-screen pt-28 pb-20 px-6 container mx-auto">
+            {structuredData && <JsonLd data={structuredData} id="member-detail" />}
             <Link to={backLink} className="inline-flex items-center text-theme-text-muted hover:text-theme-text mb-8 transition-colors group">
                 <ArrowLeft size={20} className="mr-2 group-hover:-translate-x-1 transition-transform" /> {backLabel}
             </Link>

@@ -5,5 +5,36 @@ Allow: /
 Disallow: /admin/
 Disallow: /admin-login
 
+# AI / Answer engines (AEO/GEO) — 명시적 허용
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
 Sitemap: https://ethcollective.xyz/sitemap.xml
 Host: https://ethcollective.xyz
