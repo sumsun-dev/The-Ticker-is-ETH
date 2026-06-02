@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import usePageMeta from '../hooks/usePageMeta';
 
 const quickLinks = [
   { key: 'nav.about', path: '/about' },
@@ -11,6 +12,7 @@ const quickLinks = [
 
 const NotFound: React.FC = () => {
   const { t } = useTranslation();
+  usePageMeta({ title: '404', noindex: true });
 
   return (
     <section className="min-h-[60vh] flex flex-col items-center justify-center text-center px-6 py-16">

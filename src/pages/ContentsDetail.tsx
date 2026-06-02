@@ -113,6 +113,7 @@ const ContentsDetail: React.FC = () => {
         type: 'article',
         publishedTime: post?.date,
         author: post?.author,
+        noindex: !post,
     });
 
     const structuredData = useMemo(

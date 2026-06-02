@@ -11,6 +11,8 @@ interface PageMeta {
     /** article 전용. "2026.05.31" 또는 ISO 문자열 허용 */
     publishedTime?: string;
     author?: string;
+    /** 검색엔진 색인 제외 (404 등) */
+    noindex?: boolean;
 }
 
 const SITE_NAME = 'ECK — Ethereum Collective Korea';
@@ -59,6 +61,7 @@ export default function usePageMeta({
     type = 'website',
     publishedTime,
     author,
+    noindex,
 }: PageMeta) {
     useEffect(() => {
         const fullTitle = title ? `${title} | ${SITE_NAME}` : SITE_NAME;
@@ -89,8 +92,16 @@ export default function usePageMeta({
             if (author) setMetaTag('property', 'article:author', author);
         }
 
+        const robots = document.head.querySelector('meta[name="robots"]');
+        if (noindex) {
+            setMetaTag('name', 'robots', 'noindex, follow');
+        } else if (robots) {
+            robots.remove();
+        }
+
         return () => {
             document.title = SITE_NAME;
+            document.head.querySelector('meta[name="robots"]')?.remove();
         };
-    }, [title, description, image, canonical, type, publishedTime, author]);
+    }, [title, description, image, canonical, type, publishedTime, author, noindex]);
 }

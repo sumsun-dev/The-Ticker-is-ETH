@@ -13,7 +13,14 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { mockMembers, mockContributors } from '../src/data/mockData';
-import { articleLd, personLd, breadcrumbLd, SITE_URL } from '../src/utils/structuredData';
+import {
+    articleLd,
+    personLd,
+    breadcrumbLd,
+    faqLd,
+    collectionPageLd,
+    SITE_URL,
+} from '../src/utils/structuredData';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -22,7 +29,7 @@ const DATA = join(ROOT, 'src/data');
 const ARTICLES = join(DATA, 'articles');
 const SITE_NAME = 'ECK — Ethereum Collective Korea';
 const DEFAULT_IMAGE = `${SITE_URL}/assets/ethereum-korea-logo-dark.png`;
-const BODY_MAX = 1500;
+const BODY_MAX = 6000;
 
 // ── helpers ────────────────────────────────────────────────
 const esc = (s = '') => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -141,7 +148,7 @@ interface ShellOptions {
     description: string;
     url: string;
     image: string;
-    type: 'article' | 'profile';
+    type: 'article' | 'profile' | 'website';
     publishedTime?: string;
     author?: string;
     jsonLd: object[];
@@ -149,7 +156,7 @@ interface ShellOptions {
 }
 
 function buildShell(o: ShellOptions): string {
-    const fullTitle = `${o.title} | ${SITE_NAME}`;
+    const fullTitle = o.title ? `${o.title} | ${SITE_NAME}` : SITE_NAME;
     let html = template;
     html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(fullTitle)}</title>`);
     html = setMeta(html, 'name', 'description', o.description);
@@ -255,6 +262,142 @@ for (const m of members) {
     memberPages++;
 }
 
+// ── 2.5) 정적 페이지 shell (홈 + 핵심 페이지) ───────────────
+const sortedContents = [...contents].sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+
+const liLink = (href: string, label: string) => `<li><a href="${escAttr(href)}">${esc(label)}</a></li>`;
+const ul = (items: string[]) => `<ul>${items.join('')}</ul>`;
+
+const recentLinks = ul(sortedContents.slice(0, 24).map((c) => liLink(`/contents/${c.id}`, c.title)));
+const coreLinks = ul(mockMembers.map((m) => liLink(`/team/${m.id}`, m.name)));
+const contribLinks = ul(mockContributors.slice(0, 40).map((m) => liLink(`/contributors/${m.id}`, m.name)));
+
+const ECK_FAQ = [
+    {
+        q: 'ECK(Ethereum Collective Korea)는 무엇인가요?',
+        a: 'ECK는 한국 이더리움 생태계를 위한 공공재를 만드는 비영리 콜렉티브입니다. 이더리움 리서치, 뉴스, 주간 리포트, 커뮤니티 이니셔티브를 한국어로 제공합니다.',
+    },
+    {
+        q: '어떤 콘텐츠를 제공하나요?',
+        a: '이더리움 관련 리서치, 단신(Short), 주간 리포트, 큐레이션 뉴스를 제공합니다. 모든 콘텐츠는 /contents 에서 볼 수 있습니다.',
+    },
+    {
+        q: '누가 운영하나요?',
+        a: '코어팀과 다수의 커뮤니티 기여자가 함께 운영합니다. 멤버는 /team 과 /contributors 에서 확인할 수 있습니다.',
+    },
+];
+
+interface StaticPage {
+    path: string;
+    title: string;
+    description: string;
+    bodyHtml: string;
+    jsonLd: object[];
+}
+
+const staticPages: StaticPage[] = [
+    {
+        path: '',
+        title: '',
+        description:
+            'ECK(Ethereum Collective Korea)는 한국 이더리움 생태계를 위한 공공재를 만드는 비영리 콜렉티브입니다. 이더리움 리서치, 뉴스, 주간 리포트를 한국어로 제공합니다.',
+        bodyHtml:
+            `<h1>Ethereum Collective Korea (ECK)</h1>` +
+            `<p>한국 이더리움 생태계를 위한 공공재를 만드는 비영리 콜렉티브입니다. 리서치, 뉴스, 주간 리포트, 커뮤니티 이니셔티브를 한국어로 제공합니다.</p>` +
+            `<nav><a href="/about">About</a> · <a href="/contents">Contents</a> · <a href="/team">Core Team</a> · <a href="/contributors">Contributors</a> · <a href="/ecosystem">Ecosystem</a> · <a href="/events">Events</a></nav>` +
+            `<h2>최근 콘텐츠</h2>${recentLinks}<p><a href="/contents">모든 콘텐츠 보기 →</a></p>`,
+        jsonLd: [],
+    },
+    {
+        path: 'about',
+        title: 'About',
+        description: 'ECK(Ethereum Collective Korea)의 미션과 비전 — 한국 이더리움 생태계를 위한 공공재.',
+        bodyHtml:
+            `<h1>About — Ethereum Collective Korea</h1>` +
+            `<p>ECK는 한국 이더리움 생태계를 위한 공공재를 만드는 비영리 콜렉티브입니다. 리서치와 콘텐츠로 이더리움 지식을 한국어로 전하고, 커뮤니티 기여자들과 함께 생태계를 키웁니다.</p>` +
+            `<h2>자주 묻는 질문</h2>` +
+            ECK_FAQ.map((f) => `<h3>${esc(f.q)}</h3><p>${esc(f.a)}</p>`).join('') +
+            `<p><a href="/contents">콘텐츠 보기</a> · <a href="/team">팀 보기</a></p>`,
+        jsonLd: [faqLd(ECK_FAQ)],
+    },
+    {
+        path: 'contents',
+        title: 'Contents',
+        description: `이더리움 리서치, 뉴스, 주간 리포트 ${contents.length}건. Ethereum Collective Korea가 한국어로 큐레이션합니다.`,
+        bodyHtml:
+            `<h1>Contents</h1>` +
+            `<p>이더리움 리서치, 단신, 주간 리포트, 뉴스 등 총 ${contents.length}건의 콘텐츠를 제공합니다.</p>` +
+            `<h2>최근 콘텐츠</h2>${recentLinks}`,
+        jsonLd: [
+            collectionPageLd({
+                name: 'Contents',
+                url: '/contents',
+                description: '이더리움 리서치·뉴스·주간 리포트',
+                items: sortedContents.slice(0, 50).map((c) => ({ name: c.title, url: `/contents/${c.id}` })),
+            }),
+        ],
+    },
+    {
+        path: 'team',
+        title: 'Core Team',
+        description: 'Ethereum Collective Korea 코어팀 멤버 소개.',
+        bodyHtml: `<h1>Core Team</h1><p>ECK 코어팀 멤버입니다.</p>${coreLinks}`,
+        jsonLd: [
+            collectionPageLd({
+                name: 'Core Team',
+                url: '/team',
+                description: 'ECK 코어팀',
+                items: mockMembers.map((m) => ({ name: m.name, url: `/team/${m.id}` })),
+            }),
+        ],
+    },
+    {
+        path: 'contributors',
+        title: 'Contributors',
+        description: 'Ethereum Collective Korea 커뮤니티 기여자 목록.',
+        bodyHtml: `<h1>Contributors</h1><p>ECK 커뮤니티에 기여하는 분들입니다.</p>${contribLinks}`,
+        jsonLd: [
+            collectionPageLd({
+                name: 'Contributors',
+                url: '/contributors',
+                description: 'ECK 기여자',
+                items: mockContributors.slice(0, 100).map((m) => ({ name: m.name, url: `/contributors/${m.id}` })),
+            }),
+        ],
+    },
+    {
+        path: 'ecosystem',
+        title: 'Ecosystem',
+        description: '한국 이더리움 생태계 — 프로젝트, 팀, 커뮤니티를 탐색합니다.',
+        bodyHtml: `<h1>Ecosystem</h1><p>한국 이더리움 생태계의 프로젝트와 팀, 커뮤니티를 소개합니다.</p>`,
+        jsonLd: [],
+    },
+    {
+        path: 'events',
+        title: 'Events',
+        description: 'Ethcon Korea 등 이더리움 이벤트 일정과 소식.',
+        bodyHtml: `<h1>Events</h1><p>Ethcon Korea를 비롯한 이더리움 이벤트 소식을 전합니다.</p>`,
+        jsonLd: [],
+    },
+];
+
+let staticPagesCount = 0;
+for (const sp of staticPages) {
+    const fullUrl = sp.path === '' ? `${SITE_URL}/` : `${SITE_URL}/${sp.path}`;
+    const html = buildShell({
+        title: sp.title,
+        description: sp.description,
+        url: fullUrl,
+        image: DEFAULT_IMAGE,
+        type: 'website',
+        jsonLd: sp.jsonLd,
+        bodyHtml: sp.bodyHtml,
+    });
+    if (sp.path === '') writeFileSync(join(DIST, 'index.html'), html);
+    else writePage(sp.path, html);
+    staticPagesCount++;
+}
+
 // ── 3) llms.txt ────────────────────────────────────────────
 const recent = [...contents]
     .sort((a, b) => (b.date || '').localeCompare(a.date || ''))
@@ -279,6 +422,18 @@ const llms =
     '\n';
 
 writeFileSync(join(DIST, 'llms.txt'), llms);
+
+// llms-full.txt: 전체 콘텐츠 인덱스(제목·URL·요약) — GEO 심화
+const llmsFull =
+    `# ${SITE_NAME} — 전체 콘텐츠 인덱스\n\n` +
+    `> 전체 ${sortedContents.length}건. 각 항목 본문은 해당 URL에서 확인하세요.\n\n` +
+    sortedContents
+        .map(
+            (c) =>
+                `## ${c.title}\n${SITE_URL}/contents/${c.id}\n${c.author} · ${c.date} · ${c.category}\n${(c.summary || '').slice(0, 300)}\n`,
+        )
+        .join('\n');
+writeFileSync(join(DIST, 'llms-full.txt'), llmsFull);
 
 // ── 4) RSS 2.0 (dist/feed.xml) ─────────────────────────────
 function toRfc822(date: string): string {
@@ -321,5 +476,5 @@ writeFileSync(join(DIST, 'feed.xml'), rss);
 
 // ── 요약 출력 ───────────────────────────────────────────────
 console.log(
-    `[generate-seo] sitemap: ${allEntries.length} urls · content shells: ${contentPages} · member shells: ${memberPages} · llms.txt: ${recent.length} entries · rss: ${feedItems.length} items`,
+    `[generate-seo] sitemap: ${allEntries.length} urls · static: ${staticPagesCount} · content shells: ${contentPages} · member shells: ${memberPages} · llms.txt: ${recent.length} · llms-full: ${sortedContents.length} · rss: ${feedItems.length}`,
 );

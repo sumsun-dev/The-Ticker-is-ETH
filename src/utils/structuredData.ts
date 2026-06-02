@@ -29,6 +29,8 @@ export interface MinimalArticle {
     summary: string;
     thumbnailUrl?: string;
     category?: string;
+    wordCount?: number;
+    dateModified?: string;
 }
 
 export interface MinimalMember {
@@ -86,7 +88,9 @@ export function articleLd(item: MinimalArticle) {
         headline: item.title,
         description: item.summary,
         datePublished: toIsoDate(item.date),
+        dateModified: toIsoDate(item.dateModified || item.date),
         articleSection: item.category,
+        ...(item.wordCount ? { wordCount: item.wordCount } : {}),
         author: { '@type': 'Person', name: item.author },
         publisher: {
             '@type': 'Organization',
@@ -133,5 +137,43 @@ export function breadcrumbLd(trail: Array<{ name: string; url: string }>) {
             name: item.name,
             item: toAbsolute(item.url),
         })),
+    };
+}
+
+export function faqLd(qas: Array<{ q: string; a: string }>) {
+    return {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: qas.map((x) => ({
+            '@type': 'Question',
+            name: x.q,
+            acceptedAnswer: { '@type': 'Answer', text: x.a },
+        })),
+    };
+}
+
+export function collectionPageLd(opts: {
+    name: string;
+    url: string;
+    description: string;
+    items: Array<{ name: string; url: string }>;
+}) {
+    return {
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        name: opts.name,
+        url: toAbsolute(opts.url),
+        description: opts.description,
+        inLanguage: 'ko-KR',
+        mainEntity: {
+            '@type': 'ItemList',
+            numberOfItems: opts.items.length,
+            itemListElement: opts.items.map((it, i) => ({
+                '@type': 'ListItem',
+                position: i + 1,
+                name: it.name,
+                url: toAbsolute(it.url),
+            })),
+        },
     };
 }

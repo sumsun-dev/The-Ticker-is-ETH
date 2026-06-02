@@ -46,6 +46,7 @@ const MemberDetail: React.FC = () => {
         image: member?.avatarUrl || undefined,
         canonical: member ? `${memberBase}/${member.id}` : undefined,
         type: 'profile',
+        noindex: !member,
     });
 
     const structuredData = React.useMemo(
