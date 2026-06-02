@@ -280,7 +280,46 @@ const llms =
 
 writeFileSync(join(DIST, 'llms.txt'), llms);
 
+// ── 4) RSS 2.0 (dist/feed.xml) ─────────────────────────────
+function toRfc822(date: string): string {
+    const iso = date.includes('-') ? date : date.replace(/\./g, '-');
+    const d = new Date(iso);
+    return Number.isNaN(d.getTime()) ? '' : d.toUTCString();
+}
+
+const feedItems = recent.slice(0, 50);
+const rss =
+    '<?xml version="1.0" encoding="UTF-8"?>\n' +
+    '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">\n' +
+    '  <channel>\n' +
+    `    <title>${esc(SITE_NAME)}</title>\n` +
+    `    <link>${SITE_URL}/contents</link>\n` +
+    `    <description>이더리움 리서치, 뉴스, 주간 리포트 — Ethereum Collective Korea</description>\n` +
+    '    <language>ko</language>\n' +
+    `    <atom:link href="${SITE_URL}/feed.xml" rel="self" type="application/rss+xml" />\n` +
+    (feedItems[0]?.date ? `    <lastBuildDate>${toRfc822(feedItems[0].date)}</lastBuildDate>\n` : '') +
+    feedItems
+        .map((c) => {
+            const link = `${SITE_URL}/contents/${c.id}`;
+            const pub = toRfc822(c.date);
+            return (
+                '    <item>\n' +
+                `      <title>${esc(c.title)}</title>\n` +
+                `      <link>${link}</link>\n` +
+                `      <guid isPermaLink="true">${link}</guid>\n` +
+                (pub ? `      <pubDate>${pub}</pubDate>\n` : '') +
+                (c.author ? `      <dc:creator>${esc(c.author)}</dc:creator>\n` : '') +
+                (c.category ? `      <category>${esc(c.category)}</category>\n` : '') +
+                `      <description>${esc(c.summary)}</description>\n` +
+                '    </item>'
+            );
+        })
+        .join('\n') +
+    '\n  </channel>\n</rss>\n';
+
+writeFileSync(join(DIST, 'feed.xml'), rss);
+
 // ── 요약 출력 ───────────────────────────────────────────────
 console.log(
-    `[generate-seo] sitemap: ${allEntries.length} urls · content shells: ${contentPages} · member shells: ${memberPages} · llms.txt: ${recent.length} entries`,
+    `[generate-seo] sitemap: ${allEntries.length} urls · content shells: ${contentPages} · member shells: ${memberPages} · llms.txt: ${recent.length} entries · rss: ${feedItems.length} items`,
 );
