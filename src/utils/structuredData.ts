@@ -5,7 +5,7 @@
 
 export const SITE_URL = 'https://ethcollective.xyz';
 export const ORG_NAME = 'Ethereum Collective Korea';
-export const ORG_LOGO = `${SITE_URL}/assets/ethereum-korea-logo-dark.png`;
+export const ORG_LOGO = `${SITE_URL}/assets/eck-logo.png`;
 const ORG_DESCRIPTION =
     'ECK(Ethereum Collective Korea)는 한국 이더리움 생태계를 위한 공공재를 만드는 비영리 콜렉티브입니다.';
 

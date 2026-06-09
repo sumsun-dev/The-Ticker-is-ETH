@@ -28,7 +28,7 @@ const DIST = join(ROOT, 'dist');
 const DATA = join(ROOT, 'src/data');
 const ARTICLES = join(DATA, 'articles');
 const SITE_NAME = 'ECK — Ethereum Collective Korea';
-const DEFAULT_IMAGE = `${SITE_URL}/assets/ethereum-korea-logo-dark.png`;
+const DEFAULT_IMAGE = `${SITE_URL}/assets/eck-og.png`;
 const BODY_MAX = 6000;
 
 // ── helpers ────────────────────────────────────────────────

@@ -17,7 +17,7 @@ interface PageMeta {
 
 const SITE_NAME = 'ECK — Ethereum Collective Korea';
 export const SITE_URL = 'https://ethcollective.xyz';
-const DEFAULT_IMAGE = `${SITE_URL}/assets/ethereum-korea-logo-dark.png`;
+const DEFAULT_IMAGE = `${SITE_URL}/assets/eck-og.png`;
 
 /** 경로/부분 URL을 절대 URL로 정규화 */
 function toAbsolute(url: string): string {
