@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next';
 import { ArrowRight, MessageCircle } from 'lucide-react';
 import { mockMembers, mockContributors } from '../data/mockData';
 import usePageMeta from '../hooks/usePageMeta';
+import GrantAnnouncementModal from '../components/common/GrantAnnouncementModal';
 
 const Home: React.FC = () => {
     const { t } = useTranslation('home');
@@ -26,6 +27,7 @@ const Home: React.FC = () => {
 
     return (
         <div className="bg-theme-bg">
+            <GrantAnnouncementModal />
             <Hero />
 
             <motion.div

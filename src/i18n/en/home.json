@@ -33,6 +33,34 @@
     "contributor": "Become a Contributor",
     "telegram": "Subscribe to Telegram"
   },
+  "grantPopup": {
+    "tag": "Pre-Announcement",
+    "program": "Ethereum Consortium Funding Program",
+    "title": "Cohort 1 — Call for Applications",
+    "intro": "Ethereum Korea is launching a fellowship that returns consortium funding to Korea's Ethereum ecosystem — surfacing researchers and builders who quietly contribute, and amplifying them on the global stage.",
+    "whoTitle": "Who We're Looking For",
+    "who": [
+      "Researchers in protocol, consensus, governance, or economic mechanisms",
+      "Builders contributing to Ethereum open-source projects",
+      "Those preparing Ethereum research or proposals rooted in the Korean market",
+      "Researchers at every stage, including students and grad students"
+    ],
+    "offerTitle": "What We Offer",
+    "offer": [
+      "Devcon (Nov) travel support — flights, lodging, and tickets",
+      "Speak and share at the EK1 conference in September",
+      "Connections to EF researchers and the global builder network",
+      "Speaking slots (ACDE, etc.) and domestic media coverage"
+    ],
+    "metaCohortLabel": "Cohort Size",
+    "metaCohort": "1–3 teams or individuals",
+    "metaScheduleLabel": "Application Period",
+    "metaSchedule": "Jul 1 – Aug 28",
+    "contact": "Application form opens in July · Contact ek1_core@nonceclassic.org",
+    "cta": "Learn More",
+    "dismiss": "Don't show again",
+    "close": "Close"
+  },
   "updates": {
     "badge": "From the Builders",
     "title": "Latest Insights from Builders",
