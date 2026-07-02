@@ -169,7 +169,8 @@ function formatTelegramToMarkdown(
   // Sanitize alt for markdown (brackets would break the syntax).
   const safeAlt = alt.replace(/[[\]]/g, '').trim();
   const images = imageUrls.map((url) => `![${safeAlt}](${url})`).join('\n\n');
-  return body ? `${body}\n\n${images}` : images;
+  // Images lead the article so they appear at the top of the body, above the text.
+  return body ? `${images}\n\n${body}` : images;
 }
 
 // --- Main ---
