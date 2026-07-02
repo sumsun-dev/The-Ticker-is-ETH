@@ -5,6 +5,7 @@ import * as dotenv from 'dotenv';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as readline from 'readline';
+import { uploadMedia, isR2Configured } from './lib/r2-upload';
 
 dotenv.config({ path: path.resolve(process.cwd(), '.env.local') });
 
@@ -55,6 +56,15 @@ interface ForwardedMessage {
   fromPostAuthor?: string;
 }
 
+interface LinkEntity {
+  /** UTF-16 offset into `text` where the hyperlink display text begins */
+  offset: number;
+  /** Length (UTF-16 code units) of the hyperlink display text */
+  length: number;
+  /** Resolved target URL (hidden behind the display text) */
+  url: string;
+}
+
 interface RawMessage {
   id: number;
   date: string;
@@ -64,6 +74,49 @@ interface RawMessage {
   forwards: number;
   forwarded: boolean;
   forwardedFrom?: string;
+  /** Hyperlink entities (MessageEntityTextUrl) whose URL is not present in `text` */
+  linkEntities?: LinkEntity[];
+  /** Public URLs of attached photos, uploaded to R2 */
+  imageUrls?: string[];
+}
+
+/**
+ * Extract hidden-hyperlink entities from a Telegram message. Plain URLs that
+ * appear inline in the text are handled downstream by regex; this only captures
+ * MessageEntityTextUrl (text with a URL attached behind it).
+ */
+function extractLinkEntities(msg: Api.Message): LinkEntity[] {
+  const entities = (msg as Api.Message & { entities?: Api.TypeMessageEntity[] }).entities;
+  if (!entities?.length) return [];
+  const links: LinkEntity[] = [];
+  for (const e of entities) {
+    if (e instanceof Api.MessageEntityTextUrl) {
+      links.push({ offset: e.offset, length: e.length, url: e.url });
+    }
+  }
+  return links;
+}
+
+function hasPhoto(msg: Api.Message): boolean {
+  return msg.media instanceof Api.MessageMediaPhoto;
+}
+
+/**
+ * Download an attached photo and upload it to R2, returning its public URL.
+ * No-op (returns []) when R2 is not configured or the message has no photo.
+ * Failures are logged and swallowed so one bad media item never aborts the run.
+ */
+async function collectImages(client: TelegramClient, msg: Api.Message): Promise<string[]> {
+  if (!isR2Configured() || !hasPhoto(msg)) return [];
+  try {
+    const buf = (await client.downloadMedia(msg)) as Buffer | undefined;
+    if (!buf?.length) return [];
+    const url = await uploadMedia(`telegram/tg-${msg.id}.jpg`, buf, 'image/jpeg');
+    return url ? [url] : [];
+  } catch (err) {
+    console.warn(`  [image] failed for msg ${msg.id}:`, err);
+    return [];
+  }
 }
 
 interface ContributorData {
@@ -128,10 +181,13 @@ async function main() {
 
   for await (const msg of client.iterMessages(CHANNEL, { limit: undefined })) {
     if (!(msg instanceof Api.Message)) continue;
-    if (!msg.message) continue;
+    // Keep text posts and photo posts; drop everything else (stickers, service
+    // messages, text-less non-photo media) so contribution stats stay content-only.
+    if (!msg.message && !hasPhoto(msg)) continue;
 
     const fwdFrom = (msg as Api.Message & { fwdFrom?: { fromName?: string; postAuthor?: string } }).fwdFrom;
     const dateStr = new Date(msg.date * 1000).toISOString();
+    const imageUrls = await collectImages(client, msg);
 
     if (fwdFrom) {
       // Collect forwarded messages for review
@@ -150,6 +206,7 @@ async function main() {
         ? (AUTHOR_ALIASES[channelPostAuthor] ?? channelPostAuthor)
         : 'Kuma';
 
+      const fwdLinks = extractLinkEntities(msg);
       messages.push({
         id: msg.id,
         date: dateStr,
@@ -159,6 +216,8 @@ async function main() {
         forwards: (msg as Api.Message & { forwards?: number }).forwards ?? 0,
         forwarded: true,
         forwardedFrom,
+        ...(fwdLinks.length ? { linkEntities: fwdLinks } : {}),
+        ...(imageUrls.length ? { imageUrls } : {}),
       });
 
       count++;
@@ -175,6 +234,7 @@ async function main() {
       ? (AUTHOR_ALIASES[rawAuthor] ?? rawAuthor)
       : 'Kuma';
 
+    const links = extractLinkEntities(msg);
     messages.push({
       id: msg.id,
       date: dateStr,
@@ -183,6 +243,8 @@ async function main() {
       views: (msg as Api.Message & { views?: number }).views ?? 0,
       forwards: (msg as Api.Message & { forwards?: number }).forwards ?? 0,
       forwarded: false,
+      ...(links.length ? { linkEntities: links } : {}),
+      ...(imageUrls.length ? { imageUrls } : {}),
     });
 
     count++;

@@ -3,6 +3,12 @@ import * as path from 'path';
 
 // --- Types matching raw JSON structure ---
 
+interface LinkEntity {
+  offset: number;
+  length: number;
+  url: string;
+}
+
 interface RawMessage {
   id: number;
   date: string;
@@ -12,6 +18,8 @@ interface RawMessage {
   forwards: number;
   forwarded?: boolean;
   forwardedFrom?: string;
+  linkEntities?: LinkEntity[];
+  imageUrls?: string[];
 }
 
 interface RawContributor {
@@ -120,15 +128,48 @@ function buildActivityLog(
     };
     if (msg.views) activity.views = msg.views;
     if (msg.forwards) activity.forwards = msg.forwards;
+    // Prefer an inline URL; otherwise fall back to the first hidden hyperlink.
     if (urlMatch?.[0]) activity.sourceUrl = urlMatch[0];
+    else if (msg.linkEntities?.[0]) activity.sourceUrl = msg.linkEntities[0].url;
     return activity;
   });
 }
 
-function formatTelegramToMarkdown(text: string): string {
-  return text
+/**
+ * Reconstruct hidden hyperlinks by splicing `[display](url)` into the text at
+ * each entity's offset. Processed back-to-front so earlier offsets stay valid.
+ */
+function applyLinkEntities(text: string, entities?: LinkEntity[]): string {
+  if (!entities?.length) return text;
+  const origLen = text.length;
+  const sorted = [...entities].sort((a, b) => b.offset - a.offset);
+  let result = text;
+  for (const e of sorted) {
+    // Skip entities that fall outside the (possibly truncated) text.
+    if (e.offset < 0 || e.offset + e.length > origLen) continue;
+    const display = result.slice(e.offset, e.offset + e.length);
+    result = result.slice(0, e.offset) + `[${display}](${e.url})` + result.slice(e.offset + e.length);
+  }
+  return result;
+}
+
+function formatTelegramToMarkdown(
+  text: string,
+  linkEntities?: LinkEntity[],
+  imageUrls?: string[],
+  alt = '',
+): string {
+  const body = applyLinkEntities(text, linkEntities)
+    // Auto-link bare URLs, but leave those already inside a markdown link intact.
     .replace(/(?<!\[|\()(https?:\/\/[^\s),\]]+)/g, '[$1]($1)')
     .replace(/\n{1,}/g, '\n\n');
+
+  if (!imageUrls?.length) return body;
+
+  // Sanitize alt for markdown (brackets would break the syntax).
+  const safeAlt = alt.replace(/[[\]]/g, '').trim();
+  const images = imageUrls.map((url) => `![${safeAlt}](${url})`).join('\n\n');
+  return body ? `${body}\n\n${images}` : images;
 }
 
 // --- Main ---
@@ -200,14 +241,17 @@ function main() {
     const avatar = `/assets/team/${contributor.name.toLowerCase()}.jpg`;
 
     for (const msg of contributor.messages) {
-      if (msg.text.length < 10) continue;
+      const hasImages = Boolean(msg.imageUrls?.length);
+      // Keep posts with meaningful text, or image-only posts.
+      if (msg.text.length < 10 && !hasImages) continue;
 
       const text = msg.text;
       const id = `tg-${msg.id}`;
       const tagMatch = text.match(/^\[([^\]]+)\]/);
-      const title = tagMatch
+      const derivedTitle = tagMatch
         ? tagMatch[1]
         : text.split('\n')[0].slice(0, 80).replace(/\s+$/, '');
+      const title = derivedTitle || 'Image';
       const readTime = `${Math.max(1, Math.round(text.length / 500))} min`;
       const date = formatDate(msg.date);
 
@@ -223,7 +267,8 @@ function main() {
         date,
         category,
         summary,
-        thumbnailUrl: '',
+        // Use the first attached photo as the card thumbnail when present.
+        thumbnailUrl: msg.imageUrls?.[0] ?? '',
         readTime,
       };
 
@@ -234,7 +279,11 @@ function main() {
       index.push(entry);
 
       const articlePath = path.resolve(articlesDir, `${id}.md`);
-      fs.writeFileSync(articlePath, formatTelegramToMarkdown(text), 'utf-8');
+      fs.writeFileSync(
+        articlePath,
+        formatTelegramToMarkdown(text, msg.linkEntities, msg.imageUrls, title),
+        'utf-8',
+      );
       articlesWritten++;
     }
   }
