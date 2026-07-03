@@ -29,7 +29,7 @@ const DATA = join(ROOT, 'src/data');
 const ARTICLES = join(DATA, 'articles');
 const SITE_NAME = 'ECK — Ethereum Collective Korea';
 const DEFAULT_IMAGE = `${SITE_URL}/assets/eck-og.png`;
-const BODY_MAX = 6000;
+const BODY_MAX = 20000;
 
 // ── helpers ────────────────────────────────────────────────
 const esc = (s = '') => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -43,7 +43,9 @@ function readJson<T>(p: string): T {
 function toPlainText(src: string): string {
     return src
         .replace(/```[\s\S]*?```/g, ' ')
-        .replace(/!\[[^\]]*\]\([^)]*\)/g, ' ')
+        // Keep image alt text (drop only the URL) so image-only posts still
+        // contribute crawlable text to the shell.
+        .replace(/!\[([^\]]*)\]\([^)]*\)/g, '$1')
         .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
         .replace(/<[^>]+>/g, ' ')
         .replace(/[#>*_`~|]/g, ' ')
