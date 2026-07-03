@@ -84,7 +84,9 @@ interface ResearchArticle {
 
 function formatDate(dateInput: string | Date): string {
   const d = dateInput instanceof Date ? dateInput : new Date(dateInput);
-  return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
+  // Use UTC so output is deterministic regardless of the runner's timezone
+  // (CI runs in UTC; local machines may not), avoiding spurious date churn.
+  return `${d.getUTCFullYear()}.${String(d.getUTCMonth() + 1).padStart(2, '0')}.${String(d.getUTCDate()).padStart(2, '0')}`;
 }
 
 function extractFirstSentence(text: string): string {
@@ -119,6 +121,7 @@ function buildActivityLog(
           year: 'numeric',
           month: '2-digit',
           day: '2-digit',
+          timeZone: 'UTC',
         })
         .replace(/\. /g, '.')
         .replace(/\.$/, ''),
@@ -167,8 +170,13 @@ function formatTelegramToMarkdown(
   if (!imageUrls?.length) return body;
 
   // Sanitize alt for markdown (brackets would break the syntax).
-  const safeAlt = alt.replace(/[[\]]/g, '').trim();
-  const images = imageUrls.map((url) => `![${safeAlt}](${url})`).join('\n\n');
+  const safeAlt = alt.replace(/[[\]]/g, '').trim() || 'ECK 텔레그램 이미지';
+  const multi = imageUrls.length > 1;
+  const images = imageUrls
+    // Add a "(n/total)" suffix for multi-image posts so each alt is unique;
+    // duplicate identical alt text is an SEO smell.
+    .map((url, i) => `![${safeAlt}${multi ? ` (${i + 1}/${imageUrls.length})` : ''}](${url})`)
+    .join('\n\n');
   // Images lead the article so they appear at the top of the body, above the text.
   return body ? `${images}\n\n${body}` : images;
 }
@@ -252,7 +260,9 @@ function main() {
       const derivedTitle = tagMatch
         ? tagMatch[1]
         : text.split('\n')[0].slice(0, 80).replace(/\s+$/, '');
-      const title = derivedTitle || 'Image';
+      // Image-only posts have no text to derive a title from; use a descriptive,
+      // author-attributed fallback instead of a bare "Image" (better UX + alt/SEO).
+      const title = derivedTitle || `${contributor.name}님이 공유한 이미지`;
       const readTime = `${Math.max(1, Math.round(text.length / 500))} min`;
       const date = formatDate(msg.date);
 

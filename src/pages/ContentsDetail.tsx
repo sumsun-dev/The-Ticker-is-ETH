@@ -254,7 +254,24 @@ const ContentsDetail: React.FC = () => {
                             />
                         ) : (
                             <div className="prose prose-invert prose-brand lg:prose-xl max-w-none">
-                                <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>{content}</ReactMarkdown>
+                                <ReactMarkdown
+                                    remarkPlugins={[remarkGfm]}
+                                    rehypePlugins={[rehypeRaw]}
+                                    components={{
+                                        img: ({ src, alt }) => (
+                                            <img
+                                                src={typeof src === 'string' ? src : undefined}
+                                                // Fall back to the article title so no content image ships empty alt.
+                                                alt={alt?.trim() || post.title}
+                                                loading="lazy"
+                                                decoding="async"
+                                                className="rounded-xl"
+                                            />
+                                        ),
+                                    }}
+                                >
+                                    {content}
+                                </ReactMarkdown>
                             </div>
                         )}
                     </motion.div>
