@@ -36,6 +36,7 @@ const AUTHOR_ALIASES: Record<string, string> = {
   'Jinsol (100y.eth) | Four Pillars': '100y',
   'Jenna Park': 'Jenna',
   'kuma hada': 'Kuma',
+  'Jay | Privacy Boost': 'Jay',
 };
 
 function prompt(question: string): Promise<string> {
