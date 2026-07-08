@@ -7,6 +7,8 @@
   "contactUs": "연락하기",
   "descriptions": {
     "upcoming": "Coming soon — details to be announced.",
+    "ethereumKoreaWeek": "기관과 빌더를 위한 트랙으로 구성된 이틀간의 컨퍼런스. Day 1은 토큰화·스테이블코인 등 '자본과 정책', Day 2는 개발자와 프로토콜 팀을 위한 '코드와 커뮤니티'를 다룹니다.",
+    "ethereumKoreaOne": "\"Where institutional legacy meets the infinite garden\" — 한국의 기존 금융 기관과 이더리움 생태계를 잇는 대화의 장. 기관 채택, 블록체인 인프라, 스테이블코인·RWA 등을 논의.",
     "ethcon2024": "\"Ignite your Cypherpunk Vision\" — 4회째를 맞이한 비영리 이더리움 개발자 컨퍼런스. 개발자, 리서처, 학생이 함께 사이퍼펑크 비전을 논의.",
     "ethcon2023": "\"Proof of Sharing\" — Vitalik Buterin이 헤드라인 게스트로 참여. 해커톤과 컨퍼런스를 결합한 3일간의 행사.",
     "ethcon2020": "\"Explore the Network of Opportunities!\" — Vitalik Buterin, Sandeep Nailwal (Polygon), 0xMaki (SushiSwap), Sebastien Borget (The Sandbox) 등 글로벌 스피커 참여.",

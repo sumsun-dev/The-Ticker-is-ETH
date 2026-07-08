@@ -17,22 +17,25 @@ interface EventItem {
 
 const upcomingEvents: EventItem[] = [
     {
-        id: 101,
-        date: '2026.04',
-        title: 'Ethereum Korea',
-        descriptionKey: 'upcoming',
-        tag: 'Soon',
-    },
-    {
         id: 102,
-        date: '2026.09',
-        title: 'Ethereum Korea',
-        descriptionKey: 'upcoming',
-        tag: 'Soon',
+        date: '2026.09.28 - 09.29',
+        title: 'Ethereum Korea Week',
+        descriptionKey: 'ethereumKoreaWeek',
+        location: 'Conrad Seoul & Seongsu, Seoul',
+        link: 'https://one.ethereumkorea.io/',
+        tag: 'Upcoming',
     },
 ];
 
 const pastEvents: EventItem[] = [
+    {
+        id: 101,
+        date: '2026.04.16',
+        title: 'Ethereum Korea One',
+        descriptionKey: 'ethereumKoreaOne',
+        location: 'DSRV, Seoul',
+        link: 'https://ethereumkorea.io/events/2026-04-ethereum-korea-one',
+    },
     {
         id: 4,
         date: '2024.10.18 - 10.20',
