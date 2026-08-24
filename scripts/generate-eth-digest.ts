@@ -1,20 +1,16 @@
 /**
- * 이더리움 데일리 다이제스트 생성기.
- * eth-news-inbox.json의 신규 수집분을 Claude가 한국어 편집 콘텐츠로 재작성해
- * src/data/eth-digests.json에 프리펜드한다. ANTHROPIC_API_KEY 없으면 스킵.
+ * 이더리움 데일리 다이제스트 생성기 — Claude Code 헤드리스 모드.
+ * eth-news-inbox.json의 신규 수집분을 `claude -p`(구독 인증, API 키 불필요)로
+ * 한국어 편집 콘텐츠로 재작성해 src/data/eth-digests.json에 프리펜드한다.
  *
+ * 실행 환경: claude CLI가 로그인된 곳(VPS 크론 또는 로컬). GH Actions에서는 돌지 않는다.
  * 편집 원칙: 원문 문장 복사 금지(재작성 요약 + 원문 링크), 사실 전달, 과장 금지.
  */
-import Anthropic from '@anthropic-ai/sdk';
-import { zodOutputFormat } from '@anthropic-ai/sdk/helpers/zod';
+import { execFileSync } from 'node:child_process';
 import { z } from 'zod';
 import * as fs from 'fs';
 import * as path from 'path';
-import * as dotenv from 'dotenv';
 import type { NewsItem } from './lib/eth-news';
-
-dotenv.config({ path: path.resolve(process.cwd(), '.env.local') });
-dotenv.config({ path: path.resolve(process.cwd(), '.env') });
 
 const INBOX = path.resolve(process.cwd(), 'src/data/eth-news-inbox.json');
 const OUTPUT = path.resolve(process.cwd(), 'src/data/eth-digests.json');
@@ -40,10 +36,10 @@ const DigestSchema = z.object({
   ),
 });
 
-type Digest = z.infer<typeof DigestSchema> & { date: string };
+export type Digest = z.infer<typeof DigestSchema> & { date: string; telegramMessageId?: number };
 
-const SYSTEM_PROMPT = `당신은 ECK(Ethereum Collective Korea)의 데일리 이더리움 다이제스트 편집자입니다.
-수집된 뉴스 아이템 목록을 받아 한국어 데일리 다이제스트를 작성합니다.
+const EDITOR_PROMPT = `당신은 ECK(Ethereum Collective Korea)의 데일리 이더리움 다이제스트 편집자입니다.
+아래 수집된 뉴스 아이템 목록으로 한국어 데일리 다이제스트를 작성하세요.
 
 편집 원칙:
 - 모든 요약은 한국어로 재작성합니다. 원문 문장을 그대로 복사하지 않습니다.
@@ -57,18 +53,25 @@ const SYSTEM_PROMPT = `당신은 ECK(Ethereum Collective Korea)의 데일리 이
 - intro: 2~3문장의 그날 요약
 - sections: "프로토콜 · 리서치", "생태계 · 보안", "시장 브리핑" 3개 (해당 항목이 없으면 그 섹션 생략)
 - 전체 6~12개 항목. 각 항목: 한국어 헤드라인 title, 2~3문장 summary, 원문 url, source 라벨(예: ethresear.ch, EF Blog, @handle), date(YYYY-MM-DD)
-- 중요도 순으로 배치: 프로토콜 변화 > 보안 > 생태계 > 시장`;
+- 중요도 순으로 배치: 프로토콜 변화 > 보안 > 생태계 > 시장
+
+응답은 아래 형태의 JSON 하나만 출력하세요. 코드펜스·설명 없이 JSON만:
+{"title": "...", "intro": "...", "sections": [{"heading": "...", "items": [{"title": "...", "summary": "...", "url": "...", "source": "...", "date": "YYYY-MM-DD"}]}]}`;
 
 function todayKst(): string {
-  return new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Seoul' }).format(new Date());
+  return process.env.DIGEST_DATE ?? new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Seoul' }).format(new Date());
+}
+
+/** 헤드리스 응답에서 JSON만 추출 (혹시 붙은 코드펜스 제거) */
+function extractJson(text: string): unknown {
+  const trimmed = text.trim().replace(/^```(?:json)?\s*/, '').replace(/\s*```$/, '');
+  const start = trimmed.indexOf('{');
+  const end = trimmed.lastIndexOf('}');
+  if (start === -1 || end === -1) throw new Error('no JSON object in response');
+  return JSON.parse(trimmed.slice(start, end + 1));
 }
 
 async function main() {
-  if (!process.env.ANTHROPIC_API_KEY) {
-    console.log('[SKIP] ANTHROPIC_API_KEY not set — digest generation skipped');
-    return;
-  }
-
   const inbox = JSON.parse(fs.readFileSync(INBOX, 'utf-8')) as { items: NewsItem[] };
   const existing = fs.existsSync(OUTPUT)
     ? (JSON.parse(fs.readFileSync(OUTPUT, 'utf-8')) as { digests: Digest[] })
@@ -104,27 +107,20 @@ async function main() {
     )
     .join('\n\n');
 
-  console.log(`Generating digest for ${today} from ${candidates.length} items...`);
-  const client = new Anthropic();
-  const response = await client.messages.parse({
-    model: 'claude-opus-5',
-    max_tokens: 16000,
-    system: SYSTEM_PROMPT,
-    messages: [
-      {
-        role: 'user',
-        content: `오늘 날짜: ${today}\n\n수집된 아이템:\n\n${itemLines}`,
-      },
-    ],
-    output_config: { format: zodOutputFormat(DigestSchema) },
+  const prompt = `${EDITOR_PROMPT}\n\n오늘 날짜: ${today}\n\n수집된 아이템:\n\n${itemLines}`;
+
+  console.log(`Generating digest for ${today} from ${candidates.length} items (headless claude)...`);
+  const raw = execFileSync('claude', ['-p', prompt, '--output-format', 'json', '--model', 'opus'], {
+    encoding: 'utf-8',
+    maxBuffer: 32 * 1024 * 1024,
+    timeout: 10 * 60 * 1000,
   });
 
-  if (response.stop_reason === 'refusal' || !response.parsed_output) {
-    console.warn('[WARN] digest generation failed (refusal or parse failure) — skipped');
-    return;
-  }
+  const envelope = JSON.parse(raw) as { result?: string; is_error?: boolean };
+  if (envelope.is_error || !envelope.result) throw new Error('headless claude returned an error');
 
-  const digest: Digest = { date: today, ...response.parsed_output };
+  const parsed = DigestSchema.parse(extractJson(envelope.result));
+  const digest: Digest = { date: today, ...parsed };
   const digests = [digest, ...existing.digests].slice(0, KEEP_DIGESTS);
   fs.writeFileSync(OUTPUT, JSON.stringify({ digests }, null, 2), 'utf-8');
   console.log(`Written digest "${digest.title}" (${digest.sections.length} sections) to ${OUTPUT}`);

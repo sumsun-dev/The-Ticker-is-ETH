@@ -62,12 +62,7 @@ jobs:
           # RapidAPI Twitter (twitter-api45) — 시크릿 미설정 시 트위터 수집은 자동 스킵
           X_RAPIDAPI_KEY: ${{ secrets.X_RAPIDAPI_KEY }}
 
-      - name: Generate ETH digest
-        run: npx tsx scripts/generate-eth-digest.ts
-        env:
-          # 미설정 시 다이제스트 생성만 자동 스킵
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-
+      # 다이제스트 생성·송출은 VPS 크론(scripts/vps/run-eth-digest.sh)에서 헤드리스로 처리
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"

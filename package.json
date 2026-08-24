@@ -18,7 +18,6 @@
     "fetch:news": "npx tsx scripts/fetch-news.ts"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.120.0",
     "@blocknote/core": "^0.47.0",
     "@blocknote/mantine": "^0.47.0",
     "@blocknote/react": "^0.47.0",

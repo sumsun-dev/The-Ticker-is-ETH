@@ -3,19 +3,6 @@
   "description": "이더리움 공식 블로그, 리서치 포럼, 핵심 트위터 계정, 커뮤니티 소식을 매일 수집해 한국어 다이제스트로 정리합니다.",
   "latestDigest": "데일리 다이제스트",
   "pastDigests": "지난 다이제스트",
-  "filters": {
-    "all": "전체",
-    "research": "공식 · 리서치",
-    "twitter": "트위터",
-    "community": "커뮤니티",
-    "korea": "국내 속보"
-  },
-  "showFeed": "실시간 수집 피드 보기",
-  "hideFeed": "실시간 수집 피드 접기",
-  "feedNote": "다이제스트로 정리되기 전의 원본 수집 스트림입니다. 제목을 누르면 원문으로 이동합니다.",
-  "updatedAt": "마지막 수집",
-  "loadMore": "더 보기",
   "empty": "아직 발행된 다이제스트가 없습니다.",
-  "viewOriginal": "원문 보기",
-  "totalCount": "{{count}}건"
+  "viewOriginal": "원문 보기"
 }

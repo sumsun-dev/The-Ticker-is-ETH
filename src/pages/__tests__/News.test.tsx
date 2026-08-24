@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { screen, waitFor, fireEvent } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import News from '../News';
 import { renderWithProviders } from '../../test/helpers/render';
 
@@ -28,31 +28,6 @@ vi.mock('../../data/ethNewsData', async () => {
         ],
       },
     ]),
-    loadEthNews: vi.fn().mockResolvedValue({
-      fetchedAt: new Date().toISOString(),
-      items: [
-        {
-          id: 'ethresearch:1',
-          source: 'ethresearch',
-          sourceType: 'rss',
-          title: 'Timing the Head in Ethereum PoS',
-          url: 'https://ethresear.ch/t/timing/1',
-          publishedAt: new Date().toISOString(),
-          summary: 'An analysis of timing games.',
-          author: 'someone',
-        },
-        {
-          id: 'tg:coinnesskr:9',
-          source: 'tg:coinnesskr',
-          sourceType: 'telegram',
-          title: '코인니스 원문 속보 — 노출되면 안 됨',
-          url: 'https://t.me/coinnesskr/9',
-          publishedAt: new Date().toISOString(),
-          summary: '코인니스 본문',
-          author: 'coinnesskr',
-        },
-      ],
-    }),
   };
 });
 
@@ -76,17 +51,12 @@ describe('News', () => {
     expect(originalLink).toHaveAttribute('target', '_blank');
   });
 
-  it('should keep the raw feed collapsed by default and exclude telegram items when opened', async () => {
+  it('should not render any raw feed affordance', async () => {
     renderWithProviders(<News />);
     await waitFor(() => {
       expect(screen.getByText('싱크 커미티 제거 제안 등장')).toBeInTheDocument();
     });
 
-    expect(screen.queryByText('Timing the Head in Ethereum PoS')).not.toBeInTheDocument();
-
-    fireEvent.click(screen.getByRole('button', { name: /실시간 수집 피드|raw source feed/ }));
-
-    expect(screen.getByText('Timing the Head in Ethereum PoS')).toBeInTheDocument();
-    expect(screen.queryByText(/코인니스 원문 속보/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/실시간 수집 피드|raw source feed/)).not.toBeInTheDocument();
   });
 });
