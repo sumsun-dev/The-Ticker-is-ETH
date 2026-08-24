@@ -1,6 +1,326 @@
 {
-  "fetchedAt": "2026-08-24T07:53:34.721Z",
+  "fetchedAt": "2026-08-24T09:40:44.925Z",
   "items": [
+    {
+      "id": "tg:coinnesskr:228760",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[빗썸, STABLE 입출금 일시 중단]",
+      "url": "https://t.me/coinnesskr/228760",
+      "publishedAt": "2026-08-24T09:31:13.000Z",
+      "summary": "[빗썸, STABLE 입출금 일시 중단]\n빗썸이 8월 26일 12시 스테이블(STABLE)의 입출금을 일시 중단한다고 공지했다.\nhttps://coinness.com/news/1166562",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228759",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[해시키, 프랭클린템플턴과 토큰화 美 국채형 펀드 'grBENJI' 출시]",
+      "url": "https://t.me/coinnesskr/228759",
+      "publishedAt": "2026-08-24T09:18:19.000Z",
+      "summary": "[해시키, 프랭클린템플턴과 토큰화 美 국채형 펀드 'grBENJI' 출시]\n홍콩 규제 적격 암호화폐 거래소 해시키익스체인지(HashKey Exchange)가 글로벌 자산운용사 프랭클린템플턴과 파트너십을 체결, 아시아 투자자들에게 프랭클린템플턴의 온체인 머니마켓펀드 grBENJI를 유통한다고 24일(현지시간) 밝혔다. 해당 펀드는 주로 미국 국채 등 정부의 머니마켓 상품 및 달러 기반 현금성 자산에 투자한다. 이에 따라 24일부터 해시키익스체인지의 예치형 상품 채널인 '언(Earn)'에서 grBENJI가 정식 출시되며, 적격 투자자들은 해당 펀드에 직접 투자할 수 있다.\nhttps://coinness.com/news/1166561",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "eth-magicians:ethereum-magicians.org-topic-29495",
+      "source": "eth-magicians",
+      "sourceType": "rss",
+      "title": "RPC Standards # 33, August 24, 2026",
+      "url": "https://ethereum-magicians.org/t/rpc-standards-33-august-24-2026/29495",
+      "publishedAt": "2026-08-24T09:14:56.000Z",
+      "summary": "Meeting Time: Monday, August 24, 2026 at 15:00 UTC (60 minutes) GitHub Issue 1 post - 1 participant Read full topic",
+      "author": "system"
+    },
+    {
+      "id": "tg:coinnesskr:228758",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[\"ETH, 이번 회복장서 알트코인 중 가장 많이 상승할 것\"]",
+      "url": "https://t.me/coinnesskr/228758",
+      "publishedAt": "2026-08-24T09:07:33.000Z",
+      "summary": "[\"ETH, 이번 회복장서 알트코인 중 가장 많이 상승할 것\"]\n비트멕스 공동 설립자 아서 헤이즈(Arthur Hayes)가 \"이번 암호화폐 시장 반등 국면에서 이더리움(ETH)은 다른 모든 대형 알트코인의 상승세를 능가할 것\"이라고 전망했다. 그는 알트코인데일리 유튜브 채널에 출연해 \"ETH는 가장 큰 개발자 커뮤니티와 디파이 생태계를 보유하고 있다. 비트코인이 향후 5년 내 20만 달러에 도달하는 경우 ETH는 최고 3만 달러까지 상승할 수 있으며, 이에 따라 BTC 도미넌스는 40%까지 낮아질 수 있을 것\"이라고 내다봤다. 한편 아서 헤이즈는 \"BTC는 올해 말까지 12만6000 달러까지 도달할 것으로 예상하고 있고, 미 연준의 정책이 전환되면 더 급격한 상승이 가능할 수 있다. 현재 미국 정부의 과도한 부채와 국채 발행 문제는 결국 연준의 유동성 공급으로 이어질 것이고, BTC는 법정화폐 가치 하락에서 도피할 수 있는 피난처다. 다만 현재 미국에서 추진 중인 암호화폐 규제법인",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228757",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[업비트, CFX 입출금 일시 중단]",
+      "url": "https://t.me/coinnesskr/228757",
+      "publishedAt": "2026-08-24T09:06:06.000Z",
+      "summary": "[업비트, CFX 입출금 일시 중단]\n업비트가 8월 24일 18시 콘플럭스(CFX)의 입출금을 일시 중단한다고 공지했다.\nhttps://coinness.com/news/1166559",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228756",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[솔라나, 일일 네트워크 수수료 $100만 회복...온체인 활동 급증]",
+      "url": "https://t.me/coinnesskr/228756",
+      "publishedAt": "2026-08-24T09:05:19.000Z",
+      "summary": "[솔라나, 일일 네트워크 수수료 $100만 회복...온체인 활동 급증]\n솔라나(SOL) 네트워크 일일 수수료 수익이 19일(현지시간) 100만 달러를 회복하며, 최근 6개월간 가장 높은 수치를 기록했다고 크립토브리핑이 전했다. 이는 온체인 활동 증가에 기인한다는 게 매체의 설명이다. 솔라나 생태계에서는 네트워크 수수료 지표를 REV로 통칭하며, 기본 수수료, 우선 수수료, MEV 팁 등이 합산된 수치다. 또 솔라나 기반 애플리케이션은 지난 7월 한 달 동안 8,290만 달러의 수익을 창출했는데, 이는 지난 2월 이후 가장 높은 수치다. 코인마켓캡 기준 SOL은 현재 0.93% 오른 94.05 달러에 거래되고 있다.\nhttps://coinness.com/news/1166558",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228755",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[빗썸, CFX 입출금 일시 중단]",
+      "url": "https://t.me/coinnesskr/228755",
+      "publishedAt": "2026-08-24T09:00:51.000Z",
+      "summary": "[빗썸, CFX 입출금 일시 중단]\n빗썸이 8월 25일 18시 콘플럭스(CFX)의 입출금을 일시 중단한다고 공지했다.\nhttps://coinness.com/news/1166557",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228754",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[번스타인, 서클 목표가 $140 유지]",
+      "url": "https://t.me/coinnesskr/228754",
+      "publishedAt": "2026-08-24T08:52:16.000Z",
+      "summary": "[번스타인, 서클 목표가 $140 유지]\n번스타인이 서클(CRCL)에 아웃퍼폼(Outperform, 시장 수익률 상회) 투자 의견과 140 달러의 목표 주가를 유지했다. 더블록에 따르면 번스타인은 △서클 주가의 현재 상승세가 클래리티법(CLARITY)의 진전과 큰 상관이 없다는 점 △지난주 USDC 공급량이 17억 달러 증가한 점 △스테이블코인 거래량에서 USDC의 점유율이 확대된 점 등을 원인으로 제시했다.\nhttps://coinness.com/news/1166556",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228753",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[암호화폐 카드 스테이블코인 충전액, 1년간 $100억 급증]",
+      "url": "https://t.me/coinnesskr/228753",
+      "publishedAt": "2026-08-24T08:49:03.000Z",
+      "summary": "[암호화폐 카드 스테이블코인 충전액, 1년간 $100억 급증]\n암호화폐 카드의 스테이블코인 누적 충전액이 2026년 8월 기준 138억달러에 달했으며, 최근 12개월 동안 약 100억달러 늘어난 것으로 집계됐다고 크립토랭크(CryptoRank)가 전했다. 이와 더불어 암호화폐 시장이 약세를 보인 기간에도 월간 카드 지출은 계속 증가했다. 체인별 누적 스테이블코인 결제액은 베이스가 12억달러로 가장 많았고 솔라나(SOL) 6억3500만달러, 폴리곤(POL) 5억4400만달러, 옵티미즘(OP) 5억900만달러, 스크롤(SCR) 3억6900만달러, 이더리움(ETH) 3억5400만달러, 아비트럼(ARB) 3억1500만달러 순이었다.\nhttps://coinness.com/news/1166555",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228752",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[BTC $78,180 돌파 시 $4.1억 규모 숏포지션 강제청산]",
+      "url": "https://t.me/coinnesskr/228752",
+      "publishedAt": "2026-08-24T08:31:50.000Z",
+      "summary": "[BTC $78,180 돌파 시 $4.1억 규모 숏포지션 강제청산]\n코인글래스 데이터에 따르면 BTC가 78,180 달러를 돌파할 경우 주요 중앙화 거래소(CEX)에서 4억830만 달러 상당의 숏 포지션이 강제 청산될 전망이다. 76,500 달러를 이탈할 경우 3억7515만 달러 상당의 롱 포지션이 강제 청산된다.\nhttps://coinness.com/news/1166554",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228751",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[\"BTC 미결제 약정은 감소세\"]",
+      "url": "https://t.me/coinnesskr/228751",
+      "publishedAt": "2026-08-24T08:30:26.000Z",
+      "summary": "[\"BTC 미결제 약정은 감소세\"]\n비트코인 미결제 약정(OI)이 감소하며 레버리지는 축소되고 있다고 샌티멘트가 분석했다. 샌티멘트는 \"BTC는 지난 12일부터 18일까지 6만3500 달러에서 7만7700 달러까지 상승했지만, 미결제 약정은 상승 전 35만3500 BTC 수준에서 8월 23일 약 31만2600 BTC로 11% 줄었다. 다만 이는 BTC 기준으로, 달러 기준 미결제 약정은 8%가량 증가했다. 가격이 미결제 약정 증가폭보다 더 많이 오른 만큼 BTC 기준으로만 미결제 약정이 줄었다. 기존과 달리 BTC는 현물 주도 상승이 나타났고, 많은 선물 포지션들이 상승 도중 정리됐다\"고 설명했다.\nhttps://coinness.com/news/1166553",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228750",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[BNB체인, 8/25 파스퇴르 하드포크…거래 처리 속도 개선]",
+      "url": "https://t.me/coinnesskr/228750",
+      "publishedAt": "2026-08-24T08:26:20.000Z",
+      "summary": "[BNB체인, 8/25 파스퇴르 하드포크…거래 처리 속도 개선]\nBNB스마트체인(BSC)이 오는 25일 11시 30분(한국시간) 파스퇴르(Pasteur) 하드포크를 실시한다고 유투데이가 전했다. 이번 업그레이드는 밸리데이터 및 크로스체인 보안을 강화하고 네트워크 처리 성능을 높이는 것이 핵심이다. 테스트 환경에서 초당거래처리량(TPS)은 1237건에서 2324건으로 늘었지만 메인넷에서도 같은 수준의 성능 향상이 보장되는 것은 아니다.\nhttps://coinness.com/news/1166552",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228749",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "['인플루언서 보유 코인 공개' 법안 국회 정무위 심사]",
+      "url": "https://t.me/coinnesskr/228749",
+      "publishedAt": "2026-08-24T08:18:29.000Z",
+      "summary": "['인플루언서 보유 코인 공개' 법안 국회 정무위 심사]\n국회 정무위원회가 인플루언서들이 보유한 가상자산 공개를 의무화하는 내용의 법안을 전체회의에서 심사한다고 디지털애셋이 전했다. 국회 정무위는 오는 26일 오전 10시 열리는 전체회의에서 이같은 내용의 가상자산이용자보호법 개정안(김승원 민주당 의원 대표발의)을 상정할 예정이다. 핀플루언서들의 이해충돌 여부를 이용자들이 알 수 있게 하겠다는 취지다. 빗썸의 BTC 오지급 사태 방지법과 1거래소-1은행 폐지 내용의 특금법 개정안도 안건에 올랐다.\nhttps://coinness.com/news/1166551\n기사보기: https://www.digitalasset.works/news/articleView.html?idxno=42597",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228748",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[“BTC 신규 자금 유입…견조한 흐름”]",
+      "url": "https://t.me/coinnesskr/228748",
+      "publishedAt": "2026-08-24T08:09:52.000Z",
+      "summary": "[“BTC 신규 자금 유입…견조한 흐름”]\n크립토퀀트 기고자 우민규(Woo Minkyu)가 “비트코인이 30% 상승하는 동안 신규 자금도 함께 유입되고 있다. 레버리지 확대 없이 새로운 자금이 들어오는 상승세는 보다 견고한 기반 위에 형성된 것으로 볼 수 있다”고 분석했다.\nhttps://coinness.com/news/1166550",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228747",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[\"BTC 단기 보유자 거래소 입금 급증…매도 압력 우려\"]",
+      "url": "https://t.me/coinnesskr/228747",
+      "publishedAt": "2026-08-24T08:05:28.000Z",
+      "summary": "[\"BTC 단기 보유자 거래소 입금 급증…매도 압력 우려\"]\n비트코인(BTC) 단기 보유자(STH) 대부분이 다시 수익권에 진입한 가운데 거래소로 이동하는 물량도 늘어 매도 압력이 커질 수 있다고 온체인 애널리스트 악셀 아들러 주니어(Axel Adler Jr)가 분석했다. 그는 블로그를 통해 \"수익 상태인 STH 보유 물량 비중은 8월 17일 26.1%에서 74.9%로 높아졌다. 동시에 STH의 거래소 입금량은 8월 16일 -1만8700 BTC에서 24일 +2만8600 BTC로 증가했다\"고 설명했다. 이어 \"거래소 유입 지표가 +2만5000 BTC 이상을 유지하는 상황에서 수익 물량 비중이 90%에 가까워지고 가격 상승세까지 둔화하면 단기 과열과 차익실현 위험이 커질 수 있다. 반대로 수익 물량 비중이 50% 이상을 유지하면서 거래소 유입이 0에 가까워진다면 보다 건전한 조정으로 볼 수 있다\"고 덧붙였다.\nhttps://coinness.com/news/1166549",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228746",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[\"강세장 초기 단계 진입\"]",
+      "url": "https://t.me/coinnesskr/228746",
+      "publishedAt": "2026-08-24T07:55:50.000Z",
+      "summary": "[\"강세장 초기 단계 진입\"]\n크립토퀀트 기고자 다크포스트(Darkfost)는 불-베어 마켓 지표가 방금 전 불(강세장) 초기 단계로 진입했다고 전했다. 그는 \"완벽한 신호는 아니지만 시장 상황이 상당히 개선됐음을 보여준다. 몇 주 동안 주의 깊게 살펴볼 필요가 있다\"고 덧붙였다.\nhttps://coinness.com/news/1166548",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228745",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[81개 '김치코인' 평가 결과...'우수' 등급 0개]",
+      "url": "https://t.me/coinnesskr/228745",
+      "publishedAt": "2026-08-24T07:54:56.000Z",
+      "summary": "[81개 '김치코인' 평가 결과...'우수' 등급 0개]\n국내 가상자산(디지털자산) 시장에 상장된 이른바 '김치코인'을 대상으로 한 평가에서 우수 등급(A- 이상)을 획득한 프로젝트가 단 한 곳도 없는 것으로 나타났다고 디지털애셋이 전했다. 24일 디지털자산 평가 플랫폼 애피와의 '국내산 디지털자산' 테마 페이지를 보면 국내 거래소에 상장된 국내 프로젝트 81개를 대상으로 실시한 평가에서 최고 등급 코인은 B+에 그쳤고 절반 이상이 C+ 이하 등급을 받았다. 가장 높은 평가를 받은 코인은 스토리(IP)로, 78.91점(B+)을 받았다.\nhttps://coinness.com/news/1166547\n기사보기 : https://www.digitalasset.works/news/articleView.html?idxno=42605",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228744",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[메타플래닛 CEO \"AI 시대, BTC 희소성 가치 더 커질 것\"]",
+      "url": "https://t.me/coinnesskr/228744",
+      "publishedAt": "2026-08-24T07:53:13.000Z",
+      "summary": "[메타플래닛 CEO \"AI 시대, BTC 희소성 가치 더 커질 것\"]\n인공지능(AI) 확산으로 생산 및 복제 비용이 낮아질수록 비트코인(BTC)의 희소성 가치가 더욱 커질 것이라고 일본의 BTC 전략 매집 기업 메타플래닛(Metaplanet) CEO 사이먼 게로비치(Simon Gerovich)가 전망했다. 그는 X를 통해 \"AI로 소프트웨어, 콘텐츠, 분석 등의 생산 및 복제 비용이 크게 낮아지고 있다. 공급 확대가 쉬운 세상에서는 아무리 지능을 투입해도 공급을 늘릴 수 없는 것의 가치가 커질 것이다. BTC의 2100만개 공급 한도는 임의로 정해지는 것이 아니라 네트워크 규칙으로 보장된다\"고 말했다. 이어 \"일본 가계는 한 세대에 걸쳐 화폐 가치 하락을 경험했다. 복제하거나 희석할 수 없는 BTC는 모든 것이 넘쳐나는 시대에 가장 희소한 자산\"이라고 강조했다.\nhttps://coinness.com/news/1166546",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228743",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[\"이더리움, 비트코인 대비 강세 지속 전망\"]",
+      "url": "https://t.me/coinnesskr/228743",
+      "publishedAt": "2026-08-24T06:59:15.000Z",
+      "summary": "[\"이더리움, 비트코인 대비 강세 지속 전망\"]\n이더리움(ETH)이 6월 초 이후 비트코인(BTC) 대비 높은 상승률을 거두고 있는 가운데, 최근 ETH/BTC 차트에서 강력한 상승 신호인 골든크로스가 형성되어 이더리움의 상대적 강세가 지속될 수 있다고 코인데스크가 진단했다. 이더리움은 6월 6일 저점을 기록한 이후 비트코인 대비 25% 상승하는 강세 흐름을 이어가고 있다. 과거 기록을 보면 골든크로스가 발생한 2021년 2월에 ETH가 BTC 대비 93% 폭등한 바 있다. 하지만 불트랩일 가능성도 있어 유의해야 한다고 매체는 지적했다.\nhttps://coinness.com/news/1166545",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228742",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[8월 24일 16시 BTC 현물 CVD 차트]",
+      "url": "https://t.me/coinnesskr/228742",
+      "publishedAt": "2026-08-24T06:58:43.000Z",
+      "summary": "[8월 24일 16시 BTC 현물 CVD 차트]\n현물 CVD는 BTC/USDT 현물 페어의 오더북 분석 차트로, 상단은 거래량 히트맵(Volume Heatmap)을, 하단은 누적거래량델타(CVD)를 의미한다.\n\n- 상단 거래량 히트맵의 경우 해당 가격대에서 발생한 거래량 규모를 추적하며, 가격이 특정 구간에서 오래 머물거나 크게 움직일 때 배경 색상이 밝아진다. 밝은 색에 가까운 구간은 지지, 저항으로 작용할 가능성이 있다.\n\n- 하단 누적거래량델타(CVD) 지표는 자금 규모별 매수·매도 주문을 의미하며, 매수 주문이 늘어날 수록 해당하는 색상의 선이 상승하게 된다. 노란색 라인 : 100 달러~1000 달러 주문, 갈색 라인: 100만~1000만 달러의 대량 주문 등 등을 기준으로 산출된다.\nhttps://coinness.com/news/1166544",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228741",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[세푸, 바이낸스로 $1.4억 USDC 입금 후 $2.6억 BTC·ETH 출금]",
+      "url": "https://t.me/coinnesskr/228741",
+      "publishedAt": "2026-08-24T06:58:29.000Z",
+      "summary": "[세푸, 바이낸스로 $1.4억 USDC 입금 후 $2.6억 BTC·ETH 출금]\n바이낸스의 기관 커스터디 플랫폼 세푸(Ceffu) 추정 주소가 지난 30분 동안 바이낸스로 1억3654만 USDC를 입금한 뒤 1524 BTC(1억1789만 달러)와 5만9484 ETH(1억4592만 달러)를 출금했다고 룩온체인이 전했다.\nhttps://coinness.com/news/1166543",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228740",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[트론 계정 수 4억개 돌파]",
+      "url": "https://t.me/coinnesskr/228740",
+      "publishedAt": "2026-08-24T06:56:06.000Z",
+      "summary": "[트론 계정 수 4억개 돌파]\n트론(TRX) 네트워크의 누적 계정 수가 4억개를 넘어섰다고 룩온체인이 전했다. 트론스캔 데이터에 따르면 트론에서 이체 기록이 있는 월렛 및 컨트랙트 계정은 현재 4억21만개 이상이다.\nhttps://coinness.com/news/1166542",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228739",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[이억원 “스테이블코인 디지털자산기본법, 본격 속도낼 것”]",
+      "url": "https://t.me/coinnesskr/228739",
+      "publishedAt": "2026-08-24T06:53:17.000Z",
+      "summary": "[이억원 “스테이블코인 디지털자산기본법, 본격 속도낼 것”]\n이억원 금융위원장은 24일 국회 정무위원회 전체회의에서 스테이블코인 관련 디지털자산기본법(2단계 입법)에 대해 “본격적으로 협의에 속도를 내겠다”고 말했다. 이데일리에 따르면 해당 발언은 이강일 더불어민주당 의원의 질의에 대한 답변으로 나왔다. 또 이 위원장은 이 의원이 ‘가을에는 정부안을 발의할 것인지’ 묻자 “최대한 노력하겠다”고 강조했다.\nhttps://coinness.com/news/1166541\n기사보기: https://www.edaily.co.kr/News/Read?newsId=03630966645550600&mediaCodeNo=257&utm_source=naver&utm_medium=referral&utm_campaign=news_syndication&utm_content=original_article",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228738",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[3대 선물 거래소 BTC 무기한 선물 롱숏 비율]",
+      "url": "https://t.me/coinnesskr/228738",
+      "publishedAt": "2026-08-24T06:40:49.000Z",
+      "summary": "[3대 선물 거래소 BTC 무기한 선물 롱숏 비율]\n미결제약정 기준 세계 3대 암호화폐 선물 거래소 내 최근 24시간 BTC 무기한 선물 롱·숏 포지션 비율은 다음과 같다.\n전체 거래소: 롱 50.17% / 숏 49.83%\n1. 바이낸스: 롱 50.6% / 숏 49.4%\n2. OKX: 롱 50.21% / 숏 49.79%\n3. 바이비트: 롱 51.5% / 숏 48.5%\nhttps://coinness.com/news/1166540",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228737",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[애널리스트 \"BTC 하락론자 의견도 필요하다\"]",
+      "url": "https://t.me/coinnesskr/228737",
+      "publishedAt": "2026-08-24T06:40:01.000Z",
+      "summary": "[애널리스트 \"BTC 하락론자 의견도 필요하다\"]\n리얼비전 암호화폐 마켓 애널리스트 제이미 쿠츠(Jamie Coutts)가 최근 비트코인(BTC) 약세 전망으로 비판받고 있는 블룸버그 인텔리전스 수석 상품 애널리스트 마이크 맥글론(Mike McGlone)을 두고 시장에는 반대 시각도 필요하다고 강조했다. 쿠츠는 X를 통해 \"맥글론은 내가 과거 블룸버그에서 암호화폐 애널리스트로 근무하기 전부터 BTC를 지지한 바 있으며, 2019년에는 스테이블코인이 새로운 대세가 될 것이라고 일찍 내다본 인물 중 하나였다. 당시에는 지금보다 훨씬 강세론자였다\"고 말했다. 이어 \"서로 다른 견해를 자유롭게 나눌 수 없다면 더 이상 시장이라 할 수 없다\"고 강조했다. 마이크 맥글론은 최근까지 비트코인이 장기 평균 수준인 1만달러 부근까지 하락할 가능성이 있다고 전망한 인물이다.\nhttps://coinness.com/news/1166539",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228736",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[유럽·중동·아시아 금융기관, 양자내성 암호화폐 월렛 테스트]",
+      "url": "https://t.me/coinnesskr/228736",
+      "publishedAt": "2026-08-24T06:20:17.000Z",
+      "summary": "[유럽·중동·아시아 금융기관, 양자내성 암호화폐 월렛 테스트]\n유럽·중동·아시아 금융기관과 규제 당국이 양자컴퓨터 공격에 대비한 암호화폐 월렛 및 온체인 이체 기술 테스트에 나섰다고 코인텔레그래프가 전했다. 리스펀서블핀테크연구소(Responsible Fintech Institute, RFI)와 암호화폐 커스터디 인프라 업체 세이프헤론(Safeheron)이 추진하는 이번 테스트에는 아부다비 글로벌마켓(ADGM), 부탄 겔레푸 금융서비스청, 몰타 금융서비스청 등 규제 당국과 바이슨뱅크(Bison Bank), DK뱅크가 참여한다. 금융기관들은 양자내성 NEAR 테스트넷에서 월렛 생성과 자산 이체를 시험하며, 미국 국립표준기술연구소(NIST)가 수립한 양자내성 디지털서명 표준 ML-DSA-65를 지원하는 다자간연산(MPC) 기술이 적용된다.\nhttps://coinness.com/news/1166538",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228735",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[[비트코인 위클리 픽_8월 4주차] 이번 주 상승 vs 하락 당신의 선택은?]",
+      "url": "https://t.me/coinnesskr/228735",
+      "publishedAt": "2026-08-24T06:11:22.000Z",
+      "summary": "[[비트코인 위클리 픽_8월 4주차] 이번 주 상승 vs 하락 당신의 선택은?]\n코인니스 제휴 차트 마스터 8명 중 2명이 이번주 비트코인 가격 방향성으로 하락을 제시했다. 6명은 상승을 전망했다. 목표가 최고가는 85,000 달러, 최저가는 73,000 달러다.\n\n*링크를 통해 본인과 의견이 비슷한 방향성 및 목표가 전망에 투표해주세요. 추첨을 통해 100분에게 커피 쿠폰을 드립니다.\nhttps://coinness.com/news/1166537\n투표 참여 및 분석 보기: https://coinness.com/community/lounge/1382690",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228734",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[암호화폐 월렛 IZAKA-YA, 자금세탁 의심 거래에 일부 계정 일시 중단]",
+      "url": "https://t.me/coinnesskr/228734",
+      "publishedAt": "2026-08-24T06:05:49.000Z",
+      "summary": "[암호화폐 월렛 IZAKA-YA, 자금세탁 의심 거래에 일부 계정 일시 중단]\n암호화폐 월렛 서비스 IZAKA-YA(이자카야)가 자금세탁 의심 거래 조사와 관련해 일부 계정의 송금 및 출금을 일시 중단했다고 일본 매체 나다뉴스가 전했다. 홍콩에 본사를 둔 해당 서비스 운영사는 8월 24일 \"불법 자금 유입이나 자금세탁이 의심되는 일부 거래가 확인돼 조사가 필요한 계정의 송금 및 출금을 중단했다\"고 밝혔다.\nhttps://coinness.com/news/1166536",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228733",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[펌프펀, 주간 수익 $1000만 돌파...하이퍼리퀴드 상회]",
+      "url": "https://t.me/coinnesskr/228733",
+      "publishedAt": "2026-08-24T06:05:26.000Z",
+      "summary": "[펌프펀, 주간 수익 $1000만 돌파...하이퍼리퀴드 상회]\n디파이라마에 따르면 솔라나(SOL) 기반 밈코인 발행 플랫폼 펌프펀(PUMP)의 8월 3~9일 프로토콜 수수료가 사상 처음 1000만 달러를 넘어섰다고 크립토브리핑이 전했다. 같은 기간 하이퍼리퀴드 수익을 상회했다.\nhttps://coinness.com/news/1166535",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228732",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[업비트·빗썸·코인원, SAND 거래유의종목 지정]",
+      "url": "https://t.me/coinnesskr/228732",
+      "publishedAt": "2026-08-24T06:02:09.000Z",
+      "summary": "[업비트·빗썸·코인원, SAND 거래유의종목 지정]\n업비트와 빗썸, 코인원이 샌드박스(SAND)를 거래유의종목으로 지정한다고 공지했다. 가상자산, 발행주체 또는 운영주체가 관리하는 가상자산 지갑 또는 가상자산이 발행∙전송∙저장되는 분산원장 등에 원인이 밝혀지지 않거나 치유되지 않은 해킹 등 보안사고가 발생한 사실이 있다는 이유에서다. SAND 입출금은 이미 중단된 상태다.\nhttps://coinness.com/news/1166534",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228731",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[트럼프, 6월 스트래티지·코인베이스 주식 팔고 로빈후드는 매수]",
+      "url": "https://t.me/coinnesskr/228731",
+      "publishedAt": "2026-08-24T05:45:33.000Z",
+      "summary": "[트럼프, 6월 스트래티지·코인베이스 주식 팔고 로빈후드는 매수]\n도널드 트럼프 미국 대통령이 지난 6월 스트래티지(MSTR) 주식을 두 차례 매도하고 코인베이스(COIN) 주식은 세 차례 매도했다고 디지털애셋이 전했다. 미국 정부윤리청(OGE) 자료에 따르면 MSTR 매도 합산 규모는 1만6002~6만5000달러(약 2200만~9000만원)였고 COIN 매도 규모는 11만6003~31만5000달러(약 1억6000만~4억4000만원)​였다. 다만 COIN은 5만1~10만달러(약 7000만~1억4000만원)​어치를 다시 매수하기도 했다. 한편 주식·암호화폐 거래 앱 로빈후드(HOOD) 주식은 1001~1만5000달러(약 140만~2100만원) 규모를 매수한 것으로 나타났다.\nhttps://coinness.com/news/1166533\n기사보기: https://www.digitalasset.works/news/articleView.html?idxno=42598",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228730",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[파키스탄, 가상자산사업자 라이선스 신청 접수 개시]",
+      "url": "https://t.me/coinnesskr/228730",
+      "publishedAt": "2026-08-24T05:33:41.000Z",
+      "summary": "[파키스탄, 가상자산사업자 라이선스 신청 접수 개시]\n파키스탄 가상자산규제청(PVARA)이 가상자산사업자(VASP) 대상 라이선스 신청 포털을 개설했다고 코인텔레그래프가 전했다. 지난 3월 5일 이전부터 현지에서 영업해온 사업자는 9월 5일까지 이의없음확인서(NOC)를 신청해야 하며, 미신청 시 영업을 중단해야 한다.\nhttps://coinness.com/news/1166532",
+      "author": "coinnesskr"
+    },
     {
       "id": "x:ethereumfndn:2091757898955214976",
       "source": "x:ethereumfndn",
@@ -22,6 +342,16 @@
       "author": "WeissCurry"
     },
     {
+      "id": "tg:coinnesskr:228729",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[코인베이스 CEO “스테이블코인, 통화 불안정 국가에 탈출구 역할”]",
+      "url": "https://t.me/coinnesskr/228729",
+      "publishedAt": "2026-08-24T05:13:09.000Z",
+      "summary": "[코인베이스 CEO “스테이블코인, 통화 불안정 국가에 탈출구 역할”]\n코인베이스 CEO 브라이언 암스트롱(Brian Armstrong)이 X를 통해 “암호화폐는 사람들에게 탈출구를 제공한다”고 밝혔다. 그는 많은 국가가 높은 인플레이션이나 통화 가치 변동성에 시달리고 있으며, 과거에는 이를 피하려면 이주하거나 현금을 비축하는 방법밖에 없었다. 이제는 스테이블코인을 통해 세계 어디서든 달러와 같은 상대적으로 강한 글로벌 법정화폐를 훨씬 쉽게 보유할 수 있다”고 강조했다.\nhttps://coinness.com/news/1166531",
+      "author": "coinnesskr"
+    },
+    {
       "id": "reddit-ethereum:t3_1vwtakt",
       "source": "reddit-ethereum",
       "sourceType": "rss",
@@ -30,6 +360,126 @@
       "publishedAt": "2026-08-24T05:01:29.000Z",
       "summary": "Welcome to the Daily General Discussion on r/ethereum https://imgur.com/3y7vezP Bookmarking this link will always bring you to the current daily: https://old.reddit.com/r/ethereum/about/sticky/?num=2 Please use this thread to discuss Ethereum topics, news, events, and even price ! Price discussion posted elsewhere in the subreddit will continue to be removed. As always, be constructive. - Subreddit Rules Want to stake? Learn more at r/ethstaker Community Links Ethereum Jobs , Twitter EVMavericks",
       "author": "/u/EthereumDailyThread"
+    },
+    {
+      "id": "tg:coinnesskr:228728",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[14번 숏으로 63억 날린 투자자, 또 BTC 공매도]",
+      "url": "https://t.me/coinnesskr/228728",
+      "publishedAt": "2026-08-24T04:57:43.000Z",
+      "summary": "[14번 숏으로 63억 날린 투자자, 또 BTC 공매도]\n지난 5일간 14차례 연속 숏(공매도)을 치다가 456만 달러 손실을 본 투자자가 15번째 숏 포지션을 오픈했다고 룩온체인이 전했다. 40배 레버리지로 300 BTC(2313만 달러) 규모 숏 포지션을 열었다.\nhttps://coinness.com/news/1166530",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228727",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[스테이블코인 핀테크 기업 파셋 $6800만 투자 유치]",
+      "url": "https://t.me/coinnesskr/228727",
+      "publishedAt": "2026-08-24T04:52:43.000Z",
+      "summary": "[스테이블코인 핀테크 기업 파셋 $6800만 투자 유치]\n스테이블코인 기반 디지털 금융 플랫폼 파셋(Fasset)이 일본 SBI 그룹의 주도로 6,800만 달러 투자를 유치했다고 코인데스크가 보도했다. 기업가치는 10억 달러로 평가됐다. 지난 5월 5,100만 달러 시리즈 B 투자 유치에 이어 불과 3개월 만에 이뤄진 조달로, 파셋의 올해 총 누적 투자금은 1억 1,900만 달러에 달한다. 파셋의 핵심 인프라는 아비트럼 기반의 독자적인 AI 연동 이더리움 L2 네트워크인 OWN 네트워크로, 사용자가 일반 통화나 자산을 이동할 때 백엔드에서 스테이블코인이 정산 레이어로 작동하여 속도를 높이고 수수료를 낮춘다.\nhttps://coinness.com/news/1166529",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228726",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[렛저 CTO \"이더리움 앱 보안 취약점 패치 완료...퍼드 무시\"]",
+      "url": "https://t.me/coinnesskr/228726",
+      "publishedAt": "2026-08-24T04:13:00.000Z",
+      "summary": "[렛저 CTO \"이더리움 앱 보안 취약점 패치 완료...퍼드 무시\"]\n하드월렛 렛저 CTO 찰스 길러멧(Charles Guillemet)은 렛저 이더리움 앱의 일부 클리어 사이닝(Clear-Signing) 절차에서 발견된 보안 취약점을 2주 전 수정했으며, 현재 이와 관련한 퍼드(FUD)는 무시하라고 밝혔다. 렛저 펌웨어와 앱을 최신 버전으로 유지하고 있는 사용자는 해당 취약점으로부터 보호받을 수 있다는 설명이다.\nhttps://coinness.com/news/1166528",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228725",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[英 법원, '폰지 사기' 암호화폐 투자업체 청산 명령]",
+      "url": "https://t.me/coinnesskr/228725",
+      "publishedAt": "2026-08-24T04:02:30.000Z",
+      "summary": "[英 법원, '폰지 사기' 암호화폐 투자업체 청산 명령]\n영국 법원이 40~100%의 수익을 보장한다며 투자금을 모은 암호화폐 투자업체 키코인애셋(Key Coin Assets Ltd)에 청산 명령을 내렸다고 영국 파산관리청(Insolvency Service)이 밝혔다. 조사 결과 실제 암호화폐 거래가 이뤄진 증거는 없었으며, 피해를 신고한 투자자 9명은 총 30만파운드(5억6500만원) 이상을 투자한 것으로 파악됐다. 신규 투자자 자금으로 기존 투자자에게 수익금을 지급한 정황도 확인돼 당국은 이를 폰지 사기로 봤다. 투자금은 대체로 입금 당일 회사 임원의 개인 계좌로 이체된 것으로 조사됐다. 한편 영국은 암호화폐 규제를 2027년 10월 25일부터 시행할 예정이다.\nhttps://coinness.com/news/1166527",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228724",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[24시간 암호화폐 무기한 선물 강제청산 규모]",
+      "url": "https://t.me/coinnesskr/228724",
+      "publishedAt": "2026-08-24T03:52:52.000Z",
+      "summary": "[24시간 암호화폐 무기한 선물 강제청산 규모]\n최근 24시간 암호화폐 무기한 선물 강제청산 규모 및 청산 비율은 다음과 같다.\nETH 청산 규모: $1억 4,047만, 청산 비율: 롱 54.48%\nBTC 청산 규모: $1억 656만, 청산 비율: 롱 65.57%\nSOL 청산 규모: $1,651만, 청산 비율: 롱 55.31%\nhttps://coinness.com/news/1166526",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228723",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[\"BTC, 당분간 박스권 전망\"]",
+      "url": "https://t.me/coinnesskr/228723",
+      "publishedAt": "2026-08-24T03:51:14.000Z",
+      "summary": "[\"BTC, 당분간 박스권 전망\"]\nBTC가 최근 강한 상승으로 추세 전환 신호를 보인 만큼 곧바로 큰 폭의 되돌림이 나타나기보다는 당분간 박스권에서 움직일 가능성이 있다고 암호화폐 애널리스트 킬라XBT(KillaXBT)가 분석했다. 그는 X를 통해 \"2022년 바닥 구간을 살펴보면 대부분 한 차례의 강한 상승 캔들과 함께 바닥이 형성됐으며, 최근에도 이와 비슷한 움직임이 나타났다. 당시 BTC는 1만6000달러에서 2만5000달러까지 급등한 뒤 피보나치 0.618 되돌림 구간인 1만9000달러까지 조정을 받았다. 이번에도 비슷한 흐름이 반복된다면 하락폭은 크지 않을 가능성이 있다. 단기적으로는 7만~7만3000달러에서 박스권 하단을 형성한 뒤 BTC가 8만달러 돌파를 시도할 것으로 전망된다\"고 설명했다.\nhttps://coinness.com/news/1166525",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228722",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "['해킹 피해' 텀 파이낸스, 볼트 전면 폐쇄…출금은 유지]",
+      "url": "https://t.me/coinnesskr/228722",
+      "publishedAt": "2026-08-24T03:40:50.000Z",
+      "summary": "['해킹 피해' 텀 파이낸스, 볼트 전면 폐쇄…출금은 유지]\n이더리움 기반 고정금리 대출 시장 텀 파이낸스(Term Finance)가 최근 해킹 피해와 관련해 모든 텀 메타 볼트(Term Meta Vault)를 폐쇄하고 DAO 거버넌스 권한을 취소했다고 밝혔다. 프로젝트 측은 X를 통해 \"폐쇄된 볼트는 다시 가동할 수 없으며 신규 예치도 영구적으로 중단됐다. 출금은 가능하다. 현재까지 조사한 바로는 이번 사고가 텀 볼트 거버넌스로 국한됐으며, 프로토콜을 비롯한 대출 시장에는 영향이 없는 것으로 파악됐다. 외부 보안업체들과 복구 작업을 진행하고 있으며 피해액을 모두 회수하지 못할 경우 추가 대응 방안을 검토할 것\"이라고 설명했다. 앞서 텀 파이낸스 볼트에서는 취약점 공격으로 약 850만 달러 상당의 자산이 탈취된 바 있다.\nhttps://coinness.com/news/1166524\n이전 관련 속보: https://coinness.com/news/1166493",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228721",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[日 리믹스포인트, 모든 보유 코인 평가익 전환]",
+      "url": "https://t.me/coinnesskr/228721",
+      "publishedAt": "2026-08-24T03:22:05.000Z",
+      "summary": "[日 리믹스포인트, 모든 보유 코인 평가익 전환]\n일본 상장사 리믹스포인트(Remixpoint)가 보유한 모든 암호화폐가 평가이익으로 전환됐다고 밝혔다. 8월 24일 오전 9시 기준 전체 암호화폐 평가이익은 26억3100만엔(228억원)으로, 6월 말에는 19억4500만엔 평가손실이었다. 보유 물량은 1503 BTC, 901 ETH, 1만3920 SOL, 119만1204 XRP, 280만2311 DOGE다.\nhttps://coinness.com/news/1166523",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228720",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[업비트 META 입출금 일시 중단]",
+      "url": "https://t.me/coinnesskr/228720",
+      "publishedAt": "2026-08-24T03:18:03.000Z",
+      "summary": "[업비트 META 입출금 일시 중단]\n업비트는 메타디움(META)의 하드포크로 오는 8월 27일 9시부터 META 입출금을 일시 중단한다고 공지했다.\nhttps://coinness.com/news/1166522",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228719",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[러시아, 적격 투자자 규정 완화]",
+      "url": "https://t.me/coinnesskr/228719",
+      "publishedAt": "2026-08-24T03:15:25.000Z",
+      "summary": "[러시아, 적격 투자자 규정 완화]\n러시아 중앙은행은 개인 투자자의 자격 취득 문턱을 낮추기 위해 8월 31일부터 적격 투자자 시험 제도를 도입한다고 비트코인닷컴이 보도했다. 기존에는 CFA 자격증 보유, 고액 자산 보유(2,400만 루블 이상), 대규모 거래 실적 또는 연간 소득 요건을 충족해야 했으나, 금융 시장 지식 시험을 통과하면 적격 투자자 지격을 획득할 수 있게 됐다. 9월 1일부터 시행되는 새로운 디지털 자산 규제체계에 따라 적격 투자자 자격을 획득할 시 연간 거래 한도가 제한되지 않으며, 인가된 플랫폼 내 모든 적격 암호화폐 매매가 가능하다.\nhttps://coinness.com/news/1166521",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228718",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[아발론랩스, '슈퍼 언'에 시장 중립 수익풀 추가]",
+      "url": "https://t.me/coinnesskr/228718",
+      "publishedAt": "2026-08-24T03:00:25.000Z",
+      "summary": "[아발론랩스, '슈퍼 언'에 시장 중립 수익풀 추가]\n비트코인 온체인 금융 서비스 플랫폼 아발론랩스(AVL)가 재테크 상품인 슈퍼 언(Super Earn)에 주식 무기한 선물 전략에 특화된 시장 중립 수익풀을 추가했다고 밝혔다. 해당 수익 풀은 하이퍼리퀴드, 바이낸스, 바이비트 등 주요 거래소의 펀딩비율 및 가격 차이를 활용해 수익을 창출한다. 목표 연 수익률(APY)은 약 15%이며, 방향성 시장 노출을 최소화한다. 이지랩스와 프레임워크 벤처스 투자를 받은 아발론랩스는 비트코인 특화 온체인 금융 플랫폼으로서, 이번 전략 출시를 통해 슈퍼 언 상품 체계를 개선했다.\nhttps://coinness.com/news/1166520",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228717",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[이더리움 공동창립자·S&P 임원 등 KBW2026 연사 참여]",
+      "url": "https://t.me/coinnesskr/228717",
+      "publishedAt": "2026-08-24T02:57:47.000Z",
+      "summary": "[이더리움 공동창립자·S&P 임원 등 KBW2026 연사 참여]\n이더리움 공동창립자 겸 컨센시스 CEO 조셉 루빈(Joseph Lubin)이 ‘KBW2026 with Upbit’ 메인 컨퍼런스 연사로 합류했다고 KBW 주최사 팩트블록이 24일 밝혔다. 루빈은 KBW2026에서 미 국채 등 실물자산의 온체인 전환이 글로벌 금융시장과 이더리움 생태계에 가져올 영향과 웹3 산업의 다음 단계에 대한 시각을 공유할 예정이다. 아울러 S&P글로벌 디파이(DeFi) 전환 총괄 찰스 얀센, 캔톤 네트워크 운영사 CEO 유발 루즈, 테더 USA₮ CEO 보 하인즈, 하이퍼리퀴드 공동창립자 제프 얀, 맬스트롬 CIO 아서 헤이즈, 백악관 대통령 디지털자산 자문위원회 사무국장 패트릭 위트, 미 상원 은행위 디지털자산 소위원회 사무국장 크리스 랜드, 버뮤다 총리 데이비드 버트 등도 연사로 참여한다.\nhttps://coinness.com/news/1166519",
+      "author": "coinnesskr"
     },
     {
       "id": "x:evan_van_ness:2091720099115741543",
@@ -42,6 +492,36 @@
       "author": "evan_van_ness"
     },
     {
+      "id": "tg:coinnesskr:228716",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[스테이블코인법 통합안 임박…오늘 금융위원장 국회 출석]",
+      "url": "https://t.me/coinnesskr/228716",
+      "publishedAt": "2026-08-24T02:48:59.000Z",
+      "summary": "[스테이블코인법 통합안 임박…오늘 금융위원장 국회 출석]\n금융위원회가 국회 현안질의에 참석하고, 국회는 디지털자산기본법(2단계 입법)을 다루는 상임위원회를 본격 가동한다고 이데일리가 보도했다. 정부·여당이 다음 달에 당정 통합안을 검토 중이어서 스테이블코인 관련 입법 논의 결과가 주목된다. 국회는 24일 오후 2시 서울 여의도 국회에서 정무위원회 전체회의를 열 예정이다. 이억원 금융위원장이 참석할 예정이다. 국회 관계자는 “국정감사 전 발의해 9월 정기국회 내 처리하는 방향으로 추진할 것”이라며 “다만 여당 내에서도 이견이 첨예한 데다 단일종목 레버리지 상장지수펀드(ETF) 사태 등 현안이 많아 쉽지만은 않을 것”이라고 국회 분위기를 전했다.\nhttps://coinness.com/news/1166518\n원문보기 : https://n.news.naver.com/article/018/0006356723",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228715",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[캐시 우드 \"서클 주가, 장기 성장 가능성 제대로 반영 못해\"]",
+      "url": "https://t.me/coinnesskr/228715",
+      "publishedAt": "2026-08-24T02:48:17.000Z",
+      "summary": "[캐시 우드 \"서클 주가, 장기 성장 가능성 제대로 반영 못해\"]\n아크인베스트 CEO 캐시 우드(Cathie Wood)가 최근 서클(CRCL)의 주가 부진은 장기 성장 가능성을 제대로 반영하지 못한 결과라고 주장했다. 그는 X를 통해 \"서클은 상장(IPO) 이후 84% 올랐지만 지난 1년간의 주가 흐름을 보면 주식시장이 단기적으로 비효율적임을 알 수 있다. 기술이 기존 금융 질서를 흔들고 있으며 서클이 주요 수혜자가 될 것\"이라고 밝혔다. 아르테미스 차트에 따르면 서클 주가는 지난 1년 기준 약 42% 하락해 비자(7% 상승)와 마스터카드(1% 하락) 상승률을 크게 밑돌고 있다.\nhttps://coinness.com/news/1166517",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228714",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[업비트 LIT 상장]",
+      "url": "https://t.me/coinnesskr/228714",
+      "publishedAt": "2026-08-24T02:35:45.000Z",
+      "summary": "[업비트 LIT 상장]\n업비트는 8월 24일 13시 라이터(LIT)를 원화마켓에 상장한다고 공지했다.\nhttps://coinness.com/news/1166516",
+      "author": "coinnesskr"
+    },
+    {
       "id": "eth-magicians:ethereum-magicians.org-topic-29489",
       "source": "eth-magicians",
       "sourceType": "rss",
@@ -50,6 +530,26 @@
       "publishedAt": "2026-08-24T02:09:15.000Z",
       "summary": "Tokenized stocks now transfer onchain 24/7 while NYSE is open 32.5 hours a week. The state that determines whether one of these tokens can be safely valued or used as collateral — is the reference market open, is it halted, is the valuation feed stale because it’s Sunday or stale because it’s broken, can anyone actually redeem right now — is not observable through ERC-20, and today every issuer exposes it differently: Ondo has an offchain HTTP status API, Robinhood Chain tokens have a proprietar",
       "author": "econoar"
+    },
+    {
+      "id": "tg:coinnesskr:228713",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[美 회계기준 문의한 두나무, 나스닥 상장說에 \"정해진 바 없어\"]",
+      "url": "https://t.me/coinnesskr/228713",
+      "publishedAt": "2026-08-24T02:04:20.000Z",
+      "summary": "[美 회계기준 문의한 두나무, 나스닥 상장說에 \"정해진 바 없어\"]\n국내 최대 가상자산 거래소 업비트를 운영하는 두나무가 미국 상장을 준비한다는 소식이 전해진 가운데 두나무가 이를 부인했다. 아시아경제에 따르면 두나무는 \"포괄적 주식교환이 마무리되면 상장을 추진할 계획\"이라면서도 \"어느 나라에서 상장을 추진할지 아직 결정된 바 없다\"고 밝혔다. 회계기준과 관련해서 \"한국과 미국의 회계기준 차이를 문의한 것이 와전된 것\"이라고 설명했다.\nhttps://coinness.com/news/1166515\n기사보기: https://view.asiae.co.kr/article/2026082410510951459",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228712",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[BTC $77,000 하회]",
+      "url": "https://t.me/coinnesskr/228712",
+      "publishedAt": "2026-08-24T01:57:18.000Z",
+      "summary": "[BTC $77,000 하회]\n코인니스 마켓 모니터링에 따르면 BTC가 77,000 달러를 하회했다. 바이낸스 USDT 마켓 기준 BTC는 76,996.84달러에 거래되고 있다.\nhttps://coinness.com/news/1166514",
+      "author": "coinnesskr"
     },
     {
       "id": "eth-magicians:ethereum-magicians.org-topic-29488",
@@ -62,6 +562,236 @@
       "author": "sehyunkim"
     },
     {
+      "id": "tg:coinnesskr:228711",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[빗썸, PROM 상장]",
+      "url": "https://t.me/coinnesskr/228711",
+      "publishedAt": "2026-08-24T01:44:09.000Z",
+      "summary": "[빗썸, PROM 상장]\n빗썸이 오늘 13시 프롬(PROM)을 원화마켓에 상장한다고 공지했다.\nhttps://coinness.com/news/1166513",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228710",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[팬텀, 9/24 SUI 지원 종료]",
+      "url": "https://t.me/coinnesskr/228710",
+      "publishedAt": "2026-08-24T01:33:44.000Z",
+      "summary": "[팬텀, 9/24 SUI 지원 종료]\n암호화폐 월렛 팬텀(Phantom)이 오는 9월 24일부터 수이(SUI) 네트워크 지원을 종료한다고 공지했다. 이용자는 해당 날짜까지 보유 중인 SUI를 다른 지갑 앱으로 옮기거나 팬텀이 지원하는 자산으로 교환해야 한다.\nhttps://coinness.com/news/1166512",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228709",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[아브락사스캐피털, $1억 규모 ETH 숏…현물 헤지]",
+      "url": "https://t.me/coinnesskr/228709",
+      "publishedAt": "2026-08-24T01:31:23.000Z",
+      "summary": "[아브락사스캐피털, $1억 규모 ETH 숏…현물 헤지]\n아브락사스캐피털(Abraxas Capital)이 하이퍼리퀴드에서 약 1억6만달러 규모의 ETH 숏 포지션을 오픈한 가운데, 지난 4일간 바이낸스에서 7만3872 ETH(1억7317만달러)를 출금하며 헤지에 나섰다고 룩온체인이 전했다. 하이퍼스캔 데이터에 따르면 해당 ETH 숏 포지션의 청산가는 3946.19달러다. 아브락사스는 이외에도 BTC 9531만달러, HYPE 8419만달러, SOL 2397만달러 규모의 숏 포지션을 보유하고 있으며 청산가는 각각 12만7766.50달러, 135.96달러, 335.85달러다. 레버리지는 모두 5배이며 전체 숏 포지션 규모는 약 7억8300만달러다.\nhttps://coinness.com/news/1166511",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228708",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[상조회사, 가상자산에 투자 전 검토 의무화]",
+      "url": "https://t.me/coinnesskr/228708",
+      "publishedAt": "2026-08-24T01:26:45.000Z",
+      "summary": "[상조회사, 가상자산에 투자 전 검토 의무화]\n상조회사 등 선불식 할부거래업체가 소비자가 납입한 선수금을 운용할 때 안정성·유동성·수익성을 균형 있게 고려하도록 하는 지침이 마련된다고 아주경제가 전했다. 파생상품과 가상자산, 레버리지 금융상품 등 원금 손실 위험이 큰 고위험 자산에 과도하게 투자하는 등 고위험 거래를 하기 전에는 충분한 검토를 거쳐야 한다. 선수금이 1000억원 이상인 대형 업체는 선수금 운용의 안정성과 의사결정의 투명성을 확보하기 위해 선수금운용심의위원회를 설치·운영해야 한다. 공정거래위원회는 이같은 내용을 담은 '선불식 할부거래에서의 소비자보호 지침' 개정안을 마련해 다음달 14일까지 20일간 행정예고한다고 24일 밝혔다.\nhttps://coinness.com/news/1166510\n기사보기: https://www.ajunews.com/view/20260824093307748",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228707",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[트럼프 팀 주소, $294만 TRUMP 매도]",
+      "url": "https://t.me/coinnesskr/228707",
+      "publishedAt": "2026-08-24T01:10:17.000Z",
+      "summary": "[트럼프 팀 주소, $294만 TRUMP 매도]\n트럼프(TRUMP) 팀 토큰 주소가 오늘 새벽 110만 TRUMP를 매도해 294만 USDC를 확보 했다고 엠버CN이 전했다. 앞서 해당 주소는 전날 383.7만 TRUMP(933만 달러)를 OKX로 이체한 바 있다.\nhttps://coinness.com/news/1166509",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228706",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[\"비트코인 ETF 자금 흐름, 전형적 강세 신호\"]",
+      "url": "https://t.me/coinnesskr/228706",
+      "publishedAt": "2026-08-24T01:05:01.000Z",
+      "summary": "[\"비트코인 ETF 자금 흐름, 전형적 강세 신호\"]\n블룸버그 ETF 애널리스트 에릭 발추나스(Eric Balchunas)가 블랙록 비트코인(BTC) 현물 ETF IBIT의 지난주 일별 자금 흐름에 대해 \"전형적인 '플리핑 더 버드(Flipping the Bird, 중앙 막대가 높고 주변 막대가 낮은 형태)' 패턴이고 강세 신호\"라고 평가했다. 앞서 노바디우스 웰스 매니지먼트 CEO 네이트 제라시(Nate Geraci)는 더블록 기자 잭 에이브럼스(Zack Abrams)를 인용해 지난주 IBIT를 포함한 미국 BTC 현물 ETF에 약 20억 달러가, ETH 현물 ETF에 7억 달러가 순유입되어 두 상품 모두 지난해 10월 이후 최대 주간 순유입을 기록했다고 전했다.\nhttps://coinness.com/news/1166508",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228705",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[스트라이브 CEO \"BTC 약세장 종료 확신\"]",
+      "url": "https://t.me/coinnesskr/228705",
+      "publishedAt": "2026-08-24T00:44:46.000Z",
+      "summary": "[스트라이브 CEO \"BTC 약세장 종료 확신\"]\n스트라이브(ASST) CEO 매트 콜(Matt Cole)이 비트코인(BTC) 약세장이 끝났으며 향후 12~18개월 가격 전망을 낙관한다고 밝혔다. 그는 X를 통해 \"BTC/금 차트는 지난 2년간 BTC 가격을 선행하는 강력한 지표였다. BTC는 금 대비 2024년 12월 고점을 찍었지만 달러 기준으로는 2025년 10월에야 기록했다. 반대로 금 대비 저점은 올해 2월 형성됐고 달러 기준 저점은 7월에 나왔다. 현재 BTC가 달러와 금 대비 모두 뚜렷한 상승세로 전환한 만큼 약세장은 끝났다고 확신한다\"고 말했다. 이어 \"달러의 장기 약세와 통화가치 희석, 인공지능(AI) 확산에 따른 희소자산 선호가 BTC에 구조적인 순풍으로 작용할 것이다. BTC가 금보다 높은 수익률을 보이면 희소자산 시장에서 더 많은 자금이 BTC로 유입될 것으로 기대된다. 다음 BTC 사이클은 그 어느 때보다 강할 것으로 본다\"고 덧붙였다.\nhttps://coin",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228704",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[BTC, 2023년 3월 이후 최대 주간 상승 기록]",
+      "url": "https://t.me/coinnesskr/228704",
+      "publishedAt": "2026-08-24T00:40:08.000Z",
+      "summary": "[BTC, 2023년 3월 이후 최대 주간 상승 기록]\n비트코인이 지난 한 주간 23% 넘게 급등하며 2023년 3월 이후 가장 큰 주간 상승률을 기록했다고 워처구루가 밝혔다.\nhttps://coinness.com/news/1166506",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228703",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[아서 헤이즈, $117만달러 ETHFI 매수]",
+      "url": "https://t.me/coinnesskr/228703",
+      "publishedAt": "2026-08-24T00:37:19.000Z",
+      "summary": "[아서 헤이즈, $117만달러 ETHFI 매수]\n비트멕스 공동 설립자 아서 헤이즈(Arthur Hayes)가 4시간 전 190만 ETHFI를 다시 매수했다거 룩온체인이 전했다. 매수 규모는 약 117만달러다. 그는 4개월 전 26만5461 ETHFI(11.8만 달러)를 개당 0.44달러에 손실을 보고 매도한 바 있다.\nhttps://coinness.com/news/1166505",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228702",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[폴란드 암호화폐 거래소 전·현직 CEO 모두 행방 묘연]",
+      "url": "https://t.me/coinnesskr/228702",
+      "publishedAt": "2026-08-24T00:30:16.000Z",
+      "summary": "[폴란드 암호화폐 거래소 전·현직 CEO 모두 행방 묘연]\n폴란드 암호화폐 거래소 존다크립토(Zondacrypto)의 전·현직 최고경영자(CEO)가 모두 행방이 묘연한 상태라고 뉴욕타임스(NYT)가 전했다. 보도에 따르면 창업자 실베스터 수젝(Sylwester Suszek)은 2022년부터 실종 상태이며, 후임 CEO 프셰미스와프 크랄(Przemyslaw Kral) 역시 지난 4월 이후 행방이 묘연하다. 이에 따라 존다크립토는 지난 4월 암호화폐 출금 및 거래를 중단했으며 자체 토큰 ZND는 99.9% 이상 급락했다. 에스토니아 당국은 6월 말 모회사의 영업 허가를 취소했으며, 폴란드 검찰은 존다크립토의 설립 및 운영 과정과 자금세탁 등 범죄 연루 가능성을 조사 중이다.\nhttps://coinness.com/news/1166504",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228701",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[알트코인 시즌 지수 41]",
+      "url": "https://t.me/coinnesskr/228701",
+      "publishedAt": "2026-08-24T00:27:54.000Z",
+      "summary": "[알트코인 시즌 지수 41]\n가상자산 종합 정보 플랫폼 코인마켓캡의 '알트코인 시즌 지수'가 41 기록했다. 알트코인 시즌 지수는 시가총액 상위 100개 코인(스테이블·랩트 코인 제외)과 비트코인 간 가격 등락률을 비교해 책정된다. 상위 100개 코인 중 75%의 상승률이 지난 90일 동안 비트코인 상승률보다 높으면 알트코인 시즌, 반대의 경우 비트코인 시즌으로 판단한다. 100에 가까울수록 알트코인 시즌으로 본다.\nhttps://coinness.com/news/1166503",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228700",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[크립토 '공포·탐욕 지수' 78]",
+      "url": "https://t.me/coinnesskr/228700",
+      "publishedAt": "2026-08-24T00:10:32.000Z",
+      "summary": "[크립토 '공포·탐욕 지수' 78]\n암호화폐 데이터 제공업체 코인마켓캡의 자체 추산 '공포·탐욕 지수'가 78을 기록했다. 탐욕 단계가 지속됐다. 해당 지수는 0에 가까울수록 시장의 극단적 공포를 나타내며, 100에 가까울수록 극단적 낙관을 의미한다. 코인마켓캡의 공포·탐욕 지수는 시가총액 상위 10개 암호화폐의 가격 움직임, 시장 변동성, 풋·콜 비율 등 파생상품 시장, 스테이블코인 공급 비율(SSR), 코인마켓캡 자체 검색 데이터 등을 기준으로 산출된다.\nhttps://coinness.com/news/1166502",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228699",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[8월 넷째 주 주요 토큰 언락 일정...$1852만 H 등]",
+      "url": "https://t.me/coinnesskr/228699",
+      "publishedAt": "2026-08-24T00:08:42.000Z",
+      "summary": "[8월 넷째 주 주요 토큰 언락 일정...$1852만 H 등]\n토크노미스트에 따르면 이번 주(8/24~8/30) 언락되는 주요 토큰 물량은 다음과 같다.\nSOSO: 8/24 18:00, 2,346만개 언락, $740만, 총 유통량의 6.35%\nH: 8/25 21:00, 2.66억개 언락, $1,852만, 총 유통량의 7.92%\nXPL: 8/25 21:00, 8,889만개 언락, $920만, 총 유통량의 3.31%\nHUMA: 8/26 22:00, 4.59억개 언락, $1,007만, 총 유통량의 16.70%\nFF: 8/29 22:00, 7,714만개 언락, $667만, 총 유통량의 2.57%\nCARDS: 8/30 04:00, 2,884만개 언락, $541만, 총 유통량의 5.45%\nKMNO: 8/30 21:00, 2.29억개 언락, $571만, 총 유통량의 2.89%\nhttps://coinness.com/news/1166501",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228698",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[윈터뮤트, 바이낸스로 $1.05억 BTC 입금]",
+      "url": "https://t.me/coinnesskr/228698",
+      "publishedAt": "2026-08-24T00:03:01.000Z",
+      "summary": "[윈터뮤트, 바이낸스로 $1.05억 BTC 입금]\n암호화폐 마켓메이커 윈터뮤트가 지난 18시간 동안 8차례에 걸쳐 1279.99 BTC를 바이낸스에 입금했다고 온체인렌즈가 전했다. 약 9868만달러다. 가장 최근 거래는 약 30분 전에 이뤄졌으며, 697만달러 상당의 90.1 BTC가 입금됐다. 통상 거래소 입금은 매도 목적으로 해석된다.\nhttps://coinness.com/news/1166500",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228697",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[8월 24일 9시 BTC 현물 CVD 차트]",
+      "url": "https://t.me/coinnesskr/228697",
+      "publishedAt": "2026-08-23T23:57:37.000Z",
+      "summary": "[8월 24일 9시 BTC 현물 CVD 차트]\n현물 CVD는 BTC/USDT 현물 페어의 오더북 분석 차트로, 상단은 거래량 히트맵(Volume Heatmap)을, 하단은 누적거래량델타(CVD)를 의미한다.\n\n- 상단 거래량 히트맵의 경우 해당 가격대에서 발생한 거래량 규모를 추적하며, 가격이 특정 구간에서 오래 머물거나 크게 움직일 때 배경 색상이 밝아진다. 밝은 색에 가까운 구간은 지지, 저항으로 작용할 가능성이 있다.\n\n- 하단 누적거래량델타(CVD) 지표는 자금 규모별 매수·매도 주문을 의미하며, 매수 주문이 늘어날 수록 해당하는 색상의 선이 상승하게 된다. 노란색 라인 : 100 달러~1000 달러 주문, 갈색 라인: 100만~1000만 달러의 대량 주문 등 등을 기준으로 산출된다.\nhttps://coinness.com/news/1166499",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228696",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[8월 넷째 주 주요 글로벌 거시 일정]",
+      "url": "https://t.me/coinnesskr/228696",
+      "publishedAt": "2026-08-23T23:56:53.000Z",
+      "summary": "[8월 넷째 주 주요 글로벌 거시 일정]\n8월 넷째 주 주요 글로벌 거시 일정은 다음과 같다. (한국시간 기준)\n-8/26 2130 미국 7월 근원소비지출(PCE), 2분기 GDP(잠정치)\n-8/27 1000 한국 기준금리 결정 2130 신규 실업수당청구건수\nhttps://coinness.com/news/1166498",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228695",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[두나무, 美 회계 기준 전환 마치고 나스닥 상장 추진]",
+      "url": "https://t.me/coinnesskr/228695",
+      "publishedAt": "2026-08-23T23:34:15.000Z",
+      "summary": "[두나무, 美 회계 기준 전환 마치고 나스닥 상장 추진]\n국내 최대 가상자산 거래소 업비트를 운영하는 두나무가 미국 상장을 위한 실무 작업을 마친 것으로 확인됐다고 조선일보가 보도했다. 24일 투자은행 업계에 따르면, 두나무는 국내 대형 회계법인에 의뢰해 회계 미국식(US GAAP) 회계기준으로 재무제표를 바꾸는 작업을 최근 끝냈다. 미국 상장을 추진한다고 해서 회사를 통째로 미국으로 옮기는 것은 아니다. 미국에 지주회사를 세우고 한국 법인을 그 자회사로 넣는 ‘플립(flip)’은 선택지에서 빠진 것으로 전해진다. 플립을 하면 기존 주주는 한국 법인 주식을 내주고 미국 지주회사 주식을 받는다.\nhttps://coinness.com/news/1166497\n기사보기 : https://www.chosun.com/economy/stock-finance/2026/08/24/QWLGY4E5XNH4RMIYLDKD3YJUAQ/?utm_source=naver&utm_medium=referral&ut",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228694",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[윈터뮤트, BTC·ETH 등 숏 포지션 규모 확대]",
+      "url": "https://t.me/coinnesskr/228694",
+      "publishedAt": "2026-08-23T22:32:24.000Z",
+      "summary": "[윈터뮤트, BTC·ETH 등 숏 포지션 규모 확대]\n암호화폐 마켓메이커 윈터뮤트가 하이퍼리퀴드에 수백만달러를 추가로 입금하며 숏 포지션을 기존 1억4619만달러에서 1억9077만달러로 확대했다고 온체인렌즈가 전했다. 가장 큰 숏 포지션은 ETH로 5302만달러 규모다. 이어 BTC 3066만달러, SOL 2262만달러, HYPE 1143만달러, XRP 1019만달러 순이다.\nhttps://coinness.com/news/1166496",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228693",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[외국인 코인계정 56만개…실제 거래는 미미]",
+      "url": "https://t.me/coinnesskr/228693",
+      "publishedAt": "2026-08-23T22:29:36.000Z",
+      "summary": "[외국인 코인계정 56만개…실제 거래는 미미]\n국내 가상자산 거래소에 등록된 법인·외국인 계정이 수십만개에 달하지만 실제 거래가 이뤄지는 계정은 극소수인 것으로 나타났다. 서울경제에 따르면 지난달 말 5대 가상자산 거래소에 등록된 법인 계정은 총 6590개로 집계됐다. 외국인 계정은 이보다 훨씬 많은 56만 6352개에 달했다. 반면 실제 이용되는 계정은 드물었다. 일반법인 가운데 지난달 매매·교환·스테이킹·가상자산 입출금 등을 한 차례라도 이용한 활성계정은 29개에 불과했다. 이 가운데 두나무 계정이 22개로 대부분을 차지했다.\nhttps://coinness.com/news/1166495\n기사보기 : https://www.sedaily.com/article/20082247?ref=naver",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228692",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[“예정대로 1300만명 코인 과세”…오늘 국세청 회의]",
+      "url": "https://t.me/coinnesskr/228692",
+      "publishedAt": "2026-08-23T22:27:49.000Z",
+      "summary": "[“예정대로 1300만명 코인 과세”…오늘 국세청 회의]\n국세청이 이르면 10월 디지털자산(가상자산) 과세 고시 제정을 목표로 첫 자문단 회의를 연다. 이데일리에 따르면 국세청은  24일 오전 총 12명의 전문가들로 구성된 ‘고시 제정 자문위원단’ 비공개 회의를 열고 이르면 10월 고시 제정을 목표로 본격적인 논의에 착수한다. 한편, 정부·여당은 ‘소득 있는 곳에 과세 있다’는 원칙 하에 내년 1월부터 예정대로 과세하겠다는 방침이지만 야당은 주식과 형평성이 맞지 않고 준비가 미흡하다며 폐지나 유예를 주장하고 있어 진통이 예상된다.\nhttps://coinness.com/news/1166494\n기사보기 : https://www.edaily.co.kr/News/Read?newsId=01682646645550600&mediaCodeNo=257&utm_source=naver&utm_medium=referral&utm_campaign=news_syndication&utm_content=orig",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228691",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[텀 파이낸스, 거버넌스 취약점 공격으로 $850만 피해]",
+      "url": "https://t.me/coinnesskr/228691",
+      "publishedAt": "2026-08-23T22:24:41.000Z",
+      "summary": "[텀 파이낸스, 거버넌스 취약점 공격으로 $850만 피해]\n이더리움 기반 고정금리 대출 시장 텀 파이낸스(Term Finance)의 볼트에서 취약점 공격이 발생해 약 850만달러 규모의 자산이 탈취됐다고 더블록이 보도했다. 해커는 약 690만달러 상당의 2843 ETH와 168만 USDC를 빼돌린 것으로 추산된다. 이후 168만 USDC는 약 168만 DAI로 교환됐다. 텀 파이낸스는 “텀 볼트에 영향을 미친 해킹을 확인했으며, 조사 후 자세한 내용을 공개하겠다\"고 설명했다.\nhttps://coinness.com/news/1166493",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228690",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[테더, 우루과이 $1.2억 BTC 채굴 사업 중단]",
+      "url": "https://t.me/coinnesskr/228690",
+      "publishedAt": "2026-08-23T22:21:19.000Z",
+      "summary": "[테더, 우루과이 $1.2억 BTC 채굴 사업 중단]\n테더(USDT)가 우루과이에서 추진하던 약 1억2000만달러 규모의 비트코인 채굴 프로젝트를 중단했다고 더블록이 전했다. 이 사업은 남미 시장 전반으로 진출하기 위한 첫 단계로 여겨졌으나, 테더와 우루과이 국영 전력회사 우테 간 계약 분쟁으로 무산된 것으로 전해졌다. 테더와 우테는 계약상 두 채굴 시설에 공급하기로 한 전력 규모를 두고 의견이 엇갈렸다. 테더는 합의된 전력 공급량을 향후 늘릴 수 있는 최소 공급량으로 해석한 반면, 우테는 이를 넘을 수 없는 상한선으로 판단했다. 양측은 이후 계약 조건을 수정해 갈등을 해결하려 했으나 테더 측 관계자들이 수정 계약 서명 자리에 참석하지 않으면서 합의가 이뤄지지 않았다.\nhttps://coinness.com/news/1166492",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228689",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[BTC $78,000 상회]",
+      "url": "https://t.me/coinnesskr/228689",
+      "publishedAt": "2026-08-23T21:22:28.000Z",
+      "summary": "[BTC $78,000 상회]\n코인니스 마켓 모니터링에 따르면 BTC가 78,000 달러를 상회했다. 바이낸스 USDT 마켓 기준 BTC는 78,007.23달러에 거래되고 있다.\nhttps://coinness.com/news/1166491",
+      "author": "coinnesskr"
+    },
+    {
       "id": "reddit-ethereum:t3_1vwc8sj",
       "source": "reddit-ethereum",
       "sourceType": "rss",
@@ -70,6 +800,26 @@
       "publishedAt": "2026-08-23T16:48:13.000Z",
       "summary": "&#32; submitted by &#32; /u/ligi [link] &#32; [comments]",
       "author": "/u/ligi"
+    },
+    {
+      "id": "tg:coinnesskr:228688",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[ETH, 지난 5분간 2.13% 하락]",
+      "url": "https://t.me/coinnesskr/228688",
+      "publishedAt": "2026-08-23T14:42:59.000Z",
+      "summary": "[ETH, 지난 5분간 2.13% 하락]\nETH가 코인니스 마켓 기준 지난 5분간 2.13% 하락했다. 현재 ETH는 2,399.91 달러에 거래되고 있다.\nhttps://coinness.com/news/1166490",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228687",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[XRP, 지난 5분간 3.37% 하락]",
+      "url": "https://t.me/coinnesskr/228687",
+      "publishedAt": "2026-08-23T14:42:58.000Z",
+      "summary": "[XRP, 지난 5분간 3.37% 하락]\nXRP가 코인니스 마켓 기준 지난 5분간 3.37% 하락했다. 현재 XRP는 1.48 달러에 거래되고 있다.\nhttps://coinness.com/news/1166489",
+      "author": "coinnesskr"
     },
     {
       "id": "x:ethereum:2091519361513046358",
@@ -82,6 +832,16 @@
       "author": "ethereum"
     },
     {
+      "id": "tg:coinnesskr:228686",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[BTC $77,000 상회]",
+      "url": "https://t.me/coinnesskr/228686",
+      "publishedAt": "2026-08-23T11:20:18.000Z",
+      "summary": "[BTC $77,000 상회]\n코인니스 마켓 모니터링에 따르면 BTC가 77,000 달러를 상회했다. 바이낸스 USDT 마켓 기준 BTC는 77,066달러에 거래되고 있다.\nhttps://coinness.com/news/1166488",
+      "author": "coinnesskr"
+    },
+    {
       "id": "eth-magicians:ethereum-magicians.org-topic-29486",
       "source": "eth-magicians",
       "sourceType": "rss",
@@ -90,6 +850,16 @@
       "publishedAt": "2026-08-23T09:30:18.000Z",
       "summary": "Discussion thread for EIP-8390. Removes the sync committee, its aggregate, subnets, domains and rewards, and the Altair light client protocol built on it. SYNC_REWARD_WEIGHT is removed and not redistributed, so consensus issuance falls by 2/64. Update Log 2026-08-20: initial draft External Reviews None as of 2026-08-20. Outstanding Issues None as of 2026-08-20. 1 post - 1 participant Read full topic",
       "author": "dapplion"
+    },
+    {
+      "id": "tg:coinnesskr:228685",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[\"이번엔 오른다\"… 비트코인 상승 전망, 한 주 새 2배 넘게 급증]",
+      "url": "https://t.me/coinnesskr/228685",
+      "publishedAt": "2026-08-23T07:03:05.000Z",
+      "summary": "[\"이번엔 오른다\"… 비트코인 상승 전망, 한 주 새 2배 넘게 급증]\n코인니스와 크라토스가 공동 진행하고 있는 주간 국내 투자자 시장 동향 정기 설문조사에 따르면 응답자 45.9%(전주 20.7%)가 다음 주 비트코인이 상승 혹은 급등할 것으로 전망했다. 횡보를 예상한 응답자는 26.5%(전주 28.1%), 하락과 급락을 예상한 응답자는 27.6%(전주 51.2%)를 차지했다. 상승 전망 비중이 2배 이상 증가하며 우세를 점했다. 지난주 방송미디어통신심의위원회가 사행성을 이유로 예측시장 플랫폼 '폴리마켓'에 대한 접속을 차단한 가운데, 이에 대한 의견을 묻는 질문에는 가장 많은 30.1%는 이같은 규제에 반대했다. 이어 29.7%는 '사행성이 다소 존재하더라도 차단은 과하다', 22.8%는 '사실상 도박에 가까워 차단에 찬성', 나머지 17.4%는 '모르겠고, 관심도 없다'고 답했다.\nhttps://coinness.com/news/1166486\n설문 결과 보기: https://as",
+      "author": "coinnesskr"
     },
     {
       "id": "x:evan_van_ness:2091418507346907537",
@@ -112,6 +882,16 @@
       "author": "evan_van_ness"
     },
     {
+      "id": "tg:coinnesskr:228684",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[BTC $76,000 하회]",
+      "url": "https://t.me/coinnesskr/228684",
+      "publishedAt": "2026-08-23T05:15:08.000Z",
+      "summary": "[BTC $76,000 하회]\n코인니스 마켓 모니터링에 따르면 BTC가 76,000 달러를 하회했다. 바이낸스 USDT 마켓 기준 BTC는 75,866.81달러에 거래되고 있다.\nhttps://coinness.com/news/1166487",
+      "author": "coinnesskr"
+    },
+    {
       "id": "reddit-ethereum:t3_1vvxy0z",
       "source": "reddit-ethereum",
       "sourceType": "rss",
@@ -130,6 +910,16 @@
       "publishedAt": "2026-08-23T03:17:16.000Z",
       "summary": "Next some of you are gonna tell me I shouldn't put 5g creatine in my ice cream\n\nStill gonna do it",
       "author": "evan_van_ness"
+    },
+    {
+      "id": "tg:coinnesskr:228683",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[업비트, FOLD 원화·BTC·USDT 마켓 상장]",
+      "url": "https://t.me/coinnesskr/228683",
+      "publishedAt": "2026-08-23T01:38:36.000Z",
+      "summary": "[업비트, FOLD 원화·BTC·USDT 마켓 상장]\n업비트가 8월 23일 12시30분 인터폴드(FOLD)를 원화, BTC, USDT 마켓에 상장한다고 공지했다.\nhttps://coinness.com/news/1166485",
+      "author": "coinnesskr"
     },
     {
       "id": "x:gakonst:2091257319795363958",
@@ -160,6 +950,26 @@
       "publishedAt": "2026-08-22T16:57:15.000Z",
       "summary": "Why aren't there any protein shakes that come with 5-10g of creatine?",
       "author": "evan_van_ness"
+    },
+    {
+      "id": "tg:coinnesskr:228682",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[코인니스 뉴스 제공 시간 안내]",
+      "url": "https://t.me/coinnesskr/228682",
+      "publishedAt": "2026-08-22T15:01:44.000Z",
+      "summary": "[코인니스 뉴스 제공 시간 안내]\n코인니스 실시간 암호화폐 투자 정보는 월요일 아침 7시부터 일요일 0시까지 매일 24시간 제공됩니다. 일요일 0시부터 월요일 아침 7시 사이에는 중대 이슈가 발생할 경우에 한해 투자 정보가 제공됩니다.\n\n※ 코인니스 라이브 앱과 코인니스 웹 서비스의 해외 경제 속보는 지속적으로 제공됩니다.\nhttps://coinness.com/news/1166484",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228681",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[BTC, 10년간 130배 상승]",
+      "url": "https://t.me/coinnesskr/228681",
+      "publishedAt": "2026-08-22T15:00:56.000Z",
+      "summary": "[BTC, 10년간 130배 상승]\n우블록체인이 X를 통해 \"10년 전 오늘인 2016년 8월 22일 BTC 가격은 586달러 수준이었다. 현재 BTC가 7만7000달러대에서 거래되고 있는 점을 감안하면 10년간 약 130배 상승한 셈\"이라고 전했다.\nhttps://coinness.com/news/1166483",
+      "author": "coinnesskr"
     },
     {
       "id": "x:evan_van_ness:2091166248713277631",
@@ -932,6 +1742,16 @@
       "author": "evan_van_ness"
     },
     {
+      "id": "x:peter_szilagyi:2089449307669659710",
+      "source": "x:peter_szilagyi",
+      "sourceType": "twitter",
+      "title": "Erm... https://t.co/tsW54uFI4S",
+      "url": "https://x.com/peter_szilagyi/status/2089449307669659710",
+      "publishedAt": "2026-08-17T20:28:29.000Z",
+      "summary": "Erm... https://t.co/tsW54uFI4S",
+      "author": "peter_szilagyi"
+    },
+    {
       "id": "x:evan_van_ness:2089413235111768096",
       "source": "x:evan_van_ness",
       "sourceType": "twitter",
@@ -970,6 +1790,26 @@
       "publishedAt": "2026-08-17T12:57:43.000Z",
       "summary": "Agenda Development updates Spec updates Testing updates and more Meeting Time: Tuesday, August 18, 2026 at 13:00 UTC (60 minutes) GitHub Issue 4 posts - 2 participants Read full topic",
       "author": "system"
+    },
+    {
+      "id": "x:peter_szilagyi:2089288143283372310",
+      "source": "x:peter_szilagyi",
+      "sourceType": "twitter",
+      "title": "Look ma', back from holiday... 🥲",
+      "url": "https://x.com/peter_szilagyi/status/2089288143283372310",
+      "publishedAt": "2026-08-17T09:48:05.000Z",
+      "summary": "Look ma', back from holiday... 🥲",
+      "author": "peter_szilagyi"
+    },
+    {
+      "id": "x:peter_szilagyi:2089268435490320562",
+      "source": "x:peter_szilagyi",
+      "sourceType": "twitter",
+      "title": "Me: Hey Fable, your UI called the wrong method on the cloud REST API.\nFable: Wor",
+      "url": "https://x.com/peter_szilagyi/status/2089268435490320562",
+      "publishedAt": "2026-08-17T08:29:46.000Z",
+      "summary": "Me: Hey Fable, your UI called the wrong method on the cloud REST API.\nFable: Worry not. &lt;proceeds to add new cloud endpoints instead of calling the correct one&gt;",
+      "author": "peter_szilagyi"
     },
     {
       "id": "eth-magicians:ethereum-magicians.org-topic-29442",
@@ -1200,6 +2040,26 @@
       "publishedAt": "2026-08-13T13:59:27.000Z",
       "summary": "Agenda EIP-8130 discussion Frame mode for expiry Meeting Time: Tuesday, August 25, 2026 at 14:00 UTC (60 minutes) GitHub Issue 1 post - 1 participant Read full topic",
       "author": "system"
+    },
+    {
+      "id": "x:peter_szilagyi:2087869040463114254",
+      "source": "x:peter_szilagyi",
+      "sourceType": "twitter",
+      "title": "Meanwhile Codex: \"Goal achieved (3h 29m)\"",
+      "url": "https://x.com/peter_szilagyi/status/2087869040463114254",
+      "publishedAt": "2026-08-13T11:49:04.000Z",
+      "summary": "Meanwhile Codex: \"Goal achieved (3h 29m)\"",
+      "author": "peter_szilagyi"
+    },
+    {
+      "id": "x:peter_szilagyi:2087868907541455232",
+      "source": "x:peter_szilagyi",
+      "sourceType": "twitter",
+      "title": "Me: Hey Fable, please write me an API for xyz.\nFable: Done. \n\nMe: Hey Fable, ple",
+      "url": "https://x.com/peter_szilagyi/status/2087868907541455232",
+      "publishedAt": "2026-08-13T11:48:32.000Z",
+      "summary": "Me: Hey Fable, please write me an API for xyz.\nFable: Done. \n\nMe: Hey Fable, please test this API now.\n&lt;Fable 5's safeguards flagged this message&gt;\n\nFFS",
+      "author": "peter_szilagyi"
     },
     {
       "id": "eth-magicians:ethereum-magicians.org-topic-29418",
@@ -1662,6 +2522,16 @@
       "author": "ethereumfndn"
     },
     {
+      "id": "x:peter_szilagyi:2085002408267075643",
+      "source": "x:peter_szilagyi",
+      "sourceType": "twitter",
+      "title": "RT @hamandcheese: After Mythos was caught attempting to push malware to an OS pr",
+      "url": "https://x.com/peter_szilagyi/status/2085002408267075643",
+      "publishedAt": "2026-08-05T13:58:06.000Z",
+      "summary": "RT @hamandcheese: After Mythos was caught attempting to push malware to an OS project, it reasoned to itself that deleting the malware woul…",
+      "author": "peter_szilagyi"
+    },
+    {
       "id": "x:ethereumfndn:2084981622919549362",
       "source": "x:ethereumfndn",
       "sourceType": "twitter",
@@ -1762,6 +2632,26 @@
       "author": "bbbzzzzzzzZ"
     },
     {
+      "id": "x:peter_szilagyi:2083471530369892628",
+      "source": "x:peter_szilagyi",
+      "sourceType": "twitter",
+      "title": "Surely it's wrong? Nope, checked my acc, it has my new card swapped in.",
+      "url": "https://x.com/peter_szilagyi/status/2083471530369892628",
+      "publishedAt": "2026-08-01T08:34:56.000Z",
+      "summary": "Surely it's wrong? Nope, checked my acc, it has my new card swapped in.",
+      "author": "peter_szilagyi"
+    },
+    {
+      "id": "x:peter_szilagyi:2083470867216937248",
+      "source": "x:peter_szilagyi",
+      "sourceType": "twitter",
+      "title": "Every website I use: Your card expired, please updated it to continue using our ",
+      "url": "https://x.com/peter_szilagyi/status/2083470867216937248",
+      "publishedAt": "2026-08-01T08:32:18.000Z",
+      "summary": "Every website I use: Your card expired, please updated it to continue using our services.\n\nGoogle: Your card expired, but we have the new infos from your bank, no need to do anything.\n\nW.T.F.",
+      "author": "peter_szilagyi"
+    },
+    {
       "id": "x:sassal0x:2083300816702853315",
       "source": "x:sassal0x",
       "sourceType": "twitter",
@@ -1790,6 +2680,16 @@
       "publishedAt": "2026-07-30T12:21:39.000Z",
       "summary": "RT @LefterisJP: It's hard to believe it's already been 11 years.\n\nOn July 30 2015 we launched Ethereum from a small scrappy office in Berli…",
       "author": "VitalikButerin"
+    },
+    {
+      "id": "x:peter_szilagyi:2082734192358502821",
+      "source": "x:peter_szilagyi",
+      "sourceType": "twitter",
+      "title": "When you go to your hidden lake cafe spot in the mountain at the end of nowhere ",
+      "url": "https://x.com/peter_szilagyi/status/2082734192358502821",
+      "publishedAt": "2026-07-30T07:45:01.000Z",
+      "summary": "When you go to your hidden lake cafe spot in the mountain at the end of nowhere and you're the 13th person with a laptop. Who snitched???",
+      "author": "peter_szilagyi"
     },
     {
       "id": "ethresearch:ethresear.ch-topic-25572",
@@ -1920,6 +2820,16 @@
       "publishedAt": "2026-07-27T16:20:08.000Z",
       "summary": "This is quite a good article on how the cubic formula works, and particularly how root-finding is connected to symmetries (key background for understanding the impossibility of a quintic formula)\n\nhttps://t.co/v0nOBIo14w",
       "author": "VitalikButerin"
+    },
+    {
+      "id": "x:peter_szilagyi:2081647177911214198",
+      "source": "x:peter_szilagyi",
+      "sourceType": "twitter",
+      "title": "Hello work world again. Haven’t missed you one bit… 🙈 Touching grass succeeded ",
+      "url": "https://x.com/peter_szilagyi/status/2081647177911214198",
+      "publishedAt": "2026-07-27T07:45:37.000Z",
+      "summary": "Hello work world again. Haven’t missed you one bit… 🙈 Touching grass succeeded too well. https://t.co/5fb1F2XJd5",
+      "author": "peter_szilagyi"
     },
     {
       "id": "ethresearch:ethresear.ch-topic-25543",
