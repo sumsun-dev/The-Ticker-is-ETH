@@ -42,9 +42,19 @@ jobs:
       - name: Fetch News RSS
         run: npx tsx scripts/fetch-news.ts
 
+      - name: Fetch ETH news sources
+        run: npx tsx scripts/fetch-eth-news.ts
+        env:
+          CI: 'true'
+          TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
+          TELEGRAM_API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
+          TELEGRAM_SESSION: ${{ secrets.TELEGRAM_SESSION }}
+          # RapidAPI Twitter (twitter-api45) — 시크릿 미설정 시 트위터 수집은 자동 스킵
+          X_RAPIDAPI_KEY: ${{ secrets.X_RAPIDAPI_KEY }}
+
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add src/data/telegram-contributors.json src/data/team-enrichment.json src/data/research-index.json src/data/articles/ src/data/news-feed.json
+          git add src/data/telegram-contributors.json src/data/team-enrichment.json src/data/research-index.json src/data/articles/ src/data/news-feed.json src/data/eth-news-inbox.json
           git diff --cached --quiet || (git commit -m "chore: sync telegram & news data [automated]" && git push)

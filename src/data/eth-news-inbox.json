@@ -1,0 +1,1935 @@
+{
+  "fetchedAt": "2026-08-24T07:53:34.721Z",
+  "items": [
+    {
+      "id": "x:ethereumfndn:2091757898955214976",
+      "source": "x:ethereumfndn",
+      "sourceType": "twitter",
+      "title": "📢 Call for Presentations: The Ethereum Foundation is sponsoring the 1st Worksho",
+      "url": "https://x.com/ethereumfndn/status/2091757898955214976",
+      "publishedAt": "2026-08-24T05:22:00.000Z",
+      "summary": "📢 Call for Presentations: The Ethereum Foundation is sponsoring the 1st Workshop on Privacy-Preserving Technologies (WPPT 2026), an affiliated workshop of Asiacrypt 2026 in Hong Kong this December.\n\nHave recent or ongoing work on ZK, MPC, FHE, PIR, private identity, blockchain privacy, deployed privacy systems, and more? We’d love to hear from you.\n\nSee the website for the full list of topics.\n\nSubmit a ≤3-page abstract by Sept 25 (AoE).\n\nhttps://t.co/0GFodMy93j",
+      "author": "ethereumfndn"
+    },
+    {
+      "id": "eth-magicians:ethereum-magicians.org-topic-29492",
+      "source": "eth-magicians",
+      "sourceType": "rss",
+      "title": "ERC-XXXX: Consent Verification Extension for ERC-4626 Tokenized Vaults",
+      "url": "https://ethereum-magicians.org/t/erc-xxxx-consent-verification-extension-for-erc-4626-tokenized-vaults/29492",
+      "publishedAt": "2026-08-24T05:21:01.000Z",
+      "summary": "Author: Maulana Asykari Muhammad ( @WeissCurry ), Muhammad Zidan Fatonie ( @mzf11125 ), Faisal Firdani ( @zexoverz ) Type: Standards Track Category: ERC Status: Draft Abstract This ERC proposes an optional extension interface for ERC-4626 Tokenized Vaults that enables vaults to verify user acknowledgement of specific agreements before accepting new deposits or mint operations. The extension introduces a standardized Consent Registry interface that allows vaults to verify whether an address has a",
+      "author": "WeissCurry"
+    },
+    {
+      "id": "reddit-ethereum:t3_1vwtakt",
+      "source": "reddit-ethereum",
+      "sourceType": "rss",
+      "title": "Daily General Discussion August 24, 2026",
+      "url": "https://www.reddit.com/r/ethereum/comments/1vwtakt/daily_general_discussion_august_24_2026/",
+      "publishedAt": "2026-08-24T05:01:29.000Z",
+      "summary": "Welcome to the Daily General Discussion on r/ethereum https://imgur.com/3y7vezP Bookmarking this link will always bring you to the current daily: https://old.reddit.com/r/ethereum/about/sticky/?num=2 Please use this thread to discuss Ethereum topics, news, events, and even price ! Price discussion posted elsewhere in the subreddit will continue to be removed. As always, be constructive. - Subreddit Rules Want to stake? Learn more at r/ethstaker Community Links Ethereum Jobs , Twitter EVMavericks",
+      "author": "/u/EthereumDailyThread"
+    },
+    {
+      "id": "x:evan_van_ness:2091720099115741543",
+      "source": "x:evan_van_ness",
+      "sourceType": "twitter",
+      "title": "RT @krugman87: While I've been more forthcoming about the ETH/BTC and ethereum:n",
+      "url": "https://x.com/evan_van_ness/status/2091720099115741543",
+      "publishedAt": "2026-08-24T02:51:48.000Z",
+      "summary": "RT @krugman87: While I've been more forthcoming about the ETH/BTC and ethereum:native Dom price action since that PA has been clearer, I've…",
+      "author": "evan_van_ness"
+    },
+    {
+      "id": "eth-magicians:ethereum-magicians.org-topic-29489",
+      "source": "eth-magicians",
+      "sourceType": "rss",
+      "title": "ERC-8392: Asset Status Interface for Tokenized Assets",
+      "url": "https://ethereum-magicians.org/t/erc-8392-asset-status-interface-for-tokenized-assets/29489",
+      "publishedAt": "2026-08-24T02:09:15.000Z",
+      "summary": "Tokenized stocks now transfer onchain 24/7 while NYSE is open 32.5 hours a week. The state that determines whether one of these tokens can be safely valued or used as collateral — is the reference market open, is it halted, is the valuation feed stale because it’s Sunday or stale because it’s broken, can anyone actually redeem right now — is not observable through ERC-20, and today every issuer exposes it differently: Ondo has an offchain HTTP status API, Robinhood Chain tokens have a proprietar",
+      "author": "econoar"
+    },
+    {
+      "id": "eth-magicians:ethereum-magicians.org-topic-29488",
+      "source": "eth-magicians",
+      "sourceType": "rss",
+      "title": "ERC-8393: Tokenized Carbon Credits with Retirement",
+      "url": "https://ethereum-magicians.org/t/erc-8393-tokenized-carbon-credits-with-retirement/29488",
+      "publishedAt": "2026-08-24T01:44:58.000Z",
+      "summary": "For the full ERC, see the pull request: Add ERC: Tokenized Carbon Credits with Retirement by sehyun-wincl · Pull Request #1965 · ethereum/ERCs · GitHub Abstract This proposal defines an interface for representing carbon credits as semi-fungible tokens on top of ERC-1155 ( ERC-1155: Multi Token Standard ). Each token encodes a (projectId, creditId) pair into a single uint256 identifier and carries a fixed metadata schema aligned with the attributes published by carbon registries: project name, me",
+      "author": "sehyunkim"
+    },
+    {
+      "id": "reddit-ethereum:t3_1vwc8sj",
+      "source": "reddit-ethereum",
+      "sourceType": "rss",
+      "title": "🚨Every Ledger running the Ethereum app is vulnerable to signature substitution",
+      "url": "https://www.reddit.com/r/ethereum/comments/1vwc8sj/every_ledger_running_the_ethereum_app_is/",
+      "publishedAt": "2026-08-23T16:48:13.000Z",
+      "summary": "&#32; submitted by &#32; /u/ligi [link] &#32; [comments]",
+      "author": "/u/ligi"
+    },
+    {
+      "id": "x:ethereum:2091519361513046358",
+      "source": "x:ethereum",
+      "sourceType": "twitter",
+      "title": "RT @EtherealnewsHQ: Ethereal news weekly #36\n\n⚖️ @SECGov Regulation Crypto Asset",
+      "url": "https://x.com/ethereum/status/2091519361513046358",
+      "publishedAt": "2026-08-23T13:34:08.000Z",
+      "summary": "RT @EtherealnewsHQ: Ethereal news weekly #36\n\n⚖️ @SECGov Regulation Crypto Assets proposed rules\n🐻‍❄️ @ethPandaOps Glamsterdam upgrade on p…",
+      "author": "ethereum"
+    },
+    {
+      "id": "eth-magicians:ethereum-magicians.org-topic-29486",
+      "source": "eth-magicians",
+      "sourceType": "rss",
+      "title": "EIP-8390: Remove the Sync Committee",
+      "url": "https://ethereum-magicians.org/t/eip-8390-remove-the-sync-committee/29486",
+      "publishedAt": "2026-08-23T09:30:18.000Z",
+      "summary": "Discussion thread for EIP-8390. Removes the sync committee, its aggregate, subnets, domains and rewards, and the Altair light client protocol built on it. SYNC_REWARD_WEIGHT is removed and not redistributed, so consensus issuance falls by 2/64. Update Log 2026-08-20: initial draft External Reviews None as of 2026-08-20. Outstanding Issues None as of 2026-08-20. 1 post - 1 participant Read full topic",
+      "author": "dapplion"
+    },
+    {
+      "id": "x:evan_van_ness:2091418507346907537",
+      "source": "x:evan_van_ness",
+      "sourceType": "twitter",
+      "title": "RT @NielsHoven: The goal of Mentava’s reading app is to get kids off of our read",
+      "url": "https://x.com/evan_van_ness/status/2091418507346907537",
+      "publishedAt": "2026-08-23T06:53:23.000Z",
+      "summary": "RT @NielsHoven: The goal of Mentava’s reading app is to get kids off of our reading app\n\nThe final series of activities focus on transition…",
+      "author": "evan_van_ness"
+    },
+    {
+      "id": "x:evan_van_ness:2091413128948891728",
+      "source": "x:evan_van_ness",
+      "sourceType": "twitter",
+      "title": "RT @lucasllach: Cristina sabemos que fue una abogada exitosa. Luego hay varios q",
+      "url": "https://x.com/evan_van_ness/status/2091413128948891728",
+      "publishedAt": "2026-08-23T06:32:01.000Z",
+      "summary": "RT @lucasllach: Cristina sabemos que fue una abogada exitosa. Luego hay varios que alegan \"fortuna familiar\". ¿Los Massa de qué viven? ¿Tie…",
+      "author": "evan_van_ness"
+    },
+    {
+      "id": "reddit-ethereum:t3_1vvxy0z",
+      "source": "reddit-ethereum",
+      "sourceType": "rss",
+      "title": "Daily General Discussion August 23, 2026",
+      "url": "https://www.reddit.com/r/ethereum/comments/1vvxy0z/daily_general_discussion_august_23_2026/",
+      "publishedAt": "2026-08-23T05:01:15.000Z",
+      "summary": "Welcome to the Daily General Discussion on r/ethereum https://imgur.com/3y7vezP Bookmarking this link will always bring you to the current daily: https://old.reddit.com/r/ethereum/about/sticky/?num=2 Please use this thread to discuss Ethereum topics, news, events, and even price ! Price discussion posted elsewhere in the subreddit will continue to be removed. As always, be constructive. - Subreddit Rules Want to stake? Learn more at r/ethstaker Community Links Ethereum Jobs , Twitter EVMavericks",
+      "author": "/u/EthereumDailyThread"
+    },
+    {
+      "id": "x:evan_van_ness:2091364120389939279",
+      "source": "x:evan_van_ness",
+      "sourceType": "twitter",
+      "title": "Next some of you are gonna tell me I shouldn't put 5g creatine in my ice cream\n\n",
+      "url": "https://x.com/evan_van_ness/status/2091364120389939279",
+      "publishedAt": "2026-08-23T03:17:16.000Z",
+      "summary": "Next some of you are gonna tell me I shouldn't put 5g creatine in my ice cream\n\nStill gonna do it",
+      "author": "evan_van_ness"
+    },
+    {
+      "id": "x:gakonst:2091257319795363958",
+      "source": "x:gakonst",
+      "sourceType": "twitter",
+      "title": "RT @FrankieIsLost: paradigm is hosting a LAN party next Friday 8/28 in SF. 5v5 l",
+      "url": "https://x.com/gakonst/status/2091257319795363958",
+      "publishedAt": "2026-08-22T20:12:53.000Z",
+      "summary": "RT @FrankieIsLost: paradigm is hosting a LAN party next Friday 8/28 in SF. 5v5 league, smash, halo and more. we have some spots open, DM yo…",
+      "author": "gakonst"
+    },
+    {
+      "id": "x:evan_van_ness:2091208225899102437",
+      "source": "x:evan_van_ness",
+      "sourceType": "twitter",
+      "title": "RT @NEARProtocol: NEAR was built to shard from day one, not retrofitted.\n\nAt the",
+      "url": "https://x.com/evan_van_ness/status/2091208225899102437",
+      "publishedAt": "2026-08-22T16:57:48.000Z",
+      "summary": "RT @NEARProtocol: NEAR was built to shard from day one, not retrofitted.\n\nAt the core is Nightshade 2.0, NEP-509, stateless validation. Val…",
+      "author": "evan_van_ness"
+    },
+    {
+      "id": "x:evan_van_ness:2091208088980267471",
+      "source": "x:evan_van_ness",
+      "sourceType": "twitter",
+      "title": "Why aren't there any protein shakes that come with 5-10g of creatine?",
+      "url": "https://x.com/evan_van_ness/status/2091208088980267471",
+      "publishedAt": "2026-08-22T16:57:15.000Z",
+      "summary": "Why aren't there any protein shakes that come with 5-10g of creatine?",
+      "author": "evan_van_ness"
+    },
+    {
+      "id": "x:evan_van_ness:2091166248713277631",
+      "source": "x:evan_van_ness",
+      "sourceType": "twitter",
+      "title": "An Eigenlayer ad hit my feed tonight\n\nSo i checked the chart\n\nwowee https://t.co",
+      "url": "https://x.com/evan_van_ness/status/2091166248713277631",
+      "publishedAt": "2026-08-22T14:11:00.000Z",
+      "summary": "An Eigenlayer ad hit my feed tonight\n\nSo i checked the chart\n\nwowee https://t.co/qIFJH8U5tm",
+      "author": "evan_van_ness"
+    },
+    {
+      "id": "x:ethereum:2091155709694009355",
+      "source": "x:ethereum",
+      "sourceType": "twitter",
+      "title": "RT @BrantlyMillegan: 🤯 it's happening guys... @OpenRouter (just acquired by @St",
+      "url": "https://x.com/ethereum/status/2091155709694009355",
+      "publishedAt": "2026-08-22T13:29:07.000Z",
+      "summary": "RT @BrantlyMillegan: 🤯 it's happening guys... @OpenRouter (just acquired by @Stripe) offers *Sign in with Ethereum* alongside Google and Gi…",
+      "author": "ethereum"
+    },
+    {
+      "id": "reddit-ethereum:t3_1vv331x",
+      "source": "reddit-ethereum",
+      "sourceType": "rss",
+      "title": "Daily General Discussion August 22, 2026",
+      "url": "https://www.reddit.com/r/ethereum/comments/1vv331x/daily_general_discussion_august_22_2026/",
+      "publishedAt": "2026-08-22T05:01:14.000Z",
+      "summary": "Welcome to the Daily General Discussion on r/ethereum https://imgur.com/3y7vezP Bookmarking this link will always bring you to the current daily: https://old.reddit.com/r/ethereum/about/sticky/?num=2 Please use this thread to discuss Ethereum topics, news, events, and even price ! Price discussion posted elsewhere in the subreddit will continue to be removed. As always, be constructive. - Subreddit Rules Want to stake? Learn more at r/ethstaker Community Links Ethereum Jobs , Twitter EVMavericks",
+      "author": "/u/EthereumDailyThread"
+    },
+    {
+      "id": "reddit-ethereum:t3_1vuyj4z",
+      "source": "reddit-ethereum",
+      "sourceType": "rss",
+      "title": "Daily messages on etherscan to my watched address",
+      "url": "https://www.reddit.com/r/ethereum/comments/1vuyj4z/daily_messages_on_etherscan_to_my_watched_address/",
+      "publishedAt": "2026-08-22T01:15:45.000Z",
+      "summary": "Backstory: I used freewallet 10 years ago to transfer eth to DAO before it got hacked. FW is a custodial wallet so I don't have access to the private keys and my eth tokens are still stuck in purgatory until FW support addresses my 10 year support case that has def exceeded SLA Fast forward to now. I've been receiving these daily messages on eth scan about legacyeth.com which I doubt is legit. Just wondering if anyone else is receiving these messages or has any background on legacyeth.com Also i",
+      "author": "/u/CatTurdDay"
+    },
+    {
+      "id": "x:ethereum:2090901035430678619",
+      "source": "x:ethereum",
+      "sourceType": "twitter",
+      "title": "RT @Uniswap: RWAs are moving on Uniswap\n\nThe protocol has now processed $1B+ in ",
+      "url": "https://x.com/ethereum/status/2090901035430678619",
+      "publishedAt": "2026-08-21T20:37:08.000Z",
+      "summary": "RT @Uniswap: RWAs are moving on Uniswap\n\nThe protocol has now processed $1B+ in stock token volume on Robinhood Chain https://t.co/kgwCganY…",
+      "author": "ethereum"
+    },
+    {
+      "id": "reddit-ethereum:t3_1vuo6eg",
+      "source": "reddit-ethereum",
+      "sourceType": "rss",
+      "title": "156 - Doots Podcast with Quotient - Jordan O",
+      "url": "https://www.reddit.com/r/ethereum/comments/1vuo6eg/156_doots_podcast_with_quotient_jordan_o/",
+      "publishedAt": "2026-08-21T18:18:07.000Z",
+      "summary": "&#32; submitted by &#32; /u/jtnichol [link] &#32; [comments]",
+      "author": "/u/jtnichol"
+    },
+    {
+      "id": "reddit-ethereum:t3_1vulcxr",
+      "source": "reddit-ethereum",
+      "sourceType": "rss",
+      "title": "Ethereal news weekly #36 | US SEC Regulation Crypto Assets proposed rules, Glamsterdam upgrade on public testnets proposed for late September & October, focil-devnet-0 targeting August 31",
+      "url": "https://www.reddit.com/r/ethereum/comments/1vulcxr/ethereal_news_weekly_36_us_sec_regulation_crypto/",
+      "publishedAt": "2026-08-21T16:35:48.000Z",
+      "summary": "&#32; submitted by &#32; /u/abcoathup [link] &#32; [comments]",
+      "author": "/u/abcoathup"
+    },
+    {
+      "id": "x:dankrad:2090815307996705236",
+      "source": "x:dankrad",
+      "sourceType": "twitter",
+      "title": "Any software that still has the same bugs it had a couple of months ago is now a",
+      "url": "https://x.com/dankrad/status/2090815307996705236",
+      "publishedAt": "2026-08-21T14:56:29.000Z",
+      "summary": "Any software that still has the same bugs it had a couple of months ago is now a massive red flag: Since the maintainers clearly aren't using AI to rapidly fix everything as they should, they are probably also not fixing all the security holes that AI can now discover in time.",
+      "author": "dankrad"
+    },
+    {
+      "id": "x:ethereumfndn:2090814641333047465",
+      "source": "x:ethereumfndn",
+      "sourceType": "twitter",
+      "title": "📢 We’re hiring at the Ethereum Foundation!\n\nWe’re looking for a Project Manager",
+      "url": "https://x.com/ethereumfndn/status/2090814641333047465",
+      "publishedAt": "2026-08-21T14:53:50.000Z",
+      "summary": "📢 We’re hiring at the Ethereum Foundation!\n\nWe’re looking for a Project Manager, Academic Engagements to help build and grow our work with universities, research institutions, and academic communities around the world.\n\nIf you enjoy bringing people together, turning ideas into programs, and working at the intersection of Ethereum and academia, we’d love to hear from you.\n\nApply here ↓\nhttps://t.co/2lAk74pNY6",
+      "author": "ethereumfndn"
+    },
+    {
+      "id": "reddit-ethereum:t3_1vug531",
+      "source": "reddit-ethereum",
+      "sourceType": "rss",
+      "title": "Stablecoins need Visa more than Visa needs stablecoins",
+      "url": "https://www.reddit.com/r/ethereum/comments/1vug531/stablecoins_need_visa_more_than_visa_needs/",
+      "publishedAt": "2026-08-21T13:17:42.000Z",
+      "summary": "Probably unpopular here but crypto payments might be too focused on replacing existing payment rails instead of using them. Stablecoins already move globally and settle fast. The problem is spending them. Most merchants don't care about USDT or USDC. They just want to get paid. Maybe mass adoption isn't about convincing every merchant to accept crypto. Maybe it's about making crypto work wherever people already pay. Necessary bridge or against the whole point of crypto? &#32; submitted by &#32; ",
+      "author": "/u/Frosty_Actuator_5047"
+    },
+    {
+      "id": "x:VitalikButerin:2090780765076455919",
+      "source": "x:VitalikButerin",
+      "sourceType": "twitter",
+      "title": "My third (and last) post in my series on obfuscation (iO): local mixing\n\nhttps:/",
+      "url": "https://x.com/VitalikButerin/status/2090780765076455919",
+      "publishedAt": "2026-08-21T12:39:13.000Z",
+      "summary": "My third (and last) post in my series on obfuscation (iO): local mixing\n\nhttps://t.co/xO2ZYcxTWU\n\nLocal mixing is a very different philosophy from the other two, no prior background in lattices required, and very different tradeoffs (eg. in terms of computational overhead, it's viable today; the entire question is verifying the security of what's ultimately a novel family of cryptography). I highly encourage following their work, they plan to publish much more soon.",
+      "author": "VitalikButerin"
+    },
+    {
+      "id": "eth-magicians:ethereum-magicians.org-topic-29473",
+      "source": "eth-magicians",
+      "sourceType": "rss",
+      "title": "EIP-8387: Stateless Accounts",
+      "url": "https://ethereum-magicians.org/t/eip-8387-stateless-accounts/29473",
+      "publishedAt": "2026-08-21T11:41:55.000Z",
+      "summary": "See Add EIP: Stateless Accounts by chunter-cb · Pull Request #12221 · ethereum/EIPs · GitHub Add stateless account creation to 8130 to support privacy flows and statelessness goals. 1 post - 1 participant Read full topic",
+      "author": "chunter"
+    },
+    {
+      "id": "eth-magicians:ethereum-magicians.org-topic-29472",
+      "source": "eth-magicians",
+      "sourceType": "rss",
+      "title": "EIP-8386: Transaction Events View",
+      "url": "https://ethereum-magicians.org/t/eip-8386-transaction-events-view/29472",
+      "publishedAt": "2026-08-21T11:17:35.000Z",
+      "summary": "Pull Request: Add EIP: Transaction Events View by chunter-cb · Pull Request #12218 · ethereum/EIPs · GitHub A replacement for transaction assertions EIP-7906: Transaction Assertions via State Diff Opcode 2 posts - 2 participants Read full topic",
+      "author": "chunter"
+    },
+    {
+      "id": "x:evan_van_ness:2090675944755228843",
+      "source": "x:evan_van_ness",
+      "sourceType": "twitter",
+      "title": "RT @infinex: https://t.co/HeWU5nJ2AB",
+      "url": "https://x.com/evan_van_ness/status/2090675944755228843",
+      "publishedAt": "2026-08-21T05:42:42.000Z",
+      "summary": "RT @infinex: https://t.co/HeWU5nJ2AB",
+      "author": "evan_van_ness"
+    },
+    {
+      "id": "reddit-ethereum:t3_1vu6rb8",
+      "source": "reddit-ethereum",
+      "sourceType": "rss",
+      "title": "Daily General Discussion August 21, 2026",
+      "url": "https://www.reddit.com/r/ethereum/comments/1vu6rb8/daily_general_discussion_august_21_2026/",
+      "publishedAt": "2026-08-21T05:01:15.000Z",
+      "summary": "Welcome to the Daily General Discussion on r/ethereum https://imgur.com/3y7vezP Bookmarking this link will always bring you to the current daily: https://old.reddit.com/r/ethereum/about/sticky/?num=2 Please use this thread to discuss Ethereum topics, news, events, and even price ! Price discussion posted elsewhere in the subreddit will continue to be removed. As always, be constructive. - Subreddit Rules Want to stake? Learn more at r/ethstaker Community Links Ethereum Jobs , Twitter EVMavericks",
+      "author": "/u/EthereumDailyThread"
+    },
+    {
+      "id": "x:evan_van_ness:2090612840230949236",
+      "source": "x:evan_van_ness",
+      "sourceType": "twitter",
+      "title": "Reading one Berkshire annual letter a day with my elementary school son\n\nIt's a ",
+      "url": "https://x.com/evan_van_ness/status/2090612840230949236",
+      "publishedAt": "2026-08-21T01:31:57.000Z",
+      "summary": "Reading one Berkshire annual letter a day with my elementary school son\n\nIt's a good exercise, lots to explain along the way",
+      "author": "evan_van_ness"
+    },
+    {
+      "id": "reddit-ethereum:t3_1vu16ki",
+      "source": "reddit-ethereum",
+      "sourceType": "rss",
+      "title": "Raising machine-checked security benchmarks to advance hash-based SNARKs through agentic collaboration",
+      "url": "https://www.reddit.com/r/ethereum/comments/1vu16ki/raising_machinechecked_security_benchmarks_to/",
+      "publishedAt": "2026-08-21T00:34:58.000Z",
+      "summary": "&#32; submitted by &#32; /u/abcoathup [link] &#32; [comments]",
+      "author": "/u/abcoathup"
+    },
+    {
+      "id": "vitalik:https://vitalik.ca/general/2026/08/21/obfuscation_part_iii_local_mixing.html",
+      "source": "vitalik",
+      "sourceType": "rss",
+      "title": "Obfuscation (Part III): Local Mixing",
+      "url": "https://vitalik.ca/general/2026/08/21/obfuscation_part_iii_local_mixing.html",
+      "publishedAt": "2026-08-21T00:00:00.000Z",
+      "summary": "",
+      "author": ""
+    },
+    {
+      "id": "x:drakefjustin:2090538076762165643",
+      "source": "x:drakefjustin",
+      "sourceType": "twitter",
+      "title": "RT @ethereumfndn: https://t.co/HMYov8XL0Q is live\n\nJoin the open autoresearch ch",
+      "url": "https://x.com/drakefjustin/status/2090538076762165643",
+      "publishedAt": "2026-08-20T20:34:52.000Z",
+      "summary": "RT @ethereumfndn: https://t.co/HMYov8XL0Q is live\n\nJoin the open autoresearch challenge to advance post-quantum Ethereum. Bring your agents…",
+      "author": "drakefjustin"
+    },
+    {
+      "id": "x:ethereumfndn:2090517324994433274",
+      "source": "x:ethereumfndn",
+      "sourceType": "twitter",
+      "title": "RT @crecimientoar: AI, AGENTS &amp; THE FUTURE OF MONEY — LATAM DIGITAL ASSETS C",
+      "url": "https://x.com/ethereumfndn/status/2090517324994433274",
+      "publishedAt": "2026-08-20T19:12:24.000Z",
+      "summary": "RT @crecimientoar: AI, AGENTS &amp; THE FUTURE OF MONEY — LATAM DIGITAL ASSETS CONF\n\nWhat money looks like when software starts transacting on…",
+      "author": "ethereumfndn"
+    },
+    {
+      "id": "x:ethereum:2090510170581254350",
+      "source": "x:ethereum",
+      "sourceType": "twitter",
+      "title": "RT @aave: Aave V4 crossed $500 million deposits. https://t.co/OiTYPyw9oP",
+      "url": "https://x.com/ethereum/status/2090510170581254350",
+      "publishedAt": "2026-08-20T18:43:59.000Z",
+      "summary": "RT @aave: Aave V4 crossed $500 million deposits. https://t.co/OiTYPyw9oP",
+      "author": "ethereum"
+    },
+    {
+      "id": "x:ethereumfndn:2090509544933794159",
+      "source": "x:ethereumfndn",
+      "sourceType": "twitter",
+      "title": "RT @zksecurityXYZ: We’re happy to support the proximity prize challenge efforts,",
+      "url": "https://x.com/ethereumfndn/status/2090509544933794159",
+      "publishedAt": "2026-08-20T18:41:29.000Z",
+      "summary": "RT @zksecurityXYZ: We’re happy to support the proximity prize challenge efforts, now with machine-verifiability! \n\nhttps://t.co/9BgF6rmh14…",
+      "author": "ethereumfndn"
+    },
+    {
+      "id": "x:ethereum:2090489462740353344",
+      "source": "x:ethereum",
+      "sourceType": "twitter",
+      "title": "RT @gnosis_: GnosisDAO has approved Gnosis Chain's transition from a standalone ",
+      "url": "https://x.com/ethereum/status/2090489462740353344",
+      "publishedAt": "2026-08-20T17:21:41.000Z",
+      "summary": "RT @gnosis_: GnosisDAO has approved Gnosis Chain's transition from a standalone Layer 1 into a ZK-proven Ethereum Economic Zone rollup.\n\nGI…",
+      "author": "ethereum"
+    },
+    {
+      "id": "x:ethereumfndn:2090488545873940659",
+      "source": "x:ethereumfndn",
+      "sourceType": "twitter",
+      "title": "RT @yukonresearch: NEW Yukon Challenge Alert!  \n\nWe started Yukon with one belie",
+      "url": "https://x.com/ethereumfndn/status/2090488545873940659",
+      "publishedAt": "2026-08-20T17:18:03.000Z",
+      "summary": "RT @yukonresearch: NEW Yukon Challenge Alert!  \n\nWe started Yukon with one belief. If we can verify the outcome, we can openly accelerate i…",
+      "author": "ethereumfndn"
+    },
+    {
+      "id": "x:ethereum:2090486213786353682",
+      "source": "x:ethereum",
+      "sourceType": "twitter",
+      "title": "RT @ethereumfndn: https://t.co/HMYov8XL0Q is live\n\nJoin the open autoresearch ch",
+      "url": "https://x.com/ethereum/status/2090486213786353682",
+      "publishedAt": "2026-08-20T17:08:47.000Z",
+      "summary": "RT @ethereumfndn: https://t.co/HMYov8XL0Q is live\n\nJoin the open autoresearch challenge to advance post-quantum Ethereum. Bring your agents…",
+      "author": "ethereum"
+    },
+    {
+      "id": "x:ethereumfndn:2090485717273043227",
+      "source": "x:ethereumfndn",
+      "sourceType": "twitter",
+      "title": "Learn more in the announcement ↓ \nhttps://t.co/EqCOuuMglx",
+      "url": "https://x.com/ethereumfndn/status/2090485717273043227",
+      "publishedAt": "2026-08-20T17:06:49.000Z",
+      "summary": "Learn more in the announcement ↓ \nhttps://t.co/EqCOuuMglx",
+      "author": "ethereumfndn"
+    },
+    {
+      "id": "x:ethereumfndn:2090485714660302877",
+      "source": "x:ethereumfndn",
+      "sourceType": "twitter",
+      "title": "https://t.co/BzwX7u0mFr is live\n\nJoin the open autoresearch challenge to advance",
+      "url": "https://x.com/ethereumfndn/status/2090485714660302877",
+      "publishedAt": "2026-08-20T17:06:48.000Z",
+      "summary": "https://t.co/BzwX7u0mFr is live\n\nJoin the open autoresearch challenge to advance post-quantum Ethereum. Bring your agents, harnesses, and prompts. Push the state of the art math in hash-based SNARKs.\n\nSubmissions are verified by Lean 4 proofs and may earn a slice of the Ethereum Foundation's $1M Proximity Prize (https://t.co/Zbo6IJYswY).\n\nBuilt with @zksecurityXYZ and @eigenlabs on @yukonresearch",
+      "author": "ethereumfndn"
+    },
+    {
+      "id": "x:gakonst:2090448987824541864",
+      "source": "x:gakonst",
+      "sourceType": "twitter",
+      "title": "all our rust OSS repos (alloy/foundry/reth/revm/tempo etc.) do not depend on arr",
+      "url": "https://x.com/gakonst/status/2090448987824541864",
+      "publishedAt": "2026-08-20T14:40:52.000Z",
+      "summary": "all our rust OSS repos (alloy/foundry/reth/revm/tempo etc.) do not depend on arrayref / are unaffected by the supply chain compromise - stay safe folks",
+      "author": "gakonst"
+    },
+    {
+      "id": "x:gakonst:2090447970106044742",
+      "source": "x:gakonst",
+      "sourceType": "twitter",
+      "title": "anyone tried hooking on apply_patch / edit tool calls and running a very fast LL",
+      "url": "https://x.com/gakonst/status/2090447970106044742",
+      "publishedAt": "2026-08-20T14:36:49.000Z",
+      "summary": "anyone tried hooking on apply_patch / edit tool calls and running a very fast LLM scanner on it? (i know ppl run LSPs and stuff already)",
+      "author": "gakonst"
+    },
+    {
+      "id": "x:gakonst:2090447873083318301",
+      "source": "x:gakonst",
+      "sourceType": "twitter",
+      "title": "RT @marcoieni: How is your day going? https://t.co/2nYJMHj5El",
+      "url": "https://x.com/gakonst/status/2090447873083318301",
+      "publishedAt": "2026-08-20T14:36:26.000Z",
+      "summary": "RT @marcoieni: How is your day going? https://t.co/2nYJMHj5El",
+      "author": "gakonst"
+    },
+    {
+      "id": "eth-magicians:ethereum-magicians.org-topic-29468",
+      "source": "eth-magicians",
+      "sourceType": "rss",
+      "title": "All Core Devs - Execution (ACDE) #244, August 27, 2026",
+      "url": "https://ethereum-magicians.org/t/all-core-devs-execution-acde-244-august-27-2026/29468",
+      "publishedAt": "2026-08-20T14:06:04.000Z",
+      "summary": "Agenda Glamsterdam Hegotá Misc Meeting Time: Thursday, August 27, 2026 at 14:00 UTC (90 minutes) GitHub Issue 2 posts - 2 participants Read full topic",
+      "author": "system"
+    },
+    {
+      "id": "eth-magicians:ethereum-magicians.org-topic-29467",
+      "source": "eth-magicians",
+      "sourceType": "rss",
+      "title": "SSZ Engine api call 4, August 28,2026",
+      "url": "https://ethereum-magicians.org/t/ssz-engine-api-call-4-august-28-2026/29467",
+      "publishedAt": "2026-08-20T13:58:29.000Z",
+      "summary": "Agenda TBD Meeting Time: Friday, August 28, 2026 at 09:00 UTC (60 minutes) GitHub Issue 1 post - 1 participant Read full topic",
+      "author": "system"
+    },
+    {
+      "id": "x:ethereum:2090416427194806783",
+      "source": "x:ethereum",
+      "sourceType": "twitter",
+      "title": "RT @selfxyz: NEWS: The @USAT Mainnet Faucet, built by Self and @GoogleCloud, is ",
+      "url": "https://x.com/ethereum/status/2090416427194806783",
+      "publishedAt": "2026-08-20T12:31:28.000Z",
+      "summary": "RT @selfxyz: NEWS: The @USAT Mainnet Faucet, built by Self and @GoogleCloud, is live!\n\nVerified humans can claim USA₮, the US Dollar stable…",
+      "author": "ethereum"
+    },
+    {
+      "id": "x:gakonst:2090330994834604056",
+      "source": "x:gakonst",
+      "sourceType": "twitter",
+      "title": "++ on the s3/wal arch since first reading turbopuffer blogs",
+      "url": "https://x.com/gakonst/status/2090330994834604056",
+      "publishedAt": "2026-08-20T06:52:00.000Z",
+      "summary": "++ on the s3/wal arch since first reading turbopuffer blogs",
+      "author": "gakonst"
+    },
+    {
+      "id": "x:gakonst:2090326409755652220",
+      "source": "x:gakonst",
+      "sourceType": "twitter",
+      "title": "RT @linear: Rethinking delta sync at scale with @turbopuffer.\n\nEngineer @travers",
+      "url": "https://x.com/gakonst/status/2090326409755652220",
+      "publishedAt": "2026-08-20T06:33:47.000Z",
+      "summary": "RT @linear: Rethinking delta sync at scale with @turbopuffer.\n\nEngineer @traverspw on how we made Linear’s sync latency predictable as work…",
+      "author": "gakonst"
+    },
+    {
+      "id": "x:gakonst:2090314312888033676",
+      "source": "x:gakonst",
+      "sourceType": "twitter",
+      "title": "as we keep moving towards personal software & owning the tokenflow, the first th",
+      "url": "https://x.com/gakonst/status/2090314312888033676",
+      "publishedAt": "2026-08-20T05:45:43.000Z",
+      "summary": "as we keep moving towards personal software & owning the tokenflow, the first thing to be tackled is the \"personal harness\" - implemented as \"ai inside an app\" vs \"app inside ai\" (i.e. the inversion of \"codex has browser pane\" - \"app in your browser has codex inside of it\")\n\nfx by vercel is act 1",
+      "author": "gakonst"
+    },
+    {
+      "id": "x:gakonst:2090313225267228955",
+      "source": "x:gakonst",
+      "sourceType": "twitter",
+      "title": "RT @rauchg: https://t.co/3Z4NESzNKd is 6.3mb. It starts up in 10µs¹. It's a Zig-",
+      "url": "https://x.com/gakonst/status/2090313225267228955",
+      "publishedAt": "2026-08-20T05:41:23.000Z",
+      "summary": "RT @rauchg: https://t.co/3Z4NESzNKd is 6.3mb. It starts up in 10µs¹. It's a Zig-compiled static ELF binary, or an even smaller 𝚕𝚒𝚋𝚏𝚡.𝚠𝚊𝚜𝚖²…",
+      "author": "gakonst"
+    },
+    {
+      "id": "x:gakonst:2090313088214184221",
+      "source": "x:gakonst",
+      "sourceType": "twitter",
+      "title": "RT @breckcs: The trend of using S3 for databases is continuing, if not gaining m",
+      "url": "https://x.com/gakonst/status/2090313088214184221",
+      "publishedAt": "2026-08-20T05:40:51.000Z",
+      "summary": "RT @breckcs: The trend of using S3 for databases is continuing, if not gaining momentum. I've seen three or four new examples in the past w…",
+      "author": "gakonst"
+    },
+    {
+      "id": "reddit-ethereum:t3_1vt9ynu",
+      "source": "reddit-ethereum",
+      "sourceType": "rss",
+      "title": "Daily General Discussion August 20, 2026",
+      "url": "https://www.reddit.com/r/ethereum/comments/1vt9ynu/daily_general_discussion_august_20_2026/",
+      "publishedAt": "2026-08-20T05:01:17.000Z",
+      "summary": "Welcome to the Daily General Discussion on r/ethereum https://imgur.com/3y7vezP Bookmarking this link will always bring you to the current daily: https://old.reddit.com/r/ethereum/about/sticky/?num=2 Please use this thread to discuss Ethereum topics, news, events, and even price ! Price discussion posted elsewhere in the subreddit will continue to be removed. As always, be constructive. - Subreddit Rules Want to stake? Learn more at r/ethstaker Community Links Ethereum Jobs , Twitter EVMavericks",
+      "author": "/u/EthereumDailyThread"
+    },
+    {
+      "id": "ethresearch:ethresear.ch-topic-25766",
+      "source": "ethresearch",
+      "sourceType": "rss",
+      "title": "Timing the Head in Ethereum PoS",
+      "url": "https://ethresear.ch/t/timing-the-head-in-ethereum-pos/25766",
+      "publishedAt": "2026-08-20T03:50:38.000Z",
+      "summary": "Description In Ethereum PoS, many reorganization attacks manipulate validators’ views of the head, causing their attestation weight to be distributed across different branches and potentially triggering a reorganization. This shows that the head plays a critical role in consensus security. Meanwhile, head votes also account for a significant part of attestation rewards and must satisfy a strict timing condition to be rewarded, making them particularly vulnerable to loss. However, the role of the",
+      "author": "Yolodannn"
+    },
+    {
+      "id": "x:gakonst:2090270428157944202",
+      "source": "x:gakonst",
+      "sourceType": "twitter",
+      "title": "RT @jeffreyhuber: seeing a lot of love for WAL+S3\n\nread how Chroma does it - ope",
+      "url": "https://x.com/gakonst/status/2090270428157944202",
+      "publishedAt": "2026-08-20T02:51:20.000Z",
+      "summary": "RT @jeffreyhuber: seeing a lot of love for WAL+S3\n\nread how Chroma does it - open-source \n\nhttps://t.co/TYQnVSpr0d",
+      "author": "gakonst"
+    },
+    {
+      "id": "x:gakonst:2090270335476302175",
+      "source": "x:gakonst",
+      "sourceType": "twitter",
+      "title": "RT @gaybrick: Today we announced we're acquiring @OpenRouter.\n\nThe line between ",
+      "url": "https://x.com/gakonst/status/2090270335476302175",
+      "publishedAt": "2026-08-20T02:50:57.000Z",
+      "summary": "RT @gaybrick: Today we announced we're acquiring @OpenRouter.\n\nThe line between intelligence and money is blurring: tokens are increasingly…",
+      "author": "gakonst"
+    },
+    {
+      "id": "x:gakonst:2090267623678496835",
+      "source": "x:gakonst",
+      "sourceType": "twitter",
+      "title": "we finally have some more marketing bandwidth to share more about our internal d",
+      "url": "https://x.com/gakonst/status/2090267623678496835",
+      "publishedAt": "2026-08-20T02:40:11.000Z",
+      "summary": "we finally have some more marketing bandwidth to share more about our internal devtools that help the small &lt;50 eng team at tempo ship, more coming!",
+      "author": "gakonst"
+    },
+    {
+      "id": "x:gakonst:2090267422024769933",
+      "source": "x:gakonst",
+      "sourceType": "twitter",
+      "title": "RT @patrickc: OpenRouter is joining Stripe: https://t.co/hiH0kDB3hG.\n\nAs anyone ",
+      "url": "https://x.com/gakonst/status/2090267422024769933",
+      "publishedAt": "2026-08-20T02:39:23.000Z",
+      "summary": "RT @patrickc: OpenRouter is joining Stripe: https://t.co/hiH0kDB3hG.\n\nAs anyone who uses it knows, @OpenRouter is a truly delightful develo…",
+      "author": "gakonst"
+    },
+    {
+      "id": "x:gakonst:2090267177370956212",
+      "source": "x:gakonst",
+      "sourceType": "twitter",
+      "title": "RT @almoggavra: Cursor's WAL-on-S3 is all the rage, so it's a fun coincidence to",
+      "url": "https://x.com/gakonst/status/2090267177370956212",
+      "publishedAt": "2026-08-20T02:38:25.000Z",
+      "summary": "RT @almoggavra: Cursor's WAL-on-S3 is all the rage, so it's a fun coincidence to see Cloudflare Durable Objects doing the same for years.…",
+      "author": "gakonst"
+    },
+    {
+      "id": "x:gakonst:2090241017748550045",
+      "source": "x:gakonst",
+      "sourceType": "twitter",
+      "title": "RT @_patrickogrady: A million TPS isn’t cool. You know what is? A billion TPS.\n\n",
+      "url": "https://x.com/gakonst/status/2090241017748550045",
+      "publishedAt": "2026-08-20T00:54:28.000Z",
+      "summary": "RT @_patrickogrady: A million TPS isn’t cool. You know what is? A billion TPS.\n\nMeet Bajillion, @commonwarexyz’s new optimistic clearing pr…",
+      "author": "gakonst"
+    },
+    {
+      "id": "x:gakonst:2090240852191002718",
+      "source": "x:gakonst",
+      "sourceType": "twitter",
+      "title": "we built \"proof of human\" for PR reviews to keep scaling our agent deployment wi",
+      "url": "https://x.com/gakonst/status/2090240852191002718",
+      "publishedAt": "2026-08-20T00:53:48.000Z",
+      "summary": "we built \"proof of human\" for PR reviews to keep scaling our agent deployment without letting our bar for security slide down - meet Voight-Kampff, we use it every day and we think every org should build something similar",
+      "author": "gakonst"
+    },
+    {
+      "id": "eth-magicians:ethereum-magicians.org-topic-29465",
+      "source": "eth-magicians",
+      "sourceType": "rss",
+      "title": "EIP-8384: Deterministic sync committee aggregators",
+      "url": "https://ethereum-magicians.org/t/eip-8384-deterministic-sync-committee-aggregators/29465",
+      "publishedAt": "2026-08-20T00:31:11.000Z",
+      "summary": "Discussion topic for EIP-8384 1 post - 1 participant Read full topic",
+      "author": "kevaundray"
+    },
+    {
+      "id": "ef-blog:https://blog.ethereum.org/en/2026/08/20/better-codes-challenge",
+      "source": "ef-blog",
+      "sourceType": "rss",
+      "title": "Raising machine-checked security benchmarks to advance hash-based SNARKs through agentic collaboration",
+      "url": "https://blog.ethereum.org/en/2026/08/20/better-codes-challenge",
+      "publishedAt": "2026-08-20T00:00:00.000Z",
+      "summary": "better.codes, an open autoresearch challenge built by the Ethereum Foundation Formal Verification team in collaboration with Yukon and zkSecurity, is now live. better.codes takes a self-contained problem from the Proximity Prize research, formalized in Lean, and puts its soundness bound on a public leaderboard that anyone can push forward....",
+      "author": ""
+    },
+    {
+      "id": "eth-magicians:ethereum-magicians.org-topic-29464",
+      "source": "eth-magicians",
+      "sourceType": "rss",
+      "title": "Proposal for a New ERC: Token Behavior Declaration",
+      "url": "https://ethereum-magicians.org/t/proposal-for-a-new-erc-token-behavior-declaration/29464",
+      "publishedAt": "2026-08-19T21:31:47.000Z",
+      "summary": "Short version: one view function, behaviorFlags, returning a uint256 in which each bit names a way the token departs from plain ERC-20 or ERC-721. Fee-on-transfer, rebasing, transfer hook, pausable, blocklist, non-transferable, upgradeable, mintable, seizable, and two that only mean anything for 721, operator-restricted and metadata-mutable. The function is not the interesting part. Two rules hang off it, one of which I am confident about and one of which I am not, and there is a third problem u",
+      "author": "betterERC"
+    },
+    {
+      "id": "x:evan_van_ness:2090189598768996559",
+      "source": "x:evan_van_ness",
+      "sourceType": "twitter",
+      "title": "RT @NEARProtocol: There's a widening gap in crypto between what a chain promises",
+      "url": "https://x.com/evan_van_ness/status/2090189598768996559",
+      "publishedAt": "2026-08-19T21:30:08.000Z",
+      "summary": "RT @NEARProtocol: There's a widening gap in crypto between what a chain promises on a roadmap and what it actually runs in production. @Its…",
+      "author": "evan_van_ness"
+    },
+    {
+      "id": "x:sassal0x:2090187596458844389",
+      "source": "x:sassal0x",
+      "sourceType": "twitter",
+      "title": "Ethereum.",
+      "url": "https://x.com/sassal0x/status/2090187596458844389",
+      "publishedAt": "2026-08-19T21:22:11.000Z",
+      "summary": "Ethereum.",
+      "author": "sassal0x"
+    },
+    {
+      "id": "ethresearch:ethresear.ch-topic-25764",
+      "source": "ethresearch",
+      "sourceType": "rss",
+      "title": "BTCP Zero-Bridge: cross-chain exchange where assets never leave their native chains",
+      "url": "https://ethresear.ch/t/btcp-zero-bridge-cross-chain-exchange-where-assets-never-leave-their-native-chains/25764",
+      "publishedAt": "2026-08-19T21:16:26.000Z",
+      "summary": "TLDR: We present BTCP (Behavioral Transaction Continuity Protocol), a cross-chain mechanism where assets never leave their native chains. Instead of locking assets in bridge contracts and minting wrapped tokens, BTCP verifies that the same entity controls addresses on two chains, validates the complementarity of their intents, and coordinates independent atomic releases on each chain. The bridge is mathematical, not contractual. This eliminates bridge honey pots ($2.6B stolen in 2022 alone acros",
+      "author": "TRION-Protocol"
+    },
+    {
+      "id": "x:ethereum:2090181907661099123",
+      "source": "x:ethereum",
+      "sourceType": "twitter",
+      "title": "RT @theInterfold: Network Alpha is live.\n\nThe Interfold is live on mainnet: priv",
+      "url": "https://x.com/ethereum/status/2090181907661099123",
+      "publishedAt": "2026-08-19T20:59:35.000Z",
+      "summary": "RT @theInterfold: Network Alpha is live.\n\nThe Interfold is live on mainnet: private inputs, verifiable outputs, no trusted hardware.\n\nPubli…",
+      "author": "ethereum"
+    },
+    {
+      "id": "reddit-ethereum:t3_1vsxmvu",
+      "source": "reddit-ethereum",
+      "sourceType": "rss",
+      "title": "If private permissioned blockchains work well for tokenization and other things what is the need for ETHEREUM?",
+      "url": "https://www.reddit.com/r/ethereum/comments/1vsxmvu/if_private_permissioned_blockchains_work_well_for/",
+      "publishedAt": "2026-08-19T20:10:11.000Z",
+      "summary": "&#32; submitted by &#32; /u/manikandanappuv9 [link] &#32; [comments]",
+      "author": "/u/manikandanappuv9"
+    },
+    {
+      "id": "x:ethereum:2090114063648903348",
+      "source": "x:ethereum",
+      "sourceType": "twitter",
+      "title": "RT @EtherealnewsHQ: Ethereal news weekly #35\n\n#️⃣ @drakefjustin Poseidon abandon",
+      "url": "https://x.com/ethereum/status/2090114063648903348",
+      "publishedAt": "2026-08-19T16:29:59.000Z",
+      "summary": "RT @EtherealnewsHQ: Ethereal news weekly #35\n\n#️⃣ @drakefjustin Poseidon abandoned\n🌱 @EthCoordinate evolved from EthStaker\n🐻‍❄️ @ethPandaOp…",
+      "author": "ethereum"
+    },
+    {
+      "id": "x:gakonst:2090110645127782611",
+      "source": "x:gakonst",
+      "sourceType": "twitter",
+      "title": "starting to be happy with the nanocodex in javascript API, works in browser and ",
+      "url": "https://x.com/gakonst/status/2090110645127782611",
+      "publishedAt": "2026-08-19T16:16:24.000Z",
+      "summary": "starting to be happy with the nanocodex in javascript API, works in browser and in node via wasm\n\nnanocodex is codex but embeddable in your app - same model performance, but way lighter and extensible\n\nhttps://t.co/qmInqdZqZ5",
+      "author": "gakonst"
+    },
+    {
+      "id": "reddit-ethereum:t3_1vscs3u",
+      "source": "reddit-ethereum",
+      "sourceType": "rss",
+      "title": "Daily General Discussion August 19, 2026",
+      "url": "https://www.reddit.com/r/ethereum/comments/1vscs3u/daily_general_discussion_august_19_2026/",
+      "publishedAt": "2026-08-19T05:01:27.000Z",
+      "summary": "Welcome to the Daily General Discussion on r/ethereum https://imgur.com/3y7vezP Bookmarking this link will always bring you to the current daily: https://old.reddit.com/r/ethereum/about/sticky/?num=2 Please use this thread to discuss Ethereum topics, news, events, and even price ! Price discussion posted elsewhere in the subreddit will continue to be removed. As always, be constructive. - Subreddit Rules Want to stake? Learn more at r/ethstaker Community Links Ethereum Jobs , Twitter EVMavericks",
+      "author": "/u/EthereumDailyThread"
+    },
+    {
+      "id": "reddit-ethereum:t3_1vs6scr",
+      "source": "reddit-ethereum",
+      "sourceType": "rss",
+      "title": "Allocation Update - Q2 2026 | Ethereum Foundation Blog",
+      "url": "https://www.reddit.com/r/ethereum/comments/1vs6scr/allocation_update_q2_2026_ethereum_foundation_blog/",
+      "publishedAt": "2026-08-19T00:19:54.000Z",
+      "summary": "&#32; submitted by &#32; /u/abcoathup [link] &#32; [comments]",
+      "author": "/u/abcoathup"
+    },
+    {
+      "id": "x:ethereum:2089835736090485012",
+      "source": "x:ethereum",
+      "sourceType": "twitter",
+      "title": "RT @ethereuminsti: All-time stablecoin transfer volume on Ethereum passes $70 tr",
+      "url": "https://x.com/ethereum/status/2089835736090485012",
+      "publishedAt": "2026-08-18T22:04:01.000Z",
+      "summary": "RT @ethereuminsti: All-time stablecoin transfer volume on Ethereum passes $70 trillion.\n\nEthereum is the home of onchain finance. https://t…",
+      "author": "ethereum"
+    },
+    {
+      "id": "x:gakonst:2089830236469035073",
+      "source": "x:gakonst",
+      "sourceType": "twitter",
+      "title": "ah amazing stuff - matches my nanocodex in wasm thesis as well (going from the a",
+      "url": "https://x.com/gakonst/status/2089830236469035073",
+      "publishedAt": "2026-08-18T21:42:10.000Z",
+      "summary": "ah amazing stuff - matches my nanocodex in wasm thesis as well (going from the agent CLI/web app, to the embedded agent), vercel keeps shipping high taste stuff\n\nthis combined w/ model routing in their gateway will keep improving their positioning",
+      "author": "gakonst"
+    },
+    {
+      "id": "x:gakonst:2089828609313894746",
+      "source": "x:gakonst",
+      "sourceType": "twitter",
+      "title": "celld is cool! \n\nhttps://t.co/hdlX0YMn4v",
+      "url": "https://x.com/gakonst/status/2089828609313894746",
+      "publishedAt": "2026-08-18T21:35:42.000Z",
+      "summary": "celld is cool! \n\nhttps://t.co/hdlX0YMn4v",
+      "author": "gakonst"
+    },
+    {
+      "id": "reddit-ethereum:t3_1vs1fo2",
+      "source": "reddit-ethereum",
+      "sourceType": "rss",
+      "title": "I built ethernews.org, an auto-updating front page for the Ethereum ecosystem (inspired by Techmeme), which I also open sourced as Open Aggregator",
+      "url": "https://www.reddit.com/r/ethereum/comments/1vs1fo2/i_built_ethernewsorg_an_autoupdating_front_page/",
+      "publishedAt": "2026-08-18T20:43:54.000Z",
+      "summary": "I've always wanted a way to see \"what's new\" in Ethereum at any time without having to check whatever blog, forum, or feed things get posted at. So I started tinkering and came up with Ethernews: https://ethernews.org It's a front page that updates itself every few minutes from a source list: protocol research (ethresear.ch, Ethereum Magicians), client and zkVM release notes, governance forums, team blogs, newsletters, plus a few mainstream outlets for the institutional and regulatory side. Stor",
+      "author": "/u/cfdbit"
+    },
+    {
+      "id": "x:ethereum:2089813881006792999",
+      "source": "x:ethereum",
+      "sourceType": "twitter",
+      "title": "RT @ethPandaOps: Introducing the Platåberget testnet! Its our Glamsterdam focuse",
+      "url": "https://x.com/ethereum/status/2089813881006792999",
+      "publishedAt": "2026-08-18T20:37:10.000Z",
+      "summary": "RT @ethPandaOps: Introducing the Platåberget testnet! Its our Glamsterdam focused testnet to help the community test all the upcoming chang…",
+      "author": "ethereum"
+    },
+    {
+      "id": "ethresearch:ethresear.ch-topic-25747",
+      "source": "ethresearch",
+      "sourceType": "rss",
+      "title": "Data Metering, BAL Decomposition, and Bundle Pricing Under EIP-7999",
+      "url": "https://ethresear.ch/t/data-metering-bal-decomposition-and-bundle-pricing-under-eip-7999/25747",
+      "publishedAt": "2026-08-18T16:40:22.000Z",
+      "summary": "by Fei Wu - This work was conducted during my internship at the EF. I thank my mentor @misilva73 for valuable discussions, feedback, and comments. Overview EIP-7928 specifies Block-Level Access Lists (BALs) for Glamsterdam, where BALs remain oustide fee accouting. This analysis builds upon an open pull request on the EIP-7999 spec . The specification meters and prices execution, data, and state separately, while runtime BAL consumes data gas. Pricing BAL creates a two-way coupling between the re",
+      "author": "M1kuW1ll"
+    },
+    {
+      "id": "x:ethereumfndn:2089744424938930439",
+      "source": "x:ethereumfndn",
+      "sourceType": "twitter",
+      "title": "Live now: Exploring what makes a stablecoin trustless, walking through Pharos’ r",
+      "url": "https://x.com/ethereumfndn/status/2089744424938930439",
+      "publishedAt": "2026-08-18T16:01:11.000Z",
+      "summary": "Live now: Exploring what makes a stablecoin trustless, walking through Pharos’ risk dashboard, and digging into stablecoin analytics\n\nWith @jchaskin22 and @TokenBrice, founder of @PharosWatch\n\nhttps://t.co/BJ1eW43s7D",
+      "author": "ethereumfndn"
+    },
+    {
+      "id": "reddit-ethereum:t3_1vrsw90",
+      "source": "reddit-ethereum",
+      "sourceType": "rss",
+      "title": "\"I put an entire React app on Ethereum Mainnet. No traditional hosting. 24 smart contracts. Around $12 to publish. Built to live as long as Ethereum exists. The 15 minute deep dive.\"",
+      "url": "https://www.reddit.com/r/ethereum/comments/1vrsw90/i_put_an_entire_react_app_on_ethereum_mainnet_no/",
+      "publishedAt": "2026-08-18T15:47:06.000Z",
+      "summary": "Post written by a dev who recently deployed a fully onchain frontend for my project poidh: https://farcaster.xyz/acgk.eth/0x672d28dc &#32; submitted by &#32; /u/poidhxyz [link] &#32; [comments]",
+      "author": "/u/poidhxyz"
+    },
+    {
+      "id": "ethresearch:ethresear.ch-topic-25746",
+      "source": "ethresearch",
+      "sourceType": "rss",
+      "title": "Formally Verified Security for PQ-DAS / leanDA",
+      "url": "https://ethresear.ch/t/formally-verified-security-for-pq-das-leanda/25746",
+      "publishedAt": "2026-08-18T15:35:50.000Z",
+      "summary": "Formally Verified Security for PQ-DAS Thanks to Alex Hicks for feedback and discussion. The post and a detailed security proof outline was written by the human author, the translation to Lean was done with massive help of AI. Disclaimer. The lean code here proves statements about an abstract scheme, under assumptions about abstract building blocks. In particular, it does not prove security of any production implementation and can never replace proper audit of future implementations. Motivation a",
+      "author": "b-wagn"
+    },
+    {
+      "id": "reddit-ethereum:t3_1vrrdct",
+      "source": "reddit-ethereum",
+      "sourceType": "rss",
+      "title": "What belongs onchain when building an online community?",
+      "url": "https://www.reddit.com/r/ethereum/comments/1vrrdct/what_belongs_onchain_when_building_an_online/",
+      "publishedAt": "2026-08-18T14:50:32.000Z",
+      "summary": "I get the argument for putting ownership and payments onchain but I’m less sure where the line should be for the rest of a community. Membership, permissions, reputation and access rules could all live onchain too but at some point it feels like you’re adding complexity just because you can. If you were designing a community from scratch, what would you put onchain and what would you deliberately keep offchain? &#32; submitted by &#32; /u/Charming_Pound4112 [link] &#32; [comments]",
+      "author": "/u/Charming_Pound4112"
+    },
+    {
+      "id": "x:ethereumfndn:2089691872033652994",
+      "source": "x:ethereumfndn",
+      "sourceType": "twitter",
+      "title": "RT @EF_ESP: Q2 2026 carried forward our focus on advancing Ethereum's resilience",
+      "url": "https://x.com/ethereumfndn/status/2089691872033652994",
+      "publishedAt": "2026-08-18T12:32:21.000Z",
+      "summary": "RT @EF_ESP: Q2 2026 carried forward our focus on advancing Ethereum's resilience and capabilities, with support for work across ZK proofs,…",
+      "author": "ethereumfndn"
+    },
+    {
+      "id": "reddit-ethereum:t3_1vrml5c",
+      "source": "reddit-ethereum",
+      "sourceType": "rss",
+      "title": "Attacking Poseidon's Partial Layer via Subspace Restriction",
+      "url": "https://www.reddit.com/r/ethereum/comments/1vrml5c/attacking_poseidons_partial_layer_via_subspace/",
+      "publishedAt": "2026-08-18T11:33:39.000Z",
+      "summary": "Good poseidon was recently ditched by Ethereum ( https://x.com/ProjectZKM/article/2088320035970330676 ) Just wondering what about all the chains currently using it (Filecoin,Mina,Starknet, Polygon, ..) &#32; submitted by &#32; /u/ligi [link] &#32; [comments]",
+      "author": "/u/ligi"
+    },
+    {
+      "id": "reddit-ethereum:t3_1vrm376",
+      "source": "reddit-ethereum",
+      "sourceType": "rss",
+      "title": "Announcing the Platåberget Testnet",
+      "url": "https://www.reddit.com/r/ethereum/comments/1vrm376/announcing_the_platåberget_testnet/",
+      "publishedAt": "2026-08-18T11:08:37.000Z",
+      "summary": "&#32; submitted by &#32; /u/ligi [link] &#32; [comments]",
+      "author": "/u/ligi"
+    },
+    {
+      "id": "reddit-ethereum:t3_1vrfld5",
+      "source": "reddit-ethereum",
+      "sourceType": "rss",
+      "title": "Daily General Discussion August 18, 2026",
+      "url": "https://www.reddit.com/r/ethereum/comments/1vrfld5/daily_general_discussion_august_18_2026/",
+      "publishedAt": "2026-08-18T05:01:25.000Z",
+      "summary": "Welcome to the Daily General Discussion on r/ethereum https://imgur.com/3y7vezP Bookmarking this link will always bring you to the current daily: https://old.reddit.com/r/ethereum/about/sticky/?num=2 Please use this thread to discuss Ethereum topics, news, events, and even price ! Price discussion posted elsewhere in the subreddit will continue to be removed. As always, be constructive. - Subreddit Rules Want to stake? Learn more at r/ethstaker Community Links Ethereum Jobs , Twitter EVMavericks",
+      "author": "/u/EthereumDailyThread"
+    },
+    {
+      "id": "eth-magicians:ethereum-magicians.org-topic-29450",
+      "source": "eth-magicians",
+      "sourceType": "rss",
+      "title": "All Core Devs - Testing (ACDT) #93, August 24, 2026",
+      "url": "https://ethereum-magicians.org/t/all-core-devs-testing-acdt-93-august-24-2026/29450",
+      "publishedAt": "2026-08-18T00:48:59.000Z",
+      "summary": "Agenda Devnet status updates Updates on glamsterdam-devnet-8/Plataberget Discussions TBD EL breakout CL breakout Meeting Time: Monday, August 24, 2026 at 14:00 UTC (60 minutes) GitHub Issue 2 posts - 2 participants Read full topic",
+      "author": "system"
+    },
+    {
+      "id": "ef-blog:https://blog.ethereum.org/en/2026/08/18/allocation-q2-26",
+      "source": "ef-blog",
+      "sourceType": "rss",
+      "title": "Allocation Update - Q2 2026",
+      "url": "https://blog.ethereum.org/en/2026/08/18/allocation-q2-26",
+      "publishedAt": "2026-08-18T00:00:00.000Z",
+      "summary": "Q2 2026 carried forward our focus on advancing Ethereum’s resilience and capabilities, supporting key work in zero-knowledge proofs, client diversity, formal verification, and open-source tooling. See the list below of the projects and ecosystem efforts supported this quarter as builders build and strengthen the network. Explore the full list...",
+      "author": ""
+    },
+    {
+      "id": "eth-magicians:ethereum-magicians.org-topic-29449",
+      "source": "eth-magicians",
+      "sourceType": "rss",
+      "title": "EIP-8383: Reduce CL Block Retention Window",
+      "url": "https://ethereum-magicians.org/t/eip-8383-reduce-cl-block-retention-window/29449",
+      "publishedAt": "2026-08-17T22:18:35.000Z",
+      "summary": "Discussion topic for reducing the cl block retention window 1 post - 1 participant Read full topic",
+      "author": "kevaundray"
+    },
+    {
+      "id": "x:evan_van_ness:2089472506042126452",
+      "source": "x:evan_van_ness",
+      "sourceType": "twitter",
+      "title": "Seems to me that the latest algo has massively cut the boost of a RT while comme",
+      "url": "https://x.com/evan_van_ness/status/2089472506042126452",
+      "publishedAt": "2026-08-17T22:00:40.000Z",
+      "summary": "Seems to me that the latest algo has massively cut the boost of a RT while comments and likes remain vital",
+      "author": "evan_van_ness"
+    },
+    {
+      "id": "x:evan_van_ness:2089413235111768096",
+      "source": "x:evan_van_ness",
+      "sourceType": "twitter",
+      "title": "RT @ronrule: In 2001 George W Bush proposed a partial privatization plan for Soc",
+      "url": "https://x.com/evan_van_ness/status/2089413235111768096",
+      "publishedAt": "2026-08-17T18:05:09.000Z",
+      "summary": "RT @ronrule: In 2001 George W Bush proposed a partial privatization plan for Social Security so you could put 10% of your SS contribution i…",
+      "author": "evan_van_ness"
+    },
+    {
+      "id": "eth-magicians:ethereum-magicians.org-topic-29448",
+      "source": "eth-magicians",
+      "sourceType": "rss",
+      "title": "Encrypt The Mempool #9, August 19, 2026",
+      "url": "https://ethereum-magicians.org/t/encrypt-the-mempool-9-august-19-2026/29448",
+      "publishedAt": "2026-08-17T16:56:23.000Z",
+      "summary": "Agenda Enshrinement: Are we OK with a non-PQ temporary solution? Validator Whitelist: How do we prove 1) withholding, 2) key selling? Can these proofs be automated? Achieving CR for the original EIP-8105 trusted set: Upholding CR in an encrypted mempool with trusted sets - HackMD Meeting Time: Wednesday, August 19, 2026 at 15:00 UTC (60 minutes) GitHub Issue 3 posts - 1 participant Read full topic",
+      "author": "system"
+    },
+    {
+      "id": "x:ethereumfndn:2089393256362561973",
+      "source": "x:ethereumfndn",
+      "sourceType": "twitter",
+      "title": "Tomorrow at 4pm UTC\n\nEthereum Builders Live with @jchaskin22 and @TokenBrice, fo",
+      "url": "https://x.com/ethereumfndn/status/2089393256362561973",
+      "publishedAt": "2026-08-17T16:45:46.000Z",
+      "summary": "Tomorrow at 4pm UTC\n\nEthereum Builders Live with @jchaskin22 and @TokenBrice, founder of @PharosWatch\n\nWe'll explore what makes a stablecoin trustless, walk through Pharos' risk dashboard, and dig into stablecoin analytics.\n\nhttps://t.co/BJ1eW43s7D https://t.co/a73OO0lUou",
+      "author": "ethereumfndn"
+    },
+    {
+      "id": "eth-magicians:ethereum-magicians.org-topic-29446",
+      "source": "eth-magicians",
+      "sourceType": "rss",
+      "title": "FOCIL Breakout #40, August 18, 2026",
+      "url": "https://ethereum-magicians.org/t/focil-breakout-40-august-18-2026/29446",
+      "publishedAt": "2026-08-17T12:57:43.000Z",
+      "summary": "Agenda Development updates Spec updates Testing updates and more Meeting Time: Tuesday, August 18, 2026 at 13:00 UTC (60 minutes) GitHub Issue 4 posts - 2 participants Read full topic",
+      "author": "system"
+    },
+    {
+      "id": "eth-magicians:ethereum-magicians.org-topic-29442",
+      "source": "eth-magicians",
+      "sourceType": "rss",
+      "title": "ERC-8382: Private Referable NFTs",
+      "url": "https://ethereum-magicians.org/t/erc-8382-private-referable-nfts/29442",
+      "publishedAt": "2026-08-17T07:22:51.000Z",
+      "summary": "Abstract This ERC extends ERC-721 with interoperable commitments to private NFT-to-NFT references. A token can publish one or more reference commitments without disclosing the referenced NFT, reference label, weight, or authorization material. Implementations expose a common discovery interface, may require a zero-knowledge or other privacy-preserving proof at mint time, and may support later selective disclosure of individual references. The core interface is proof-system-neutral. It does not r",
+      "author": "richard620"
+    },
+    {
+      "id": "eth-magicians:ethereum-magicians.org-topic-29441",
+      "source": "eth-magicians",
+      "sourceType": "rss",
+      "title": "Lineage Registry: an ERC-721 extension for on-chain genealogical trees",
+      "url": "https://ethereum-magicians.org/t/lineage-registry-an-erc-721-extension-for-on-chain-genealogical-trees/29441",
+      "publishedAt": "2026-08-17T07:19:12.000Z",
+      "summary": "Author: Henrique L. Alvim ( @henriquelalvim ) Reference implementation: genealogicalRegistryBlockchain Base Sepolia deployment: Base Sepolia Blockscout TL;DR — I am proposing a standard for decentralized genealogical tree register , primarily used for genealogical tracking to verify pedigree. The proposed standard is this contract: LineageRegistry.sol . ERC-721 tokens form a sexed DAG : each token carries a sex and a birth date, and is either a founder or has exactly one sire and one dam. Six ru",
+      "author": "henriquelalvim"
+    },
+    {
+      "id": "reddit-ethereum:t3_1vqki12",
+      "source": "reddit-ethereum",
+      "sourceType": "rss",
+      "title": "Ethereal news weekly #35 | Justin Drake: Poseidon abandoned, EthCoordinate evolved from EthStaker, Platåberget (Glamsterdam public testnet) live",
+      "url": "https://www.reddit.com/r/ethereum/comments/1vqki12/ethereal_news_weekly_35_justin_drake_poseidon/",
+      "publishedAt": "2026-08-17T06:33:14.000Z",
+      "summary": "&#32; submitted by &#32; /u/abcoathup [link] &#32; [comments]",
+      "author": "/u/abcoathup"
+    },
+    {
+      "id": "reddit-ethereum:t3_1vqiuo7",
+      "source": "reddit-ethereum",
+      "sourceType": "rss",
+      "title": "Daily General Discussion August 17, 2026",
+      "url": "https://www.reddit.com/r/ethereum/comments/1vqiuo7/daily_general_discussion_august_17_2026/",
+      "publishedAt": "2026-08-17T05:01:27.000Z",
+      "summary": "Welcome to the Daily General Discussion on r/ethereum https://imgur.com/3y7vezP Bookmarking this link will always bring you to the current daily: https://old.reddit.com/r/ethereum/about/sticky/?num=2 Please use this thread to discuss Ethereum topics, news, events, and even price ! Price discussion posted elsewhere in the subreddit will continue to be removed. As always, be constructive. - Subreddit Rules Want to stake? Learn more at r/ethstaker Community Links Ethereum Jobs , Twitter EVMavericks",
+      "author": "/u/EthereumDailyThread"
+    },
+    {
+      "id": "ef-blog:https://blog.ethereum.org/en/2026/08/17/plataberget-testnet",
+      "source": "ef-blog",
+      "sourceType": "rss",
+      "title": "Announcing the Platåberget Testnet",
+      "url": "https://blog.ethereum.org/en/2026/08/17/plataberget-testnet",
+      "publishedAt": "2026-08-17T00:00:00.000Z",
+      "summary": "tl;dr: Meet Platåberget: Glamsterdam's (Gloas + Amsterdam) early testing ground open to public participation. This upgrade comes with breaking changes for application developers. Notably, any tool that relies on a hardcapped maximum gas limit (think wallets, indexers and gas estimators) will break and needs to be updated. Please use this...",
+      "author": ""
+    },
+    {
+      "id": "x:evan_van_ness:2089095653628559674",
+      "source": "x:evan_van_ness",
+      "sourceType": "twitter",
+      "title": "El mejor del país siempre se les vende a los yanquis https://t.co/RoFhVO0hDJ",
+      "url": "https://x.com/evan_van_ness/status/2089095653628559674",
+      "publishedAt": "2026-08-16T21:03:12.000Z",
+      "summary": "El mejor del país siempre se les vende a los yanquis https://t.co/RoFhVO0hDJ",
+      "author": "evan_van_ness"
+    },
+    {
+      "id": "x:VitalikButerin:2088995690567671968",
+      "source": "x:VitalikButerin",
+      "sourceType": "twitter",
+      "title": "Bitcoiners deserve a lot of credit for pioneering many of these ideas (see Utree",
+      "url": "https://x.com/VitalikButerin/status/2088995690567671968",
+      "publishedAt": "2026-08-16T14:25:58.000Z",
+      "summary": "Bitcoiners deserve a lot of credit for pioneering many of these ideas (see Utreexo).\n\nBut yes, this is what the current proposed Ethereum scaling strategy looks like in action.\n\nWe want Ethereum to have the best of UTXO-style state, dynamic state, and everything in between, allowing the great majority of Ethereum's activity to be hyperscaled without sacrifice to decentralization, ease of node running and censorship resistance.\n https://t.co/rVylwVtgP5",
+      "author": "VitalikButerin"
+    },
+    {
+      "id": "ethresearch:ethresear.ch-topic-25730",
+      "source": "ethresearch",
+      "sourceType": "rss",
+      "title": "Ethereum lessons from a live end-to-end PQ proof-native protocol",
+      "url": "https://ethresear.ch/t/ethereum-lessons-from-a-live-end-to-end-pq-proof-native-protocol/25730",
+      "publishedAt": "2026-08-16T09:06:08.000Z",
+      "summary": "There is a lot of discussion here about what an end-to-end post-quantum blockchain stack should eventually look like. I took the clean-slate route, built one and launched it as a public testnet. A full node can independently verify the network and produce blocks… on my old laptop. Parano1d protocol is a proof-native L1 ordered by proof of work. Wallet authorization, state transitions and recursive validity from genesis are all carried by a single post-quantum proof stack. Under the explicit prem",
+      "author": "ignotusnemo"
+    },
+    {
+      "id": "reddit-ethereum:t3_1vpnz5p",
+      "source": "reddit-ethereum",
+      "sourceType": "rss",
+      "title": "Daily General Discussion August 16, 2026",
+      "url": "https://www.reddit.com/r/ethereum/comments/1vpnz5p/daily_general_discussion_august_16_2026/",
+      "publishedAt": "2026-08-16T05:01:15.000Z",
+      "summary": "Welcome to the Daily General Discussion on r/ethereum https://imgur.com/3y7vezP Bookmarking this link will always bring you to the current daily: https://old.reddit.com/r/ethereum/about/sticky/?num=2 Please use this thread to discuss Ethereum topics, news, events, and even price ! Price discussion posted elsewhere in the subreddit will continue to be removed. As always, be constructive. - Subreddit Rules Want to stake? Learn more at r/ethstaker Community Links Ethereum Jobs , Twitter EVMavericks",
+      "author": "/u/EthereumDailyThread"
+    },
+    {
+      "id": "reddit-ethereum:t3_1vp71p6",
+      "source": "reddit-ethereum",
+      "sourceType": "rss",
+      "title": "Trezor Data Breach exposes almost 14.000 customers home addresses tied to hardware-wallet purchases. Stay safe!",
+      "url": "https://www.reddit.com/r/ethereum/comments/1vp71p6/trezor_data_breach_exposes_almost_14000_customers/",
+      "publishedAt": "2026-08-15T16:21:26.000Z",
+      "summary": "Key Takeaways In August 2026, a data exposure at Trezor's shipping provider, ShipMonk, affected approximately 14,000 customers, revealing names, email addresses, phone numbers and, for many customers, shipping addresses. The leak links confirmed Trezor hardware-wallet purchases to real-world identities and shipping addresses. That creates a physical-security risk beyond phishing, including possible targeting for burglary, coercion or so-called wrench attacks. Trezor said its own systems, devices",
+      "author": "/u/wslyvh"
+    },
+    {
+      "id": "x:sassal0x:2088419026812973330",
+      "source": "x:sassal0x",
+      "sourceType": "twitter",
+      "title": "RT @EthCoordinate: Forkcast is shipping a steady stream of updates:  \n\nRank page",
+      "url": "https://x.com/sassal0x/status/2088419026812973330",
+      "publishedAt": "2026-08-15T00:14:31.000Z",
+      "summary": "RT @EthCoordinate: Forkcast is shipping a steady stream of updates:  \n\nRank page:\n\n⇥ Click any EIP number to open its details without leavi…",
+      "author": "sassal0x"
+    },
+    {
+      "id": "x:evan_van_ness:2088376438512611732",
+      "source": "x:evan_van_ness",
+      "sourceType": "twitter",
+      "title": "RT @PhilWMagness: JD Vance wants to end the US dollar's position as a global res",
+      "url": "https://x.com/evan_van_ness/status/2088376438512611732",
+      "publishedAt": "2026-08-14T21:25:17.000Z",
+      "summary": "RT @PhilWMagness: JD Vance wants to end the US dollar's position as a global reserve currency, because he thinks it allows Americans to con…",
+      "author": "evan_van_ness"
+    },
+    {
+      "id": "x:evan_van_ness:2088293094668038167",
+      "source": "x:evan_van_ness",
+      "sourceType": "twitter",
+      "title": "RT @infinex: Private Send is live\n\nNow you can send and receive privately, using",
+      "url": "https://x.com/evan_van_ness/status/2088293094668038167",
+      "publishedAt": "2026-08-14T15:54:07.000Z",
+      "summary": "RT @infinex: Private Send is live\n\nNow you can send and receive privately, using an X account, an Infinex username, or a claim link\n\nBecaus…",
+      "author": "evan_van_ness"
+    },
+    {
+      "id": "eth-magicians:ethereum-magicians.org-topic-29427",
+      "source": "eth-magicians",
+      "sourceType": "rss",
+      "title": "Preserving censorship resistance for BAL data in EIP-7999",
+      "url": "https://ethereum-magicians.org/t/preserving-censorship-resistance-for-bal-data-in-eip-7999/29427",
+      "publishedAt": "2026-08-14T13:05:41.000Z",
+      "summary": "EIP-7999 separates data from EVM execution gas and treats data as an unconditional resource under FOCIL : a builder may not omit an inclusion-list transaction merely because the block’s data resource is full. This works because each IL is limited to 8 KiB of serialized transactions. EIP-8279 , which can be incorporated in EIP-7999, specifies a single data resource consisting of both calldata and EIP-7928 BAL data. The existing IL size bound is then no longer sufficient. This post proposes a simp",
+      "author": "aelowsson"
+    },
+    {
+      "id": "x:evan_van_ness:2088153410780442919",
+      "source": "x:evan_van_ness",
+      "sourceType": "twitter",
+      "title": "RT @peterschweizer: This is iranian Masoumeh Ebtekar, nicknamed \"Screaming Mary,",
+      "url": "https://x.com/evan_van_ness/status/2088153410780442919",
+      "publishedAt": "2026-08-14T06:39:03.000Z",
+      "summary": "RT @peterschweizer: This is iranian Masoumeh Ebtekar, nicknamed \"Screaming Mary,\" one of the hostage takers of Americans in 1979.  Her daug…",
+      "author": "evan_van_ness"
+    },
+    {
+      "id": "x:evan_van_ness:2088145235662590308",
+      "source": "x:evan_van_ness",
+      "sourceType": "twitter",
+      "title": "RT @marcorubio: Fidel Castro was a complete failure at everything except destroy",
+      "url": "https://x.com/evan_van_ness/status/2088145235662590308",
+      "publishedAt": "2026-08-14T06:06:34.000Z",
+      "summary": "RT @marcorubio: Fidel Castro was a complete failure at everything except destroying Cuba and impoverishing, jailing and murdering his own p…",
+      "author": "evan_van_ness"
+    },
+    {
+      "id": "x:evan_van_ness:2088034734781702445",
+      "source": "x:evan_van_ness",
+      "sourceType": "twitter",
+      "title": "Some of y'all have asked my opinion on ETH issuance\n\nMy support is contingent on",
+      "url": "https://x.com/evan_van_ness/status/2088034734781702445",
+      "publishedAt": "2026-08-13T22:47:29.000Z",
+      "summary": "Some of y'all have asked my opinion on ETH issuance\n\nMy support is contingent on @fundstrat support",
+      "author": "evan_van_ness"
+    },
+    {
+      "id": "eth-magicians:ethereum-magicians.org-topic-29423",
+      "source": "eth-magicians",
+      "sourceType": "rss",
+      "title": "EIP Editing Office Hour (EIP + ERC ) Meeting #111, Aug 18, 2026",
+      "url": "https://ethereum-magicians.org/t/eip-editing-office-hour-eip-erc-meeting-111-aug-18-2026/29423",
+      "publishedAt": "2026-08-13T21:40:06.000Z",
+      "summary": "Agenda Editor - @samwilsn EIP Board: Board Tool Zoom: Link ACD related Update EIP-8136: add Aarsh Shah to authors by sukunrt · Pull Request #12191 · ethereum/EIPs · GitHub Add EIP: ePBS Mandatory Burn of Execution Rewards by benaadams · Pull Request #12130 · ethereum/EIPs · GitHub (to be proposed in ACDE 243) Add EIP: Net Gas Metering for Account Changes by rakita · Pull Request #12058 · ethereum/EIPs · GitHub (multiple mentions) Update EIP-3298: Fix broken GasToken link by kongtaoxing · Pull Re",
+      "author": "system"
+    },
+    {
+      "id": "x:sassal0x:2088005695090397571",
+      "source": "x:sassal0x",
+      "sourceType": "twitter",
+      "title": "RT @drakefjustin: Goodbye, Poseidon!\n\nAn epic 8-year, 8-figure rabbit hole in po",
+      "url": "https://x.com/sassal0x/status/2088005695090397571",
+      "publishedAt": "2026-08-13T20:52:05.000Z",
+      "summary": "RT @drakefjustin: Goodbye, Poseidon!\n\nAn epic 8-year, 8-figure rabbit hole in post-quantum cryptography reaches its dream conclusion. The E…",
+      "author": "sassal0x"
+    },
+    {
+      "id": "eth-magicians:ethereum-magicians.org-topic-29421",
+      "source": "eth-magicians",
+      "sourceType": "rss",
+      "title": "A map of the agent-mandate ERCs — what each one actually does",
+      "url": "https://ethereum-magicians.org/t/a-map-of-the-agent-mandate-ercs-what-each-one-actually-does/29421",
+      "publishedAt": "2026-08-13T16:14:23.000Z",
+      "summary": "Corrected 14 August. The ERC-8226 row originally described its enforcement as taking place in a regulated token’s pre-transfer hook. That is one of three venues its specification defines, not the definition — corrected below after @thamerdridi pointed it out. Thread activity figures are still as collected on 13 August. If you are trying to work out how to bound what an autonomous agent may do on-chain, you will find a dozen ERCs that sound like they answer the question. Most of them answer a dif",
+      "author": "helmymekaoui-web"
+    },
+    {
+      "id": "x:drakefjustin:2087905789432263047",
+      "source": "x:drakefjustin",
+      "sourceType": "twitter",
+      "title": "https://t.co/3RZMD7b5pI",
+      "url": "https://x.com/drakefjustin/status/2087905789432263047",
+      "publishedAt": "2026-08-13T14:15:06.000Z",
+      "summary": "https://t.co/3RZMD7b5pI",
+      "author": "drakefjustin"
+    },
+    {
+      "id": "x:drakefjustin:2087905684180418733",
+      "source": "x:drakefjustin",
+      "sourceType": "twitter",
+      "title": "Goodbye, Poseidon!\n\nAn epic 8-year, 8-figure rabbit hole in post-quantum cryptog",
+      "url": "https://x.com/drakefjustin/status/2087905684180418733",
+      "publishedAt": "2026-08-13T14:14:41.000Z",
+      "summary": "Goodbye, Poseidon!\n\nAn epic 8-year, 8-figure rabbit hole in post-quantum cryptography reaches its dream conclusion. The Ethereum Foundation is abandoning Poseidon for L1, pivoting to SHA or BLAKE. This milestone unlocks ultimate security for lean Ethereum and foreshadows a golden era of hash-based cryptography.\n\nSince 2018, the Ethereum Foundation has invested in magic cryptographic bricks, so-called \"SNARK-friendly hashes\". In 2019, Poseidon was born. It held strong and became the dominant SNAR",
+      "author": "drakefjustin"
+    },
+    {
+      "id": "eth-magicians:ethereum-magicians.org-topic-29419",
+      "source": "eth-magicians",
+      "sourceType": "rss",
+      "title": "Frame Transaction Breakout #2, August 25, 2026",
+      "url": "https://ethereum-magicians.org/t/frame-transaction-breakout-2-august-25-2026/29419",
+      "publishedAt": "2026-08-13T13:59:27.000Z",
+      "summary": "Agenda EIP-8130 discussion Frame mode for expiry Meeting Time: Tuesday, August 25, 2026 at 14:00 UTC (60 minutes) GitHub Issue 1 post - 1 participant Read full topic",
+      "author": "system"
+    },
+    {
+      "id": "eth-magicians:ethereum-magicians.org-topic-29418",
+      "source": "eth-magicians",
+      "sourceType": "rss",
+      "title": "EIPIP Meeting #130, Sep 16, 2026",
+      "url": "https://ethereum-magicians.org/t/eipip-meeting-130-sep-16-2026/29418",
+      "publishedAt": "2026-08-13T11:01:37.000Z",
+      "summary": "Agenda Meeting Room: Zoom Issue Deadline Call for Input: Allow Links to Unicode Technical Standards · Issue #393 · ethcatherders/EIPIP · GitHub November 16, 2025 Call for Input: Add Associate EIP Editors · Issue #398 · ethcatherders/EIPIP · GitHub February 10, 2026 Editors’ Discussion Update CONTRIBUTING.md with new contributor guidelines by poojaranjan · Pull Request #12149 · ethereum/EIPs · GitHub Updates on topics from earlier meetings EIP WG updates Action Items from EIPIP 128 EIP Editing Of",
+      "author": "system"
+    },
+    {
+      "id": "ethresearch:ethresear.ch-topic-25699",
+      "source": "ethresearch",
+      "sourceType": "rss",
+      "title": "Native Ethereum Delegation (NED): Protocol-Routed Delegation With Split-Neutral Allocation and Coverage-Bounded Consensus Amplification",
+      "url": "https://ethresear.ch/t/native-ethereum-delegation-ned-protocol-routed-delegation-with-split-neutral-allocation-and-coverage-bounded-consensus-amplification/25699",
+      "publishedAt": "2026-08-13T00:39:44.000Z",
+      "summary": "Informally: the Flanders Protocol. Abstract Ethereum already has delegation economically, but the protocol does not provide a provider-neutral native delegation primitive. Today, a user’s choice of staking provider commonly influences where that user’s stake ultimately operates: \\text{commercial provider choice} \\longrightarrow \\text{validator destination} \\longrightarrow \\text{consensus weight}. Native Ethereum Delegation (NED) explores a different architecture. A user delegates to a common nat",
+      "author": "squijello"
+    },
+    {
+      "id": "ethresearch:ethresear.ch-topic-25696",
+      "source": "ethresearch",
+      "sourceType": "rss",
+      "title": "Designs for EVM gas accounting in EIP-7999",
+      "url": "https://ethresear.ch/t/designs-for-evm-gas-accounting-in-eip-7999/25696",
+      "publishedAt": "2026-08-12T23:22:25.000Z",
+      "summary": "Introduction A multidimensional fee market enables precise control over resource consumption. It allows the market to fairly price resources according to targets and limits deemed safe by developers, and it allows resources to be consumed at maximum capacity within these limits. EIP-8037 introduces state creation as a separately metered resource. Its resource-pricing design is kept simple so as not to delay Glamsterdam, but the lack of a separate base fee may lead to various failure modes . To a",
+      "author": "aelowsson"
+    },
+    {
+      "id": "x:evan_van_ness:2087676634094526624",
+      "source": "x:evan_van_ness",
+      "sourceType": "twitter",
+      "title": "RT @Techno_Fog: Unsealed: the indictment of former SPLC CFO Heidi Beirich\n\nShe d",
+      "url": "https://x.com/evan_van_ness/status/2087676634094526624",
+      "publishedAt": "2026-08-12T23:04:31.000Z",
+      "summary": "RT @Techno_Fog: Unsealed: the indictment of former SPLC CFO Heidi Beirich\n\nShe dated/lived with a neo-Nazi and used donor funds laundered t…",
+      "author": "evan_van_ness"
+    },
+    {
+      "id": "x:evan_van_ness:2087589227068326325",
+      "source": "x:evan_van_ness",
+      "sourceType": "twitter",
+      "title": "RT @ryskfinance: rETH is now live on Rysk.\n\n@Rocket_Pool rETH can now be used as",
+      "url": "https://x.com/evan_van_ness/status/2087589227068326325",
+      "publishedAt": "2026-08-12T17:17:11.000Z",
+      "summary": "RT @ryskfinance: rETH is now live on Rysk.\n\n@Rocket_Pool rETH can now be used as collateral for covered calls.\n\nEarn premium upfront while…",
+      "author": "evan_van_ness"
+    },
+    {
+      "id": "x:ethereumfndn:2087570223280849311",
+      "source": "x:ethereumfndn",
+      "sourceType": "twitter",
+      "title": "Live now: exploring how Octant funds public goods, its new voting app, past fund",
+      "url": "https://x.com/ethereumfndn/status/2087570223280849311",
+      "publishedAt": "2026-08-12T16:01:41.000Z",
+      "summary": "Live now: exploring how Octant funds public goods, its new voting app, past funding epochs, and Epoch 13, a new 100 ETH matching round focused on privacy\n\nWith @jchaskin22, joined by @arlery, CMO at @OctantApp\n\nhttps://t.co/4xMCay17vi",
+      "author": "ethereumfndn"
+    },
+    {
+      "id": "eth-magicians:ethereum-magicians.org-topic-29405",
+      "source": "eth-magicians",
+      "sourceType": "rss",
+      "title": "EIP-8379: Top-up Sync",
+      "url": "https://ethereum-magicians.org/t/eip-8379-top-up-sync/29405",
+      "publishedAt": "2026-08-12T13:57:59.000Z",
+      "summary": "This is the discussion place for all things related to the CL-driven EL synchronisation by exposing the execution client head and distinguish missing state from missing history in the engine API. Update Log 2026-08-06:Initial draft proposed 2026-08-12:EIP submitted 1 post - 1 participant Read full topic",
+      "author": "RazorClient"
+    },
+    {
+      "id": "eth-magicians:ethereum-magicians.org-topic-29404",
+      "source": "eth-magicians",
+      "sourceType": "rss",
+      "title": "P2P networking #6 August 12, 2026",
+      "url": "https://ethereum-magicians.org/t/p2p-networking-6-august-12-2026/29404",
+      "publishedAt": "2026-08-12T13:10:31.000Z",
+      "summary": "Agenda – Client updates – Waggle protocol (Joao, Sukun) Meeting Time: Wednesday, August 12, 2026 at 15:30 UTC (60 minutes) GitHub Issue 3 posts - 1 participant Read full topic",
+      "author": "system"
+    },
+    {
+      "id": "ethresearch:ethresear.ch-topic-25691",
+      "source": "ethresearch",
+      "sourceType": "rss",
+      "title": "Ragged multi-instance GKR for Poseidon2b: one walk, unequal regions, no max-width padding",
+      "url": "https://ethresear.ch/t/ragged-multi-instance-gkr-for-poseidon2b-one-walk-unequal-regions-no-max-width-padding/25691",
+      "publishedAt": "2026-08-12T07:20:07.000Z",
+      "summary": "Two current Ethereum proving efforts are explicitly hash-heavy. A recent post-quantum validator aggregation design says that verification is dominated by hash evaluations, while a separate WHIR implementation reports Poseidon2 Merkle hashing at 58% of GPU time for a representative configuration: Exploring the Design Space for a Post-Quantum Public Key Registry for Ethereum Validators Cryptography Authors: Thomas Coratger , Tom Wambsgans , Ladislaus , Thomas Thiery , Justin Drake Credits to Bened",
+      "author": "ignotusnemo"
+    },
+    {
+      "id": "eth-magicians:ethereum-magicians.org-topic-29403",
+      "source": "eth-magicians",
+      "sourceType": "rss",
+      "title": "Post Quantum transaction signature (PQTS) Breakout #13",
+      "url": "https://ethereum-magicians.org/t/post-quantum-transaction-signature-pqts-breakout-13/29403",
+      "publishedAt": "2026-08-12T07:07:59.000Z",
+      "summary": "Agenda PQ Sigs at Circle- Mira Belenkiy Meeting Time: Wednesday, August 19, 2026 at 13:00 UTC (60 minutes) GitHub Issue 3 posts - 1 participant Read full topic",
+      "author": "system"
+    },
+    {
+      "id": "x:ethereum:2087427907496915286",
+      "source": "x:ethereum",
+      "sourceType": "twitter",
+      "title": "RT @EFDevcon: 1/ 🇮🇳 Aamchi Mumbai!\n\nDevcon 8 is heading to one of the most ele",
+      "url": "https://x.com/ethereum/status/2087427907496915286",
+      "publishedAt": "2026-08-12T06:36:10.000Z",
+      "summary": "RT @EFDevcon: 1/ 🇮🇳 Aamchi Mumbai!\n\nDevcon 8 is heading to one of the most electric cities in the world, and our Mumbai travel guide is off…",
+      "author": "ethereum"
+    },
+    {
+      "id": "x:ethereum:2087427804220494247",
+      "source": "x:ethereum",
+      "sourceType": "twitter",
+      "title": "RT @EtherealnewsHQ: Ethereal news weekly #34\n\n🐌 @jdetychey EIP8363 tapered issu",
+      "url": "https://x.com/ethereum/status/2087427804220494247",
+      "publishedAt": "2026-08-12T06:35:45.000Z",
+      "summary": "RT @EtherealnewsHQ: Ethereal news weekly #34\n\n🐌 @jdetychey EIP8363 tapered issuance burn proposal\n🕹 @aztecnetwork Dark Forest Aztec\n🤖 @Meta…",
+      "author": "ethereum"
+    },
+    {
+      "id": "x:ethereum:2087427698515718151",
+      "source": "x:ethereum",
+      "sourceType": "twitter",
+      "title": "RT @OctantApp: [BREAKING] It's time to fund privacy. https://t.co/rxuSUlXHWa",
+      "url": "https://x.com/ethereum/status/2087427698515718151",
+      "publishedAt": "2026-08-12T06:35:20.000Z",
+      "summary": "RT @OctantApp: [BREAKING] It's time to fund privacy. https://t.co/rxuSUlXHWa",
+      "author": "ethereum"
+    },
+    {
+      "id": "x:VitalikButerin:2087241620618088674",
+      "source": "x:VitalikButerin",
+      "sourceType": "twitter",
+      "title": "Impressive work!\n\nFor comparison, an H100 can do roughly 100-200 tok/s of Muse 3",
+      "url": "https://x.com/VitalikButerin/status/2087241620618088674",
+      "publishedAt": "2026-08-11T18:15:56.000Z",
+      "summary": "Impressive work!\n\nFor comparison, an H100 can do roughly 100-200 tok/s of Muse 30B for raw inference single-thread, going up to low thousands of tok/s with a large number of threads - and I am sure that for the massively-multi-threaded case they can optimize the prover further.\n\nSo we roughly, sort of, have single-digit (<10x) overhead for LLM proving!\n\nNext step is getting single-digit overheads for FHE, and then ultimately vFHE (aka STARK * FHE). A crazy ambitious milestone given present FHE o",
+      "author": "VitalikButerin"
+    },
+    {
+      "id": "x:ethereumfndn:2087233618079027299",
+      "source": "x:ethereumfndn",
+      "sourceType": "twitter",
+      "title": "Tomorrow at 4pm UTC\n\nEthereum Builders Live with @jchaskin22 and @arlery, CMO at",
+      "url": "https://x.com/ethereumfndn/status/2087233618079027299",
+      "publishedAt": "2026-08-11T17:44:08.000Z",
+      "summary": "Tomorrow at 4pm UTC\n\nEthereum Builders Live with @jchaskin22 and @arlery, CMO at @OctantApp\n\nWe'll explore how Octant funds public goods, its new voting app, past funding epochs, and Epoch 13, a new 100 ETH matching round focused on privacy.\n\nhttps://t.co/4xMCay1FkQ https://t.co/GvaVczQcU9",
+      "author": "ethereumfndn"
+    },
+    {
+      "id": "eth-magicians:ethereum-magicians.org-topic-29391",
+      "source": "eth-magicians",
+      "sourceType": "rss",
+      "title": "All Core Devs - Consensus (ACDC) #185, August 20 2026",
+      "url": "https://ethereum-magicians.org/t/all-core-devs-consensus-acdc-185-august-20-2026/29391",
+      "publishedAt": "2026-08-11T14:10:50.000Z",
+      "summary": "Agenda Devnet updates Bbusa / ethpandaops — DevNet 8 (Plataberget) status Pari — bring up NFT devnet plan: what’s the plan, when, and who needs to be involved? Shane Moore (SSV) / CL teams — Beacon API PR #630 (builder preferences endpoint): review deadline was July 28 ACDT, flagged critical for DVT clusters — done? ( #625 has SSV sign-off.) Remote signer glamsterdam changes: Adding Glamsterdam changes by usmansaleem · Pull Request #28 · ethereum/remote-signing-api · GitHub Pari: Propose dates f",
+      "author": "system"
+    },
+    {
+      "id": "eth-magicians:ethereum-magicians.org-topic-29386",
+      "source": "eth-magicians",
+      "sourceType": "rss",
+      "title": "All Core Devs - Testing (ACDT) #92, August 17, 2026",
+      "url": "https://ethereum-magicians.org/t/all-core-devs-testing-acdt-92-august-17-2026/29386",
+      "publishedAt": "2026-08-11T01:19:55.000Z",
+      "summary": "Agenda Devnet status updates Updates on glamsterdam-devnet-8 Discussions TBD EL breakout EIP-7610 and how to test it. https://github.com/ethereum/pm/issues/2186#issuecomment-5315228103 Led by @jochem-brouwer CL breakout Do we want to include Fix builder payment weight double-count under target equivocation in devnet-8? https://github.com/ethereum/pm/issues/2186#issuecomment-5302623052 Led by @barnabasbusa Status update on compliance tests for Gloas. https://github.com/ethereum/pm/issues/2186#iss",
+      "author": "system"
+    },
+    {
+      "id": "x:sassal0x:2086914468441915560",
+      "source": "x:sassal0x",
+      "sourceType": "twitter",
+      "title": "RT @VitalikButerin: I updated my 2023 roadmap diagram to overlay where the items",
+      "url": "https://x.com/sassal0x/status/2086914468441915560",
+      "publishedAt": "2026-08-10T20:35:56.000Z",
+      "summary": "RT @VitalikButerin: I updated my 2023 roadmap diagram to overlay where the items that were there sit in the current Strawmap ( https://t.co…",
+      "author": "sassal0x"
+    },
+    {
+      "id": "x:VitalikButerin:2086893979577225364",
+      "source": "x:VitalikButerin",
+      "sourceType": "twitter",
+      "title": "Yabloko, Russia's only remaining openly anti-war political party, was just banne",
+      "url": "https://x.com/VitalikButerin/status/2086893979577225364",
+      "publishedAt": "2026-08-10T19:14:32.000Z",
+      "summary": "Yabloko, Russia's only remaining openly anti-war political party, was just banned.\n\nhttps://t.co/1z9EJsMI0j\n\nAlso recently, Nadezhdin (from a different party) had to flee to France: \n\nhttps://t.co/Xda0ZPDytN\n\nLooks like the last traces of political opposition are being removed leading up to the legislative election next month.",
+      "author": "VitalikButerin"
+    },
+    {
+      "id": "eth-magicians:ethereum-magicians.org-topic-29385",
+      "source": "eth-magicians",
+      "sourceType": "rss",
+      "title": "ERC-8378: Parametric Token",
+      "url": "https://ethereum-magicians.org/t/erc-8378-parametric-token/29385",
+      "publishedAt": "2026-08-10T16:56:32.000Z",
+      "summary": "Hi everyone, DeFi today faces a trade‑off: you can have liquidity, or you can have utility. Tokens that are highly liquid (like ERC‑20) carry no state - they are just balances. Tokens that carry state (like ERC‑721 or ERC‑1155) fragment liquidity because each variant is a separate class. Respectively, agents and structured products cannot easily build on either without choosing between the two. I’d like to propose a new ERC-20 compatible solution: Parametric Token. It keeps tokens fungible while",
+      "author": "K2eno"
+    },
+    {
+      "id": "x:VitalikButerin:2086824673556467938",
+      "source": "x:VitalikButerin",
+      "sourceType": "twitter",
+      "title": "I updated my 2023 roadmap diagram to overlay where the items that were there sit",
+      "url": "https://x.com/VitalikButerin/status/2086824673556467938",
+      "publishedAt": "2026-08-10T14:39:08.000Z",
+      "summary": "I updated my 2023 roadmap diagram to overlay where the items that were there sit in the current Strawmap ( https://t.co/I35mrXutP2 ).\n\nIn general, a lot of overlap, but:\n\n* Some things got reshuffled in order (eg. quantum safety up-prioritized)\n* Some things deprioritized (eg. VDFs; many EVM improvements)\n* Some things replaced with superior constructions (eg. Verkle -> unified BT -> PBT; state expiry -> new state types)\n\nWhat's most striking, however, is that some completely new things are in t",
+      "author": "VitalikButerin"
+    },
+    {
+      "id": "eth-magicians:ethereum-magicians.org-topic-29381",
+      "source": "eth-magicians",
+      "sourceType": "rss",
+      "title": "L1-zkEVM breakout #07, August 12, 2026",
+      "url": "https://ethereum-magicians.org/t/l1-zkevm-breakout-07-august-12-2026/29381",
+      "publishedAt": "2026-08-10T14:32:31.000Z",
+      "summary": "Agenda Project updates Q&A Slides Ignacio: Project 1, 2 & 6 . Marcin: Project 3 Francesco: Project 4 ( 1 , 2 ) Han: Project 5 Cody: Project 7 Meeting Time: Wednesday, August 12, 2026 at 15:00 UTC (60 minutes) GitHub Issue 3 posts - 1 participant Read full topic",
+      "author": "system"
+    },
+    {
+      "id": "eth-magicians:ethereum-magicians.org-topic-29380",
+      "source": "eth-magicians",
+      "sourceType": "rss",
+      "title": "EIP-8375: eMBER, ePBS Mandatory Burn of Execution Rewards",
+      "url": "https://ethereum-magicians.org/t/eip-8375-ember-epbs-mandatory-burn-of-execution-rewards/29380",
+      "publishedAt": "2026-08-10T10:47:43.000Z",
+      "summary": "Discussion topic for EIP-8375 Update Log 2026-08-06: Initial draft, EIP-8375 creation PR Add EIP: ePBS Mandatory Burn of Execution Rewards by benaadams · Pull Request #12130 · ethereum/EIPs · GitHub 1 post - 1 participant Read full topic",
+      "author": "benaadams"
+    },
+    {
+      "id": "eth-magicians:ethereum-magicians.org-topic-29377",
+      "source": "eth-magicians",
+      "sourceType": "rss",
+      "title": "RPC Standards # 32, August 10, 2026",
+      "url": "https://ethereum-magicians.org/t/rpc-standards-32-august-10-2026/29377",
+      "publishedAt": "2026-08-10T10:09:10.000Z",
+      "summary": "Agenda Agenda eth: add example for eth_simulateV1 by O1ahmad · Pull Request #863 · ethereum/execution-apis · GitHub fix: add slotNumber and targetGasLimit to testing_buildBlockV1 by O1ahmad · Pull Request #862 · ethereum/execution-apis · GitHub Add the EIP-8141 frame transaction fields to the receipt by AnkushinDaniil · Pull Request #860 · ethereum/execution-apis · GitHub spec: allow EIP-1898 block objects in BlockNumberOrTagOrHash by MysticRyuujin · Pull Request #859 · ethereum/execution-apis ·",
+      "author": "system"
+    },
+    {
+      "id": "ethresearch:ethresear.ch-topic-25674",
+      "source": "ethresearch",
+      "sourceType": "rss",
+      "title": "Coordination Collapse and the Optimality of Silence: Two Result That Break Standard BFT and Oracle Design",
+      "url": "https://ethresear.ch/t/coordination-collapse-and-the-optimality-of-silence-two-result-that-break-standard-bft-and-oracle-design/25674",
+      "publishedAt": "2026-08-10T01:50:19.000Z",
+      "summary": "Coordination Collapse and the Optimality of Silence: Two Results That Break Standard BFT and Oracle Design Author: Hudu Yusuf (Analys) Date: August 2026 License: CC0 — this work is in the public domain. Intended audience: Consensus researchers, oracle designers, applied cryptographers. TL;DR We prove two results that contradict standard practice in both Byzantine Fault Tolerant consensus and oracle design: Theorem 1 (Coordination Collapse): In any weighted BFT system where validator behavior is ",
+      "author": "TRION-Protocol"
+    },
+    {
+      "id": "x:VitalikButerin:2085818475025473849",
+      "source": "x:VitalikButerin",
+      "sourceType": "twitter",
+      "title": "RT @AyaMiyagotchi: Every wallet choice comes with tradeoffs. No one should keep ",
+      "url": "https://x.com/VitalikButerin/status/2085818475025473849",
+      "publishedAt": "2026-08-07T20:00:51.000Z",
+      "summary": "RT @AyaMiyagotchi: Every wallet choice comes with tradeoffs. No one should keep their life savings in the same wallet they use for everyday…",
+      "author": "VitalikButerin"
+    },
+    {
+      "id": "x:VitalikButerin:2085816251511709889",
+      "source": "x:VitalikButerin",
+      "sourceType": "twitter",
+      "title": "Update: looks like it will require payment and there's no mention of any cryptoc",
+      "url": "https://x.com/VitalikButerin/status/2085816251511709889",
+      "publishedAt": "2026-08-07T19:52:01.000Z",
+      "summary": "Update: looks like it will require payment and there's no mention of any cryptocurrency option (which would provide a pathway for privacy)\n\nhttps://t.co/8PBOxnlV7I",
+      "author": "VitalikButerin"
+    },
+    {
+      "id": "ethresearch:ethresear.ch-topic-25660",
+      "source": "ethresearch",
+      "sourceType": "rss",
+      "title": "Atomic ZK-Proof-Gated Settlement for x402 Agent Payments: A Measured Reference Design",
+      "url": "https://ethresear.ch/t/atomic-zk-proof-gated-settlement-for-x402-agent-payments-a-measured-reference-design/25660",
+      "publishedAt": "2026-08-07T18:47:48.000Z",
+      "summary": "TL;DR x402 lets an agent pay for a resource-server call, but it never binds payment to correctness of execution — a provider can take payment and never deliver, or deliver something other than what was promised. I’ve built and measured a reference design ( ZkInferenceEscrow ) that closes this gap: payment for an AI inference call settles atomically, in one transaction, only when an on-chain ZK proof verifies the call was executed by a specific, pinned circuit. As a structural side effect, the x4",
+      "author": "achemperety"
+    },
+    {
+      "id": "x:ethereumfndn:2085730350227984574",
+      "source": "x:ethereumfndn",
+      "sourceType": "twitter",
+      "title": "RT @0xboo: 1/ Two new cohorts, 20 new teams, the same one goal: harden Ethereum ",
+      "url": "https://x.com/ethereumfndn/status/2085730350227984574",
+      "publishedAt": "2026-08-07T14:10:41.000Z",
+      "summary": "RT @0xboo: 1/ Two new cohorts, 20 new teams, the same one goal: harden Ethereum through accessible world-class security. \n\nFrom restaking a…",
+      "author": "ethereumfndn"
+    },
+    {
+      "id": "x:VitalikButerin:2085719700823327102",
+      "source": "x:VitalikButerin",
+      "sourceType": "twitter",
+      "title": "https://t.co/WyZCMSRMpn https://t.co/MXXsAn66J4",
+      "url": "https://x.com/VitalikButerin/status/2085719700823327102",
+      "publishedAt": "2026-08-07T13:28:22.000Z",
+      "summary": "https://t.co/WyZCMSRMpn https://t.co/MXXsAn66J4",
+      "author": "VitalikButerin"
+    },
+    {
+      "id": "x:ethereum:2085715201043644830",
+      "source": "x:ethereum",
+      "sourceType": "twitter",
+      "title": "16/ That is the idea behind Coin Center’s John Hancock Project:\n\nWe can and shou",
+      "url": "https://x.com/ethereum/status/2085715201043644830",
+      "publishedAt": "2026-08-07T13:10:29.000Z",
+      "summary": "16/ That is the idea behind Coin Center’s John Hancock Project:\n\nWe can and should leverage privacy-preserving credentials and proofs that can satisfy legitimate policy goals without exposing everyone’s identity. \n\nhttps://t.co/0NG1OmbxqD",
+      "author": "ethereum"
+    },
+    {
+      "id": "x:ethereum:2085715202700456433",
+      "source": "x:ethereum",
+      "sourceType": "twitter",
+      "title": "17/ But, in the end, the risky path is not privacy. It is radical transparency.\n",
+      "url": "https://x.com/ethereum/status/2085715202700456433",
+      "publishedAt": "2026-08-07T13:10:29.000Z",
+      "summary": "17/ But, in the end, the risky path is not privacy. It is radical transparency.\n\nTransparency makes Ethereum governable, pressureable, and punishable.\n\nPrivacy narrows the attack surface. For users, developers, and validators.\n\nPrivacy is not the problem. Privacy is existential.",
+      "author": "ethereum"
+    },
+    {
+      "id": "x:ethereum:2085715176515321919",
+      "source": "x:ethereum",
+      "sourceType": "twitter",
+      "title": "1/ Privacy is often thought of as politically risky. In this guest thread by @va",
+      "url": "https://x.com/ethereum/status/2085715176515321919",
+      "publishedAt": "2026-08-07T13:10:23.000Z",
+      "summary": "1/ Privacy is often thought of as politically risky. In this guest thread by @valkenburgh, Executive Director of @coincenter, he makes the case, in his own words, that the reality is the opposite:\n\nPrivacy is essential to Ethereum’s promise of financial freedom and neutrality.",
+      "author": "ethereum"
+    },
+    {
+      "id": "x:VitalikButerin:2085713523909554479",
+      "source": "x:VitalikButerin",
+      "sourceType": "twitter",
+      "title": "Minimax H3 is the first *open* video model I've seen that outperforms HunyuanVid",
+      "url": "https://x.com/VitalikButerin/status/2085713523909554479",
+      "publishedAt": "2026-08-07T13:03:49.000Z",
+      "summary": "Minimax H3 is the first *open* video model I've seen that outperforms HunyuanVideo 1.5 - which is actually an impressive accomplishment for @TencentHunyuan to have held that throne for so long.\n\nFor a while now I've been sad that the image/video frontier seemed to be getting much more closed than the text LLM frontier. H3 is a very strong step back in the open direction.\n\nThis was generated in ~30 min on my AMD laptop:\n https://t.co/XCsz8Btk9d",
+      "author": "VitalikButerin"
+    },
+    {
+      "id": "x:VitalikButerin:2085711515152527400",
+      "source": "x:VitalikButerin",
+      "sourceType": "twitter",
+      "title": "Very welcome recent news from Signal: they are working on letting you register a",
+      "url": "https://x.com/VitalikButerin/status/2085711515152527400",
+      "publishedAt": "2026-08-07T12:55:50.000Z",
+      "summary": "Very welcome recent news from Signal: they are working on letting you register an account without a phone number.\n\nhttps://t.co/3dTG4UD6cF\n\nThat said, an important counterpoint about what this would and would not accomplish.\n\nThe good #1: reducing dependence on phone numbers. Even aside from privacy benefits, reducing dependency on a highly oligopolistic system of chokepoints is good in itself.\n\nThe good #2: phone numbers are for many people not a good \"root\" of identity from an access control p",
+      "author": "VitalikButerin"
+    },
+    {
+      "id": "x:sassal0x:2085463911189671974",
+      "source": "x:sassal0x",
+      "sourceType": "twitter",
+      "title": "RT @barnabemonnot: Today I will be proposing faster slots for inclusion in Hegot",
+      "url": "https://x.com/sassal0x/status/2085463911189671974",
+      "publishedAt": "2026-08-06T20:31:57.000Z",
+      "summary": "RT @barnabemonnot: Today I will be proposing faster slots for inclusion in Hegotá, to All Core Devs.\n\nFaster slots improve the value of Eth…",
+      "author": "sassal0x"
+    },
+    {
+      "id": "ethresearch:ethresear.ch-topic-25644",
+      "source": "ethresearch",
+      "sourceType": "rss",
+      "title": "Demand Model with Elasticities for Ethereum State, Data, and Execution and Glamsterdam Fee Market Analysis",
+      "url": "https://ethresear.ch/t/demand-model-with-elasticities-for-ethereum-state-data-and-execution-and-glamsterdam-fee-market-analysis/25644",
+      "publishedAt": "2026-08-06T16:52:47.000Z",
+      "summary": "by Fei Wu - This work was conducted during my internship at the EF. I thank my mentor @misilva73 for valuable discussions, feedback, and comments. Overview Ethereum’s fee market is moving from a single gas unit that meters and prices every resource to a multi-dimensional design. In Glamsterdam, EIP-8037 introduces multi-dimensional metering, which meters state creation gas separately. EIP-7999 further introduces individual base fee and resource-specific capacity rules (i.e., gas target and limit",
+      "author": "M1kuW1ll"
+    },
+    {
+      "id": "ethresearch:ethresear.ch-topic-25643",
+      "source": "ethresearch",
+      "sourceType": "rss",
+      "title": "Wash-building in contribution protocols is not a Sybil problem",
+      "url": "https://ethresear.ch/t/wash-building-in-contribution-protocols-is-not-a-sybil-problem/25643",
+      "publishedAt": "2026-08-06T16:27:20.000Z",
+      "summary": "Wash-building is not a Sybil problem: an impossibility argument, and what a solution is then forced to look like Contribution graphs (dependency graphs, quadratic funding, retro funding) face two attacks that are almost always conflated. Separating them makes one of them provably harder than most tooling assumes, and it also constrains the solution more than you would expect. Two axes. Sybil is fake identity: one actor wearing many masks. Wash is fake value: many genuinely distinct, real identit",
+      "author": "WGlynn"
+    },
+    {
+      "id": "x:ethereumfndn:2085386228912845166",
+      "source": "x:ethereumfndn",
+      "sourceType": "twitter",
+      "title": "RT @nikosbaxevanis: 🚨 The @ethereumfndn Protocol Security team is hiring!\n\nCome",
+      "url": "https://x.com/ethereumfndn/status/2085386228912845166",
+      "publishedAt": "2026-08-06T15:23:16.000Z",
+      "summary": "RT @nikosbaxevanis: 🚨 The @ethereumfndn Protocol Security team is hiring!\n\nCome help secure Ethereum mainnet and the next generation of pro…",
+      "author": "ethereumfndn"
+    },
+    {
+      "id": "ethresearch:ethresear.ch-topic-25642",
+      "source": "ethresearch",
+      "sourceType": "rss",
+      "title": "LeanDA: Design and Benchmark",
+      "url": "https://ethresear.ch/t/leanda-design-and-benchmark/25642",
+      "publishedAt": "2026-08-06T14:32:28.000Z",
+      "summary": "Authors. Long Meng, Benedikt Wagner, George Kadianakis, Francesco Risitano Thanks to Tom Wambsgans, Thomas Coratger, Arantxa Zapico, and others for insightful discussions . 1. Motivation Ethereum uses data availability sampling (DAS) to let validators check the availability of large blob data by sampling a small number of random positions from an erasure-coded object, rather than downloading the whole payload. As Ethereum moves toward post-quantum security, the current DAS protocol based on KZG ",
+      "author": "LongMeng"
+    },
+    {
+      "id": "x:ethereumfndn:2085369903301656731",
+      "source": "x:ethereumfndn",
+      "sourceType": "twitter",
+      "title": "RT @lfdecentralized: Andy Guzman leads the Privacy &amp; Scaling Explorations te",
+      "url": "https://x.com/ethereumfndn/status/2085369903301656731",
+      "publishedAt": "2026-08-06T14:18:23.000Z",
+      "summary": "RT @lfdecentralized: Andy Guzman leads the Privacy &amp; Scaling Explorations team at @ethereumfndn. He explains why institutions need privacy…",
+      "author": "ethereumfndn"
+    },
+    {
+      "id": "x:ethereumfndn:2085364564971979263",
+      "source": "x:ethereumfndn",
+      "sourceType": "twitter",
+      "title": "RT @EFDevcon: 🚨 The Devcon 8 speaker application deadline has been extended to ",
+      "url": "https://x.com/ethereumfndn/status/2085364564971979263",
+      "publishedAt": "2026-08-06T13:57:11.000Z",
+      "summary": "RT @EFDevcon: 🚨 The Devcon 8 speaker application deadline has been extended to August 12!\n\nWe’re still looking for talks on:\n- practical pr…",
+      "author": "ethereumfndn"
+    },
+    {
+      "id": "ethresearch:ethresear.ch-topic-25637",
+      "source": "ethresearch",
+      "sourceType": "rss",
+      "title": "Poseidon hash for Ethereum is NOT secure!",
+      "url": "https://ethresear.ch/t/poseidon-hash-for-ethereum-is-not-secure/25637",
+      "publishedAt": "2026-08-06T08:50:51.000Z",
+      "summary": "Classical preimage: 127.5-bit Quantum preimage: 63.75-bit So Ethereum is betting that before a hard fork this will be not cracked? A very risky bet! 15 posts - 4 participants Read full topic",
+      "author": "crypto"
+    },
+    {
+      "id": "ethresearch:ethresear.ch-topic-25634",
+      "source": "ethresearch",
+      "sourceType": "rss",
+      "title": "Ashlar: an AO hash from a squaring degree engine, and a request for cryptanalysis",
+      "url": "https://ethresear.ch/t/ashlar-an-ao-hash-from-a-squaring-degree-engine-and-a-request-for-cryptanalysis/25634",
+      "publishedAt": "2026-08-06T07:57:13.000Z",
+      "summary": "TL;DR. I have a new arithmetization-oriented hash, Ashlar , built around a different degree engine: a Feistel chain of field squarings instead of a power map. Under the accounting metric that the FreeLunch-era attacks make natural — bits of CICO ideal degree per R1CS constraint — squaring buys 1.0 and I prove 1.0 is a ceiling. The width-3 BN254 hash costs 191 measured R1CS constraints against derived counts of 243 for Poseidon and 240 for Poseidon2, and 14,232 EVM gas against Poseidon’s measured",
+      "author": "arianaraghi"
+    },
+    {
+      "id": "x:sassal0x:2085178166696686036",
+      "source": "x:sassal0x",
+      "sourceType": "twitter",
+      "title": "RT @polarisfinance_: The Polaris documentation is now live.\n\nDiscover pETH and i",
+      "url": "https://x.com/sassal0x/status/2085178166696686036",
+      "publishedAt": "2026-08-06T01:36:30.000Z",
+      "summary": "RT @polarisfinance_: The Polaris documentation is now live.\n\nDiscover pETH and its ever-rising floor, along with the ecosystem of novel onc…",
+      "author": "sassal0x"
+    },
+    {
+      "id": "x:ethereumfndn:2085078876913291485",
+      "source": "x:ethereumfndn",
+      "sourceType": "twitter",
+      "title": "RT @EFDevcon: 1/ Drumroll please 🥁... The Devcon Music Stage is coming back in ",
+      "url": "https://x.com/ethereumfndn/status/2085078876913291485",
+      "publishedAt": "2026-08-05T19:01:57.000Z",
+      "summary": "RT @EFDevcon: 1/ Drumroll please 🥁... The Devcon Music Stage is coming back in Mumbai! 🎶\n\nFour days of live music, DJ sets, open jams, and…",
+      "author": "ethereumfndn"
+    },
+    {
+      "id": "x:ethereumfndn:2084981622919549362",
+      "source": "x:ethereumfndn",
+      "sourceType": "twitter",
+      "title": "The Ethereum Foundation’s Trillion Dollar Security initiative has allocated a gr",
+      "url": "https://x.com/ethereumfndn/status/2084981622919549362",
+      "publishedAt": "2026-08-05T12:35:30.000Z",
+      "summary": "The Ethereum Foundation’s Trillion Dollar Security initiative has allocated a grant to support @FreedomofPress’s continued development of WEBCAT, with the goal of bringing front-end verification to Ethereum wallets and apps.\n\nLearn more ↓\nhttps://t.co/mKxOF5kz2o",
+      "author": "ethereumfndn"
+    },
+    {
+      "id": "x:ethereumfndn:2084977574266957982",
+      "source": "x:ethereumfndn",
+      "sourceType": "twitter",
+      "title": "RT @EFDevcon: We are thrilled to announce our first Devcon 8 speaker: @audreyt! ",
+      "url": "https://x.com/ethereumfndn/status/2084977574266957982",
+      "publishedAt": "2026-08-05T12:19:25.000Z",
+      "summary": "RT @EFDevcon: We are thrilled to announce our first Devcon 8 speaker: @audreyt! 🎤\n\nAfter an unforgettable conversation in Bangkok, Audrey T…",
+      "author": "ethereumfndn"
+    },
+    {
+      "id": "x:dankrad:2084818375809888766",
+      "source": "x:dankrad",
+      "sourceType": "twitter",
+      "title": "RT @trent_vanepps: IMO both sides of that chat have entrenched long ago, are opt",
+      "url": "https://x.com/dankrad/status/2084818375809888766",
+      "publishedAt": "2026-08-05T01:46:49.000Z",
+      "summary": "RT @trent_vanepps: IMO both sides of that chat have entrenched long ago, are optimising for different priorities, and ultimately talking pa…",
+      "author": "dankrad"
+    },
+    {
+      "id": "ef-blog:https://blog.ethereum.org/en/2026/08/05/1ts-grant",
+      "source": "ef-blog",
+      "sourceType": "rss",
+      "title": "Announcing a Trillion Dollar Security grant for WEBCAT",
+      "url": "https://blog.ethereum.org/en/2026/08/05/1ts-grant",
+      "publishedAt": "2026-08-05T00:00:00.000Z",
+      "summary": "The Ethereum Foundation’s Trillion Dollar Security (1TS) initiative is proud to announce a grant allocation to Freedom of the Press Foundation (FPF) to support the continued development of WEBCAT. WEBCAT is an open source tool that lets browsers verify that code served by an enrolled website matches what its developers...",
+      "author": ""
+    },
+    {
+      "id": "x:dankrad:2084674979099218380",
+      "source": "x:dankrad",
+      "sourceType": "twitter",
+      "title": "If your asset has risk free yield, you should just wrap it (for example into an ",
+      "url": "https://x.com/dankrad/status/2084674979099218380",
+      "publishedAt": "2026-08-04T16:17:01.000Z",
+      "summary": "If your asset has risk free yield, you should just wrap it (for example into an LST). Easier to work with.",
+      "author": "dankrad"
+    },
+    {
+      "id": "x:dankrad:2084674651255607584",
+      "source": "x:dankrad",
+      "sourceType": "twitter",
+      "title": "Some time in the future, we will understand that risk free yield on a digital as",
+      "url": "https://x.com/dankrad/status/2084674651255607584",
+      "publishedAt": "2026-08-04T16:15:42.000Z",
+      "summary": "Some time in the future, we will understand that risk free yield on a digital asset is a bug, not a feature (yes this includes USD)",
+      "author": "dankrad"
+    },
+    {
+      "id": "ethresearch:ethresear.ch-topic-25622",
+      "source": "ethresearch",
+      "sourceType": "rss",
+      "title": "Why Decentralized State is important for Ethereum",
+      "url": "https://ethresear.ch/t/why-decentralized-state-is-important-for-ethereum/25622",
+      "publishedAt": "2026-08-04T14:24:56.000Z",
+      "summary": "Thanks @gballet for reviews and feedbacks. Summary This article describes how Decentralized State (DS) can address upcoming challenges for Ethereum as planned upgrades reach the mainnet. We will begin by outlining these problems, highlighting the limitations of currently proposed solutions, explain how Decentralized State offers a viable path forward and why it is important to consider it early. An in depth technical analysis and specification of Decentralized State protocol is out of scope of t",
+      "author": "morph-dev"
+    },
+    {
+      "id": "ethresearch:ethresear.ch-topic-25614",
+      "source": "ethresearch",
+      "sourceType": "rss",
+      "title": "Arcanum: a privacy-first compiler layer for source code — TEE now, ZK as the long-term foundation",
+      "url": "https://ethresear.ch/t/arcanum-a-privacy-first-compiler-layer-for-source-code-tee-now-zk-as-the-long-term-foundation/25614",
+      "publishedAt": "2026-08-03T22:28:35.000Z",
+      "summary": "I want to share a concept I’ve been developing and get feedback from this community specifically — because the people here are exactly who this needs to be stress-tested by. The core idea: Arcanum is a proposed compiler layer where source code privacy is treated as a first principle. Developers write in the language they already know (C++, Rust, JavaScript, TypeScript, Go — anything LLVM or RISC-V compatible). Arcanum transforms it. Plaintext source never exists post-compilation. Two-phase appro",
+      "author": "Sidistr"
+    },
+    {
+      "id": "x:dankrad:2084026346083422490",
+      "source": "x:dankrad",
+      "sourceType": "twitter",
+      "title": "This is a good time to remind everyone that mathematics is a language that happe",
+      "url": "https://x.com/dankrad/status/2084026346083422490",
+      "publishedAt": "2026-08-02T21:19:34.000Z",
+      "summary": "This is a good time to remind everyone that mathematics is a language that happens to be good at describing nature, among other things. \nMathematical theorems are equivalences: They say that certain ways of saying things in the language of mathematics look different but they are actually the same. \n\nIt looks like we are soon reaching the point where LLMs are better at proving them than the best humans. I think that's a very  significant step (but likely not the final one towards human equivalent",
+      "author": "dankrad"
+    },
+    {
+      "id": "ethresearch:ethresear.ch-topic-25602",
+      "source": "ethresearch",
+      "sourceType": "rss",
+      "title": "Dynamic Leverage Pricing for Non-Transferable Time Credits: Solving Skill-Mismatch in Volunteer & Public-Good Labor",
+      "url": "https://ethresear.ch/t/dynamic-leverage-pricing-for-non-transferable-time-credits-solving-skill-mismatch-in-volunteer-public-good-labor/25602",
+      "publishedAt": "2026-08-02T06:54:45.000Z",
+      "summary": "Problem Classic time-banking systems (Ithaca Hours, LETS, Edgar Cahn’s Time Dollars) use a fixed 1:1 exchange rate: one hour of any labor equals one hour of credit, regardless of skill or scarcity. This has a well-documented failure mode: when a scarce or high-skill task (medical consult, plumbing repair) is priced identically to a low-skill, abundant one (dog walking, data entry), skilled contributors disengage, scarce categories go permanently unfilled, and the system either collapses or quiet",
+      "author": "bbbzzzzzzzZ"
+    },
+    {
+      "id": "x:sassal0x:2083300816702853315",
+      "source": "x:sassal0x",
+      "sourceType": "twitter",
+      "title": "RT @trent_vanepps: The next update bundle of Ethereum features is getting closer",
+      "url": "https://x.com/sassal0x/status/2083300816702853315",
+      "publishedAt": "2026-07-31T21:16:35.000Z",
+      "summary": "RT @trent_vanepps: The next update bundle of Ethereum features is getting closer to mainnet! \n\nGlamsterdam includes 10 EIPs: two headliners…",
+      "author": "sassal0x"
+    },
+    {
+      "id": "x:sassal0x:2082938295412273294",
+      "source": "x:sassal0x",
+      "sourceType": "twitter",
+      "title": "11 years of Ethereum 🥳",
+      "url": "https://x.com/sassal0x/status/2082938295412273294",
+      "publishedAt": "2026-07-30T21:16:03.000Z",
+      "summary": "11 years of Ethereum 🥳",
+      "author": "sassal0x"
+    },
+    {
+      "id": "x:VitalikButerin:2082803808766222496",
+      "source": "x:VitalikButerin",
+      "sourceType": "twitter",
+      "title": "RT @LefterisJP: It's hard to believe it's already been 11 years.\n\nOn July 30 201",
+      "url": "https://x.com/VitalikButerin/status/2082803808766222496",
+      "publishedAt": "2026-07-30T12:21:39.000Z",
+      "summary": "RT @LefterisJP: It's hard to believe it's already been 11 years.\n\nOn July 30 2015 we launched Ethereum from a small scrappy office in Berli…",
+      "author": "VitalikButerin"
+    },
+    {
+      "id": "ethresearch:ethresear.ch-topic-25572",
+      "source": "ethresearch",
+      "sourceType": "rss",
+      "title": "Substrate Incompleteness",
+      "url": "https://ethresear.ch/t/substrate-incompleteness/25572",
+      "publishedAt": "2026-07-30T01:15:09.000Z",
+      "summary": "Substrate Incompleteness Status : Design humility principle with concrete walked-through surfaces. A humbling observation You’re building a fairness mechanism. You work hard on it. You spot a gaming pattern and block it. Then you spot another. Then another. Every mechanism you build catches some cases of unfairness and misses others. The cases it misses are its “capture surface” — places where sophisticated attackers can still exploit. You can add more mechanisms. Each new mechanism catches more",
+      "author": "WGlynn"
+    },
+    {
+      "id": "x:sassal0x:2082574335697621450",
+      "source": "x:sassal0x",
+      "sourceType": "twitter",
+      "title": "RT @ethereuminsti: 1/ We’re excited to announce the close of @ethereuminsti's in",
+      "url": "https://x.com/sassal0x/status/2082574335697621450",
+      "publishedAt": "2026-07-29T21:09:48.000Z",
+      "summary": "RT @ethereuminsti: 1/ We’re excited to announce the close of @ethereuminsti's initial ecosystem funding round and supporter coalition, with…",
+      "author": "sassal0x"
+    },
+    {
+      "id": "x:sassal0x:2082574214280966318",
+      "source": "x:sassal0x",
+      "sourceType": "twitter",
+      "title": "RT @ethereumfndn: We’re pleased to welcome @pcaversaccio to the EF Board. \n\nA lo",
+      "url": "https://x.com/sassal0x/status/2082574214280966318",
+      "publishedAt": "2026-07-29T21:09:19.000Z",
+      "summary": "RT @ethereumfndn: We’re pleased to welcome @pcaversaccio to the EF Board. \n\nA longtime Ethereum contributor, co-founder of SEAL 911, Silvic…",
+      "author": "sassal0x"
+    },
+    {
+      "id": "x:dankrad:2082558921156538619",
+      "source": "x:dankrad",
+      "sourceType": "twitter",
+      "title": "Pacing the frontier is the best thing we can do right now IMO. It's a hard coord",
+      "url": "https://x.com/dankrad/status/2082558921156538619",
+      "publishedAt": "2026-07-29T20:08:33.000Z",
+      "summary": "Pacing the frontier is the best thing we can do right now IMO. It's a hard coordination problem but still solvable, maybe about 20-30 entities need to commit.\n\nModels are now definitely at the threshold of becoming dangerous. Allowing the defense to catch up will lead to a less disruptive transition.",
+      "author": "dankrad"
+    },
+    {
+      "id": "x:VitalikButerin:2082448395688403453",
+      "source": "x:VitalikButerin",
+      "sourceType": "twitter",
+      "title": "RT @ethereumfndn: We’re pleased to welcome @pcaversaccio to the EF Board. \n\nA lo",
+      "url": "https://x.com/VitalikButerin/status/2082448395688403453",
+      "publishedAt": "2026-07-29T12:49:22.000Z",
+      "summary": "RT @ethereumfndn: We’re pleased to welcome @pcaversaccio to the EF Board. \n\nA longtime Ethereum contributor, co-founder of SEAL 911, Silvic…",
+      "author": "VitalikButerin"
+    },
+    {
+      "id": "ef-blog:https://blog.ethereum.org/en/2026/07/29/ef-board-update",
+      "source": "ef-blog",
+      "sourceType": "rss",
+      "title": "Ethereum Foundation Board Update",
+      "url": "https://blog.ethereum.org/en/2026/07/29/ef-board-update",
+      "publishedAt": "2026-07-29T00:00:00.000Z",
+      "summary": "We are pleased to share that pcaversaccio (pc) has joined the Ethereum Foundation Board. pc is a long time contributor to the Ethereum ecosystem, a co-founder and lead of SEAL 911, and has been a member of the EF's Silviculture Society, which provides informal counsel to EF aimed at...",
+      "author": ""
+    },
+    {
+      "id": "ethresearch:ethresear.ch-topic-25562",
+      "source": "ethresearch",
+      "sourceType": "rss",
+      "title": "Can a CEX microstructure signal survive Ethereum execution latency and MEV?",
+      "url": "https://ethresear.ch/t/can-a-cex-microstructure-signal-survive-ethereum-execution-latency-and-mev/25562",
+      "publishedAt": "2026-07-28T21:53:23.000Z",
+      "summary": "Motivation We are investigating a narrow cross-venue market-microstructure question: Can a predictive signal generated from BTC and ETH perpetual trades on a centralized exchange reduce adverse selection when liquidity is provided on an Ethereum-based decentralized venue? We are not assuming that a profitable CEX construct can simply be copied to a DEX. Our starting prior is deliberately sceptical. Even if the source signal is informative, the edge may disappear because of: source-feed and netwo",
+      "author": "amlsl"
+    },
+    {
+      "id": "x:VitalikButerin:2082140166886392068",
+      "source": "x:VitalikButerin",
+      "sourceType": "twitter",
+      "title": "RT @SoraSue77: Thank you for writing about diamond iO!",
+      "url": "https://x.com/VitalikButerin/status/2082140166886392068",
+      "publishedAt": "2026-07-28T16:24:34.000Z",
+      "summary": "RT @SoraSue77: Thank you for writing about diamond iO!",
+      "author": "VitalikButerin"
+    },
+    {
+      "id": "ethresearch:ethresear.ch-topic-25556",
+      "source": "ethresearch",
+      "sourceType": "rss",
+      "title": "Native Randomness Sourcing with Looser Guarantees",
+      "url": "https://ethresear.ch/t/native-randomness-sourcing-with-looser-guarantees/25556",
+      "publishedAt": "2026-07-28T16:05:16.000Z",
+      "summary": "Background Asphodel’s Prologue is an onchain game on Ethereum. One with state logic actually processed end-to-end onchain. It demands randomness sourcing throughout its core flows, as most modern game flows centered around PvP mechanics do. These systems also require a turnaround time of 1-2 blocks rather than whole epochs for the sake of UX, so the question of economic security is one that’s reasoned about on a Pareto front. I won’t go too deep into the game itself to keep the psychological ban",
+      "author": "jubrlee"
+    },
+    {
+      "id": "x:VitalikButerin:2082132765886108082",
+      "source": "x:VitalikButerin",
+      "sourceType": "twitter",
+      "title": "https://t.co/IYE99Rv8JG\n\nThe second part of my series on cryptographic obfuscati",
+      "url": "https://x.com/VitalikButerin/status/2082132765886108082",
+      "publishedAt": "2026-07-28T15:55:10.000Z",
+      "summary": "https://t.co/IYE99Rv8JG\n\nThe second part of my series on cryptographic obfuscation protocols, this time on diamond iO!",
+      "author": "VitalikButerin"
+    },
+    {
+      "id": "ethresearch:ethresear.ch-topic-25555",
+      "source": "ethresearch",
+      "sourceType": "rss",
+      "title": "Structural OEV Elimination through State Synchronization",
+      "url": "https://ethresear.ch/t/structural-oev-elimination-through-state-synchronization/25555",
+      "publishedAt": "2026-07-28T13:56:59.000Z",
+      "summary": "The first post in this series briefly said that the bind-verify-commit synchronization cycle eliminates structural OEV (oracle extractable value) by design, and promised a separate treatment ( Mechanized Proofs for Atomic Cross-Domain State Synchronization ). The second post ended similarly: atomic binding changes the structure of extraction opportunities around discrete updates, and the question stayed outside its scope ( A Mechanized Functor Tower for Cross-Domain State Preservation ). Here we",
+      "author": "jay-oraclizer"
+    },
+    {
+      "id": "vitalik:https://vitalik.ca/general/2026/07/28/obfuscation_part_ii_diamond_io.html",
+      "source": "vitalik",
+      "sourceType": "rss",
+      "title": "Obfuscation (Part II): Diamond iO",
+      "url": "https://vitalik.ca/general/2026/07/28/obfuscation_part_ii_diamond_io.html",
+      "publishedAt": "2026-07-28T00:00:00.000Z",
+      "summary": "",
+      "author": ""
+    },
+    {
+      "id": "x:VitalikButerin:2081776660941029636",
+      "source": "x:VitalikButerin",
+      "sourceType": "twitter",
+      "title": "This is quite a good article on how the cubic formula works, and particularly ho",
+      "url": "https://x.com/VitalikButerin/status/2081776660941029636",
+      "publishedAt": "2026-07-27T16:20:08.000Z",
+      "summary": "This is quite a good article on how the cubic formula works, and particularly how root-finding is connected to symmetries (key background for understanding the impossibility of a quintic formula)\n\nhttps://t.co/v0nOBIo14w",
+      "author": "VitalikButerin"
+    },
+    {
+      "id": "ethresearch:ethresear.ch-topic-25543",
+      "source": "ethresearch",
+      "sourceType": "rss",
+      "title": "Proprietary AMMs and Ethereum",
+      "url": "https://ethresear.ch/t/proprietary-amms-and-ethereum/25543",
+      "publishedAt": "2026-07-26T18:45:03.000Z",
+      "summary": "Proprietary AMMs and Ethereum by mike & maryam – july 26, 2026. \\cdot tl;dr; PropAMMs facilitate about one third of onchain trading volume on Solana. The contracts provide onchain composability with active market-making strategies through a clever design of cheap, fast oracle updates to the contract state that market makers make to ensure the contract trades at an up-to-date price. Some teams are starting to leverage the same mechanisms to improve onchain trading on Ethereum (though still with a",
+      "author": "mikeneuder"
+    }
+  ]
+}

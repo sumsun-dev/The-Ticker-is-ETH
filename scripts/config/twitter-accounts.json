@@ -1,0 +1,15 @@
+{
+  "comment": "이더리움 뉴스 수집 대상 X(트위터) 계정. screenname만 파이프라인이 사용하고 나머지는 문서용.",
+  "accounts": [
+    { "screenname": "VitalikButerin", "name": "Vitalik Buterin", "why": "이더리움 창시자 — 프로토콜 방향성" },
+    { "screenname": "TimBeiko", "name": "Tim Beiko", "why": "AllCoreDevs 콜 주재 — 업그레이드 일정과 합의 소식" },
+    { "screenname": "dankrad", "name": "Dankrad Feist", "why": "EF 리서처 — 데이터 가용성·확장성" },
+    { "screenname": "drakefjustin", "name": "Justin Drake", "why": "EF 리서처 — 합의 레이어 로드맵" },
+    { "screenname": "sassal0x", "name": "Sassal", "why": "The Daily Gwei — 생태계 데일리 해설" },
+    { "screenname": "evan_van_ness", "name": "Evan Van Ness", "why": "전 Week in Ethereum News 편집자 — 큐레이션 감각" },
+    { "screenname": "gakonst", "name": "Georgios Konstantopoulos", "why": "Paradigm CTO — 클라이언트·인프라(reth)" },
+    { "screenname": "peter_szilagyi", "name": "Péter Szilágyi", "why": "Geth 리드 — 실행 클라이언트·보안 이슈 (iamDCinvestor는 제공자 빈 응답으로 교체, 2026-08-24)" },
+    { "screenname": "ethereum", "name": "Ethereum (공식)", "why": "공식 공지" },
+    { "screenname": "ethereumfndn", "name": "Ethereum Foundation", "why": "재단 공지·행사" }
+  ]
+}
