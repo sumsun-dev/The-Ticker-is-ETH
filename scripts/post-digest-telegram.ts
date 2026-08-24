@@ -56,11 +56,15 @@ async function main() {
     return;
   }
 
+  // DIGEST_PREVIEW_CHAT: 채널 대신 지정 chat으로 미리보기 전송 (송출 기록 안 함)
+  const previewChat = process.env.DIGEST_PREVIEW_CHAT;
+  const chatId = previewChat ?? `@${channel}`;
+
   const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify({
-      chat_id: `@${channel}`,
+      chat_id: chatId,
       text: formatMessage(digest),
       parse_mode: 'HTML',
       disable_web_page_preview: true,
@@ -69,6 +73,11 @@ async function main() {
   const body = (await res.json()) as { ok: boolean; result?: { message_id: number }; description?: string };
   if (!body.ok || !body.result) {
     throw new Error(`sendMessage failed: ${body.description ?? res.status}`);
+  }
+
+  if (previewChat) {
+    console.log(`Preview sent to ${previewChat} (message ${body.result.message_id}) — not recorded`);
+    return;
   }
 
   digest.telegramMessageId = body.result.message_id;
