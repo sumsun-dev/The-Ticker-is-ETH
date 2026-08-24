@@ -29,6 +29,21 @@
     { "screenname": "laurashin", "name": "Laura Shin", "why": "미디어 — Unchained, 심층 취재" },
     { "screenname": "0xngmi", "name": "0xngmi", "why": "데이터 — DefiLlama, DeFi 데이터" },
     { "screenname": "haydenzadams", "name": "Hayden Adams", "why": "DeFi — Uniswap 창업자" },
-    { "screenname": "StaniKulechov", "name": "Stani Kulechov", "why": "DeFi — Aave 창업자" }
+    { "screenname": "StaniKulechov", "name": "Stani Kulechov", "why": "DeFi — Aave 창업자" },
+    { "screenname": "ethlabs_org", "name": "EthLabs", "why": "생태계 — L1·L2 관계 강화 조직, 코어 계정들이 다수 인용 (멘션 10회)" },
+    { "screenname": "EthCoordinate", "name": "EthCoordinate", "why": "생태계 — EthStaker 후신, Forkcast 업그레이드 트래킹 (멘션 5회)" },
+    { "screenname": "binji_x", "name": "Binji", "why": "생태계 — EthLabs, 이더리움 커뮤니케이션·커뮤니티 (멘션 5회)" },
+    { "screenname": "EFDevcon", "name": "Devcon", "why": "공식 — EF Devcon/Devconnect 행사 공지 (멘션 5회)" },
+    { "screenname": "ethPandaOps", "name": "ethPandaOps", "why": "프로토콜 — EF 데브옵스, 테스트넷·업그레이드 리허설 (멘션 4회)" },
+    { "screenname": "trent_vanepps", "name": "Trent Van Epps", "why": "생태계 — Protocol Guild, 코어 개발자 펀딩 (멘션 4회)" },
+    { "screenname": "aave", "name": "Aave (공식)", "why": "DeFi — 공식, v4 등 프로토콜 뉴스 (멘션 4회)" },
+    { "screenname": "Uniswap", "name": "Uniswap (공식)", "why": "DeFi — 공식, 프로토콜·Unichain 뉴스 (멘션 3회)" },
+    { "screenname": "EtherealnewsHQ", "name": "Ethereal News", "why": "해설 — 이더리움 주간 뉴스 큐레이션, @ethereum이 RT (멘션 3회)" },
+    { "screenname": "tayvano_", "name": "Taylor Monahan", "why": "보안 — 온체인 해킹·탈취 추적 수사 (멘션 2회)" },
+    { "screenname": "pcaversaccio", "name": "Pascal Caversaccio", "why": "보안 — 스마트컨트랙트 보안 리서처 (멘션 2회)" },
+    { "screenname": "donnoh_eth", "name": "donnoh", "why": "L2 — 인터롭·브리지 리서치(L2Beat) (멘션 2회)" },
+    { "screenname": "_julianma", "name": "Julian Ma", "why": "프로토콜 — EF RIG 리서처, FCR·인터롭 (멘션 2회)" },
+    { "screenname": "mikeneuder", "name": "Mike Neuder", "why": "프로토콜 — 전 EF 리서처(현 Etherealize), 스테이킹·MEV (멘션 1회, 전문성 근거 추가)" },
+    { "screenname": "dannyryan", "name": "Danny Ryan", "why": "프로토콜 — 전 EF 리서치 리드, Etherealize 공동창업 (멘션 0회, 전문성 근거 추가)" }
   ]
 }
