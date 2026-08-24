@@ -18,6 +18,7 @@
     "fetch:news": "npx tsx scripts/fetch-news.ts"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.120.0",
     "@blocknote/core": "^0.47.0",
     "@blocknote/mantine": "^0.47.0",
     "@blocknote/react": "^0.47.0",
@@ -37,11 +38,13 @@
     "react-markdown": "^10.1.0",
     "react-router-dom": "^7.13.0",
     "rehype-raw": "^7.0.0",
+    "rehype-sanitize": "^6.0.0",
     "remark-gfm": "^4.0.1",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.4.0",
     "thirdweb": "^5.119.1",
-    "three": "^0.182.0"
+    "three": "^0.182.0",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@aws-sdk/client-s3": "^3.1078.0",

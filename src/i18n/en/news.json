@@ -1,6 +1,8 @@
 {
   "badge": "Daily Ethereum News",
-  "description": "The latest updates collected daily from Ethereum's official blog, research forums, key Twitter accounts, and communities. Click a title to read the original.",
+  "description": "Daily updates from Ethereum's official blog, research forums, key Twitter accounts, and communities — curated into a Korean digest every day.",
+  "latestDigest": "Daily Digest",
+  "pastDigests": "Past digests",
   "filters": {
     "all": "All",
     "research": "Official · Research",
@@ -8,9 +10,12 @@
     "community": "Community",
     "korea": "Korea"
   },
+  "showFeed": "Show raw source feed",
+  "hideFeed": "Hide raw source feed",
+  "feedNote": "The raw collection stream before curation. Click a title to read the original.",
   "updatedAt": "Last collected",
   "loadMore": "Load more",
-  "empty": "No news in this category yet.",
+  "empty": "No digest published yet.",
   "viewOriginal": "View original",
   "totalCount": "{{count}} items"
 }

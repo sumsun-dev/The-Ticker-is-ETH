@@ -1,0 +1,103 @@
+{
+  "digests": [
+    {
+      "date": "2026-08-24",
+      "title": "싱크 커미티 제거 제안, 그리고 ETF 자금의 귀환",
+      "intro": "이번 주 이더리움은 합의 레이어의 큰 구조 변화 제안과 함께 시작합니다. 싱크 커미티를 통째로 걷어내자는 EIP-8390이 올라와 라이트 클라이언트 로드맵의 방향 전환을 예고했고, 비탈릭은 난독화 연구 시리즈를 완결했습니다. 시장에서는 BTC·ETH ETF가 10개월 만에 최대 주간 순유입을 기록하며 자금이 돌아오는 모습입니다.",
+      "sections": [
+        {
+          "heading": "프로토콜 · 리서치",
+          "items": [
+            {
+              "title": "EIP-8390 — 싱크 커미티를 제거하자는 제안 등장",
+              "summary": "합의 레이어에서 싱크 커미티와 그 집계·서브넷·보상 체계, 그리고 그 위에 구축된 Altair 라이트 클라이언트 프로토콜까지 제거하자는 제안이 Ethereum Magicians에 올라왔습니다. 싱크 보상 가중치는 재분배 없이 삭제하는 안이라, 통과되면 라이트 클라이언트 검증 방식의 세대교체를 의미합니다.",
+              "url": "https://ethereum-magicians.org/t/eip-8390-remove-the-sync-committee/29486",
+              "source": "Eth Magicians",
+              "date": "2026-08-23"
+            },
+            {
+              "title": "비탈릭, 난독화 시리즈 완결 — 'Local Mixing'",
+              "summary": "비탈릭 부테린이 구분불가능 난독화(iO) 연구를 다루는 3부작 시리즈의 마지막 글을 공개했습니다. 이번 편은 로컬 믹싱 접근을 다루며, 암호학의 '성배'로 불리는 iO가 실용화될 경우 온체인 프라이버시와 키 관리에 갖는 함의를 짚습니다.",
+              "url": "https://vitalik.ca/general/2026/08/21/obfuscation_part_iii_local_mixing.html",
+              "source": "Vitalik",
+              "date": "2026-08-21"
+            },
+            {
+              "title": "PoS 블록 제안 타이밍 게임의 경제학 분석",
+              "summary": "제안자가 블록 공개 시점을 전략적으로 늦춰 MEV를 더 챙기는 '타이밍 게임'을 경제학 관점에서 분석한 글이 ethresear.ch에 올라왔습니다. 헤드 투표 타이밍과 인센티브 구조를 함께 다루고 있어, 최근 이어지는 타이밍 게임 대응 논의의 연장선에 있습니다.",
+              "url": "https://ethresear.ch/t/timing-the-head-in-ethereum-pos/25766",
+              "source": "ethresear.ch",
+              "date": "2026-08-20"
+            },
+            {
+              "title": "EF, 해시 기반 SNARK 보안을 공개 리더보드로 검증하는 better.codes 공개",
+              "summary": "이더리움 재단이 Proximity Prize 리서치의 핵심 문제를 Lean으로 형식화하고, 누구나 soundness 경계 개선에 도전할 수 있는 공개 리더보드 better.codes를 공개했습니다. AI 에이전트와의 협업으로 기계 검증된 보안 벤치마크를 끌어올리는 실험이라는 점이 눈에 띕니다.",
+              "url": "https://blog.ethereum.org/en/2026/08/20/better-codes-challenge",
+              "source": "EF Blog",
+              "date": "2026-08-20"
+            },
+            {
+              "title": "토큰화 자산을 위한 ERC 제안 잇따라",
+              "summary": "온체인에서 24/7 거래되는 토큰화 주식과 주 32.5시간만 열리는 기초 시장 사이의 간극을 다루는 ERC-8392(자산 상태 인터페이스)를 비롯해, ERC-4626 볼트용 동의 검증 확장, 탄소 크레딧 토큰화(ERC-8393) 등 실물자산 관련 표준 제안이 한 주에 몰렸습니다.",
+              "url": "https://ethereum-magicians.org/t/erc-8392-asset-status-interface-for-tokenized-assets/29489",
+              "source": "Eth Magicians",
+              "date": "2026-08-24"
+            }
+          ]
+        },
+        {
+          "heading": "생태계 · 보안",
+          "items": [
+            {
+              "title": "Ledger 이더리움 앱 서명 치환 취약점 제보",
+              "summary": "이더리움 앱을 구동하는 Ledger 기기가 서명 치환 공격에 취약하다는 제보가 r/ethereum에 올라와 논의가 이어지고 있습니다. 하드웨어 지갑 사용자라면 서명 전 기기 화면에서 트랜잭션 내용을 직접 확인하는 습관이 더 중요해졌습니다.",
+              "url": "https://www.reddit.com/r/ethereum/comments/1vwc8sj/every_ledger_running_the_ethereum_app_is/",
+              "source": "r/ethereum",
+              "date": "2026-08-23"
+            },
+            {
+              "title": "Base, 10팀에 총 $1M — 액셀러레이터 Batches 004 모집",
+              "summary": "Base가 10개 팀에 총 100만 달러를 지원하는 액셀러레이터 Base Batches 004와 신생 빌더 대상 그랜트 프로그램을 발표했습니다. L2 생태계의 빌더 유치 경쟁이 계속 달아오르는 모습입니다.",
+              "url": "https://x.com/base/status/2090115624764629058",
+              "source": "@base",
+              "date": "2026-08-19"
+            },
+            {
+              "title": "EF, Asiacrypt 2026 프라이버시 워크숍 발표 모집",
+              "summary": "이더리움 재단이 오는 12월 홍콩에서 열리는 Asiacrypt 2026의 부속 워크숍으로 제1회 프라이버시 보존 기술 워크숍(WPPT 2026)을 후원하며 발표를 모집합니다. 프라이버시 연구를 학계 무대로 끌어올리려는 행보입니다.",
+              "url": "https://x.com/ethereumfndn/status/2091757898955214976",
+              "source": "@ethereumfndn",
+              "date": "2026-08-24"
+            }
+          ]
+        },
+        {
+          "heading": "시장 브리핑",
+          "items": [
+            {
+              "title": "BTC·ETH ETF 주간 순유입 $2.6B — 10개월 만의 최대",
+              "summary": "비트코인·이더 ETF가 한 주에 26억 달러를 끌어모으며 2025년 10월 이후 최고 기록을 세웠습니다. 블랙록 IBIT는 하루에만 5억 달러 넘게 유입됐습니다. (Unchained 집계)",
+              "url": "https://x.com/laurashin/status/2091846985821335621",
+              "source": "@laurashin",
+              "date": "2026-08-24"
+            },
+            {
+              "title": "아서 헤이즈 \"ETH는 우리의 비트코인 외 최대 포지션\"",
+              "summary": "아서 헤이즈가 Unchained 인터뷰에서 ETH가 여전히 Maelstrom의 비트코인 외 최대 보유 자산이라며, $3,000 돌파 시 반사적 매수세가 빠르게 붙을 것으로 본다고 말했습니다.",
+              "url": "https://x.com/laurashin/status/2091243828439392515",
+              "source": "@laurashin",
+              "date": "2026-08-22"
+            },
+            {
+              "title": "Aave 예치금 $30B 회복",
+              "summary": "Aave 창업자 스타니 쿨레초프가 프로토콜 예치금이 300억 달러에 도달했다고 밝혔습니다. DeFi 렌딩으로 유동성이 돌아오고 있다는 신호로 읽힙니다.",
+              "url": "https://x.com/StaniKulechov/status/2091110327286964266",
+              "source": "@StaniKulechov",
+              "date": "2026-08-22"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

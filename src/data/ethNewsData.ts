@@ -46,6 +46,43 @@ export function sourceLabelOf(item: Pick<EthNewsItem, 'source' | 'sourceType'>):
     return SOURCE_LABELS[item.source] ?? item.source;
 }
 
+export interface EthDigestItem {
+    title: string;
+    summary: string;
+    url: string;
+    source: string;
+    date: string;
+}
+
+export interface EthDigestSection {
+    heading: string;
+    items: EthDigestItem[];
+}
+
+export interface EthDigest {
+    date: string;
+    title: string;
+    intro: string;
+    sections: EthDigestSection[];
+}
+
+let digestCache: EthDigest[] | null = null;
+let digestPromise: Promise<EthDigest[]> | null = null;
+
+/** 매일 생성되는 한국어 편집 다이제스트 (eth-digests.json) */
+export async function loadEthDigests(): Promise<EthDigest[]> {
+    if (digestCache) return digestCache;
+    if (digestPromise) return digestPromise;
+
+    digestPromise = import('./eth-digests.json').then(({ default: data }) => {
+        digestCache = (data as { digests: EthDigest[] }).digests;
+        digestPromise = null;
+        return digestCache;
+    });
+
+    return digestPromise;
+}
+
 let cache: EthNewsInbox | null = null;
 let loadingPromise: Promise<EthNewsInbox> | null = null;
 

@@ -1,19 +1,21 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, ChevronDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import usePageMeta from '../hooks/usePageMeta';
 import {
     loadEthNews,
+    loadEthDigests,
     groupOf,
     sourceLabelOf,
     type EthNewsItem,
     type EthNewsGroup,
+    type EthDigest,
 } from '../data/ethNewsData';
 
-const PAGE_SIZE = 30;
+const FEED_PAGE_SIZE = 30;
 
-const GROUPS: Array<'all' | EthNewsGroup> = ['all', 'research', 'twitter', 'community', 'korea'];
+const FEED_GROUPS: Array<'all' | Exclude<EthNewsGroup, 'korea'>> = ['all', 'research', 'twitter', 'community'];
 
 const GROUP_BADGE_CLASSES: Record<EthNewsGroup, string> = {
     research: 'text-eth-purple bg-eth-purple/10',
@@ -34,48 +36,51 @@ function formatRelativeTime(iso: string, locale: string): string {
     return new Date(iso).toLocaleDateString(locale, { month: 'short', day: 'numeric' });
 }
 
+function formatDigestDate(date: string, locale: string): string {
+    return new Date(`${date}T00:00:00`).toLocaleDateString(locale, {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        weekday: 'short',
+    });
+}
+
 const News: React.FC = () => {
     const { t, i18n } = useTranslation('news');
-    const [items, setItems] = useState<EthNewsItem[]>([]);
-    const [fetchedAt, setFetchedAt] = useState<string | null>(null);
+    const [digests, setDigests] = useState<EthDigest[]>([]);
+    const [selectedDate, setSelectedDate] = useState<string | null>(null);
+    const [feedItems, setFeedItems] = useState<EthNewsItem[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [isFeedOpen, setIsFeedOpen] = useState(false);
     const [activeGroup, setActiveGroup] = useState<'all' | EthNewsGroup>('all');
-    const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+    const [visibleCount, setVisibleCount] = useState(FEED_PAGE_SIZE);
 
     usePageMeta({
         title: 'Ethereum News',
-        description:
-            '이더리움 공식 블로그, 리서치 포럼, 핵심 트위터, 커뮤니티에서 매일 수집한 최신 소식.',
+        description: '이더리움 공식 블로그·리서치 포럼·핵심 트위터·커뮤니티 소식을 매일 수집해 한국어 다이제스트로 정리합니다.',
         canonical: '/news',
     });
 
     useEffect(() => {
-        loadEthNews().then((inbox) => {
-            setItems(inbox.items);
-            setFetchedAt(inbox.fetchedAt);
+        Promise.all([loadEthDigests(), loadEthNews()]).then(([digestData, inbox]) => {
+            setDigests(digestData);
+            // 피드는 다이제스트 보조 자료: 코인니스(텔레그램) 원문은 저작권상 노출하지 않음
+            setFeedItems(inbox.items.filter((item) => item.sourceType !== 'telegram'));
             setIsLoading(false);
         });
     }, []);
 
-    const countsByGroup = useMemo(() => {
-        const counts: Record<'all' | EthNewsGroup, number> = {
-            all: items.length,
-            research: 0,
-            twitter: 0,
-            community: 0,
-            korea: 0,
-        };
-        for (const item of items) counts[groupOf(item)]++;
-        return counts;
-    }, [items]);
-
-    const filteredItems = useMemo(
-        () => (activeGroup === 'all' ? items : items.filter((item) => groupOf(item) === activeGroup)),
-        [items, activeGroup],
+    const currentDigest = useMemo(
+        () => digests.find((d) => d.date === selectedDate) ?? digests[0] ?? null,
+        [digests, selectedDate],
     );
 
-    const visibleItems = filteredItems.slice(0, visibleCount);
-    const hasMore = visibleCount < filteredItems.length;
+    const filteredFeed = useMemo(
+        () => (activeGroup === 'all' ? feedItems : feedItems.filter((item) => groupOf(item) === activeGroup)),
+        [feedItems, activeGroup],
+    );
+
+    const visibleFeed = filteredFeed.slice(0, visibleCount);
 
     return (
         <div className="min-h-screen pt-28 pb-20 px-6 container mx-auto text-theme-text">
@@ -89,88 +94,169 @@ const News: React.FC = () => {
                 <p className="text-theme-text-muted max-w-xl text-lg font-light leading-relaxed">
                     {t('description')}
                 </p>
-                {fetchedAt && (
-                    <p className="text-sm text-theme-text-muted mt-3">
-                        {t('updatedAt')} · {formatRelativeTime(fetchedAt, i18n.language)}
-                    </p>
-                )}
             </motion.div>
 
-            <div className="flex flex-wrap gap-3 mb-10">
-                {GROUPS.map((group) => (
-                    <button
-                        key={group}
-                        onClick={() => { setActiveGroup(group); setVisibleCount(PAGE_SIZE); }}
-                        className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
-                            activeGroup === group
-                                ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/25'
-                                : 'bg-theme-surface text-theme-text-muted hover:text-theme-text'
-                        }`}
-                    >
-                        {t(`filters.${group}`)}
-                        <span className="ml-2 text-xs opacity-70">{countsByGroup[group]}</span>
-                    </button>
-                ))}
-            </div>
-
-            <div className="max-w-3xl space-y-3">
-                {isLoading &&
-                    Array.from({ length: 6 }).map((_, i) => (
-                        <div key={i} className="bg-theme-surface border border-theme-border rounded-2xl p-5 animate-pulse">
-                            <div className="h-3 w-24 bg-white/10 rounded mb-3" />
-                            <div className="h-5 w-3/4 bg-white/10 rounded mb-2" />
+            {isLoading && (
+                <div className="max-w-3xl space-y-4">
+                    {Array.from({ length: 4 }).map((_, i) => (
+                        <div key={i} className="bg-theme-surface border border-theme-border rounded-2xl p-6 animate-pulse">
+                            <div className="h-4 w-32 bg-white/10 rounded mb-4" />
+                            <div className="h-6 w-3/4 bg-white/10 rounded mb-3" />
                             <div className="h-4 w-full bg-white/5 rounded" />
                         </div>
                     ))}
+                </div>
+            )}
 
-                {!isLoading && visibleItems.length === 0 && (
-                    <p className="text-theme-text-muted py-12 text-center">{t('empty')}</p>
-                )}
+            {/* ── 데일리 다이제스트 ─────────────────────────── */}
+            {!isLoading && currentDigest && (
+                <article className="max-w-3xl">
+                    <p className="text-sm font-medium text-brand-accent mb-2">
+                        {formatDigestDate(currentDigest.date, i18n.language)} · {t('latestDigest')}
+                    </p>
+                    <h2 className="text-2xl md:text-4xl font-bold leading-snug mb-5 text-balance">
+                        {currentDigest.title}
+                    </h2>
+                    <p className="text-theme-text-muted text-lg font-light leading-relaxed mb-10">
+                        {currentDigest.intro}
+                    </p>
 
-                {visibleItems.map((item) => {
-                    const group = groupOf(item);
-                    return (
-                        <a
-                            key={item.id}
-                            href={item.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="group block bg-theme-surface border border-theme-border rounded-2xl p-5 hover:border-brand-primary/50 transition-colors"
-                        >
-                            <div className="flex items-center gap-3 mb-2 text-xs">
-                                <span className={`px-2.5 py-0.5 rounded-full font-semibold ${GROUP_BADGE_CLASSES[group]}`}>
-                                    {sourceLabelOf(item)}
-                                </span>
-                                <span className="text-theme-text-muted">
-                                    {formatRelativeTime(item.publishedAt, i18n.language)}
-                                </span>
-                                <ExternalLink
-                                    size={13}
-                                    className="ml-auto text-theme-text-muted opacity-0 group-hover:opacity-100 transition-opacity"
-                                    aria-hidden
-                                />
+                    {currentDigest.sections.map((section) => (
+                        <section key={section.heading} className="mb-10">
+                            <h3 className="text-sm font-bold uppercase tracking-widest text-eth-purple mb-4">
+                                {section.heading}
+                            </h3>
+                            <div className="space-y-4">
+                                {section.items.map((item) => (
+                                    <div
+                                        key={item.url}
+                                        className="bg-theme-surface border border-theme-border rounded-2xl p-5 hover:border-brand-primary/40 transition-colors"
+                                    >
+                                        <h4 className="font-semibold leading-snug mb-2">{item.title}</h4>
+                                        <p className="text-sm text-theme-text-muted leading-relaxed mb-3">
+                                            {item.summary}
+                                        </p>
+                                        <div className="flex items-center gap-3 text-xs text-theme-text-muted">
+                                            <span className="font-medium">{item.source}</span>
+                                            <span>{item.date}</span>
+                                            <a
+                                                href={item.url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="ml-auto inline-flex items-center gap-1 text-brand-accent hover:underline"
+                                            >
+                                                {t('viewOriginal')} <ExternalLink size={12} aria-hidden />
+                                            </a>
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
-                            <h2 className="font-semibold leading-snug mb-1 group-hover:text-brand-accent transition-colors">
-                                {item.title}
-                            </h2>
-                            {item.summary && item.summary !== item.title && (
-                                <p className="text-sm text-theme-text-muted line-clamp-2">{item.summary}</p>
-                            )}
-                        </a>
-                    );
-                })}
+                        </section>
+                    ))}
 
-                {hasMore && (
-                    <div className="pt-6 text-center">
-                        <button
-                            onClick={() => setVisibleCount((prev) => prev + PAGE_SIZE)}
-                            className="px-8 py-3 rounded-2xl bg-theme-surface border border-theme-border text-theme-text-muted hover:text-theme-text hover:border-brand-primary/50 transition-colors font-medium"
-                        >
-                            {t('loadMore')} · {filteredItems.length - visibleCount}
-                        </button>
-                    </div>
-                )}
-            </div>
+                    {/* 지난 다이제스트 */}
+                    {digests.length > 1 && (
+                        <section className="mb-4">
+                            <h3 className="text-sm font-bold uppercase tracking-widest text-theme-text-muted mb-4">
+                                {t('pastDigests')}
+                            </h3>
+                            <div className="flex flex-wrap gap-2">
+                                {digests.map((digest) => (
+                                    <button
+                                        key={digest.date}
+                                        onClick={() => { setSelectedDate(digest.date); window.scrollTo(0, 0); }}
+                                        aria-pressed={digest.date === currentDigest.date}
+                                        className={`px-4 py-2 rounded-full text-sm transition-all ${
+                                            digest.date === currentDigest.date
+                                                ? 'bg-brand-primary text-white'
+                                                : 'bg-theme-surface text-theme-text-muted hover:text-theme-text'
+                                        }`}
+                                    >
+                                        {digest.date}
+                                    </button>
+                                ))}
+                            </div>
+                        </section>
+                    )}
+                </article>
+            )}
+
+            {!isLoading && !currentDigest && (
+                <p className="text-theme-text-muted py-12">{t('empty')}</p>
+            )}
+
+            {/* ── 실시간 수집 피드 (보조) ─────────────────────── */}
+            {!isLoading && feedItems.length > 0 && (
+                <div className="max-w-3xl mt-14 pt-10 border-t border-theme-border">
+                    <button
+                        onClick={() => setIsFeedOpen((prev) => !prev)}
+                        aria-expanded={isFeedOpen}
+                        className="flex items-center gap-2 text-sm font-medium text-theme-text-muted hover:text-theme-text transition-colors"
+                    >
+                        <ChevronDown
+                            size={16}
+                            className={`transition-transform ${isFeedOpen ? 'rotate-180' : ''}`}
+                            aria-hidden
+                        />
+                        {isFeedOpen ? t('hideFeed') : t('showFeed')} · {feedItems.length}
+                    </button>
+
+                    {isFeedOpen && (
+                        <div className="mt-6">
+                            <p className="text-xs text-theme-text-muted mb-5">{t('feedNote')}</p>
+                            <div className="flex flex-wrap gap-2 mb-6">
+                                {FEED_GROUPS.map((group) => (
+                                    <button
+                                        key={group}
+                                        onClick={() => { setActiveGroup(group); setVisibleCount(FEED_PAGE_SIZE); }}
+                                        className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all ${
+                                            activeGroup === group
+                                                ? 'bg-brand-primary text-white'
+                                                : 'bg-theme-surface text-theme-text-muted hover:text-theme-text'
+                                        }`}
+                                    >
+                                        {t(`filters.${group}`)}
+                                    </button>
+                                ))}
+                            </div>
+                            <div className="space-y-2">
+                                {visibleFeed.map((item) => {
+                                    const group = groupOf(item);
+                                    return (
+                                        <a
+                                            key={item.id}
+                                            href={item.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="group flex items-center gap-3 py-2.5 px-4 rounded-xl border border-transparent hover:border-theme-border hover:bg-theme-surface transition-colors"
+                                        >
+                                            <span className={`flex-none px-2 py-0.5 rounded-full text-[10px] font-semibold ${GROUP_BADGE_CLASSES[group]}`}>
+                                                {sourceLabelOf(item)}
+                                            </span>
+                                            <span className="text-sm truncate group-hover:text-brand-accent transition-colors">
+                                                {item.title}
+                                            </span>
+                                            <span className="ml-auto flex-none text-xs text-theme-text-muted">
+                                                {formatRelativeTime(item.publishedAt, i18n.language)}
+                                            </span>
+                                        </a>
+                                    );
+                                })}
+                            </div>
+                            {visibleCount < filteredFeed.length && (
+                                <div className="pt-5 text-center">
+                                    <button
+                                        onClick={() => setVisibleCount((prev) => prev + FEED_PAGE_SIZE)}
+                                        className="px-6 py-2 rounded-xl bg-theme-surface border border-theme-border text-sm text-theme-text-muted hover:text-theme-text transition-colors"
+                                    >
+                                        {t('loadMore')} · {filteredFeed.length - visibleCount}
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+                    )}
+                </div>
+            )}
         </div>
     );
 };

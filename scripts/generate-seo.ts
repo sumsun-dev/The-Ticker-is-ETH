@@ -71,6 +71,14 @@ const newsFeed = readJson<{ items: Array<Record<string, string>> }>(join(DATA, '
 const ethNews = readJson<{ fetchedAt: string; items: Array<{ title: string; url: string; summary?: string }> }>(
     join(DATA, 'eth-news-inbox.json'),
 );
+const ethDigests = readJson<{
+    digests: Array<{
+        date: string;
+        title: string;
+        intro: string;
+        sections: Array<{ heading: string; items: Array<{ title: string; summary: string; url: string; source: string }> }>;
+    }>;
+}>(join(DATA, 'eth-digests.json'));
 const newsItems: ContentItem[] = (newsFeed.items || []).map((n) => ({
     id: `news-${n.id}`,
     title: n.title,
@@ -348,19 +356,28 @@ const staticPages: StaticPage[] = [
     {
         path: 'news',
         title: 'Ethereum News',
-        description: `이더리움 공식 블로그·리서치 포럼·핵심 트위터·커뮤니티에서 매일 수집한 최신 소식 ${ethNews.items.length}건.`,
+        description: ethDigests.digests[0]
+            ? `${ethDigests.digests[0].date} 데일리 다이제스트 — ${ethDigests.digests[0].title}`
+            : '이더리움 공식 블로그·리서치 포럼·핵심 트위터·커뮤니티 소식을 매일 한국어 다이제스트로 정리합니다.',
         bodyHtml:
             `<h1>Ethereum News</h1>` +
-            `<p>이더리움 공식 블로그, 리서치 포럼(ethresear.ch, Ethereum Magicians), 핵심 트위터 계정, 커뮤니티에서 매일 자동 수집한 최신 소식입니다.</p>` +
-            `<h2>최근 소식</h2><ul>` +
-            ethNews.items.slice(0, 30).map((n) => `<li><a href="${escAttr(n.url)}">${esc(n.title)}</a></li>`).join('') +
-            `</ul>`,
+            `<p>이더리움 공식 블로그, 리서치 포럼(ethresear.ch, Ethereum Magicians), 핵심 트위터 계정, 커뮤니티 소식을 매일 수집해 한국어 다이제스트로 정리합니다.</p>` +
+            ethDigests.digests.slice(0, 3).map((d) =>
+                `<h2>${esc(d.date)} — ${esc(d.title)}</h2><p>${esc(d.intro)}</p>` +
+                d.sections.map((s) =>
+                    `<h3>${esc(s.heading)}</h3><ul>` +
+                    s.items.map((it) => `<li><a href="${escAttr(it.url)}">${esc(it.title)}</a> (${esc(it.source)}) — ${esc(it.summary)}</li>`).join('') +
+                    `</ul>`,
+                ).join(''),
+            ).join(''),
         jsonLd: [
             collectionPageLd({
                 name: 'Ethereum News',
                 url: '/news',
-                description: '이더리움 최신 소식 데일리 수집 피드',
-                items: ethNews.items.slice(0, 50).map((n) => ({ name: n.title, url: n.url })),
+                description: '이더리움 소식 데일리 한국어 다이제스트',
+                items: (ethDigests.digests[0]?.sections ?? [])
+                    .flatMap((s) => s.items)
+                    .map((it) => ({ name: it.title, url: it.url })),
             }),
         ],
     },
