@@ -16,6 +16,8 @@ concurrency:
 jobs:
   sync:
     runs-on: ubuntu-latest
+    # 세션 장애 시 재시도 루프로 몇 시간씩 매달리는 것 방지
+    timeout-minutes: 30
 
     steps:
       - uses: actions/checkout@v4
