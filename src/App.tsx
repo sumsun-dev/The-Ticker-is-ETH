@@ -14,8 +14,11 @@ const Contents = React.lazy(() => import('./pages/Contents'));
 const ContentsDetail = React.lazy(() => import('./pages/ContentsDetail'));
 const WriteResearch = React.lazy(() => import('./pages/WriteResearch'));
 const Ecosystem = React.lazy(() => import('./pages/Ecosystem'));
+const News = React.lazy(() => import('./pages/News'));
 const AdminLogin = React.lazy(() => import('./pages/AdminLogin'));
 const Profile = React.lazy(() => import('./pages/Profile'));
+// Privy SDK (~630 KB gz) mounts only on the routes that actually use login.
+const PrivyWrapper = React.lazy(() => import('./providers/PrivyWrapper'));
 const NotFound = React.lazy(() => import('./pages/NotFound'));
 
 const ScrollToTop: React.FC = () => {
@@ -46,13 +49,13 @@ const AppRoutes: React.FC = () => {
           <Route path="/contents" element={<Contents />} />
           <Route path="/contents/:id" element={<ContentsDetail />} />
           <Route path="/contents/write" element={<WriteResearch />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<PrivyWrapper><Profile /></PrivyWrapper>} />
           <Route path="/admin" element={<AdminLogin />} />
           {/* Backward-compatible redirects */}
           <Route path="/research" element={<Navigate to="/contents" replace />} />
           <Route path="/research/write" element={<Navigate to="/contents/write" replace />} />
           <Route path="/research/:id" element={<RedirectWithParams base="/contents" />} />
-          <Route path="/news" element={<Navigate to="/contents" replace />} />
+          <Route path="/news" element={<News />} />
           <Route path="/news/:id" element={<RedirectWithParams base="/contents" />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

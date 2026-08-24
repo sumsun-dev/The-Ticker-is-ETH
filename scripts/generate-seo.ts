@@ -68,6 +68,9 @@ interface ContentItem {
 // ── 데이터 로드 ─────────────────────────────────────────────
 const research = readJson<ContentItem[]>(join(DATA, 'research-index.json'));
 const newsFeed = readJson<{ items: Array<Record<string, string>> }>(join(DATA, 'news-feed.json'));
+const ethNews = readJson<{ fetchedAt: string; items: Array<{ title: string; url: string; summary?: string }> }>(
+    join(DATA, 'eth-news-inbox.json'),
+);
 const newsItems: ContentItem[] = (newsFeed.items || []).map((n) => ({
     id: `news-${n.id}`,
     title: n.title,
@@ -100,6 +103,7 @@ const staticRoutes: SitemapEntry[] = [
     { loc: '/', changefreq: 'weekly', priority: '1.0' },
     { loc: '/about', changefreq: 'monthly', priority: '0.8' },
     { loc: '/contents', changefreq: 'daily', priority: '0.9' },
+    { loc: '/news', changefreq: 'daily', priority: '0.8' },
     { loc: '/team', changefreq: 'monthly', priority: '0.7' },
     { loc: '/contributors', changefreq: 'weekly', priority: '0.7' },
     { loc: '/ecosystem', changefreq: 'monthly', priority: '0.7' },
@@ -139,10 +143,12 @@ writeFileSync(join(DIST, 'sitemap.xml'), sitemapXml);
 // ── 2) HTML shell 생성 ──────────────────────────────────────
 const template = readFileSync(join(DIST, 'index.html'), 'utf8');
 
+// NOTE: user-derived strings go through function replacements — a literal
+// replacement string would corrupt output on `$&`/`$'` sequences in titles.
 function setMeta(html: string, attr: 'name' | 'property', key: string, content: string): string {
     const re = new RegExp(`(<meta ${attr}="${key}" content=")[^"]*(")`);
-    if (re.test(html)) return html.replace(re, `$1${escAttr(content)}$2`);
-    return html.replace('</head>', `    <meta ${attr}="${key}" content="${escAttr(content)}" />\n  </head>`);
+    if (re.test(html)) return html.replace(re, (_m, p1: string, p2: string) => `${p1}${escAttr(content)}${p2}`);
+    return html.replace('</head>', () => `    <meta ${attr}="${key}" content="${escAttr(content)}" />\n  </head>`);
 }
 
 interface ShellOptions {
@@ -160,7 +166,7 @@ interface ShellOptions {
 function buildShell(o: ShellOptions): string {
     const fullTitle = o.title ? `${o.title} | ${SITE_NAME}` : SITE_NAME;
     let html = template;
-    html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(fullTitle)}</title>`);
+    html = html.replace(/<title>[\s\S]*?<\/title>/, () => `<title>${esc(fullTitle)}</title>`);
     html = setMeta(html, 'name', 'description', o.description);
     html = setMeta(html, 'property', 'og:title', fullTitle);
     html = setMeta(html, 'property', 'og:description', o.description);
@@ -170,15 +176,15 @@ function buildShell(o: ShellOptions): string {
     html = setMeta(html, 'name', 'twitter:title', fullTitle);
     html = setMeta(html, 'name', 'twitter:description', o.description);
     html = setMeta(html, 'name', 'twitter:image', o.image);
-    html = html.replace(/<link rel="canonical"[^>]*>/, `<link rel="canonical" href="${escAttr(o.url)}" />`);
+    html = html.replace(/<link rel="canonical"[^>]*>/, () => `<link rel="canonical" href="${escAttr(o.url)}" />`);
 
     const extra: string[] = [];
     if (o.publishedTime) extra.push(`<meta property="article:published_time" content="${escAttr(o.publishedTime)}" />`);
     if (o.author) extra.push(`<meta property="article:author" content="${escAttr(o.author)}" />`);
     extra.push(`<script type="application/ld+json">${JSON.stringify(o.jsonLd)}</script>`);
-    html = html.replace('</head>', `    ${extra.join('\n    ')}\n  </head>`);
+    html = html.replace('</head>', () => `    ${extra.join('\n    ')}\n  </head>`);
 
-    html = html.replace('<div id="root"></div>', `<div id="root">${o.bodyHtml}</div>`);
+    html = html.replace('<div id="root"></div>', () => `<div id="root">${o.bodyHtml}</div>`);
     return html;
 }
 
@@ -340,6 +346,25 @@ const staticPages: StaticPage[] = [
         ],
     },
     {
+        path: 'news',
+        title: 'Ethereum News',
+        description: `이더리움 공식 블로그·리서치 포럼·핵심 트위터·커뮤니티에서 매일 수집한 최신 소식 ${ethNews.items.length}건.`,
+        bodyHtml:
+            `<h1>Ethereum News</h1>` +
+            `<p>이더리움 공식 블로그, 리서치 포럼(ethresear.ch, Ethereum Magicians), 핵심 트위터 계정, 커뮤니티에서 매일 자동 수집한 최신 소식입니다.</p>` +
+            `<h2>최근 소식</h2><ul>` +
+            ethNews.items.slice(0, 30).map((n) => `<li><a href="${escAttr(n.url)}">${esc(n.title)}</a></li>`).join('') +
+            `</ul>`,
+        jsonLd: [
+            collectionPageLd({
+                name: 'Ethereum News',
+                url: '/news',
+                description: '이더리움 최신 소식 데일리 수집 피드',
+                items: ethNews.items.slice(0, 50).map((n) => ({ name: n.title, url: n.url })),
+            }),
+        ],
+    },
+    {
         path: 'team',
         title: 'Core Team',
         description: 'Ethereum Collective Korea 코어팀 멤버 소개.',
@@ -413,6 +438,7 @@ const llms =
     `## Sections\n` +
     `- [About](${SITE_URL}/about): 미션과 비전\n` +
     `- [Contents](${SITE_URL}/contents): 리서치·뉴스·주간 리포트 (${contents.length}건)\n` +
+    `- [Ethereum News](${SITE_URL}/news): 이더리움 최신 소식 데일리 피드 (${ethNews.items.length}건)\n` +
     `- [Core Team](${SITE_URL}/team): 코어팀 멤버\n` +
     `- [Contributors](${SITE_URL}/contributors): 기여자\n` +
     `- [Ecosystem](${SITE_URL}/ecosystem): 이더리움 생태계\n` +

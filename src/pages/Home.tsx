@@ -38,7 +38,8 @@ const Home: React.FC = () => {
             >
                 <MissionSection />
                 <InitiativesSection />
-                <Suspense fallback={null}>
+                {/* min-h placeholder keeps layout stable while lazy chunks load (CLS) */}
+                <Suspense fallback={<div className="min-h-[60rem]" aria-hidden />}>
                     <UpdatesSection />
                     <EcosystemSection />
                 </Suspense>
