@@ -12,9 +12,10 @@ cd "$(dirname "$0")/../.."
 
 git pull --rebase origin main
 npx tsx scripts/generate-eth-digest.ts
+npx tsx scripts/render-digest-cover.ts
 npx tsx scripts/post-digest-telegram.ts
 
-git add src/data/eth-digests.json
+git add src/data/eth-digests.json public/assets/digests/
 git diff --cached --quiet || (
   git commit -m "chore: publish daily eth digest [automated]" &&
   git pull --rebase origin main &&

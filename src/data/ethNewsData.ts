@@ -49,6 +49,8 @@ export function sourceLabelOf(item: Pick<EthNewsItem, 'source' | 'sourceType'>):
 export interface EthDigestItem {
     title: string;
     summary: string;
+    /** "왜 중요한가" 한 줄 — 초기 다이제스트에는 없을 수 있음 */
+    why?: string;
     url: string;
     source: string;
     date: string;
@@ -64,6 +66,8 @@ export interface EthDigest {
     title: string;
     intro: string;
     sections: EthDigestSection[];
+    /** 커버 이미지 public 경로 (예: /assets/digests/2026-08-24.png) */
+    coverImage?: string;
 }
 
 let digestCache: EthDigest[] | null = null;

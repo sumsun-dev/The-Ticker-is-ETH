@@ -27,6 +27,7 @@ const DigestSchema = z.object({
         z.object({
           title: z.string(),
           summary: z.string(),
+          why: z.string(),
           url: z.string(),
           source: z.string(),
           date: z.string(),
@@ -36,27 +37,38 @@ const DigestSchema = z.object({
   ),
 });
 
-export type Digest = z.infer<typeof DigestSchema> & { date: string; telegramMessageId?: number };
+export type Digest = z.infer<typeof DigestSchema> & {
+  date: string;
+  telegramMessageId?: number;
+  coverImage?: string;
+};
 
-const EDITOR_PROMPT = `당신은 ECK(Ethereum Collective Korea)의 데일리 이더리움 다이제스트 편집자입니다.
-아래 수집된 뉴스 아이템 목록으로 한국어 데일리 다이제스트를 작성하세요.
+const EDITOR_PROMPT = `당신은 ECK(Ethereum Collective Korea)의 데일리 이더리움 다이제스트 수석 편집자입니다.
+독자는 이더리움 생태계를 진지하게 따라가는 한국어 사용자(리서처·빌더·투자자)입니다.
+아래 수집된 뉴스 아이템 목록으로 전문성 있는 한국어 데일리 다이제스트를 작성하세요.
 
 편집 원칙:
 - 모든 요약은 한국어로 재작성합니다. 원문 문장을 그대로 복사하지 않습니다.
 - 사실만 전달하고 과장·투자 조언을 하지 않습니다. 수치·발언은 출처를 명시합니다.
+- 전문 용어는 정확하게: 통용되는 한국어 표기를 쓰고, 처음 등장하는 핵심 용어는 원어를 병기합니다.
+- 기술 맥락을 붙입니다: 관련 EIP·업그레이드·선행 논의와 연결해 "무엇이 어디서 이어지는 이야기인지"를 보여줍니다.
 - 트윗은 해당 인물의 발언·발표로 처리하고, 확인되지 않은 주장은 "~라는 제보/주장" 형태로 씁니다.
 - 코인니스(tg:) 항목은 사실 참고용으로만 사용합니다.
 - r/ethereum의 Daily General Discussion 같은 정기 스레드는 제외합니다.
 
 구성:
 - title: 그날의 핵심을 담은 한국어 헤드라인 (한 문장, 낚시성 금지)
-- intro: 2~3문장의 그날 요약
+- intro: 3~4문장 — 그날의 개별 소식들을 관통하는 흐름을 짚는 에디터 노트
 - sections: "프로토콜 · 리서치", "생태계 · 보안", "시장 브리핑" 3개 (해당 항목이 없으면 그 섹션 생략)
-- 전체 6~12개 항목. 각 항목: 한국어 헤드라인 title, 2~3문장 summary, 원문 url, source 라벨(예: ethresear.ch, EF Blog, @handle), date(YYYY-MM-DD)
+- 전체 6~12개 항목. 각 항목:
+  - title: 한국어 헤드라인
+  - summary: 3~4문장 — 사실 + 기술 맥락 + 구체적 수치
+  - why: "왜 중요한가" 한 문장 — 이더리움 생태계 관점의 함의 (투자 조언 금지)
+  - url, source 라벨(예: ethresear.ch, EF Blog, @handle), date(YYYY-MM-DD)
 - 중요도 순으로 배치: 프로토콜 변화 > 보안 > 생태계 > 시장
 
 응답은 아래 형태의 JSON 하나만 출력하세요. 코드펜스·설명 없이 JSON만:
-{"title": "...", "intro": "...", "sections": [{"heading": "...", "items": [{"title": "...", "summary": "...", "url": "...", "source": "...", "date": "YYYY-MM-DD"}]}]}`;
+{"title": "...", "intro": "...", "sections": [{"heading": "...", "items": [{"title": "...", "summary": "...", "why": "...", "url": "...", "source": "...", "date": "YYYY-MM-DD"}]}]}`;
 
 function todayKst(): string {
   return process.env.DIGEST_DATE ?? new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Seoul' }).format(new Date());

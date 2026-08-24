@@ -24,6 +24,7 @@ const News: React.FC = () => {
         title: 'Ethereum News',
         description: '이더리움 공식 블로그·리서치 포럼·핵심 트위터·커뮤니티 소식을 매일 수집해 한국어 다이제스트로 정리합니다.',
         canonical: '/news',
+        image: digests[0]?.coverImage,
     });
 
     useEffect(() => {
@@ -66,6 +67,14 @@ const News: React.FC = () => {
 
             {!isLoading && currentDigest && (
                 <article className="max-w-3xl">
+                    {currentDigest.coverImage && (
+                        <img
+                            src={currentDigest.coverImage}
+                            alt={currentDigest.title}
+                            className="w-full rounded-2xl border border-theme-border mb-8"
+                            loading="eager"
+                        />
+                    )}
                     <p className="text-sm font-medium text-brand-accent mb-2">
                         {formatDigestDate(currentDigest.date, i18n.language)} · {t('latestDigest')}
                     </p>
@@ -91,6 +100,11 @@ const News: React.FC = () => {
                                         <p className="text-sm text-theme-text-muted leading-relaxed mb-3">
                                             {item.summary}
                                         </p>
+                                        {item.why && (
+                                            <p className="text-sm text-eth-purple/90 leading-relaxed mb-3 pl-3 border-l-2 border-eth-purple/40">
+                                                {item.why}
+                                            </p>
+                                        )}
                                         <div className="flex items-center gap-3 text-xs text-theme-text-muted">
                                             <span className="font-medium">{item.source}</span>
                                             <span>{item.date}</span>
