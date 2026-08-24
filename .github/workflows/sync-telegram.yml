@@ -67,4 +67,4 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add src/data/telegram-contributors.json src/data/team-enrichment.json src/data/research-index.json src/data/articles/ src/data/news-feed.json src/data/eth-news-inbox.json
-          git diff --cached --quiet || (git commit -m "chore: sync telegram & news data [automated]" && git push)
+          git diff --cached --quiet || (git commit -m "chore: sync telegram & news data [automated]" && git pull --rebase origin main && git push)
