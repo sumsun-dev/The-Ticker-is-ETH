@@ -29,6 +29,8 @@ jobs:
 
       - name: Fetch Telegram data
         run: npx tsx scripts/fetch-telegram.ts
+        # 텔레그램 세션 장애가 뉴스 수집까지 막지 않도록 실패 허용
+        continue-on-error: true
         env:
           CI: 'true'
           TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
@@ -43,6 +45,7 @@ jobs:
 
       - name: Preprocess Telegram data
         run: npx tsx scripts/preprocess-telegram.ts
+        continue-on-error: true
 
       - name: Fetch News RSS
         run: npx tsx scripts/fetch-news.ts
