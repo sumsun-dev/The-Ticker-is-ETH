@@ -3,6 +3,7 @@
   "description": "Daily updates from Ethereum's official blog, research forums, key Twitter accounts, and communities — curated into a Korean digest every day.",
   "latestDigest": "Daily Digest",
   "pastDigests": "Past digests",
+  "sectionNav": "Digest sections",
   "empty": "No digest published yet.",
   "viewOriginal": "View original"
 }
