@@ -77,8 +77,12 @@ async function main() {
     return;
   }
 
-  // DIGEST_PREVIEW_CHAT: 채널 대신 지정 chat으로 미리보기 전송 (송출 기록 안 함)
+  // DIGEST_PREVIEW_CHAT: 채널 대신 지정 chat으로 미리보기 전송 (검수 모드)
   const previewChat = process.env.DIGEST_PREVIEW_CHAT;
+  if (previewChat && digest.previewedAt) {
+    console.log(`[SKIP] digest ${digest.date} already previewed at ${digest.previewedAt}`);
+    return;
+  }
   const chatId = previewChat ?? `@${channel}`;
 
   // 커버 이미지가 있으면 sendPhoto(커버 + 캡션), 없으면 텍스트 메시지로 폴백
@@ -112,7 +116,9 @@ async function main() {
   }
 
   if (previewChat) {
-    console.log(`Preview sent to ${previewChat} (message ${body.result.message_id}) — not recorded`);
+    digest.previewedAt = new Date().toISOString();
+    fs.writeFileSync(DIGESTS, JSON.stringify(data, null, 2), 'utf-8');
+    console.log(`Preview sent to ${previewChat} (message ${body.result.message_id})`);
     return;
   }
 

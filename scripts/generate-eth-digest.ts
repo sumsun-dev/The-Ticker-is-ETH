@@ -41,6 +41,8 @@ export type Digest = z.infer<typeof DigestSchema> & {
   date: string;
   telegramMessageId?: number;
   coverImage?: string;
+  /** DM 검수 미리보기 발송 시각 — 중복 발송 방지 */
+  previewedAt?: string;
 };
 
 const EDITOR_PROMPT = `당신은 ECK(Ethereum Collective Korea)의 데일리 이더리움 다이제스트 수석 편집자입니다.

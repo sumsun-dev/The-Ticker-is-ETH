@@ -10,7 +10,8 @@
 set -euo pipefail
 cd "$(dirname "$0")/../.."
 
-git pull --rebase origin main
+# --autostash: 이전 실행이 남긴 미커밋 산출물이 있어도 pull이 막히지 않게
+git pull --rebase --autostash origin main
 npx tsx scripts/generate-eth-digest.ts
 npx tsx scripts/render-digest-cover.ts
 npx tsx scripts/post-digest-telegram.ts
@@ -18,6 +19,6 @@ npx tsx scripts/post-digest-telegram.ts
 git add src/data/eth-digests.json public/assets/digests/
 git diff --cached --quiet || (
   git commit -m "chore: publish daily eth digest [automated]" &&
-  git pull --rebase origin main &&
+  git pull --rebase --autostash origin main &&
   git push origin main
 )
