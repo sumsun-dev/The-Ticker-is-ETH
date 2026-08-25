@@ -92,7 +92,7 @@ describe('News', () => {
       expect(screen.getByRole('heading', { level: 2, name: '설전 감지 첫날의 다이제스트' })).toBeInTheDocument();
     });
 
-    fireEvent.click(screen.getByRole('button', { name: /싱크 커미티 제거 제안 등장/ }));
+    fireEvent.click(screen.getAllByRole('button', { name: /싱크 커미티 제거 제안 등장/ })[0]);
 
     await waitFor(() => {
       expect(screen.getByRole('heading', { level: 2, name: '싱크 커미티 제거 제안 등장' })).toBeInTheDocument();

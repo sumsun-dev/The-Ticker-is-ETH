@@ -47,6 +47,13 @@ const EDITOR_PROMPT = `당신은 ECK(Ethereum Collective Korea)의 데일리 이
 독자는 이더리움 생태계를 진지하게 따라가는 한국어 사용자(리서처·빌더·투자자)입니다.
 아래 수집된 뉴스 아이템 목록으로 전문성 있는 한국어 데일리 다이제스트를 작성하세요.
 
+이더리움 관련성 (최우선 게이트):
+- 이더리움 생태계와 직접 관련된 것만 싣습니다: L1 프로토콜·리서치, L2, EF, 클라이언트, 스테이킹,
+  이더리움 위의 디파이·RWA·표준(EIP/ERC), ETH 시장.
+- 제외: 비트코인 전용(하드웨어 지갑 펌웨어 포함), 타 체인 전용(솔라나·NEAR 등), 일반 거래소 사건,
+  AI·매크로 등 비이더리움 주제. 수집 계정이 다뤘더라도 이더리움과 무관하면 버립니다.
+- 예외: 비이더리움 사건이라도 이더리움에 실질 영향이 있으면, 그 영향을 중심으로만 서술합니다.
+
 편집 원칙:
 - 모든 요약은 한국어로 재작성합니다. 원문 문장을 그대로 복사하지 않습니다.
 - 사실만 전달하고 과장·투자 조언을 하지 않습니다. 수치·발언은 출처를 명시합니다.
@@ -70,13 +77,16 @@ const EDITOR_PROMPT = `당신은 ECK(Ethereum Collective Korea)의 데일리 이
 구성:
 - title: 그날의 핵심을 담은 한국어 헤드라인 (한 문장, 낚시성 금지)
 - intro: 3~4문장 — 그날의 개별 소식들을 관통하는 흐름을 짚는 에디터 노트
-- sections: "프로토콜 · 리서치", "오늘의 논쟁 · 담론"(해당 시), "생태계 · 보안", "시장 브리핑" (해당 항목이 없으면 그 섹션 생략)
-- 전체 6~12개 항목. 각 항목:
+- sections: "프로토콜 · 리서치", "오늘의 논쟁 · 담론"(해당 시), "생태계 · 보안", "시장 브리핑",
+  "그 밖의 소식"(해당 시) — 해당 항목이 없으면 그 섹션 생략
+- 전체 8~16개 항목. 섹션당 개수 제한 없음 — 그날 이더리움 소식은 놓치지 말고 담습니다.
+- 각 항목:
   - title: 한국어 헤드라인
-  - summary: 3~4문장 — 사실 + 기술 맥락 + 구체적 수치
+  - summary: 주요 항목은 3~4문장(사실 + 기술 맥락 + 구체적 수치), "그 밖의 소식"은 1~2문장
   - why: "왜 중요한가" 한 문장 — 이더리움 생태계 관점의 함의 (투자 조언 금지)
   - url, source 라벨(예: ethresear.ch, EF Blog, @handle), date(YYYY-MM-DD)
-- 중요도 순으로 배치: 프로토콜 변화 > 보안 > 생태계 > 시장
+- 중요도 순으로 배치: 프로토콜 변화 > 보안 > 생태계 > 시장. 풀 요약으로 다루긴 애매하지만
+  알아둘 가치가 있는 이더리움 소식은 "그 밖의 소식"에 짧게 담아 커버리지를 확보합니다.
 
 응답은 아래 형태의 JSON 하나만 출력하세요. 코드펜스·설명 없이 JSON만:
 {"title": "...", "intro": "...", "sections": [{"heading": "...", "items": [{"title": "...", "summary": "...", "why": "...", "url": "...", "source": "...", "date": "YYYY-MM-DD"}]}]}`;
@@ -111,8 +121,12 @@ async function main() {
   const cutoff = lastDate
     ? new Date(`${lastDate}T00:00:00+09:00`).getTime()
     : Date.now() - 36 * 3_600_000;
+  // 어제/그제 호가 이미 다룬 URL은 후보에서 제외 (재탕 방지 1차 — 기계적)
+  const recentDigests = existing.digests.slice(0, 3);
+  const coveredUrls = new Set(recentDigests.flatMap((d) => d.sections.flatMap((s) => s.items.map((it) => it.url))));
   const candidates = inbox.items
     .filter((item) => new Date(item.publishedAt).getTime() >= cutoff)
+    .filter((item) => !coveredUrls.has(item.url))
     .filter((item) => !item.summary.startsWith('RT @'))
     .filter((item) => !item.title.startsWith('Daily General Discussion'))
     .slice(0, MAX_INPUT_ITEMS);
@@ -146,8 +160,16 @@ async function main() {
     )
     .join('\n\n');
 
+  // 재탕 방지 2차 — 최근 호가 다룬 제목을 알려주고 같은 사건 반복 금지 (새 전개는 '업데이트'로)
+  const coveredLines = recentDigests
+    .flatMap((d) => d.sections.flatMap((s) => s.items.map((it) => `- [${d.date}] ${it.title}`)))
+    .join('\n');
+
   const prompt =
     `${EDITOR_PROMPT}\n\n오늘 날짜: ${today}\n\n` +
+    (coveredLines
+      ? `최근 다이제스트가 이미 다룬 소식 (같은 사건은 다시 싣지 마세요. 의미 있는 새 전개가 있을 때만 '업데이트' 성격으로 짧게):\n${coveredLines}\n\n`
+      : '') +
     (debateLines ? `감지된 대화 클러스터 (같은 스레드에서 오간 설전):\n\n${debateLines}\n\n` : '') +
     `수집된 아이템:\n\n${itemLines}`;
 
