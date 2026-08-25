@@ -10,11 +10,11 @@ import { execFileSync } from 'node:child_process';
 import { z } from 'zod';
 import * as fs from 'fs';
 import * as path from 'path';
-import type { NewsItem } from './lib/eth-news';
+import { detectDebates, type NewsItem } from './lib/eth-news';
 
 const INBOX = path.resolve(process.cwd(), 'src/data/eth-news-inbox.json');
 const OUTPUT = path.resolve(process.cwd(), 'src/data/eth-digests.json');
-const MAX_INPUT_ITEMS = 80;
+const MAX_INPUT_ITEMS = 120;
 const KEEP_DIGESTS = 30;
 
 const DigestSchema = z.object({
@@ -56,10 +56,21 @@ const EDITOR_PROMPT = `당신은 ECK(Ethereum Collective Korea)의 데일리 이
 - 코인니스(tg:) 항목은 사실 참고용으로만 사용합니다.
 - r/ethereum의 Daily General Discussion 같은 정기 스레드는 제외합니다.
 
+논쟁 · 담론 파악 (중요):
+- 입력에 "감지된 대화 클러스터"가 있으면 — 같은 스레드에서 여러 인물이 직접 주고받은 설전입니다.
+- 클러스터가 없어도, 서로 다른 인물들이 같은 쟁점(특정 EIP, 업그레이드, 프로토콜 설계, 사건)에 대해
+  각자 트윗으로 입장을 낸 경우를 주제 단위로 묶으세요. 직접 대화가 없어도 담론입니다.
+- 위 두 경우가 있으면 "오늘의 논쟁 · 담론" 섹션을 만들고(프로토콜 섹션 다음 배치), 항목마다:
+  - title: 쟁점을 담은 헤드라인
+  - summary: 참여자별 입장을 압축 정리 (누가 어떤 논거로 어떤 입장인지, 전개 순서대로)
+  - why: 이 논쟁이 생태계에 갖는 함의
+  - url: 가장 대표적인 트윗/스레드 링크
+- 단순 홍보·잡담·인사 교환은 논쟁이 아닙니다. 쟁점이 분명한 것만.
+
 구성:
 - title: 그날의 핵심을 담은 한국어 헤드라인 (한 문장, 낚시성 금지)
 - intro: 3~4문장 — 그날의 개별 소식들을 관통하는 흐름을 짚는 에디터 노트
-- sections: "프로토콜 · 리서치", "생태계 · 보안", "시장 브리핑" 3개 (해당 항목이 없으면 그 섹션 생략)
+- sections: "프로토콜 · 리서치", "오늘의 논쟁 · 담론"(해당 시), "생태계 · 보안", "시장 브리핑" (해당 항목이 없으면 그 섹션 생략)
 - 전체 6~12개 항목. 각 항목:
   - title: 한국어 헤드라인
   - summary: 3~4문장 — 사실 + 기술 맥락 + 구체적 수치
@@ -111,7 +122,12 @@ async function main() {
     return;
   }
 
-  const itemLines = candidates
+  // 스레드 설전 클러스터는 별도 블록으로, 나머지는 평면 목록으로 전달
+  const debates = detectDebates(candidates);
+  const debateItemIds = new Set(debates.flatMap((d) => d.items.map((item) => item.id)));
+  const flatItems = candidates.filter((item) => !debateItemIds.has(item.id));
+
+  const itemLines = flatItems
     .map(
       (item) =>
         `[${item.source} | ${item.publishedAt.slice(0, 10)}] ${item.title}\n` +
@@ -119,7 +135,21 @@ async function main() {
     )
     .join('\n\n');
 
-  const prompt = `${EDITOR_PROMPT}\n\n오늘 날짜: ${today}\n\n수집된 아이템:\n\n${itemLines}`;
+  const debateLines = debates
+    .slice(0, 8)
+    .map(
+      (d, i) =>
+        `### 클러스터 ${i + 1} — 참여: ${d.participants.map((p) => `@${p}`).join(', ')}\n` +
+        d.items
+          .map((item) => `  [@${item.author} | ${item.publishedAt.slice(5, 16)}] ${item.summary.slice(0, 300)}\n    URL: ${item.url}`)
+          .join('\n'),
+    )
+    .join('\n\n');
+
+  const prompt =
+    `${EDITOR_PROMPT}\n\n오늘 날짜: ${today}\n\n` +
+    (debateLines ? `감지된 대화 클러스터 (같은 스레드에서 오간 설전):\n\n${debateLines}\n\n` : '') +
+    `수집된 아이템:\n\n${itemLines}`;
 
   console.log(`Generating digest for ${today} from ${candidates.length} items (headless claude)...`);
   const raw = execFileSync('claude', ['-p', prompt, '--output-format', 'json', '--model', 'opus'], {

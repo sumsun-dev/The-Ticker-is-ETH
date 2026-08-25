@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { parseFeed, tweetsToItems, telegramToItems, mergeInbox, type NewsItem } from '../lib/eth-news';
+import { parseFeed, tweetsToItems, telegramToItems, mergeInbox, detectDebates, type NewsItem } from '../lib/eth-news';
 
 const RSS2 = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
@@ -119,6 +119,58 @@ describe('tweetsToItems', () => {
   it('should return an empty array for unknown payloads', () => {
     expect(tweetsToItems(null, 'a')).toEqual([]);
     expect(tweetsToItems({ error: 'rate limit' }, 'a')).toEqual([]);
+  });
+
+  it('should capture conversation id and reply flag', () => {
+    const payload = {
+      timeline: [
+        { tweet_id: '10', text: 'take', created_at: 'Mon Aug 24 09:00:00 +0000 2026', conversation_id: '900' },
+        { tweet_id: '11', text: 'reply', created_at: 'Mon Aug 24 09:05:00 +0000 2026', conversation_id: '900', in_reply_to_status_id_str: '10' },
+      ],
+    };
+    const items = tweetsToItems(payload, 'hasufl');
+    expect(items[0].conversationId).toBe('900');
+    expect(items[0].isReply).toBeUndefined();
+    expect(items[1].isReply).toBe(true);
+  });
+});
+
+describe('detectDebates', () => {
+  const tweet = (author: string, conversationId: string, id: string, at: string): NewsItem => ({
+    id: `x:${author}:${id}`,
+    source: `x:${author}`,
+    sourceType: 'twitter',
+    title: id,
+    url: '',
+    publishedAt: at,
+    summary: id,
+    author,
+    conversationId,
+  });
+
+  it('should cluster conversations with 2+ distinct authors, time-ordered', () => {
+    const items = [
+      tweet('hasufl', 'c1', 'b', '2026-08-24T10:00:00.000Z'),
+      tweet('Justin_Bons', 'c1', 'a', '2026-08-24T09:00:00.000Z'),
+      tweet('vitalik', 'c2', 'solo', '2026-08-24T11:00:00.000Z'),
+    ];
+    const debates = detectDebates(items);
+    expect(debates).toHaveLength(1);
+    expect(debates[0].participants.sort()).toEqual(['Justin_Bons', 'hasufl']);
+    expect(debates[0].items.map((i) => i.title)).toEqual(['a', 'b']);
+  });
+
+  it('should ignore items without conversationId and sort clusters by size', () => {
+    const items = [
+      tweet('a', 'big', '1', '2026-08-24T09:00:00.000Z'),
+      tweet('b', 'big', '2', '2026-08-24T09:10:00.000Z'),
+      tweet('c', 'big', '3', '2026-08-24T09:20:00.000Z'),
+      tweet('a', 'small', '4', '2026-08-24T10:00:00.000Z'),
+      tweet('b', 'small', '5', '2026-08-24T10:10:00.000Z'),
+      { ...tweet('x', 'none', '6', '2026-08-24T11:00:00.000Z'), conversationId: undefined },
+    ];
+    const debates = detectDebates(items);
+    expect(debates.map((d) => d.conversationId)).toEqual(['big', 'small']);
   });
 });
 

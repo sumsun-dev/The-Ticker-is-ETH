@@ -10,7 +10,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as dotenv from 'dotenv';
-import { parseFeed, tweetsToItems, telegramToItems, mergeInbox, type NewsItem } from './lib/eth-news';
+import { parseFeed, tweetsToItems, telegramToItems, mergeInbox, detectDebates, type NewsItem } from './lib/eth-news';
 
 dotenv.config({ path: path.resolve(process.cwd(), '.env.local') });
 dotenv.config({ path: path.resolve(process.cwd(), '.env') });
@@ -59,31 +59,44 @@ async function collectTwitter(): Promise<NewsItem[]> {
   };
   const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-  const results: NewsItem[] = [];
+  const headers = { 'x-rapidapi-key': key, 'x-rapidapi-host': host };
+  const fetchTweets = async (endpoint: string, screenname: string): Promise<NewsItem[]> => {
+    const res = await fetch(`https://${host}/${endpoint}.php?screenname=${encodeURIComponent(screenname)}`, { headers });
+    if (!res.ok) {
+      console.warn(`[WARN] x:${screenname} ${endpoint}: HTTP ${res.status} — skipped`);
+      return [];
+    }
+    const body = await res.text();
+    if (!body) {
+      console.warn(`[WARN] x:${screenname} ${endpoint}: empty response — skipped`);
+      return [];
+    }
+    return tweetsToItems(JSON.parse(body), screenname);
+  };
+
+  const timelineItems: NewsItem[] = [];
+  const replyItems: NewsItem[] = [];
   for (let i = 0; i < accounts.length; i++) {
     const { screenname } = accounts[i];
     if (i > 0) await sleep(500);
     try {
-      const res = await fetch(`https://${host}/timeline.php?screenname=${encodeURIComponent(screenname)}`, {
-        headers: { 'x-rapidapi-key': key, 'x-rapidapi-host': host },
-      });
-      if (!res.ok) {
-        console.warn(`[WARN] x:${screenname}: HTTP ${res.status} — skipped`);
-        continue;
-      }
-      const body = await res.text();
-      if (!body) {
-        console.warn(`[WARN] x:${screenname}: empty response — skipped`);
-        continue;
-      }
-      const items = tweetsToItems(JSON.parse(body), screenname).slice(0, 50);
-      console.log(`  x:${screenname}: ${items.length} tweets`);
-      results.push(...items);
+      const tweets = (await fetchTweets('timeline', screenname)).slice(0, 50);
+      await sleep(500);
+      // 리플라이는 설전(교차 대화) 감지용 — 클러스터에 속한 것만 인박스에 담는다
+      const replies = (await fetchTweets('replies', screenname)).slice(0, 30).map((r) => ({ ...r, isReply: true }));
+      console.log(`  x:${screenname}: ${tweets.length} tweets, ${replies.length} replies`);
+      timelineItems.push(...tweets);
+      replyItems.push(...replies);
     } catch (error) {
       console.warn(`[WARN] x:${screenname} failed:`, error instanceof Error ? error.message : error);
     }
   }
-  return results;
+
+  const debates = detectDebates([...timelineItems, ...replyItems]);
+  const debateIds = new Set(debates.flatMap((d) => d.items.map((item) => item.id)));
+  const debateReplies = replyItems.filter((item) => debateIds.has(item.id));
+  console.log(`  debates: ${debates.length} clusters — keeping ${debateReplies.length}/${replyItems.length} replies`);
+  return [...timelineItems, ...debateReplies];
 }
 
 async function collectCoinness(): Promise<NewsItem[]> {
@@ -136,7 +149,7 @@ async function main() {
     }
   }
 
-  const items = mergeInbox(prev, incoming);
+  const items = mergeInbox(prev, incoming, 900);
   fs.writeFileSync(OUTPUT, JSON.stringify({ fetchedAt: new Date().toISOString(), items }, null, 2), 'utf-8');
   console.log(`\nWritten ${items.length} items (${incoming.length} fetched) to ${OUTPUT}`);
 }

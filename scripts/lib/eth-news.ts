@@ -13,6 +13,10 @@ export interface NewsItem {
   publishedAt: string;
   summary: string;
   author: string;
+  /** 트위터 대화 스레드 id — 설전(교차 대화) 감지에 사용 */
+  conversationId?: string;
+  /** 리플라이 여부 (replies.php 수집분) */
+  isReply?: boolean;
 }
 
 export interface TelegramMessageLike {
@@ -117,6 +121,8 @@ export function tweetsToItems(payload: unknown, screenname: string): NewsItem[] 
       const nativeId = String(tw.tweet_id ?? tw.id_str ?? tw.id ?? '');
       const body = String(tw.text ?? tw.full_text ?? '').trim();
       if (!nativeId || !body) return null;
+      const conversationId = tw.conversation_id ? String(tw.conversation_id) : undefined;
+      const isReply = Boolean(tw.in_reply_to_status_id_str);
       return {
         id: `x:${screenname}:${nativeId}`,
         source: `x:${screenname}`,
@@ -126,6 +132,8 @@ export function tweetsToItems(payload: unknown, screenname: string): NewsItem[] 
         publishedAt: toIso(tw.created_at),
         summary: body.slice(0, 500),
         author: screenname,
+        ...(conversationId ? { conversationId } : {}),
+        ...(isReply ? { isReply } : {}),
       };
     })
     .filter((item): item is NewsItem => item !== null);
@@ -148,6 +156,37 @@ export function telegramToItems(messages: TelegramMessageLike[], channel: string
         author: channel,
       };
     });
+}
+
+export interface DebateCluster {
+  conversationId: string;
+  participants: string[];
+  items: NewsItem[];
+}
+
+/**
+ * 설전 감지: 같은 대화(conversationId)에 서로 다른 워치리스트 저자가 2명 이상
+ * 등장하는 스레드를 시간순 클러스터로 반환한다. 교류량(트윗 수) 많은 순.
+ */
+export function detectDebates(items: NewsItem[], minParticipants = 2): DebateCluster[] {
+  const byConversation = new Map<string, NewsItem[]>();
+  for (const item of items) {
+    if (item.sourceType !== 'twitter' || !item.conversationId) continue;
+    const list = byConversation.get(item.conversationId) ?? [];
+    byConversation.set(item.conversationId, [...list, item]);
+  }
+
+  const clusters: DebateCluster[] = [];
+  for (const [conversationId, tweets] of byConversation) {
+    const participants = [...new Set(tweets.map((t) => t.author))];
+    if (participants.length < minParticipants) continue;
+    clusters.push({
+      conversationId,
+      participants,
+      items: [...tweets].sort((a, b) => a.publishedAt.localeCompare(b.publishedAt)),
+    });
+  }
+  return clusters.sort((a, b) => b.items.length - a.items.length);
 }
 
 /** 기존 인박스와 새 수집분을 병합 — id 기준 중복 제거, 최신순, cap 제한. */
