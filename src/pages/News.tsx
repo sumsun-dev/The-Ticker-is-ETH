@@ -58,6 +58,7 @@ const News: React.FC = () => {
 
     return (
         <div className="min-h-screen pt-28 pb-20 px-6 container mx-auto text-theme-text">
+          <div className="max-w-3xl mx-auto">
             <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="mb-10">
                 <div className="inline-block px-4 py-1.5 rounded-full border border-theme-border bg-theme-surface backdrop-blur-sm text-sm font-medium text-brand-primary mb-4">
                     {t('badge')}
@@ -71,7 +72,7 @@ const News: React.FC = () => {
             </motion.div>
 
             {isLoading && (
-                <div className="max-w-3xl space-y-4">
+                <div className="space-y-4">
                     {Array.from({ length: 4 }).map((_, i) => (
                         <div key={i} className="bg-theme-surface border border-theme-border rounded-2xl p-6 animate-pulse">
                             <div className="h-4 w-32 bg-white/10 rounded mb-4" />
@@ -84,7 +85,7 @@ const News: React.FC = () => {
 
             {/* ── 최신/선택 호 ─────────────────────────────── */}
             {!isLoading && currentDigest && (
-                <article className="max-w-3xl">
+                <article>
                     {currentDigest.coverImage && (
                         <img
                             src={currentDigest.coverImage}
@@ -180,7 +181,7 @@ const News: React.FC = () => {
 
             {/* ── 아카이브: 커버 썸네일 그리드 ─────────────── */}
             {!isLoading && digests.length > 1 && (
-                <div className="max-w-3xl mt-16 pt-10 border-t border-theme-border">
+                <div className="mt-16 pt-10 border-t border-theme-border">
                     <h3 className="text-sm font-bold uppercase tracking-widest text-theme-text-muted mb-6">
                         {t('pastDigests')}
                     </h3>
@@ -222,6 +223,7 @@ const News: React.FC = () => {
                     </div>
                 </div>
             )}
+          </div>
         </div>
     );
 };
