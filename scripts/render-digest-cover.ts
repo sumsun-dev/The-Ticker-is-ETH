@@ -48,14 +48,27 @@ function esc(s: string): string {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
-function coverHtml(digest: Digest, logoDataUri: string): string {
-  // 커버 메인은 한 줄 헤드라인 (shortTitle, 폰트는 렌더 시 실측 조정).
-  // 쉼표가 있으면 앞은 네이비, 뒤는 그라디언트 포인트 — 없으면 마지막 단어에 포인트.
-  const headline = digest.shortTitle ?? digest.title;
+function coverHtml(digest: Digest, logoDataUri: string, fontDataUri: string): string {
+  // 짧은 헤드라인을 레퍼런스처럼 2줄로 — 1줄째 네이비, 2줄째 그라디언트.
+  // 쉼표가 있으면 쉼표에서 분할(쉼표 제거), 없으면 중앙에 가까운 공백에서 분할.
+  const headline = (digest.shortTitle ?? digest.title).trim();
+  let line1 = headline;
+  let line2 = '';
   const commaIdx = headline.indexOf(',');
-  const splitIdx = commaIdx > 0 ? commaIdx + 1 : headline.lastIndexOf(' ');
-  const plain = splitIdx > 0 ? headline.slice(0, splitIdx) : '';
-  const accent = splitIdx > 0 ? headline.slice(splitIdx) : headline;
+  if (commaIdx > 0) {
+    line1 = headline.slice(0, commaIdx).trim();
+    line2 = headline.slice(commaIdx + 1).trim();
+  } else {
+    const mid = Math.floor(headline.length / 2);
+    let best = -1;
+    for (let i = 0; i < headline.length; i++) {
+      if (headline[i] === ' ' && (best === -1 || Math.abs(i - mid) < Math.abs(best - mid))) best = i;
+    }
+    if (best > 0) {
+      line1 = headline.slice(0, best).trim();
+      line2 = headline.slice(best + 1).trim();
+    }
+  }
 
   const totalCount = digest.sections.reduce((n, s) => n + s.items.length, 0);
   const shortLabel = (heading: string) =>
@@ -75,11 +88,16 @@ function coverHtml(digest: Digest, logoDataUri: string): string {
   const weekday = new Date(`${digest.date}T00:00:00`).toLocaleDateString('en-US', { weekday: 'short' });
 
   return `<!doctype html><html><head><meta charset="utf-8"><style>
+    @font-face {
+      font-family: 'Pretendard';
+      src: url('${fontDataUri}') format('woff2-variations');
+      font-weight: 45 920;
+    }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       width: 1200px; height: 630px; overflow: hidden; position: relative;
       background: #F7F8FC;
-      font-family: 'Noto Sans CJK KR', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Inter', sans-serif;
+      font-family: 'Pretendard', 'Noto Sans CJK KR', 'Apple SD Gothic Neo', sans-serif;
       color: #16203B;
     }
     .tint1 { position: absolute; width: 900px; height: 900px; border-radius: 50%; top: -500px; left: -200px;
@@ -98,8 +116,9 @@ function coverHtml(digest: Digest, logoDataUri: string): string {
     /* 텍스트 존은 오른쪽 로고 존을 침범하지 않는다 */
     .body { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 26px; padding-right: 340px; }
     .label { font-size: 19px; font-weight: 700; letter-spacing: .26em; color: #2D5FBF; }
-    .title { white-space: nowrap; font-size: 76px; font-weight: 900; line-height: 1.18; letter-spacing: -.02em; color: #16203B; }
-    .title .accent { background: linear-gradient(95deg, #D65A4E 0%, #8B5CF6 55%, #2D5FBF 100%);
+    .title { font-size: 92px; font-weight: 850; line-height: 1.14; letter-spacing: -.025em; color: #16203B; }
+    .tline { white-space: nowrap; }
+    .tline.accent { background: linear-gradient(95deg, #D65A4E 0%, #8B5CF6 55%, #2D5FBF 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .sub { font-size: 22px; color: #4A5570; white-space: nowrap; }
     .sub b { color: #16203B; }
@@ -119,7 +138,10 @@ function coverHtml(digest: Digest, logoDataUri: string): string {
       </div>
       <div class="body">
         <div class="label mono">TODAY IN ETHEREUM</div>
-        <div class="title">${esc(plain)}<span class="accent">${esc(accent)}</span></div>
+        <div class="title">
+          <div class="tline">${esc(line1)}</div>
+          ${line2 ? `<div class="tline accent">${esc(line2)}</div>` : ''}
+        </div>
         <div class="sub">오늘 소식 <b>${totalCount}건</b> — ${esc(summary)}</div>
       </div>
       <div class="foot mono">
@@ -155,20 +177,24 @@ async function main() {
 
   const logoPath = path.resolve(process.cwd(), 'public/assets/eck-logo.png');
   const logoDataUri = `data:image/png;base64,${readFileSync(logoPath).toString('base64')}`;
+  const fontPath = path.resolve(process.cwd(), 'scripts/assets/PretendardVariable.woff2');
+  const fontDataUri = `data:font/woff2;base64,${readFileSync(fontPath).toString('base64')}`;
 
   mkdirSync(OUT_DIR, { recursive: true });
   const browser = await chromium.launch({ headless: true, executablePath, args: ['--no-sandbox'] });
   try {
     const page = await browser.newPage({ viewport: { width: 1200, height: 630 }, deviceScaleFactor: 2 });
-    await page.setContent(coverHtml(digest, logoDataUri), { waitUntil: 'networkidle' });
-    // 타이틀을 텍스트 존 폭에 맞춰 실측으로 최대 크기 조정 (한 줄 보장)
+    await page.setContent(coverHtml(digest, logoDataUri, fontDataUri), { waitUntil: 'networkidle' });
+    await page.evaluateHandle('document.fonts.ready');
+    // 두 줄 모두 텍스트 존 폭에 맞춰 실측으로 최대 크기 조정
     await page.evaluate(() => {
-      const el = document.querySelector('.title') as HTMLElement;
-      let size = 78;
-      el.style.fontSize = `${size}px`;
-      while (size > 40 && el.scrollWidth > el.clientWidth) {
+      const box = document.querySelector('.title') as HTMLElement;
+      const lines = Array.from(document.querySelectorAll('.tline')) as HTMLElement[];
+      let size = 92;
+      box.style.fontSize = `${size}px`;
+      while (size > 40 && lines.some((l) => l.scrollWidth > l.clientWidth)) {
         size -= 2;
-        el.style.fontSize = `${size}px`;
+        box.style.fontSize = `${size}px`;
       }
     });
     await page.screenshot({ path: outFile, type: 'png' });
