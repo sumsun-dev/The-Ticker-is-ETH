@@ -181,12 +181,12 @@ const News: React.FC = () => {
                                         {section.items.map((item) => (
                                             <div
                                                 key={item.url}
-                                                className={`rounded-2xl p-5 transition-colors ${
+                                                className={`rounded-2xl p-5 transition-colors border ${
                                                     insight
-                                                        ? 'bg-eth-purple/[.06] border-l-4 border border-eth-purple/30 border-l-eth-purple hover:border-eth-purple/60'
+                                                        ? 'bg-eth-purple/[.05] border-eth-purple/20 hover:border-eth-purple/40'
                                                         : debate
-                                                        ? 'bg-brand-accent/[.04] border-l-4 border border-theme-border border-l-brand-accent hover:border-brand-accent/60'
-                                                        : 'bg-theme-surface border border-theme-border hover:border-brand-primary/40'
+                                                        ? 'bg-brand-accent/[.04] border-brand-accent/20 hover:border-brand-accent/40'
+                                                        : 'bg-theme-surface border-theme-border hover:border-brand-primary/40'
                                                 }`}
                                             >
                                                 <h4 className="font-semibold leading-snug mb-2">{item.title}</h4>
@@ -194,7 +194,7 @@ const News: React.FC = () => {
                                                     {item.summary}
                                                 </p>
                                                 {item.why && (
-                                                    <p className="text-sm text-eth-purple/90 leading-relaxed mb-3 pl-3 border-l-2 border-eth-purple/40">
+                                                    <p className="text-sm text-eth-purple/90 leading-relaxed mb-3">
                                                         {item.why}
                                                     </p>
                                                 )}
