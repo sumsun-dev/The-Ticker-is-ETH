@@ -20,6 +20,11 @@ function isDebateSection(section: EthDigestSection): boolean {
     return section.heading.includes('논쟁');
 }
 
+/** "오늘의 인사이트" 섹션 — 해석·명제 중심이라 가장 강조한다 */
+function isInsightSection(section: EthDigestSection): boolean {
+    return section.heading.includes('인사이트');
+}
+
 const News: React.FC = () => {
     const { t, i18n } = useTranslation('news');
     const [searchParams, setSearchParams] = useSearchParams();
@@ -162,6 +167,7 @@ const News: React.FC = () => {
 
                         {currentDigest.sections.map((section, i) => {
                             const debate = isDebateSection(section);
+                            const insight = isInsightSection(section);
                             return (
                                 <section key={section.heading} id={`digest-sec-${i}`} className="mb-10 scroll-mt-28">
                                     <h3
@@ -176,7 +182,9 @@ const News: React.FC = () => {
                                             <div
                                                 key={item.url}
                                                 className={`rounded-2xl p-5 transition-colors ${
-                                                    debate
+                                                    insight
+                                                        ? 'bg-eth-purple/[.06] border-l-4 border border-eth-purple/30 border-l-eth-purple hover:border-eth-purple/60'
+                                                        : debate
                                                         ? 'bg-brand-accent/[.04] border-l-4 border border-theme-border border-l-brand-accent hover:border-brand-accent/60'
                                                         : 'bg-theme-surface border border-theme-border hover:border-brand-primary/40'
                                                 }`}
