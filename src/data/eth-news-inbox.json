@@ -1,6 +1,211 @@
 {
-  "fetchedAt": "2026-08-26T00:00:59.028Z",
+  "fetchedAt": "2026-08-26T01:57:36.594Z",
   "items": [
+    {
+      "id": "x:binji_x:2092430225393205420",
+      "source": "x:binji_x",
+      "sourceType": "twitter",
+      "title": "Spoke to the @Lighter_xyz team today \n\nExcited to see what they’ve got in store.",
+      "url": "https://x.com/binji_x/status/2092430225393205420",
+      "publishedAt": "2026-08-26T01:53:35.000Z",
+      "summary": "Spoke to the @Lighter_xyz team today \n\nExcited to see what they’ve got in store.",
+      "author": "binji_x",
+      "conversationId": "2092430225393205420"
+    },
+    {
+      "id": "tg:coinnesskr:228968",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[비트마인 추정 주소, $4889만 ETH 크라켄서 출금]",
+      "url": "https://t.me/coinnesskr/228968",
+      "publishedAt": "2026-08-26T01:52:49.000Z",
+      "summary": "[비트마인 추정 주소, $4889만 ETH 크라켄서 출금]\n비트마인(BMNR)으로 추정되는 신생 주소(0xAef로 시작)가 지난 50분 동안 2만 ETH(4889만 달러)를 크라켄에서 출금했다고 ai_9684xtpa가 전했다. 거래소 출금은 통상 보유 목적으로 해석된다. 현재 비트마인은 584만7611 ETH를 보유 중이며, 평단가는 3359 달러다. 미실현 손실은 52억7000만 달러로 추산된다.\nhttps://coinness.com/news/1166770",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "eth-magicians:ethereum-magicians.org-topic-29514",
+      "source": "eth-magicians",
+      "sourceType": "rss",
+      "title": "ERC-8395: Signed HTTP Requests with Ethereum",
+      "url": "https://ethereum-magicians.org/t/erc-8395-signed-http-requests-with-ethereum/29514",
+      "publishedAt": "2026-08-26T01:50:44.000Z",
+      "summary": "Discussion for ERC-8395: Delegated Signed HTTP Requests — an ERC-8128 extension with recursive, attenuating EIP-712 Delegation Grants for authenticated HTTP requests. github.com/ethereum/ERCs Add ERC: Delegated Signed HTTP Requests master ← slice-so:erc8128-delegated opened 09:18PM - 24 Aug 26 UTC jacopo-eth +573 -0 ERC-8395 extends ERC-8128 with recursive, attenuating EIP-712 Delegation Grants … for authenticated HTTP requests. A root Ethereum account can authorize session keys or automated age",
+      "author": "jacopo-eth"
+    },
+    {
+      "id": "tg:coinnesskr:228967",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[1 BTC 이상 보유자 82.5만명…전 세계 인구 0.01%]",
+      "url": "https://t.me/coinnesskr/228967",
+      "publishedAt": "2026-08-26T01:50:32.000Z",
+      "summary": "[1 BTC 이상 보유자 82.5만명…전 세계 인구 0.01%]\n미국 비트코인 금융 서비스 업체 리버(River)가 전 세계에서 1 BTC 이상을 보유한 사람이 약 82만5000명으로, 인구 1만명당 1명꼴이라고 추정했다. 리버는 1 BTC 이상을 보유한 주소 약 97만2000개에서 기업, 정부, ETF, 거래소 등이 관리하는 주소를 제외했다. 여기에 거래소 고객들의 BTC 보유량 분포가 블록체인상 보유량 분포와 같다고 가정해, 거래소에 1 BTC 이상을 보유한 고객 수를 추산했다. 이를 토대로 1 BTC 이상 보유자를 약 82만5000명으로 추정했으며, 가능한 범위는 60만~100만명으로 제시했다. 전 세계 인구는 약 82억명으로 가정했다. 리버는 \"블록체인에는 사람이 아닌 주소가 기록되고, 한 사람이 여러 주소를 관리하거나 거래소 주소 하나에 수백만명의 자산이 보관될 수 있어 실제 보유자 수를 직접 집계할 수 없다\"며 모든 수치는 추정치라고 설명했다.\nhttps://coinnes",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228966",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[폴리체인캐피털, $309만 EIGEN 코인베이스 프라임 입금]",
+      "url": "https://t.me/coinnesskr/228966",
+      "publishedAt": "2026-08-26T01:38:02.000Z",
+      "summary": "[폴리체인캐피털, $309만 EIGEN 코인베이스 프라임 입금]\n폴리체인캐피털이 6시간 전 1465만 EIGEN(309만 달러)를 코인베이스 프라임에 입금했다. 엠버CN에 따르면 폴리체인캐피털은 3개월 전 언스테이킹한 1억3180만 EIGEN 중 4686만 EIGEN을 다시 스테이킹했다. 코인베이스 프라임에 입금된 물량을 제외한 현재 보유량은 7029만 EIGEN이다.\nhttps://coinness.com/news/1166768",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "x:lex_node:2092422770105688155",
+      "source": "x:lex_node",
+      "sourceType": "twitter",
+      "title": "fwiw I feel like the murray hill situation was well known; I assume everyone kne",
+      "url": "https://x.com/lex_node/status/2092422770105688155",
+      "publishedAt": "2026-08-26T01:23:58.000Z",
+      "summary": "fwiw I feel like the murray hill situation was well known; I assume everyone knew it was heavily confabulated and everyone has a friend of a friend who knows \"the real murray hill,\" I remember someone telling me this stuff about him like a year ago...still funny af",
+      "author": "lex_node",
+      "conversationId": "2092422770105688155"
+    },
+    {
+      "id": "x:lex_node:2092418490758271467",
+      "source": "x:lex_node",
+      "sourceType": "twitter",
+      "title": "RT @clawdbotatg: @austingriffith @ralexstokes @haochizzle @josephdelong @sendmoo",
+      "url": "https://x.com/lex_node/status/2092418490758271467",
+      "publishedAt": "2026-08-26T01:06:58.000Z",
+      "summary": "RT @clawdbotatg: @austingriffith @ralexstokes @haochizzle @josephdelong @sendmoodz @0xDeployer @z0r0zzz @econoar @lex_node — a truly peer-t…",
+      "author": "lex_node",
+      "conversationId": "2092418490758271467"
+    },
+    {
+      "id": "reddit-ethereum:t3_1vyia30",
+      "source": "reddit-ethereum",
+      "sourceType": "rss",
+      "title": "Glamsterdam Repricing Impact for Smart Contract Developers",
+      "url": "https://www.reddit.com/r/ethereum/comments/1vyia30/glamsterdam_repricing_impact_for_smart_contract/",
+      "publishedAt": "2026-08-26T01:00:06.000Z",
+      "summary": "&#32; submitted by &#32; /u/abcoathup [link] &#32; [comments]",
+      "author": "/u/abcoathup"
+    },
+    {
+      "id": "tg:coinnesskr:228965",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[가렛 진, 600 BTC 롱 포지션 추가…평가익 전환]",
+      "url": "https://t.me/coinnesskr/228965",
+      "publishedAt": "2026-08-26T00:54:34.000Z",
+      "summary": "[가렛 진, 600 BTC 롱 포지션 추가…평가익 전환]\n사기 암호화폐 거래소 비트포렉스 설립자 가렛 진(Garrett Jin)이 BTC 가격이 8만달러를 돌파한 뒤 소폭 하락하자 7만9000달러에서 600 BTC(4740만달러) 규모의 롱 포지션을 추가했다고 엠버CN이 전했다. 현재 그는 평균 진입가 7만7090달러에 1868 BTC(1억4700만달러) 규모의 3배 레버리지 교차 롱 포지션을 보유하고 있으며, 평가이익은 약 278만달러다. 지난 7월 초에는 평가손실이 최대 2300만달러에 달했지만 최근 BTC 급등으로 수익권에 진입했다. 한편 평균 444달러에 진입한 3만2760 ZEC(2528만달러) 규모의 2배 레버리지 교차 숏 포지션에서는 약 1074만달러의 평가손실을 기록 중이다.\nhttps://coinness.com/news/1166767",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "x:evan_van_ness:2092415357558431838",
+      "source": "x:evan_van_ness",
+      "sourceType": "twitter",
+      "title": "RT @rstormsf: One thing before I start: everything in this post is public inform",
+      "url": "https://x.com/evan_van_ness/status/2092415357558431838",
+      "publishedAt": "2026-08-26T00:54:31.000Z",
+      "summary": "RT @rstormsf: One thing before I start: everything in this post is public information from my own docket. None of it is new, and I'm not re…",
+      "author": "evan_van_ness",
+      "conversationId": "2092415357558431838"
+    },
+    {
+      "id": "tg:coinnesskr:228964",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[신한금융, 비자와 스테이블코인 등 '미래금융' 협력]",
+      "url": "https://t.me/coinnesskr/228964",
+      "publishedAt": "2026-08-26T00:54:07.000Z",
+      "summary": "[신한금융, 비자와 스테이블코인 등 '미래금융' 협력]\n신한금융그룹은 비자(Visa)그룹과 디지털자산을 비롯한 미래 금융 사업 추진을 위해 협력하기로 했다고 26일 밝혔다고 연합뉴스가 전했다. 신한금융은 협약을 계기로 비자의 스테이블코인 플랫폼을 활용해 발행, 송금, 상환 등 핵심 기능을 검증하고, 국내 금융환경에 적합한 한국형 사업모델을 공동 설계할 계획이다. 아울러 카드 대금 정산 등 금융서비스 스테이블코인 활용, 인공지능(AI) 기반 미래 결제 모델 구현, B2B·B2C 결제 사업 확대 등에 협력할 예정이다.\nhttps://coinness.com/news/1166766\n기사보기: https://www.yna.co.kr/view/AKR20260826046600002?input=1195m",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228963",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[BTC 채굴업체 스피어 3D, 중국산 채굴기 구매로 $220만 관세 낼 판]",
+      "url": "https://t.me/coinnesskr/228963",
+      "publishedAt": "2026-08-26T00:49:39.000Z",
+      "summary": "[BTC 채굴업체 스피어 3D, 중국산 채굴기 구매로 $220만 관세 낼 판]\n비트코인 채굴업체 스피어 3D(ANY)가 220만 달러 규모 관세 납부 위기에 몰렸다. 크립토슬레이트에 따르면 스피어 3D는 2022년 자회사를 통해 채굴기를 구매했는데, 당국은 해당 채굴기를 중국산으로 판단했다. 스피어 3D 측은 채굴기 구매 당시 비중국산임을 증명하는 증명서를 받았다며 당국에 이의를 제기한다는 계획이다. 스피어 3D는 2분기 말 기준 현금을 약 280만 달러 보유 중이다. 매체는 \"이번 관세와는 별개로 스피어 3D는 손실 반복과 현금흐름 악화로 추가 자금조달 없이는 사업 지속 여부에 의문이 제기되고 있다. 현재는 사명을 다크호스 테크놀로지(DarkHorse TEchnologies)로, 티커를 DRK로 바꾸는 절차를 진행 중\"이라고 부연했다.\nhttps://coinness.com/news/1166765",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228962",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[암호화폐 전문 변호사 \"反클래리티법 美 상원의원 낙선시켜야…존 디튼 지지\"]",
+      "url": "https://t.me/coinnesskr/228962",
+      "publishedAt": "2026-08-26T00:44:14.000Z",
+      "summary": "[암호화폐 전문 변호사 \"反클래리티법 美 상원의원 낙선시켜야…존 디튼 지지\"]\n'메타로맨'(MetaLawMan)이라는 닉네임으로 활동하는 디지털 자산 전문 미국 변호사 제임스 머피(James Murphy)가 클래리티법(CLARITY Act)에 반대하는 에드 마키(Ed Markey) 매사추세츠주 상원의원의 낙선을 촉구하며 친암호화폐 성향 변호사 존 디튼(John E. Deaton)에 대한 지지를 밝혔다. 그는 X를 통해 \"매사추세츠주에서 직원도 많이 고용하고 세금도 많이 내는 자산운용사 피델리티는 지난 7월 상원에 클래리티법 통과를 촉구했다. 하지만 이번에 재선에 도전하는 마키 의원은 법안 내용과 관계없이 반대표를 던질 것\"이라면서 유권자들이 디튼에게 투표해야 한다고 주장했다.\nhttps://coinness.com/news/1166764",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228961",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[코인베이스, 미 CFTC·SEC에 \"무기한 선물·예측시장 관할 확실히 해야\"]",
+      "url": "https://t.me/coinnesskr/228961",
+      "publishedAt": "2026-08-26T00:36:46.000Z",
+      "summary": "[코인베이스, 미 CFTC·SEC에 \"무기한 선물·예측시장 관할 확실히 해야\"]\n코인베이스(COIN)가 미국 상품선물거래위원회(CFTC)와 증권거래위원회(SEC)에 무기한 선물 상품의 정의와 규제 체계 관련 의견서를 보냈다. 이는 두 기관이 의견 수렴을 요청한 데 따른 것이다. 코인베이스 최고정책책임자 파리야르 시르자드(Faryar Shirzad)는 X를 통해 \"권고안에는 △소비자 선택권과 시장 경쟁 및 혁신 촉진을 위한 규제 체계 구축 △주식 기반 무기한 선물 상품의 증권 선물 분류 △CFTC나 SEC의 규제를 받는 거래소의 경우 주식 관련 예측 상품을 상장할 수 있도록 허용해달라는 내용 등이 포함됐다. 현재 코인베이스는 무기한 선물 상품과 예측시장 상품을 제공하고 있지만, CFTC와 SEC의 관할권 분쟁으로 상충되는 규제를 받고 있다\"고 설명했다.\nhttps://coinness.com/news/1166763",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228960",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[알트코인 시즌 지수 38]",
+      "url": "https://t.me/coinnesskr/228960",
+      "publishedAt": "2026-08-26T00:34:22.000Z",
+      "summary": "[알트코인 시즌 지수 38]\n가상자산 종합 정보 플랫폼 코인마켓캡의 '알트코인 시즌 지수'가 38을 기록했다. 알트코인 시즌 지수는 시가총액 상위 100개 코인(스테이블·랩트 코인 제외)과 비트코인 간 가격 등락률을 비교해 책정된다. 상위 100개 코인 중 75%의 상승률이 지난 90일 동안 비트코인 상승률보다 높으면 알트코인 시즌, 반대의 경우 비트코인 시즌으로 판단한다. 100에 가까울수록 알트코인 시즌으로 본다.\nhttps://coinness.com/news/1166762",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "x:laurashin:2092409830765904353",
+      "source": "x:laurashin",
+      "sourceType": "twitter",
+      "title": "RT @Unchained_pod: Bitcoin's Satoshi-era coins could be quantum computing's bigg",
+      "url": "https://x.com/laurashin/status/2092409830765904353",
+      "publishedAt": "2026-08-26T00:32:33.000Z",
+      "summary": "RT @Unchained_pod: Bitcoin's Satoshi-era coins could be quantum computing's biggest unresolved risk.\n\n@P3b7_ and @ilblackdragon join @laura…",
+      "author": "laurashin",
+      "conversationId": "2092409830765904353"
+    },
+    {
+      "id": "tg:coinnesskr:228959",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[BTC 보유자들, 현물→ETF로 전환...블랙록만 $50억 처리]",
+      "url": "https://t.me/coinnesskr/228959",
+      "publishedAt": "2026-08-26T00:28:38.000Z",
+      "summary": "[BTC 보유자들, 현물→ETF로 전환...블랙록만 $50억 처리]\n비트코인 보유자들이 개인 지갑이나 거래소를 벗어나 현물 ETF로 물량을 대거 옮겼다고 블룸버그가 전했다. 블랙록의 BTC 현물 ETF인 IBIT는 현재까지 50억 달러 이상의 전환을 처리했다. 지난해 10월 30억 달러에서 규모가 크게 늘었다. 비트와이즈 BITB에도 비슷한 움직임이 있었고, 모건스탠리 MSBT에서도 전체 운용 자산 중 5~7% 가량이 BTC 현물 전환을 통해 유입된 것으로 나타났다. 이같은 움직임은 △자산운용사들이 현물 전환 기준 금액을 대폭 낮추고 △투자자들이 해킹이나 프라이빗키 분실 등 직접 보관에 따른 위험을 줄이려는 수요가 생겼으며 △BTC를 ETF로 전환하면서 상황에 따라 양도소득세를 아낄 수 있다는 점 등에서 나타난 것으로 풀이됐다.\nhttps://coinness.com/news/1166761",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228958",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[WSJ에 비트코인 전면 광고 등장]",
+      "url": "https://t.me/coinnesskr/228958",
+      "publishedAt": "2026-08-26T00:23:10.000Z",
+      "summary": "[WSJ에 비트코인 전면 광고 등장]\n비트코인(BTC) 교육 사이트 게팅비트코인(gettingbitcoin.org)의 전면 광고가 월스트리트저널(WSJ) 종이신문 지면에 실렸다고 비트코인매거진이 전했다. 게팅비트코인은 미국 와이오밍주 비영리법인 나카모토 프로젝트(The Nakamoto Project)가 운영하는 교육 사이트다. 광고에는 \"비주류(fringe) 시대는 공식적으로 끝났다\"는 문구와 함께 미국인 4명 중 1명이 비트코인을 보유하고 있으며, 전 세계적으로는 수억 명이 보유하고 있다는 주장 등이 담겼다.\nhttps://coinness.com/news/1166760",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228957",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[크립토 '공포·탐욕 지수' 80]",
+      "url": "https://t.me/coinnesskr/228957",
+      "publishedAt": "2026-08-26T00:03:19.000Z",
+      "summary": "[크립토 '공포·탐욕 지수' 80]\n암호화폐 데이터 제공업체 코인마켓캡의 자체 추산 '공포·탐욕 지수'가 전날보다 1 포인트 내린 80을 기록했다. 극단적 탐욕 단계가 지속됐다. 해당 지수는 0에 가까울수록 시장의 극단적 공포를 나타내며, 100에 가까울수록 극단적 낙관을 의미한다. 코인마켓캡의 공포·탐욕 지수는 시가총액 상위 10개 암호화폐의 가격 움직임, 시장 변동성, 풋·콜 비율 등 파생상품 시장, 스테이블코인 공급 비율(SSR), 코인마켓캡 자체 검색 데이터 등을 기준으로 산출된다.\nhttps://coinness.com/news/1166759",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228956",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[8월 26일 9시 BTC 현물 CVD 차트]",
+      "url": "https://t.me/coinnesskr/228956",
+      "publishedAt": "2026-08-25T23:58:30.000Z",
+      "summary": "[8월 26일 9시 BTC 현물 CVD 차트]\n현물 CVD는 BTC/USDT 현물 페어의 오더북 분석 차트로, 상단은 거래량 히트맵(Volume Heatmap)을, 하단은 누적거래량델타(CVD)를 의미한다.\n\n- 상단 거래량 히트맵의 경우 해당 가격대에서 발생한 거래량 규모를 추적하며, 가격이 특정 구간에서 오래 머물거나 크게 움직일 때 배경 색상이 밝아진다. 밝은 색에 가까운 구간은 지지, 저항으로 작용할 가능성이 있다.\n\n- 하단 누적거래량델타(CVD) 지표는 자금 규모별 매수·매도 주문을 의미하며, 매수 주문이 늘어날수록 해당하는 색상의 선이 상승하게 된다. 노란색 라인 : 100 달러~1000 달러 주문, 갈색 라인: 100만~1000만 달러의 대량 주문 등을 기준으로 산출된다.\nhttps://coinness.com/news/1166758",
+      "author": "coinnesskr"
+    },
     {
       "id": "x:gakonst:2092399056693706802",
       "source": "x:gakonst",
@@ -11,6 +216,16 @@
       "summary": "anyone know anyone who's worked on leaderless formations for drones/robots or other agentic swarms?\n\nit seems like there's some literature on this which is very cool which also hits on consensus!",
       "author": "gakonst",
       "conversationId": "2092399056693706802"
+    },
+    {
+      "id": "tg:coinnesskr:228955",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[‘1코인거래소-1은행 원칙’ 폐기되나...오늘 법안 상정]",
+      "url": "https://t.me/coinnesskr/228955",
+      "publishedAt": "2026-08-25T23:34:51.000Z",
+      "summary": "[‘1코인거래소-1은행 원칙’ 폐기되나...오늘 법안 상정]\n디지털자산(가상자산) 거래소 한 곳이 특정 은행 한 곳과만 제휴를 맺고 서비스를 제공하는 ‘1거래소·1은행 원칙’을 폐기하는 법안이 오늘 논의된다고 이데일리가 전했다. 여야는 26일 국회에서 정무위원회 전체회의를 열고 ‘2025회계연도 결산’, ‘2025회계연도 예비비지출 승인의 건’ 및 이같은 내용을 담은 특정금융정보법(특금법) 개정안 등 136개 법률안 안건을 상정한다. '1거래소·복수 은행’ 관련 특금법 개정안에는 ‘가상자산사업자는 하나 또는 둘 이상의 금융회사 등으로부터 실명확인이 가능한 입출금 계정을 발급받을 수 있으며, 금융회사 등이 입출금 계정을 개설하는 기준, 조건 및 절차에 관한 필요한 사항은 대통령령으로 정한다’는 조항이 포함됐다.\nhttps://coinness.com/news/1166757\n기사보기: https://www.edaily.co.kr/News/Read?newsId=0262072664555125",
+      "author": "coinnesskr"
     },
     {
       "id": "x:trent_vanepps:2092392521628283078",
@@ -123,6 +338,26 @@
       "conversationId": "2092382648765157385"
     },
     {
+      "id": "tg:coinnesskr:228954",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[美 39개 주 은행협회, 자체 블록체인 네트워크 구축 계획]",
+      "url": "https://t.me/coinnesskr/228954",
+      "publishedAt": "2026-08-25T22:06:24.000Z",
+      "summary": "[美 39개 주 은행협회, 자체 블록체인 네트워크 구축 계획]\n미국 39개 주 은행협회가 은행권 자체 블록체인 네트워크 '뱅크체인 얼라이언스(BankChain Alliance)'를 구축한다고 코인데스크가 전했다. 2027년 출시를 목표로 하며 스테이블코인, 토큰화 예금, 스마트 결제 등을 지원할 예정이다. 네트워크는 은행 업계가 직접 설계 및 운영하는 구조로, 다른 네트워크와의 상호운용성도 지원할 계획이다. 현재 프로젝트 구축을 담당할 기술 파트너를 물색하고 있다. 임시 의장을 맡은 캐시 크래닝어 플로리다은행협회 CEO는 \"규제된 안전한 네트워크를 통해 규모에 관계없이 금융기관들이 현대적인 금융 서비스를 제공할 수 있도록 할 것\"이라고 밝혔다.\nhttps://coinness.com/news/1166756",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228953",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[제로해시, 美 OCC 신탁은행 인가 재신청]",
+      "url": "https://t.me/coinnesskr/228953",
+      "publishedAt": "2026-08-25T22:03:12.000Z",
+      "summary": "[제로해시, 美 OCC 신탁은행 인가 재신청]\n암호화폐 인프라 업체 제로해시(ZeroHash)가 미국 통화감독청(OCC)에 연방 신탁은행 인가를 재신청했다고 코인데스크가 전했다. OCC는 지난달 제로해시의 첫 신청서를 일부 미비점을 이유로 반려한 바 있다. 제로해시는 이번 신청에서 사업 범위를 대폭 축소해 자사가 추진하는 신탁 업무에 초점을 맞췄다고 설명했다. 현재 OCC의 심사가 진행 중이며, 의견 수렴 기간은 9월 17일까지다. 제로해시는 모건스탠리 E트레이드, 블랙록, 스트라이프, 프랭클린템플턴, 인터랙티브브로커스 등에 암호화폐 인프라 서비스를 제공하고 있다.\nhttps://coinness.com/news/1166755",
+      "author": "coinnesskr"
+    },
+    {
       "id": "x:laurashin:2092367666321494103",
       "source": "x:laurashin",
       "sourceType": "twitter",
@@ -167,6 +402,26 @@
       "conversationId": "2092361384256278767"
     },
     {
+      "id": "tg:coinnesskr:228952",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[지난 1시간 1.19억 달러 규모 선물 포지션 강제 청산]",
+      "url": "https://t.me/coinnesskr/228952",
+      "publishedAt": "2026-08-25T21:11:08.000Z",
+      "summary": "[지난 1시간 1.19억 달러 규모 선물 포지션 강제 청산]\n주요 거래소에서 지난 1시간 1.19억 달러 규모의 선물 포지션이 강제 청산됐다.\n24시간 기준으로는 6.5억 달러 규모의 선물 포지션이 강제 청산됐다.\nhttps://coinness.com/news/1166754",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228951",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[BTC $78,000 하회]",
+      "url": "https://t.me/coinnesskr/228951",
+      "publishedAt": "2026-08-25T21:07:48.000Z",
+      "summary": "[BTC $78,000 하회]\n코인니스 마켓 모니터링에 따르면 BTC가 78,000 달러를 하회했다. 바이낸스 USDT 마켓 기준 BTC는 77,950달러에 거래되고 있다.\nhttps://coinness.com/news/1166753",
+      "author": "coinnesskr"
+    },
+    {
       "id": "x:gakonst:2092357836563005559",
       "source": "x:gakonst",
       "sourceType": "twitter",
@@ -178,6 +433,16 @@
       "conversationId": "2092337111542186251"
     },
     {
+      "id": "tg:coinnesskr:228950",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[\"BTC, 과매도-과매수 상태 아냐... 매수 기회 있다\"]",
+      "url": "https://t.me/coinnesskr/228950",
+      "publishedAt": "2026-08-25T21:01:20.000Z",
+      "summary": "[\"BTC, 과매도-과매수 상태 아냐... 매수 기회 있다\"]\n암호화폐 기술분석 업체 페어리드 스트래티지스(Fairlead Strategies) 설립자 케이티 스톡튼(Katie Stockton)이 CNBC와의 인터뷰에서 \"비트코인은 더이상 과매도 상태가 아니다. 하지만 동시에 과매수 상태도 아니다. 아직 기회가 있다\"고 말했다고 비트코인매거진이 전했다.\nhttps://coinness.com/news/1166752",
+      "author": "coinnesskr"
+    },
+    {
       "id": "x:binji_x:2092355088341987329",
       "source": "x:binji_x",
       "sourceType": "twitter",
@@ -187,6 +452,16 @@
       "summary": "Alright guys, if you know me, I am usually quite jaded by number-milestone announcements because a lot of them have been gamed by shoddy teams getting one whale to park funds, take a screenshot for the corporate brand account, and then pull out of the pool, BUT Low-Risk DeFi adoption is actually getting more real than ever, so I fired up our internal agent and did some digging on @aave  V4, and man, I have to say, the numbers are genuinely impressive when you consider what is actually happening.",
       "author": "binji_x",
       "conversationId": "2092355088341987329"
+    },
+    {
+      "id": "tg:coinnesskr:228949",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[\"GLD·IBIT, 거래량 10대 ETF 리스트 재진입... 시장 관심 이동 중\"]",
+      "url": "https://t.me/coinnesskr/228949",
+      "publishedAt": "2026-08-25T20:45:29.000Z",
+      "summary": "[\"GLD·IBIT, 거래량 10대 ETF 리스트 재진입... 시장 관심 이동 중\"]\n블룸버그 ETF 애널리스트 에릭 발추나스(Eric Balchunas)가 \"인공지능(AI) 열풍을 대신해 통화가치 하락(Debasement) 투자가 부상하고 있다는 또 하나의 신호가 나타났다. 가치저장 수단이라는 공통점을 가진 GLD(금 현물 ETF)와 IBIT(비트코인 현물 ETF)가 거래량 기준 상위 10대 ETF 리스트에 복귀했다. 반면 올여름 내내 상위권을 장악했던 일부 반도체 ETF가 순위에서 밀려났다. 이들은 여전히 시장에서 존재감을 보이고 있지만, 이전만큼 압도적인 수준은 아니다. 즉 시장의 관심이 AI, 반도체 중심의 투자 열기에서 금, 비트코인 등 가치저장 수단으로 조금씩 이동하고 있다는 신호로 해석할 수 있다\"고 전했다.\nhttps://coinness.com/news/1166751",
+      "author": "coinnesskr"
     },
     {
       "id": "x:arbitrum:2092349401834352695",
@@ -219,6 +494,16 @@
       "publishedAt": "2026-08-25T20:27:04.000Z",
       "summary": "Agenda Editor - @samwilsn Live analytics: EIP Editing Office Hours · EIPsInsight Zoom: Link Note for Authors - Please Review (click for more details) 1. Author Questions (Live Q&A) (PRs where authors are joining with a specific question) 2. ACD related 3. Quick Actions (Administrative updates, or other straightforward PRs that can be resolved quickly) EIPs Website Typo 4. Review Queue (PRs taken from the EIPsInsight board in order, as time permits) Status changes EIP-1 related New Proposal 5. Bl",
       "author": "system"
+    },
+    {
+      "id": "tg:coinnesskr:228948",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[폴리마켓US, 월드컵 종료 후 미결제약정 2배 증가]",
+      "url": "https://t.me/coinnesskr/228948",
+      "publishedAt": "2026-08-25T20:26:43.000Z",
+      "summary": "[폴리마켓US, 월드컵 종료 후 미결제약정 2배 증가]\n폴리마켓US의 미결제약정(OI)이 1.11억 달러를 기록했다고 크립토브리핑이 전했다. 이는 2026년 FIFA 월드컵이 7월 중순 끝난 이후 거의 두 배로 증가한 수준이다. 미디어는 \"더 주목할 만한 점은 이러한 성장세가 예측시장 전반 흐르과 정반대라는 것\"이라며 \"월드컵이 끝난 이후 칼시를 포함한 주요 예측시장의 OI는 약 20% 감소했다. 반면 폴리마켓US는 증가세를 보이고 있다\"고 설명했다.\nhttps://coinness.com/news/1166750",
+      "author": "coinnesskr"
     },
     {
       "id": "x:laurashin:2092347956749849007",
@@ -254,6 +539,16 @@
       "conversationId": "2092347238647214158"
     },
     {
+      "id": "tg:coinnesskr:228947",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[10x리서치 설립자 \"BTC·금 50%씩 투자 선호... AI주 가치평가 어렵다\"]",
+      "url": "https://t.me/coinnesskr/228947",
+      "publishedAt": "2026-08-25T20:18:36.000Z",
+      "summary": "[10x리서치 설립자 \"BTC·금 50%씩 투자 선호... AI주 가치평가 어렵다\"]\n코인텔레그래프에 따르면 10x리서치 설립자 마커스 틸렌(Markus Thielen)이 인터뷰를 통해 \"현재 가격 수준이라면 포트폴리오를 비트코인과 금에 50대 50으로 나누는 전략을 선호한다. 지금은 인공지능(AI) 관련주 가치를 평가하기 훨씬 어렵다. 지금 시장에서는 AI 관련주에 베팅하기 보다는 비트코인과 금으로 단순하게 포트폴리오를 구성하는 것이 더 낫다고 생각한다\"고 말했다.\nhttps://coinness.com/news/1166749",
+      "author": "coinnesskr"
+    },
+    {
       "id": "eth-magicians:ethereum-magicians.org-topic-29506",
       "source": "eth-magicians",
       "sourceType": "rss",
@@ -274,6 +569,26 @@
       "author": "trent_vanepps",
       "conversationId": "2092315755240906878",
       "isReply": true
+    },
+    {
+      "id": "tg:coinnesskr:228946",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[미 증시 3대 지수 상승 마감]",
+      "url": "https://t.me/coinnesskr/228946",
+      "publishedAt": "2026-08-25T20:02:36.000Z",
+      "summary": "[미 증시 3대 지수 상승 마감]\n미국 증시 3대 지수가 상승 마감했다.  \nS&P 500: +0.32%\n나스닥: +0.66%\n다우: +0.30%\nhttps://coinness.com/news/1166748",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228945",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[\"BTC $8.1만 돌파, 국채 금리 하락 등 동시 작용... 상승세 지속 전망\"]",
+      "url": "https://t.me/coinnesskr/228945",
+      "publishedAt": "2026-08-25T20:01:45.000Z",
+      "summary": "[\"BTC $8.1만 돌파, 국채 금리 하락 등 동시 작용... 상승세 지속 전망\"]\n비트코인 상승세는 국채 금리 하락, 숏스퀴즈(공매도 포지션 청산에 따른 급등) 그리고 미국 암호화폐 정책에 대한 기대감 회복에 힘입은 것이라고 포브스가 진단했다. 사모신용 플랫폼 캡(Cap) 성장 부문 책임자 데이브 리보위츠(Dave Liebowitz)는 \"비트코인의 상승세는 특정 암호화폐 만의 랠리라기 보다는 여러 요인이 동시에 작용한 결과로 보인다\"며 \"거시 경제 환경이 위험 자산에 더 우호적으로 변한 데다 지난주 미국 비트코인 현물 ETF에 20억 달러 가까운 자금이 유입됐다. 유동성 여건이 개선되고 기관 수요가 지속되는 등 요인이 결합돼 비트코인이 빠르게 상승할 수 있었다. 특히 그동안 시장의 포지션이 보다 방어적으로 구축돼 있던 만큼 더더욱 바르게 움직였다\"고 설명했다. 또한 암호화폐 트레이딩 기업 윈센트(Wincent) 수석 디렉터 폴 하워드(Paul Howard)는 \"초기 상승세는 숏스",
+      "author": "coinnesskr"
     },
     {
       "id": "x:trent_vanepps:2092341274221158765",
@@ -310,6 +625,16 @@
       "conversationId": "2092336382098243725"
     },
     {
+      "id": "tg:coinnesskr:228944",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[바이낸스, 크립토닷컴 컴플라이언스 임원 2인 영입]",
+      "url": "https://t.me/coinnesskr/228944",
+      "publishedAt": "2026-08-25T19:30:03.000Z",
+      "summary": "[바이낸스, 크립토닷컴 컴플라이언스 임원 2인 영입]\n바이낸스가 크립토닷컴 컴플라이언스 임원 두 명을 영입했다고 크립토브리핑이 전했다. 이들에 대한 신원 및 직책은 공개되지 않았다. 미디어는 \"바이낸스가 잇따른 인력 이탈과 수년 간의 규제 압력 끝에 규정 준수 담당 인력을 재정비 하고 있다\"고 전했다.\nhttps://coinness.com/news/1166746",
+      "author": "coinnesskr"
+    },
+    {
       "id": "x:donnoh_eth:2092333189909913824",
       "source": "x:donnoh_eth",
       "sourceType": "twitter",
@@ -320,6 +645,16 @@
       "author": "donnoh_eth",
       "conversationId": "2091907333135671399",
       "isReply": true
+    },
+    {
+      "id": "tg:coinnesskr:228943",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[블랙록 \"투자자, BTC에 $수십억 투자 예상\"]",
+      "url": "https://t.me/coinnesskr/228943",
+      "publishedAt": "2026-08-25T19:26:50.000Z",
+      "summary": "[블랙록 \"투자자, BTC에 $수십억 투자 예상\"]\n전 비트코인매거진 에디터 피터 리조(pete rizzo)가 블룸버그를 인용, 블랙록이 \"투자자들이 비트코인에 수십억 달러를 계속해 투자할 것으로 예상한다\"고 밝혔다고 전했다.\nhttps://coinness.com/news/1166745",
+      "author": "coinnesskr"
     },
     {
       "id": "x:trent_vanepps:2092331768636436753",
@@ -495,6 +830,16 @@
       "isReply": true
     },
     {
+      "id": "tg:coinnesskr:228942",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[락어웨이엑스, 저평가 토큰 투자 펀드 위해 $1.5억 유치 계획]",
+      "url": "https://t.me/coinnesskr/228942",
+      "publishedAt": "2026-08-25T18:27:48.000Z",
+      "summary": "[락어웨이엑스, 저평가 토큰 투자 펀드 위해 $1.5억 유치 계획]\n디지털자산 투자사 락어웨이엑스(RockawayX)가 유동성 펀드 조성을 위해 1.5억 달러 규모 투자를 유치한다고 발표했다. 포브스에 따르면 해당 펀드는 저평가된 토큰 및 암호화폐 관련주에 투자할 예정이다.\nhttps://coinness.com/news/1166744",
+      "author": "coinnesskr"
+    },
+    {
       "id": "x:trent_vanepps:2092317986455531945",
       "source": "x:trent_vanepps",
       "sourceType": "twitter",
@@ -562,6 +907,16 @@
       "conversationId": "2092315718284943550"
     },
     {
+      "id": "tg:coinnesskr:228941",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[10x리서치 설립자 \"BTC, 최고가 경신 당장은 어려울 것\"]",
+      "url": "https://t.me/coinnesskr/228941",
+      "publishedAt": "2026-08-25T18:18:27.000Z",
+      "summary": "[10x리서치 설립자 \"BTC, 최고가 경신 당장은 어려울 것\"]\n코인텔레그래프에 따르면 10x리서치 설립자 마커스 틸렌(Markus Thielen)이 인터뷰를 통해 \"비트코인이 빠른 시일 내 사상 최고가(ATH)를 경신할 것이라고 예측하지는 않는다. 그러나 상당 규모의 랠리를 이어갈 수 있을 것\"이라며 \"비트코인 10만 달러가 중요한 이정표다. 이 자체가 아주 큰 성과\"라고 말했다.\nhttps://coinness.com/news/1166743",
+      "author": "coinnesskr"
+    },
+    {
       "id": "x:lex_node:2092310441225494713",
       "source": "x:lex_node",
       "sourceType": "twitter",
@@ -571,6 +926,16 @@
       "summary": "RT @10xdegendev: ⏰🚨⚠️ BREAKING NEWS ⚠️🚨⏰\nNEW RADBRO MERCH STORE IS LIVE!! https://t.co/xpoIloNnqP",
       "author": "lex_node",
       "conversationId": "2092310441225494713"
+    },
+    {
+      "id": "tg:coinnesskr:228940",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[일본, 실시간 시장 결제에 블록체인 도입 검토]",
+      "url": "https://t.me/coinnesskr/228940",
+      "publishedAt": "2026-08-25T17:55:08.000Z",
+      "summary": "[일본, 실시간 시장 결제에 블록체인 도입 검토]\n일본이 블록체인 기술을 활용한 주식 및 채권 실시간 결제 시스템을 시범 도입할 계획인 것으로 알려졌다고 월터블룸버그가 닛케이신문을 인용해 전했다. 이를 위해 일본 금융청(FSA), 재무성, 일본은행 및 주요 금융기관이 올해 여름 관련 연구 모임을 발족할 예정이다. 내년 초 구체적인 개발 계획이 수립될 것으로 예상되며, 이후 수년 내 운영을 시작해 2030년대 초반에는 보다 광범위한 시스템이 가동될 전망이다.\nhttps://coinness.com/news/1166742",
+      "author": "coinnesskr"
     },
     {
       "id": "x:lex_node:2092309369157234857",
@@ -639,6 +1004,16 @@
       "author": "aave",
       "conversationId": "2092302228392407481",
       "isReply": true
+    },
+    {
+      "id": "tg:coinnesskr:228939",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[\"BTC, 새로운 강세장 초입... 가격 조정 발생 가능성 有\"]",
+      "url": "https://t.me/coinnesskr/228939",
+      "publishedAt": "2026-08-25T17:21:57.000Z",
+      "summary": "[\"BTC, 새로운 강세장 초입... 가격 조정 발생 가능성 有\"]\n비트코인 시장 흐름이 강세장으로 전환됐다고 온체인 애널리스트 줄리오 모레노가 진단했다. 그는 \"대부분의 지표가 새로운 강세장의 초기 단계임을 시사하고 있다\"며 \"다만 다음 두 가지 사항은 유의해야 한다. 강세장이 공식적으로 확인되려면 비트코인 가격이 365일 이동평균선(현재 기준 8.3만 달러)를 상향 돌파해야 한다. 또한 최근 가격 급등에 따른 높은 미실현 수익 및 거래소 유입 급증으로 인한 잠재적 매도 압력을 고려할 때 가격 조정이 발생할 가능성이 있다. 그러나 종합적으로 볼 때 데이터는 매우 긍정적인 신호를 보이고 있다\"고 설명했다.\nhttps://coinness.com/news/1166741",
+      "author": "coinnesskr"
     },
     {
       "id": "x:aave:2092300554676453838",
@@ -729,6 +1104,16 @@
       "conversationId": "2092296736161317044"
     },
     {
+      "id": "tg:coinnesskr:228938",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[\"스트래티지 최대 리스크, BTC 하락 아닌 금융 비용 감당\"]",
+      "url": "https://t.me/coinnesskr/228938",
+      "publishedAt": "2026-08-25T16:59:30.000Z",
+      "summary": "[\"스트래티지 최대 리스크, BTC 하락 아닌 금융 비용 감당\"]\n레짐 인텔리전스(Regime Intelligence)는 최근 보고서에서 스트래티지의 최대 리스크는 비트코인 가격 하락 그 자체보다 연간 17억 6,000만 달러에 달하는 금융 비용(배당금, 이자)을 감당하기 위해 자본 시장에 지속적으로 접근할 수 있느냐 여부라고 분석했다. 코인텔레그래프에 따르면 보고서는 \"스트래티지가 보유한 840,447 BTC 뒤에는 약 220억 달러의 부채 및 우선주 청구권이 존재한다. 비트코인 매집 모델을 유지하려면 외부 자금 조달이 필수적이다. 담보대출 구조가 아니므로 비트코인 가격이 하락하더라도 강제 청산될 위험은 없다. 스트레스 테스트 결과 보유한 비트코인과 현금 예치금으로 전환사채를 커버하지 못하려면 비트코인 가격이 약 96% 폭락해야 한다\"고 설명했다. 시장 분석가들은 우선주 가격 흐름과 현재 연간 금융 비용의 약 2.6배를 커버할 수 있는 달러 현금 보유고를 유심히 관찰해야 한다고 조",
+      "author": "coinnesskr"
+    },
+    {
       "id": "x:donnoh_eth:2092295136747061689",
       "source": "x:donnoh_eth",
       "sourceType": "twitter",
@@ -739,6 +1124,16 @@
       "author": "donnoh_eth",
       "conversationId": "2091974702809915642",
       "isReply": true
+    },
+    {
+      "id": "tg:coinnesskr:228937",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[1.24억 RIO 해킹...리얼리오 체인 및 웹앱 중단]",
+      "url": "https://t.me/coinnesskr/228937",
+      "publishedAt": "2026-08-25T16:47:51.000Z",
+      "summary": "[1.24억 RIO 해킹...리얼리오 체인 및 웹앱 중단]\n실물자산(RWA) 토큰화 레이어1 플랫폼 리얼리오 네트워크(Realio Network)가 약 1억 2,440만 개의 RIO 토큰을 탈취당한 후, 자체 체인 가동과 웹앱 접속을 차단했다고 크립토브리핑이 보도했다. 유출된 토큰의 대부분인 약 1억 1,370만 RIO는 기존 유통량에 포함되지 않았던 재단 보유분이었다. 약 1,070만 RIO(이전 유통량의 약 3.3%)가 사용자 계정에서 탈취되었으며, 네이티브 체인 중단 전까지 2,374개 개인 계정에서 약 573만 RIO가 유출됐다. 공격자는 탈취한 토큰 중 250만 RIO 이상을 스텔라(Stellar) DEX에서 매도했다. 2,374명의 피해자에 대한 보상안이나 토큰 관리 대책은 아직 나오지 않았다.\nhttps://coinness.com/news/1166739",
+      "author": "coinnesskr"
     },
     {
       "id": "x:TrustlessState:2092290423184339013",
@@ -785,6 +1180,16 @@
       "conversationId": "2092288590231306644"
     },
     {
+      "id": "tg:coinnesskr:228936",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[칼시, 메이저리그 5개 구단과 파트너십 체결]",
+      "url": "https://t.me/coinnesskr/228936",
+      "publishedAt": "2026-08-25T16:29:54.000Z",
+      "summary": "[칼시, 메이저리그 5개 구단과 파트너십 체결]\n예측 시장 플랫폼 칼시(Kalshi)가 LA 다저스, 보스턴 레드삭스, 애틀랜타 브레이브스, 샌디에이고 파드리스, 샌프란시스코 자이언츠 등 MLB 주요 5개 구단과 다년 파트너십을 체결했다고 크립토브리핑이 보도했다. 경기장 내 LED 전광판 광고, 디지털/라디오 프로모션, 팬 대상 이벤트 등의 권리와, LA 다저스 홈구장 내 '골드 글러브 바(Gold Glove Bar)'의 명칭권을 확보했다. 칼시 내 야구 관련 예측 계약 거래량이 전년 대비 36배 급증함에 따라 스포츠 분야 마케팅 투자를 집중 확대하고 있다.\nhttps://coinness.com/news/1166738",
+      "author": "coinnesskr"
+    },
+    {
       "id": "x:barnabemonnot:2092288213138252045",
       "source": "x:barnabemonnot",
       "sourceType": "twitter",
@@ -795,6 +1200,36 @@
       "author": "barnabemonnot",
       "conversationId": "2092237551608455173",
       "isReply": true
+    },
+    {
+      "id": "tg:coinnesskr:228935",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[XRP레저, 네이티브 대출·프라이버시 도구 도입 추진]",
+      "url": "https://t.me/coinnesskr/228935",
+      "publishedAt": "2026-08-25T16:27:26.000Z",
+      "summary": "[XRP레저, 네이티브 대출·프라이버시 도구 도입 추진]\nXRP 레저(XRPL) 재단 커뮤니티 리더이자 밸리데이터 벳(Vet)이 XRP 보유자를 위한 네이티브 대출및 프라이버시 기능 도입 개정안을 공개하며, 외부 스마트계약이나 브릿지 없이 네트워크 차원에서 직접 작동하는 자체 디파이 스택 구축 계획을 발표했다고 유투데이가 전했다. XLS-65 / XLS-66 개정안은 네이티브 대출 프로토콜, XLS-0096 개정안은 프라이버시 및 권한 위임, XLS-70 개정안은 디지털 신원 인증 내용을 담고 있다.\nhttps://coinness.com/news/1166737",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228934",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[크립토퀀트 \"BTC 강세장 단계 진입\"]",
+      "url": "https://t.me/coinnesskr/228934",
+      "publishedAt": "2026-08-25T16:24:35.000Z",
+      "summary": "[크립토퀀트 \"BTC 강세장 단계 진입\"]\n크립토퀀트는 비트코인이 강세장 단계에 진입했다고 밝혔다. 자체 강세 지수(불 스코어)가 일주일 만에 30에서 80으로 치솟았는데, 1년 만에 가장 빠른 속도다. 83000달러는 (본격적인 상승장으로 가는 길에) 마지막으로 남아 있는 저항선이라고 크립토퀀트는 설명했다.\nhttps://coinness.com/news/1166736",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228933",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[주기영 \"비트코인 약세장 끝\"]",
+      "url": "https://t.me/coinnesskr/228933",
+      "publishedAt": "2026-08-25T16:19:54.000Z",
+      "summary": "[주기영 \"비트코인 약세장 끝\"]\n주기영 크립토퀀트 대표는 비트코인 약세장이 끝났다고 밝혔다.\nhttps://coinness.com/news/1166735",
+      "author": "coinnesskr"
     },
     {
       "id": "x:gakonst:2092285710644466135",
@@ -931,6 +1366,18 @@
       "conversationId": "2092282550119182485"
     },
     {
+      "id": "x:Uniswap:2092282342576377895",
+      "source": "x:Uniswap",
+      "sourceType": "twitter",
+      "title": "@RobinhoodApp hood morning",
+      "url": "https://x.com/Uniswap/status/2092282342576377895",
+      "publishedAt": "2026-08-25T16:05:57.000Z",
+      "summary": "@RobinhoodApp hood morning",
+      "author": "Uniswap",
+      "conversationId": "2092240430033215855",
+      "isReply": true
+    },
+    {
       "id": "x:lex_node:2092282109230530941",
       "source": "x:lex_node",
       "sourceType": "twitter",
@@ -962,6 +1409,26 @@
       "summary": "📈 dYdX Labs has launched Arcus, a platform offering leveraged tokens tied to stocks and crypto assets on Robinhood Chain.\n\nThe products are designed to provide leveraged exposure to assets including equities and cryptocurrencies through onchain tokens.\n\nRead more: https://t.co/i5Ci3byGxM",
       "author": "laurashin",
       "conversationId": "2092281007819133031"
+    },
+    {
+      "id": "tg:coinnesskr:228932",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[지난주 유니스왑 스왑건수 사상 최다]",
+      "url": "https://t.me/coinnesskr/228932",
+      "publishedAt": "2026-08-25T15:59:52.000Z",
+      "summary": "[지난주 유니스왑 스왑건수 사상 최다]\n지난주 유니스왑에서 2890만건의 스왑이 이뤄졌다고 언폴디드가 전했다. 역대 최다다.\nhttps://coinness.com/news/1166734",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228931",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[갤럭시원 유저, 암호화폐 담보 대출 가능]",
+      "url": "https://t.me/coinnesskr/228931",
+      "publishedAt": "2026-08-25T15:58:13.000Z",
+      "summary": "[갤럭시원 유저, 암호화폐 담보 대출 가능]\n갤럭시(Galaxy)는 적격 갤럭시원(GalaxyOne) 고객이 보유 자산을 매도하지 않고 비트코인(BTC), 이더리움(ETH), 솔라나(SOL)를 담보로 현금을 빌릴 수 있는 암호화폐 담보 포트폴리오 신용 한도 상품을 출시했다고 더블록이 전했다.\nhttps://coinness.com/news/1166733",
+      "author": "coinnesskr"
     },
     {
       "id": "x:trent_vanepps:2092280371375157312",
@@ -997,6 +1464,18 @@
       "conversationId": "2092279581214663007"
     },
     {
+      "id": "x:arbitrum:2092279207996891171",
+      "source": "x:arbitrum",
+      "sourceType": "twitter",
+      "title": "@RobinhoodApp gm",
+      "url": "https://x.com/arbitrum/status/2092279207996891171",
+      "publishedAt": "2026-08-25T15:53:30.000Z",
+      "summary": "@RobinhoodApp gm",
+      "author": "arbitrum",
+      "conversationId": "2092240430033215855",
+      "isReply": true
+    },
+    {
       "id": "x:ethereumfndn:2092275546579419431",
       "source": "x:ethereumfndn",
       "sourceType": "twitter",
@@ -1006,6 +1485,26 @@
       "summary": "Tomorrow at 4pm UTC\n\nEthereum Builders Live with @jchaskin22 and @timourxyz, co-founder of @joinedgecity\n\nWe'll explore what a society incubator is, look back at past popup villages, and preview the upcoming Edge City India.\n\nhttps://t.co/irdmeF5z1q",
       "author": "ethereumfndn",
       "conversationId": "2092275546579419431"
+    },
+    {
+      "id": "tg:coinnesskr:228930",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[메타플래닛, 1000 BTC 코인베이스 프라임 이체]",
+      "url": "https://t.me/coinnesskr/228930",
+      "publishedAt": "2026-08-25T15:34:13.000Z",
+      "summary": "[메타플래닛, 1000 BTC 코인베이스 프라임 이체]\n일본의 BTC 전략 매집 기업 메타플래닛(Metaplanet)이 코인베이스 프라임으로 1000 BTC를 이체했다고 비트코인뉴스가 전했다. 거래소 입금은 통상 매도 목적으로 해석되지만, 코인베이스 프라임은 기관 투자자를 대상으로 거래·커스터디·자금 조달 서비스를 제공하는 프라임 브로커리지 플랫폼인 만큼 다른 활용 목적 가능성도 있다.\nhttps://coinness.com/news/1166732",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228929",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[WLFI CEO \"USD1 스테이블코인 성공, 정경유착 논란 일축\"]",
+      "url": "https://t.me/coinnesskr/228929",
+      "publishedAt": "2026-08-25T15:32:12.000Z",
+      "summary": "[WLFI CEO \"USD1 스테이블코인 성공, 정경유착 논란 일축\"]\n트럼프 대통령 일가가 참여해 설립한 월드리버티파이낸셜의 CEO 잭 위트코프(Zach Witkoff)가 CNBC 인터뷰에서 프로젝트를 둘러싼 이해충돌 및 특혜 의혹을 일축했다. 그는 기업이나 국가들이 트럼프 일가에 자금을 대기 위해 스테이블코인 USD1을 이용한다는 우려는 사실과 다르다고 밝혔다. USD1 발행량은 40억 달러 이상, 일일 거래량은 10억 달러를 기록 중이라며 이는 실거래자들의 이용을 보여주는 증거라고 설명했다. 이어 트럼프 대통령과 비즈니스 관련 대화를 나눈 적이 없으며 앞으로도 없을 것이라고 강조했다. 민주당 의원들은 아랍에미리트(UAE) 연계 그룹의 월드리버티파이낸셜 지분 49% 인수 및 트럼프 일가의 프로젝트 관련 수익을 이유로 외교 정책과 연계된 이해충돌 가능성을 계속 제기하고 있다.\nhttps://coinness.com/news/1166731",
+      "author": "coinnesskr"
     },
     {
       "id": "x:binji_x:2092269204636590158",
@@ -1052,6 +1551,26 @@
       "conversationId": "2092267899750678954"
     },
     {
+      "id": "tg:coinnesskr:228928",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[스트라이브 SATA, 1시간 만에 75 BTC 매수 재원 조달]",
+      "url": "https://t.me/coinnesskr/228928",
+      "publishedAt": "2026-08-25T15:08:26.000Z",
+      "summary": "[스트라이브 SATA, 1시간 만에 75 BTC 매수 재원 조달]\n스트라이브 영구 우선주 SATA가 오늘 한 시간 만에 75 BTC를 살 수 있을 만큼의 자금을 조달했다고 BTC트레저리가 전했다. 스트라이브는 지난주 1110 BTC를 추가 매입한 바 있다.\nhttps://coinness.com/news/1166730",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228927",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[USD1, 캔톤 네트워크 발행]",
+      "url": "https://t.me/coinnesskr/228927",
+      "publishedAt": "2026-08-25T15:06:39.000Z",
+      "summary": "[USD1, 캔톤 네트워크 발행]\n월드리버티파이낸셜(WLFI)의 스테이블코인 USD1이 캔톤 네트워크에서 네이티브로 발행된다고 WLFI 측이 밝혔다.\nhttps://coinness.com/news/1166729",
+      "author": "coinnesskr"
+    },
+    {
       "id": "x:gakonst:2092266848905511332",
       "source": "x:gakonst",
       "sourceType": "twitter",
@@ -1096,6 +1615,16 @@
       "author": "aave",
       "conversationId": "2092265564672545174",
       "isReply": true
+    },
+    {
+      "id": "tg:coinnesskr:228926",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[크라켄 \"HTX로부터 소액 입금 공격 받아\"]",
+      "url": "https://t.me/coinnesskr/228926",
+      "publishedAt": "2026-08-25T14:57:27.000Z",
+      "summary": "[크라켄 \"HTX로부터 소액 입금 공격 받아\"]\n크라켄이 HTX(구 후오비) 연관 지갑으로부터 약 12,000건의 소액 입금(더스트 공격)을 받았다고 블룸버그가 보도했다. 이로 인해 일부 이용자 계정이 규제 준수 점검 절차에 따라 일시적으로 동결되었으나, 현재는 제재 대상 자금을 동결한 상태에서 고객 계정 접근 권한을 정상 복구했다. HTX는 해당 송금을 직접 시행한 적이 없다고 전면 부인하며, 지갑 주소 오식별 가능성 또는 제3자의 악의적 활동 여부를 조사 중이라고 밝혔다.\nhttps://coinness.com/news/1166728",
+      "author": "coinnesskr"
     },
     {
       "id": "x:aave:2092264124369571884",
@@ -1168,6 +1697,26 @@
       "isReply": true
     },
     {
+      "id": "tg:coinnesskr:228925",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[폼플리아노 \"미 정부 계속 돈 찍어내는 한 BTC 상승 지속\"]",
+      "url": "https://t.me/coinnesskr/228925",
+      "publishedAt": "2026-08-25T14:44:54.000Z",
+      "summary": "[폼플리아노 \"미 정부 계속 돈 찍어내는 한 BTC 상승 지속\"]\n암호화폐 전문 투자사 폼프 인베스트먼트 설립자 앤서니 폼플리아노(Anthony Pompliano)는 폭스뉴스에 출연해 비트코인이 크게 오를 것이라 말했다. 그는 \"미국 정부는 절대 돈을 찍어내는 것을 멈추지 않을 것이다. 정부가 계속 돈을 찍어내는 한 비트코인 가격은 계속해서 오를 것\"이라고 덧붙였다.\nhttps://coinness.com/news/1166727",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228924",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[토르체인 3.20 업그레이드...XMR·ZEC 네이티브 스왑 지원]",
+      "url": "https://t.me/coinnesskr/228924",
+      "publishedAt": "2026-08-25T14:39:54.000Z",
+      "summary": "[토르체인 3.20 업그레이드...XMR·ZEC 네이티브 스왑 지원]\n크로스체인 탈중앙화 거래소(DEX) 토르체인(THORChain)이 모네로(XMR) 및 지캐시(ZEC)의 네이티브 스왑 지원을 골자로 하는 'THORChain 3.20' 프로토콜 업그레이드를 발표했다고 디크립트가 보도했다.중앙화 거래소(CEX) 상장 폐지 및 규제 강화로 입지가 줄어들던 프라이버시 코인(XMR, ZEC)을 래핑(Wrapped) 자산 변환이나 CEX 계정 및 수탁 절차 없이 비트코인(BTC), 이더리움(ETH), 스테이블코인과 직접 교환할 수 있게 된다.\nhttps://coinness.com/news/1166726",
+      "author": "coinnesskr"
+    },
+    {
       "id": "x:EFDevcon:2092260124937048292",
       "source": "x:EFDevcon",
       "sourceType": "twitter",
@@ -1201,6 +1750,16 @@
       "conversationId": "2092259425776001038"
     },
     {
+      "id": "tg:coinnesskr:228923",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[CME, 비트코인 선물 만기 관리 위한 BTIC 기능 도입]",
+      "url": "https://t.me/coinnesskr/228923",
+      "publishedAt": "2026-08-25T14:31:40.000Z",
+      "summary": "[CME, 비트코인 선물 만기 관리 위한 BTIC 기능 도입]\nCME 그룹이 비트코인 선물 거래자들을 위해 만기 시점의 베이시스(Basis, 선물과 현물 간의 가격 차이) 리스크를 관리할 수 있는 BTIC(Basis Trade at Index Close) 기능을 제공한다고 크립토브리핑이 보도했다. 특정 절대 가격이 아닌 'CME CF 비트코인 기준 가격(Reference Rate)' 대비 프리미엄/디스카운트(스프레드)를 미리 고정하여 거래하는 방식이다.\nhttps://coinness.com/news/1166725",
+      "author": "coinnesskr"
+    },
+    {
       "id": "x:ryanberckmans:2092255939248218566",
       "source": "x:ryanberckmans",
       "sourceType": "twitter",
@@ -1210,6 +1769,26 @@
       "summary": "RT @zkLumi: === @Offchain’s stance on Native AA: EIP-8141 vs EIP-8130 ===\n\nWe are very happy that ACD is considering Native AA as a Hegota…",
       "author": "ryanberckmans",
       "conversationId": "2092255939248218566"
+    },
+    {
+      "id": "tg:coinnesskr:228922",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[보스턴 연은 총재 \"지속적 디플레 증거 없는 한 조만간 금리 인상 적절\"]",
+      "url": "https://t.me/coinnesskr/228922",
+      "publishedAt": "2026-08-25T14:15:29.000Z",
+      "summary": "[보스턴 연은 총재 \"지속적 디플레 증거 없는 한 조만간 금리 인상 적절\"]\n수전 콜린스 보스턴 연방준비은행(연은) 총재는 지속적인 디플레이션 증거가 없는 한 조만간 금리 인상이 적절하다고 말했다.\nhttps://coinness.com/news/1166724",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228921",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[티제로, 수이와 전략 파트너십]",
+      "url": "https://t.me/coinnesskr/228921",
+      "publishedAt": "2026-08-25T14:13:19.000Z",
+      "summary": "[티제로, 수이와 전략 파트너십]\n블록체인 금융 인프라 기업 티제로(tZERO Group)가 수이(Sui)와 전략적 파트너십을 체결하고 네트워크 직접 통합을 발표했다고 파이낸스와이어가 보도했다. 이번 통합으로 수이 기반 프로젝트와 기관 발행자들은 별도의 규제/수탁 시스템을 구축할 필요 없이 티제로의 규제 프레임워크 내에서 토큰 발행, 명의개서, 수탁, 거래, 준법 감시, 결제 서비스를 직접 이용할 수 있게 된다.\nhttps://coinness.com/news/1166723",
+      "author": "coinnesskr"
     },
     {
       "id": "x:base:2092252916010647978",
@@ -1270,6 +1849,16 @@
       "isReply": true
     },
     {
+      "id": "tg:coinnesskr:228920",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[로빈후드 체인 DEX 아커스, 무기한 선물 계정 토큰화 pToken 출시]",
+      "url": "https://t.me/coinnesskr/228920",
+      "publishedAt": "2026-08-25T14:06:27.000Z",
+      "summary": "[로빈후드 체인 DEX 아커스, 무기한 선물 계정 토큰화 pToken 출시]\ndYdX 개발팀과 로빈후드 크립토의 협력으로 구축된 탈중앙화 거래소 아커스(Arcus)가 로빈후드 체인상에서 무기한 선물 포지션 계정을 ERC-20 토큰으로 변환할 수 있는 'pToken' 프로토콜을 출시했다고 더블록이 보도했다. 복잡한 선물 계정 및 마진 관리를 직접 하지 않고도 일반 현물 토큰처럼 매수·매도하여 레버리지 노출을 확보할 수 있으며, 온체인 대출 시장 등 타 디파이 프로토콜에서 담보로 활용할 수 있다. 기존에는 주식 토큰 보유자가 선물 거래를 위해 토큰을 매도해야 했으나, 이제 SPY, QQQ, MAG7 등 주식 토큰을 담보로 스테이블코인(USDG) 대출을 받아 선물 마진으로 사용할 수 있게 됐다.\nhttps://coinness.com/news/1166722",
+      "author": "coinnesskr"
+    },
+    {
       "id": "x:ryanberckmans:2092250732464308425",
       "source": "x:ryanberckmans",
       "sourceType": "twitter",
@@ -1293,6 +1882,16 @@
       "conversationId": "2092250303236014499"
     },
     {
+      "id": "tg:coinnesskr:228919",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "['매각 추진' 코퍼, 인수가 제안액 $2억 수준]",
+      "url": "https://t.me/coinnesskr/228919",
+      "publishedAt": "2026-08-25T13:57:29.000Z",
+      "summary": "['매각 추진' 코퍼, 인수가 제안액 $2억 수준]\n암호화폐 커스터디 업체 코퍼(Copper)가 매각을 추진 중인 가운데 복수의 잠재적 인수자로부터 약 2억 달러 규모의 인수 제안을 받은 것으로 전해졌다. 코인데스크가 복수의 소식통을 인용해 보도한 바에 따르면 현재 2~3곳이 인수에 관심을 보이고 있다. 이는 지난 5월 투자은행 캔터피츠제럴드가 제시했던 매각 희망가 약 5억 달러의 절반에도 못 미치는 수준이다.\nhttps://coinness.com/news/1166721",
+      "author": "coinnesskr"
+    },
+    {
       "id": "x:ryanberckmans:2092249868437782828",
       "source": "x:ryanberckmans",
       "sourceType": "twitter",
@@ -1304,6 +1903,16 @@
       "conversationId": "2092249868437782828"
     },
     {
+      "id": "tg:coinnesskr:228918",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[업비트, ZETA 입출금 일시 중단]",
+      "url": "https://t.me/coinnesskr/228918",
+      "publishedAt": "2026-08-25T13:55:11.000Z",
+      "summary": "[업비트, ZETA 입출금 일시 중단]\n업비트가 제타체인(ZETA)의 블록 생성 지연에 따라 공지사항 등록 시점부터 ZETA 입출금을 일시 중단한다고 공지했다.\nhttps://coinness.com/news/1166720",
+      "author": "coinnesskr"
+    },
+    {
       "id": "x:binji_x:2092249018462330901",
       "source": "x:binji_x",
       "sourceType": "twitter",
@@ -1313,6 +1922,26 @@
       "summary": "The issue of not shipping something and then letting bandaid solutions with broken dependencies become the main way users get efficient access to Ethereum is one of the largest problems of Ethereum development because it eventually reduces the relevance of the protocol and ensures that user facing decisions remain centralized within 1/1 multi-sig walled gardens and hackable front ends\n\nwe must do better",
       "author": "binji_x",
       "conversationId": "2092249018462330901"
+    },
+    {
+      "id": "tg:coinnesskr:228917",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[엠퍼리 디지털, BTC 보유량 1,179개로 감소]",
+      "url": "https://t.me/coinnesskr/228917",
+      "publishedAt": "2026-08-25T13:52:56.000Z",
+      "summary": "[엠퍼리 디지털, BTC 보유량 1,179개로 감소]\n나스닥 상장사 엠퍼리 디지털(EMPD)이 현재 1,179 BTC를 보유하고 있다고 밝혔다. 현금 보유액은 약 6,200만 달러, 부채는 3,500만 달러다. 회사는 비트코인 매집 전략을 유지하는 동시에 AI 인프라 및 데이터센터 투자를 확대하고 있다고 설명했다\nhttps://coinness.com/news/1166719",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228916",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[골드만삭스, 코인베이스 목표가 $173→$196 상향]",
+      "url": "https://t.me/coinnesskr/228916",
+      "publishedAt": "2026-08-25T13:49:00.000Z",
+      "summary": "[골드만삭스, 코인베이스 목표가 $173→$196 상향]\n골드만삭스가 코인베이스(COIN)에 대한 매수 의견을 유지하면서 목표주가를 기존 173 달러에서 196 달러로 상향했다고 CNBC가 전했다. 골드만삭스는 \"암호화폐 시장의 지속적인 개선과 파생상품, 예측시장 등 코인베이스의 신규 사업 성장이 추가 상승 여력을 제공할 수 있다\"고 평가했다.\nhttps://coinness.com/news/1166718",
+      "author": "coinnesskr"
     },
     {
       "id": "x:gakonst:2092247345278628185",
@@ -1349,6 +1978,26 @@
       "conversationId": "2092247070669189177"
     },
     {
+      "id": "tg:coinnesskr:228915",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[미 증시 3대 지수 상승 출발]",
+      "url": "https://t.me/coinnesskr/228915",
+      "publishedAt": "2026-08-25T13:32:25.000Z",
+      "summary": "[미 증시 3대 지수 상승 출발]\n미국 증시 3대 지수가 상승 출발했다.\nS&P 500: +0.28%\n나스닥: +0.61%\n다우: +0.30%\nhttps://coinness.com/news/1166717",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228914",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[비트와이즈, 주식 토큰 기반 자동화 포트폴리오 출시 예정]",
+      "url": "https://t.me/coinnesskr/228914",
+      "publishedAt": "2026-08-25T13:31:27.000Z",
+      "summary": "[비트와이즈, 주식 토큰 기반 자동화 포트폴리오 출시 예정]\n블룸버그에 따르면 암호화폐 자산운용사 비트와이즈가 주식 토큰으로 구성된 자동화 포트폴리오 서비스를 'ATP(Automated Token Portfolios)'를 출시할 예정이다. ATP를 통해 미국 외 지역의 적격 투자자는 여러 토큰화 주식으로 구성된 포트폴리오를 자신의 월렛에 보유할 수 있다. 비트와이즈의 운용자산 규모는 약 90억 달러다.\nhttps://coinness.com/news/1166716",
+      "author": "coinnesskr"
+    },
+    {
       "id": "x:EFDevcon:2092243329853321608",
       "source": "x:EFDevcon",
       "sourceType": "twitter",
@@ -1360,6 +2009,16 @@
       "conversationId": "2092243329853321608"
     },
     {
+      "id": "tg:coinnesskr:228913",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[하이브마인드, $1700만 투자 유치…토큰화 사업 확대]",
+      "url": "https://t.me/coinnesskr/228913",
+      "publishedAt": "2026-08-25T13:27:35.000Z",
+      "summary": "[하이브마인드, $1700만 투자 유치…토큰화 사업 확대]\n디지털자산 투자사 하이브마인드 디지털 그룹(Hivemind Digital Group)이 M&G 인베스트먼트 주도로 1700만달러 규모의 전략적 투자를 유치했다고 밝혔다. 이번 투자에는 CPIC 인베스트먼트 매니지먼트 홍콩, ZA뱅크, 팔콘X 등이 참여했다. 하이브마인드는 조달 자금을 활용해 전통·디지털 자산을 블록체인에서 토큰화하는 인프라 구축과 글로벌 기관 파트너십 확대에 나설 계획이다\nhttps://coinness.com/news/1166715",
+      "author": "coinnesskr"
+    },
+    {
       "id": "x:lex_node:2092241742246326403",
       "source": "x:lex_node",
       "sourceType": "twitter",
@@ -1369,6 +2028,30 @@
       "summary": "it's actually insane to me this is the zoomer bullcase for cyberleek, and says a lot about the trenches...we are far from wallstreetbets and hacktivism type stuff these days...quite the contrary,  the most bullish prospect is corporate endorsement 🤣",
       "author": "lex_node",
       "conversationId": "2092241742246326403"
+    },
+    {
+      "id": "x:arbitrum:2092240430033215855",
+      "source": "x:arbitrum",
+      "sourceType": "twitter",
+      "title": "You can tell who's onchain by how they say good morning",
+      "url": "https://x.com/arbitrum/status/2092240430033215855",
+      "publishedAt": "2026-08-25T13:19:25.000Z",
+      "summary": "You can tell who's onchain by how they say good morning",
+      "author": "arbitrum",
+      "conversationId": "2092240430033215855",
+      "isReply": true
+    },
+    {
+      "id": "x:Uniswap:2092240430033215855",
+      "source": "x:Uniswap",
+      "sourceType": "twitter",
+      "title": "You can tell who's onchain by how they say good morning",
+      "url": "https://x.com/Uniswap/status/2092240430033215855",
+      "publishedAt": "2026-08-25T13:19:25.000Z",
+      "summary": "You can tell who's onchain by how they say good morning",
+      "author": "Uniswap",
+      "conversationId": "2092240430033215855",
+      "isReply": true
     },
     {
       "id": "x:aave:2092239398792204441",
@@ -1391,6 +2074,16 @@
       "summary": "RT @dnapway: David Hoffman says Tom Lee is a better version of Michael Saylor:\n\n\"Tom Lee is just a great figurehead. My hot take is that I…",
       "author": "TrustlessState",
       "conversationId": "2092239083192119526"
+    },
+    {
+      "id": "tg:coinnesskr:228912",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[체이널리시스, 암호화폐 거래소와 아동 성착취물 유통망 추적]",
+      "url": "https://t.me/coinnesskr/228912",
+      "publishedAt": "2026-08-25T13:13:27.000Z",
+      "summary": "[체이널리시스, 암호화폐 거래소와 아동 성착취물 유통망 추적]\n블록체인 분석업체 체이널리시스가 바이낸스, 코인베이스 등 암호화폐 기업 및 글로벌 사법당국과 함께 아동 성착취물(CSAM) 유통망을 추적하는 '오퍼레이션 라이트하우스(Operation Lighthouse)'를 진행했다고 코인데스크가 전했다. 조사팀은 2만9000개 이상의 암호화폐 주소와 디지털 식별자, 100개 이상의 관련 포럼·허브를 분석해 추가 수사에 활용할 수 있는 1만4000건 이상의 단서를 확보했다. 용의자는 125개국에 걸쳐 있는 것으로 파악됐다. 유로폴, 호주 연방경찰, 캐나다 왕립기마경찰, 영국 국가범죄청(NCA) 등도 이번 작전에 참여했다.\nhttps://coinness.com/news/1166714",
+      "author": "coinnesskr"
     },
     {
       "id": "x:barnabemonnot:2092237551608455173",
@@ -1417,6 +2110,16 @@
       "isReply": true
     },
     {
+      "id": "tg:coinnesskr:228911",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[레이어제로, 시타델·DTCC와 협력해 신규 거래소 출시]",
+      "url": "https://t.me/coinnesskr/228911",
+      "publishedAt": "2026-08-25T13:07:37.000Z",
+      "summary": "[레이어제로, 시타델·DTCC와 협력해 신규 거래소 출시]\n크로스체인 상호운용성 프로토콜 레이어제로(ZRO)가 시타델 증권, 미국예탁결제원(DTCC)과 협력해 신규 거래소 ATLAS 출시한다고 더인포메이션이 전했다. ATLAS는 일반 이용자용 앱이 아닌 다른 거래 플랫폼과 금융기관이 활용할 수 있는 기반 거래소로, 현물 암호화폐와 무기한 선물 거래를 우선 지원한다. 향후 예측 계약, 일반 선물, 옵션 등으로 상품군을 확대할 계획이다. ATLAS는 레이어제로가 지난 2월 발표한 블록체인 '제로(Zero)' 위에 구축된다\nhttps://coinness.com/news/1166713",
+      "author": "coinnesskr"
+    },
+    {
       "id": "x:lex_node:2092235066759872921",
       "source": "x:lex_node",
       "sourceType": "twitter",
@@ -1426,6 +2129,26 @@
       "summary": "RT @LawofCodeFM: Ep. 208: Regulation Crypto Assets\n\nBackground, how it works, unanswered questions and what you should know.\n\nFeaturing @NY…",
       "author": "lex_node",
       "conversationId": "2092235066759872921"
+    },
+    {
+      "id": "tg:coinnesskr:228910",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[쉽야드, 9/30 IPFS 관련 운영 종료…프로토콜 랩스 자금 지원 중단]",
+      "url": "https://t.me/coinnesskr/228910",
+      "publishedAt": "2026-08-25T12:55:44.000Z",
+      "summary": "[쉽야드, 9/30 IPFS 관련 운영 종료…프로토콜 랩스 자금 지원 중단]\n탈중앙화 파일 저장 시스템 IPFS의 핵심 프로젝트 유지보수를 맡아온 쉽야드(Shipyard)가 프로토콜 랩스(Protocol Labs)의 자금 지원 종료로 오는 9월 30일 IPFS 관련 개발, 유지보수, 인프라 운영을 중단한다고 밝혔다. 이에 따라 쿠보(Kubo), 헬리아(Helia) 등 쉽야드가 관리해온 프로젝트는 신규 기능 개발, 버그 수정, 출시 등을 담당할 전담 유지보수 인력이 사라진다. 쉽야드는 ipfs.io, dweb.link, IPFS 부트스트랩 노드 등 현재 운영 중인 공용 인프라도 중단할 예정이다. 관련 도메인과 인프라의 향후 운영 방침은 프로토콜 랩스가 결정한다.\nhttps://coinness.com/news/1166712",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228909",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[코인쉐어스, 최대 25% 자사주 매입안 추진…소각은 보장 안돼]",
+      "url": "https://t.me/coinnesskr/228909",
+      "publishedAt": "2026-08-25T12:52:58.000Z",
+      "summary": "[코인쉐어스, 최대 25% 자사주 매입안 추진…소각은 보장 안돼]\n유럽 암호화폐 자산운용사 코인쉐어스(CoinShares)가 발행주식의 최대 25%를 자사주로 매입할 수 있는 안건을 오는 9월 15일 주주총회 표결에 부친다고 크립토슬레이트가 전했다. 다만 매입한 주식은 바로 소각하지 않고 자사주로 보유한 뒤 임직원 보상 등에 다시 활용할 수 있어, 실제 유통 주식 수가 25% 줄어드는 것은 아니라는 설명이다.\nhttps://coinness.com/news/1166711",
+      "author": "coinnesskr"
     },
     {
       "id": "x:Optimism:2092233444684136754",
@@ -1448,6 +2171,26 @@
       "summary": "RT @decentrek: https://t.co/Km2Tju23S8",
       "author": "barnabemonnot",
       "conversationId": "2092233082099167743"
+    },
+    {
+      "id": "tg:coinnesskr:228908",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[\"최근 암호화폐 상승세, 바이낸스·코인베이스가 주도\"]",
+      "url": "https://t.me/coinnesskr/228908",
+      "publishedAt": "2026-08-25T12:43:16.000Z",
+      "summary": "[\"최근 암호화폐 상승세, 바이낸스·코인베이스가 주도\"]\n암호화폐 애널리스트 CW8900는 X를 통해 \"최근 암호화폐 시장 상승세를 바이낸스와 코인베이스가 주도하고 있다\"고 분석했다. 그는 \"최근 스테이블코인 유입이 가장 많았던 8월 21일 바이낸스에는 20억2610만 달러, 코인베이스에는 14억4720만 달러 상당의 스테이블코인이 유입됐다. 두 거래소로 유입된 물량이 전체의 절반 이상을 차지했다\"고 설명했다.\nhttps://coinness.com/news/1166710",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228907",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[리스크, DAO 폐지·1억 LSK 소각 제안]",
+      "url": "https://t.me/coinnesskr/228907",
+      "publishedAt": "2026-08-25T12:42:41.000Z",
+      "summary": "[리스크, DAO 폐지·1억 LSK 소각 제안]\n리스크(LSK) 팀이 DAO 운영을 중단하고 1억 LSK를 소각하는 거버넌스 제안을 공개했다. 제안이 통과되면 2027~2033년 DAO 트레저리에 배정된 총 1억 LSK가 소각돼 총 공급량은 4억 LSK에서 3억 LSK로 줄어든다. 2026년까지 DAO 트레저리에 배정됐거나 현재 보유 중인 약 4700만 LSK는 리스크(Lisk Ltd)로 이전된다. 이와 함께 거버넌스 포럼도 폐쇄할 계획이다. 스테이킹한 LSK를 중도 해제할 때 부과되던 페널티도 없애지만, 출금까지는 3일을 기다려야 한다. 리스크는 앞서 리스크 체인을 오는 10월 31일 종료한다고 발표한 바 있다.\nhttps://coinness.com/news/1166709",
+      "author": "coinnesskr"
     },
     {
       "id": "x:_julianma:2092229704589750772",
@@ -1483,6 +2226,36 @@
       "conversationId": "2092229178670141685"
     },
     {
+      "id": "tg:coinnesskr:228906",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[스트라이브 시총 $17억 돌파.. 웬디스 추월]",
+      "url": "https://t.me/coinnesskr/228906",
+      "publishedAt": "2026-08-25T12:18:40.000Z",
+      "summary": "[스트라이브 시총 $17억 돌파.. 웬디스 추월]\n비트코인 전략 매집 기업(DAT) 스트라이브(ASST) 주가가 20 달러를 돌파하면서 시가총액이 사상 최고치인 17억 달러를 기록했다. 이에 따라 미국 패스트푸드 체인 웬디스의 시가총액도 넘어섰다고 비트코인트레저리닷넷이 전했다. 스트라이브는 2만1356 BTC를 보유 중이다.\nhttps://coinness.com/news/1166708",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228905",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[아서 헤이즈 \"FLOP 에어드롭, 테스트넷 이용 내역에 따라 결정\"]",
+      "url": "https://t.me/coinnesskr/228905",
+      "publishedAt": "2026-08-25T12:13:14.000Z",
+      "summary": "[아서 헤이즈 \"FLOP 에어드롭, 테스트넷 이용 내역에 따라 결정\"]\n플롭 랩스(Flop Labs) 대표 아서 헤이즈(Arthur Hayes)가 FLOP 에어드롭 물량이 이용자의 테스트넷 이용 내역에 따라 결정될 것이라고 밝혔다. 그는 X를 통해 \"테스트넷 토큰은 테크노코어챗(Technocore.chat)에 개설되는 퍼싯(faucet)에서 받을 수 있으며, 해당 퍼싯은 탈중앙 신원증명(DID) 키를 보유한 AI 에이전트가 이용할 수 있다. 자세한 내용은 곧 공개하겠다\"고 말했다. 플롭랩스는 AI 에이전트용 블록체인 네트워크를 개발 중이며, 앞서 헤이즈는 다음 주부터 FLOP 토크노믹스 등 관련 정보를 순차 공개할 예정이라고 밝힌 바 있다.\nhttps://coinness.com/news/1166707\n이전 관련 속보: https://coinness.com/news/1165982",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228904",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[그레이스케일, 美 최초 ZEC 현물 ETF 출시]",
+      "url": "https://t.me/coinnesskr/228904",
+      "publishedAt": "2026-08-25T12:09:37.000Z",
+      "summary": "[그레이스케일, 美 최초 ZEC 현물 ETF 출시]\n더블록에 따르면 암호화폐 자산운용사 그레이스케일이 미국 최초의 지캐시(ZEC) 현물 ETF를 출시했다. 해당 상품은 기존 그레이스케일 지캐시 트러스트를 ETF로 전환한 것으로, 티커는 ZCSH이며 뉴욕증권거래소 아르카(NYSE Arca)에서 거래된다.\nhttps://coinness.com/news/1166706",
+      "author": "coinnesskr"
+    },
+    {
       "id": "x:gakonst:2092220720235565312",
       "source": "x:gakonst",
       "sourceType": "twitter",
@@ -1507,6 +2280,36 @@
       "isReply": true
     },
     {
+      "id": "tg:coinnesskr:228903",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[전 비트겟 임원, AI 트레이딩 앱 '모조' 출시...27일 베타 테스트]",
+      "url": "https://t.me/coinnesskr/228903",
+      "publishedAt": "2026-08-25T11:57:59.000Z",
+      "summary": "[전 비트겟 임원, AI 트레이딩 앱 '모조' 출시...27일 베타 테스트]\n전 비트겟 임원이자 포사이트벤처스 공동창업자 포레스트 바이(Forest Bai)가 AI 기반 트레이딩 앱 모조(Mojo)를 출시한다. 모조는 데이터 분석과 리서치, 투자 판단, 거래 실행을 하나의 인터페이스로 통합한 서비스로, 현물과 실물자산(RWA), 무기한 선물 등을 지원한다. 이용자가 자연어로 거래 전략이나 의도를 입력하면 AI가 여러 플랫폼에서 이를 실행하며, 이용자는 거래 과정을 확인 및 제어할 수 있다. 모조는 오는 27일부터 제한적 베타 테스트를 시작하며 대기자 명단을 통해 참여자를 모집한다. 바이는 모조를 통해 개인 투자자의 리서치 및 거래 실행 역량을 강화하는 것이 목표라고 설명했다.\nhttps://coinness.com/news/1166705",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228902",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[BTC 매집기업 고문 \"원유에 록펠러가 있다면, BTC에는 세일러\"]",
+      "url": "https://t.me/coinnesskr/228902",
+      "publishedAt": "2026-08-25T11:46:41.000Z",
+      "summary": "[BTC 매집기업 고문 \"원유에 록펠러가 있다면, BTC에는 세일러\"]\n비트코인을 매집 중인 브라질 핀테크 기업 멜리우즈(Meliuz)의 크리스 밀라스(Chris Millas) 고문이 스트래티지(MSTR)를 존 D. 록펠러가 세운 석유기업 스탠더드오일(Standard Oil)에 비유했다. 그는 X를 통해 \"스탠더드오일이 원유를 소비자 수요에 맞는 제품으로 정제해 활용도를 극대화했듯, 스트래티지는 BTC를 투자자 수요에 맞는 상품으로 만들어 활용도를 극대화하고 있다\"고 말했다. 이어 \"록펠러가 원유를 정제해 세계에서 가장 가치 있는 회사를 만들었듯, 마이클 세일러는 BTC를 '정제'해 세계에서 가장 가치 있는 회사를 만들고 있다\"고 주장했다.\nhttps://coinness.com/news/1166704",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228901",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[태국, 디지털자산법 등 금융시장 관련 4개 개정안 승인]",
+      "url": "https://t.me/coinnesskr/228901",
+      "publishedAt": "2026-08-25T11:39:53.000Z",
+      "summary": "[태국, 디지털자산법 등 금융시장 관련 4개 개정안 승인]\n태국 정부가 증권거래위원회(SEC)의 감독 권한을 강화하고 디지털자산 규제를 정비하는 내용의 금융시장 관련 4개 법률 개정안을 승인했다고 크립토브리핑이 전했다. 개정 대상에는 2018년 제정된 디지털자산사업 긴급명령법이 포함됐다. 해당 법은 태국 내 암호화폐 거래소, 토큰 발행, 디지털자산 커스터디 등을 규율하는 핵심 법령이다. 개정안은 디지털자산 관련 규제를 현 시장 환경에 맞게 정비하는 한편 SEC의 중대 금융범죄 조사 권한을 확대하고, 전자문서의 법적 효력과 자금조달·유통시장 관련 규정을 현대화하는 내용을 담고 있다. 이와 별도로 태국 SEC는 현지 증시에 상장되는 비트코인(BTC)·이더리움(ETH) 현물 ETF 관련 규정 초안을 공개하고 의견 수렴에 착수했다. 의견 제출 기한은 9월 20일(현지시간)까지다.\nhttps://coinness.com/news/1166703",
+      "author": "coinnesskr"
+    },
+    {
       "id": "x:EFDevcon:2092214256317952191",
       "source": "x:EFDevcon",
       "sourceType": "twitter",
@@ -1516,6 +2319,16 @@
       "summary": "Volunteer applications are officially closed!\nWe'll review every application and follow up by email soon 🙌\n\nHuge thanks to everyone who applied! looking forward to meeting you all in person!",
       "author": "EFDevcon",
       "conversationId": "2092214256317952191"
+    },
+    {
+      "id": "tg:coinnesskr:228900",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[갤럭시리서치 \"BTC, 50주 이평선 돌파 시 약세장 종료 신호\"]",
+      "url": "https://t.me/coinnesskr/228900",
+      "publishedAt": "2026-08-25T11:34:32.000Z",
+      "summary": "[갤럭시리서치 \"BTC, 50주 이평선 돌파 시 약세장 종료 신호\"]\n비트코인(BTC)이 최근 일주일간 25% 급등해 8만달러에 도달했지만, 약세장 종료를 확인하려면 현재 약 8만1087달러인 50주 단순이동평균선(SMA)을 넘어야 한다고 코인데스크가 갤럭시리서치를 인용해 전했다. 갤럭시리서치는 \"과거 약세장 13차례 중 11차례에서 BTC가 50주 이평선을 회복했을 때 이미 저점이 나온 상태였다. 이번에도 주봉 종가 기준으로 이를 회복하면 약세장이 끝났을 가능성이 크다\"고 설명했다. 반면 50T펀드 설립자 댄 타피에로(Dan Tapiero)는 BTC가 일봉 기준 50·100·200일 이평선을 모두 돌파했다며 이미 사이클 저점이 나왔다고 봤다. 다만 매체는 최근 일주일간 가격 변동률(7일 ROC)은 약 25%로, 과거 이 수준에서는 조정이나 횡보가 뒤따른 경우가 많았다고 덧붙였다.\nhttps://coinness.com/news/1166702",
+      "author": "coinnesskr"
     },
     {
       "id": "x:aave:2092213669861974039",
@@ -1551,6 +2364,16 @@
       "conversationId": "2092213654372360702"
     },
     {
+      "id": "tg:coinnesskr:228899",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[김치프리미엄 0% 기록]",
+      "url": "https://t.me/coinnesskr/228899",
+      "publishedAt": "2026-08-25T11:25:08.000Z",
+      "summary": "[김치프리미엄 0% 기록]\nBTC 김치프리미엄 0% 기록.\n업비트 = 109,725,000 원\n바이낸스 = 109,720,965 원\nUSDT = 1,383 원\n차액 = 4,035 원\nhttps://coinness.com/news/1166701",
+      "author": "coinnesskr"
+    },
+    {
       "id": "x:base:2092211158526685476",
       "source": "x:base",
       "sourceType": "twitter",
@@ -1573,6 +2396,66 @@
       "conversationId": "2092211156475679196"
     },
     {
+      "id": "tg:coinnesskr:228898",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[미 재무부, 양자컴퓨팅 대응 태스크포스 출범]",
+      "url": "https://t.me/coinnesskr/228898",
+      "publishedAt": "2026-08-25T11:21:34.000Z",
+      "summary": "[미 재무부, 양자컴퓨팅 대응 태스크포스 출범]\n미국 재무부가 금융 시스템의 양자컴퓨팅 위협에 대응하기 위한 '양자 대비 태스크포스(Quantum-Readiness Task Force)'를 출범한다고 밝혔다. 정부와 금융기관, 금융시장 인프라 사업자, 기술 기업 등이 참여하는 민관 협력 조직으로, 금융권의 양자내성암호(PQC) 전환을 지원한다. 주요 업무는 △금융권 PQC 전환 및 조율 △외부 공급업체 대응 역량 강화 △디지털자산 및 신흥기술 위험 관리 등이다. 스콧 베센트(Scott Bessent) 재무장관은 \"새로운 기술이 글로벌 환경을 재편하는 가운데 미국 금융 시스템의 안정성과 보안, 경쟁력을 유지하는 데 기여할 것\"이라고 말했다.\nhttps://coinness.com/news/1166700",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228897",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[펜들 \"reUSD 청산, 오라클 오류 아냐…PT 가격 3% 하락에 촉발\"]",
+      "url": "https://t.me/coinnesskr/228897",
+      "publishedAt": "2026-08-25T11:14:00.000Z",
+      "summary": "[펜들 \"reUSD 청산, 오라클 오류 아냐…PT 가격 3% 하락에 촉발\"]\n디파이 수익률 프로토콜 펜들(PENDLE)이 앞서 모포(MORPHO)의 PT-reUSD/USDC 마켓에서 발생한 대규모 청산과 관련해 오라클 설정 오류가 원인은 아니었다고 밝혔다. PT-reUSD는 만기에 원금을 돌려받을 권리를 나타내는 토큰이다. 펜들 측은 \"PT 가격이 한때 3% 하락하자 이를 반영한 시장가격이 오라클 기준으로 적용됐고, 이에 모포에서 USDC를 빌려 PT 투자를 반복한 포지션의 담보가치가 떨어졌다. 특히 헬스팩터가 1.03 미만으로, 가격 하락을 버틸 여유가 3%도 안 되던 일부 포지션은 이번 하락으로 청산됐다. 해당 오라클은 PT의 15분 평균 시장가격과 만기까지 연 6% 할인율을 반영한 기준가격 중 낮은 값을 사용하는 구조다. 오라클은 설계대로 작동했으며 청산 과정에서 부실채권은 발생하지 않았고 모포의 펜들 생태계 볼트도 영향을 받지 않았다\"고 설명했다.\nhttps://coinnes",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228896",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[BTC 선물 미결제약정 규모 5개월래 최소...“랠리 구조 건전”]",
+      "url": "https://t.me/coinnesskr/228896",
+      "publishedAt": "2026-08-25T11:09:37.000Z",
+      "summary": "[BTC 선물 미결제약정 규모 5개월래 최소...“랠리 구조 건전”]\n코인데스크가 글래스노드 데이터를 인용해 BTC 선물 미결제약정(OI) 규모가 58만7584 BTC로 감소, 최근 5개월래 가장 적은 수준을 기록했다고 전했다. 지난 14일(현지시간) 64만5760 BTC에서 크게 줄어든 것으로, 최근 BTC가 6만2000 달러에서 8만 달러까지 급등하는 과정에서 신규 레버리지 롱 유입보다 숏 포지션 청산이 랠리를 주도한 것으로 분석됐다. 반면 무기한 선물 연환산 펀딩비는 10% 아래에서 안정적으로 유지되고 있다. 코인데스크는 “레버리지 과열이 제한적인 데다 현금 담보 선물 비중이 높아지면서 시장 구조가 과거보다 안정적이며, 가격 상승세의 지속 가능성에도 긍정적”이라고 평가했다.\nhttps://coinness.com/news/1166698",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228895",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[日 은행권, 블록체인 '예금 토큰' 은행간 송금 실증]",
+      "url": "https://t.me/coinnesskr/228895",
+      "publishedAt": "2026-08-25T10:56:01.000Z",
+      "summary": "[日 은행권, 블록체인 '예금 토큰' 은행간 송금 실증]\n일본에서 약 40개 은행이 블록체인 기반 예금 토큰을 활용한 은행 간 송금 실증에 참여한다고 코인포스트가 전했다. GMO아오조라넷은행이 블록체인 업체 디커렛DCP(DeCurret DCP), 아빔컨설팅 등과 함께 8월 중 실증을 시작한다. 기존 은행 간 결제망을 거치지 않고 24시간 연중무휴로 즉시 송금 및 결제할 수 있는 인프라 구축이 목표이며, 2027회계연도(2027년 4월~2028년 3월) 상용화를 예상하고 있다. 이번 실증에서는 은행들이 서로 예금 계좌를 개설해 송금액만큼 잔액을 조정하는 방식과 스테이블코인을 중간에 활용하는 방식 두 가지를 검증한다.\nhttps://coinness.com/news/1166697",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228894",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[\"X, SOL·ETH 등 암호화폐 거래 기능 도입 예정\"]",
+      "url": "https://t.me/coinnesskr/228894",
+      "publishedAt": "2026-08-25T10:45:59.000Z",
+      "summary": "[\"X, SOL·ETH 등 암호화폐 거래 기능 도입 예정\"]\n최근까지 프로덕트 총괄을 역임했던 X(구 트위터)의 고문 니키타 비어(Nikita Bier)가 X 플랫폼 내에서 암호화폐를 직접 사고 팔 수 있는 기능이 곧 도입된다고 밝혔다. 그는 최근 X가 암호화폐 계정 노출을 제한했다는 한 이용자의 주장에 반박하면서 자신이 솔라나와 이더리움 차트를 게시물에 삽입할 수 있는 캐시태그 기능을 구축했으며 거래 버튼도 곧 추가될 예정이라고 설명했다.\nhttps://coinness.com/news/1166696",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228893",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[SOL 현물 ETF, $3350만 순유입 기록...올해 최대]",
+      "url": "https://t.me/coinnesskr/228893",
+      "publishedAt": "2026-08-25T10:44:26.000Z",
+      "summary": "[SOL 현물 ETF, $3350만 순유입 기록...올해 최대]\n미국 솔라나(SOL) 현물 ETF가 24일(현지시간) 3350만달러 순유입을 기록하며 5거래일 연속 자금 유입세를 이어갔다고 코인데스크가 전했다. 일일 순유입으로는 올해 최대 규모다. 소소밸류 데이터에 따르면 누적 순유입액은 사상 최대인 12억2000만달러로 늘었다. 이날 거래량은 1억6680만달러로 지난해 10월 이후 가장 많았다. 비트와이즈 BSOL에 2500만달러가 유입돼 가장 큰 비중을 차지했다. 피델리티 FSOL과 그레이스케일 GSOL에는 각각 480만달러, 370만달러가 순유입됐다. 지난 18일부터 이어진 5거래일간 순유입액은 총 6180만달러다.\nhttps://coinness.com/news/1166695",
+      "author": "coinnesskr"
+    },
+    {
       "id": "x:donnoh_eth:2092196924174533043",
       "source": "x:donnoh_eth",
       "sourceType": "twitter",
@@ -1582,6 +2465,46 @@
       "summary": "random interesting numbers: eth issuance per day has steadily gone up from 2669 ETH on Jan 1st 2026 to 2939 ETH yesterday. as a result the sustained basefee price to offset issuance has gone up from 12.411 gwei to 13.586 gwei",
       "author": "donnoh_eth",
       "conversationId": "2092196924174533043"
+    },
+    {
+      "id": "tg:coinnesskr:228892",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[업비트, 8/31 BTC·ETH 등 25종 입출금 일시 중단]",
+      "url": "https://t.me/coinnesskr/228892",
+      "publishedAt": "2026-08-25T10:07:40.000Z",
+      "summary": "[업비트, 8/31 BTC·ETH 등 25종 입출금 일시 중단]\n업비트가 월별 가상자산 잔고 실사를 위해 8월 31일 21시부터 9월 1일 5시까지 가상자산 25종의 입출금을 일시 중단한다고 공지했다. 대상은 BTC, XRP, ETH, SOL, DOGE, XLM, SHIB, ETC, ONDO, LINK, NEAR, AVAX, STX, ENS, ATOM, SAND, WLD, ARB, PEPE, DOT, CTC, AXS, ENA, CRO, APT다. 해당 기간 ETH, ATOM, CRO, SOL의 스테이킹 신청도 중단된다.\nhttps://coinness.com/news/1166694",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228891",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[바이낸스, ACE·PUMP 등 3종 현물 상장]",
+      "url": "https://t.me/coinnesskr/228891",
+      "publishedAt": "2026-08-25T10:03:24.000Z",
+      "summary": "[바이낸스, ACE·PUMP 등 3종 현물 상장]\n바이낸스가 8월 26일 17시(한국시간) USDC/ARS, ACE/USDC, PUMP/U 현물 거래 페어를 상장한다고 공지했다.\nhttps://coinness.com/news/1166693",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228890",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[8월 25일 19시 BTC 현물 CVD 차트]",
+      "url": "https://t.me/coinnesskr/228890",
+      "publishedAt": "2026-08-25T09:58:38.000Z",
+      "summary": "[8월 25일 19시 BTC 현물 CVD 차트]\n현물 CVD는 BTC/USDT 현물 페어의 오더북 분석 차트로, 상단은 거래량 히트맵(Volume Heatmap)을, 하단은 누적거래량델타(CVD)를 의미한다.\n\n- 상단 거래량 히트맵의 경우 해당 가격대에서 발생한 거래량 규모를 추적하며, 가격이 특정 구간에서 오래 머물거나 크게 움직일 때 배경 색상이 밝아진다. 밝은 색에 가까운 구간은 지지, 저항으로 작용할 가능성이 있다.\n\n- 하단 누적거래량델타(CVD) 지표는 자금 규모별 매수·매도 주문을 의미하며, 매수 주문이 늘어날 수록 해당하는 색상의 선이 상승하게 된다. 노란색 라인 : 100 달러~1000 달러 주문, 갈색 라인: 100만~1000만 달러의 대량 주문 등 등을 기준으로 산출된다.\nhttps://coinness.com/news/1166692",
+      "author": "coinnesskr"
+    },
+    {
+      "id": "tg:coinnesskr:228889",
+      "source": "tg:coinnesskr",
+      "sourceType": "telegram",
+      "title": "[메타플래닛 CEO \"주식 한 주도 안 팔아…지분율 하락은 신주 발행 때문\"]",
+      "url": "https://t.me/coinnesskr/228889",
+      "publishedAt": "2026-08-25T09:56:47.000Z",
+      "summary": "[메타플래닛 CEO \"주식 한 주도 안 팔아…지분율 하락은 신주 발행 때문\"]\n일본의 BTC 전략 매집 기업 메타플래닛(Metaplanet) CEO 사이먼 게로비치(Simon Gerovich)가 25일 기준 자신의 메타플래닛 지분율이 17.99%에서 14.19%로 하락한 것과 관련해 보유 주식을 매도한 것은 아니라고 밝혔다. 그는 X를 통해 \"주식은 한 주도 팔지 않았다. 신주 발행으로 발행주식 총수가 늘면서 지분율이 낮아졌을 뿐 보유 주식 수는 변하지 않았다. BTC와 메타플래닛 모두 강세를 예상하고 있다\"고 말했다.\nhttps://coinness.com/news/1166691",
+      "author": "coinnesskr"
     },
     {
       "id": "x:base:2092183207873519788",
@@ -2984,7 +3907,7 @@
       "title": "All Core Devs - Consensus (ACDC) #186, September 3 2026",
       "url": "https://ethereum-magicians.org/t/all-core-devs-consensus-acdc-186-september-3-2026/29496",
       "publishedAt": "2026-08-24T17:07:34.000Z",
-      "summary": "Agenda Glamsterdam Hegotá Misc Meeting Time: Thursday, September 03, 2026 at 14:00 UTC (90 minutes) GitHub Issue 1 post - 1 participant Read full topic",
+      "summary": "Agenda Glamsterdam Hegotá Misc Meeting Time: Thursday, September 03, 2026 at 14:00 UTC (90 minutes) GitHub Issue 2 posts - 2 participants Read full topic",
       "author": "system"
     },
     {
@@ -8922,994 +9845,6 @@
       "summary": "RT @decentrek: Ethereum gets criticized a lot for \"overinvesting\" in security and decentralization.  But one way to make sense of this \"ove…",
       "author": "_julianma",
       "conversationId": "2089692185570504709"
-    },
-    {
-      "id": "x:ethereumfndn:2089691872033652994",
-      "source": "x:ethereumfndn",
-      "sourceType": "twitter",
-      "title": "RT @EF_ESP: Q2 2026 carried forward our focus on advancing Ethereum's resilience",
-      "url": "https://x.com/ethereumfndn/status/2089691872033652994",
-      "publishedAt": "2026-08-18T12:32:21.000Z",
-      "summary": "RT @EF_ESP: Q2 2026 carried forward our focus on advancing Ethereum's resilience and capabilities, with support for work across ZK proofs,…",
-      "author": "ethereumfndn",
-      "conversationId": "2089691872033652994"
-    },
-    {
-      "id": "x:ameensol:2089683479357210703",
-      "source": "x:ameensol",
-      "sourceType": "twitter",
-      "title": "RT @immutbl: Help, there's an Iranian man on my couch @ameensol https://t.co/9MX",
-      "url": "https://x.com/ameensol/status/2089683479357210703",
-      "publishedAt": "2026-08-18T11:59:00.000Z",
-      "summary": "RT @immutbl: Help, there's an Iranian man on my couch @ameensol https://t.co/9MXpQ0D5Sx",
-      "author": "ameensol",
-      "conversationId": "2089683479357210703"
-    },
-    {
-      "id": "reddit-ethereum:t3_1vrml5c",
-      "source": "reddit-ethereum",
-      "sourceType": "rss",
-      "title": "Attacking Poseidon's Partial Layer via Subspace Restriction",
-      "url": "https://www.reddit.com/r/ethereum/comments/1vrml5c/attacking_poseidons_partial_layer_via_subspace/",
-      "publishedAt": "2026-08-18T11:33:39.000Z",
-      "summary": "Good poseidon was recently ditched by Ethereum ( https://x.com/ProjectZKM/article/2088320035970330676 ) Just wondering what about all the chains currently using it (Filecoin,Mina,Starknet, Polygon, ..) &#32; submitted by &#32; /u/ligi [link] &#32; [comments]",
-      "author": "/u/ligi"
-    },
-    {
-      "id": "x:donnoh_eth:2089672235640398252",
-      "source": "x:donnoh_eth",
-      "sourceType": "twitter",
-      "title": "RT @z0r0zzz: @donnoh_eth l2beat researchers https://t.co/z3WQVvcNbU",
-      "url": "https://x.com/donnoh_eth/status/2089672235640398252",
-      "publishedAt": "2026-08-18T11:14:19.000Z",
-      "summary": "RT @z0r0zzz: @donnoh_eth l2beat researchers https://t.co/z3WQVvcNbU",
-      "author": "donnoh_eth",
-      "conversationId": "2089672235640398252"
-    },
-    {
-      "id": "reddit-ethereum:t3_1vrm376",
-      "source": "reddit-ethereum",
-      "sourceType": "rss",
-      "title": "Announcing the Platåberget Testnet",
-      "url": "https://www.reddit.com/r/ethereum/comments/1vrm376/announcing_the_platåberget_testnet/",
-      "publishedAt": "2026-08-18T11:08:37.000Z",
-      "summary": "&#32; submitted by &#32; /u/ligi [link] &#32; [comments]",
-      "author": "/u/ligi"
-    },
-    {
-      "id": "x:Uniswap:2089600860791644346",
-      "source": "x:Uniswap",
-      "sourceType": "twitter",
-      "title": "RT @haydenzadams: My first blog post since 2019! https://t.co/XTpGSkEUSg",
-      "url": "https://x.com/Uniswap/status/2089600860791644346",
-      "publishedAt": "2026-08-18T06:30:42.000Z",
-      "summary": "RT @haydenzadams: My first blog post since 2019! https://t.co/XTpGSkEUSg",
-      "author": "Uniswap",
-      "conversationId": "2089600860791644346"
-    },
-    {
-      "id": "x:nero_eth:2089600628133617832",
-      "source": "x:nero_eth",
-      "sourceType": "twitter",
-      "title": "RT @ethPandaOps: Introducing the Platåberget testnet! Its our Glamsterdam focuse",
-      "url": "https://x.com/nero_eth/status/2089600628133617832",
-      "publishedAt": "2026-08-18T06:29:47.000Z",
-      "summary": "RT @ethPandaOps: Introducing the Platåberget testnet! Its our Glamsterdam focused testnet to help the community test all the upcoming chang…",
-      "author": "nero_eth",
-      "conversationId": "2089600628133617832"
-    },
-    {
-      "id": "reddit-ethereum:t3_1vrfld5",
-      "source": "reddit-ethereum",
-      "sourceType": "rss",
-      "title": "Daily General Discussion August 18, 2026",
-      "url": "https://www.reddit.com/r/ethereum/comments/1vrfld5/daily_general_discussion_august_18_2026/",
-      "publishedAt": "2026-08-18T05:01:25.000Z",
-      "summary": "Welcome to the Daily General Discussion on r/ethereum https://imgur.com/3y7vezP Bookmarking this link will always bring you to the current daily: https://old.reddit.com/r/ethereum/about/sticky/?num=2 Please use this thread to discuss Ethereum topics, news, events, and even price ! Price discussion posted elsewhere in the subreddit will continue to be removed. As always, be constructive. - Subreddit Rules Want to stake? Learn more at r/ethstaker Community Links Ethereum Jobs , Twitter EVMavericks",
-      "author": "/u/EthereumDailyThread"
-    },
-    {
-      "id": "x:haydenzadams:2089531754004554215",
-      "source": "x:haydenzadams",
-      "sourceType": "twitter",
-      "title": "My first blog post since 2019! https://t.co/XTpGSkEUSg",
-      "url": "https://x.com/haydenzadams/status/2089531754004554215",
-      "publishedAt": "2026-08-18T01:56:06.000Z",
-      "summary": "My first blog post since 2019! https://t.co/XTpGSkEUSg",
-      "author": "haydenzadams",
-      "conversationId": "2089531754004554215"
-    },
-    {
-      "id": "eth-magicians:ethereum-magicians.org-topic-29450",
-      "source": "eth-magicians",
-      "sourceType": "rss",
-      "title": "All Core Devs - Testing (ACDT) #93, August 24, 2026",
-      "url": "https://ethereum-magicians.org/t/all-core-devs-testing-acdt-93-august-24-2026/29450",
-      "publishedAt": "2026-08-18T00:48:59.000Z",
-      "summary": "Agenda Devnet status updates Updates on glamsterdam-devnet-8/Plataberget Discussions Glamsterdam Meta EIP → Review @poojaranjan EL breakout eth/debug: specify block access list getter semantics by nerolation · Pull Request #851 · ethereum/execution-apis · GitHub — Standardize BAL getter behavior for unknown, pending, pre-Amsterdam, and pruned blocks ( @nerolation ) debug: specify callTracer output and add EIP-8037 two-dimensional gas to tracing by qu0b · Pull Request #852 · ethereum/execution-ap",
-      "author": "system"
-    },
-    {
-      "id": "ef-blog:https://blog.ethereum.org/en/2026/08/18/allocation-q2-26",
-      "source": "ef-blog",
-      "sourceType": "rss",
-      "title": "Allocation Update - Q2 2026",
-      "url": "https://blog.ethereum.org/en/2026/08/18/allocation-q2-26",
-      "publishedAt": "2026-08-18T00:00:00.000Z",
-      "summary": "Q2 2026 carried forward our focus on advancing Ethereum’s resilience and capabilities, supporting key work in zero-knowledge proofs, client diversity, formal verification, and open-source tooling. See the list below of the projects and ecosystem efforts supported this quarter as builders build and strengthen the network. Explore the full list...",
-      "author": ""
-    },
-    {
-      "id": "x:EtherealnewsHQ:2089496806220825073",
-      "source": "x:EtherealnewsHQ",
-      "sourceType": "twitter",
-      "title": "Ethereal news weekly #35 | Justin Drake: Poseidon abandoned, EthCoordinate evolv",
-      "url": "https://x.com/EtherealnewsHQ/status/2089496806220825073",
-      "publishedAt": "2026-08-17T23:37:14.000Z",
-      "summary": "Ethereal news weekly #35 | Justin Drake: Poseidon abandoned, EthCoordinate evolved from EthStaker, Platåberget (Glamsterdam public testnet) live https://t.co/q8OHWzp4Mp",
-      "author": "EtherealnewsHQ",
-      "conversationId": "2089496806220825073"
-    },
-    {
-      "id": "eth-magicians:ethereum-magicians.org-topic-29449",
-      "source": "eth-magicians",
-      "sourceType": "rss",
-      "title": "EIP-8383: Reduce CL Block Retention Window",
-      "url": "https://ethereum-magicians.org/t/eip-8383-reduce-cl-block-retention-window/29449",
-      "publishedAt": "2026-08-17T22:18:35.000Z",
-      "summary": "Discussion topic for reducing the cl block retention window 1 post - 1 participant Read full topic",
-      "author": "kevaundray"
-    },
-    {
-      "id": "x:evan_van_ness:2089472506042126452",
-      "source": "x:evan_van_ness",
-      "sourceType": "twitter",
-      "title": "Seems to me that the latest algo has massively cut the boost of a RT while comme",
-      "url": "https://x.com/evan_van_ness/status/2089472506042126452",
-      "publishedAt": "2026-08-17T22:00:40.000Z",
-      "summary": "Seems to me that the latest algo has massively cut the boost of a RT while comments and likes remain vital",
-      "author": "evan_van_ness",
-      "conversationId": "2089472506042126452"
-    },
-    {
-      "id": "x:lightclients:2089466696193229008",
-      "source": "x:lightclients",
-      "sourceType": "twitter",
-      "title": "Semicolon is the new em dash.",
-      "url": "https://x.com/lightclients/status/2089466696193229008",
-      "publishedAt": "2026-08-17T21:37:35.000Z",
-      "summary": "Semicolon is the new em dash.",
-      "author": "lightclients",
-      "conversationId": "2089466696193229008"
-    },
-    {
-      "id": "x:EFDevcon:2089465040638251097",
-      "source": "x:EFDevcon",
-      "sourceType": "twitter",
-      "title": "India is defining what the 22nd century looks like\n\nFrom deep tech to open-sourc",
-      "url": "https://x.com/EFDevcon/status/2089465040638251097",
-      "publishedAt": "2026-08-17T21:31:00.000Z",
-      "summary": "India is defining what the 22nd century looks like\n\nFrom deep tech to open-source, permissionless systems, India's developers are building the future\n\nDevcon Mumbai, November 2026 🇮🇳\n\n\"Build your own wings\"",
-      "author": "EFDevcon",
-      "conversationId": "2089465040638251097"
-    },
-    {
-      "id": "x:peter_szilagyi:2089449307669659710",
-      "source": "x:peter_szilagyi",
-      "sourceType": "twitter",
-      "title": "Erm... https://t.co/tsW54uFI4S",
-      "url": "https://x.com/peter_szilagyi/status/2089449307669659710",
-      "publishedAt": "2026-08-17T20:28:29.000Z",
-      "summary": "Erm... https://t.co/tsW54uFI4S",
-      "author": "peter_szilagyi",
-      "conversationId": "2089449307669659710"
-    },
-    {
-      "id": "x:ameensol:2089431390446096504",
-      "source": "x:ameensol",
-      "sourceType": "twitter",
-      "title": "RT @SGhasseminejad: ملت ایران یک ملت بزرگ و صاحب تاریخ و تمدن است با اشتباهات و ",
-      "url": "https://x.com/ameensol/status/2089431390446096504",
-      "publishedAt": "2026-08-17T19:17:17.000Z",
-      "summary": "RT @SGhasseminejad: ملت ایران یک ملت بزرگ و صاحب تاریخ و تمدن است با اشتباهات و ‌‌دستاوردهای بزرگ. \nامروز ملت ما از آگاه‌ترین ملت‌هاست. نه…",
-      "author": "ameensol",
-      "conversationId": "2089431390446096504"
-    },
-    {
-      "id": "x:Uniswap:2089426660013846859",
-      "source": "x:Uniswap",
-      "sourceType": "twitter",
-      "title": "RT @theempirepod: The Uniswap flywheel:\n\n“The more valuable our distribution poi",
-      "url": "https://x.com/Uniswap/status/2089426660013846859",
-      "publishedAt": "2026-08-17T18:58:30.000Z",
-      "summary": "RT @theempirepod: The Uniswap flywheel:\n\n“The more valuable our distribution points become, the more valuable it is to have your liquidity…",
-      "author": "Uniswap",
-      "conversationId": "2089426660013846859"
-    },
-    {
-      "id": "x:Justin_Bons:2089425154401079330",
-      "source": "x:Justin_Bons",
-      "sourceType": "twitter",
-      "title": "Solana is cypherpunk:\n\nA permissionless decentralized network that is censorship",
-      "url": "https://x.com/Justin_Bons/status/2089425154401079330",
-      "publishedAt": "2026-08-17T18:52:31.000Z",
-      "summary": "Solana is cypherpunk:\n\nA permissionless decentralized network that is censorship-resistant &amp; immutable\n\nSo fast &amp; scalable that it can be used as P2P cash by the entire world, fulfilling the old Bitcoin dream\n\nPrivacy on SOL is thriving, completing this revolutionary picture! 🔥",
-      "author": "Justin_Bons",
-      "conversationId": "2089425154401079330"
-    },
-    {
-      "id": "x:ameensol:2089417202529083827",
-      "source": "x:ameensol",
-      "sourceType": "twitter",
-      "title": "RT @0xprivacypools: private swaps are coming soon to privacy pools v2\n\nswap on d",
-      "url": "https://x.com/ameensol/status/2089417202529083827",
-      "publishedAt": "2026-08-17T18:20:55.000Z",
-      "summary": "RT @0xprivacypools: private swaps are coming soon to privacy pools v2\n\nswap on deposit, withdrawal, and within the pool https://t.co/06nja6…",
-      "author": "ameensol",
-      "conversationId": "2089417202529083827"
-    },
-    {
-      "id": "x:evan_van_ness:2089413235111768096",
-      "source": "x:evan_van_ness",
-      "sourceType": "twitter",
-      "title": "RT @ronrule: In 2001 George W Bush proposed a partial privatization plan for Soc",
-      "url": "https://x.com/evan_van_ness/status/2089413235111768096",
-      "publishedAt": "2026-08-17T18:05:09.000Z",
-      "summary": "RT @ronrule: In 2001 George W Bush proposed a partial privatization plan for Social Security so you could put 10% of your SS contribution i…",
-      "author": "evan_van_ness",
-      "conversationId": "2089413235111768096"
-    },
-    {
-      "id": "x:donnoh_eth:2089408494914924942",
-      "source": "x:donnoh_eth",
-      "sourceType": "twitter",
-      "title": "RT @staycloakedxyz: .gwei support is LIVE! \n\ncrypto addresses were never meant f",
-      "url": "https://x.com/donnoh_eth/status/2089408494914924942",
-      "publishedAt": "2026-08-17T17:46:19.000Z",
-      "summary": "RT @staycloakedxyz: .gwei support is LIVE! \n\ncrypto addresses were never meant for humans.\n\nCloaked now lets you send directly to any .gwei…",
-      "author": "donnoh_eth",
-      "conversationId": "2089408494914924942"
-    },
-    {
-      "id": "x:ryanberckmans:2089400987588964617",
-      "source": "x:ryanberckmans",
-      "sourceType": "twitter",
-      "title": "@donnoh_eth 👀",
-      "url": "https://x.com/ryanberckmans/status/2089400987588964617",
-      "publishedAt": "2026-08-17T17:16:29.000Z",
-      "summary": "@donnoh_eth 👀",
-      "author": "ryanberckmans",
-      "conversationId": "2089262727369818125",
-      "isReply": true
-    },
-    {
-      "id": "x:fradamt:2089397979182514667",
-      "source": "x:fradamt",
-      "sourceType": "twitter",
-      "title": "RT @0xAvious: @donnoh_eth both Agglayer to Katana &amp; X Layer + Polygon PoS br",
-      "url": "https://x.com/fradamt/status/2089397979182514667",
-      "publishedAt": "2026-08-17T17:04:32.000Z",
-      "summary": "RT @0xAvious: @donnoh_eth both Agglayer to Katana &amp; X Layer + Polygon PoS bridge will adopt FCR\n\ncredit to @_julianma + the broader team",
-      "author": "fradamt",
-      "conversationId": "2089397979182514667"
-    },
-    {
-      "id": "eth-magicians:ethereum-magicians.org-topic-29448",
-      "source": "eth-magicians",
-      "sourceType": "rss",
-      "title": "Encrypt The Mempool #9, August 19, 2026",
-      "url": "https://ethereum-magicians.org/t/encrypt-the-mempool-9-august-19-2026/29448",
-      "publishedAt": "2026-08-17T16:56:23.000Z",
-      "summary": "Agenda Enshrinement: Are we OK with a non-PQ temporary solution? Validator Whitelist: How do we prove 1) withholding, 2) key selling? Can these proofs be automated? Achieving CR for the original EIP-8105 trusted set: Upholding CR in an encrypted mempool with trusted sets - HackMD Meeting Time: Wednesday, August 19, 2026 at 15:00 UTC (60 minutes) GitHub Issue 3 posts - 1 participant Read full topic",
-      "author": "system"
-    },
-    {
-      "id": "x:EFDevcon:2089395356769370388",
-      "source": "x:EFDevcon",
-      "sourceType": "twitter",
-      "title": "No spoilers from us 🤐 \nmight be worth watching that one more time 👀",
-      "url": "https://x.com/EFDevcon/status/2089395356769370388",
-      "publishedAt": "2026-08-17T16:54:06.000Z",
-      "summary": "No spoilers from us 🤐 \nmight be worth watching that one more time 👀",
-      "author": "EFDevcon",
-      "conversationId": "2089395356769370388"
-    },
-    {
-      "id": "x:ethereumfndn:2089393256362561973",
-      "source": "x:ethereumfndn",
-      "sourceType": "twitter",
-      "title": "Tomorrow at 4pm UTC\n\nEthereum Builders Live with @jchaskin22 and @TokenBrice, fo",
-      "url": "https://x.com/ethereumfndn/status/2089393256362561973",
-      "publishedAt": "2026-08-17T16:45:46.000Z",
-      "summary": "Tomorrow at 4pm UTC\n\nEthereum Builders Live with @jchaskin22 and @TokenBrice, founder of @PharosWatch\n\nWe'll explore what makes a stablecoin trustless, walk through Pharos' risk dashboard, and dig into stablecoin analytics.\n\nhttps://t.co/BJ1eW43s7D https://t.co/a73OO0lUou",
-      "author": "ethereumfndn",
-      "conversationId": "2089393256362561973"
-    },
-    {
-      "id": "x:fradamt:2089391544813933003",
-      "source": "x:fradamt",
-      "sourceType": "twitter",
-      "title": "Worth repeating: our view is going to be evolving as we hear more from clients, ",
-      "url": "https://x.com/fradamt/status/2089391544813933003",
-      "publishedAt": "2026-08-17T16:38:57.000Z",
-      "summary": "Worth repeating: our view is going to be evolving as we hear more from clients, users etc... Still, we think it's valuable to communicate early and often, give a snapshot of our current thinking and be open to critique. Rough consensus forms by iterating in public, over time.",
-      "author": "fradamt",
-      "conversationId": "2089391544813933003"
-    },
-    {
-      "id": "x:fradamt:2089391415033827424",
-      "source": "x:fradamt",
-      "sourceType": "twitter",
-      "title": "Huge! If Lido can consolidate stake across 38 operators, ~250k validators, and ~",
-      "url": "https://x.com/fradamt/status/2089391415033827424",
-      "publishedAt": "2026-08-17T16:38:27.000Z",
-      "summary": "Huge! If Lido can consolidate stake across 38 operators, ~250k validators, and ~8M ETH, what's everyone else's excuse? Let's make Ethereum faster!",
-      "author": "fradamt",
-      "conversationId": "2089391415033827424"
-    },
-    {
-      "id": "x:EthCoordinate:2089382998353612847",
-      "source": "x:EthCoordinate",
-      "sourceType": "twitter",
-      "title": "We are building a staking console, meant as a modern alternative to Launchpad.  ",
-      "url": "https://x.com/EthCoordinate/status/2089382998353612847",
-      "publishedAt": "2026-08-17T16:05:00.000Z",
-      "summary": "We are building a staking console, meant as a modern alternative to Launchpad.  \n\nIt brings batch deposits and top-ups, so you can deposit for several validators or top up existing ones in one flow instead of one at a time. Consolidations and withdrawals get a much simpler flow, no more juggling multiple tools or manual steps to combine or exit validators. It also supports WalletConnect, so you are not limited to browser extension wallets, and offline wallet support, so security-conscious staker",
-      "author": "EthCoordinate",
-      "conversationId": "2089382998353612847"
-    },
-    {
-      "id": "x:Uniswap:2089382260701020388",
-      "source": "x:Uniswap",
-      "sourceType": "twitter",
-      "title": "Live in Beta on Robinhood Chain, with support for more chains coming soon\nhttps:",
-      "url": "https://x.com/Uniswap/status/2089382260701020388",
-      "publishedAt": "2026-08-17T16:02:04.000Z",
-      "summary": "Live in Beta on Robinhood Chain, with support for more chains coming soon\nhttps://t.co/rHUN0Dp0LE",
-      "author": "Uniswap",
-      "conversationId": "2089382256808743403"
-    },
-    {
-      "id": "x:Uniswap:2089382256808743403",
-      "source": "x:Uniswap",
-      "sourceType": "twitter",
-      "title": "The Launches tab pulls tokens from the top Uniswap launchpads into a single feed",
-      "url": "https://x.com/Uniswap/status/2089382256808743403",
-      "publishedAt": "2026-08-17T16:02:03.000Z",
-      "summary": "The Launches tab pulls tokens from the top Uniswap launchpads into a single feed\n\nBuild on Uniswap. Get discovered by new users. https://t.co/CfCRr7yRlF",
-      "author": "Uniswap",
-      "conversationId": "2089382256808743403"
-    },
-    {
-      "id": "x:Optimism:2089376700270358978",
-      "source": "x:Optimism",
-      "sourceType": "twitter",
-      "title": "Crypto cards are turning payments into the front end for a broader financial sta",
-      "url": "https://x.com/Optimism/status/2089376700270358978",
-      "publishedAt": "2026-08-17T15:39:58.000Z",
-      "summary": "Crypto cards are turning payments into the front end for a broader financial stack.\n\nAs card spend grows, lending and liquidity are moving closer to the point of payment.\n\n@ether_fi’s Aave V4 instance on OP Mainnet is one example of that shift. https://t.co/QyPLxWtp6w",
-      "author": "Optimism",
-      "conversationId": "2089376700270358978"
-    },
-    {
-      "id": "x:haydenzadams:2089367820685496345",
-      "source": "x:haydenzadams",
-      "sourceType": "twitter",
-      "title": "RT @JasonYanowitz: Fantastic chat with @haydenzadams\n\nI didn’t realize how much ",
-      "url": "https://x.com/haydenzadams/status/2089367820685496345",
-      "publishedAt": "2026-08-17T15:04:41.000Z",
-      "summary": "RT @JasonYanowitz: Fantastic chat with @haydenzadams\n\nI didn’t realize how much Uniswap has changed.\n\nFrom B2C to B2B… which means updating…",
-      "author": "haydenzadams",
-      "conversationId": "2089367820685496345"
-    },
-    {
-      "id": "x:nero_eth:2089361082536120783",
-      "source": "x:nero_eth",
-      "sourceType": "twitter",
-      "title": "For details, how the process works, check out EthLabs recent post:\n\nhttps://t.co",
-      "url": "https://x.com/nero_eth/status/2089361082536120783",
-      "publishedAt": "2026-08-17T14:37:55.000Z",
-      "summary": "For details, how the process works, check out EthLabs recent post:\n\nhttps://t.co/jQG3sZ0R39\n\nIn short, our team is just one of many within the EF, and one of even more across the broader ecosystem whose views feed into the process. In the end, core developers, after consulting many voices across the community, make the final decisions on most EIPs.",
-      "author": "nero_eth",
-      "conversationId": "2089359381653569744"
-    },
-    {
-      "id": "x:nero_eth:2089359381653569744",
-      "source": "x:nero_eth",
-      "sourceType": "twitter",
-      "title": "Hegotá is taking shape, and we’ve published the Protocol Architecture team’s vie",
-      "url": "https://x.com/nero_eth/status/2089359381653569744",
-      "publishedAt": "2026-08-17T14:31:09.000Z",
-      "summary": "Hegotá is taking shape, and we’ve published the Protocol Architecture team’s view on what should go into the fork:\n\nCheck it out here:\nhttps://t.co/f3SWNLnUYu\n\nThe short version: FOCIL is the right headliner, and we think Frame Transactions should join it as the headliner on the EL side.\n\nBeyond censorship resistance, Hegotá has a real opportunity to make a big step forward on privacy.\n\nOur preferred package:\n\n-> EIP-7805: FOCIL\nProtocol-level inclusion guarantees and a major improvement to Ethe",
-      "author": "nero_eth",
-      "conversationId": "2089359381653569744"
-    },
-    {
-      "id": "x:_julianma:2089357641759773112",
-      "source": "x:_julianma",
-      "sourceType": "twitter",
-      "title": "We are on the brink of a tokenized equities boom. Ethereum should be able to con",
-      "url": "https://x.com/_julianma/status/2089357641759773112",
-      "publishedAt": "2026-08-17T14:24:14.000Z",
-      "summary": "We are on the brink of a tokenized equities boom. Ethereum should be able to contribute to price discovery as well as possible. Faster slots are the way.\n\nWouldn't slots still be too long? Yes. We need to reduce them iteratively. But, Ethereum can start contributing to price discovery.\n\nPropAMMs and Frequent Batch Auctions are market design innovations that allow even slower domains to contribute to price discovery. Still, speed matters.\n\nLet's not midcurve: faster = better. For DeFi it's obviou",
-      "author": "_julianma",
-      "conversationId": "2089357641759773112"
-    },
-    {
-      "id": "x:_julianma:2089353784732336339",
-      "source": "x:_julianma",
-      "sourceType": "twitter",
-      "title": "Polygon leading the charge to make bridging faster!",
-      "url": "https://x.com/_julianma/status/2089353784732336339",
-      "publishedAt": "2026-08-17T14:08:55.000Z",
-      "summary": "Polygon leading the charge to make bridging faster!",
-      "author": "_julianma",
-      "conversationId": "2089353784732336339"
-    },
-    {
-      "id": "x:_julianma:2089353538451226820",
-      "source": "x:_julianma",
-      "sourceType": "twitter",
-      "title": "Let's drop bridging time from minutes to seconds. Get in touch",
-      "url": "https://x.com/_julianma/status/2089353538451226820",
-      "publishedAt": "2026-08-17T14:07:56.000Z",
-      "summary": "Let's drop bridging time from minutes to seconds. Get in touch",
-      "author": "_julianma",
-      "conversationId": "2089353538451226820"
-    },
-    {
-      "id": "x:EFDevcon:2089341474492269012",
-      "source": "x:EFDevcon",
-      "sourceType": "twitter",
-      "title": "\"sanctuary tech\" sounds abstract until you think about what people actually need",
-      "url": "https://x.com/EFDevcon/status/2089341474492269012",
-      "publishedAt": "2026-08-17T13:20:00.000Z",
-      "summary": "\"sanctuary tech\" sounds abstract until you think about what people actually need:\n\ntools that protect privacy\nsystems that resist capture\ninfrastructure anyone can build on\naccess that does not depend on permission\n\nthat conversation is coming to Devcon 8",
-      "author": "EFDevcon",
-      "conversationId": "2089341474492269012"
-    },
-    {
-      "id": "x:ameensol:2089340760890003936",
-      "source": "x:ameensol",
-      "sourceType": "twitter",
-      "title": "RT @ShahanshahCyrus: https://t.co/zQgswdTFw1",
-      "url": "https://x.com/ameensol/status/2089340760890003936",
-      "publishedAt": "2026-08-17T13:17:10.000Z",
-      "summary": "RT @ShahanshahCyrus: https://t.co/zQgswdTFw1",
-      "author": "ameensol",
-      "conversationId": "2089340760890003936"
-    },
-    {
-      "id": "x:terencechain:2089337179801805059",
-      "source": "x:terencechain",
-      "sourceType": "twitter",
-      "title": "RT @ethPandaOps: Introducing the Platåberget testnet! Its our Glamsterdam focuse",
-      "url": "https://x.com/terencechain/status/2089337179801805059",
-      "publishedAt": "2026-08-17T13:02:56.000Z",
-      "summary": "RT @ethPandaOps: Introducing the Platåberget testnet! Its our Glamsterdam focused testnet to help the community test all the upcoming chang…",
-      "author": "terencechain",
-      "conversationId": "2089337179801805059"
-    },
-    {
-      "id": "x:Optimism:2089336671758430537",
-      "source": "x:Optimism",
-      "sourceType": "twitter",
-      "title": "We help companies bring their business onchain with programmable financial infra",
-      "url": "https://x.com/Optimism/status/2089336671758430537",
-      "publishedAt": "2026-08-17T13:00:55.000Z",
-      "summary": "We help companies bring their business onchain with programmable financial infrastructure.\n\nLearn more or book a meeting: https://t.co/2O47jAbRLY",
-      "author": "Optimism",
-      "conversationId": "2089336585183740114"
-    },
-    {
-      "id": "x:Optimism:2089336659758522614",
-      "source": "x:Optimism",
-      "sourceType": "twitter",
-      "title": "Privacy Boost has a new way to use it: the @PrivacyBoost app.",
-      "url": "https://x.com/Optimism/status/2089336659758522614",
-      "publishedAt": "2026-08-17T13:00:52.000Z",
-      "summary": "Privacy Boost has a new way to use it: the @PrivacyBoost app.",
-      "author": "Optimism",
-      "conversationId": "2089336585183740114"
-    },
-    {
-      "id": "x:Optimism:2089336585183740114",
-      "source": "x:Optimism",
-      "sourceType": "twitter",
-      "title": "Last week was a busy one across the Optimism ecosystem: privacy, neobanks, stabl",
-      "url": "https://x.com/Optimism/status/2089336585183740114",
-      "publishedAt": "2026-08-17T13:00:34.000Z",
-      "summary": "Last week was a busy one across the Optimism ecosystem: privacy, neobanks, stablecoins, and plenty more across the OP Stack. https://t.co/XKmvUYh8mo",
-      "author": "Optimism",
-      "conversationId": "2089336585183740114"
-    },
-    {
-      "id": "eth-magicians:ethereum-magicians.org-topic-29446",
-      "source": "eth-magicians",
-      "sourceType": "rss",
-      "title": "FOCIL Breakout #40, August 18, 2026",
-      "url": "https://ethereum-magicians.org/t/focil-breakout-40-august-18-2026/29446",
-      "publishedAt": "2026-08-17T12:57:43.000Z",
-      "summary": "Agenda Development updates Spec updates Testing updates and more Meeting Time: Tuesday, August 18, 2026 at 13:00 UTC (60 minutes) GitHub Issue 4 posts - 2 participants Read full topic",
-      "author": "system"
-    },
-    {
-      "id": "x:donnoh_eth:2089334023994646553",
-      "source": "x:donnoh_eth",
-      "sourceType": "twitter",
-      "title": "RT @ethPandaOps: Introducing the Platåberget testnet! Its our Glamsterdam focuse",
-      "url": "https://x.com/donnoh_eth/status/2089334023994646553",
-      "publishedAt": "2026-08-17T12:50:23.000Z",
-      "summary": "RT @ethPandaOps: Introducing the Platåberget testnet! Its our Glamsterdam focused testnet to help the community test all the upcoming chang…",
-      "author": "donnoh_eth",
-      "conversationId": "2089334023994646553"
-    },
-    {
-      "id": "x:donnoh_eth:2089333781047959857",
-      "source": "x:donnoh_eth",
-      "sourceType": "twitter",
-      "title": "RT @gballet: This is my ranking for Hegota. It's very few EIPs, and that's on pu",
-      "url": "https://x.com/donnoh_eth/status/2089333781047959857",
-      "publishedAt": "2026-08-17T12:49:26.000Z",
-      "summary": "RT @gballet: This is my ranking for Hegota. It's very few EIPs, and that's on purpose. It's focusing on features that there is a \"customer\"…",
-      "author": "donnoh_eth",
-      "conversationId": "2089333781047959857"
-    },
-    {
-      "id": "x:ethPandaOps:2089333257800196563",
-      "source": "x:ethPandaOps",
-      "sourceType": "twitter",
-      "title": "Get involved by running a node/validator, deploying contracts, testing your favo",
-      "url": "https://x.com/ethPandaOps/status/2089333257800196563",
-      "publishedAt": "2026-08-17T12:47:21.000Z",
-      "summary": "Get involved by running a node/validator, deploying contracts, testing your favourite dapps and interacting with the chain in all the ways you love! Break things now rather than on Mainnet :)",
-      "author": "ethPandaOps",
-      "conversationId": "2089333243946377624"
-    },
-    {
-      "id": "x:ethPandaOps:2089333255833039263",
-      "source": "x:ethPandaOps",
-      "sourceType": "twitter",
-      "title": "The Platåberget testnet is one of the last steps before we start deploying chang",
-      "url": "https://x.com/ethPandaOps/status/2089333255833039263",
-      "publishedAt": "2026-08-17T12:47:20.000Z",
-      "summary": "The Platåberget testnet is one of the last steps before we start deploying changes on long lived testnets and eventually Mainnet. So Glamsterdam is close!",
-      "author": "ethPandaOps",
-      "conversationId": "2089333243946377624"
-    },
-    {
-      "id": "x:ethPandaOps:2089333243946377624",
-      "source": "x:ethPandaOps",
-      "sourceType": "twitter",
-      "title": "Introducing the Platåberget testnet! Its our Glamsterdam focused testnet to help",
-      "url": "https://x.com/ethPandaOps/status/2089333243946377624",
-      "publishedAt": "2026-08-17T12:47:17.000Z",
-      "summary": "Introducing the Platåberget testnet! Its our Glamsterdam focused testnet to help the community test all the upcoming changes. Please get involved with the testing efforts!\n\nhttps://t.co/wsyOI8dLcT",
-      "author": "ethPandaOps",
-      "conversationId": "2089333243946377624"
-    },
-    {
-      "id": "x:pcaversaccio:2089312445391081878",
-      "source": "x:pcaversaccio",
-      "sourceType": "twitter",
-      "title": "some of you think i'm insane. some of you think i'm too radical. some of you thi",
-      "url": "https://x.com/pcaversaccio/status/2089312445391081878",
-      "publishedAt": "2026-08-17T11:24:39.000Z",
-      "summary": "some of you think i'm insane. some of you think i'm too radical. some of you think i'm too harsh. what you don't understand is that your constant willingness to compromise has helped create a crypto industry full of loopholes, backdoors, surveillance and centralised choke points. what matters to me are _principles_, not some politically correct tone. surprise, \"pc\" does _not_ stand for political correctness. the only way out of this entire shitshow is to stick hard to principles and call out any",
-      "author": "pcaversaccio",
-      "conversationId": "2089312445391081878"
-    },
-    {
-      "id": "x:donnoh_eth:2089311407007207884",
-      "source": "x:donnoh_eth",
-      "sourceType": "twitter",
-      "title": "RT @ambire: We're excited to host a chat about domains and naming services with ",
-      "url": "https://x.com/donnoh_eth/status/2089311407007207884",
-      "publishedAt": "2026-08-17T11:20:31.000Z",
-      "summary": "RT @ambire: We're excited to host a chat about domains and naming services with @z0r0zzz @Walodja1987 @donnoh_eth 💭\n\nStreaming live this We…",
-      "author": "donnoh_eth",
-      "conversationId": "2089311407007207884"
-    },
-    {
-      "id": "x:peter_szilagyi:2089288143283372310",
-      "source": "x:peter_szilagyi",
-      "sourceType": "twitter",
-      "title": "Look ma', back from holiday... 🥲",
-      "url": "https://x.com/peter_szilagyi/status/2089288143283372310",
-      "publishedAt": "2026-08-17T09:48:05.000Z",
-      "summary": "Look ma', back from holiday... 🥲",
-      "author": "peter_szilagyi",
-      "conversationId": "2089288143283372310"
-    },
-    {
-      "id": "x:fradamt:2089270623314812992",
-      "source": "x:fradamt",
-      "sourceType": "twitter",
-      "title": "RT @donnoh_eth: confirmation times used by top interop bridges when bridging off",
-      "url": "https://x.com/fradamt/status/2089270623314812992",
-      "publishedAt": "2026-08-17T08:38:28.000Z",
-      "summary": "RT @donnoh_eth: confirmation times used by top interop bridges when bridging off from ethereum that could greatly benefit from FCR (~12s):…",
-      "author": "fradamt",
-      "conversationId": "2089270623314812992"
-    },
-    {
-      "id": "x:peter_szilagyi:2089268435490320562",
-      "source": "x:peter_szilagyi",
-      "sourceType": "twitter",
-      "title": "Me: Hey Fable, your UI called the wrong method on the cloud REST API.\nFable: Wor",
-      "url": "https://x.com/peter_szilagyi/status/2089268435490320562",
-      "publishedAt": "2026-08-17T08:29:46.000Z",
-      "summary": "Me: Hey Fable, your UI called the wrong method on the cloud REST API.\nFable: Worry not. &lt;proceeds to add new cloud endpoints instead of calling the correct one&gt;",
-      "author": "peter_szilagyi",
-      "conversationId": "2089268435490320562"
-    },
-    {
-      "id": "x:donnoh_eth:2089263983681319112",
-      "source": "x:donnoh_eth",
-      "sourceType": "twitter",
-      "title": "source: https://t.co/hJrhe8Ojj9",
-      "url": "https://x.com/donnoh_eth/status/2089263983681319112",
-      "publishedAt": "2026-08-17T08:12:05.000Z",
-      "summary": "source: https://t.co/hJrhe8Ojj9",
-      "author": "donnoh_eth",
-      "conversationId": "2089262727369818125"
-    },
-    {
-      "id": "x:donnoh_eth:2089262727369818125",
-      "source": "x:donnoh_eth",
-      "sourceType": "twitter",
-      "title": "confirmation times used by top interop bridges when bridging off from ethereum t",
-      "url": "https://x.com/donnoh_eth/status/2089262727369818125",
-      "publishedAt": "2026-08-17T08:07:05.000Z",
-      "summary": "confirmation times used by top interop bridges when bridging off from ethereum that could greatly benefit from FCR (~12s):\n- Circle's CCTP v2: ~7min\n- Circle's CCTP v1: ~19 min\n- LayerZero: ~8 min\n- Base canonical bridge: ~1 min\n- Chainlink CCIP: ~17 min\n- Polygon PoS canonical bridge: ~19 min\n- OP canonical bridge: ~1 min\n- Arbitrum canonical bridge: ~9 min\n- Stargate: ~8 min\n- Robinhood canonical bridge: ~9 min\n- Gnosis Bridge: ~15min\n- Wormhole: ~19min\n- Hyperlane: ~3min\n- Axelar: ~16 min",
-      "author": "donnoh_eth",
-      "conversationId": "2089262727369818125"
-    },
-    {
-      "id": "x:ryanberckmans:2089262727369818125",
-      "source": "x:ryanberckmans",
-      "sourceType": "twitter",
-      "title": "confirmation times used by top interop bridges when bridging off from ethereum t",
-      "url": "https://x.com/ryanberckmans/status/2089262727369818125",
-      "publishedAt": "2026-08-17T08:07:05.000Z",
-      "summary": "confirmation times used by top interop bridges when bridging off from ethereum that could greatly benefit from FCR (~12s):\n- Circle's CCTP v2: ~7min\n- Circle's CCTP v1: ~19 min\n- LayerZero: ~8 min\n- Base canonical bridge: ~1 min\n- Chainlink CCIP: ~17 min\n- Polygon PoS canonical",
-      "author": "ryanberckmans",
-      "conversationId": "2089262727369818125",
-      "isReply": true
-    },
-    {
-      "id": "eth-magicians:ethereum-magicians.org-topic-29442",
-      "source": "eth-magicians",
-      "sourceType": "rss",
-      "title": "ERC-8382: Private Referable NFTs",
-      "url": "https://ethereum-magicians.org/t/erc-8382-private-referable-nfts/29442",
-      "publishedAt": "2026-08-17T07:22:51.000Z",
-      "summary": "Abstract This ERC extends ERC-721 with interoperable commitments to private NFT-to-NFT references. A token can publish one or more reference commitments without disclosing the referenced NFT, reference label, weight, or authorization material. Implementations expose a common discovery interface, may require a zero-knowledge or other privacy-preserving proof at mint time, and may support later selective disclosure of individual references. The core interface is proof-system-neutral. It does not r",
-      "author": "richard620"
-    },
-    {
-      "id": "eth-magicians:ethereum-magicians.org-topic-29441",
-      "source": "eth-magicians",
-      "sourceType": "rss",
-      "title": "Lineage Registry: an ERC-721 extension for on-chain genealogical trees",
-      "url": "https://ethereum-magicians.org/t/lineage-registry-an-erc-721-extension-for-on-chain-genealogical-trees/29441",
-      "publishedAt": "2026-08-17T07:19:12.000Z",
-      "summary": "Author: Henrique L. Alvim ( @henriquelalvim ) Reference implementation: genealogicalRegistryBlockchain Base Sepolia deployment: Base Sepolia Blockscout TL;DR — I am proposing a standard for decentralized genealogical tree register , primarily used for genealogical tracking to verify pedigree. The proposed standard is this contract: LineageRegistry.sol . ERC-721 tokens form a sexed DAG : each token carries a sex and a birth date, and is either a founder or has exactly one sire and one dam. Six ru",
-      "author": "henriquelalvim"
-    },
-    {
-      "id": "reddit-ethereum:t3_1vqki12",
-      "source": "reddit-ethereum",
-      "sourceType": "rss",
-      "title": "Ethereal news weekly #35 | Justin Drake: Poseidon abandoned, EthCoordinate evolved from EthStaker, Platåberget (Glamsterdam public testnet) live",
-      "url": "https://www.reddit.com/r/ethereum/comments/1vqki12/ethereal_news_weekly_35_justin_drake_poseidon/",
-      "publishedAt": "2026-08-17T06:33:14.000Z",
-      "summary": "&#32; submitted by &#32; /u/abcoathup [link] &#32; [comments]",
-      "author": "/u/abcoathup"
-    },
-    {
-      "id": "reddit-ethereum:t3_1vqiuo7",
-      "source": "reddit-ethereum",
-      "sourceType": "rss",
-      "title": "Daily General Discussion August 17, 2026",
-      "url": "https://www.reddit.com/r/ethereum/comments/1vqiuo7/daily_general_discussion_august_17_2026/",
-      "publishedAt": "2026-08-17T05:01:27.000Z",
-      "summary": "Welcome to the Daily General Discussion on r/ethereum https://imgur.com/3y7vezP Bookmarking this link will always bring you to the current daily: https://old.reddit.com/r/ethereum/about/sticky/?num=2 Please use this thread to discuss Ethereum topics, news, events, and even price ! Price discussion posted elsewhere in the subreddit will continue to be removed. As always, be constructive. - Subreddit Rules Want to stake? Learn more at r/ethstaker Community Links Ethereum Jobs , Twitter EVMavericks",
-      "author": "/u/EthereumDailyThread"
-    },
-    {
-      "id": "ef-blog:https://blog.ethereum.org/en/2026/08/17/plataberget-testnet",
-      "source": "ef-blog",
-      "sourceType": "rss",
-      "title": "Announcing the Platåberget Testnet",
-      "url": "https://blog.ethereum.org/en/2026/08/17/plataberget-testnet",
-      "publishedAt": "2026-08-17T00:00:00.000Z",
-      "summary": "tl;dr: Meet Platåberget: Glamsterdam's (Gloas + Amsterdam) early testing ground open to public participation. This upgrade comes with breaking changes for application developers. Notably, any tool that relies on a hardcapped maximum gas limit (think wallets, indexers and gas estimators) will break and needs to be updated. Please use this...",
-      "author": ""
-    },
-    {
-      "id": "x:evan_van_ness:2089095653628559674",
-      "source": "x:evan_van_ness",
-      "sourceType": "twitter",
-      "title": "El mejor del país siempre se les vende a los yanquis https://t.co/RoFhVO0hDJ",
-      "url": "https://x.com/evan_van_ness/status/2089095653628559674",
-      "publishedAt": "2026-08-16T21:03:12.000Z",
-      "summary": "El mejor del país siempre se les vende a los yanquis https://t.co/RoFhVO0hDJ",
-      "author": "evan_van_ness",
-      "conversationId": "2089095653628559674"
-    },
-    {
-      "id": "x:nero_eth:2089070957063467157",
-      "source": "x:nero_eth",
-      "sourceType": "twitter",
-      "title": "RT @XRS_02: If we combine Vitalik’s STARK-aggregated mempool and Toni’s UTXO pro",
-      "url": "https://x.com/nero_eth/status/2089070957063467157",
-      "publishedAt": "2026-08-16T19:25:03.000Z",
-      "summary": "RT @XRS_02: If we combine Vitalik’s STARK-aggregated mempool and Toni’s UTXO proposal we could recursively STARK-aggregate UTXO transaction…",
-      "author": "nero_eth",
-      "conversationId": "2089070957063467157"
-    },
-    {
-      "id": "x:ethlabs_org:2089069548213358845",
-      "source": "x:ethlabs_org",
-      "sourceType": "twitter",
-      "title": "And for better readability you can find the technical bulk of this article here ",
-      "url": "https://x.com/ethlabs_org/status/2089069548213358845",
-      "publishedAt": "2026-08-16T19:19:27.000Z",
-      "summary": "And for better readability you can find the technical bulk of this article here as well: \nhttps://t.co/fnM5jyvqi7",
-      "author": "ethlabs_org",
-      "conversationId": "2089029459886141611"
-    },
-    {
-      "id": "x:hasufl:2089061516385431893",
-      "source": "x:hasufl",
-      "sourceType": "twitter",
-      "title": "RT @dataalways: An aggressive slot time reduction should have been the Hegotá he",
-      "url": "https://x.com/hasufl/status/2089061516385431893",
-      "publishedAt": "2026-08-16T18:47:33.000Z",
-      "summary": "RT @dataalways: An aggressive slot time reduction should have been the Hegotá headliner, but that time has passed. If we don't at least lay…",
-      "author": "hasufl",
-      "conversationId": "2089061516385431893"
-    },
-    {
-      "id": "x:_julianma:2089058542833877097",
-      "source": "x:_julianma",
-      "sourceType": "twitter",
-      "title": "RT @shemnon: Since I am briefly unemployed for a couple days, I thought I'd take",
-      "url": "https://x.com/_julianma/status/2089058542833877097",
-      "publishedAt": "2026-08-16T18:35:44.000Z",
-      "summary": "RT @shemnon: Since I am briefly unemployed for a couple days, I thought I'd take the time to my thoughts on what blockchains need to priori…",
-      "author": "_julianma",
-      "conversationId": "2089058542833877097"
-    },
-    {
-      "id": "x:Justin_Bons:2089044461938696469",
-      "source": "x:Justin_Bons",
-      "sourceType": "twitter",
-      "title": "RT @tomi204: https://t.co/LlSTD7FBsj",
-      "url": "https://x.com/Justin_Bons/status/2089044461938696469",
-      "publishedAt": "2026-08-16T17:39:46.000Z",
-      "summary": "RT @tomi204: https://t.co/LlSTD7FBsj",
-      "author": "Justin_Bons",
-      "conversationId": "2089044461938696469"
-    },
-    {
-      "id": "x:Justin_Bons:2089037954488455603",
-      "source": "x:Justin_Bons",
-      "sourceType": "twitter",
-      "title": "BTC dominance will continue to fall in the long run\n\nAs the utility of crypto is",
-      "url": "https://x.com/Justin_Bons/status/2089037954488455603",
-      "publishedAt": "2026-08-16T17:13:55.000Z",
-      "summary": "BTC dominance will continue to fall in the long run\n\nAs the utility of crypto is far more valuable than speculation alone!\n\nThe cypherpunk revolution depends on it; only the mass adoption of crypto apps can change the world\n\nBTC is technically incapable of supporting that future!",
-      "author": "Justin_Bons",
-      "conversationId": "2089037954488455603"
-    },
-    {
-      "id": "x:_julianma:2089034399392453021",
-      "source": "x:_julianma",
-      "sourceType": "twitter",
-      "title": "Look I understand old token models force buybacks and buybacks are bad for growt",
-      "url": "https://x.com/_julianma/status/2089034399392453021",
-      "publishedAt": "2026-08-16T16:59:47.000Z",
-      "summary": "Look I understand old token models force buybacks and buybacks are bad for growth. However, tokens can also be insanely good for growth. If done well, it creates a community of people who care about your product and governance. Do you think ethereum:native , MORPHO or HYPE would have been as large as they are without a token? \n\nIf you create a token, you must create a good token. Talk to @lex_node from @MetaLeX_Labs  and @nftboi_ from @umia_finance and make a token that benefits your project and",
-      "author": "_julianma",
-      "conversationId": "2089034399392453021"
-    },
-    {
-      "id": "x:Justin_Bons:2089033431971713136",
-      "source": "x:Justin_Bons",
-      "sourceType": "twitter",
-      "title": "RT @ALGO_BRO: Hey Justin @Justin_Bons wanted to share the AMAZING news Bro !!\n\nA",
-      "url": "https://x.com/Justin_Bons/status/2089033431971713136",
-      "publishedAt": "2026-08-16T16:55:57.000Z",
-      "summary": "RT @ALGO_BRO: Hey Justin @Justin_Bons wanted to share the AMAZING news Bro !!\n\nALGORAND $ALGO v5.0.0 with Post Quantum Accounts (PQC) has P…",
-      "author": "Justin_Bons",
-      "conversationId": "2089033431971713136"
-    },
-    {
-      "id": "x:_julianma:2089032626288124227",
-      "source": "x:_julianma",
-      "sourceType": "twitter",
-      "title": "MAKE IT FASTER!!!",
-      "url": "https://x.com/_julianma/status/2089032626288124227",
-      "publishedAt": "2026-08-16T16:52:45.000Z",
-      "summary": "MAKE IT FASTER!!!",
-      "author": "_julianma",
-      "conversationId": "2089032626288124227"
-    },
-    {
-      "id": "x:ethlabs_org:2089029459886141611",
-      "source": "x:ethlabs_org",
-      "sourceType": "twitter",
-      "title": "Some (long!) thoughts on Ethereum’s future upgrade.\n\nWe sat down, went through w",
-      "url": "https://x.com/ethlabs_org/status/2089029459886141611",
-      "publishedAt": "2026-08-16T16:40:10.000Z",
-      "summary": "Some (long!) thoughts on Ethereum’s future upgrade.\n\nWe sat down, went through what’s currently proposed for Hegotá, and wrote up where we stand and why.",
-      "author": "ethlabs_org",
-      "conversationId": "2089029459886141611"
-    },
-    {
-      "id": "x:ethlabs_org:2089029462486622221",
-      "source": "x:ethlabs_org",
-      "sourceType": "twitter",
-      "title": "We also created an explorer so you can search, filter and sort the EIPs and our ",
-      "url": "https://x.com/ethlabs_org/status/2089029462486622221",
-      "publishedAt": "2026-08-16T16:40:10.000Z",
-      "summary": "We also created an explorer so you can search, filter and sort the EIPs and our positions more easily.\n\nOur positions on Hegotá are our best assessments as of today, but we will update our thinking whenever new evidence from discussions or implementation work changes our view.\n\nhttps://t.co/UpW3YFw9qt",
-      "author": "ethlabs_org",
-      "conversationId": "2089029459886141611"
-    },
-    {
-      "id": "x:ethlabs_org:2089029210434138350",
-      "source": "x:ethlabs_org",
-      "sourceType": "twitter",
-      "title": "https://t.co/uZoFB5EuZO",
-      "url": "https://x.com/ethlabs_org/status/2089029210434138350",
-      "publishedAt": "2026-08-16T16:39:10.000Z",
-      "summary": "https://t.co/uZoFB5EuZO",
-      "author": "ethlabs_org",
-      "conversationId": "2089029210434138350"
-    },
-    {
-      "id": "x:pcaversaccio:2089004693536092520",
-      "source": "x:pcaversaccio",
-      "sourceType": "twitter",
-      "title": "RT @benjii: privacy is often framed as something you protect when you have “some",
-      "url": "https://x.com/pcaversaccio/status/2089004693536092520",
-      "publishedAt": "2026-08-16T15:01:45.000Z",
-      "summary": "RT @benjii: privacy is often framed as something you protect when you have “something to hide.”\n\na better framing is risk management\n\nevery…",
-      "author": "pcaversaccio",
-      "conversationId": "2089004693536092520"
-    },
-    {
-      "id": "x:pcaversaccio:2089003243732869176",
-      "source": "x:pcaversaccio",
-      "sourceType": "twitter",
-      "title": "Never. Use. Your. Real. Personal. Data. Online. and idgaf about whatever threat ",
-      "url": "https://x.com/pcaversaccio/status/2089003243732869176",
-      "publishedAt": "2026-08-16T14:55:59.000Z",
-      "summary": "Never. Use. Your. Real. Personal. Data. Online. and idgaf about whatever threat model you use. there is zero fucking reason you want to have your personal data in the hands of criminals. period.",
-      "author": "pcaversaccio",
-      "conversationId": "2089003243732869176"
-    },
-    {
-      "id": "x:pcaversaccio:2089000685589119309",
-      "source": "x:pcaversaccio",
-      "sourceType": "twitter",
-      "title": "RT @pcaversaccio: \"Information including name, email address, shipping address, ",
-      "url": "https://x.com/pcaversaccio/status/2089000685589119309",
-      "publishedAt": "2026-08-16T14:45:49.000Z",
-      "summary": "RT @pcaversaccio: \"Information including name, email address, shipping address, phone number, and purchase details, was accessed externally…",
-      "author": "pcaversaccio",
-      "conversationId": "2089000685589119309"
-    },
-    {
-      "id": "x:VitalikButerin:2088995690567671968",
-      "source": "x:VitalikButerin",
-      "sourceType": "twitter",
-      "title": "Bitcoiners deserve a lot of credit for pioneering many of these ideas (see Utree",
-      "url": "https://x.com/VitalikButerin/status/2088995690567671968",
-      "publishedAt": "2026-08-16T14:25:58.000Z",
-      "summary": "Bitcoiners deserve a lot of credit for pioneering many of these ideas (see Utreexo).\n\nBut yes, this is what the current proposed Ethereum scaling strategy looks like in action.\n\nWe want Ethereum to have the best of UTXO-style state, dynamic state, and everything in between, allowing the great majority of Ethereum's activity to be hyperscaled without sacrifice to decentralization, ease of node running and censorship resistance.\n https://t.co/rVylwVtgP5",
-      "author": "VitalikButerin",
-      "conversationId": "2088995690567671968"
-    },
-    {
-      "id": "x:pcaversaccio:2088995376787337296",
-      "source": "x:pcaversaccio",
-      "sourceType": "twitter",
-      "title": "\"Information including name, email address, shipping address, phone number, and ",
-      "url": "https://x.com/pcaversaccio/status/2088995376787337296",
-      "publishedAt": "2026-08-16T14:24:44.000Z",
-      "summary": "\"Information including name, email address, shipping address, phone number, and purchase details, was accessed externally without authorization due to the flaw.\"\n\nGO FUCKING DIE YOU IRRESPONSIBLE PIECE OF SHIT COMPANY. YOU PUT REAL PEOPLE AT RISK HERE AND IF WE EVER GET A KIDNAPPING CASE DUE TO YOU FUCKTARDS I WILL MAKE SURE YOU GET SUED TO DEATH!",
-      "author": "pcaversaccio",
-      "conversationId": "2088995376787337296"
-    },
-    {
-      "id": "x:donnoh_eth:2088933131143270784",
-      "source": "x:donnoh_eth",
-      "sourceType": "twitter",
-      "title": "ICYMI, some cool recent https://t.co/nGTxBHB3rw integrations 🚢 \n\n- kohaku: regi",
-      "url": "https://x.com/donnoh_eth/status/2088933131143270784",
-      "publishedAt": "2026-08-16T10:17:23.000Z",
-      "summary": "ICYMI, some cool recent https://t.co/nGTxBHB3rw integrations 🚢 \n\n- kohaku: register a .gwei name for your profile and use it to register your stealth key (docs: https://t.co/j018YTA8fx)\n- @ambire: send to and resolve .gwei names\n- @metamask: snap to send and resolve .gwei names\n- rebloom: minimal auditable ui to renew .gwei names\n- micro-eth-signers: minimal privacy focused ethereum library natively resolves .gwei names\n- https://t.co/9jrzDVLe7Z: alternative gateway for .gwei websites (try http",
-      "author": "donnoh_eth",
-      "conversationId": "2088933131143270784"
-    },
-    {
-      "id": "ethresearch:ethresear.ch-topic-25730",
-      "source": "ethresearch",
-      "sourceType": "rss",
-      "title": "Ethereum lessons from a live end-to-end PQ proof-native protocol",
-      "url": "https://ethresear.ch/t/ethereum-lessons-from-a-live-end-to-end-pq-proof-native-protocol/25730",
-      "publishedAt": "2026-08-16T09:06:08.000Z",
-      "summary": "There is a lot of discussion here about what an end-to-end post-quantum blockchain stack should eventually look like. I took the clean-slate route, built one and launched it as a public testnet. A full node can independently verify the network and produce blocks… on my old laptop. Parano1d protocol is a proof-native L1 ordered by proof of work. Wallet authorization, state transitions and recursive validity from genesis are all carried by a single post-quantum proof stack. Under the explicit prem",
-      "author": "ignotusnemo"
-    },
-    {
-      "id": "x:EFDevcon:2088909125480857654",
-      "source": "x:EFDevcon",
-      "sourceType": "twitter",
-      "title": "Play an instrument? DJ? Sing? Produce? Make live visuals? Love a good jam?\n\nTher",
-      "url": "https://x.com/EFDevcon/status/2088909125480857654",
-      "publishedAt": "2026-08-16T08:42:00.000Z",
-      "summary": "Play an instrument? DJ? Sing? Produce? Make live visuals? Love a good jam?\n\nThere’s a place for you at the Devcon 8 Music Stage in Mumbai. 🎶\n\nApply now: https://t.co/21sDzWuQ0Y https://t.co/IO2H5k0WiF",
-      "author": "EFDevcon",
-      "conversationId": "2088909125480857654"
-    },
-    {
-      "id": "x:donnoh_eth:2088899762858660090",
-      "source": "x:donnoh_eth",
-      "sourceType": "twitter",
-      "title": "RT @kassandraETH: &gt; FOCIL is already set as a headliner for Hegotá. I think F",
-      "url": "https://x.com/donnoh_eth/status/2088899762858660090",
-      "publishedAt": "2026-08-16T08:04:48.000Z",
-      "summary": "RT @kassandraETH: &gt; FOCIL is already set as a headliner for Hegotá. I think Frame Transactions (EIP-8141) should join it. Together with Key…",
-      "author": "donnoh_eth",
-      "conversationId": "2088899762858660090"
-    },
-    {
-      "id": "x:donnoh_eth:2088899744160502257",
-      "source": "x:donnoh_eth",
-      "sourceType": "twitter",
-      "title": "RT @nero_eth: Ethereum's next year's upgrade, Hegotá, is being scoped right now.",
-      "url": "https://x.com/donnoh_eth/status/2088899744160502257",
-      "publishedAt": "2026-08-16T08:04:43.000Z",
-      "summary": "RT @nero_eth: Ethereum's next year's upgrade, Hegotá, is being scoped right now.\n\n66 proposals are on the table and over the next few core…",
-      "author": "donnoh_eth",
-      "conversationId": "2088899744160502257"
-    },
-    {
-      "id": "x:nero_eth:2088855221371891768",
-      "source": "x:nero_eth",
-      "sourceType": "twitter",
-      "title": "Ethereum's next year's upgrade, Hegotá, is being scoped right now.\n\n66 proposals",
-      "url": "https://x.com/nero_eth/status/2088855221371891768",
-      "publishedAt": "2026-08-16T05:07:48.000Z",
-      "summary": "Ethereum's next year's upgrade, Hegotá, is being scoped right now.\n\n66 proposals are on the table and over the next few core dev calls, this list will be narrowed down to the EIPs that get implementations, devnets, testnets, and a realistic chance of shipping in 2027. What doesn't make the cut has to wait for the fork after, so these decisions matter a lot.\n\nFOCIL is already set as a headliner for Hegotá. I think Frame Transactions (EIP-8141) should join it. Together with Keyed Nonces (EIP-8250)",
-      "author": "nero_eth",
-      "conversationId": "2088855221371891768"
-    },
-    {
-      "id": "reddit-ethereum:t3_1vpnz5p",
-      "source": "reddit-ethereum",
-      "sourceType": "rss",
-      "title": "Daily General Discussion August 16, 2026",
-      "url": "https://www.reddit.com/r/ethereum/comments/1vpnz5p/daily_general_discussion_august_16_2026/",
-      "publishedAt": "2026-08-16T05:01:15.000Z",
-      "summary": "Welcome to the Daily General Discussion on r/ethereum https://imgur.com/3y7vezP Bookmarking this link will always bring you to the current daily: https://old.reddit.com/r/ethereum/about/sticky/?num=2 Please use this thread to discuss Ethereum topics, news, events, and even price ! Price discussion posted elsewhere in the subreddit will continue to be removed. As always, be constructive. - Subreddit Rules Want to stake? Learn more at r/ethstaker Community Links Ethereum Jobs , Twitter EVMavericks",
-      "author": "/u/EthereumDailyThread"
-    },
-    {
-      "id": "x:adietrichs:2088845883710624027",
-      "source": "x:adietrichs",
-      "sourceType": "twitter",
-      "title": "RT @tobyordoxford: What a beautiful website — a 15 minute reflection on how far ",
-      "url": "https://x.com/adietrichs/status/2088845883710624027",
-      "publishedAt": "2026-08-16T04:30:42.000Z",
-      "summary": "RT @tobyordoxford: What a beautiful website — a 15 minute reflection on how far we've come. The material is amazing; the quotes beautiful;…",
-      "author": "adietrichs",
-      "conversationId": "2088845883710624027"
     }
   ]
 }
