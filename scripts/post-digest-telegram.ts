@@ -48,20 +48,25 @@ function formatCaption(digest: Digest): string {
   const tail = `\n\n전체 요약 보기 → ${SITE_NEWS_URL}`;
   const budget = 1024 - tail.length;
 
+  // 텔레그램 1024자 제한은 '보이는 텍스트' 기준 — HTML 태그는 별도로 계산한다
   let caption = `<b>${esc(digest.title)}</b>\n${digest.date} · ECK 데일리 이더리움 다이제스트`;
+  let visible = `${digest.title}\n${digest.date} · ECK 데일리 이더리움 다이제스트`.length;
 
   const coreSections = digest.sections.filter((s) =>
     CAPTION_SECTION_KEYWORDS.some((k) => s.heading.includes(k)),
   );
   for (const section of coreSections) {
-    const header = `\n\n<b>${esc(section.heading)}</b>`;
-    const lines = section.items.map((item) => `\n· <a href="${item.url}">${esc(item.title)}</a>`);
+    const headerVisible = `\n\n${section.heading}`.length;
+    const firstVisible = `\n· ${section.items[0].title}`.length;
     // 소제목 + 첫 항목이 들어갈 자리가 없으면 그 구분부터 생략
-    if (caption.length + header.length + lines[0].length > budget) break;
-    caption += header;
-    for (const line of lines) {
-      if (caption.length + line.length > budget) break;
-      caption += line;
+    if (visible + headerVisible + firstVisible > budget) break;
+    caption += `\n\n<b>${esc(section.heading)}</b>`;
+    visible += headerVisible;
+    for (const item of section.items) {
+      const lineVisible = `\n· ${item.title}`.length;
+      if (visible + lineVisible > budget) break;
+      caption += `\n· <a href="${item.url}">${esc(item.title)}</a>`;
+      visible += lineVisible;
     }
   }
   return caption + tail;

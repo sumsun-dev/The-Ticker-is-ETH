@@ -48,22 +48,24 @@ function esc(s: string): string {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
-/** 커버 칩 라벨 — 섹션 이름 압축 */
-function chipLabel(heading: string): string {
-  return heading
-    .replace(/^오늘의 /, '')
-    .replace(/ · 담론$/, '')
-    .replace(/ 브리핑$/, '')
-    .replace(/^그 밖의 소식$/, '기타');
-}
+/** 커버 8칸 그리드 — 분류 체계 전체를 고정 슬롯으로 (없는 날은 0으로 표시) */
+const CATEGORY_SLOTS: Array<{ label: string; match: string }> = [
+  { label: '인사이트', match: '인사이트' },
+  { label: '프로토콜 업데이트', match: '프로토콜' },
+  { label: '포럼 제안', match: '포럼' },
+  { label: '트위터 논쟁', match: '논쟁' },
+  { label: '주요 발언', match: '발언' },
+  { label: '생태계 · 보안', match: '생태계' },
+  { label: '시장', match: '시장' },
+  { label: '기타', match: '그 밖' },
+];
 
 function coverHtml(digest: Digest, logoDataUri: string): string {
   const headline = digest.shortTitle ?? digest.title;
-  // 한 줄 유지: 글자 수에 맞춰 폰트 크기 자동 조정 (텍스트 존 약 720px)
-  const fontSize = Math.max(38, Math.min(64, Math.floor(760 / headline.length)));
-  const chips = digest.sections
-    .map((s) => `<span class="chip">${esc(chipLabel(s.heading))}<b>${s.items.length}</b></span>`)
-    .join('');
+  const cells = CATEGORY_SLOTS.map(({ label, match }) => {
+    const count = digest.sections.find((s) => s.heading.includes(match))?.items.length ?? 0;
+    return `<div class="cell${count === 0 ? ' empty' : ''}"><span class="cat">${esc(label)}</span><span class="num">${count}</span></div>`;
+  }).join('');
   const dateLabel = new Date(`${digest.date}T00:00:00`).toLocaleDateString('ko-KR', {
     year: 'numeric',
     month: 'long',
@@ -92,16 +94,20 @@ function coverHtml(digest: Digest, logoDataUri: string): string {
     .wrap { position: relative; height: 100%; padding: 64px 360px 64px 72px; display: flex; flex-direction: column; }
     .eyebrow { font-size: 20px; font-weight: 700; letter-spacing: .22em; color: #629FFF; }
     .date { margin-top: 14px; font-size: 24px; color: rgba(255,255,255,.55); font-weight: 400; }
-    .mid { margin-top: auto; margin-bottom: auto; display: flex; flex-direction: column; gap: 40px; }
-    .title { white-space: nowrap;
-      font-size: ${fontSize}px; font-weight: 800; line-height: 1.2; letter-spacing: -.015em;
+    .mid { margin-top: auto; margin-bottom: auto; display: flex; flex-direction: column; gap: 34px; }
+    /* 폰트 크기는 렌더 시 실측으로 텍스트 존에 맞춰 최대화 (로고 존 침범 없음) */
+    .title { white-space: nowrap; font-size: 78px;
+      font-weight: 800; line-height: 1.2; letter-spacing: -.015em;
       background: linear-gradient(100deg, #fff 30%, #629FFF 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .chips { display: flex; flex-wrap: wrap; gap: 12px; }
-    .chip { font-size: 21px; padding: 9px 20px; border-radius: 999px;
-      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.13);
-      color: rgba(255,255,255,.75); }
-    .chip b { color: #629FFF; margin-left: 8px; font-weight: 700; }
+    .panel-label { font-size: 18px; font-weight: 700; letter-spacing: .1em; color: rgba(255,255,255,.5); }
+    .cells { margin-top: 14px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .cell { display: flex; flex-direction: column; gap: 6px; padding: 14px 16px; border-radius: 14px;
+      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12); }
+    .cell .cat { font-size: 17px; color: rgba(255,255,255,.65); white-space: nowrap; }
+    .cell .num { font-size: 30px; font-weight: 800; color: #629FFF; line-height: 1; }
+    .cell.empty { opacity: .38; }
+    .cell.empty .num { color: rgba(255,255,255,.4); }
     .foot { display: flex; align-items: center; gap: 18px; font-size: 22px; color: rgba(255,255,255,.6); }
     .foot b { color: #A086FC; font-weight: 700; }
     .dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.25); }
@@ -117,7 +123,10 @@ function coverHtml(digest: Digest, logoDataUri: string): string {
       </div>
       <div class="mid">
         <div class="title">${esc(headline)}</div>
-        <div class="chips">${chips}</div>
+        <div>
+          <div class="panel-label">오늘의 주요 소식 건수</div>
+          <div class="cells">${cells}</div>
+        </div>
       </div>
       <div class="foot">
         <span>전체 보기</span><span class="dot"></span>
@@ -158,6 +167,16 @@ async function main() {
   try {
     const page = await browser.newPage({ viewport: { width: 1200, height: 630 }, deviceScaleFactor: 2 });
     await page.setContent(coverHtml(digest, logoDataUri), { waitUntil: 'networkidle' });
+    // 타이틀을 텍스트 존 폭에 맞춰 실측으로 최대 크기 조정 (한 줄 보장)
+    await page.evaluate(() => {
+      const el = document.querySelector('.title') as HTMLElement;
+      let size = 78;
+      el.style.fontSize = `${size}px`;
+      while (size > 40 && el.scrollWidth > el.clientWidth) {
+        size -= 2;
+        el.style.fontSize = `${size}px`;
+      }
+    });
     await page.screenshot({ path: outFile, type: 'png' });
   } finally {
     await browser.close();
