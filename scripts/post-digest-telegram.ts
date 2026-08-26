@@ -21,12 +21,7 @@ function esc(s: string): string {
 
 /** 텔레그램 4096자 제한에 맞춘 컴팩트 포맷 (항목은 제목+링크만) */
 function formatMessage(digest: Digest): string {
-  const lines = [
-    `<b>${esc(digest.title)}</b>`,
-    `${digest.date} · ECK 데일리 이더리움 다이제스트`,
-    '',
-    esc(digest.intro),
-  ];
+  const lines = [`<b>${esc(digest.title)}</b>`, '', esc(digest.intro)];
   for (const section of digest.sections) {
     lines.push('', `<b>${esc(section.heading)}</b>`);
     for (const item of section.items) {
@@ -49,8 +44,8 @@ function formatCaption(digest: Digest): string {
   const budget = 1024 - tail.length;
 
   // 텔레그램 1024자 제한은 '보이는 텍스트' 기준 — HTML 태그는 별도로 계산한다
-  let caption = `<b>${esc(digest.title)}</b>\n${digest.date} · ECK 데일리 이더리움 다이제스트`;
-  let visible = `${digest.title}\n${digest.date} · ECK 데일리 이더리움 다이제스트`.length;
+  let caption = `<b>${esc(digest.title)}</b>`;
+  let visible = digest.title.length;
 
   const coreSections = digest.sections.filter((s) =>
     CAPTION_SECTION_KEYWORDS.some((k) => s.heading.includes(k)),
