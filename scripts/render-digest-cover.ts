@@ -101,7 +101,19 @@ function coverHtml(digest: Digest, logoDataUri: string, fontDataUri: string): st
     .tline { white-space: nowrap; }
     .tline.accent { background: linear-gradient(95deg, #D65A4E 0%, #8B5CF6 55%, #2D5FBF 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .logo { position: absolute; right: 60px; top: 47%; transform: translateY(-50%); width: 265px;
+    /* 로고 무대: 컬러 오브 + 다이아 아웃라인 에코 */
+    .stage { position: absolute; right: 28px; top: 47%; transform: translateY(-50%);
+      width: 330px; height: 430px; }
+    .orb1 { position: absolute; width: 220px; height: 220px; border-radius: 50%; top: -30px; right: -40px;
+      background: radial-gradient(circle, rgba(170,84,60,.20) 0%, transparent 68%); }
+    .orb2 { position: absolute; width: 260px; height: 260px; border-radius: 50%; bottom: -50px; left: -60px;
+      background: radial-gradient(circle, rgba(45,95,191,.18) 0%, transparent 68%); }
+    .ring { position: absolute; left: 50%; top: 50%; border-radius: 44px; }
+    .ring1 { width: 300px; height: 300px; transform: translate(-50%,-50%) rotate(45deg);
+      border: 1.6px solid rgba(192,138,78,.35); }
+    .ring2 { width: 400px; height: 400px; transform: translate(-50%,-50%) rotate(45deg);
+      border: 1.4px solid rgba(45,95,191,.18); border-radius: 60px; }
+    .logo { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 265px;
       filter: drop-shadow(0 18px 36px rgba(22,32,59,.22)); }
     .foot { position: relative; margin-top: auto; border-top: 1px solid #DCE1EC; padding: 20px 0 26px;
       display: flex; align-items: center; justify-content: flex-end;
@@ -109,7 +121,11 @@ function coverHtml(digest: Digest, logoDataUri: string, fontDataUri: string): st
     .foot b { color: #16203B; }
   </style></head><body>
     <div class="tint1"></div><div class="tint2"></div><div class="tint3"></div>
-    <img class="logo" src="${logoDataUri}" alt="" />
+    <div class="stage">
+      <div class="orb1"></div><div class="orb2"></div>
+      <div class="ring ring2"></div><div class="ring ring1"></div>
+      <img class="logo" src="${logoDataUri}" alt="" />
+    </div>
     <div class="wrap">
       <div class="head">
         <div class="brand"><img src="${logoDataUri}" alt="" /><span>ECK — Daily Ethereum Digest</span></div>
