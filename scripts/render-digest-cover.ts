@@ -48,28 +48,9 @@ function esc(s: string): string {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
-/** 커버 8칸 그리드 — 분류 체계 전체를 고정 슬롯으로 (없는 날은 0으로 표시) */
-const CATEGORY_SLOTS: Array<{ label: string; match: string }> = [
-  { label: '인사이트', match: '인사이트' },
-  { label: '프로토콜 업데이트', match: '프로토콜' },
-  { label: '포럼 제안', match: '포럼' },
-  { label: '트위터 논쟁', match: '논쟁' },
-  { label: '주요 발언', match: '발언' },
-  { label: '생태계 · 보안', match: '생태계' },
-  { label: '시장', match: '시장' },
-  { label: '기타', match: '그 밖' },
-];
-
 function coverHtml(digest: Digest, logoDataUri: string): string {
-  const headline = digest.shortTitle ?? digest.title;
-  // 0건 분류는 표시하지 않는다 — 남는 칸은 빈 채로 둔다
-  const cells = CATEGORY_SLOTS.map(({ label, match }) => ({
-    label,
-    count: digest.sections.find((s) => s.heading.includes(match))?.items.length ?? 0,
-  }))
-    .filter(({ count }) => count > 0)
-    .map(({ label, count }) => `<div class="cell"><span class="cat">${esc(label)}</span><span class="num">${count}</span></div>`)
-    .join('');
+  // 커버 메인은 전체 제목을 2줄로 크게 (폰트는 렌더 시 실측 조정)
+  const headline = digest.title;
   const dateLabel = new Date(`${digest.date}T00:00:00`).toLocaleDateString('ko-KR', {
     year: 'numeric',
     month: 'long',
@@ -98,19 +79,12 @@ function coverHtml(digest: Digest, logoDataUri: string): string {
     .wrap { position: relative; height: 100%; padding: 64px 360px 64px 72px; display: flex; flex-direction: column; }
     .eyebrow { font-size: 20px; font-weight: 700; letter-spacing: .22em; color: #629FFF; }
     .date { margin-top: 14px; font-size: 24px; color: rgba(255,255,255,.55); font-weight: 400; }
-    .mid { margin-top: auto; margin-bottom: auto; display: flex; flex-direction: column; gap: 34px; }
-    /* 폰트 크기는 렌더 시 실측으로 텍스트 존에 맞춰 최대화 (로고 존 침범 없음) */
-    .title { white-space: nowrap; font-size: 78px;
-      font-weight: 800; line-height: 1.2; letter-spacing: -.015em;
+    .mid { margin-top: auto; margin-bottom: auto; }
+    /* 2줄에 맞춰 렌더 시 실측으로 폰트 최대화 (로고 존 침범 없음) */
+    .title { font-size: 64px; font-weight: 800; line-height: 1.28; letter-spacing: -.015em;
+      word-break: keep-all; text-wrap: balance;
       background: linear-gradient(100deg, #fff 30%, #629FFF 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .panel { zoom: .6; }
-    .panel-label { font-size: 18px; font-weight: 700; letter-spacing: .1em; color: rgba(255,255,255,.5); }
-    .cells { margin-top: 14px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-    .cell { display: flex; flex-direction: column; gap: 6px; padding: 14px 16px; border-radius: 14px;
-      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12); }
-    .cell .cat { font-size: 17px; color: rgba(255,255,255,.65); white-space: nowrap; }
-    .cell .num { font-size: 30px; font-weight: 800; color: #629FFF; line-height: 1; }
     .foot { display: flex; align-items: center; gap: 18px; font-size: 22px; color: rgba(255,255,255,.6); }
     .foot b { color: #A086FC; font-weight: 700; }
     .dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.25); }
@@ -126,10 +100,6 @@ function coverHtml(digest: Digest, logoDataUri: string): string {
       </div>
       <div class="mid">
         <div class="title">${esc(headline)}</div>
-        <div class="panel">
-          <div class="panel-label">오늘의 주요 소식 건수</div>
-          <div class="cells">${cells}</div>
-        </div>
       </div>
       <div class="foot">
         <span>전체 보기</span><span class="dot"></span>
@@ -170,12 +140,12 @@ async function main() {
   try {
     const page = await browser.newPage({ viewport: { width: 1200, height: 630 }, deviceScaleFactor: 2 });
     await page.setContent(coverHtml(digest, logoDataUri), { waitUntil: 'networkidle' });
-    // 타이틀을 텍스트 존 폭에 맞춰 실측으로 최대 크기 조정 (한 줄 보장)
+    // 타이틀을 2줄 이내에 맞춰 실측으로 최대 크기 조정
     await page.evaluate(() => {
       const el = document.querySelector('.title') as HTMLElement;
-      let size = 78;
+      let size = 72;
       el.style.fontSize = `${size}px`;
-      while (size > 40 && el.scrollWidth > el.clientWidth) {
+      while (size > 36 && el.scrollHeight > size * 1.28 * 2 + 4) {
         size -= 2;
         el.style.fontSize = `${size}px`;
       }
