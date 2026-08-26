@@ -37,25 +37,29 @@ function formatMessage(digest: Digest): string {
   return lines.join('\n').slice(0, 4096);
 }
 
-/** sendPhoto 캡션 (1024자 제한): 제목 + 인트로 + 들어가는 만큼의 항목 링크 + 사이트 링크 */
+/**
+ * sendPhoto 캡션 (1024자 제한) — 가독성 우선 포맷:
+ * 제목 / 날짜 → 인트로 앞 2문장 → 구분별 볼드 소제목 + 항목 링크 (예산 내에서 순서대로)
+ */
 function formatCaption(digest: Digest): string {
   const tail = `\n\n전체 요약 보기 → ${SITE_NEWS_URL}`;
   const budget = 1024 - tail.length;
-  let caption = `<b>${esc(digest.title)}</b>\n${digest.date} · ECK 데일리 이더리움 다이제스트\n\n${esc(digest.intro)}`;
-  const bullets: string[] = [];
+
+  const introShort = digest.intro.split(/(?<=\.)\s+/).slice(0, 2).join(' ');
+  let caption = `<b>${esc(digest.title)}</b>\n${digest.date} · ECK 데일리 이더리움 다이제스트\n\n${esc(introShort)}`;
+
   for (const section of digest.sections) {
-    for (const item of section.items) {
-      bullets.push(`· <a href="${item.url}">${esc(item.title)}</a>`);
+    const header = `\n\n<b>${esc(section.heading)}</b>`;
+    const lines = section.items.map((item) => `\n· <a href="${item.url}">${esc(item.title)}</a>`);
+    // 소제목 + 첫 항목이 들어갈 자리가 없으면 그 구분부터 생략
+    if (caption.length + header.length + lines[0].length > budget) break;
+    caption += header;
+    for (const line of lines) {
+      if (caption.length + line.length > budget) break;
+      caption += line;
     }
   }
-  let first = true;
-  for (const bullet of bullets) {
-    const sep = first ? '\n\n' : '\n';
-    if (caption.length + sep.length + bullet.length > budget) break;
-    caption += sep + bullet;
-    first = false;
-  }
-  return caption.slice(0, budget) + tail;
+  return caption + tail;
 }
 
 async function main() {
@@ -72,14 +76,13 @@ async function main() {
     console.log('[SKIP] no digest to post');
     return;
   }
-  if (digest.telegramMessageId) {
+  // DIGEST_PREVIEW_CHAT: 채널 대신 지정 chat으로 미리보기 전송 (검수 모드 — 채널 송출 여부와 무관)
+  const previewChat = process.env.DIGEST_PREVIEW_CHAT;
+  if (!previewChat && digest.telegramMessageId) {
     console.log(`[SKIP] digest ${digest.date} already posted (message ${digest.telegramMessageId})`);
     return;
   }
-
-  // DIGEST_PREVIEW_CHAT: 채널 대신 지정 chat으로 미리보기 전송 (검수 모드)
-  const previewChat = process.env.DIGEST_PREVIEW_CHAT;
-  if (previewChat && digest.previewedAt) {
+  if (previewChat && digest.previewedAt && !process.env.DIGEST_FORCE_PREVIEW) {
     console.log(`[SKIP] digest ${digest.date} already previewed at ${digest.previewedAt}`);
     return;
   }
