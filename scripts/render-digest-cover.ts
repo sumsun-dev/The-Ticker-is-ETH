@@ -101,6 +101,7 @@ function coverHtml(digest: Digest, logoDataUri: string, fontDataUri: string): st
     .tline { white-space: nowrap; }
     .tline.accent { background: linear-gradient(95deg, #D65A4E 0%, #8B5CF6 55%, #2D5FBF 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .sub { margin-top: 30px; font-size: 25px; font-weight: 500; color: #4A5570; white-space: nowrap; }
     /* 로고 무대: 컬러 오브 + 다이아 아웃라인 에코 */
     .stage { position: absolute; right: 28px; top: 47%; transform: translateY(-50%);
       width: 330px; height: 430px; }
@@ -135,6 +136,7 @@ function coverHtml(digest: Digest, logoDataUri: string, fontDataUri: string): st
           <div class="tline">${esc(line1)}</div>
           ${line2 ? `<div class="tline accent">${esc(line2)}</div>` : ''}
         </div>
+        ${digest.subTitle ? `<div class="sub">${esc(digest.subTitle)}</div>` : ''}
       </div>
       <div class="foot mono">
         <span><b>ethcollective.xyz/news</b></span>

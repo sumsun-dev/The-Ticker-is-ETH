@@ -66,6 +66,8 @@ export interface EthDigest {
     title: string;
     /** 커버 이미지용 한 줄 헤드라인 */
     shortTitle?: string;
+    /** 커버용 한 줄 부제 */
+    subTitle?: string;
     intro: string;
     sections: EthDigestSection[];
     /** 커버 이미지 public 경로 (예: /assets/digests/2026-08-24.png) */

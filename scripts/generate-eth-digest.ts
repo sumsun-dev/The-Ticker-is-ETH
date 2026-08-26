@@ -20,6 +20,7 @@ const KEEP_DIGESTS = 30;
 const DigestSchema = z.object({
   title: z.string(),
   shortTitle: z.string(),
+  subTitle: z.string(),
   intro: z.string(),
   sections: z.array(
     z.object({
@@ -94,6 +95,7 @@ const EDITOR_PROMPT = `당신은 ECK(Ethereum Collective Korea)의 시니어 리
 구성:
 - title: 그날의 핵심 의미를 담은 한국어 헤드라인 (한 문장, 낚시성 금지)
 - shortTitle: 커버 이미지용 초압축 헤드라인 — 공백 포함 16자 이내, 한 줄, 핵심 키워드 중심
+- subTitle: 커버용 한 줄 부제 — 타이틀을 보완하는 30자 이내 문장 (그날의 의미를 담담하게)
 - intro: 3~5문장 — 그날의 소식들을 관통하는 흐름과 의미를 세우는 에디터 칼럼
 - sections는 독자가 구분별로 골라 보는 탭입니다. 아래 순서·이름을 그대로 쓰고, 해당 항목이 없으면 생략:
   1. "오늘의 인사이트" (필수)
@@ -114,7 +116,7 @@ const EDITOR_PROMPT = `당신은 ECK(Ethereum Collective Korea)의 시니어 리
 - 중요도 순으로 배치: 프로토콜 변화 > 보안 > 생태계 > 시장.
 
 응답은 아래 형태의 JSON 하나만 출력하세요. 코드펜스·설명 없이 JSON만:
-{"title": "...", "shortTitle": "...", "intro": "...", "sections": [{"heading": "...", "items": [{"title": "...", "summary": "...", "why": "...", "url": "...", "source": "...", "date": "YYYY-MM-DD"}]}]}`;
+{"title": "...", "shortTitle": "...", "subTitle": "...", "intro": "...", "sections": [{"heading": "...", "items": [{"title": "...", "summary": "...", "why": "...", "url": "...", "source": "...", "date": "YYYY-MM-DD"}]}]}`;
 
 function todayKst(): string {
   return process.env.DIGEST_DATE ?? new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Seoul' }).format(new Date());
