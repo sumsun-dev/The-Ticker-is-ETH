@@ -48,7 +48,7 @@ function esc(s: string): string {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
-function coverHtml(digest: Digest): string {
+function coverHtml(digest: Digest, logoDataUri: string): string {
   const itemCount = digest.sections.reduce((n, s) => n + s.items.length, 0);
   const dateLabel = new Date(`${digest.date}T00:00:00`).toLocaleDateString('ko-KR', {
     year: 'numeric',
@@ -74,28 +74,23 @@ function coverHtml(digest: Digest): string {
       background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
       background-size: 48px 48px; }
-    .wrap { position: relative; height: 100%; padding: 64px 72px; display: flex; flex-direction: column; }
+    /* 텍스트 존은 오른쪽 로고 존(360px)을 침범하지 않는다 */
+    .wrap { position: relative; height: 100%; padding: 64px 360px 64px 72px; display: flex; flex-direction: column; }
     .eyebrow { font-size: 20px; font-weight: 700; letter-spacing: .22em; color: #629FFF; }
     .date { margin-top: 14px; font-size: 24px; color: rgba(255,255,255,.55); font-weight: 400; }
-    .title { margin-top: auto; margin-bottom: auto; max-width: 880px;
-      font-size: 64px; font-weight: 800; line-height: 1.22; letter-spacing: -.015em; word-break: keep-all;
+    .title { margin-top: auto; margin-bottom: auto; max-width: 740px;
+      font-size: 60px; font-weight: 800; line-height: 1.22; letter-spacing: -.015em; word-break: keep-all;
       background: linear-gradient(100deg, #fff 30%, #629FFF 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .title.long { font-size: 52px; }
+    .title.long { font-size: 48px; }
     .foot { display: flex; align-items: center; gap: 18px; font-size: 22px; color: rgba(255,255,255,.6); }
     .foot b { color: #A086FC; font-weight: 700; }
     .dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.25); }
-    .eth { position: absolute; right: 84px; top: 50%; transform: translateY(-50%); }
+    .logo { position: absolute; right: 56px; top: 50%; transform: translateY(-50%); width: 260px; height: 260px;
+      filter: drop-shadow(0 12px 40px rgba(0,0,0,.5)); }
   </style></head><body>
     <div class="glow"></div><div class="glow2"></div><div class="grid"></div>
-    <svg class="eth" width="200" height="320" viewBox="0 0 256 417">
-      <polygon fill="#629FFF" fill-opacity=".92" points="127.9,0 125.1,9.5 125.1,285.1 127.9,287.9 255.9,212.3"/>
-      <polygon fill="#A086FC" fill-opacity=".92" points="127.9,0 0,212.3 127.9,287.9 127.9,154.2"/>
-      <polygon fill="#629FFF" fill-opacity=".65" points="127.9,312.2 126.4,314.1 126.4,412.3 127.9,416.9 256,236.6"/>
-      <polygon fill="#A086FC" fill-opacity=".65" points="127.9,416.9 127.9,312.2 0,236.6"/>
-      <polygon fill="#2D5FBF" fill-opacity=".8" points="127.9,287.9 255.9,212.3 127.9,154.2"/>
-      <polygon fill="#4a3f8f" fill-opacity=".8" points="0,212.3 127.9,287.9 127.9,154.2"/>
-    </svg>
+    <img class="logo" src="${logoDataUri}" alt="" />
     <div class="wrap">
       <div>
         <div class="eyebrow">ECK · DAILY ETHEREUM DIGEST</div>
@@ -133,11 +128,14 @@ async function main() {
     return;
   }
 
+  const logoPath = path.resolve(process.cwd(), 'public/assets/eck-logo.png');
+  const logoDataUri = `data:image/png;base64,${readFileSync(logoPath).toString('base64')}`;
+
   mkdirSync(OUT_DIR, { recursive: true });
   const browser = await chromium.launch({ headless: true, executablePath, args: ['--no-sandbox'] });
   try {
     const page = await browser.newPage({ viewport: { width: 1200, height: 630 }, deviceScaleFactor: 2 });
-    await page.setContent(coverHtml(digest), { waitUntil: 'networkidle' });
+    await page.setContent(coverHtml(digest, logoDataUri), { waitUntil: 'networkidle' });
     await page.screenshot({ path: outFile, type: 'png' });
   } finally {
     await browser.close();

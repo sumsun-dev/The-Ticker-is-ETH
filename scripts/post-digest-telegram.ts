@@ -37,18 +37,23 @@ function formatMessage(digest: Digest): string {
   return lines.join('\n').slice(0, 4096);
 }
 
+/** 캡션에 싣는 핵심 구분 (이 키워드가 포함된 섹션만) */
+const CAPTION_SECTION_KEYWORDS = ['인사이트', '프로토콜', '포럼', '논쟁', '발언'];
+
 /**
- * sendPhoto 캡션 (1024자 제한) — 가독성 우선 포맷:
- * 제목 / 날짜 → 인트로 앞 2문장 → 구분별 볼드 소제목 + 항목 링크 (예산 내에서 순서대로)
+ * sendPhoto 캡션 (1024자 제한) — 제목/날짜 + 핵심 구분별 볼드 소제목·불렛 링크.
+ * 인트로 없음 (전문은 사이트에서).
  */
 function formatCaption(digest: Digest): string {
   const tail = `\n\n전체 요약 보기 → ${SITE_NEWS_URL}`;
   const budget = 1024 - tail.length;
 
-  const introShort = digest.intro.split(/(?<=\.)\s+/).slice(0, 2).join(' ');
-  let caption = `<b>${esc(digest.title)}</b>\n${digest.date} · ECK 데일리 이더리움 다이제스트\n\n${esc(introShort)}`;
+  let caption = `<b>${esc(digest.title)}</b>\n${digest.date} · ECK 데일리 이더리움 다이제스트`;
 
-  for (const section of digest.sections) {
+  const coreSections = digest.sections.filter((s) =>
+    CAPTION_SECTION_KEYWORDS.some((k) => s.heading.includes(k)),
+  );
+  for (const section of coreSections) {
     const header = `\n\n<b>${esc(section.heading)}</b>`;
     const lines = section.items.map((item) => `\n· <a href="${item.url}">${esc(item.title)}</a>`);
     // 소제목 + 첫 항목이 들어갈 자리가 없으면 그 구분부터 생략
