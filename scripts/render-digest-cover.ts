@@ -49,8 +49,8 @@ function esc(s: string): string {
 }
 
 function coverHtml(digest: Digest, logoDataUri: string): string {
-  // 커버 메인은 전체 제목을 2줄로 크게 (폰트는 렌더 시 실측 조정)
-  const headline = digest.title;
+  // 커버 메인은 한 줄 헤드라인 (shortTitle, 폰트는 렌더 시 실측 조정)
+  const headline = digest.shortTitle ?? digest.title;
   const dateLabel = new Date(`${digest.date}T00:00:00`).toLocaleDateString('ko-KR', {
     year: 'numeric',
     month: 'long',
@@ -80,9 +80,9 @@ function coverHtml(digest: Digest, logoDataUri: string): string {
     .eyebrow { font-size: 20px; font-weight: 700; letter-spacing: .22em; color: #629FFF; }
     .date { margin-top: 14px; font-size: 24px; color: rgba(255,255,255,.55); font-weight: 400; }
     .mid { margin-top: auto; margin-bottom: auto; }
-    /* 2줄에 맞춰 렌더 시 실측으로 폰트 최대화 (로고 존 침범 없음) */
-    .title { font-size: 64px; font-weight: 800; line-height: 1.28; letter-spacing: -.015em;
-      word-break: keep-all; text-wrap: balance;
+    /* 한 줄 유지 — 렌더 시 실측으로 폰트 최대화 (로고 존 침범 없음) */
+    .title { white-space: nowrap; font-size: 78px;
+      font-weight: 800; line-height: 1.2; letter-spacing: -.015em;
       background: linear-gradient(100deg, #fff 30%, #629FFF 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .foot { display: flex; align-items: center; gap: 18px; font-size: 22px; color: rgba(255,255,255,.6); }
@@ -140,12 +140,12 @@ async function main() {
   try {
     const page = await browser.newPage({ viewport: { width: 1200, height: 630 }, deviceScaleFactor: 2 });
     await page.setContent(coverHtml(digest, logoDataUri), { waitUntil: 'networkidle' });
-    // 타이틀을 2줄 이내에 맞춰 실측으로 최대 크기 조정
+    // 타이틀을 텍스트 존 폭에 맞춰 실측으로 최대 크기 조정 (한 줄 보장)
     await page.evaluate(() => {
       const el = document.querySelector('.title') as HTMLElement;
-      let size = 72;
+      let size = 78;
       el.style.fontSize = `${size}px`;
-      while (size > 36 && el.scrollHeight > size * 1.28 * 2 + 4) {
+      while (size > 40 && el.scrollWidth > el.clientWidth) {
         size -= 2;
         el.style.fontSize = `${size}px`;
       }
