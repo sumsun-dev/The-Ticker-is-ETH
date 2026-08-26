@@ -6,6 +6,7 @@
  * 크로미엄: CHROMIUM_PATH → ~/.cache/ms-playwright → macOS Chrome → 리눅스 시스템 경로.
  */
 import { chromium } from 'playwright-core';
+import { createHash } from 'node:crypto';
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'fs';
 import { homedir } from 'os';
 import * as path from 'path';
@@ -157,7 +158,7 @@ async function main() {
 
   const outFile = path.join(OUT_DIR, `${digest.date}.png`);
   const publicPath = `/assets/digests/${digest.date}.png`;
-  if (digest.coverImage === publicPath && existsSync(outFile)) {
+  if (digest.coverImage?.startsWith(publicPath) && existsSync(outFile)) {
     console.log(`[SKIP] cover for ${digest.date} already rendered`);
     return;
   }
@@ -195,7 +196,9 @@ async function main() {
     await browser.close();
   }
 
-  digest.coverImage = publicPath;
+  // 같은 파일명 덮어쓰기 시 CDN/브라우저 캐시 무효화를 위해 콘텐츠 해시 쿼리를 붙인다
+  const hash = createHash('md5').update(readFileSync(outFile)).digest('hex').slice(0, 8);
+  digest.coverImage = `${publicPath}?v=${hash}`;
   writeFileSync(DIGESTS, JSON.stringify(data, null, 2), 'utf-8');
   console.log(`Rendered cover ${outFile} and linked as ${publicPath}`);
 }

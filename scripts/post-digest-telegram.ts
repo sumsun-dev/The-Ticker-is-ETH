@@ -96,7 +96,7 @@ async function main() {
 
   // 커버 이미지가 있으면 sendPhoto(커버 + 캡션), 없으면 텍스트 메시지로 폴백
   const coverFile = digest.coverImage
-    ? path.resolve(process.cwd(), 'public', digest.coverImage.replace(/^\//, ''))
+    ? path.resolve(process.cwd(), 'public', digest.coverImage.split('?')[0].replace(/^\//, ''))
     : null;
 
   let res: Response;
