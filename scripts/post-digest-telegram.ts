@@ -83,7 +83,8 @@ async function main() {
     console.log(`[SKIP] digest ${digest.date} already previewed at ${digest.previewedAt}`);
     return;
   }
-  const chatId = previewChat ?? `@${channel}`;
+  // TELEGRAM_CHANNEL: @username 또는 숫자 chat_id(-100... 비공개 채널/그룹) 모두 지원
+  const chatId = previewChat ?? (/^-?\d+$/.test(channel) ? channel : `@${channel}`);
 
   // 커버 이미지가 있으면 sendPhoto(커버 + 캡션), 없으면 텍스트 메시지로 폴백
   const coverFile = digest.coverImage
@@ -124,7 +125,7 @@ async function main() {
 
   digest.telegramMessageId = body.result.message_id;
   fs.writeFileSync(DIGESTS, JSON.stringify(data, null, 2), 'utf-8');
-  console.log(`Posted digest ${digest.date} to @${channel} (message ${body.result.message_id})`);
+  console.log(`Posted digest ${digest.date} to ${chatId} (message ${body.result.message_id})`);
 }
 
 main().catch((error) => {
