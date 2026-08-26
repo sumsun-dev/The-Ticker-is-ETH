@@ -62,10 +62,14 @@ const CATEGORY_SLOTS: Array<{ label: string; match: string }> = [
 
 function coverHtml(digest: Digest, logoDataUri: string): string {
   const headline = digest.shortTitle ?? digest.title;
-  const cells = CATEGORY_SLOTS.map(({ label, match }) => {
-    const count = digest.sections.find((s) => s.heading.includes(match))?.items.length ?? 0;
-    return `<div class="cell${count === 0 ? ' empty' : ''}"><span class="cat">${esc(label)}</span><span class="num">${count}</span></div>`;
-  }).join('');
+  // 0건 분류는 표시하지 않는다 — 남는 칸은 빈 채로 둔다
+  const cells = CATEGORY_SLOTS.map(({ label, match }) => ({
+    label,
+    count: digest.sections.find((s) => s.heading.includes(match))?.items.length ?? 0,
+  }))
+    .filter(({ count }) => count > 0)
+    .map(({ label, count }) => `<div class="cell"><span class="cat">${esc(label)}</span><span class="num">${count}</span></div>`)
+    .join('');
   const dateLabel = new Date(`${digest.date}T00:00:00`).toLocaleDateString('ko-KR', {
     year: 'numeric',
     month: 'long',
@@ -100,14 +104,13 @@ function coverHtml(digest: Digest, logoDataUri: string): string {
       font-weight: 800; line-height: 1.2; letter-spacing: -.015em;
       background: linear-gradient(100deg, #fff 30%, #629FFF 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .panel { zoom: .6; }
     .panel-label { font-size: 18px; font-weight: 700; letter-spacing: .1em; color: rgba(255,255,255,.5); }
     .cells { margin-top: 14px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
     .cell { display: flex; flex-direction: column; gap: 6px; padding: 14px 16px; border-radius: 14px;
       background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12); }
     .cell .cat { font-size: 17px; color: rgba(255,255,255,.65); white-space: nowrap; }
     .cell .num { font-size: 30px; font-weight: 800; color: #629FFF; line-height: 1; }
-    .cell.empty { opacity: .38; }
-    .cell.empty .num { color: rgba(255,255,255,.4); }
     .foot { display: flex; align-items: center; gap: 18px; font-size: 22px; color: rgba(255,255,255,.6); }
     .foot b { color: #A086FC; font-weight: 700; }
     .dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.25); }
@@ -123,7 +126,7 @@ function coverHtml(digest: Digest, logoDataUri: string): string {
       </div>
       <div class="mid">
         <div class="title">${esc(headline)}</div>
-        <div>
+        <div class="panel">
           <div class="panel-label">오늘의 주요 소식 건수</div>
           <div class="cells">${cells}</div>
         </div>
