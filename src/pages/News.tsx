@@ -15,12 +15,10 @@ function formatDigestDate(date: string, locale: string): string {
     });
 }
 
-/** "오늘의 논쟁 · 담론" 섹션은 시각적으로 구분한다 */
 function isDebateSection(section: EthDigestSection): boolean {
     return section.heading.includes('논쟁');
 }
 
-/** "오늘의 인사이트" 섹션 — 해석·명제 중심이라 가장 강조한다 */
 function isInsightSection(section: EthDigestSection): boolean {
     return section.heading.includes('인사이트');
 }
@@ -30,6 +28,7 @@ const News: React.FC = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const [digests, setDigests] = useState<EthDigest[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [activeSection, setActiveSection] = useState(0);
 
     const selectedDate = searchParams.get('date');
 
@@ -52,14 +51,16 @@ const News: React.FC = () => {
         [digests, selectedDate],
     );
 
+    useEffect(() => {
+        setActiveSection(0);
+    }, [currentDigest?.date]);
+
     const selectDigest = (date: string) => {
         setSearchParams(date === digests[0]?.date ? {} : { date });
         window.scrollTo({ top: 0 });
     };
 
-    const scrollToSection = (index: number) => {
-        document.getElementById(`digest-sec-${index}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    };
+    const section = currentDigest?.sections[activeSection] ?? null;
 
     const archiveCard = (digest: EthDigest, compact: boolean) => {
         const isCurrent = digest.date === currentDigest?.date;
@@ -145,77 +146,82 @@ const News: React.FC = () => {
                             {currentDigest.intro}
                         </p>
 
-                        {/* 섹션 앵커 칩 — 모바일용 (데스크톱은 사이드바 목차) */}
-                        {currentDigest.sections.length > 1 && (
-                            <nav className="flex flex-wrap gap-2 mb-10 lg:hidden" aria-label={t('sectionNav')}>
-                                {currentDigest.sections.map((section, i) => (
+                        {/* 구분 탭 — 선택한 구분만 표시 */}
+                        <div
+                            role="tablist"
+                            aria-label={t('sectionNav')}
+                            className="sticky top-16 z-10 -mx-2 px-2 py-3 bg-brand-dark/90 backdrop-blur-md flex flex-wrap gap-2 mb-8 border-b border-theme-border"
+                        >
+                            {currentDigest.sections.map((s, i) => {
+                                const active = i === activeSection;
+                                const debate = isDebateSection(s);
+                                const insight = isInsightSection(s);
+                                const activeClass = insight
+                                    ? 'bg-eth-purple text-white'
+                                    : debate
+                                    ? 'bg-brand-accent text-brand-dark'
+                                    : 'bg-brand-primary text-white';
+                                return (
                                     <button
-                                        key={section.heading}
-                                        onClick={() => scrollToSection(i)}
-                                        className={`px-4 py-1.5 rounded-full text-xs font-medium transition-colors border ${
-                                            isDebateSection(section)
-                                                ? 'border-brand-accent/40 text-brand-accent hover:bg-brand-accent/10'
-                                                : 'border-theme-border text-theme-text-muted hover:text-theme-text hover:bg-theme-surface'
+                                        key={s.heading}
+                                        role="tab"
+                                        aria-selected={active}
+                                        onClick={() => setActiveSection(i)}
+                                        className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
+                                            active
+                                                ? activeClass
+                                                : 'bg-theme-surface text-theme-text-muted hover:text-theme-text'
                                         }`}
                                     >
-                                        {section.heading}
-                                        <span className="ml-1.5 opacity-60">{section.items.length}</span>
+                                        {s.heading}
+                                        <span className="ml-1.5 text-xs opacity-70">{s.items.length}</span>
                                     </button>
-                                ))}
-                            </nav>
-                        )}
+                                );
+                            })}
+                        </div>
 
-                        {currentDigest.sections.map((section, i) => {
-                            const debate = isDebateSection(section);
-                            const insight = isInsightSection(section);
-                            return (
-                                <section key={section.heading} id={`digest-sec-${i}`} className="mb-10 scroll-mt-28">
-                                    <h3
-                                        className={`text-sm font-bold uppercase tracking-widest mb-4 ${
-                                            debate ? 'text-brand-accent' : 'text-eth-purple'
-                                        }`}
-                                    >
-                                        {section.heading}
-                                    </h3>
-                                    <div className="space-y-4">
-                                        {section.items.map((item) => (
-                                            <div
-                                                key={item.url}
-                                                className={`rounded-2xl p-5 transition-colors border ${
-                                                    insight
-                                                        ? 'bg-eth-purple/[.05] border-eth-purple/20 hover:border-eth-purple/40'
-                                                        : debate
-                                                        ? 'bg-brand-accent/[.04] border-brand-accent/20 hover:border-brand-accent/40'
-                                                        : 'bg-theme-surface border-theme-border hover:border-brand-primary/40'
-                                                }`}
-                                            >
-                                                <h4 className="font-semibold leading-snug mb-2">{item.title}</h4>
-                                                <p className="text-sm text-theme-text-muted leading-relaxed mb-3">
-                                                    {item.summary}
+                        {section && (
+                            <div role="tabpanel" aria-label={section.heading} className="space-y-4">
+                                {section.items.map((item) => {
+                                    const insight = isInsightSection(section);
+                                    const debate = isDebateSection(section);
+                                    return (
+                                        <div
+                                            key={item.url}
+                                            className={`rounded-2xl p-5 transition-colors border ${
+                                                insight
+                                                    ? 'bg-eth-purple/[.05] border-eth-purple/20 hover:border-eth-purple/40'
+                                                    : debate
+                                                    ? 'bg-brand-accent/[.04] border-brand-accent/20 hover:border-brand-accent/40'
+                                                    : 'bg-theme-surface border-theme-border hover:border-brand-primary/40'
+                                            }`}
+                                        >
+                                            <h4 className="font-semibold leading-snug mb-2">{item.title}</h4>
+                                            <p className="text-sm text-theme-text-muted leading-relaxed mb-3">
+                                                {item.summary}
+                                            </p>
+                                            {item.why && (
+                                                <p className="text-sm text-eth-purple/90 leading-relaxed mb-3">
+                                                    {item.why}
                                                 </p>
-                                                {item.why && (
-                                                    <p className="text-sm text-eth-purple/90 leading-relaxed mb-3">
-                                                        {item.why}
-                                                    </p>
-                                                )}
-                                                <div className="flex items-center gap-3 text-xs text-theme-text-muted">
-                                                    <span className="font-medium">{item.source}</span>
-                                                    <span>{item.date}</span>
-                                                    <a
-                                                        href={item.url}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="ml-auto inline-flex items-center gap-1 text-brand-accent hover:underline"
-                                                    >
-                                                        {t('viewOriginal')} <ExternalLink size={12} aria-hidden />
-                                                    </a>
-                                                </div>
+                                            )}
+                                            <div className="flex items-center gap-3 text-xs text-theme-text-muted">
+                                                <span className="font-medium">{item.source}</span>
+                                                <span>{item.date}</span>
+                                                <a
+                                                    href={item.url}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="ml-auto inline-flex items-center gap-1 text-brand-accent hover:underline"
+                                                >
+                                                    {t('viewOriginal')} <ExternalLink size={12} aria-hidden />
+                                                </a>
                                             </div>
-                                        ))}
-                                    </div>
-                                </section>
-                            );
-                        })}
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        )}
                     </article>
                 )}
 
@@ -236,45 +242,16 @@ const News: React.FC = () => {
                 )}
               </div>
 
-              {/* 데스크톱 사이드바: 이번 호 목차 + 지난 다이제스트 */}
-              {!isLoading && currentDigest && (
+              {/* 데스크톱 사이드바: 지난 다이제스트 */}
+              {!isLoading && digests.length > 1 && (
                   <aside className="hidden lg:block">
-                      <div className="sticky top-28 space-y-10">
-                          {currentDigest.sections.length > 1 && (
-                              <nav aria-label={t('sectionNav')}>
-                                  <h3 className="text-xs font-bold uppercase tracking-widest text-theme-text-muted mb-3">
-                                      {t('toc')}
-                                  </h3>
-                                  <ul className="space-y-1">
-                                      {currentDigest.sections.map((section, i) => (
-                                          <li key={section.heading}>
-                                              <button
-                                                  onClick={() => scrollToSection(i)}
-                                                  className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
-                                                      isDebateSection(section)
-                                                          ? 'text-brand-accent hover:bg-brand-accent/10'
-                                                          : 'text-theme-text-muted hover:text-theme-text hover:bg-theme-surface'
-                                                  }`}
-                                              >
-                                                  {section.heading}
-                                                  <span className="ml-2 text-xs opacity-60">{section.items.length}</span>
-                                              </button>
-                                          </li>
-                                      ))}
-                                  </ul>
-                              </nav>
-                          )}
-
-                          {digests.length > 1 && (
-                              <div>
-                                  <h3 className="text-xs font-bold uppercase tracking-widest text-theme-text-muted mb-3">
-                                      {t('pastDigests')}
-                                  </h3>
-                                  <div className="flex flex-col gap-3">
-                                      {digests.slice(0, 6).map((digest) => archiveCard(digest, true))}
-                                  </div>
-                              </div>
-                          )}
+                      <div className="sticky top-28">
+                          <h3 className="text-xs font-bold uppercase tracking-widest text-theme-text-muted mb-3">
+                              {t('pastDigests')}
+                          </h3>
+                          <div className="flex flex-col gap-3">
+                              {digests.slice(0, 6).map((digest) => archiveCard(digest, true))}
+                          </div>
                       </div>
                   </aside>
               )}

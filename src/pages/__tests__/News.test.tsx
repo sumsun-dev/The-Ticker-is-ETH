@@ -71,15 +71,22 @@ describe('News', () => {
     vi.clearAllMocks();
   });
 
-  it('should render the latest digest with debate section highlighted', async () => {
+  it('should show only the active section and switch via tabs', async () => {
     renderWithProviders(<News />);
 
     await waitFor(() => {
       expect(screen.getByRole('heading', { level: 2, name: '설전 감지 첫날의 다이제스트' })).toBeInTheDocument();
     });
-    expect(screen.getByRole('heading', { name: '오늘의 논쟁 · 담론' })).toBeInTheDocument();
-    expect(screen.getByText('ePBS를 둘러싼 공방')).toBeInTheDocument();
+    // 기본: 첫 번째 구분만 표시
+    expect(screen.getByText('EIP-8390 다이제스트 항목')).toBeInTheDocument();
     expect(screen.getByText('라이트 클라이언트 로드맵의 방향 전환 신호입니다.')).toBeInTheDocument();
+    expect(screen.queryByText('ePBS를 둘러싼 공방')).not.toBeInTheDocument();
+
+    // 논쟁 탭 전환
+    fireEvent.click(screen.getByRole('tab', { name: /오늘의 논쟁 · 담론/ }));
+    expect(screen.getByText('ePBS를 둘러싼 공방')).toBeInTheDocument();
+    expect(screen.queryByText('EIP-8390 다이제스트 항목')).not.toBeInTheDocument();
+
     expect(screen.getByRole('img', { name: '설전 감지 첫날의 다이제스트' })).toHaveAttribute(
       'src',
       '/assets/digests/2026-08-25.png',
