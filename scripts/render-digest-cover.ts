@@ -49,61 +49,82 @@ function esc(s: string): string {
 }
 
 function coverHtml(digest: Digest, logoDataUri: string): string {
-  // 커버 메인은 한 줄 헤드라인 (shortTitle, 폰트는 렌더 시 실측 조정)
+  // 커버 메인은 한 줄 헤드라인 (shortTitle, 폰트는 렌더 시 실측 조정).
+  // 쉼표가 있으면 앞은 네이비, 뒤는 그라디언트 포인트 — 없으면 마지막 단어에 포인트.
   const headline = digest.shortTitle ?? digest.title;
-  const dateLabel = new Date(`${digest.date}T00:00:00`).toLocaleDateString('ko-KR', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    weekday: 'long',
-  });
+  const commaIdx = headline.indexOf(',');
+  const splitIdx = commaIdx > 0 ? commaIdx + 1 : headline.lastIndexOf(' ');
+  const plain = splitIdx > 0 ? headline.slice(0, splitIdx) : '';
+  const accent = splitIdx > 0 ? headline.slice(splitIdx) : headline;
+
+  const totalCount = digest.sections.reduce((n, s) => n + s.items.length, 0);
+  const shortLabel = (heading: string) =>
+    heading
+      .replace(/^오늘의 /, '')
+      .replace(/^프로토콜 업데이트$/, '프로토콜')
+      .replace(/^트위터 논쟁.*$/, '논쟁')
+      .replace(/^주요 발언$/, '발언')
+      .replace(/^생태계 · 보안$/, '생태계')
+      .replace(/ · 담론$/, '');
+  const summary = digest.sections
+    .slice(0, 5)
+    .map((s) => `${shortLabel(s.heading)} ${s.items.length}`)
+    .join(' · ');
+
+  const isoDate = digest.date.replace(/-/g, '.');
+  const weekday = new Date(`${digest.date}T00:00:00`).toLocaleDateString('en-US', { weekday: 'short' });
+
   return `<!doctype html><html><head><meta charset="utf-8"><style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       width: 1200px; height: 630px; overflow: hidden; position: relative;
-      background: #050508;
+      background: #F7F8FC;
       font-family: 'Noto Sans CJK KR', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Inter', sans-serif;
-      color: #fff;
+      color: #16203B;
     }
-    .glow { position: absolute; width: 700px; height: 700px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(45,95,191,.28) 0%, transparent 65%);
-      top: -180px; right: -120px; }
-    .glow2 { position: absolute; width: 500px; height: 500px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(160,134,252,.14) 0%, transparent 65%);
-      bottom: -200px; left: -100px; }
-    .grid { position: absolute; inset: 0; opacity: .5;
-      background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
-      background-size: 48px 48px; }
-    /* 텍스트 존은 오른쪽 로고 존(360px)을 침범하지 않는다 */
-    .wrap { position: relative; height: 100%; padding: 64px 360px 64px 72px; display: flex; flex-direction: column; }
-    .eyebrow { font-size: 20px; font-weight: 700; letter-spacing: .22em; color: #629FFF; }
-    .date { margin-top: 14px; font-size: 24px; color: rgba(255,255,255,.55); font-weight: 400; }
-    .mid { margin-top: auto; margin-bottom: auto; }
-    /* 한 줄 유지 — 렌더 시 실측으로 폰트 최대화 (로고 존 침범 없음) */
-    .title { white-space: nowrap; font-size: 78px;
-      font-weight: 800; line-height: 1.2; letter-spacing: -.015em;
-      background: linear-gradient(100deg, #fff 30%, #629FFF 100%);
+    .tint1 { position: absolute; width: 900px; height: 900px; border-radius: 50%; top: -500px; left: -200px;
+      background: radial-gradient(circle, rgba(120,150,230,.14) 0%, transparent 65%); }
+    .tint2 { position: absolute; width: 700px; height: 700px; border-radius: 50%; bottom: -420px; left: -180px;
+      background: radial-gradient(circle, rgba(230,120,100,.13) 0%, transparent 65%); }
+    .tint3 { position: absolute; width: 800px; height: 800px; border-radius: 50%; bottom: -450px; right: -200px;
+      background: radial-gradient(circle, rgba(100,130,230,.14) 0%, transparent 65%); }
+    .mono { font-family: 'IBM Plex Mono', 'SF Mono', ui-monospace, monospace; }
+    .wrap { position: relative; height: 100%; padding: 52px 64px 0; display: flex; flex-direction: column; }
+    .head { display: flex; align-items: center; justify-content: space-between; }
+    .brand { display: flex; align-items: center; gap: 16px; }
+    .brand img { width: 46px; height: 46px; }
+    .brand span { font-size: 26px; font-weight: 800; letter-spacing: -.01em; }
+    .meta { font-size: 19px; letter-spacing: .08em; color: #5A6785; }
+    /* 텍스트 존은 오른쪽 로고 존을 침범하지 않는다 */
+    .body { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 26px; padding-right: 340px; }
+    .label { font-size: 19px; font-weight: 700; letter-spacing: .26em; color: #2D5FBF; }
+    .title { white-space: nowrap; font-size: 76px; font-weight: 900; line-height: 1.18; letter-spacing: -.02em; color: #16203B; }
+    .title .accent { background: linear-gradient(95deg, #D65A4E 0%, #8B5CF6 55%, #2D5FBF 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .foot { display: flex; align-items: center; gap: 18px; font-size: 22px; color: rgba(255,255,255,.6); }
-    .foot b { color: #A086FC; font-weight: 700; }
-    .dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.25); }
-    .logo { position: absolute; right: 56px; top: 50%; transform: translateY(-50%); width: 260px; height: 260px;
-      filter: drop-shadow(0 12px 40px rgba(0,0,0,.5)); }
+    .sub { font-size: 22px; color: #4A5570; white-space: nowrap; }
+    .sub b { color: #16203B; }
+    .logo { position: absolute; right: 60px; top: 47%; transform: translateY(-50%); width: 265px;
+      filter: drop-shadow(0 18px 36px rgba(22,32,59,.22)); }
+    .foot { position: relative; margin-top: auto; border-top: 1px solid #DCE1EC; padding: 20px 0 26px;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 17px; letter-spacing: .18em; color: #7A8499; }
+    .foot b { color: #16203B; }
   </style></head><body>
-    <div class="glow"></div><div class="glow2"></div><div class="grid"></div>
+    <div class="tint1"></div><div class="tint2"></div><div class="tint3"></div>
     <img class="logo" src="${logoDataUri}" alt="" />
     <div class="wrap">
-      <div>
-        <div class="eyebrow">ECK · DAILY ETHEREUM DIGEST</div>
-        <div class="date">${esc(dateLabel)}</div>
+      <div class="head">
+        <div class="brand"><img src="${logoDataUri}" alt="" /><span>ECK — Daily Ethereum Digest</span></div>
+        <div class="meta mono">${esc(isoDate)} (${esc(weekday)})</div>
       </div>
-      <div class="mid">
-        <div class="title">${esc(headline)}</div>
+      <div class="body">
+        <div class="label mono">TODAY IN ETHEREUM</div>
+        <div class="title">${esc(plain)}<span class="accent">${esc(accent)}</span></div>
+        <div class="sub">오늘 소식 <b>${totalCount}건</b> — ${esc(summary)}</div>
       </div>
-      <div class="foot">
-        <span>전체 보기</span><span class="dot"></span>
-        <span>ethcollective.xyz/news</span>
+      <div class="foot mono">
+        <span>ETHEREUM COLLECTIVE KOREA</span>
+        <span><b>ethcollective.xyz/news</b></span>
       </div>
     </div>
   </body></html>`;
