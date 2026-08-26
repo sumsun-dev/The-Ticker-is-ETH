@@ -48,8 +48,22 @@ function esc(s: string): string {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
+/** 커버 칩 라벨 — 섹션 이름 압축 */
+function chipLabel(heading: string): string {
+  return heading
+    .replace(/^오늘의 /, '')
+    .replace(/ · 담론$/, '')
+    .replace(/ 브리핑$/, '')
+    .replace(/^그 밖의 소식$/, '기타');
+}
+
 function coverHtml(digest: Digest, logoDataUri: string): string {
-  const itemCount = digest.sections.reduce((n, s) => n + s.items.length, 0);
+  const headline = digest.shortTitle ?? digest.title;
+  // 한 줄 유지: 글자 수에 맞춰 폰트 크기 자동 조정 (텍스트 존 약 720px)
+  const fontSize = Math.max(38, Math.min(64, Math.floor(760 / headline.length)));
+  const chips = digest.sections
+    .map((s) => `<span class="chip">${esc(chipLabel(s.heading))}<b>${s.items.length}</b></span>`)
+    .join('');
   const dateLabel = new Date(`${digest.date}T00:00:00`).toLocaleDateString('ko-KR', {
     year: 'numeric',
     month: 'long',
@@ -78,11 +92,16 @@ function coverHtml(digest: Digest, logoDataUri: string): string {
     .wrap { position: relative; height: 100%; padding: 64px 360px 64px 72px; display: flex; flex-direction: column; }
     .eyebrow { font-size: 20px; font-weight: 700; letter-spacing: .22em; color: #629FFF; }
     .date { margin-top: 14px; font-size: 24px; color: rgba(255,255,255,.55); font-weight: 400; }
-    .title { margin-top: auto; margin-bottom: auto; max-width: 740px;
-      font-size: 60px; font-weight: 800; line-height: 1.22; letter-spacing: -.015em; word-break: keep-all;
+    .mid { margin-top: auto; margin-bottom: auto; display: flex; flex-direction: column; gap: 40px; }
+    .title { white-space: nowrap;
+      font-size: ${fontSize}px; font-weight: 800; line-height: 1.2; letter-spacing: -.015em;
       background: linear-gradient(100deg, #fff 30%, #629FFF 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .title.long { font-size: 48px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 12px; }
+    .chip { font-size: 21px; padding: 9px 20px; border-radius: 999px;
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.13);
+      color: rgba(255,255,255,.75); }
+    .chip b { color: #629FFF; margin-left: 8px; font-weight: 700; }
     .foot { display: flex; align-items: center; gap: 18px; font-size: 22px; color: rgba(255,255,255,.6); }
     .foot b { color: #A086FC; font-weight: 700; }
     .dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.25); }
@@ -96,9 +115,12 @@ function coverHtml(digest: Digest, logoDataUri: string): string {
         <div class="eyebrow">ECK · DAILY ETHEREUM DIGEST</div>
         <div class="date">${esc(dateLabel)}</div>
       </div>
-      <div class="title ${digest.title.length > 28 ? 'long' : ''}">${esc(digest.title)}</div>
+      <div class="mid">
+        <div class="title">${esc(headline)}</div>
+        <div class="chips">${chips}</div>
+      </div>
       <div class="foot">
-        <span><b>${itemCount}</b>개 소식</span><span class="dot"></span>
+        <span>전체 보기</span><span class="dot"></span>
         <span>ethcollective.xyz/news</span>
       </div>
     </div>
