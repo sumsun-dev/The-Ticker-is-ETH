@@ -5,6 +5,8 @@ set -euo pipefail
 
 REPO=/opt/ethcollective/repo
 WEBROOT=/var/www/ethcollective
+# 4GB 서버에서 vite 빌드 OOM 방지
+export NODE_OPTIONS="--max-old-space-size=3072"
 
 cd "$REPO"
 git fetch origin main --quiet
