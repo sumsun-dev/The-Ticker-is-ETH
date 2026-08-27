@@ -50,26 +50,8 @@ function esc(s: string): string {
 }
 
 function coverHtml(digest: Digest, logoDataUri: string, fontDataUri: string): string {
-  // 짧은 헤드라인을 레퍼런스처럼 2줄로 — 1줄째 네이비, 2줄째 그라디언트.
-  // 쉼표가 있으면 쉼표에서 분할(쉼표 제거), 없으면 중앙에 가까운 공백에서 분할.
+  // 헤드라인은 한 줄 그대로 — 폭에 맞춰 fit 루프가 크기를 조정한다.
   const headline = (digest.shortTitle ?? digest.title).trim();
-  let line1 = headline;
-  let line2 = '';
-  const commaIdx = headline.indexOf(',');
-  if (commaIdx > 0) {
-    line1 = headline.slice(0, commaIdx).trim();
-    line2 = headline.slice(commaIdx + 1).trim();
-  } else {
-    const mid = Math.floor(headline.length / 2);
-    let best = -1;
-    for (let i = 0; i < headline.length; i++) {
-      if (headline[i] === ' ' && (best === -1 || Math.abs(i - mid) < Math.abs(best - mid))) best = i;
-    }
-    if (best > 0) {
-      line1 = headline.slice(0, best).trim();
-      line2 = headline.slice(best + 1).trim();
-    }
-  }
 
   return `<!doctype html><html><head><meta charset="utf-8"><style>
     @font-face {
@@ -134,8 +116,7 @@ function coverHtml(digest: Digest, logoDataUri: string, fontDataUri: string): st
       </div>
       <div class="body">
         <div class="title">
-          <div class="tline">${esc(line1)}</div>
-          ${line2 ? `<div class="tline accent">${esc(line2)}</div>` : ''}
+          <div class="tline accent">${esc(headline)}</div>
         </div>
         ${digest.subTitle ? `<div class="sub">${esc(digest.subTitle)}</div>` : ''}
       </div>
