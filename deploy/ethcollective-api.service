@@ -1,0 +1,15 @@
+# /etc/systemd/system/ethcollective-api.service
+[Unit]
+Description=ethcollective.xyz admin API
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/node /opt/ethcollective/api.mjs
+EnvironmentFile=/etc/ethcollective/api.env
+Environment=PORT=3001
+User=www-data
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
