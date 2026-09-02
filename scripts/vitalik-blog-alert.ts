@@ -145,7 +145,8 @@ async function main(): Promise<void> {
     return;
   }
 
-  const seenSet = seen ?? new Set<string>();
+  // 첫 실행이 --test여도 기존 글 전체를 기록해 이후 크론의 과거 글 폭탄을 방지
+  const seenSet = seen ?? new Set<string>(posts.map((p) => p.url));
   const targets = isTest
     ? [posts[0]]
     : posts.filter((p) => !seenSet.has(p.url)).slice(0, MAX_POSTS_PER_RUN);
