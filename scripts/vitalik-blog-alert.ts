@@ -50,6 +50,11 @@ const ANALYSIS_PROMPT = `당신은 ECK(Ethereum Collective Korea)의 시니어 �
 === 본문 ===
 {CONTENT}`;
 
+/** 피드가 죽은 vitalik.ca 도메인으로 링크를 내보내므로 eth.limo 미러로 교체 */
+function normalizeUrl(url: string): string {
+  return url.replace('://vitalik.ca/', '://vitalik.eth.limo/');
+}
+
 function stripHtml(html: string): string {
   return html
     .replace(/<(script|style)[\s\S]*?<\/\1>/gi, '')
@@ -135,6 +140,7 @@ async function main(): Promise<void> {
   const res = await fetch(FEED_URL, { headers: { 'user-agent': 'eck-vitalik-alert/1.0' } });
   if (!res.ok) throw new Error(`feed HTTP ${res.status}`);
   const posts = parseFeed(await res.text(), 'vitalik')
+    .map((p) => ({ ...p, url: normalizeUrl(p.url) }))
     .sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1));
   if (posts.length === 0) throw new Error('feed returned no entries');
 
