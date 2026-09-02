@@ -23,7 +23,7 @@ const FEED_URL = 'https://vitalik.eth.limo/feed.xml';
 const STATE_FILE = process.env.VITALIK_ALERT_STATE ?? path.join(os.homedir(), '.eck-vitalik-seen.json');
 const MAX_POSTS_PER_RUN = 2;
 const MAX_CONTENT_CHARS = 60_000;
-const CHUNK_LIMIT = 3_500; // 텔레그램 4096자 제한 아래 여유
+const CHUNK_LIMIT = 4_000; // 텔레그램 4096자 제한 아래 여유. 분량 준수 시 메시지 1개로 발송됨
 
 const ANALYSIS_PROMPT = `당신은 ECK(Ethereum Collective Korea)의 시니어 리서치 에디터입니다.
 비탈릭 부테린이 블로그에 새 글을 올렸습니다. 이더리움을 진지하게 따라가는 한국어 독자
@@ -51,7 +51,8 @@ const ANALYSIS_PROMPT = `당신은 ECK(Ethereum Collective Korea)의 시니어 �
 - 대시(—) 구두점은 쓰지 않습니다. 한국어에서 잘 쓰지 않는 표기이므로 쉼표나 완결된
   문장으로 자연스럽게 풀어 씁니다. 이모지도 쓰지 않습니다.
 - 텔레그램 메시지로 발송되므로 마크다운 문법 없이 플레인 텍스트로만 씁니다.
-- 전체 3000~5000자.
+- 분량: 전체 2800~3500자. 텔레그램 메시지 1개에 담아야 하므로 3500자를 절대 넘기지
+  않습니다. 분량이 부족하면 본문 해설을 압축하되, 섹션 구성은 유지합니다.
 
 응답은 해설 본문만 출력하세요. 인사말·메타 설명 없이.
 
