@@ -1,20 +1,15 @@
 /**
- * 비탈릭 블로그 새 글 감지 → 헤드리스 claude 상세 분석 → 오너 DM 검수 → 승인 시 채널 게시.
+ * 비탈릭 블로그 새 글 감지 → 헤드리스 claude 본문 해설 생성 → 오너 DM 발송.
+ * 채널 게시는 오너가 DM 내용을 보고 수동으로 한다.
  *
- * VPS 크론 5분마다 실행. 매 실행에서 두 가지를 처리한다:
- *   1) DM 버튼 응답 폴링(getUpdates): 승인이면 채널 게시, 거절이면 폐기
- *   2) 피드에서 새 글 감지: 분석 생성 후 오너 DM으로 미리보기 + 승인/거절 버튼 발송
- * 새 글도 버튼 응답도 없으면 HTTP 두 번으로 끝난다(claude 호출 없음).
- *
+ * VPS 크론 5분마다 실행. 새 글이 없으면 RSS 확인 한 번으로 끝난다(claude 호출 없음).
  * 상태 파일이 없는 첫 실행은 현재 글 전체를 발송 없이 기록만 한다(과거 글 폭탄 방지).
  *
- * Env: TELEGRAM_BOT_TOKEN (필수), VITALIK_ALERT_CHAT (필수 — 오너 DM chat id),
- *      TELEGRAM_CHANNEL (기본 thetickeriseth — 승인 시 게시 대상)
+ * Env: TELEGRAM_BOT_TOKEN (필수), VITALIK_ALERT_CHAT (필수, 오너 DM chat id)
  * 실행: npx tsx scripts/vitalik-blog-alert.ts [--test]
- *   --test: 상태와 무관하게 최신 글 1건을 분석해 DM 검수 흐름을 태운다
+ *   --test: 상태와 무관하게 최신 글 1건을 분석해 DM으로 발송
  */
 import { execFileSync } from 'node:child_process';
-import { createHash } from 'node:crypto';
 import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
@@ -58,27 +53,13 @@ const ANALYSIS_PROMPT = `당신은 ECK(Ethereum Collective Korea)의 시니어 �
 - 텔레그램 메시지로 발송되므로 마크다운 문법 없이 플레인 텍스트로만 씁니다.
 - 전체 3000~5000자.
 
-응답은 분석 본문만 출력하세요. 인사말·메타 설명 없이.
+응답은 해설 본문만 출력하세요. 인사말·메타 설명 없이.
 
 === 글 제목 ===
 {TITLE}
 
 === 본문 ===
 {CONTENT}`;
-
-interface PendingItem {
-  title: string;
-  url: string;
-  analysis: string;
-}
-
-interface State {
-  seen: string[];
-  /** getUpdates 오프셋 — 처리한 업데이트 재수신 방지 */
-  offset: number;
-  /** 승인 대기 중인 분석 (key = url 해시, 버튼 callback_data로 사용) */
-  pending: Record<string, PendingItem>;
-}
 
 /** 피드가 죽은 vitalik.ca 도메인으로 링크를 내보내므로 eth.limo 미러로 교체 */
 function normalizeUrl(url: string): string {
@@ -100,33 +81,18 @@ function stripHtml(html: string): string {
     .trim();
 }
 
-function keyOf(url: string): string {
-  return createHash('sha1').update(url).digest('hex').slice(0, 12);
-}
-
-function loadState(): State | null {
+/** 구버전 상태(url 배열, 또는 승인 흐름 시절의 {seen,...} 객체) 모두 수용 */
+function loadSeen(): Set<string> | null {
   try {
     const raw = JSON.parse(fs.readFileSync(STATE_FILE, 'utf-8'));
-    if (Array.isArray(raw)) return { seen: raw, offset: 0, pending: {} }; // 구버전 마이그레이션
-    return raw as State;
+    return new Set((Array.isArray(raw) ? raw : raw.seen) as string[]);
   } catch {
     return null; // 첫 실행
   }
 }
 
-function saveState(state: State): void {
-  fs.writeFileSync(STATE_FILE, JSON.stringify(state, null, 2), 'utf-8');
-}
-
-async function tg(token: string, method: string, payload: Record<string, unknown>): Promise<any> {
-  const res = await fetch(`https://api.telegram.org/bot${token}/${method}`, {
-    method: 'POST',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify(payload),
-  });
-  const body = (await res.json()) as { ok: boolean; result?: any; description?: string };
-  if (!body.ok) throw new Error(`${method} failed: ${body.description}`);
-  return body.result;
+function saveSeen(seen: Set<string>): void {
+  fs.writeFileSync(STATE_FILE, JSON.stringify([...seen], null, 2), 'utf-8');
 }
 
 async function fetchPostText(url: string): Promise<string> {
@@ -164,66 +130,26 @@ function chunk(text: string): string[] {
   return chunks;
 }
 
-async function sendChunks(token: string, chatId: string, text: string): Promise<void> {
-  const parts = chunk(text);
-  for (let i = 0; i < parts.length; i++) {
-    await tg(token, 'sendMessage', {
+async function sendDm(token: string, chatId: string, text: string, preview: boolean): Promise<void> {
+  const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({
       chat_id: chatId,
-      text: parts[i],
-      disable_web_page_preview: i !== 0,
-    });
-  }
-}
-
-function channelChatId(): string {
-  const channel = process.env.TELEGRAM_CHANNEL ?? 'thetickeriseth';
-  return /^-?\d+$/.test(channel) ? channel : `@${channel}`;
-}
-
-/** DM 버튼 응답 처리: 승인이면 채널 게시, 거절이면 폐기 */
-async function pollCallbacks(token: string, ownerChat: string, state: State): Promise<void> {
-  const updates: any[] = await tg(token, 'getUpdates', {
-    offset: state.offset,
-    timeout: 0,
-    allowed_updates: ['callback_query'],
+      text,
+      disable_web_page_preview: !preview,
+    }),
   });
-
-  for (const update of updates) {
-    state.offset = update.update_id + 1;
-    const cb = update.callback_query;
-    if (!cb?.data || String(cb.message?.chat?.id) !== ownerChat) continue;
-
-    const [action, key] = String(cb.data).split(':');
-    const item = state.pending[key];
-    if (!item) {
-      await tg(token, 'answerCallbackQuery', { callback_query_id: cb.id, text: '만료된 항목입니다' });
-      continue;
-    }
-
-    if (action === 'pub') {
-      await sendChunks(token, channelChatId(), `비탈릭 새 글 분석\n${item.title}\n${item.url}\n\n${item.analysis}`);
-      await tg(token, 'answerCallbackQuery', { callback_query_id: cb.id, text: '채널에 게시했습니다' });
-      await tg(token, 'editMessageText', {
-        chat_id: ownerChat,
-        message_id: cb.message.message_id,
-        text: `승인 완료, 채널에 게시했습니다.\n${item.title}`,
-      });
-      console.log(`Published "${item.title}" to ${channelChatId()}.`);
-    } else {
-      await tg(token, 'answerCallbackQuery', { callback_query_id: cb.id, text: '게시하지 않습니다' });
-      await tg(token, 'editMessageText', {
-        chat_id: ownerChat,
-        message_id: cb.message.message_id,
-        text: `거절 처리했습니다. 게시하지 않습니다.\n${item.title}`,
-      });
-      console.log(`Rejected "${item.title}".`);
-    }
-    delete state.pending[key];
-  }
+  const body = (await res.json()) as { ok: boolean; description?: string };
+  if (!body.ok) throw new Error(`sendMessage failed: ${body.description}`);
 }
 
-/** 새 글 감지: 분석 생성 후 DM 미리보기 + 승인/거절 버튼 발송 */
-async function detectAndPreview(token: string, ownerChat: string, state: State, isTest: boolean): Promise<void> {
+async function main(): Promise<void> {
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.VITALIK_ALERT_CHAT;
+  if (!token || !chatId) throw new Error('TELEGRAM_BOT_TOKEN and VITALIK_ALERT_CHAT are required');
+  const isTest = process.argv.includes('--test');
+
   const res = await fetch(FEED_URL, { headers: { 'user-agent': 'eck-vitalik-alert/1.0' } });
   if (!res.ok) throw new Error(`feed HTTP ${res.status}`);
   const posts = parseFeed(await res.text(), 'vitalik')
@@ -231,7 +157,15 @@ async function detectAndPreview(token: string, ownerChat: string, state: State, 
     .sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1));
   if (posts.length === 0) throw new Error('feed returned no entries');
 
-  const seenSet = new Set(state.seen);
+  const seen = loadSeen();
+  if (seen === null && !isTest) {
+    saveSeen(new Set(posts.map((p) => p.url)));
+    console.log(`First run: recorded ${posts.length} existing posts, nothing sent.`);
+    return;
+  }
+
+  // 첫 실행이 --test여도 기존 글 전체를 기록해 이후 크론의 과거 글 폭탄을 방지
+  const seenSet = seen ?? new Set<string>(posts.map((p) => p.url));
   const targets = isTest
     ? [posts[0]]
     : posts.filter((p) => !seenSet.has(p.url)).slice(0, MAX_POSTS_PER_RUN);
@@ -244,53 +178,15 @@ async function detectAndPreview(token: string, ownerChat: string, state: State, 
     console.log(`Analyzing "${post.title}" (${post.url})...`);
     const content = await fetchPostText(post.url);
     const analysis = analyze(post, content);
-    const key = keyOf(post.url);
-
-    await sendChunks(
-      token,
-      ownerChat,
-      `비탈릭 새 글 분석 검수${isTest ? ' (테스트)' : ''}\n${post.title}\n${post.url}\n\n${analysis}`,
-    );
-    await tg(token, 'sendMessage', {
-      chat_id: ownerChat,
-      text: '위 분석을 채널에 게시할까요?',
-      reply_markup: {
-        inline_keyboard: [[
-          { text: '승인', callback_data: `pub:${key}` },
-          { text: '거절', callback_data: `rej:${key}` },
-        ]],
-      },
-    });
-
-    state.pending[key] = { title: post.title, url: post.url, analysis };
+    const header = `비탈릭 새 글 해설${isTest ? ' (테스트)' : ''}\n${post.title}\n${post.url}`;
+    const parts = chunk(`${header}\n\n${analysis}`);
+    for (let i = 0; i < parts.length; i++) {
+      await sendDm(token, chatId, parts[i], i === 0);
+    }
     seenSet.add(post.url);
-    state.seen = [...seenSet];
-    saveState(state);
-    console.log(`Preview sent to ${ownerChat}, awaiting approval (key ${key}).`);
+    saveSeen(seenSet);
+    console.log(`Sent ${parts.length} message(s) to ${chatId}.`);
   }
-}
-
-async function main(): Promise<void> {
-  const token = process.env.TELEGRAM_BOT_TOKEN;
-  const ownerChat = process.env.VITALIK_ALERT_CHAT;
-  if (!token || !ownerChat) throw new Error('TELEGRAM_BOT_TOKEN and VITALIK_ALERT_CHAT are required');
-  const isTest = process.argv.includes('--test');
-
-  let state = loadState();
-  if (state === null) {
-    // 첫 실행: 기존 글 전체를 기록만 하고 발송하지 않는다 (--test는 이어서 검수 흐름 실행)
-    const res = await fetch(FEED_URL, { headers: { 'user-agent': 'eck-vitalik-alert/1.0' } });
-    if (!res.ok) throw new Error(`feed HTTP ${res.status}`);
-    const posts = parseFeed(await res.text(), 'vitalik').map((p) => normalizeUrl(p.url));
-    state = { seen: posts, offset: 0, pending: {} };
-    saveState(state);
-    console.log(`First run: recorded ${posts.length} existing posts.`);
-    if (!isTest) return;
-  }
-
-  await pollCallbacks(token, ownerChat, state);
-  saveState(state);
-  await detectAndPreview(token, ownerChat, state, isTest);
 }
 
 main().catch((error) => {
