@@ -39,8 +39,13 @@ const ANALYSIS_PROMPT = `당신은 ECK(Ethereum Collective Korea)의 시니어 �
 원칙:
 - 원문 문장을 복사하지 않고 재작성합니다. 수치·용어는 정확하게, 핵심 용어는 원어 병기.
 - 사실과 비탈릭의 주장을 구분하고, 과장·투자 조언 금지.
+- 설명 위주로 씁니다: 개념·용어가 등장할 때마다 독자가 따로 검색하지 않아도 되도록
+  한두 문장으로 풀어서 설명하고, 압축된 나열보다 차근차근 서술하는 문장을 우선합니다.
+  "왜 이 문제가 어려운지", "이 제안이 기존 방식과 무엇이 다른지"를 친절하게 짚어주세요.
+- 대시(—) 구두점은 쓰지 않습니다. 한국어에서 잘 쓰지 않는 표기이므로 쉼표나 완결된
+  문장으로 자연스럽게 풀어 씁니다. 이모지도 쓰지 않습니다.
 - 텔레그램 메시지로 발송되므로 마크다운 문법 없이 플레인 텍스트로만 씁니다.
-- 전체 2500~4000자.
+- 전체 3000~5000자.
 
 응답은 분석 본문만 출력하세요. 인사말·메타 설명 없이.
 
@@ -165,7 +170,7 @@ async function main(): Promise<void> {
     console.log(`Analyzing "${post.title}" (${post.url})...`);
     const content = await fetchPostText(post.url);
     const analysis = analyze(post, content);
-    const header = `🟣 비탈릭 새 글 분석${isTest ? ' (테스트)' : ''}\n${post.title}\n${post.url}`;
+    const header = `비탈릭 새 글 분석${isTest ? ' (테스트)' : ''}\n${post.title}\n${post.url}`;
     const parts = chunk(`${header}\n\n${analysis}`);
     for (let i = 0; i < parts.length; i++) {
       await sendDm(token, chatId, parts[i], i === 0);
