@@ -64,6 +64,7 @@
     { "screenname": "ECHInstitute", "name": "ECH Institute", "why": "생태계 — 전 Ethereum Cat Herders, 프로토콜 거버넌스·EIP 코디네이션 비영리" },
     { "screenname": "aerugoettinea", "name": "Bastian Aue (Aerugo)", "why": "공식 — EF 임시 공동 ED, 재단 전환 실행 총괄" },
     { "screenname": "gluk64", "name": "Alex Gluchowski", "why": "L2 — Matter Labs(zkSync) CEO, ZK 롤업 동향" },
-    { "screenname": "0xfredrik", "name": "Fredrik Svantes", "why": "보안 — EF 프로토콜 시큐리티 리서치, 버그 바운티 공지" }
+    { "screenname": "0xfredrik", "name": "Fredrik Svantes", "why": "보안 — EF 프로토콜 시큐리티 리서치, 버그 바운티 공지" },
+    { "screenname": "jchaskin22", "name": "Jason Chaskin", "why": "생태계 — EF 리서처, TEE·생태계 팀 연결과 앰플리파이" }
   ]
 }
