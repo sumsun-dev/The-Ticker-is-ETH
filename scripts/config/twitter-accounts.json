@@ -53,6 +53,16 @@
     { "screenname": "donnoh_eth", "name": "donnoh", "why": "L2 — 인터롭·브리지 리서치(L2Beat) (멘션 2회)" },
     { "screenname": "_julianma", "name": "Julian Ma", "why": "프로토콜 — EF RIG 리서처, FCR·인터롭 (멘션 2회)" },
     { "screenname": "mikeneuder", "name": "Mike Neuder", "why": "프로토콜 — 전 EF 리서처(현 Etherealize), 스테이킹·MEV (멘션 1회, 전문성 근거 추가)" },
-    { "screenname": "dannyryan", "name": "Danny Ryan", "why": "프로토콜 — 전 EF 리서치 리드, Etherealize 공동창업 (멘션 0회, 전문성 근거 추가)" }
+    { "screenname": "dannyryan", "name": "Danny Ryan", "why": "프로토콜 — 전 EF 리서치 리드, Etherealize 공동창업 (멘션 0회, 전문성 근거 추가)" },
+    { "screenname": "nixorokish", "name": "Nixo", "why": "생태계 — EF 프로토콜 서포트, 전 EthStaker, 스테이킹·커뮤니티" },
+    { "screenname": "pedrouid", "name": "Pedro Gomes", "why": "생태계 — WalletConnect(Reown) 창업자, 지갑 UX·인프라" },
+    { "screenname": "ethresearchbot", "name": "Ethereum Research Bot", "why": "프로토콜 — ethresear.ch 새 리서치 포스트 자동 알림" },
+    { "screenname": "decentrek", "name": "Derek Chiang", "why": "해설 — Ethlabs(전 ZeroDev), AA·트랜잭션 설계 아티클, 코어 인물들이 인용" },
+    { "screenname": "Etherealize_io", "name": "Etherealize (공식)", "why": "생태계 — ETH 기관 채택 조직(Vivek Raman·Danny Ryan), 월가 대상 이더리움 알리기" },
+    { "screenname": "VivekVentures", "name": "Vivek Raman", "why": "생태계 — Etherealize 창업자·CEO, ETH 기관 내러티브" },
+    { "screenname": "gphummer", "name": "Grant Hummer", "why": "생태계 — Etherealize 공동창업자" },
+    { "screenname": "ECHInstitute", "name": "ECH Institute", "why": "생태계 — 전 Ethereum Cat Herders, 프로토콜 거버넌스·EIP 코디네이션 비영리" },
+    { "screenname": "aerugoettinea", "name": "Bastian Aue (Aerugo)", "why": "공식 — EF 임시 공동 ED, 재단 전환 실행 총괄" },
+    { "screenname": "gluk64", "name": "Alex Gluchowski", "why": "L2 — Matter Labs(zkSync) CEO, ZK 롤업 동향" }
   ]
 }
