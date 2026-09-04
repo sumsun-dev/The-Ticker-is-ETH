@@ -2,7 +2,9 @@ name: Sync Telegram Data
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Daily at UTC 00:00 (KST 09:00)
+    # 22:00 UTC (KST 07:00): 00:00 정각은 GH 스케줄 혼잡으로 3~4시간 지연돼
+    # VPS 다이제스트(00:40 UTC)가 하루 묵은 인박스를 쓰게 됨. 지연을 감안해 앞당김.
+    - cron: '0 22 * * *'
   workflow_dispatch: # Manual trigger
 
 permissions:
