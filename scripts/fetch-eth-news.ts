@@ -2,7 +2,6 @@
  * 이더리움 뉴스 수집기 — 소스 보드에서 승인된 소스만 수집한다.
  *   RSS      : EF 블로그, ethresear.ch, Ethereum Magicians, Vitalik, r/ethereum
  *   Twitter  : RapidAPI (scripts/config/twitter-accounts.json 워치리스트)
- *   Telegram : 코인니스 채널 (기존 유저 세션 재활용)
  *
  * 출력: src/data/eth-news-inbox.json — 표시/게시 로직과 분리된 원본 인박스.
  * 소스 하나가 실패해도 나머지는 계속 수집한다 (warn 후 진행).
@@ -10,7 +9,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as dotenv from 'dotenv';
-import { parseFeed, tweetsToItems, telegramToItems, mergeInbox, detectDebates, type NewsItem } from './lib/eth-news';
+import { parseFeed, tweetsToItems, mergeInbox, detectDebates, type NewsItem } from './lib/eth-news';
 
 dotenv.config({ path: path.resolve(process.cwd(), '.env.local') });
 dotenv.config({ path: path.resolve(process.cwd(), '.env') });
@@ -99,44 +98,12 @@ async function collectTwitter(): Promise<NewsItem[]> {
   return [...timelineItems, ...debateReplies];
 }
 
-async function collectCoinness(): Promise<NewsItem[]> {
-  const apiId = Number(process.env.TELEGRAM_API_ID);
-  const apiHash = process.env.TELEGRAM_API_HASH ?? '';
-  const session = process.env.TELEGRAM_SESSION ?? '';
-  if (!apiId || !apiHash || !session) {
-    console.log('  coinness: TELEGRAM_* env not set — skipped');
-    return [];
-  }
-  const channel = process.env.COINNESS_CHANNEL ?? 'coinnesskr';
-  try {
-    const { TelegramClient } = await import('telegram');
-    const { StringSession } = await import('telegram/sessions');
-    const client = new TelegramClient(new StringSession(session), apiId, apiHash, { connectionRetries: 3 });
-    await client.connect();
-    const messages: Array<{ id: number; date: string; text: string }> = [];
-    for await (const msg of client.iterMessages(channel, { limit: 80 })) {
-      messages.push({
-        id: msg.id,
-        date: new Date((msg.date ?? 0) * 1000).toISOString(),
-        text: msg.message ?? '',
-      });
-    }
-    await client.disconnect();
-    const items = telegramToItems(messages, channel);
-    console.log(`  tg:${channel}: ${items.length} messages`);
-    return items;
-  } catch (error) {
-    console.warn(`[WARN] tg:${channel} failed:`, error instanceof Error ? error.message : error);
-    return [];
-  }
-}
-
 async function main() {
   console.log('Collecting Ethereum news sources...');
-  const [rss, tweets, coinness] = [await collectRss(), await collectTwitter(), await collectCoinness()];
+  const [rss, tweets] = [await collectRss(), await collectTwitter()];
   // 뉴스 인박스이므로 피드가 쏟아내는 과거 아카이브는 버린다 (최근 30일만)
   const cutoff = Date.now() - 30 * 86_400_000;
-  const incoming = [...rss, ...tweets, ...coinness].filter(
+  const incoming = [...rss, ...tweets].filter(
     (item) => new Date(item.publishedAt).getTime() >= cutoff,
   );
 
