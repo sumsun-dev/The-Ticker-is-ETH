@@ -10,6 +10,7 @@ import koContents from './ko/contents.json';
 import koEvents from './ko/events.json';
 import koEcosystem from './ko/ecosystem.json';
 import koNews from './ko/news.json';
+import koDebates from './ko/debates.json';
 
 import enCommon from './en/common.json';
 import enHome from './en/home.json';
@@ -19,6 +20,7 @@ import enContents from './en/contents.json';
 import enEvents from './en/events.json';
 import enEcosystem from './en/ecosystem.json';
 import enNews from './en/news.json';
+import enDebates from './en/debates.json';
 
 i18n
   .use(LanguageDetector)
@@ -34,6 +36,7 @@ i18n
         events: koEvents,
         ecosystem: koEcosystem,
         news: koNews,
+        debates: koDebates,
       },
       en: {
         common: enCommon,
@@ -44,11 +47,12 @@ i18n
         events: enEvents,
         ecosystem: enEcosystem,
         news: enNews,
+        debates: enDebates,
       },
     },
     fallbackLng: 'ko',
     defaultNS: 'common',
-    ns: ['common', 'home', 'about', 'team', 'contents', 'events', 'ecosystem', 'news'],
+    ns: ['common', 'home', 'about', 'team', 'contents', 'events', 'ecosystem', 'news', 'debates'],
     interpolation: {
       escapeValue: false,
     },
