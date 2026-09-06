@@ -198,3 +198,9 @@ export function mergeInbox(prev: NewsItem[], incoming: NewsItem[], cap = 600): N
     .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
     .slice(0, cap);
 }
+
+/** 발행 주기 가드 — 마지막 호(YYYY-MM-DD)로부터 intervalDays 이상 지났을 때만 true. 첫 호는 항상 true. */
+export function isDigestDue(lastDate: string | undefined, today: string, intervalDays: number): boolean {
+  if (!lastDate) return true;
+  return (Date.parse(today) - Date.parse(lastDate)) / 86_400_000 >= intervalDays;
+}

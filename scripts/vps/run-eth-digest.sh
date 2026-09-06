@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# VPS 크론용 데일리 다이제스트 러너.
+# VPS 크론용 다이제스트 러너. 크론은 매일 돌지만 실제 발행은 generate-eth-digest.ts의 DIGEST_INTERVAL_DAYS(3일) 주기.
 #   수집(GH Actions 00:00 UTC) 완료 후 실행: git pull → 헤드리스 생성 → 텔레그램 송출 → 커밋·푸시
 #
 # VPS 셋업 (1회):
@@ -18,7 +18,7 @@ npx tsx scripts/post-digest-telegram.ts
 
 git add src/data/eth-digests.json public/assets/digests/
 git diff --cached --quiet || (
-  git commit -m "chore: publish daily eth digest [automated]" &&
+  git commit -m "chore: publish eth digest [automated]" &&
   git pull --rebase --autostash origin main &&
   git push origin main
 )

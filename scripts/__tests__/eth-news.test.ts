@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { parseFeed, tweetsToItems, telegramToItems, mergeInbox, detectDebates, type NewsItem } from '../lib/eth-news';
+import { parseFeed, tweetsToItems, telegramToItems, mergeInbox, detectDebates, isDigestDue, type NewsItem } from '../lib/eth-news';
 
 const RSS2 = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
@@ -218,5 +218,23 @@ describe('mergeInbox', () => {
     const many = Array.from({ length: 10 }, (_, i) => item(`i${i}`, `2026-08-${String(i + 1).padStart(2, '0')}T00:00:00.000Z`));
     const merged = mergeInbox([], many, 3);
     expect(merged.map((i) => i.id)).toEqual(['i9', 'i8', 'i7']);
+  });
+});
+
+describe('isDigestDue', () => {
+  it('should publish the first digest immediately', () => {
+    expect(isDigestDue(undefined, '2026-09-06', 3)).toBe(true);
+  });
+  it('should skip until intervalDays have passed since the last digest', () => {
+    expect(isDigestDue('2026-09-04', '2026-09-05', 3)).toBe(false);
+    expect(isDigestDue('2026-09-04', '2026-09-06', 3)).toBe(false);
+    expect(isDigestDue('2026-09-04', '2026-09-07', 3)).toBe(true);
+  });
+  it('should handle month boundaries and missed runs', () => {
+    expect(isDigestDue('2026-08-30', '2026-09-02', 3)).toBe(true);
+    expect(isDigestDue('2026-09-01', '2026-09-10', 3)).toBe(true);
+  });
+  it('should allow forcing with interval 0', () => {
+    expect(isDigestDue('2026-09-06', '2026-09-06', 0)).toBe(true);
   });
 });

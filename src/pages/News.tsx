@@ -34,7 +34,7 @@ const News: React.FC = () => {
 
     usePageMeta({
         title: 'Ethereum News',
-        description: '이더리움 공식 블로그·리서치 포럼·핵심 트위터·커뮤니티 소식을 매일 수집해 한국어 다이제스트로 정리합니다.',
+        description: '이더리움 공식 블로그·리서치 포럼·핵심 트위터·커뮤니티 소식을 매일 수집해 3일마다 한국어 다이제스트로 정리합니다.',
         canonical: '/news',
         image: digests[0]?.coverImage,
     });

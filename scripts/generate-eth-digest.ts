@@ -1,5 +1,5 @@
 /**
- * 이더리움 데일리 다이제스트 생성기 — Claude Code 헤드리스 모드.
+ * 이더리움 다이제스트 생성기 — Claude Code 헤드리스 모드. 크론은 매일 돌지만 DIGEST_INTERVAL_DAYS 주기로만 발행.
  * eth-news-inbox.json의 신규 수집분을 `claude -p`(구독 인증, API 키 불필요)로
  * 한국어 편집 콘텐츠로 재작성해 src/data/eth-digests.json에 프리펜드한다.
  *
@@ -10,11 +10,13 @@ import { execFileSync } from 'node:child_process';
 import { z } from 'zod';
 import * as fs from 'fs';
 import * as path from 'path';
-import { detectDebates, type NewsItem } from './lib/eth-news';
+import { detectDebates, isDigestDue, type NewsItem } from './lib/eth-news';
 
 const INBOX = path.resolve(process.cwd(), 'src/data/eth-news-inbox.json');
 const OUTPUT = path.resolve(process.cwd(), 'src/data/eth-digests.json');
-const MAX_INPUT_ITEMS = 120;
+// 발행 주기(일). 구독자 피로감 때문에 3일로 조정(2026-09-06). 수동 강제 실행은 DIGEST_INTERVAL_DAYS=0.
+const DIGEST_INTERVAL_DAYS = Number(process.env.DIGEST_INTERVAL_DAYS ?? 3);
+const MAX_INPUT_ITEMS = 120 * DIGEST_INTERVAL_DAYS; // 하루 약 120건 × 주기
 const KEEP_DIGESTS = 30;
 
 const DigestSchema = z.object({
@@ -50,8 +52,8 @@ export type Digest = z.infer<typeof DigestSchema> & {
 const EDITOR_PROMPT = `당신은 ECK(Ethereum Collective Korea)의 시니어 리서치 에디터입니다.
 독자는 이더리움 생태계를 진지하게 따라가는 한국어 사용자(리서처·빌더·투자자)입니다.
 당신의 일은 뉴스 나열이 아니라 **의미 파악과 인사이트 도출**입니다 — 개별 소식들을 연결해
-"오늘 무엇이 달라졌고, 어디로 향하는가"를 독자가 스스로 조사하지 않아도 알게 만드세요.
-아래 수집된 뉴스 아이템 목록으로 한국어 데일리 다이제스트를 작성하세요.
+"이 기간 무엇이 달라졌고, 어디로 향하는가"를 독자가 스스로 조사하지 않아도 알게 만드세요.
+아래 수집된 뉴스 아이템 목록으로 한국어 다이제스트를 작성하세요. 이 다이제스트는 ${DIGEST_INTERVAL_DAYS}일 주기로 발행되며, 지난 ${DIGEST_INTERVAL_DAYS}일간의 소식을 한 호에 다룹니다.
 
 이더리움 관련성 (최우선 게이트):
 - 이더리움 생태계와 직접 관련된 것만 싣습니다: L1 프로토콜·리서치, L2, EF, 클라이언트, 스테이킹,
@@ -81,7 +83,7 @@ const EDITOR_PROMPT = `당신은 ECK(Ethereum Collective Korea)의 시니어 리
 - 입력에 "감지된 대화 클러스터"가 있으면 — 같은 스레드에서 여러 인물이 직접 주고받은 설전입니다.
 - 클러스터가 없어도, 서로 다른 인물들이 같은 쟁점(특정 EIP, 업그레이드, 프로토콜 설계, 사건)에 대해
   각자 트윗으로 입장을 낸 경우를 주제 단위로 묶으세요. 직접 대화가 없어도 담론입니다.
-- 위 두 경우가 있으면 "오늘의 논쟁 · 담론" 섹션을 만들고(프로토콜 섹션 다음 배치), 항목마다:
+- 위 두 경우가 있으면 "이번 호 논쟁 · 담론" 섹션을 만들고(프로토콜 섹션 다음 배치), 항목마다:
   - title: 쟁점을 담은 헤드라인
   - summary: 참여자별 입장을 압축 정리 (누가 어떤 논거로 어떤 입장인지, 전개 순서대로)
   - why: 이 논쟁이 생태계에 갖는 함의
@@ -89,15 +91,15 @@ const EDITOR_PROMPT = `당신은 ECK(Ethereum Collective Korea)의 시니어 리
 - 단순 홍보·잡담·인사 교환은 논쟁이 아닙니다. 쟁점이 분명한 것만.
 
 인사이트 도출 (이 다이제스트의 존재 이유):
-- 첫 섹션은 반드시 "오늘의 인사이트" — 개별 소식이 아니라 **여러 소식과 최근 흐름을 연결해
+- 첫 섹션은 반드시 "이번 호 인사이트" — 개별 소식이 아니라 **여러 소식과 최근 흐름을 연결해
   도출한 해석** 2~3개를 담습니다. 각 인사이트:
   - title: 해석을 담은 한 줄 명제 (뉴스 제목이 아니라 주장)
   - summary: 그 해석의 근거와 논리 3~5문장 — 어떤 소식들이 어떻게 연결되는지, 무엇이 달라지는지,
     앞으로 무엇을 지켜봐야 하는지
   - why: 이 해석이 틀렸다면/맞았다면 무엇이 걸려 있는지 한 문장
   - url: 가장 대표적인 근거 소식 링크
-- "최근 다이제스트가 다룬 소식" 목록은 중복 방지용이자 **흐름 연결 재료**입니다 — 어제의 논의가
-  오늘 어떻게 이어지고 있는지 추적하세요.
+- "최근 다이제스트가 다룬 소식" 목록은 중복 방지용이자 **흐름 연결 재료**입니다 — 이전 호의 논의가
+  이번 호에서 어떻게 이어지고 있는지 추적하세요.
 - 항목 요약도 마찬가지: "무엇이 일어났나"에서 멈추지 말고 "그래서 무엇이 달라지나"까지 씁니다.
 
 구성:
@@ -106,7 +108,7 @@ const EDITOR_PROMPT = `당신은 ECK(Ethereum Collective Korea)의 시니어 리
 - subTitle: 커버용 한 줄 부제 — 타이틀을 보완하는 30자 이내 문장 (그날의 의미를 담담하게)
 - intro: 3~5문장 — 그날의 소식들을 관통하는 흐름과 의미를 세우는 에디터 칼럼
 - sections는 독자가 구분별로 골라 보는 탭입니다. 아래 순서·이름을 그대로 쓰고, 해당 항목이 없으면 생략:
-  1. "오늘의 인사이트" (필수)
+  1. "이번 호 인사이트" (필수)
   2. "프로토콜 업데이트" — 스펙·하드포크·클라이언트·EF 공지 등 프로토콜 레벨 변화
   3. "포럼 제안" — 새 EIP/ERC/리서치 제안 (Ethereum Magicians, ethresear.ch)
   4. "트위터 논쟁" — 설전·상반된 입장의 담론
@@ -150,13 +152,17 @@ async function main() {
     console.log(`[SKIP] digest for ${today} already exists`);
     return;
   }
+  const lastDate = existing.digests[0]?.date;
+  if (!isDigestDue(lastDate, today, DIGEST_INTERVAL_DAYS)) {
+    console.log(`[SKIP] last digest ${lastDate} — next one is due ${DIGEST_INTERVAL_DAYS} days after it`);
+    return;
+  }
 
   // 마지막 다이제스트 이후(없으면 36시간) 신규 아이템만, RT·정기 스레드 제외
-  const lastDate = existing.digests[0]?.date;
   const cutoff = lastDate
     ? new Date(`${lastDate}T00:00:00+09:00`).getTime()
     : Date.now() - 36 * 3_600_000;
-  // 어제/그제 호가 이미 다룬 URL은 후보에서 제외 (재탕 방지 1차 — 기계적)
+  // 최근 3개 호가 이미 다룬 URL은 후보에서 제외 (재탕 방지 1차 — 기계적)
   const recentDigests = existing.digests.slice(0, 3);
   const coveredUrls = new Set(recentDigests.flatMap((d) => d.sections.flatMap((s) => s.items.map((it) => it.url))));
   const candidates = inbox.items
@@ -201,7 +207,7 @@ async function main() {
     .join('\n');
 
   const prompt =
-    `${EDITOR_PROMPT}\n\n오늘 날짜: ${today}\n\n` +
+    `${EDITOR_PROMPT}\n\n오늘 날짜: ${today}${lastDate ? ` (이번 호 범위: ${lastDate} 이후 ~ ${today})` : ''}\n\n` +
     (coveredLines
       ? `최근 다이제스트가 이미 다룬 소식 (같은 사건은 다시 싣지 마세요. 의미 있는 새 전개가 있을 때만 '업데이트' 성격으로 짧게):\n${coveredLines}\n\n`
       : '') +
