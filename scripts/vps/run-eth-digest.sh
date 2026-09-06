@@ -13,10 +13,11 @@ cd "$(dirname "$0")/../.."
 # --autostash: 이전 실행이 남긴 미커밋 산출물이 있어도 pull이 막히지 않게
 git pull --rebase --autostash origin main
 npx tsx scripts/generate-eth-digest.ts
+npx tsx scripts/extract-eth-debates.ts
 npx tsx scripts/render-digest-cover.ts
 npx tsx scripts/post-digest-telegram.ts
 
-git add src/data/eth-digests.json public/assets/digests/
+git add src/data/eth-digests.json src/data/eth-debates.json src/data/x-profiles.json public/assets/digests/
 git diff --cached --quiet || (
   git commit -m "chore: publish eth digest [automated]" &&
   git pull --rebase --autostash origin main &&

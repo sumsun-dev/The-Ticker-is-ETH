@@ -67,6 +67,7 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         { name: t('nav.contributors'), path: '/contributors' },
         { name: t('nav.contents'), path: '/contents' },
         { name: t('nav.news'), path: '/news' },
+        { name: t('nav.debates'), path: '/debates' },
         { name: t('nav.ecosystem'), path: '/ecosystem' },
         { name: t('nav.events'), path: '/events' },
     ];
