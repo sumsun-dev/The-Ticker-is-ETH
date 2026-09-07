@@ -130,7 +130,8 @@ export function tweetsToItems(payload: unknown, screenname: string): NewsItem[] 
         title: body.slice(0, 80),
         url: `https://x.com/${screenname}/status/${nativeId}`,
         publishedAt: toIso(tw.created_at),
-        summary: body.slice(0, 500),
+        // 긴 글(note tweet)도 전문을 남긴다. 500자로 자르면 다이제스트와 논쟁 분석이 앞부분만 보게 된다.
+        summary: body.slice(0, 4000),
         author: screenname,
         ...(conversationId ? { conversationId } : {}),
         ...(isReply ? { isReply } : {}),
