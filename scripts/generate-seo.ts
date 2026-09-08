@@ -113,6 +113,7 @@ const staticRoutes: SitemapEntry[] = [
     { loc: '/contents', changefreq: 'daily', priority: '0.9' },
     { loc: '/news', changefreq: 'daily', priority: '0.8' },
     { loc: '/debates', changefreq: 'weekly', priority: '0.7' },
+    { loc: '/calls', changefreq: 'weekly', priority: '0.7' },
     { loc: '/team', changefreq: 'monthly', priority: '0.7' },
     { loc: '/contributors', changefreq: 'weekly', priority: '0.7' },
     { loc: '/ecosystem', changefreq: 'monthly', priority: '0.7' },

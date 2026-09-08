@@ -1685,5 +1685,75 @@
     "avatar": "https://pbs.twimg.com/profile_images/1562824016989196288/3QCf9lLE_400x400.jpg",
     "followers": 5192,
     "bio": "Ethereum. Validator #28. @ethereumfndn."
+  },
+  "chfast": {
+    "handle": "chfast",
+    "name": "Paweł Bylica",
+    "avatar": "https://pbs.twimg.com/profile_images/849982543982145536/mRbvphSB_400x400.jpg",
+    "followers": 1653,
+    "bio": ""
+  },
+  "danceratopz": {
+    "handle": "danceratopz",
+    "name": "danceratopz.⌐◨-◨ 🦇🔊",
+    "avatar": "https://pbs.twimg.com/profile_images/1478357444132839427/sxWspbwH_400x400.jpg",
+    "followers": 327,
+    "bio": "Passionate about open, decentralized protocols and their potential to empower individuals | testing @ethereum"
+  },
+  "rakitadragan": {
+    "handle": "rakitadragan",
+    "name": "Dragan Rakita",
+    "avatar": "https://pbs.twimg.com/profile_images/1622380143799943169/2D-5fxsO_400x400.jpg",
+    "followers": 2989,
+    "bio": "Revm author and maintainer. Part of @tempo.\nPersonal views only"
+  },
+  "cperezz19": {
+    "handle": "CPerezz19",
+    "name": "CPerezz.eth ⟠ 🦀",
+    "avatar": "https://pbs.twimg.com/profile_images/1254074532417200128/M2uQcW5K_400x400.jpg",
+    "followers": 2288,
+    "bio": "Rustacean, 🥰 with Cryptography.\nZKPs & some other stuff working on @ethereum."
+  },
+  "tbenr": {
+    "handle": "tbenr",
+    "name": "Ξnrico Del Fante🦇🔊🐼🕯️🐡🦓",
+    "avatar": "https://pbs.twimg.com/profile_images/1425021438269050892/3IRr4G_z_400x400.jpg",
+    "followers": 242,
+    "bio": "🦇🔊🐼🕯️🐡🦓"
+  },
+  "_pk910_": {
+    "handle": "_pk910_",
+    "name": "pk910.eth",
+    "avatar": "https://pbs.twimg.com/profile_images/1778392621032898560/hneq3NpH_400x400.jpg",
+    "followers": 966,
+    "bio": "Ethereum DevOps\n\nGitHub https://t.co/gmeEqIGJLL\nMatrix @pk910:https://t.co/B3nVoLZWuI\nBluesky 🦋https://t.co/vhbh2KDqyf\n\nPlease don't send job offers via PM."
+  },
+  "weboftrees": {
+    "handle": "weboftrees",
+    "name": "Anders Elowsson 🌻",
+    "avatar": "https://pbs.twimg.com/profile_images/1470450426583691267/GWsw7Bwp_400x400.jpg",
+    "followers": 1949,
+    "bio": "Researching transparent finance; more specifically Ethereum L1 cryptoeconomic designs @ethereum"
+  },
+  "matthewkeil": {
+    "handle": "MatthewKeil",
+    "name": "Matthew Keil",
+    "avatar": "https://pbs.twimg.com/profile_images/1455695649899438083/nWUpW5EK_400x400.jpg",
+    "followers": 71,
+    "bio": "Ethereum Core Developer - Senior Protocol Engineer\nCryptovangelist with egalitarian tendencies"
+  },
+  "siladu": {
+    "handle": "SiLaDu",
+    "name": "Simon Dudley",
+    "avatar": "https://pbs.twimg.com/profile_images/984403604554559488/uZidEiIo_400x400.jpg",
+    "followers": 263,
+    "bio": "Ethereum Core Developer @HyperledgerBesu"
+  },
+  "gary_rong": {
+    "handle": "Gary_Rong",
+    "name": "Gary Rong",
+    "avatar": "https://pbs.twimg.com/profile_images/1062530549867147264/GBjshGtE_400x400.jpg",
+    "followers": 964,
+    "bio": ""
   }
 }
