@@ -66,7 +66,12 @@
     "eips": "이 콜의 EIP {{count}}",
     "chat": "채팅에서",
     "glossary": "용어",
-    "recordOnly": "이 콜은 결정 기록을 정리하지 않습니다. Forkcast에서 원문을 확인해 주세요."
+    "recordOnly": "이 콜은 결정 기록을 정리하지 않습니다. Forkcast에서 원문을 확인해 주세요.",
+    "participantsShort": "참여자",
+    "participantsHintCompact": "클릭하면 발언 전문 · 소속은 이름 위에 마우스",
+    "onThisPage": "이 페이지",
+    "topics": "토론과 발언",
+    "topicShort": "토론 {{n}}"
   },
   "modal": {
     "original": "원문 · 자막 교정본",
