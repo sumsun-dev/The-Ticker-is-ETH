@@ -40,7 +40,6 @@ const CallDetail: React.FC = () => {
     const [calls, setCalls] = useState<CallRecord[] | null>(null);
     const [debates, setDebates] = useState<Debate[]>([]);
     const [modal, setModal] = useState<ModalState | null>(null);
-    const [showAll, setShowAll] = useState(false);
     const [openQuotes, setOpenQuotes] = useState<Set<number>>(new Set());
 
     useEffect(() => {
@@ -73,7 +72,6 @@ const CallDetail: React.FC = () => {
         return map;
     }, [call]);
     const speakersSorted = useMemo(() => [...(call?.speakers ?? [])].sort((a, b) => b.share - a.share), [call]);
-    const maxShare = speakersSorted[0]?.share || 1;
 
     const openSpeaker = useCallback(
         (speaker: CallSpeaker, at?: Remark) => {
@@ -113,11 +111,12 @@ const CallDetail: React.FC = () => {
     const info = seriesInfo(call.series);
     const duration = call.durationMin ? (splitDuration(call.durationMin).h > 0 ? t('duration.hm', splitDuration(call.durationMin)) : t('duration.m', splitDuration(call.durationMin))) : null;
     const speakingCount = call.speakers.filter((s) => s.share > 0).length;
-    const visibleSpeakers = showAll ? speakersSorted : speakersSorted.slice(0, 10);
+    const isFull = call.kind === 'full';
 
     return (
         <div className="min-h-screen pt-28 pb-20 px-6 container mx-auto text-theme-text">
-            <article className="max-w-6xl mx-auto flex flex-col gap-6">
+            <article className="max-w-6xl mx-auto flex flex-col gap-5">
+                {/* 머리: 콜 정보, 제목, 요약, 메타 한 줄 */}
                 <div className="flex flex-col gap-3">
                     <Link to="/calls" className="group inline-flex items-center gap-2 text-xs text-brand-accent">
                         <ArrowLeft size={14} className="transition-transform group-hover:-translate-x-1" aria-hidden />
@@ -145,8 +144,8 @@ const CallDetail: React.FC = () => {
                     </div>
                     <h1 className="text-3xl md:text-4xl font-bold leading-tight">{call.headline?.replace(/\n/g, ' ') ?? call.title}</h1>
                     {call.summary && <p className="text-sm md:text-base text-theme-text-secondary leading-relaxed max-w-4xl">{call.summary}</p>}
-                    {call.kind === 'record' && <p className="text-sm text-theme-text-muted">{t('detail.recordOnly')}</p>}
-                    {call.kind === 'full' && (
+                    {!isFull && <p className="text-sm text-theme-text-muted">{t('detail.recordOnly')}</p>}
+                    {isFull && (
                         <dl className="flex flex-wrap items-center gap-x-6 gap-y-1 text-sm mt-1">
                             {forks.length > 0 && (
                                 <div className="flex items-center gap-2 whitespace-nowrap">
@@ -192,240 +191,248 @@ const CallDetail: React.FC = () => {
                     )}
                 </div>
 
-                {call.kind === 'full' && (
-                    <div className="grid lg:grid-cols-[300px_minmax(0,1fr)_320px] gap-5 items-start">
-                        <div className="flex flex-col gap-4 order-2 lg:order-1">
-                            {call.decisions.length > 0 && (
-                                <div className={CARD}>
-                                    <span className={KICKER}>{t('detail.decisionsCard', { count: call.decisions.length })}</span>
-                                    <ul className="flex flex-col">
-                                        {call.decisions.map((d, i) => (
-                                            <li key={`${d.label}-${i}`} className="flex flex-col gap-1 py-2.5 border-t first:border-t-0 first:pt-0 border-theme-border/70">
-                                                <div className="flex items-center gap-2">
-                                                    <span className={`w-2 h-2 rounded-full ${STATUS_DOT[d.status]}`} aria-hidden />
-                                                    <span className="text-sm font-semibold">{d.label}</span>
-                                                    <span className={`${TAG} ${STATUS_TEXT[d.status]}`}>{d.status}</span>
-                                                    <TimeLink videoUrl={call.videoUrl} timestamp={d.timestamp} className="ml-auto" />
-                                                </div>
-                                                <span className="text-xs text-theme-text-muted leading-relaxed pl-4" title={d.original}>
-                                                    {d.text}
-                                                </span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                    {call.videoUrl && <span className="text-xs text-theme-text-muted">{t('detail.timestampHint')}</span>}
-                                </div>
-                            )}
-                            {call.targets.length > 0 && (
-                                <div className={CARD}>
-                                    <span className={KICKER}>{t('detail.targets')}</span>
-                                    <ul className="flex flex-col gap-2.5 text-sm">
-                                        {call.targets.map((tg) => (
-                                            <li key={tg.key} className="flex flex-col gap-0.5">
-                                                <span className="font-semibold leading-snug">{tg.text}</span>
-                                                {updates[tg.key] && (
-                                                    <span className="text-xs text-theme-text-muted">
-                                                        →{' '}
-                                                        <Link to={`/calls/${updates[tg.key].callId}`} className="text-teal-300 hover:underline">
-                                                            {t('detail.updatedIn', { label: updates[tg.key].label })} {updates[tg.key].text}
-                                                        </Link>
-                                                    </span>
-                                                )}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                    <span className="text-xs text-theme-text-muted">{t('detail.targetsHint')}</span>
-                                </div>
-                            )}
-                            {call.actions.length > 0 && (
-                                <div className={CARD}>
-                                    <span className={KICKER}>{t('detail.actions', { count: call.actions.length })}</span>
-                                    <ul className="flex flex-col gap-2.5 text-sm">
-                                        {call.actions.map((a, i) => (
-                                            <li key={`${a.owner}-${i}`} className="flex flex-col gap-0.5">
-                                                <span className="font-semibold">{a.owner}</span>
-                                                <span className="text-xs text-theme-text-muted leading-relaxed">{a.text}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            )}
+                {/* 참여자: 발언 비중순 한 줄 (가로 스크롤), 클릭하면 발언 전문 */}
+                {isFull && speakersSorted.length > 0 && (
+                    <div className="rounded-2xl border border-theme-border bg-theme-surface px-5 py-4 flex flex-col gap-3">
+                        <div className="flex flex-wrap items-baseline gap-3">
+                            <span className={KICKER}>{t('detail.participants', { count: call.speakers.length })}</span>
+                            <span className="text-xs text-theme-text-muted">{t('detail.participantsHint')}</span>
                         </div>
-
-                        <div className="rounded-2xl border border-theme-border bg-theme-surface px-5 order-1 lg:order-2">
-                            {call.whyItMatters && (
-                                <div className="flex flex-col gap-2 py-5">
-                                    <span className={KICKER}>{t('detail.whyItMatters')}</span>
-                                    <p className="text-sm leading-relaxed">{call.whyItMatters}</p>
-                                </div>
-                            )}
-                            {call.agenda.length > 0 && (
-                                <div className="flex flex-col gap-1.5 py-4 border-t border-theme-border">
-                                    <div className="flex flex-wrap items-baseline gap-3">
-                                        <span className={KICKER}>{t('detail.agenda', { count: call.agenda.length })}</span>
-                                        <span className="text-xs text-theme-text-muted">{t('detail.agendaHint')}</span>
-                                    </div>
-                                    <ol className="flex flex-col">
-                                        {call.agenda.map((a) => (
-                                            <li key={a.timestamp} className="grid grid-cols-[64px_minmax(0,1fr)_auto] gap-3 items-center py-1.5 text-sm">
-                                                <TimeLink videoUrl={call.videoUrl} timestamp={a.timestamp} />
-                                                <span>{a.heading}</span>
-                                                <span className="flex gap-1">
-                                                    {a.discussion && (
-                                                        <a href="#topics" className={`${TAG} text-brand-accent`}>
-                                                            {t('detail.discussion')}
-                                                        </a>
-                                                    )}
-                                                    {a.decision && <span className={`${TAG} text-emerald-400`}>{t('detail.decision')}</span>}
-                                                </span>
-                                            </li>
-                                        ))}
-                                    </ol>
-                                </div>
-                            )}
-
-                        </div>
-
-                        <div className="flex flex-col gap-4 order-3">
-                            {call.speakers.length > 0 && (
-                                <div className={CARD}>
-                                    <span className={KICKER}>{t('detail.participants', { count: call.speakers.length })}</span>
-                                    <ul className="flex flex-col gap-0.5">
-                                        {visibleSpeakers.map((s) => {
-                                            const remarks = remarksOf(call, s.label).length;
-                                            const holder = holderOfSpeaker(s);
-                                            return (
-                                                <li key={s.label}>
-                                                    <button
-                                                        type="button"
-                                                        onClick={() => openSpeaker(s)}
-                                                        disabled={remarks === 0}
-                                                        className="w-full grid grid-cols-[32px_minmax(0,1fr)_64px] items-center gap-2.5 px-2 py-1.5 rounded-lg text-left hover:bg-theme-surface-hover transition-colors disabled:cursor-default disabled:hover:bg-transparent"
-                                                    >
-                                                        <Avatar holder={holder} size="md" />
-                                                        <span className="min-w-0 flex flex-col">
-                                                            <span className="text-sm font-semibold truncate">{s.name}</span>
-                                                            <span className="text-xs text-theme-text-muted truncate">{holder.role ?? t('detail.unknownOrg')}</span>
-                                                        </span>
-                                                        <span className="h-1 rounded-full bg-brand-primary justify-self-end" style={{ width: `${Math.max(4, (s.share / maxShare) * 64)}px` }} aria-hidden />
-                                                    </button>
-                                                </li>
-                                            );
-                                        })}
-                                    </ul>
-                                    {speakersSorted.length > 10 && (
-                                        <button type="button" onClick={() => setShowAll((v) => !v)} className="text-xs text-brand-accent self-start hover:underline">
-                                            {showAll ? t('detail.less') : t('detail.more', { count: speakersSorted.length - 10 })}
+                        <ul className="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1" role="list">
+                            {speakersSorted.map((s) => {
+                                const remarks = remarksOf(call, s.label).length;
+                                const holder = holderOfSpeaker(s);
+                                return (
+                                    <li key={s.label} className="flex-none">
+                                        <button
+                                            type="button"
+                                            onClick={() => openSpeaker(s)}
+                                            disabled={remarks === 0}
+                                            title={[holder.name, holder.role].filter(Boolean).join(' · ')}
+                                            className="flex items-center gap-2.5 pl-1.5 pr-3.5 py-1.5 rounded-full border border-theme-border text-left hover:border-brand-primary/60 hover:bg-theme-surface-hover transition-colors disabled:cursor-default disabled:opacity-70 disabled:hover:border-theme-border disabled:hover:bg-transparent"
+                                        >
+                                            <Avatar holder={holder} size="md" />
+                                            <span className="flex flex-col min-w-0">
+                                                <span className="text-sm font-semibold whitespace-nowrap">{s.name}</span>
+                                                <span className="text-[11px] text-theme-text-muted whitespace-nowrap">{holder.role ?? t('detail.unknownOrg')}</span>
+                                            </span>
                                         </button>
-                                    )}
-                                    <span className="text-xs text-theme-text-muted">{t('detail.participantsHint')}</span>
-                                </div>
-                            )}
-                            {related.length > 0 && (
-                                <div className={CARD}>
-                                    <span className={KICKER}>{t('detail.relatedDebates')}</span>
-                                    <ul className="flex flex-col gap-3">
-                                        {related.map((d) => (
-                                            <li key={d.id}>
-                                                <Link to={`/debates/${d.id}`} className="group flex flex-col gap-1">
-                                                    <span className="text-sm font-semibold leading-snug group-hover:text-brand-accent transition-colors">{d.title}</span>
-                                                    <span className="text-xs text-theme-text-muted inline-flex items-center gap-1.5">
-                                                        <span className={`w-1.5 h-1.5 rounded-full ${DEBATE_STATUS_DOT[d.status]}`} aria-hidden />
-                                                        {d.category} · {participantCount(d)}
-                                                    </span>
-                                                </Link>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                    <span className="text-xs text-theme-text-muted">{t('detail.relatedDebatesHint')}</span>
-                                </div>
-                            )}
-                            {call.eips.length > 0 && (
-                                <div className={CARD}>
-                                    <span className={KICKER}>{t('detail.eips', { count: call.eips.length })}</span>
-                                    <ul className="flex flex-col gap-1.5 text-sm">
-                                        {call.eips.map((n) => (
-                                            <li key={n} className="flex items-center gap-2">
-                                                <a href={`https://eips.ethereum.org/EIPS/eip-${n}`} target="_blank" rel="noopener noreferrer" className="font-mono text-brand-accent hover:underline">
-                                                    EIP-{n}
-                                                </a>
-                                                <span className="text-theme-text-secondary truncate">{call.decisions.find((d) => d.eips.includes(n))?.label.replace(/^(EIP-)?\d{3,5}\s*/, '') ?? ''}</span>
-                                                {eipStatus.has(n) && <span className={`${TAG} ml-auto ${STATUS_TEXT[eipStatus.get(n) as keyof typeof STATUS_TEXT]}`}>{eipStatus.get(n)}</span>}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            )}
-                            {call.chat.length > 0 && (
-                                <div className={CARD}>
-                                    <span className={KICKER}>{t('detail.chat')}</span>
-                                    <ul className="flex flex-col gap-3 text-sm">
-                                        {call.chat.map((c, i) => (
-                                            <li key={`${c.speaker}-${i}`} className="flex flex-col gap-0.5">
-                                                <span className="text-theme-text-secondary leading-relaxed">"{c.text}"</span>
-                                                <span className="text-xs text-theme-text-muted">
-                                                    {speakerOf(call, c.speaker).name} · {c.timestamp}
-                                                </span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            )}
-                        </div>
+                                    </li>
+                                );
+                            })}
+                        </ul>
                     </div>
                 )}
 
-                {call.kind === 'full' && call.topics.length > 0 && (
-                    <section id="topics" className="rounded-2xl border border-theme-border bg-theme-surface px-5">
-                                {call.topics.map((topic, ti) => (
-                                    <section key={topic.title} className="border-b last:border-b-0 border-theme-border py-6 flex flex-col gap-3">
-                                        <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                                            <span className="text-[11px] font-mono uppercase tracking-widest text-brand-accent">{t('detail.topic', { n: ti + 1, count: topic.positions.length })}</span>
-                                            <span className="text-base font-bold">{topic.title}</span>
-                                            <span className={`${TAG} ${topic.decision ? 'text-emerald-400' : 'text-theme-text-muted'}`}>{topic.decision ?? t('detail.noDecision')}</span>
-                                            <span className="text-xs text-theme-text-muted md:ml-auto">{t('detail.clickHint')}</span>
-                                        </div>
-                                        <p className="text-sm leading-relaxed text-theme-text-secondary max-w-4xl">{topic.intro}</p>
-                                        <ul className="flex flex-col">
-                                            {topic.positions.map((p, pi) => {
-                                                const speaker = speakerOf(call, p.speaker);
-                                                const holder = holderOfSpeaker(speaker);
-                                                return (
-                                                    <li key={`${p.speaker}-${pi}`}>
-                                                        <button
-                                                            type="button"
-                                                            onClick={() => openSpeaker(speaker, { topic, position: p })}
-                                                            className="w-full text-left grid grid-cols-[32px_minmax(0,1fr)] md:grid-cols-[32px_220px_minmax(0,1fr)] gap-x-4 gap-y-1 px-2 py-3 rounded-xl hover:bg-theme-surface-hover transition-colors items-start"
-                                                        >
-                                                            <Avatar holder={holder} size="md" />
-                                                            <span className="min-w-0 flex flex-col">
-                                                                <span className="text-sm font-semibold truncate">{speaker.name}</span>
-                                                                <span className="text-xs text-theme-text-muted truncate">
-                                                                    {holder.role ?? t('detail.unknownOrg')}
-                                                                    {p.viaChat ? ` · ${t('detail.viaChat')}` : ''}
-                                                                </span>
-                                                            </span>
-                                                            <span className="col-span-2 md:col-span-1 text-sm md:text-[15px] leading-relaxed text-theme-text/90 max-w-4xl">{p.text}</span>
-                                                        </button>
-                                                    </li>
-                                                );
-                                            })}
-                                        </ul>
-                                        {topic.quote && (
-                                            <div className="border-l-2 border-brand-accent pl-4 py-1 flex flex-col gap-1">
-                                                <p className="text-sm leading-relaxed text-theme-text-secondary italic max-w-4xl">"{topic.quote.text}"</p>
-                                                <span className="text-xs text-theme-text-muted flex flex-wrap items-center gap-2">
-                                                    {speakerOf(call, topic.quote.speaker).name} · <TimeLink videoUrl={call.videoUrl} timestamp={topic.quote.timestamp} />
-                                                    <button type="button" onClick={() => toggleQuote(ti)} className="text-brand-accent hover:underline" aria-expanded={openQuotes.has(ti)}>
-                                                        {t('detail.quoteOriginal')}
-                                                    </button>
+                {/* 왜 중요한가: 한 행 */}
+                {isFull && call.whyItMatters && (
+                    <div className={CARD}>
+                        <span className={KICKER}>{t('detail.whyItMatters')}</span>
+                        <p className="text-sm md:text-[15px] leading-relaxed max-w-5xl">{call.whyItMatters}</p>
+                    </div>
+                )}
+
+                {/* 결정: 한 행, 결정마다 한 줄 */}
+                {isFull && call.decisions.length > 0 && (
+                    <div className="rounded-2xl border border-theme-border bg-theme-surface px-5 py-4 flex flex-col gap-2">
+                        <div className="flex flex-wrap items-baseline gap-3">
+                            <span className={KICKER}>{t('detail.decisionsCard', { count: call.decisions.length })}</span>
+                            {call.videoUrl && <span className="text-xs text-theme-text-muted">{t('detail.timestampHint')}</span>}
+                        </div>
+                        <ul className="flex flex-col">
+                            {call.decisions.map((d, i) => (
+                                <li
+                                    key={`${d.label}-${i}`}
+                                    className="grid grid-cols-[8px_minmax(0,1fr)] md:grid-cols-[8px_240px_minmax(0,1fr)_72px] gap-x-3 gap-y-1 items-start py-3 border-t first:border-t-0 border-theme-border/70"
+                                >
+                                    <span className={`w-2 h-2 rounded-full mt-1.5 ${STATUS_DOT[d.status]}`} aria-hidden />
+                                    <span className="flex flex-wrap items-center gap-2">
+                                        <span className="text-sm font-semibold">{d.label}</span>
+                                        <span className={`${TAG} ${STATUS_TEXT[d.status]}`}>{d.status}</span>
+                                        {d.fork && <span className="text-xs text-theme-text-muted">{d.fork}</span>}
+                                    </span>
+                                    <span className="col-start-2 md:col-start-3 text-sm leading-relaxed text-theme-text-secondary" title={d.original}>
+                                        {d.text}
+                                    </span>
+                                    <TimeLink videoUrl={call.videoUrl} timestamp={d.timestamp} className="col-start-2 md:col-start-4 md:justify-self-end pt-0.5" />
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+
+                {/* 일정과 목표 + 안건 순서: 두 열 */}
+                {isFull && (call.targets.length > 0 || call.agenda.length > 0) && (
+                    <div className="grid md:grid-cols-2 gap-5 items-start">
+                        {call.targets.length > 0 && (
+                            <div className={CARD}>
+                                <span className={KICKER}>{t('detail.targets')}</span>
+                                <ul className="flex flex-col gap-2.5 text-sm">
+                                    {call.targets.map((tg) => (
+                                        <li key={tg.key} className="flex flex-col gap-0.5">
+                                            <span className="font-semibold leading-snug">{tg.text}</span>
+                                            {updates[tg.key] && (
+                                                <span className="text-xs text-theme-text-muted">
+                                                    →{' '}
+                                                    <Link to={`/calls/${updates[tg.key].callId}`} className="text-teal-300 hover:underline">
+                                                        {t('detail.updatedIn', { label: updates[tg.key].label })} {updates[tg.key].text}
+                                                    </Link>
                                                 </span>
-                                                {openQuotes.has(ti) && <p className="text-xs leading-relaxed text-theme-text-muted">{topic.quote.original}</p>}
-                                            </div>
-                                        )}
-                                    </section>
-                                ))}
+                                            )}
+                                        </li>
+                                    ))}
+                                </ul>
+                                <span className="text-xs text-theme-text-muted">{t('detail.targetsHint')}</span>
+                            </div>
+                        )}
+                        {call.agenda.length > 0 && (
+                            <div className={CARD}>
+                                <div className="flex flex-wrap items-baseline gap-3">
+                                    <span className={KICKER}>{t('detail.agenda', { count: call.agenda.length })}</span>
+                                    <span className="text-xs text-theme-text-muted">{t('detail.agendaHint')}</span>
+                                </div>
+                                <ol className="flex flex-col">
+                                    {call.agenda.map((a) => (
+                                        <li key={a.timestamp} className="grid grid-cols-[64px_minmax(0,1fr)_auto] gap-3 items-center py-1.5 text-sm">
+                                            <TimeLink videoUrl={call.videoUrl} timestamp={a.timestamp} />
+                                            <span>{a.heading}</span>
+                                            <span className="flex gap-1">
+                                                {a.discussion && (
+                                                    <a href="#topics" className={`${TAG} text-brand-accent`}>
+                                                        {t('detail.discussion')}
+                                                    </a>
+                                                )}
+                                                {a.decision && <span className={`${TAG} text-emerald-400`}>{t('detail.decision')}</span>}
+                                            </span>
+                                        </li>
+                                    ))}
+                                </ol>
+                            </div>
+                        )}
+                    </div>
+                )}
+
+                {/* 토론과 발언: 전체 폭 */}
+                {isFull && call.topics.length > 0 && (
+                    <section id="topics" className="rounded-2xl border border-theme-border bg-theme-surface px-5">
+                        {call.topics.map((topic, ti) => (
+                            <section key={topic.title} className="border-b last:border-b-0 border-theme-border py-6 flex flex-col gap-3">
+                                <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                                    <span className="text-[11px] font-mono uppercase tracking-widest text-brand-accent">{t('detail.topic', { n: ti + 1, count: topic.positions.length })}</span>
+                                    <span className="text-base font-bold">{topic.title}</span>
+                                    <span className={`${TAG} ${topic.decision ? 'text-emerald-400' : 'text-theme-text-muted'}`}>{topic.decision ?? t('detail.noDecision')}</span>
+                                    <span className="text-xs text-theme-text-muted md:ml-auto">{t('detail.clickHint')}</span>
+                                </div>
+                                <p className="text-sm leading-relaxed text-theme-text-secondary max-w-4xl">{topic.intro}</p>
+                                <ul className="flex flex-col">
+                                    {topic.positions.map((p, pi) => {
+                                        const speaker = speakerOf(call, p.speaker);
+                                        const holder = holderOfSpeaker(speaker);
+                                        return (
+                                            <li key={`${p.speaker}-${pi}`}>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => openSpeaker(speaker, { topic, position: p })}
+                                                    className="w-full text-left grid grid-cols-[32px_minmax(0,1fr)] md:grid-cols-[32px_220px_minmax(0,1fr)] gap-x-4 gap-y-1 px-2 py-3 rounded-xl hover:bg-theme-surface-hover transition-colors items-start"
+                                                >
+                                                    <Avatar holder={holder} size="md" />
+                                                    <span className="min-w-0 flex flex-col">
+                                                        <span className="text-sm font-semibold truncate">{speaker.name}</span>
+                                                        <span className="text-xs text-theme-text-muted truncate">
+                                                            {holder.role ?? t('detail.unknownOrg')}
+                                                            {p.viaChat ? ` · ${t('detail.viaChat')}` : ''}
+                                                        </span>
+                                                    </span>
+                                                    <span className="col-span-2 md:col-span-1 text-sm md:text-[15px] leading-relaxed text-theme-text/90 max-w-4xl">{p.text}</span>
+                                                </button>
+                                            </li>
+                                        );
+                                    })}
+                                </ul>
+                                {topic.quote && (
+                                    <div className="border-l-2 border-brand-accent pl-4 py-1 flex flex-col gap-1">
+                                        <p className="text-sm leading-relaxed text-theme-text-secondary italic max-w-4xl">"{topic.quote.text}"</p>
+                                        <span className="text-xs text-theme-text-muted flex flex-wrap items-center gap-2">
+                                            {speakerOf(call, topic.quote.speaker).name} · <TimeLink videoUrl={call.videoUrl} timestamp={topic.quote.timestamp} />
+                                            <button type="button" onClick={() => toggleQuote(ti)} className="text-brand-accent hover:underline" aria-expanded={openQuotes.has(ti)}>
+                                                {t('detail.quoteOriginal')}
+                                            </button>
+                                        </span>
+                                        {openQuotes.has(ti) && <p className="text-xs leading-relaxed text-theme-text-muted">{topic.quote.original}</p>}
+                                    </div>
+                                )}
+                            </section>
+                        ))}
                     </section>
+                )}
+
+                {/* 하단: 액션 아이템, 이 콜의 EIP, 채팅에서, 관련 논쟁 */}
+                {isFull && (call.actions.length > 0 || call.eips.length > 0 || call.chat.length > 0 || related.length > 0) && (
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 items-start">
+                        {call.actions.length > 0 && (
+                            <div className={CARD}>
+                                <span className={KICKER}>{t('detail.actions', { count: call.actions.length })}</span>
+                                <ul className="flex flex-col gap-2.5 text-sm">
+                                    {call.actions.map((a, i) => (
+                                        <li key={`${a.owner}-${i}`} className="flex flex-col gap-0.5">
+                                            <span className="font-semibold">{a.owner}</span>
+                                            <span className="text-xs text-theme-text-muted leading-relaxed">{a.text}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+                        {call.eips.length > 0 && (
+                            <div className={CARD}>
+                                <span className={KICKER}>{t('detail.eips', { count: call.eips.length })}</span>
+                                <ul className="flex flex-col gap-1.5 text-sm">
+                                    {call.eips.map((n) => (
+                                        <li key={n} className="flex items-center gap-2">
+                                            <a href={`https://eips.ethereum.org/EIPS/eip-${n}`} target="_blank" rel="noopener noreferrer" className="font-mono text-brand-accent hover:underline">
+                                                EIP-{n}
+                                            </a>
+                                            <span className="text-theme-text-secondary truncate">{call.decisions.find((d) => d.eips.includes(n))?.label.replace(/^(EIP-)?\d{3,5}\s*/, '') ?? ''}</span>
+                                            {eipStatus.has(n) && <span className={`${TAG} ml-auto ${STATUS_TEXT[eipStatus.get(n) as keyof typeof STATUS_TEXT]}`}>{eipStatus.get(n)}</span>}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+                        {call.chat.length > 0 && (
+                            <div className={CARD}>
+                                <span className={KICKER}>{t('detail.chat')}</span>
+                                <ul className="flex flex-col gap-3 text-sm">
+                                    {call.chat.map((c, i) => (
+                                        <li key={`${c.speaker}-${i}`} className="flex flex-col gap-0.5">
+                                            <span className="text-theme-text-secondary leading-relaxed">"{c.text}"</span>
+                                            <span className="text-xs text-theme-text-muted">
+                                                {speakerOf(call, c.speaker).name} · {c.timestamp}
+                                            </span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+                        {related.length > 0 && (
+                            <div className={CARD}>
+                                <span className={KICKER}>{t('detail.relatedDebates')}</span>
+                                <ul className="flex flex-col gap-3">
+                                    {related.map((d) => (
+                                        <li key={d.id}>
+                                            <Link to={`/debates/${d.id}`} className="group flex flex-col gap-1">
+                                                <span className="text-sm font-semibold leading-snug group-hover:text-brand-accent transition-colors">{d.title}</span>
+                                                <span className="text-xs text-theme-text-muted inline-flex items-center gap-1.5">
+                                                    <span className={`w-1.5 h-1.5 rounded-full ${DEBATE_STATUS_DOT[d.status]}`} aria-hidden />
+                                                    {d.category} · {participantCount(d)}
+                                                </span>
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                                <span className="text-xs text-theme-text-muted">{t('detail.relatedDebatesHint')}</span>
+                            </div>
+                        )}
+                    </div>
                 )}
 
                 {call.glossary.length > 0 && (
