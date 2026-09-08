@@ -440,6 +440,56 @@
       "screenname": "mysticryuujin",
       "name": "Chase Wright",
       "why": "코어 개발자 콜 참여자 — EF"
+    },
+    {
+      "screenname": "chfast",
+      "name": "Paweł Bylica",
+      "why": "코어 개발자 콜 참여자 — EF · evmone"
+    },
+    {
+      "screenname": "danceratopz",
+      "name": "danceratopz",
+      "why": "코어 개발자 콜 참여자 — EF · 테스팅"
+    },
+    {
+      "screenname": "rakitadragan",
+      "name": "Dragan Rakita",
+      "why": "코어 개발자 콜 참여자 — Tempo · revm 저자"
+    },
+    {
+      "screenname": "CPerezz19",
+      "name": "Carlos Pérez (CPerezz)",
+      "why": "코어 개발자 콜 참여자 — EF · EIP-8037 공동 저자"
+    },
+    {
+      "screenname": "tbenr",
+      "name": "Enrico Del Fante",
+      "why": "코어 개발자 콜 참여자 — Consensys · Teku"
+    },
+    {
+      "screenname": "_pk910_",
+      "name": "pk910",
+      "why": "코어 개발자 콜 참여자 — EF DevOps"
+    },
+    {
+      "screenname": "weboftrees",
+      "name": "Anders Elowsson",
+      "why": "코어 개발자 콜 참여자 — EF · 리서처"
+    },
+    {
+      "screenname": "matthewkeil",
+      "name": "Matthew Keil",
+      "why": "코어 개발자 콜 참여자 — ChainSafe · Lodestar"
+    },
+    {
+      "screenname": "siladu",
+      "name": "Simon Dudley",
+      "why": "코어 개발자 콜 참여자 — Besu"
+    },
+    {
+      "screenname": "gary_rong",
+      "name": "Gary Rong",
+      "why": "코어 개발자 콜 참여자 — EF · geth"
     }
   ]
 }

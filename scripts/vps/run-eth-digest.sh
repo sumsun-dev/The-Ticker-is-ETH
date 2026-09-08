@@ -15,10 +15,11 @@ git pull --rebase --autostash origin main
 npx tsx scripts/generate-eth-digest.ts
 npx tsx scripts/sync-x-profiles.ts
 npx tsx scripts/extract-eth-debates.ts
+npx tsx scripts/extract-eth-calls.ts
 npx tsx scripts/render-digest-cover.ts
 npx tsx scripts/post-digest-telegram.ts
 
-git add src/data/eth-digests.json src/data/eth-debates.json src/data/x-profiles.json public/assets/digests/
+git add src/data/eth-digests.json src/data/eth-debates.json src/data/eth-calls.json src/data/x-profiles.json public/assets/digests/
 git diff --cached --quiet || (
   git commit -m "chore: publish eth digest [automated]" &&
   git pull --rebase --autostash origin main &&
