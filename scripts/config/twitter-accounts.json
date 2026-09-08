@@ -1,70 +1,445 @@
 {
-  "comment": "이더리움 뉴스 수집 대상 X(트위터) 계정. screenname만 파이프라인이 사용하고 나머지는 문서용. 전 계정 RapidAPI(twitter-api45) 응답 검증됨 (2026-08-24).",
+  "comment": "이더리움 뉴스 수집 대상 X(트위터) 계정. screenname만 파이프라인이 사용하고 나머지는 문서용. 전 계정 RapidAPI(twitter-api45) 응답 검증됨 (2026-08-24, 콜 참여자 21명 추가 2026-09-08).",
   "accounts": [
-    { "screenname": "VitalikButerin", "name": "Vitalik Buterin", "why": "프로토콜 — 이더리움 창시자, 방향성" },
-    { "screenname": "TimBeiko", "name": "Tim Beiko", "why": "프로토콜 — AllCoreDevs 콜 주재, 업그레이드 일정" },
-    { "screenname": "dankrad", "name": "Dankrad Feist", "why": "프로토콜 — EF 리서처, 데이터 가용성·확장성" },
-    { "screenname": "drakefjustin", "name": "Justin Drake", "why": "프로토콜 — EF 리서처, 합의 레이어 로드맵" },
-    { "screenname": "peter_szilagyi", "name": "Péter Szilágyi", "why": "프로토콜 — Geth 리드, 실행 클라이언트·보안" },
-    { "screenname": "adietrichs", "name": "Ansgar Dietrichs", "why": "프로토콜 — EF 리서처, 가스·UX 로드맵" },
-    { "screenname": "barnabemonnot", "name": "Barnabé Monnot", "why": "프로토콜 — EF 리서처, 인센티브·이슈언스" },
-    { "screenname": "fradamt", "name": "Francesco d'Amato", "why": "프로토콜 — EF 컨센서스 리서처" },
-    { "screenname": "nero_eth", "name": "Toni Wahrstätter", "why": "프로토콜 — EF 리서처, MEV·검열 데이터" },
-    { "screenname": "terencechain", "name": "Terence Tsao", "why": "프로토콜 — 컨센서스 클라이언트(Prysm) 개발" },
-    { "screenname": "lightclients", "name": "Matt Garnett", "why": "프로토콜 — Geth·프로토콜 개발" },
-    { "screenname": "ethereum", "name": "Ethereum (공식)", "why": "공식 — 공지" },
-    { "screenname": "ethereumfndn", "name": "Ethereum Foundation", "why": "공식 — 재단 공지·행사" },
-    { "screenname": "Optimism", "name": "Optimism", "why": "L2 — 공식, 생태계 뉴스" },
-    { "screenname": "arbitrum", "name": "Arbitrum", "why": "L2 — 공식, 생태계 뉴스" },
-    { "screenname": "base", "name": "Base", "why": "L2 — 공식, 생태계 뉴스" },
-    { "screenname": "sassal0x", "name": "Sassal", "why": "해설 — The Daily Gwei, 생태계 데일리" },
-    { "screenname": "evan_van_ness", "name": "Evan Van Ness", "why": "해설 — 전 Week in Ethereum News 편집자" },
-    { "screenname": "gakonst", "name": "Georgios Konstantopoulos", "why": "해설 — Paradigm CTO, 클라이언트·인프라(reth)" },
-    { "screenname": "benjaminion_xyz", "name": "Ben Edgington", "why": "해설 — What's New in Eth2 주간 큐레이션" },
-    { "screenname": "hasufl", "name": "Hasu", "why": "해설 — Flashbots 전략 리서치" },
-    { "screenname": "superphiz", "name": "Superphiz", "why": "해설 — 스테이킹 탈중앙 옹호" },
-    { "screenname": "ercwl", "name": "Eric Wall", "why": "해설 — 크립토 논평" },
-    { "screenname": "RyanSAdams", "name": "Ryan Sean Adams", "why": "미디어 — Bankless, 생태계 내러티브" },
-    { "screenname": "TrustlessState", "name": "David Hoffman", "why": "미디어 — Bankless" },
-    { "screenname": "laurashin", "name": "Laura Shin", "why": "미디어 — Unchained, 심층 취재" },
-    { "screenname": "0xngmi", "name": "0xngmi", "why": "데이터 — DefiLlama, DeFi 데이터" },
-    { "screenname": "haydenzadams", "name": "Hayden Adams", "why": "DeFi — Uniswap 창업자" },
-    { "screenname": "StaniKulechov", "name": "Stani Kulechov", "why": "DeFi — Aave 창업자" },
-    { "screenname": "jon_charb", "name": "Jon Charbonneau", "why": "논쟁·담론 — DBA 공동창업, L1/L2 설계 논쟁의 단골 논자" },
-    { "screenname": "toghrulmaharram", "name": "Toghrul Maharramov", "why": "논쟁·담론 — 롤업·스케일링 기술 논객" },
-    { "screenname": "ryanberckmans", "name": "Ryan Berckmans", "why": "논쟁·담론 — 이더리움 옹호 진영의 대표 논객" },
-    { "screenname": "Justin_Bons", "name": "Justin Bons", "why": "논쟁·담론 — 이더리움 비판 단골(설전 상대 진영), Cyber Capital" },
-    { "screenname": "kelvinfichter", "name": "Kelvin Fichter", "why": "논쟁·담론 — Optimism 엔지니어, 기술 논쟁 참여 잦음" },
-    { "screenname": "sreeramkannan", "name": "Sreeram Kannan", "why": "논쟁·담론 — EigenLayer 창업자, 리스테이킹 논쟁 중심" },
-    { "screenname": "musalbas", "name": "Mustafa Al-Bassam", "why": "논쟁·담론 — Celestia 창업자, DA 설전 상대 진영" },
-    { "screenname": "lex_node", "name": "Gabriel Shapiro", "why": "논쟁·담론 — 크립토 법률·규제 논쟁" },
-    { "screenname": "ameensol", "name": "Ameen Soleimani", "why": "논쟁·담론 — MolochDAO/SpankChain, 거침없는 생태계 논평" },
-    { "screenname": "ethlabs_org", "name": "EthLabs", "why": "생태계 — L1·L2 관계 강화 조직, 코어 계정들이 다수 인용 (멘션 10회)" },
-    { "screenname": "EthCoordinate", "name": "EthCoordinate", "why": "생태계 — EthStaker 후신, Forkcast 업그레이드 트래킹 (멘션 5회)" },
-    { "screenname": "binji_x", "name": "Binji", "why": "생태계 — EthLabs, 이더리움 커뮤니케이션·커뮤니티 (멘션 5회)" },
-    { "screenname": "EFDevcon", "name": "Devcon", "why": "공식 — EF Devcon/Devconnect 행사 공지 (멘션 5회)" },
-    { "screenname": "ethPandaOps", "name": "ethPandaOps", "why": "프로토콜 — EF 데브옵스, 테스트넷·업그레이드 리허설 (멘션 4회)" },
-    { "screenname": "trent_vanepps", "name": "Trent Van Epps", "why": "생태계 — Protocol Guild, 코어 개발자 펀딩 (멘션 4회)" },
-    { "screenname": "aave", "name": "Aave (공식)", "why": "DeFi — 공식, v4 등 프로토콜 뉴스 (멘션 4회)" },
-    { "screenname": "Uniswap", "name": "Uniswap (공식)", "why": "DeFi — 공식, 프로토콜·Unichain 뉴스 (멘션 3회)" },
-    { "screenname": "EtherealnewsHQ", "name": "Ethereal News", "why": "해설 — 이더리움 주간 뉴스 큐레이션, @ethereum이 RT (멘션 3회)" },
-    { "screenname": "tayvano_", "name": "Taylor Monahan", "why": "보안 — 온체인 해킹·탈취 추적 수사 (멘션 2회)" },
-    { "screenname": "pcaversaccio", "name": "Pascal Caversaccio", "why": "보안 — 스마트컨트랙트 보안 리서처 (멘션 2회)" },
-    { "screenname": "donnoh_eth", "name": "donnoh", "why": "L2 — 인터롭·브리지 리서치(L2Beat) (멘션 2회)" },
-    { "screenname": "_julianma", "name": "Julian Ma", "why": "프로토콜 — EF RIG 리서처, FCR·인터롭 (멘션 2회)" },
-    { "screenname": "mikeneuder", "name": "Mike Neuder", "why": "프로토콜 — 전 EF 리서처(현 Etherealize), 스테이킹·MEV (멘션 1회, 전문성 근거 추가)" },
-    { "screenname": "dannyryan", "name": "Danny Ryan", "why": "프로토콜 — 전 EF 리서치 리드, Etherealize 공동창업 (멘션 0회, 전문성 근거 추가)" },
-    { "screenname": "nixorokish", "name": "Nixo", "why": "생태계 — EF 프로토콜 서포트, 전 EthStaker, 스테이킹·커뮤니티" },
-    { "screenname": "pedrouid", "name": "Pedro Gomes", "why": "생태계 — WalletConnect(Reown) 창업자, 지갑 UX·인프라" },
-    { "screenname": "ethresearchbot", "name": "Ethereum Research Bot", "why": "프로토콜 — ethresear.ch 새 리서치 포스트 자동 알림" },
-    { "screenname": "decentrek", "name": "Derek Chiang", "why": "해설 — Ethlabs(전 ZeroDev), AA·트랜잭션 설계 아티클, 코어 인물들이 인용" },
-    { "screenname": "Etherealize_io", "name": "Etherealize (공식)", "why": "생태계 — ETH 기관 채택 조직(Vivek Raman·Danny Ryan), 월가 대상 이더리움 알리기" },
-    { "screenname": "VivekVentures", "name": "Vivek Raman", "why": "생태계 — Etherealize 창업자·CEO, ETH 기관 내러티브" },
-    { "screenname": "gphummer", "name": "Grant Hummer", "why": "생태계 — Etherealize 공동창업자" },
-    { "screenname": "ECHInstitute", "name": "ECH Institute", "why": "생태계 — 전 Ethereum Cat Herders, 프로토콜 거버넌스·EIP 코디네이션 비영리" },
-    { "screenname": "aerugoettinea", "name": "Bastian Aue (Aerugo)", "why": "공식 — EF 임시 공동 ED, 재단 전환 실행 총괄" },
-    { "screenname": "gluk64", "name": "Alex Gluchowski", "why": "L2 — Matter Labs(zkSync) CEO, ZK 롤업 동향" },
-    { "screenname": "0xfredrik", "name": "Fredrik Svantes", "why": "보안 — EF 프로토콜 시큐리티 리서치, 버그 바운티 공지" },
-    { "screenname": "jchaskin22", "name": "Jason Chaskin", "why": "생태계 — EF 리서처, TEE·생태계 팀 연결과 앰플리파이" }
+    {
+      "screenname": "VitalikButerin",
+      "name": "Vitalik Buterin",
+      "why": "프로토콜 — 이더리움 창시자, 방향성"
+    },
+    {
+      "screenname": "TimBeiko",
+      "name": "Tim Beiko",
+      "why": "프로토콜 — AllCoreDevs 콜 주재, 업그레이드 일정"
+    },
+    {
+      "screenname": "dankrad",
+      "name": "Dankrad Feist",
+      "why": "프로토콜 — EF 리서처, 데이터 가용성·확장성"
+    },
+    {
+      "screenname": "drakefjustin",
+      "name": "Justin Drake",
+      "why": "프로토콜 — EF 리서처, 합의 레이어 로드맵"
+    },
+    {
+      "screenname": "peter_szilagyi",
+      "name": "Péter Szilágyi",
+      "why": "프로토콜 — Geth 리드, 실행 클라이언트·보안"
+    },
+    {
+      "screenname": "adietrichs",
+      "name": "Ansgar Dietrichs",
+      "why": "프로토콜 — EF 리서처, 가스·UX 로드맵"
+    },
+    {
+      "screenname": "barnabemonnot",
+      "name": "Barnabé Monnot",
+      "why": "프로토콜 — EF 리서처, 인센티브·이슈언스"
+    },
+    {
+      "screenname": "fradamt",
+      "name": "Francesco d'Amato",
+      "why": "프로토콜 — EF 컨센서스 리서처"
+    },
+    {
+      "screenname": "nero_eth",
+      "name": "Toni Wahrstätter",
+      "why": "프로토콜 — EF 리서처, MEV·검열 데이터"
+    },
+    {
+      "screenname": "terencechain",
+      "name": "Terence Tsao",
+      "why": "프로토콜 — 컨센서스 클라이언트(Prysm) 개발"
+    },
+    {
+      "screenname": "lightclients",
+      "name": "Matt Garnett",
+      "why": "프로토콜 — Geth·프로토콜 개발"
+    },
+    {
+      "screenname": "ethereum",
+      "name": "Ethereum (공식)",
+      "why": "공식 — 공지"
+    },
+    {
+      "screenname": "ethereumfndn",
+      "name": "Ethereum Foundation",
+      "why": "공식 — 재단 공지·행사"
+    },
+    {
+      "screenname": "Optimism",
+      "name": "Optimism",
+      "why": "L2 — 공식, 생태계 뉴스"
+    },
+    {
+      "screenname": "arbitrum",
+      "name": "Arbitrum",
+      "why": "L2 — 공식, 생태계 뉴스"
+    },
+    {
+      "screenname": "base",
+      "name": "Base",
+      "why": "L2 — 공식, 생태계 뉴스"
+    },
+    {
+      "screenname": "sassal0x",
+      "name": "Sassal",
+      "why": "해설 — The Daily Gwei, 생태계 데일리"
+    },
+    {
+      "screenname": "evan_van_ness",
+      "name": "Evan Van Ness",
+      "why": "해설 — 전 Week in Ethereum News 편집자"
+    },
+    {
+      "screenname": "gakonst",
+      "name": "Georgios Konstantopoulos",
+      "why": "해설 — Paradigm CTO, 클라이언트·인프라(reth)"
+    },
+    {
+      "screenname": "benjaminion_xyz",
+      "name": "Ben Edgington",
+      "why": "해설 — What's New in Eth2 주간 큐레이션"
+    },
+    {
+      "screenname": "hasufl",
+      "name": "Hasu",
+      "why": "해설 — Flashbots 전략 리서치"
+    },
+    {
+      "screenname": "superphiz",
+      "name": "Superphiz",
+      "why": "해설 — 스테이킹 탈중앙 옹호"
+    },
+    {
+      "screenname": "ercwl",
+      "name": "Eric Wall",
+      "why": "해설 — 크립토 논평"
+    },
+    {
+      "screenname": "RyanSAdams",
+      "name": "Ryan Sean Adams",
+      "why": "미디어 — Bankless, 생태계 내러티브"
+    },
+    {
+      "screenname": "TrustlessState",
+      "name": "David Hoffman",
+      "why": "미디어 — Bankless"
+    },
+    {
+      "screenname": "laurashin",
+      "name": "Laura Shin",
+      "why": "미디어 — Unchained, 심층 취재"
+    },
+    {
+      "screenname": "0xngmi",
+      "name": "0xngmi",
+      "why": "데이터 — DefiLlama, DeFi 데이터"
+    },
+    {
+      "screenname": "haydenzadams",
+      "name": "Hayden Adams",
+      "why": "DeFi — Uniswap 창업자"
+    },
+    {
+      "screenname": "StaniKulechov",
+      "name": "Stani Kulechov",
+      "why": "DeFi — Aave 창업자"
+    },
+    {
+      "screenname": "jon_charb",
+      "name": "Jon Charbonneau",
+      "why": "논쟁·담론 — DBA 공동창업, L1/L2 설계 논쟁의 단골 논자"
+    },
+    {
+      "screenname": "toghrulmaharram",
+      "name": "Toghrul Maharramov",
+      "why": "논쟁·담론 — 롤업·스케일링 기술 논객"
+    },
+    {
+      "screenname": "ryanberckmans",
+      "name": "Ryan Berckmans",
+      "why": "논쟁·담론 — 이더리움 옹호 진영의 대표 논객"
+    },
+    {
+      "screenname": "Justin_Bons",
+      "name": "Justin Bons",
+      "why": "논쟁·담론 — 이더리움 비판 단골(설전 상대 진영), Cyber Capital"
+    },
+    {
+      "screenname": "kelvinfichter",
+      "name": "Kelvin Fichter",
+      "why": "논쟁·담론 — Optimism 엔지니어, 기술 논쟁 참여 잦음"
+    },
+    {
+      "screenname": "sreeramkannan",
+      "name": "Sreeram Kannan",
+      "why": "논쟁·담론 — EigenLayer 창업자, 리스테이킹 논쟁 중심"
+    },
+    {
+      "screenname": "musalbas",
+      "name": "Mustafa Al-Bassam",
+      "why": "논쟁·담론 — Celestia 창업자, DA 설전 상대 진영"
+    },
+    {
+      "screenname": "lex_node",
+      "name": "Gabriel Shapiro",
+      "why": "논쟁·담론 — 크립토 법률·규제 논쟁"
+    },
+    {
+      "screenname": "ameensol",
+      "name": "Ameen Soleimani",
+      "why": "논쟁·담론 — MolochDAO/SpankChain, 거침없는 생태계 논평"
+    },
+    {
+      "screenname": "ethlabs_org",
+      "name": "EthLabs",
+      "why": "생태계 — L1·L2 관계 강화 조직, 코어 계정들이 다수 인용 (멘션 10회)"
+    },
+    {
+      "screenname": "EthCoordinate",
+      "name": "EthCoordinate",
+      "why": "생태계 — EthStaker 후신, Forkcast 업그레이드 트래킹 (멘션 5회)"
+    },
+    {
+      "screenname": "binji_x",
+      "name": "Binji",
+      "why": "생태계 — EthLabs, 이더리움 커뮤니케이션·커뮤니티 (멘션 5회)"
+    },
+    {
+      "screenname": "EFDevcon",
+      "name": "Devcon",
+      "why": "공식 — EF Devcon/Devconnect 행사 공지 (멘션 5회)"
+    },
+    {
+      "screenname": "ethPandaOps",
+      "name": "ethPandaOps",
+      "why": "프로토콜 — EF 데브옵스, 테스트넷·업그레이드 리허설 (멘션 4회)"
+    },
+    {
+      "screenname": "trent_vanepps",
+      "name": "Trent Van Epps",
+      "why": "생태계 — Protocol Guild, 코어 개발자 펀딩 (멘션 4회)"
+    },
+    {
+      "screenname": "aave",
+      "name": "Aave (공식)",
+      "why": "DeFi — 공식, v4 등 프로토콜 뉴스 (멘션 4회)"
+    },
+    {
+      "screenname": "Uniswap",
+      "name": "Uniswap (공식)",
+      "why": "DeFi — 공식, 프로토콜·Unichain 뉴스 (멘션 3회)"
+    },
+    {
+      "screenname": "EtherealnewsHQ",
+      "name": "Ethereal News",
+      "why": "해설 — 이더리움 주간 뉴스 큐레이션, @ethereum이 RT (멘션 3회)"
+    },
+    {
+      "screenname": "tayvano_",
+      "name": "Taylor Monahan",
+      "why": "보안 — 온체인 해킹·탈취 추적 수사 (멘션 2회)"
+    },
+    {
+      "screenname": "pcaversaccio",
+      "name": "Pascal Caversaccio",
+      "why": "보안 — 스마트컨트랙트 보안 리서처 (멘션 2회)"
+    },
+    {
+      "screenname": "donnoh_eth",
+      "name": "donnoh",
+      "why": "L2 — 인터롭·브리지 리서치(L2Beat) (멘션 2회)"
+    },
+    {
+      "screenname": "_julianma",
+      "name": "Julian Ma",
+      "why": "프로토콜 — EF RIG 리서처, FCR·인터롭 (멘션 2회)"
+    },
+    {
+      "screenname": "mikeneuder",
+      "name": "Mike Neuder",
+      "why": "프로토콜 — 전 EF 리서처(현 Etherealize), 스테이킹·MEV (멘션 1회, 전문성 근거 추가)"
+    },
+    {
+      "screenname": "dannyryan",
+      "name": "Danny Ryan",
+      "why": "프로토콜 — 전 EF 리서치 리드, Etherealize 공동창업 (멘션 0회, 전문성 근거 추가)"
+    },
+    {
+      "screenname": "nixorokish",
+      "name": "Nixo",
+      "why": "생태계 — EF 프로토콜 서포트, 전 EthStaker, 스테이킹·커뮤니티"
+    },
+    {
+      "screenname": "pedrouid",
+      "name": "Pedro Gomes",
+      "why": "생태계 — WalletConnect(Reown) 창업자, 지갑 UX·인프라"
+    },
+    {
+      "screenname": "ethresearchbot",
+      "name": "Ethereum Research Bot",
+      "why": "프로토콜 — ethresear.ch 새 리서치 포스트 자동 알림"
+    },
+    {
+      "screenname": "decentrek",
+      "name": "Derek Chiang",
+      "why": "해설 — Ethlabs(전 ZeroDev), AA·트랜잭션 설계 아티클, 코어 인물들이 인용"
+    },
+    {
+      "screenname": "Etherealize_io",
+      "name": "Etherealize (공식)",
+      "why": "생태계 — ETH 기관 채택 조직(Vivek Raman·Danny Ryan), 월가 대상 이더리움 알리기"
+    },
+    {
+      "screenname": "VivekVentures",
+      "name": "Vivek Raman",
+      "why": "생태계 — Etherealize 창업자·CEO, ETH 기관 내러티브"
+    },
+    {
+      "screenname": "gphummer",
+      "name": "Grant Hummer",
+      "why": "생태계 — Etherealize 공동창업자"
+    },
+    {
+      "screenname": "ECHInstitute",
+      "name": "ECH Institute",
+      "why": "생태계 — 전 Ethereum Cat Herders, 프로토콜 거버넌스·EIP 코디네이션 비영리"
+    },
+    {
+      "screenname": "aerugoettinea",
+      "name": "Bastian Aue (Aerugo)",
+      "why": "공식 — EF 임시 공동 ED, 재단 전환 실행 총괄"
+    },
+    {
+      "screenname": "gluk64",
+      "name": "Alex Gluchowski",
+      "why": "L2 — Matter Labs(zkSync) CEO, ZK 롤업 동향"
+    },
+    {
+      "screenname": "0xfredrik",
+      "name": "Fredrik Svantes",
+      "why": "보안 — EF 프로토콜 시큐리티 리서치, 버그 바운티 공지"
+    },
+    {
+      "screenname": "jchaskin22",
+      "name": "Jason Chaskin",
+      "why": "생태계 — EF 리서처, TEE·생태계 팀 연결과 앰플리파이"
+    },
+    {
+      "screenname": "kevaundray",
+      "name": "Kevaundray Wedderburn",
+      "why": "코어 개발자 콜 참여자 — EF · 응용 리서치"
+    },
+    {
+      "screenname": "BarnabasBusa",
+      "name": "Barnabas Busa",
+      "why": "코어 개발자 콜 참여자 — EF DevOps"
+    },
+    {
+      "screenname": "parithosh_j",
+      "name": "Parithosh Jayanthi",
+      "why": "코어 개발자 콜 참여자 — EF DevOps"
+    },
+    {
+      "screenname": "ben_a_adams",
+      "name": "Ben Adams",
+      "why": "코어 개발자 콜 참여자 — Nethermind"
+    },
+    {
+      "screenname": "poojaranjan19",
+      "name": "Pooja Ranjan",
+      "why": "코어 개발자 콜 참여자 — ECH Institute"
+    },
+    {
+      "screenname": "potuz_eth",
+      "name": "Potuz",
+      "why": "코어 개발자 콜 참여자 — Offchain Labs · Prysm"
+    },
+    {
+      "screenname": "JustinTraglia",
+      "name": "Justin Traglia",
+      "why": "코어 개발자 콜 참여자 — EF · 보안"
+    },
+    {
+      "screenname": "yperbasis",
+      "name": "Andrew Ashikhmin",
+      "why": "코어 개발자 콜 참여자 — Erigon"
+    },
+    {
+      "screenname": "elbuenmayini",
+      "name": "Mario Vega",
+      "why": "코어 개발자 콜 참여자 — EF · 테스팅, ACDT 진행"
+    },
+    {
+      "screenname": "vdWijden",
+      "name": "Marius van der Wijden",
+      "why": "코어 개발자 콜 참여자 — EF · geth"
+    },
+    {
+      "screenname": "ralexstokes",
+      "name": "Alex Stokes",
+      "why": "코어 개발자 콜 참여자 — EF"
+    },
+    {
+      "screenname": "nicoflaig",
+      "name": "Nico Flaig",
+      "why": "코어 개발자 콜 참여자 — ChainSafe · Lodestar"
+    },
+    {
+      "screenname": "yoavw",
+      "name": "Yoav Weiss",
+      "why": "코어 개발자 콜 참여자 — EF · 계정 추상화"
+    },
+    {
+      "screenname": "drortirosh",
+      "name": "Dror Tirosh",
+      "why": "코어 개발자 콜 참여자 — EF · 계정 추상화"
+    },
+    {
+      "screenname": "zsfelfoldi",
+      "name": "Zsolt Felföldi",
+      "why": "코어 개발자 콜 참여자 — EF · geth, EIP-8304"
+    },
+    {
+      "screenname": "forshtat",
+      "name": "Alex Forshtat",
+      "why": "코어 개발자 콜 참여자 — EIP-8141·ERC-4337 공동 저자"
+    },
+    {
+      "screenname": "TArjovsky",
+      "name": "Tomás Arjovsky",
+      "why": "코어 개발자 콜 참여자 — LambdaClass · ethrex"
+    },
+    {
+      "screenname": "ivanlitteri",
+      "name": "Iván Litteri",
+      "why": "코어 개발자 콜 참여자 — LambdaClass · ethrex 테크 리드"
+    },
+    {
+      "screenname": "svlachakis_",
+      "name": "Stavros Vlachakis",
+      "why": "코어 개발자 콜 참여자 — Nethermind"
+    },
+    {
+      "screenname": "misilva73",
+      "name": "Maria Silva",
+      "why": "코어 개발자 콜 참여자 — EIP-8037 제1저자"
+    },
+    {
+      "screenname": "MilosCostantini",
+      "name": "Milos Costantini",
+      "why": "코어 개발자 콜 참여자 — Enso"
+    },
+    {
+      "screenname": "shemnon",
+      "name": "Danno Ferrin",
+      "why": "코어 개발자 콜 참여자 — Sei Labs · 전 Besu"
+    },
+    {
+      "screenname": "mysticryuujin",
+      "name": "Chase Wright",
+      "why": "코어 개발자 콜 참여자 — EF"
+    }
   ]
 }

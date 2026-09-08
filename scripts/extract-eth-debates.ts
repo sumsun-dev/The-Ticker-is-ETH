@@ -46,6 +46,7 @@ import {
   type WatchlistEntry,
   type XProfile,
 } from './lib/eth-debates';
+import { fetchProfiles, makeXApi } from './lib/x-api';
 import { z } from 'zod';
 import type { NewsItem } from './lib/eth-news';
 
@@ -114,43 +115,6 @@ function todayKst(): string {
 
 function readJson<T>(file: string, fallback: T): T {
   return fs.existsSync(file) ? (JSON.parse(fs.readFileSync(file, 'utf-8')) as T) : fallback;
-}
-
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-
-/** twitter-api45 호출. 키가 없거나 실패하면 null — 답글·아바타 없이도 추출은 진행된다. */
-function makeXApi() {
-  const key = process.env.X_RAPIDAPI_KEY;
-  const host = process.env.X_RAPIDAPI_HOST ?? 'twitter-api45.p.rapidapi.com';
-  if (!key) {
-    console.log('[INFO] X_RAPIDAPI_KEY not set — replies, engagement and avatars skipped');
-    return null;
-  }
-  // 20초 타임아웃, 5xx·네트워크 오류는 한 번 재시도. 타임아웃이 없으면 끊긴 연결 하나에 전체 실행이 멈춘다.
-  return async (endpoint: string, params: Record<string, string>): Promise<Record<string, unknown> | null> => {
-    const qs = new URLSearchParams(params).toString();
-    for (let attempt = 0; attempt < 2; attempt++) {
-      await sleep(attempt === 0 ? 500 : 3000);
-      try {
-        const res = await fetch(`https://${host}/${endpoint}.php?${qs}`, {
-          headers: { 'x-rapidapi-key': key, 'x-rapidapi-host': host },
-          signal: AbortSignal.timeout(20_000),
-        });
-        if (res.status >= 500 && attempt === 0) continue;
-        if (!res.ok) {
-          console.warn(`[WARN] x ${endpoint} ${qs}: HTTP ${res.status}`);
-          return null;
-        }
-        const body = await res.text();
-        return body ? (JSON.parse(body) as Record<string, unknown>) : null;
-      } catch (error) {
-        if (attempt === 0) continue;
-        console.warn(`[WARN] x ${endpoint} ${qs}:`, error instanceof Error ? error.message : error);
-        return null;
-      }
-    }
-    return null;
-  };
 }
 
 /** 트윗 원문 전문. display_text는 280자에서 잘리므로 text를 쓰고, t.co 링크는 entities.urls의 펼친 주소로 바꾼다. */
@@ -263,25 +227,6 @@ function runClaude(prompt: string, model: string): string {
   const envelope = JSON.parse(raw) as { result?: string; is_error?: boolean };
   if (envelope.is_error || !envelope.result) throw new Error('headless claude returned an error');
   return envelope.result;
-}
-
-/** 프로필 캐시에 없는 핸들을 screenname.php로 채운다 (이름·아바타·팔로워·바이오) */
-async function fetchProfiles(handles: Iterable<string>, profiles: Record<string, XProfile>, xApi: ReturnType<typeof makeXApi>, needBio = false) {
-  if (!xApi) return;
-  for (const handle of new Set(handles)) {
-    const key = handle.toLowerCase();
-    if (profiles[key] && (!needBio || profiles[key].bio !== undefined)) continue;
-    const p = await xApi('screenname', { screenname: handle });
-    if (!p?.profile) continue;
-    profiles[key] = {
-      ...profiles[key],
-      handle: String(p.profile),
-      name: String(p.name ?? handle),
-      avatar: avatarLarge(p.avatar ? String(p.avatar) : undefined) ?? profiles[key]?.avatar,
-      followers: Number(p.sub_count ?? 0),
-      bio: String(p.desc ?? ''),
-    };
-  }
 }
 
 /** 인용 트윗의 답글·인용 상대와 원문 전문을 tweet.php로 채운다. 둘 다 이미 있는 항목은 건너뛴다. */

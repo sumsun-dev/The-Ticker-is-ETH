@@ -1209,5 +1209,481 @@
     "avatar": "https://pbs.twimg.com/profile_images/1946026960305410048/h2oEpnJS_400x400.jpg",
     "followers": 673235,
     "bio": "CIO Fundstrat Capital @FundstratCap $GRNY $GRNJ| Research @fundstratdirect | @CNBC FT contr. | Chairman Bitmine @BitMNR $BMNR $BMNP | Wikipedia: https://t.co/8QsXKpzGT7"
+  },
+  "timbeiko": {
+    "handle": "TimBeiko",
+    "name": "timbeiko.eth",
+    "avatar": "https://pbs.twimg.com/profile_images/1082093593840349184/P2B7Qiyn_400x400.jpg",
+    "followers": 146917,
+    "bio": "helping ethereum win"
+  },
+  "adietrichs": {
+    "handle": "adietrichs",
+    "name": "ansgar.eth",
+    "avatar": "https://pbs.twimg.com/profile_images/1575685906786402304/P5UbjDt6_400x400.jpg",
+    "followers": 12399,
+    "bio": "Executive director @ethlabs_org. Admirer of emergent order. 🦇🔊"
+  },
+  "barnabemonnot": {
+    "handle": "barnabemonnot",
+    "name": "Barnabé Monnot | barnabé.eth",
+    "avatar": "https://pbs.twimg.com/profile_images/2069104465202814976/alWWQ8SG_400x400.jpg",
+    "followers": 13583,
+    "bio": "Growing @ethereum and ETH @ethlabs_org | Former co-lead Protocol @ethereumfndn"
+  },
+  "fradamt": {
+    "handle": "fradamt",
+    "name": "Francesco",
+    "avatar": "https://pbs.twimg.com/profile_images/1459852719783657484/8S8aKURW_400x400.jpg",
+    "followers": 4820,
+    "bio": "@ethereum researcher @ethlabs_org, (still) dealing with wacky protocols with weird acronyms"
+  },
+  "terencechain": {
+    "handle": "terencechain",
+    "name": "terence",
+    "avatar": "https://pbs.twimg.com/profile_images/1767254738008240129/7hA2_fDm_400x400.jpg",
+    "followers": 24815,
+    "bio": "Ethereum"
+  },
+  "ethereum": {
+    "handle": "ethereum",
+    "name": "Ethereum",
+    "avatar": "https://pbs.twimg.com/profile_images/1878738447067652096/tXQbWfpf_400x400.jpg",
+    "followers": 4522544,
+    "bio": "The universal platform for crypto, blockchain apps, stablecoins & decentralized tech. An account about the Ethereum ecosystem maintained by @ethereumfndn."
+  },
+  "ethereumfndn": {
+    "handle": "ethereumfndn",
+    "name": "Ethereum Foundation",
+    "avatar": "https://pbs.twimg.com/profile_images/1878739504808230912/bW3-TfUZ_400x400.jpg",
+    "followers": 73741,
+    "bio": "The EF is a non-profit that supports Ethereum. We work alongside the wider ecosystem to improve the protocol, grow our community, and advocate for Ethereum."
+  },
+  "optimism": {
+    "handle": "Optimism",
+    "name": "Optimism",
+    "avatar": "https://pbs.twimg.com/profile_images/2003410448197062656/Wb6_emPm_400x400.jpg",
+    "followers": 727086,
+    "bio": "Programmable financial infrastructure for enterprises.\nBuilt by Ethereum’s earliest scaling researchers."
+  },
+  "arbitrum": {
+    "handle": "arbitrum",
+    "name": "Arbitrum",
+    "avatar": "https://pbs.twimg.com/profile_images/1952411676621295616/KUOmiy3l_400x400.jpg",
+    "followers": 1147838,
+    "bio": "Powering the programmable economy."
+  },
+  "base": {
+    "handle": "base",
+    "name": "Base",
+    "avatar": "https://pbs.twimg.com/profile_images/2060695832840556549/R0s33fMN_400x400.jpg",
+    "followers": 1533456,
+    "bio": "Where the world transacts onchain. Base is beginning to explore a network token."
+  },
+  "sassal0x": {
+    "handle": "sassal0x",
+    "name": "sassal.eth/acc 🦇🔊",
+    "avatar": "https://pbs.twimg.com/profile_images/2078790985698725888/GvDDS4Vo_400x400.jpg",
+    "followers": 297570,
+    "bio": "Independent Ethereum educator, angel investor and advisor. \n\nFounder of @thedailygwei ⛽ (on hiatus)\n\nhttps://t.co/S3SA5U4uTE"
+  },
+  "evan_van_ness": {
+    "handle": "evan_van_ness",
+    "name": "Evan Van Ness 🧉",
+    "avatar": "https://pbs.twimg.com/profile_images/1881390553842995200/7ykf9ese_400x400.jpg",
+    "followers": 132307,
+    "bio": "Technologist. Investor in revolutionary ideas. ⚽\n\n🧉 maximalist"
+  },
+  "benjaminion_xyz": {
+    "handle": "benjaminion_xyz",
+    "name": "Ben Edgington",
+    "avatar": "https://pbs.twimg.com/profile_images/901175770181251075/rObK0BLd_400x400.jpg",
+    "followers": 21611,
+    "bio": "Facilitating Fast Finality @ethereum"
+  },
+  "hasufl": {
+    "handle": "hasufl",
+    "name": "Hasu⚡️🤖",
+    "avatar": "https://pbs.twimg.com/profile_images/1939674327873396736/TlfIZMiO_400x400.jpg",
+    "followers": 262092,
+    "bio": "running ethereum products @ flashbots \nadvisor @ lido, steakhouse"
+  },
+  "superphiz": {
+    "handle": "superphiz",
+    "name": "superphiz.eth",
+    "avatar": "https://pbs.twimg.com/profile_images/1963297528197107712/QYXpMWjv_400x400.jpg",
+    "followers": 73803,
+    "bio": "Ethereum Decentralization Advocate\n\n#stakefromhome"
+  },
+  "ercwl": {
+    "handle": "ercwl",
+    "name": "Eric Wall",
+    "avatar": "https://pbs.twimg.com/profile_images/1903145669155516416/GEy4nUhc_400x400.jpg",
+    "followers": 166632,
+    "bio": "troll-demon @taprootwizards"
+  },
+  "ryansadams": {
+    "handle": "RyanSAdams",
+    "name": "RYAN SΞAN ADAMS",
+    "avatar": "https://pbs.twimg.com/profile_images/1766150845614145536/NPX7ozxG_400x400.jpg",
+    "followers": 277099,
+    "bio": "Crypto investor going bankless. 🏴"
+  },
+  "trustlessstate": {
+    "handle": "TrustlessState",
+    "name": "David Hoffman",
+    "avatar": "https://pbs.twimg.com/profile_images/2067341164508753920/liVbRn0l_400x400.jpg",
+    "followers": 257579,
+    "bio": "Optimistic storyteller of frontier technology. The chaotic side of @Bankless"
+  },
+  "0xngmi": {
+    "handle": "0xngmi",
+    "name": "0xngmi",
+    "avatar": "https://pbs.twimg.com/profile_images/1653148127623249924/E5-smZYA_400x400.jpg",
+    "followers": 194528,
+    "bio": "Building a transparent defi dashboard at @defillama.\n\nWould rather be right than make money"
+  },
+  "jon_charb": {
+    "handle": "jon_charb",
+    "name": "Jon Charbonneau 🇺🇸",
+    "avatar": "https://pbs.twimg.com/profile_images/1746419415451656193/xOBD9ByO_400x400.jpg",
+    "followers": 27101,
+    "bio": "Co-Founder & General Partner @dba_xyz"
+  },
+  "toghrulmaharram": {
+    "handle": "toghrulmaharram",
+    "name": "Toghrul Maharramov 🇺🇦",
+    "avatar": "https://pbs.twimg.com/profile_images/1560594557263380480/ihJOVitM_400x400.jpg",
+    "followers": 20275,
+    "bio": "research partner @polychain"
+  },
+  "kelvinfichter": {
+    "handle": "kelvinfichter",
+    "name": "Kelvin Fichter",
+    "avatar": "https://pbs.twimg.com/profile_images/1682234895379189762/y63rSMsV_400x400.jpg",
+    "followers": 34164,
+    "bio": "founding engineer @optimism"
+  },
+  "sreeramkannan": {
+    "handle": "sreeramkannan",
+    "name": "Sreeram Kannan",
+    "avatar": "https://pbs.twimg.com/profile_images/1957594394892312577/dsAJIX9F_400x400.jpg",
+    "followers": 45996,
+    "bio": "Founder @EigenLabs ($10B+ AUM protocol, a16z-funded) • Building Open Agentic Networks • Maximizing Individual Agency Post AGI • Ex-Prof @UW: Information Theory."
+  },
+  "musalbas": {
+    "handle": "musalbas",
+    "name": "Mustafa Al-Bassam",
+    "avatar": "https://pbs.twimg.com/profile_images/2011484515450175493/KSOJ6zLO_400x400.jpg",
+    "followers": 45462,
+    "bio": "Co-founder @Celestia"
+  },
+  "ameensol": {
+    "handle": "ameensol",
+    "name": "Ameen Soleimani",
+    "avatar": "https://pbs.twimg.com/profile_images/1941913020298403840/vBZegjO3_400x400.jpg",
+    "followers": 47379,
+    "bio": "coordination arms dealer @unchainiran @0xbowio https://t.co/mH2RCmSK73 @letsgethai @reflexerfinance @molochdao"
+  },
+  "ethlabs_org": {
+    "handle": "ethlabs_org",
+    "name": "Ethlabs",
+    "avatar": "https://pbs.twimg.com/profile_images/2090167415426404352/bLbDEqrc_400x400.jpg",
+    "followers": 18281,
+    "bio": "a non-profit R&D lab for Ethereum and ETH"
+  },
+  "ethcoordinate": {
+    "handle": "EthCoordinate",
+    "name": "EthCoordinate",
+    "avatar": "https://pbs.twimg.com/profile_images/2086148852487172096/Ie1tLVzW_400x400.jpg",
+    "followers": 581,
+    "bio": ""
+  },
+  "efdevcon": {
+    "handle": "EFDevcon",
+    "name": "Devcon 8 | Mumbai, India 🇮🇳",
+    "avatar": "https://pbs.twimg.com/profile_images/2014157147144327168/o8acGUVf_400x400.jpg",
+    "followers": 48191,
+    "bio": "The flagship event by @ethereumfndn. \nDevcon 8: Mumbai, India 3-6 Nov 2026."
+  },
+  "ethpandaops": {
+    "handle": "ethPandaOps",
+    "name": "ethPandaOps",
+    "avatar": "https://pbs.twimg.com/profile_images/1987712572100120576/1yMwn50f_400x400.jpg",
+    "followers": 2515,
+    "bio": "🐼🌿 We're a bamboo-munching, crypto-loving team of pandas who've traded the forest for the Ethereum blockchain! We were born during #TestingTheMerge"
+  },
+  "aave": {
+    "handle": "aave",
+    "name": "Aave",
+    "avatar": "https://pbs.twimg.com/profile_images/1808921860781821952/CmtvkzWo_400x400.png",
+    "followers": 699672,
+    "bio": "The most trusted financial network. Earn, borrow, save, and swap."
+  },
+  "uniswap": {
+    "handle": "Uniswap",
+    "name": "Uniswap",
+    "avatar": "https://pbs.twimg.com/profile_images/1831348758753206272/y2Z0hMrl_400x400.jpg",
+    "followers": 1483053,
+    "bio": "The largest onchain marketplace. Buy and sell crypto on Ethereum and 20+ other chains."
+  },
+  "pcaversaccio": {
+    "handle": "pcaversaccio",
+    "name": "sudo rm -rf --no-preserve-root /",
+    "avatar": "https://pbs.twimg.com/profile_images/1734666604049289216/7ezXxfGv_400x400.jpg",
+    "followers": 33706,
+    "bio": "𝐖𝐨𝐫𝐤𝐢𝐧𝐠 𝐨𝐧 𝐰𝐡𝐚𝐭'𝐬 𝐧𝐞𝐱𝐭.\nꟼGꟼ: 063E 966C 93AB 4356 492F E032 7C3B 4B4B 7725 111F"
+  },
+  "_julianma": {
+    "handle": "_julianma",
+    "name": "Julian",
+    "avatar": "https://pbs.twimg.com/profile_images/1547668260383993858/Nnl7DnFp_400x400.jpg",
+    "followers": 4424,
+    "bio": "Growing @ethereum and ETH @ethlabs_org | former: @ethereumfndn"
+  },
+  "mikeneuder": {
+    "handle": "mikeneuder",
+    "name": "mikeneuder.eth ⟠",
+    "avatar": "https://pbs.twimg.com/profile_images/1538248848803495937/rR2VPL6p_400x400.png",
+    "followers": 8569,
+    "bio": "phd student studying blockchain incentive design @princeton computer sci.\n\n(cover photo from \"The Dispossessed\" by Ursula K. Le Guin. it is a good book.)"
+  },
+  "dannyryan": {
+    "handle": "dannyryan",
+    "name": "dannyryan",
+    "avatar": "https://pbs.twimg.com/profile_images/869016575839539200/Eh7zVsBa_400x400.jpg",
+    "followers": 37607,
+    "bio": ""
+  },
+  "nixorokish": {
+    "handle": "nixorokish",
+    "name": "nixo.eth",
+    "avatar": "https://pbs.twimg.com/profile_images/2086847437277478912/F-w_Sq0y_400x400.jpg",
+    "followers": 5887,
+    "bio": "helping coordinate @ethereum upgrades @ethcoordinate\n// decentralization / privacy / open source maxi\n// solo staker"
+  },
+  "ethresearchbot": {
+    "handle": "ethresearchbot",
+    "name": "ethresearchbot",
+    "avatar": "https://pbs.twimg.com/profile_images/1699800576757022720/7q4o9Mln_400x400.png",
+    "followers": 6247,
+    "bio": "Ethereum’s original AI research bot. Bringing Ethereum R&D to Twitter with summaries of new https://t.co/QsC083kkke posts.\n\n0x1F1A979e6f9E0179218376041eA54CaedEf5dBA3"
+  },
+  "etherealize_io": {
+    "handle": "Etherealize_io",
+    "name": "Etherealize",
+    "avatar": "https://pbs.twimg.com/profile_images/1879591238438920192/IX7oGQkH_400x400.jpg",
+    "followers": 34342,
+    "bio": "Building the future of finance on Ethereum. Shared settlement infrastructure for institutional capital markets."
+  },
+  "vivekventures": {
+    "handle": "VivekVentures",
+    "name": "Vivek Raman",
+    "avatar": "https://pbs.twimg.com/profile_images/1830945810495758336/8lcsA8nf_400x400.jpg",
+    "followers": 19062,
+    "bio": "Etherealize @Etherealize_io | ex-Wall St high yield credit trader | @MorganStanley @UBS @Nomura @BitOodaCompute @Yale"
+  },
+  "gphummer": {
+    "handle": "gphummer",
+    "name": "Grant Hummer",
+    "avatar": "https://pbs.twimg.com/profile_images/2057147728560525312/af8WE5Yw_400x400.jpg",
+    "followers": 7423,
+    "bio": "Disintermediate the Leviathan\n\n@etherealize_io"
+  },
+  "echinstitute": {
+    "handle": "ECHInstitute",
+    "name": "ECH Institute Inc.",
+    "avatar": "https://pbs.twimg.com/profile_images/1906020939793567744/kcQWQHn6_400x400.jpg",
+    "followers": 8416,
+    "bio": "Education, Community Building, Homesteading Ethereum! 😸"
+  },
+  "aerugoettinea": {
+    "handle": "aerugoettinea",
+    "name": "Aerugo",
+    "avatar": "https://pbs.twimg.com/profile_images/2020548531359252480/UXSc2qDF_400x400.jpg",
+    "followers": 5507,
+    "bio": "CSA operator @ethereumfndn"
+  },
+  "gluk64": {
+    "handle": "gluk64",
+    "name": "ALEX | ZK",
+    "avatar": "https://pbs.twimg.com/profile_images/1955339289169920000/nsOJbjxi_400x400.jpg",
+    "followers": 51043,
+    "bio": "Inventor of @zksync. zk/acc. Freedom maximalist. \nFreedom → Progress → Prosperity"
+  },
+  "0xfredrik": {
+    "handle": "0xfredrik",
+    "name": "Fredrik",
+    "avatar": "https://pbs.twimg.com/profile_images/1396927530238623746/0EqklSzt_400x400.jpg",
+    "followers": 2190,
+    "bio": "I work for @Ethereum at the @Ethereumfndn helping Ethereum stay secure"
+  },
+  "jchaskin22": {
+    "handle": "jchaskin22",
+    "name": "chaskin.eth",
+    "avatar": "https://pbs.twimg.com/profile_images/2016950149633691648/Kht-necI_400x400.jpg",
+    "followers": 8258,
+    "bio": "ethereum foundation | opinions are my own but more than likely they come from Vitalik’s blog | run AI locally → https://t.co/zcgcEUpnGr"
+  },
+  "kevaundray": {
+    "handle": "kevaundray",
+    "name": "Kev",
+    "avatar": "https://pbs.twimg.com/profile_images/1658523090467315712/a3xJ6ySn_400x400.jpg",
+    "followers": 2517,
+    "bio": "Applied Research. Ethereum.\n\nprev: Aztec. Creator/Lead of the Noir programming language"
+  },
+  "barnabasbusa": {
+    "handle": "BarnabasBusa",
+    "name": "Barnabas Busa",
+    "avatar": "https://pbs.twimg.com/profile_images/534855342300352514/m-C5ReWq_400x400.jpeg",
+    "followers": 937,
+    "bio": ""
+  },
+  "parithosh_j": {
+    "handle": "parithosh_j",
+    "name": "parithosh | 🐼👉👈🐼",
+    "avatar": "https://pbs.twimg.com/profile_images/1257719305459904512/x5MkzrAf_400x400.jpg",
+    "followers": 9179,
+    "bio": "@ethPandaOps at the Ethereum Foundation\n\nENS: parithosh.eth\nWebsite: https://t.co/iujOhlI6I4\nMastodon: @parithosh@chaos.social"
+  },
+  "ben_a_adams": {
+    "handle": "ben_a_adams",
+    "name": "Ben {chmark} Adams ⟠",
+    "avatar": "https://pbs.twimg.com/profile_images/1282411238602006529/l4lHaQHE_400x400.jpg",
+    "followers": 12675,
+    "bio": "Ethereum Core Dev, Co-founder of @Illyriad Games, 12x Microsoft MVP, contributor to @Nethermind. Prev @dotnetfdn board member.\n\n𓋹 Cult of Performance is Good"
+  },
+  "poojaranjan19": {
+    "handle": "poojaranjan19",
+    "name": "Pooja Ranjan | ranjan.eth",
+    "avatar": "https://pbs.twimg.com/profile_images/2056372532299571200/Z-EwXzEQ_400x400.jpg",
+    "followers": 4845,
+    "bio": "Building Ethereum community!  📚EIP-5069, EIP-8133 | @ECHInstitute | @TeamAvarch | prev. @Accenture"
+  },
+  "potuz_eth": {
+    "handle": "potuz_eth",
+    "name": "Potuz",
+    "avatar": "https://pbs.twimg.com/profile_images/1494001194427158539/bfrZyMsG_400x400.jpg",
+    "followers": 2668,
+    "bio": "Annoying devs on Discord."
+  },
+  "justintraglia": {
+    "handle": "JustinTraglia",
+    "name": "jtraglia.eth",
+    "avatar": "https://pbs.twimg.com/profile_images/1648459994256543744/fn_SnKW5_400x400.jpg",
+    "followers": 724,
+    "bio": ""
+  },
+  "yperbasis": {
+    "handle": "yperbasis",
+    "name": "Andrew Ashikhmin",
+    "avatar": "https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png",
+    "followers": 170,
+    "bio": ""
+  },
+  "elbuenmayini": {
+    "handle": "elbuenmayini",
+    "name": "MarioVega.eth 🦇🔊",
+    "avatar": "https://pbs.twimg.com/profile_images/1616232824415342592/Wly-1ddA_400x400.jpg",
+    "followers": 1066,
+    "bio": "@Ethereum Testing"
+  },
+  "vdwijden": {
+    "handle": "vdWijden",
+    "name": "MariusVanDerWijden",
+    "avatar": "https://pbs.twimg.com/profile_images/1334610351976026113/o0FQPHZX_400x400.jpg",
+    "followers": 18705,
+    "bio": "Developer @Ethereum, working on @go_ethereum"
+  },
+  "ralexstokes": {
+    "handle": "ralexstokes",
+    "name": "stokes",
+    "avatar": "https://pbs.twimg.com/profile_images/1688771944328593408/DlnCvS1Y_400x400.jpg",
+    "followers": 9598,
+    "bio": "ai/acc arc.\n\nethereum."
+  },
+  "nicoflaig": {
+    "handle": "nicoflaig",
+    "name": "nflaig.eth",
+    "avatar": "https://pbs.twimg.com/profile_images/1618325595397447689/9kzomyhR_400x400.jpg",
+    "followers": 237,
+    "bio": "Protocol Engineer, Lodestar/Ethereum"
+  },
+  "yoavw": {
+    "handle": "yoavw",
+    "name": "yoav.eth",
+    "avatar": "https://pbs.twimg.com/profile_images/1083093432808161283/PJQZwP5X_400x400.jpg",
+    "followers": 4728,
+    "bio": ""
+  },
+  "drortirosh": {
+    "handle": "drortirosh",
+    "name": "Dror Tirosh",
+    "avatar": "https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png",
+    "followers": 150,
+    "bio": ""
+  },
+  "zsfelfoldi": {
+    "handle": "zsfelfoldi",
+    "name": "Zsolt Felföldi",
+    "avatar": "https://pbs.twimg.com/profile_images/598141259664990208/MB3PrmeS_400x400.jpg",
+    "followers": 743,
+    "bio": ""
+  },
+  "forshtat": {
+    "handle": "forshtat",
+    "name": "Alex Forshtat",
+    "avatar": "https://pbs.twimg.com/profile_images/2045125282865074176/I8Pzn8-c_400x400.jpg",
+    "followers": 98,
+    "bio": "Ethereum developer and contributor. Co-author of EIP-8141, ERC-4337, and more."
+  },
+  "tarjovsky": {
+    "handle": "TArjovsky",
+    "name": "Tomás Arjovsky",
+    "avatar": "https://pbs.twimg.com/profile_images/1723786620745183233/IBsJE5S6_400x400.jpg",
+    "followers": 138,
+    "bio": "Software engineer, building a consensus node in Elixir at @class_lambda and @ethereum.\n\nBlockchain, distributed systems and rendering fan."
+  },
+  "ivanlitteri": {
+    "handle": "ivanlitteri",
+    "name": "Ivan",
+    "avatar": "https://pbs.twimg.com/profile_images/1801577809728462848/UPASaIEt_400x400.jpg",
+    "followers": 235,
+    "bio": "@ethrex_client tech lead at @class_lambda. Interested in number theory, cryptography and distributed systems. I just press keys and things kinda work"
+  },
+  "svlachakis_": {
+    "handle": "svlachakis_",
+    "name": "Stavros Vlachakis",
+    "avatar": "https://pbs.twimg.com/profile_images/1858533327520559104/pbZVdXEn_400x400.jpg",
+    "followers": 43,
+    "bio": "Ethereum Core Dev @Nethermind"
+  },
+  "misilva73": {
+    "handle": "misilva73",
+    "name": "Maria Inês Silva",
+    "avatar": "https://pbs.twimg.com/profile_images/1551690804594458624/elGlKFpy_400x400.jpg",
+    "followers": 154,
+    "bio": ""
+  },
+  "miloscostantini": {
+    "handle": "MilosCostantini",
+    "name": "milos",
+    "avatar": "https://pbs.twimg.com/profile_images/1975234497382621187/MkIrG2Qd_400x400.jpg",
+    "followers": 942,
+    "bio": "@ensobuild"
+  },
+  "shemnon": {
+    "handle": "shemnon",
+    "name": "Danno Ferrin",
+    "avatar": "https://pbs.twimg.com/profile_images/2037631420873789440/Ik2HuQiv_400x400.jpg",
+    "followers": 2190,
+    "bio": "Engineering @Sei_Labs\n|| Opinions are my own, not those of my employer\n|| Post @Tectonicxyz | Former @EthereumFndn | Out of @Consensys | Ex-@Google"
+  },
+  "mysticryuujin": {
+    "handle": "mysticryuujin",
+    "name": "Chase Wright (mysticryuujin.eth)",
+    "avatar": "https://pbs.twimg.com/profile_images/1562824016989196288/3QCf9lLE_400x400.jpg",
+    "followers": 5192,
+    "bio": "Ethereum. Validator #28. @ethereumfndn."
   }
 }
