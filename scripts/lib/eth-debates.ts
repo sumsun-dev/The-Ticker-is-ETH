@@ -63,6 +63,8 @@ export const DebateDraftSchema = z.object({
   sources: z.array(SourceSchema).transform((a) => a.slice(0, 6)).optional(),
   /** 이 논쟁을 X에서 다시 찾을 검색어 (후속 활동 자동 수집용) */
   keywords: z.array(z.string()).transform((a) => a.slice(0, 6)).optional(),
+  /** 코어 개발자 콜 등에서 결론이 났으면 한 문장 (예: "ACDE #244에서 EIP-8141 헤고타 SFI 확정") */
+  resolution: z.string().optional(),
   positions: z.array(PositionSchema).min(2),
   timeline: z.array(TimelineEntrySchema).min(1),
 });
@@ -207,6 +209,7 @@ export function mergeDebates(existing: Debate[], drafts: DebateDraft[], today: s
       whyItMatters: draft.whyItMatters ?? prev.whyItMatters,
       sources: draft.sources?.length ? draft.sources : prev.sources,
       keywords: draft.keywords?.length ? draft.keywords : prev.keywords,
+      resolution: draft.resolution ?? prev.resolution,
       positions: mergePositions(prev.positions, draft.positions),
       timeline,
       lastActivity,
@@ -340,6 +343,22 @@ export function handleMatchesName(holderName: string, profileName: string | unde
   if (want.length < 3) return false;
   const got = [norm(profileName ?? ''), norm(handle)];
   return got.some((g) => g.length > 0 && (g.includes(want) || want.includes(g)));
+}
+
+/** 본문에서 EIP/ERC 번호를 뽑는다 (중복 제거, 등장 순) */
+export function extractEipNumbers(text: string): number[] {
+  const out: number[] = [];
+  for (const m of text.matchAll(/\b(?:EIP|ERC|RIP)[-\s]?(\d{2,5})\b/gi)) {
+    const n = Number(m[1]);
+    if (!out.includes(n)) out.push(n);
+  }
+  return out;
+}
+
+/** Discourse 포럼(ethereum-magicians, ethresear.ch) 스레드 URL → JSON 엔드포인트. 아니면 undefined */
+export function discourseTopicJsonUrl(url: string): string | undefined {
+  const m = /^(https?:\/\/(?:ethereum-magicians\.org|ethresear\.ch))\/t\/([^/?#]+)\/(\d+)/.exec(url);
+  return m ? `${m[1]}/t/${m[2]}/${m[3]}.json` : undefined;
 }
 
 /** x.com/<handle>/status/<id> 에서 트윗 id를 뽑는다 */

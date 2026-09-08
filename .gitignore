@@ -29,3 +29,6 @@ dist-ssr
 # Telegram data (forwarded/unattributed are review-only, not used in build)
 src/data/forwarded-messages.json
 src/data/unattributed-messages.json
+
+# 논쟁 추출 배경 자료 캐시 (EIP 본문·포럼 글)
+.cache/

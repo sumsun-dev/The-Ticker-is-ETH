@@ -52,6 +52,8 @@ export interface Debate {
     /** 이 논쟁의 결과가 무엇을 바꾸는지 */
     whyItMatters?: string;
     sources?: Array<{ title: string; url: string }>;
+    /** 코어 개발자 콜 등에서 난 결론 한 문장 */
+    resolution?: string;
     positions: DebatePosition[];
     timeline: DebateTimelineEntry[];
     engagement?: { likes: number; retweets: number; quotes: number; replies: number; views: number };

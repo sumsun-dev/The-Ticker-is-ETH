@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { parseFeed, tweetsToItems, telegramToItems, mergeInbox, detectDebates, isDigestDue, type NewsItem } from '../lib/eth-news';
+import { parseFeed, tweetsToItems, telegramToItems, mergeInbox, detectDebates, isDigestDue, parseForkcastFeed, forkcastArtifactBase, forkcastToItem, type NewsItem } from '../lib/eth-news';
 
 const RSS2 = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
@@ -236,5 +236,55 @@ describe('isDigestDue', () => {
   });
   it('should allow forcing with interval 0', () => {
     expect(isDigestDue('2026-09-06', '2026-09-06', 0)).toBe(true);
+  });
+});
+
+describe('forkcast', () => {
+  const FEED = `<?xml version="1.0"?><rss version="2.0"><channel><title>Forkcast</title>
+    <item><title>AllCoreDevs - Execution #244 call published</title><link>https://forkcast.org/calls/acde/244/</link><guid isPermaLink="false">call-acde-244-2026-08-27</guid><pubDate>Thu, 27 Aug 2026 12:00:00 GMT</pubDate></item>
+    <item><title>Post Quantum Transaction Signatures #014 call published</title><link>https://forkcast.org/calls/pqts/014/</link><guid isPermaLink="false">call-pqts-014-2026-09-02</guid></item>
+    <item><title>Not a call</title><link>https://forkcast.org/eips/7727/</link></item>
+  </channel></rss>`;
+
+  it('should parse call series, number and date from feed items and skip non-call links', () => {
+    const calls = parseForkcastFeed(FEED);
+    expect(calls).toHaveLength(2);
+    expect(calls[0]).toMatchObject({ series: 'acde', number: 244, date: '2026-08-27', url: 'https://forkcast.org/calls/acde/244/', title: 'AllCoreDevs - Execution #244' });
+    expect(forkcastArtifactBase(calls[0])).toBe('https://raw.githubusercontent.com/ethereum/forkcast/main/public/artifacts/acde/2026-08-27_244');
+    expect(forkcastArtifactBase(calls[1])).toContain('/pqts/2026-09-02_014');
+  });
+
+  it('should turn tldr + key decisions into one inbox item with EIP numbers and stage changes kept', () => {
+    const [call] = parseForkcastFeed(FEED);
+    const item = forkcastToItem(
+      call,
+      { meeting: 'ACDE #244 - August 27, 2026', highlights: { fork_status: [{ highlight: 'Sep 28 proposed for Sepolia fork' }] }, action_items: [{ item: 'Clients to merge trunk' }] },
+      { key_decisions: [{ original_text: 'EIP-8141 (Frames) SFI for Hegota', eips: [8141], fork: 'Hegota', stage_change: { to: 'Scheduled' } }] },
+      { videoUrl: 'https://youtube.com/watch?v=x' },
+    );
+    expect(item.id).toBe('forkcast:acde-244');
+    expect(item.source).toBe('forkcast');
+    expect(item.title).toBe('ACDE #244 (2026-08-27) 핵심 결정 1건');
+    expect(item.summary).toContain('- EIP-8141 (Frames) SFI for Hegota [Hegota → Scheduled EIP-8141]');
+    expect(item.summary).toContain('fork status:');
+    expect(item.summary).toContain('영상: https://youtube.com/watch?v=x');
+    expect(item.publishedAt).toBe('2026-08-27T12:00:00.000Z');
+  });
+
+  it('should still produce an item when artifacts are missing', () => {
+    const [, pq] = parseForkcastFeed(FEED);
+    const item = forkcastToItem(pq, null, null, null);
+    expect(item.title).toBe('Post Quantum Transaction Signatures #14 (2026-09-02)');
+    expect(item.summary).toContain('Post Quantum Transaction Signatures #14 - 2026-09-02');
+  });
+});
+
+describe('mergeInbox forkcast retention', () => {
+  it('should keep forkcast call records outside the tweet cap', () => {
+    const tweet = (i: number): NewsItem => ({ id: `x:${i}`, source: 'x:a', sourceType: 'twitter', title: 't', url: `https://x.com/a/status/${i}`, publishedAt: `2026-09-0${(i % 7) + 1}T10:00:00.000Z`, summary: 't', author: 'a' });
+    const call: NewsItem = { id: 'forkcast:acde-244', source: 'forkcast', sourceType: 'rss', title: 'ACDE #244', url: 'https://forkcast.org/calls/acde/244/', publishedAt: '2026-08-27T12:00:00.000Z', summary: 'd', author: 'Forkcast' };
+    const merged = mergeInbox([call], Array.from({ length: 10 }, (_, i) => tweet(i)), 5);
+    expect(merged.filter((i) => i.source === 'forkcast')).toHaveLength(1);
+    expect(merged.filter((i) => i.source !== 'forkcast')).toHaveLength(5);
   });
 });

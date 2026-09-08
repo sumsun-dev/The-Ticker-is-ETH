@@ -25,6 +25,8 @@ import * as dotenv from 'dotenv';
 import {
   applyProfiles,
   avatarLarge,
+  discourseTopicJsonUrl,
+  extractEipNumbers,
   DebateDraftSchema,
   DraftEnvelopeSchema,
   extractJson,
@@ -55,6 +57,8 @@ const INBOX = path.resolve(process.cwd(), 'src/data/eth-news-inbox.json');
 const OUTPUT = path.resolve(process.cwd(), 'src/data/eth-debates.json');
 const PROFILES = path.resolve(process.cwd(), 'src/data/x-profiles.json');
 const ACCOUNTS = path.resolve(process.cwd(), 'scripts/config/twitter-accounts.json');
+/** 자동 수집한 배경 자료(EIP 본문·포럼 글) 캐시. 커밋하지 않는다(.gitignore). */
+const CONTEXT_CACHE = path.resolve(process.cwd(), '.cache/eth-context.json');
 const MAX_DIGESTS = Number(process.env.DEBATES_MAX_DIGESTS ?? 14);
 /** 추출·교정에 쓰는 모델. VPS CLI가 fable을 받는지 확인되면 기본값을 fable로 올린다. */
 const DEBATES_MODEL = process.env.DEBATES_MODEL ?? 'opus';
@@ -83,7 +87,8 @@ const EDITOR_PROMPT = `당신은 ECK(Ethereum Collective Korea)의 시니어 리
 - keyPoints: 이 논쟁이 정확히 무엇을 다투는지, 하위 질문 2~3개.
 - background: 다투는 대상이 무엇인지 모르는 독자를 위한 기술·제도적 맥락 3~5문장 (예: 그 EIP가 무엇을 바꾸는지, 누가 제안했고 어디까지 진행됐는지, 경쟁 제안과의 차이). "배경 자료"를 근거로 써도 된다. 없으면 생략.
 - whyItMatters: 이 논쟁의 결과가 생태계에 무엇을 바꾸는지, 무엇을 지켜봐야 하는지 2~3문장. 인사이트를 담되 근거 없는 전망은 쓰지 않는다.
-- sources: 이 논쟁에 직접 관련된 문서(EIP 본문, 블로그, 포럼 글)의 title과 url, 최대 5개. "배경 자료"의 출처 목록에 있는 url만 쓴다.
+- sources: 이 논쟁에 직접 관련된 문서(EIP 본문, 블로그, 포럼 글)의 title과 url, 최대 5개. "배경 자료"에 나온 url(자동 수집된 EIP 본문·포럼 스레드 포함)만 쓴다.
+- resolution: "코어 개발자 콜 기록"에 이 쟁점에 대한 결정(SFI·CFI 승격, 기각, 일정 확정 등)이 있으면 콜 이름과 함께 한 문장으로 적는다. 결정이 없으면 생략한다. 결정이 있어도 논쟁이 계속되면 positions는 그대로 정리한다.
 - keywords: 이 논쟁의 후속 활동을 X에서 다시 찾을 검색어 2~4개 (예: "EIP-8363", "tapered issuance burn"). 영문 위주.
 - positions: 제목의 질문에 대한 찬성(pro)과 반대(con) 두 편이 기본. 양쪽 논거를 모두 인정하거나 판단을 유보하거나 절충안을 낸 인물은 중립(neutral)으로 따로 둔다. 찬반 축이 아예 아니면 other로 두고 label로 구분한다. 각 편:
   - label: 그 입장을 한 구절로 (예: "호재다", "돌아오는 게 거의 없다")
@@ -100,7 +105,7 @@ const EDITOR_PROMPT = `당신은 ECK(Ethereum Collective Korea)의 시니어 리
 
 문체: 설명형 서술. 대시(—)와 이모지는 쓰지 않는다.
 출력: 아래 형식의 JSON 하나만, 앞뒤에 다른 텍스트 없이.
-{"debates": [{"id": "...", "title": "...", "category": "...", "summary": "...", "keyPoints": ["..."], "background": "...", "whyItMatters": "...", "sources": [{"title": "...", "url": "..."}], "keywords": ["..."], "positions": [{"stance": "pro", "label": "...", "holders": [{"handle": "...", "name": "...", "role": "..."}], "points": ["..."]}], "timeline": [{"date": "YYYY-MM-DD", "by": "...", "stance": "pro", "quote": "...", "url": "...", "digest": "YYYY-MM-DD"}]}]}
+{"debates": [{"id": "...", "title": "...", "category": "...", "summary": "...", "keyPoints": ["..."], "background": "...", "whyItMatters": "...", "sources": [{"title": "...", "url": "..."}], "keywords": ["..."], "resolution": "...", "positions": [{"stance": "pro", "label": "...", "holders": [{"handle": "...", "name": "...", "role": "..."}], "points": ["..."]}], "timeline": [{"date": "YYYY-MM-DD", "by": "...", "stance": "pro", "quote": "...", "url": "...", "digest": "YYYY-MM-DD"}]}]}
 조건을 만족하는 항목이 없으면 {"debates": []}.`;
 
 function todayKst(): string {
@@ -162,6 +167,82 @@ function fullText(tw: Record<string, unknown>): string {
     if (m.url) out = out.split(String(m.url)).join('');
   }
   return out.replace(/[ \t]+\n/g, '\n').trim();
+}
+
+const stripTags = (html: string) => html.replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/\s+/g, ' ').trim();
+
+/** EIP 마크다운에서 헤더 핵심 필드와 Abstract·Motivation만 남긴다 */
+function trimEipMarkdown(md: string, maxChars = 3500): string {
+  const fm = /^---\n([\s\S]*?)\n---/.exec(md)?.[1] ?? '';
+  const head = fm
+    .split('\n')
+    .filter((l) => /^(title|status|type|category|author|created|requires):/i.test(l))
+    .join('\n');
+  const body = md.replace(/^---[\s\S]*?---/, '');
+  const start = body.search(/^## Abstract/m);
+  const text = (start >= 0 ? body.slice(start) : body).replace(/\n{3,}/g, '\n\n').trim();
+  return `${head}\n\n${text}`.slice(0, maxChars);
+}
+
+/**
+ * 배경 자료 자동 수집: 본문에 나온 EIP 번호의 본문(eips.ethereum.org 원문)과 포럼 스레드(Discourse JSON)를 받아 온다.
+ * 사실 확인과 background 작성용이며, 캐시는 3일. 모델이 지어낼 여지를 줄이려는 장치.
+ */
+async function collectBackground(texts: string[], urls: string[]): Promise<{ text: string; sources: string[] }> {
+  const cache = readJson<Record<string, { fetchedAt: string; text: string }>>(CONTEXT_CACHE, {});
+  const fresh = (k: string) => cache[k] && Date.now() - Date.parse(cache[k].fetchedAt) < 3 * 86_400_000;
+  const get = async (key: string, fetcher: () => Promise<string>): Promise<string> => {
+    if (fresh(key)) return cache[key].text;
+    try {
+      const text = await fetcher();
+      cache[key] = { fetchedAt: new Date().toISOString(), text };
+      return text;
+    } catch (error) {
+      console.warn(`[WARN] background ${key}:`, error instanceof Error ? error.message : error);
+      return '';
+    }
+  };
+  const blocks: string[] = [];
+  const sources: string[] = [];
+  const eips = [...new Set(texts.flatMap(extractEipNumbers))].filter((n) => n >= 1000).slice(0, 6);
+  for (const n of eips) {
+    const url = `https://eips.ethereum.org/EIPS/eip-${n}`;
+    const text = await get(`eip:${n}`, async () => {
+      const r = await fetch(`https://raw.githubusercontent.com/ethereum/EIPs/master/EIPS/eip-${n}.md`, { signal: AbortSignal.timeout(20_000) });
+      return r.ok ? trimEipMarkdown(await r.text()) : '';
+    });
+    if (text) {
+      blocks.push(`### EIP-${n} 본문 (${url})\n${text}`);
+      sources.push(url);
+    }
+  }
+  const topics = [...new Set(urls.map(discourseTopicJsonUrl).filter((u): u is string => Boolean(u)))].slice(0, 4);
+  for (const jsonUrl of topics) {
+    const pageUrl = jsonUrl.replace(/\.json$/, '');
+    const text = await get(`forum:${jsonUrl}`, async () => {
+      const r = await fetch(jsonUrl, { headers: { accept: 'application/json' }, signal: AbortSignal.timeout(20_000) });
+      if (!r.ok) return '';
+      const d = (await r.json()) as { title?: string; post_stream?: { posts?: Array<{ username?: string; cooked?: string; created_at?: string }> } };
+      const posts = (d.post_stream?.posts ?? []).slice(0, 6).map((p) => `@${p.username ?? '?'} (${String(p.created_at ?? '').slice(0, 10)}): ${stripTags(p.cooked ?? '').slice(0, 1200)}`);
+      return `${d.title ?? ''}\n${posts.join('\n')}`;
+    });
+    if (text) {
+      blocks.push(`### 포럼 스레드 (${pageUrl})\n${text}`);
+      sources.push(pageUrl);
+    }
+  }
+  fs.mkdirSync(path.dirname(CONTEXT_CACHE), { recursive: true });
+  fs.writeFileSync(CONTEXT_CACHE, JSON.stringify(cache), 'utf-8');
+  return { text: blocks.join('\n\n').slice(0, 30_000), sources };
+}
+
+/** 인박스의 Forkcast 콜 기록 중 관련 EIP를 언급한 것 (최대 3건) */
+function relatedCalls(inbox: NewsItem[], eips: number[], topic: RegExp | null, limit = 3): NewsItem[] {
+  return inbox
+    .filter((i) => i.source === 'forkcast')
+    .filter((i) => eips.some((n) => new RegExp(`EIP-${n}\\b`).test(i.summary)) || (topic ? topic.test(i.summary) : false))
+    .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
+    .slice(0, limit);
 }
 
 function toEngagement(tweet: Record<string, unknown> | null): Engagement | undefined {
@@ -285,9 +366,14 @@ async function refineDebates(file: DebatesFile, ids: string[], context: string) 
       timeline: d.timeline.map((t) => ({ date: t.date, by: t.by, stance: t.stance, quote: t.quote, url: t.url })),
     };
     const originals = d.timeline.map((t, i) => `[${i + 1}] ${t.url}\n@${t.by} · ${t.date}\n${(t.original ?? '(원문 없음)').replace(/\s+/g, ' ')}`).join('\n\n');
+    const auto = await collectBackground(
+      [d.title, d.summary, ...d.timeline.map((t) => t.original ?? t.quote)],
+      [...(d.sources ?? []).map((s) => s.url), ...d.timeline.flatMap((t) => (t.original ?? '').match(/https?:\/\/[^\s)]+/g) ?? [])],
+    );
     const prompt =
       `${REFINE_PROMPT}\n\n` +
       (context ? `배경 자료 (사실 확인용):\n${context}\n\n` : '') +
+      (auto.text ? `배경 자료 (자동 수집: EIP 본문과 포럼 스레드):\n${auto.text}\n\n` : '') +
       `현재 레코드:\n${JSON.stringify(record, null, 1)}\n\n인용 트윗 원문 전문 (${d.timeline.length}건):\n\n${originals}`;
     if (process.env.DEBATES_DRY_RUN) {
       console.log(prompt.slice(0, 3000));
@@ -514,6 +600,8 @@ async function main() {
 
   // 항목별 입력 블록: 다이제스트 요약 + 스레드 원문 + 답글 + 반응 수
   const blocks: string[] = [];
+  const bgTexts: string[] = [];
+  const bgUrls: string[] = [];
   for (const item of items) {
     const tweetId = tweetIdOf(item.url);
     const root = tweetId ? rootByTweetId.get(tweetId) : undefined;
@@ -549,6 +637,8 @@ async function main() {
       }
     }
     for (const h of [...thread.map((t) => t.author), ...replies.map((r) => r.handle), ...(item.source.match(/@(\w+)/g) ?? [])]) people.add(h);
+    bgTexts.push(item.title, item.summary, ...thread.map((t) => t.summary), ...replies.map((r) => r.text));
+    bgUrls.push(item.url, ...thread.map((t) => t.url), ...(item.summary.match(/https?:\/\/[^\s)]+/g) ?? []));
     const threadLines = thread.map((t) => `- [${t.publishedAt.slice(0, 10)}] @${t.author}: ${t.summary.replace(/\s+/g, ' ')} — ${t.url}`);
     const replyLines = replies.map((r) => `- [${r.date.slice(0, 10)}] @${r.handle} (${r.name}, 팔로워 ${r.followers}): ${r.text.replace(/\s+/g, ' ')} — ${r.url}`);
     // 프롬프트에 인용 트윗임을 알렸으니 텍스트 표식은 그대로 두되, 아래 라벨을 '답글·인용'으로 바꾼다
@@ -575,9 +665,15 @@ async function main() {
   const contextFile = process.env.DEBATES_CONTEXT_FILE;
   const context = contextFile && fs.existsSync(contextFile) ? fs.readFileSync(contextFile, 'utf-8').trim() : '';
   const peopleLines = personLines(people, accountInfo, profiles);
+  const eipNumbers = [...new Set(bgTexts.flatMap(extractEipNumbers))].filter((n) => n >= 1000);
+  const auto = await collectBackground(bgTexts, bgUrls);
+  const callLines = relatedCalls(inbox, eipNumbers, topic).map((c) => `### ${c.title} (${c.url})\n${c.summary.slice(0, 2500)}`);
+  if (auto.text) console.log(`  background: ${auto.sources.length} docs (EIP ${eipNumbers.slice(0, 6).join(', ') || '-'}), calls: ${callLines.length}`);
   const prompt =
     `${EDITOR_PROMPT}\n\n오늘 날짜: ${today}\n\n` +
     (peopleLines.length ? `인물 정보 (소속·직책 판단 근거):\n${peopleLines.join('\n')}\n\n` : '') +
+    (callLines.length ? `코어 개발자 콜 기록 (Forkcast 공식 기록. 결정은 resolution과 background에 반영):\n${callLines.join('\n\n')}\n\n` : '') +
+    (auto.text ? `배경 자료 (자동 수집: EIP 본문과 포럼 스레드. 사실 확인과 background용, 포럼 글은 sources로 쓸 수 있음):\n${auto.text}\n\n` : '') +
     (topic
       ? `이번 요청의 주제: ${hint}\n주제와 무관한 항목은 무시하고 이 주제에 해당하는 논쟁만 정리하세요. 같은 주제 안에서도 쟁점이 뚜렷이 다르면 레코드를 나눕니다.\n\n`
       : '') +

@@ -10,6 +10,8 @@ import {
   avatarLarge,
   extractJson,
   handleMatchesName,
+  extractEipNumbers,
+  discourseTopicJsonUrl,
   DraftEnvelopeSchema,
   type Debate,
   type DebateDraft,
@@ -186,6 +188,12 @@ describe('helpers', () => {
     const [d] = mergeDebates(existing, [draft()], '2026-09-06');
     expect(d.timeline[0].replyTo).toBe('Justin_Bons');
     expect(d.timeline[0].relation).toBe('reply');
+  });
+  it('should extract EIP numbers and map forum urls to Discourse JSON', () => {
+    expect(extractEipNumbers('EIP-8141 vs eip 8130, ERC-4337 and EIP-8141 again')).toEqual([8141, 8130, 4337]);
+    expect(discourseTopicJsonUrl('https://ethereum-magicians.org/t/eip-8130-account-abstraction-by-account-configurations/25952/21')).toBe('https://ethereum-magicians.org/t/eip-8130-account-abstraction-by-account-configurations/25952.json');
+    expect(discourseTopicJsonUrl('https://ethresear.ch/t/eip-8141-and-minimum-required-validation-budget-for-privacy-applications/25889')).toBe('https://ethresear.ch/t/eip-8141-and-minimum-required-validation-budget-for-privacy-applications/25889.json');
+    expect(discourseTopicJsonUrl('https://x.com/a/status/1')).toBeUndefined();
   });
   it('should parse fenced JSON and validate the envelope', () => {
     const parsed = extractJson('```json\n{"debates": []}\n```');
