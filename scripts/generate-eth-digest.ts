@@ -5,6 +5,11 @@
  *
  * 실행 환경: claude CLI가 로그인된 곳(VPS 크론 또는 로컬). GH Actions에서는 돌지 않는다.
  * 편집 원칙: 원문 문장 복사 금지(재작성 요약 + 원문 링크), 사실 전달, 과장 금지.
+ *
+ * 2단계 생성 (2026-09-08, 오너 지시): 인박스를 통째로 넣지 않고
+ *   1) 브리핑: 수집 항목을 주제별로 정리·요약한 편집자용 브리핑을 먼저 만들고 (긴 글 전문까지 읽는다)
+ *   2) 집필: 그 브리핑으로 다이제스트를 쓴다.
+ * env: DIGEST_MODEL(기본 fable) · DIGEST_BRIEF_MODEL(기본 fable) · DIGEST_DRY_RUN=1(브리핑만 만들어 출력하고 저장하지 않음)
  */
 import { execFileSync } from 'node:child_process';
 import { z } from 'zod';
@@ -16,8 +21,35 @@ const INBOX = path.resolve(process.cwd(), 'src/data/eth-news-inbox.json');
 const OUTPUT = path.resolve(process.cwd(), 'src/data/eth-digests.json');
 // 발행 주기(일). 구독자 피로감 때문에 3일로 조정(2026-09-06). 수동 강제 실행은 DIGEST_INTERVAL_DAYS=0.
 const DIGEST_INTERVAL_DAYS = Number(process.env.DIGEST_INTERVAL_DAYS ?? 3);
-const MAX_INPUT_ITEMS = 120 * DIGEST_INTERVAL_DAYS; // 하루 약 120건 × 주기
+const MAX_INPUT_ITEMS = 120 * Math.max(1, DIGEST_INTERVAL_DAYS); // 하루 약 120건 × 주기 (강제 실행 0일 때도 최소 하루치)
 const KEEP_DIGESTS = 30;
+const DIGEST_MODEL = process.env.DIGEST_MODEL ?? 'fable';
+const BRIEF_MODEL = process.env.DIGEST_BRIEF_MODEL ?? DIGEST_MODEL;
+/** 브리핑 입력에서 항목당 본문 상한과 한 번의 호출에 넣는 총량 (넘으면 나눠서 호출) */
+const BRIEF_ITEM_CHARS = 3000; // 긴 글(note tweet)이 잘리지 않게. 총량이 커지면 청크로 나뉜다
+const BRIEF_CHUNK_CHARS = 140_000;
+
+const BRIEF_PROMPT = `당신은 ECK(Ethereum Collective Korea) 리서치 데스크의 정리 담당입니다.
+아래는 최근 며칠간 수집된 이더리움 관련 원자료(트위터, 리서치 포럼, 공식 블로그, 커뮤니티)입니다. 편집자가 다이제스트를 쓰기 전에 읽을 브리핑을 만드세요. 편집자는 이 브리핑만 보고 글을 쓰므로, 판단에 필요한 사실과 발언을 빠뜨리지 않는 것이 가장 중요합니다.
+
+정리 규칙:
+- 같은 사건·같은 주제의 항목은 하나로 묶습니다. 단순 리트윗, 홍보, 인사, 잡담, 가격·시세만 다루는 항목은 뺍니다. 코인니스(tg:) 항목은 뺍니다.
+- 묶음마다: 제목 한 줄, 무슨 일이 있었는지 사실 위주 요약 2~4문장, 누가 어떤 입장을 냈는지(핸들과 소속이 보이면 함께), 핵심 발언은 원문 문장을 그대로 인용, 날짜, 관련 URL 전부.
+- 서로 다른 인물이 같은 쟁점에 상반된 입장을 낸 경우는 "논쟁 후보"로 따로 표시하고 각 인물의 논거를 정리합니다. 스레드 설전(같은 대화에서 오간 것)은 시간순으로 적습니다.
+- 긴 글은 앞부분만이 아니라 끝까지 읽고 결론과 조건까지 요약합니다. 숫자, EIP 번호, 고유명사는 원문 그대로 둡니다.
+- 해석이나 전망을 보태지 않습니다. 사실과 발언만 정리합니다.
+
+출력은 마크다운. 구조:
+## 논쟁 후보
+### (쟁점)
+- 참여: ...
+- 전개: ...
+- URL: ...
+## 주제별 정리
+### (주제 제목)
+- 요약: ...
+- 발언: @핸들(소속): "원문 인용" (날짜, URL)
+- URL: ...`;
 
 const DigestSchema = z.object({
   title: z.string(),
@@ -53,7 +85,7 @@ const EDITOR_PROMPT = `당신은 ECK(Ethereum Collective Korea)의 시니어 리
 독자는 이더리움 생태계를 진지하게 따라가는 한국어 사용자(리서처·빌더·투자자)입니다.
 당신의 일은 뉴스 나열이 아니라 **의미 파악과 인사이트 도출**입니다 — 개별 소식들을 연결해
 "이 기간 무엇이 달라졌고, 어디로 향하는가"를 독자가 스스로 조사하지 않아도 알게 만드세요.
-아래 수집된 뉴스 아이템 목록으로 한국어 다이제스트를 작성하세요. 이 다이제스트는 ${DIGEST_INTERVAL_DAYS}일 주기로 발행되며, 지난 ${DIGEST_INTERVAL_DAYS}일간의 소식을 한 호에 다룹니다.
+아래 정리된 브리핑으로 한국어 다이제스트를 작성하세요. 이 다이제스트는 ${DIGEST_INTERVAL_DAYS}일 주기로 발행되며, 지난 ${DIGEST_INTERVAL_DAYS}일간의 소식을 한 호에 다룹니다.
 
 이더리움 관련성 (최우선 게이트):
 - 이더리움 생태계와 직접 관련된 것만 싣습니다: L1 프로토콜·리서치, L2, EF, 클라이언트, 스테이킹,
@@ -132,6 +164,19 @@ function todayKst(): string {
   return process.env.DIGEST_DATE ?? new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Seoul' }).format(new Date());
 }
 
+/** 헤드리스 claude 호출. 구독 인증이라 API 키가 필요 없다. 로컬 Claude Code 세션 안에서 돌려도 되게 CLAUDECODE는 뺀다. */
+function runClaude(prompt: string, model: string): string {
+  const raw = execFileSync('claude', ['-p', prompt, '--output-format', 'json', '--model', model], {
+    encoding: 'utf-8',
+    maxBuffer: 32 * 1024 * 1024,
+    timeout: 15 * 60 * 1000,
+    env: { ...process.env, CLAUDECODE: undefined },
+  });
+  const envelope = JSON.parse(raw) as { result?: string; is_error?: boolean };
+  if (envelope.is_error || !envelope.result) throw new Error(`headless claude (${model}) returned an error: ${envelope.result ?? ''}`.trim());
+  return envelope.result;
+}
+
 /** 헤드리스 응답에서 JSON만 추출 (혹시 붙은 코드펜스 제거) */
 function extractJson(text: string): unknown {
   const trimmed = text.trim().replace(/^```(?:json)?\s*/, '').replace(/\s*```$/, '');
@@ -182,49 +227,49 @@ async function main() {
   const debateItemIds = new Set(debates.flatMap((d) => d.items.map((item) => item.id)));
   const flatItems = candidates.filter((item) => !debateItemIds.has(item.id));
 
-  const itemLines = flatItems
-    .map(
-      (item) =>
-        `[${item.source} | ${item.publishedAt.slice(0, 10)}] ${item.title}\n` +
-        `  요약: ${item.summary.slice(0, 250)}\n  URL: ${item.url}`,
-    )
-    .join('\n\n');
+  // 1단계: 브리핑. 항목 본문을 넉넉히(1,500자) 넣고, 총량이 크면 나눠서 호출한다.
+  const itemBlock = (item: NewsItem) =>
+    `[${item.source} | @${item.author} | ${item.publishedAt.slice(0, 16)}]\n${item.summary.replace(/\s+/g, ' ').slice(0, BRIEF_ITEM_CHARS)}\nURL: ${item.url}`;
+  const debateBlocks = debates
+    .slice(0, 12)
+    .map((d, i) => `### 스레드 설전 ${i + 1} — 참여: ${d.participants.map((p) => `@${p}`).join(', ')}\n${d.items.map(itemBlock).join('\n\n')}`);
+  const flatBlocks = flatItems.map(itemBlock);
+  const chunks: string[] = [];
+  let buf = debateBlocks.length ? `## 스레드 설전 클러스터\n\n${debateBlocks.join('\n\n')}\n\n## 개별 항목\n\n` : '## 개별 항목\n\n';
+  for (const block of flatBlocks) {
+    if (buf.length + block.length > BRIEF_CHUNK_CHARS) {
+      chunks.push(buf);
+      buf = '## 개별 항목 (이어서)\n\n';
+    }
+    buf += block + '\n\n';
+  }
+  chunks.push(buf);
 
-  const debateLines = debates
-    .slice(0, 8)
-    .map(
-      (d, i) =>
-        `### 클러스터 ${i + 1} — 참여: ${d.participants.map((p) => `@${p}`).join(', ')}\n` +
-        d.items
-          .map((item) => `  [@${item.author} | ${item.publishedAt.slice(5, 16)}] ${item.summary.slice(0, 300)}\n    URL: ${item.url}`)
-          .join('\n'),
-    )
-    .join('\n\n');
+  console.log(`Briefing ${candidates.length} items in ${chunks.length} chunk(s) (${BRIEF_MODEL})...`);
+  const briefs = chunks.map((chunk, i) => runClaude(`${BRIEF_PROMPT}\n\n오늘 날짜: ${today}\n\n수집 원자료 (${i + 1}/${chunks.length}):\n\n${chunk}`, BRIEF_MODEL));
+  const brief = briefs.join('\n\n---\n\n');
+  if (process.env.DIGEST_DRY_RUN) {
+    console.log(brief);
+    return;
+  }
 
   // 재탕 방지 2차 — 최근 호가 다룬 제목을 알려주고 같은 사건 반복 금지 (새 전개는 '업데이트'로)
   const coveredLines = recentDigests
     .flatMap((d) => d.sections.flatMap((s) => s.items.map((it) => `- [${d.date}] ${it.title}`)))
     .join('\n');
 
+  // 2단계: 집필. 편집자는 브리핑만 본다.
   const prompt =
     `${EDITOR_PROMPT}\n\n오늘 날짜: ${today}${lastDate ? ` (이번 호 범위: ${lastDate} 이후 ~ ${today})` : ''}\n\n` +
     (coveredLines
       ? `최근 다이제스트가 이미 다룬 소식 (같은 사건은 다시 싣지 마세요. 의미 있는 새 전개가 있을 때만 '업데이트' 성격으로 짧게):\n${coveredLines}\n\n`
       : '') +
-    (debateLines ? `감지된 대화 클러스터 (같은 스레드에서 오간 설전):\n\n${debateLines}\n\n` : '') +
-    `수집된 아이템:\n\n${itemLines}`;
+    `정리된 브리핑 (원자료를 주제별로 정리한 것입니다. 인용과 URL은 여기 있는 것만 쓰세요):\n\n${brief}`;
 
-  console.log(`Generating digest for ${today} from ${candidates.length} items (headless claude)...`);
-  const raw = execFileSync('claude', ['-p', prompt, '--output-format', 'json', '--model', 'opus'], {
-    encoding: 'utf-8',
-    maxBuffer: 32 * 1024 * 1024,
-    timeout: 10 * 60 * 1000,
-  });
+  console.log(`Generating digest for ${today} from ${candidates.length} items (${DIGEST_MODEL})...`);
+  const result = runClaude(prompt, DIGEST_MODEL);
 
-  const envelope = JSON.parse(raw) as { result?: string; is_error?: boolean };
-  if (envelope.is_error || !envelope.result) throw new Error('headless claude returned an error');
-
-  const parsed = DigestSchema.parse(extractJson(envelope.result));
+  const parsed = DigestSchema.parse(extractJson(result));
   const digest: Digest = { date: today, ...parsed };
   const digests = [digest, ...existing.digests].slice(0, KEEP_DIGESTS);
   fs.writeFileSync(OUTPUT, JSON.stringify({ digests }, null, 2), 'utf-8');

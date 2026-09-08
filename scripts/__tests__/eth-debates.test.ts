@@ -82,6 +82,22 @@ describe('mergeDebates', () => {
     expect(d.timeline).toHaveLength(1);
   });
 
+  it('should fold a new-id draft into an existing debate when most of its people overlap', () => {
+    const people = (...hs: string[]) => hs.map((h) => ({ handle: h, name: h }));
+    const existing = mergeDebates([], [draft({ id: 'frames-vs-keystore', positions: [
+      { stance: 'pro', label: 'a', holders: people('lightclients', 'VitalikButerin', 'soispoke'), points: ['x'] },
+      { stance: 'con', label: 'b', holders: people('_chunter', 'pedrouid', 'jessepollak'), points: ['y'] },
+    ] })], '2026-09-06');
+    const split = draft({ id: 'frames-last-tx-type', positions: [
+      { stance: 'pro', label: 'a2', holders: people('lightclients', 'vitalikbuterin'), points: ['x2'] },
+      { stance: 'con', label: 'b2', holders: people('_chunter', 'newperson'), points: ['y2'] },
+    ], timeline: [{ date: '2026-09-07', by: 'lightclients', quote: 'q', url: 'https://x.com/l/status/9' }] });
+    const result = mergeDebates(existing, [split], '2026-09-07');
+    expect(result.map((d) => d.id)).toEqual(['frames-vs-keystore']);
+    expect(result[0].timeline).toHaveLength(2);
+    expect(result[0].positions[1].holders.map((h) => h.handle)).toContain('newperson');
+  });
+
   it('should sort by lastActivity desc and recompute status for untouched records', () => {
     const old: Debate = { ...draft({ id: 'old-one' }), status: 'active', firstSeen: '2026-08-01', lastActivity: '2026-08-01' };
     const result = mergeDebates([old], [draft()], '2026-09-06');
