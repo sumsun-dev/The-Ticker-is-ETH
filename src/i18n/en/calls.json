@@ -66,7 +66,12 @@
     "eips": "EIPs in this call {{count}}",
     "chat": "From the chat",
     "glossary": "Glossary",
-    "recordOnly": "This call is not summarized. See the original on Forkcast."
+    "recordOnly": "This call is not summarized. See the original on Forkcast.",
+    "participantsShort": "Participants",
+    "participantsHintCompact": "Click for remarks · hover for affiliation",
+    "onThisPage": "On this page",
+    "topics": "Discussion",
+    "topicShort": "Topic {{n}}"
   },
   "modal": {
     "original": "Original · corrected transcript",

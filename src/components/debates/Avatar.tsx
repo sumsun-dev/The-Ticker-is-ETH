@@ -4,11 +4,11 @@ import { avatarColorOf, initialsOf } from '../../utils/debates';
 
 interface AvatarProps {
     holder: Pick<DebateHolder, 'name' | 'handle' | 'avatar' | 'role'>;
-    size?: 'sm' | 'md' | 'lg';
+    size?: 'xs' | 'sm' | 'md' | 'lg';
     className?: string;
 }
 
-const SIZE = { sm: 'w-6 h-6 text-[10px]', md: 'w-8 h-8 text-xs', lg: 'w-10 h-10 text-sm' };
+const SIZE = { xs: 'w-5 h-5 text-[9px]', sm: 'w-6 h-6 text-[10px]', md: 'w-8 h-8 text-xs', lg: 'w-10 h-10 text-sm' };
 
 /** X 프로필 사진. 링크가 죽으면(프로필 사진 교체 등) 이니셜 원으로 떨어진다. */
 const Avatar: React.FC<AvatarProps> = ({ holder, size = 'md', className = '' }) => {
