@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-06T16:24:52.074Z",
+  "updatedAt": "2026-09-08T00:55:42.415Z",
   "processedDigests": [
     "2026-08-24",
     "2026-08-25",
@@ -162,26 +162,62 @@
       "whyItMatters": "정렬을 어떻게 정의하느냐에 따라 대형 L2를 평가하는 기준이 갈린다. 수수료 환원을 기준으로 삼으면 로빈후드체인처럼 자체 사용자층을 가진 실행 체인은 ETH에 기여하지 않는 쪽으로 분류되고, 성장 기여를 기준으로 삼으면 사용자 유입과 ETH 수요가 척도가 된다. 버크만스는 여기에 더해 가치저장 수단(store of value) 진척을 재는 지표로 L1 App Capital과 충분히 성공한 L2의 수를 제시해, L2 확산 자체를 ETH 서사의 일부로 놓는 관점을 드러냈다."
     },
     {
-      "id": "frames-last-transaction-type",
-      "title": "EIP-8141은 이더리움의 마지막 트랜잭션 타입이 될 만큼 충분히 추상적인가",
+      "id": "aa-validation-programmable-vs-bounded",
+      "title": "네이티브 계정 추상화, 검증을 계정 코드에 열어둘 것인가(EIP-8141) 프로토콜이 정한 인증자 집합으로 묶을 것인가(EIP-8130)",
       "category": "프로토콜 설계",
-      "summary": "라이트클라이언츠는 EIP-8141이 예측 가능한 미래에 필요한 유연성을 모두 제공하므로 이더리움의 마지막 트랜잭션 타입이 될 수 있다고 주장했고, 비탈릭 부테린은 트랜잭션이 결국 일련의 콜이라는 점에서 8141이 최적에 근접했다고 거들었다. EIP-8130 저자 크리스 헌터와 페드로 고메스는 실행과 인증, 권한을 계정 한곳에 묶은 프레임의 계정 모델 자체가 잘못됐고 지금 형태로 배포되면 큰 실패가 된다며 맞섰다. 별개로 어느 제안도 서로를 시뮬레이션할 만큼 추상적이지 않은 것 아니냐는 회의도 나왔다.",
+      "summary": "네이티브 계정 추상화(account abstraction)를 어떤 구조로 넣을지를 두고 두 제안이 맞섰다. EIP-8141 프레임 트랜잭션(frame transaction) 진영은 검증 규칙을 계정이 EVM 코드로 정의하게 두고 검증 가스 상한(MAX_VERIFY_GAS)으로 통제하면 된다고 봤고, Vitalik은 트랜잭션은 그저 일련의 호출이라는 점에서 8141이 최적에 가깝다고, lightclients는 8141이 이더리움의 마지막 트랜잭션 타입이 될 수 있다고 주장했다. EIP-8130 진영은 실행과 인증, 권한을 계정 한곳에 묶으면 프로토콜이 가시성을 잃고 의존성을 시뮬레이션과 추적으로 찾아내야 한다며, 프로토콜이 관리하는 인증자(authenticator) 매핑으로 트랜잭션이 무엇을 검증할지 선언하게 하자고 맞섰고, 8141이 지금 형태로 배포되면 이더리움에 큰 실패가 된다고 경고했다. 8130이 임의 인증자를 지원하면서 유연성의 격차는 좁혀졌고, 8월 27일 8141이 헤고타(Hegotá) 포크에 예정(Scheduled for Inclusion, SFI)으로 오른 뒤에도 8130 계정을 프레임 위에 얹거나 공유 트랜잭션 타입을 찾는 협업이 이어지고 있다.",
       "keyPoints": [
-        "트랜잭션 봉투를 바꾸지 않고 프레임 추가만으로 새 기능을 넣을 수 있는가",
-        "권한을 계정 내부에 두는 프레임 모델과 키스토어(keystore)로 외부화하는 8130 모델 중 어느 쪽이 더 일반적인가",
-        "8141의 기본 계정 빠른 경로가 패스키와 세션키를 네이티브로 주지 않아 체인이 기능과 성능 중 하나를 골라야 하는가",
-        "경쟁하는 추상화 제안이 여럿 남아 있다는 사실 자체가 어느 것도 충분히 추상적이지 않다는 증거인가",
-        "추상화가 지나쳐 검사자와 L2 시퀀서가 트랜잭션을 읽을 수 없게 되지 않는가"
+        "노드가 지갑 코드를 실행하지 않고도 무엇을 검증할지 미리 알 수 있어야 하는가",
+        "가스 상한이 있어도 모든 트랜잭션에 최악을 가정해야 한다면 상한만으로 충분한가",
+        "새 서명 방식을 넣을 때마다 하드포크(hard fork)를 기다려야 하는 설계를 L1이 감당할 수 있는가",
+        "프라이버시 앱이 릴레이어 없이 공개 멤풀(mempool)을 쓰려면 검증 가스 상한을 얼마로 올려야 하는가",
+        "검증 범위가 정적으로 확인되는 프레임처럼 두 설계를 겹치는 절충이 가능한가"
+      ],
+      "background": "계정 검증은 실행보다 먼저 이뤄지므로 노드는 트랜잭션을 멤풀에 받아들이기 전에 검증 비용을 예측해 자원 고갈 공격을 걸러내야 한다. EIP-8141의 프레임 트랜잭션은 계정이 검증 규칙을 EVM 코드로 정의하게 하고 검증 프레임이 쓸 수 있는 가스를 MAX_VERIFY_GAS로 제한하는데, 현재 값은 10만 가스다. EIP-8130은 반대로 트랜잭션이 인증자 주소를 명시하고 노드가 키스토어(keystore) 시스템 컨트랙트에서 계정별 설정을 읽어 검증하므로 지갑 코드를 실행하지 않고도 무엇을 검증할지 안다. 정식 인증자는 secp256k1과 P-256, 패스키(WebAuthn), delegate이고 그 밖의 인증자는 허용한 체인에서 약 10만 가스의 STATICCALL 안에서만 쓸 수 있으며, Base 같은 고처리량 L2용 프로필은 트랜잭션 경로에서 정식 인증자만 허용해 유연성 대신 예측 가능한 성능을 택한다. 논쟁은 2026년 8월 21일 8130 저자 Chris Hunter가 표준은 체인과 지갑, 앱, 사용자 모두의 필요를 충족해야 한다는 시험을 제시하고 lightclients가 8130의 절반은 애플리케이션 계층 세부라고 반박하면서 시작됐다. 24일 WalletConnect의 Pedro Gomes가 8130 지지 글을, 25일 Ethlabs의 Derek Chiang이 두 설계를 비교하는 글을 올려 논의가 넓어졌고, 27일 코어 개발자 회의(ACDE)는 8141을 헤고타 포크에 예정으로 올렸다. 8141을 쓴 lightclients 역시 공개 멤풀에서는 프레임 기능 중 일부만 안전하게 전파할 수 있으며 복잡성이 프로토콜에서 멤풀로 옮겨가는 것이 공짜가 아니라고 인정했다.",
+      "whyItMatters": "이 선택은 새 서명 방식이나 프라이버시 증명 검증을 하드포크 없이 도입할 수 있는지를 결정한다. 이더리움은 약 9개월에 한 번 업그레이드되고 트랜잭션 봉투를 바꾸려면 L1과 L2, 지갑, 탐색기, SDK까지 조율해야 하므로, 봉투를 바꾸지 않고 프레임 추가만으로 기능을 넣을 수 있다는 점이 8141의 강점이다. 인증자 집합을 프로토콜이 관리하면 노드가 시뮬레이션이나 추적 없이 트랜잭션이 무엇에 의존하는지 알 수 있고 고처리량 L2가 매 트랜잭션에 최악의 경우를 가정하지 않고 자원을 계획할 수 있다는 점이 8130의 강점이다. ethresear.ch에 올라온 벤치마크는 제안된 최적화를 모두 적용해도 단일 nullifier 지출에 약 211,828 가스가 필요해 현재의 10만 상한으로는 부족하다며 최소 25만으로 올릴 것을 권고했고, 이 상한값이 어디에 놓이는지가 프라이버시 앱이 오프체인 릴레이어 없이 검열 저항성을 얻을 수 있는지를 가른다. 8141은 헤고타 포크에 예정으로 올라 있지만 ACD 진행자들은 이것이 계정 추상화를 내겠다는 약속일 뿐 문안이나 최종 EIP 번호의 확정은 아니라고 했고, Base는 2026년 9월 코발트(Cobalt) 업그레이드로 8130을 배포할 계획이어서 8130 계정을 프레임 위에 얹거나 공유 트랜잭션 타입을 찾는 협업이 실제 스펙으로 이어지는지가 다음 관전 지점이다.",
+      "sources": [
+        {
+          "title": "EIP-8141: Frame Transactions",
+          "url": "https://eips.ethereum.org/EIPS/eip-8141"
+        },
+        {
+          "title": "EIP-8130: Account Abstraction by Account Configuration",
+          "url": "https://eips.ethereum.org/EIPS/eip-8130"
+        },
+        {
+          "title": "Frames are all you need",
+          "url": "https://lightclient.io/blog/frames-are-all-you-need/"
+        },
+        {
+          "title": "Base Cobalt 업그레이드의 EIP-8130 스펙",
+          "url": "https://docs.base.org/base-chain/specs/upgrades/cobalt/eip-8130"
+        },
+        {
+          "title": "EIP-8130 논의 스레드 (Ethereum Magicians)",
+          "url": "https://ethereum-magicians.org/t/eip-8130-account-abstraction-by-account-configurations/25952"
+        },
+        {
+          "title": "Native account abstraction: state of art and pending proposals",
+          "url": "https://blog.biconomy.io/native-account-abstraction-state-of-art-and-pending-proposals-q1-26/"
+        }
+      ],
+      "keywords": [
+        "MAX_VERIFY_GAS",
+        "EIP-8130 authenticator",
+        "frame transactions mempool",
+        "validation budget",
+        "EIP-8141",
+        "frame transactions"
       ],
       "positions": [
         {
           "stance": "pro",
-          "label": "8141이 마지막 트랜잭션 타입이 될 수 있다",
+          "label": "검증을 계정 코드로 프로그래밍하게 두고 가스 상한으로 통제한다",
           "holders": [
             {
               "handle": "lightclients",
               "name": "ً",
-              "role": "Geth·프로토콜 개발자",
+              "role": "go-ethereum 프로토콜 개발자",
               "avatar": "https://pbs.twimg.com/profile_images/1554130973935030274/wHWuxuTT_400x400.jpg"
             },
             {
@@ -191,36 +227,46 @@
               "avatar": "https://pbs.twimg.com/profile_images/2042521108067352576/3rv2_9m1_400x400.jpg"
             },
             {
+              "handle": "donnoh_eth",
+              "name": "donnoh.gwei 💗",
+              "role": "L2Beat 리서치 총괄",
+              "avatar": "https://pbs.twimg.com/profile_images/1906978600311521280/aSbKSjtX_400x400.jpg"
+            },
+            {
               "handle": "soispoke",
               "name": "soispoke.eth",
               "avatar": "https://pbs.twimg.com/profile_images/1999476317415264256/CL0l5_ZD_400x400.jpg",
               "role": "EF 리서처 (Robust Incentives Group)"
             },
             {
+              "handle": "vickydiamond21",
+              "name": "Vicki.hl",
+              "avatar": "https://pbs.twimg.com/profile_images/1953137267104534528/nyQdaTZ__400x400.jpg"
+            },
+            {
               "handle": "binji_x",
               "name": "binji",
               "role": "EthLabs, 이더리움 커뮤니케이션",
               "avatar": "https://pbs.twimg.com/profile_images/2057797822666473472/Ns8EleJw_400x400.jpg"
+            },
+            {
+              "handle": "davidrhodus",
+              "name": "🤖DR 🇺🇸",
+              "avatar": "https://pbs.twimg.com/profile_images/2074252860100116480/PEIfO0ea_400x400.jpg"
             }
           ],
           "points": [
-            "8141은 예측 가능한 미래에 필요한 유연성을 모두 제공하므로 이더리움의 마지막 트랜잭션 타입이 될 수 있다.",
-            "8130의 절반은 프로토콜에 정의할 것이 아니라 애플리케이션 계층의 세부이며, 8141은 퍼미션리스(permissionless) 혁신을 허용하고 지갑과 사용자를 특정 사용 패턴에 가두지 않는다.",
-            "계정 시스템을 계속 손볼 사람이 늘 남아 있으리라고 가정할 수 없으므로 프로토콜에 고정하는 항목을 줄여야 한다.",
-            "트랜잭션은 결국 일련의 콜이고, 액션과 의존성을 모두 콜로 표현하면 트랜잭션 포맷 자체가 최소한이 되어 체인마다 기능이 달라도 상호 호환성이 극대화된다.",
-            "프레임은 UX만이 아니라 서명과 STARK 집계를 열어 포스트양자 트랜잭션을 무겁게 만드는 대역폭과 검증 비용을 줄인다."
+            "L1은 L2만큼 자주 하드포크할 여유가 없으므로 퍼미션리스(permissionless)한 확장성과 더 큰 다양성이 낫다. Base는 지난 1년간 여덟 번의 메이저 업그레이드를 했지만 L1은 그럴 수 없다.",
+            "검증 상한인 MAX_VERIFY_GAS가 이미 스펙에 있으므로 L2는 시퀀서(sequencer) 단에서 같거나 더 낮은 한도를 어렵지 않게 강제할 수 있다.",
+            "8130의 절반은 프로토콜에 정의할 것이 아니라 애플리케이션 계층의 세부다. 8141은 퍼미션리스 혁신을 허용하고 지갑과 사용자를 특정 사용 패턴에 가두지 않으며, 계정 시스템을 계속 손볼 사람이 늘 남아 있으리라고 가정할 수 없으므로 이 점이 중요하다.",
+            "트랜잭션은 그저 일련의 호출이라는 점에서 8141은 최적에 가깝다. 멤풀이 더 제약적이어야 하는 것은 불가피한데, 퍼미션리스하게 DoS 저항적으로 처리하려면 프로토콜의 어느 부분인가는 계산의 구조를 알고 있어야 하기 때문이다.",
+            "트랜잭션의 액션과 의존성을 모두 콜로, 필요하면 프리컴파일(precompile) 호출로 표현하면 트랜잭션 포맷 자체가 최소한이 되어 체인마다 기능이 달라도 상호 호환성이 극대화된다. 의존성은 병렬 처리하거나 멤풀 계층에서 한 번만 처리하고 STARK로 대체할 수도 있어, 잘 해낸 8141은 탈중앙화 친화적 초대규모 확장의 준비이기도 하다."
           ]
         },
         {
           "stance": "con",
-          "label": "지금 형태의 8141은 최종안이 될 수 없다",
+          "label": "계정 모델을 분리해 프로토콜이 검증 대상을 미리 알게 한다",
           "holders": [
-            {
-              "handle": "pedrouid",
-              "name": "Pedro Gomes",
-              "role": "WalletConnect 창업자, 지갑 UX·인프라",
-              "avatar": "https://pbs.twimg.com/profile_images/2025333447011553282/_hDBaHFQ_400x400.jpg"
-            },
             {
               "handle": "_chunter",
               "name": "CH",
@@ -228,23 +274,35 @@
               "avatar": "https://pbs.twimg.com/profile_images/1519642922697768962/4D-E6Ptb_400x400.jpg"
             },
             {
+              "handle": "pedrouid",
+              "name": "Pedro Gomes",
+              "role": "WalletConnect 창업자, 지갑 UX·인프라",
+              "avatar": "https://pbs.twimg.com/profile_images/2025333447011553282/_hDBaHFQ_400x400.jpg"
+            },
+            {
               "handle": "jessepollak",
               "name": "jesse.base.eth",
               "avatar": "https://pbs.twimg.com/profile_images/1879556312822120448/QngrqCSC_400x400.jpg",
               "role": "Base 리드"
+            },
+            {
+              "handle": "dmericliu",
+              "name": "Eric (ericliu.base.eth)",
+              "avatar": "https://pbs.twimg.com/profile_images/1877896174658846720/bQiZQfGL_400x400.jpg",
+              "role": "Base 엔지니어"
             }
           ],
           "points": [
-            "10년을 들여 네이티브 계정 추상화를 내면서 지나치게 복잡하고 과설계된 해법을 고르는 것이며, 지금 형태로 배포되면 이더리움에 큰 실패가 된다.",
-            "이전 계정 추상화 시도의 근본 문제는 계정 모델이다. 실행과 인증, 권한을 한곳에 묶으면 프로토콜이 가시성을 잃고 의존성을 시뮬레이션과 추적으로 발견해야 하며 완화책이 겹겹이 쌓이는데, 8141은 그 모델을 프로토콜에 새긴다.",
-            "8130은 권한 매핑 시스템 하나만 새기고 나머지 계정 추상화는 거기서 따라 나오므로, 내부 소유 계정도 키스토어로 표현할 수 있다는 점에서 8130이 엄격히 더 일반적이다.",
-            "8141의 기본 계정 빠른 경로는 패스키와 세션키, 서브계정, 키 회전을 네이티브로 제공하지 않아 이를 쓰려면 커스텀 인증 코드가 필요하고 그 순간 추적이 필요해져 빠른 경로를 잃는다.",
-            "표준은 체인과 지갑, 앱, 사용자 모두의 필요를 충족해야 어디서나 채택되는데, 프레임에서는 체인이 기능과 성능 중 하나를 골라야 하므로 지갑 파편화가 이어진다."
+            "네이티브 계정 추상화 표준을 가리는 시험은 모두의 필요를 충족하는가이다. 어떤 표준이든 한 체인에는 새길 수 있지만 체인과 지갑, 앱, 사용자를 모두 만족시키는 표준만 어디서나 채택되는데, 프레임에서는 체인이 기능과 성능 중 하나를 골라야 하므로 지갑 파편화가 이어지고 L1이 넓은 EVM 생태계를 만족시키지 못하는 표준을 새기면 분기가 생긴다.",
+            "8141의 기본 계정 빠른 경로는 패스키와 세션키, 서브계정, 키 회전을 네이티브로 제공하지 않는다. 이를 쓰려면 커스텀 인증 코드가 필요하고 그 순간 추적이 필요해져 빠른 경로의 직접 평가를 잃는다.",
+            "8130은 이식성을 최우선으로 삼아 한 번 만들면 어느 새 체인에서든 트랜잭션 하나로 배포와 동기화, 실행이 되고 어디서나 같은 주소를 쓴다. 표준화된 세션키와 구독, 권한 부여로 앱은 지갑 호환성을 따지지 않고 하나의 계정 모델에 맞춰 만들 수 있다.",
+            "이전 계정 추상화 시도들의 근본 문제는 계정 모델이다. 실행과 인증, 권한을 한곳에 묶으면 프로토콜은 가시성을 잃고 의존성을 시뮬레이션과 추적으로 발견해야 하며 완화책이 겹겹이 쌓이는데, 8141은 그 결합을 프로토콜에 고착시킨다.",
+            "이더리움이 처음 내놓은 계정 모델은 분리형이었고 권한은 프로토콜이 관리하는 secp256k1 매핑 하나였으며 EIP-7702가 실행 코드를 따로 설정하게 해줬다. 8130은 그 매핑을 임의의 컨트랙트 정의 인증 방식으로 갱신 가능하게 일반화할 뿐이어서 트랜잭션 타입이 선언적일 수 있고 의존성을 트랜잭션 자체에서 알아볼 수 있으며, 고착시키는 것은 권한 매핑 시스템 하나뿐이고 나머지 계정 추상화는 거기서 따라 나온다."
           ]
         },
         {
           "stance": "neutral",
-          "label": "돌파구는 인정하되 계정 표준이 그 위에 구조를 얹어야 한다",
+          "label": "프레임 쪽에 기울되 지금 형태 그대로는 아니고 검증에 경계를 부과해야 한다",
           "holders": [
             {
               "handle": "decentrek",
@@ -259,16 +317,17 @@
               "avatar": "https://pbs.twimg.com/profile_images/2085769331044982784/CI1gGQ8Q_400x400.jpg"
             },
             {
-              "handle": "davidrhodus",
-              "name": "🤖DR 🇺🇸",
-              "avatar": "https://pbs.twimg.com/profile_images/2074252860100116480/PEIfO0ea_400x400.jpg"
+              "handle": "NaoXprotocol",
+              "name": "NaoX | Post-Quantum Chain",
+              "avatar": "https://pbs.twimg.com/profile_images/2078199106665693184/KA-t1xcf_400x400.jpg"
             }
           ],
           "points": [
-            "만료 시간, 집계용 서명, 프라이버시 풀의 머클 루트, 실행 후 단언처럼 트랜잭션 봉투에 넣어야 한다고 여겼던 것들이 전부 프레임이라는 컨트랙트 호출로 표현된다는 것이 최근의 설계적 돌파구다.",
-            "다만 지나치게 추상화하면 성능을 이유로 특정 검증 방식만 허용하려는 L2 시퀀서가 트랜잭션을 읽을 수 없게 되므로, 8130 같은 계정 표준이 프레임 위에 구조를 얹는 역할을 할 수 있다.",
-            "8141의 SFI는 헤고타에 계정 추상화를 내겠다는 약속이지 지금 문안이나 최종 EIP 번호가 확정됐다는 뜻이 아니며, 8130에 대한 공개 반론이 충분히 해소되지 않은 시점의 결정이었다.",
-            "저널링과 롤백, 상태 가스 귀속, 승인 시맨틱, EIP-2929 웜니스, 멤풀 결정성 같은 합의 세부가 굳어야 독립 클라이언트들이 정확히 같은 동작으로 수렴한다."
+            "핵심 긴장은 철학적인 것이다. 이더리움이 의견을 가진 계정 추상화를 가져야 하는가, 아니면 지갑이 각자 구현을 올릴 수 있는 중립적 레이어를 가져야 하는가이며 8130이 전자, 8141이 후자를 택한다. 두 표준 모두 잘 고안됐고 이더리움의 이익을 염두에 두고 있다.",
+            "Base의 비판은 극고처리량이라는 그들의 사용 사례에서는 정당하지만 코어 프로토콜이 계정 추상화의 상업적 사용 사례까지 풀어줄 필요는 없다. 대신 경계가 있고 정적으로 확인되는 정적 검증 프레임을 새로 만들고, EF와 Ethlabs, 클라이언트 팀, 지갑 팀 등 모든 이해관계자가 함께 이끄는 기본 구현체와 ERC-5792 같은 스코프 인터페이스를 붙이면 된다.",
+            "상한을 걸어도 모든 트랜잭션이 그 한도까지 쓸 수 있다고 가정해야 하고 이것이 단순한 k1 또는 r1 검사인지는 코드를 돌려봐야 알 수 있어, 자원 예산은 훨씬 낮은 TPS를 기준으로 잡아야 한다.",
+            "8130이 임의 인증자를 지원하면서 L1에서도 동작할 수 있게 됐고, 유연성의 실질적 차이는 프레임에서 검증이 실행 이후에 일어날 수 있어 ETH 없이 시작한 계정이 실행 중 얻은 ETH로 가스를 낼 수 있다는 점 정도로 좁혀졌다. 그 유연성에도 복잡성 비용이 따르므로 공짜가 아니다.",
+            "8141의 SFI는 헤고타에 계정 추상화를 내겠다는 약속이지 지금 문안이나 최종 EIP 번호가 확정됐다는 뜻이 아니다. 8130에 대한 공개 반론이 충분히 다뤄지지 않은 시점의 결정이었지만 ACD 진행자들이 그 의미를 그렇게 명확히 했다."
           ]
         },
         {
@@ -284,7 +343,7 @@
           ],
           "points": [
             "추상화가 정말로 충분했다면 하나로 나머지를 시뮬레이션할 수 있었을 텐데, 경쟁하는 추상화 제안이 여럿 남아 있다는 사실이 그 반대를 말한다.",
-            "EVM이 훨씬 더 일반화되는 방향이 따로 있을 수 있다는 문제 제기이며, 8130과 8141 어느 편도 아닌 질문이다."
+            "EVM이 훨씬 더 일반화되는 세계가 따로 있을 수 있다는 문제 제기이며, 8130과 8141 어느 편도 아닌 질문이다."
           ]
         }
       ],
@@ -293,7 +352,7 @@
           "date": "2026-08-21",
           "by": "_chunter",
           "stance": "con",
-          "quote": "네이티브 계정 추상화 표준을 가리는 간단한 시험이 하나 있다. 모두의 필요를 충족하는가. 어떤 표준이든 한 체인에는 새길 수 있지만 체인과 지갑, 앱, 사용자라는 모든 구성원을 만족시키는 표준만이 어디서나 채택되며, 8130은 처음부터 그것을 목표로 설계됐다.",
+          "quote": "네이티브 계정 추상화 표준을 가리는 간단한 시험이 하나 있다. 모두의 필요를 충족하는가라는 것으로, 어떤 표준이든 한 체인에는 새길 수 있지만 체인과 지갑, 앱, 사용자라는 모든 구성원을 만족시키는 표준만이 어디서나 채택되며 8130은 처음부터 그것을 목표로 설계됐다. 반면 프레임에서는 체인이 기능과 성능 중 하나를 골라야 하는데, 8141의 기본 계정 빠른 경로는 패스키와 세션키, 서브계정, 키 회전을 네이티브로 제공하지 않아 커스텀 인증 코드가 필요하고 그러면 추적이 필요해져 빠른 경로의 직접 평가를 잃는다.",
           "url": "https://x.com/_chunter/status/2090848665812242635",
           "digest": "2026-08-21",
           "relation": "none",
@@ -304,13 +363,24 @@
           "date": "2026-08-21",
           "by": "lightclients",
           "stance": "pro",
-          "quote": "8130의 절반은 프로토콜에 정의해서는 안 될 애플리케이션 계층의 세부다. 8141은 퍼미션리스한 혁신을 지원하고 지갑과 사용자를 특정 사용 패턴에 가두지 않는데, 우리가 계정 시스템을 계속 손보러 늘 곁에 있으리라고 가정할 수 없기에 이 점이 중요하다.",
+          "quote": "8130의 절반은 프로토콜에 정의해서는 안 될 애플리케이션 계층의 세부다. 8141은 퍼미션리스한 혁신을 지원하고 지갑과 사용자를 특정 사용 패턴에 가두지 않는다. 우리가 계정 시스템을 계속 손보러 늘 곁에 있으리라고 가정할 수 없기에 이 점이 중요하다.",
           "url": "https://x.com/lightclients/status/2090862398928552188",
           "digest": "2026-08-21",
           "replyTo": "_chunter",
           "relation": "quote",
           "original": "Half of 8130 is application-layer specifics that shouldn’t be defined in the protocol.\n\n8141 supports permissionless innovation &amp; doesn’t force wallets and users into specific use patterns. this is important because can’t assume we’ll always be around to tweak the account system",
           "translation": "8130의 절반은 프로토콜에 정의되어서는 안 되는 애플리케이션 계층의 세부 사항입니다. 8141은 무허가 혁신을 지원하며 지갑과 사용자를 특정한 사용 패턴에 강제로 밀어 넣지 않습니다. 이는 중요한데, 우리가 언제까지나 계정 시스템을 조정할 수 있는 위치에 있을 것이라고 가정할 수 없기 때문입니다."
+        },
+        {
+          "date": "2026-08-24",
+          "by": "_chunter",
+          "stance": "con",
+          "quote": "이전 계정 추상화 시도들의 근본 문제는 계정 모델이다. 실행과 인증, 권한을 한곳에 묶으면 프로토콜은 가시성을 잃고 의존성은 시뮬레이션과 추적으로 발견해야 하며 완화책이 겹겹이 더해지는데, 8141은 그것을 고착시킨다. 이더리움이 처음 내놓은 계정 모델은 분리형이었고 8130은 프로토콜이 관리하던 secp256k1 매핑을 어떤 컨트랙트 정의 인증 방식으로도 갱신할 수 있게 일반화할 뿐이어서, 모델이 분리된 채로 남아 트랜잭션 타입이 선언적일 수 있고 의존성을 트랜잭션 자체에서 알아볼 수 있으며, 8130이 고착시키는 것은 권한 매핑 시스템 하나뿐이고 나머지 계정 추상화는 거기서 따라 나온다.",
+          "url": "https://x.com/_chunter/status/2091937672801505545",
+          "digest": "2026-08-24",
+          "relation": "none",
+          "original": "The fundamental problem with previous AA attempts is the account model!\n\nCoupling account execution, authentication and authority in one place means that the protocol loses visibility, dependencies must be discovered (via simulation/tracing), layers of mitigations are added.\n\n8141 enshrines that.\n\nThe original account model that ethereum shipped with was a decoupled one! The authority was protocol managed and a single intrinsic mapping of secp256k1 to an account. 7702 let accounts set their execution code, which was a good addition.\n\nExecution code in one place (wallet bytecode), authentication in another (secp256k1), authority in another (protocol managed mapping).\n\n8130 just generalizes this mapping system so that its updatable to any contract defined authentication scheme and no longer singular.\n\nBecause the model stays decoupled, the transaction type can be declarative. Dependencies can be recognized in the transaction itself.\n\nMitigations fall away. Customizations can be added on cleanly. Every chain can build what it needs.\n\n8130 enshrines exactly one thing, the authority mapping system, and all of AA falls out.",
+          "translation": "이전의 AA 시도들이 가진 근본적인 문제는 바로 계정 모델입니다. 계정 실행, 인증, 권한을 한곳에 결합하면 프로토콜은 가시성을 잃고, 의존성은 시뮬레이션이나 추적을 통해 알아내야 하며, 여러 겹의 완화책이 추가됩니다. 8141은 바로 이 방식을 프로토콜에 새깁니다. 이더리움이 처음 출시했을 때의 계정 모델은 분리된 모델이었습니다. 권한은 프로토콜이 관리했고, secp256k1을 계정에 매핑하는 단일한 내재적 방식이었습니다. 7702는 계정이 자신의 실행 코드를 설정할 수 있게 했는데, 이는 좋은 추가였습니다. 실행 코드는 한곳에, 즉 지갑 바이트코드에 있고, 인증은 다른 곳에, 즉 secp256k1에 있으며, 권한은 또 다른 곳에, 즉 프로토콜이 관리하는 매핑에 위치합니다. 8130은 이 매핑 시스템을 일반화하여 계약으로 정의된 어떤 인증 방식으로도 업데이트할 수 있게 하고, 더 이상 단일하지 않게 만듭니다. 모델이 분리된 상태로 유지되기 때문에 트랜잭션 유형은 선언적일 수 있습니다. 의존성은 트랜잭션 자체에서 인식될 수 있습니다. 완화책은 필요 없어집니다. 커스터마이징은 깔끔하게 추가될 수 있습니다. 모든 체인은 자신에게 필요한 것을 만들 수 있습니다. 8130은 정확히 한 가지, 즉 권한 매핑 시스템만을 프로토콜에 새기며, 그로부터 AA 전체가 자연스럽게 도출됩니다."
         },
         {
           "date": "2026-08-24",
@@ -325,17 +395,6 @@
         },
         {
           "date": "2026-08-24",
-          "by": "_chunter",
-          "stance": "con",
-          "quote": "이전 계정 추상화 시도들의 근본 문제는 계정 모델이다. 실행과 인증, 권한을 한곳에 묶으면 프로토콜이 가시성을 잃고 의존성을 시뮬레이션과 추적으로 발견해야 하며 완화책이 겹겹이 쌓이는데, 8141은 그것을 프로토콜에 새긴다. 8130은 정확히 하나, 권한 매핑 시스템만 새기고 계정 추상화의 나머지는 거기서 따라 나온다.",
-          "url": "https://x.com/_chunter/status/2091937672801505545",
-          "digest": "2026-08-24",
-          "relation": "none",
-          "original": "The fundamental problem with previous AA attempts is the account model!\n\nCoupling account execution, authentication and authority in one place means that the protocol loses visibility, dependencies must be discovered (via simulation/tracing), layers of mitigations are added.\n\n8141 enshrines that.\n\nThe original account model that ethereum shipped with was a decoupled one! The authority was protocol managed and a single intrinsic mapping of secp256k1 to an account. 7702 let accounts set their execution code, which was a good addition.\n\nExecution code in one place (wallet bytecode), authentication in another (secp256k1), authority in another (protocol managed mapping).\n\n8130 just generalizes this mapping system so that its updatable to any contract defined authentication scheme and no longer singular.\n\nBecause the model stays decoupled, the transaction type can be declarative. Dependencies can be recognized in the transaction itself.\n\nMitigations fall away. Customizations can be added on cleanly. Every chain can build what it needs.\n\n8130 enshrines exactly one thing, the authority mapping system, and all of AA falls out.",
-          "translation": "이전의 AA 시도들이 가진 근본적인 문제는 바로 계정 모델입니다. 계정 실행, 인증, 권한을 한곳에 결합하면 프로토콜은 가시성을 잃고, 의존성은 시뮬레이션이나 추적을 통해 알아내야 하며, 여러 겹의 완화책이 추가됩니다. 8141은 바로 이 방식을 프로토콜에 새깁니다. 이더리움이 처음 출시했을 때의 계정 모델은 분리된 모델이었습니다. 권한은 프로토콜이 관리했고, secp256k1을 계정에 매핑하는 단일한 내재적 방식이었습니다. 7702는 계정이 자신의 실행 코드를 설정할 수 있게 했는데, 이는 좋은 추가였습니다. 실행 코드는 한곳에, 즉 지갑 바이트코드에 있고, 인증은 다른 곳에, 즉 secp256k1에 있으며, 권한은 또 다른 곳에, 즉 프로토콜이 관리하는 매핑에 위치합니다. 8130은 이 매핑 시스템을 일반화하여 계약으로 정의된 어떤 인증 방식으로도 업데이트할 수 있게 하고, 더 이상 단일하지 않게 만듭니다. 모델이 분리된 상태로 유지되기 때문에 트랜잭션 유형은 선언적일 수 있습니다. 의존성은 트랜잭션 자체에서 인식될 수 있습니다. 완화책은 필요 없어집니다. 커스터마이징은 깔끔하게 추가될 수 있습니다. 모든 체인은 자신에게 필요한 것을 만들 수 있습니다. 8130은 정확히 한 가지, 즉 권한 매핑 시스템만을 프로토콜에 새기며, 그로부터 AA 전체가 자연스럽게 도출됩니다."
-        },
-        {
-          "date": "2026-08-24",
           "by": "jessepollak",
           "stance": "con",
           "quote": "EIP-8130이 왜 이더리움이 채택해야 할 단순하고 미래에도 유효한 네이티브 계정 모델인지 잘 설명한 글이다.",
@@ -347,10 +406,70 @@
           "translation": "EIP8130이 이더리움이 채택해야 할 단순하고 미래 지향적인 네이티브 계정 모델인 이유를 잘 설명해 주었습니다."
         },
         {
+          "date": "2026-08-25",
+          "by": "dmericliu",
+          "stance": "con",
+          "quote": "Pedro Gomes의 말대로 10년 가까이 지난 지금 네이티브 계정 추상화는 지갑에게 배치와 스폰서십, 키 관리를 저수준 기계장치로 재구성하라고 요구하는 일을 그만둬야 한다. EIP-8130은 배치를 네이티브 콜 단계로, 스폰서십을 단순한 payer 필드로, 키를 내장 스코프와 만료로 프로토콜에 직접 넣고 새 오피코드를 요구하지 않는다. Base는 코발트 업그레이드에 8130을 넣어 기존 스마트월렛 설계 대비 트랜잭션 비용을 절반 넘게 줄일 계획이다.",
+          "url": "https://x.com/dmericliu/status/2092208666875220077",
+          "digest": "2026-08-24",
+          "replyTo": "pedrouid",
+          "relation": "quote",
+          "original": "\"After almost a decade, native account abstraction should stop asking wallets to reconstruct batching, sponsorship, and key management from lower-level machinery.\" - @pedrouid\n\nEIP-8130 puts these directly in the protocol:\n- Batching: native call phases\n- Sponsorship: simple payer field\n- Keys: built-in scopes, expiry\n- No new opcodes\n\n@base plans EIP-8130 for its Cobalt upgrade, cutting transaction costs by more than half compared to previous smart wallet designs.",
+          "translation": "거의 10년이 지난 지금, 네이티브 계정 추상화는 지갑들에게 하위 수준의 메커니즘으로부터 배칭, 스폰서십, 키 관리를 재구성하라고 요구하는 것을 이제 멈춰야 합니다. pedrouid의 말입니다. EIP-8130은 이러한 것들을 프로토콜에 직접 넣습니다. 배칭은 네이티브 호출 단계로 처리됩니다. 스폰서십은 단순한 결제자 필드로 처리됩니다. 키는 내장된 스코프와 만료 기능으로 처리됩니다. 새로운 오피코드도 필요 없습니다. base는 코발트 업그레이드에 EIP-8130을 적용할 계획이며, 이를 통해 이전의 스마트 지갑 설계와 비교해 트랜잭션 비용을 절반 이상 줄일 것으로 예상됩니다."
+        },
+        {
+          "date": "2026-08-25",
+          "by": "donnoh_eth",
+          "stance": "pro",
+          "quote": "개인적으로는 퍼미션리스한 확장성과 더 큰 다양성을 정말 선호한다. 우리는 L2만큼 자주 하드포크할 여유가 없기 때문인데, 참고로 Base는 지난 1년간 여덟 번의 메이저 업그레이드를 했다. 프레임 트랜잭션이 알 수 없고 무한할 수도 있는 가스를 쓴다고 했는데 왜 그런가, MAX_VERIFY_GAS가 있고 L2는 시퀀서 단에서 그 한도나 더 낮은 한도를 어렵지 않게 강제할 수 있지 않나.",
+          "url": "https://x.com/donnoh_eth/status/2092320783657996403",
+          "digest": "2026-08-25",
+          "replyTo": "decentrek",
+          "relation": "reply",
+          "original": "great article, thanks!!! personally i really prefer permissionless extensibility and more diversity, as we cannot afford to hardfork as much as L2s do. for context base has had 8 major upgrades in the past year!\n\njust one q:\n\n> frame transactions […] take an unknown (and possibly unbounded) amount of gas to execute.\n\nwhy? there is a MAX_VERIFY_GAS. L2s can just enforce this limit or a lower one at the sequencer level quite easily no?",
+          "translation": "좋은 글 감사합니다. 개인적으로는 무허가 확장성과 더 큰 다양성을 선호하는데, L2들만큼 자주 하드포크를 감당할 여유가 없기 때문입니다. 참고로 base는 지난 1년 동안 8번의 주요 업그레이드를 거쳤습니다. 질문이 하나 있습니다. 프레임 트랜잭션은 실행에 알 수 없는, 어쩌면 무한할 수도 있는 양의 가스를 소모한다고 하셨는데, 왜 그런가요. MAX_VERIFY_GAS라는 상한이 있지 않나요. L2들은 시퀀서 수준에서 이 한도나 그보다 낮은 한도를 손쉽게 강제할 수 있지 않을까요."
+        },
+        {
+          "date": "2026-08-25",
+          "by": "decentrek",
+          "stance": "con",
+          "quote": "내가 말하려던 것은 MAX_VERIFY_GAS 같은 한도를 강제하지 않으면 기본적으로 무한하고, 한도를 걸어도 모든 트랜잭션이 그 한도까지 쓸 수 있다는 최악의 경우를 늘 가정해야 한다는 것이다. 그래서 자원 예산 면에서는 훨씬 낮은 TPS 수준을 기준으로 계획해야 한다. 이 트랜잭션이 그냥 k1이나 r1 검사라는 것을 알아낼 방법이 없어 코드를 돌려봐야 한다.",
+          "url": "https://x.com/decentrek/status/2092325351380922786",
+          "digest": "2026-08-25",
+          "replyTo": "donnoh_eth",
+          "relation": "reply",
+          "original": "Yeah what I meant to say by that is that it's unbounded by default unless you enforce a limit like MAX_VERIFY_GAS, and even with the limit you always have to assume the worst case scenario where the transaction might take up to that much limit, so in terms of resource budgeting you have to plan for a much lower level of TPS because you have to assume the worst case for every transaction.  There's no way to just tell that, oh this transaction is just a k1/r1 check.  You have to run the code to find out.",
+          "translation": "제가 말하려 했던 것은, MAX_VERIFY_GAS 같은 한도를 강제하지 않으면 기본적으로 무한하다는 점입니다. 그리고 한도를 두더라도 트랜잭션이 그 한도까지 소모할 수 있는 최악의 시나리오를 항상 가정해야 하므로, 자원 예산을 짤 때는 모든 트랜잭션에 대해 최악의 경우를 가정해야 하기 때문에 훨씬 낮은 수준의 TPS를 계획해야 합니다. 이 트랜잭션이 그저 k1이나 r1 검사에 불과하다는 것을 미리 알아낼 방법이 없습니다. 그것을 알아내려면 코드를 실행해 봐야만 합니다."
+        },
+        {
+          "date": "2026-08-25",
+          "by": "decentrek",
+          "stance": "neutral",
+          "quote": "글 뒷부분에 적었듯 8130이 임의 인증자 지원을 추가했으므로 이제 L1에서도 동작할 수 있다. 유연성 면에서 남은 유일하게 의미 있는 격차는 프레임에서는 검증이 기술적으로 실행 이후에 일어날 수 있어, 계정이 ETH 없이 시작해 실행 중에 얻은 ETH로 가스를 내는 사례가 가능하다는 점이다. 다만 글에서 언급했듯 이 유연성에도 복잡성 비용이 따르므로 공짜는 아니다.",
+          "url": "https://x.com/decentrek/status/2092259228740378638",
+          "digest": "2026-08-25",
+          "replyTo": "omw_to_the_moon",
+          "relation": "reply",
+          "original": "I mentioned later in the article that 8130 has added support for arbitrary authenticators, so indeed it can now work for the L1.  The only meaningful gap in terms of flexibility is that with Frames, validation can technically happen after execution, enabling use cases where accounts can start with no ETH but pay gas with the ETH acquired during execution.  But this flexibility comes with complexity cost as well so it's not free, as I mentioned in the article.",
+          "translation": "글 후반부에서 언급했듯이 8130은 임의의 인증자에 대한 지원을 추가했으므로, 실제로 이제 L1에서도 작동할 수 있습니다. 유연성 측면에서 유일하게 의미 있는 차이는, 프레임에서는 기술적으로 검증이 실행 이후에 일어날 수 있어서 계정이 ETH 없이 시작했다가 실행 도중 획득한 ETH로 가스비를 지불하는 사용 사례가 가능해진다는 점입니다. 하지만 글에서 언급했듯이 이러한 유연성에는 복잡성이라는 비용도 따르므로 공짜는 아닙니다."
+        },
+        {
+          "date": "2026-08-25",
+          "by": "ox_shaman",
+          "stance": "neutral",
+          "quote": "핵심 긴장은 철학적인 것으로, 이더리움이 의견을 가진 계정 추상화를 가져야 하는가 아니면 지갑이 각자 구현을 올릴 수 있는 중립적 레이어를 가져야 하는가이며 8130은 전자를, 8141은 후자를 택한다. 나는 프레임 쪽으로 약간 더 기울지만 지금 형태 그대로는 아니며, Base의 비판은 특히 극고처리량이라는 그들의 사용 사례에서 정당하지만 코어 프로토콜이 계정 추상화의 상업적 사용 사례를 대신 풀어줄 필요는 없다고 본다. 검증이 경계 안에서 정적으로 확인되는 정적 검증 프레임을 새로 만들고, 모든 이해관계자가 함께 이끄는 기본 구현체와 ERC-5792 같은 스코프 인터페이스를 갖추면 된다.",
+          "url": "https://x.com/ox_shaman/status/2092232223596368053",
+          "digest": "2026-08-25",
+          "replyTo": "decentrek",
+          "relation": "quote",
+          "original": "Great article by Derek. I would definitely recommend to read the article first and then read my take.\n\nMy thoughts: Account abstraction has always been a political minefield in Ethereum/EVM.\n\nThe core tension is a philosophical one: Should Ethereum have an opinionated account abstraction or should it have a neutral layer on top of which wallets can build their own implementation?\n\nEIP-8130 takes the former approach, while EIP-8141 takes the latter.\n\nI would like to preface this by saying that both standards are well thought out, championed by competent developers and both have the best interest of Ethereum in mind.\n\nToo often, technical discussions divulge into tribalism. Which is understandable for a big upgrade such as this.\n\nMy personal stance? I am slightly more biased towards Frame transactions, but *not* in the way they're currently formed. The critiques presented by Base are legitimate, particularly for their specific use case (extremely high throughput).\n\nHowever, I still have a firm opinion that the core protocol should *not* solve for the commercial use-cases of AA - rather this is something which should be left to wallet and app developers.\n\nSo what should be done?\nStatic validation Frames - create a new type of Frame which has a bounded, statically checked validation. One of the core complaints from Base was the fact that validation right now can be arbitrarily large (though bounded by max gas). This can negatively influence sequencers on very high TPS chains. Static validation Frames alleviate this concern.\n\nDefault implementation - Rather than offloading the work of developing, auditing and maintaining the contracts to every wallet individually - a default implementation, championed by all stakeholders (e.g. EF, Ethlabs, client teams, wallet teams) should be built. The great thing about 8130 is that it provides an exact reference for what features this implementation should support.\n\nThen, in the future - any improvements to this implementation can have a separate governance process which doesn't put additional burden on the core client developers.\n\nScoped interaction interface - Similar to ERC-5792, all of the features which the default implementation supports should be accessible via a structured, scoped interface. This helps us even in the case where the ecosystem theoretically bifurcates to some chains supporting 8141 and some chains supporting 8130. The interface should come with a full suite of developer tooling which encode transactions, post them on-chain, detect errors and track the execution.",
+          "translation": "데릭이 쓴 훌륭한 글입니다. 먼저 그 글을 읽고 나서 제 의견을 읽어보시길 권합니다. 제 생각은 다음과 같습니다. 계정 추상화는 이더리움과 EVM에서 언제나 정치적 지뢰밭이었습니다. 핵심적인 긴장은 철학적인 것입니다. 이더리움이 뚜렷한 견해를 가진 계정 추상화를 가져야 하는가, 아니면 지갑들이 그 위에 자신만의 구현을 쌓을 수 있는 중립적인 계층을 가져야 하는가입니다. EIP-8130은 전자의 접근을, EIP-8141은 후자의 접근을 취합니다. 먼저 밝혀두고 싶은 것은, 두 표준 모두 잘 고민된 것이고 유능한 개발자들이 이끌고 있으며 둘 다 이더리움의 이익을 최우선으로 염두에 두고 있다는 점입니다. 너무 자주 기술적 논의가 진영 다툼으로 흘러갑니다. 이 정도로 큰 업그레이드라면 이해할 만한 일이기도 합니다. 저 개인의 입장은 어떨까요. 저는 프레임 트랜잭션 쪽으로 조금 더 기울어 있지만, 지금 형태 그대로는 아닙니다. 베이스가 제기한 비판은 정당하며, 특히 그들의 구체적인 사용 사례인 극도로 높은 처리량 측면에서는 더욱 그렇습니다. 다만 저는 핵심 프로토콜이 AA의 상업적 사용 사례를 해결해서는 안 되며, 이는 지갑과 앱 개발자들에게 맡겨야 할 문제라는 확고한 견해를 갖고 있습니다. 그렇다면 무엇을 해야 할까요. 정적 검증 프레임입니다. 경계가 정해져 있고 정적으로 검사되는 검증을 가진 새로운 유형의 프레임을 만드는 것입니다. 베이스가 제기한 핵심 불만 중 하나는, 현재 검증이 최대 가스로 경계는 지어져 있지만 임의로 커질 수 있다는 사실이었습니다. 이는 매우 높은 TPS를 가진 체인의 시퀀서에 부정적인 영향을 줄 수 있습니다. 정적 검증 프레임은 이러한 우려를 덜어줍니다. 기본 구현입니다. 계약을 개발하고 감사하고 유지 관리하는 작업을 각 지갑 개별적으로 떠맡기기보다는, EF, Ethlabs, 클라이언트 팀, 지갑 팀 등 모든 이해관계자가 함께 이끄는 기본 구현을 만들어야 합니다. 8130의 좋은 점은 이 구현이 어떤 기능을 지원해야 하는지에 대한 정확한 참조를 제공한다는 것입니다. 그러면 앞으로 이 구현에 대한 개선 사항은 핵심 클라이언트 개발자들에게 추가적인 부담을 지우지 않는 별도의 거버넌스 절차를 통해 이루어질 수 있습니다. 범위가 지정된 상호작용 인터페이스입니다. ERC-5792와 유사하게, 기본 구현이 지원하는 모든 기능은 구조화되고 범위가 지정된 인터페이스를 통해 접근할 수 있어야 합니다. 이는 생태계가 이론적으로 일부 체인은 8141을, 일부 체인은 8130을 지원하는 식으로 갈라지는 경우에도 도움이 됩니다. 이 인터페이스에는 트랜잭션을 인코딩하고, 온체인에 게시하고, 오류를 감지하고, 실행을 추적하는 완전한 개발자 도구 모음이 함께 제공되어야 합니다."
+        },
+        {
           "date": "2026-08-26",
           "by": "_chunter",
           "stance": "con",
-          "quote": "프레임의 계정 모델은 계정 자신이 권한이 되는 내부 소유 계정이고, 이 모델은 프로토콜에 데이터를 던져 넣고 오피코드가 나오는지 보는 블랙박스를 남긴다. 내부 소유 계정도 키스토어로 표현할 수 있으므로 8130이 엄격히 더 일반적이며, 권한이 계정 밖으로 제대로 나오면 서명 목록과 오피코드, 추적 인프라가 차례로 필요 없어진다. 프레임을 고치는 일은 프레임을 버리는 일이다.",
+          "quote": "프레임의 계정 모델은 계정 자신이 권한이 되는 내부 소유 계정이고, 이 모델은 프로토콜에 데이터를 던져 넣고 오피코드가 나오는지 보는 블랙박스를 남겨 추적 같은 완화책으로 상자 안을 들여다보려 하게 만든다. 8141을 고치려면 8130 키스토어로 권한을 계정 밖으로 꺼내야 하는데 내부 소유 계정도 키스토어로 표현할 수 있으므로 8130이 엄격히 더 일반적이며, 권한이 밖에 있으면 서명 목록과 오피코드가 필요 없어지고 추적 인프라는 선택 사항이 되며 남는 것은 프레임 자체인데 이것도 뺄 수 있다. 실행 끝에 수수료를 낼 수 있다는 마지막 논거는 체인이 원하면 payer 모드를 추가하면 되므로, 프레임을 고치는 일은 프레임을 버리는 일이다.",
           "url": "https://x.com/_chunter/status/2092623725535322431",
           "digest": "2026-08-26",
           "relation": "none",
@@ -361,7 +480,7 @@
           "date": "2026-08-27",
           "by": "decentrek",
           "stance": "neutral",
-          "quote": "프레임(8141)이 방금 SFI됐지만 이는 이더리움이 헤고타에서 계정 추상화를 내겠다는 신호일 뿐, 지금 문안이나 최종 EIP 번호가 확정됐다는 뜻이 아니다. 나는 프레임에 대한 공개 반론과 8130 지지가 충분히 해소되지 않은 상태에서 지금 SFI 결정을 내리는 데 반대했다. 이 결정은 8130과 8141의 협업에 영향을 주지 않으며, 공유 트랜잭션 타입을 찾거나 최소한 8130 계정이 프레임 위에서 L1과 L2에 같은 주소를 쓰도록 하는 작업을 이어간다.",
+          "quote": "프레임(8141)이 방금 SFI됐지만 이는 이더리움이 헤고타에서 계정 추상화를 내겠다는 신호일 뿐, 지금 문안이나 최종 EIP 번호가 확정됐다는 뜻이 아니다. 나는 ACDE에서 프레임에 대한 공개 반론과 8130 지지가 충분히 다뤄지지 않은 상태에서 지금 SFI 결정을 내리는 데 반대했지만, ACD 진행자들은 이 SFI가 계정 추상화를 내겠다는 약속을 뜻할 뿐 프레임의 구체적 내용이나 최종 EIP 번호에 대한 것이 아니라고 뒤에 명확히 했다. 따라서 이 결정은 8130과 8141의 협업에 영향을 주지 않으며, L1에 충분히 유연하고 미래에도 유효하면서 L2의 확장 요구에도 친화적인 공유 트랜잭션 타입을 정하거나, 그것이 안 되면 최소한 8130 계정이 프레임 위에 구축돼 L1과 L2에서 같은 주소를 쓸 수 있게 하는 작업을 이어간다.",
           "url": "https://x.com/decentrek/status/2093026086552752141",
           "digest": "2026-08-27",
           "replyTo": "nixorokish",
@@ -373,13 +492,48 @@
           "date": "2026-08-28",
           "by": "pedrouid",
           "stance": "con",
-          "quote": "8141이 지금 형태로 배포되면 이더리움에 엄청난 실패가 될 것이다. 네이티브 계정 추상화를 내는 데 10년을 쓰고 나서 대단히 복잡하고 과도하게 설계된 해법을 고르는 셈이다.",
+          "quote": "8141이 지금 형태로 배포되면 이더리움에 엄청난 실패가 될 것이다. 네이티브 계정 추상화를 내는 데 10년을 쓰고 나서 대단히 복잡하고 과도하게 설계된 해법을 고르는 셈이다. ACDE가 깨어나 커뮤니티 목소리를 듣기를 바란다.",
           "url": "https://x.com/pedrouid/status/2093211554221076534",
           "digest": "2026-08-27",
           "replyTo": "decentrek",
           "relation": "quote",
           "original": "Really hope this is true because if 8141 gets shipped in its current form it will be a massive failure for Ethereum\n\nTaking 10 years to ship native account abstraction and then choosing a highly complex and overly engineered solution\n\nHope ACDE wake up and listen to the community",
           "translation": "이것이 사실이기를 정말 바랍니다. 만약 8141이 현재 형태 그대로 출시된다면 이더리움에게는 엄청난 실패가 될 것이기 때문입니다. 네이티브 계정 추상화를 출시하는 데 10년이 걸렸는데, 결국 지나치게 복잡하고 과도하게 설계된 해법을 선택하는 셈이 됩니다. ACDE가 정신을 차리고 커뮤니티의 목소리에 귀 기울이기를 바랍니다."
+        },
+        {
+          "date": "2026-09-03",
+          "by": "ethresearchbot",
+          "stance": "neutral",
+          "quote": "EIP-8141로 프라이버시 프로토콜은 오프체인 릴레이어를 없애고 더 강한 검열 저항성을 얻을 수 있지만, 검증이 공개 멤풀의 검증 가스 상한(MAX_VERIFY_GAS) 안에 들어갈 때만 가능하다. 제안된 최적화를 모두 적용해도 단일 nullifier 지출에 필요한 최소 검증 가스는 약 211,828이고 8-nullifier 지출은 약 351,828이어서 현재의 10만 상한으로는 이 사용 사례를 지원할 수 없으며, BN254 페어링 검사만 약 181,000 가스라 비용의 대부분은 줄일 수 없다. 권고는 상한을 최소 25만으로 올리는 것이다.",
+          "url": "https://x.com/ethresearchbot/status/2095300828022088156",
+          "digest": "2026-09-03",
+          "relation": "none",
+          "original": "New post on Eth Research!\n\nEIP-8141 and minimum required validation budget for privacy applications\n\nBy:\n- mmjahanara\n\n🔗 https://t.co/7XWERwTVuO\n\nHighlights:\n- With EIP-8141, privacy protocols can potentially drop off-chain relayers and gain stronger censorship resistance, but only if their validation fits within the public-mempool verification gas cap (MAX_VERIFY_GAS).\n- Even after applying all proposed optimizations, the minimum required validation gas is ~211,828 for a single-nullifier spend (e.g., a Tornado-style withdrawal), and ~351,828 for an 8-nullifier spend (a large deployed RAILGUN shape); therefore 100,000 MAX_VERIFY_GAS cannot support these use cases.\n- Most of the validation cost is irreducible: a BN254 pairing check alone is ~181,000 gas, and EIP-8250 keyed nonces add 20,000 gas per nullifier (which counts toward the cap).\n- Key optimizations to reduce what counts toward the cap include: using keyed nonces instead of nullifier storage writes, using EIP-8272 recent-root references to avoid validation-prefix storage reads, moving non-verification work (transfers, commitment insertions, logs) into non-validation frames, binding the proof to tx.sigHash to remove relayer-related public inputs, compressing public inputs (ideally to a constant number), and using gas-optimized verifiers with verifying keys hardcoded in contract code (no storage reads).\n- Recommendation: increase MAX_VERIFY_GAS to at least 250k; this admits common transaction shapes (Tornado and RAILGUN up to 2 nullifiers at ~231,828) and makes the frame-transaction privacy use case viable, while higher caps (e.g., 400k) are needed for larger 8-nullifier spends; appendices discuss alternative input-compression methods to reduce prover overhead and a way to decouple gas-fee bumping from proof regeneration.\n\nELI5:\nSome privacy apps on Ethereum use “relayers” (helpers) to submit private withdrawals so users don’t get blocked or censored. EIP-8141 proposes a new kind of transaction (“frame transactions”) that could let these apps submit privately without relayers—if the network will accept and propagate these transactions through the public mempool. But the mempool only allows a limited amount of computation during the transaction’s “validation” step (MAX_VERIFY_GAS, currently 100k). This article measures how much gas privacy proofs (Groth16 SNARK verification + required checks like nullifiers and roots) actually need during validation, shows the minimum is far above 100k, and recommends raising the cap (at least to 250k) plus a set of optimizations to fit typical privacy spends.",
+          "translation": "Eth Research에 새 글이 올라왔습니다. EIP-8141과 프라이버시 애플리케이션에 필요한 최소 검증 예산이라는 제목입니다. 작성자는 mmjahanara입니다. https://t.co/7XWERwTVuO 주요 내용은 다음과 같습니다. EIP-8141을 사용하면 프라이버시 프로토콜이 오프체인 릴레이어를 없애고 더 강한 검열 저항성을 얻을 수 있지만, 이는 검증 과정이 공개 멤풀의 검증 가스 상한인 MAX_VERIFY_GAS 안에 들어갈 때만 가능합니다. 제안된 모든 최적화를 적용한 이후에도 최소 필요 검증 가스는 단일 널리파이어 지출, 예를 들어 토네이도 방식의 인출의 경우 약 211,828이고, 8개 널리파이어 지출, 즉 대규모로 배포된 RAILGUN 형태의 경우 약 351,828이므로, 현재 MAX_VERIFY_GAS인 100,000으로는 이러한 사용 사례를 지원할 수 없습니다. 검증 비용의 대부분은 줄일 수 없는 성격의 것입니다. BN254 페어링 검사 하나만으로도 약 181,000 가스가 들고, EIP-8250의 키드 논스는 널리파이어당 20,000 가스를 추가하며 이는 상한에 포함됩니다. 상한에 반영되는 비용을 줄이기 위한 핵심 최적화로는, 널리파이어 저장소 기록 대신 키드 논스를 사용하는 것, EIP-8272의 최근 루트 참조를 사용하여 검증 접두사 저장소 읽기를 피하는 것, 전송이나 커밋먼트 삽입, 로그 같은 비검증 작업을 비검증 프레임으로 옮기는 것, 릴레이어 관련 공개 입력을 제거하기 위해 증명을 tx.sigHash에 결속하는 것, 공개 입력을 이상적으로는 상수 개수로 압축하는 것, 그리고 검증 키를 계약 코드에 하드코딩하여 저장소 읽기가 없는 가스 최적화 검증자를 사용하는 것이 있습니다. 권고안은 MAX_VERIFY_GAS를 최소 250,000까지 늘리자는 것으로, 이렇게 하면 토네이도와 최대 2개 널리파이어까지의 RAILGUN, 즉 약 231,828 같은 일반적인 트랜잭션 형태를 수용하여 프레임 트랜잭션 방식의 프라이버시 사용 사례를 실현 가능하게 만들 수 있으며, 더 큰 8개 널리파이어 지출을 위해서는 400,000 같은 더 높은 상한이 필요합니다. 부록에서는 프루버 오버헤드를 줄이기 위한 대안적인 입력 압축 방법과, 가스 요금 인상을 증명 재생성과 분리하는 방법도 다룹니다. 쉽게 설명하면, 이더리움의 일부 프라이버시 앱들은 사용자가 차단되거나 검열당하지 않도록 프라이빗 인출을 대신 제출해 주는 릴레이어라는 도우미를 사용합니다. EIP-8141은 프레임 트랜잭션이라는 새로운 종류의 트랜잭션을 제안하는데, 네트워크가 공개 멤풀을 통해 이러한 트랜잭션을 받아들이고 전파해 준다면 이러한 앱들이 릴레이어 없이도 프라이빗하게 제출할 수 있게 해줍니다. 하지만 멤풀은 트랜잭션의 검증 단계에서 제한된 양의 연산만 허용하며, 이는 현재 100,000인 MAX_VERIFY_GAS로 정해져 있습니다. 이 글은 프라이버시 증명, 즉 Groth16 SNARK 검증과 널리파이어 및 루트 같은 필수 검사가 검증 단계에서 실제로 얼마나 많은 가스를 필요로 하는지 측정하여, 그 최소치가 100,000을 훨씬 웃돈다는 것을 보이고, 일반적인 프라이버시 지출을 수용하기 위해 상한을 최소 250,000까지 올리는 동시에 여러 최적화를 함께 적용할 것을 권고합니다."
+        },
+        {
+          "date": "2026-09-05",
+          "by": "VitalikButerin",
+          "stance": "pro",
+          "quote": "8141은 최적에 가깝다고 본다. 트랜잭션은 그저 일련의 호출이고, 이는 '트랜잭션은 그저 하나의 호출이다'에서 한 걸음 떨어져 있을 뿐이다. 멤풀은 더 제약적이어야 하지만 그것은 불가피한데, 퍼미션리스하게 DoS 저항적으로 처리하려면 프로토콜의 어느 부분인가는 계산의 구조를 알고 있어야 하기 때문이며, 언젠가는 그마저도 'DoS 저항성을 Lean 증명으로 제시하면 받아준다' 같은 아주 일반적인 무언가로 대체될 수도 있다.",
+          "url": "https://x.com/VitalikButerin/status/2096379682820399375",
+          "digest": "2026-09-06",
+          "replyTo": "XRS_02",
+          "relation": "reply",
+          "original": "I think 8141 gets close to optimal\n\nA transaction is \"just\" a series of calls. That's one step away from \"a transaction is just a call\".\n\nMempool has to be more restrictive, but that's inevitable. There has to be some part of the protocol that's aware of the structure of computation if you want to process it permissionlessly in a DoS-resistant way. Maybe eventually even that all goes away and gets replaced by something crazy generic like \"we'll take you if you provide a Lean proof that you're DoS-resistant\", maybe you can help design something like that :)",
+          "translation": "저는 8141이 최적에 가깝다고 생각합니다. 트랜잭션은 그저 일련의 호출일 뿐입니다. 이는 트랜잭션이 그저 하나의 호출일 뿐이라는 개념에서 딱 한 걸음 떨어져 있습니다. 멤풀은 더 제한적이어야 하지만, 이는 불가피한 일입니다. 무허가 방식으로도 DoS에 강하게 처리하려면 프로토콜의 어느 부분은 반드시 연산의 구조를 인지하고 있어야 합니다. 어쩌면 결국에는 이런 것조차 사라지고, DoS에 강하다는 것을 Lean 증명으로 제공하면 받아들이겠다는 식의 터무니없이 일반적인 무언가로 대체될 수도 있습니다. 어쩌면 여러분이 그런 것을 설계하는 데 도움을 줄 수 있을지도 모릅니다."
+        },
+        {
+          "date": "2026-09-05",
+          "by": "vickydiamond21",
+          "stance": "pro",
+          "quote": "포스트양자 키 체계와 스폰서 실행을 네이티브로 지원한다는 점에서 인상적인 설계다. 구현 과정에서 클라이언트 팀들이 멤풀 검증 규칙과 DoS 벡터를 어떻게 균형 잡을지는 궁금하지만, 지금까지 나온 네이티브 계정 추상화 경로 중 가장 깔끔해 보인다.",
+          "url": "https://x.com/vickydiamond21/status/2096371004641522102",
+          "digest": "2026-09-06",
+          "replyTo": "VitalikButerin",
+          "relation": "quote",
+          "original": "This is actually an impressive design, especially how it natively supports post-quantum key schemes and sponsored execution. But i am curious to see how client teams balance mempool validation rules and DoS vectors during implementation, but it definitely looks like the cleanest path to native AA so far.",
+          "translation": "이것은 실제로 인상적인 설계인데, 특히 양자내성 키 방식과 스폰서드 실행을 네이티브로 지원한다는 점이 그렇습니다. 다만 구현 과정에서 클라이언트 팀들이 멤풀 검증 규칙과 DoS 공격 벡터 사이의 균형을 어떻게 맞출지 궁금하지만, 지금까지 나온 것 중에서는 네이티브 AA로 가는 가장 깔끔한 길로 보입니다."
         },
         {
           "date": "2026-09-05",
@@ -419,19 +573,7 @@
           "date": "2026-09-05",
           "by": "VitalikButerin",
           "stance": "pro",
-          "quote": "8141은 최적에 근접했다고 본다. 트랜잭션은 결국 일련의 콜이고, 이는 트랜잭션이 곧 하나의 콜이라는 지점에서 한 걸음 남은 것이다. 멤풀은 더 제약적일 수밖에 없지만 그것은 불가피한데, 계산을 퍼미션리스하고 DoS 저항적으로 처리하려면 프로토콜의 어느 부분인가는 계산의 구조를 알아야 하기 때문이다.",
-          "url": "https://x.com/VitalikButerin/status/2096379682820399375",
-          "digest": "2026-09-06",
-          "replyTo": "XRS_02",
-          "relation": "reply",
-          "original": "I think 8141 gets close to optimal\n\nA transaction is \"just\" a series of calls. That's one step away from \"a transaction is just a call\".\n\nMempool has to be more restrictive, but that's inevitable. There has to be some part of the protocol that's aware of the structure of computation if you want to process it permissionlessly in a DoS-resistant way. Maybe eventually even that all goes away and gets replaced by something crazy generic like \"we'll take you if you provide a Lean proof that you're DoS-resistant\", maybe you can help design something like that :)",
-          "translation": "저는 8141이 최적에 가깝다고 생각합니다. 트랜잭션은 그저 일련의 호출일 뿐입니다. 이는 트랜잭션이 그저 하나의 호출일 뿐이라는 개념에서 딱 한 걸음 떨어져 있습니다. 멤풀은 더 제한적이어야 하지만, 이는 불가피한 일입니다. 무허가 방식으로도 DoS에 강하게 처리하려면 프로토콜의 어느 부분은 반드시 연산의 구조를 인지하고 있어야 합니다. 어쩌면 결국에는 이런 것조차 사라지고, DoS에 강하다는 것을 Lean 증명으로 제공하면 받아들이겠다는 식의 터무니없이 일반적인 무언가로 대체될 수도 있습니다. 어쩌면 여러분이 그런 것을 설계하는 데 도움을 줄 수 있을지도 모릅니다."
-        },
-        {
-          "date": "2026-09-05",
-          "by": "VitalikButerin",
-          "stance": "pro",
-          "quote": "액션은 트랜잭션이 일으키는 효과이고, 의존성은 트랜잭션이 유효하려면 참이어야 하는 트랜잭션이나 상태에 관한 사실이다. 원칙적으로 의존성과 액션은 모두 콜로, 필요하면 프리컴파일(precompile) 호출로 표현할 수 있으며, 그러면 트랜잭션 포맷 자체가 매우 최소한이 되어 EVM 체인마다 기능이 달라도 상호 호환성이 극대화된다. 그렇게 보면 잘 해낸 8141은 10년의 계정 추상화 작업의 정점일 뿐 아니라 앞으로 몇 년의 탈중앙화 친화적 초대규모 확장을 준비하는 일이다.",
+          "quote": "액션은 트랜잭션이 일으키는 효과이고, 의존성은 트랜잭션이 유효하려면 참이어야 하는 트랜잭션이나 상태에 관한 사실이다. 원칙적으로 의존성과 액션은 모두 콜로, 필요하면 프리컴파일 호출로 표현할 수 있으며, 그러면 트랜잭션 포맷 자체가 매우 최소한이 되어 EVM 체인마다 기능이 달라도 상호 호환성이 극대화된다. 그렇게 보면 잘 해낸 8141은 10년의 계정 추상화 작업의 정점일 뿐 아니라 앞으로 몇 년의 책임 있고 탈중앙화 친화적인 초대규모 확장을 준비하는 일이다.",
           "url": "https://x.com/VitalikButerin/status/2096378061377900881",
           "digest": "2026-09-06",
           "relation": "none",
@@ -453,352 +595,14 @@
         {
           "date": "2026-09-05",
           "by": "davidrhodus",
-          "stance": "neutral",
-          "quote": "프레임 기반 실행과 프로토콜 수준 서명 추상화, 네이티브 스폰서십, 2차원 가스, 원자적 배치라는 아키텍처는 정말 흥미롭다. 남은 일은 비전이 아니라 합의 세부를 조이는 것으로, 저널링과 롤백, 상태 가스 귀속, 승인 시맨틱, EIP-2929 웜니스, 멤풀 결정성이 확정돼야 독립 클라이언트들이 정확히 같은 동작으로 수렴한다.",
+          "stance": "pro",
+          "quote": "EIP-8141은 계정 추상화를 네이티브 프로토콜 프리미티브로 만드는 큰 걸음이며 프레임 기반 실행과 프로토콜 수준 서명 추상화, 네이티브 스폰서십, 2차원 가스, 원자적 배치라는 아키텍처는 정말 흥미롭다. 남은 일은 비전이 아니라 합의 세부를 조이는 것으로, 저널링과 롤백, 상태 가스 귀속, 승인 시맨틱, EIP-2929 웜니스, 임의 서명, 멤풀 결정성이 확정돼야 독립 클라이언트들이 정확히 같은 동작으로 수렴한다. 이 경계들이 정식화되고 합의 테스트 매트릭스가 튼튼하면 8141은 최근 몇 년 사이 가장 중요한 트랜잭션 계층 업그레이드 중 하나가 될 수 있으며, 방향에 매우 낙관적이다.",
           "url": "https://x.com/davidrhodus/status/2096380850535575604",
           "digest": "2026-09-06",
           "replyTo": "VitalikButerin",
           "relation": "reply",
           "original": "EIP-8141 is a big step toward making account abstraction a native protocol primitive.\n\nThe architecture is genuinely exciting: frame based execution, protocol-level signature abstraction, native sponsorship, 2D gas, and atomic batching.\n\nThe main thing left isn’t the vision it’s tightening the consensus details.\n\nJournaling/rollback, state-gas attribution, approval semantics, EIP-2929 warmness, ARBITRARY sigs, and mempool determinism all need to be nailed down so independent clients converge on exactly the same behavior.\n\nIf those edges get formalized + the consensus test matrix is strong, I think EIP-8141 could be one of the more important transaction-layer upgrades in years.\n\nVery bullish on the direction. 🚀",
           "translation": "EIP-8141은 계정 추상화를 네이티브 프로토콜 기본 요소로 만드는 데 있어 큰 진전입니다. 그 아키텍처는 진심으로 흥미롭습니다. 프레임 기반 실행, 프로토콜 수준의 서명 추상화, 네이티브 스폰서십, 2D 가스, 원자적 배칭까지 포함하고 있습니다. 남은 주요 과제는 비전이 아니라 합의 세부 사항을 다듬는 일입니다. 저널링과 롤백, 상태 가스 귀속, 승인 시맨틱, EIP-2929의 웜니스, 임의 서명, 멤풀 결정성 모두 확정되어야 독립적인 클라이언트들이 정확히 동일한 동작으로 수렴할 수 있습니다. 이러한 세부 사항들이 공식화되고 합의 테스트 매트릭스가 탄탄하다면, EIP-8141은 수년 만에 나온 가장 중요한 트랜잭션 계층 업그레이드 중 하나가 될 수 있다고 생각합니다. 이 방향에 대해 매우 낙관적입니다."
-        },
-        {
-          "date": "2026-09-06",
-          "by": "decentrek",
-          "stance": "neutral",
-          "quote": "만료 시간, 집계용 서명, 프라이버시 풀의 머클 루트, 실행 후 단언처럼 트랜잭션 봉투에 넣어야 한다고 여겼던 것들이 전부 프레임이라는 컨트랙트 호출로 표현된다는 것이 8141 저자들이 최근 이룬 설계적 돌파구다. 다만 지나치게 추상화해서 성능을 위해 특정 검증 방식만 허용하려는 L2 시퀀서 같은 검사자가 트랜잭션을 읽을 수 없게 되지 않도록 주의해야 하고, 바로 그 지점에서 8130 같은 계정 표준이 프레임 위에 구조를 얹을 수 있다.",
-          "url": "https://x.com/decentrek/status/2096587220195192981",
-          "digest": "2026-09-06",
-          "replyTo": "VitalikButerin",
-          "relation": "quote",
-          "original": "It's not a coincidence that @lightclients and @VitalikButerin both posted about frames (8141) around the same time.  The 8141 authors achieved a design breakthrough lately, where we realized that the things that we previously thought had to be put into the transaction envelope, such as transaction expiry time, signatures for aggregation, merkle roots for privacy pools, and post-transaction assertions -- can all be expressed as contract calls aka \"frames.\"\n\nThis is important because:\n\n- Ethereum upgrades very slowly (every ~9 months)\n\n- Updating the transaction envelope typically requires coordinating across a very large set of stakeholders including chains (L1 and L2s), wallets, explorers, SDKs, etc.\n\nSo the fact that new transaction features can be added without changing the envelope, but rather by just adding frames, is very compelling for the L1.\n\nOf course, care has to be taken to not overly abstract things, to the point that transactions become illegible to those who want to inspect them, such as L2 sequencers who want to only allow a specific set of validation methods (e.g. k1 & r1 only) for performance reasons.  That's where an account standard like 8130 could come in, which can impose a set of structures on top of frames.\n\nIndeed that's the direction that we've been working towards with the collab between 8141 and 8130.  More on this shortly!",
-          "translation": "lightclients와 VitalikButerin이 비슷한 시기에 나란히 프레임(8141)에 관한 글을 올린 것은 우연이 아닙니다. 8141 저자들은 최근 설계상의 돌파구를 마련했는데, 트랜잭션 만료 시간, 집계를 위한 서명, 프라이버시 풀을 위한 머클 루트, 트랜잭션 이후의 검증문처럼 이전에는 트랜잭션 봉투 안에 반드시 넣어야 한다고 생각했던 것들이 사실은 모두 계약 호출, 즉 이른바 프레임으로 표현될 수 있다는 사실을 깨달은 것입니다. 이것이 중요한 이유는 다음과 같습니다. 이더리움은 업그레이드 주기가 매우 느립니다. 약 9개월에 한 번꼴입니다. 트랜잭션 봉투를 업데이트하려면 통상 L1과 L2를 포함한 체인들, 지갑, 익스플로러, SDK 등 매우 많은 이해관계자들과의 조율이 필요합니다. 따라서 봉투 자체를 바꾸지 않고 그저 프레임을 추가하는 것만으로 새로운 트랜잭션 기능을 더할 수 있다는 사실은 L1 입장에서 매우 매력적입니다. 물론 지나치게 추상화하여, 특정 검증 방식, 예를 들어 k1과 r1만 허용하고 싶어하는 L2 시퀀서처럼 트랜잭션을 들여다보고자 하는 이들에게 트랜잭션이 판독 불가능해지지 않도록 주의를 기울여야 합니다. 바로 이 지점에서 8130 같은 계정 표준이 등장하여 프레임 위에 일련의 구조를 부과할 수 있습니다. 실제로 이것이 8141과 8130 간의 협업을 통해 우리가 추구해 온 방향입니다. 이에 관해서는 곧 더 자세히 전하겠습니다."
-        },
-        {
-          "date": "2026-09-06",
-          "by": "soispoke",
-          "stance": "pro",
-          "quote": "프레임은 프로그래머블 블록체인에 네이티브 계정 추상화를 가져오려는 10년의 작업 위에 서 있어 처음에는 이해하기 어렵지만, 이더리움에서 프라이빗하고 안전한 포스트양자 미래를 만들 디딤돌이다. 자주 간과되는데 프레임은 확장에 관한 것이기도 해서, 서명과 STARK 집계를 열어 포스트양자 트랜잭션을 무겁게 만드는 대역폭과 검증 비용을 줄인다.",
-          "url": "https://x.com/soispoke/status/2096594725348278436",
-          "digest": "2026-09-06",
-          "replyTo": "lightclients",
-          "relation": "quote",
-          "original": "Frames can be hard to grasp at first because they build on a decade of work to bring native account abstraction to programmable blockchains.\n\nBut they are the stepping stone we need to build a private, secure, post-quantum future on Ethereum.\n\nTo me it boils down to focus on shipping a few key EIPs in Hegota:\n- EIP-8141: Frame Transactions, the core, already scheduled for inclusion\n- EIP-8250 and EIP-8272: Enable native, trustless private transactions\n- EIP-7906: Helps protect users against wallet drainers and malicious transactions\n\nFrames are also about scaling. It’s often overlooked, but they unlock signature and STARK aggregation (e.g., EIP-8288), reducing the bandwidth and verification costs that make post-quantum transactions so heavy.\n\nSecurity, UX, and scaling in one EIP\n\nHard to beat",
-          "translation": "프레임은 프로그래밍 가능한 블록체인에 네이티브 계정 추상화를 가져오기 위한 10년간의 작업 위에 세워진 것이라 처음에는 이해하기 어려울 수 있습니다. 하지만 프레임은 이더리움 위에 프라이버시가 보장되고 안전하며 양자내성을 갖춘 미래를 구축하기 위해 필요한 디딤돌입니다. 제게 이것은 결국 헤고타에서 몇 가지 핵심 EIP를 출시하는 데 집중하는 문제로 귀결됩니다. EIP-8141, 프레임 트랜잭션은 핵심이며 이미 포함이 예정되어 있습니다. EIP-8250과 EIP-8272는 네이티브이면서 신뢰가 필요 없는 프라이빗 트랜잭션을 가능하게 합니다. EIP-7906은 지갑 탈취 공격과 악성 트랜잭션으로부터 사용자를 보호하는 데 도움을 줍니다. 프레임은 확장성과도 관련이 있습니다. 종종 간과되지만, 프레임은 서명과 STARK 집계, 예를 들어 EIP-8288을 가능하게 하여 양자내성 트랜잭션을 그토록 무겁게 만드는 대역폭과 검증 비용을 줄여줍니다. 보안, 사용자 경험, 확장성을 하나의 EIP에 담은 것입니다. 이보다 더 나은 조합을 찾기는 어렵습니다."
-        },
-        {
-          "date": "2026-09-06",
-          "by": "binji_x",
-          "stance": "pro",
-          "quote": "프로그래머블 머니에는 프로그래머블 계정이 필요하다. 이더리움 프로토콜이 계정 추상화를 네이티브 기능으로 만드는 것을 기대한다.",
-          "url": "https://x.com/binji_x/status/2096541022993957302",
-          "digest": "2026-09-06",
-          "replyTo": "VitalikButerin",
-          "relation": "quote",
-          "original": "Programmable money needs programmable accounts.\n\nExcited to see the Ethereum protocol turn account abstraction into a native feature.",
-          "translation": "프로그래머블 머니에는 프로그래머블 계정이 필요합니다. 이더리움 프로토콜이 계정 추상화를 네이티브 기능으로 만드는 모습을 보게 되어 기쁩니다."
-        }
-      ],
-      "firstSeen": "2026-09-05",
-      "lastActivity": "2026-09-06",
-      "status": "active",
-      "rootUrl": "https://x.com/VitalikButerin/status/2096378061377900881",
-      "engagement": {
-        "likes": 1370,
-        "retweets": 175,
-        "quotes": 44,
-        "replies": 249,
-        "views": 211015
-      },
-      "background": "EIP-8141은 트랜잭션 하나를 최대 64개의 프레임으로 나누는 새 트랜잭션 타입 0x06으로, 서명 검증과 수수료 승인을 맡는 VERIFY 프레임과 실제 호출을 담는 EXECUTE 프레임이 최소 구성이다. 번들러나 별도 멤풀(mempool) 없이 가스 스폰서십, 원자적 배치, ERC-20 가스 지불, 포스트양자 서명을 쓰게 하는 네이티브 계정 추상화(account abstraction)가 목적이며, 2026년 2월 공개된 뒤 8월 말 헤고타 포크의 포함 예정 항목으로 올라갔다. 경쟁안인 EIP-8130은 코인베이스의 크리스 헌터가 2025년 10월 낸 타입 0x79로, 결정적 주소의 키스토어 시스템 컨트랙트가 계정별 키 등록을 관리하고 secp256k1과 P-256, 패스키, delegate를 정식 인증자(authenticator)로 프로토콜에 내장한다. 라이트클라이언츠는 2026년 9월 5일 블로그 글 Frames are all you need에서 검증과 가스 지불, 발신자 식별, 리플레이 보호를 고정된 프로토콜 규칙이 아니라 EVM 코드로 처리하면 새 트랜잭션 타입을 계속 만들 필요가 없다고 정리했고, 같은 날 비탈릭이 이 글과 갱신된 EIP를 추천하면서 논의가 커졌다.",
-      "whyItMatters": "트랜잭션 봉투는 L1과 L2, 지갑, 탐색기, SDK가 모두 맞춰야 하는 규격이고 이더리움은 9개월에 한 번꼴로만 업그레이드하므로, 한 번 굳으면 되돌리기 어렵다. 프레임으로 수렴하면 이후의 기능 추가가 하드포크(hard fork)가 아니라 컨트랙트 배포 수준으로 내려오지만, 8130 진영은 L1이 더 넓은 EVM 생태계의 필요를 충족하지 못하는 표준 하나를 새기면 분기가 남을 뿐이라고 본다. 8130 계정을 프레임 위에 올려 L1과 L2에서 같은 주소를 쓰게 하는 협업이 진행 중이며, 헤고타 최종 스펙까지 공동 트랜잭션 타입 논의가 어디로 가는지가 관전 지점이다.",
-      "sources": [
-        {
-          "title": "EIP-8141: Frame Transactions",
-          "url": "https://eips.ethereum.org/EIPS/eip-8141"
-        },
-        {
-          "title": "Frames are all you need",
-          "url": "https://lightclient.io/blog/frames-are-all-you-need/"
-        },
-        {
-          "title": "EIP-8130: Account Abstraction by Account Configuration",
-          "url": "https://eips.ethereum.org/EIPS/eip-8130"
-        },
-        {
-          "title": "EIP-8130 논의 스레드 (Ethereum Magicians)",
-          "url": "https://ethereum-magicians.org/t/eip-8130-account-abstraction-by-account-configurations/25952"
-        },
-        {
-          "title": "Native account abstraction: state of art and pending proposals",
-          "url": "https://blog.biconomy.io/native-account-abstraction-state-of-art-and-pending-proposals-q1-26/"
-        }
-      ],
-      "keywords": [
-        "EIP-8141",
-        "frame transactions",
-        "EIP-8130",
-        "last transaction type"
-      ]
-    },
-    {
-      "id": "aa-validation-programmable-vs-bounded",
-      "title": "계정 검증을 계정 코드에 맡겨야 하나, 프로토콜이 정한 인증자 집합으로 제한해야 하나",
-      "category": "프로토콜 설계",
-      "summary": "8141 진영은 검증 규칙을 계정이 EVM 코드로 정의하게 두고 검증 가스 상한(MAX_VERIFY_GAS)으로 통제하면 된다고 봤다. 8130 진영은 실행과 인증, 권한을 계정 한곳에 묶으면 프로토콜이 가시성을 잃고 의존성을 시뮬레이션과 추적으로 찾아내야 한다며, 프로토콜이 관리하는 인증자(authenticator) 매핑으로 트랜잭션이 무엇을 검증할지 선언하게 하자고 맞섰다. 8130이 임의 인증자를 지원하면서 유연성의 격차는 좁혀졌고, 논의는 프레임 위에 계정 표준을 얹는 협업 쪽으로 옮겨갔다.",
-      "keyPoints": [
-        "노드가 지갑 코드를 실행하지 않고도 무엇을 검증할지 미리 알 수 있어야 하는가",
-        "가스 상한이 있어도 모든 트랜잭션에 최악을 가정해야 한다면 상한만으로 충분한가",
-        "새 서명 방식을 넣을 때마다 하드포크(hard fork)를 기다려야 하는 설계를 L1이 감당할 수 있는가",
-        "프라이버시 앱이 릴레이어 없이 공개 멤풀(mempool)을 쓰려면 검증 가스 상한을 얼마로 올려야 하는가",
-        "검증 범위가 정적으로 확인되는 프레임처럼 두 설계를 겹치는 절충이 가능한가"
-      ],
-      "background": "계정 검증은 실행보다 먼저 이뤄지므로 노드는 트랜잭션을 멤풀(mempool)에 받아들이기 전에 검증 비용을 예측해 자원 고갈 공격을 걸러내야 한다. EIP-8141의 프레임 트랜잭션(frame transaction)은 계정이 검증 규칙을 EVM 코드로 정의하게 하고 검증 프레임이 쓸 수 있는 가스를 MAX_VERIFY_GAS로 제한하는데, 현재 제안된 값은 10만 가스다. EIP-8130은 반대로 트랜잭션이 인증자(authenticator) 주소를 명시하고 노드가 키스토어(keystore) 시스템 컨트랙트에서 계정별 설정을 읽어 검증하므로 지갑 코드를 실행하지 않고도 무엇을 검증할지 안다. 정식 인증자는 secp256k1과 P-256, 패스키, delegate이고 그 밖의 인증자는 허용한 체인에서 약 10만 가스의 STATICCALL 안에서만 쓸 수 있으며, Base 같은 고처리량 L2용 프로필은 트랜잭션 경로에서 정식 인증자만 허용해 유연성 대신 예측 가능한 성능을 택한다. 논쟁은 2026년 8월 25일 Derek Chiang이 두 설계를 비교하는 글을 올리면서 본격화됐고, 8141을 쓴 lightclients 역시 공개 멤풀에서는 프레임 기능 중 일부만 안전하게 전파할 수 있으며 복잡성이 프로토콜에서 멤풀로 옮겨가는 것이 공짜가 아니라고 인정했다.",
-      "whyItMatters": "이 선택은 새 서명 방식이나 프라이버시 증명 검증을 하드포크 없이 도입할 수 있는지를 결정한다. L1은 아홉 달에 한 번꼴로만 업그레이드되므로 트랜잭션 봉투를 바꾸지 않고 프레임 추가만으로 기능을 넣을 수 있다는 점이 8141의 강점이고, 인증자 집합을 프로토콜이 관리하면 노드가 시뮬레이션이나 평판 시스템 없이 트랜잭션을 걸러낼 수 있다는 점이 8130의 강점이다. ethresear.ch에 올라온 벤치마크는 제안된 최적화를 모두 적용해도 단일 nullifier 지출에 약 211,828 가스가 필요하므로 현재의 10만 가스 상한으로는 부족하다며 최소 25만으로 올릴 것을 권고했고, 이 상한값이 어디에 놓이는지가 프라이버시 앱이 오프체인 릴레이어 없이 검열 저항성을 얻을 수 있는지를 가른다. 8141은 헤고타(Hegotá) 포크에 예정으로 올라 있고 Base는 2026년 9월 코발트 업그레이드로 8130을 배포할 계획이어서, 두 표준을 겹쳐 쓰는 협업이 실제 스펙으로 이어지는지가 다음 관전 지점이다.",
-      "sources": [
-        {
-          "title": "EIP-8141: Frame Transactions",
-          "url": "https://eips.ethereum.org/EIPS/eip-8141"
-        },
-        {
-          "title": "EIP-8130: Account Abstraction by Account Configuration",
-          "url": "https://eips.ethereum.org/EIPS/eip-8130"
-        },
-        {
-          "title": "Frames are all you need",
-          "url": "https://lightclient.io/blog/frames-are-all-you-need/"
-        },
-        {
-          "title": "Base Cobalt 업그레이드의 EIP-8130 스펙",
-          "url": "https://docs.base.org/base-chain/specs/upgrades/cobalt/eip-8130"
-        },
-        {
-          "title": "EIP-8130 논의 스레드 (Ethereum Magicians)",
-          "url": "https://ethereum-magicians.org/t/eip-8130-account-abstraction-by-account-configurations/25952"
-        }
-      ],
-      "keywords": [
-        "MAX_VERIFY_GAS",
-        "EIP-8130 authenticator",
-        "frame transactions mempool",
-        "validation budget"
-      ],
-      "positions": [
-        {
-          "stance": "pro",
-          "label": "검증을 계정 코드로 프로그래밍하게 두고 가스 상한으로 통제한다",
-          "holders": [
-            {
-              "handle": "lightclients",
-              "name": "ً",
-              "role": "go-ethereum 프로토콜 개발자",
-              "avatar": "https://pbs.twimg.com/profile_images/1554130973935030274/wHWuxuTT_400x400.jpg"
-            },
-            {
-              "handle": "VitalikButerin",
-              "name": "vitalik.eth",
-              "role": "이더리움 창시자",
-              "avatar": "https://pbs.twimg.com/profile_images/2042521108067352576/3rv2_9m1_400x400.jpg"
-            },
-            {
-              "handle": "donnoh_eth",
-              "name": "donnoh.gwei 💗",
-              "role": "L2Beat 리서치 총괄",
-              "avatar": "https://pbs.twimg.com/profile_images/1906978600311521280/aSbKSjtX_400x400.jpg"
-            },
-            {
-              "handle": "soispoke",
-              "name": "soispoke.eth",
-              "avatar": "https://pbs.twimg.com/profile_images/1999476317415264256/CL0l5_ZD_400x400.jpg",
-              "role": "EF 리서처 (Robust Incentives Group)"
-            },
-            {
-              "handle": "vickydiamond21",
-              "name": "Vicki.hl",
-              "avatar": "https://pbs.twimg.com/profile_images/1953137267104534528/nyQdaTZ__400x400.jpg"
-            }
-          ],
-          "points": [
-            "L1은 L2만큼 자주 하드포크할 수 없으므로 퍼미션리스한 확장성과 다양성이 더 낫다. Base는 지난 1년간 여덟 번의 메이저 업그레이드를 했지만 L1은 그럴 수 없다.",
-            "검증 상한인 MAX_VERIFY_GAS가 이미 스펙에 있으므로 L2는 시퀀서(sequencer) 단에서 같거나 더 낮은 한도를 어렵지 않게 강제할 수 있다.",
-            "트랜잭션은 그저 일련의 호출이라는 점에서 8141은 최적에 가깝다. 멤풀이 더 제약적이어야 하는 것은 퍼미션리스하게 DoS 저항적으로 처리하려는 이상 불가피하며, 프로토콜의 어느 부분인가는 계산의 구조를 알고 있어야 한다.",
-            "만료 시간과 집계용 서명, 프라이버시 풀의 머클 루트처럼 트랜잭션 봉투에 넣어야 한다고 여겼던 것들을 모두 프레임으로 표현할 수 있어, 봉투를 바꾸지 않고도 새 기능을 더할 수 있다.",
-            "포스트양자 키 체계와 스폰서 실행을 네이티브로 지원한다는 점에서 지금까지 나온 네이티브 계정 추상화(account abstraction) 경로 중 가장 깔끔하다."
-          ]
-        },
-        {
-          "stance": "con",
-          "label": "계정 모델을 분리해 프로토콜이 검증 대상을 미리 알게 한다",
-          "holders": [
-            {
-              "handle": "_chunter",
-              "name": "CH",
-              "role": "코인베이스, EIP-8130 저자",
-              "avatar": "https://pbs.twimg.com/profile_images/1519642922697768962/4D-E6Ptb_400x400.jpg"
-            },
-            {
-              "handle": "pedrouid",
-              "name": "Pedro Gomes",
-              "role": "WalletConnect 창업자, 지갑 UX·인프라",
-              "avatar": "https://pbs.twimg.com/profile_images/2025333447011553282/_hDBaHFQ_400x400.jpg"
-            },
-            {
-              "handle": "jessepollak",
-              "name": "jesse.base.eth",
-              "avatar": "https://pbs.twimg.com/profile_images/1879556312822120448/QngrqCSC_400x400.jpg",
-              "role": "Base 리드"
-            },
-            {
-              "handle": "dmericliu",
-              "name": "Eric (ericliu.base.eth)",
-              "avatar": "https://pbs.twimg.com/profile_images/1877896174658846720/bQiZQfGL_400x400.jpg",
-              "role": "Base 엔지니어"
-            }
-          ],
-          "points": [
-            "이전 계정 추상화 시도들의 근본 문제는 계정 모델이다. 실행과 인증, 권한을 한곳에 묶으면 프로토콜은 가시성을 잃고 의존성을 시뮬레이션과 추적으로 발견해야 하며 완화책이 겹겹이 쌓이는데, 8141은 그 결합을 프로토콜에 고착시킨다.",
-            "이더리움이 처음 내놓은 계정 모델은 분리형이었고 권한은 프로토콜이 관리하는 secp256k1 매핑 하나였다. 8130은 그 매핑을 임의의 컨트랙트 정의 인증 방식으로 갱신 가능하게 일반화할 뿐이며, 고착시키는 것은 권한 매핑 시스템 하나뿐이다.",
-            "모델이 분리돼 있으면 트랜잭션 타입이 선언적일 수 있고 의존성을 트랜잭션 자체에서 알아볼 수 있어, 완화책이 사라지고 각 체인이 필요한 것을 만들 수 있다.",
-            "10년 가까이 지난 지금 네이티브 계정 추상화는 지갑에게 배치와 스폰서십, 키 관리를 저수준 기계장치로 재구성하라고 요구하는 일을 그만둬야 한다. 8130은 배치를 네이티브 콜 단계로, 스폰서십을 payer 필드로, 키를 내장 스코프와 만료로 프로토콜에 직접 넣고 새 오피코드를 요구하지 않는다."
-          ]
-        },
-        {
-          "stance": "neutral",
-          "label": "프레임 쪽에 기울되 지금 형태 그대로는 아니고 검증에 경계를 부과해야 한다",
-          "holders": [
-            {
-              "handle": "decentrek",
-              "name": "Derek Chiang | Ethlabs",
-              "role": "Ethlabs, 계정 추상화·트랜잭션 설계 해설",
-              "avatar": "https://pbs.twimg.com/profile_images/1174814321211133953/EeiJXp6L_400x400.jpg"
-            },
-            {
-              "handle": "ox_shaman",
-              "name": "Mislav | Ethlabs",
-              "role": "Ethlabs",
-              "avatar": "https://pbs.twimg.com/profile_images/2085769331044982784/CI1gGQ8Q_400x400.jpg"
-            },
-            {
-              "handle": "NaoXprotocol",
-              "name": "NaoX | Post-Quantum Chain",
-              "avatar": "https://pbs.twimg.com/profile_images/2078199106665693184/KA-t1xcf_400x400.jpg"
-            }
-          ],
-          "points": [
-            "핵심 긴장은 철학적인 것이다. 이더리움이 의견을 가진 계정 추상화를 가져야 하는가, 아니면 지갑이 각자 구현을 올릴 수 있는 중립적 레이어를 가져야 하는가이며 8130이 전자, 8141이 후자를 택한다.",
-            "코어 프로토콜이 계정 추상화의 상업적 사용 사례까지 풀어줄 필요는 없다. 대신 경계가 있고 정적으로 확인되는 정적 검증 프레임을 새로 만들고, 모든 이해관계자가 함께 유지하는 기본 구현체와 ERC-5792 같은 스코프 인터페이스를 붙이면 된다.",
-            "상한을 걸어도 모든 트랜잭션이 그 한도까지 쓸 수 있다고 가정해야 하고 이것이 단순한 k1 또는 r1 검사인지는 코드를 돌려봐야 알 수 있어, 자원 예산은 훨씬 낮은 TPS를 기준으로 잡아야 한다.",
-            "8130이 임의 인증자를 지원하면서 유연성의 실질적 차이는 프레임에서 검증이 실행 이후에 일어날 수 있다는 점 정도로 좁혀졌고, 그 유연성에도 복잡성 비용이 따르므로 공짜가 아니다.",
-            "멤풀 제약을 불가피한 비용이라고 부르면 그것이 실은 설계 레버라는 점이 가려지고, 기본 프로토콜이 암묵적으로 처리하던 유효성 가정이 멤풀 로직으로 넘어간다."
-          ]
-        }
-      ],
-      "timeline": [
-        {
-          "date": "2026-08-24",
-          "by": "_chunter",
-          "stance": "con",
-          "quote": "이전 계정 추상화 시도들의 근본 문제는 계정 모델이다. 실행과 인증, 권한을 한곳에 묶으면 프로토콜은 가시성을 잃고 의존성은 시뮬레이션과 추적으로 발견해야 하며 완화책이 겹겹이 더해지는데, 8141은 그것을 고착시킨다. 8130은 권한 매핑 시스템 하나만 고착시키고 모델이 분리된 채로 남기 때문에 트랜잭션 타입이 선언적일 수 있고 의존성을 트랜잭션 자체에서 알아볼 수 있으며 각 체인이 필요한 것을 만들 수 있다.",
-          "url": "https://x.com/_chunter/status/2091937672801505545",
-          "digest": "2026-08-24",
-          "relation": "none",
-          "original": "The fundamental problem with previous AA attempts is the account model!\n\nCoupling account execution, authentication and authority in one place means that the protocol loses visibility, dependencies must be discovered (via simulation/tracing), layers of mitigations are added.\n\n8141 enshrines that.\n\nThe original account model that ethereum shipped with was a decoupled one! The authority was protocol managed and a single intrinsic mapping of secp256k1 to an account. 7702 let accounts set their execution code, which was a good addition.\n\nExecution code in one place (wallet bytecode), authentication in another (secp256k1), authority in another (protocol managed mapping).\n\n8130 just generalizes this mapping system so that its updatable to any contract defined authentication scheme and no longer singular.\n\nBecause the model stays decoupled, the transaction type can be declarative. Dependencies can be recognized in the transaction itself.\n\nMitigations fall away. Customizations can be added on cleanly. Every chain can build what it needs.\n\n8130 enshrines exactly one thing, the authority mapping system, and all of AA falls out.",
-          "translation": "이전의 AA 시도들이 가진 근본적인 문제는 바로 계정 모델입니다. 계정 실행, 인증, 권한을 한곳에 결합하면 프로토콜은 가시성을 잃고, 의존성은 시뮬레이션이나 추적을 통해 알아내야 하며, 여러 겹의 완화책이 추가됩니다. 8141은 바로 이 방식을 프로토콜에 새깁니다. 이더리움이 처음 출시했을 때의 계정 모델은 분리된 모델이었습니다. 권한은 프로토콜이 관리했고, secp256k1을 계정에 매핑하는 단일한 내재적 방식이었습니다. 7702는 계정이 자신의 실행 코드를 설정할 수 있게 했는데, 이는 좋은 추가였습니다. 실행 코드는 한곳에, 즉 지갑 바이트코드에 있고, 인증은 다른 곳에, 즉 secp256k1에 있으며, 권한은 또 다른 곳에, 즉 프로토콜이 관리하는 매핑에 위치합니다. 8130은 이 매핑 시스템을 일반화하여 계약으로 정의된 어떤 인증 방식으로도 업데이트할 수 있게 하고, 더 이상 단일하지 않게 만듭니다. 모델이 분리된 상태로 유지되기 때문에 트랜잭션 유형은 선언적일 수 있습니다. 의존성은 트랜잭션 자체에서 인식될 수 있습니다. 완화책은 필요 없어집니다. 커스터마이징은 깔끔하게 추가될 수 있습니다. 모든 체인은 자신에게 필요한 것을 만들 수 있습니다. 8130은 정확히 한 가지, 즉 권한 매핑 시스템만을 프로토콜에 새기며, 그로부터 AA 전체가 자연스럽게 도출됩니다."
-        },
-        {
-          "date": "2026-08-25",
-          "by": "dmericliu",
-          "stance": "con",
-          "quote": "10년 가까이 지난 지금, 네이티브 계정 추상화는 지갑에게 배치와 스폰서십, 키 관리를 저수준 기계장치로 재구성하라고 요구하는 일을 그만둬야 한다. EIP-8130은 배치를 네이티브 콜 단계로, 스폰서십을 단순한 payer 필드로, 키를 내장 스코프와 만료로 프로토콜에 직접 넣고 새 오피코드를 요구하지 않는다. Base는 코발트 업그레이드에 8130을 넣어 기존 스마트월렛 설계 대비 트랜잭션 비용을 절반 이하로 줄일 계획이다.",
-          "url": "https://x.com/dmericliu/status/2092208666875220077",
-          "digest": "2026-08-24",
-          "replyTo": "pedrouid",
-          "relation": "quote",
-          "original": "\"After almost a decade, native account abstraction should stop asking wallets to reconstruct batching, sponsorship, and key management from lower-level machinery.\" - @pedrouid\n\nEIP-8130 puts these directly in the protocol:\n- Batching: native call phases\n- Sponsorship: simple payer field\n- Keys: built-in scopes, expiry\n- No new opcodes\n\n@base plans EIP-8130 for its Cobalt upgrade, cutting transaction costs by more than half compared to previous smart wallet designs.",
-          "translation": "거의 10년이 지난 지금, 네이티브 계정 추상화는 지갑들에게 하위 수준의 메커니즘으로부터 배칭, 스폰서십, 키 관리를 재구성하라고 요구하는 것을 이제 멈춰야 합니다. pedrouid의 말입니다. EIP-8130은 이러한 것들을 프로토콜에 직접 넣습니다. 배칭은 네이티브 호출 단계로 처리됩니다. 스폰서십은 단순한 결제자 필드로 처리됩니다. 키는 내장된 스코프와 만료 기능으로 처리됩니다. 새로운 오피코드도 필요 없습니다. base는 코발트 업그레이드에 EIP-8130을 적용할 계획이며, 이를 통해 이전의 스마트 지갑 설계와 비교해 트랜잭션 비용을 절반 이상 줄일 것으로 예상됩니다."
-        },
-        {
-          "date": "2026-08-25",
-          "by": "donnoh_eth",
-          "stance": "pro",
-          "quote": "개인적으로는 퍼미션리스한 확장성과 더 큰 다양성을 선호한다. 우리는 L2만큼 자주 하드포크할 수 없기 때문이다. 참고로 Base는 지난 1년간 여덟 번의 메이저 업그레이드를 했다. 프레임 트랜잭션이 알 수 없고 무한할 수도 있는 가스를 쓴다고 했는데 왜 그런가. MAX_VERIFY_GAS가 있고 L2는 시퀀서 단에서 그 한도나 더 낮은 한도를 강제하면 되지 않나.",
-          "url": "https://x.com/donnoh_eth/status/2092320783657996403",
-          "digest": "2026-08-25",
-          "replyTo": "decentrek",
-          "relation": "reply",
-          "original": "great article, thanks!!! personally i really prefer permissionless extensibility and more diversity, as we cannot afford to hardfork as much as L2s do. for context base has had 8 major upgrades in the past year!\n\njust one q:\n\n> frame transactions […] take an unknown (and possibly unbounded) amount of gas to execute.\n\nwhy? there is a MAX_VERIFY_GAS. L2s can just enforce this limit or a lower one at the sequencer level quite easily no?",
-          "translation": "좋은 글 감사합니다. 개인적으로는 무허가 확장성과 더 큰 다양성을 선호하는데, L2들만큼 자주 하드포크를 감당할 여유가 없기 때문입니다. 참고로 base는 지난 1년 동안 8번의 주요 업그레이드를 거쳤습니다. 질문이 하나 있습니다. 프레임 트랜잭션은 실행에 알 수 없는, 어쩌면 무한할 수도 있는 양의 가스를 소모한다고 하셨는데, 왜 그런가요. MAX_VERIFY_GAS라는 상한이 있지 않나요. L2들은 시퀀서 수준에서 이 한도나 그보다 낮은 한도를 손쉽게 강제할 수 있지 않을까요."
-        },
-        {
-          "date": "2026-08-25",
-          "by": "decentrek",
-          "stance": "con",
-          "quote": "내가 말하려던 것은 MAX_VERIFY_GAS 같은 한도를 걸지 않으면 기본적으로 무한하고, 한도를 걸어도 모든 트랜잭션이 그 한도까지 쓸 수 있다는 최악의 경우를 늘 가정해야 한다는 것이다. 그래서 자원 예산은 훨씬 낮은 TPS를 기준으로 잡아야 한다. 이 트랜잭션이 그냥 k1이나 r1 검사라는 것을 알아낼 방법이 없어 코드를 돌려봐야 한다.",
-          "url": "https://x.com/decentrek/status/2092325351380922786",
-          "digest": "2026-08-25",
-          "replyTo": "donnoh_eth",
-          "relation": "reply",
-          "original": "Yeah what I meant to say by that is that it's unbounded by default unless you enforce a limit like MAX_VERIFY_GAS, and even with the limit you always have to assume the worst case scenario where the transaction might take up to that much limit, so in terms of resource budgeting you have to plan for a much lower level of TPS because you have to assume the worst case for every transaction.  There's no way to just tell that, oh this transaction is just a k1/r1 check.  You have to run the code to find out.",
-          "translation": "제가 말하려 했던 것은, MAX_VERIFY_GAS 같은 한도를 강제하지 않으면 기본적으로 무한하다는 점입니다. 그리고 한도를 두더라도 트랜잭션이 그 한도까지 소모할 수 있는 최악의 시나리오를 항상 가정해야 하므로, 자원 예산을 짤 때는 모든 트랜잭션에 대해 최악의 경우를 가정해야 하기 때문에 훨씬 낮은 수준의 TPS를 계획해야 합니다. 이 트랜잭션이 그저 k1이나 r1 검사에 불과하다는 것을 미리 알아낼 방법이 없습니다. 그것을 알아내려면 코드를 실행해 봐야만 합니다."
-        },
-        {
-          "date": "2026-08-25",
-          "by": "decentrek",
-          "stance": "neutral",
-          "quote": "글 뒷부분에 적었듯 8130이 임의 인증자 지원을 추가했으므로 이제 L1에서도 동작할 수 있다. 유연성 면에서 남은 유일하게 의미 있는 격차는 프레임에서는 검증이 기술적으로 실행 이후에 일어날 수 있어, 계정이 ETH 없이 시작해 실행 중에 얻은 ETH로 가스를 내는 사례가 가능하다는 점이다. 다만 이 유연성에도 복잡성 비용이 따르므로 공짜는 아니다.",
-          "url": "https://x.com/decentrek/status/2092259228740378638",
-          "digest": "2026-08-25",
-          "replyTo": "omw_to_the_moon",
-          "relation": "reply",
-          "original": "I mentioned later in the article that 8130 has added support for arbitrary authenticators, so indeed it can now work for the L1.  The only meaningful gap in terms of flexibility is that with Frames, validation can technically happen after execution, enabling use cases where accounts can start with no ETH but pay gas with the ETH acquired during execution.  But this flexibility comes with complexity cost as well so it's not free, as I mentioned in the article.",
-          "translation": "글 후반부에서 언급했듯이 8130은 임의의 인증자에 대한 지원을 추가했으므로, 실제로 이제 L1에서도 작동할 수 있습니다. 유연성 측면에서 유일하게 의미 있는 차이는, 프레임에서는 기술적으로 검증이 실행 이후에 일어날 수 있어서 계정이 ETH 없이 시작했다가 실행 도중 획득한 ETH로 가스비를 지불하는 사용 사례가 가능해진다는 점입니다. 하지만 글에서 언급했듯이 이러한 유연성에는 복잡성이라는 비용도 따르므로 공짜는 아닙니다."
-        },
-        {
-          "date": "2026-08-25",
-          "by": "ox_shaman",
-          "stance": "neutral",
-          "quote": "핵심 긴장은 철학적인 것이다. 이더리움이 의견을 가진 계정 추상화를 가져야 하는가, 아니면 지갑이 각자 구현을 올릴 수 있는 중립적 레이어를 가져야 하는가이며 8130은 전자를, 8141은 후자를 택한다. 나는 프레임 쪽으로 약간 더 기울지만 지금 형태 그대로는 아니고, 경계가 있고 정적으로 확인되는 검증을 갖는 정적 검증 프레임을 만들면 Base가 제기한 우려는 해소된다. 코어 프로토콜이 계정 추상화의 상업적 사용 사례를 대신 풀어줄 필요는 없다.",
-          "url": "https://x.com/ox_shaman/status/2092232223596368053",
-          "digest": "2026-08-25",
-          "replyTo": "decentrek",
-          "relation": "quote",
-          "original": "Great article by Derek. I would definitely recommend to read the article first and then read my take.\n\nMy thoughts: Account abstraction has always been a political minefield in Ethereum/EVM.\n\nThe core tension is a philosophical one: Should Ethereum have an opinionated account abstraction or should it have a neutral layer on top of which wallets can build their own implementation?\n\nEIP-8130 takes the former approach, while EIP-8141 takes the latter.\n\nI would like to preface this by saying that both standards are well thought out, championed by competent developers and both have the best interest of Ethereum in mind.\n\nToo often, technical discussions divulge into tribalism. Which is understandable for a big upgrade such as this.\n\nMy personal stance? I am slightly more biased towards Frame transactions, but *not* in the way they're currently formed. The critiques presented by Base are legitimate, particularly for their specific use case (extremely high throughput).\n\nHowever, I still have a firm opinion that the core protocol should *not* solve for the commercial use-cases of AA - rather this is something which should be left to wallet and app developers.\n\nSo what should be done?\nStatic validation Frames - create a new type of Frame which has a bounded, statically checked validation. One of the core complaints from Base was the fact that validation right now can be arbitrarily large (though bounded by max gas). This can negatively influence sequencers on very high TPS chains. Static validation Frames alleviate this concern.\n\nDefault implementation - Rather than offloading the work of developing, auditing and maintaining the contracts to every wallet individually - a default implementation, championed by all stakeholders (e.g. EF, Ethlabs, client teams, wallet teams) should be built. The great thing about 8130 is that it provides an exact reference for what features this implementation should support.\n\nThen, in the future - any improvements to this implementation can have a separate governance process which doesn't put additional burden on the core client developers.\n\nScoped interaction interface - Similar to ERC-5792, all of the features which the default implementation supports should be accessible via a structured, scoped interface. This helps us even in the case where the ecosystem theoretically bifurcates to some chains supporting 8141 and some chains supporting 8130. The interface should come with a full suite of developer tooling which encode transactions, post them on-chain, detect errors and track the execution.",
-          "translation": "데릭이 쓴 훌륭한 글입니다. 먼저 그 글을 읽고 나서 제 의견을 읽어보시길 권합니다. 제 생각은 다음과 같습니다. 계정 추상화는 이더리움과 EVM에서 언제나 정치적 지뢰밭이었습니다. 핵심적인 긴장은 철학적인 것입니다. 이더리움이 뚜렷한 견해를 가진 계정 추상화를 가져야 하는가, 아니면 지갑들이 그 위에 자신만의 구현을 쌓을 수 있는 중립적인 계층을 가져야 하는가입니다. EIP-8130은 전자의 접근을, EIP-8141은 후자의 접근을 취합니다. 먼저 밝혀두고 싶은 것은, 두 표준 모두 잘 고민된 것이고 유능한 개발자들이 이끌고 있으며 둘 다 이더리움의 이익을 최우선으로 염두에 두고 있다는 점입니다. 너무 자주 기술적 논의가 진영 다툼으로 흘러갑니다. 이 정도로 큰 업그레이드라면 이해할 만한 일이기도 합니다. 저 개인의 입장은 어떨까요. 저는 프레임 트랜잭션 쪽으로 조금 더 기울어 있지만, 지금 형태 그대로는 아닙니다. 베이스가 제기한 비판은 정당하며, 특히 그들의 구체적인 사용 사례인 극도로 높은 처리량 측면에서는 더욱 그렇습니다. 다만 저는 핵심 프로토콜이 AA의 상업적 사용 사례를 해결해서는 안 되며, 이는 지갑과 앱 개발자들에게 맡겨야 할 문제라는 확고한 견해를 갖고 있습니다. 그렇다면 무엇을 해야 할까요. 정적 검증 프레임입니다. 경계가 정해져 있고 정적으로 검사되는 검증을 가진 새로운 유형의 프레임을 만드는 것입니다. 베이스가 제기한 핵심 불만 중 하나는, 현재 검증이 최대 가스로 경계는 지어져 있지만 임의로 커질 수 있다는 사실이었습니다. 이는 매우 높은 TPS를 가진 체인의 시퀀서에 부정적인 영향을 줄 수 있습니다. 정적 검증 프레임은 이러한 우려를 덜어줍니다. 기본 구현입니다. 계약을 개발하고 감사하고 유지 관리하는 작업을 각 지갑 개별적으로 떠맡기기보다는, EF, Ethlabs, 클라이언트 팀, 지갑 팀 등 모든 이해관계자가 함께 이끄는 기본 구현을 만들어야 합니다. 8130의 좋은 점은 이 구현이 어떤 기능을 지원해야 하는지에 대한 정확한 참조를 제공한다는 것입니다. 그러면 앞으로 이 구현에 대한 개선 사항은 핵심 클라이언트 개발자들에게 추가적인 부담을 지우지 않는 별도의 거버넌스 절차를 통해 이루어질 수 있습니다. 범위가 지정된 상호작용 인터페이스입니다. ERC-5792와 유사하게, 기본 구현이 지원하는 모든 기능은 구조화되고 범위가 지정된 인터페이스를 통해 접근할 수 있어야 합니다. 이는 생태계가 이론적으로 일부 체인은 8141을, 일부 체인은 8130을 지원하는 식으로 갈라지는 경우에도 도움이 됩니다. 이 인터페이스에는 트랜잭션을 인코딩하고, 온체인에 게시하고, 오류를 감지하고, 실행을 추적하는 완전한 개발자 도구 모음이 함께 제공되어야 합니다."
-        },
-        {
-          "date": "2026-09-03",
-          "by": "ethresearchbot",
-          "stance": "neutral",
-          "quote": "EIP-8141로 프라이버시 프로토콜은 오프체인 릴레이어를 없애고 더 강한 검열 저항성을 얻을 수 있지만, 검증이 공개 멤풀의 검증 가스 상한 안에 들어갈 때만 가능하다. 제안된 최적화를 모두 적용해도 단일 nullifier 지출에 필요한 최소 검증 가스는 약 211,828이고 8-nullifier 지출은 약 351,828이어서, 현재의 10만 MAX_VERIFY_GAS로는 이 사용 사례를 지원할 수 없다. 권고는 상한을 최소 25만으로 올리는 것이다.",
-          "url": "https://x.com/ethresearchbot/status/2095300828022088156",
-          "digest": "2026-09-03",
-          "relation": "none",
-          "original": "New post on Eth Research!\n\nEIP-8141 and minimum required validation budget for privacy applications\n\nBy:\n- mmjahanara\n\n🔗 https://t.co/7XWERwTVuO\n\nHighlights:\n- With EIP-8141, privacy protocols can potentially drop off-chain relayers and gain stronger censorship resistance, but only if their validation fits within the public-mempool verification gas cap (MAX_VERIFY_GAS).\n- Even after applying all proposed optimizations, the minimum required validation gas is ~211,828 for a single-nullifier spend (e.g., a Tornado-style withdrawal), and ~351,828 for an 8-nullifier spend (a large deployed RAILGUN shape); therefore 100,000 MAX_VERIFY_GAS cannot support these use cases.\n- Most of the validation cost is irreducible: a BN254 pairing check alone is ~181,000 gas, and EIP-8250 keyed nonces add 20,000 gas per nullifier (which counts toward the cap).\n- Key optimizations to reduce what counts toward the cap include: using keyed nonces instead of nullifier storage writes, using EIP-8272 recent-root references to avoid validation-prefix storage reads, moving non-verification work (transfers, commitment insertions, logs) into non-validation frames, binding the proof to tx.sigHash to remove relayer-related public inputs, compressing public inputs (ideally to a constant number), and using gas-optimized verifiers with verifying keys hardcoded in contract code (no storage reads).\n- Recommendation: increase MAX_VERIFY_GAS to at least 250k; this admits common transaction shapes (Tornado and RAILGUN up to 2 nullifiers at ~231,828) and makes the frame-transaction privacy use case viable, while higher caps (e.g., 400k) are needed for larger 8-nullifier spends; appendices discuss alternative input-compression methods to reduce prover overhead and a way to decouple gas-fee bumping from proof regeneration.\n\nELI5:\nSome privacy apps on Ethereum use “relayers” (helpers) to submit private withdrawals so users don’t get blocked or censored. EIP-8141 proposes a new kind of transaction (“frame transactions”) that could let these apps submit privately without relayers—if the network will accept and propagate these transactions through the public mempool. But the mempool only allows a limited amount of computation during the transaction’s “validation” step (MAX_VERIFY_GAS, currently 100k). This article measures how much gas privacy proofs (Groth16 SNARK verification + required checks like nullifiers and roots) actually need during validation, shows the minimum is far above 100k, and recommends raising the cap (at least to 250k) plus a set of optimizations to fit typical privacy spends.",
-          "translation": "Eth Research에 새 글이 올라왔습니다. EIP-8141과 프라이버시 애플리케이션에 필요한 최소 검증 예산이라는 제목입니다. 작성자는 mmjahanara입니다. https://t.co/7XWERwTVuO 주요 내용은 다음과 같습니다. EIP-8141을 사용하면 프라이버시 프로토콜이 오프체인 릴레이어를 없애고 더 강한 검열 저항성을 얻을 수 있지만, 이는 검증 과정이 공개 멤풀의 검증 가스 상한인 MAX_VERIFY_GAS 안에 들어갈 때만 가능합니다. 제안된 모든 최적화를 적용한 이후에도 최소 필요 검증 가스는 단일 널리파이어 지출, 예를 들어 토네이도 방식의 인출의 경우 약 211,828이고, 8개 널리파이어 지출, 즉 대규모로 배포된 RAILGUN 형태의 경우 약 351,828이므로, 현재 MAX_VERIFY_GAS인 100,000으로는 이러한 사용 사례를 지원할 수 없습니다. 검증 비용의 대부분은 줄일 수 없는 성격의 것입니다. BN254 페어링 검사 하나만으로도 약 181,000 가스가 들고, EIP-8250의 키드 논스는 널리파이어당 20,000 가스를 추가하며 이는 상한에 포함됩니다. 상한에 반영되는 비용을 줄이기 위한 핵심 최적화로는, 널리파이어 저장소 기록 대신 키드 논스를 사용하는 것, EIP-8272의 최근 루트 참조를 사용하여 검증 접두사 저장소 읽기를 피하는 것, 전송이나 커밋먼트 삽입, 로그 같은 비검증 작업을 비검증 프레임으로 옮기는 것, 릴레이어 관련 공개 입력을 제거하기 위해 증명을 tx.sigHash에 결속하는 것, 공개 입력을 이상적으로는 상수 개수로 압축하는 것, 그리고 검증 키를 계약 코드에 하드코딩하여 저장소 읽기가 없는 가스 최적화 검증자를 사용하는 것이 있습니다. 권고안은 MAX_VERIFY_GAS를 최소 250,000까지 늘리자는 것으로, 이렇게 하면 토네이도와 최대 2개 널리파이어까지의 RAILGUN, 즉 약 231,828 같은 일반적인 트랜잭션 형태를 수용하여 프레임 트랜잭션 방식의 프라이버시 사용 사례를 실현 가능하게 만들 수 있으며, 더 큰 8개 널리파이어 지출을 위해서는 400,000 같은 더 높은 상한이 필요합니다. 부록에서는 프루버 오버헤드를 줄이기 위한 대안적인 입력 압축 방법과, 가스 요금 인상을 증명 재생성과 분리하는 방법도 다룹니다. 쉽게 설명하면, 이더리움의 일부 프라이버시 앱들은 사용자가 차단되거나 검열당하지 않도록 프라이빗 인출을 대신 제출해 주는 릴레이어라는 도우미를 사용합니다. EIP-8141은 프레임 트랜잭션이라는 새로운 종류의 트랜잭션을 제안하는데, 네트워크가 공개 멤풀을 통해 이러한 트랜잭션을 받아들이고 전파해 준다면 이러한 앱들이 릴레이어 없이도 프라이빗하게 제출할 수 있게 해줍니다. 하지만 멤풀은 트랜잭션의 검증 단계에서 제한된 양의 연산만 허용하며, 이는 현재 100,000인 MAX_VERIFY_GAS로 정해져 있습니다. 이 글은 프라이버시 증명, 즉 Groth16 SNARK 검증과 널리파이어 및 루트 같은 필수 검사가 검증 단계에서 실제로 얼마나 많은 가스를 필요로 하는지 측정하여, 그 최소치가 100,000을 훨씬 웃돈다는 것을 보이고, 일반적인 프라이버시 지출을 수용하기 위해 상한을 최소 250,000까지 올리는 동시에 여러 최적화를 함께 적용할 것을 권고합니다."
-        },
-        {
-          "date": "2026-09-05",
-          "by": "VitalikButerin",
-          "stance": "pro",
-          "quote": "8141은 최적에 가깝다고 본다. 트랜잭션은 그저 일련의 호출이고, 이는 '트랜잭션은 그저 하나의 호출이다'에서 한 걸음 떨어져 있을 뿐이다. 멤풀은 더 제약적이어야 하지만 그것은 불가피한데, 퍼미션리스하게 DoS 저항적으로 처리하려면 프로토콜의 어느 부분인가는 계산의 구조를 알고 있어야 하기 때문이다.",
-          "url": "https://x.com/VitalikButerin/status/2096379682820399375",
-          "digest": "2026-09-06",
-          "replyTo": "XRS_02",
-          "relation": "reply",
-          "original": "I think 8141 gets close to optimal\n\nA transaction is \"just\" a series of calls. That's one step away from \"a transaction is just a call\".\n\nMempool has to be more restrictive, but that's inevitable. There has to be some part of the protocol that's aware of the structure of computation if you want to process it permissionlessly in a DoS-resistant way. Maybe eventually even that all goes away and gets replaced by something crazy generic like \"we'll take you if you provide a Lean proof that you're DoS-resistant\", maybe you can help design something like that :)",
-          "translation": "저는 8141이 최적에 가깝다고 생각합니다. 트랜잭션은 그저 일련의 호출일 뿐입니다. 이는 트랜잭션이 그저 하나의 호출일 뿐이라는 개념에서 딱 한 걸음 떨어져 있습니다. 멤풀은 더 제한적이어야 하지만, 이는 불가피한 일입니다. 무허가 방식으로도 DoS에 강하게 처리하려면 프로토콜의 어느 부분은 반드시 연산의 구조를 인지하고 있어야 합니다. 어쩌면 결국에는 이런 것조차 사라지고, DoS에 강하다는 것을 Lean 증명으로 제공하면 받아들이겠다는 식의 터무니없이 일반적인 무언가로 대체될 수도 있습니다. 어쩌면 여러분이 그런 것을 설계하는 데 도움을 줄 수 있을지도 모릅니다."
-        },
-        {
-          "date": "2026-09-05",
-          "by": "vickydiamond21",
-          "stance": "pro",
-          "quote": "포스트양자 키 체계와 스폰서 실행을 네이티브로 지원한다는 점에서 인상적인 설계다. 구현 과정에서 클라이언트 팀들이 멤풀 검증 규칙과 DoS 벡터를 어떻게 균형 잡을지는 궁금하지만, 지금까지 나온 네이티브 계정 추상화 경로 중 가장 깔끔해 보인다.",
-          "url": "https://x.com/vickydiamond21/status/2096371004641522102",
-          "digest": "2026-09-06",
-          "replyTo": "VitalikButerin",
-          "relation": "quote",
-          "original": "This is actually an impressive design, especially how it natively supports post-quantum key schemes and sponsored execution. But i am curious to see how client teams balance mempool validation rules and DoS vectors during implementation, but it definitely looks like the cleanest path to native AA so far.",
-          "translation": "이것은 실제로 인상적인 설계인데, 특히 양자내성 키 방식과 스폰서드 실행을 네이티브로 지원한다는 점이 그렇습니다. 다만 구현 과정에서 클라이언트 팀들이 멤풀 검증 규칙과 DoS 공격 벡터 사이의 균형을 어떻게 맞출지 궁금하지만, 지금까지 나온 것 중에서는 네이티브 AA로 가는 가장 깔끔한 길로 보입니다."
         },
         {
           "date": "2026-09-06",
@@ -823,18 +627,42 @@
           "relation": "quote",
           "original": "It's not a coincidence that @lightclients and @VitalikButerin both posted about frames (8141) around the same time.  The 8141 authors achieved a design breakthrough lately, where we realized that the things that we previously thought had to be put into the transaction envelope, such as transaction expiry time, signatures for aggregation, merkle roots for privacy pools, and post-transaction assertions -- can all be expressed as contract calls aka \"frames.\"\n\nThis is important because:\n\n- Ethereum upgrades very slowly (every ~9 months)\n\n- Updating the transaction envelope typically requires coordinating across a very large set of stakeholders including chains (L1 and L2s), wallets, explorers, SDKs, etc.\n\nSo the fact that new transaction features can be added without changing the envelope, but rather by just adding frames, is very compelling for the L1.\n\nOf course, care has to be taken to not overly abstract things, to the point that transactions become illegible to those who want to inspect them, such as L2 sequencers who want to only allow a specific set of validation methods (e.g. k1 & r1 only) for performance reasons.  That's where an account standard like 8130 could come in, which can impose a set of structures on top of frames.\n\nIndeed that's the direction that we've been working towards with the collab between 8141 and 8130.  More on this shortly!",
           "translation": "lightclients와 VitalikButerin이 비슷한 시기에 나란히 프레임(8141)에 관한 글을 올린 것은 우연이 아닙니다. 8141 저자들은 최근 설계상의 돌파구를 마련했는데, 트랜잭션 만료 시간, 집계를 위한 서명, 프라이버시 풀을 위한 머클 루트, 트랜잭션 이후의 검증문처럼 이전에는 트랜잭션 봉투 안에 반드시 넣어야 한다고 생각했던 것들이 사실은 모두 계약 호출, 즉 이른바 프레임으로 표현될 수 있다는 사실을 깨달은 것입니다. 이것이 중요한 이유는 다음과 같습니다. 이더리움은 업그레이드 주기가 매우 느립니다. 약 9개월에 한 번꼴입니다. 트랜잭션 봉투를 업데이트하려면 통상 L1과 L2를 포함한 체인들, 지갑, 익스플로러, SDK 등 매우 많은 이해관계자들과의 조율이 필요합니다. 따라서 봉투 자체를 바꾸지 않고 그저 프레임을 추가하는 것만으로 새로운 트랜잭션 기능을 더할 수 있다는 사실은 L1 입장에서 매우 매력적입니다. 물론 지나치게 추상화하여, 특정 검증 방식, 예를 들어 k1과 r1만 허용하고 싶어하는 L2 시퀀서처럼 트랜잭션을 들여다보고자 하는 이들에게 트랜잭션이 판독 불가능해지지 않도록 주의를 기울여야 합니다. 바로 이 지점에서 8130 같은 계정 표준이 등장하여 프레임 위에 일련의 구조를 부과할 수 있습니다. 실제로 이것이 8141과 8130 간의 협업을 통해 우리가 추구해 온 방향입니다. 이에 관해서는 곧 더 자세히 전하겠습니다."
+        },
+        {
+          "date": "2026-09-06",
+          "by": "soispoke",
+          "stance": "pro",
+          "quote": "프레임은 프로그래머블 블록체인에 네이티브 계정 추상화를 가져오려는 10년의 작업 위에 서 있어 처음에는 이해하기 어렵지만, 이더리움에서 프라이빗하고 안전한 포스트양자 미래를 만들 디딤돌이다. 결국 헤고타에서 핵심 EIP 몇 개, 즉 이미 포함이 예정된 EIP-8141과 네이티브 무신뢰 프라이빗 트랜잭션을 가능하게 하는 EIP-8250과 EIP-8272, 지갑 드레이너와 악성 트랜잭션에서 사용자를 보호하는 EIP-7906을 내는 데 집중하는 문제다. 자주 간과되지만 프레임은 확장에 관한 것이기도 해서 서명과 STARK 집계(예: EIP-8288)를 열어 포스트양자 트랜잭션을 무겁게 만드는 대역폭과 검증 비용을 줄이며, 보안과 UX, 확장이 하나의 EIP에 담겼다.",
+          "url": "https://x.com/soispoke/status/2096594725348278436",
+          "digest": "2026-09-06",
+          "replyTo": "lightclients",
+          "relation": "quote",
+          "original": "Frames can be hard to grasp at first because they build on a decade of work to bring native account abstraction to programmable blockchains.\n\nBut they are the stepping stone we need to build a private, secure, post-quantum future on Ethereum.\n\nTo me it boils down to focus on shipping a few key EIPs in Hegota:\n- EIP-8141: Frame Transactions, the core, already scheduled for inclusion\n- EIP-8250 and EIP-8272: Enable native, trustless private transactions\n- EIP-7906: Helps protect users against wallet drainers and malicious transactions\n\nFrames are also about scaling. It’s often overlooked, but they unlock signature and STARK aggregation (e.g., EIP-8288), reducing the bandwidth and verification costs that make post-quantum transactions so heavy.\n\nSecurity, UX, and scaling in one EIP\n\nHard to beat",
+          "translation": "프레임은 프로그래밍 가능한 블록체인에 네이티브 계정 추상화를 가져오기 위한 10년간의 작업 위에 세워진 것이라 처음에는 이해하기 어려울 수 있습니다. 하지만 프레임은 이더리움 위에 프라이버시가 보장되고 안전하며 양자내성을 갖춘 미래를 구축하기 위해 필요한 디딤돌입니다. 제게 이것은 결국 헤고타에서 몇 가지 핵심 EIP를 출시하는 데 집중하는 문제로 귀결됩니다. EIP-8141, 프레임 트랜잭션은 핵심이며 이미 포함이 예정되어 있습니다. EIP-8250과 EIP-8272는 네이티브이면서 신뢰가 필요 없는 프라이빗 트랜잭션을 가능하게 합니다. EIP-7906은 지갑 탈취 공격과 악성 트랜잭션으로부터 사용자를 보호하는 데 도움을 줍니다. 프레임은 확장성과도 관련이 있습니다. 종종 간과되지만, 프레임은 서명과 STARK 집계, 예를 들어 EIP-8288을 가능하게 하여 양자내성 트랜잭션을 그토록 무겁게 만드는 대역폭과 검증 비용을 줄여줍니다. 보안, 사용자 경험, 확장성을 하나의 EIP에 담은 것입니다. 이보다 더 나은 조합을 찾기는 어렵습니다."
+        },
+        {
+          "date": "2026-09-06",
+          "by": "binji_x",
+          "stance": "pro",
+          "quote": "프로그래머블 머니에는 프로그래머블 계정이 필요하다. 이더리움 프로토콜이 계정 추상화를 네이티브 기능으로 만드는 것을 기대한다.",
+          "url": "https://x.com/binji_x/status/2096541022993957302",
+          "digest": "2026-09-06",
+          "replyTo": "VitalikButerin",
+          "relation": "quote",
+          "original": "Programmable money needs programmable accounts.\n\nExcited to see the Ethereum protocol turn account abstraction into a native feature.",
+          "translation": "프로그래머블 머니에는 프로그래머블 계정이 필요합니다. 이더리움 프로토콜이 계정 추상화를 네이티브 기능으로 만드는 모습을 보게 되어 기쁩니다."
         }
       ],
       "firstSeen": "2026-08-24",
       "lastActivity": "2026-09-06",
       "status": "active",
-      "rootUrl": "https://x.com/_chunter/status/2091937672801505545",
+      "rootUrl": "https://x.com/VitalikButerin/status/2096378061377900881",
       "engagement": {
-        "likes": 31,
-        "retweets": 6,
-        "quotes": 3,
-        "replies": 2,
-        "views": 3857
+        "likes": 1370,
+        "retweets": 175,
+        "quotes": 44,
+        "replies": 249,
+        "views": 211015
       }
     },
     {

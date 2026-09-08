@@ -164,9 +164,26 @@ function mergePositions(prev: Position[], next: Position[]): Position[] {
  * - 없으면 신규. 제목·카테고리는 한 번 정해지면 초안이 바꾸지 못한다(편집자만).
  * - 결과는 마지막 활동 최신순, 상태는 오늘 기준으로 다시 계산.
  */
+/** 새 초안이 기존 논쟁과 같은 싸움인지: 초안 인물의 절반 이상(최소 3명)이 기존 논쟁에 있으면 같은 논쟁으로 본다 */
+export function findOverlapping(existing: Debate[], draft: DebateDraft, minShared = 3, minRatio = 0.5): Debate | undefined {
+  const keys = new Set(draft.positions.flatMap((p) => p.holders.map(holderKey)));
+  if (keys.size === 0) return undefined;
+  let best: { debate: Debate; shared: number } | undefined;
+  for (const d of existing) {
+    if (d.status === 'archived') continue;
+    const theirs = new Set(d.positions.flatMap((p) => p.holders.map(holderKey)));
+    const shared = [...keys].filter((k) => theirs.has(k)).length;
+    if (shared >= minShared && shared / keys.size >= minRatio && (!best || shared > best.shared)) best = { debate: d, shared };
+  }
+  return best?.debate;
+}
+
 export function mergeDebates(existing: Debate[], drafts: DebateDraft[], today: string): Debate[] {
   const byId = new Map(existing.map((d) => [d.id, d]));
-  for (const draft of drafts) {
+  for (const rawDraft of drafts) {
+    // 모델이 새 id를 만들었어도 같은 인물들의 같은 싸움이면 기존 레코드에 붙인다 (2026-09-08, 8141 논쟁이 둘로 쪼개진 뒤 추가)
+    const overlap = byId.has(rawDraft.id) ? undefined : findOverlapping([...byId.values()], rawDraft);
+    const draft = overlap ? { ...rawDraft, id: overlap.id } : rawDraft;
     const dates = draft.timeline.map((t) => t.date).sort();
     const prev = byId.get(draft.id);
     if (!prev) {
