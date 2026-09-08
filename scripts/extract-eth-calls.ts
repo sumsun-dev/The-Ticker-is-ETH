@@ -1,6 +1,6 @@
 /**
  * 코어 개발자 콜 기록 추출 — Forkcast 아티팩트를 콜 레코드(src/data/eth-calls.json)로.
- * ACDE·ACDC·ACDT는 결정·토론까지 정리하고(콜당 fable 1회 + 발언 번역 sonnet 1회), 그 밖의 콜은 제목·링크만 기록한다.
+ * ACDE·ACDC·ACDT만 정리한다(콜당 fable 1회 + 발언 번역 sonnet 1회). 브레이크아웃 등 다른 시리즈는 결정 기록이 없어 목록에 넣지 않는다(오너 결정 2026-09-08).
  * 텔레그램 콜 브리프(post-calls-telegram.ts)는 이 레코드에서 파생되므로 사이트와 메시지 내용이 같다.
  *
  * env: CALLS_EXTRACT(id 쉼표 목록, 예 acde-244 — 이미 있는 콜도 다시 처리) · CALLS_LIMIT(한 번에 처리할 새 콜 수, 기본 3) · CALLS_SINCE(이 날짜 이후 콜만, 기본 2026-08-01)
@@ -134,7 +134,6 @@ async function processCall(
 ): Promise<CallRecord> {
   const id = `${call.series}-${call.number}`;
   const meta = { id, series: call.series, number: call.number, date: call.date, title: call.title, forkcastUrl: call.url };
-  if (!(FULL_SERIES as readonly string[]).includes(call.series)) return recordOnly(meta);
 
   const [kd, tldrText, notesText, configText, chatText] = await Promise.all([
     artifact(call, id, 'key_decisions.json'),
@@ -220,13 +219,8 @@ async function main() {
   const known = new Set(file.calls.filter((c) => c.kind === 'full' || !(FULL_SERIES as readonly string[]).includes(c.series)).map((c) => c.id));
   const wanted = process.env.CALLS_EXTRACT?.split(',').map((s) => s.trim()).filter(Boolean);
   const fresh = feed.filter((c) => c.date >= SINCE && !known.has(idOf(c)));
-  const targets = wanted
-    ? feed.filter((c) => wanted.includes(idOf(c)))
-    : [
-        // 새 ACD 콜은 최근 것부터 LIMIT개를 고르되, 처리는 오래된 순으로
-        ...fresh.filter(isFull).sort((a, b) => b.date.localeCompare(a.date)).slice(0, LIMIT).reverse(),
-        ...fresh.filter((c) => !isFull(c)),
-      ];
+  // 새 ACD 콜은 최근 것부터 LIMIT개를 고르되, 처리는 오래된 순으로. 브레이크아웃 등은 건너뛴다
+  const targets = wanted ? feed.filter((c) => wanted.includes(idOf(c)) && isFull(c)) : fresh.filter(isFull).sort((a, b) => b.date.localeCompare(a.date)).slice(0, LIMIT).reverse();
   if (targets.length === 0) {
     console.log('[SKIP] no new calls');
     return;

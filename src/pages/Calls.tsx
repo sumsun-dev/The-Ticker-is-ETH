@@ -10,7 +10,7 @@ const KICKER = 'text-[11px] font-mono uppercase tracking-widest text-theme-text-
 const CHIP = 'px-4 py-1.5 rounded-full text-sm font-medium transition-colors';
 const on = (active: boolean) => (active ? 'bg-brand-primary text-white' : 'bg-theme-surface text-theme-text-muted hover:text-theme-text');
 
-type SeriesFilter = 'all' | 'breakout' | (typeof MAIN_SERIES)[number];
+type SeriesFilter = 'all' | (typeof MAIN_SERIES)[number];
 
 const Calls: React.FC = () => {
     const { t } = useTranslation('calls');
@@ -26,7 +26,8 @@ const Calls: React.FC = () => {
     useEffect(() => {
         loadEthCalls()
             .then((file) => {
-                setCalls(file.calls);
+                // 정리본만 보여준다. 결정 기록이 없는 브레이크아웃은 목록에 넣지 않는다 (오너 결정)
+                setCalls(file.calls.filter((c) => c.kind === 'full'));
                 setStatus(file.status);
             })
             .finally(() => setIsLoading(false));
@@ -37,8 +38,7 @@ const Calls: React.FC = () => {
     const visible = useMemo(
         () =>
             calls.filter((c) => {
-                if (series === 'breakout' && (MAIN_SERIES as readonly string[]).includes(c.series)) return false;
-                if (series !== 'all' && series !== 'breakout' && c.series !== series) return false;
+                if (series !== 'all' && c.series !== series) return false;
                 if (fork && !c.decisions.some((d) => d.fork === fork)) return false;
                 if (eip.trim() && !mentionsEip(c, eip)) return false;
                 return true;
@@ -105,9 +105,6 @@ const Calls: React.FC = () => {
                             {seriesInfo(s).label}
                         </button>
                     ))}
-                    <button type="button" role="tab" aria-selected={series === 'breakout'} onClick={() => setSeries(series === 'breakout' ? 'all' : 'breakout')} className={`${CHIP} ${on(series === 'breakout')}`}>
-                        {t('filter.breakout')}
-                    </button>
                     {forks.length > 0 && <span className="w-px h-5 bg-theme-border mx-1" aria-hidden />}
                     {forks.map((f) => (
                         <button key={f} type="button" aria-pressed={fork === f} onClick={() => setFork(fork === f ? null : f)} className={`${CHIP} ${on(fork === f)}`}>
@@ -157,38 +154,23 @@ const Calls: React.FC = () => {
                                                         <span className="font-mono text-xs text-theme-text-muted tabular-nums">{dotDate(c.date)}</span>
                                                     </span>
                                                     <span className="min-w-0 flex flex-col gap-1.5">
-                                                        {c.kind === 'full' ? (
-                                                            <>
-                                                                <span className="font-semibold leading-snug group-hover:text-brand-accent transition-colors">{c.headline?.replace(/\n/g, ' ') ?? c.title}</span>
-                                                                {c.summary && <span className="text-sm text-theme-text-secondary leading-relaxed">{c.summary}</span>}
-                                                                {c.decisions.length > 0 && (
-                                                                    <span className="flex flex-wrap gap-1.5 mt-0.5">
-                                                                        {c.decisions.slice(0, 5).map((d) => (
-                                                                            <span key={`${d.label}-${d.status}`} className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-theme-border text-xs text-theme-text-secondary whitespace-nowrap">
-                                                                                <span className={`w-1.5 h-1.5 rounded-full ${STATUS_DOT[d.status]}`} aria-hidden />
-                                                                                {d.label}
-                                                                                <span className="text-[10px] font-bold tracking-wider text-theme-text-muted">{d.status}</span>
-                                                                            </span>
-                                                                        ))}
+                                                        <span className="font-semibold leading-snug group-hover:text-brand-accent transition-colors">{c.headline?.replace(/\n/g, ' ') ?? c.title}</span>
+                                                        {c.summary && <span className="text-sm text-theme-text-secondary leading-relaxed">{c.summary}</span>}
+                                                        {c.decisions.length > 0 && (
+                                                            <span className="flex flex-wrap gap-1.5 mt-0.5">
+                                                                {c.decisions.slice(0, 5).map((d) => (
+                                                                    <span key={`${d.label}-${d.status}`} className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-theme-border text-xs text-theme-text-secondary whitespace-nowrap">
+                                                                        <span className={`w-1.5 h-1.5 rounded-full ${STATUS_DOT[d.status]}`} aria-hidden />
+                                                                        {d.label}
+                                                                        <span className="text-[10px] font-bold tracking-wider text-theme-text-muted">{d.status}</span>
                                                                     </span>
-                                                                )}
-                                                            </>
-                                                        ) : (
-                                                            <>
-                                                                <span className="font-semibold leading-snug text-theme-text-secondary">{c.title}</span>
-                                                                <span className="text-xs text-theme-text-muted">{t('row.recordOnly')}</span>
-                                                            </>
+                                                                ))}
+                                                            </span>
                                                         )}
                                                     </span>
                                                     <span className="flex md:flex-col md:items-end gap-x-3 gap-y-1 text-xs text-theme-text-muted md:text-right">
-                                                        {c.kind === 'full' ? (
-                                                            <>
-                                                                <span className="font-semibold text-theme-text">{t('row.stats', { decisions: c.decisions.length, topics: c.topics.length })}</span>
-                                                                <span>{[t('row.people', { people: c.speakers.filter((s) => s.share > 0).length }), duration(c.durationMin)].filter(Boolean).join(' · ')}</span>
-                                                            </>
-                                                        ) : (
-                                                            <span>{t('row.recordOnlyShort')}</span>
-                                                        )}
+                                                        <span className="font-semibold text-theme-text">{t('row.stats', { decisions: c.decisions.length, topics: c.topics.length })}</span>
+                                                        <span>{[t('row.people', { people: c.speakers.filter((s) => s.share > 0).length }), duration(c.durationMin)].filter(Boolean).join(' · ')}</span>
                                                         <span className="text-brand-accent">{callLabel(c)}</span>
                                                     </span>
                                                 </Link>

@@ -1,7 +1,7 @@
 {
   "badge": "Core Dev Calls",
   "title": "Core Dev Call Records",
-  "description": "Every All Core Devs call (ACDE, ACDC, ACDT) and topic breakout, recorded per session. Sources are Forkcast's decision logs, transcripts, notes and chat published by EF Protocol Support. Decisions and schedules are copied as recorded; interpretation is limited to the one-line summary and topic intros.",
+  "description": "Every All Core Devs call (ACDE, ACDC, ACDT), recorded per session. Sources are Forkcast's decision logs, transcripts, notes and chat published by EF Protocol Support. Decisions and schedules are copied as recorded; interpretation is limited to the one-line summary and topic intros.",
   "strip": {
     "nextCall": "Next call",
     "nextCallNote": "Estimated from the biweekly cadence · Thursdays 14:00 UTC",
@@ -11,7 +11,6 @@
   },
   "filter": {
     "all": "All",
-    "breakout": "Breakouts",
     "eip": "Find by EIP number · e.g. 8141"
   },
   "month": "{{month}}/{{year}}",
@@ -19,8 +18,6 @@
   "row": {
     "stats": "{{decisions}} decisions · {{topics}} topics",
     "people": "{{people}} speakers",
-    "recordOnly": "Calls without a decision log keep only the title and source link.",
-    "recordOnlyShort": "record only",
     "links": "Video · Forkcast"
   },
   "duration": {
