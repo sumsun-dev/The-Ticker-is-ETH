@@ -1,7 +1,7 @@
 {
   "badge": "Core Dev Calls",
   "title": "코어 개발자 콜 기록",
-  "description": "이더리움 프로토콜을 정하는 코어 개발자 회의(ACDE, ACDC, ACDT)와 주제별 브레이크아웃 콜을 회차마다 기록합니다. 원자료는 EF Protocol Support가 공개하는 Forkcast의 결정 기록, 자막, 노트, 채팅입니다. 결정과 일정은 기록 그대로 옮기고, 해석은 한 줄 요약과 토론 소개에만 둡니다.",
+  "description": "이더리움 프로토콜을 정하는 코어 개발자 회의(ACDE, ACDC, ACDT)를 회차마다 기록합니다. 원자료는 EF Protocol Support가 공개하는 Forkcast의 결정 기록, 자막, 노트, 채팅입니다. 결정과 일정은 기록 그대로 옮기고, 해석은 한 줄 요약과 토론 소개에만 둡니다.",
   "strip": {
     "nextCall": "다음 콜",
     "nextCallNote": "격주 일정 기준 추정 · 목요일 14:00 UTC (23:00 KST)",
@@ -11,7 +11,6 @@
   },
   "filter": {
     "all": "전체",
-    "breakout": "브레이크아웃",
     "eip": "EIP 번호로 찾기 · 예 8141"
   },
   "month": "{{year}}년 {{month}}월",
@@ -19,8 +18,6 @@
   "row": {
     "stats": "결정 {{decisions}} · 토론 {{topics}}",
     "people": "발언 {{people}}명",
-    "recordOnly": "결정 기록을 정리하지 않는 콜입니다. 제목과 원본 링크만 둡니다.",
-    "recordOnlyShort": "기록만",
     "links": "영상 · Forkcast"
   },
   "duration": {

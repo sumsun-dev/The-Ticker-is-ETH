@@ -283,56 +283,7 @@ const CallDetail: React.FC = () => {
                                     </ol>
                                 </div>
                             )}
-                            <div id="topics">
-                                {call.topics.map((topic, ti) => (
-                                    <section key={topic.title} className="border-t border-theme-border py-5 flex flex-col gap-3">
-                                        <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                                            <span className="text-[11px] font-mono uppercase tracking-widest text-brand-accent">{t('detail.topic', { n: ti + 1, count: topic.positions.length })}</span>
-                                            <span className="text-base font-bold">{topic.title}</span>
-                                            <span className={`${TAG} ${topic.decision ? 'text-emerald-400' : 'text-theme-text-muted'}`}>{topic.decision ?? t('detail.noDecision')}</span>
-                                            <span className="text-xs text-theme-text-muted md:ml-auto">{t('detail.clickHint')}</span>
-                                        </div>
-                                        <p className="text-sm leading-relaxed text-theme-text-secondary">{topic.intro}</p>
-                                        <ul className="flex flex-col">
-                                            {topic.positions.map((p, pi) => {
-                                                const speaker = speakerOf(call, p.speaker);
-                                                const holder = holderOfSpeaker(speaker);
-                                                return (
-                                                    <li key={`${p.speaker}-${pi}`}>
-                                                        <button
-                                                            type="button"
-                                                            onClick={() => openSpeaker(speaker, { topic, position: p })}
-                                                            className="w-full text-left grid grid-cols-[26px_minmax(0,1fr)] md:grid-cols-[26px_170px_minmax(0,1fr)] gap-x-3 gap-y-1 px-2 py-2.5 rounded-xl hover:bg-theme-surface-hover transition-colors items-start"
-                                                        >
-                                                            <Avatar holder={holder} size="sm" className="mt-0.5" />
-                                                            <span className="min-w-0 flex flex-col">
-                                                                <span className="text-sm font-semibold truncate">{speaker.name}</span>
-                                                                <span className="text-xs text-theme-text-muted truncate">
-                                                                    {holder.role ?? t('detail.unknownOrg')}
-                                                                    {p.viaChat ? ` · ${t('detail.viaChat')}` : ''}
-                                                                </span>
-                                                            </span>
-                                                            <span className="col-span-2 md:col-span-1 text-sm leading-relaxed text-theme-text/90">{p.text}</span>
-                                                        </button>
-                                                    </li>
-                                                );
-                                            })}
-                                        </ul>
-                                        {topic.quote && (
-                                            <div className="border-l-2 border-brand-accent pl-4 py-1 flex flex-col gap-1">
-                                                <p className="text-sm leading-relaxed text-theme-text-secondary italic">"{topic.quote.text}"</p>
-                                                <span className="text-xs text-theme-text-muted flex flex-wrap items-center gap-2">
-                                                    {speakerOf(call, topic.quote.speaker).name} · <TimeLink videoUrl={call.videoUrl} timestamp={topic.quote.timestamp} />
-                                                    <button type="button" onClick={() => toggleQuote(ti)} className="text-brand-accent hover:underline" aria-expanded={openQuotes.has(ti)}>
-                                                        {t('detail.quoteOriginal')}
-                                                    </button>
-                                                </span>
-                                                {openQuotes.has(ti) && <p className="text-xs leading-relaxed text-theme-text-muted">{topic.quote.original}</p>}
-                                            </div>
-                                        )}
-                                    </section>
-                                ))}
-                            </div>
+
                         </div>
 
                         <div className="flex flex-col gap-4 order-3">
@@ -422,6 +373,59 @@ const CallDetail: React.FC = () => {
                             )}
                         </div>
                     </div>
+                )}
+
+                {call.kind === 'full' && call.topics.length > 0 && (
+                    <section id="topics" className="rounded-2xl border border-theme-border bg-theme-surface px-5">
+                                {call.topics.map((topic, ti) => (
+                                    <section key={topic.title} className="border-b last:border-b-0 border-theme-border py-6 flex flex-col gap-3">
+                                        <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                                            <span className="text-[11px] font-mono uppercase tracking-widest text-brand-accent">{t('detail.topic', { n: ti + 1, count: topic.positions.length })}</span>
+                                            <span className="text-base font-bold">{topic.title}</span>
+                                            <span className={`${TAG} ${topic.decision ? 'text-emerald-400' : 'text-theme-text-muted'}`}>{topic.decision ?? t('detail.noDecision')}</span>
+                                            <span className="text-xs text-theme-text-muted md:ml-auto">{t('detail.clickHint')}</span>
+                                        </div>
+                                        <p className="text-sm leading-relaxed text-theme-text-secondary max-w-4xl">{topic.intro}</p>
+                                        <ul className="flex flex-col">
+                                            {topic.positions.map((p, pi) => {
+                                                const speaker = speakerOf(call, p.speaker);
+                                                const holder = holderOfSpeaker(speaker);
+                                                return (
+                                                    <li key={`${p.speaker}-${pi}`}>
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => openSpeaker(speaker, { topic, position: p })}
+                                                            className="w-full text-left grid grid-cols-[32px_minmax(0,1fr)] md:grid-cols-[32px_220px_minmax(0,1fr)] gap-x-4 gap-y-1 px-2 py-3 rounded-xl hover:bg-theme-surface-hover transition-colors items-start"
+                                                        >
+                                                            <Avatar holder={holder} size="md" />
+                                                            <span className="min-w-0 flex flex-col">
+                                                                <span className="text-sm font-semibold truncate">{speaker.name}</span>
+                                                                <span className="text-xs text-theme-text-muted truncate">
+                                                                    {holder.role ?? t('detail.unknownOrg')}
+                                                                    {p.viaChat ? ` · ${t('detail.viaChat')}` : ''}
+                                                                </span>
+                                                            </span>
+                                                            <span className="col-span-2 md:col-span-1 text-sm md:text-[15px] leading-relaxed text-theme-text/90 max-w-4xl">{p.text}</span>
+                                                        </button>
+                                                    </li>
+                                                );
+                                            })}
+                                        </ul>
+                                        {topic.quote && (
+                                            <div className="border-l-2 border-brand-accent pl-4 py-1 flex flex-col gap-1">
+                                                <p className="text-sm leading-relaxed text-theme-text-secondary italic max-w-4xl">"{topic.quote.text}"</p>
+                                                <span className="text-xs text-theme-text-muted flex flex-wrap items-center gap-2">
+                                                    {speakerOf(call, topic.quote.speaker).name} · <TimeLink videoUrl={call.videoUrl} timestamp={topic.quote.timestamp} />
+                                                    <button type="button" onClick={() => toggleQuote(ti)} className="text-brand-accent hover:underline" aria-expanded={openQuotes.has(ti)}>
+                                                        {t('detail.quoteOriginal')}
+                                                    </button>
+                                                </span>
+                                                {openQuotes.has(ti) && <p className="text-xs leading-relaxed text-theme-text-muted">{topic.quote.original}</p>}
+                                            </div>
+                                        )}
+                                    </section>
+                                ))}
+                    </section>
                 )}
 
                 {call.glossary.length > 0 && (
