@@ -190,14 +190,99 @@ export function detectDebates(items: NewsItem[], minParticipants = 2): DebateClu
   return clusters.sort((a, b) => b.items.length - a.items.length);
 }
 
+/** Forkcast(EF Protocol Support) 콜 기록 — feed.xml 항목 하나 */
+export interface ForkcastCall {
+  /** acde · acdc · acdt · 브레이크아웃 슬러그 */
+  series: string;
+  number: number;
+  date: string;
+  url: string;
+  title: string;
+}
+
+/** forkcast.org/feed.xml을 콜 목록으로. 링크 `/calls/<series>/<num>/`와 guid `call-<series>-<num>-<date>`에서 읽는다. */
+export function parseForkcastFeed(xml: string): ForkcastCall[] {
+  const parser = new XMLParser({ ignoreAttributes: false });
+  const parsed = parser.parse(xml) as Record<string, unknown>;
+  const channel = (parsed.rss as Record<string, unknown> | undefined)?.channel as Record<string, unknown> | undefined;
+  const items = asArray(channel?.item as Record<string, unknown> | Array<Record<string, unknown>> | undefined);
+  return items
+    .map((it): ForkcastCall | null => {
+      const link = text(it.link);
+      const m = /\/calls\/([a-z0-9-]+)\/(\d+)\/?$/.exec(link);
+      if (!m) return null;
+      const guid = text(it.guid);
+      const dateFromGuid = /(\d{4}-\d{2}-\d{2})$/.exec(guid)?.[1];
+      const date = dateFromGuid ?? toIso(it.pubDate).slice(0, 10);
+      return { series: m[1], number: Number(m[2]), date, url: link, title: text(it.title).replace(/ call published$/i, '') };
+    })
+    .filter((c): c is ForkcastCall => c !== null);
+}
+
+/** GitHub 아티팩트 디렉토리: public/artifacts/<series>/<date>_<num 3자리> */
+export function forkcastArtifactBase(call: ForkcastCall): string {
+  return `https://raw.githubusercontent.com/ethereum/forkcast/main/public/artifacts/${call.series}/${call.date}_${String(call.number).padStart(3, '0')}`;
+}
+
+const SERIES_LABEL: Record<string, string> = { acde: 'ACDE', acdc: 'ACDC', acdt: 'ACDT' };
+
+/** tldr.json + key_decisions.json(+config.json)을 인박스 항목 하나로. 결정은 원문 그대로, EIP 번호와 포크·상태 변경을 붙인다. */
+export function forkcastToItem(
+  call: ForkcastCall,
+  tldr: Record<string, unknown> | null,
+  decisions: Record<string, unknown> | null,
+  config: Record<string, unknown> | null,
+  maxChars = 3800,
+): NewsItem {
+  const label = SERIES_LABEL[call.series] ?? (call.title.replace(/\s*#\d+.*$/, '').trim() || call.series.toUpperCase());
+  const meeting = String((tldr?.meeting ?? decisions?.meeting) ?? `${label} #${call.number} - ${call.date}`);
+  const lines: string[] = [meeting];
+  const dec = asArray(decisions?.key_decisions as Array<Record<string, unknown>> | undefined);
+  if (dec.length) {
+    lines.push('', `핵심 결정 (${dec.length}건):`);
+    for (const d of dec) {
+      const eips = asArray(d.eips as number[] | undefined).map((n) => `EIP-${n}`).join(', ');
+      const stage = (d.stage_change as Record<string, unknown> | undefined)?.to;
+      const tag = [d.fork ? String(d.fork) : '', stage ? `→ ${String(stage)}` : '', eips].filter(Boolean).join(' ');
+      lines.push(`- ${String(d.original_text ?? '')}${tag ? ` [${tag}]` : ''}`);
+    }
+  }
+  const highlights = (tldr?.highlights ?? {}) as Record<string, Array<Record<string, unknown>>>;
+  for (const [category, list] of Object.entries(highlights)) {
+    const arr = asArray(list);
+    if (!arr.length) continue;
+    lines.push('', `${category.replace(/_/g, ' ')}:`);
+    for (const h of arr) lines.push(`- ${String(h.highlight ?? '')}`);
+  }
+  const actions = asArray(tldr?.action_items as Array<Record<string, unknown>> | undefined);
+  if (actions.length) {
+    lines.push('', '액션 아이템:');
+    for (const a of actions) lines.push(`- ${String(a.item ?? a.action ?? a.text ?? JSON.stringify(a))}`);
+  }
+  if (config?.videoUrl) lines.push('', `영상: ${String(config.videoUrl)}`);
+  const summary = lines.join('\n').slice(0, maxChars);
+  return {
+    id: `forkcast:${call.series}-${call.number}`,
+    source: 'forkcast',
+    sourceType: 'rss',
+    title: `${label} #${call.number} (${call.date})${dec.length ? ` 핵심 결정 ${dec.length}건` : ''}`,
+    url: call.url,
+    publishedAt: `${call.date}T12:00:00.000Z`,
+    summary,
+    author: 'Forkcast',
+  };
+}
+
 /** 기존 인박스와 새 수집분을 병합 — id 기준 중복 제거, 최신순, cap 제한. */
-export function mergeInbox(prev: NewsItem[], incoming: NewsItem[], cap = 600): NewsItem[] {
+export function mergeInbox(prev: NewsItem[], incoming: NewsItem[], cap = 600, keepCalls = 60): NewsItem[] {
   const byId = new Map<string, NewsItem>();
   for (const item of prev) byId.set(item.id, item);
   for (const item of incoming) byId.set(item.id, item);
-  return [...byId.values()]
-    .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
-    .slice(0, cap);
+  const all = [...byId.values()].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
+  // 코어 개발자 콜 기록(forkcast)은 트윗 물량에 밀려 잘리지 않게 건수 상한을 따로 둔다 (논쟁 결론 참조용으로 오래 남겨야 함)
+  const calls = all.filter((i) => i.source === 'forkcast').slice(0, keepCalls);
+  const rest = all.filter((i) => i.source !== 'forkcast').slice(0, cap);
+  return [...calls, ...rest].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
 }
 
 /** 발행 주기 가드 — 마지막 호(YYYY-MM-DD)로부터 intervalDays 이상 지났을 때만 true. 첫 호는 항상 true. */

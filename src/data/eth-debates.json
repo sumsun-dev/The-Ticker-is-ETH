@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-08T00:55:42.415Z",
+  "updatedAt": "2026-09-08T07:57:46.038Z",
   "processedDigests": [
     "2026-08-24",
     "2026-08-25",
@@ -1157,15 +1157,16 @@
       "id": "eip-8363-tapered-issuance-burn",
       "title": "스테이킹이 늘수록 검증자 보상을 소각해 이더리움 발행을 줄여야 하나",
       "category": "프로토콜 설계",
-      "summary": "EIP-8363 Tapered Issuance Burn(공개 직후 EIP-8361로 표기되기도 했다)의 저자들은 스테이킹 비율(staking ratio)이 ETH 공급의 50%에 가까워질수록 검증자(validator)의 합의 보상을 소각(burn)해 지분이 그 이상 늘어날 유인을 없애자고 제안했다. 반대편에서는 rotki의 레프테리스 카라페차스가 발행(issuance)은 이더리움이 지금 다룰 문제가 아니라고 했고, Aave의 스타니 쿨레초프는 이더리움이 금융 시스템을 떠받치기에는 아직 미완성 제품이라 우선순위가 다르다고 했으며, Aave Chan Initiative의 마르크 젤러는 현재의 무위험 수익률(yield)이 wETH에 담보로서의 매력을 주고 있고 이를 대체할 것이 없다고 했다. DCinvestor는 스테이킹 수익률이 사람들이 ETH를 사고 계속 보유하는 핵심 이유가 된 상황에서 이미 낮은 발행을 더 깎는 것보다 정책의 일관성과 예측 가능성이 중요하다고 반박했다.",
+      "summary": "EIP-8363 Tapered Issuance Burn(공개 당일 제안자 트윗에는 EIP-8361로 적혀 있었다)의 저자들은 스테이킹 비율(staking ratio)이 ETH 공급의 50%에 가까워질수록 검증자(validator)의 합의 보상을 소각(burn)해 그 이상으로 지분이 늘어날 유인을 없애자고 제안했다. 공동 저자 pintail은 과잉 발행(issuance)이 포획(capture)으로 이어진다는 논거가 수사적 술책이 아니라고 했고, dapplion은 반대하는 사업자들이 손해를 보기 때문에 거부할 뿐 이 EIP는 장기적으로 모든 홀더에게 이익이라고 했다. 반대편에서는 rotki의 레프테리스 카라페차스가 발행은 이더리움이 지금 다룰 문제가 아니라고 했고, Aave의 스타니 쿨레초프는 이더리움이 금융 시스템을 떠받치기에는 아직 미완성 제품이라 프로토콜 차원의 우선순위는 프라이버시라고 했으며, Aave Chan Initiative의 마르크 젤러는 현재의 무위험 수익률(yield)이 wETH에 담보로서의 매력을 주고 있고 이를 대체할 것이 없다고 했다. ether.fi의 마이크 실라가제는 의견 수렴 48시간을 주고 공개된 이 변경이 솔로 스테이커를 밀어내고 디파이의 큰 덩어리를 죽일 것이라며 네트워크가 더 집중된다는 데 100만 달러 공개 내기를 걸었고, DCinvestor는 스테이킹 수익률이 ETH를 사고 계속 보유하는 핵심 이유가 된 상황에서 정책의 일관성과 예측 가능성이 더 중요하며 발행을 바꾸는 행위 자체가 가치를 파괴한다고 했다. 마이카 졸투는 저자들의 논거에 대체로 동의하면서도 살아 있는 체인의 통화정책을 바꿔서는 안 된다며 반대했고, 펀드스트랫과 리도는 어느 편도 들지 않은 채 최적화 곡선의 불확실성과 낮은 발행 체제에 대한 대비를 말했다.",
       "keyPoints": [
-        "스테이킹 비율에 사실상의 상한을 두는 일이 지금 프로토콜이 풀어야 할 문제인가, 아니면 프라이버시 같은 미완성 과제가 먼저인가",
-        "순합의 수익률을 약 2.6%에서 약 1.2%로 낮출 때 줄어드는 것이 검증자 수입만인가, ETH를 보유할 이유와 wETH 담보 수요까지인가",
-        "스테이킹 비율이 낮은 구간에서는 수익률이 희석의 배수라 스테이커가 손해를 보지 않으며 보장되지 않는 것은 특정 금액의 수입뿐이라는 저자들의 반론이 성립하는가",
-        "발행 축소가 솔로 스테이커에게 무엇을 하는가. 반대 진영 안에서도 이미 끝난 존재라는 진단과 밀려나게 두어서는 안 된다는 주장이 갈린다"
+        "스테이킹 비율에 사실상의 상한을 두는 일이 지금 프로토콜이 풀어야 할 문제인가, 아니면 프라이버시와 확장, UX처럼 미완성 과제가 먼저인가",
+        "순합의 수익률이 2.6%에서 1.2%로 내려갈 때 줄어드는 것이 검증자 수입만인가, ETH를 보유할 이유와 wETH 담보 수요, 유동성 스테이킹 토큰(LST) 위에 세워진 디파이의 하중까지인가",
+        "스테이킹이 50%를 넘으면 남은 홀더에게 희석(dilution)을 피할 강한 유인이 생겨 대형 LST와 중앙화 주체로 쏠린다는 제안자 측 가정이 성립하는가. 반대편은 다른 지분증명 체인에서 일어나지 않았고 연 0.2% 희석은 유인이 못 된다고 하며, 솔라나는 이미 50%를 넘었다는 지적도 있다",
+        "솔로 스테이커에게 무슨 일이 생기는가. 저자들은 낮은 스테이킹 비율에서 수익률이 희석의 배수라 손해가 아니라고 하고, 반대편은 깎을 수수료가 없는 솔로가 가장 먼저 밀려난다고 하며, 반대 진영 안에서도 이미 끝났다는 진단과 밀려나게 두어서는 안 된다는 주장이 갈린다. 린 이더리움(Lean Ethereum)에서 검증자 비용이 0에 가까워진다는 전망과 제대로 된 비용 모델이 필요하다는 요구도 맞선다",
+        "살아 있는 체인의 통화정책을 리서처와 코어 개발자가 48시간 공지와 커뮤니티 동의 없이 바꿀 수 있나. 논거에 동의하는 사람조차 변경 행위 자체에 반대하고, 분쟁적 하드포크(hard fork) 위험과 리서처와 커뮤니티의 단절이 거론됐다"
       ],
-      "background": "EIP-8363 Tapered Issuance Burn은 검증자의 합의 보상, 즉 증명과 제안과 싱크 커미티 보상에 소각 비율 b = (D / 6,025만 ETH)^1.5을 적용하는 제안이다. D는 총 스테이킹 잔고이며 스테이킹이 공급의 약 50%인 6,025만 ETH에 이르면 소각이 100%가 되어 발행에서 오는 순수익이 0이 되고, 그 아래에서는 검증자가 요구하는 위험 프리미엄에 따라 균형이 정해진다. 저자는 pintail, 제롬 드 티셰, dapplion, pa7x1, 라디슬라우스 폰 다니엘스, EF 리서처 저스틴 드레이크이며 2026년 8월 4일 공개돼 상태는 Draft다. 공개 당일 제안자 트윗에는 EIP-8361로 적혀 있었고 이후 정식 번호는 8363으로 정리됐다. 현재 스테이킹은 약 4,150만 ETH로 공급의 약 34%이고 이 수준에서 순발행 수익률은 약 2.6%에서 약 1.2%로 내려가며, 18개월에 걸쳐 BASE_REWARD_FACTOR를 64에서 128로 올렸다가 선형으로 내리는 방식으로 단계 적용한다. 실행 레이어 변경은 없지만 하드포크(hard fork)가 필요하다. 헤고타 포크의 PFI 마감 직전에 제출됐으나 PFI에 오르지 못했고 현재 어떤 업그레이드에도 예정돼 있지 않다.",
-      "whyItMatters": "발행 곡선은 스테이킹 사업자의 마진과 디파이 담보 수익률, 비스테이커의 희석률을 한꺼번에 정하는 파라미터라서 한 번 손대면 앱 레이어 전체의 손익이 같이 움직인다. 논쟁이 격했던 이유도 여기에 있다. 반대 논거의 상당 부분은 발행 수치 자체가 아니라 스테이킹 수익률이 ETH를 보유할 이유이자 wETH를 담보로 쓰게 만드는 기준 금리 역할을 해왔다는 데 있었다. 제안이 Draft에 머물러 당장 바뀌는 것은 없지만 스테이킹 비율이 계속 오르는 한 같은 질문이 포크마다 다시 올라온다. 지켜볼 지점은 매지션스 스레드의 논의 진전과 다음 포크의 PFI 목록, 그리고 리도처럼 낮은 발행 체제를 전제로 비용 구조와 매출원을 조정하기 시작한 사업자들의 실제 대응이다.",
+      "background": "EIP-8363 Tapered Issuance Burn은 검증자가 배정받은 각 임무, 즉 증명(attestation)과 블록 제안(block proposal), 싱크 커미티(sync committee) 참여에 대해 에포크마다 이상적 보상의 일정 비율을 공제해 소각하는 제안이다. 소각 비율은 스테이킹 비율에 따라 선형으로 커져 고정된 포화 잔고(saturation balance)에서 100%가 되고, 그에 따라 순스테이킹 수익률은 스테이킹이 늘수록 내려간다. 제안자들은 현재 곡선의 수익률이 스테이킹 비율의 제곱근에 반비례해 떨어질 뿐 약 1.5%의 하한을 갖기 때문에 스테이킹 유인이 꺼지는 지점이 없다고 보며, 소각을 도입하면 스테이킹 시장이 수익률과 스테이커가 요구하는 위험 프리미엄(risk premium)이 만나는 지점에서 균형을 찾고 그 지점은 스테이킹 비율 50% 아래가 되어 그 이상에서는 발행이 더 이상 지분 성장을 유인하지 않는다고 설명한다. 포크 시점에 전부 적용하면 지금의 스테이킹 비율에서 수익률이 급락하므로 BASE_REWARD_FACTOR를 일시적으로 올려 18개월에 걸쳐 단계 적용하되, 50%를 넘는 성장을 보상하지 않는 곡선의 형태는 활성화 첫날부터 효력을 갖는다. 트위터에서 인용된 수치로는 지금 스테이킹 수준에서 순합의 수익률이 2.6%에서 1.2%로 내려가고 첫날 감소폭은 13%다. 저자는 pintail, Jérôme de Tychey, dapplion, pa7x1, Ladislaus von Daniels, Justin Drake이며 핵심 원리는 pa7x1의 선행 연구에, 임무별 소각이라는 정교화는 Anders Elowsson의 연구에 기댄다. EIP 문서상 작성일은 2026년 7월 14일이고 2026년 8월 4일 ethereum/EIPs에 제출되면서 매지션스 스레드가 열렸으며 상태는 Draft다. 제출 당일 제안자 트윗에는 EIP-8361로 적혀 있었고 이후 8363으로 정리됐다. 제출 시점은 헤고타(Hegotá) 포크의 PFI 마감 48시간 전이었고, 스레드에서 gregk는 이 정도 통화정책 변경을 검토하기에 시간이 부족하며 스트로맵상 발행 변경은 I* 포크에서 다룰 것으로 기대됐다고 지적했다. 이에 de Tychey는 PFI가 포함 확정이 아니라 피드백의 시작이며, 검증자 진입 큐가 한계치로 계속 차 있으면 2028년 1월 1일에는 7,000만 ETH 넘게 스테이킹될 것이므로 I*까지 기다리는 것은 사실상 변경을 포기하는 것과 같다고 답했다. 합의 레이어 변경이므로 하드포크가 필요하다. 9월 2일에는 EIP-8363이 작동할 경우 검증자 통제권이 어떻게 바뀌는지를 다루는 별도 연구 제안 스레드도 매지션스에 올라왔다.",
+      "whyItMatters": "발행 곡선은 스테이킹 사업자의 마진과 디파이 담보 수익률, 비스테이커의 희석률을 한꺼번에 정하는 파라미터라서 한 번 손대면 앱 레이어 전체의 손익이 같이 움직인다. 이번 논쟁에서 반대 논거의 큰 줄기는 발행 수치 자체가 아니라 두 가지였다. 하나는 스테이킹 수익률이 ETH를 보유할 이유이자 wETH 담보의 기준 금리 역할을 해왔다는 것이고, 다른 하나는 살아 있는 체인의 통화정책을 리서처와 코어 개발자가 커뮤니티 동의 없이 바꿀 수 있느냐는 것이다. 저자들의 논거에 동의하는 사람조차 변경 행위 자체에 반대하는 구도가 생긴 것은 이 두 번째 질문 때문이며, 이는 앞으로 어떤 발행 변경이든 같은 관문을 통과해야 한다는 뜻이다. 제안이 Draft에 머물러 당장 바뀌는 것은 없지만 스테이킹 비율이 계속 오르는 한 같은 질문이 포크마다 다시 올라온다. 지켜볼 지점은 매지션스 스레드의 논의 진전과 헤고타 포함 여부, 리도처럼 낮은 발행 체제를 전제로 운영비와 매출원을 조정하기 시작한 사업자의 실제 대응, 그리고 ether.fi가 예고한 유동성 스테이킹 철수 가능성이다.",
       "sources": [
         {
           "title": "EIP-8363: Tapered Issuance Burn",
@@ -1182,18 +1183,38 @@
         {
           "title": "EIP-8363 staking issuance burn reaction: Kulechov, Silagadze",
           "url": "https://thedefiant.io/news/blockchains/eip-8363-staking-issuance-burn-reaction-kulechov-silagadze"
+        },
+        {
+          "title": "Research proposal: validator control if EIP-8363 works",
+          "url": "https://ethereum-magicians.org/t/research-proposal-validator-control-if-eip-8363-works/29568"
+        },
+        {
+          "title": "Lido calls for deeper review before EIP-8363 advances",
+          "url": "https://www.cryptotimes.io/2026/08/15/lido-calls-for-deeper-review-before-eip-8363-advances/"
         }
       ],
       "keywords": [
         "EIP-8363",
         "tapered issuance burn",
         "ETH issuance",
-        "staking yield"
+        "staking yield",
+        "Hegota PFI",
+        "Ethereum governance",
+        "issuance debate",
+        "solo staker",
+        "validator cost model",
+        "staking centralization",
+        "staking ratio",
+        "validator control",
+        "liquid staking tokens",
+        "Lido",
+        "ether.fi",
+        "upgrade refusal"
       ],
       "positions": [
         {
           "stance": "pro",
-          "label": "지분 성장 유인을 지금 끊어야 한다",
+          "label": "스테이킹이 50%를 넘어 커질 유인을 지금 끊어야 한다",
           "holders": [
             {
               "handle": "pintail_xyz",
@@ -1231,19 +1252,31 @@
               "name": "FlowState ",
               "avatar": "https://pbs.twimg.com/profile_images/2073021467479199744/16KzmqXP_400x400.jpg",
               "role": "인플루언서·투자자"
+            },
+            {
+              "handle": "MerlijnTrader",
+              "name": "Merlijn The Trader",
+              "avatar": "https://pbs.twimg.com/profile_images/1850942902475931648/WPFaML0z_400x400.jpg",
+              "role": "인플루언서·투자자"
+            },
+            {
+              "handle": "IslandHunting",
+              "name": "HuntingIsland — ΞTH 🐬",
+              "avatar": "https://pbs.twimg.com/profile_images/1885486492505563136/pY0a03zI_400x400.jpg",
+              "role": "EPGi(이더리움 퍼블릭굿즈 인프라) 빌더"
             }
           ],
           "points": [
             "이더리움 발행 정책에 대한 최소한의 시장 주도형 수정안이며, 목적은 스테이킹이 ETH 공급의 50%를 넘어 더 커질 유인을 제거하는 것이다.",
-            "스테이킹 비율이 낮은 구간에서는 수익률이 희석의 배수라 세후 수익도 희석보다 훨씬 크다. 보장할 수 없는 것은 특정 금액의 수입일 뿐이다.",
-            "지금 눈에 보이는 대로 스테이크는 계속 밀려 들어오고, 결국 발행이 희석으로 상쇄되는 지점까지 간다.",
-            "보상 삭감이라는 프레임에 동의하지 않는다. 발행이 낮아지면 공급이 조여지고 디파이와 스테이블코인 활동을 떠받치는 자산 자체가 강해진다.",
-            "지지하는 사람도 많지만 반대하는 쪽이 목소리가 크고 잃을 것도 더 많다."
+            "과잉 발행이 포획으로 이어진다는 논거는 수사적 술책이 아니므로 일축하지 말고 논쟁에 참여해야 한다. 스테이킹 비율이 낮은 구간에서는 수익률이 희석의 배수라 세후 수익도 희석보다 훨씬 크고, 보장할 수 없는 것은 특정 금액의 수입일 뿐이다. 지금 보고 있듯 스테이크는 발행이 희석으로 상쇄될 때까지 계속 밀려 들어온다.",
+            "리도와 ether.fi, Aave가 거부하는 것은 자기에게 손해가 되기 때문이지만 이 EIP는 장기적으로 모든 홀더에게 이익이 된다.",
+            "지지하는 사람도 많지만 반대하는 쪽이 목소리가 크고 잃을 것도 더 많다. 발행을 건드릴 필요가 없다는 데 모두가 동의했다는 말은 바꿔야 한다고 믿는 사람들이 있는 이상 사실일 수 없다.",
+            "보상 삭감이라는 프레임에 동의하지 않는다. 발행이 낮아지면 공급이 조여지고 디파이와 스테이블코인 활동을 떠받치는 자산 자체가 강해지며, 낮은 발행은 ETH를 더 희소하게 만들어 강세 논지에 긍정적이다."
           ]
         },
         {
           "stance": "con",
-          "label": "발행은 이더리움이 지금 풀 문제가 아니다",
+          "label": "발행은 지금 풀 문제가 아니고, 살아 있는 체인의 통화정책을 합의 없이 바꿔서는 안 된다",
           "holders": [
             {
               "handle": "StaniKulechov",
@@ -1276,6 +1309,47 @@
               "avatar": "https://pbs.twimg.com/profile_images/1757172379535478784/1hreT0cm_400x400.jpg"
             },
             {
+              "handle": "MicahZoltu",
+              "name": "Micah Zoltu",
+              "avatar": "https://pbs.twimg.com/profile_images/1753310055825588224/jWyc9_0H_400x400.jpg",
+              "role": "이더리움 독립 보안 연구자"
+            },
+            {
+              "handle": "peter_szilagyi",
+              "name": "Péter Szilágyi",
+              "role": "Geth 리드",
+              "avatar": "https://pbs.twimg.com/profile_images/1115781490/gravatar_400x400.jpeg"
+            },
+            {
+              "handle": "lex_node",
+              "name": "_gabrielShapir0",
+              "role": "MetaLeX Labs 변호사",
+              "avatar": "https://pbs.twimg.com/profile_images/2058233189882032128/pRSMN_6C_400x400.jpg"
+            },
+            {
+              "handle": "emilianobonassi",
+              "name": "Emiliano Bonassi",
+              "avatar": "https://pbs.twimg.com/profile_images/1725948618366976000/7PRN5p9f_400x400.png",
+              "role": "Boundless 엔지니어링 VP"
+            },
+            {
+              "handle": "scupytrooples",
+              "name": "scoopy.sockpupp.eth",
+              "avatar": "https://pbs.twimg.com/profile_images/2085582898581962753/a-7_3Oyh_400x400.jpg",
+              "role": "Alchemix Finance 팀"
+            },
+            {
+              "handle": "MrOmodulus",
+              "name": "Mr O’Moduluszk",
+              "avatar": "https://pbs.twimg.com/profile_images/1992028010866741248/kGenhIWg_400x400.jpg"
+            },
+            {
+              "handle": "ManLyNFT",
+              "name": "ManLy",
+              "avatar": "https://pbs.twimg.com/profile_images/1698350296789864448/CyAVrClf_400x400.png",
+              "role": "LBank Exchange 파트너"
+            },
+            {
               "handle": "xerberus",
               "name": "Xerberus",
               "avatar": "https://pbs.twimg.com/profile_images/1980743598208413696/scO1cZFV_400x400.jpg",
@@ -1286,19 +1360,42 @@
               "name": "初七",
               "avatar": "https://pbs.twimg.com/profile_images/2073148970185175040/oPl2-I5p_400x400.jpg",
               "role": "인플루언서·투자자"
+            },
+            {
+              "handle": "hanni_abu",
+              "name": "hanniabu.eth (Ξ, α)",
+              "avatar": "https://pbs.twimg.com/profile_images/1602597529820041216/1AxDBUlw_400x400.jpg",
+              "role": "Ether Alpha Team 개발자"
+            },
+            {
+              "handle": "hedgefunder01",
+              "name": "UnHΞdged",
+              "avatar": "https://pbs.twimg.com/profile_images/1847391446225272832/uvHwwHDq_400x400.jpg"
+            },
+            {
+              "handle": "JourneyMacro",
+              "name": "Nomad",
+              "avatar": "https://pbs.twimg.com/profile_images/1873239346234458112/GG5iQIVQ_400x400.jpg",
+              "role": "인플루언서·투자자"
+            },
+            {
+              "handle": "aibra",
+              "name": "Aibra",
+              "avatar": "https://pbs.twimg.com/profile_images/1968351024969601025/l7c4-VB__400x400.jpg",
+              "role": "OnlySlabs 빌더"
             }
           ],
           "points": [
-            "이더리움에는 프로토콜로도 생태계로도 다뤄야 할 심각한 문제들이 있고 발행은 그중 하나가 아니다. 발행을 건드릴 필요가 없다는 논거는 이미 다 나왔으니 유한한 에너지를 정말 중요한 곳에 써야 한다.",
-            "이더리움은 금융 시스템에 서비스한다는 점에서 아직 미완성 제품이며, 프로토콜 차원에서 먼저 꼽을 우선순위는 프라이버시다.",
-            "현재의 무위험 수익률이 wETH를 담보로 매력적으로 만들고 있고 이를 대체할 것은 없다. 레버리지 스테이킹이 타격을 받아 앱 레이어가 TVL과 매출을 잃으면 그렇게 파괴되는 가치가 소폭의 인플레이션 감소로는 보상되지 않는다.",
-            "ETH 발행은 이미 비트코인보다도, 매년 시장에 추가되는 새 금 공급보다도 낮아 가격의 주요 동인이 아니다. 좋든 싫든 스테이킹 수익률은 사람들이 ETH를 사고 무엇보다 계속 보유하는 핵심 이유가 됐고, 완벽한 최적화보다 정책의 일관성과 예측 가능성이 시장 신뢰에 더 중요하다.",
-            "솔로 스테이커에 대한 진단은 반대 진영 안에서도 갈린다. 젤러는 지분을 디파이에 쓸 수 없고 하드웨어 비용은 램과 스토리지 위기로 작년에 두 배가 됐으며 세금상으로도 불리해 이미 끝났다고 보고, DCinvestor는 정말 상황이 나빠지면 그들이 필요하므로 가격 경쟁에서 밀려나게 두어서는 안 된다고 본다."
+            "이더리움에는 프로토콜로도 생태계로도 다뤄야 할 심각한 문제들이 있고 발행은 그중 하나가 아니다. 이더리움은 금융 시스템에 서비스한다는 점에서 아직 미완성 제품이라 프로토콜 차원의 우선순위는 프라이버시이며, 유한한 에너지는 확장과 UX 개선처럼 정말 중요한 곳에 써야 한다.",
+            "현재의 무위험 수익률이 wETH를 담보로 매력적으로 만들고 있고 이를 대체할 것은 없다. 앱 레이어의 큰 매출과 AUM 동력인 레버리지 스테이킹이 타격을 입어 앱 리더들이 TVL과 매출을 잃으면 그 가치 파괴는 소폭의 인플레이션 감소로 보상되지 않는다. 디파이 구성요소 약 1만 2,200개의 의존성 분석에서도 상위 시스템 토큰 11개 중 5개가 ETH LST였고 그 허브 뒤에 여분의 백본이 없었다.",
+            "ETH 발행은 이미 비트코인보다도, 매년 새로 추가되는 금 공급보다도 낮아 가격의 주요 동인이 아니고, 좋든 싫든 스테이킹 수익률은 사람들이 ETH를 사고 계속 보유하는 핵심 이유가 됐다. 완벽한 최적화보다 정책의 일관성과 예측 가능성이 시장 신뢰에 더 중요하며, 정답을 안다고 여기는 위원회가 라이브 네트워크에서 파라미터를 거듭 바꿀 수 있다는 발상 자체가 대형 홀더에게 불쾌해 바꾸는 행위 자체가 가치를 파괴한다.",
+            "저자들의 논거에 대체로 동의하고 제안된 일정이 지금보다 낫더라도 살아 있는 체인의 통화정책을 바꿔도 된다는 뜻은 아니다. 스테이커와 검증자, 유저, 생태계 개발자의 동의라는 관문을 통과할 수 없는 제안은 분쟁적 하드포크 위험만 키우며, 과거의 발행 변경은 힘없는 집단에 고통을 주는 대신 다른 많은 집단에 큰 것을 줬지만 이번 제안은 주는 것 없이 가져가기만 한다. 타당한 하위 항목부터 커뮤니티 동의를 얻은 뒤 모두가 지지할 제안을 만들어야 한다.",
+            "의견 수렴 48시간을 주고 공개됐고 빌더 누구도 사전에 의견을 요청받지 않았다. '이더리움은 민주주의가 아니다', '수학이 당신이 틀렸다고 말한다' 같은 말에서 리서처와 코어 개발자가 커뮤니티와 완전히 단절됐다는 점이 드러났고, 몇 년 전 닫힌 논의에서 이미 정해진 일이며 당신은 거기 없었을 뿐이라는 옹호는 상아탑 기술관료제와 권력 구조의 썩은 부분을 확인해줄 뿐이다."
           ]
         },
         {
           "stance": "neutral",
-          "label": "0으로 가지 않는 곡선인지 따져보고 낮은 발행 체제도 대비한다",
+          "label": "찬반을 유보한 채 곡선의 형태와 비용 데이터, 낮은 발행 체제를 따진다",
           "holders": [
             {
               "handle": "LowBeta",
@@ -1318,12 +1415,66 @@
               "watchlist": false,
               "handle": "fundstrat",
               "avatar": "https://pbs.twimg.com/profile_images/1946026960305410048/h2oEpnJS_400x400.jpg"
+            },
+            {
+              "handle": "materkel",
+              "name": "materkel.gwei 🦇🔊",
+              "avatar": "https://pbs.twimg.com/profile_images/1929508515770429440/WdoFRCAU_400x400.jpg",
+              "role": "termsplit·blobs.money 빌더"
+            },
+            {
+              "handle": "donnoh_eth",
+              "name": "donnoh.gwei 💗",
+              "role": "L2Beat 리서치 총괄",
+              "avatar": "https://pbs.twimg.com/profile_images/1906978600311521280/aSbKSjtX_400x400.jpg"
+            },
+            {
+              "handle": "OisinKyne",
+              "name": "oisin.eth | Obol",
+              "role": "Obol",
+              "avatar": "https://pbs.twimg.com/profile_images/2010090282872631296/CxH7dJDv_400x400.jpg"
+            },
+            {
+              "handle": "LaLiLuLeL0x",
+              "name": "La-Li-Lu-Le-Lo",
+              "avatar": "https://pbs.twimg.com/profile_images/2090373729578532864/T5jsuU-4_400x400.jpg",
+              "role": "Glue Finance 빌더"
+            },
+            {
+              "handle": "drjasper_eth",
+              "name": "jasperthefriendlyghost.eth",
+              "avatar": "https://pbs.twimg.com/profile_images/1970862587031023616/V6rlZiBz_400x400.jpg",
+              "role": "Rocket Pool 커뮤니티 애드보케이트"
             }
           ],
           "points": [
             "평탄해지되 0에는 닿지 않는 발행 곡선이라면 반대 진영도 지지할 수 있는지가 먼저 확인돼야 한다.",
-            "보안 비용을 과하게 보상하고 있는지, 스테이킹하지 않는 쪽에 부당한 부담을 지우는지는 공정한 질문이지만 최적화 곡선이 어디인지는 알 수 없고 의도치 않은 결과와 변동성 위험도 있다. 이더리움에 수익이 없더라도 수익을 낼 방법은 여전히 많다.",
-            "보상 압축은 리도의 미래에 실질적인 영향을 준다. 낮은 발행 체제에서도 흑자는 낼 수 있지만 운영비를 조이고 큐레이티드 세트를 줄이며 다양성보다 비용을 중시하는 더 가벼운 프로토콜이 되고, 다른 경로는 스테이킹 밖에서 매출을 키우는 것이다."
+            "발행 문제는 2024년부터 이더리움 매지션스에서 여러 제안으로 논의돼 왔으므로 이 EIP는 갑자기 나온 것이 아니라 지난 몇 년간 여러 제안 사이에서 오간 논의의 결과일 가능성이 크다.",
+            "검증자 운영 비용은 린 이더리움에서 0에 가까워질 가능성이 크지만 스테이트리스 ZK 검증자에 언제 도달할지와 그 영향을 모르기 때문에 지금은 낡은 데이터로 논쟁하는 셈이다. 반대로 실시간 증명에는 하드웨어 감가상각만으로 연 10만 달러가 넘게 들고 증명 전용 클라이언트도 대형 거래소보다 5배 넘게 비싸 솔로는 위임에 비해 여전히 불리하므로, 이런 EIP에는 제대로 된 비용 모델이 있어야 분위기가 아니라 데이터로 일할 수 있다.",
+            "요즘은 LST가 곧 홈 스테이커라 로켓풀과 오볼, 리도가 각각 수백 명의 홈 스테이커를 지원하며, 어느 체인도 필연적으로 스테이킹 비율 100%로 간다는 증거는 거의 없지만 솔라나는 이미 50%를 넘었다.",
+            "보안 비용을 과하게 보상하고 있는지, 스테이킹하지 않는 쪽에 부당한 부담을 지우는지는 공정한 질문이지만 최적화 곡선이 어디인지는 알 수 없고 의도치 않은 결과와 변동성 위험도 있다. 이더리움에 수익이 없더라도 수익을 낼 방법은 여전히 많다."
+          ]
+        },
+        {
+          "stance": "other",
+          "label": "원문만으로는 어느 편인지 확정되지 않는다",
+          "holders": [
+            {
+              "handle": "ec265",
+              "name": "Etc.",
+              "avatar": "https://pbs.twimg.com/profile_images/1209299204/photo_400x400.JPG",
+              "role": "이더리움 인플루언서"
+            },
+            {
+              "handle": "longpratas",
+              "name": "pratas.eth",
+              "avatar": "https://pbs.twimg.com/profile_images/1932864498550845440/FFAZVmjY_400x400.jpg",
+              "role": "DeFi 인플루언서"
+            }
+          ],
+          "points": [
+            "Etc.는 다섯 항목으로 정리된 글에 답하며 1번과 2번은 동인이 아니고 3번과 4번은 과소평가되고 있으며 5번에 초점을 둬야 한다고 했다. 같은 날 DCinvestor가 올린 다섯 항목 목록과 번호 구성이 맞아떨어지지만 인용 원문만으로는 답글 대상을 확정할 수 없다.",
+            "pratas.eth는 ETH의 90% 넘는 양이 이제 솔로 스테이커에게 있지 않으니 아는 척을 그만두라고 했다. 솔로 스테이커를 근거로 삼는 어느 쪽을 겨냥한 말인지 원문만으로는 확정되지 않는다."
           ]
         }
       ],
@@ -1332,7 +1483,7 @@
           "date": "2026-08-04",
           "by": "jdetychey",
           "stance": "pro",
-          "quote": "이더리움 발행 정책에 대한 최소한의 시장 주도형 수정안을 EIP로 제출했다. 스테이킹이 ETH 공급의 50%를 넘어 성장할 유인을 제거하는 제안이다.",
+          "quote": "새 EIP, Tapered Issuance Burn. 이더리움 발행 정책에 대한 최소한의 시장 주도형 수정안으로, 스테이킹이 ETH 공급의 50%를 넘어 성장할 유인을 제거하는 EIP를 ethereum/EIPs에 방금 제출했다.",
           "url": "https://x.com/jdetychey/status/2084638778677751889",
           "digest": "2026-08-04",
           "relation": "none",
@@ -1343,7 +1494,7 @@
           "date": "2026-08-04",
           "by": "LefterisJP",
           "stance": "con",
-          "quote": "이더리움에는 프로토콜로도, 사용자와 개발자를 위한 생태계로도 다뤄야 할 심각한 문제들이 있는데 발행은 그중 하나가 아니다. 발행을 건드릴 필요가 없다는 논거는 이미 모두가 다 내놓았다. 유한한 자원인 우리 에너지를 정말 중요한 곳에 쓰자.",
+          "quote": "이더리움에는 우리가 다뤄야 할 심각한 문제들이 있다. 프로토콜로서도, 사용자와 개발자를 위한 생태계로서도 그렇지만 발행은 그게 아니다. 발행을 건드릴 필요가 없는 이유는 이미 모두가 내놓았으니, 유한한 자원인 우리 에너지를 정말 중요한 곳에 쓰자.",
           "url": "https://x.com/LefterisJP/status/2084727403784380810",
           "digest": "2026-08-04",
           "relation": "none",
@@ -1354,7 +1505,7 @@
           "date": "2026-08-04",
           "by": "dankrad",
           "stance": "pro",
-          "quote": "이 제안을 지지하는 사람도 많이 알고 있다. 다만 반대하는 쪽이 목소리가 크고 잃을 것도 더 많다.",
+          "quote": "이 제안을 지지하는 사람을 많이 안다. 다만 반대하는 쪽이 목소리가 더 크고 잃을 것도 더 많다.",
           "url": "https://x.com/dankrad/status/2084738626496459100",
           "digest": "2026-08-04",
           "replyTo": "BP_Gamma",
@@ -1366,7 +1517,7 @@
           "date": "2026-08-04",
           "by": "StaniKulechov",
           "stance": "con",
-          "quote": "이더리움 스테이킹 수익률을 잘라내는 문제에 대한 내 생각을 정리했다. 요약하면 ETH 스테이킹을 지키자는 것이다.",
+          "quote": "이더리움 스테이킹 수익률 삭감에 대한 내 생각을 매지션스에 올렸다. 요약하면 ETH 스테이킹을 지키자는 것이다.",
           "url": "https://x.com/StaniKulechov/status/2084740358634639726",
           "digest": "2026-08-04",
           "relation": "none",
@@ -1374,10 +1525,46 @@
           "translation": "이더리움 스테이킹 수익률 삭감에 대한 제 생각입니다. ethereum-magicians.org/t/eip-xxxx-tap… 요약하자면, ETH 스테이킹을 지켜야 합니다."
         },
         {
+          "date": "2026-08-04",
+          "by": "MikeSilagadze",
+          "stance": "con",
+          "quote": "모든 면에서 너무나 실망스럽다. 디파이 전반에 광범위한 영향을 미치는 주요 네트워크 경제 변경인데 의견 수렴 48시간을 주고 EIP를 공개했고, 나도 내가 아는 어떤 빌더도 이것이 공개되기 전에 의견을 요청받지 않았다. 이 변경은 EF 등의 보조를 받지 않는 솔로 스테이커를 자명하게 밀어내고, 스테이킹 생태계 위에 세워진 디파이의 큰 덩어리를 죽일 것이다.",
+          "url": "https://x.com/MikeSilagadze/status/2084703078909907000",
+          "digest": "2026-08-04",
+          "replyTo": "jdetychey",
+          "relation": "quote",
+          "original": "This is so disappointing on every level.\n\nEIP released with 48 hours notice for comments. Realistically 4 months before it goes live. For a major network economics change with far reaching implications for all of DeFi.\n\nEvery builder on Ethereum opposes this. Why is this a focus?\n\nNone of the reasoning makes any damn sense.\n\nThis will self evidently push out solo stakers who aren't subsidized by the EF or others. It will essentially guarantee that the only ones staking are large centralized entities with zero cost of capital where users passively hold their ETH. Why?\n\nIt will obviously kill a huge chunk of DeFi which is built around the staking ecosystem. Seven of the top 10 DeFi protocols with face a capital exodus. Why?\n\nIs the idea that a 0.8% reduction in issuance is somehow going to help ETH price? People who stake ETH don't sell it. This change will halt any new ETH getting staked and realistically will result in tens of billions of $ of ETH getting unstaked and entering into the market, not to mention the implosion of the core Ethereum use case. Why?\n\nIs the concern that liquid staking tokens, which intermediate about a quarter of staked ETH, displace ETH as money? This reasoning betrays a cash-accounting level of understanding of the economy, as if only M1 counts as real money. LSTs serve as valuable building blocks, and in fact implement a lot of user protections that would not be appropriate to do at the network level. At a near zero cost of 10-15 bps.\n\nI say this as a builder on Ethereum, not as someone who stands to benefit from staking issuance. I don't have much at risk here. Almost all of @ether_fi revenue is now coming from vaults and payments, staking is a small (and shrinking) part of our business.\n\nThis is bad for decentralization, this is bad for Ethereum adoption, and this is bad for the credibility of the network to roll things out this way.\n\nThis reinforces the Ethereum critics' position that the network is run by a small group of insiders with no regard for the actual users and builders on the chain. I can say that neither I nor any builder I know was asked for feedback on this before it went live.\n\nAny nation state or large institution looking at this will justifiably have a dramatic loss of confidence in the governance and stability of Ethereum.",
+          "translation": "이건 모든 면에서 정말 실망스럽다. EIP가 의견 수렴 기간 48시간만 주어진 채 발표되었다. 현실적으로는 시행까지 4개월밖에 남지 않았다. 디파이 전체에 광범위한 영향을 미치는 중대한 네트워크 경제 구조 변경인데도 말이다. 이더리움의 모든 빌더가 이를 반대한다. 왜 이것이 논의의 초점이 되는가. 어떤 논거도 도무지 말이 되지 않는다. 이 변경은 EF나 다른 곳의 지원을 받지 못하는 솔로 스테이커들을 명백히 밀어낼 것이다. 결국 자본 비용이 사실상 0인 대형 중앙화 기관들만 스테이킹을 하게 되고, 사용자들은 그저 ETH를 수동적으로 보유하게 될 것이다. 왜 그런가. 스테이킹 생태계를 중심으로 구축된 디파이의 상당 부분을 명백히 죽일 것이다. 상위 10대 디파이 프로토콜 중 7개가 자본 유출에 직면할 것이다. 왜 그런가. 발행량을 0.8퍼센트 줄이면 ETH 가격에 어떻게든 도움이 될 것이라는 발상인가. ETH를 스테이킹하는 사람들은 그것을 팔지 않는다. 이 변경은 새로운 ETH가 스테이킹되는 것을 멈추게 할 것이고, 현실적으로 수백억 달러 규모의 ETH가 언스테이킹되어 시장에 유입되는 결과를 낳을 것이다. 이더리움의 핵심 사용 사례가 붕괴하는 것은 말할 것도 없다. 왜 그런가. 스테이킹된 ETH의 약 4분의 1을 중개하는 유동성 스테이킹 토큰이 ETH를 화폐로서 대체하고 있다는 우려인가. 이런 논리는 마치 M1만이 진짜 화폐로 취급되는 것처럼, 경제에 대한 현금회계 수준의 이해를 드러낸다. LST는 가치 있는 구성 요소로 기능하며, 실제로 네트워크 수준에서 하기에는 적절하지 않은 여러 사용자 보호 장치를 구현하고 있다. 그것도 10에서 15베이시스포인트라는 거의 제로에 가까운 비용으로 말이다. 나는 스테이킹 발행량으로 이익을 보는 입장이 아니라 이더리움 빌더로서 이 말을 하는 것이다. 나는 여기에 걸린 것이 그리 많지 않다. @ether_fi 수익의 거의 전부는 이제 볼트와 결제에서 나오며, 스테이킹은 우리 사업에서 작은, 그리고 점점 줄어드는 부분일 뿐이다. 이는 탈중앙화에도 나쁘고, 이더리움 채택에도 나쁘며, 이런 방식으로 일을 진행하는 것은 네트워크의 신뢰성에도 나쁘다. 이는 네트워크가 실제 사용자와 빌더를 개의치 않는 소수 내부자 집단에 의해 운영된다는 이더리움 비판자들의 입장을 강화할 뿐이다. 나도, 내가 아는 어떤 빌더도 이것이 발표되기 전에 의견을 요청받은 적이 없다고 말할 수 있다. 이를 지켜보는 어떤 국가나 대형 기관이든 이더리움의 거버넌스와 안정성에 대한 신뢰를 크게 잃는 것은 당연한 일이 될 것이다."
+        },
+        {
+          "date": "2026-08-04",
+          "by": "LaLiLuLeL0x",
+          "stance": "neutral",
+          "quote": "사실 발행 문제는 2024년부터 이더리움 매지션스에서 여러 제안으로 논의돼 왔다. 나도 몇 달 전에 그에 관해 글을 썼다. 그러니 지금 보는 이 EIP는 아마 지난 몇 년간 여러 제안 사이에서 오간 많은 논의의 결과일 것이다.",
+          "url": "https://x.com/LaLiLuLeL0x/status/2084735969417150552",
+          "digest": "2026-08-04",
+          "replyTo": "MikeSilagadze",
+          "relation": "reply",
+          "original": "Actually, the issuance thing is since 2024 that is discussed in ETH Magicians with several proposals.\n\nI wrote about it some months ago. So, probably this EIP you see is a consequence of a lot of discussions between several proposals in the last few years.",
+          "translation": "사실 발행량 문제는 2024년부터 ETH Magicians에서 여러 제안과 함께 논의되어 온 사안이다. 나도 몇 달 전에 이에 대해 글을 쓴 적이 있다. 그러니 지금 보고 있는 이 EIP는 아마도 지난 몇 년간 여러 제안들 사이에서 이루어진 수많은 논의의 결과물일 것이다."
+        },
+        {
+          "date": "2026-08-04",
+          "by": "dankrad",
+          "stance": "pro",
+          "quote": "그건 분명히 사실일 수 없다. 바꿔야 한다고 믿는 사람들이 있기 때문이다.",
+          "url": "https://x.com/dankrad/status/2084735008552718778",
+          "digest": "2026-08-04",
+          "replyTo": "LefterisJP",
+          "relation": "reply",
+          "original": "Well that obviously cannot be true since there are people who believe it should be changed",
+          "translation": "글쎄, 그건 명백히 사실일 수 없다. 바뀌어야 한다고 믿는 사람들이 존재하기 때문이다."
+        },
+        {
           "date": "2026-08-05",
           "by": "StaniKulechov",
           "stance": "con",
-          "quote": "이더리움은 스테이킹 발행을 조작하고 스테이킹 보상을 깎는 데 집중해서는 안 된다. 그것은 이더리움이 풀어야 할 문제가 아니다. 금융 시스템에 서비스한다는 점에서 이더리움은 여전히 미완성 제품이다.",
+          "quote": "이더리움은 스테이킹 발행을 만지작거리고 스테이킹 보상을 깎는 데 집중해서는 안 된다. 그것은 이더리움이 풀어야 할 문제가 아니다. 금융 시스템에 서비스한다는 점에서 이더리움은 여전히 미완성 제품이며, 프로토콜 차원의 우선순위는 프라이버시다.",
           "url": "https://x.com/StaniKulechov/status/2084925768711213105",
           "digest": "2026-08-05",
           "relation": "none",
@@ -1388,7 +1575,7 @@
           "date": "2026-08-05",
           "by": "QtarEVM",
           "stance": "pro",
-          "quote": "스테이킹 보상을 깎는다는 주장에 동의하지 않는다. 발행이 낮아지면 공급이 조여지고 그 모든 디파이와 스테이블코인 활동을 떠받치는 자산이 강해진다.",
+          "quote": "스테이킹 보상을 깎는다는 말에 동의하지 않는다. 낮은 발행은 공급을 조이고, 그 모든 디파이와 스테이블코인 활동을 떠받치는 자산을 강하게 만든다.",
           "url": "https://x.com/QtarEVM/status/2084955122673615132",
           "digest": "2026-08-05",
           "replyTo": "StaniKulechov",
@@ -1400,7 +1587,7 @@
           "date": "2026-08-05",
           "by": "mzeller",
           "stance": "con",
-          "quote": "단점이 장점보다 크다. 이더리움 앱 레이어의 큰 매출원이자 AUM 동력인 레버리지 스테이킹이 타격을 받을 것이고, 지금의 무위험 수익률이 wETH를 담보로 더 매력적으로 만드는데 이를 대체할 것은 아무것도 없다. 이더리움 생태계 앱 리더들이 TVL과 매출의 상당 부분을 잃는 것이 파괴하는 가치는 소폭의 인플레이션 감소로 결코 보상되지 않는다.",
+          "quote": "단점이 장점보다 크다. 이더리움 앱 레이어의 큰 매출과 AUM 동력인 레버리지 스테이킹이 타격을 입을 것이고, 지금의 무위험 수익률이 wETH를 담보로서 더 매력적으로 만드는데 이를 대체할 것은 없다. 솔로 스테이커는 어차피 끝났고, 전체적으로 파이는 작아지며 ETH 가격은 내려갈 것이다.",
           "url": "https://x.com/mzeller/status/2084965427482894592",
           "digest": "2026-08-05",
           "replyTo": "LowBeta",
@@ -1412,7 +1599,7 @@
           "date": "2026-08-05",
           "by": "DCinvestor",
           "stance": "con",
-          "quote": "ETH 발행은 이미 매우 낮다. 비트코인보다도, 거의 모든 다른 블록체인보다도, 매년 시장에 추가되는 새 금 공급보다도 낮다. 이미 이렇게 낮은 수준에서는 발행이 ETH 가격의 주요 동인이 아니며, 좋든 싫든 스테이킹 수익률은 사람들이 ETH를 사고 무엇보다 계속 보유하기로 하는 핵심 요인이 됐다. 발행을 완벽하게 최적화하는 것보다 정책의 일관성과 예측 가능성이 시장 신뢰를 만드는 데 더 중요하다.",
+          "quote": "ETH 발행은 이미 비트코인보다, 거의 모든 다른 블록체인보다, 매년 시장에 추가되는 새 금 공급보다 낮다. 이 수준에서 발행은 ETH 가격의 주요 동인이 아니고, 좋든 싫든 스테이킹 수익률은 사람들이 ETH를 사고 무엇보다 계속 보유하는 핵심 요인이 됐다. 발행을 완벽하게 최적화하는 것보다 정책의 일관성과 예측 가능성이 시장 신뢰에 더 중요하며, 솔로 및 소규모 스테이커가 시장에서 밀려나게 두어서는 안 된다.",
           "url": "https://x.com/DCinvestor/status/2084971858311438688",
           "digest": "2026-08-05",
           "relation": "none",
@@ -1423,7 +1610,7 @@
           "date": "2026-08-05",
           "by": "LowBeta",
           "stance": "neutral",
-          "quote": "평탄해지되 0에는 닿지 않는 발행 곡선이라면 지지하겠는가.",
+          "quote": "평탄해지되 0에 이르지는 않는 발행 곡선이라면 지지하겠는가?",
           "url": "https://x.com/LowBeta/status/2084996385414554106",
           "digest": "2026-08-05",
           "replyTo": "DCinvestor",
@@ -1435,7 +1622,7 @@
           "date": "2026-08-05",
           "by": "pintail_xyz",
           "stance": "pro",
-          "quote": "그것은 틀렸다. 스테이킹 비율이 낮을 때 수익률은 희석의 배수라 세후 수익도 언제나 희석보다 훨씬 크다. 보장할 수 없는 것은 특정 금액의 수입일 뿐이며, 지금 우리가 보고 있듯 스테이크는 발행이 희석으로 상쇄될 때까지 계속 밀려 들어온다.",
+          "quote": "그건 틀렸다. 스테이킹 비율이 낮을 때 수익률은 희석의 배수이므로 세후 수익률도 언제나 희석보다 훨씬 크다. 보장할 수 없는 것은 특정 금액의 수입일 뿐이고, 지금 보고 있듯 스테이크는 발행이 희석으로 상쇄될 때까지 그저 밀려 들어온다.",
           "url": "https://x.com/pintail_xyz/status/2085079380334920065",
           "digest": "2026-08-04",
           "replyTo": "drjasper_eth",
@@ -1444,16 +1631,413 @@
           "translation": "그것은 틀렸습니다. 스테이킹 비율이 낮을 때는 수익률이 희석률의 몇 배가 되므로, 세후 수익률은 항상 희석률보다 훨씬 높습니다. 보장할 수 없는 것은 특정한 소득 수준일 뿐입니다. 지금 우리가 보고 있듯이, 발행량이 희석에 의해 상쇄될 때까지 스테이킹은 그저 계속 몰려들어옵니다."
         },
         {
+          "date": "2026-08-05",
+          "by": "peter_szilagyi",
+          "stance": "con",
+          "quote": "순진한 친구야, 이건 몇 년 전에 이미 검토된 일이다. 당신이 그 논의에 포함되지 않았을 뿐이다.",
+          "url": "https://x.com/peter_szilagyi/status/2084915309127807195",
+          "digest": "2026-08-04",
+          "replyTo": "MikeSilagadze",
+          "relation": "reply",
+          "original": "My sweet summer child, this was thought out years ago, you were just not included in the discussions.",
+          "translation": "순진하기 그지없구나, 이건 이미 몇 년 전에 다 논의되고 정리된 사안이다. 그저 자네가 그 논의에 끼지 못했을 뿐이다."
+        },
+        {
+          "date": "2026-08-05",
+          "by": "peter_szilagyi",
+          "stance": "con",
+          "quote": "저스틴의 말을 대략 옮기면 2~3년 전에 이랬다. '나는 파라미터에는 관심 없다. 중요한 것은 우리 모두가 동의해서 공개적인 이견이 없고 그대로 앞으로 나아갈 수 있는 것이다.' 어깨를 으쓱할 뿐이다.",
+          "url": "https://x.com/peter_szilagyi/status/2084915771944145379",
+          "digest": "2026-08-04",
+          "relation": "none",
+          "original": "To quote Justin (approx, it was 2-3 years ago): \"I don't care about the parameters, the important thing is that we all agree, so there is no public disagreement and we can move forward with it\". \\shrug",
+          "translation": "Justin의 말을 인용하자면(대략적으로, 2, 3년 전 얘기다), 파라미터가 어떻든 상관없다, 중요한 건 우리 모두가 동의해서 공개적인 이견 없이 이걸 밀고 나갈 수 있다는 점이다. 뭐, 어쩌겠나."
+        },
+        {
+          "date": "2026-08-05",
+          "by": "emilianobonassi",
+          "stance": "con",
+          "quote": "이것이 우리가 그 제한된 소수의 사람들로부터 이더리움을 포크해 떨어져 나와야 할 또 하나의 이유다.",
+          "url": "https://x.com/emilianobonassi/status/2084948872766353430",
+          "digest": "2026-08-04",
+          "replyTo": "MikeSilagadze",
+          "relation": "reply",
+          "original": "this is another reason why we should fork Ethereum away from that limited group of ppl",
+          "translation": "이것이 바로 우리가 이더리움을 그 한정된 소수 그룹으로부터 포크해내야 하는 또 하나의 이유다."
+        },
+        {
+          "date": "2026-08-05",
+          "by": "pintail_xyz",
+          "stance": "pro",
+          "quote": "논쟁을 일축하지 말고 참여해 주기를 권한다. 과잉 발행이 포획으로 이어진다는 논거는 무슨 수사적 술책이 아니다.",
+          "url": "https://x.com/pintail_xyz/status/2084931081329955267",
+          "digest": "2026-08-04",
+          "replyTo": "LefterisJP",
+          "relation": "reply",
+          "original": "I would urge you to engage with the debate rather than dismissing it. The arguement excess issuance leads to capture is not some rhetorical trick.",
+          "translation": "논쟁을 그냥 묵살하기보다는 제대로 참여할 것을 강력히 권한다. 과잉 발행이 장악으로 이어진다는 주장은 단순한 수사적 트릭이 아니다."
+        },
+        {
+          "date": "2026-08-05",
+          "by": "DCinvestor",
+          "stance": "con",
+          "quote": "나는 대단한 리서처가 아닌 단순한 사람이라 커뮤니티 역학과 인센티브, 여러 자극에 대한 사람들의 예상 행동 같은 단순한 것을 본다. 이 시점에서 발행을 급격히 바꾸면서 분쟁적 하드포크가 나지 않으리라 보는 것은 솔직히 말이 안 된다. 이런 일을 하고 싶었다면 스테이커가 네트워크 운영권을 쥐게 되는 지분증명을 구현하기 전에 제대로 했어야 했고, 지금 상태가 최적이 아니라고 믿을 수는 있지만 원하는 방식으로 서둘러 바꿀 수는 없으니 우리는 다른 곳에 써야 할 에너지를 낭비하고 있다.",
+          "url": "https://x.com/DCinvestor/status/2085131328354451840",
+          "digest": "2026-08-05",
+          "relation": "none",
+          "original": "i'm a simple man, not a big brain researcher\n\nso i look at simple things, like community dynamics, incentives, and likely behavior in response to various stimuli\n\nand you frankly have to be completely retarded to think radically changing issuance wouldn't cause a contentious hard fork at this point\n\nif you wanted to do something like this, you should have thought to do it properly before you ever implemented Proof of Stake\n\nyou know, where the Stakers now have operational control of the network. and this isn't like reducing miner rewards, where you had the consensus of the users to adjust issuance\n\nand the those users, who hold ETH and use/build financial apps on Ethereum (the only apps which have any real traction at the moment) also agree with them on this issue\n\nso you can believe the current state is not optimal (and frankly, i don't think it is), but also understand that it cannot be changed in the ways you might want to expediently change it\n\nso we're now wasting energy which should be directed elsewhere- either through alternative solutions to the problems this represents, and/or to the scaling and UX improvements Ethereum still needs",
+          "translation": "나는 단순한 사람이지 대단한 두뇌를 가진 연구자가 아니다. 그래서 나는 커뮤니티 역학, 인센티브, 다양한 자극에 대한 예상 가능한 반응 같은 단순한 것들을 본다. 그리고 솔직히 말해서, 지금 시점에 발행량을 급진적으로 바꾸는 것이 논쟁적인 하드포크를 일으키지 않을 것이라고 생각한다면 정말 제정신이 아니라고밖에 할 수 없다. 만약 이런 일을 하고 싶었다면, 애초에 지분증명을 도입하기 전에 제대로 생각해뒀어야 했다. 이제는 스테이커들이 네트워크의 운영권을 쥐고 있다는 것을 알아야 한다. 그리고 이것은 발행량을 조정할 때 사용자들의 합의가 있었던 채굴자 보상 축소와는 다르다. ETH를 보유하고 이더리움에서 금융 애플리케이션을 사용하거나 구축하는 사용자들, 현재 실질적인 견인력을 가진 유일한 앱들인데, 이들도 이 사안에 대해 그들과 의견이 일치한다. 그러니 현재 상태가 최적이 아니라고 믿을 수는 있지만, 솔직히 나도 최적이라고 생각하지 않는다, 당신이 편의적으로 바꾸고 싶어하는 방식으로는 바뀔 수 없다는 것도 이해해야 한다. 그래서 우리는 지금 다른 곳에 써야 할 에너지를 낭비하고 있다. 이 문제가 나타내는 사안에 대한 대안적 해법을 찾거나, 이더리움에 여전히 필요한 확장성과 UX 개선에 에너지를 쏟아야 하는데도 말이다."
+        },
+        {
+          "date": "2026-08-05",
+          "by": "MerlijnTrader",
+          "stance": "pro",
+          "quote": "지금 스테이킹 수준에서 EIP-8361은 순합의 수익률을 2.6%에서 1.2%로 낮추고, 18개월에 걸쳐 단계 적용되므로 첫날은 -13%에 그친다. 모든 스테이킹 상품이 그 수익에서 수수료를 떼므로 수익이 절반이 되면 마진도 절반이 되고, 깎을 수수료가 없는 솔로 스테이커가 가장 먼저 밀려난다. 내 생각은 낮은 발행이 ETH를 더 희소하게 만들어 내 강세장 논지에 조용히 긍정적이라는 것이다.",
+          "url": "https://x.com/MerlijnTrader/status/2085033092893593778",
+          "digest": "2026-08-05",
+          "relation": "none",
+          "original": "ETHEREUM DEVS WANTS ZERO STAKING REWARDS AT 50% STAKED.\n\nEveryone is arguing about what holders lose. The real number sits one layer down.\n\nAt today's staking level, EIP-8361 takes net consensus yield from 2.6% to 1.2%.\n\nPhased in over 18 months day one is only -13%.\n\nEvery staking product takes its fee out of that yield. Halve the yield, halve the margin. Solo stakers have no fee to cut, so they get squeezed out first.\n\nMy take: lower issuance makes $ETH scarcer quietly bullish for my bull run thesis.\n\nHegotá inclusion deadline is TOMORROW.\n\nWatching the devs, not the drama.",
+          "translation": "이더리움 개발자들은 스테이킹 비율 50퍼센트에서 스테이킹 보상을 0으로 만들고 싶어 한다. 모두가 보유자들이 무엇을 잃는지에 대해 논쟁하고 있다. 하지만 진짜 숫자는 한 단계 더 아래에 있다. 현재의 스테이킹 수준에서 EIP-8361은 순수 합의 수익률을 2.6퍼센트에서 1.2퍼센트로 낮춘다. 18개월에 걸쳐 단계적으로 도입되므로 첫날 기준으로는 겨우 마이너스 13퍼센트다. 모든 스테이킹 상품은 그 수익률에서 수수료를 떼어간다. 수익률이 절반이 되면 마진도 절반이 된다. 솔로 스테이커들은 깎을 수수료가 없기 때문에 가장 먼저 밀려난다. 내 생각은 이렇다. 발행량이 낮아지면 $ETH는 더 희소해지며, 이는 조용히 나의 강세장 논지에 긍정적이다. 헤고타 포함 마감일이 내일이다. 나는 드라마가 아니라 개발자들을 지켜보고 있다."
+        },
+        {
+          "date": "2026-08-05",
+          "by": "ManLyNFT",
+          "stance": "con",
+          "quote": "사람들은 부엌에 이미 불이 붙은 다음에야 솔로 스테이커를 떠올린다. 소화기는 최적화로 치워버리는 것보다 집에 두는 편이 낫다.",
+          "url": "https://x.com/ManLyNFT/status/2084989074499059732",
+          "digest": "2026-08-05",
+          "replyTo": "DCinvestor",
+          "relation": "reply",
+          "original": "People only remember solo stakers when the kitchen is already on fire lolll\n\nBetter to keep the fire extinguisher in the house than optimize it out.",
+          "translation": "사람들은 부엌에 이미 불이 났을 때만 솔로 스테이커를 떠올린다 ㅋㅋㅋ 소화기를 최적화한답시고 없애버리는 것보다는 집 안에 두는 게 낫다."
+        },
+        {
+          "date": "2026-08-05",
+          "by": "materkel",
+          "stance": "neutral",
+          "quote": "검증자 운영 비용은 린 이더리움에서 0에 가까워질 가능성이 크다. 스테이트리스 ZK 검증자에 얼마나 빨리 도달할지와 그것이 검증자 비용에 어떤 영향을 줄지 모르기 때문에, 우리는 사실상 낡은 데이터를 놓고 이 모든 이야기를 하는 셈이다.",
+          "url": "https://x.com/materkel/status/2085092319595040825",
+          "digest": "2026-08-04",
+          "replyTo": "OisinKyne",
+          "relation": "reply",
+          "original": "> I agree, but the least we can do it be honest that costs exist, gather them from first hand data as much as possible\n\ncosts to run a validator are likely to go to near 0 with Lean Ethereum though.\n\nSo we're really talking about all of this based on stale data, because we don't know how:\na) how fast we get to stateless ZK validators\nb) what impact it will end up having on the costs of a validator",
+          "translation": "동의한다. 하지만 최소한 우리가 할 수 있는 것은 비용이 존재한다는 사실을 솔직히 인정하고, 가능한 한 1차 데이터로부터 그 비용을 수집하는 것이다. 그런데 Lean Ethereum이 도입되면 검증인 운영 비용은 거의 0에 가까워질 가능성이 높다. 그래서 우리는 사실상 오래된 데이터를 기반으로 이 모든 것을 논하고 있는 셈이다. 왜냐하면 우리는 스테이트리스 ZK 검증인에 얼마나 빨리 도달할 것인지, 그리고 그것이 검증인 비용에 결국 어떤 영향을 미칠 것인지를 모르기 때문이다."
+        },
+        {
+          "date": "2026-08-05",
+          "by": "OisinKyne",
+          "stance": "neutral",
+          "quote": "3억 가스가 넘는 블록을 실시간으로 증명하려면 하드웨어 감가상각만으로 연 10만 달러가 넘고, 증명만 하는 쪽은 10와트 컴퓨터의 전기료가 연 16달러, ETH당 연 0.5달러 수준이다. 가장 낙관적으로 잡아도 증명 전용 클라이언트는 인건비와 인터넷, 감가상각을 빼고도 대형 거래소보다 5배 넘게 비싸므로 솔로는 위임 옵션에 비해 여전히 불리하다. 이런 EIP에 제대로 된 비용 모델이 필요한 이유가 이것이며, 그러지 않으면 린에서 비용이 0으로 간다는 말이 반박 없이 통용되고 우리는 데이터가 아니라 분위기로 일하게 된다.",
+          "url": "https://x.com/OisinKyne/status/2085103503375249648",
+          "digest": "2026-08-04",
+          "replyTo": "materkel",
+          "relation": "reply",
+          "original": "Bruh, real time proving 300m+ gas blocks will cost > $100k per year in hardware depreciation alone.\n\nFor attesters, a 10w computer costs like $16 per year only in electricity. Meaning $0.5 per eth per year.\n\nEven at the most optimistic; attester only clients costs well over 5x more than the big CEXs before labour, internet, depreciation etc. So solos are still screwed then versus the delegation option.\n\nThis is why an EIP like this needs a proper cost model because otherwise “costs will go to zero at lean” will go unchallenged and we’re working off vibes rather than data.",
+          "translation": "이봐, 3억 가스 이상의 블록을 실시간으로 증명하려면 하드웨어 감가상각비만으로도 연간 10만 달러 이상이 든다. 반면 어테스터의 경우, 10와트짜리 컴퓨터는 전기료만으로 연간 약 16달러가 든다. ETH 1개당 연간 약 0.5달러인 셈이다. 아무리 낙관적으로 봐도, 어테스터 전용 클라이언트의 비용은 인건비, 인터넷, 감가상각 등을 반영하기도 전에 이미 대형 CEX보다 5배 이상 높다. 그러니 솔로 스테이커는 위임 옵션에 비해 여전히 불리한 처지다. 이것이 바로 이런 EIP에 제대로 된 비용 모델이 필요한 이유다. 그렇지 않으면 비용은 lean 단계에서 0이 될 것이라는 주장이 아무런 반박 없이 통과되고, 우리는 데이터가 아니라 막연한 느낌에 기반해 일을 진행하게 된다."
+        },
+        {
+          "date": "2026-08-05",
+          "by": "ec265",
+          "stance": "other",
+          "quote": "1번과 2번은 실제 동인이거나 고려 대상이라고 보지 않는다. 다만 3번과 4번은 지금 확실히 과소평가되고 있고, 5번이야말로 초점이 되어야 할 지점이라고 본다.",
+          "url": "https://x.com/ec265/status/2085007253384331581",
+          "digest": "2026-08-05",
+          "replyTo": "DCinvestor",
+          "relation": "reply",
+          "original": "I don't think 1 and 2 are really the drivers or part of the consideration, but I think 3 and 4 are definitely currently  being underestimated and that 5 is where the focus should be",
+          "translation": "1번과 2번은 실제 동인이거나 고려 대상이라고는 생각하지 않지만, 3번과 4번은 확실히 현재 과소평가되고 있고 5번이야말로 초점이 맞춰져야 할 지점이라고 생각한다."
+        },
+        {
+          "date": "2026-08-05",
+          "by": "IslandHunting",
+          "stance": "pro",
+          "quote": "발행량 자체를 크게 신경 쓰는 사람은 없다. 문제는 대부분의 ETH가 LST 토큰에 들어가는 것을 원하지 않는다는 점이며, 그 상태는 플랫폼에 대한 시스템 리스크가 된다.",
+          "url": "https://x.com/IslandHunting/status/2084984335971557722",
+          "digest": "2026-08-05",
+          "replyTo": "DCinvestor",
+          "relation": "reply",
+          "original": "No one cares much about the issuance. The problem is we don’t want most ETH in LST tokens. That constitutes a systemic risk to the platform.",
+          "translation": "발행량에 신경 쓰는 사람은 별로 없다. 문제는 우리가 대부분의 ETH가 LST 토큰에 들어가 있는 걸 원하지 않는다는 점이다. 그것이 플랫폼에 시스템적 리스크를 구성한다."
+        },
+        {
+          "date": "2026-08-05",
+          "by": "IslandHunting",
+          "stance": "pro",
+          "quote": "대부분의 ETH가 LST에 있거나 그 밖의 방식으로 스테이킹된 상태는 플랫폼에 대한 시스템 리스크다. 그래서 얻는 편익이 무엇인가.",
+          "url": "https://x.com/IslandHunting/status/2084985979291480233",
+          "digest": "2026-08-04",
+          "replyTo": "LefterisJP",
+          "relation": "reply",
+          "original": "Having the majority of ETH in LSTs and otherwise staked is a systemic risk to the platform.\n\nAnd for what benefit?!",
+          "translation": "ETH의 대다수가 LST 형태로, 혹은 그 밖의 형태로 스테이킹되어 있는 것은 플랫폼에 시스템적 리스크다. 그런데 그게 대체 무슨 이득을 위해서인가?!"
+        },
+        {
+          "date": "2026-08-05",
+          "by": "MikeSilagadze",
+          "stance": "con",
+          "quote": "스테이킹된 ETH의 약 4분의 1을 중개하는 유동성 스테이킹 토큰은 ETH를 화폐로서 대체하지 않는다. 이 논리는 M1만 진짜 화폐로 치는 현금회계 수준의 경제 이해에 기대고 있으며, LST는 네트워크 레이어에서 하기에 부적절한 많은 이용자 보호를 10~15bp의 거의 0에 가까운 비용으로 구현하는 유용한 구성요소다. 화폐 공급에 최종 발행 0이 말이 된다는 비트코인식 뇌벌레를 머리에서 몰아내야 한다.",
+          "url": "https://x.com/MikeSilagadze/status/2085087234709938399",
+          "digest": "2026-08-05",
+          "relation": "none",
+          "original": "Liquid staking tokens, which intermediate about a quarter of staked $ETH, do not displace $ETH as money.\n\nThis reasoning is based on a cash-accounting level of understanding of the economy, as if only M1 counts as real money.\n\nLSTs serve as valuable building blocks, and in fact implement a lot of user protections that would not be appropriate to do at the network level. At a near zero cost of 10-15 bps.\n\nI've previously argued for enshrining liquid staking at the protocol level. I'm not making this argument because I stand to gain much from liquid staking.\n\nWe need to get the $Bitcoin brain worm out of our f*cking heads that zero terminal issuance makes any sense for a money supply.",
+          "translation": "스테이킹된 $ETH의 약 4분의 1을 중개하는 유동성 스테이킹 토큰은 $ETH를 화폐로서 대체하지 않는다. 이런 논리는 마치 M1만이 진짜 화폐로 취급되는 것처럼, 경제에 대한 현금회계 수준의 이해에 기반한 것이다. LST는 가치 있는 구성 요소로 기능하며, 실제로 네트워크 수준에서 하기에는 적절하지 않은 여러 사용자 보호 장치를 구현하고 있다. 그것도 10에서 15베이시스포인트라는 거의 제로에 가까운 비용으로 말이다. 나는 전에도 유동성 스테이킹을 프로토콜 수준에 내장하자고 주장한 바 있다. 나는 유동성 스테이킹으로 큰 이익을 얻는 입장이라서 이런 주장을 하는 것이 아니다. 우리는 화폐 공급에 있어 최종 발행량이 0이 되는 것이 말이 된다는 $Bitcoin식 사고방식을 머릿속에서 몰아내야 한다."
+        },
+        {
+          "date": "2026-08-05",
+          "by": "mzeller",
+          "stance": "con",
+          "quote": "리도와 ether.fi, Aave가 배짱을 갖고 EIP-8361을 정면으로 거부하는 모습을 본다면 흥미로울 것이다. 현실적으로는 그들이 굴복할 수밖에 없을 테니 새로운 이더리움 클래식이 생기지는 않을 것이다. 이는 상아탑을 무너뜨리고, 강제된 현실 점검으로 이더리움 내부의 권력 역학을 더 나은 쪽으로 재조정할 것이다.",
+          "url": "https://x.com/mzeller/status/2084933325244780733",
+          "digest": "2026-08-05",
+          "replyTo": "jdetychey",
+          "relation": "quote",
+          "original": "It would be interesting to see @LidoFinance @ether_fi & @aave grow a spine and straight-up refuse EIP-8361.\n\nRealistically, we won't end up with a new Ethereum Classic as they will be forced to fold.\n\nThis will take down the ivory tower and rebalance the power dynamics within Ethereum for the better with a forced reality check.",
+          "translation": "@LidoFinance, @ether_fi, @aave가 배짱을 갖고 EIP-8361을 단호히 거부하는 모습을 본다면 흥미로울 것이다. 현실적으로 우리는 새로운 이더리움 클래식으로 끝나지는 않을 것이다. 이들은 결국 굴복할 수밖에 없을 것이기 때문이다. 이는 상아탑을 무너뜨리고 강제적인 현실 점검을 통해 이더리움 내부의 권력 역학을 더 나은 방향으로 재조정할 것이다."
+        },
+        {
+          "date": "2026-08-05",
+          "by": "MrOmodulus",
+          "stance": "con",
+          "quote": "이 말에 아무리 공감해도 부족하다. 이더리움에는 '우리는 탈중앙화 맥시다, 다만 재단이 내리는 중요한 결정에서는 아니다'라는 태도를 검사받고 문 앞에 두고 오게 하는 일이 정말 필요하다.",
+          "url": "https://x.com/MrOmodulus/status/2084934499410891156",
+          "digest": "2026-08-05",
+          "replyTo": "mzeller",
+          "relation": "reply",
+          "original": "I can't like this enough. \n\nMy God does Ethereum need it's \"we're decentralization maxis!... just not with any important decision the foundation makes\", checked and left at the door.",
+          "translation": "이 의견에 아무리 좋아요를 눌러도 부족할 정도입니다. 정말이지 이더리움에는 우리는 탈중앙화 극대주의자다, 다만 재단이 내리는 중요한 결정에 관해서는 예외다라는 태도를 점검하고 문 앞에 내려놓는 과정이 필요합니다."
+        },
+        {
+          "date": "2026-08-05",
+          "by": "dapplion",
+          "stance": "pro",
+          "quote": "그들은 자기에게 손해가 되기 때문에 이미 거부했다. 하지만 이 EIP는 장기적으로 모든 홀더에게 이익이 된다.",
+          "url": "https://x.com/dapplion/status/2084966997985579291",
+          "digest": "2026-08-05",
+          "replyTo": "mzeller",
+          "relation": "reply",
+          "original": "They already refused it because it hurts them. But this EIP benefits every holder in the long term",
+          "translation": "그들은 이것이 자신들에게 손해가 되기 때문에 이미 거부했습니다. 하지만 이 EIP는 장기적으로 모든 홀더에게 이익이 됩니다."
+        },
+        {
           "date": "2026-08-06",
           "by": "xerberus",
           "stance": "con",
-          "quote": "의존성 그래프도 같은 결론을 가리킨다. 이더리움 디파이의 구성요소 약 1만 2200개를 퍼컬레이션 분석한 결과 상위 시스템 토큰 열한 개 중 다섯이 ETH 유동성 스테이킹 토큰이었고, 그 허브들 뒤에는 여분의 백본이 없었다. 그 레이어를 만들어낸 수익을 깎으면 디파이의 하중벽에 걸리는 부하가 달라진다.",
+          "quote": "의존성 그래프도 같은 결론을 가리킨다. 이더리움 디파이의 구성요소 약 1만 2,200개를 퍼컬레이션 분석한 결과 상위 시스템 토큰 열한 개 중 다섯이 ETH 유동성 스테이킹 토큰이었고, 그 허브들 뒤에는 여분의 백본이 없었다. 그 레이어를 만들어낸 수익을 깎으면 디파이의 하중벽에 걸리는 부하가 달라진다.",
           "url": "https://x.com/xerberus/status/2085267591833038864",
           "digest": "2026-08-05",
           "replyTo": "StaniKulechov",
           "relation": "reply",
           "original": "The dependency graph agrees.\n\nWe ran percolation analysis on ~12,200 building blocks in Ethereum DeFi: five of the top eleven systemic tokens are ETH liquid staking tokens, and the hubs have no redundant backbone behind them.\n\nCutting the yield that built that layer changes the load on DeFi's load-bearing walls.\n\nhttps://t.co/jpULCJSQAT",
           "translation": "의존성 그래프도 이를 뒷받침한다. 우리는 이더리움 디파이의 약 12,200개 구성 요소에 대해 퍼컬레이션 분석을 진행했다. 시스템적으로 가장 중요한 상위 11개 토큰 중 5개가 ETH 유동성 스테이킹 토큰이었고, 이 허브들 뒤에는 여분의 백본이 존재하지 않는다. 이 계층을 만들어낸 수익률을 줄이면 디파이의 하중을 지탱하는 벽들에 가해지는 부하가 달라진다."
+        },
+        {
+          "date": "2026-08-06",
+          "by": "DCinvestor",
+          "stance": "con",
+          "quote": "분명히 해두면 나도 과도한 양의 ETH가 스테이킹되는 것이 이더리움에 이롭다고 보지 않고 그것이 프로토콜에 장기 리스크를 만든다고 생각한다. 다만 스테이커와 검증자, 유저, 생태계 개발자의 동의라는 결정적 관문을 통과하지 못할 비현실적 제안을 내놓는 것은 도움이 되지 않고 상황을 악화시킬 수 있다. 과거의 발행 변경은 힘이 없던 집중된 집단에 단기 고통을 주는 대신 다른 많은 집단에 크고 가치 있는 것을 줬는데, 지금 제안은 구체적으로 주는 것 없이 많은 것을 가져가기만 한다.",
+          "url": "https://x.com/DCinvestor/status/2085333795549376996",
+          "digest": "2026-08-06",
+          "relation": "none",
+          "original": "to be clear, i don't think having excess amounts of ETH staked is beneficial for Ethereum and does in fact create longterm risks for the protocol. and we very likely need ways to manage that risk, one way or another\n\nhowever, putting forward non-starter proposals which won't pass critical gates of Staker/Validator assent, user assent, and ecosystem dev assent won't help and may actively harm this situation\n\nwhat we instead need to consider is: \"what have been the conditions where Ethereum has successfully changed its issuance policies in the past and why was it successful in those moments?\"\n\nif you look back across history, it is often because they created short-term pain for a concentrated group who did not really have the power (often the miners), but also gave something BIG and valuable to many other groups\n\nlook at all of the issuance reductions in the PoW era. could miners have opted not to run the code? yes, but almost all holders of ETH thought it was beneficial, and ultimately, they held the power by choosing the valid fork of the network. so there were no contentious hard forks\n\nthe migration to PoS is the most notable example where it obviously kneecapped miners completely (and ProgPoW and late attempts to fork failed), but it had the overwhelming support of the user community- who was promised lower issuance and staking rewards\n\nthat was a big win and it passed through easily\n\nthe problem is the current proposal doesn't GIVE anything concrete, and instead TAKES a lot away. it promises a future where we prevent hypothetical capture of the network with a tremendous cost to stakers (including and especially solo stakers who were built up as being the heart and soul of the network), users who have ETH staked (almost everyone), and users/devs of DeFi apps\n\nand while i appreciate some are trying to make the point that vanilla ETH holders are the ones who will benefit from reduced issuance, that is not the perspective of most actual vanilla ETH holders, as many of them have at least a portion of their funds staked and they perceive issuance inflation to already be low (made lower still by fee burn)\n\nso you can't simply just take radically and effectively give nothing, and be surprised when something like this won't have consensus\n\nyou are free to ignore the politics, but the politics will not ignore you\n\ni don't know what the solution is here. believe me, i wish i did. maybe it requires making bigger changes which coincide with more radical network changes (like we see in the future roadmap)\n\ni can appreciate that the people advocating for this now think we can't wait for that, but you're also burning a lot of energy and credibility because you're misreading human nature and herd behavior in this situation. and further, you are likely overestimating your own power and ability to influence that behavior based on past successes which were different in their fundamental character\n\nif anything, i hope i've opened your eyes a bit with this. the bazaar is a lot more disordered than the cathedral",
+          "translation": "분명히 해두자면, 나는 과도한 양의 ETH가 스테이킹되는 것이 이더리움에 유익하다고 생각하지 않으며, 실제로 프로토콜에 장기적인 위험을 만든다고 본다. 그리고 우리는 어떤 방식으로든 그 위험을 관리할 방법이 아마 필요할 것이다. 하지만 스테이커 및 검증인의 동의, 사용자의 동의, 생태계 개발자의 동의라는 핵심 관문을 통과하지 못할 시작부터 가망 없는 제안을 내놓는 것은 도움이 되지 않으며 오히려 이 상황을 적극적으로 악화시킬 수 있다. 대신 우리가 고려해야 할 것은 다음과 같다. 이더리움이 과거에 발행 정책을 성공적으로 바꿨던 조건은 무엇이었고, 그 순간들에 왜 성공했는가. 역사를 돌아보면, 그것은 대체로 실제로는 권력을 갖지 못한, 흔히 채굴자였던, 집중된 한 집단에게 단기적인 고통을 안기면서도, 다른 많은 집단에게는 크고 가치 있는 무언가를 준 경우였다. 작업증명 시대의 모든 발행량 감축을 보라. 채굴자들이 그 코드를 실행하지 않기로 선택할 수 있었을까. 그렇다. 하지만 거의 모든 ETH 보유자들은 그것이 유익하다고 생각했고, 결국 그들이 네트워크의 유효한 포크를 선택함으로써 권력을 쥐고 있었다. 그래서 논쟁적인 하드포크는 없었다. 지분증명으로의 이전은 가장 주목할 만한 사례로, 이는 명백히 채굴자들을 완전히 무력화시켰지만, ProgPoW와 뒤늦은 포크 시도는 실패했다, 사용자 커뮤니티의 압도적인 지지를 받았다. 그들은 더 낮은 발행량과 스테이킹 보상을 약속받았기 때문이다. 그것은 큰 승리였고 손쉽게 통과되었다. 문제는 현재의 제안이 구체적인 어떤 것도 주지 않으면서, 대신 많은 것을 빼앗아간다는 점이다. 이 제안은 네트워크에 대한 가상의 장악을 막는 미래를 약속하지만, 그 대가로 스테이커들, 특히 네트워크의 심장이자 영혼으로 여겨져 온 솔로 스테이커들을 포함해서, ETH를 스테이킹한 사용자들, 거의 모든 사람, 그리고 디파이 앱의 사용자와 개발자들에게 막대한 비용을 치르게 한다. 그리고 일부 사람들이 발행량 감소로 순수 ETH 보유자들이 이익을 볼 것이라는 주장을 펼치려 하는 것은 이해하지만, 실제 대다수의 순수 ETH 보유자들의 시각은 그렇지 않다. 그들 중 많은 이들이 자금의 최소한 일부를 스테이킹하고 있고, 발행 인플레이션이 이미 낮다고, 수수료 소각으로 인해 더욱 낮아진, 인식하고 있기 때문이다. 그러니 급진적으로 빼앗기만 하고 사실상 아무것도 주지 않으면서, 이런 일이 합의를 이루지 못한다고 놀라서는 안 된다. 정치를 무시하는 것은 당신의 자유지만, 정치는 당신을 무시하지 않을 것이다. 여기서 해법이 무엇인지는 나도 모른다. 정말로, 나도 알고 싶다. 어쩌면 미래 로드맵에서 보게 될 것과 같은 더 급진적인 네트워크 변화와 함께 더 큰 변경을 만드는 것이 필요할지도 모른다. 지금 이것을 옹호하는 사람들이 그때까지 기다릴 수 없다고 생각하는 것은 이해할 수 있지만, 그들은 이 상황에서 인간 본성과 군중 행동을 잘못 읽음으로써 많은 에너지와 신뢰를 태워버리고 있다. 게다가 그들은 근본적으로 성격이 달랐던 과거의 성공 사례를 바탕으로 그러한 행동에 영향을 미칠 수 있는 자신의 힘과 능력을 과대평가하고 있을 가능성이 높다. 혹시라도 이 글이 당신의 눈을 조금이나마 뜨게 했기를 바란다. 시장은 대성당보다 훨씬 더 무질서하다."
+        },
+        {
+          "date": "2026-08-06",
+          "by": "DCinvestor",
+          "stance": "con",
+          "quote": "발행이 줄어 자기 ETH가 희소해지느냐의 문제가 아니다. 정답을 알고 무슨 일이 벌어질지 안다고 여기는 위원회가 존재해서 라이브 네트워크에서 실험하고 이 파라미터를 거듭 바꿀 수 있다는 발상 자체가 많은 대형 ETH 홀더에게 대단히 불쾌한 것이다. 발행 정책은 서류상 좋아 보일 수 있지만 그것을 바꾸는 행위 자체가 가치를 파괴한다.",
+          "url": "https://x.com/DCinvestor/status/2085335839488266387",
+          "digest": "2026-08-06",
+          "relation": "none",
+          "original": "i will also add that there are many, many ETH holders who perceive capricious changes to ETH's issuance formula as being a MASSIVE net negative for ETH specifically\n\nit's not about an issuance reduction making their ETH more scarce. it's about the idea that a committee can exist who also \"knows the right answer and knows what will happen\" and is willing to experiment on the live network and change these parameters over and over again which is EXTREMELY unattractive to many large ETH holders\n\nthis is a situation where the \"math doesn't math.\" i.e., issuance policy can look good on paper and say \"wow, we've reduced it,\" but the act of changing it is in itself value destructive\n\nthis is why i think making point changes to issuance policy at this point is bad, and any potential changes likes this need to be considered and slotted appropriately within the totality of the network's longterm technical evolution",
+          "translation": "또한 덧붙이자면, ETH의 발행 공식에 대한 변덕스러운 변경을 ETH에 있어 구체적으로 엄청난 순손실로 인식하는 ETH 보유자들이 매우 많다. 이것은 발행량 감소가 그들의 ETH를 더 희소하게 만드는지 여부의 문제가 아니다. 문제는 정답을 알고 무슨 일이 일어날지도 안다고 자처하는 위원회가 존재해서 실제 운영 중인 네트워크에서 기꺼이 실험을 하고 이 파라미터들을 몇 번이고 계속 바꿀 수 있다는 발상이며, 이는 많은 대형 ETH 보유자들에게 극도로 매력 없게 느껴진다는 것이다. 이는 숫자가 숫자대로 맞아떨어지지 않는 상황이다. 즉, 발행 정책은 문서상으로는 좋아 보이며 발행량을 줄였다고 말할 수 있지만, 그것을 바꾸는 행위 자체가 가치를 파괴하는 것이다. 그래서 나는 지금 이 시점에 발행 정책을 콕 집어 변경하는 것이 나쁘다고 생각하며, 이런 잠재적 변경은 네트워크의 장기적인 기술적 진화 전체 안에서 적절하게 고려되고 자리매김되어야 한다고 생각한다."
+        },
+        {
+          "date": "2026-08-07",
+          "by": "LefterisJP",
+          "stance": "con",
+          "quote": "'이더리움은 민주주의가 아니다', 'ETH 홀더가 네트워크의 방향을 정하는 것이 아니다', '무엇이 최선인지는 우리가 안다, 그냥 따르라', '이건 수학이고 수학은 당신이 틀렸다고 말한다'. 최근 발행 변경 찬성 쪽에서 본 말들인데, 제정신인가. 이 제안을 밀고 있는 리서처 및 코어 개발자와 이더리움 커뮤니티 사이에 완전한 단절이 있어 보인다.",
+          "url": "https://x.com/LefterisJP/status/2085631588503556468",
+          "digest": "2026-08-07",
+          "relation": "none",
+          "original": "\"Ethereum is not a democracy\"\n\"ETH Holders don't get to decide the direction of the network\"\n\"We know what's best for you, just comply\"\n\"It's math and the math says you are wrong\"\n\nJust some quotes of the pro-issuance  I have seen around lately.\n\nAre you guys insane?\n\nThere seems to be a complete disconnect between the current researchers/core devs pushing this proposal and the ethereum community.",
+          "translation": "이더리움은 민주주의가 아니다, ETH 보유자들에게는 네트워크의 방향을 결정할 권리가 없다, 우리가 당신들에게 무엇이 최선인지 안다 그냥 따르라, 이건 수학이고 수학이 당신이 틀렸다고 말한다. 최근 발행량 찬성 측에서 본 몇 가지 발언들이다. 다들 제정신인가. 이 제안을 밀어붙이는 현재의 연구자 및 코어 개발자들과 이더리움 커뮤니티 사이에는 완전한 단절이 있는 것 같다."
+        },
+        {
+          "date": "2026-08-07",
+          "by": "LefterisJP",
+          "stance": "con",
+          "quote": "제안의 일부에는 분명 타당한 지점이 있다. 다만 제안 전체가 너무 많은 것을 한꺼번에 묶었고 커뮤니티의 동의가 없으므로, 그 이유만으로도 포함돼서는 안 된다. 먼저 말이 되는 하위 항목들에 대해 커뮤니티의 동의를 얻고 그다음에 모두가 지지할 수 있는 제안을 만들어야 한다.",
+          "url": "https://x.com/LefterisJP/status/2085634324850679919",
+          "digest": "2026-08-07",
+          "replyTo": "MicahZoltu",
+          "relation": "reply",
+          "original": "There is definitely some valid points in parts ofthe proposal. The proposal as a whole is just bundling too many things and has no community buy-in.\n\nIt should not be included just because of that. First get the community buy in for the specific sub-parts of the proposal that make sense and then formulate a proposal that everyone will stand behind.",
+          "translation": "이 제안의 일부에는 분명 타당한 지점들이 있다. 다만 제안 전체는 너무 많은 것들을 하나로 묶어놓았고, 커뮤니티의 동의를 얻지 못했다. 단지 그런 이유만으로 포함되어서는 안 된다. 먼저 이 제안 중 말이 되는 세부 항목들에 대해 커뮤니티의 동의를 얻은 다음, 모두가 지지할 수 있는 제안을 만들어야 한다."
+        },
+        {
+          "date": "2026-08-07",
+          "by": "MicahZoltu",
+          "stance": "con",
+          "quote": "나는 스테이커가 아니지만 이 제안이 통과되지 않도록 할 수 있는 일을 하겠다. 나도 대체로 그들의 논거에 동의하고 제안된 일정이 현재보다 나을 것이라는 데도 동의한다. 그렇다고 해서 살아 있는 체인의 통화정책을 바꿔도 된다는 뜻은 아니다.",
+          "url": "https://x.com/MicahZoltu/status/2085666184025018832",
+          "digest": "2026-08-07",
+          "replyTo": "lassejaco",
+          "relation": "reply",
+          "original": "@lassejaco @LefterisJP I will do what I can to prevent this proposal from going through and I am not a staker.  I also generally agree with their argument and that their proposed schedule is probably better than the current one.\n\nThat does not mean we should change the monetary policy of a live chain.",
+          "translation": "나는 스테이커가 아니지만 이 제안이 통과되지 않도록 할 수 있는 일을 할 것이다. 나 역시 그들의 주장에 대체로 동의하며, 그들이 제안한 일정이 아마 현재 일정보다 나을 것이라는 데도 동의한다. 하지만 그렇다고 해서 우리가 이미 운영 중인 체인의 통화 정책을 바꿔야 한다는 뜻은 아니다."
+        },
+        {
+          "date": "2026-08-07",
+          "by": "lex_node",
+          "stance": "con",
+          "quote": "이번 일은 이더리움 권력 구조에 내가 짐작했던 것보다 훨씬 많은 썩은 부분이 있음을 드러낸, 가면이 벗겨진 순간이었다.",
+          "url": "https://x.com/lex_node/status/2085717640132125014",
+          "digest": "2026-08-07",
+          "replyTo": "LefterisJP",
+          "relation": "reply",
+          "original": "this has been a 'mask off' moment showing that there is a lot more rot in Ethereum power structures than I ever would've guessed...",
+          "translation": "이번 일은 이더리움의 권력 구조 안에 내가 생각했던 것보다 훨씬 더 많은 부패가 있다는 걸 드러낸, 이른바 가면이 벗겨진 순간이었다..."
+        },
+        {
+          "date": "2026-08-07",
+          "by": "DefiantNews",
+          "stance": "con",
+          "quote": "ether.fi CEO 마이크 실라가제가 EIP-8363을 두고 100만 달러 공개 내기를 제안했다. 그는 이것이 통과되면 네트워크가 그 결과로 극적으로 더 집중될 것이라고 말했다. 그의 논거는 코인베이스와 바이낸스, 비트마인, 샤프링크에는 자본비용이 없지만 솔로 스테이커에게는 있다는 것이다.",
+          "url": "https://x.com/DefiantNews/status/2085779897910440396",
+          "digest": "2026-08-07",
+          "relation": "none",
+          "original": "There's Now a $1M Bet on EIP-8363:\n\n@ether_fi CEO @MikeSilagadze offers a $1M public bet on EIP-8363:\n\n\"If this goes through, the network will be dramatically more concentrated as a result.\"\n\nHis case: Coinbase, Binance, BitMine and SharpLink have no cost of capital. Solo stakers do.",
+          "translation": "이제 EIP-8363을 둘러싸고 100만 달러 규모의 내기가 걸렸다. @ether_fi의 CEO인 @MikeSilagadze는 EIP-8363에 대해 100만 달러 규모의 공개 내기를 제안했다. 이것이 통과되면 그 결과로 네트워크는 극적으로 더 집중화될 것이라는 것이 그의 주장이다. 그의 논지는 이렇다. Coinbase, Binance, BitMine, SharpLink는 자본 비용이 없지만, 솔로 스테이커들에게는 자본 비용이 있다."
+        },
+        {
+          "date": "2026-08-07",
+          "by": "longpratas",
+          "stance": "other",
+          "quote": "ETH의 90% 넘는 양은 이제 솔로 스테이커에게 있지 않다. 아는 척하는 것을 그만두라.",
+          "url": "https://x.com/longpratas/status/2085874114040840319",
+          "digest": "2026-08-07",
+          "replyTo": "DefiantNews",
+          "relation": "reply",
+          "original": "+90% of eth is not in solo stakers anymore \n\nStop pretending you know shit \n\nLmao",
+          "translation": "ETH의 90% 이상은 더 이상 솔로 스테이커의 손에 있지 않다. 뭘 아는 척 좀 그만해라 ㅋㅋ"
+        },
+        {
+          "date": "2026-08-08",
+          "by": "scupytrooples",
+          "stance": "con",
+          "quote": "이더리움이 상아탑 기술관료제의 각본을 문자 그대로 따라가고 있다.",
+          "url": "https://x.com/scupytrooples/status/2085914687607345584",
+          "digest": "2026-08-07",
+          "replyTo": "LefterisJP",
+          "relation": "reply",
+          "original": "Ethereum is following the ivory tower technocracy playbook verbatim",
+          "translation": "이더리움은 상아탑식 기술관료주의 각본을 그대로 따라가고 있다."
+        },
+        {
+          "date": "2026-08-08",
+          "by": "drjasper_eth",
+          "stance": "neutral",
+          "quote": "요즘은 LST가 곧 홈 스테이커다. 로켓풀과 오볼, 리도가 각각 수백 명의 홈 스테이커를 지원하고 있으며, 물론 스펙트럼이라는 점은 인정한다. 디파이와 Aave 쪽 집단이 어떤 감소에도 불만을 가질 것이라는 점은 맞다.",
+          "url": "https://x.com/drjasper_eth/status/2085690385007771777",
+          "digest": "2026-08-07",
+          "replyTo": "lassejaco",
+          "relation": "reply",
+          "original": "LST = home stakers these days. Rocket Pool / obol / lido all support hundreds of home stakers each now. It’s a spectrum though, granted. \n\nThe DeFi / aave cohort will be upset to any reduction though, true.",
+          "translation": "요즘 LST는 곧 홈 스테이커다. Rocket Pool, obol, lido 모두 이제 각각 수백 명의 홈 스테이커를 지원한다. 물론 스펙트럼이라는 건 인정한다. 다만 DeFi, aave 쪽 집단은 어떤 식으로든 보상이 줄어들면 불만을 가질 것이다. 그건 사실이다."
+        },
+        {
+          "date": "2026-08-08",
+          "by": "MikeSilagadze",
+          "stance": "neutral",
+          "quote": "제롬과 대화한 뒤 그의 입장을 더 잘 이해하게 됐다. 스테이킹된 ETH가 가령 50% 같은 임계를 넘으면 남은 50%에게 희석을 피하려 스테이킹할 강한 유인이 생기고 그 시점에 스테이킹 수익률은 모두에게 명목 수익이 되며, 스테이커는 가장 크고 유동적인 선택지를 선호하므로 최대 LST나 대형 중앙화 주체로 향하고, 명목 수익에 세금을 내는 솔로 스테이커는 ROI가 음수가 되어 밀려난다는 것이다. 이 모든 것에 동의하지는 않지만 전부 충분히 합당하고 타당한 지점이 있는 논거라고 생각한다.",
+          "url": "https://x.com/MikeSilagadze/status/2085909701347164557",
+          "digest": "2026-08-08",
+          "relation": "none",
+          "original": "After a conversation with @jdetychey I have a better understanding of his position. I’d like to write it down to make sure I got it right.\n\nHaving a high percentage of $ETH staked introduces a number of problems and acts as a centralizing force.\n\nSpecifically, if staked ETH crosses some threshold, say 50%, then it creates a strong incentive for the remaining 50% to stake to avoid dilution. At that point staking yield becomes nominal for all. It’s reasonable to expect that stakers will prefer the largest and most liquid staking options and so will opt for the largest LST or largest centralized staking entities.\n\nSolo stakers are harmed in this scenario because they are, in most countries, paying taxes on nominal ETH yield and so their ROI becomes negative. This pushes them out of the market further centralizing the chain.\n\nLSTs that accumulate a large percentage of ETH staked introduce tail risk because they become too big to fail. In the case of a major compromise the chain may be forced to fork.\n\nThis brings us to the other risk which is that in the case of very high percent of ETH staked the social layer (i.e. holders of non staked ETH) are not large enough in number to prevent bad actors from causing harm. For example of a large centralized staking entity decides to censor or fork the chain (e.g. Coinbase in the of some dispute over USDC.)\n\nIs that correct? Anything I got wrong @jdetychey?\n\nTo be clear, I don’t agree with all of this, but I think all these are totally reasonable points and have merit.",
+          "translation": "@jdetychey와 대화를 나눈 후 그의 입장을 더 잘 이해하게 되었다. 제대로 이해했는지 확인하기 위해 글로 정리해보고자 한다. $ETH의 높은 비율이 스테이킹되어 있는 것은 여러 문제를 일으키며 중앙화를 촉진하는 힘으로 작용한다. 구체적으로, 스테이킹된 ETH가 예를 들어 50퍼센트 같은 어떤 임계값을 넘으면, 나머지 50퍼센트도 희석을 피하기 위해 스테이킹해야 한다는 강한 유인이 생긴다. 그 시점이 되면 스테이킹 수익률은 모두에게 명목상의 수준이 된다. 스테이커들이 가장 크고 유동성이 가장 좋은 스테이킹 옵션을 선호하여 가장 큰 LST나 가장 큰 중앙화된 스테이킹 기관을 선택하리라고 예상하는 것은 합리적이다. 이 시나리오에서 솔로 스테이커들은 피해를 입는다. 대부분의 국가에서 그들은 명목 ETH 수익률에 대해 세금을 내야 하고, 그로 인해 그들의 실질 수익률이 마이너스가 되기 때문이다. 이는 그들을 시장에서 밀어내고 체인을 더욱 중앙화시킨다. 스테이킹된 ETH의 큰 비율을 축적한 LST들은 꼬리 위험을 초래한다. 이들이 실패하기에는 너무 커지기 때문이다. 중대한 침해 사고가 발생할 경우 체인이 포크를 강요받을 수도 있다. 이는 또 다른 위험으로 이어진다. ETH 스테이킹 비율이 매우 높은 경우, 소셜 레이어, 즉 스테이킹하지 않은 ETH 보유자들의 규모가 충분히 크지 않아서 악의적 행위자가 피해를 끼치는 것을 막을 수 없게 된다는 것이다. 예를 들어 어떤 대형 중앙화 스테이킹 기관이, 가령 USDC를 둘러싼 어떤 분쟁에서의 Coinbase처럼, 체인을 검열하거나 포크하기로 결정하는 경우다. 이게 맞는가. @jdetychey, 내가 잘못 이해한 부분이 있는가. 분명히 말하자면, 나는 이 모든 것에 동의하지는 않지만, 이 모든 지점들이 전적으로 타당하며 나름의 의미가 있다고 생각한다."
+        },
+        {
+          "date": "2026-08-08",
+          "by": "hanni_abu",
+          "stance": "con",
+          "quote": "임계를 넘으면 남은 50%에게 희석을 피할 강한 유인이 생긴다는 것은 매우 큰 가정이며, 다른 어떤 체인에서도 일어나지 않은 일이다. 다른 지분증명 네트워크는 수익률이 훨씬 높고 슬래싱이 없어 사실상 무위험이며 추가 스테이킹 인센티브와 네이티브 위임 스테이킹까지 있어 스테이킹이 매우 쉬운데도 그렇다.",
+          "url": "https://x.com/hanni_abu/status/2085919223159697666",
+          "digest": "2026-08-08",
+          "replyTo": "MikeSilagadze",
+          "relation": "reply",
+          "original": "> Specifically, if staked ETH crosses some threshold, say 50%, then it creates a strong incentive for the remaining 50% to stake to avoid dilution.\n\nThis is a very big assumption that hasn't happened on any other chain even though other PoS networks have much higher yield, no slashing (actually risk free), additional staking incentives, and native delegated staking (makes it very easy to stake).",
+          "translation": "구체적으로, 스테이킹된 ETH가 예를 들어 50퍼센트 같은 어떤 임계값을 넘으면, 나머지 50퍼센트도 희석을 피하기 위해 스테이킹해야 한다는 강한 유인이 생긴다는 주장에 대해. 이는 매우 큰 가정이다. 다른 PoS 네트워크들이 훨씬 더 높은 수익률, 슬래싱이 없는 실질적으로 무위험인 구조, 추가적인 스테이킹 인센티브, 그리고 네이티브 위임 스테이킹, 즉 스테이킹을 매우 쉽게 만드는 구조를 갖추고 있음에도 불구하고, 다른 어떤 체인에서도 이런 일은 일어난 적이 없다."
+        },
+        {
+          "date": "2026-08-08",
+          "by": "aibra",
+          "stance": "con",
+          "quote": "나는 그저 지금의 희석이 일부 사람들이 자기 ETH에 스마트컨트랙트 위험이나 슬래싱 같은 추가 위험을 떠안도록 만들 만큼 크지 않다고 본다.",
+          "url": "https://x.com/aibra/status/2085920489331925099",
+          "digest": "2026-08-08",
+          "replyTo": "MikeSilagadze",
+          "relation": "reply",
+          "original": "I just don't think the dilution is high enough for some people to feel compelled to take on extra \"risk\" their eth (smart contract risk, slashing, etc.)",
+          "translation": "나는 그저 희석 정도가 충분히 크지 않아서 일부 사람들이 자신의 eth에 추가적인 '리스크'(스마트 컨트랙트 리스크, 슬래싱 등)를 감수해야겠다고 느낄 정도는 아니라고 생각한다."
+        },
+        {
+          "date": "2026-08-08",
+          "by": "JourneyMacro",
+          "stance": "con",
+          "quote": "첫째로 LST와 대형 스테이커는 솔로 스테이킹을 할 32 ETH가 없거나 복잡한 절차를 감당하기 싫은 수백만 명일 뿐이다. 둘째로 50%를 넘으면 비스테이커 희석이 가속된다는 증거는 전혀 없고, 수수료 소각이 희석의 영향을 줄이며, 많은 비스테이커는 희석을 ETH 보안 비용으로 받아들이고 불만이 있다면 스테이킹하면 된다. 마지막으로 솔로 스테이킹을 더 쉽고 저렴하게 만들면 LST와 대형 풀은 훨씬 줄어들 것이다.",
+          "url": "https://x.com/JourneyMacro/status/2085921702404628594",
+          "digest": "2026-08-08",
+          "replyTo": "MikeSilagadze",
+          "relation": "reply",
+          "original": "Firstly, LSTs and large stakers are simply millions of people who don't have 32 ETH to do solo staking or can't be bothered to go through the complexities\n\nSecondly, there is zero proof that going over 50% will somehow accelerate dilution for non-stakers\n\nThirdly, the effect on non-stakers is ameliorated by the fact that fee burns reduce the impact of dilution\n\nFourthly, many non-stakers accept dilution as the cost of securing ETH and have no issues with it - if they had an issue with it, they can stake their ETH\n\nLastly, if we made solo staking easier and cheaper, there would likely be a lot less LSTs and large pools",
+          "translation": "첫째, LST와 대형 스테이커들은 단순히 솔로 스테이킹을 하기 위한 32 ETH가 없거나 복잡한 절차를 감수하고 싶지 않은 수백만 명의 사람들일 뿐이다. 둘째, 50퍼센트를 넘는 것이 어떤 식으로든 비스테이커들의 희석을 가속화한다는 증거는 전혀 없다. 셋째, 비스테이커들에게 미치는 영향은 수수료 소각이 희석의 영향을 줄여준다는 사실로 완화된다. 넷째, 많은 비스테이커들은 희석을 ETH 보안 확보를 위한 비용으로 받아들이며 이에 별다른 불만이 없다. 만약 불만이 있다면 그들도 ETH를 스테이킹하면 된다. 마지막으로, 솔로 스테이킹을 더 쉽고 저렴하게 만든다면 LST와 대형 풀은 아마 훨씬 줄어들 것이다."
+        },
+        {
+          "date": "2026-08-08",
+          "by": "hedgefunder01",
+          "stance": "con",
+          "quote": "스테이킹 비율이 높다는 것이 낮을 때보다 왜 더 큰 스테이킹 유인이 되는가. 연 0.2%의 추가 희석을 피하려고 그런다는 말은 성립하지 않는다. 희석을 피하려 스테이킹할 사람이라면 이미 그렇게 했을 것이고, 50% 임계를 기다리고 있지 않다.",
+          "url": "https://x.com/hedgefunder01/status/2085975342401917356",
+          "digest": "2026-08-08",
+          "replyTo": "MikeSilagadze",
+          "relation": "reply",
+          "original": "Why is a high staking ratio more of an incentive for people to stake than a low staking ratio? To avoid an extra 0.2% dilution per year? It’s nonsense \n\nIf people wanted to stake to avoid dilution they’d do so already. They aren’t waiting for a 50% threshold",
+          "translation": "왜 높은 스테이킹 비율이 낮은 스테이킹 비율보다 사람들에게 스테이킹할 더 강한 유인이 되는가? 연간 추가로 0.2% 희석되는 걸 피하려고? 말이 안 된다. 사람들이 희석을 피하려고 스테이킹을 하고 싶었다면 이미 그렇게 했을 것이다. 50%라는 임계치를 기다리고 있는 게 아니다."
+        },
+        {
+          "date": "2026-08-08",
+          "by": "donnoh_eth",
+          "stance": "neutral",
+          "quote": "솔라나는 50%를 넘었다.",
+          "url": "https://x.com/donnoh_eth/status/2085987101066015201",
+          "digest": "2026-08-08",
+          "replyTo": "hanni_abu",
+          "relation": "reply",
+          "original": "solana is above 50%",
+          "translation": "솔라나는 50%를 넘는다."
+        },
+        {
+          "date": "2026-08-08",
+          "by": "donnoh_eth",
+          "stance": "neutral",
+          "quote": "어쨌든 어느 체인도 필연적으로 스테이킹 비율 100%로 간다는 증거는 거의 없다는 데는 동의한다.",
+          "url": "https://x.com/donnoh_eth/status/2085989737676849632",
+          "digest": "2026-08-08",
+          "relation": "none",
+          "original": "@hanni_abu @MikeSilagadze @jdetychey in any case i agree there’s little evidence any of them is inevitably going to 100%…",
+          "translation": "어쨌든 나는 이들 중 어느 것도 필연적으로 100퍼센트까지 갈 것이라는 증거가 거의 없다는 데 동의한다."
+        },
+        {
+          "date": "2026-08-09",
+          "by": "DefiantNews",
+          "stance": "con",
+          "quote": "마르크 젤러가 촉구한 대로 ether.fi가 업그레이드를 거부하겠느냐는 질문에 마이크 실라가제는 '우리는 업그레이드를 거부하지 않을 것이다. 그것은 차원이 완전히 다른 파괴 행위다'라고 답했다. 다만 ether.fi는 유동성 스테이킹에서 아예 철수할 가능성이 크다고 했다. 그래서 마이크는 EIP-8363이 소형 LST를 죽일 것이라고 말한다. 그 ETH는 전부 '아마 리도로 밀려갈 것'이기 때문이다.",
+          "url": "https://x.com/DefiantNews/status/2086456837667221943",
+          "digest": "2026-08-09",
+          "relation": "none",
+          "original": "Asked whether @ether_fi would refuse the upgrade, as @mzeller urged:\n\n\"We would not refuse the upgrade. That would be destructive on a whole other level,\" BUT https://t.co/B22CyJbkII would likely exit liquid staking altogether, @MikeSilagadze said.\n\nWhich is why Mike says EIP-8363 would kill small LSTs: All that ETH \"would probably get shunted to Lido.\"",
+          "translation": "@mzeller가 촉구한 대로 @ether_fi가 업그레이드를 거부할 것인지 묻자, @MikeSilagadze는 이렇게 답했다. 우리는 업그레이드를 거부하지 않을 것이다, 그것은 완전히 다른 차원에서 파괴적일 것이다. 다만 링크로 언급된 대상은 유동성 스테이킹 사업에서 아예 철수할 가능성이 높다고 그는 말했다. 그래서 Mike는 EIP-8363이 소규모 LST들을 죽일 것이라고 말한다. 그 모든 ETH가 아마 Lido로 옮겨갈 것이기 때문이다."
         },
         {
           "date": "2026-08-14",
@@ -1481,7 +2065,7 @@
           "date": "2026-08-27",
           "by": "LidoFinance",
           "stance": "neutral",
-          "quote": "EIP-8363은 스테이킹된 비중이 ETH 공급의 50%에 가까워질수록 검증자 보상을 0을 향해 줄여가자는 제안으로, 시장 전반의 스테이킹 보상을 압축해 리도의 미래에 실질적인 영향을 준다. 리도 DAO는 낮은 발행 체제에서도 흑자를 낼 수 있지만 운영비를 조이고 큐레이티드 세트를 줄이며 다양성보다 비용을 중시하는 더 가벼운 프로토콜이 될 것이고, 일부 조치는 이미 진행 중이다. 또 다른 경로는 스테이킹 밖에서 매출을 키우는 것으로 이는 이미 2026년 목표에 들어가 있다.",
+          "quote": "EIP-8363은 스테이킹된 비중이 ETH 공급의 50%에 가까워질수록 검증자 보상을 0을 향해 줄여가자는 제안으로, 시장 전반의 스테이킹 보상을 압축해 리도의 미래에 실질적인 영향을 준다. 리도 DAO는 낮은 발행 체제에서도 흑자를 낼 수 있지만 운영비를 조이고 큐레이티드 세트를 줄이며 다양성보다 비용을 중시하는 더 가벼운 프로토콜이 될 것이고, 일부 조치는 이미 진행 중이다. 또 다른 경로는 스테이킹 밖에서 매출을 키우는 것으로 이미 2026년 목표에 들어가 있으며, Lido Earn과 Wisp 등이 매출을 내고 있고 2026년에 또 다른 매출원이 제안될 예정이다.",
           "url": "https://x.com/LidoFinance/status/2093054807821127796",
           "digest": "2026-08-27",
           "relation": "none",
@@ -1780,993 +2364,6 @@
       },
       "background": "EIP 절차는 이더리움 L1의 합의와 실행 레이어 변경을 다루는 것을 중심으로 운영된다. L2에 공통으로 필요한 EVM 변경을 위해서는 별도로 롤업 개선 제안(Rollup Improvement Proposal, RIP) 트랙과 롤업 조율 회의가 만들어졌고, P-256 서명 검증 프리컴파일(precompile)을 정의한 RIP-7212처럼 여러 L2가 함께 채택한 사례도 나왔다. 다만 이 대화에서 보이듯 트랙이 계속 굴러가고 있는지에 대해서는 참여자들 사이에 회의적인 인식이 있다. L2에 먼저 필요한 변경을 어디서 다룰지는 실제 제안에서도 반복되는 문제로, Base는 계정 추상화(account abstraction) 제안인 EIP-8130을 L1 EIP 절차에 정식 제출하면서 메인넷용 Level 1과 고처리량 L2용 Level 2 프로필을 함께 담았고, 자체 체인에는 2026년 9월 Cobalt 업그레이드로 먼저 적용할 예정이다.",
       "whyItMatters": "실행의 상당 부분이 L2에서 일어나는 상황에서 표준화 절차가 L1을 먼저 우선한다면, L2에만 필요한 EVM 변경은 공식 규격 없이 각 체인이 제각기 구현하는 쪽으로 흘러간다. 같은 기능이 체인마다 다른 형태로 존재하면 지갑과 개발 도구가 그 차이를 흡수해야 하고, 규모가 큰 롤업이 사실상의 표준을 정하는 결과가 되기 쉽다."
-    },
-    {
-      "id": "staking-providers-refuse-upgrade",
-      "title": "리도와 ether.fi, Aave는 EIP-8363 업그레이드를 거부해야 하나",
-      "category": "거버넌스 · 커뮤니티",
-      "summary": "마크 젤러는 리도와 ether.fi, Aave가 EIP-8363을 정면으로 거부하기를 바란다며, 새로운 이더리움 클래식이 생기지는 않겠지만 그 과정에서 사업자들이 접을 수밖에 없고 그것이 상아탑을 무너뜨려 이더리움 내부의 권력 역학을 재조정할 것이라고 했다. ether.fi의 마이크 실라가제는 업그레이드를 거부하지 않겠다며 그것은 차원이 완전히 다른 파괴 행위라고 답하는 대신 리퀴드 스테이킹(liquid staking)에서 철수할 수 있다고 했고, 공동 저자 dapplion은 그들이 자기에게 손해라서 이미 거부한 것이라고 받아쳤다.",
-      "keyPoints": [
-        "대형 스테이킹·디파이 사업자의 업그레이드 거부가 권력 균형을 되돌리는 수단인가, 차원이 다른 파괴 행위인가",
-        "거부가 실행돼도 새로운 이더리움 클래식이 아니라 사업자가 접는 결말로 끝나는가",
-        "사업자의 반대가 생태계 방어인가 자기 수익 방어인가, 그리고 거부 대신 리퀴드 스테이킹 철수가 실질적인 카드인가"
-      ],
-      "background": "EIP-8363 'Tapered Issuance Burn'은 검증자(validator)의 합의 보상에 스테이킹 비율(staking ratio)에 따른 소각(burn) 비율을 적용하는 제안으로, 하드포크(hard fork)가 필요한 합의 레이어 변경이며 실행 레이어는 바꾸지 않는다. 공개 직후 언론과 트위터에서 EIP-8361로 잘못 표기된 경우가 많았고 마크 젤러의 트윗도 그 초기 표기를 썼는데, 정식 번호는 EIP-8363이다. 이 제안은 헤고타(Hegotá) 포크의 PFI 마감 직전에 제출됐으나 PFI에 오르지 못했고 어떤 업그레이드에도 예정돼 있지 않다. 하드포크 방식이므로 노드 운영자와 스테이킹 사업자가 클라이언트 업그레이드를 받아들이지 않으면 체인이 갈릴 수 있다는 점이 이 논쟁의 전제다. Aave Chan Initiative의 마크 젤러가 거부를 촉구한 뒤 ether.fi는 거부하지 않겠다고 답했고, 리도는 거부를 말하는 대신 기여자 그룹의 견해를 이더리움 매지션스에 올려 더 깊은 검토를 요구했다. 리도 측 논거는 발행(issuance) 보상이 슬래시 가능한 지분뿐 아니라 노드 운영자 다양성과 검열 저항성을 사는 비용이라는 것이다.",
-      "whyItMatters": "이 다툼은 지분증명 아래에서 대형 스테이킹 사업자가 경제 파라미터 변경에 사실상의 거부권을 갖는지를 공개적으로 시험한다. 젤러의 주장에서도 거부의 결말은 체인 분기가 아니라 사업자가 접는 쪽이므로, 거부 카드의 실효성 자체가 논점이 된다. dapplion의 반박처럼 사업자의 반대가 이해관계의 표현으로만 읽히면 이들이 제기한 기술적 반대 논거 전체의 무게도 함께 줄어든다. 지켜볼 지점은 실라가제가 예고한 대로 소형 LST가 정리되고 그 물량이 리도로 쏠리는지, 그리고 리도가 요구한 더 깊은 검토가 실제 절차로 이어지는지다.",
-      "sources": [
-        {
-          "title": "Lido calls for deeper review before EIP-8363 advances",
-          "url": "https://www.cryptotimes.io/2026/08/15/lido-calls-for-deeper-review-before-eip-8363-advances/"
-        },
-        {
-          "title": "EIP-8363 staking issuance burn reaction: Kulechov, Silagadze",
-          "url": "https://thedefiant.io/news/blockchains/eip-8363-staking-issuance-burn-reaction-kulechov-silagadze"
-        },
-        {
-          "title": "EIP-8363 Tapered Issuance Burn 논의 스레드",
-          "url": "https://ethereum-magicians.org/t/eip-8363-tapered-issuance-burn/29263"
-        }
-      ],
-      "keywords": [
-        "EIP-8363",
-        "Lido",
-        "ether.fi",
-        "upgrade refusal"
-      ],
-      "positions": [
-        {
-          "stance": "pro",
-          "label": "정면으로 거부해서 권력 역학을 되돌려야 한다",
-          "holders": [
-            {
-              "handle": "mzeller",
-              "name": "Marc Zeller",
-              "role": "Aave Chan Initiative",
-              "avatar": "https://pbs.twimg.com/profile_images/1757172379535478784/1hreT0cm_400x400.jpg"
-            },
-            {
-              "handle": "MrOmodulus",
-              "name": "Mr O’Moduluszk",
-              "avatar": "https://pbs.twimg.com/profile_images/1992028010866741248/kGenhIWg_400x400.jpg"
-            }
-          ],
-          "points": [
-            "리도와 ether.fi, Aave가 배짱을 갖고 이 제안을 정면으로 거부하는 모습을 보는 것이 의미가 있다.",
-            "현실적으로 새로운 이더리움 클래식이 나오지는 않는다. 사업자들이 접을 수밖에 없기 때문이다.",
-            "그 강제된 현실 점검이 상아탑을 무너뜨리고 이더리움 내부의 권력 역학을 더 나은 방향으로 재조정한다.",
-            "재단이 내리는 중요한 결정 앞에서만 탈중앙화를 접어두는 태도를 문 앞에서 검사받게 만들어야 한다."
-          ]
-        },
-        {
-          "stance": "con",
-          "label": "거부는 하지 않는다, 혹은 그들의 거부는 이해관계의 표현일 뿐이다",
-          "holders": [
-            {
-              "handle": "MikeSilagadze",
-              "name": "Mike Silagadze🛡",
-              "role": "ether.fi CEO",
-              "avatar": "https://pbs.twimg.com/profile_images/1679988845171953666/21wndiIr_400x400.jpg"
-            },
-            {
-              "handle": "dapplion",
-              "name": "Lion ⟠ dapplion .eth",
-              "role": "EIP-8363 공동 저자",
-              "avatar": "https://pbs.twimg.com/profile_images/1252685351589683201/Li7emKr-_400x400.jpg"
-            }
-          ],
-          "points": [
-            "업그레이드를 거부하지는 않겠다. 그것은 차원이 완전히 다른 파괴 행위다.",
-            "대신 리퀴드 스테이킹 사업에서 아예 철수하는 선택은 가능하다.",
-            "이 제안은 소형 LST를 죽이고, 그 ETH는 결국 리도로 밀려갈 가능성이 크다.",
-            "그들은 자기에게 손해가 되기 때문에 이미 거부했지만, 이 EIP는 장기적으로 모든 홀더에게 이익이 된다."
-          ]
-        },
-        {
-          "stance": "neutral",
-          "label": "거부가 아니라 더 깊은 검토를 요구한다",
-          "holders": [
-            {
-              "handle": "LidoFinance",
-              "name": "Lido",
-              "role": "리퀴드 스테이킹 프로토콜 공식 계정",
-              "avatar": "https://pbs.twimg.com/profile_images/2017230622322839552/rh0ZIP84_400x400.jpg"
-            }
-          ],
-          "points": [
-            "거부를 선언하는 대신 기여자 그룹의 견해를 이더리움 매지션스에 게시했다.",
-            "EIP-8363만이 아니라 발행 논의 전반을 함께 다루는 방식으로 입장을 냈다.",
-            "발행 보상은 슬래시 가능한 지분뿐 아니라 노드 운영자 다양성과 검열 저항성을 사는 비용이라는 점이 검토의 핵심이다."
-          ]
-        }
-      ],
-      "timeline": [
-        {
-          "date": "2026-08-05",
-          "by": "mzeller",
-          "stance": "pro",
-          "quote": "리도와 ether.fi, Aave가 배짱을 갖고 EIP-8361을 정면으로 거부하는 모습을 본다면 흥미로울 것이다. 현실적으로 새로운 이더리움 클래식이 생기지는 않을 것이다. 그들이 접을 수밖에 없을 것이기 때문이다. 이는 상아탑을 무너뜨리고, 강제된 현실 점검으로 이더리움 내부의 권력 역학을 더 나은 방향으로 재조정할 것이다.",
-          "url": "https://x.com/mzeller/status/2084933325244780733",
-          "digest": "2026-08-05",
-          "replyTo": "jdetychey",
-          "relation": "quote",
-          "original": "It would be interesting to see @LidoFinance @ether_fi & @aave grow a spine and straight-up refuse EIP-8361.\n\nRealistically, we won't end up with a new Ethereum Classic as they will be forced to fold.\n\nThis will take down the ivory tower and rebalance the power dynamics within Ethereum for the better with a forced reality check.",
-          "translation": "@LidoFinance, @ether_fi, @aave가 배짱을 갖고 EIP-8361을 단호히 거부하는 모습을 본다면 흥미로울 것이다. 현실적으로 우리는 새로운 이더리움 클래식으로 끝나지는 않을 것이다. 이들은 결국 굴복할 수밖에 없을 것이기 때문이다. 이는 상아탑을 무너뜨리고 강제적인 현실 점검을 통해 이더리움 내부의 권력 역학을 더 나은 방향으로 재조정할 것이다."
-        },
-        {
-          "date": "2026-08-05",
-          "by": "MrOmodulus",
-          "stance": "pro",
-          "quote": "이 말에 아무리 공감해도 부족하다. 이더리움에는 '우리는 탈중앙화 맥시다, 다만 재단이 내리는 중요한 결정에서는 아니다'라는 태도를 검사받고 문 앞에 두고 오게 하는 일이 정말 필요하다.",
-          "url": "https://x.com/MrOmodulus/status/2084934499410891156",
-          "digest": "2026-08-05",
-          "replyTo": "mzeller",
-          "relation": "reply",
-          "original": "I can't like this enough. \n\nMy God does Ethereum need it's \"we're decentralization maxis!... just not with any important decision the foundation makes\", checked and left at the door.",
-          "translation": "이 의견에 아무리 좋아요를 눌러도 부족할 정도입니다. 정말이지 이더리움에는 우리는 탈중앙화 극대주의자다, 다만 재단이 내리는 중요한 결정에 관해서는 예외다라는 태도를 점검하고 문 앞에 내려놓는 과정이 필요합니다."
-        },
-        {
-          "date": "2026-08-05",
-          "by": "dapplion",
-          "stance": "con",
-          "quote": "그들은 자기에게 손해가 되기 때문에 이미 거부했다. 하지만 이 EIP는 장기적으로 모든 홀더에게 이익이 된다.",
-          "url": "https://x.com/dapplion/status/2084966997985579291",
-          "digest": "2026-08-05",
-          "replyTo": "mzeller",
-          "relation": "reply",
-          "original": "They already refused it because it hurts them. But this EIP benefits every holder in the long term",
-          "translation": "그들은 이것이 자신들에게 손해가 되기 때문에 이미 거부했습니다. 하지만 이 EIP는 장기적으로 모든 홀더에게 이익이 됩니다."
-        },
-        {
-          "date": "2026-08-09",
-          "by": "DefiantNews",
-          "stance": "con",
-          "quote": "마크 젤러가 촉구한 대로 ether.fi가 업그레이드를 거부하겠느냐는 질문에 마이크 실라가제는 '우리는 업그레이드를 거부하지 않을 것이다. 그것은 차원이 완전히 다른 파괴 행위다'라고 답했다. 다만 ether.fi는 리퀴드 스테이킹에서 아예 철수할 가능성이 크다고 했다. 그래서 마이크는 EIP-8363이 소형 LST를 죽일 것이라고 말한다. 그 ETH는 전부 '아마 리도로 밀려갈 것'이기 때문이다.",
-          "url": "https://x.com/DefiantNews/status/2086456837667221943",
-          "digest": "2026-08-09",
-          "relation": "none",
-          "original": "Asked whether @ether_fi would refuse the upgrade, as @mzeller urged:\n\n\"We would not refuse the upgrade. That would be destructive on a whole other level,\" BUT https://t.co/B22CyJbkII would likely exit liquid staking altogether, @MikeSilagadze said.\n\nWhich is why Mike says EIP-8363 would kill small LSTs: All that ETH \"would probably get shunted to Lido.\"",
-          "translation": "@mzeller가 촉구한 대로 @ether_fi가 업그레이드를 거부할 것인지 묻자, @MikeSilagadze는 이렇게 답했다. 우리는 업그레이드를 거부하지 않을 것이다, 그것은 완전히 다른 차원에서 파괴적일 것이다. 다만 링크로 언급된 대상은 유동성 스테이킹 사업에서 아예 철수할 가능성이 높다고 그는 말했다. 그래서 Mike는 EIP-8363이 소규모 LST들을 죽일 것이라고 말한다. 그 모든 ETH가 아마 Lido로 옮겨갈 것이기 때문이다."
-        },
-        {
-          "date": "2026-08-14",
-          "by": "LidoFinance",
-          "stance": "neutral",
-          "quote": "리도 기여자 그룹이 EIP-8363과 더 넓은 발행 논의에 대한 견해를 이더리움 매지션스에 게시했다.",
-          "url": "https://x.com/LidoFinance/status/2088307289258070508",
-          "digest": "2026-08-14",
-          "relation": "none",
-          "original": "A group of Lido contributors have posted their view on EIP-8363, and the broader issuance discussion, on ETH Magicians.\n\nethereum-magicians.org/t/eip-8363-tap…",
-          "translation": "Lido 기여자 그룹이 EIP-8363과 더 넓은 발행량 논의에 대한 자신들의 견해를 ETH Magicians에 게시했다."
-        }
-      ],
-      "firstSeen": "2026-08-05",
-      "lastActivity": "2026-08-14",
-      "status": "cooling",
-      "rootUrl": "https://x.com/mzeller/status/2084933325244780733",
-      "engagement": {
-        "likes": 283,
-        "retweets": 16,
-        "quotes": 3,
-        "replies": 28,
-        "views": 37959
-      }
-    },
-    {
-      "id": "issuance-change-governance-legitimacy",
-      "title": "발행 정책 변경을 코어 개발자와 리서처가 결정할 수 있나",
-      "category": "거버넌스 · 커뮤니티",
-      "summary": "발행(issuance)을 줄이는 EIP-8363이 헤고타 포크의 PFI 마감 직전에 공개되자 절차와 결정 주체를 두고 논쟁이 벌어졌다. 마이크 실라가제는 의견 수렴 기간이 48시간뿐이었고 자신을 포함해 어떤 빌더도 사전에 의견을 요청받지 못했다고 했고, DCinvestor는 스테이커와 유저, 생태계 개발자의 동의라는 관문을 통과하지 못할 제안이라고 봤으며, 레프테리스는 이더리움은 민주주의가 아니라는 식의 발언을 인용하며 제안을 미는 리서처·코어 개발자와 커뮤니티 사이의 단절을 지적했다. 반대편에서 단크라드와 라리루레로는 바꿔야 한다고 보는 사람들이 실제로 있고 이 논의는 2024년부터 이어져 온 것이라고 맞섰고, 핀테일은 과잉 발행이 포획으로 이어진다는 논거를 일축하지 말고 논쟁에 참여해 달라고 했다.",
-      "keyPoints": [
-        "의견 수렴 48시간과 빌더 사전 협의 부재를 정상적인 검토 과정으로 볼 수 있나",
-        "스테이커와 유저, 생태계 개발자의 동의가 발행 변경의 필수 관문인가",
-        "채굴자 보상을 줄이던 시절과 스테이커가 운영권을 쥔 지금이 무엇이 다른가",
-        "파라미터를 언제든 다시 조정할 수 있다는 사실 자체가 ETH에 부정적인가"
-      ],
-      "background": "EIP-8363(공개 직후 EIP-8361로도 표기됐다)은 검증자(validator)의 합의 보상에 소각(burn) 비율을 적용해 스테이킹 비율(staking ratio)이 오를수록 발행 기반 수익률(yield)이 낮아지게 하는 제안이다. 실행에는 하드포크(hard fork)가 필요하다. 2026년 8월 4일 헤고타(Hegotá) 포크의 PFI 마감 직전에 공개돼 의견을 받을 시간이 사실상 이틀뿐이었다는 비판을 받았고, 결국 PFI 목록에 오르지 못해 현재 어떤 업그레이드에도 편성돼 있지 않다. 발행 곡선 조정 논의 자체는 2024년 안데르스 엘로우손과 캐스퍼 슈바르츠실링, 저스틴 드레이크의 제안으로 이더리움 매지션스에서 이미 진행됐다. ethvaorg가 연 검증자 투표에서는 초반에 반대 물량만 쌓였다.",
-      "whyItMatters": "이 다툼의 결과는 발행 수치보다 이더리움에서 무엇이 합의의 조건인지를 정한다. 스테이커와 유저, 앱 개발자의 동의가 사실상의 관문으로 굳어지면 앞으로의 경제 파라미터 변경은 기술적 타당성만으로는 통과하기 어려워진다. 지켜볼 지점은 다음 포크의 PFI 논의에서 이번 절차 비판이 실제 규칙 변화로 이어지는지다.",
-      "sources": [
-        {
-          "title": "EIP-8363: Tapered Issuance Burn",
-          "url": "https://eips.ethereum.org/EIPS/eip-8363"
-        },
-        {
-          "title": "EIP-8363 Tapered Issuance Burn 논의 스레드",
-          "url": "https://ethereum-magicians.org/t/eip-8363-tapered-issuance-burn/29263"
-        },
-        {
-          "title": "Breaking Down Ethereum's New Issuance Debate",
-          "url": "https://www.bankless.com/read/breaking-down-ethereums-new-issuance-debate"
-        }
-      ],
-      "keywords": [
-        "EIP-8363",
-        "Hegota PFI",
-        "Ethereum governance",
-        "issuance debate"
-      ],
-      "positions": [
-        {
-          "stance": "pro",
-          "label": "커뮤니티의 동의 없이 살아 있는 체인의 통화정책을 바꿀 수 없다",
-          "holders": [
-            {
-              "handle": "MikeSilagadze",
-              "name": "Mike Silagadze🛡",
-              "role": "ether.fi CEO",
-              "avatar": "https://pbs.twimg.com/profile_images/1679988845171953666/21wndiIr_400x400.jpg"
-            },
-            {
-              "handle": "LefterisJP",
-              "name": "Lefteris Karapetsas",
-              "role": "rotki 창업자",
-              "avatar": "https://pbs.twimg.com/profile_images/1614974901399461889/XcNUc8zL_400x400.jpg"
-            },
-            {
-              "handle": "DCinvestor",
-              "name": "DCinvestor",
-              "avatar": "https://pbs.twimg.com/profile_images/1548726894417305601/Ko19bO_Q_400x400.png",
-              "role": "인플루언서·투자자"
-            },
-            {
-              "handle": "MicahZoltu",
-              "name": "Micah Zoltu",
-              "avatar": "https://pbs.twimg.com/profile_images/1753310055825588224/jWyc9_0H_400x400.jpg",
-              "role": "이더리움 독립 보안 연구자"
-            },
-            {
-              "handle": "lex_node",
-              "name": "_gabrielShapir0",
-              "role": "MetaLeX Labs 변호사",
-              "avatar": "https://pbs.twimg.com/profile_images/2058233189882032128/pRSMN_6C_400x400.jpg"
-            },
-            {
-              "handle": "peter_szilagyi",
-              "name": "Péter Szilágyi",
-              "role": "Geth 리드",
-              "avatar": "https://pbs.twimg.com/profile_images/1115781490/gravatar_400x400.jpeg"
-            },
-            {
-              "handle": "scupytrooples",
-              "name": "scoopy.sockpupp.eth",
-              "avatar": "https://pbs.twimg.com/profile_images/2085582898581962753/a-7_3Oyh_400x400.jpg",
-              "role": "Alchemix Finance 팀"
-            },
-            {
-              "handle": "emilianobonassi",
-              "name": "Emiliano Bonassi",
-              "avatar": "https://pbs.twimg.com/profile_images/1725948618366976000/7PRN5p9f_400x400.png",
-              "role": "Boundless 엔지니어링 VP"
-            }
-          ],
-          "points": [
-            "디파이 전반에 광범위한 영향을 미치는 네트워크 경제 변경을 48시간 의견 수렴으로 내놓았고 빌더 누구도 사전에 의견을 요청받지 못했다. 이런 방식은 네트워크가 소수 내부자에 의해 운영된다는 비판을 뒷받침하고 거버넌스와 안정성에 대한 신뢰를 떨어뜨린다.",
-            "제안의 일부에는 타당한 지점이 있지만 전체가 너무 많은 것을 한 묶음으로 담았고 커뮤니티의 동의가 없다. 말이 되는 하위 항목별로 먼저 동의를 얻고 모두가 지지할 제안을 다시 만들어야 한다.",
-            "논거와 제안된 일정이 현재보다 낫다는 데 동의하더라도, 그것이 살아 있는 체인의 통화정책을 바꿔도 된다는 뜻은 아니다.",
-            "지분증명 아래에서는 스테이커가 네트워크 운영권을 쥐고 있어 채굴자 보상을 줄이던 시절과 같지 않다. 지금 발행을 급격히 바꾸면 분쟁적 하드포크를 피하기 어렵다.",
-            "과거 발행 축소가 성공한 조건은 힘이 없던 집중된 집단에 단기 고통을 주는 대신 다른 많은 집단에 크고 가치 있는 것을 줬다는 데 있다. 이번 제안은 구체적으로 주는 것 없이 가져가기만 한다."
-          ]
-        },
-        {
-          "stance": "con",
-          "label": "수년간 이어진 논의의 연장이고 쟁점은 아직 열려 있다",
-          "holders": [
-            {
-              "handle": "dankrad",
-              "name": "Dankrad Feist",
-              "role": "이더리움 리서처, 데이터 가용성·확장성",
-              "avatar": "https://pbs.twimg.com/profile_images/1115816977061351424/HdvT_PLp_400x400.png"
-            },
-            {
-              "handle": "LaLiLuLeL0x",
-              "name": "La-Li-Lu-Le-Lo",
-              "avatar": "https://pbs.twimg.com/profile_images/2090373729578532864/T5jsuU-4_400x400.jpg",
-              "role": "Glue Finance 빌더"
-            },
-            {
-              "handle": "pintail_xyz",
-              "name": "pintail",
-              "role": "EIP-8363 공동 저자",
-              "avatar": "https://pbs.twimg.com/profile_images/917505259920125954/UgDQAWsZ_400x400.jpg"
-            }
-          ],
-          "points": [
-            "발행을 건드릴 필요가 없다는 결론이 이미 났다는 주장은 성립하지 않는다. 바꿔야 한다고 믿는 사람들이 실제로 있기 때문이다.",
-            "발행 문제는 2024년부터 이더리움 매지션스에서 여러 제안으로 논의돼 왔고 이번 EIP는 그 논의가 쌓인 결과일 가능성이 크다.",
-            "과잉 발행이 포획으로 이어진다는 논거는 수사적 술책이 아니므로 일축하지 말고 논쟁에 참여해야 한다."
-          ]
-        }
-      ],
-      "timeline": [
-        {
-          "date": "2026-08-04",
-          "by": "MikeSilagadze",
-          "stance": "pro",
-          "quote": "모든 면에서 너무나 실망스럽다. 디파이 전반에 광범위한 영향을 미치는 주요 네트워크 경제 변경인데 의견 수렴 기간을 48시간 주고 EIP를 공개했다. 나도, 내가 아는 어떤 빌더도 이것이 공개되기 전에 의견을 요청받은 적이 없다.",
-          "url": "https://x.com/MikeSilagadze/status/2084703078909907000",
-          "digest": "2026-08-04",
-          "replyTo": "jdetychey",
-          "relation": "quote",
-          "original": "This is so disappointing on every level.\n\nEIP released with 48 hours notice for comments. Realistically 4 months before it goes live. For a major network economics change with far reaching implications for all of DeFi.\n\nEvery builder on Ethereum opposes this. Why is this a focus?\n\nNone of the reasoning makes any damn sense.\n\nThis will self evidently push out solo stakers who aren't subsidized by the EF or others. It will essentially guarantee that the only ones staking are large centralized entities with zero cost of capital where users passively hold their ETH. Why?\n\nIt will obviously kill a huge chunk of DeFi which is built around the staking ecosystem. Seven of the top 10 DeFi protocols with face a capital exodus. Why?\n\nIs the idea that a 0.8% reduction in issuance is somehow going to help ETH price? People who stake ETH don't sell it. This change will halt any new ETH getting staked and realistically will result in tens of billions of $ of ETH getting unstaked and entering into the market, not to mention the implosion of the core Ethereum use case. Why?\n\nIs the concern that liquid staking tokens, which intermediate about a quarter of staked ETH, displace ETH as money? This reasoning betrays a cash-accounting level of understanding of the economy, as if only M1 counts as real money. LSTs serve as valuable building blocks, and in fact implement a lot of user protections that would not be appropriate to do at the network level. At a near zero cost of 10-15 bps.\n\nI say this as a builder on Ethereum, not as someone who stands to benefit from staking issuance. I don't have much at risk here. Almost all of @ether_fi revenue is now coming from vaults and payments, staking is a small (and shrinking) part of our business.\n\nThis is bad for decentralization, this is bad for Ethereum adoption, and this is bad for the credibility of the network to roll things out this way.\n\nThis reinforces the Ethereum critics' position that the network is run by a small group of insiders with no regard for the actual users and builders on the chain. I can say that neither I nor any builder I know was asked for feedback on this before it went live.\n\nAny nation state or large institution looking at this will justifiably have a dramatic loss of confidence in the governance and stability of Ethereum.",
-          "translation": "이건 모든 면에서 정말 실망스럽다. EIP가 의견 수렴 기간 48시간만 주어진 채 발표되었다. 현실적으로는 시행까지 4개월밖에 남지 않았다. 디파이 전체에 광범위한 영향을 미치는 중대한 네트워크 경제 구조 변경인데도 말이다. 이더리움의 모든 빌더가 이를 반대한다. 왜 이것이 논의의 초점이 되는가. 어떤 논거도 도무지 말이 되지 않는다. 이 변경은 EF나 다른 곳의 지원을 받지 못하는 솔로 스테이커들을 명백히 밀어낼 것이다. 결국 자본 비용이 사실상 0인 대형 중앙화 기관들만 스테이킹을 하게 되고, 사용자들은 그저 ETH를 수동적으로 보유하게 될 것이다. 왜 그런가. 스테이킹 생태계를 중심으로 구축된 디파이의 상당 부분을 명백히 죽일 것이다. 상위 10대 디파이 프로토콜 중 7개가 자본 유출에 직면할 것이다. 왜 그런가. 발행량을 0.8퍼센트 줄이면 ETH 가격에 어떻게든 도움이 될 것이라는 발상인가. ETH를 스테이킹하는 사람들은 그것을 팔지 않는다. 이 변경은 새로운 ETH가 스테이킹되는 것을 멈추게 할 것이고, 현실적으로 수백억 달러 규모의 ETH가 언스테이킹되어 시장에 유입되는 결과를 낳을 것이다. 이더리움의 핵심 사용 사례가 붕괴하는 것은 말할 것도 없다. 왜 그런가. 스테이킹된 ETH의 약 4분의 1을 중개하는 유동성 스테이킹 토큰이 ETH를 화폐로서 대체하고 있다는 우려인가. 이런 논리는 마치 M1만이 진짜 화폐로 취급되는 것처럼, 경제에 대한 현금회계 수준의 이해를 드러낸다. LST는 가치 있는 구성 요소로 기능하며, 실제로 네트워크 수준에서 하기에는 적절하지 않은 여러 사용자 보호 장치를 구현하고 있다. 그것도 10에서 15베이시스포인트라는 거의 제로에 가까운 비용으로 말이다. 나는 스테이킹 발행량으로 이익을 보는 입장이 아니라 이더리움 빌더로서 이 말을 하는 것이다. 나는 여기에 걸린 것이 그리 많지 않다. @ether_fi 수익의 거의 전부는 이제 볼트와 결제에서 나오며, 스테이킹은 우리 사업에서 작은, 그리고 점점 줄어드는 부분일 뿐이다. 이는 탈중앙화에도 나쁘고, 이더리움 채택에도 나쁘며, 이런 방식으로 일을 진행하는 것은 네트워크의 신뢰성에도 나쁘다. 이는 네트워크가 실제 사용자와 빌더를 개의치 않는 소수 내부자 집단에 의해 운영된다는 이더리움 비판자들의 입장을 강화할 뿐이다. 나도, 내가 아는 어떤 빌더도 이것이 발표되기 전에 의견을 요청받은 적이 없다고 말할 수 있다. 이를 지켜보는 어떤 국가나 대형 기관이든 이더리움의 거버넌스와 안정성에 대한 신뢰를 크게 잃는 것은 당연한 일이 될 것이다."
-        },
-        {
-          "date": "2026-08-04",
-          "by": "LaLiLuLeL0x",
-          "stance": "con",
-          "quote": "사실 발행 문제는 2024년부터 이더리움 매지션스에서 여러 제안으로 논의돼 왔다. 나도 몇 달 전에 그에 관해 글을 썼다. 지금 보고 있는 이 EIP는 지난 몇 년간 여러 제안 사이에서 오간 많은 논의의 결과일 것이다.",
-          "url": "https://x.com/LaLiLuLeL0x/status/2084735969417150552",
-          "digest": "2026-08-04",
-          "replyTo": "MikeSilagadze",
-          "relation": "reply",
-          "original": "Actually, the issuance thing is since 2024 that is discussed in ETH Magicians with several proposals.\n\nI wrote about it some months ago. So, probably this EIP you see is a consequence of a lot of discussions between several proposals in the last few years.",
-          "translation": "사실 발행량 문제는 2024년부터 ETH Magicians에서 여러 제안과 함께 논의되어 온 사안이다. 나도 몇 달 전에 이에 대해 글을 쓴 적이 있다. 그러니 지금 보고 있는 이 EIP는 아마도 지난 몇 년간 여러 제안들 사이에서 이루어진 수많은 논의의 결과물일 것이다."
-        },
-        {
-          "date": "2026-08-04",
-          "by": "dankrad",
-          "stance": "con",
-          "quote": "그건 분명히 사실일 수 없다. 바꿔야 한다고 믿는 사람들이 실제로 있기 때문이다.",
-          "url": "https://x.com/dankrad/status/2084735008552718778",
-          "digest": "2026-08-04",
-          "replyTo": "LefterisJP",
-          "relation": "reply",
-          "original": "Well that obviously cannot be true since there are people who believe it should be changed",
-          "translation": "글쎄, 그건 명백히 사실일 수 없다. 바뀌어야 한다고 믿는 사람들이 존재하기 때문이다."
-        },
-        {
-          "date": "2026-08-05",
-          "by": "peter_szilagyi",
-          "stance": "pro",
-          "quote": "순진하기도 하지, 이건 몇 년 전에 이미 검토된 일이다. 당신이 그 논의에 포함되지 않았을 뿐이다.",
-          "url": "https://x.com/peter_szilagyi/status/2084915309127807195",
-          "digest": "2026-08-04",
-          "replyTo": "MikeSilagadze",
-          "relation": "reply",
-          "original": "My sweet summer child, this was thought out years ago, you were just not included in the discussions.",
-          "translation": "순진하기 그지없구나, 이건 이미 몇 년 전에 다 논의되고 정리된 사안이다. 그저 자네가 그 논의에 끼지 못했을 뿐이다."
-        },
-        {
-          "date": "2026-08-05",
-          "by": "peter_szilagyi",
-          "stance": "pro",
-          "quote": "저스틴의 말을 대략 옮기자면 2~3년 전 이야기다. 나는 파라미터에는 관심이 없다, 중요한 것은 우리 모두가 동의해서 공개적인 이견이 없는 상태로 앞으로 나아가는 것이다.",
-          "url": "https://x.com/peter_szilagyi/status/2084915771944145379",
-          "digest": "2026-08-04",
-          "relation": "none",
-          "original": "To quote Justin (approx, it was 2-3 years ago): \"I don't care about the parameters, the important thing is that we all agree, so there is no public disagreement and we can move forward with it\". \\shrug",
-          "translation": "Justin의 말을 인용하자면(대략적으로, 2, 3년 전 얘기다), 파라미터가 어떻든 상관없다, 중요한 건 우리 모두가 동의해서 공개적인 이견 없이 이걸 밀고 나갈 수 있다는 점이다. 뭐, 어쩌겠나."
-        },
-        {
-          "date": "2026-08-05",
-          "by": "emilianobonassi",
-          "stance": "pro",
-          "quote": "이것이 우리가 그 제한된 소수의 사람들에게서 이더리움을 포크해 떨어져 나와야 할 또 하나의 이유다.",
-          "url": "https://x.com/emilianobonassi/status/2084948872766353430",
-          "digest": "2026-08-04",
-          "replyTo": "MikeSilagadze",
-          "relation": "reply",
-          "original": "this is another reason why we should fork Ethereum away from that limited group of ppl",
-          "translation": "이것이 바로 우리가 이더리움을 그 한정된 소수 그룹으로부터 포크해내야 하는 또 하나의 이유다."
-        },
-        {
-          "date": "2026-08-05",
-          "by": "pintail_xyz",
-          "stance": "con",
-          "quote": "논쟁을 일축하지 말고 참여해 주기를 권한다. 과잉 발행이 포획으로 이어진다는 논거는 무슨 수사적 술책이 아니다.",
-          "url": "https://x.com/pintail_xyz/status/2084931081329955267",
-          "digest": "2026-08-04",
-          "replyTo": "LefterisJP",
-          "relation": "reply",
-          "original": "I would urge you to engage with the debate rather than dismissing it. The arguement excess issuance leads to capture is not some rhetorical trick.",
-          "translation": "논쟁을 그냥 묵살하기보다는 제대로 참여할 것을 강력히 권한다. 과잉 발행이 장악으로 이어진다는 주장은 단순한 수사적 트릭이 아니다."
-        },
-        {
-          "date": "2026-08-05",
-          "by": "DCinvestor",
-          "stance": "pro",
-          "quote": "나는 대단한 리서처가 아니라서 커뮤니티 역학과 인센티브, 여러 자극에 대해 사람들이 어떻게 행동할지 같은 단순한 것을 본다. 지금 시점에 발행을 급격히 바꾸는데 분쟁적 하드포크가 나지 않으리라고 보는 것은 말이 되지 않는다. 이런 일을 하려 했다면 스테이커가 네트워크 운영권을 쥐게 되는 지분증명을 구현하기 전에 제대로 했어야 한다.",
-          "url": "https://x.com/DCinvestor/status/2085131328354451840",
-          "digest": "2026-08-05",
-          "relation": "none",
-          "original": "i'm a simple man, not a big brain researcher\n\nso i look at simple things, like community dynamics, incentives, and likely behavior in response to various stimuli\n\nand you frankly have to be completely retarded to think radically changing issuance wouldn't cause a contentious hard fork at this point\n\nif you wanted to do something like this, you should have thought to do it properly before you ever implemented Proof of Stake\n\nyou know, where the Stakers now have operational control of the network. and this isn't like reducing miner rewards, where you had the consensus of the users to adjust issuance\n\nand the those users, who hold ETH and use/build financial apps on Ethereum (the only apps which have any real traction at the moment) also agree with them on this issue\n\nso you can believe the current state is not optimal (and frankly, i don't think it is), but also understand that it cannot be changed in the ways you might want to expediently change it\n\nso we're now wasting energy which should be directed elsewhere- either through alternative solutions to the problems this represents, and/or to the scaling and UX improvements Ethereum still needs",
-          "translation": "나는 단순한 사람이지 대단한 두뇌를 가진 연구자가 아니다. 그래서 나는 커뮤니티 역학, 인센티브, 다양한 자극에 대한 예상 가능한 반응 같은 단순한 것들을 본다. 그리고 솔직히 말해서, 지금 시점에 발행량을 급진적으로 바꾸는 것이 논쟁적인 하드포크를 일으키지 않을 것이라고 생각한다면 정말 제정신이 아니라고밖에 할 수 없다. 만약 이런 일을 하고 싶었다면, 애초에 지분증명을 도입하기 전에 제대로 생각해뒀어야 했다. 이제는 스테이커들이 네트워크의 운영권을 쥐고 있다는 것을 알아야 한다. 그리고 이것은 발행량을 조정할 때 사용자들의 합의가 있었던 채굴자 보상 축소와는 다르다. ETH를 보유하고 이더리움에서 금융 애플리케이션을 사용하거나 구축하는 사용자들, 현재 실질적인 견인력을 가진 유일한 앱들인데, 이들도 이 사안에 대해 그들과 의견이 일치한다. 그러니 현재 상태가 최적이 아니라고 믿을 수는 있지만, 솔직히 나도 최적이라고 생각하지 않는다, 당신이 편의적으로 바꾸고 싶어하는 방식으로는 바뀔 수 없다는 것도 이해해야 한다. 그래서 우리는 지금 다른 곳에 써야 할 에너지를 낭비하고 있다. 이 문제가 나타내는 사안에 대한 대안적 해법을 찾거나, 이더리움에 여전히 필요한 확장성과 UX 개선에 에너지를 쏟아야 하는데도 말이다."
-        },
-        {
-          "date": "2026-08-06",
-          "by": "DCinvestor",
-          "stance": "pro",
-          "quote": "분명히 해두자면 나도 과도한 양의 ETH가 스테이킹되는 것이 이더리움에 이롭다고 보지 않고 그것이 프로토콜에 장기 리스크를 만든다고 생각한다. 다만 스테이커와 검증자의 동의, 유저의 동의, 생태계 개발자의 동의라는 결정적 관문을 통과하지 못할 제안을 내놓는 것은 도움이 되지 않고 오히려 상황을 악화시킬 수 있다. 과거에는 힘이 없던 집중된 집단에 단기 고통을 주는 대신 다른 많은 집단에 크고 가치 있는 것을 줬는데, 지금 제안은 구체적으로 주는 것이 없고 많은 것을 가져가기만 한다.",
-          "url": "https://x.com/DCinvestor/status/2085333795549376996",
-          "digest": "2026-08-06",
-          "relation": "none",
-          "original": "to be clear, i don't think having excess amounts of ETH staked is beneficial for Ethereum and does in fact create longterm risks for the protocol. and we very likely need ways to manage that risk, one way or another\n\nhowever, putting forward non-starter proposals which won't pass critical gates of Staker/Validator assent, user assent, and ecosystem dev assent won't help and may actively harm this situation\n\nwhat we instead need to consider is: \"what have been the conditions where Ethereum has successfully changed its issuance policies in the past and why was it successful in those moments?\"\n\nif you look back across history, it is often because they created short-term pain for a concentrated group who did not really have the power (often the miners), but also gave something BIG and valuable to many other groups\n\nlook at all of the issuance reductions in the PoW era. could miners have opted not to run the code? yes, but almost all holders of ETH thought it was beneficial, and ultimately, they held the power by choosing the valid fork of the network. so there were no contentious hard forks\n\nthe migration to PoS is the most notable example where it obviously kneecapped miners completely (and ProgPoW and late attempts to fork failed), but it had the overwhelming support of the user community- who was promised lower issuance and staking rewards\n\nthat was a big win and it passed through easily\n\nthe problem is the current proposal doesn't GIVE anything concrete, and instead TAKES a lot away. it promises a future where we prevent hypothetical capture of the network with a tremendous cost to stakers (including and especially solo stakers who were built up as being the heart and soul of the network), users who have ETH staked (almost everyone), and users/devs of DeFi apps\n\nand while i appreciate some are trying to make the point that vanilla ETH holders are the ones who will benefit from reduced issuance, that is not the perspective of most actual vanilla ETH holders, as many of them have at least a portion of their funds staked and they perceive issuance inflation to already be low (made lower still by fee burn)\n\nso you can't simply just take radically and effectively give nothing, and be surprised when something like this won't have consensus\n\nyou are free to ignore the politics, but the politics will not ignore you\n\ni don't know what the solution is here. believe me, i wish i did. maybe it requires making bigger changes which coincide with more radical network changes (like we see in the future roadmap)\n\ni can appreciate that the people advocating for this now think we can't wait for that, but you're also burning a lot of energy and credibility because you're misreading human nature and herd behavior in this situation. and further, you are likely overestimating your own power and ability to influence that behavior based on past successes which were different in their fundamental character\n\nif anything, i hope i've opened your eyes a bit with this. the bazaar is a lot more disordered than the cathedral",
-          "translation": "분명히 해두자면, 나는 과도한 양의 ETH가 스테이킹되는 것이 이더리움에 유익하다고 생각하지 않으며, 실제로 프로토콜에 장기적인 위험을 만든다고 본다. 그리고 우리는 어떤 방식으로든 그 위험을 관리할 방법이 아마 필요할 것이다. 하지만 스테이커 및 검증인의 동의, 사용자의 동의, 생태계 개발자의 동의라는 핵심 관문을 통과하지 못할 시작부터 가망 없는 제안을 내놓는 것은 도움이 되지 않으며 오히려 이 상황을 적극적으로 악화시킬 수 있다. 대신 우리가 고려해야 할 것은 다음과 같다. 이더리움이 과거에 발행 정책을 성공적으로 바꿨던 조건은 무엇이었고, 그 순간들에 왜 성공했는가. 역사를 돌아보면, 그것은 대체로 실제로는 권력을 갖지 못한, 흔히 채굴자였던, 집중된 한 집단에게 단기적인 고통을 안기면서도, 다른 많은 집단에게는 크고 가치 있는 무언가를 준 경우였다. 작업증명 시대의 모든 발행량 감축을 보라. 채굴자들이 그 코드를 실행하지 않기로 선택할 수 있었을까. 그렇다. 하지만 거의 모든 ETH 보유자들은 그것이 유익하다고 생각했고, 결국 그들이 네트워크의 유효한 포크를 선택함으로써 권력을 쥐고 있었다. 그래서 논쟁적인 하드포크는 없었다. 지분증명으로의 이전은 가장 주목할 만한 사례로, 이는 명백히 채굴자들을 완전히 무력화시켰지만, ProgPoW와 뒤늦은 포크 시도는 실패했다, 사용자 커뮤니티의 압도적인 지지를 받았다. 그들은 더 낮은 발행량과 스테이킹 보상을 약속받았기 때문이다. 그것은 큰 승리였고 손쉽게 통과되었다. 문제는 현재의 제안이 구체적인 어떤 것도 주지 않으면서, 대신 많은 것을 빼앗아간다는 점이다. 이 제안은 네트워크에 대한 가상의 장악을 막는 미래를 약속하지만, 그 대가로 스테이커들, 특히 네트워크의 심장이자 영혼으로 여겨져 온 솔로 스테이커들을 포함해서, ETH를 스테이킹한 사용자들, 거의 모든 사람, 그리고 디파이 앱의 사용자와 개발자들에게 막대한 비용을 치르게 한다. 그리고 일부 사람들이 발행량 감소로 순수 ETH 보유자들이 이익을 볼 것이라는 주장을 펼치려 하는 것은 이해하지만, 실제 대다수의 순수 ETH 보유자들의 시각은 그렇지 않다. 그들 중 많은 이들이 자금의 최소한 일부를 스테이킹하고 있고, 발행 인플레이션이 이미 낮다고, 수수료 소각으로 인해 더욱 낮아진, 인식하고 있기 때문이다. 그러니 급진적으로 빼앗기만 하고 사실상 아무것도 주지 않으면서, 이런 일이 합의를 이루지 못한다고 놀라서는 안 된다. 정치를 무시하는 것은 당신의 자유지만, 정치는 당신을 무시하지 않을 것이다. 여기서 해법이 무엇인지는 나도 모른다. 정말로, 나도 알고 싶다. 어쩌면 미래 로드맵에서 보게 될 것과 같은 더 급진적인 네트워크 변화와 함께 더 큰 변경을 만드는 것이 필요할지도 모른다. 지금 이것을 옹호하는 사람들이 그때까지 기다릴 수 없다고 생각하는 것은 이해할 수 있지만, 그들은 이 상황에서 인간 본성과 군중 행동을 잘못 읽음으로써 많은 에너지와 신뢰를 태워버리고 있다. 게다가 그들은 근본적으로 성격이 달랐던 과거의 성공 사례를 바탕으로 그러한 행동에 영향을 미칠 수 있는 자신의 힘과 능력을 과대평가하고 있을 가능성이 높다. 혹시라도 이 글이 당신의 눈을 조금이나마 뜨게 했기를 바란다. 시장은 대성당보다 훨씬 더 무질서하다."
-        },
-        {
-          "date": "2026-08-06",
-          "by": "DCinvestor",
-          "stance": "pro",
-          "quote": "발행이 줄어 자기 ETH가 희소해지느냐의 문제가 아니다. 정답을 알고 무슨 일이 벌어질지 안다고 여기는 위원회가 존재해서 라이브 네트워크에서 실험하고 이 파라미터를 계속 바꿀 수 있다는 발상 자체가 많은 대형 ETH 홀더에게 대단히 불쾌한 것이다. 발행 정책은 서류상 좋아 보일 수 있지만 그것을 바꾸는 행위 자체가 가치를 파괴한다.",
-          "url": "https://x.com/DCinvestor/status/2085335839488266387",
-          "digest": "2026-08-06",
-          "relation": "none",
-          "original": "i will also add that there are many, many ETH holders who perceive capricious changes to ETH's issuance formula as being a MASSIVE net negative for ETH specifically\n\nit's not about an issuance reduction making their ETH more scarce. it's about the idea that a committee can exist who also \"knows the right answer and knows what will happen\" and is willing to experiment on the live network and change these parameters over and over again which is EXTREMELY unattractive to many large ETH holders\n\nthis is a situation where the \"math doesn't math.\" i.e., issuance policy can look good on paper and say \"wow, we've reduced it,\" but the act of changing it is in itself value destructive\n\nthis is why i think making point changes to issuance policy at this point is bad, and any potential changes likes this need to be considered and slotted appropriately within the totality of the network's longterm technical evolution",
-          "translation": "또한 덧붙이자면, ETH의 발행 공식에 대한 변덕스러운 변경을 ETH에 있어 구체적으로 엄청난 순손실로 인식하는 ETH 보유자들이 매우 많다. 이것은 발행량 감소가 그들의 ETH를 더 희소하게 만드는지 여부의 문제가 아니다. 문제는 정답을 알고 무슨 일이 일어날지도 안다고 자처하는 위원회가 존재해서 실제 운영 중인 네트워크에서 기꺼이 실험을 하고 이 파라미터들을 몇 번이고 계속 바꿀 수 있다는 발상이며, 이는 많은 대형 ETH 보유자들에게 극도로 매력 없게 느껴진다는 것이다. 이는 숫자가 숫자대로 맞아떨어지지 않는 상황이다. 즉, 발행 정책은 문서상으로는 좋아 보이며 발행량을 줄였다고 말할 수 있지만, 그것을 바꾸는 행위 자체가 가치를 파괴하는 것이다. 그래서 나는 지금 이 시점에 발행 정책을 콕 집어 변경하는 것이 나쁘다고 생각하며, 이런 잠재적 변경은 네트워크의 장기적인 기술적 진화 전체 안에서 적절하게 고려되고 자리매김되어야 한다고 생각한다."
-        },
-        {
-          "date": "2026-08-07",
-          "by": "LefterisJP",
-          "stance": "pro",
-          "quote": "이더리움은 민주주의가 아니다, ETH 홀더가 네트워크의 방향을 정하는 것이 아니다, 무엇이 최선인지는 우리가 안다 그냥 따르라, 이건 수학이고 수학은 당신이 틀렸다고 말한다. 최근 발행 변경을 지지하는 쪽에서 본 말들을 옮긴 것이다. 이 제안을 밀고 있는 리서처 및 코어 개발자와 이더리움 커뮤니티 사이에 완전한 단절이 있어 보인다.",
-          "url": "https://x.com/LefterisJP/status/2085631588503556468",
-          "digest": "2026-08-07",
-          "relation": "none",
-          "original": "\"Ethereum is not a democracy\"\n\"ETH Holders don't get to decide the direction of the network\"\n\"We know what's best for you, just comply\"\n\"It's math and the math says you are wrong\"\n\nJust some quotes of the pro-issuance  I have seen around lately.\n\nAre you guys insane?\n\nThere seems to be a complete disconnect between the current researchers/core devs pushing this proposal and the ethereum community.",
-          "translation": "이더리움은 민주주의가 아니다, ETH 보유자들에게는 네트워크의 방향을 결정할 권리가 없다, 우리가 당신들에게 무엇이 최선인지 안다 그냥 따르라, 이건 수학이고 수학이 당신이 틀렸다고 말한다. 최근 발행량 찬성 측에서 본 몇 가지 발언들이다. 다들 제정신인가. 이 제안을 밀어붙이는 현재의 연구자 및 코어 개발자들과 이더리움 커뮤니티 사이에는 완전한 단절이 있는 것 같다."
-        },
-        {
-          "date": "2026-08-07",
-          "by": "LefterisJP",
-          "stance": "pro",
-          "quote": "제안의 일부에는 분명 타당한 지점이 있다. 다만 제안 전체가 너무 많은 것을 한꺼번에 묶었고 커뮤니티의 동의가 없으므로, 그 이유만으로도 포함돼서는 안 된다. 먼저 말이 되는 하위 항목들에 대해 커뮤니티의 동의를 얻고 그다음에 모두가 지지할 수 있는 제안을 만들어야 한다.",
-          "url": "https://x.com/LefterisJP/status/2085634324850679919",
-          "digest": "2026-08-07",
-          "replyTo": "MicahZoltu",
-          "relation": "reply",
-          "original": "There is definitely some valid points in parts ofthe proposal. The proposal as a whole is just bundling too many things and has no community buy-in.\n\nIt should not be included just because of that. First get the community buy in for the specific sub-parts of the proposal that make sense and then formulate a proposal that everyone will stand behind.",
-          "translation": "이 제안의 일부에는 분명 타당한 지점들이 있다. 다만 제안 전체는 너무 많은 것들을 하나로 묶어놓았고, 커뮤니티의 동의를 얻지 못했다. 단지 그런 이유만으로 포함되어서는 안 된다. 먼저 이 제안 중 말이 되는 세부 항목들에 대해 커뮤니티의 동의를 얻은 다음, 모두가 지지할 수 있는 제안을 만들어야 한다."
-        },
-        {
-          "date": "2026-08-07",
-          "by": "MicahZoltu",
-          "stance": "pro",
-          "quote": "나는 스테이커가 아니지만 이 제안이 통과되지 않도록 할 수 있는 일을 하겠다. 나도 대체로 그들의 논거에 동의하고 제안된 일정이 현재보다 나을 것이라는 데도 동의한다. 그렇다고 해서 살아 있는 체인의 통화정책을 바꿔도 된다는 뜻은 아니다.",
-          "url": "https://x.com/MicahZoltu/status/2085666184025018832",
-          "digest": "2026-08-07",
-          "replyTo": "lassejaco",
-          "relation": "reply",
-          "original": "@lassejaco @LefterisJP I will do what I can to prevent this proposal from going through and I am not a staker.  I also generally agree with their argument and that their proposed schedule is probably better than the current one.\n\nThat does not mean we should change the monetary policy of a live chain.",
-          "translation": "나는 스테이커가 아니지만 이 제안이 통과되지 않도록 할 수 있는 일을 할 것이다. 나 역시 그들의 주장에 대체로 동의하며, 그들이 제안한 일정이 아마 현재 일정보다 나을 것이라는 데도 동의한다. 하지만 그렇다고 해서 우리가 이미 운영 중인 체인의 통화 정책을 바꿔야 한다는 뜻은 아니다."
-        },
-        {
-          "date": "2026-08-07",
-          "by": "lex_node",
-          "stance": "pro",
-          "quote": "이번 일은 이더리움 권력 구조에 내가 짐작했던 것보다 훨씬 많은 썩은 부분이 있음을 드러낸, 가면이 벗겨진 순간이었다.",
-          "url": "https://x.com/lex_node/status/2085717640132125014",
-          "digest": "2026-08-07",
-          "replyTo": "LefterisJP",
-          "relation": "reply",
-          "original": "this has been a 'mask off' moment showing that there is a lot more rot in Ethereum power structures than I ever would've guessed...",
-          "translation": "이번 일은 이더리움의 권력 구조 안에 내가 생각했던 것보다 훨씬 더 많은 부패가 있다는 걸 드러낸, 이른바 가면이 벗겨진 순간이었다..."
-        },
-        {
-          "date": "2026-08-08",
-          "by": "scupytrooples",
-          "stance": "pro",
-          "quote": "이더리움이 상아탑 기술관료의 각본을 문자 그대로 따라가고 있다.",
-          "url": "https://x.com/scupytrooples/status/2085914687607345584",
-          "digest": "2026-08-07",
-          "replyTo": "LefterisJP",
-          "relation": "reply",
-          "original": "Ethereum is following the ivory tower technocracy playbook verbatim",
-          "translation": "이더리움은 상아탑식 기술관료주의 각본을 그대로 따라가고 있다."
-        }
-      ],
-      "firstSeen": "2026-08-04",
-      "lastActivity": "2026-08-08",
-      "status": "cooling",
-      "rootUrl": "https://x.com/MikeSilagadze/status/2084703078909907000",
-      "engagement": {
-        "likes": 830,
-        "retweets": 121,
-        "quotes": 16,
-        "replies": 81,
-        "views": 117348
-      }
-    },
-    {
-      "id": "high-staking-ratio-systemic-risk",
-      "title": "스테이킹 비율 50% 초과와 LST 집중은 실제 시스템 리스크인가",
-      "category": "프로토콜 설계",
-      "summary": "제안 측은 스테이킹 비율(staking ratio)이 어떤 임계를 넘으면 남은 홀더에게도 희석을 피할 유인이 생겨 발행(issuance) 기반 수익률(yield)이 모두에게 명목 수익으로 바뀌고, 그 물량이 가장 크고 유동성 높은 유동성 스테이킹 토큰(liquid staking token, LST)과 대형 중앙화 사업자로 쏠려 솔로 스테이커가 밀려나고 사회적 레이어가 얇아진다고 본다. 마이크 실라가제와 hanniabu를 비롯한 반대 측은 수익률이 더 높고 슬래싱(slashing)도 없는 다른 지분증명 네트워크에서 그런 연쇄가 관측되지 않았고, LST는 ETH를 화폐로서 대체하지 않으며 솔로 스테이킹을 쉽고 저렴하게 만드는 쪽이 대응책이라고 반박했다.",
-      "keyPoints": [
-        "스테이킹 비율이 특정 임계를 넘으면 나머지 홀더가 희석을 피해 몰려드는 연쇄가 실제로 일어나나",
-        "명목 수익에 대한 과세로 솔로 스테이커의 실질 수익이 마이너스가 되어 시장에서 밀려나는 경로가 성립하나",
-        "지분을 크게 모은 LST의 too big to fail 위험과 비스테이커 수 감소가 검열이나 포크 상황에서 실제 위협이 되나",
-        "LST가 담보와 교환 수단으로 원본 ETH를 대체한다는 문제 설정이 타당한가, 아니면 솔로 스테이킹 접근성 개선이 더 직접적인 해법인가"
-      ],
-      "background": "EIP-8363 'Tapered Issuance Burn'의 동기 문단은 스테이킹 비율에 상한이 없다는 점을 문제로 든다. 지분이 소수 대형 운영자와 LST에 집중된 상태에서 검증자(validator) 집합이 포획되면 커뮤니티가 포크로 대응하기 어려워지고, 무한 발행은 스테이킹하지 않는 쪽에 영구 희석이 되어 모두가 스테이킹을 강요받는다는 논리다. LST가 담보와 교환 수단으로 원본 ETH를 밀어내는 상황을 막는 것도 목적으로 제시된다. 이 제안은 검증자 합의 보상에 스테이킹 잔고 기반 소각(burn) 비율을 적용해 약 6,025만 ETH에서 발행 기반 순수익이 0이 되게 설계됐고, 2026년 8월 4일 공개 직후 언론과 트위터에서 EIP-8361로 잘못 표기되기도 했다. 현재 스테이킹은 약 4,150만 ETH로 공급의 약 34%이며, LST가 스테이킹된 ETH의 약 4분의 1을 중개한다는 수치는 마이크 실라가제가 제시한 것이다. 이 논쟁에서 제안 측 논거가 가장 자세히 남은 형태는 마이크 실라가제가 제롬 드 티셰와 대화한 뒤 상대 입장을 직접 정리해 공개한 글이며, 여기에 반대 측이 조목조목 답하면서 스레드가 형성됐다. 2026년 9월 2일 매지션스에는 이 제안이 실제로 작동할 경우 검증자 통제권이 어떻게 바뀌는지 모델링하자는 리서치 제안이 올라왔다.",
-      "whyItMatters": "이 질문의 답에 따라 발행 소각이 필요한 방어책인지 존재하지 않는 위험에 대한 과잉 대응인지가 갈린다. 임계 연쇄가 실증되지 않는 한 반대 측은 비용만 확실하고 편익은 가설이라는 주장을 유지할 수 있고, 반대로 솔로 스테이커의 세후 수익이 먼저 무너진다는 경로가 성립하면 제안 자체가 지키려던 탈중앙화를 해친다는 반론으로도 이어진다. 지켜볼 지점은 매지션스의 검증자 통제권 리서치가 스테이킹 시장 모델로 이 연쇄를 재현해 내는지, 솔라나처럼 이미 50%를 넘긴 체인에서 추가 상승이 관측되는지, 그리고 솔로 스테이킹 접근성 개선이 집중도 완화 대안으로 논의 테이블에 오르는지다.",
-      "sources": [
-        {
-          "title": "EIP-8363: Tapered Issuance Burn",
-          "url": "https://eips.ethereum.org/EIPS/eip-8363"
-        },
-        {
-          "title": "Research proposal: validator control if EIP-8363 works",
-          "url": "https://ethereum-magicians.org/t/research-proposal-validator-control-if-eip-8363-works/29568"
-        },
-        {
-          "title": "EIP-8363 Tapered Issuance Burn 논의 스레드",
-          "url": "https://ethereum-magicians.org/t/eip-8363-tapered-issuance-burn/29263"
-        }
-      ],
-      "keywords": [
-        "EIP-8363",
-        "staking ratio",
-        "validator control",
-        "liquid staking tokens"
-      ],
-      "positions": [
-        {
-          "stance": "pro",
-          "label": "높은 스테이킹 비율 자체가 중앙화 압력이다",
-          "holders": [
-            {
-              "handle": "pintail_xyz",
-              "name": "pintail",
-              "role": "EIP-8363 공동 저자",
-              "avatar": "https://pbs.twimg.com/profile_images/917505259920125954/UgDQAWsZ_400x400.jpg"
-            },
-            {
-              "handle": "jdetychey",
-              "name": "Jerome de Tychey 🦇🔊",
-              "role": "EIP-8363 공동 저자",
-              "avatar": "https://pbs.twimg.com/profile_images/1955288324760797184/nbPDswHM_400x400.jpg"
-            },
-            {
-              "handle": "IslandHunting",
-              "name": "HuntingIsland — ΞTH 🐬",
-              "avatar": "https://pbs.twimg.com/profile_images/1885486492505563136/pY0a03zI_400x400.jpg",
-              "role": "EPGi(이더리움 퍼블릭굿즈 인프라) 빌더"
-            }
-          ],
-          "points": [
-            "스테이킹된 ETH가 임계, 가령 50%를 넘으면 남은 절반에도 희석을 피할 강한 유인이 생기고 그 시점에 스테이킹 수익률은 모두에게 명목 수익이 된다. 스테이커는 가장 크고 유동성 높은 선택지를 선호하므로 최대 LST나 대형 중앙화 스테이킹 주체로 쏠린다.",
-            "솔로 스테이커는 대부분의 국가에서 명목 ETH 수익에 세금을 내기 때문에 이 상황에서 투자수익률이 마이너스가 되고, 그 결과 시장에서 밀려나 체인이 더 중앙화된다.",
-            "스테이킹된 ETH의 큰 비중을 모은 LST는 too big to fail 상태가 되어 테일 리스크를 만든다. 심각한 침해가 발생하면 체인이 포크를 강요받을 수 있다.",
-            "스테이킹 비율이 매우 높으면 사회적 레이어, 즉 스테이킹하지 않은 ETH 홀더의 수가 악의적 행위를 막을 만큼 크지 않다. 대형 중앙화 스테이킹 주체가 검열이나 포크를 시도하는 경우, 예컨대 USDC를 둘러싼 분쟁에서 코인베이스가 그렇게 하는 경우가 문제다.",
-            "발행량 자체를 크게 신경 쓰는 사람은 없다. 대부분의 ETH가 LST에 들어가 있거나 스테이킹된 상태 자체가 플랫폼에 대한 시스템 리스크이며, 그 대가로 얻는 편익이 무엇인지 불분명하다."
-          ]
-        },
-        {
-          "stance": "con",
-          "label": "그런 연쇄가 일어난다는 증거가 없다",
-          "holders": [
-            {
-              "handle": "MikeSilagadze",
-              "name": "Mike Silagadze🛡",
-              "role": "ether.fi CEO",
-              "avatar": "https://pbs.twimg.com/profile_images/1679988845171953666/21wndiIr_400x400.jpg"
-            },
-            {
-              "handle": "hanni_abu",
-              "name": "hanniabu.eth (Ξ, α)",
-              "avatar": "https://pbs.twimg.com/profile_images/1602597529820041216/1AxDBUlw_400x400.jpg",
-              "role": "Ether Alpha Team 개발자"
-            },
-            {
-              "handle": "hedgefunder01",
-              "name": "UnHΞdged",
-              "avatar": "https://pbs.twimg.com/profile_images/1847391446225272832/uvHwwHDq_400x400.jpg"
-            },
-            {
-              "handle": "JourneyMacro",
-              "name": "Nomad",
-              "avatar": "https://pbs.twimg.com/profile_images/1873239346234458112/GG5iQIVQ_400x400.jpg",
-              "role": "인플루언서·투자자"
-            },
-            {
-              "handle": "aibra",
-              "name": "Aibra",
-              "avatar": "https://pbs.twimg.com/profile_images/1968351024969601025/l7c4-VB__400x400.jpg",
-              "role": "OnlySlabs 빌더"
-            }
-          ],
-          "points": [
-            "임계를 넘으면 남은 물량이 희석 회피를 위해 스테이킹에 나선다는 것은 매우 큰 가정이다. 수익률이 훨씬 높고 슬래싱이 없어 사실상 무위험이며 추가 스테이킹 인센티브와 네이티브 위임 스테이킹까지 제공하는 다른 지분증명 네트워크에서도 그런 일은 일어나지 않았다.",
-            "50%를 넘으면 비스테이커 희석이 가속된다는 증거는 전혀 없고, 수수료 소각이 희석의 영향을 줄인다. 연 0.2% 정도의 추가 희석을 피하려 스테이킹할 사람이라면 임계를 기다리지 않고 이미 스테이킹했을 것이다.",
-            "현재의 희석 수준은 사람들이 자기 ETH에 스마트컨트랙트 위험이나 슬래싱 같은 추가 위험을 감수하도록 만들 만큼 크지 않다.",
-            "LST는 스테이킹된 ETH의 약 4분의 1을 중개할 뿐 ETH를 화폐로서 대체하지 않는다. 이런 논리는 M1만 진짜 화폐로 치는 현금회계 수준의 경제 이해에 기대고 있으며, 최종 발행량을 0으로 만드는 것이 통화 공급에 타당하다는 비트코인식 사고에서 벗어나야 한다.",
-            "LST는 네트워크 레이어에서 구현하기에 적절하지 않은 이용자 보호 장치를 10~15bp의 매우 낮은 비용으로 제공하는 유용한 구성요소다. 유동성 스테이킹을 프로토콜에 내장하자는 주장은 이 논쟁 이전에도 나왔다."
-          ]
-        },
-        {
-          "stance": "neutral",
-          "label": "50% 돌파는 실제로 일어나지만 100% 수렴 근거는 없다",
-          "holders": [
-            {
-              "handle": "donnoh_eth",
-              "name": "donnoh.gwei 💗",
-              "role": "L2Beat 리서치 총괄",
-              "avatar": "https://pbs.twimg.com/profile_images/1906978600311521280/aSbKSjtX_400x400.jpg"
-            }
-          ],
-          "points": [
-            "솔라나는 이미 스테이킹 비율 50%를 넘겼으므로 임계 자체는 가상의 수치가 아니다.",
-            "다만 어느 체인이든 스테이킹 비율이 필연적으로 100%로 수렴한다는 증거는 거의 없다."
-          ]
-        }
-      ],
-      "timeline": [
-        {
-          "date": "2026-08-05",
-          "by": "IslandHunting",
-          "stance": "pro",
-          "quote": "발행량 자체를 크게 신경 쓰는 사람은 없다. 문제는 대부분의 ETH가 LST 토큰에 들어가는 것을 원하지 않는다는 점이며, 그 상태는 플랫폼에 대한 시스템 리스크가 된다.",
-          "url": "https://x.com/IslandHunting/status/2084984335971557722",
-          "digest": "2026-08-05",
-          "replyTo": "DCinvestor",
-          "relation": "reply",
-          "original": "No one cares much about the issuance. The problem is we don’t want most ETH in LST tokens. That constitutes a systemic risk to the platform.",
-          "translation": "발행량에 신경 쓰는 사람은 별로 없다. 문제는 우리가 대부분의 ETH가 LST 토큰에 들어가 있는 걸 원하지 않는다는 점이다. 그것이 플랫폼에 시스템적 리스크를 구성한다."
-        },
-        {
-          "date": "2026-08-05",
-          "by": "IslandHunting",
-          "stance": "pro",
-          "quote": "대부분의 ETH가 LST에 있거나 그 밖의 방식으로 스테이킹된 상태는 플랫폼에 대한 시스템 리스크다. 그래서 얻는 편익이 무엇인가.",
-          "url": "https://x.com/IslandHunting/status/2084985979291480233",
-          "digest": "2026-08-04",
-          "replyTo": "LefterisJP",
-          "relation": "reply",
-          "original": "Having the majority of ETH in LSTs and otherwise staked is a systemic risk to the platform.\n\nAnd for what benefit?!",
-          "translation": "ETH의 대다수가 LST 형태로, 혹은 그 밖의 형태로 스테이킹되어 있는 것은 플랫폼에 시스템적 리스크다. 그런데 그게 대체 무슨 이득을 위해서인가?!"
-        },
-        {
-          "date": "2026-08-05",
-          "by": "MikeSilagadze",
-          "stance": "con",
-          "quote": "스테이킹된 ETH의 약 4분의 1을 중개하는 유동성 스테이킹 토큰은 ETH를 화폐로서 대체하지 않는다. 이 논리는 M1만 진짜 화폐로 치는 현금회계 수준의 경제 이해에 기대고 있다. LST는 유용한 구성요소이며 네트워크 레이어에서 하기에 적절하지 않은 이용자 보호 장치를 10~15bp의 거의 제로에 가까운 비용으로 구현한다.",
-          "url": "https://x.com/MikeSilagadze/status/2085087234709938399",
-          "digest": "2026-08-05",
-          "relation": "none",
-          "original": "Liquid staking tokens, which intermediate about a quarter of staked $ETH, do not displace $ETH as money.\n\nThis reasoning is based on a cash-accounting level of understanding of the economy, as if only M1 counts as real money.\n\nLSTs serve as valuable building blocks, and in fact implement a lot of user protections that would not be appropriate to do at the network level. At a near zero cost of 10-15 bps.\n\nI've previously argued for enshrining liquid staking at the protocol level. I'm not making this argument because I stand to gain much from liquid staking.\n\nWe need to get the $Bitcoin brain worm out of our f*cking heads that zero terminal issuance makes any sense for a money supply.",
-          "translation": "스테이킹된 $ETH의 약 4분의 1을 중개하는 유동성 스테이킹 토큰은 $ETH를 화폐로서 대체하지 않는다. 이런 논리는 마치 M1만이 진짜 화폐로 취급되는 것처럼, 경제에 대한 현금회계 수준의 이해에 기반한 것이다. LST는 가치 있는 구성 요소로 기능하며, 실제로 네트워크 수준에서 하기에는 적절하지 않은 여러 사용자 보호 장치를 구현하고 있다. 그것도 10에서 15베이시스포인트라는 거의 제로에 가까운 비용으로 말이다. 나는 전에도 유동성 스테이킹을 프로토콜 수준에 내장하자고 주장한 바 있다. 나는 유동성 스테이킹으로 큰 이익을 얻는 입장이라서 이런 주장을 하는 것이 아니다. 우리는 화폐 공급에 있어 최종 발행량이 0이 되는 것이 말이 된다는 $Bitcoin식 사고방식을 머릿속에서 몰아내야 한다."
-        },
-        {
-          "date": "2026-08-08",
-          "by": "MikeSilagadze",
-          "stance": "neutral",
-          "quote": "제롬과 대화한 뒤 그의 입장을 더 잘 이해하게 됐다. 스테이킹된 ETH가 가령 50% 같은 임계를 넘으면 남은 50%에게 희석을 피할 강한 유인이 생기고 그 시점에 스테이킹 수익률은 모두에게 명목 수익이 되며, 스테이커는 가장 크고 유동성 높은 선택지를 선호하므로 최대 LST나 대형 중앙화 주체로 향한다는 것이다. 이 모든 것에 동의하지는 않지만 전부 충분히 합당하고 타당한 지점이 있는 논거라고 생각한다.",
-          "url": "https://x.com/MikeSilagadze/status/2085909701347164557",
-          "digest": "2026-08-08",
-          "relation": "none",
-          "original": "After a conversation with @jdetychey I have a better understanding of his position. I’d like to write it down to make sure I got it right.\n\nHaving a high percentage of $ETH staked introduces a number of problems and acts as a centralizing force.\n\nSpecifically, if staked ETH crosses some threshold, say 50%, then it creates a strong incentive for the remaining 50% to stake to avoid dilution. At that point staking yield becomes nominal for all. It’s reasonable to expect that stakers will prefer the largest and most liquid staking options and so will opt for the largest LST or largest centralized staking entities.\n\nSolo stakers are harmed in this scenario because they are, in most countries, paying taxes on nominal ETH yield and so their ROI becomes negative. This pushes them out of the market further centralizing the chain.\n\nLSTs that accumulate a large percentage of ETH staked introduce tail risk because they become too big to fail. In the case of a major compromise the chain may be forced to fork.\n\nThis brings us to the other risk which is that in the case of very high percent of ETH staked the social layer (i.e. holders of non staked ETH) are not large enough in number to prevent bad actors from causing harm. For example of a large centralized staking entity decides to censor or fork the chain (e.g. Coinbase in the of some dispute over USDC.)\n\nIs that correct? Anything I got wrong @jdetychey?\n\nTo be clear, I don’t agree with all of this, but I think all these are totally reasonable points and have merit.",
-          "translation": "@jdetychey와 대화를 나눈 후 그의 입장을 더 잘 이해하게 되었다. 제대로 이해했는지 확인하기 위해 글로 정리해보고자 한다. $ETH의 높은 비율이 스테이킹되어 있는 것은 여러 문제를 일으키며 중앙화를 촉진하는 힘으로 작용한다. 구체적으로, 스테이킹된 ETH가 예를 들어 50퍼센트 같은 어떤 임계값을 넘으면, 나머지 50퍼센트도 희석을 피하기 위해 스테이킹해야 한다는 강한 유인이 생긴다. 그 시점이 되면 스테이킹 수익률은 모두에게 명목상의 수준이 된다. 스테이커들이 가장 크고 유동성이 가장 좋은 스테이킹 옵션을 선호하여 가장 큰 LST나 가장 큰 중앙화된 스테이킹 기관을 선택하리라고 예상하는 것은 합리적이다. 이 시나리오에서 솔로 스테이커들은 피해를 입는다. 대부분의 국가에서 그들은 명목 ETH 수익률에 대해 세금을 내야 하고, 그로 인해 그들의 실질 수익률이 마이너스가 되기 때문이다. 이는 그들을 시장에서 밀어내고 체인을 더욱 중앙화시킨다. 스테이킹된 ETH의 큰 비율을 축적한 LST들은 꼬리 위험을 초래한다. 이들이 실패하기에는 너무 커지기 때문이다. 중대한 침해 사고가 발생할 경우 체인이 포크를 강요받을 수도 있다. 이는 또 다른 위험으로 이어진다. ETH 스테이킹 비율이 매우 높은 경우, 소셜 레이어, 즉 스테이킹하지 않은 ETH 보유자들의 규모가 충분히 크지 않아서 악의적 행위자가 피해를 끼치는 것을 막을 수 없게 된다는 것이다. 예를 들어 어떤 대형 중앙화 스테이킹 기관이, 가령 USDC를 둘러싼 어떤 분쟁에서의 Coinbase처럼, 체인을 검열하거나 포크하기로 결정하는 경우다. 이게 맞는가. @jdetychey, 내가 잘못 이해한 부분이 있는가. 분명히 말하자면, 나는 이 모든 것에 동의하지는 않지만, 이 모든 지점들이 전적으로 타당하며 나름의 의미가 있다고 생각한다."
-        },
-        {
-          "date": "2026-08-08",
-          "by": "hanni_abu",
-          "stance": "con",
-          "quote": "임계를 넘으면 남은 50%에게 희석을 피할 강한 유인이 생긴다는 것은 매우 큰 가정이며, 다른 어떤 체인에서도 일어나지 않은 일이다. 다른 지분증명 네트워크는 수익률이 훨씬 높고 슬래싱이 없어 사실상 무위험이며 추가 스테이킹 인센티브와 네이티브 위임 스테이킹까지 있어 스테이킹이 매우 쉽다.",
-          "url": "https://x.com/hanni_abu/status/2085919223159697666",
-          "digest": "2026-08-08",
-          "replyTo": "MikeSilagadze",
-          "relation": "reply",
-          "original": "> Specifically, if staked ETH crosses some threshold, say 50%, then it creates a strong incentive for the remaining 50% to stake to avoid dilution.\n\nThis is a very big assumption that hasn't happened on any other chain even though other PoS networks have much higher yield, no slashing (actually risk free), additional staking incentives, and native delegated staking (makes it very easy to stake).",
-          "translation": "구체적으로, 스테이킹된 ETH가 예를 들어 50퍼센트 같은 어떤 임계값을 넘으면, 나머지 50퍼센트도 희석을 피하기 위해 스테이킹해야 한다는 강한 유인이 생긴다는 주장에 대해. 이는 매우 큰 가정이다. 다른 PoS 네트워크들이 훨씬 더 높은 수익률, 슬래싱이 없는 실질적으로 무위험인 구조, 추가적인 스테이킹 인센티브, 그리고 네이티브 위임 스테이킹, 즉 스테이킹을 매우 쉽게 만드는 구조를 갖추고 있음에도 불구하고, 다른 어떤 체인에서도 이런 일은 일어난 적이 없다."
-        },
-        {
-          "date": "2026-08-08",
-          "by": "aibra",
-          "stance": "con",
-          "quote": "지금의 희석 수준은 사람들이 자기 ETH에 스마트컨트랙트 위험이나 슬래싱 같은 추가 위험을 감수하도록 만들 만큼 크지 않다고 본다.",
-          "url": "https://x.com/aibra/status/2085920489331925099",
-          "digest": "2026-08-08",
-          "replyTo": "MikeSilagadze",
-          "relation": "reply",
-          "original": "I just don't think the dilution is high enough for some people to feel compelled to take on extra \"risk\" their eth (smart contract risk, slashing, etc.)",
-          "translation": "나는 그저 희석 정도가 충분히 크지 않아서 일부 사람들이 자신의 eth에 추가적인 '리스크'(스마트 컨트랙트 리스크, 슬래싱 등)를 감수해야겠다고 느낄 정도는 아니라고 생각한다."
-        },
-        {
-          "date": "2026-08-08",
-          "by": "JourneyMacro",
-          "stance": "con",
-          "quote": "첫째로 LST와 대형 스테이커는 솔로 스테이킹을 할 32 ETH가 없거나 복잡한 절차를 감당할 여력이 없는 수백만 명일 뿐이다. 둘째로 50%를 넘으면 비스테이커 희석이 가속된다는 증거는 전혀 없고, 수수료 소각이 희석의 영향을 줄인다. 마지막으로 솔로 스테이킹을 더 쉽고 저렴하게 만들면 LST와 대형 풀은 훨씬 줄어들 것이다.",
-          "url": "https://x.com/JourneyMacro/status/2085921702404628594",
-          "digest": "2026-08-08",
-          "replyTo": "MikeSilagadze",
-          "relation": "reply",
-          "original": "Firstly, LSTs and large stakers are simply millions of people who don't have 32 ETH to do solo staking or can't be bothered to go through the complexities\n\nSecondly, there is zero proof that going over 50% will somehow accelerate dilution for non-stakers\n\nThirdly, the effect on non-stakers is ameliorated by the fact that fee burns reduce the impact of dilution\n\nFourthly, many non-stakers accept dilution as the cost of securing ETH and have no issues with it - if they had an issue with it, they can stake their ETH\n\nLastly, if we made solo staking easier and cheaper, there would likely be a lot less LSTs and large pools",
-          "translation": "첫째, LST와 대형 스테이커들은 단순히 솔로 스테이킹을 하기 위한 32 ETH가 없거나 복잡한 절차를 감수하고 싶지 않은 수백만 명의 사람들일 뿐이다. 둘째, 50퍼센트를 넘는 것이 어떤 식으로든 비스테이커들의 희석을 가속화한다는 증거는 전혀 없다. 셋째, 비스테이커들에게 미치는 영향은 수수료 소각이 희석의 영향을 줄여준다는 사실로 완화된다. 넷째, 많은 비스테이커들은 희석을 ETH 보안 확보를 위한 비용으로 받아들이며 이에 별다른 불만이 없다. 만약 불만이 있다면 그들도 ETH를 스테이킹하면 된다. 마지막으로, 솔로 스테이킹을 더 쉽고 저렴하게 만든다면 LST와 대형 풀은 아마 훨씬 줄어들 것이다."
-        },
-        {
-          "date": "2026-08-08",
-          "by": "hedgefunder01",
-          "stance": "con",
-          "quote": "스테이킹 비율이 높다는 것이 낮을 때보다 왜 더 큰 스테이킹 유인이 되는가. 연 0.2%의 추가 희석을 피하려고 그런다는 말은 성립하지 않는다. 희석을 피하려 스테이킹할 사람이라면 이미 그렇게 했을 것이고, 50% 임계를 기다리고 있지 않다.",
-          "url": "https://x.com/hedgefunder01/status/2085975342401917356",
-          "digest": "2026-08-08",
-          "replyTo": "MikeSilagadze",
-          "relation": "reply",
-          "original": "Why is a high staking ratio more of an incentive for people to stake than a low staking ratio? To avoid an extra 0.2% dilution per year? It’s nonsense \n\nIf people wanted to stake to avoid dilution they’d do so already. They aren’t waiting for a 50% threshold",
-          "translation": "왜 높은 스테이킹 비율이 낮은 스테이킹 비율보다 사람들에게 스테이킹할 더 강한 유인이 되는가? 연간 추가로 0.2% 희석되는 걸 피하려고? 말이 안 된다. 사람들이 희석을 피하려고 스테이킹을 하고 싶었다면 이미 그렇게 했을 것이다. 50%라는 임계치를 기다리고 있는 게 아니다."
-        },
-        {
-          "date": "2026-08-08",
-          "by": "donnoh_eth",
-          "stance": "neutral",
-          "quote": "솔라나는 50%를 넘었다.",
-          "url": "https://x.com/donnoh_eth/status/2085987101066015201",
-          "digest": "2026-08-08",
-          "replyTo": "hanni_abu",
-          "relation": "reply",
-          "original": "solana is above 50%",
-          "translation": "솔라나는 50%를 넘는다."
-        },
-        {
-          "date": "2026-08-08",
-          "by": "donnoh_eth",
-          "stance": "neutral",
-          "quote": "어쨌든 어느 체인도 필연적으로 스테이킹 비율 100%로 간다는 증거는 거의 없다는 데는 동의한다.",
-          "url": "https://x.com/donnoh_eth/status/2085989737676849632",
-          "digest": "2026-08-08",
-          "relation": "none",
-          "original": "@hanni_abu @MikeSilagadze @jdetychey in any case i agree there’s little evidence any of them is inevitably going to 100%…",
-          "translation": "어쨌든 나는 이들 중 어느 것도 필연적으로 100퍼센트까지 갈 것이라는 증거가 거의 없다는 데 동의한다."
-        }
-      ],
-      "firstSeen": "2026-08-05",
-      "lastActivity": "2026-08-08",
-      "status": "cooling",
-      "rootUrl": "https://x.com/MikeSilagadze/status/2085909701347164557",
-      "engagement": {
-        "likes": 180,
-        "retweets": 19,
-        "quotes": 3,
-        "replies": 31,
-        "views": 19016
-      }
-    },
-    {
-      "id": "issuance-burn-solo-staker-impact",
-      "title": "발행 소각은 솔로 스테이커를 밀어내 중앙화를 심화시키나",
-      "category": "프로토콜 설계",
-      "summary": "ether.fi의 마이크 실라가제는 코인베이스와 바이낸스처럼 자본비용이 없는 주체와 달리 솔로 스테이커는 자본비용을 지므로 제안이 통과되면 네트워크가 훨씬 집중된다며 100만 달러 공개 내기를 제안했고, Obol의 오신 카인은 검증자(validator) 운영 원가를 계산해 위임에 비해 솔로가 여전히 불리하다고 뒷받침했다. 반대편에서는 이미 ETH의 90% 넘는 양이 솔로 스테이커에게 있지 않고 요즘 유동성 스테이킹 토큰(LST, liquid staking token)은 수백 명의 홈 스테이커를 지원하는 스펙트럼에 가깝다는 반박이 나왔으며, 제안서 계산에서는 비용 구조가 큰 대형 운영자가 먼저 손익분기를 넘는다는 근거가 제시됐다.",
-      "keyPoints": [
-        "수수료를 깎을 여지가 없는 솔로 스테이커가 수익률(yield) 압축에서 먼저 탈락하나, 비용 구조가 큰 대형 운영자가 먼저 손익분기를 넘나",
-        "린 이더리움과 스테이트리스 ZK 검증으로 검증자 운영 비용이 실제로 0에 수렴하나, 아니면 그 전제 자체가 검증되지 않은 채 논거로 쓰이고 있나",
-        "지금의 LST와 분산 검증자 클러스터를 솔로 스테이킹이 사라진 증거로 볼지, 솔로 스테이킹의 연장으로 볼지"
-      ],
-      "background": "EIP-8363 'Tapered Issuance Burn'은 스테이킹된 총량에 비례한 소각(burn) 비율을 검증자의 합의 보상에 적용하므로, 모든 검증자의 발행(issuance) 기반 수익이 같은 비율로 줄어든다. 2026-08-04 공개 직후에는 EIP-8361이라는 번호로 잘못 불린 경우가 많아 초기 표기가 뒤섞여 있다. 현재 스테이킹 비율(staking ratio) 수준인 약 4,150만 ETH에서 순합의 수익률은 약 2.6%에서 약 1.2%로 내려가며, 18개월에 걸쳐 단계 적용되어 첫날 감소분은 약 13%에 그친다. 제안서 계산에 따르면 발행에서 오는 수익은 스테이킹 비율 약 20%에서 정점을 찍고 이후 감소하며, 비용 구조가 큰 대형 운영자일수록 먼저 손익분기를 넘어 순손실 구간에 들어간다. 반면 세 편의 학술 연구는 발행 축소가 솔로 스테이커를 밀어낸다고 예측했고 저자들도 이 불일치를 인정했다. 실행 레이어 변경 없이 하드포크(hard fork)가 필요하며, 이 제안은 헤고타(Hegotá) 포크의 PFI에 오르지 못한 Draft 상태다.",
-      "whyItMatters": "솔로 스테이킹은 검증자 집합이 포획됐을 때 남는 마지막 방어선으로 취급돼 왔기 때문에, 이 제안이 중앙화를 막는지 앞당기는지는 제안의 정당성 자체를 결정한다. 논쟁의 숨은 축은 검증자 원가 전망인데, 한쪽은 린 이더리움에서 운영 비용이 0에 가까워진다고 보고 다른 쪽은 그 전제가 데이터 없이 통용되고 있다고 본다. 지켜볼 지점은 실제 원가 모델과 스테이킹 시장 모델이 매지션스 논의에 제출되는지, 그리고 마이크의 내기가 성립해 검증 가능한 지표로 정리되는지다.",
-      "sources": [
-        {
-          "title": "EIP-8363: Tapered Issuance Burn",
-          "url": "https://eips.ethereum.org/EIPS/eip-8363"
-        },
-        {
-          "title": "EIP-8363 staking issuance burn reaction: Kulechov, Silagadze",
-          "url": "https://thedefiant.io/news/blockchains/eip-8363-staking-issuance-burn-reaction-kulechov-silagadze"
-        },
-        {
-          "title": "EIP-8363 Tapered Issuance Burn 논의 스레드",
-          "url": "https://ethereum-magicians.org/t/eip-8363-tapered-issuance-burn/29263"
-        }
-      ],
-      "keywords": [
-        "EIP-8363",
-        "solo staker",
-        "validator cost model",
-        "staking centralization"
-      ],
-      "positions": [
-        {
-          "stance": "pro",
-          "label": "솔로 스테이커가 먼저 밀려난다",
-          "holders": [
-            {
-              "handle": "MikeSilagadze",
-              "name": "Mike Silagadze🛡",
-              "role": "ether.fi CEO",
-              "avatar": "https://pbs.twimg.com/profile_images/1679988845171953666/21wndiIr_400x400.jpg"
-            },
-            {
-              "handle": "OisinKyne",
-              "name": "oisin.eth | Obol",
-              "role": "Obol",
-              "avatar": "https://pbs.twimg.com/profile_images/2010090282872631296/CxH7dJDv_400x400.jpg"
-            },
-            {
-              "handle": "MerlijnTrader",
-              "name": "Merlijn The Trader",
-              "avatar": "https://pbs.twimg.com/profile_images/1850942902475931648/WPFaML0z_400x400.jpg",
-              "role": "인플루언서·투자자"
-            },
-            {
-              "handle": "ManLyNFT",
-              "name": "ManLy",
-              "avatar": "https://pbs.twimg.com/profile_images/1698350296789864448/CyAVrClf_400x400.png",
-              "role": "LBank Exchange 파트너"
-            }
-          ],
-          "points": [
-            "코인베이스와 바이낸스, 비트마인, 샤프링크에는 자본비용이 없지만 솔로 스테이커에게는 있으므로, 제안이 통과되면 네트워크는 그 결과로 극적으로 더 집중된다.",
-            "모든 스테이킹 상품은 수익률에서 수수료를 떼는데, 수익이 절반이 되면 마진도 절반이 되고 깎을 수수료가 없는 솔로 스테이커가 가장 먼저 압박을 받는다.",
-            "3억 가스가 넘는 블록을 실시간으로 증명하려면 하드웨어 감가상각만으로 연 10만 달러가 넘고, 증명(attestation)만 담당하는 클라이언트로 가장 낙관적으로 잡아도 인건비와 회선, 감가상각을 빼고 대형 거래소보다 5배 넘게 비싸므로 솔로는 위임 옵션에 비해 여전히 불리하다.",
-            "린 이더리움에서 비용이 0으로 간다는 말이 반박 없이 통용되면 데이터가 아니라 분위기로 EIP를 판단하게 되므로, 이런 제안에는 제대로 된 비용 모델이 필요하다.",
-            "위기 상황에서 필요한 것은 솔로 스테이커인데, 평소에 최적화로 그들을 없애면 정작 필요할 때 남아 있지 않다."
-          ]
-        },
-        {
-          "stance": "con",
-          "label": "타격은 대형 운영자가 먼저 받고 솔로 비중은 이미 작다",
-          "holders": [
-            {
-              "handle": "pintail_xyz",
-              "name": "pintail",
-              "role": "EIP-8363 공동 저자",
-              "avatar": "https://pbs.twimg.com/profile_images/917505259920125954/UgDQAWsZ_400x400.jpg"
-            },
-            {
-              "handle": "dapplion",
-              "name": "Lion ⟠ dapplion .eth",
-              "role": "EIP-8363 공동 저자",
-              "avatar": "https://pbs.twimg.com/profile_images/1252685351589683201/Li7emKr-_400x400.jpg"
-            },
-            {
-              "handle": "longpratas",
-              "name": "pratas.eth",
-              "avatar": "https://pbs.twimg.com/profile_images/1932864498550845440/FFAZVmjY_400x400.jpg",
-              "role": "DeFi 인플루언서"
-            },
-            {
-              "handle": "drjasper_eth",
-              "name": "jasperthefriendlyghost.eth",
-              "avatar": "https://pbs.twimg.com/profile_images/1970862587031023616/V6rlZiBz_400x400.jpg",
-              "role": "Rocket Pool 커뮤니티 애드보케이트"
-            }
-          ],
-          "points": [
-            "제안서 계산에서 발행 수익은 스테이킹 비율 약 20%에서 정점을 찍고 감소하며, 비용 구조가 큰 대형 운영자일수록 먼저 손익분기를 넘어 순손실이 된다.",
-            "이미 ETH의 90% 넘는 양이 솔로 스테이커에게 있지 않으므로 솔로를 앞세운 반대 논리는 현실과 다르다.",
-            "요즘의 LST는 솔로 스테이커의 반대말이 아니라 로켓풀과 오볼, 리도가 각각 수백 명의 홈 스테이커를 지원하는 스펙트럼에 가깝다.",
-            "다만 디파이와 Aave 쪽 이용자층이 어떤 수익 감소에도 반발하리라는 점은 이 편에서도 인정한다."
-          ]
-        },
-        {
-          "stance": "neutral",
-          "label": "검증자 비용 전망 자체가 아직 불확실하다",
-          "holders": [
-            {
-              "handle": "materkel",
-              "name": "materkel.gwei 🦇🔊",
-              "avatar": "https://pbs.twimg.com/profile_images/1929508515770429440/WdoFRCAU_400x400.jpg",
-              "role": "termsplit·blobs.money 빌더"
-            }
-          ],
-          "points": [
-            "비용이 존재한다는 점을 인정하고 최대한 1차 데이터로 모으자는 주장에는 동의한다.",
-            "다만 린 이더리움에서는 검증자 운영 비용이 0에 가까워질 가능성이 크다.",
-            "스테이트리스 ZK 검증자로 얼마나 빨리 이행할지, 그것이 검증자 비용에 어떤 영향을 줄지 모르는 상태라 지금 논쟁은 낡은 데이터 위에서 이뤄지고 있다."
-          ]
-        },
-        {
-          "stance": "other",
-          "label": "인용된 목록 없이는 입장을 확정할 수 없다",
-          "holders": [
-            {
-              "handle": "ec265",
-              "name": "Etc.",
-              "avatar": "https://pbs.twimg.com/profile_images/1209299204/photo_400x400.JPG",
-              "role": "이더리움 인플루언서"
-            }
-          ],
-          "points": [
-            "다섯 개 항목으로 정리된 다른 글에 답하며 1번과 2번은 동인이 아니고, 3번과 4번은 과소평가되고 있으며, 5번에 초점을 둬야 한다고 밝혔다.",
-            "각 항목의 내용이 인용 트윗 본문에 담겨 있지 않아 어느 편에 서는지는 원문만으로 확인되지 않는다."
-          ]
-        }
-      ],
-      "timeline": [
-        {
-          "date": "2026-08-05",
-          "by": "MerlijnTrader",
-          "stance": "pro",
-          "quote": "지금 스테이킹 수준에서 EIP-8361은 순합의 수익률을 2.6%에서 1.2%로 낮추며, 18개월에 걸쳐 단계 적용되므로 첫날에는 -13%에 그친다. 모든 스테이킹 상품이 그 수익에서 수수료를 떼는데, 수익이 절반이 되면 마진도 절반이 되고 깎을 수수료가 없는 솔로 스테이커가 가장 먼저 밀려난다. 내 생각은 이렇다. 발행이 줄면 ETH가 더 희소해지니 내 강세 논지에는 조용히 긍정적이다.",
-          "url": "https://x.com/MerlijnTrader/status/2085033092893593778",
-          "digest": "2026-08-05",
-          "relation": "none",
-          "original": "ETHEREUM DEVS WANTS ZERO STAKING REWARDS AT 50% STAKED.\n\nEveryone is arguing about what holders lose. The real number sits one layer down.\n\nAt today's staking level, EIP-8361 takes net consensus yield from 2.6% to 1.2%.\n\nPhased in over 18 months day one is only -13%.\n\nEvery staking product takes its fee out of that yield. Halve the yield, halve the margin. Solo stakers have no fee to cut, so they get squeezed out first.\n\nMy take: lower issuance makes $ETH scarcer quietly bullish for my bull run thesis.\n\nHegotá inclusion deadline is TOMORROW.\n\nWatching the devs, not the drama.",
-          "translation": "이더리움 개발자들은 스테이킹 비율 50퍼센트에서 스테이킹 보상을 0으로 만들고 싶어 한다. 모두가 보유자들이 무엇을 잃는지에 대해 논쟁하고 있다. 하지만 진짜 숫자는 한 단계 더 아래에 있다. 현재의 스테이킹 수준에서 EIP-8361은 순수 합의 수익률을 2.6퍼센트에서 1.2퍼센트로 낮춘다. 18개월에 걸쳐 단계적으로 도입되므로 첫날 기준으로는 겨우 마이너스 13퍼센트다. 모든 스테이킹 상품은 그 수익률에서 수수료를 떼어간다. 수익률이 절반이 되면 마진도 절반이 된다. 솔로 스테이커들은 깎을 수수료가 없기 때문에 가장 먼저 밀려난다. 내 생각은 이렇다. 발행량이 낮아지면 $ETH는 더 희소해지며, 이는 조용히 나의 강세장 논지에 긍정적이다. 헤고타 포함 마감일이 내일이다. 나는 드라마가 아니라 개발자들을 지켜보고 있다."
-        },
-        {
-          "date": "2026-08-05",
-          "by": "ManLyNFT",
-          "stance": "pro",
-          "quote": "사람들은 부엌에 이미 불이 붙은 다음에야 솔로 스테이커를 떠올린다. 소화기는 최적화로 치워버리는 것보다 집에 두는 편이 낫다.",
-          "url": "https://x.com/ManLyNFT/status/2084989074499059732",
-          "digest": "2026-08-05",
-          "replyTo": "DCinvestor",
-          "relation": "reply",
-          "original": "People only remember solo stakers when the kitchen is already on fire lolll\n\nBetter to keep the fire extinguisher in the house than optimize it out.",
-          "translation": "사람들은 부엌에 이미 불이 났을 때만 솔로 스테이커를 떠올린다 ㅋㅋㅋ 소화기를 최적화한답시고 없애버리는 것보다는 집 안에 두는 게 낫다."
-        },
-        {
-          "date": "2026-08-05",
-          "by": "materkel",
-          "stance": "neutral",
-          "quote": "비용이 존재한다는 점을 인정하고 최대한 1차 데이터로 모으자는 데는 동의한다. 다만 린 이더리움에서는 검증자 운영 비용이 0에 가까워질 가능성이 크다. 스테이트리스 ZK 검증자로 얼마나 빨리 가는지, 그것이 검증자 비용에 어떤 영향을 줄지 모르기 때문에 우리는 결국 낡은 데이터를 놓고 이야기하는 셈이다.",
-          "url": "https://x.com/materkel/status/2085092319595040825",
-          "digest": "2026-08-04",
-          "replyTo": "OisinKyne",
-          "relation": "reply",
-          "original": "> I agree, but the least we can do it be honest that costs exist, gather them from first hand data as much as possible\n\ncosts to run a validator are likely to go to near 0 with Lean Ethereum though.\n\nSo we're really talking about all of this based on stale data, because we don't know how:\na) how fast we get to stateless ZK validators\nb) what impact it will end up having on the costs of a validator",
-          "translation": "동의한다. 하지만 최소한 우리가 할 수 있는 것은 비용이 존재한다는 사실을 솔직히 인정하고, 가능한 한 1차 데이터로부터 그 비용을 수집하는 것이다. 그런데 Lean Ethereum이 도입되면 검증인 운영 비용은 거의 0에 가까워질 가능성이 높다. 그래서 우리는 사실상 오래된 데이터를 기반으로 이 모든 것을 논하고 있는 셈이다. 왜냐하면 우리는 스테이트리스 ZK 검증인에 얼마나 빨리 도달할 것인지, 그리고 그것이 검증인 비용에 결국 어떤 영향을 미칠 것인지를 모르기 때문이다."
-        },
-        {
-          "date": "2026-08-05",
-          "by": "OisinKyne",
-          "stance": "pro",
-          "quote": "3억 가스가 넘는 블록을 실시간으로 증명하려면 하드웨어 감가상각만으로 연 10만 달러가 넘는다. 증명만 담당하는 쪽은 10와트 컴퓨터의 전기료가 연 16달러, ETH당 연 0.5달러 수준인데, 가장 낙관적으로 잡아도 증명 전용 클라이언트가 인건비와 회선, 감가상각을 빼고 대형 거래소보다 5배 넘게 비싸므로 솔로는 위임 옵션에 비해 여전히 불리하다. 이런 EIP에 제대로 된 비용 모델이 필요한 이유가 이것이며, 그러지 않으면 비용이 린에서 0으로 간다는 말이 반박 없이 통용되고 우리는 데이터가 아니라 분위기로 일하게 된다.",
-          "url": "https://x.com/OisinKyne/status/2085103503375249648",
-          "digest": "2026-08-04",
-          "replyTo": "materkel",
-          "relation": "reply",
-          "original": "Bruh, real time proving 300m+ gas blocks will cost > $100k per year in hardware depreciation alone.\n\nFor attesters, a 10w computer costs like $16 per year only in electricity. Meaning $0.5 per eth per year.\n\nEven at the most optimistic; attester only clients costs well over 5x more than the big CEXs before labour, internet, depreciation etc. So solos are still screwed then versus the delegation option.\n\nThis is why an EIP like this needs a proper cost model because otherwise “costs will go to zero at lean” will go unchallenged and we’re working off vibes rather than data.",
-          "translation": "이봐, 3억 가스 이상의 블록을 실시간으로 증명하려면 하드웨어 감가상각비만으로도 연간 10만 달러 이상이 든다. 반면 어테스터의 경우, 10와트짜리 컴퓨터는 전기료만으로 연간 약 16달러가 든다. ETH 1개당 연간 약 0.5달러인 셈이다. 아무리 낙관적으로 봐도, 어테스터 전용 클라이언트의 비용은 인건비, 인터넷, 감가상각 등을 반영하기도 전에 이미 대형 CEX보다 5배 이상 높다. 그러니 솔로 스테이커는 위임 옵션에 비해 여전히 불리한 처지다. 이것이 바로 이런 EIP에 제대로 된 비용 모델이 필요한 이유다. 그렇지 않으면 비용은 lean 단계에서 0이 될 것이라는 주장이 아무런 반박 없이 통과되고, 우리는 데이터가 아니라 막연한 느낌에 기반해 일을 진행하게 된다."
-        },
-        {
-          "date": "2026-08-05",
-          "by": "ec265",
-          "stance": "other",
-          "quote": "1번과 2번은 실제 동인이거나 고려 대상이라고 보지 않는다. 다만 3번과 4번은 지금 확실히 과소평가되고 있고, 5번이야말로 초점이 되어야 할 지점이라고 본다.",
-          "url": "https://x.com/ec265/status/2085007253384331581",
-          "digest": "2026-08-05",
-          "replyTo": "DCinvestor",
-          "relation": "reply",
-          "original": "I don't think 1 and 2 are really the drivers or part of the consideration, but I think 3 and 4 are definitely currently  being underestimated and that 5 is where the focus should be",
-          "translation": "1번과 2번은 실제 동인이거나 고려 대상이라고는 생각하지 않지만, 3번과 4번은 확실히 현재 과소평가되고 있고 5번이야말로 초점이 맞춰져야 할 지점이라고 생각한다."
-        },
-        {
-          "date": "2026-08-07",
-          "by": "DefiantNews",
-          "stance": "pro",
-          "quote": "ether.fi CEO 마이크 실라가제가 EIP-8363을 두고 100만 달러 공개 내기를 제안했다. 그는 이것이 통과되면 네트워크가 그 결과로 극적으로 더 집중될 것이라고 말했다. 그의 논거는 코인베이스와 바이낸스, 비트마인, 샤프링크에는 자본비용이 없지만 솔로 스테이커에게는 있다는 것이다.",
-          "url": "https://x.com/DefiantNews/status/2085779897910440396",
-          "digest": "2026-08-07",
-          "relation": "none",
-          "original": "There's Now a $1M Bet on EIP-8363:\n\n@ether_fi CEO @MikeSilagadze offers a $1M public bet on EIP-8363:\n\n\"If this goes through, the network will be dramatically more concentrated as a result.\"\n\nHis case: Coinbase, Binance, BitMine and SharpLink have no cost of capital. Solo stakers do.",
-          "translation": "이제 EIP-8363을 둘러싸고 100만 달러 규모의 내기가 걸렸다. @ether_fi의 CEO인 @MikeSilagadze는 EIP-8363에 대해 100만 달러 규모의 공개 내기를 제안했다. 이것이 통과되면 그 결과로 네트워크는 극적으로 더 집중화될 것이라는 것이 그의 주장이다. 그의 논지는 이렇다. Coinbase, Binance, BitMine, SharpLink는 자본 비용이 없지만, 솔로 스테이커들에게는 자본 비용이 있다."
-        },
-        {
-          "date": "2026-08-07",
-          "by": "longpratas",
-          "stance": "con",
-          "quote": "ETH의 90% 넘는 양은 이제 솔로 스테이커에게 있지 않다. 아는 척하는 것을 그만두라.",
-          "url": "https://x.com/longpratas/status/2085874114040840319",
-          "digest": "2026-08-07",
-          "replyTo": "DefiantNews",
-          "relation": "reply",
-          "original": "+90% of eth is not in solo stakers anymore \n\nStop pretending you know shit \n\nLmao",
-          "translation": "ETH의 90% 이상은 더 이상 솔로 스테이커의 손에 있지 않다. 뭘 아는 척 좀 그만해라 ㅋㅋ"
-        },
-        {
-          "date": "2026-08-08",
-          "by": "drjasper_eth",
-          "stance": "con",
-          "quote": "요즘은 LST가 곧 홈 스테이커다. 로켓풀과 오볼, 리도가 각각 수백 명의 홈 스테이커를 지원하고 있으며, 다만 스펙트럼이라는 점은 인정한다. 디파이와 Aave 쪽 이용자층이 어떤 감소에도 불만을 가질 것이라는 말도 맞다.",
-          "url": "https://x.com/drjasper_eth/status/2085690385007771777",
-          "digest": "2026-08-07",
-          "replyTo": "lassejaco",
-          "relation": "reply",
-          "original": "LST = home stakers these days. Rocket Pool / obol / lido all support hundreds of home stakers each now. It’s a spectrum though, granted. \n\nThe DeFi / aave cohort will be upset to any reduction though, true.",
-          "translation": "요즘 LST는 곧 홈 스테이커다. Rocket Pool, obol, lido 모두 이제 각각 수백 명의 홈 스테이커를 지원한다. 물론 스펙트럼이라는 건 인정한다. 다만 DeFi, aave 쪽 집단은 어떤 식으로든 보상이 줄어들면 불만을 가질 것이다. 그건 사실이다."
-        }
-      ],
-      "firstSeen": "2026-08-05",
-      "lastActivity": "2026-08-08",
-      "status": "cooling",
-      "rootUrl": "https://x.com/MerlijnTrader/status/2085033092893593778",
-      "engagement": {
-        "likes": 197,
-        "retweets": 6,
-        "quotes": 0,
-        "replies": 16,
-        "views": 39189
-      }
     }
   ]
 }

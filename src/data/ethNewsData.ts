@@ -21,7 +21,7 @@ export interface EthNewsInbox {
 
 export type EthNewsGroup = 'research' | 'twitter' | 'community' | 'korea';
 
-const RESEARCH_SOURCES = new Set(['ef-blog', 'ethresearch', 'eth-magicians', 'vitalik']);
+const RESEARCH_SOURCES = new Set(['ef-blog', 'ethresearch', 'eth-magicians', 'vitalik', 'forkcast']);
 
 const SOURCE_LABELS: Record<string, string> = {
     'ef-blog': 'EF Blog',
@@ -30,6 +30,7 @@ const SOURCE_LABELS: Record<string, string> = {
     vitalik: 'Vitalik',
     'reddit-ethereum': 'r/ethereum',
     'tg:coinnesskr': '코인니스',
+    forkcast: 'Forkcast',
 };
 
 /** 필터 그룹 분류: 공식·리서치 / 트위터 / 커뮤니티 / 국내 속보 */

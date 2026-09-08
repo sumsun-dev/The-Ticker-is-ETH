@@ -55,5 +55,6 @@
   "repliedTo": "{{name}}에게",
   "close": "닫기",
   "viewOnX": "X에서 원문 보기",
-  "participants": "참여자"
+  "participants": "참여자",
+  "resolution": "결론"
 }

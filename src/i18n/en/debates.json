@@ -55,5 +55,6 @@
   "repliedTo": "to {{name}}",
   "close": "Close",
   "viewOnX": "View on X",
-  "participants": "Participants"
+  "participants": "Participants",
+  "resolution": "Outcome"
 }

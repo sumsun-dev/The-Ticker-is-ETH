@@ -2,6 +2,9 @@
  * 이더리움 뉴스 수집기 — 소스 보드에서 승인된 소스만 수집한다.
  *   RSS      : EF 블로그, ethresear.ch, Ethereum Magicians, Vitalik, r/ethereum
  *   Twitter  : RapidAPI (scripts/config/twitter-accounts.json 워치리스트)
+ *   Forkcast : EF Protocol Support의 코어 개발자 콜 기록 (feed.xml → GitHub 아티팩트 tldr·key_decisions), 2026-09-08 추가
+ *
+ * env: FETCH_SOURCES=rss,twitter,forkcast (기본 전부) · FETCH_DRY_RUN=1 (수집 결과만 출력, 인박스에 쓰지 않음)
  *
  * 출력: src/data/eth-news-inbox.json — 표시/게시 로직과 분리된 원본 인박스.
  * 소스 하나가 실패해도 나머지는 계속 수집한다 (warn 후 진행).
@@ -9,7 +12,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as dotenv from 'dotenv';
-import { parseFeed, tweetsToItems, mergeInbox, detectDebates, type NewsItem } from './lib/eth-news';
+import { parseFeed, tweetsToItems, mergeInbox, detectDebates, parseForkcastFeed, forkcastArtifactBase, forkcastToItem, type NewsItem } from './lib/eth-news';
 
 dotenv.config({ path: path.resolve(process.cwd(), '.env.local') });
 dotenv.config({ path: path.resolve(process.cwd(), '.env') });
@@ -98,12 +101,50 @@ async function collectTwitter(): Promise<NewsItem[]> {
   return [...timelineItems, ...debateReplies];
 }
 
+/** Forkcast: 최근 30일 콜의 아티팩트를 받아 항목으로. 아티팩트가 아직 없으면(404) 피드 정보만으로 만든다. */
+async function collectForkcast(): Promise<NewsItem[]> {
+  const results: NewsItem[] = [];
+  try {
+    const res = await fetch('https://forkcast.org/feed.xml', { headers: { 'user-agent': USER_AGENT } });
+    if (!res.ok) {
+      console.warn(`[WARN] forkcast: HTTP ${res.status} — skipped`);
+      return results;
+    }
+    const cutoff = Date.now() - 30 * 86_400_000;
+    const calls = parseForkcastFeed(await res.text()).filter((c) => new Date(c.date).getTime() >= cutoff);
+    const getJson = async (url: string): Promise<Record<string, unknown> | null> => {
+      try {
+        const r = await fetch(url, { headers: { 'user-agent': USER_AGENT } });
+        return r.ok ? ((await r.json()) as Record<string, unknown>) : null;
+      } catch {
+        return null;
+      }
+    };
+    for (const call of calls) {
+      const base = forkcastArtifactBase(call);
+      const [tldr, decisions, config] = await Promise.all([getJson(`${base}/tldr.json`), getJson(`${base}/key_decisions.json`), getJson(`${base}/config.json`)]);
+      results.push(forkcastToItem(call, tldr, decisions, config));
+    }
+    console.log(`  forkcast: ${results.length} calls (${results.filter((i) => /핵심 결정/.test(i.title)).length} with decisions)`);
+  } catch (error) {
+    console.warn('[WARN] forkcast failed:', error instanceof Error ? error.message : error);
+  }
+  return results;
+}
+
 async function main() {
   console.log('Collecting Ethereum news sources...');
-  const [rss, tweets] = [await collectRss(), await collectTwitter()];
+  const sources = new Set((process.env.FETCH_SOURCES ?? 'rss,twitter,forkcast').split(',').map((s) => s.trim()));
+  const rss = sources.has('rss') ? await collectRss() : [];
+  const tweets = sources.has('twitter') ? await collectTwitter() : [];
+  const forkcast = sources.has('forkcast') ? await collectForkcast() : [];
+  if (process.env.FETCH_DRY_RUN) {
+    for (const item of [...rss, ...tweets, ...forkcast]) console.log(`\n### ${item.source} | ${item.publishedAt.slice(0, 10)} | ${item.title}\n${item.summary.slice(0, 1200)}\n${item.url}`);
+    return;
+  }
   // 뉴스 인박스이므로 피드가 쏟아내는 과거 아카이브는 버린다 (최근 30일만)
   const cutoff = Date.now() - 30 * 86_400_000;
-  const incoming = [...rss, ...tweets].filter(
+  const incoming = [...rss, ...tweets, ...forkcast].filter(
     (item) => new Date(item.publishedAt).getTime() >= cutoff,
   );
 

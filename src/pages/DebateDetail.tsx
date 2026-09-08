@@ -106,6 +106,12 @@ const DebateDetail: React.FC = () => {
                     </Link>
                     <h1 className="text-3xl md:text-4xl font-bold leading-tight">{debate.title}</h1>
                     <p className="text-sm md:text-base text-theme-text-secondary leading-relaxed">{debate.summary}</p>
+                    {debate.resolution && (
+                        <p className="text-sm leading-relaxed inline-flex items-start gap-2">
+                            <span className="text-[11px] font-mono uppercase tracking-widest text-emerald-400 pt-1 shrink-0">{t('resolution')}</span>
+                            <span>{debate.resolution}</span>
+                        </p>
+                    )}
                     <dl className="flex flex-wrap items-center gap-x-6 gap-y-1 text-sm mt-1">
                         <div className="flex items-center gap-2 whitespace-nowrap">
                             <dt className={KICKER}>{t('status.label')}</dt>
