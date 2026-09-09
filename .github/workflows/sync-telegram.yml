@@ -19,7 +19,7 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     # 세션 장애 시 재시도 루프로 몇 시간씩 매달리는 것 방지. 단계별 상한(아래)의 합보다 여유 있게
-    timeout-minutes: 40
+    timeout-minutes: 45
 
     steps:
       - uses: actions/checkout@v4
@@ -37,7 +37,7 @@ jobs:
         # 단계 상한이 없으면 세션 행(gramjs TIMEOUT)이 잡 전체 상한을 먹어 뒤 단계(ETH 뉴스·Forkcast 수집)까지 취소된다
         # (2026-09-08 실측: 30분 취소로 다이제스트에 콜 섹션 누락).
         continue-on-error: true
-        timeout-minutes: 12
+        timeout-minutes: 25
         env:
           CI: 'true'
           TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
