@@ -22,6 +22,8 @@ main() {
   npx tsx scripts/extract-eth-calls.ts
   npx tsx scripts/render-digest-cover.ts
   npx tsx scripts/post-digest-telegram.ts
+  # 새로 정리된 코어 개발자 콜 브리프를 채널에 (올린 콜은 eth-calls.json에 telegramMessageId 기록). 실패해도 커밋은 진행
+  CALLS_CHAT=@thetickeriseth npx tsx scripts/post-calls-telegram.ts || true
 
   git add src/data/eth-digests.json src/data/eth-debates.json src/data/eth-calls.json src/data/x-profiles.json public/assets/digests/
   git diff --cached --quiet || (

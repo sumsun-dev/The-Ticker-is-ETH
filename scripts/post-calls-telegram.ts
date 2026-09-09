@@ -2,7 +2,7 @@
  * 코어 개발자 콜 브리프를 텔레그램으로 — src/data/eth-calls.json의 레코드에서 커버·캡션·발언 정리를 만들어 보낸다 (LLM 호출 없음).
  * 레코드는 extract-eth-calls.ts가 만들므로 사이트(/calls)와 메시지 내용이 같다. 콜 하나 = 사진(커버+결정 브리프) + 답글(누가 무슨 말을 했나).
  *
- * env: TELEGRAM_BOT_TOKEN · CALLS_CHAT(받을 chat id, 필수) · CALLS(콜 id 쉼표 목록, 예 acde-244,acdc-186; 없으면 최근 14일 정리된 콜 최대 5개)
+ * env: TELEGRAM_BOT_TOKEN · CALLS_CHAT(받을 chat id, 필수) · CALLS(콜 id 쉼표 목록, 예 acde-244,acdc-186; 없으면 최근 14일 정리된 콜 중 CALLS_POST_SINCE 이후이고 아직 안 올린 것(telegramMessageId 없음) 최대 3개, 올린 뒤 id 기록)
  *      CALLS_DRY_RUN=1(캡션 출력·커버 렌더만) · CALLS_REPLY_TO=<message_id>(이미 보낸 브리프에 발언 정리만 답글로)
  */
 import fs from 'fs';
@@ -114,6 +114,9 @@ async function telegram(token: string, method: string, body: FormData | Record<s
   return json.result?.message_id;
 }
 
+/** 채널 브리프 시작일. 자동 실행은 이 날짜 이후 콜만 올린다 (첫 채널 브리프 ACDT #95, 2026-09-09 게시) */
+const CALLS_POST_SINCE = process.env.CALLS_POST_SINCE ?? '2026-09-07';
+
 async function main() {
   const token = process.env.TELEGRAM_BOT_TOKEN;
   const chat = process.env.CALLS_CHAT;
@@ -125,7 +128,10 @@ async function main() {
   const file = JSON.parse(fs.readFileSync(FILE, 'utf-8')) as CallsFile;
   const wanted = process.env.CALLS?.split(',').map((s) => s.trim()).filter(Boolean);
   const cutoff = new Date(Date.now() - 14 * 86_400_000).toISOString().slice(0, 10);
-  const pool = wanted ? wanted.map((id) => file.calls.find((c) => c.id === id)).filter((c): c is CallRecord => Boolean(c)) : file.calls.filter((c) => c.date >= cutoff).slice(0, 5);
+  // 자동 실행(CALLS 없음): 채널 브리프를 시작한 날 이후의 콜 중 아직 안 올린 것만. 그 전 콜은 사이트에만 둔다
+  const pool = wanted
+    ? wanted.map((id) => file.calls.find((c) => c.id === id)).filter((c): c is CallRecord => Boolean(c))
+    : file.calls.filter((c) => c.date >= cutoff && c.date >= CALLS_POST_SINCE && !c.telegramMessageId).slice(0, 3);
   // 오래된 콜부터 보내 시간순으로 읽히게
   const selected = pool.filter((c) => c.kind === 'full').sort((a, b) => a.date.localeCompare(b.date));
   if (selected.length === 0) {
@@ -167,6 +173,11 @@ async function main() {
       photoId = await telegram(token!, 'sendMessage', { chat_id: chat, parse_mode: 'HTML', text: caption, disable_web_page_preview: true });
     }
     console.log(`  sent ${callLabel(call)} (message ${photoId})`);
+    if (photoId) {
+      // 올린 콜은 기록해 다음 자동 실행에서 다시 올리지 않는다 (러너가 eth-calls.json을 커밋)
+      file.calls = file.calls.map((c) => (c.id === call.id ? { ...c, telegramMessageId: photoId } : c));
+      fs.writeFileSync(FILE, `${JSON.stringify(file, null, 2)}\n`);
+    }
     for (const text of discussion) {
       const id = await telegram(token!, 'sendMessage', { chat_id: chat, parse_mode: 'HTML', text, disable_web_page_preview: true, reply_to_message_id: photoId });
       console.log(`  sent discussion (message ${id})`);

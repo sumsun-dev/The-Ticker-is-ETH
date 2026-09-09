@@ -111,6 +111,8 @@ export interface CallRecord {
   glossary: CallGlossaryItem[];
   eips: number[];
   relatedDebates: string[];
+  /** 채널(@thetickeriseth)에 올린 브리프 커버 메시지 id. 있으면 자동 게시에서 제외 */
+  telegramMessageId?: number;
 }
 export interface CallsStatus {
   currentFork?: { name: string; stage: string; line: string };
@@ -583,22 +585,23 @@ export interface CaptionOptions {
 
 /** 사진 캡션 (텔레그램 HTML). 길이 상한은 fitCaption이 맞춘다 */
 export function renderCaption(call: CallRecord, opts: CaptionOptions = {}): string {
-  const { targets = true, why = true, glossary = true, link = false } = opts;
+  // 소제목은 기울임(<i>)으로 본문·이름(굵게)과 구분한다. 용어 풀이는 사이트에만 두고 브리프에서는 뺀다 (오너 2026-09-09)
+  const { targets = true, why = true, glossary = false, link = false } = opts;
   const lines: string[] = [];
   lines.push(`<b>${esc(callLabel(call))} · ${koDate(call.date)}</b>`);
   if (call.intro) lines.push(esc(call.intro));
-  if (call.summary) lines.push('', '<b>한 줄 요약</b>', esc(call.summary));
-  if (call.decisions.length) lines.push('', '<b>결정된 것</b>', ...call.decisions.slice(0, 5).map((d) => `· ${esc(d.text)}`));
-  if (targets && call.targets.length) lines.push('', '<b>일정</b>', ...call.targets.slice(0, 4).map((t) => `· ${esc(t.text)}`));
-  if (why && call.whyItMatters) lines.push('', '<b>왜 중요한가</b>', esc(call.whyItMatters));
-  if (glossary && call.glossary.length) lines.push('', `<b>용어</b> ${call.glossary.slice(0, 4).map((g) => `${esc(g.term)}: ${esc(g.def)}`).join(' · ')}`);
+  if (call.summary) lines.push('', '<i>한 줄 요약</i>', esc(call.summary));
+  if (call.decisions.length) lines.push('', '<i>결정된 것</i>', ...call.decisions.slice(0, 5).map((d) => `· ${esc(d.text)}`));
+  if (targets && call.targets.length) lines.push('', '<i>일정</i>', ...call.targets.slice(0, 4).map((t) => `· ${esc(t.text)}`));
+  if (why && call.whyItMatters) lines.push('', '<i>왜 중요한가</i>', esc(call.whyItMatters));
+  if (glossary && call.glossary.length) lines.push('', `<i>용어</i> ${call.glossary.slice(0, 4).map((g) => `${esc(g.term)}: ${esc(g.def)}`).join(' · ')}`);
   if (link) lines.push('', siteLinkLine(call));
   return lines.join('\n');
 }
 
 /** 텔레그램 sendPhoto 캡션 상한(엔티티 제외 1,024자)에 맞을 때까지 용어 → 왜 중요한가 → 일정 순으로 뺀다 */
 export function fitCaption(call: CallRecord, max = 1024, extra: CaptionOptions = {}): string {
-  const variants: CaptionOptions[] = [{}, { glossary: false }, { glossary: false, why: false }, { glossary: false, why: false, targets: false }].map((v) => ({ ...v, ...extra }));
+  const variants: CaptionOptions[] = [{}, { why: false }, { why: false, targets: false }].map((v) => ({ ...v, ...extra }));
   for (const v of variants) {
     const text = renderCaption(call, v);
     if (plainLength(text) <= max) return text;
@@ -629,12 +632,13 @@ export function discussionParagraphs(call: CallRecord): string[] {
   };
   const paras: string[] = [`<b>${esc(callLabel(call))} · 누가 무슨 말을 했나</b>\n${esc(call.lead ?? '')}`];
   for (const t of call.topics) {
-    const lines = [`<b>${esc(t.title)}</b>${t.decision ? ` · ${esc(t.decision)}` : ''}`, esc(t.intro)];
+    // 주제 제목은 굵은 기울임: 발언자 이름(굵게)과 구분되는 소제목
+    const lines = [`<b><i>${esc(t.title)}</i></b>${t.decision ? ` · ${esc(t.decision)}` : ''}`, esc(t.intro)];
     for (const p of t.positions) lines.push(`· ${who(p.speaker)}: ${esc(p.text)}${p.viaChat ? ' (채팅)' : ''}`);
     if (t.quote) lines.push(`<i>"${esc(t.quote.text)}"</i> (${esc(call.speakers.find((s) => s.label === t.quote?.speaker)?.name ?? t.quote.speaker)}, ${t.quote.timestamp})`);
     paras.push(collapseTopics(lines.join('\n')));
   }
-  if (call.actions.length) paras.push(`<b>남은 것</b>\n${call.actions.map((a) => `· ${esc(a.owner)}: ${esc(a.text)}`).join('\n')}`);
+  if (call.actions.length) paras.push(`<i>남은 것</i>\n${call.actions.map((a) => `· ${esc(a.owner)}: ${esc(a.text)}`).join('\n')}`);
   return paras;
 }
 

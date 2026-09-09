@@ -329,7 +329,8 @@ async function main() {
     const digests = fetchDigests();
     for (const ch of targets) {
       current = ch.id;
-      const post = buildLinkedInPost(ch, digests);
+      // 이 글에 달린 답글(브리프 토론 메시지 등)의 링크는 첫 댓글로 합친다
+      const post = buildLinkedInPost(ch, digests, undefined, posts.filter((p) => p.replyTo === ch.id));
       const media = await fetchMedia(post, ch.id);
       const mediaDesc = media.video ? `동영상 ${(statSync(media.video).size / 1e6).toFixed(1)}MB` : media.photos.length ? `사진 ${media.photos.length}장` : '미디어 없음';
       log(`#${ch.id}${post.digestDate ? ` (다이제스트 ${post.digestDate})` : ''}: 게시 시작${DRY ? ' (dry)' : ''} · 본문 ${post.body.length}자 · ${mediaDesc}`);

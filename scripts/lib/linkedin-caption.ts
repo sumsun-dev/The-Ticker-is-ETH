@@ -67,6 +67,8 @@ export interface ChannelPost {
   video?: string;
   /** 본문 HTML (b, i, br, a 정도) */
   html: string;
+  /** 다른 채널 글에 대한 답글이면 그 글 id (콜 브리프의 토론 메시지 등). 미러는 답글을 따로 올리지 않고 링크만 부모의 댓글에 합친다 */
+  replyTo?: number;
 }
 
 const ENTITIES: Record<string, string> = { '&amp;': '&', '&lt;': '<', '&gt;': '>', '&quot;': '"', '&#39;': "'", '&#036;': '$', '&nbsp;': ' ' };
@@ -84,8 +86,10 @@ export function parseChannelPage(html: string, channel: string): ChannelPost[] {
     const date = /<time[^>]*datetime="([^"]+)"/.exec(block)?.[1] ?? '';
     const photos = [...block.matchAll(/tgme_widget_message_photo_wrap[^>]*style="[^"]*url\('([^']+)'\)/g)].map((m) => decodeEntities(m[1]));
     const video = /<video[^>]*\ssrc="([^"]+)"/.exec(block)?.[1];
-    const text = /class="tgme_widget_message_text[^"]*"[^>]*>([\s\S]*?)<\/div>/.exec(block)?.[1] ?? '';
-    posts.push({ id: starts[i].id, date, photos, ...(video ? { video: decodeEntities(video) } : {}), html: text });
+    // 답글이면 부모 글 미리보기(js-message_reply_text)가 먼저 오므로 본문은 js-message_text만 잡는다
+    const replyTo = /class="tgme_widget_message_reply[^"]*"\s+href="https?:\/\/t\.me\/[^/"]+\/(\d+)"/.exec(block)?.[1];
+    const text = /class="tgme_widget_message_text js-message_text[^"]*"[^>]*>([\s\S]*?)<\/div>/.exec(block)?.[1] ?? '';
+    posts.push({ id: starts[i].id, date, photos, ...(video ? { video: decodeEntities(video) } : {}), html: text, ...(replyTo ? { replyTo: Number(replyTo) } : {}) });
   }
   return posts.sort((a, b) => a.id - b.id);
 }
@@ -145,10 +149,17 @@ export interface LinkedInPost {
  * 채널 글 → LinkedIn 게시물. 다이제스트 글(사이트 링크의 date로 판별)이면 다이제스트 데이터의 풍부한 본문을 쓰고,
  * 그 밖의 글은 채널 본문에서 URL을 걷어낸 뒤 해시태그를 붙인다. 링크는 모두 첫 댓글로.
  */
-export function buildLinkedInPost(post: ChannelPost, digests: ReadonlyArray<DigestLike>, tags: string[] = DEFAULT_TAGS): LinkedInPost {
+export function buildLinkedInPost(post: ChannelPost, digests: ReadonlyArray<DigestLike>, tags: string[] = DEFAULT_TAGS, replies: ReadonlyArray<ChannelPost> = []): LinkedInPost {
   const plain = channelHtmlToText(post.html);
   const stripped = stripUrls(plain.text);
-  const allUrls = [...new Set([...plain.links.map((l) => l.url), ...stripped.urls])];
+  // 답글(콜 브리프의 토론 메시지 등)은 본문에 싣지 않고 그 안의 링크만 댓글로 합친다
+  const replyParts = replies.map((r) => {
+    const p = channelHtmlToText(r.html);
+    return { links: p.links, urls: stripUrls(p.text).urls };
+  });
+  const links = [...plain.links, ...replyParts.flatMap((r) => r.links)];
+  const bareUrls = [...stripped.urls, ...replyParts.flatMap((r) => r.urls)];
+  const allUrls = [...new Set([...links.map((l) => l.url), ...bareUrls])];
   const digestDate = allUrls.map((u) => DIGEST_LINK.exec(u)?.[1]).find(Boolean) ?? digests.find((d) => d.telegramMessageId === post.id)?.date;
   const digest = digestDate ? digests.find((d) => d.date === digestDate) : undefined;
 
@@ -157,11 +168,12 @@ export function buildLinkedInPost(post: ChannelPost, digests: ReadonlyArray<Dige
     // 다이제스트는 항목마다 출처 링크가 달려 있어 댓글에 다 옮기면 수십 개가 된다. 사이트 링크 하나로 갈음
     commentLines.push(`전체 요약 보기: https://ethcollective.xyz/news?date=${digest.date}`);
   } else {
-    for (const l of plain.links) {
-      const label = l.label && !/^https?:\/\//.test(l.label) && !/^(링크|link)$/i.test(l.label) ? l.label : '원문';
+    const fallbackLabel = (url: string) => (/ethcollective\.xyz/.test(url) ? '전체 보기' : '원문');
+    for (const l of links) {
+      const label = l.label && !/^https?:\/\//.test(l.label) && !/^(링크|link)$/i.test(l.label) ? l.label : fallbackLabel(l.url);
       commentLines.push(`${label}: ${l.url}`);
     }
-    for (const u of stripped.urls) if (!plain.links.some((l) => l.url === u)) commentLines.push(`원문: ${u}`);
+    for (const u of bareUrls) if (!links.some((l) => l.url === u)) commentLines.push(`${fallbackLabel(u)}: ${u}`);
   }
   commentLines.push(`텔레그램 채널 The Ticker is ETH: ${CHANNEL_URL}`);
 
@@ -172,5 +184,5 @@ export function buildLinkedInPost(post: ChannelPost, digests: ReadonlyArray<Dige
 /** 게시할 채널 글: 아직 안 올린 것 중 최근 maxAgeDays 안, 오래된 순 */
 export function pickChannelPosts(posts: ReadonlyArray<ChannelPost>, seen: ReadonlyArray<number>, now: Date, maxAgeDays = 3): ChannelPost[] {
   const min = now.getTime() - maxAgeDays * 86_400_000;
-  return posts.filter((p) => !seen.includes(p.id) && p.html.trim() && Date.parse(p.date) >= min).sort((a, b) => a.id - b.id);
+  return posts.filter((p) => !seen.includes(p.id) && !p.replyTo && p.html.trim() && Date.parse(p.date) >= min).sort((a, b) => a.id - b.id);
 }
