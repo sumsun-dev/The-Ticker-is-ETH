@@ -214,11 +214,13 @@ async function main() {
   const cutoff = lastDate
     ? new Date(`${lastDate}T00:00:00+09:00`).getTime()
     : Date.now() - 36 * 3_600_000;
+  // 코어 개발자 콜 기록(forkcast)은 수집이 한 회차 늦어도 다음 호에 실리도록 최근 7일까지 허용 (2026-09-09 ACDT #95 누락). 재탕은 아래 coveredUrls가 막는다
+  const callCutoff = Math.min(cutoff, Date.now() - 7 * 86_400_000);
   // 최근 3개 호가 이미 다룬 URL은 후보에서 제외 (재탕 방지 1차 — 기계적)
   const recentDigests = existing.digests.slice(0, 3);
   const coveredUrls = new Set(recentDigests.flatMap((d) => d.sections.flatMap((s) => s.items.map((it) => it.url))));
   const candidates = inbox.items
-    .filter((item) => new Date(item.publishedAt).getTime() >= cutoff)
+    .filter((item) => new Date(item.publishedAt).getTime() >= (item.source === 'forkcast' ? callCutoff : cutoff))
     .filter((item) => !coveredUrls.has(item.url))
     .filter((item) => !item.summary.startsWith('RT @'))
     .filter((item) => !item.title.startsWith('Daily General Discussion'))
