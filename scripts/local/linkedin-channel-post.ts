@@ -13,6 +13,7 @@
  *   npx tsx scripts/local/linkedin-channel-post.ts                # 새 글 감지 → 게시 + 첫 댓글
  *   npx tsx scripts/local/linkedin-channel-post.ts --id=1560      # 특정 글 강제 (seen 무시)
  *   npx tsx scripts/local/linkedin-channel-post.ts --seed         # 현재 채널 글을 모두 본 것으로 기록 (백필 방지)
+ *   npx tsx scripts/local/linkedin-channel-post.ts --id=1561 --comment-only  # 이미 올린 글에 첫 댓글만 다시
  * Env: LI_ORG (기본 110535025 = ECK 페이지 숫자 id) · LI_PROFILE_DIR (기본 ~/.eck/li-chrome, ~/.ai-secondbrain/li-chrome 재사용 가능)
  *      LI_HEADLESS=1 · TG_CHANNEL (기본 thetickeriseth) · ECK_REPO (기본 sumsun-dev/The-Ticker-is-ETH)
  *      TELEGRAM_BOT_TOKEN + LINKEDIN_ALERT_CHAT|VITALIK_ALERT_CHAT (알림 DM)
@@ -42,6 +43,7 @@ const LOGIN = process.argv.includes('--login');
 const CHECK = process.argv.includes('--check');
 const DRY = process.argv.includes('--dry');
 const SEED = process.argv.includes('--seed');
+const COMMENT_ONLY = process.argv.includes('--comment-only');
 const HEADLESS = process.env.LI_HEADLESS === '1';
 const log = (m: string) => process.stdout.write(`[eck-li] ${m}\n`);
 
@@ -175,17 +177,25 @@ async function publish(page: Page, post: LinkedInPost, media: Media) {
     const input = modal.locator('input[type=file]').first();
     await input.waitFor({ state: 'attached', timeout: 15_000 });
     await input.setInputFiles(kind === 'video' ? [media.video!] : media.photos);
-    // 사진·동영상 편집 화면 → '다음'. 동영상은 업로드·처리에 시간이 걸린다. 편집 화면 없이 바로 본문 에디터가 뜨는 경우도 있어 둘 다 기다린다
+    if (kind === 'video') {
+      // '다음' 버튼은 업로드 전에도 보인다. 업로드 전에 넘어가 게시하면 컴포저만 닫히고 글이 생기지 않는다(2026-09-09 실측).
+      // 편집 화면에 <video> 미리보기가 생기고 진행 문구(업로드 중·처리 중·%)가 사라질 때까지 기다린다 (최대 5분)
+      const deadline = Date.now() + 300_000;
+      while (Date.now() < deadline) {
+        const text = await modal.innerText();
+        const ready = (await modal.locator('video').count()) > 0 && !/업로드 중|처리 중|uploading|processing|\d+%/i.test(text);
+        if (ready) break;
+        await page.waitForTimeout(5000);
+      }
+      await page.waitForTimeout(3000);
+    } else {
+      await page.waitForTimeout(1000 * Math.max(1, media.photos.length)); // 썸네일 생성 여유 (장당 1초)
+    }
+    // 편집 화면 → '다음'. 편집 화면 없이 바로 본문 에디터가 뜨는 경우도 있어 둘 다 기다린다
     const next = modal.getByRole('button', { name: RE_NEXT }).first();
     const editorEarly = modal.locator('.ql-editor[contenteditable="true"]').first();
-    const which = await Promise.race([
-      next.waitFor({ timeout: kind === 'video' ? 600_000 : 120_000 }).then(() => 'next' as const),
-      editorEarly.waitFor({ timeout: kind === 'video' ? 600_000 : 120_000 }).then(() => 'editor' as const),
-    ]);
-    if (which === 'next') {
-      await page.waitForTimeout(1000 * Math.max(1, kind === 'video' ? 3 : media.photos.length));
-      await next.click();
-    }
+    const which = await Promise.race([next.waitFor({ timeout: 120_000 }).then(() => 'next' as const), editorEarly.waitFor({ timeout: 120_000 }).then(() => 'editor' as const)]);
+    if (which === 'next') await next.click();
   }
   // fill()은 Quill 상태에 안 잡혀 본문 없이 게시된다 → insertText로 정식 input 이벤트
   const editor = modal.locator('.ql-editor[contenteditable="true"]').first();
@@ -200,17 +210,35 @@ async function publish(page: Page, post: LinkedInPost, media: Media) {
   await page.locator(MODAL).waitFor({ state: 'detached', timeout: 60_000 }).catch(() => {
     throw new Error('컴포저가 닫히지 않음. 페이지에서 직접 확인 필요');
   });
+  // 동영상은 서버 처리 뒤에야 목록에 뜬다. 댓글 단계가 목록에서 글을 찾을 때까지 재시도하므로 여기서는 잠시만 기다린다
+  await page.waitForTimeout(kind === 'video' ? 30_000 : 5000);
 }
 
-/** 방금 올린 글(목록 첫 항목)에 첫 댓글. 첫 항목이 우리 글인지 본문 첫 줄로 확인한다 */
+/**
+ * 방금 올린 글에 첫 댓글. 목록 앞쪽 항목들에서 본문 첫 줄로 찾는다(퍼가기 항목이나 처리 중인 동영상 글 때문에 첫 항목이 아닐 수 있고,
+ * 동영상은 처리 뒤에야 목록에 뜨므로 최대 6회, 30초 간격으로 다시 찾는다)
+ */
 async function addFirstComment(page: Page, post: LinkedInPost) {
-  await page.goto(ADMIN_URL, { waitUntil: 'domcontentloaded', timeout: 60_000 });
-  await page.waitForTimeout(5000);
-  const first = page.locator(FIRST_POST).first();
-  await first.waitFor({ timeout: 30_000 });
   const marker = post.body.split('\n')[0].slice(0, 40);
-  const text = await first.innerText();
-  if (!text.includes(marker)) throw new Error(`첫 게시물이 방금 올린 글이 아님 (기대: ${marker})`);
+  let first: ReturnType<Page['locator']> | null = null;
+  let text = '';
+  for (let attempt = 0; attempt < 6 && !first; attempt++) {
+    if (attempt > 0) await page.waitForTimeout(30_000);
+    await page.goto(ADMIN_URL, { waitUntil: 'domcontentloaded', timeout: 60_000 });
+    await page.waitForTimeout(5000);
+    const posts = page.locator(FIRST_POST);
+    const n = Math.min(await posts.count(), 6);
+    for (let i = 0; i < n; i++) {
+      const t = await posts.nth(i).innerText();
+      // 퍼가기 항목(머리에 "퍼옴")은 건너뛴다
+      if (t.includes(marker) && !/퍼옴|reposted/i.test(t.split('\n').slice(0, 6).join(' '))) {
+        first = posts.nth(i);
+        text = t;
+        break;
+      }
+    }
+  }
+  if (!first) throw new Error(`목록에서 방금 올린 글을 찾지 못함 (기대: ${marker})`);
   if (text.includes('텔레그램 채널 The Ticker is ETH')) return log('첫 댓글 이미 있음');
   await first.getByRole('button', { name: /댓글|comment/i }).first().click();
   const form = first.locator(COMMENT_FORM).first();
@@ -307,6 +335,17 @@ async function main() {
       log(`#${ch.id}${post.digestDate ? ` (다이제스트 ${post.digestDate})` : ''}: 게시 시작${DRY ? ' (dry)' : ''} · 본문 ${post.body.length}자 · ${mediaDesc}`);
       if (DRY) {
         log(`\n--- 본문\n${post.body}\n--- 첫 댓글\n${post.comment}\n--- 미디어\n${[...media.photos, media.video].filter(Boolean).join('\n')}\n`);
+        continue;
+      }
+      if (COMMENT_ONLY) {
+        const ctx = await launch(HEADLESS);
+        try {
+          await addFirstComment(ctx.pages()[0] ?? (await ctx.newPage()), post);
+          log(`#${ch.id}: 첫 댓글 완료`);
+        } finally {
+          await ctx.close();
+        }
+        rmSync(media.dir, { recursive: true, force: true });
         continue;
       }
       await postToLinkedIn(post, media);
