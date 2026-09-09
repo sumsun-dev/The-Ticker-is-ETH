@@ -39,6 +39,13 @@
     "viewAll": "View all updates",
     "readArticle": "Read Article"
   },
+  "calls": {
+    "badge": "Core Dev Calls",
+    "title": "Core dev calls, decisions first",
+    "description": "Korean records of ACDE, ACDC and ACDT calls: what was decided and who said what, call by call.",
+    "viewAll": "View all calls",
+    "stats": "{{decisions}} decisions · {{topics}} topics"
+  },
   "ecosystem": {
     "badge": "Ecosystem",
     "title": "Ethereum <accent>Ecosystem Tools</accent>",

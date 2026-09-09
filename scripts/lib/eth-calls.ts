@@ -568,15 +568,22 @@ export function callLabel(call: Pick<CallRecord, 'series' | 'number'>): string {
   return `${CALL_SERIES[call.series]?.pill ?? call.series.toUpperCase()} #${call.number}`;
 }
 
+export const SITE_URL = 'https://ethcollective.xyz';
+export const siteCallUrl = (id: string) => `${SITE_URL}/calls/${id}`;
+/** 브리프 맨 아래 한 줄. Forkcast·영상 링크 대신 사이트 콜 페이지로 바로 보낸다 (오너 지시 2026-09-09) */
+export const siteLinkLine = (call: Pick<CallRecord, 'id'>) => `콜 페이지에서 전체 보기 → ${siteCallUrl(call.id)}`;
+
 export interface CaptionOptions {
   targets?: boolean;
   why?: boolean;
   glossary?: boolean;
+  /** 사이트 링크 줄을 캡션 끝에 붙인다 (토론 메시지가 없어 캡션이 마지막 메시지일 때만) */
+  link?: boolean;
 }
 
 /** 사진 캡션 (텔레그램 HTML). 길이 상한은 fitCaption이 맞춘다 */
 export function renderCaption(call: CallRecord, opts: CaptionOptions = {}): string {
-  const { targets = true, why = true, glossary = true } = opts;
+  const { targets = true, why = true, glossary = true, link = false } = opts;
   const lines: string[] = [];
   lines.push(`<b>${esc(callLabel(call))} · ${koDate(call.date)}</b>`);
   if (call.intro) lines.push(esc(call.intro));
@@ -585,13 +592,13 @@ export function renderCaption(call: CallRecord, opts: CaptionOptions = {}): stri
   if (targets && call.targets.length) lines.push('', '<b>일정</b>', ...call.targets.slice(0, 4).map((t) => `· ${esc(t.text)}`));
   if (why && call.whyItMatters) lines.push('', '<b>왜 중요한가</b>', esc(call.whyItMatters));
   if (glossary && call.glossary.length) lines.push('', `<b>용어</b> ${call.glossary.slice(0, 4).map((g) => `${esc(g.term)}: ${esc(g.def)}`).join(' · ')}`);
-  lines.push('', `<a href="${call.forkcastUrl}">Forkcast 기록</a>${call.videoUrl ? ` · <a href="${call.videoUrl}">영상</a>` : ''}`);
+  if (link) lines.push('', siteLinkLine(call));
   return lines.join('\n');
 }
 
 /** 텔레그램 sendPhoto 캡션 상한(엔티티 제외 1,024자)에 맞을 때까지 용어 → 왜 중요한가 → 일정 순으로 뺀다 */
-export function fitCaption(call: CallRecord, max = 1024): string {
-  const variants: CaptionOptions[] = [{}, { glossary: false }, { glossary: false, why: false }, { glossary: false, why: false, targets: false }];
+export function fitCaption(call: CallRecord, max = 1024, extra: CaptionOptions = {}): string {
+  const variants: CaptionOptions[] = [{}, { glossary: false }, { glossary: false, why: false }, { glossary: false, why: false, targets: false }].map((v) => ({ ...v, ...extra }));
   for (const v of variants) {
     const text = renderCaption(call, v);
     if (plainLength(text) <= max) return text;
@@ -643,7 +650,11 @@ export function renderDiscussionParts(call: CallRecord, max = 4096): string[] {
     } else current = next;
   }
   if (current) parts.push(current);
-  return parts;
+  if (parts.length === 0) return parts;
+  // 사이트 링크는 브리프 맨 아래(마지막 메시지 끝)에 한 번. 상한을 넘기면 따로 한 메시지로
+  const tail = siteLinkLine(call);
+  const last = `${parts[parts.length - 1]}\n\n${tail}`;
+  return plainLength(last) <= max ? [...parts.slice(0, -1), last] : [...parts, tail];
 }
 
 /** 한 메시지 버전 (상한을 넘을 수 있음; 길이는 renderDiscussionParts로 맞춘다) */

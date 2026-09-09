@@ -6,6 +6,7 @@ import InitiativesSection from '../components/home/InitiativesSection';
 import { motion } from 'framer-motion';
 
 const UpdatesSection = lazy(() => import('../components/home/UpdatesSection'));
+const CallsSection = lazy(() => import('../components/home/CallsSection'));
 const EcosystemSection = lazy(() => import('../components/home/EcosystemSection'));
 import { useTranslation } from 'react-i18next';
 import { ArrowRight, MessageCircle } from 'lucide-react';
@@ -39,6 +40,7 @@ const Home: React.FC = () => {
                 {/* min-h placeholder keeps layout stable while lazy chunks load (CLS) */}
                 <Suspense fallback={<div className="min-h-[60rem]" aria-hidden />}>
                     <UpdatesSection />
+                    <CallsSection />
                     <EcosystemSection />
                 </Suspense>
 

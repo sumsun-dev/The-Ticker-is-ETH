@@ -136,8 +136,9 @@ async function main() {
   const replyTo = process.env.CALLS_REPLY_TO ? Number(process.env.CALLS_REPLY_TO) : undefined;
 
   for (const call of selected) {
-    const caption = fitCaption(call);
     const discussion = call.topics.length > 0 ? renderDiscussionParts(call) : [];
+    // 사이트 링크는 브리프 맨 아래 한 번: 토론 메시지가 있으면 그 끝에, 없으면 캡션 끝에
+    const caption = fitCaption(call, 1024, { link: discussion.length === 0 });
     const outFile = path.join(OUT_DIR, `${call.id}.png`);
     if (dryRun) {
       const rendered = await renderHtml(callCoverHtml(call, assets), outFile, fitCallCover);

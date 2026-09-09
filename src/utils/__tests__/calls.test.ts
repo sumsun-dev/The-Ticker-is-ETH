@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { callLabel, forksOf, groupByMonth, laterTargetUpdates, mentionsEip, nextCallEstimate, remarksOf, seriesInfo, speakerOf, splitDuration, videoAt } from '../calls';
+import { callLabel, forksOf, groupByMonth, laterTargetUpdates, latestFullCalls, mentionsEip, nextCallEstimate, remarksOf, seriesInfo, speakerOf, splitDuration, videoAt } from '../calls';
 
 describe('calls utils', () => {
     it('should label series and fall back to the slug for breakouts', () => {
@@ -46,5 +46,19 @@ describe('calls utils', () => {
         const b = { id: 'acdc-186', series: 'acdc', number: 186, date: '2026-09-03', targets: [{ key: 'sepolia-fork', text: '10월 6일 확정' }] };
         expect(laterTargetUpdates(a, [a, b])['sepolia-fork']).toEqual({ callId: 'acdc-186', label: 'ACDC #186', text: '10월 6일 확정' });
         expect(nextCallEstimate([a, b], '2026-09-08')).toEqual({ label: 'ACDE #245', date: '2026-09-10' });
+    });
+});
+
+describe('latestFullCalls', () => {
+    it('should pick full main-series calls only, newest first', () => {
+        const calls = [
+            { series: 'acdt', kind: 'full', date: '2026-09-07' },
+            { series: 'aa', kind: 'full', date: '2026-09-08' },
+            { series: 'acde', kind: 'record', date: '2026-09-10' },
+            { series: 'acdc', kind: 'full', date: '2026-09-03' },
+        ] as const;
+        expect(latestFullCalls(calls, 1).map((c) => c.date)).toEqual(['2026-09-07']);
+        expect(latestFullCalls(calls).map((c) => c.series)).toEqual(['acdt', 'acdc']);
+        expect(latestFullCalls([])).toEqual([]);
     });
 });
