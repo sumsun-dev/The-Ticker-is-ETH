@@ -71,7 +71,8 @@
     "participantsHintCompact": "Click for remarks · hover for affiliation",
     "onThisPage": "On this page",
     "topics": "Discussion",
-    "topicShort": "Topic {{n}}"
+    "topicShort": "Topic {{n}}",
+    "agendaShort": "Agenda"
   },
   "modal": {
     "original": "Original · corrected transcript",
