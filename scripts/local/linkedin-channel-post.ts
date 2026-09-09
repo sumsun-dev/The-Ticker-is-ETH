@@ -3,7 +3,7 @@
  *
  * 회사 명의 API 게시(w_organization_social)는 Community Management API 심사가 필요해, ai-secondbrain과 같은 방식으로
  * 로그인된 전용 크롬 프로필 + playwright로 페이지 관리자 화면에서 직접 올린다. 채널 글은 공개 웹 뷰(t.me/s/thetickeriseth)를 읽어
- * 새 글을 감지한다. 본문에는 URL을 넣지 않고(외부 링크가 있는 글은 노출이 줄어든다) 링크는 모두 첫 댓글로 단다.
+ * 새 글을 감지한다. 사진(앨범 전부)·동영상(mp4)을 함께 올린다. 본문에는 URL을 넣지 않고(외부 링크가 있는 글은 노출이 줄어든다) 링크는 모두 첫 댓글로 단다.
  * 다이제스트 글(사이트 링크로 판별)은 GitHub main의 eth-digests.json에서 풍부한 본문을 만든다. 게시한 글 id는 ~/.eck/linkedin-channel-seen.json.
  *
  * Usage:
@@ -83,15 +83,30 @@ function fetchDigests(): DigestLike[] {
   }
 }
 
-async function fetchPhoto(url: string, id: number): Promise<string> {
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`photo HTTP ${res.status}`);
+interface Media {
+  dir: string;
+  photos: string[];
+  video?: string;
+}
+
+/** 채널 글의 미디어를 임시 디렉터리에 받는다. 앨범은 전부, 동영상은 mp4 (LinkedIn 한도 5GB, 3초 이상) */
+async function fetchMedia(post: LinkedInPost, id: number): Promise<Media> {
   const dir = join(tmpdir(), `eck-li-${id}`);
+  rmSync(dir, { recursive: true, force: true });
   mkdirSync(dir, { recursive: true });
-  const ext = /\.png(\?|$)/.test(url) ? 'png' : 'jpg';
-  const file = join(dir, `photo-${id}.${ext}`);
-  writeFileSync(file, Buffer.from(await res.arrayBuffer()));
-  return file;
+  const download = async (url: string, file: string) => {
+    const res = await fetch(url, { headers: { 'user-agent': 'Mozilla/5.0' } });
+    if (!res.ok) throw new Error(`media HTTP ${res.status}: ${url.slice(0, 80)}`);
+    writeFileSync(file, Buffer.from(await res.arrayBuffer()));
+    return file;
+  };
+  const photos: string[] = [];
+  for (const [i, url] of post.photos.entries()) {
+    const ext = /\.png(\?|$)/.test(url) ? 'png' : 'jpg';
+    photos.push(await download(url, join(dir, `photo-${id}-${String(i).padStart(2, '0')}.${ext}`)));
+  }
+  const video = post.video ? await download(post.video, join(dir, `video-${id}.mp4`)) : undefined;
+  return { dir, photos, ...(video ? { video } : {}) };
 }
 
 const loadSeen = (): number[] => (existsSync(SEEN_FILE) ? (JSON.parse(readFileSync(SEEN_FILE, 'utf-8')) as number[]) : []);
@@ -134,6 +149,7 @@ async function launch(headless: boolean) {
 const SHARE_BOX = '.share-box-feed-entry__closed-share-box';
 const MODAL = '.share-box-v2__modal';
 const RE_PHOTO = /사진 등록|Add a photo/i;
+const RE_VIDEO = /동영상 등록|동영상|Add a video/i;
 const RE_TEXT = /글 올리기|글쓰기|Start a post|Create a post/i;
 const RE_NEXT = /^\s*(다음|Next)\s*$/;
 const POST_BTN = 'button.share-actions__primary-action';
@@ -143,24 +159,33 @@ const COMMENT_SUBMIT = 'button.comments-comment-box__submit-button, button.comme
 
 type Page = Awaited<ReturnType<Awaited<ReturnType<typeof launch>>['newPage']>>;
 
-async function publish(page: Page, post: LinkedInPost, photo: string | null) {
+async function publish(page: Page, post: LinkedInPost, media: Media) {
   await page.goto(ADMIN_URL, { waitUntil: 'domcontentloaded', timeout: 60_000 });
   const box = page.locator(SHARE_BOX);
-  const start = box.getByRole('button', { name: photo ? RE_PHOTO : RE_TEXT }).first();
+  const kind = media.video ? 'video' : media.photos.length ? 'photo' : 'text';
+  const start = box.getByRole('button', { name: kind === 'video' ? RE_VIDEO : kind === 'photo' ? RE_PHOTO : RE_TEXT }).first();
   await start.waitFor({ timeout: 30_000 }).catch(() => {
     throw new Error('게시 버튼 없음. 로그인이 풀렸거나 페이지 관리자가 아님 (--login 재실행)');
   });
   await start.click();
   const modal = page.locator(MODAL).first();
   await modal.waitFor({ timeout: 20_000 });
-  if (photo) {
+  if (kind !== 'text') {
+    // 미디어 에디터의 file input은 숨겨져 있지만 setInputFiles는 DOM input이면 동작한다. 앨범은 한 번에 여러 장
     const input = modal.locator('input[type=file]').first();
     await input.waitFor({ state: 'attached', timeout: 15_000 });
-    await input.setInputFiles([photo]);
+    await input.setInputFiles(kind === 'video' ? [media.video!] : media.photos);
+    // 사진·동영상 편집 화면 → '다음'. 동영상은 업로드·처리에 시간이 걸린다. 편집 화면 없이 바로 본문 에디터가 뜨는 경우도 있어 둘 다 기다린다
     const next = modal.getByRole('button', { name: RE_NEXT }).first();
-    await next.waitFor({ timeout: 120_000 });
-    await page.waitForTimeout(1500);
-    await next.click();
+    const editorEarly = modal.locator('.ql-editor[contenteditable="true"]').first();
+    const which = await Promise.race([
+      next.waitFor({ timeout: kind === 'video' ? 600_000 : 120_000 }).then(() => 'next' as const),
+      editorEarly.waitFor({ timeout: kind === 'video' ? 600_000 : 120_000 }).then(() => 'editor' as const),
+    ]);
+    if (which === 'next') {
+      await page.waitForTimeout(1000 * Math.max(1, kind === 'video' ? 3 : media.photos.length));
+      await next.click();
+    }
   }
   // fill()은 Quill 상태에 안 잡혀 본문 없이 게시된다 → insertText로 정식 input 이벤트
   const editor = modal.locator('.ql-editor[contenteditable="true"]').first();
@@ -201,11 +226,11 @@ async function addFirstComment(page: Page, post: LinkedInPost) {
   if (!(await first.innerText()).includes('텔레그램 채널 The Ticker is ETH')) throw new Error('첫 댓글이 보이지 않음');
 }
 
-async function postToLinkedIn(post: LinkedInPost, photo: string | null) {
+async function postToLinkedIn(post: LinkedInPost, media: Media) {
   const ctx = await launch(HEADLESS);
   try {
     const page = ctx.pages()[0] ?? (await ctx.newPage());
-    await publish(page, post, photo);
+    await publish(page, post, media);
     await addFirstComment(page, post).catch(async (e) => {
       log(`댓글 실패: ${e instanceof Error ? e.message : e}`);
       await notify(`LinkedIn 게시는 됐지만 첫 댓글(링크) 달기에 실패했습니다. 직접 달아 주세요.\n${post.comment}`);
@@ -277,17 +302,18 @@ async function main() {
     for (const ch of targets) {
       current = ch.id;
       const post = buildLinkedInPost(ch, digests);
-      const photo = ch.photo ? await fetchPhoto(ch.photo, ch.id) : null;
-      log(`#${ch.id}${post.digestDate ? ` (다이제스트 ${post.digestDate})` : ''}: 게시 시작${DRY ? ' (dry)' : ''} · 본문 ${post.body.length}자 · ${photo ?? '사진 없음'}`);
+      const media = await fetchMedia(post, ch.id);
+      const mediaDesc = media.video ? `동영상 ${(statSync(media.video).size / 1e6).toFixed(1)}MB` : media.photos.length ? `사진 ${media.photos.length}장` : '미디어 없음';
+      log(`#${ch.id}${post.digestDate ? ` (다이제스트 ${post.digestDate})` : ''}: 게시 시작${DRY ? ' (dry)' : ''} · 본문 ${post.body.length}자 · ${mediaDesc}`);
       if (DRY) {
-        log(`\n--- 본문\n${post.body}\n--- 첫 댓글\n${post.comment}\n`);
+        log(`\n--- 본문\n${post.body}\n--- 첫 댓글\n${post.comment}\n--- 미디어\n${[...media.photos, media.video].filter(Boolean).join('\n')}\n`);
         continue;
       }
-      await postToLinkedIn(post, photo);
+      await postToLinkedIn(post, media);
       recordSeen([ch.id]);
-      log(`#${ch.id}: LinkedIn 게시 완료`);
-      await notify(`LinkedIn ECK 페이지에 채널 글 #${ch.id} 게시 완료\n${post.body.split('\n')[0].slice(0, 80)}`);
-      if (photo) rmSync(dirname(photo), { recursive: true, force: true });
+      log(`#${ch.id}: LinkedIn 게시 완료 (${mediaDesc})`);
+      await notify(`LinkedIn ECK 페이지에 채널 글 #${ch.id} 게시 완료 (${mediaDesc})\n${post.body.split('\n')[0].slice(0, 80)}`);
+      rmSync(media.dir, { recursive: true, force: true });
     }
   } catch (e) {
     const msg = e instanceof Error ? e.message : String(e);

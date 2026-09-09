@@ -61,8 +61,10 @@ export function formatDigestCaption(digest: DigestLike, tags: string[] = DEFAULT
 export interface ChannelPost {
   id: number;
   date: string;
-  /** 첫 사진 URL (없으면 undefined) */
-  photo?: string;
+  /** 사진 URL들 (앨범이면 여러 장, 없으면 빈 배열) */
+  photos: string[];
+  /** 동영상 mp4 URL (있으면). 토큰이 붙은 임시 URL이라 바로 받아야 한다 */
+  video?: string;
   /** 본문 HTML (b, i, br, a 정도) */
   html: string;
 }
@@ -80,9 +82,10 @@ export function parseChannelPage(html: string, channel: string): ChannelPost[] {
   for (let i = 0; i < starts.length; i++) {
     const block = html.slice(starts[i].at, starts[i + 1]?.at ?? html.length);
     const date = /<time[^>]*datetime="([^"]+)"/.exec(block)?.[1] ?? '';
-    const photo = /tgme_widget_message_photo_wrap[^>]*style="[^"]*url\('([^']+)'\)/.exec(block)?.[1];
+    const photos = [...block.matchAll(/tgme_widget_message_photo_wrap[^>]*style="[^"]*url\('([^']+)'\)/g)].map((m) => decodeEntities(m[1]));
+    const video = /<video[^>]*\ssrc="([^"]+)"/.exec(block)?.[1];
     const text = /class="tgme_widget_message_text[^"]*"[^>]*>([\s\S]*?)<\/div>/.exec(block)?.[1] ?? '';
-    posts.push({ id: starts[i].id, date, ...(photo ? { photo } : {}), html: text });
+    posts.push({ id: starts[i].id, date, photos, ...(video ? { video: decodeEntities(video) } : {}), html: text });
   }
   return posts.sort((a, b) => a.id - b.id);
 }
@@ -132,7 +135,8 @@ export interface LinkedInPost {
   body: string;
   /** 첫 댓글. 링크는 여기에만 */
   comment: string;
-  photo?: string;
+  photos: string[];
+  video?: string;
   /** 매칭된 다이제스트 날짜 (있으면) */
   digestDate?: string;
 }
@@ -162,7 +166,7 @@ export function buildLinkedInPost(post: ChannelPost, digests: ReadonlyArray<Dige
   commentLines.push(`텔레그램 채널 The Ticker is ETH: ${CHANNEL_URL}`);
 
   const body = digest ? formatDigestCaption(digest, tags) : fitLines([stripped.text], [], ['', tagLine(tags)]);
-  return { body, comment: [...new Set(commentLines)].join('\n'), ...(post.photo ? { photo: post.photo } : {}), ...(digestDate ? { digestDate } : {}) };
+  return { body, comment: [...new Set(commentLines)].join('\n'), photos: post.photos, ...(post.video ? { video: post.video } : {}), ...(digestDate ? { digestDate } : {}) };
 }
 
 /** 게시할 채널 글: 아직 안 올린 것 중 최근 maxAgeDays 안, 오래된 순 */
