@@ -135,3 +135,11 @@ export function nextCallEstimate(calls: ReadonlyArray<Pick<CallRecord, 'series' 
 export function todayKst(): string {
     return new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Seoul' }).format(new Date());
 }
+
+/** 홈 노출용: 정리된(full) 본 시리즈 콜을 최신순으로 n개 */
+export function latestFullCalls<T extends Pick<CallRecord, 'series' | 'kind' | 'date'>>(calls: ReadonlyArray<T>, n = 3): T[] {
+    return calls
+        .filter((c) => c.kind === 'full' && (MAIN_SERIES as readonly string[]).includes(c.series))
+        .sort((a, b) => b.date.localeCompare(a.date))
+        .slice(0, n);
+}

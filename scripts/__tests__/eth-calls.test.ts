@@ -237,7 +237,9 @@ describe('telegram rendering', () => {
     expect(caption).toContain('<b>ACDE #244 · 8월 27일</b>');
     expect(caption).toContain('<b>결정된 것</b>\n· 헤고타 포함 확정');
     expect(caption).toContain('<b>용어</b> SFI: 포함 확정');
-    expect(caption).toContain('<a href="https://forkcast.org/calls/acde/244/">Forkcast 기록</a> · <a href="https://youtube.com/watch?v=x">영상</a>');
+    expect(caption).not.toContain('forkcast.org');
+    const link = `콜 페이지에서 전체 보기 → https://ethcollective.xyz/calls/${r.id}`;
+    expect(renderCaption(r, { link: true }).endsWith(`\n\n${link}`)).toBe(true);
     expect(plainLength(caption)).toBeLessThan(1024);
     const discussion = renderDiscussion(r);
     expect(discussion).toContain('<b>예치 계약의 포스트 양자 전환</b>');
@@ -245,11 +247,12 @@ describe('telegram rendering', () => {
     expect(discussion).toContain('<b>Danno Ferrin</b> (Sei Labs): 채팅에서 EIP-6049를 들어 반대. (채팅)');
     expect(discussion).toContain('(Ben Adams, 00:21:53)</blockquote>');
     expect(discussion).toContain('<b>남은 것</b>\n· EL 클라이언트 팀');
-    expect(renderDiscussionParts(r)).toEqual([discussion]);
+    expect(renderDiscussionParts(r)).toEqual([`${discussion}\n\n${link}`]);
     // 상한이 작으면 주제 단위로 나뉜다
     const parts = renderDiscussionParts(r, 200);
     expect(parts.length).toBeGreaterThan(1);
-    expect(parts.join('\n\n')).toBe(discussion);
+    expect(parts.join('\n\n')).toBe(`${discussion}\n\n${link}`);
+    expect(parts[parts.length - 1].endsWith(link)).toBe(true);
   });
 
   it('should number sources for the prompt', () => {

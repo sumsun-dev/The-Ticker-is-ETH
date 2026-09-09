@@ -39,6 +39,13 @@
     "viewAll": "모든 업데이트 보기",
     "readArticle": "아티클 읽기"
   },
+  "calls": {
+    "badge": "Core Dev Calls",
+    "title": "코어 개발자 콜, 결정만 추려서",
+    "description": "ACDE, ACDC, ACDT 콜의 기록을 한국어로 정리합니다. 무엇이 정해졌고 누가 무슨 말을 했는지 회의별로 남깁니다.",
+    "viewAll": "모든 콜 보기",
+    "stats": "결정 {{decisions}} · 주제 {{topics}}"
+  },
   "ecosystem": {
     "badge": "Ecosystem",
     "title": "이더리움 <accent>생태계 도구</accent> 모음",
