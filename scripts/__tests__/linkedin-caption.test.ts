@@ -19,9 +19,14 @@ const PAGE = `
 <div class="tgme_widget_message_text js-message_text" dir="auto"><b>62개 EIP에 등급을 매긴 EF의 한목소리</b><br/><br/><b>이번 호 인사이트</b><br/>· <a href="https://x.com/a/1" target="_blank">EF가 처음으로 하나의 목소리를 냈다</a><br/><br/>전체 요약 보기 → https://ethcollective.xyz/news?date=2026-09-09</div>
 <time datetime="2026-09-09T00:41:00+00:00">09:41</time></div></div>
 <div class="tgme_widget_message_wrap"><div class="tgme_widget_message" data-post="thetickeriseth/1560">
-<a class="tgme_widget_message_photo_wrap" style="background-image:url('https://cdn5.telesco.pe/file/photo1560.jpg')"></a>
+<div class="tgme_widget_message_grouped"><a class="tgme_widget_message_photo_wrap" style="background-image:url('https://cdn5.telesco.pe/file/photo1560a.jpg')"></a><a class="tgme_widget_message_photo_wrap" style="background-image:url('https://cdn5.telesco.pe/file/photo1560b.jpg')"></a></div>
 <div class="tgme_widget_message_text js-message_text" dir="auto"><b>ZKsync, 프리비디움 코어 오픈소스화 발표</b><br/><br/>ZKsync가 권한 관리 엔진을 오픈소스로 공개했습니다. R&amp;D 예산도 늘립니다.<br/><br/><a href="https://x.com/zksync/status/2097340947625656632" target="_blank" rel="noopener">링크</a></div>
-<time datetime="2026-09-09T01:31:29+00:00">10:31</time></div></div>`;
+<time datetime="2026-09-09T01:31:29+00:00">10:31</time></div></div>
+<div class="tgme_widget_message_wrap"><div class="tgme_widget_message" data-post="thetickeriseth/1561">
+<a class="tgme_widget_message_video_player" href="https://t.me/thetickeriseth/1561"><i class="tgme_widget_message_video_thumb" style="background-image:url('https://cdn5.telesco.pe/file/thumb1561.jpg')"></i>
+<div class="tgme_widget_message_video_wrap"><video src="https://cdn5.telesco.pe/file/3e22.mp4?token=abc&amp;x=1" class="tgme_widget_message_video"></video></div></a>
+<div class="tgme_widget_message_text js-message_text" dir="auto"><b>새롭게 출시된 Etherscan Flow</b><br/><br/>설명 <a href="https://github.com/etherscan/skills">https://github.com/etherscan/skills</a></div>
+<time datetime="2026-09-09T02:30:00+00:00">11:30</time></div></div>`;
 
 describe('formatDigestCaption', () => {
   it('should include title, intro, core sections and hashtags, but no URL', () => {
@@ -47,9 +52,11 @@ describe('formatDigestCaption', () => {
 describe('telegram channel web view', () => {
   it('should parse posts with id, date, photo and html', () => {
     const posts = parseChannelPage(PAGE, 'thetickeriseth');
-    expect(posts.map((p) => p.id)).toEqual([1559, 1560]);
-    expect(posts[0]).toMatchObject({ date: '2026-09-09T00:41:00+00:00', photo: 'https://cdn5.telesco.pe/file/cover1559.jpg' });
+    expect(posts.map((p) => p.id)).toEqual([1559, 1560, 1561]);
+    expect(posts[0]).toMatchObject({ date: '2026-09-09T00:41:00+00:00', photos: ['https://cdn5.telesco.pe/file/cover1559.jpg'] });
+    expect(posts[1].photos).toEqual(['https://cdn5.telesco.pe/file/photo1560a.jpg', 'https://cdn5.telesco.pe/file/photo1560b.jpg']);
     expect(posts[1].html).toContain('ZKsync');
+    expect(posts[2]).toMatchObject({ photos: [], video: 'https://cdn5.telesco.pe/file/3e22.mp4?token=abc&x=1' });
   });
 
   it('should convert html to text, keeping link labels and collecting urls', () => {
@@ -66,18 +73,24 @@ describe('telegram channel web view', () => {
     expect(d.body).toContain('■ 코어 개발자 콜');
     expect(d.body).not.toMatch(/https?:\/\//);
     expect(d.comment).toBe('전체 요약 보기: https://ethcollective.xyz/news?date=2026-09-09\n텔레그램 채널 The Ticker is ETH: https://t.me/thetickeriseth');
-    expect(d.photo).toBe('https://cdn5.telesco.pe/file/cover1559.jpg');
+    expect(d.photos).toEqual(['https://cdn5.telesco.pe/file/cover1559.jpg']);
 
     const z = buildLinkedInPost(p1560, [digest]);
     expect(z.digestDate).toBeUndefined();
     expect(z.body).toBe('ZKsync, 프리비디움 코어 오픈소스화 발표\n\nZKsync가 권한 관리 엔진을 오픈소스로 공개했습니다. R&D 예산도 늘립니다.\n\n#Ethereum #이더리움 #ECK #TheTickerIsETH');
     expect(z.comment).toBe('원문: https://x.com/zksync/status/2097340947625656632\n텔레그램 채널 The Ticker is ETH: https://t.me/thetickeriseth');
+    expect(z.photos).toHaveLength(2);
+
+    const v = buildLinkedInPost(parseChannelPage(PAGE, 'thetickeriseth')[2], [digest]);
+    expect(v.video).toContain('3e22.mp4');
+    expect(v.body).toBe('새롭게 출시된 Etherscan Flow\n\n설명\n\n#Ethereum #이더리움 #ECK #TheTickerIsETH');
+    expect(v.comment).toBe('원문: https://github.com/etherscan/skills\n텔레그램 채널 The Ticker is ETH: https://t.me/thetickeriseth');
   });
 
   it('should pick unseen recent posts oldest first', () => {
     const posts = parseChannelPage(PAGE, 'thetickeriseth');
     const now = new Date('2026-09-09T12:00:00Z');
-    expect(pickChannelPosts(posts, [1559], now).map((p) => p.id)).toEqual([1560]);
+    expect(pickChannelPosts(posts, [1559], now).map((p) => p.id)).toEqual([1560, 1561]);
     expect(pickChannelPosts(posts, [], new Date('2026-09-20T00:00:00Z')).map((p) => p.id)).toEqual([]);
   });
 });
