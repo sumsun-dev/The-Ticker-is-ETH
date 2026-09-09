@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <!--
-  ECK LinkedIn 회사 페이지 채널 글 자동 게시 (텔레그램 @thetickeriseth 미러) (macOS launchd, 30분 주기).
+  ECK LinkedIn 회사 페이지 채널 글 자동 게시 (텔레그램 @thetickeriseth 미러) (macOS launchd, 하루 2회 10:30·18:30 로컬 시각).
   회사 명의 API 게시는 Community Management API 심사가 필요해, 로그인된 전용 크롬 프로필로
   관리자 화면에서 직접 올린다 (ai-secondbrain의 linkedin-page-post와 같은 방식).
 
@@ -22,8 +22,11 @@
     <string>-lc</string>
     <string>cd /Users/jiyepark/the-ticker-is-eth &amp;&amp; exec npx tsx scripts/local/linkedin-channel-post.ts</string>
   </array>
-  <key>StartInterval</key>
-  <integer>1800</integer>
+  <key>StartCalendarInterval</key>
+  <array>
+    <dict><key>Hour</key><integer>10</integer><key>Minute</key><integer>30</integer></dict>
+    <dict><key>Hour</key><integer>18</integer><key>Minute</key><integer>30</integer></dict>
+  </array>
   <key>StandardOutPath</key>
   <string>/Users/jiyepark/.eck/linkedin-digest.log</string>
   <key>StandardErrorPath</key>
