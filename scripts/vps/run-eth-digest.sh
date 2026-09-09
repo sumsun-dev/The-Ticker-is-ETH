@@ -8,20 +8,27 @@
 #   3) .env에 TELEGRAM_BOT_TOKEN 설정
 #   4) crontab: 40 0 * * * /home/gv/projects/the-ticker-is-eth/scripts/vps/run-eth-digest.sh >> ~/logs/eth-digest.log 2>&1
 set -euo pipefail
-cd "$(dirname "$0")/../.."
 
-# --autostash: 이전 실행이 남긴 미커밋 산출물이 있어도 pull이 막히지 않게
-git pull --rebase --autostash origin main
-npx tsx scripts/generate-eth-digest.ts
-npx tsx scripts/sync-x-profiles.ts
-npx tsx scripts/extract-eth-debates.ts
-npx tsx scripts/extract-eth-calls.ts
-npx tsx scripts/render-digest-cover.ts
-npx tsx scripts/post-digest-telegram.ts
+# 본문을 함수로 감싼다: bash는 함수 정의를 끝까지 파싱한 뒤 실행하므로, 아래 git pull이 이 파일을 바꿔도
+# 실행 중인 러너는 영향을 받지 않는다 (2026-09-09: pull 직후 새 단계 sync-x-profiles·extract-eth-calls가 건너뛰어진 사고).
+main() {
+  cd "$(dirname "$0")/../.."
 
-git add src/data/eth-digests.json src/data/eth-debates.json src/data/eth-calls.json src/data/x-profiles.json public/assets/digests/
-git diff --cached --quiet || (
-  git commit -m "chore: publish eth digest [automated]" &&
-  git pull --rebase --autostash origin main &&
-  git push origin main
-)
+  # --autostash: 이전 실행이 남긴 미커밋 산출물이 있어도 pull이 막히지 않게
+  git pull --rebase --autostash origin main
+  npx tsx scripts/generate-eth-digest.ts
+  npx tsx scripts/sync-x-profiles.ts
+  npx tsx scripts/extract-eth-debates.ts
+  npx tsx scripts/extract-eth-calls.ts
+  npx tsx scripts/render-digest-cover.ts
+  npx tsx scripts/post-digest-telegram.ts
+
+  git add src/data/eth-digests.json src/data/eth-debates.json src/data/eth-calls.json src/data/x-profiles.json public/assets/digests/
+  git diff --cached --quiet || (
+    git commit -m "chore: publish eth digest [automated]" &&
+    git pull --rebase --autostash origin main &&
+    git push origin main
+  )
+}
+
+main "$@"

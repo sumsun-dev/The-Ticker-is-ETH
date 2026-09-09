@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  ECK LinkedIn 회사 페이지 다이제스트 자동 게시 (macOS launchd, 30분 주기).
+  회사 명의 API 게시는 Community Management API 심사가 필요해, 로그인된 전용 크롬 프로필로
+  관리자 화면에서 직접 올린다 (ai-secondbrain의 linkedin-page-post와 같은 방식).
+
+  선행 1회: npx tsx scripts/local/linkedin-digest-post.ts --login  →  --check
+  Install:
+    cp deploy/launchd/xyz.ethcollective.linkedin-digest.plist ~/Library/LaunchAgents/
+    launchctl load ~/Library/LaunchAgents/xyz.ethcollective.linkedin-digest.plist
+  Uninstall:
+    launchctl unload ~/Library/LaunchAgents/xyz.ethcollective.linkedin-digest.plist
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>xyz.ethcollective.linkedin-digest</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>-lc</string>
+    <string>cd /Users/jiyepark/the-ticker-is-eth &amp;&amp; exec npx tsx scripts/local/linkedin-digest-post.ts</string>
+  </array>
+  <key>StartInterval</key>
+  <integer>1800</integer>
+  <key>StandardOutPath</key>
+  <string>/Users/jiyepark/.eck/linkedin-digest.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/jiyepark/.eck/linkedin-digest.log</string>
+</dict>
+</plist>
