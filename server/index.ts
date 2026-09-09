@@ -1,4 +1,5 @@
-// VPS용 단일 API 서버 — Vercel serverless 핸들러 3개를 node:http로 그대로 서빙.
+// VPS용 단일 API 서버 — api/ 아래 핸들러 3개(Vercel 함수 형식의 (req, res) 시그니처)를 node:http로 그대로 서빙.
+// Vercel 배포는 2026-09-09 폐기. @vercel/node는 타입(VercelRequest/Response)만 쓰는 devDependency로 남겨 둔다.
 // 빌드: npx esbuild server/index.ts --bundle --platform=node --target=node20 --format=esm --outfile=dist-server/api.mjs
 import { createServer, type IncomingMessage, type ServerResponse } from 'node:http';
 import type { VercelRequest, VercelResponse } from '@vercel/node';
