@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-08T07:57:46.038Z",
+  "updatedAt": "2026-09-09T01:05:34.168Z",
   "processedDigests": [
     "2026-08-24",
     "2026-08-25",
@@ -14,9 +14,737 @@
     "2026-09-03",
     "2026-09-04",
     "2026-09-05",
-    "2026-09-06"
+    "2026-09-06",
+    "2026-09-09"
   ],
   "debates": [
+    {
+      "id": "gas-params-privacy-leak",
+      "title": "트랜잭션 가스 파라미터를 프라이버시를 위해 제거해야 하나, 아니면 패딩이 한계인가?",
+      "category": "프로토콜 설계",
+      "summary": "보안 연구자 pcaversaccio는 트랜잭션의 가스 파라미터가 온체인 프라이버시를 심각하게 훼손하니 중기적으로 제거해야 한다고 주장했고, EF의 nero_eth는 제거하면 멤풀 DoS 벡터가 생긴다고 반박했으며, lightclients는 가스가 트랜잭션의 본질적 속성이라면 패딩이 유일한 현실적 해법이라고 봤다.",
+      "keyPoints": [
+        "가스 한도·수수료 파라미터를 프로토콜에서 제거하는 것이 가능한가, 아니면 트랜잭션의 본질적 속성이라 감출 수밖에 없는가",
+        "패딩(padding)은 프라이버시를 지키는가, 아니면 지갑별 패딩 패턴이 다시 지문이 되는가",
+        "페이마스터 후원 가스와 프로토콜이 정한 가스 한도 티어가 대안이 될 수 있는가"
+      ],
+      "background": "네이티브 프라이버시 번들(EIP-8141 프레임 트랜잭션, EIP-8250 키드 논스, EIP-8272 최근 루트 참조)이 헤고타(Hegota) 하드포크(hard fork)의 1순위 후보로 올라온 상황이다. 이 번들은 온체인 프라이버시를 프로토콜 차원에서 강화하려는 것인데, 트랜잭션에 노출되는 가스 한도와 수수료 필드는 프라이버시 프로토콜을 써도 사용자를 특정 지문(fingerprint)으로 묶는 부수 채널이 될 수 있다. pcaversaccio는 이 파라미터로 토네이도 캐시(Tornado Cash) 입출금을 상관 짓고 특정 CLI 버전 사용까지 판별할 수 있다고 지적했다. 계정 추상화(account abstraction)의 페이마스터(paymaster) 후원 가스는 가스 결제를 서명자와 분리하는 기존 메커니즘으로, 프라이버시 대안으로 거론된다.",
+      "whyItMatters": "프라이버시 번들이 헤고타 우선순위로 오른 지금, 트랜잭션 포맷의 어느 필드까지가 프라이버시 설계의 대상인지 경계를 긋는 논쟁이다. 가스 파라미터 처리 방식은 네이티브 프라이버시가 실제로 익명성을 제공하는지, 아니면 부수 채널로 반쯤 무력화되는지를 가른다.",
+      "sources": [
+        {
+          "title": "EIP-8141: Frame Transaction",
+          "url": "https://eips.ethereum.org/EIPS/eip-8141"
+        },
+        {
+          "title": "EIP-8250: Keyed Nonces for Frame Transactions",
+          "url": "https://eips.ethereum.org/EIPS/eip-8250"
+        },
+        {
+          "title": "EIP-8272: Recent Roots for Frame Transactions",
+          "url": "https://eips.ethereum.org/EIPS/eip-8272"
+        }
+      ],
+      "keywords": [
+        "gas params privacy",
+        "Tornado Cash fingerprint",
+        "paymaster sponsored gas",
+        "EIP-8141"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "제거해야 한다",
+          "holders": [
+            {
+              "handle": "pcaversaccio",
+              "name": "sudo rm -rf --no-preserve-root /",
+              "role": "스마트컨트랙트 보안 리서처",
+              "avatar": "https://pbs.twimg.com/profile_images/1734666604049289216/7ezXxfGv_400x400.jpg"
+            }
+          ],
+          "points": [
+            "가스 파라미터(가스 한도, 수수료 필드)가 정보를 너무 많이 흘려 온체인 프라이버시를 크게 훼손하며, 이를 이용해 토네이도 캐시(Tornado Cash) 입금과 출금을 상관 짓고 특정 CLI 버전 사용까지 판별할 수 있어 중기적으로 제거해야 한다.",
+            "패딩(padding)은 자동으로 프라이버시를 지키지 못하는데, 지갑마다 고른 패딩 패턴이 그 자체로 지문(fingerprint)이 되기 때문이다.",
+            "완전동형암호(FHE)만이 해법은 아니며, 계정 추상화(account abstraction)의 페이마스터(paymaster) 후원 가스로 가스 결제를 서명자와 분리하고 프로토콜이 정의한 고정 가스 한도 티어(bucketing)와 결합하면 더 값싼 경로가 된다."
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "제거하면 멤풀 DoS가 생긴다",
+          "holders": [
+            {
+              "handle": "nero_eth",
+              "name": "Toni Wahrstätter ⟠",
+              "role": "EF 리서처",
+              "avatar": "https://pbs.twimg.com/profile_images/1858347774129094657/xUc7IS2K_400x400.jpg"
+            }
+          ],
+          "points": [
+            "가스 파라미터를 제거하면 멤풀(mempool)에 나쁜 DoS 벡터가 생기는데, 트랜잭션이 가능한 것보다 많은 가스를 소비해 무효가 되는지를 실행 후에야 알 수 있게 되기 때문이다.",
+            "zk증명이 도움이 되겠지만 그러면 중기 과제가 아니라 장기 과제가 된다."
+          ]
+        },
+        {
+          "stance": "neutral",
+          "label": "패딩이 현실적 최선이나 추상화는 탐색하자",
+          "holders": [
+            {
+              "handle": "lightclients",
+              "name": "ً",
+              "role": "Geth·프로토콜 개발자",
+              "avatar": "https://pbs.twimg.com/profile_images/1554130973935030274/wHWuxuTT_400x400.jpg"
+            }
+          ],
+          "points": [
+            "가스 한도와 수수료 정보가 데이터 블롭(blob) 크기처럼 트랜잭션의 본질적 속성이라면 아예 제거할 수는 없고 최선은 패딩이다.",
+            "그럼에도 이 파라미터를 추상화(abstract away)할 여지가 있다고 보며 탐색해봐야 한다."
+          ]
+        },
+        {
+          "stance": "other",
+          "label": "지문 패턴을 공개하라",
+          "holders": [
+            {
+              "handle": "donnoh_eth",
+              "name": "donnoh.gwei 💗",
+              "role": "L2Beat 리서치 헤드",
+              "avatar": "https://pbs.twimg.com/profile_images/1906978600311521280/aSbKSjtX_400x400.jpg"
+            }
+          ],
+          "points": [
+            "이미 파악된 지문 패턴을 공개해 사용자가 미리 피할 수 있게 해야 한다."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-09-07",
+          "by": "pcaversaccio",
+          "stance": "pro",
+          "quote": "중기적으로 가스 파라미터를 제거해야 한다. 정보가 너무 많이 새어 온체인 프라이버시를 크게 훼손한다. 예를 들어 이 파라미터로 토네이도 캐시 입금과 출금을 상관 지을 수 있고 특정 CLI 버전 사용 여부까지 판별할 수 있다.",
+          "url": "https://x.com/pcaversaccio/status/2096894060120449333",
+          "digest": "2026-09-09",
+          "replyTo": "nero_eth",
+          "relation": "reply",
+          "original": "@nero_eth mid-term we must get rid of the gas params as they leak far too much info &amp; significantly compromise on-chain privacy (e.g. you can use these params to correlate tc deposit &amp; withdrawals and determine if someone is using eg a specific cli version).",
+          "translation": "@nero_eth 중기적으로는 가스 매개변수(gas params)를 없애야 합니다. 이 값들이 너무 많은 정보를 노출시켜서 온체인 프라이버시(on-chain privacy)를 심각하게 훼손하기 때문입니다(예를 들어 이 매개변수들을 이용해 tc 입금과 출금을 서로 연관지을 수 있고, 누군가가 특정 CLI 버전을 사용하고 있는지도 알아낼 수 있습니다)."
+        },
+        {
+          "date": "2026-09-07",
+          "by": "nero_eth",
+          "stance": "con",
+          "quote": "맞지만 그것을 제거하면 멤풀에 나쁜 DoS 벡터가 생길 수 있다. 트랜잭션이 가능한 것보다 많은 가스를 소비해 무효가 되는데 실행 후에야 알게 된다. zk증명이 도움되겠지만 그러면 중기가 아니라 장기 과제가 된다.",
+          "url": "https://x.com/nero_eth/status/2096914960844546345",
+          "digest": "2026-09-09",
+          "replyTo": "pcaversaccio",
+          "relation": "reply",
+          "original": "True but removing those might introduce bad DoS vectors zo the mempool. E.g. transaction would turn invalid by consuming more gas than possiblr and you only figure out after execution.\nZk-proof would help but then it's not medium term anymore but more long-term.\nI see yout point but right now, with eips like 7999, 8141, etc. we're moving into the opposite direction for mempool/building/FOCIL safety.\nAlso, maybe obfuscating gas limits should be left to wallets instead of enshrining a ton of complexity coming from removing limits.",
+          "translation": "맞는 말이지만, 그것들을 없애면 멤풀(mempool)에 나쁜 디도스(DoS) 공격 벡터가 생길 수 있습니다. 예를 들어 트랜잭션이 가능한 것보다 더 많은 가스를 소비해서 무효가 되는데, 그것도 실행(execution) 이후에야 알 수 있게 됩니다. 영지식증명(zk-proof)이 도움이 되겠지만, 그러면 더 이상 중기가 아니라 장기 과제가 됩니다. 무슨 말씀인지는 알겠지만, 지금 당장은 EIP-7999, EIP-8141 같은 EIP들과 함께 멤풀/빌딩/FOCIL 안전성 측면에서 오히려 반대 방향으로 가고 있습니다. 또한 가스 한도(gas limit)를 감추는 일은, 한도를 없애는 데서 오는 엄청난 복잡성을 프로토콜에 새겨넣기(enshrine)보다는 지갑(wallet)에 맡기는 편이 나을 수도 있습니다."
+        },
+        {
+          "date": "2026-09-07",
+          "by": "lightclients",
+          "stance": "neutral",
+          "quote": "가스 한도와 수수료 정보가 데이터 블롭 크기와 마찬가지로 트랜잭션의 본질적 속성이라면 제거할 수 없고 최선은 패딩이다.",
+          "url": "https://x.com/lightclients/status/2096948171998126173",
+          "digest": "2026-09-09",
+          "replyTo": "pcaversaccio",
+          "relation": "reply",
+          "original": "@pcaversaccio @nero_eth yeah my point is that if gas limits and fee info are innate attributes of a transaction, the same way the size of a data blob is a fundamental property, and then you can't get rid of it and the best you can do is pad",
+          "translation": "@pcaversaccio @nero_eth 네, 제가 말하려는 건 가스 한도와 수수료 정보가 트랜잭션의 본질적인 속성이라면, 마치 데이터 블롭(data blob)의 크기가 근본적인 속성인 것과 마찬가지로, 그것을 없앨 수는 없고 할 수 있는 최선은 패딩(pad)을 하는 것뿐이라는 점입니다."
+        },
+        {
+          "date": "2026-09-07",
+          "by": "lightclients",
+          "stance": "neutral",
+          "quote": "그래도 이 파라미터를 추상화할 수 있다고 생각하며 우리는 이를 탐색해봐야 한다.",
+          "url": "https://x.com/lightclients/status/2096971963700847036",
+          "digest": "2026-09-09",
+          "replyTo": "lightclients",
+          "relation": "reply",
+          "original": "@lightclients @nero_eth i still think you can abstract away these params and we should explore this",
+          "translation": "@lightclients @nero_eth 그래도 저는 이 매개변수들을 추상화(abstract away)할 수 있다고 생각하고, 우리가 이 방향을 탐구해야 한다고 봅니다."
+        },
+        {
+          "date": "2026-09-07",
+          "by": "pcaversaccio",
+          "stance": "pro",
+          "quote": "'유일한' 해법이라 하기엔 지나치다(FHE도 좋아한다). 더 값싼 경로에 대한 직관은 계정 추상화에서 온다. 페이마스터 후원 가스는 가스 결제를 서명자와 분리할 수 있고, 이를 프로토콜이 정의한 고정 가스 한도 티어와 결합하면 된다.",
+          "url": "https://x.com/pcaversaccio/status/2096986964084068515",
+          "digest": "2026-09-09",
+          "replyTo": "lightclients",
+          "relation": "reply",
+          "original": "well no, i'd say \"only\" is too strong (i do like fhe to be clear!). my intuition for a \"cheaper\" path actually comes from aa: paymaster-sponsored gas can decouple gas payment from the signer & if you pair that with enshrined gas-limit bucketing (i.e. fixed protocol-defined tiers rather than wallet-chosen padding) you remove a major source of wallet-specific fingerprinting w/o needing to hide the underlying value entirely. sure, fhe covers the problem more \"generally\" but the overhead is a big ask (in its current shape at least) for something as latency-sensitive & universal as gas metering. i think there are cheaper points in the design space first: protocol-enforced bucketing, potentially combined with zk proofs where useful (yes probably long-term and not mid-term), can hide the exact parameter while preserving the constraints needed for safe execution. so yeah, fhe may be the \"hide everything\" endgame, but i wouldn't assume it's the only solution space. aa-style abstraction + enshrined bucketing + zk can probably get most of the privacy benefit at a fraction of the cost, and i'd rather explore that path for now than wait for fhe to become cheap enough for l1's hot path.",
+          "translation": "음, 아니요, \"유일한\"이라는 표현은 너무 강하다고 생각합니다(분명히 말하지만 저는 FHE를 좋아합니다!). 제가 생각하는 \"더 저렴한\" 경로에 대한 직관은 사실 계정 추상화(account abstraction, AA)에서 나옵니다. 페이마스터(paymaster)가 후원하는 가스는 가스 지불을 서명자(signer)로부터 분리(decouple)할 수 있고, 여기에 프로토콜에 새겨진(enshrined) 가스 한도 버킷화(gas-limit bucketing, 즉 지갑이 임의로 선택하는 패딩이 아니라 프로토콜이 정의한 고정 티어)를 결합하면, 기저 값을 완전히 숨길 필요 없이도 지갑별 핑거프린팅(fingerprinting)의 주요 원인을 제거할 수 있습니다. 물론 FHE가 이 문제를 더 \"일반적으로\" 다루긴 하지만, 가스 계측(gas metering)처럼 지연시간(latency)에 민감하고 보편적인 것에 대해서는 (적어도 지금 형태로는) 오버헤드가 상당히 큰 부담입니다. 저는 설계 공간(design space) 안에 먼저 더 저렴한 지점들이 있다고 생각합니다. 프로토콜이 강제하는 버킷화에, 유용한 경우 영지식증명(zk proof)을 결합하면(이건 아마 중기가 아니라 장기가 되겠지만) 안전한 실행에 필요한 제약 조건을 유지하면서도 정확한 매개변수 값을 숨길 수 있습니다. 그러니까 FHE는 \"모든 것을 숨기는\" 최종 목표일 수 있지만, 그것이 유일한 해법 공간이라고 단정하지는 않겠습니다. AA 방식의 추상화와 프로토콜에 새겨진 버킷화, 그리고 zk를 결합하면 아마 훨씬 적은 비용으로 프라이버시 이점의 대부분을 얻을 수 있을 것이고, 저는 FHE가 L1의 핫 패스(hot path)에 쓸 수 있을 만큼 저렴해지기를 기다리기보다는 지금 당장 그 경로를 탐구하고 싶습니다."
+        },
+        {
+          "date": "2026-09-07",
+          "by": "donnoh_eth",
+          "stance": "other",
+          "quote": "솔직히 그 패턴들을 공개해서 우리가 피할 수 있게 해야 한다.",
+          "url": "https://x.com/donnoh_eth/status/2096986198031917435",
+          "digest": "2026-09-09",
+          "replyTo": "pcaversaccio",
+          "relation": "reply",
+          "original": "@pcaversaccio @lightclients @nero_eth tbh you should disclose the patterns so that we can avoid them",
+          "translation": "@pcaversaccio @lightclients @nero_eth 솔직히 말하면 그 패턴들을 공개해주셔야 저희가 그걸 피할 수 있을 것 같습니다."
+        }
+      ],
+      "firstSeen": "2026-09-07",
+      "lastActivity": "2026-09-07",
+      "status": "active",
+      "rootUrl": "https://x.com/pcaversaccio/status/2096894060120449333",
+      "engagement": {
+        "likes": 15,
+        "retweets": 0,
+        "quotes": 0,
+        "replies": 1,
+        "views": 987
+      }
+    },
+    {
+      "id": "ethereum-zcash-privacy-competitor",
+      "title": "이더리움의 최대 경쟁자는 지캐시이고 프라이버시를 최우선해야 하나?",
+      "category": "프로토콜 설계",
+      "summary": "donnoh_eth는 블록체인의 1순위 용도가 주권적 가치 이전이고 무조건적 프라이버시 없이는 주권이 실현되지 않는다며 정말 중요한 영역에서 이더리움의 최대 경쟁자는 지캐시라고 주장했고, zayn4pf는 이더리움이 지캐시가 될 수 있어도 그 역은 불가능하다며 그 프레임 자체를 거부했다.",
+      "keyPoints": [
+        "이더리움이 자원을 프라이버시에 우선 배분할 만큼 지캐시가 실질적 경쟁자인가",
+        "지캐시가 네이티브 증명 검증만으로 스마트컨트랙트 환경을 얹을 수 있어 이더리움에 근접할 수 있는가",
+        "여러 프라이버시 모델이 공존하는 것이 이더리움의 강점인가 파편화인가"
+      ],
+      "background": "지캐시(Zcash)는 zk-SNARK 기반의 프라이버시 코인으로, 셸디드(shielded) 트랜잭션을 통해 송수신자와 금액을 숨긴다. donnoh_eth는 주권적 가치 이전(sovereign transfer of value)이 블록체인의 1순위 용도이며 무조건적 프라이버시가 그 전제라고 본다. 네이티브 프라이버시는 EIP-8141 프레임 트랜잭션(frame transaction)의 명시적 목표 중 하나로, 이더리움이 프로토콜 차원에서 프라이버시를 내재화하려는 방향과 맞닿아 있다. 반대편은 이더리움의 범용 스마트컨트랙트 능력이 지캐시보다 우월하며 지캐시를 최대 경쟁자로 세우는 것 자체가 과하다고 본다.",
+      "whyItMatters": "프라이버시를 경쟁 생존 조건으로 보는 프레임이 EF의 헤고타 스코핑 방향과 공명하며, 로드맵 자원 배분 논의에 실제 압력으로 작용한다. 이 프레임이 받아들여질수록 프라이버시 번들의 우선순위가 올라가고, 반대로 이더리움의 범용성이 우위라는 관점이 강할수록 자원은 확장성·범용 인프라로 향한다.",
+      "sources": [
+        {
+          "title": "EIP-8141: Frame Transaction",
+          "url": "https://eips.ethereum.org/EIPS/eip-8141"
+        }
+      ],
+      "keywords": [
+        "Zcash Ethereum competitor",
+        "native privacy",
+        "EIP-8141",
+        "sovereign transfer"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "지캐시가 최대 경쟁자다",
+          "holders": [
+            {
+              "handle": "donnoh_eth",
+              "name": "donnoh.gwei 💗",
+              "role": "L2Beat 리서치 헤드",
+              "avatar": "https://pbs.twimg.com/profile_images/1906978600311521280/aSbKSjtX_400x400.jpg"
+            },
+            {
+              "name": "lex_node",
+              "watchlist": false
+            }
+          ],
+          "points": [
+            "블록체인의 1순위 용도는 주권적 가치 이전이며, 무조건적 프라이버시 없이는 주권이 실제로 달성되지 않으므로 정말 중요한 영역에서 이더리움의 최대 경쟁자는 지캐시다.",
+            "스마트컨트랙트는 좋지만 노드 운영을 어렵게 만들고 사용자의 주권과 무관한 여러 방향으로 초점을 분산시킨다.",
+            "지캐시는 범용 VM을 넣을 필요 없이 네이티브 증명 검증만 추가하면 어떤 스마트컨트랙트 환경이든 그 위에 퍼미션리스하게 얹어 zk증명으로 검증할 수 있으므로, 어떤 형태로는 지캐시도 이더리움이 하는 일을 할 수 있다."
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "이더리움이 우월하니 그 프레임은 과하다",
+          "holders": [
+            {
+              "handle": "zayn4pf",
+              "name": "zayn",
+              "avatar": "https://pbs.twimg.com/profile_images/2096586358982602754/Vxp-9lsh_400x400.jpg"
+            }
+          ],
+          "points": [
+            "이더리움은 지캐시가 하는 모든 것을 할 수 있고 그 이상이지만 지캐시는 이더리움이 될 수 없으므로, 지캐시를 최대 경쟁자로 세우는 것은 이더리움을 스스로 깎아내리는 것이다."
+          ]
+        },
+        {
+          "stance": "neutral",
+          "label": "여러 프라이버시 방식의 공존이 강점이나 파편화도 낳는다",
+          "holders": [
+            {
+              "handle": "jchaskin22",
+              "name": "chaskin.eth",
+              "role": "EF 리서처",
+              "avatar": "https://pbs.twimg.com/profile_images/2016950149633691648/Kht-necI_400x400.jpg"
+            }
+          ],
+          "points": [
+            "이더리움의 강점 하나는 경쟁하는 여러 프라이버시 방식을 동시에 제공할 수 있다는 점으로, 토네이도 캐시는 검열 저항을 극대화하고 프라이버시 풀(Privacy Pools)은 자금이 불법과 무관함을 증명하게 하며 Railgun은 디파이를 사적으로 쓰게 한다.",
+            "다만 이렇게 여러 방식이 공존하는 것은 유동성과 익명성 집합을 파편화시킨다."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-09-07",
+          "by": "donnoh_eth",
+          "stance": "pro",
+          "quote": "이더리움의 (정말 중요한 것들에서) 최대 경쟁자는 지캐시다. 그에 맞게 행동하라.",
+          "url": "https://x.com/donnoh_eth/status/2096854640868438429",
+          "digest": "2026-09-09",
+          "replyTo": "nero_eth",
+          "relation": "quote",
+          "original": "ethereum’s biggest competitor (in the things that actually matter) is zcash. act accordingly",
+          "translation": "이더리움의 가장 큰 경쟁자는(진짜로 중요한 부분에서는) 지캐시(zcash)입니다. 그에 맞게 행동하세요."
+        },
+        {
+          "date": "2026-09-07",
+          "by": "donnoh_eth",
+          "stance": "pro",
+          "quote": "블록체인의 1순위 용도는 주권적 가치 이전이다. 무조건적 프라이버시 없이는 주권이 실제로 달성되지 않는다고 본다. 스마트컨트랙트는 좋지만 노드 운영을 어렵게 하고 사용자에게 도움이 안 되는 여러 방향으로 초점을 분산시킨다.",
+          "url": "https://x.com/donnoh_eth/status/2096903522486780012",
+          "digest": "2026-09-09",
+          "replyTo": "ox_shaman",
+          "relation": "reply",
+          "original": "top 1 blockchain use case is sovereign transfer of value. i dont believe sovereignty is achieved in practice without unconditional privacy. smart contracts are nice, but they make it harder to run nodes and diverts focus to many different things that dont help users to be fully sovereign. zcash has amazing ux for this already (try zodl wallet over tor), and it’s rapidly improving, in comparison the most similar protocol on ethereum (tornado cash) is super painful to use. not having smart contracts has many limitations, mainly being that many things you want to do on top require trusted parties. this is where ethereum can compete and eventually win over zcash, but the foundation is currently missing and it’s much harder for us to get there. this is fixable but we need to work on it. i 100% think zcash can surpass ethereum market cap with just private transfers and no smart contracts if ethereum doesnt catch up.",
+          "translation": "블록체인의 최고 사용 사례는 가치의 주권적 전송(sovereign transfer of value)입니다. 저는 무조건적인 프라이버시(unconditional privacy) 없이는 실제로 주권(sovereignty)이 달성될 수 없다고 봅니다. 스마트 컨트랙트(smart contract)는 좋지만, 노드를 운영하기 어렵게 만들고, 사용자가 완전히 주권을 가지는 데 도움이 되지 않는 여러 다른 것들로 초점을 분산시킵니다. 지캐시는 이미 이 부분에서 놀라운 UX를 갖추고 있고(토르(Tor)로 zodl 지갑을 써보세요), 빠르게 개선되고 있는 반면, 이더리움에서 가장 비슷한 프로토콜인 토네이도캐시(tornado cash)는 사용하기 매우 고통스럽습니다. 스마트 컨트랙트가 없다는 것은 여러 한계를 가지는데, 주로 그 위에서 하고 싶은 많은 일들이 신뢰받는 제3자(trusted party)를 필요로 한다는 점입니다. 바로 이 지점이 이더리움이 경쟁해서 결국 지캐시를 이길 수 있는 부분이지만, 지금은 그 기반이 빠져 있고 우리가 거기에 도달하기가 훨씬 어렵습니다. 이건 고칠 수 있는 문제지만 우리가 노력해야 합니다. 만약 이더리움이 따라잡지 못한다면, 저는 지캐시가 프라이빗 전송(private transfer)만으로, 스마트 컨트랙트 없이도 이더리움의 시가총액을 뛰어넘을 수 있다고 100% 생각합니다."
+        },
+        {
+          "date": "2026-09-07",
+          "by": "zayn4pf",
+          "stance": "con",
+          "quote": "이더리움은 지캐시가 무엇이든 그것이 될 수 있고 그 이상이다. 지캐시는 이더리움이 될 수 없다. 이 트윗은 이더리움을 깎아내리는 것과 같다.",
+          "url": "https://x.com/zayn4pf/status/2096941739781079386",
+          "digest": "2026-09-09",
+          "relation": "none",
+          "original": "@donnoh_eth @lex_node Ethereum can be whatever ZCASH is, and more.\n\nZCASH can’t be what Ethereum is.\n\nthis tweet is like cucking Ethereum lmfao.",
+          "translation": "@donnoh_eth @lex_node 이더리움은 지캐시가 할 수 있는 무엇이든 될 수 있고, 그 이상도 될 수 있습니다. 지캐시는 이더리움이 하는 것을 할 수 없습니다. 이 트윗은 이더리움을 스스로 깎아내리는 것 같네요 ㅋㅋㅋ."
+        },
+        {
+          "date": "2026-09-07",
+          "by": "donnoh_eth",
+          "stance": "pro",
+          "quote": "그들은 그럴 필요도 없다. 네이티브 증명 검증만 있으면 어떤 스마트컨트랙트 환경이든 그 위에 퍼미션리스하게 세워 zk증명으로 검증할 수 있다. 훨씬 쉽다. 셀레스티아가 한때 VM을 도입하지 않으려 했던 계획이 바로 이것이다.",
+          "url": "https://x.com/donnoh_eth/status/2096944960369054054",
+          "digest": "2026-09-09",
+          "replyTo": "zayn4pf",
+          "relation": "reply",
+          "original": "as i said they don’t need to. they just need native proof verification which allows any smart contract environment to be permissionlessly built on top and verified via zk proofs. it is way way easier. this is what also celestia was planning a while ago not to introduce a vm, it’s not a new idea.",
+          "translation": "제가 말했듯이 그들이 (스마트 컨트랙트를) 가질 필요는 없습니다. 그들에게 필요한 건 네이티브 증명 검증(native proof verification)뿐이고, 이를 통해 어떤 스마트 컨트랙트 환경이든 그 위에 무허가로(permissionlessly) 구축되고 영지식증명(zk proof)으로 검증될 수 있습니다. 이게 훨씬, 훨씬 더 쉽습니다. 이건 셀레스티아(celestia)도 예전에 VM을 도입하지 않는 방향으로 계획했던 것이라, 새로운 아이디어가 아닙니다."
+        },
+        {
+          "date": "2026-09-07",
+          "by": "jchaskin22",
+          "stance": "neutral",
+          "quote": "이더리움의 강점 하나는 경쟁하는 여러 프라이버시 방식을 제공할 수 있다는 것이다. 토네이도 캐시는 검열 저항을 극대화하고, 프라이버시 풀은 자금이 불법 활동과 무관함을 증명하게 하며, Railgun은 디파이를 사적으로 쓰게 한다. 다만 이는 파편화를 낳는다.",
+          "url": "https://x.com/jchaskin22/status/2096984156433465605",
+          "digest": "2026-09-09",
+          "replyTo": "donnoh_eth",
+          "relation": "reply",
+          "original": "One of Ethereum’s advantage is that it can offer competing flavors of privacy\n\nTornado Cash maximizes censorship resistance, while Privacy Pools let users prove their funds aren’t linked to illicit activity, while Railgun lets you use defi privately\n\nBut it does fragments liquidity. If enough people are willing to provide the anonymity set (they currently aren't, it's a culture problem we need to fix), that tradeoff becomes much less significant",
+          "translation": "이더리움의 장점 중 하나는 서로 경쟁하는 여러 형태의 프라이버시를 제공할 수 있다는 것입니다. 토네이도캐시(Tornado Cash)는 검열 저항성(censorship resistance)을 극대화하고, 프라이버시 풀(Privacy Pools)은 사용자가 자신의 자금이 불법 행위와 연관되어 있지 않다는 것을 증명할 수 있게 해주며, 레일건(Railgun)은 디파이(defi)를 비공개로 사용할 수 있게 해줍니다. 다만 이는 유동성(liquidity)을 분산시킵니다. 충분히 많은 사람들이 익명성 집합(anonymity set)을 제공할 의향이 있다면(현재는 그렇지 않으며, 이건 우리가 고쳐야 할 문화적 문제입니다) 그 트레이드오프는 훨씬 덜 중요해집니다."
+        }
+      ],
+      "firstSeen": "2026-09-07",
+      "lastActivity": "2026-09-07",
+      "status": "active",
+      "rootUrl": "https://x.com/donnoh_eth/status/2096854640868438429",
+      "engagement": {
+        "likes": 73,
+        "retweets": 1,
+        "quotes": 0,
+        "replies": 16,
+        "views": 7717
+      }
+    },
+    {
+      "id": "eth-memecoin-or-productive-asset",
+      "title": "ETH는 밈코인인가, 생산적 자산인가?",
+      "category": "거버넌스 · 커뮤니티",
+      "summary": "CatfishFishy는 ETH 수익률의 94%가 인플레이션에서 오고 밸류에이션 초과분은 순전히 스토리텔링에서 온 밈코인 프리미엄이라고 주장했고, zayn4pf는 이더리움 프로토콜이 생산적이므로 그 경제적 표현인 ETH는 결코 밈코인이 아니라고 맞섰다.",
+      "keyPoints": [
+        "ETH의 수익률이 대부분 인플레이션에서 오는데도 이를 생산적 자산이라 부를 수 있는가",
+        "밸류에이션 초과분(밈코인 프리미엄)이 스토리텔링에서 오는가, 네트워크 생산성의 프록시인가",
+        "지배적인 글로벌 정산 레이어가 존재할 것인가, 정산이 여러 장소로 분산될 것인가"
+      ],
+      "background": "이 논쟁은 지캐시 스레드의 답글에서 파생됐다. 한쪽은 ETH의 시가총액에서 실제 유틸리티 가치를 넘어서는 부분을 밈코인 프리미엄으로 규정하며, 스테이킹 수익률의 대부분이 사용자 수수료가 아니라 발행(issuance)에서 오는 점을 근거로 든다. 다른 쪽은 이더리움 프로토콜 자체가 경제적 생산성을 만들고 ETH는 그 생산성의 화폐적 표현이므로 밈코인일 수 없다고 본다. 후자는 블록체인을 국가에 비유해 네트워크 통화의 가치가 그 네트워크의 경제적 생산성의 프록시라고 주장한다.",
+      "whyItMatters": "ETH의 가치 서사를 어떻게 규정하느냐는 발행 정책, 수수료 환원, L2 정렬 논쟁 전반의 밑바탕이 된다. ETH를 생산적 자산으로 보느냐 스토리텔링 프리미엄으로 보느냐에 따라 커뮤니티가 프로토콜의 수익성과 통화정책에 요구하는 기준이 달라진다.",
+      "sources": [],
+      "keywords": [
+        "ETH memecoin",
+        "productive asset",
+        "global settlement layer",
+        "issuance yield"
+      ],
+      "positions": [
+        {
+          "stance": "con",
+          "label": "ETH는 스토리텔링 프리미엄이 붙은 밈코인이다",
+          "holders": [
+            {
+              "handle": "CatfishFishy",
+              "name": "Fishy Catfish",
+              "avatar": "https://pbs.twimg.com/profile_images/1478146349199761412/Z4lMdk4n_400x400.jpg"
+            }
+          ],
+          "points": [
+            "ETH 시가총액에서 실제 기능이 뒷받침하는 가치를 넘어서는 부분은 순전히 스토리텔링에서 오는 밈코인 프리미엄이며, 이는 100% 밈이냐 100% 펀더멘털이냐의 이분법이 아니라 초과분의 문제다.",
+            "ETH 수익률의 94%가 사용자 수수료가 아니라 인플레이션에서 오므로 생산적 자산이라 부를 수 없다.",
+            "단일한 글로벌 정산 레이어 같은 것은 없을 것이며, 정산은 오프체인을 포함한 여러 장소에서 분산돼 일어난다."
+          ]
+        },
+        {
+          "stance": "pro",
+          "label": "이더리움은 생산적이므로 ETH는 밈코인이 아니다",
+          "holders": [
+            {
+              "handle": "zayn4pf",
+              "name": "zayn",
+              "avatar": "https://pbs.twimg.com/profile_images/2096586358982602754/Vxp-9lsh_400x400.jpg"
+            }
+          ],
+          "points": [
+            "밈코인은 생산적 가치가 없는 것인데 프로토콜로서 이더리움은 생산적이고 ETH는 그 생산성의 경제적 표현이므로 결코 밈코인이 될 수 없다.",
+            "블록체인은 국가 같은 네트워크이고 네트워크 통화의 가치는 그 네트워크의 경제적 생산성의 프록시이며, 여러 네트워크가 있어도 지배적인 글로벌 정산 레이어는 하나 존재한다."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-09-07",
+          "by": "CatfishFishy",
+          "stance": "con",
+          "quote": "이더리움은 분명히 무언가를 한다. ETH는 그 무언가에 묶인 밸류에이션 하한이 있다. 그 무언가의 가치를 초과하는 모든 시가총액은 순전한 스토리텔링에서 온 밈코인 프리미엄이다.",
+          "url": "https://x.com/CatfishFishy/status/2096952241164800043",
+          "digest": "2026-09-09",
+          "replyTo": "zayn4pf",
+          "relation": "reply",
+          "original": "Hope this helps.\n\n1. The cofounder of Ethereum calls it a memecoin.\n2. A \"memecoin\" is not a binary proposition of 100% meme vs 100% fundamentals.\n\nEthereum clearly does something. ETH clearly has a floor to its valuation tied to that something.\n\nAll marketcap in excess of that something valuation is its memecoin premium from pure storytelling.",
+          "translation": "도움이 되었으면 합니다. 1. 이더리움의 공동창립자도 이걸 밈코인(memecoin)이라 부릅니다. 2. \"밈코인\"이라는 건 100% 밈이냐 100% 펀더멘털(fundamentals)이냐의 이분법적 명제가 아닙니다. 이더리움은 분명히 무언가를 하고 있습니다. ETH의 가치평가에는 그 무언가에 결부된 바닥선(floor)이 분명히 있습니다. 그 무언가의 가치평가를 초과하는 모든 시가총액(marketcap)은 순전히 스토리텔링(storytelling)에서 나오는 밈코인 프리미엄입니다."
+        },
+        {
+          "date": "2026-09-07",
+          "by": "CatfishFishy",
+          "stance": "con",
+          "quote": "ETH가 어떻게 생산적인가? 수익률의 94%가 (그리고 계속 늘어) 순전히 인플레이션에서 온다. 자산이 생산적이려면 사용자에게서 수수료를 받아야 한다.",
+          "url": "https://x.com/CatfishFishy/status/2096955475946324203",
+          "digest": "2026-09-09",
+          "replyTo": "zayn4pf",
+          "relation": "reply",
+          "original": "https://t.co/S1R1qKZJPr\n\n1. Read this post because I wrote it after your last reply. A \"memecoin\" is not an all or nothing proposition.\n\n2. How is ETH productive? 94% (and growing) of its yield comes purely from inflation.\n\nDo you even understand what you are even typing?\n\nFor an asset to be productive, it needs to get fees from users, yet all of your posts up to this point have been arguing that \"Ethereum is not a business\" and \"shouldn't be judged on how much fees it generates\", which is the typical contradiction that eventually comes out in conversation.\n\nETH holders spend 10 posts writing about how Ethereum doesn't need revenue, and then tell you how ETH is a productive asset on the 11th post.",
+          "translation": "이 글을 읽어보세요. 당신의 지난 답글 이후에 제가 쓴 글입니다. \"밈코인\"은 전부 아니면 전무(all or nothing)의 명제가 아닙니다. 2. ETH가 어떻게 생산적(productive)이라는 겁니까? ETH 수익률(yield)의 94%(그리고 계속 증가 중)는 순전히 인플레이션(inflation)에서 나옵니다. 지금 자신이 무슨 말을 쓰고 있는지 이해는 하고 계신가요? 자산이 생산적이려면 사용자로부터 수수료(fee)를 받아야 하는데, 지금까지 당신이 올린 글들은 전부 \"이더리움은 사업체(business)가 아니다\"라거나 \"얼마나 많은 수수료를 발생시키는지로 판단해서는 안 된다\"고 주장해 왔습니다. 이건 결국 대화 중에 드러나는 전형적인 모순입니다. ETH 보유자들은 이더리움이 매출(revenue)이 필요 없다고 10개의 글을 쓰다가, 11번째 글에서는 ETH가 얼마나 생산적인 자산인지 이야기합니다."
+        },
+        {
+          "date": "2026-09-07",
+          "by": "zayn4pf",
+          "stance": "pro",
+          "quote": "밈코인은 생산적 가치가 전혀 없는 것이다. 프로토콜로서 이더리움은 생산적이고 ETH는 그 생산성의 경제적 표현이므로 결코 밈코인이 되지 않는다.",
+          "url": "https://x.com/zayn4pf/status/2096954205843923440",
+          "digest": "2026-09-09",
+          "replyTo": "CatfishFishy",
+          "relation": "reply",
+          "original": "@CatfishFishy a memecoin is something that doesn’t have any productive value,\n\nEthereum as a protocol is productive, $ETH is the economic representation of that productivity, it’ll never be a memecoin.",
+          "translation": "@CatfishFishy 밈코인이란 생산적 가치가 전혀 없는 것을 말합니다. 프로토콜로서의 이더리움은 생산적이고, $ETH는 그 생산성의 경제적 표현(economic representation)입니다. 이더리움은 절대 밈코인이 될 수 없습니다."
+        },
+        {
+          "date": "2026-09-07",
+          "by": "zayn4pf",
+          "stance": "pro",
+          "quote": "언제나 지배적인 글로벌 정산 레이어는 존재한다. 블록체인은 국가 같은 네트워크이고, 네트워크 통화의 가치는 그 네트워크에 존재하는 경제적 생산성의 프록시다.",
+          "url": "https://x.com/zayn4pf/status/2096960506720297087",
+          "digest": "2026-09-09",
+          "replyTo": "CatfishFishy",
+          "relation": "reply",
+          "original": "there will always be a dominant global settlement layer, don’t let anyone fool you otherwise.\n\nblockchains are networks, like a country.\n\nthe currency of the network is like a currency of a nation and the value of that currency is a proxy for how much economic productivity exists in that network.\n\nthere’s gonna be many networks, where settlements happen, just like there many countries itw. but there’s gonna be one dominant one, just like America is itw today.\n\nasking Ethereum to start marketing $ETH as a memecoin is like asking America to start marketing USD like gold lmao.\n\nthat just means the network is failing at growing its productivity and is looking for anything to make its currency go up.\n\n“>misinformation\n>storytelling\n>creating a religion\n\nYeah, that's literally what a memecoin premium is.”\n\nno that’s not what a memecoin premium is.\n\nAmerica literally sells the “American Dream” and controls narrative through storytelling lmfao. and making its nation a proxy for productive entities to migrate and settle in.\n\n“You literally just heard other people type the words \"productive asset\", so you are repeating them without having a clue what it even means.”\n\nI’ll just lmfao at that and won’t be drawn into that ad hominem gimmick anyways as that’s besides the point and any back and forth there won’t be productive.\n\n> your last long part literally is what’s a productive loop? the network not being productive enough is the fundamental problem here lmfao.",
+          "translation": "언제나 지배적인 글로벌 정산 레이어(settlement layer)는 하나 존재할 것입니다. 누가 다르게 말해도 속지 마세요. 블록체인은 네트워크이고, 마치 하나의 국가와 같습니다. 그 네트워크의 화폐(currency)는 한 국가의 화폐와 같고, 그 화폐의 가치는 그 네트워크 안에 존재하는 경제적 생산성이 얼마나 되는지를 나타내는 대용물(proxy)입니다. 정산이 이루어지는 네트워크는 많이 있을 것입니다. 마치 세상에 많은 국가가 있는 것처럼요. 하지만 오늘날 미국이 그렇듯이, 그중 지배적인 하나가 있을 것입니다. 이더리움에게 $ETH를 밈코인으로 마케팅하라고 요구하는 건, 미국에게 달러(USD)를 금(gold)처럼 마케팅하라고 요구하는 것과 같습니다 ㅋㅋ. 그건 그 네트워크가 생산성을 키우는 데 실패해서 자국 화폐를 끌어올릴 무엇이든 찾고 있다는 뜻일 뿐입니다. \">misinformation >storytelling >creating a religion 맞습니다, 그게 바로 밈코인 프리미엄입니다\"라고 하셨는데, 아닙니다, 그게 밈코인 프리미엄이 아닙니다. 미국은 실제로 \"아메리칸 드림(American Dream)\"을 팔고, 스토리텔링을 통해 서사(narrative)를 통제합니다 ㅋㅋㅋ. 그리고 생산적인 주체들이 이주하고 정착할 대상으로 자국을 대용물로 만듭니다. \"당신은 그냥 다른 사람들이 '생산적 자산'이라는 말을 쓰는 걸 듣고, 그게 무슨 뜻인지도 모른 채 따라 하고 있는 겁니다\"라고 하셨는데, 저는 그냥 그 말에 웃고 넘기겠습니다. 그건 논점과 무관한 인신공격성(ad hominem) 술수이고, 그런 식의 공방은 생산적이지 않으니 거기 말려들지 않겠습니다. > 당신의 마지막 긴 문단이 그야말로, 생산적 순환(productive loop)이란 게 뭡니까? 네트워크가 충분히 생산적이지 않다는 게 바로 여기서 근본적인 문제입니다 ㅋㅋㅋ."
+        }
+      ],
+      "firstSeen": "2026-09-07",
+      "lastActivity": "2026-09-07",
+      "status": "active"
+    },
+    {
+      "id": "robinhood-blobs-security-value",
+      "title": "스테이지2가 아닌 로빈후드 체인에게 블롭 사용은 보안 이득이 있나?",
+      "category": "확장성 · L2",
+      "summary": "donnoh_eth는 로빈후드 체인이 스테이지2가 아니어서 시큐리티 카운슬이 데이터 보류에 대응할 수 있으므로 블롭 사용으로 얻는 보안 이득이 전혀 없다고 비판했고, EF의 barnabemonnot은 최악의 경우는 개선되지 않음을 인정하면서도 데이터가 게시되지 않으면 전진하지 않는 브리지에 담긴 ETH를 선호하며 도전자 화이트리스트는 개선 여지가 있다고 반박했다.",
+      "keyPoints": [
+        "스테이지2 미만 롤업에서 블롭 사용이 실제 보안을 높이는가, 최악의 경우 시나리오는 그대로인가",
+        "시큐리티 카운슬이 데이터 보류에 개입할 수 있는 구조에서 블롭 게시가 무슨 신뢰 가정을 바꾸는가",
+        "도전자 화이트리스트 같은 부분이 앞으로 개선될 여지가 있는가"
+      ],
+      "background": "스테이지2(stage 2)는 L2Beat의 롤업 성숙도 최상위 단계로, 시큐리티 카운슬(security council)의 권한이 크게 제한되고 사용자가 검증 가능한 증명만으로 자금을 인출할 수 있는 상태를 말한다. 블롭(blob, EIP-4844)은 L2가 데이터를 저렴하게 게시하는 수단으로, 데이터 가용성을 통해 자기수탁(self custody) 수준의 인출 보장을 가능하게 한다. 스테이지2 미만에서는 카운슬이 데이터 가용성 문제에 개입해 상태를 뒤집을 수 있어 블롭 게시의 보안 의미가 약해진다. 이 논쟁은 지난 호 기업 L2의 이더리움 정당성 논쟁의 연장선에 있다.",
+      "whyItMatters": "기업 L2의 블롭 사용을 보안 서사로 볼 것인지 유통·마케팅 전략으로 볼 것인지의 기준선을 다투는 논쟁이다. 스테이지 성숙도와 블롭 사용이 분리될 수 있다는 인식은, 어떤 체인이 이더리움 보안을 실제로 상속하는지 평가하는 기준을 재정의한다.",
+      "sources": [],
+      "keywords": [
+        "blobs security",
+        "stage 2 rollup",
+        "Robinhood L2",
+        "data withholding"
+      ],
+      "positions": [
+        {
+          "stance": "con",
+          "label": "블롭에서 얻는 보안 이득이 전혀 없다",
+          "holders": [
+            {
+              "handle": "donnoh_eth",
+              "name": "donnoh.gwei 💗",
+              "role": "L2Beat 리서치 헤드",
+              "avatar": "https://pbs.twimg.com/profile_images/1906978600311521280/aSbKSjtX_400x400.jpg"
+            },
+            {
+              "handle": "colludingnode",
+              "name": "c-node",
+              "avatar": "https://pbs.twimg.com/profile_images/2011967055986122753/DZ3sQRIX_400x400.jpg"
+            }
+          ],
+          "points": [
+            "로빈후드 체인은 스테이지2가 아니어서 시큐리티 카운슬이 데이터 보류(data withholding)에 대응할 수 있으므로 블롭 사용으로 얻는 보안 이득이 전혀 없다.",
+            "블롭을 쓴다고 더 안전해지지 않으며, 자기수탁보다 못한 보안은 사용자에게 완전히 수용 불가하다."
+          ]
+        },
+        {
+          "stance": "pro",
+          "label": "부분적 보안 이득은 있다",
+          "holders": [
+            {
+              "handle": "barnabemonnot",
+              "name": "Barnabé Monnot | barnabé.eth",
+              "role": "EF 리서처",
+              "avatar": "https://pbs.twimg.com/profile_images/2069104465202814976/alWWQ8SG_400x400.jpg"
+            }
+          ],
+          "points": [
+            "최악의 경우가 개선되지 않는다는 점은 인정하지만, 데이터가 게시되지 않으면 전진하지 않고 도전(challenge)할 수 있는 브리지에 담긴 ETH를 선호한다.",
+            "시큐리티 카운슬은 이 규칙을 뒤집지 않도록 신뢰될 뿐 브리지를 지나는 모든 메시지에 서명하도록 신뢰되는 것은 아니며, 도전자 화이트리스트(challenger whitelist)는 스택의 다른 부분보다 개선을 더 기대할 수 있는 영역이다."
+          ]
+        },
+        {
+          "stance": "neutral",
+          "label": "더 많은 노드가 상태를 보유하면 복구 가능성이 는다",
+          "holders": [
+            {
+              "handle": "zkLumi",
+              "name": "Lumi",
+              "avatar": "https://pbs.twimg.com/profile_images/1954296897595703297/yKZPrjqh_400x400.jpg"
+            }
+          ],
+          "points": [
+            "더 많은 노드가 상태를 보유하면 데이터 손상 시 상태를 복구할 수 있으므로 더 안전하다고 볼 수 있다."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-09-06",
+          "by": "donnoh_eth",
+          "stance": "con",
+          "quote": "로빈후드는 스테이지2가 아니므로 블롭 사용으로 얻는 게 전혀 없다. 시큐리티 카운슬이 데이터 보류에 대응할 수 있기 때문이다. 이를 바꿀 조짐은 전혀 없다.",
+          "url": "https://x.com/donnoh_eth/status/2096685783750955283",
+          "digest": "2026-09-09",
+          "replyTo": "barnabemonnot",
+          "relation": "quote",
+          "original": "Since Robinhood is not stage 2, it gains absolutely nothing from using blobs; its security council can respond to data withholding.\n\nThey have zero indication of changing this.\n\nBlobs are powerful tech for scaling self-custody, but in the current L2 landscape, your funds aren’t really yours and they’re literally playing pretend.",
+          "translation": "로빈후드(Robinhood)는 스테이지 2(stage 2)가 아니기 때문에, 블롭(blob)을 사용해도 얻는 게 전혀 없습니다. 그곳의 보안위원회(security council)가 데이터 은닉(data withholding)에 대응할 수 있기 때문입니다. 그들이 이걸 바꿀 조짐은 전혀 없습니다. 블롭은 셀프 커스터디(self-custody)를 확장하는 강력한 기술이지만, 현재의 L2 지형에서는 여러분의 자금이 사실 여러분 것이 아니며, 그들은 말 그대로 그런 척을 하고 있는 것입니다."
+        },
+        {
+          "date": "2026-09-06",
+          "by": "donnoh_eth",
+          "stance": "con",
+          "quote": "블롭이 당신을 더 안전하게 만들어주지도 않는다.",
+          "url": "https://x.com/donnoh_eth/status/2096711484684304784",
+          "digest": "2026-09-09",
+          "replyTo": "zkLumi",
+          "relation": "reply",
+          "original": "@zkLumi @colludingnode blobs dont make you more secure either!",
+          "translation": "@zkLumi @colludingnode 블롭이 여러분을 더 안전하게 만들어주는 것도 아닙니다!"
+        },
+        {
+          "date": "2026-09-06",
+          "by": "barnabemonnot",
+          "stance": "pro",
+          "quote": "최악의 경우가 개선되지 않는다는 데는 동의한다. 다만 나는 데이터가 게시되지 않으면 전진하지 않고 도전할 수 있는 브리지에 담긴 ETH를 선호한다. 시큐리티 카운슬은 이를 뒤집지 않도록 신뢰될 뿐, 브리지를 지나는 모든 메시지에 서명하도록 신뢰되지는 않는다.",
+          "url": "https://x.com/barnabemonnot/status/2096713274167341474",
+          "digest": "2026-09-09",
+          "replyTo": "colludingnode",
+          "relation": "reply",
+          "original": "The worst-case doesn't improve, agreed.\n\nThat said, I prefer ETH in the bridge that doesn't move forward unless data is posted, that can be challenged. The security council is trusted not to override this. It's not trusted to sign on every message that goes through the bridge, and not trusted to actively respond to data withholding either.\n\nNot claiming stage 2 is useless. Also didn't mention Robinhood in the OP tweet, tho I've bullposted a bit the ETH inflow, but that doesn't mean I'd allocate all (or most) of my ETH there.",
+          "translation": "최악의 경우(worst-case)가 개선되지 않는다는 데는 동의합니다. 그렇다 해도 저는 데이터가 게시(post)되지 않으면 앞으로 진행되지 않고, 이의제기(challenge)가 가능한 브리지(bridge) 안에 ETH를 두는 쪽을 선호합니다. 보안위원회는 이걸 무효화하지 않을 것으로 신뢰받습니다. 브리지를 통과하는 모든 메시지에 서명하도록 신뢰받는 것도 아니고, 데이터 은닉에 능동적으로 대응하도록 신뢰받는 것도 아닙니다. 스테이지 2가 쓸모없다고 주장하는 게 아닙니다. 그리고 원래 트윗에서 로빈후드를 언급하지도 않았습니다. ETH 유입에 대해 좀 낙관적인(bullposted) 얘기를 하긴 했지만, 그렇다고 제 ETH의 전부(또는 대부분)를 거기에 배분하겠다는 뜻은 아닙니다."
+        },
+        {
+          "date": "2026-09-06",
+          "by": "barnabemonnot",
+          "stance": "pro",
+          "quote": "도전자 화이트리스트를 말하는 것이라면 동의한다. 나는 명백히 능동적 결정에 해당하는 스택의 다른 부분들보다 이 부분이 개선될 것이라는 데 더 희망적이다.",
+          "url": "https://x.com/barnabemonnot/status/2096715517394395240",
+          "digest": "2026-09-09",
+          "replyTo": "donnoh_eth",
+          "relation": "reply",
+          "original": "@donnoh_eth @colludingnode I don't think that was c-node's main angle but yeah agreed if you mean the challenger whitelist. I'm more hopeful that this improves, than other parts of the stack which are more clearly active decisions.",
+          "translation": "@donnoh_eth @colludingnode 그게 c-node(콜루딩노드)가 말하려던 주된 요지는 아니었다고 생각하지만, 챌린저 화이트리스트(challenger whitelist)를 말씀하신 거라면 네, 동의합니다. 저는 스택의 다른 부분들, 즉 더 명백히 능동적인 결정에 해당하는 부분들보다는, 이 부분이 개선될 거라는 데 더 희망을 걸고 있습니다."
+        },
+        {
+          "date": "2026-09-06",
+          "by": "colludingnode",
+          "stance": "con",
+          "quote": "자기수탁보다 못한 것은 완전히 수용 불가하다.",
+          "url": "https://x.com/colludingnode/status/2096723383417229756",
+          "digest": "2026-09-09",
+          "relation": "none",
+          "original": "@barnabemonnot Less than self custodial is completely unacceptable",
+          "translation": "@barnabemonnot 셀프 커스터디(self-custodial)보다 못한 건 전혀 받아들일 수 없습니다."
+        },
+        {
+          "date": "2026-09-07",
+          "by": "zkLumi",
+          "stance": "neutral",
+          "quote": "더 많은 노드가 상태를 보유하는 편이 더 안전하다고 본다. 데이터 손상이 있어도 상태를 복구할 수 있기 때문이다.",
+          "url": "https://x.com/zkLumi/status/2097054390209446320",
+          "digest": "2026-09-09",
+          "replyTo": "donnoh_eth",
+          "relation": "reply",
+          "original": "@donnoh_eth @colludingnode Meh, could be clumped with decentralization or security (and we could get into weeds of underlying trust assumptions), but I consider having more nodes holding state more secure, since you can recover state if there’s data corruption.",
+          "translation": "@donnoh_eth @colludingnode 글쎄요, 탈중앙화(decentralization)나 보안(security) 문제로 묶어서 볼 수도 있고(그리고 기저의 신뢰 가정(trust assumption)을 파고들 수도 있겠지만), 저는 더 많은 노드가 상태(state)를 보유하는 것이 더 안전하다고 봅니다. 데이터 손상(data corruption)이 발생해도 상태를 복구할 수 있기 때문입니다."
+        }
+      ],
+      "firstSeen": "2026-09-06",
+      "lastActivity": "2026-09-07",
+      "status": "active",
+      "rootUrl": "https://x.com/donnoh_eth/status/2096685783750955283",
+      "engagement": {
+        "likes": 62,
+        "retweets": 7,
+        "quotes": 1,
+        "replies": 9,
+        "views": 6977
+      }
+    },
+    {
+      "id": "wallet-priority-fee-defaults",
+      "title": "지갑의 과다 priority fee 기본값은 게으름인가, 빌더 킥백을 위한 고의인가?",
+      "category": "프로토콜 설계",
+      "summary": "fradamt가 자신의 지갑이 priority fee를 과다 지불한 사례를 공유하자 donnoh_eth는 일부 지갑이 빌더에게서 수수료 일부를 돌려받으려 고의로 나쁜 기본값을 두며 MetaMask는 2 gwei 최대 priority fee를 하드코딩한다고 주장했고, barnabemonnot은 이 특정 사례는 고의보다 게으른 기본값일 가능성이 높다고 봤다.",
+      "keyPoints": [
+        "일부 지갑의 과다 priority fee 기본값이 빌더 킥백을 노린 고의인가, 방치된 나쁜 기본값인가",
+        "MetaMask의 2 gwei 최대 priority fee 하드코딩은 어떤 성격인가",
+        "이런 기본값이 이더리움의 실제 수수료 성과를 사용자 체감에서 가리는가"
+      ],
+      "background": "priority fee(우선 수수료)는 사용자가 블록 포함을 앞당기려 검증자·빌더에게 지불하는 팁이다. 빌더(builder)는 블록 구성 대가로 이 수수료의 일부를 지갑에 되돌려주는 계약을 맺기도 하는데, 이 경우 지갑이 사용자에게 불리하게 높은 기본 팁을 설정할 유인이 생긴다. MetaMask는 2 gwei를 최대 priority fee로 하드코딩하고 있다고 지목됐다. L1 수수료가 낮아진 상황에서도 이런 기본값은 사용자가 지불하는 실제 비용을 결정한다.",
+      "whyItMatters": "L1 수수료가 낮아져도 지갑 기본값이 사용자 체감 비용을 좌우한다는 점에서, UX 레이어가 프로토콜의 확장 성과를 가릴 수 있음을 보여준다. 이더리움이 다른 체인보다 여전히 비싸다는 인상(20센트 대 4센트)이 실제로는 지갑 기본값에서 온다면, 프로토콜 개선과 별개로 지갑의 인센티브 구조를 들여다볼 필요가 생긴다.",
+      "sources": [],
+      "keywords": [
+        "priority fee default",
+        "MetaMask 2 gwei",
+        "builder kickback",
+        "wallet fee"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "일부 지갑은 고의로 나쁜 기본값을 둔다",
+          "holders": [
+            {
+              "handle": "donnoh_eth",
+              "name": "donnoh.gwei 💗",
+              "role": "L2Beat 리서치 헤드",
+              "avatar": "https://pbs.twimg.com/profile_images/1906978600311521280/aSbKSjtX_400x400.jpg"
+            },
+            {
+              "handle": "fradamt",
+              "name": "Francesco",
+              "role": "EF 컨센서스 리서처",
+              "avatar": "https://pbs.twimg.com/profile_images/1459852719783657484/8S8aKURW_400x400.jpg"
+            }
+          ],
+          "points": [
+            "일부 지갑은 빌더(builder)에게서 수수료 일부를 돌려받으려고 고의로 나쁜 priority fee 기본값을 두며, MetaMask는 2 gwei 최대 priority fee를 하드코딩하고 있다.",
+            "MetaMask의 경우 빌더에게서 %를 돌려받으려고 고의로 그렇게 나쁘게 만들어둔 것이며, 다만 자신이 겪은 사례는 게으른 기본값일 가능성이 더 높다고 본다(fradamt).",
+            "이런 경험은 사람들에게 이더리움이 다른 체인보다 여전히 눈에 띄게 비싸다는 인상(20센트 대 4센트)을 남겨 문제다."
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "적어도 이 사례는 방치된 나쁜 기본값이다",
+          "holders": [
+            {
+              "handle": "barnabemonnot",
+              "name": "Barnabé Monnot | barnabé.eth",
+              "role": "EF 리서처",
+              "avatar": "https://pbs.twimg.com/profile_images/2069104465202814976/alWWQ8SG_400x400.jpg"
+            }
+          ],
+          "points": [
+            "이 특정 지갑이 그럴 줄은 예상 못 했으며, 추측하자면 이 경우엔 고의로 나쁜 기본값이라기보다 그냥 방치된 나쁜 기본값일 가능성이 더 높다."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-09-07",
+          "by": "fradamt",
+          "stance": "pro",
+          "quote": "그런데 그가 priority fee를 너무 많이 과다 지불했다. 설정을 확인해야 한다. 일부 지갑은 나쁜 기본값을 두는데, 때로는 빌더에게서 그 수수료의 일부를 돌려받으려고 고의로 그렇게 한다.",
+          "url": "https://x.com/fradamt/status/2097025155255910538",
+          "digest": "2026-09-09",
+          "replyTo": "barnabemonnot",
+          "relation": "reply",
+          "original": "@barnabemonnot @fradamt btw he overpaid way too much for the priority fee! he should check his settings. some wallets have bad defaults, sometimes on purpose because they get part of that fee back from the builder",
+          "translation": "@barnabemonnot @fradamt 그건 그렇고 그 사람은 우선순위 수수료(priority fee)를 지나치게 많이 냈네요! 자기 설정을 확인해봐야 할 것 같습니다. 일부 지갑은 기본값이 나쁘게 설정되어 있는데, 때로는 일부러 그렇게 해서 빌더(builder)로부터 그 수수료의 일부를 돌려받기도 합니다."
+        },
+        {
+          "date": "2026-09-07",
+          "by": "donnoh_eth",
+          "stance": "pro",
+          "quote": "MetaMask가 2 gwei 최대 priority fee를 하드코딩한다는 것을 나는 안다.",
+          "url": "https://x.com/donnoh_eth/status/2097033653737931076",
+          "digest": "2026-09-09",
+          "replyTo": "barnabemonnot",
+          "relation": "reply",
+          "original": "@barnabemonnot @fradamt i know that metamask hardcodes a 2 gwei max priority fee 😀 btw relevant thread and research article by @0xseiryu which i recommend:",
+          "translation": "@barnabemonnot @fradamt 메타마스크(MetaMask)가 최대 우선순위 수수료를 2 gwei로 하드코딩(hardcode)해 놓은 걸 알고 있습니다 😀 그건 그렇고 관련해서 @0xseiryu가 쓴 스레드와 연구 글을 추천드립니다."
+        },
+        {
+          "date": "2026-09-07",
+          "by": "fradamt",
+          "stance": "pro",
+          "quote": "기록을 위해 말하면, MetaMask의 경우 빌더에게서 %를 돌려받으려고 고의로 그렇게 나쁘게 만들어둔 것이다.",
+          "url": "https://x.com/fradamt/status/2097035075594391619",
+          "digest": "2026-09-09",
+          "relation": "none",
+          "original": "@barnabemonnot @fradamt @0xseiryu (and for the record with metamask it’s purposefully that bad to get a % back from the builder)",
+          "translation": "@barnabemonnot @fradamt @0xseiryu (참고로 메타마스크의 경우는 빌더로부터 일정 비율을 돌려받기 위해 일부러 그렇게 나쁘게 해놓은 것입니다.)"
+        },
+        {
+          "date": "2026-09-07",
+          "by": "fradamt",
+          "stance": "pro",
+          "quote": "이게 정말 짜증나는 점인데, 사람들에게 이더리움이 다른 체인보다 여전히 훨씬 비싸다는 인상을 남긴다. 20센트 대 4센트는 꽤 큰 차이다.",
+          "url": "https://x.com/fradamt/status/2097030128274485445",
+          "digest": "2026-09-09",
+          "relation": "none",
+          "original": "@donnoh_eth @barnabemonnot I do find this really annoying though, it leaves people with the impression that Ethereum is still meaningfully more expensive than other chains, 20c versus 4c is a fairly big difference",
+          "translation": "@donnoh_eth @barnabemonnot 그래도 이건 정말 짜증나는 부분입니다. 사람들에게 이더리움이 여전히 다른 체인들보다 의미 있게 더 비싸다는 인상을 남기니까요. 20센트 대 4센트는 꽤 큰 차이입니다."
+        },
+        {
+          "date": "2026-09-07",
+          "by": "barnabemonnot",
+          "stance": "con",
+          "quote": "어느 지갑인지는 밝히지 않겠지만, 이 지갑이 이럴 줄은 정말 예상 못 했다. 추측하자면 이 경우엔 고의로 나쁜 기본값이라기보다 그냥 나쁜 기본값일 가능성이 더 높다.",
+          "url": "https://x.com/barnabemonnot/status/2097029636584603675",
+          "digest": "2026-09-09",
+          "relation": "none",
+          "original": "@donnoh_eth @barnabemonnot But yeah wow, won't disclose which but I didn't expect this particular wallet to be doing this tbh\n\n(Although if I had to guess it's more likely to be a bad default than a purposefully bad default in this case)",
+          "translation": "@donnoh_eth @barnabemonnot 그런데 네, 와, 어느 지갑인지는 밝히지 않겠지만 솔직히 이 특정 지갑이 이렇게 하고 있을 줄은 몰랐습니다 (다만 굳이 추측하자면 이 경우는 일부러 나쁜 기본값이라기보다는 그냥 나쁜 기본값일 가능성이 더 높아 보입니다)."
+        }
+      ],
+      "firstSeen": "2026-09-07",
+      "lastActivity": "2026-09-07",
+      "status": "active",
+      "rootUrl": "https://x.com/donnoh_eth/status/2097033653737931076",
+      "engagement": {
+        "likes": 5,
+        "retweets": 1,
+        "quotes": 0,
+        "replies": 1,
+        "views": 451
+      }
+    },
     {
       "id": "robinhood-chain-eth-accrual",
       "title": "로빈후드체인의 성공은 ETH에 호재인가",
