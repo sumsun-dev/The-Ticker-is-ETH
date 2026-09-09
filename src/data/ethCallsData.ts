@@ -98,6 +98,8 @@ export interface CallRecord {
     glossary: CallGlossaryItem[];
     eips: number[];
     relatedDebates: string[];
+    /** 텔레그램 채널 브리프 커버 메시지 id (올린 콜만) */
+    telegramMessageId?: number;
 }
 export interface CallsStatus {
     currentFork?: { name: string; stage: string; line: string };

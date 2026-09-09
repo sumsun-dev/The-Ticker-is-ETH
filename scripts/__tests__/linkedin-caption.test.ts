@@ -26,7 +26,15 @@ const PAGE = `
 <a class="tgme_widget_message_video_player" href="https://t.me/thetickeriseth/1561"><i class="tgme_widget_message_video_thumb" style="background-image:url('https://cdn5.telesco.pe/file/thumb1561.jpg')"></i>
 <div class="tgme_widget_message_video_wrap"><video src="https://cdn5.telesco.pe/file/3e22.mp4?token=abc&amp;x=1" class="tgme_widget_message_video"></video></div></a>
 <div class="tgme_widget_message_text js-message_text" dir="auto"><b>새롭게 출시된 Etherscan Flow</b><br/><br/>설명 <a href="https://github.com/etherscan/skills">https://github.com/etherscan/skills</a></div>
-<time datetime="2026-09-09T02:30:00+00:00">11:30</time></div></div>`;
+<time datetime="2026-09-09T02:30:00+00:00">11:30</time></div></div>
+<div class="tgme_widget_message_wrap"><div class="tgme_widget_message" data-post="thetickeriseth/1562">
+<a class="tgme_widget_message_photo_wrap" style="width:800px;background-image:url('https://cdn5.telesco.pe/file/cover1562.jpg')"></a>
+<div class="tgme_widget_message_text js-message_text" dir="auto"><b>ACDT #95 · 9월 7일</b><br/>테스팅 콜이다.<br/><br/><i>결정된 것</i><br/>· EIP-8253은 헤고타로 미뤄졌다.</div>
+<time datetime="2026-09-09T05:40:00+00:00">14:40</time></div></div>
+<div class="tgme_widget_message_wrap"><div class="tgme_widget_message" data-post="thetickeriseth/1563">
+<a class="tgme_widget_message_reply user-color-default" href="https://t.me/thetickeriseth/1562" "><i class="tgme_widget_message_reply_thumb" style="background-image:url('https://cdn5.telesco.pe/file/thumb1562.jpg')"></i><div class="tgme_widget_message_author"><span dir="auto">The Ticker is ETH</span></div><div class="tgme_widget_message_text js-message_reply_text" dir="auto">ACDT #95 · 9월 7일 테스팅 콜이다. 결정된 것 · EIP-8253은 헤고타로 미뤄졌다.</div></a>
+<div class="tgme_widget_message_text js-message_text" dir="auto"><b>ACDT #95 · 누가 무슨 말을 했나</b><br/><br/>콜 페이지에서 전체 보기 → <a href="https://ethcollective.xyz/calls/acdt-95" target="_blank" rel="noopener">https://ethcollective.xyz/calls/acdt-95</a></div>
+<time datetime="2026-09-09T05:41:00+00:00">14:41</time></div></div>`;
 
 describe('formatDigestCaption', () => {
   it('should include title, intro, core sections and hashtags, but no URL', () => {
@@ -52,7 +60,12 @@ describe('formatDigestCaption', () => {
 describe('telegram channel web view', () => {
   it('should parse posts with id, date, photo and html', () => {
     const posts = parseChannelPage(PAGE, 'thetickeriseth');
-    expect(posts.map((p) => p.id)).toEqual([1559, 1560, 1561]);
+    expect(posts.map((p) => p.id)).toEqual([1559, 1560, 1561, 1562, 1563]);
+    // 답글은 부모 id를 갖고, 본문은 부모 미리보기가 아니라 자기 글만
+    expect(posts[4]).toMatchObject({ replyTo: 1562, photos: [] });
+    expect(posts[4].html).toContain('콜 페이지에서 전체 보기');
+    expect(posts[4].html).not.toContain('테스팅 콜이다');
+    expect(posts[3].replyTo).toBeUndefined();
     expect(posts[0]).toMatchObject({ date: '2026-09-09T00:41:00+00:00', photos: ['https://cdn5.telesco.pe/file/cover1559.jpg'] });
     expect(posts[1].photos).toEqual(['https://cdn5.telesco.pe/file/photo1560a.jpg', 'https://cdn5.telesco.pe/file/photo1560b.jpg']);
     expect(posts[1].html).toContain('ZKsync');
@@ -85,12 +98,21 @@ describe('telegram channel web view', () => {
     expect(v.video).toContain('3e22.mp4');
     expect(v.body).toBe('새롭게 출시된 Etherscan Flow\n\n설명\n\n#Ethereum #이더리움 #ECK #TheTickerIsETH');
     expect(v.comment).toBe('원문: https://github.com/etherscan/skills\n텔레그램 채널 The Ticker is ETH: https://t.me/thetickeriseth');
+
+    // 콜 브리프: 커버 글은 본문 그대로, 답글(토론 메시지)의 사이트 링크는 첫 댓글로
+    const all = parseChannelPage(PAGE, 'thetickeriseth');
+    const brief = buildLinkedInPost(all[3], [digest], undefined, all.filter((p) => p.replyTo === 1562));
+    expect(brief.body.startsWith('ACDT #95 · 9월 7일\n테스팅 콜이다.\n\n결정된 것\n· EIP-8253은 헤고타로 미뤄졌다.')).toBe(true);
+    expect(brief.body).not.toMatch(/https?:\/\//);
+    expect(brief.comment).toBe('전체 보기: https://ethcollective.xyz/calls/acdt-95\n텔레그램 채널 The Ticker is ETH: https://t.me/thetickeriseth');
+    expect(brief.photos).toEqual(['https://cdn5.telesco.pe/file/cover1562.jpg']);
   });
 
   it('should pick unseen recent posts oldest first', () => {
     const posts = parseChannelPage(PAGE, 'thetickeriseth');
     const now = new Date('2026-09-09T12:00:00Z');
-    expect(pickChannelPosts(posts, [1559], now).map((p) => p.id)).toEqual([1560, 1561]);
+    // 답글(1563)은 따로 올리지 않는다
+    expect(pickChannelPosts(posts, [1559], now).map((p) => p.id)).toEqual([1560, 1561, 1562]);
     expect(pickChannelPosts(posts, [], new Date('2026-09-20T00:00:00Z')).map((p) => p.id)).toEqual([]);
   });
 });
