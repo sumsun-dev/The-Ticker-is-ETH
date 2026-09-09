@@ -21,6 +21,7 @@ const TAG = 'px-1.5 py-0.5 rounded border border-theme-border text-[10px] font-b
 const BTN = 'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-theme-border text-xs text-theme-text-secondary hover:border-brand-primary/60 hover:text-theme-text transition-colors whitespace-nowrap';
 /** 본문 섹션 사이 구분: 카드 대신 윗선과 여백 */
 const SECTION = 'flex flex-col gap-3 border-t border-theme-border pt-6';
+const CLAMP2: React.CSSProperties = { display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' };
 
 const TimeLink: React.FC<{ videoUrl?: string; timestamp?: string; className?: string }> = ({ videoUrl, timestamp, className = '' }) => {
     if (!timestamp) return null;
@@ -99,6 +100,11 @@ const CallDetail: React.FC = () => {
         return map;
     }, [call]);
     const speakersSorted = useMemo(() => [...(call?.speakers ?? [])].sort((a, b) => b.share - a.share), [call]);
+    // 사이드에는 결정에 상태가 붙은 EIP를 먼저, 최대 8개까지. 나머지는 본문 하단 EIP 섹션으로
+    const sideEips = useMemo(() => {
+        const all = call?.eips ?? [];
+        return [...all.filter((n) => eipStatus.has(n)), ...all.filter((n) => !eipStatus.has(n))].slice(0, 8);
+    }, [call, eipStatus]);
 
     // 사이드 목차 항목: 존재하는 섹션만
     const toc = useMemo(() => {
@@ -108,6 +114,7 @@ const CallDetail: React.FC = () => {
         if (call.whyItMatters) items.push({ id: 'why', label: t('detail.whyItMatters') });
         if (call.decisions.length) items.push({ id: 'decisions', label: `${t('detail.decisions')} ${call.decisions.length}` });
         if (call.targets.length) items.push({ id: 'targets', label: t('detail.targets') });
+        if (call.agenda.length) items.push({ id: 'agenda', label: t('detail.agendaShort') });
         call.topics.forEach((tp, i) => items.push({ id: `topic-${i + 1}`, label: `${t('detail.topicShort', { n: i + 1 })} · ${tp.title}`, sub: true }));
         if (call.chat.length) items.push({ id: 'chat', label: t('detail.chat') });
         if (related.length) items.push({ id: 'related', label: t('detail.relatedDebates') });
@@ -162,7 +169,7 @@ const CallDetail: React.FC = () => {
             <div className="max-w-6xl mx-auto lg:grid lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-12 items-start">
                 {/* 사이드: 목차, 안건 순서, 이 콜의 EIP, 액션 아이템 */}
                 {isFull && (
-                    <aside className="hidden lg:flex flex-col gap-7 sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto pr-1">
+                    <aside className="hidden lg:flex flex-col gap-5 sticky top-24 pr-1">
                         <nav aria-label={t('detail.onThisPage')} className="flex flex-col gap-1.5">
                             <span className={KICKER}>{t('detail.onThisPage')}</span>
                             {toc.map((item) => (
@@ -170,49 +177,54 @@ const CallDetail: React.FC = () => {
                                     key={item.id}
                                     href={`#${item.id}`}
                                     aria-current={active === item.id ? 'location' : undefined}
-                                    className={`text-[13px] leading-snug transition-colors hover:text-theme-text ${item.sub ? 'pl-3' : ''} ${active === item.id ? 'text-theme-text font-semibold' : 'text-theme-text-muted'}`}
+                                    title={item.label}
+                                    className={`text-[13px] leading-snug truncate transition-colors hover:text-theme-text ${item.sub ? 'pl-3' : ''} ${active === item.id ? 'text-theme-text font-semibold' : 'text-theme-text-muted'}`}
                                 >
                                     {item.label}
                                 </a>
                             ))}
                         </nav>
-                        {call.agenda.length > 0 && (
-                            <div className="flex flex-col gap-1.5 border-t border-theme-border pt-5">
-                                <span className={KICKER}>{t('detail.agenda', { count: call.agenda.length })}</span>
-                                <ol className="flex flex-col gap-1">
-                                    {call.agenda.map((a) => (
-                                        <li key={a.timestamp} className="grid grid-cols-[56px_minmax(0,1fr)] gap-2 items-start text-xs leading-relaxed">
-                                            <TimeLink videoUrl={call.videoUrl} timestamp={a.timestamp} />
-                                            <span className={a.discussion || a.decision ? 'text-theme-text' : 'text-theme-text-muted'}>{a.heading}</span>
-                                        </li>
-                                    ))}
-                                </ol>
-                            </div>
-                        )}
                         {call.eips.length > 0 && (
-                            <div className="flex flex-col gap-1.5 border-t border-theme-border pt-5">
+                            <div className="flex flex-col gap-2 border-t border-theme-border pt-4">
                                 <span className={KICKER}>{t('detail.eips', { count: call.eips.length })}</span>
-                                <ul className="flex flex-col gap-1.5 text-sm">
-                                    {call.eips.map((n) => (
-                                        <li key={n} className="flex items-center gap-2 min-w-0">
-                                            <a href={`https://eips.ethereum.org/EIPS/eip-${n}`} target="_blank" rel="noopener noreferrer" className="font-mono text-xs text-brand-accent hover:underline shrink-0">
-                                                EIP-{n}
+                                <ul className="flex flex-wrap gap-1.5">
+                                    {sideEips.map((n) => {
+                                        const status = eipStatus.get(n);
+                                        const label = call.decisions.find((d) => d.eips.includes(n))?.label.replace(/^(EIP-)?\d{3,5}\s*/, '');
+                                        return (
+                                            <li key={n}>
+                                                <a
+                                                    href={`https://eips.ethereum.org/EIPS/eip-${n}`}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    title={[label, status].filter(Boolean).join(' · ') || undefined}
+                                                    className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full border border-theme-border font-mono text-[11px] text-theme-text-secondary hover:border-brand-primary/60 hover:text-theme-text transition-colors"
+                                                >
+                                                    {status && <span className={`w-1.5 h-1.5 rounded-full ${STATUS_DOT[status as keyof typeof STATUS_DOT]}`} aria-hidden />}
+                                                    {n}
+                                                </a>
+                                            </li>
+                                        );
+                                    })}
+                                    {call.eips.length > sideEips.length && (
+                                        <li>
+                                            <a href="#eips" className="inline-flex items-center px-2 py-0.5 rounded-full border border-theme-border font-mono text-[11px] text-theme-text-muted hover:text-theme-text">
+                                                +{call.eips.length - sideEips.length}
                                             </a>
-                                            <span className="text-xs text-theme-text-secondary truncate">{call.decisions.find((d) => d.eips.includes(n))?.label.replace(/^(EIP-)?\d{3,5}\s*/, '') ?? ''}</span>
-                                            {eipStatus.has(n) && <span className={`${TAG} ml-auto ${STATUS_TEXT[eipStatus.get(n) as keyof typeof STATUS_TEXT]}`}>{eipStatus.get(n)}</span>}
                                         </li>
-                                    ))}
+                                    )}
                                 </ul>
                             </div>
                         )}
                         {call.actions.length > 0 && (
-                            <div className="flex flex-col gap-2.5 border-t border-theme-border pt-5">
+                            <div className="flex flex-col gap-2 border-t border-theme-border pt-4">
                                 <span className={KICKER}>{t('detail.actions', { count: call.actions.length })}</span>
-                                <ul className="flex flex-col gap-2.5 list-disc pl-4 marker:text-theme-text-muted">
+                                <ul className="flex flex-col gap-2 list-disc pl-4 marker:text-theme-text-muted">
                                     {call.actions.map((a, i) => (
-                                        <li key={`${a.owner}-${i}`} className="flex flex-col gap-0.5 list-item">
-                                            <span className="text-sm font-semibold">{a.owner}</span>
-                                            <span className="text-xs text-theme-text-muted leading-relaxed">{a.text}</span>
+                                        <li key={`${a.owner}-${i}`} className="list-item" title={`${a.owner}: ${a.text}`}>
+                                            <span className="text-xs leading-relaxed text-theme-text-secondary" style={CLAMP2}>
+                                                <span className="font-semibold text-theme-text">{a.owner}</span> · {a.text}
+                                            </span>
                                         </li>
                                     ))}
                                 </ul>
@@ -391,39 +403,44 @@ const CallDetail: React.FC = () => {
                         </section>
                     )}
 
-                    {/* 안건·EIP·액션: 사이드가 숨는 좁은 화면에서만 본문에 */}
-                    {isFull && (call.agenda.length > 0 || call.actions.length > 0) && (
+                    {/* 안건 순서: 두 열 */}
+                    {isFull && call.agenda.length > 0 && (
+                        <section id="agenda" className={SECTION}>
+                            <div className="flex flex-wrap items-baseline gap-3">
+                                <span className={KICKER}>{t('detail.agenda', { count: call.agenda.length })}</span>
+                                <span className="text-xs text-theme-text-muted">{t('detail.agendaHint')}</span>
+                            </div>
+                            <ol className="grid md:grid-cols-2 gap-x-8">
+                                {call.agenda.map((a) => (
+                                    <li key={a.timestamp} className="grid grid-cols-[64px_minmax(0,1fr)_auto] gap-3 items-center py-1.5 text-sm">
+                                        <TimeLink videoUrl={call.videoUrl} timestamp={a.timestamp} />
+                                        <span>{a.heading}</span>
+                                        <span className="flex gap-1">
+                                            {a.discussion && (
+                                                <a href="#topic-1" className={`${TAG} text-brand-accent`}>
+                                                    {t('detail.discussion')}
+                                                </a>
+                                            )}
+                                            {a.decision && <span className={`${TAG} text-emerald-400`}>{t('detail.decision')}</span>}
+                                        </span>
+                                    </li>
+                                ))}
+                            </ol>
+                        </section>
+                    )}
+
+                    {/* 액션 아이템: 사이드가 숨는 좁은 화면에서만 본문에 */}
+                    {isFull && call.actions.length > 0 && (
                         <section className={`${SECTION} lg:hidden`}>
-                            {call.agenda.length > 0 && (
-                                <>
-                                    <span className={KICKER}>{t('detail.agenda', { count: call.agenda.length })}</span>
-                                    <ol className="flex flex-col">
-                                        {call.agenda.map((a) => (
-                                            <li key={a.timestamp} className="grid grid-cols-[64px_minmax(0,1fr)_auto] gap-3 items-center py-1.5 text-sm">
-                                                <TimeLink videoUrl={call.videoUrl} timestamp={a.timestamp} />
-                                                <span>{a.heading}</span>
-                                                <span className="flex gap-1">
-                                                    {a.discussion && <span className={`${TAG} text-brand-accent`}>{t('detail.discussion')}</span>}
-                                                    {a.decision && <span className={`${TAG} text-emerald-400`}>{t('detail.decision')}</span>}
-                                                </span>
-                                            </li>
-                                        ))}
-                                    </ol>
-                                </>
-                            )}
-                            {call.actions.length > 0 && (
-                                <>
-                                    <span className={`${KICKER} mt-3`}>{t('detail.actions', { count: call.actions.length })}</span>
-                                    <ul className="flex flex-col gap-2.5 text-sm list-disc pl-5 marker:text-theme-text-muted">
-                                        {call.actions.map((a, i) => (
-                                            <li key={`${a.owner}-${i}`} className="flex flex-col gap-0.5 list-item">
-                                                <span className="font-semibold">{a.owner}</span>
-                                                <span className="text-xs text-theme-text-muted leading-relaxed">{a.text}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </>
-                            )}
+                            <span className={KICKER}>{t('detail.actions', { count: call.actions.length })}</span>
+                            <ul className="flex flex-col gap-2.5 text-sm list-disc pl-5 marker:text-theme-text-muted">
+                                {call.actions.map((a, i) => (
+                                    <li key={`${a.owner}-${i}`} className="flex flex-col gap-0.5 list-item">
+                                        <span className="font-semibold">{a.owner}</span>
+                                        <span className="text-xs text-theme-text-muted leading-relaxed">{a.text}</span>
+                                    </li>
+                                ))}
+                            </ul>
                         </section>
                     )}
 
@@ -524,11 +541,11 @@ const CallDetail: React.FC = () => {
                         </section>
                     )}
 
-                    {/* 이 콜의 EIP: 좁은 화면에서만 본문에 */}
+                    {/* 이 콜의 EIP */}
                     {isFull && call.eips.length > 0 && (
-                        <section className={`${SECTION} lg:hidden`}>
+                        <section id="eips" className={SECTION}>
                             <span className={KICKER}>{t('detail.eips', { count: call.eips.length })}</span>
-                            <ul className="flex flex-col gap-1.5 text-sm">
+                            <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-1.5 text-sm">
                                 {call.eips.map((n) => (
                                     <li key={n} className="flex items-center gap-2">
                                         <a href={`https://eips.ethereum.org/EIPS/eip-${n}`} target="_blank" rel="noopener noreferrer" className="font-mono text-brand-accent hover:underline">

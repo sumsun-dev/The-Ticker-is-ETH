@@ -71,7 +71,8 @@
     "participantsHintCompact": "클릭하면 발언 전문 · 소속은 이름 위에 마우스",
     "onThisPage": "이 페이지",
     "topics": "토론과 발언",
-    "topicShort": "토론 {{n}}"
+    "topicShort": "토론 {{n}}",
+    "agendaShort": "안건 순서"
   },
   "modal": {
     "original": "원문 · 자막 교정본",
