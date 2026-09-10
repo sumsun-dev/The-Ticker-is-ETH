@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-08T10:15:00.035Z",
+  "updatedAt": "2026-09-10T01:25:24.992Z",
   "calls": [
     {
       "id": "acdt-95",
@@ -4656,18 +4656,1101 @@
         8189
       ],
       "relatedDebates": []
+    },
+    {
+      "id": "acdc-184",
+      "series": "acdc",
+      "number": 184,
+      "date": "2026-08-06",
+      "title": "AllCoreDevs - Consensus #184",
+      "forkcastUrl": "https://forkcast.org/calls/acdc/184/",
+      "videoUrl": "https://youtube.com/watch?v=DuDyoinoEEQ",
+      "issueUrl": "https://github.com/ethereum/pm/issues/2177",
+      "kind": "full",
+      "durationMin": 103,
+      "headline": "발행 축소안\n헤고타 접수",
+      "lead": "발행 축소안이 반대 속에 헤고타 후보로 접수됐다",
+      "intro": "AllCoreDevs Consensus는 합의 계층(CL) 클라이언트 개발자들이 격주로 모이는 콜이다.",
+      "summary": "헤고타(Hegota)에 제안된 EIP 여러 건이 한꺼번에 포함 제안(PFI)됐다. 그중 검증자 보상 일부를 태워 스테이킹 비율을 50%에서 묶는 발행 축소안(EIP-8363)은 마감 이틀 전 등장해 리도를 비롯한 커뮤니티의 강한 반대를 불렀고, 포함 확정에는 커뮤니티 합의가 전제라는 점이 콜에서 명시됐다.",
+      "whyItMatters": "PFI는 아직 후보 접수일 뿐이지만, 발행 곡선을 바꾸면 솔로 스테이커의 실질 수익과 ETH의 화폐성에 직접 영향을 주기 때문에 스테이킹 생태계 전체가 촉각을 세운다. 퀵슬롯(12초→10초)이 헤고타 후보로 접수되면서 이더리움을 더 빠르게 만드는 첫걸음도 논의 테이블에 올랐다.",
+      "decisions": [
+        {
+          "label": "EIP-8070 데브넷8",
+          "text": "EIP-8070 스파스 블롭 풀의 엔진 API 변경을 데브넷8에 넣기로 했다. 월요일 ACDT까지 반대가 없으면 그대로 포함한다.",
+          "original": "EIP-8070 sparse blob pool Engine API changes included in devnet-8 unless objection raised by Monday ACDT",
+          "eips": [
+            8070
+          ],
+          "status": "확정",
+          "timestamp": "00:13:44"
+        },
+        {
+          "label": "EIP-8198 스루풋",
+          "text": "슬롯 시간을 줄이면 블록당 가스 한도와 블롭 수도 같이 줄여 초당 처리량을 그대로 유지하기로 했다. 발행량이나 블롭 수 같은 다른 파라미터 변경은 별도 EIP로 다룬다.",
+          "original": "EIP-8198 (Quick Slots): gas limit and blob count per block scale down with slot time; throughput per second held constant; other parameter changes (issuance, blob count) require separate EIPs",
+          "eips": [
+            8198
+          ],
+          "status": "확정",
+          "timestamp": "00:25:55"
+        },
+        {
+          "label": "EIP-8363 절차",
+          "text": "EIP-8363의 PFI는 절차상 유효하다(무허가)고 확인했다. CFI나 SFI 결정은 없었고, 향후 수용의 전제로 커뮤니티 합의가 필요하다는 점을 못박았다.",
+          "original": "EIP-8363 PFI is valid per process (permissionless); no CFI or SFI decision made; community consensus explicitly stated as prerequisite for future acceptance",
+          "eips": [
+            8363
+          ],
+          "status": "PFI",
+          "timestamp": "01:23:07"
+        },
+        {
+          "label": "EIP-7716 곡선",
+          "text": "EIP-7716(비상관 어테스테이션 벌칙)의 설계 갱신안을 발표했다. 벌칙 곡선을 위로 재조정하고 헤드 투표 정확도를 빼 소스와 타깃만 본다.",
+          "original": "EIP-7716 (Anti-Correlation Attestation Penalties) design update presented: penalty curve re-tuned upward, head vote accuracy dropped in favor of source and target only",
+          "eips": [
+            7716
+          ],
+          "status": "기타",
+          "fork": "Hegota",
+          "timestamp": "01:29:50"
+        },
+        {
+          "label": "EIP-8359 보고필드",
+          "text": "EIP-8359(비콘 블록 보고)를 헤고타 후보로 접수했다. 클라이언트 구성을 알리는 비합의성 필드다.",
+          "original": "EIP-8359 (Beacon Block Reporting) PFI'd for Hegota",
+          "eips": [
+            8359
+          ],
+          "status": "PFI",
+          "fork": "Hegota",
+          "timestamp": "01:43:23"
+        },
+        {
+          "label": "EIP-8198 퀵슬롯",
+          "text": "EIP-8198(퀵슬롯)을 헤고타 후보로 접수했다. 슬롯 시간을 12초에서 10초로 줄이는 제안이다.",
+          "original": "EIP-8198 (Quick Slots) PFI'd for Hegota",
+          "eips": [
+            8198
+          ],
+          "status": "PFI",
+          "fork": "Hegota",
+          "timestamp": "01:43:23"
+        },
+        {
+          "label": "EIP-8369 FOCIL",
+          "text": "EIP-8369(FOCIL 적격성 VOPS 프로필)를 헤고타 후보로 접수했다. 어떤 트랜잭션이 FOCIL 포함 보장을 받는지 정의하는 정보성 EIP다.",
+          "original": "EIP-8369 (VOPS Profiles for FOCIL Eligibility) PFI'd for Hegota",
+          "eips": [
+            8369
+          ],
+          "status": "PFI",
+          "fork": "Hegota",
+          "timestamp": "01:43:23"
+        },
+        {
+          "label": "EIP-8142 블롭전파",
+          "text": "EIP-8142(블롭 컬럼 전파)를 헤고타 후보로 접수했다. 실행 페이로드를 블롭에 넣어 PeerDAS로 더 빨리 퍼뜨린다.",
+          "original": "EIP-8142 (Blob Columns Propagation) PFI'd for Hegota",
+          "eips": [
+            8142
+          ],
+          "status": "PFI",
+          "fork": "Hegota",
+          "timestamp": "01:43:23"
+        },
+        {
+          "label": "EIP-8371 RowDAS",
+          "text": "EIP-8371(RowDAS)을 헤고타 후보로 접수했다. PeerDAS 재구성 부하를 로우 토픽으로 분산한다.",
+          "original": "EIP-8371 (RowDAS) PFI'd for Hegota",
+          "eips": [
+            8371
+          ],
+          "status": "PFI",
+          "fork": "Hegota",
+          "timestamp": "01:43:23"
+        },
+        {
+          "label": "EIP-8363 발행버닝",
+          "text": "EIP-8363(테이퍼드 발행 버닝)을 헤고타 후보로 접수했다. 검증자 보상 일부를 태워 스테이킹 비율을 50%에서 포화시킨다.",
+          "original": "EIP-8363 (Tapered Issuance Burn) PFI'd for Hegota",
+          "eips": [
+            8363
+          ],
+          "status": "PFI",
+          "fork": "Hegota",
+          "timestamp": "01:43:23"
+        },
+        {
+          "label": "EIP-8365/67 BLS",
+          "text": "EIP-8365/8367(BLS 인출 크리덴셜 폐기+잔액 소멸)을 헤고타 후보로 접수했다. 0x00 검증자를 강제 퇴장시키고 잔액을 서서히 0으로 줄인다.",
+          "original": "EIP-8365/8367 (BLS Withdrawal Credential Retirement + Balance Sunset) PFI'd for Hegota",
+          "eips": [
+            8365,
+            8367
+          ],
+          "status": "PFI",
+          "fork": "Hegota",
+          "timestamp": "01:43:23"
+        },
+        {
+          "label": "EIP-8333 보류",
+          "text": "EIP-8333(체크포인트-에폭 경계 정렬)과 엔진 API 동기 상태 EIP는 다음 ACDC로 미뤘다.",
+          "original": "EIP-8333 (Align Checkpoint with Epoch Boundary Block) and Engine API sync status EIP deferred to next ACDC",
+          "eips": [
+            8333
+          ],
+          "status": "보류",
+          "timestamp": "01:48:10"
+        },
+        {
+          "label": "헤고타 마스코트",
+          "text": "헤고타 마스코트로 북극곰이 선정됐다. 투표 결과에 따른 결정이다.",
+          "original": "Polar bear selected as Hegota mascot",
+          "eips": [],
+          "status": "확정",
+          "fork": "Hegota",
+          "timestamp": "01:48:33"
+        }
+      ],
+      "targets": [
+        {
+          "key": "devnet-8",
+          "text": "데브넷8(Plataberget) 출시 목표는 2026년 8월 12일 화요일경(제안)",
+          "timestamp": "00:14:57"
+        },
+        {
+          "key": "gloas-fork",
+          "text": "데브넷8에서 Gloas 포크는 제네시스 약 1주 뒤(제안)",
+          "timestamp": "00:22:32"
+        }
+      ],
+      "actions": [
+        {
+          "owner": "CL 클라이언트 팀",
+          "text": "EIP-8070 엔진 API 변경 구현 상태를 월요일 ACDT 전에 interop 채널에 알린다",
+          "timestamp": "00:13:44"
+        },
+        {
+          "owner": "커뮤니티 / Jerome de Tychey",
+          "text": "EIP-8363을 ETH R&D 발행 채널과 ETH Magicians 스레드에서 계속 논의한다. 콜에서 CFI 결정은 없다",
+          "timestamp": "01:23:07"
+        }
+      ],
+      "agenda": [],
+      "topics": [
+        {
+          "title": "퀵슬롯(EIP-8198): 슬롯 시간 12초→10초",
+          "intro": "이더리움을 더 빠르게 만들려고 슬롯 시간을 줄이자는 제안이며, 하드코딩된 12초 가정을 걷어내는 일회성 비용을 지금 치를지가 쟁점이다.",
+          "decision": "PFI 접수 01:43:23",
+          "positions": [
+            {
+              "speaker": "Barnabé Monnot",
+              "text": "지연을 줄이면 UX, 가격 신선도, 빠른 최종성, 검열 저항이 한꺼번에 개선된다며, 하드코딩된 12초 가정을 먼저 제거하고 10초로 완만히 내리자고 제안했다.",
+              "timestamp": "00:23:39",
+              "original": "Okay, super now. Alright, so, faster ethereum, a quick case for quick slots in Hegota. and Barnabe from EF. As a larger point, I would say that faster ethereum is something we care about quite a lot in EF, and we see Quickslot as kind of a really important prong in making ethereum faster. So why does this matter? Like, we very strongly believe and can see that a faster ethereum is more value to our users. When you have latency in the system, that's a cost that's paid in different ways. So, if you are able to reduce latency in different, in different ways, you unlock many benefits immediately. So, some of them are here. First, you have better UX for users on the L1, with faster inclusion, so your wallet just takes faster. You have fresher prices for on-chain markets, as Vero are getting refreshed. At a higher frequency. you also get, almost for free, faster finality and a faster fast confirmation rule. Fast confirmation rule is already fast, but you can make it even faster with faster slots, so that's really, really nice. And something that's a bit underrated, but also is true, is you… because you have more leaders per second, because you have, like, more block producers per unit of time, you also increase the censorship resistance, and in particular, the economic censorship resistance, so how much it costs to keep A transaction, out of the… out of the chain. The takeaway from this, I would put it, is… It just means we… we… we have more available block space, so block space…",
+              "translation": "좋습니다, 이제 시작하겠습니다. 그럼, 더 빠른 이더리움, Hegota에서의 퀵슬롯(quick slots)에 대한 간단한 사례 발표입니다. EF의 Barnabe입니다. 더 큰 맥락에서 말씀드리면, 더 빠른 이더리움은 EF에서 상당히 중요하게 생각하는 부분이며, 퀵슬롯은 이더리움을 더 빠르게 만드는 데 있어 정말 중요한 축이라고 봅니다. 그럼 이것이 왜 중요할까요? 저희는 더 빠른 이더리움이 사용자에게 더 큰 가치를 준다고 강하게 믿고 있으며 실제로 그렇게 확인하고 있습니다. 시스템에 지연(latency)이 있으면, 그 비용은 여러 방식으로 지불됩니다. 따라서 여러 방식으로 지연을 줄일 수 있다면 즉시 많은 이점을 얻을 수 있습니다. 몇 가지를 말씀드리면, 첫째, L1 사용자에게 더 나은 UX를 제공합니다. 포함(inclusion)이 더 빨라지므로 지갑이 더 빠르게 동작합니다. 온체인 시장의 가격도 더 신선해지는데, Vero가 더 높은 빈도로 갱신되기 때문입니다. 또한 거의 공짜로 더 빠른 파이널리티(finality)와 더 빠른 fast confirmation rule도 얻게 됩니다. fast confirmation rule은 이미 빠르지만, 슬롯을 더 빠르게 하면 이를 한층 더 빠르게 만들 수 있으므로 정말 좋습니다. 그리고 다소 저평가되어 있지만 사실인 부분은, 초당 리더 수가 많아지고 단위 시간당 블록 생산자가 더 많아지기 때문에 검열 저항성(censorship resistance), 특히 경제적 검열 저항성도 높아진다는 점입니다. 즉 트랜잭션을 체인에서 배제하는 데 드는 비용이 올라갑니다. 여기서의 요점은, 결국 사용 가능한 블록 공간(block space)이 더 많아진다는 것입니다. 블록 공간은..."
+            },
+            {
+              "speaker": "Barnabé Monnot",
+              "text": "슬롯 시간을 한 번에 크게 낮추는 일은 앞으로도 하지 않을 것이라며, 첫 변경은 아프지만 이후 변경을 쉽게 만드는 방식으로 하겠다고 답했다.",
+              "timestamp": "00:33:00",
+              "original": "Yeah, yeah, thank you for your question. I think this is… sort of what I was trying to convey with My opinion is that… we are most likely never going to do a one-time big jump of the slot time and then call that done. I think we always want to be… quite conservative and careful with changing that parameter. I don't think it's… too difficult to reduce the marginal cost of changing that, so we're not going to change it, like, every… between hard folks or anything, like, we can still peg changes to… to HartFox. But we can make it in a way that The first time is going to be a bit more painful, but then the next times will be… will be easier, in particular for contracts that are… Live online net and client implementation, so… So yeah, I… I do think, like, last year when we discussed Amsterdam, I think there was a lot of, push back on moving from 12 to 6 seconds. I don't see that improving in the future. I think the more we go on, the more we… have, like, uncertainty over ZK or PQ, perhaps, the more we'll be… we'll be conservative with these changes, so… so in my opinion, I think, given this uncertainty, I would… I would prefer to take the… take the value early, and then work on making future changes as painless as possible, and I think this is totally, totally doable. Right, I think we… I agree. I mean, obviously, I was, again, pushing for 6 seconds last year, and I think this is still, like, a target in my mind. I'm just no longer confident that we can do this much at one go,…",
+              "translation": "네, 질문 감사합니다. 이것이 제가 전달하려던 내용과 비슷한데, 제 의견은 슬롯 타임을 한 번에 크게 바꾸고 그것으로 끝내는 일은 거의 없을 것이라는 점입니다. 이 파라미터를 변경하는 데 있어서는 항상 꽤 보수적이고 신중하게 접근하고자 합니다. 변경에 드는 마진 비용을 줄이는 것이 그렇게 어렵지는 않다고 생각하지만, 그렇다고 해서 매 하드포크마다 이를 바꾸겠다는 것은 아니며, 여전히 변경 시점을 하드포크에 맞춰 고정할 수 있습니다. 다만 첫 번째는 조금 더 고통스럽겠지만, 이후에는 점점 더 쉬워질 것입니다. 특히 라이브로 온라인에 있는 컨트랙트와 클라이언트 구현 쪽에서는요. 그래서, 작년에 Amsterdam을 논의할 때 12초에서 6초로 가는 것에 대한 반발이 많았던 것으로 기억합니다. 앞으로 이 상황이 개선될 것 같지는 않습니다. 시간이 갈수록 ZK나 PQ(양자내성, post-quantum)에 대한 불확실성이 커질 것이고, 그럴수록 이런 변경에 더 보수적으로 접근하게 될 것이라고 생각합니다. 그래서 제 의견으로는, 이런 불확실성을 고려할 때 가치를 먼저 취하고, 이후 변경을 가능한 한 고통 없이 만드는 작업을 해나가는 것이 낫다고 봅니다. 그리고 이것은 충분히 가능하다고 생각합니다. 네, 저도 동의합니다. 저도 작년에 6초를 밀었었고, 여전히 그것이 제 마음속 목표입니다. 다만 이제는 이것을 한 번에 다 해낼 수 있다는 확신이 더는 없을 뿐입니다."
+            },
+            {
+              "speaker": "Dustin",
+              "text": "구조적 혼란과 비용을 치르는데 12초에서 10초는 그리 큰 개선이 아니라며 가치 대비 부담에 회의를 표했다. Lion의 지적에 동의한다고 밝혔다.",
+              "timestamp": "00:34:35",
+              "original": "Well, I wonder about that a little bit, because, like, I mean, Lion here mentioned, and I agree with this personally, you know, or a skepticism about it, is 12 to 10 worth it? So, like, I… because you're… you're eating a lot of the disruption, and the structural disruption, and cost for, honestly, not… It's not that much better.",
+              "translation": "그 부분에 대해서는 조금 의문이 있습니다. Lion이 언급했고 저도 개인적으로 동의하는 부분인데, 회의적인 시각으로 보면, 12초에서 10초로 가는 것이 그만한 가치가 있을까요? 많은 혼란과 구조적인 혼란, 그리고 비용을 감당해야 하는데, 솔직히 말하면 그렇게 크게 나아지는 것은 아니기 때문입니다."
+            },
+            {
+              "speaker": "Barnabé Monnot",
+              "text": "스루풋은 일정하게 유지해 가스 한도와 블록당 블롭 수는 줄인다며, 이는 뒷문 가스 한도 증가가 아니고 발행 등 다른 변경은 별도 EIP로 다뤄야 한다고 답했다.",
+              "timestamp": "00:36:54",
+              "original": "Yeah, I think in the… in the specs, we have kept the throughput constant, so the gas limit and the block count per block Should change, but that's because the block will be more frequent, but… this is not… like, this is really an EIP that changes only the… only the slot time, and any other change, either to the gas limit, to the blob count, or to issuance, that's also a question that came up. Like, this should be… separate EIPs, and they should be argued for on their own. merits. So, the way the specifications are currently done is. all of the Invariance are kept invariant, and if we do want to change the gas limit, we need to make an active decision for it. Like, this is not a backdoor gas limit increase. Yeah, I think quite a bit of effort, like, we're scanning basically the entire sourceified database of verified contracts, but we already identified, like, a few big contracts where this parameter shows up, so off the top of my head, and two discussions that I had are Lido and Arbitrum. The Lido team has told me that they had already looked into this at the time of Glamsterdam, when the earlier proposal was made, and they… they need, like, a… A bit of room to… some time to change the parameter, but it's not… not at all impossible. And same thing for Arbitrum. I think the parameter comes in for the dispute resolution game in the bold. And these are two big contracts. I could pull the survey that we did. I think some of your other big contracts were… eigenLayer and possibly…",
+              "translation": "네, 스펙(specs)상으로는 처리량(throughput)을 일정하게 유지하고 있어서, 가스 한도(gas limit)와 블록당 블롭 개수는 바뀌어야 하는데, 이는 블록이 더 자주 생성되기 때문입니다. 하지만 이것은 정말로 슬롯 타임만을 바꾸는 EIP이며, 가스 한도나 블롭 개수, 발행량(issuance)에 대한 다른 변경은 별도로 제기된 질문입니다. 이런 것들은 별도의 EIP로 만들어 각자의 타당성에 대해 별도로 논의되어야 합니다. 그래서 현재 스펙이 작성된 방식은, 모든 불변량(invariant)이 그대로 유지되도록 되어 있고, 만약 가스 한도를 바꾸고 싶다면 그에 대한 별도의 명시적 결정을 내려야 합니다. 이것은 가스 한도를 몰래 늘리는 백도어가 아닙니다. 꽤 많은 노력을 들여서, 검증된 컨트랙트의 Sourcify 데이터베이스 전체를 거의 스캔하고 있는데, 이미 이 파라미터가 등장하는 몇몇 큰 컨트랙트를 확인했습니다. 기억나는 대로 말하면, 제가 논의했던 두 곳은 Lido와 Arbitrum입니다. Lido 팀은 이전 제안, 즉 Glamsterdam 때 이미 이 문제를 검토했다고 말해주었고, 파라미터를 바꾸기 위한 시간적 여유가 조금 필요하지만 전혀 불가능한 것은 아니라고 했습니다. Arbitrum도 마찬가지입니다. 이 파라미터는 BOLD의 분쟁 해결 게임(dispute resolution game)에 쓰이는 것으로 알고 있습니다. 이 둘은 큰 컨트랙트입니다. 저희가 진행한 조사 결과를 가져올 수도 있는데, 다른 큰 컨트랙트로는 eigenLayer와 아마도..."
+            },
+            {
+              "speaker": "Dima Gusakov | Lido",
+              "text": "리도는 온체인에서 12초 가정을 쓰는 오라클을 타임스탬프 기반 프레임으로 한 번만 바꾸면 되며, 이후 추가 단축엔 리도 조치가 필요 없다며 제안을 지지했다.",
+              "timestamp": "00:39:10",
+              "original": "Yeah, yeah, yeah. Just a quick jump from my side. So, like, even though 12 seconds is now hard-coded in light of the plan is actually not to change the exact hard-coded parameter. But rather transition to a timestamp-based frames for the oracles, which is the only place where we use this 12-second assumption on-chain, which means that we will just need to do one upgrade, and after that, like, if you guys would prefer to reduce load time further, there will be no action required from Lido. So we are pretty supportive for the proposal.",
+              "translation": "네, 네, 저도 짧게 덧붙이겠습니다. 현재 12초가 하드코딩되어 있긴 하지만, 계획은 실제로 그 하드코딩된 파라미터 값 자체를 바꾸는 것이 아니라, 오라클(oracles)을 타임스탬프 기반 프레임으로 전환하는 것입니다. 이 12초 가정을 온체인에서 사용하는 곳은 그곳뿐이기 때문에, 업그레이드를 한 번만 하면 되고, 그 이후에는 여러분이 슬롯 타임을 더 줄이고 싶어도 Lido 쪽에서 추가 조치가 필요하지 않습니다. 그래서 저희는 이 제안을 상당히 지지합니다."
+            },
+            {
+              "speaker": "Lumi | Offchain Labs",
+              "text": "아비트럼은 이미 슬롯 시간 변경을 검토했고 더 복잡한 대안도 있지만 어느 쪽도 블로커는 아니라고 밝혔다.",
+              "timestamp": "00:39:52",
+              "original": "For Arbitrum, we've looked into already the changing the duration, and then we have a second plan also that is more complex. That we might want to implement instead, but it's not a blocker.",
+              "translation": "Arbitrum의 경우, 이미 기간(duration)을 변경하는 것을 검토했고, 더 복잡한 두 번째 계획도 가지고 있습니다. 대신 그것을 구현하고 싶을 수도 있지만, 이것이 걸림돌(blocker)은 아닙니다."
+            },
+            {
+              "speaker": "Lion dapplion",
+              "text": "12초에서 10초로 줄이는 게 그만한 수고를 감수할 값어치가 있는지 물었다.",
+              "timestamp": "00:32:42",
+              "viaChat": true,
+              "original": "Constant changes are not great for users and consumers",
+              "translation": "지속적인 변경은 사용자와 소비자에게 좋지 않습니다."
+            }
+          ],
+          "quote": {
+            "text": "우리는 십중팔구 슬롯 시간을 한 번에 크게 낮춰 놓고 끝났다고 하지는 않을 것이다.",
+            "original": "we are most likely never going to do a one-time big jump of the slot time and then call that done.",
+            "speaker": "Barnabé Monnot",
+            "timestamp": "00:33:00"
+          }
+        },
+        {
+          "title": "테이퍼드 발행 버닝(EIP-8363): 스테이킹 50% 상한",
+          "intro": "검증자 보상 일부를 태워 스테이킹 비율을 50%에서 묶자는 제안이며, 마감 이틀 전 새 곡선으로 등장해 헤고타 후보로 올릴지를 두고 격론이 벌어졌다.",
+          "decision": "PFI 접수 01:43:23 (CFI/SFI 아님)",
+          "positions": [
+            {
+              "speaker": "Jerome de Tychey",
+              "text": "현재 곡선은 스테이킹 유인이 꺼지지 않아 2028년경 50%를 넘길 수 있다며, 매 에폭 보상의 테이퍼드 비율을 태워 순수익률이 50%에서 0에 수렴하게 하자고 제안했다.",
+              "timestamp": "00:57:53",
+              "original": "Wow, that's a… that's a lot. I just requested, 3 minutes, if I remember correctly. Let me just find the button to share my screen. I'm… I don't think I can share my screen, though. Oh yeah, it is. Okay. Alright. Good morning and good day, everyone. I have dropped a link to those slides in the chat. I'm here to present you EIP 8363, called Tapered Issuance Burn. There's a link to the EIP in the slides, and there's also a link to the EF Magician Tread, if you want to discuss this in, in further detail. So, as a quick overview, this proposal primary goal here is to remove the issuance mechanism's incentive for stake growth. once the staking ratio exceeds 50%. It accomplished this by deducting a burning… deducting and burning a tapered fraction of idolized Validator rewards at each epoch boundary. So that the net staking yield declines linearly, while the staking ratio, with the staking ratio, enrichs zero at 50%. So, as you may know, Ethereum has a history of regularly changing its issuance schedule, this is not the first time we are discussing an EIP to reduce issuance. Even under the proof-of-stake, regime. And, I'm very pleased to, have the stage right now to present this to you. So, why do we want to change the current curve? First, there's… A priori an endless incentive to stake, because under current issuance curve, the yield never drops below approximately 1.5%, meaning the incentive to stake, never organically switches off. Whether stake growth stops here, only depends…",
+              "translation": "와, 꽤 많네요. 제가 기억하기로는 3분만 요청했었는데요. 화면 공유 버튼을 좀 찾아보겠습니다. 화면 공유가 안 될 것 같은데... 아, 되네요. 좋습니다. 여러분 좋은 아침입니다. 채팅에 슬라이드 링크를 올려두었습니다. 저는 EIP 8363, 이름은 Tapered Issuance Burn을 발표하러 왔습니다. 슬라이드에 EIP 링크가 있고, 더 자세히 논의하고 싶으시다면 EF Magician 스레드 링크도 있습니다. 간단히 개요를 말씀드리면, 이 제안의 주된 목표는 스테이킹 비율(staking ratio)이 50%를 넘을 경우 발행(issuance) 메커니즘이 스테이크 증가를 유인하는 효과를 제거하는 것입니다. 이를 위해 매 에폭(epoch) 경계마다 유휴(idle) 상태의 검증자(Validator) 보상 중 점차 줄어드는 일부를 차감하고 소각(burn)합니다. 그 결과, 순 스테이킹 수익률(net staking yield)은 스테이킹 비율이 50%에서 0이 될 때까지 선형적으로 감소하게 됩니다. 아시다시피 이더리움은 발행 스케줄을 주기적으로 변경해온 역사가 있으며, 발행량을 줄이기 위한 EIP를 논의하는 것이 이번이 처음이 아닙니다. 지분증명(proof-of-stake) 체제 아래에서도 마찬가지입니다. 이 자리에서 발표할 기회를 갖게 되어 매우 기쁩니다. 그럼 왜 현재의 곡선을 바꾸고자 하는 걸까요? 첫째, 선험적으로(a priori) 스테이킹에 대한 끝없는 유인이 존재합니다. 현재 발행 곡선 하에서는 수익률이 대략 1.5% 이하로는 절대 떨어지지 않기 때문에, 스테이킹에 대한 유인이 자연적으로 꺼지는 일이 없습니다. 스테이크 증가가 여기서 멈출지는 오직..."
+            },
+            {
+              "speaker": "Barnabas",
+              "text": "목표가 발행 축소인지 50% 방지인지 물으며, 발행은 그대로 두고 50%에 도달하면 신규 검증자 입금만 막는 대안을 제시했다.",
+              "timestamp": "01:04:26",
+              "original": "Yeah, so my main question would be whether… The goal here is to taper the issuance, or to make sure that we don't reach 50% more state, or is it both? Because I think we could… We could actually achieve keeping the issuance the same as where it is right now, but just, basically limit the, issuance in case that we do achieve more than 50%. Yeah, something like that. I'm not sure technically how we would do that, but I'm sure that we could think of a way to do that. So you can basically only deposit the new Validator. In case we reach 50% of the staked ETH, the only time we would, Basically, the deposit would reach the Beacon chain contract is if someone exited. Yeah, my main question would be, what is the actual goal here, of 8363? Is it the partitions, or is it the 50%, or is it both?",
+              "translation": "제 주된 질문은, 여기서 목표가 발행량을 점차 줄이는(taper) 것인지, 아니면 스테이킹 비율이 50%를 넘지 않도록 하는 것인지, 아니면 둘 다인지입니다. 왜냐하면 사실 발행량을 지금 그대로 유지하면서, 50%를 초과하는 경우에만 발행을 제한하는 방식으로도 같은 목표를 달성할 수 있다고 생각하기 때문입니다. 네, 그런 식으로요. 기술적으로 어떻게 구현할지는 확실하지 않지만, 분명 방법을 생각해낼 수 있을 것입니다. 예를 들어 기본적으로 새 검증자(Validator)의 예치(deposit)만 제한하는 방식입니다. 스테이킹된 ETH가 50%에 도달한 경우에는, 누군가 이탈(exit)했을 때만 예치가 Beacon chain 컨트랙트에 도달하도록 하는 것입니다. 제 주된 질문은, 8363의 실제 목표가 무엇인가입니다. 분할(partitions)인가요, 50%인가요, 아니면 둘 다인가요?"
+            },
+            {
+              "speaker": "Oisin Kyne",
+              "text": "낮은 수익에서 누가 살아남는지 겨루는 가격 경쟁이 나카모토 계수를 떨어뜨릴 수 있다고 우려했다. 네트워크 대다수는 이 제로 실질수익 상황에 놓이지 않으며 그들이 오히려 가격에서 밀려날 것이라고 반박했다.",
+              "timestamp": "01:06:57",
+              "original": "Hey guys, one of my main concerns with making a competition to see, like, whoever can stay viable at, like, a lower price is that the Nakamoto for the chain will really decrease, and I know it's subjective, you know, will the Nakamoto be low and high staking ratios or not, but, like. Firstly, Jerome, do you think that this proposal will make a price competition and will kind of, you know, reduce the amount of operators that make up a majority of the staking set? And do you think that's a problem, if so?",
+              "translation": "여러분, 제가 주로 우려하는 점은, 누가 더 낮은 가격에서도 수익성을 유지할 수 있는지를 두고 경쟁이 벌어지면 체인의 나카모토 계수(Nakamoto coefficient)가 실제로 감소할 것이라는 점입니다. 나카모토 계수가 스테이킹 비율이 높고 낮음에 따라 낮아질지는 주관적인 문제라는 것은 알고 있습니다만, 먼저 Jerome에게 묻고 싶습니다. 이 제안이 가격 경쟁을 유발하여 스테이킹 세트의 과반을 이루는 운영자(operator) 수를 줄이게 될 것이라고 보십니까? 그리고 그렇다면 그것이 문제라고 생각하십니까?"
+            },
+            {
+              "speaker": "Greg K | Lido",
+              "text": "이 EIP가 이틀 전 아무도 모르던 새 곡선으로 나왔고 발행 곡선 전체를 재설계한다며, 헤고타 PFI에서 자진 철회할 것을 요청했다.",
+              "timestamp": "01:13:30",
+              "original": "Yeah, so, yeah, I wanted to mention that I would, kindly, request from authors to withdraw this, peer fine for Hegota, because I think this EP arrived two days ago, it presented a new curve that no one knew before, and yeah, I think due to this being a very kind of controversial and, very big change. I think that starting, considering it for Hegota, will create many issues. First of all. most of us were expecting, any issuance proposals to be for future, hard forks. So, in particular, like, at ACDC in, April, there were some discussions in Cannes, and, it was really no… not particular CF discussed, like, we have very generic discussions around these ones. So I think this doesn't give time for people, like, to prepare better and already give counter-proposals about these ones, since the… common expectation was that these ones will be discussed for later forks. So now, having one EIP for each one's for HEPA, this, will create this kind of confusion, like, it will be the only option, so it will appear, like, either this EIP or noise transce at all, and that could have, like, I think, not-so-good, like, not-so-objective, like, Give not objective image of what's going on. And yeah, it seems that, like, happened only, like, this EIP appearing now. It's too late to… start having, you know, constructive discussions. Seems like, for Hegota, we already have, like, 40 EIPs proposed. a lot of them have very useful features for Ethereum. We have spent so much time working on them, like,…",
+              "translation": "네, 저자분들께 이 EIP를 Hegota 대상에서 철회해 주시기를 정중히 요청드리고 싶습니다. 이 EIP가 이틀 전에 올라왔고, 이전에는 아무도 몰랐던 새로운 곡선을 제시했기 때문입니다. 그리고 이것이 매우 논쟁적이고 매우 큰 변경이라는 점 때문에, Hegota를 위해 이를 검토하기 시작하는 것은 많은 문제를 일으킬 것이라고 생각합니다. 첫째, 저희 대부분은 발행량 관련 제안이라면 향후의 하드포크를 위한 것이리라 예상했습니다. 특히 4월 ACDC에서 Cannes 관련 논의가 일부 있었지만, 그때는 특별히 ACDC에서 논의된 것은 아니었고, 이런 주제에 대해 아주 일반적인 논의만 있었습니다. 그래서 이것이 사람들에게 더 잘 준비하고 이에 대한 반대 제안을 미리 내놓을 시간을 주지 못한다고 생각합니다. 공통된 예상은 이런 논의가 이후의 포크에서 다뤄질 것이라는 것이었기 때문입니다. 그런데 지금 Hegota를 위해 이런 EIP가 하나씩 나오게 되면 혼란이 생길 것입니다. 마치 이것이 유일한 선택지인 것처럼 보이게 되어, 이 EIP를 받아들이느냐 아니면 아무런 조치도 없느냐의 양자택일처럼 보일 수 있고, 이는 현재 상황에 대해 그다지 객관적이지 않은 인상을 줄 수 있다고 생각합니다. 그리고 이 EIP가 이제서야 등장한 것 같은데, 건설적인 논의를 시작하기에는 너무 늦었습니다. Hegota에는 이미 40개의 EIP가 제안되어 있고, 그중 많은 것들이 이더리움에 매우 유용한 기능을 담고 있습니다. 저희는 그것들에 정말 많은 시간을 들여 작업해 왔습니다..."
+            },
+            {
+              "speaker": "Dima Gusakov | Lido",
+              "text": "이런 결정은 개발자만 내려선 안 되고 커뮤니티 정서를 반영해야 하며, 지금 커뮤니티는 형식만이 아니라 기본 아이디어 자체에 강하게 반대한다고 지적했다.",
+              "timestamp": "01:24:14",
+              "original": "The only thing I want to say is that I agree with one of the comments that got lost in the chat, that the decisions on such types of things should definitely not be made exclusively by developers. And the community sentiment should be taken into account. And as far as I see now, the community sentiment is highly against the… Even the basic idea of the proposal, not just the form of the proposal. So… It would be great if we would be able to take such thing as community response into account, because in most case scenarios, the response from the community is a good way to understand what's gonna happen if we do not listen to them.",
+              "translation": "제가 드리고 싶은 말씀은, 채팅에서 지나가버린 어느 댓글에 동의한다는 것뿐입니다. 이런 종류의 결정은 결코 개발자들만이 독점적으로 내려서는 안 되며, 커뮤니티의 여론도 고려되어야 한다는 내용입니다. 그리고 지금 제가 보는 바로는, 커뮤니티의 여론은 이 제안의 형태뿐 아니라 그 기본 아이디어 자체에도 매우 반대하고 있습니다. 그래서 커뮤니티의 반응 같은 것을 고려할 수 있다면 좋겠습니다. 대부분의 경우, 커뮤니티의 반응은 우리가 그들의 말을 듣지 않을 경우 어떤 일이 벌어질지를 이해하는 좋은 방법이기 때문입니다."
+            },
+            {
+              "speaker": "Ansgar Dietrichs",
+              "text": "스테이킹 비율 증가를 우려해 이런 변경에 원칙적으로 공감한다면서도, 커뮤니티의 분명한 반대에 맞서 통과시킬 수는 없으며 수용의 전제는 논의 과정에서 인식이 바뀌는 것이라고 강조했다.",
+              "timestamp": "01:26:54",
+              "original": "Yeah, I mean, I'm not sure, I just wanted to basically reiterate that, in my opinion at least, it… like, the one thing I worry about is that clearly, like, many people in the community are quite opposed to this change. Now, I personally, I mean, people know this, I've worked on this in the past, I personally actually am… Quite concerned about the increasing stake rate, and do, in principle think that, a change like this makes sense. And nevertheless, I don't… I think it's clear that something like this could never be decided against a clear majority kind of, like, opposition of the community, so I just want to make sure that for people that maybe are worried, that are not so familiar with the process, that are worried that there is a risk that this will be basically pushed through against the community or something, just stating it in these terms. I would just say that I, in my opinion at least, of course, I also can't speak for AllCoreDevs, but in my opinion, that is not a risk. I think, to me, it is clear that a prerequisite of a potential acceptance down the road would be that in the process of that conversation, kind of, like, the overall perception would shift, and people would be more open to this change. I think… Yeah, so I just wanted to basically say this, because I think it is otherwise, of course, very corrosive for Ethereum if there is a perception or even just a concern that potentially a divisive change could be pushed through against a majority community…",
+              "translation": "네, 확실친 않지만, 적어도 제 의견으로는 이 점을 다시 한번 강조하고 싶습니다. 제가 우려하는 한 가지는 커뮤니티의 많은 사람들이 이 변경에 분명히 상당히 반대하고 있다는 점입니다. 저 개인적으로는, 다들 아시다시피 제가 과거에 이 작업을 해온 바 있고, 개인적으로는 증가하는 스테이킹 비율에 대해 꽤 우려하고 있으며, 원칙적으로 이런 변경이 타당하다고 생각합니다. 그럼에도, 커뮤니티의 명백한 다수의 반대에 맞서서 이런 것이 결정될 수는 결코 없다는 것은 명확하다고 생각합니다. 그래서 이 프로세스에 익숙하지 않아서, 이것이 커뮤니티의 의사에 반해 강행될 위험이 있다고 우려하시는 분들을 위해 이 점을 분명히 말씀드리고 싶습니다. 저는, 물론 저도 AllCoreDevs를 대표해서 말할 수는 없지만, 적어도 제 의견으로는 그런 위험은 없다고 말씀드리고 싶습니다. 제가 보기에 분명한 것은, 향후 이것이 받아들여지기 위한 전제 조건은 그 논의 과정에서 전반적인 인식이 바뀌어 사람들이 이 변경에 더 열린 태도를 갖게 되는 것이라는 점입니다. 그래서 이 말씀을 드리고 싶었던 이유는, 만약 분열을 일으킬 수 있는 변경이 다수 커뮤니티의 의사에 반해 강행될 수 있다는 인식이나 우려가 존재한다면, 그것은 이더리움에 매우 부식적인(corrosive) 영향을 미칠 것이기 때문입니다..."
+            }
+          ],
+          "quote": {
+            "text": "이런 것은 커뮤니티의 분명한 다수 반대에 맞서서는 결코 결정될 수 없다.",
+            "original": "something like this could never be decided against a clear majority kind of, like, opposition of the community",
+            "speaker": "Ansgar Dietrichs",
+            "timestamp": "01:26:54"
+          }
+        },
+        {
+          "title": "블롭 컬럼 전파(EIP-8142): 페이로드를 블롭에",
+          "intro": "실행 페이로드를 블롭에 실어 PeerDAS로 더 빨리 퍼뜨리자는 제안이며, ePBS/PTC 마감과 충돌 가능성이 지적됐다.",
+          "decision": "PFI 접수 01:43:23",
+          "positions": [
+            {
+              "speaker": "Kamil Salakhiev",
+              "text": "실행 페이로드를 블롭에 넣고 기존 PeerDAS와 셀 단위 델타를 재활용해 페이로드를 더 빨리 전파한다며, 새 가십 설계 없이 얻는 퀵윈이라고 소개했다.",
+              "timestamp": "00:43:21",
+              "original": "Yeah, give me a sec. Okay, yeah, can you see my screen? Okay, great. So, yeah, this is Kamil from EF networking team. Yeah, we'd like to PFI blocks in blobs. Yeah, the high-level idea is we're putting execution payloads into blobs, and then we… You're leveraging existing PeerDAS plus cell-level deltas for Payload propagation, and why we do that is to get efficiency, so… Just to enable faster… Payload broadcast, also. Yeah, we'll consider this to be… Quick win, because we reuse existing PeerDAS machinery without introducing new gossip design, into the protocol, and… Yeah, this also gives us the flexibility, because it kind of provides the natural path forward towards ZKester's future, which would not require… would not require the full payload, after mandatory proofs landed. Yeah, we plan to do this in two phases. Phase one is basically what we're going to focus in Hegota. Yeah, the plan is to deprecate execution payload topic, and instead, peers would subscribe to all column subnets, and then use cell-level deltas to fetch the execution payload. So visually, it's gonna look, yeah, the following way, so… yeah, we have, like, custody columns and non-custody columns. For custody columns, we still use Yeah, we still fetched them in full, so… Yeah, we use… we use cell-level deltas, and we advertise our… I want bitmaps With all ones, so that means we're requesting the full columns, and for… Non-custody columns, yeah, we advertise only the bits, but we only advertise that we…",
+              "translation": "네, 잠시만요. 네, 제 화면이 보이시나요? 좋습니다. 저는 EF 네트워킹 팀의 Kamil입니다. 저희는 블록을 블롭(blobs)에 PFI 하고자 합니다. 개략적인 아이디어는 실행 페이로드(execution payload)를 블롭에 담고, 페이로드 전파(propagation)를 위해 기존의 PeerDAS와 셀 단위 델타(cell-level deltas)를 활용하는 것입니다. 이렇게 하는 이유는 효율성을 얻기 위해서이며, 더 빠른 페이로드 브로드캐스트(broadcast)를 가능하게 하기 위함입니다. 이것은 일종의 빠른 성과(quick win)라고 생각하는데, 프로토콜에 새로운 가십(gossip) 설계를 도입하지 않고 기존 PeerDAS 구조를 재사용하기 때문입니다. 또한 이는 유연성도 제공하는데, 필수 증명(proof)이 도입된 이후 전체 페이로드가 필요하지 않은 ZK 기반 미래로 나아가는 자연스러운 경로를 제공하기 때문입니다. 저희는 이를 두 단계로 진행할 계획입니다. 1단계는 기본적으로 Hegota에서 집중할 부분입니다. 계획은 execution payload 토픽을 폐기(deprecate)하고, 대신 피어(peer)들이 모든 컬럼 서브넷(column subnets)을 구독하여 셀 단위 델타를 이용해 실행 페이로드를 가져오도록 하는 것입니다. 시각적으로는 다음과 같은 모습이 될 것입니다. 커스터디(custody) 컬럼과 비커스터디(non-custody) 컬럼이 있는데, 커스터디 컬럼에 대해서는 여전히 전체를 가져오며, 셀 단위 델타를 사용하고, 모두 1로 된 비트맵(bitmap)을 알려서 전체 컬럼을 요청한다는 것을 나타냅니다. 비커스터디 컬럼에 대해서는 일부 비트만 알리는데, 다만 저희가..."
+            },
+            {
+              "speaker": "potuz",
+              "text": "컬럼이 안전해질 때까지 숨겨야 하는 페이로드 정보를 담으면 슬롯 초반 블롭 전파가 줄고, 페이로드 마감(6초)과 블롭 마감(9초)이 붙어버려 PTC가 적시성을 검증하기 어렵다고 지적했다.",
+              "timestamp": "00:48:36",
+              "original": "Yeah, so I have two questions, which are the same questions on two different limits. So EPBS gave us this thing which, Which is that we can propagate blobs throughout, essentially, all of the slot. On the start of the… start of this propagation time is essentially when, as soon as you see the Consensus block, the builder can start propagating blobs. At least this… the columns, complete columns. I suppose this is not going to happen anymore if now these columns are going to have information about the payload that they want to hide until they are safe to propagate. So this takes away some part of blob propagation at the beginning of the slot, unless you only propagate these cells. Now, the second part is the end of the slot. This seems to me also to take away most of the end of the slot, and the separation between the payload deadline and the blob deadline at which the PTC needs to attest. Because the PTC needs to attest for the timeliness of the payload itself. And that timeliness is different. Now, today is set at 6 seconds, and the blob deadline is at 9 seconds. I don't see how the PTC will be able to carry this if they are coming together. Well, the PTC needs to get all the blobs. That they are needed custody before today, 9 seconds. But they need to get all of the payload before 6 seconds. So there's… if the payload is propagating together with blobs, then they just will… this will force blobs to be before 6 seconds for the PTC to be attesting.",
+              "translation": "네, 두 가지 질문이 있는데, 사실 서로 다른 두 개의 한계(limit)에 대한 같은 질문입니다. EPBS는 우리에게 슬롯 전체에 걸쳐 블롭을 전파할 수 있게 해주었습니다. 이 전파 시간의 시작점은 기본적으로 합의(Consensus) 블록을 보는 즉시, 빌더(builder)가 블롭, 적어도 완전한 컬럼을 전파하기 시작할 수 있는 시점입니다. 그런데 이제 이 컬럼들이 안전하게 전파될 때까지 숨기고자 하는 페이로드 정보를 담게 된다면, 더 이상 이런 일이 일어나지 않을 것 같습니다. 이 셀(cell)만 전파하는 것이 아니라면, 이는 슬롯 시작 시점의 블롭 전파 일부를 빼앗아가는 셈입니다. 두 번째는 슬롯의 끝부분입니다. 이것도 슬롯 끝의 대부분을 빼앗아가는 것으로 보이며, PTC가 증명(attest)해야 하는 페이로드 데드라인과 블롭 데드라인 사이의 분리에도 영향을 줍니다. PTC는 페이로드 자체의 시의성(timeliness)을 증명해야 하는데, 그 시의성은 다릅니다. 현재는 6초로 설정되어 있고, 블롭 데드라인은 9초입니다. 만약 이 둘이 합쳐진다면 PTC가 어떻게 이를 감당할 수 있을지 모르겠습니다. PTC는 커스터디해야 하는 모든 블롭을 오늘 기준 9초 전까지 받아야 하지만, 모든 페이로드는 6초 전까지 받아야 합니다. 그러니 페이로드가 블롭과 함께 전파된다면, 이는 PTC가 증명할 수 있도록 블롭이 6초 전에 와야 하도록 강제하게 될 것입니다."
+            },
+            {
+              "speaker": "terence",
+              "text": "롤업이 쓰는 블롭과 새로 들어오는 블롭은 마감과 가격이 달라 섞을 수 없으며, 근본적으로 마켓 공간을 분리해야 한다고 덧붙였다.",
+              "timestamp": "01:31:17",
+              "original": "Yeah, I'll be quick, just almost all the time. How does this work when there's negativity leak? Do you apply both simultaneously? So, just today, I believe, like, we can reach two-thirds, under, 14 days, so you finalize Something again, so would that make it faster? Thank you.",
+              "translation": "네, 빨리 여쭤보겠습니다. 네거티브 리크(negativity leak)가 있을 때는 이것이 어떻게 작동합니까? 둘을 동시에 적용하시나요? 오늘날에는 14일 이내에 3분의 2에 도달하여 다시 무언가를 파이널라이즈(finalize)할 수 있다고 알고 있는데, 그렇다면 이것이 더 빨라지게 되는 건가요? 감사합니다."
+            }
+          ],
+          "quote": {
+            "text": "마감이 다르고 가격이 다르기 때문에 두 블롭을 섞을 수 없다. 그래서 마켓 공간을 분리해야 한다.",
+            "original": "we cannot mix the two blobs together, because different deadline, because different pricing and stuff like that",
+            "speaker": "terence",
+            "timestamp": "01:31:17"
+          }
+        },
+        {
+          "title": "BLS 인출 크리덴셜 폐기(EIP-8365/8367)",
+          "intro": "양자내성(PQ) 전환 전에 인출 주소가 없는 0x00 레거시 검증자를 정리하자는 제안이며, 강제 퇴장·점진적 잔액 소멸이 필요한지가 쟁점이다.",
+          "decision": "PFI 접수 01:43:23",
+          "positions": [
+            {
+              "speaker": "NC",
+              "text": "0x00 검증자를 강제 퇴장시킨 뒤 잔액을 서서히 0으로 줄여, PQ 전환 때 32 ETH가 0으로 급락하는 절벽 없이 안전하게 정리하자고 제안했다.",
+              "timestamp": "01:36:12",
+              "original": "Right, so the high-level idea is to tackle the existence of the 0x00, legacy validators, before they become a bigger trouble when we transition to PQ. And, the vision, like, the solution is split into two phases, so that's why there are two separate EIPs, so that, it will be more flexible or easier to discuss this way. So… Since 0 validators are pretty old, and, maybe just, like, a quick, recap. Oh, on, what this does. So, basically, it has a sign-in key and a, withdrawal key, both of BLS, and the sign-in key is for, signing the regular Validator duties. And the withdrawal key's sole purpose is to sign the BLS to execution change so that it can become a 0.01 validator. And a, property of 0x00 Validator is that it doesn't have an execution address, so… That means that all the withdrawal requests doesn't apply to it. All the partial withdrawal sweep doesn't apply to it, because it doesn't have an address to withdraw to. It can, do the regular, their duties. But, there's no way to withdraw funds. And, The protocol can eject the Validator. But, after that Validator is exited, the fund still remains on CL side. So, it's a really weird interaction this way. So, just some, high-level stats today in the… on mainnet. There's still around 9,000, but they still hold the 000 credentials. And, less than 9,000 if, you just exclude the ones that are offline for more than 6 months. And ever since the introduction of BLS Execution Change, which is, Capella, More than… is around more than…",
+              "translation": "네, 개략적인 아이디어는 PQ(양자내성)로 전환할 때 더 큰 문제가 되기 전에 0x00 레거시 검증자(legacy validators)의 존재를 해결하는 것입니다. 그리고 이 해법은 두 단계로 나뉘어 있어서, 별도의 EIP 두 개로 구성되어 있으며, 이렇게 하면 논의가 더 유연하고 쉬워집니다. 0x00 검증자는 꽤 오래된 것이어서, 간단히 복기해보면, 이것이 하는 일은 기본적으로 로그인 키(sign-in key)와 출금 키(withdrawal key)를 가지고 있고 둘 다 BLS 방식이며, 로그인 키는 일반적인 검증자 임무에 서명하는 용도입니다. 출금 키의 유일한 목적은 BLS to execution change에 서명하여 0x01 검증자가 될 수 있게 하는 것입니다. 0x00 검증자의 한 가지 속성은 실행 주소(execution address)가 없다는 것인데, 이는 모든 출금 요청(withdrawal requests)이 적용되지 않는다는 의미입니다. 부분 출금 스윕(partial withdrawal sweep)도 적용되지 않습니다. 출금할 주소가 없기 때문입니다. 일반적인 임무는 수행할 수 있지만 자금을 출금할 방법이 없습니다. 프로토콜이 해당 검증자를 강제 퇴출(eject)할 수 있지만, 그 검증자가 이탈(exit)한 이후에도 자금은 여전히 CL(합의 계층) 쪽에 남아 있습니다. 그래서 이것은 정말 이상한 상호작용입니다. 오늘날 메인넷의 개략적인 통계를 말씀드리면, 여전히 약 9,000개가 0x00 자격증명(credentials)을 가지고 있습니다. 6개월 이상 오프라인 상태인 것을 제외하면 9,000개보다는 적습니다. BLS Execution Change, 즉 Capella가 도입된 이후로는 그 이상..."
+            },
+            {
+              "speaker": "potuz",
+              "text": "강제 퇴장과 처른 같은 복잡성은 얻는 게 없다며, PQ 시점에 등록 안 한 검증자는 어차피 퇴출되고 키를 잃은 자금은 이 EIP로도 똑같이 사라진다고 반박했다.",
+              "timestamp": "01:44:44",
+              "original": "I didn't understand that what do we gain from this? So, I do get the point that perhaps we want to deprecate 000, and that's an easy change, which is don't accept any more deposits after a while, that's a clear indication that you shouldn't be depositing validators with a zero BLS credential, but like, the exit, the forced exit, the churn, like, this is all complexity that doesn't get us anything. Like, with any other validator, if it becomes a problem on the post-quantum day, if they don't register, we're just going to eject them anyways. It's true, that money will be lost, but they… that money will be lost anyways, even with this proposal. So I don't see what do we gain by adding complexity now for something that anyways we're gonna be… end up doing. And we know. We are going to have these validators losing that money because they just lost their keys. I understand, but… and if they are lazy, they are not going to send a registration, and they're going to lose their money exactly the same way that this EIP gives us.",
+              "translation": "이것으로 무엇을 얻는지 이해하지 못했습니다. 0x00을 폐기(deprecate)하고자 한다는 점은 이해가 되고, 그것은 쉬운 변경입니다. 일정 시점 이후로 더 이상 예치(deposit)를 받지 않는 것인데, 그것은 제로 BLS 자격증명으로 검증자를 예치해서는 안 된다는 명확한 신호입니다. 하지만 이탈(exit), 강제 이탈, 추방(churn) 같은 것은 우리에게 아무것도 가져다주지 않는 복잡성일 뿐입니다. 다른 어떤 검증자라도, 포스트 퀀텀(post-quantum)의 날이 왔을 때 문제가 되고, 이들이 등록하지 않는다면 우리는 어차피 그들을 강제 퇴출시킬 것입니다. 자금이 손실되는 것은 사실이지만, 그 자금은 이 제안이 있든 없든 어차피 손실될 것입니다. 그러니 어차피 하게 될 일에 지금 복잡성을 더함으로써 무엇을 얻는지 모르겠습니다. 그리고 우리는 이미 알고 있습니다. 이 검증자들은 단지 키를 잃어버렸기 때문에 그 자금을 잃게 될 것입니다. 이해는 합니다만, 만약 그들이 게을러서 등록을 보내지 않는다면, 이 EIP가 주는 결과와 정확히 같은 방식으로 자금을 잃게 될 것입니다."
+            },
+            {
+              "speaker": "NC",
+              "text": "키를 잃은 게 아니라 게을러서일 수도 있으며, 9,000명분 자금이 포크 한 번에 한꺼번에 사라지는 것보다 서서히 줄이는 편이 덜 논쟁적이라고 답했다.",
+              "timestamp": "01:45:55",
+              "original": "Well, then that also means that those 9,000 validators, 32 EF each, will lose all of them in one single fork transition. Which is, in my opinion, is… Quite a huge of a change, whereas if you drain it slowly over time, it'll be less controversial. Okay, so that's, like, the first EIP that I propose. I don't even think you need to… you need to give them a heads up, because if… by exiting them, like, they're not… their funds are not lost at all, they're just not earning rewards, and they're just not getting penalties either. So… I don't think, we need, like. I don't know, 6 months, or to 1 year of noticing period for them.",
+              "translation": "그렇다면 그것은 그 9,000개의 검증자, 각각 32 ETH씩을 단 한 번의 포크 전환으로 모두 잃게 된다는 의미이기도 합니다. 이는 제 생각으로는 상당히 큰 변경이며, 반면 시간을 두고 천천히 빼내면(drain) 논쟁이 덜할 것입니다. 네, 그것이 제가 제안하는 첫 번째 EIP입니다. 사전 고지(heads up)를 해줄 필요조차 없다고 생각하는데, 왜냐하면 그들을 이탈시키더라도 그들의 자금이 전혀 손실되는 것은 아니고, 단지 보상을 받지 못하게 될 뿐이며 페널티도 받지 않기 때문입니다. 그러니 그들을 위해 6개월이든 1년이든 하는 고지 기간이 필요하다고 생각하지 않습니다."
+            },
+            {
+              "speaker": "Barnabas",
+              "text": "잔액 소멸 로직은 지나치게 복잡하다며, H-star에서 신규 0x00 입금을 막고 강제 퇴장시키는 단순한 방식을 제안했다.",
+              "timestamp": "01:46:27",
+              "original": "I think the draining logic is overly complicated. I also commented on the issue, and I also commented here in the chat. I would just suggest that in H-star, we're not gonna allow any more 000 deposits. So we basically stopped dealing with those new deposits, and we just need to find a way how we can basically incentivize those remaining 9,000 validators to change their withdrawal credentials to 0x01. And I think the best way to do that is basically forcing them to exit. at H-star, as well. Yeah, basically the first EIP in… with a combination of, basically once we hit H-star, then those Validators will be, exited, and at that point, they will still be able to change their withdrawal credential and withdraw all their ETH. Or maybe we can do that at I-Star, so that we would give them some heads up. So, like, in H-Star, we stopped accepting new deposits. In I-Star, we would basically say, when we hit I-Star, we, we exit all the validators that are still 0x00, so you would have to basically change your withdrawal credential before the Isor hit.",
+              "translation": "빼내기(draining) 로직이 지나치게 복잡하다고 생각합니다. 해당 이슈에도 댓글을 남겼고, 여기 채팅에도 남겼습니다. 저는 그저 H-star에서는 더 이상 0x00 예치(deposit)를 허용하지 않는 것을 제안합니다. 그러면 새로운 예치를 받는 것은 기본적으로 중단되고, 나머지 9,000개의 검증자들이 출금 자격증명(withdrawal credentials)을 0x01로 변경하도록 유도할 방법을 찾기만 하면 됩니다. 그리고 그렇게 하는 가장 좋은 방법은 H-star에서 그들을 강제로 이탈시키는 것이라고 생각합니다. 기본적으로 첫 번째 EIP와의 조합으로, H-star에 도달하면 그 검증자들은 이탈되고, 그 시점에도 여전히 출금 자격증명을 변경하여 모든 ETH를 출금할 수 있습니다. 또는 이를 I-star에서 하여 사전 고지를 줄 수도 있습니다. 즉 H-star에서는 새로운 예치 받기를 중단하고, I-star에서는 I-star에 도달하면 여전히 0x00 상태인 모든 검증자를 이탈시킨다고 공지하여, I-star 도달 전까지 출금 자격증명을 변경해야 하도록 하는 것입니다."
+            }
+          ],
+          "quote": {
+            "text": "이건 전부 우리에게 아무것도 가져다주지 않는 복잡성이다.",
+            "original": "this is all complexity that doesn't get us anything",
+            "speaker": "potuz",
+            "timestamp": "01:44:44"
+          }
+        }
+      ],
+      "speakers": [
+        {
+          "label": "Jerome de Tychey",
+          "name": "Jerome de Tychey",
+          "share": 0.162
+        },
+        {
+          "label": "Parithosh Jayanthi",
+          "name": "Parithosh Jayanthi",
+          "org": "EF DevOps",
+          "handle": "parithosh_j",
+          "avatar": "https://pbs.twimg.com/profile_images/1257719305459904512/x5MkzrAf_400x400.jpg",
+          "share": 0.147
+        },
+        {
+          "label": "Barnabé Monnot",
+          "name": "Barnabé Monnot",
+          "share": 0.136
+        },
+        {
+          "label": "NC",
+          "name": "NC",
+          "share": 0.1
+        },
+        {
+          "label": "Kamil Salakhiev",
+          "name": "Kamil Salakhiev",
+          "share": 0.093
+        },
+        {
+          "label": "Csaba",
+          "name": "Csaba",
+          "share": 0.057
+        },
+        {
+          "label": "Oisin Kyne",
+          "name": "Oisin Kyne",
+          "share": 0.052
+        },
+        {
+          "label": "Barnabas",
+          "name": "Barnabas Busa",
+          "org": "EF DevOps",
+          "handle": "BarnabasBusa",
+          "avatar": "https://pbs.twimg.com/profile_images/534855342300352514/m-C5ReWq_400x400.jpeg",
+          "share": 0.049
+        },
+        {
+          "label": "hanniabu",
+          "name": "hanniabu",
+          "share": 0.039
+        },
+        {
+          "label": "Greg K | Lido",
+          "name": "Greg K",
+          "org": "Lido",
+          "share": 0.033
+        },
+        {
+          "label": "potuz",
+          "name": "Potuz",
+          "org": "Offchain Labs",
+          "role": "Prysm",
+          "handle": "potuz_eth",
+          "avatar": "https://pbs.twimg.com/profile_images/1494001194427158539/bfrZyMsG_400x400.jpg",
+          "share": 0.03
+        },
+        {
+          "label": "Bosul Mun",
+          "name": "Bosul Mun",
+          "share": 0.021
+        },
+        {
+          "label": "soispoke",
+          "name": "soispoke",
+          "share": 0.021
+        },
+        {
+          "label": "Dima Gusakov | Lido",
+          "name": "Dima Gusakov",
+          "org": "Lido",
+          "share": 0.015
+        },
+        {
+          "label": "Ansgar Dietrichs",
+          "name": "Ansgar Dietrichs",
+          "org": "EF",
+          "role": "리서처",
+          "handle": "adietrichs",
+          "avatar": "https://pbs.twimg.com/profile_images/1575685906786402304/P5UbjDt6_400x400.jpg",
+          "share": 0.012
+        },
+        {
+          "label": "Pooja Ranjan",
+          "name": "Pooja Ranjan",
+          "org": "ECH Institute",
+          "handle": "poojaranjan19",
+          "avatar": "https://pbs.twimg.com/profile_images/2056372532299571200/Z-EwXzEQ_400x400.jpg",
+          "share": 0.007
+        },
+        {
+          "label": "terence",
+          "name": "Terence Tsao",
+          "org": "Offchain Labs",
+          "role": "Prysm",
+          "handle": "terencechain",
+          "avatar": "https://pbs.twimg.com/profile_images/1767254738008240129/7hA2_fDm_400x400.jpg",
+          "share": 0.007
+        },
+        {
+          "label": "Dustin",
+          "name": "Dustin Brody",
+          "org": "Sigma Prime",
+          "role": "Lighthouse",
+          "share": 0.006
+        },
+        {
+          "label": "Lumi | Offchain Labs",
+          "name": "Lumi",
+          "org": "Offchain Labs",
+          "share": 0.003
+        },
+        {
+          "label": "Lion dapplion",
+          "name": "Lion dapplion",
+          "share": 0.001
+        }
+      ],
+      "chat": [
+        {
+          "speaker": "kasey",
+          "text": "Aarsh가 Bosul과 함께 Prysm에서 EIP-8070을 작업 중이며 지금까지 괜찮아 보이고 긍정적이라고 밝혔다.",
+          "timestamp": "00:13:09"
+        },
+        {
+          "speaker": "Dustin",
+          "text": "슬롯 시간을 계속 조금씩 내리는 것이 다소 큰 폭의 조정보다 오히려 혼란이 크며, 인프라 가정을 매 변경마다 따로 재검토해야 한다고 지적했다.",
+          "timestamp": "00:30:06"
+        },
+        {
+          "speaker": "terence",
+          "text": "컨트랙트는 12초 가정 대신 슬롯 번호 opcode를 쓰도록 바꿔야 한다고 제안했다.",
+          "timestamp": "00:31:29"
+        }
+      ],
+      "glossary": [
+        {
+          "term": "PFI (포함 제안)",
+          "def": "EIP를 포크 후보로 처음 접수해 유지하는 단계, 결정 아님"
+        },
+        {
+          "term": "CFI (포함 검토)",
+          "def": "포크에 넣을지 본격 검토하는 단계"
+        },
+        {
+          "term": "SFI (포함 확정)",
+          "def": "포크 포함을 확정하는 단계"
+        },
+        {
+          "term": "DFI (포함 제외)",
+          "def": "후보에서 빠지는 단계"
+        },
+        {
+          "term": "헤고타(Hegota)",
+          "def": "글램스터담 다음으로 논의되는 이더리움 하드포크"
+        },
+        {
+          "term": "FOCIL",
+          "def": "특정 트랜잭션의 블록 포함을 보장하는 검열 저항 메커니즘"
+        },
+        {
+          "term": "PeerDAS",
+          "def": "노드가 데이터 일부만 보관해 블롭 가용성을 확인하는 방식"
+        },
+        {
+          "term": "ePBS / PTC",
+          "def": "합의-실행 페이로드 분리 제안과 그 적시성을 검증하는 위원회"
+        }
+      ],
+      "eips": [
+        7716,
+        8070,
+        8142,
+        8198,
+        8333,
+        8359,
+        8363,
+        8365,
+        8367,
+        8369,
+        8371
+      ],
+      "relatedDebates": [
+        "eip-8363-tapered-issuance-burn"
+      ]
+    },
+    {
+      "id": "acdt-90",
+      "series": "acdt",
+      "number": 90,
+      "date": "2026-08-03",
+      "title": "AllCoreDevs - Testing #090",
+      "forkcastUrl": "https://forkcast.org/calls/acdt/090/",
+      "videoUrl": "https://www.youtube.com/watch?v=Cy4NEJnbCPA",
+      "issueUrl": "https://github.com/ethereum/pm/issues/2174",
+      "kind": "full",
+      "durationMin": 62,
+      "headline": "가스 리프라이싱\n75 앵커 동결",
+      "lead": "SLOAD은 2100 유지, 앵커를 75 Mgas/s로 낮춰 동결했다.",
+      "intro": "실행 계층(EL) 클라이언트 개발자들이 테스트 상태를 점검하는 콜이다.",
+      "summary": "글램스테르담(Glamsterdam) 리프라이싱(repricing) 수치를 동결했다. 앵커(anchor)를 100에서 75 Mgas/s로 낮추는 대신 SLOAD 가격을 현행 2,100으로 유지해, 앞으로 상대 가격은 고정하고 블록 가스 한도만 조정한다.",
+      "whyItMatters": "SLOAD을 3,000으로 올리지 않아 유니스왑 V2 같은 기존 컨트랙트가 깨지는 하위 호환성 문제가 사라졌다. 상대 가격을 지금 고정하면 글램스테르담 포크를 리프라이싱 때문에 다시 미룰 필요가 없고, 이후 블록 한도를 200M에서 300M으로 올릴 여지가 생긴다.",
+      "decisions": [
+        {
+          "label": "리프라이싱 동결",
+          "text": "SLOAD은 현행 2,100 유지, 계정 쓰기는 9K, 앵커는 75 Mgas/s로 고정하기로 하고 모든 EL 클라이언트가 승인했다. 옵코드 사이 상대 가격을 지금 확정하고 앞으로는 블록 한도만 조정한다는 뜻이다.",
+          "original": "Repricing numbers frozen: SLOAD stays at 2,100; account writes set to 9K; anchor fixed at 75 Mgas/s; all EL clients approved",
+          "eips": [
+            8038
+          ],
+          "status": "확정",
+          "timestamp": "00:34:15"
+        },
+        {
+          "label": "어테스테이션 3초",
+          "text": "글램스테르담 포크에서 어테스테이션 데드라인(attestation deadline)을 3초로 유지하고, 2초로 낮추는 것은 포크 후 하드포크 없이 조율된 클라이언트 릴리스로 미뤘다. 3초로 검증하는 클라이언트와 2초 클라이언트가 호환되므로 하드포크가 필요 없다는 판단이다.",
+          "original": "Attestation deadline stays at 3s for Glamsterdam fork; 2s lowering deferred post-fork via coordinated client release",
+          "eips": [],
+          "status": "보류",
+          "fork": "Glamsterdam",
+          "timestamp": "00:44:00"
+        },
+        {
+          "label": "discv5 전용",
+          "text": "데브넷 8(devnet 8)을 discv4 폴백 없이 discv5 전용으로 돌리기로 하고 메인넷도 같은 방향을 목표로 삼았다. 디스커버리 프로토콜을 discv5로 단일화하려는 것이다.",
+          "original": "discv5-only (no discv4 fallback) adopted for devnet 8 and targeted for mainnet",
+          "eips": [],
+          "status": "확정",
+          "timestamp": "00:45:24"
+        }
+      ],
+      "targets": [
+        {
+          "key": "devnet-8",
+          "text": "글램스테르담 데브넷 8: 이름 붙은 단명 테스트넷으로 계획. 이번 주 리프라이싱 확정에 의존(제안).",
+          "timestamp": "00:06:16"
+        }
+      ],
+      "actions": [
+        {
+          "owner": "Maria Silva / SEAL",
+          "text": "EIP-8038 리프라이싱 수치를 갱신하고 새 execution-specs 릴리스를 낸다.",
+          "timestamp": "00:34:22"
+        },
+        {
+          "owner": "EthPandaOps",
+          "text": "2초 어테스테이션 데드라인 분석을 위해 포크 시점에 블록 전파와 상태 전이 시간의 실측치를 수집한다.",
+          "timestamp": "00:43:02"
+        },
+        {
+          "owner": "jochem-brouwer / Mario Vega",
+          "text": "potuz와 EIP-8037 엔진 API 스펙 변경을 확인하고 ACDC 안건으로 올린다.",
+          "timestamp": "01:01:56"
+        }
+      ],
+      "agenda": [
+        {
+          "timestamp": "00:03:28",
+          "heading": "글램스테르담 데브넷 7 상태"
+        },
+        {
+          "timestamp": "00:06:04",
+          "heading": "데브넷 8 계획"
+        },
+        {
+          "timestamp": "00:07:07",
+          "heading": "가스 리프라이싱 업데이트와 앵커 변경",
+          "discussion": true
+        },
+        {
+          "timestamp": "00:19:16",
+          "heading": "어테스테이션 데드라인",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "00:45:03",
+          "heading": "데브넷 8 discv5 전용",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "00:49:34",
+          "heading": "동기화된 노드의 핫 스타트를 위한 블록 접근 리스트 데이터",
+          "discussion": true
+        },
+        {
+          "timestamp": "00:59:47",
+          "heading": "EIP-8037 엔진 API 필수 지원"
+        }
+      ],
+      "topics": [
+        {
+          "title": "가스 리프라이싱 수치 동결과 앵커 하향",
+          "intro": "더 무거운 계정 접근 테스트 케이스를 도입하자 앵커를 낮춰야 했고, 그 대가로 SLOAD을 싸게 유지할 수 있게 되면서 어떤 값으로 고정할지 결정해야 했다.",
+          "decision": "확정 00:34:15",
+          "positions": [
+            {
+              "speaker": "Maria Silva",
+              "text": "새 계정 테스트 케이스와 스테이트 액터(State Actor) 스냅샷으로 계정 접근이 비싸졌고 ETH 전송 21K가 상한이라 앵커를 100에서 75 Mgas/s로 내려야 한다. 대신 SLOAD은 3,000으로 올릴 필요 없이 현행 2,100으로 유지할 수 있어 유니스왑 V2 같은 하위 호환성 문제가 사라진다며 수치 동결을 제안했다.",
+              "timestamp": "00:07:21",
+              "original": "So I'll just do slides, and then we can discuss afterwards. So I just wanted to give, before we start, like, a quick update on, where we stand with repricings. So first, what changed? So, 3 main things changed since the last round we were doing. So, first, we introduced some new account test cases, that impacted both account access opcodes, but also ET transfers. And, the minimum… the main difference is that now we have a wider variety of cases, and some of them are, worst cases. So we… before, we were just doing, for instance, accessing an account that had the same… different accounts that had the same code. And now we have this diff max, which is, accessing accounts with a maximum contract size, and we are… Ensure that the bytecode is always different, so that the client needs to load the different bytecodes every time. And then we also introduced the, the delegated accounts. The second change was state actor, so we were using YohimNet before, which was a fork of mainnet that then we added some, states on top of it that we needed to run the benchmarks, and state actor is a synthetic snapshot that is created, specifically for the benchmarks. It has the state that we want, but also has the right size, so it's comparable to mainnet in size, but the layout of the… of the… of the snapshot is not the layout that we see in mainnet, so this is considered to be, like, a worse case than YohemNet. And so this will also have an impact on numbers. And then, thirdly, we are now running…",
+              "translation": "슬라이드로 진행하고, 이후에 논의하도록 하겠습니다. 시작하기 전에 리프라이싱(repricing) 관련 현황에 대해 간단히 업데이트를 드리고자 합니다. 먼저, 무엇이 바뀌었는지 말씀드리겠습니다. 지난 라운드 이후로 3가지 주요 사항이 변경되었습니다. 첫째, 새로운 계정 테스트 케이스를 도입했는데, 이는 계정 접근 옵코드(opcode)뿐 아니라 ET 전송에도 영향을 미쳤습니다. 주요 차이점은 이제 더 다양한 케이스를 갖추게 되었고, 그중 일부는 최악의 경우(worst case)라는 점입니다. 이전에는 예를 들어 같은 코드를 가진 서로 다른 계정에 접근하는 것만 테스트했습니다. 그런데 이제는 diff max라는 것이 있는데, 이는 최대 컨트랙트 크기를 가진 계정에 접근하는 것으로, 바이트코드가 항상 다르도록 보장하여 클라이언트가 매번 서로 다른 바이트코드를 로드해야 하도록 만듭니다. 그리고 위임된 계정(delegated account)도 도입했습니다. 두 번째 변경 사항은 state actor입니다. 이전에는 YohimNet을 사용했는데, 이는 메인넷의 포크에 벤치마크 실행에 필요한 상태를 추가한 것이었습니다. state actor는 벤치마크를 위해 특별히 생성된 합성 스냅샷(synthetic snapshot)입니다. 원하는 상태를 갖추고 있으면서도 적절한 크기를 가지고 있어 메인넷과 크기 면에서 비교 가능하지만, 스냅샷의 레이아웃은 메인넷에서 볼 수 있는 레이아웃이 아니기 때문에 YohemNet보다 더 나쁜 경우로 간주됩니다. 따라서 이 역시 수치에 영향을 미칠 것입니다. 그리고 셋째로, 저희는 현재…"
+            },
+            {
+              "speaker": "potuz",
+              "text": "평균이 아니라 최악의 경우로 가격을 매겨야 한다고 강조했다. ePBS에서는 6초를 넘겨 실행되는 블록을 보내면 다음 프로포저가 리오그(reorg)당하는 자동 공격이 성립하기 때문이라고 했다.",
+              "timestamp": "00:23:22",
+              "original": "Yeah, so, so… One problem… I agree and empathize with this thing of, like, these are the worst-case scenarios, and the average block is much smaller, or much faster, and whatever it is. But the problem with ePBS is that it becomes an automatic reorg. If, if we actually hit this limit. So this is not something that we have today, so if you just delay enough, if you send a block that takes a long time to execute, it doesn't get attested, and then the builder itself is hurt. But after ePBS, this becomes an actual attack that can't be carried out. If I send you a payload that takes more than 6 seconds to execute, then the next proposer is the one that gets reordered. So, this is an attack that is very viable, and unfortunately, we need to, like, account for the worst case scenario, not the average one.",
+              "translation": "네, 문제는… 이것들이 최악의 시나리오이고 평균적인 블록은 훨씬 작거나 훨씬 빠르다는 등의 의견에 공감하고 동의합니다. 하지만 ePBS의 문제는 이것이 자동 재조직(reorg)이 된다는 점입니다. 만약 실제로 이 한도에 도달한다면 말입니다. 오늘날에는 이런 일이 없습니다. 실행에 오랜 시간이 걸리는 블록을 보내서 충분히 지연시키면, 그 블록은 증명(attest)되지 않고 빌더 자신이 손해를 보게 됩니다. 하지만 ePBS 이후에는 이것이 방어할 수 없는 실제 공격이 됩니다. 실행에 6초 이상 걸리는 페이로드를 보내면, 다음 제안자(proposer)가 재조직당하게 됩니다. 이것은 매우 실현 가능한 공격이며, 안타깝게도 평균적인 경우가 아니라 최악의 시나리오를 고려해야 합니다."
+            },
+            {
+              "speaker": "Toni Wahrstätter",
+              "text": "SLOAD을 2,100으로 싸게 두면 블록에 SLOAD을 더 넣을 수 있어 최악 블록 크기가 300M에서 7.3MB 이상으로 커지지만, 공개 멤풀로는 만들 수 없는 악의적 블록이라며 실행 데드라인은 6초로 유지하자고 했다.",
+              "timestamp": "00:25:05",
+              "original": "Yeah, maybe just to add to that, because one thing that is also important here is… the choice of the payload execution deadline at 6 seconds, because now that SLOAD is not more expensive, like, priced at $3,000, but instead at $2,100, this also means you can get more SLOADs into a block, which means the ball will also be bigger. So, like, making SLOAD cheaper will increase the worst-case block size. And this means, Like, we have a very big gap between the average block size and the worst-case block size today. And the worst-case block size, after clamps are done at 300 million, will be something above, 7.3 megabyte. Yeah, this is, like. A very malicious block, like, it's nothing that the mempool would ever… the public mempool would ever allow you to, construct the block. from. So yeah, I would still say we keep the payload execution deadline at 6 seconds, even though this increases the worst-case block size.",
+              "translation": "네, 거기에 덧붙이자면, 여기서 중요한 또 한 가지는 페이로드 실행 마감시한(payload execution deadline)을 6초로 선택했다는 점입니다. 이제 SLOAD가 더 이상 3,000이 아니라 2,100으로 가격이 책정되면서 더 저렴해졌기 때문에, 블록에 더 많은 SLOAD를 넣을 수 있게 되고, 이는 곧 블록이 더 커진다는 것을 의미합니다. 즉 SLOAD를 더 싸게 만들면 최악의 경우 블록 크기가 커집니다. 이는 오늘날 평균 블록 크기와 최악의 경우 블록 크기 사이에 매우 큰 격차가 있다는 뜻입니다. 그리고 클램프(clamp)가 3억(300 million)에서 적용된 이후의 최악의 경우 블록 크기는 7.3메가바이트를 넘는 수준이 될 것입니다. 네, 이것은 매우 악의적인 블록으로, 퍼블릭 멤풀(mempool)이 이런 식으로 블록을 구성하도록 허용하는 일은 결코 없을 것입니다. 그래서 저는 이로 인해 최악의 경우 블록 크기가 커지더라도, 페이로드 실행 마감시한은 여전히 6초로 유지해야 한다고 생각합니다."
+            },
+            {
+              "speaker": "Ameziane Hamlat",
+              "text": "베수(Besu)는 수치에 동의하면서도, 합성 스냅샷인 스테이트 액터가 메인넷 스냅샷 기반 요힘넷(YohimNet)보다 정말 최악에 가까운지 데이터가 부족하다며 그 가정을 계속 검증해 달라고 했다.",
+              "timestamp": "00:30:02",
+              "original": "Yes, we are good with the numbers. Just maybe one concern from our side. This is something I erased, with, especially with SLOAD currently. So the last time, the numbers, looked good, because we were using, YoCamNet, and when we, switched to state actor, we had different numbers. with the same anchor point. But the issue for me is that, state actor is synthetic, whereas, whereas, Your CamNet is a snapshot from mainnet plus some new, new accounts. So there is… there is an assumption that, like, as we have, like, these new accounts with this new storage, this is somehow, like, warm on the… on the… On the storage side. But for me, we don't have enough feedback and data on that assumption. So, for me, this is… this is good for now. We can continue to work, toward, toward these numbers, but maybe keep and investigate, like, this assumption, just to be sure this is, like, like, state actor has something, like, is generating a state that is very close to what we have in mainnet in terms of performance.",
+              "translation": "네, 수치에 대해서는 만족합니다. 다만 저희 쪽에서 한 가지 우려 사항이 있습니다. 이는 특히 SLOAD와 관련해서 제가 지웠던 부분입니다. 지난번에는 YoCamNet을 사용했기 때문에 수치가 좋아 보였는데, state actor로 전환했을 때는 같은 기준점(anchor point)에서도 다른 수치가 나왔습니다. 하지만 제게 문제가 되는 것은, state actor는 합성(synthetic)인 반면 YoCamNet은 메인넷 스냅샷에 새로운 계정 몇 개를 추가한 것이라는 점입니다. 그래서 이런 새로운 스토리지를 가진 새로운 계정들이 있을 때, 이것이 어떻게든 스토리지 측면에서 웜(warm)하다는 가정이 존재합니다. 하지만 제가 보기에는 이 가정에 대한 충분한 피드백과 데이터가 없습니다. 그래서 저는 지금으로서는 괜찮다고 봅니다. 이 수치들을 향해 계속 작업을 진행할 수 있지만, 이 가정은 계속 유지하며 조사해야 한다고 봅니다. state actor가 성능 면에서 메인넷과 매우 유사한 상태를 생성하고 있다는 것을 확실히 하기 위해서입니다."
+            },
+            {
+              "speaker": "jochem-brouwer",
+              "text": "Ameziane의 지적이 옳다고 인정했다. 요힘넷은 프리스테이트를 트랜잭션으로 주입해 LSM 트리 상단에 얹히므로 읽기가 빠른 반면, 스테이트 액터는 접근 시점 정보가 없어 최악에 더 가깝다며 두 스냅샷을 병행 측정하겠다고 약속했다.",
+              "timestamp": "00:31:29",
+              "original": "Yeah, just to react to this, Ameziane, thanks for that feedback, because you are exactly right. I just want to add, this is, like, I think a very important point. So, you are right that YohimNet is indeed, like, a mainnet snapshot. The problem is, and this is what we identified when we moved to state actor. is that… and this sounds, like, super trivial, but not for me, so sorry about that, but it's, like, super trivial if you know it, but that's, of course, with all trivial things. The thing is that on YohimNet, what we do there for the tests, what we are targeting for the repricing. We need a specific pre-state. This pre-state is injected on your net, well, I would say also synthetically, because we inject this state using transactions on top of the mainnet snapshot. And this is, if we take the zaps for specific clients, this is mostly for the clients which use an LSM database, so that is, Besu, Nethermind, and GetF. The thing is that these accounts are then at the top of the LSM tree, so these accounts are much faster to read than if these would be old accounts. The response to this is, and Ameziane erased this, like, why don't you just create an attack which actually targets the old account? This is a very good point, we will do that, but we don't have that now. But the realization is that for the state actor, there's, like, no information in the database when this state was accessed. So this is why our claim is this is closer to the worst case, and this is why we have…",
+              "translation": "네, Ameziane, 피드백 감사합니다. 정확히 맞는 말씀이라 그에 대해 반응하고 싶습니다. 저는 이것이 매우 중요한 지점이라고 생각하기 때문에 덧붙이고자 합니다. 말씀하신 대로 YohimNet은 실제로 메인넷 스냅샷이 맞습니다. 문제는, 그리고 이것이 저희가 state actor로 전환할 때 발견한 것인데, 이것이 매우 사소하게 들릴 수 있지만 저에게는 그렇지 않았습니다. 죄송합니다만, 알고 나면 매우 사소한 것이지만, 모든 사소한 것들이 그렇듯 그렇습니다. 문제는, YohimNet에서 저희가 리프라이싱을 목표로 테스트를 위해 하는 작업에서, 특정한 사전 상태(pre-state)가 필요하다는 것입니다. 이 사전 상태는 YohimNet에 주입되는데, 이 역시 합성적이라고 말할 수 있습니다. 왜냐하면 메인넷 스냅샷 위에 트랜잭션을 사용해서 이 상태를 주입하기 때문입니다. 특정 클라이언트들에 대한 트랩(zap)을 살펴보면, 이는 주로 LSM 데이터베이스를 사용하는 클라이언트들, 즉 Besu, Nethermind, 그리고 GetF(Geth)에 해당합니다. 문제는 이러한 계정들이 LSM 트리의 맨 위에 위치하게 되어, 오래된 계정들보다 훨씬 빠르게 읽을 수 있다는 것입니다. 이에 대한 대응으로, Ameziane이 지적하셨듯이, 오래된 계정을 실제로 타겟으로 하는 공격을 만들면 되지 않느냐고 하실 수 있는데, 매우 좋은 지적이며 저희도 그렇게 할 예정이지만 지금은 아직 없습니다. 하지만 깨달은 점은, state actor의 경우 이 상태가 언제 접근되었는지에 대한 정보가 데이터베이스에 전혀 없다는 것입니다. 그래서 이것이 최악의 경우에 더 가깝다고 저희가 주장하는 이유이며, 그래서 저희는…"
+            },
+            {
+              "speaker": "Marius Van Der Wijden (M)",
+              "text": "게스(Geth) 팀 소속으로서 개인 의견이라며 이 변경이 좋다고 지지했다.",
+              "timestamp": "00:29:35",
+              "original": "I don't want to speak for the team, but I'm with the Geth team, and I have an opinion on this, and I think it's good.",
+              "translation": "팀을 대신해서 말씀드리고 싶지는 않지만, 저는 Geth 팀 소속이고 이에 대해 의견이 있는데, 좋다고 생각합니다."
+            }
+          ],
+          "quote": {
+            "text": "ePBS 이후에는 실행에 6초 넘게 걸리는 페이로드를 보내면 다음 프로포저가 리오그당하는, 실제로 실행 가능한 공격이 된다.",
+            "original": "If I send you a payload that takes more than 6 seconds to execute, then the next proposer is the one that gets reordered. So, this is an attack that is very viable, and unfortunately, we need to account for the worst case scenario, not the average one.",
+            "speaker": "potuz",
+            "timestamp": "00:23:22"
+          }
+        },
+        {
+          "title": "어테스테이션 데드라인 3초 유지",
+          "intro": "3초에서 2초로 낮추면 여러 공격 완화가 쉬워지지만 카를로스(Carlos)의 분석이 아직 2초는 안전하지 않다고 해, 포크에서 낮출지 여부를 정해야 했다.",
+          "decision": "보류 00:44:00",
+          "positions": [
+            {
+              "speaker": "potuz",
+              "text": "카를로스 수치를 신뢰하며 지금은 2초로 못 간다고 봤다. 다만 병목이 블록 제안 시간이고 문제는 높은 min-bid와 타이밍 게임을 겹친 한 운영자에게 국한된 로컬 상황이었다며, 포크 후 실측을 모아 하드포크 없이 릴리스로 낮추자고 제안했다.",
+              "timestamp": "00:37:00",
+              "original": "Oh, no, I can't. I trust Carlos' number. Carlos, I think, has proof that we cannot move to 2 seconds. If anything, I mean, Nico seems to suggest that we want to move to 2 seconds. I'd like to know if there is a path towards getting those optimizations, and what do we need to measure to move to 2 seconds, and hopefully we can just, like, do this after the fork, it doesn't need to be a hard fork. So, in principle, we can just ship to clients and start a testing at 2 seconds. Yeah, but it's not… it's not attestation propagation. It's… it's something that I believe it's easier to measure, which is because the problem here is block propagation and block validation. And it seems that the bottleneck is actually block proposing. So it's the time at which the block is even built is the bottleneck, it seems to me. We found a bug on Prysm that we were… because we started reorging. SLOT 31, we found a bug in Prysm that was preventing us from proposing fast SLOT 0 in Gloas, purely on Gloas, it is not live on mainnet. So, what I'd like is, like, do we have the machinery to start measuring accurately? Block propagation, especially accounting for a much smaller block, and a much faster to validate block. So that we can actually lower… life becomes easier on many attacks if we lower the attestation deadline to 2 seconds. On the death net, I'm sure we're gonna be fine. The question is, do we want to ship this… we can probably agree on shipping like this on the first major testnet, but it's a…",
+              "translation": "오, 아니요, 저는 할 수 없습니다. 저는 Carlos의 수치를 신뢰합니다. Carlos는 2초로 옮길 수 없다는 증거를 가지고 있다고 생각합니다. 오히려 Nico는 2초로 옮기고 싶어하는 것 같습니다. 저는 그러한 최적화로 가는 경로가 있는지, 그리고 2초로 옮기기 위해 무엇을 측정해야 하는지 알고 싶습니다. 그리고 바라건대 이것을 포크 이후에 해도 된다면, 하드포크일 필요는 없습니다. 원칙적으로는 그냥 클라이언트에 배포하고 2초로 테스트를 시작할 수 있습니다. 네, 하지만 이것은 증명(attestation) 전파가 아닙니다. 이것은 제가 보기에 측정하기 더 쉬운 것인데, 왜냐하면 여기서 문제는 블록 전파와 블록 검증이기 때문입니다. 그리고 병목은 실제로는 블록 제안(proposing)인 것 같습니다. 즉 블록이 만들어지는 시점 자체가 병목인 것으로 보입니다. 저희는 Prysm에서 버그를 발견했는데, 재조직(reorg)이 일어나기 시작했기 때문입니다. 슬롯 31에서, Gloas에서 순수하게, 즉 메인넷에는 아직 배포되지 않은 상태에서, 빠른 슬롯 0 제안을 막고 있던 Prysm의 버그를 발견했습니다. 그래서 제가 알고 싶은 것은, 블록 전파를 정확하게 측정할 수 있는 도구가 있는가 하는 것입니다. 특히 훨씬 작고 검증하기 훨씬 빠른 블록을 고려해서 말입니다. 그래야 증명 마감시한을 2초로 낮추면 여러 공격에 대해 상황이 더 쉬워질 수 있습니다. 데스넷(death net)에서는 분명 문제없을 것입니다. 문제는 이것을 첫 번째 주요 테스트넷에 이렇게 배포하는 데는 아마 합의할 수 있겠지만, 그건…"
+            },
+            {
+              "speaker": "Nico Flaig",
+              "text": "일단 낮춰서 너무 낮으면 다시 올리자며, CL 쪽에서 블록을 1초 안에 만들지 못할 이유가 없다고 했다.",
+              "timestamp": "00:39:25",
+              "original": "I mean, could we just reduce it, and then see if it's too low, we can bump it again up? So we at least start this value? Or, I mean, test this value? Because right now, I don't see any reason why you cannot produce a blog in one second on the CL side. I think the case. No, no, I mean, on mainnet, we cannot test this, but yeah, just on the definet, and then maybe the… I guess you would need Hoodi, at least, to get some good numbers.",
+              "translation": "그러니까, 일단 줄여보고, 너무 낮으면 다시 올릴 수도 있지 않을까요? 그렇게 해서 최소한 이 값으로 시작해보는 건 어떨까요? 아니면, 이 값을 테스트해 보는 것은요? 왜냐하면 지금으로서는 CL 쪽에서 1초 안에 블록을 만들어내지 못할 이유가 없다고 보기 때문입니다. 그런 것 같습니다. 아니요, 메인넷에서는 이것을 테스트할 수 없지만, 데브넷(devnet)에서는 가능하고, 그다음에는… Hoodi 정도는 있어야 좋은 수치를 얻을 수 있을 것 같습니다."
+            },
+            {
+              "speaker": "Enrico Del Fante (tbenr)",
+              "text": "테쿠(Teku)는 어테스테이션 패킹 휴리스틱과 블록 생성의 고정 하드 스톱 타이밍을 낮춰야 해 블록을 더 빨리 내보내야 한다며, 그래도 500ms까지는 쉽게 걸릴 수 있다고 했다.",
+              "timestamp": "00:40:34",
+              "original": "Well, for us, the reason is the station parking. This is one reason that I can find Possible interaction with this, because we have… some heuristics, it runs in block… at block production, and we have some hard, stop this, optimizations. On fixed timings, and so we might need to lower down those numbers to make… to release the block faster than today. Yeah, so this really depends on how big the state… the testnet… the network is, and how messy it is.",
+              "translation": "저희 입장에서 그 이유는 스테이션 파킹(station parking)입니다. 이것이 상호작용 가능성을 찾을 수 있는 한 가지 이유인데, 왜냐하면 저희는 블록 생성(block production) 시점에 실행되는 몇 가지 휴리스틱(heuristic)을 가지고 있고, 고정된 타이밍에 대해 몇 가지 하드한 중단 최적화를 가지고 있기 때문입니다. 그래서 오늘날보다 블록을 더 빠르게 릴리스하기 위해 그 수치들을 낮춰야 할 수도 있습니다. 네, 그래서 이는 정말로 상태(state)와 테스트넷, 네트워크의 크기가 얼마나 큰지, 그리고 얼마나 지저분한지에 따라 달라집니다."
+            },
+            {
+              "speaker": "Justin Traglia",
+              "text": "3초를 유지하고 메인넷에서 데이터를 더 모은 뒤 2초로 낮출지 보자는 쪽으로 정리했다.",
+              "timestamp": "00:41:33",
+              "original": "My thoughts are that… I think I'd like to keep 3 seconds and get more data, maybe on mainnet. Let's see if we can then lower it to 2 seconds. What? potuz, do you know what Carlos… Carlos's, I'm like… Why was 2 seconds impossible? Yep, that's. Okay, I saw a few thumbs up when I mentioned that. I mean, it was actually your idea, but I think we should proceed with that. So, keep 3 seconds. Consider lowering later. Okay, anything else before… anything else before we start the breakouts? Okay. Thank you, everyone. CL clients, I just shared the link to the CL breakout. I'm gonna join that. So, bye everyone. Talk to you guys next week.",
+              "translation": "제 생각에는… 3초를 유지하면서 데이터를 더 확보하고 싶습니다, 아마 메인넷에서요. 그런 다음 2초로 낮출 수 있는지 지켜보시죠. 뭐라고요? potuz, Carlos가… Carlos가 왜 2초가 불가능하다고 했는지 아시나요? 네, 맞습니다. 제가 그 이야기를 했을 때 몇 개의 좋아요(엄지척)를 봤습니다. 사실 그건 당신의 아이디어였지만, 그렇게 진행하는 것이 좋겠습니다. 그러니까 3초를 유지하고, 나중에 낮추는 것을 고려하도록 하겠습니다. 알겠습니다, 브레이크아웃 시작 전에 다른 사항이 있을까요? 다른 사항이 있을까요? 알겠습니다. 모두 감사합니다. CL 클라이언트 분들, 방금 CL 브레이크아웃 링크를 공유해 드렸습니다. 저는 거기에 참여하겠습니다. 그럼 모두 안녕히 계세요. 다음 주에 뵙겠습니다."
+            },
+            {
+              "speaker": "pk910",
+              "text": "후디(Hoodi)는 커뮤니티가 쓰는 안정적 테스트넷이고 깨지 않기로 약속했으니 불안정한 것을 후디에서 시험하지 말자고 했다.",
+              "timestamp": "00:41:48",
+              "viaChat": true,
+              "original": "We should not test weak stuff on hoodi. Yea, it's a testnet,  but it's a stable testnet for the comunity, that we promised to not break as there's a lot of work involved to rebuild 00:42:13\tNico Flaig:\t@Enrico Del Fante (tbenr) can't you prepare the block in prev. slot already? 00:42:40\tMaria Silva:\tThis is the analysis from Carlos: https://ethresear.ch/t/is-the-slot-0-reorg-cost-fixable-epbs-attestation-deadline-study/25338",
+              "translation": "저희는 Hoodi에서 취약한 것을 테스트해서는 안 됩니다. 네, 테스트넷이긴 하지만, 커뮤니티를 위한 안정적인 테스트넷이고, 재구축하는 데 많은 작업이 필요하기 때문에 저희가 망가뜨리지 않겠다고 약속한 것입니다. 00:42:13 Nico Flaig: @Enrico Del Fante (tbenr) 이전 슬롯에서 이미 블록을 준비할 수 없나요? 00:42:40 Maria Silva: 이것이 Carlos의 분석입니다: https://ethresear.ch/t/is-the-slot-0-reorg-cost-fixable-epbs-attestation-deadline-study/25338"
+            }
+          ],
+          "quote": {
+            "text": "3초에 어테스트하는 클라이언트는 나중에 어테스트하는 클라이언트와도 여전히 헤드에 합의할 수 있으니 하드포크가 필요 없다.",
+            "original": "Clients that are not upgraded and are tested later, are testing later, will still be able to get agree on head with the other clients, so it's fine.",
+            "speaker": "potuz",
+            "timestamp": "00:43:36"
+          }
+        },
+        {
+          "title": "데브넷 8 discv5 전용 전환",
+          "intro": "디스커버리 동작을 격리해 관찰하려면 discv4 폴백을 꺼야 하는데, 이를 데브넷 8부터 강제할 수 있는지 확인하는 자리였다.",
+          "decision": "확정 00:45:24",
+          "positions": [
+            {
+              "speaker": "Csaba",
+              "text": "테스트 결과 모든 클라이언트가 어느 한 브랜치에서는 discv5를 지원하고, 발견된 문제는 툴링 관련이라며 반대가 없으면 데브넷 8을 discv5 전용으로 가자고 했다. discv4 폴백을 끌 플래그가 없던 클라이언트로 님버스 EL(Nimbus EL)을 지목하며 플래그 추가를 요청했다.",
+              "timestamp": "00:45:24",
+              "original": "For the disk 5, according to my testing, everyone is fine on one branch or another, so I don't see… issues having a DevNet 8 branch on… we just on disk 5, if no one is opposing. the… the issues we have seen were tooling-related, and then I still have pending a few, Hive tests, which… which might uncover a few minor things to tweak, but I think we can just go with this 45, the… For my point. Anyone has doubts. Basically, that's the question. I mean, that seems like a no. Yeah, so from my point, we can just go with discv5 on the next… test, and… I mean, DevNet. There were two clients who had no flags to disable this before. One was Nimbus EL. And they promised to add it. Please tell us to do it that way, and I don't remember who was the other one. So please add the flags. Yeah, that was, for me, from discv5. I think we can just go with it. If there are no questions, I see in a hands up somewhere, but I don't know who it was. So even if you would keep the 4-back later. on a main branch, he'll… I think we want to turn it off. Yeah, plan timeline for mainnet for this V5, I sync, what we want to have… is that… everyone starts to have this V5 enabled, if there is someone still missing, the V5 enabled on mainnet releases, and for the… For all queries, we would turn off this freefall by default. Yeah. Alright, so that's it for this. Yes.",
+              "translation": "disc v5에 대해서는, 제 테스트에 따르면 모두가 한쪽 브랜치든 다른 쪽이든 문제가 없어서, disc v5에 대해 DevNet 8 브랜치를 갖는 데 반대하는 사람이 없다면 문제는 없다고 봅니다. 저희가 본 문제들은 툴링(tooling) 관련이었고, 아직 몇 가지 Hive 테스트가 남아 있어 사소한 몇 가지를 조정해야 할 부분이 드러날 수도 있지만, 이 45번으로 그냥 진행해도 될 것 같습니다. 제 입장은 그렇습니다. 이의 있으신 분 계신가요. 기본적으로 그게 질문입니다. 없다는 뜻인 것 같네요. 네, 그러면 제 입장에서는 다음 테스트, 그러니까 DevNet에서 disc v5로 그냥 진행하면 될 것 같습니다. 이전에 이를 비활성화할 플래그가 없던 클라이언트가 둘 있었습니다. 하나는 Nimbus EL이었고, 추가하겠다고 약속했습니다. 그런 식으로 해달라고 저희에게 말씀해 주세요. 다른 하나가 누구였는지는 기억이 나지 않습니다. 그러니 플래그를 추가해 주세요. 네, 그게 disc v5에 대한 제 의견이었습니다. 저는 그냥 이대로 진행해도 된다고 생각합니다. 질문이 없다면, 어딘가에 손을 든 분이 보이는데 누구인지는 모르겠습니다. 그러니 메인 브랜치에서 4-back을 나중에 유지하더라도, 그는… 저는 저희가 이를 꺼야 한다고 생각합니다. 네, 이 V5에 대한 메인넷 계획 타임라인은, 저희가 원하는 것은 모두가 이 V5를 활성화하기 시작하는 것이고, 메인넷 릴리스에서 아직 V5를 활성화하지 않은 사람이 있다면, 그리고 모든 쿼리에 대해서는 기본적으로 이 프리폴(freefall)을 꺼두려고 합니다. 네. 좋습니다, 이 부분은 여기까지입니다. 네."
+            },
+            {
+              "speaker": "Stefan Starflinger",
+              "text": "판다옵스(PandaOps)는 Ansible 컬렉션 변경을 이미 준비해 로컬 테스트가 좋아 보인다며, discv5 동작을 격리하려면 폴백이 없어야 한다고 강조했다.",
+              "timestamp": "00:47:29",
+              "original": "I think most of the work has already been prepared by Barnabas. He's already changed the Ansible collection. to use Disk V5 across the clients, and he's been doing some local testing. And, I think so far, it's been looking good. I haven't heard any blockers. But yeah, it would be good that there is no fallback to discv5 in clients, otherwise that would be a little bit annoying. Yeah, exactly. It's better to quickly identify what's going on with discv5, and not have to deal with multiple variables and dimensions. That was another point by Yochum? Or…",
+              "translation": "대부분의 작업은 이미 Barnabas가 준비해 두었다고 생각합니다. 그는 이미 Ansible 컬렉션을 변경해서 클라이언트 전반에 걸쳐 disc V5를 사용하도록 했고, 로컬 테스트를 좀 진행해 왔습니다. 그리고 지금까지는 잘 되고 있는 것 같습니다. 저는 어떤 블로커도 들은 바 없습니다. 하지만 네, 클라이언트에서 disc v5로의 폴백(fallback)이 없는 것이 좋겠습니다. 그렇지 않으면 조금 성가실 것 같습니다. 네, 맞습니다. disc v5에서 무슨 일이 일어나고 있는지 빠르게 파악하는 것이 낫고, 여러 변수와 차원을 동시에 다루지 않아도 되는 게 낫습니다. 그게 Yochum이 말한 또 다른 포인트였나요? 아니면…"
+            },
+            {
+              "speaker": "Mario Vega",
+              "text": "데브넷 8에서 이 전환에 문제가 없는지 Stefan에게 확인하려 손을 들었다고 했다.",
+              "timestamp": "00:47:22",
+              "original": "Yeah, it was me. Just to check with Stefan if there's any issues with this on the Demon8, I don't think so, right? Or…",
+              "translation": "네, 저였습니다. Demon8에서 이것과 관련해 문제가 있는지 Stefan에게 확인하고 싶었을 뿐입니다. 없을 것 같은데, 맞나요? 아니면…"
+            },
+            {
+              "speaker": "FLCL (Nethermind)",
+              "text": "discv5 전용에 찬성하며 메인넷 계획과 타임라인이 어떻게 되는지 물었다.",
+              "timestamp": "00:48:02",
+              "viaChat": true
+            }
+          ],
+          "quote": {
+            "text": "여러 변수와 차원을 다루지 않고 discv5에서 무슨 일이 일어나는지 빠르게 파악하려면 폴백이 없는 편이 낫다.",
+            "original": "It's better to quickly identify what's going on with discv5, and not have to deal with multiple variables and dimensions.",
+            "speaker": "Stefan Starflinger",
+            "timestamp": "00:48:12"
+          }
+        },
+        {
+          "title": "블록 접근 리스트로 동기화 노드 핫 스타트",
+          "intro": "블록 접근 리스트(Block Access List)에 담긴 검증 가능한 상태 접근 데이터를 스냅 싱크(snap sync) 이후 캐시 워밍에 쓸 수 있어, 그 이득을 클라이언트들에 알리려는 주제였다.",
+          "positions": [
+            {
+              "speaker": "jochem-brouwer",
+              "text": "EIP-8189(GetBlockAccessList 메시지)로 스냅 싱크 후 최근 블록 접근 항목을 핫 캐시에 미리 넣어 클라이언트를 핫 스타트할 수 있다며, 블록 첫 접근 항목의 약 79%가 직전 256블록에서도 접근됐다고 설명했다.",
+              "timestamp": "00:49:50",
+              "original": "Yes. Right, okay, sorry. Yeah, so I wanted to discuss, Block Access in combination with SnapSync, or well, actually, more about, other Inlocks, what Block Access gives us for syncing nodes. Because we have to realize that block access lists They are basically the built-in, they look in the protocol that we now have verifiable lists of state what's being accessed. For the latest, Xbox. or actually since the fork, since we activate block access lists. And the idea here is that, if we do step sync, so this is specifically focused on step sync. Is that we can actually rock-start the client, in the sense that we can already put the block accesses items into the ROT state, or your cache, or, like, whatever. That depends on, like, how your client uses a cache, or, like, how it initializes state. And the idea is that, currently, if you SnapSync, you are doing downloads on, on the Merkle tree. Using range requests, and this is… well, this is so much random, because there is, like, no data in the protocol if your state is, like, super old. Or, like, if it has been touched, like, recently, because currently we do not have this data in the protocol. But with SnapSync, sorry, with Block Access List, we actually have this. So what you can do, using SnapSync, and then Snapchat 2 sync. Is that we… Let's see, this is here. So, let me actually share my screen, because that's much more handy. Yes, can you see my screen? Okay, so this is, the EIP. 8189, this is the EIP from Toni and Gary, and…",
+              "translation": "네. 맞아요, 죄송합니다. 그래서 저는 Block Access를 SnapSync와 결합하는 것에 대해, 아니 사실 더 정확히는 다른 Inlock들에 대해, 즉 Block Access가 동기화하는 노드들에게 무엇을 제공하는지에 대해 논의하고 싶었습니다. 왜냐하면 저희가 인식해야 할 것은, 블록 접근 목록(block access list)이 기본적으로 이제 저희가 가지고 있는 검증 가능한 상태 접근 목록을 프로토콜에 내장해 준다는 점이기 때문입니다. 최신 Xbox에 대해서, 아니 사실 포크 이후, 즉 블록 접근 목록을 활성화한 이후로 말입니다. 여기서의 아이디어는, 스텝 싱크(step sync)를 한다면, 그러니까 이는 특히 스텝 싱크에 초점을 맞춘 것인데, 저희가 클라이언트를 실제로 빠르게 시작(rock-start)할 수 있다는 것입니다. 즉 블록 접근 항목들을 이미 ROT 상태나 여러분의 캐시 등에 넣을 수 있다는 의미입니다. 이는 클라이언트가 캐시를 어떻게 사용하는지, 또는 상태를 어떻게 초기화하는지에 따라 달라집니다. 그리고 아이디어는, 현재 SnapSync를 하면 머클 트리(Merkle tree)에 대해 다운로드를 하고 있다는 것입니다. 범위 요청(range request)을 사용해서 말이죠, 그리고 이것은, 음, 매우 무작위적인데, 왜냐하면 여러분의 상태가 매우 오래되었거나 최근에 건드려졌다면 프로토콜 내에는 그에 대한 데이터가 전혀 없기 때문입니다. 왜냐하면 현재는 프로토콜에 이 데이터가 없기 때문입니다. 하지만 SnapSync로, 아니 죄송합니다, Block Access List로는, 저희가 실제로 이 데이터를 가지고 있습니다. 그래서 SnapSync를 사용하고, 그다음 Snapchat 2 sync를 사용하면 할 수 있는 것은… 어디 보자, 여기 있네요. 그럼 화면을 공유하겠습니다, 그게 훨씬 편하니까요. 네, 제 화면이 보이시나요? 좋습니다, 이것이 EIP-8189이고, Toni와 Gary가 작성한 EIP입니다, 그리고…"
+            },
+            {
+              "speaker": "Marius Van Der Wijden (M)",
+              "text": "이는 Snap2의 목표와 맞닿아 있다며, 피벗 이후 누적한 블록 접근 리스트를 재실행하면 트리 힐링(healing) 단계를 대체할 수 있고 훨씬 빠르다고 했다.",
+              "timestamp": "00:53:13",
+              "original": "Yeah, I think that was the purpose of Snap 2, was, like, to also get rid of the healing phase in Snap by just using the block access list that we've accumulated. So… you need the healing phase in the snap protocol in order to get from… like, when you… when you do a snap sync, you choose a pivot point, and you're trying to snap to that, sync to that, but in the meantime, the chain moves, and you have to choose a different pivot point, and you have to do, like, update your pivot point. And, because of that, you will have, like, not… one… continuous tree when… when you have finished your snap sync. And so we have the healing phase to heal, basically, this… these… these half trees into one. And what you can do with the Block Access List is, Whenever, like, you choose your first pivot point, and from that on, you also record all of the block access lists, and then instead of healing, you just execute the block access lists. Can't be much faster.",
+              "translation": "네, 저는 그것이 Snap 2의 목적이었다고 생각합니다. 저희가 축적해 온 블록 접근 목록을 사용해서 Snap의 힐링(healing) 단계를 없애는 것 말입니다. 그러니까, 스냅 프로토콜에서 힐링 단계가 필요한 이유는, 스냅 싱크를 할 때 피벗 포인트(pivot point)를 선택하고 거기에 스냅, 즉 동기화를 시도하는데, 그 사이에 체인이 움직여서 다른 피벗 포인트를 선택해야 하고, 피벗 포인트를 업데이트해야 하기 때문입니다. 그로 인해 스냅 싱크를 마쳤을 때 하나의 연속된 트리가 아니게 됩니다. 그래서 이 절반짜리 트리들을 하나로 합치기 위해 힐링 단계가 필요한 것입니다. 그런데 Block Access List로 할 수 있는 것은, 첫 피벗 포인트를 선택한 순간부터 그 이후의 모든 블록 접근 목록을 기록해두고, 힐링을 하는 대신 그냥 블록 접근 목록을 실행하는 것입니다. 훨씬 빠를 수밖에 없습니다."
+            },
+            {
+              "speaker": "Karim T. (matkt)",
+              "text": "스냅 싱크에만 국한되지 않는다며, 노드 시작 후 최근 몇 주치 블록 접근 리스트를 받아 LSM 트리의 L0로 옮겨 두는 방식도 시험해 볼 수 있다고 했다.",
+              "timestamp": "00:52:54",
+              "original": "I think it's not only related to SnapSync, we can just, when we start a node, or after SnapSync. Trying to have all of the last block access lists from other peers, and Read everything and add that in a cache, or… What the hell we want, but…",
+              "translation": "저는 이것이 SnapSync에만 관련된 것은 아니라고 생각합니다. 저희는 그냥 노드를 시작할 때, 또는 SnapSync 이후에, 다른 피어들로부터 최근 블록 접근 목록을 모두 가져오려고 시도하고, 모든 것을 읽어서 캐시에 추가하면 됩니다. 아니면 저희가 원하는 게 뭐든 간에요, 하지만…"
+            },
+            {
+              "speaker": "Łukasz Rozmej",
+              "text": "이런 핫 리드 최적화는 해피 패스(happy path) 최적화라 여기서 논의하는 벤치마크 최악 수치에는 영향을 주지 않는다며, 있으면 좋지만 포크에 필수는 아니고 릴리스 후로 미뤄도 된다고 했다.",
+              "timestamp": "00:57:39",
+              "original": "So, one comment from me, like, I think the main, addition of Bos in terms of Snap sync is still the healing, which is, going really fast with balls on our testing. But, general, this is, well, this kind of optimization of having some hot reads with balls, etc. done. It's fine, but it's still, like, a happy path optimization, so it won't really affect the benchmarking numbers, for example, that we are talking here, so… It's nice to have, but it's… tell, I expect… we will handle the happy path regardless, most of the clients, really fast with balls, so, It's, like, if someone really wants to push the network to its maximum throughput, practical throughput, With, like, potential compromises to security, then it makes some difference, but if we are measuring the worst cases, it won't make a difference. I think, you know, this kind of things can also wait post-release, this kind of happy path optimizations. They might be worth it, but they're not, like, crucial at the moment. And we'll have more data. To, to know how, how well they performed, and…",
+              "translation": "제 의견을 말씀드리면, Bos가 SnapSync 측면에서 주는 주요 추가 가치는 여전히 힐링이고, 이는 저희 테스트에서 볼(ball)을 사용했을 때 정말 빠르게 진행됩니다. 하지만 일반적으로, 볼 등을 이용한 핫 리드(hot read)를 갖는 이런 종류의 최적화는, 괜찮긴 하지만 여전히 일종의 해피 패스(happy path) 최적화이기 때문에, 저희가 여기서 이야기하고 있는 벤치마킹 수치에는 실제로 영향을 미치지 않을 것입니다. 그러니까… 있으면 좋지만, 대부분의 클라이언트는 어차피 해피 패스를 볼을 이용해 정말 빠르게 처리할 것이라고 예상하기 때문에, 만약 누군가 정말로 네트워크를 최대 처리량, 즉 실질적인 처리량 한계까지 밀어붙이고 싶고, 그 과정에서 보안 측면의 잠재적인 타협을 감수한다면 어느 정도 차이가 있겠지만, 저희가 최악의 경우를 측정하고 있다면 차이가 없을 것입니다. 이런 종류의 것들은 릴리스 이후에도 기다릴 수 있다고 생각합니다, 이런 해피 패스 최적화들 말입니다. 가치가 있을 수도 있지만, 지금 당장 중요한 것은 아닙니다. 그리고 이것들이 얼마나 잘 작동했는지 알기 위해서는 더 많은 데이터가 필요할 것입니다. 그리고…"
+            }
+          ],
+          "quote": {
+            "text": "좋긴 하지만 최악의 경우를 측정하는 한 이 최적화는 차이를 만들지 않는다.",
+            "original": "It's nice to have, but if we are measuring the worst cases, it won't make a difference.",
+            "speaker": "Łukasz Rozmej",
+            "timestamp": "00:57:39"
+          }
+        }
+      ],
+      "speakers": [
+        {
+          "label": "Maria Silva",
+          "name": "Maria Silva",
+          "role": "EIP-8037 제1저자",
+          "handle": "misilva73",
+          "avatar": "https://pbs.twimg.com/profile_images/1551690804594458624/elGlKFpy_400x400.jpg",
+          "share": 0.204
+        },
+        {
+          "label": "Justin Traglia",
+          "name": "Justin Traglia",
+          "org": "EF",
+          "role": "보안",
+          "handle": "JustinTraglia",
+          "avatar": "https://pbs.twimg.com/profile_images/1648459994256543744/fn_SnKW5_400x400.jpg",
+          "share": 0.153
+        },
+        {
+          "label": "jochem-brouwer",
+          "name": "Jochem Brouwer",
+          "org": "EF",
+          "role": "EthereumJS · EIP-8037 공동 저자",
+          "share": 0.153
+        },
+        {
+          "label": "potuz",
+          "name": "Potuz",
+          "org": "Offchain Labs",
+          "role": "Prysm",
+          "handle": "potuz_eth",
+          "avatar": "https://pbs.twimg.com/profile_images/1494001194427158539/bfrZyMsG_400x400.jpg",
+          "share": 0.106
+        },
+        {
+          "label": "Toni Wahrstätter",
+          "name": "Toni Wahrstätter",
+          "org": "EF",
+          "role": "리서처",
+          "handle": "nero_eth",
+          "avatar": "https://pbs.twimg.com/profile_images/1858347774129094657/xUc7IS2K_400x400.jpg",
+          "share": 0.058
+        },
+        {
+          "label": "Csaba",
+          "name": "Csaba",
+          "share": 0.051
+        },
+        {
+          "label": "Barnabas",
+          "name": "Barnabas Busa",
+          "org": "EF DevOps",
+          "handle": "BarnabasBusa",
+          "avatar": "https://pbs.twimg.com/profile_images/534855342300352514/m-C5ReWq_400x400.jpeg",
+          "share": 0.047
+        },
+        {
+          "label": "Łukasz Rozmej",
+          "name": "Łukasz Rozmej",
+          "org": "Nethermind",
+          "role": "EIP-8037 공동 저자",
+          "share": 0.031
+        },
+        {
+          "label": "Marius Van Der Wijden (M)",
+          "name": "Marius van der Wijden",
+          "org": "EF",
+          "role": "geth",
+          "handle": "vdWijden",
+          "avatar": "https://pbs.twimg.com/profile_images/1334610351976026113/o0FQPHZX_400x400.jpg",
+          "share": 0.029
+        },
+        {
+          "label": "spencer",
+          "name": "Spencer Taylor-Brown",
+          "org": "EF",
+          "role": "테스팅",
+          "share": 0.027
+        },
+        {
+          "label": "Ben Adams",
+          "name": "Ben Adams",
+          "org": "Nethermind",
+          "handle": "ben_a_adams",
+          "avatar": "https://pbs.twimg.com/profile_images/1282411238602006529/l4lHaQHE_400x400.jpg",
+          "share": 0.024
+        },
+        {
+          "label": "Mario Vega",
+          "name": "Mario Vega",
+          "org": "EF",
+          "role": "테스팅, ACDT 진행",
+          "handle": "elbuenmayini",
+          "avatar": "https://pbs.twimg.com/profile_images/1616232824415342592/Wly-1ddA_400x400.jpg",
+          "share": 0.02
+        },
+        {
+          "label": "Mehdi Aouadi",
+          "name": "Mehdi Aouadi",
+          "org": "Consensys",
+          "role": "Teku",
+          "share": 0.018
+        },
+        {
+          "label": "Stefan Starflinger",
+          "name": "Stefan Starflinger",
+          "org": "EF DevOps",
+          "share": 0.016
+        },
+        {
+          "label": "Karim T. (matkt)",
+          "name": "Karim Taam",
+          "org": "Consensys",
+          "role": "Besu",
+          "share": 0.016
+        },
+        {
+          "label": "Ameziane Hamlat",
+          "name": "Ameziane Hamlat",
+          "org": "Consensys",
+          "role": "Besu",
+          "share": 0.013
+        },
+        {
+          "label": "Enrico Del Fante (tbenr)",
+          "name": "Enrico Del Fante",
+          "org": "Consensys",
+          "role": "Teku",
+          "handle": "tbenr",
+          "avatar": "https://pbs.twimg.com/profile_images/1425021438269050892/3IRr4G_z_400x400.jpg",
+          "share": 0.011
+        },
+        {
+          "label": "milen | Erigon",
+          "name": "Milen",
+          "org": "Erigon",
+          "share": 0.011
+        },
+        {
+          "label": "Nico Flaig",
+          "name": "Nico Flaig",
+          "org": "ChainSafe",
+          "role": "Lodestar",
+          "handle": "nicoflaig",
+          "avatar": "https://pbs.twimg.com/profile_images/1618325595397447689/9kzomyhR_400x400.jpg",
+          "share": 0.009
+        },
+        {
+          "label": "pk910",
+          "name": "pk910",
+          "org": "EF DevOps",
+          "handle": "_pk910_",
+          "avatar": "https://pbs.twimg.com/profile_images/1778392621032898560/hneq3NpH_400x400.jpg",
+          "share": 0
+        },
+        {
+          "label": "FLCL (Nethermind)",
+          "name": "FLCL",
+          "org": "Nethermind",
+          "share": 0
+        }
+      ],
+      "chat": [
+        {
+          "speaker": "Barnabas",
+          "text": "그냥 글램스테르담을 200M 가스로 합의하고 포크한 뒤 거기서 나아가자. 안전한 값을 평가할 시간은 몇 달 있고, 60에서 200으로 가는 것만으로도 큰 도약이다.",
+          "timestamp": "00:25:24"
+        },
+        {
+          "speaker": "jochem-brouwer",
+          "text": "지금 메인넷 블록이 이 한도에 못 미쳐도, 미래에 악용 가능하고 수익이 나면 공격당한다. 그래서 평균이 아니라 최악의 경우를 목표로 가격을 매긴다.",
+          "timestamp": "00:25:35"
+        },
+        {
+          "speaker": "Ameziane Hamlat",
+          "text": "지금 리프라이싱은 ePBS를 반영하지 않고 3초 실행 창 기준이라, 75 Mgas/s 앵커는 ePBS 없이 225M 가스 한도를 겨냥한 것이다.",
+          "timestamp": "00:21:54"
+        }
+      ],
+      "glossary": [
+        {
+          "term": "SFI (Scheduled For Inclusion)",
+          "def": "포크 포함이 확정된 상태"
+        },
+        {
+          "term": "CFI (Considered For Inclusion)",
+          "def": "포크 포함을 검토 중인 상태"
+        },
+        {
+          "term": "PFI (Proposed For Inclusion)",
+          "def": "포함 후보로 접수·유지 중인 상태"
+        },
+        {
+          "term": "DFI (Declined For Inclusion)",
+          "def": "포함 후보에서 제외된 상태"
+        },
+        {
+          "term": "리프라이싱(repricing)",
+          "def": "옵코드 가스 비용을 다시 매겨 최악 블록 실행 시간을 맞추는 작업"
+        },
+        {
+          "term": "앵커(anchor)",
+          "def": "가격 기준이 되는 초당 처리량(Mgas/s), 이번에 75로 하향"
+        },
+        {
+          "term": "ePBS",
+          "def": "프로포저·빌더 분리를 프로토콜에 내장한 방식(enshrined PBS)"
+        },
+        {
+          "term": "어테스테이션 데드라인(attestation deadline)",
+          "def": "검증자가 블록에 투표하는 슬롯 내 마감 시각"
+        }
+      ],
+      "eips": [
+        8037,
+        8038,
+        8189
+      ],
+      "relatedDebates": []
     }
   ],
   "status": {
     "currentFork": {
       "name": "글램스터담",
       "stage": "데브넷 단계",
-      "line": "세폴리아 10월 6일 확정 · 후디 미정 · 데브넷 11 이번 주 출시"
+      "line": "세폴리아 10월 6일 확정 · 후디 미정 · 데브넷 11 출시"
     },
     "nextFork": {
       "name": "헤고타",
       "stage": "범위 정하는 중",
-      "line": "SFI 1건(EIP-8141) · PFI 4건 · 11월 3일 데브콘까지 범위 확정"
+      "line": "SFI 1건(EIP-8141) · PFI 4건 이상 · 11월 3일 데브콘까지 범위 확정"
     },
     "basis": "acdt-95"
   }
