@@ -41,6 +41,30 @@ function fitLines(head: string[], body: string[], foot: string[]): string {
   return out.length > CAPTION_MAX ? `${out.slice(0, CAPTION_MAX - 1)}…` : out;
 }
 
+/** 상한 때문에 뒤를 잘랐을 때 붙이는 안내. 전체 글 링크는 첫 댓글에 있다 */
+export const TRIM_NOTE = '(이어지는 내용은 첫 댓글의 링크에서)';
+
+/** 문단 단위로 상한에 맞춘다. 넘치면 뒤 문단을 통째로 빼므로 문장이 중간에서 끊기지 않는다 */
+export function fitParagraphs(paragraphs: ReadonlyArray<string>, tags: string[] = DEFAULT_TAGS): string {
+  const foot = tagLine(tags);
+  const paras = paragraphs.map((p) => p.trim()).filter(Boolean);
+  const build = (kept: ReadonlyArray<string>, trimmed: boolean) => [...kept, ...(trimmed ? [TRIM_NOTE] : []), foot].join('\n\n');
+  let kept = paras;
+  let out = build(kept, false);
+  if (out.length <= CAPTION_MAX) return out;
+  while (out.length > CAPTION_MAX && kept.length > 1) {
+    kept = kept.slice(0, -1);
+    out = build(kept, true);
+  }
+  // 문단 하나가 1,000자쯤이라 통째로 빼면 상한이 크게 남는다. 잘린 문단의 앞부분(제목·도입·발언 몇 줄)까지 채운다
+  const nextLines = (paras[kept.length] ?? '').split('\n');
+  for (let n = nextLines.length - 1; n >= 2; n--) {
+    const partial = build([...kept, nextLines.slice(0, n).join('\n')], true);
+    if (partial.length <= CAPTION_MAX) return partial;
+  }
+  return out.length > CAPTION_MAX ? `${out.slice(0, CAPTION_MAX - 1)}…` : out;
+}
+
 /**
  * 다이제스트 → 본문. 제목, 인트로, 핵심 구분별 항목 제목, 해시태그. URL은 넣지 않는다.
  */
@@ -107,6 +131,8 @@ export function channelHtmlToText(html: string): PlainText {
   s = s.replace(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi, (_, href, inner) => {
     const label = decodeEntities(inner.replace(/<[^>]+>/g, '')).trim();
     const url = decodeEntities(href);
+    // 텔레그램이 "#12249는" 같은 해시태그를 자동으로 검색 링크(?q=…)로 감싼다. 링크가 아니라 본문 글자다
+    if (!/^https?:\/\//i.test(url)) return label;
     links.push({ label, url });
     // 라벨이 곧 URL이거나 "링크" 같은 자리표시자면 본문에서 뺀다
     return /^https?:\/\//.test(label) || /^(링크|link)$/i.test(label) ? '' : label;
@@ -152,11 +178,15 @@ export interface LinkedInPost {
 export function buildLinkedInPost(post: ChannelPost, digests: ReadonlyArray<DigestLike>, tags: string[] = DEFAULT_TAGS, replies: ReadonlyArray<ChannelPost> = []): LinkedInPost {
   const plain = channelHtmlToText(post.html);
   const stripped = stripUrls(plain.text);
-  // 답글(콜 브리프의 토론 메시지 등)은 본문에 싣지 않고 그 안의 링크만 댓글로 합친다
-  const replyParts = replies.map((r) => {
-    const p = channelHtmlToText(r.html);
-    return { links: p.links, urls: stripUrls(p.text).urls };
-  });
+  // 답글(콜 브리프의 토론 메시지 등)은 이어지는 한 편의 글이다. 본문을 합쳐 한 게시물로 올린다
+  const replyParts = replies
+    .slice()
+    .sort((a, b) => a.id - b.id)
+    .map((r) => {
+      const p = channelHtmlToText(r.html);
+      const s = stripUrls(p.text);
+      return { text: s.text, links: p.links, urls: s.urls };
+    });
   const links = [...plain.links, ...replyParts.flatMap((r) => r.links)];
   const bareUrls = [...stripped.urls, ...replyParts.flatMap((r) => r.urls)];
   const allUrls = [...new Set([...links.map((l) => l.url), ...bareUrls])];
@@ -177,7 +207,8 @@ export function buildLinkedInPost(post: ChannelPost, digests: ReadonlyArray<Dige
   }
   commentLines.push(`텔레그램 채널 The Ticker is ETH: ${CHANNEL_URL}`);
 
-  const body = digest ? formatDigestCaption(digest, tags) : fitLines([stripped.text], [], ['', tagLine(tags)]);
+  const paragraphs = [stripped.text, ...replyParts.map((r) => r.text)].flatMap((t) => t.split(/\n{2,}/));
+  const body = digest ? formatDigestCaption(digest, tags) : fitParagraphs(paragraphs, tags);
   return { body, comment: [...new Set(commentLines)].join('\n'), photos: post.photos, ...(post.video ? { video: post.video } : {}), ...(digestDate ? { digestDate } : {}) };
 }
 
