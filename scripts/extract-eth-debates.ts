@@ -18,7 +18,7 @@
  *      DEBATES_FILL_TEXT=1: 인용 트윗의 원문 전문과 번역이 빈 항목만 채운다 (추출 없이). 팝업의 원문·번역이 여기서 나온다.
  *      DEBATES_REFINE=1 또는 id 목록: 기존 레코드를 인용 트윗 원문 전문을 근거로 교정한다 (입장·논거·인용 다시 쓰기, id·인물 프로필 유지).
  */
-import { execFileSync } from 'child_process';
+import { runClaude } from './lib/claude';
 import fs from 'fs';
 import path from 'path';
 import * as dotenv from 'dotenv';
@@ -215,19 +215,6 @@ function toEngagement(tweet: Record<string, unknown> | null): Engagement | undef
   return { likes: n(tweet.likes ?? tweet.favorites), retweets: n(tweet.retweets), quotes: n(tweet.quotes), replies: n(tweet.replies), views: n(tweet.views) };
 }
 
-/** 헤드리스 호출 공통: JSON 봉투에서 result만 꺼낸다 */
-function runClaude(prompt: string, model: string): string {
-  const raw = execFileSync('claude', ['-p', prompt, '--output-format', 'json', '--model', model], {
-    encoding: 'utf-8',
-    maxBuffer: 32 * 1024 * 1024,
-    timeout: 15 * 60 * 1000,
-    // ponytail: 로컬 백필 때 Claude Code 세션 안에서 돌려도 중첩 실행 차단에 안 걸리게
-    env: { ...process.env, CLAUDECODE: undefined },
-  });
-  const envelope = JSON.parse(raw) as { result?: string; is_error?: boolean };
-  if (envelope.is_error || !envelope.result) throw new Error('headless claude returned an error');
-  return envelope.result;
-}
 
 /** 인용 트윗의 답글·인용 상대와 원문 전문을 tweet.php로 채운다. 둘 다 이미 있는 항목은 건너뛴다. */
 async function fillRelations(debates: Debate[], xApi: ReturnType<typeof makeXApi>): Promise<Debate[]> {
