@@ -11,7 +11,7 @@
  *   2) 집필: 그 브리핑으로 다이제스트를 쓴다.
  * env: DIGEST_MODEL(기본 fable) · DIGEST_BRIEF_MODEL(기본 fable) · DIGEST_DRY_RUN=1(브리핑만 만들어 출력하고 저장하지 않음)
  */
-import { execFileSync } from 'node:child_process';
+import { runClaude } from './lib/claude';
 import { z } from 'zod';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -171,18 +171,6 @@ function todayKst(): string {
   return process.env.DIGEST_DATE ?? new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Seoul' }).format(new Date());
 }
 
-/** 헤드리스 claude 호출. 구독 인증이라 API 키가 필요 없다. 로컬 Claude Code 세션 안에서 돌려도 되게 CLAUDECODE는 뺀다. */
-function runClaude(prompt: string, model: string): string {
-  const raw = execFileSync('claude', ['-p', prompt, '--output-format', 'json', '--model', model], {
-    encoding: 'utf-8',
-    maxBuffer: 32 * 1024 * 1024,
-    timeout: 15 * 60 * 1000,
-    env: { ...process.env, CLAUDECODE: undefined },
-  });
-  const envelope = JSON.parse(raw) as { result?: string; is_error?: boolean };
-  if (envelope.is_error || !envelope.result) throw new Error(`headless claude (${model}) returned an error: ${envelope.result ?? ''}`.trim());
-  return envelope.result;
-}
 
 /** 헤드리스 응답에서 JSON만 추출 (혹시 붙은 코드펜스 제거) */
 function extractJson(text: string): unknown {
