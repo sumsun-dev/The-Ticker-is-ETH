@@ -256,6 +256,20 @@ describe('telegram rendering', () => {
     expect(parts[parts.length - 1].endsWith(link)).toBe(true);
   });
 
+  it('should accept a topic with no agenda item (model sends 0)', () => {
+    const base = CallDraftSchema.parse({
+      headline: '두 줄\n헤드라인', lead: '한 문장 리드다.', intro: '어떤 콜인지 한 줄이다.',
+      summary: '가장 중요한 결정과 그 의미를 담은 한 줄 요약이다.',
+      whyItMatters: '사용자와 클라이언트에 무엇이 달라지는지 설명하는 문장이다.',
+      decisions: [{ n: 1, label: '결정 이름', text: '무엇이 결정됐는지', status: '확정' }],
+      topics: [
+        { title: '안건에 걸린 주제', intro: '도입 문장이다.', agendaN: 2, positions: [{ speaker: 'nixo', text: '입장을 밝혔다.' }] },
+        { title: '안건 없는 주제', intro: '도입 문장이다.', agendaN: 0, positions: [{ speaker: 'nixo', text: '입장을 밝혔다.' }] },
+      ],
+    });
+    expect(base.topics.map((t) => t.agendaN)).toEqual([2, undefined]);
+  });
+
   it('should number sources for the prompt', () => {
     const input = callInput({ title: META.title, date: META.date, decisions: [{ original_text: 'A' }, { original_text: 'B', fork: 'Hegota' }], tldr: {}, notes: {}, vtt: VTT, chat: [] });
     expect(input).toContain('1. A\n2. B [fork: Hegota]');

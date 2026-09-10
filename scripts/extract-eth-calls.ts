@@ -63,7 +63,7 @@ const PROMPT = `당신은 ECK(Ethereum Collective Korea)의 리서치 에디터�
  "targets": [{"n": 일정 번호, "key": "같은 일정을 뒤 콜에서 이어 볼 수 있는 영문 슬러그. 예: sepolia-fork, hoodi-fork, mainnet-fork, devnet-9, hegota-scoping", "text": "날짜와 이벤트. 확정인지 제안인지 구분"}],
  "actions": [{"n": 액션 번호, "owner": "담당", "text": "할 일과 기한"}],
  "agenda": [{"n": 안건 번호, "heading": "안건 제목의 한국어 번역"}],
- "topics": [{"title": "토론 주제", "intro": "이 주제가 무엇이고 왜 지금 논의됐는지 한 문장", "agendaN": 해당 안건 번호, "decision": "이 주제에서 결정이 났으면 'SFI 결정 01:37:56'처럼 짧게. 없으면 생략", "positions": [{"speaker": "자막의 발화자 표기 그대로", "text": "입장과 근거 한두 문장. 누구 의견에 동의하거나 반박했는지 있으면 밝힌다", "timestamp": "그 발언이 시작된 자막 시각 hh:mm:ss", "viaChat": 채팅 발언이면 true}], "quote": {"text": "그 주제에서 가장 핵심적인 한 문장의 직역", "original": "자막의 영어 원문 그대로", "speaker": "자막 표기", "timestamp": "hh:mm:ss"}}],
+ "topics": [{"title": "토론 주제", "intro": "이 주제가 무엇이고 왜 지금 논의됐는지 한 문장", "agendaN": 해당 안건 번호(해당 안건이 없으면 생략), "decision": "이 주제에서 결정이 났으면 'SFI 결정 01:37:56'처럼 짧게. 없으면 생략", "positions": [{"speaker": "자막의 발화자 표기 그대로", "text": "입장과 근거 한두 문장. 누구 의견에 동의하거나 반박했는지 있으면 밝힌다", "timestamp": "그 발언이 시작된 자막 시각 hh:mm:ss", "viaChat": 채팅 발언이면 true}], "quote": {"text": "그 주제에서 가장 핵심적인 한 문장의 직역", "original": "자막의 영어 원문 그대로", "speaker": "자막 표기", "timestamp": "hh:mm:ss"}}],
  "chat": [{"speaker": "채팅 표기", "text": "내용 번역", "timestamp": "hh:mm:ss"}],
  "glossary": [{"term": "용어", "def": "뜻 한 구절"}]
 }
