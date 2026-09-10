@@ -39,7 +39,9 @@ function resultOf(stdout: string | undefined): string {
 }
 
 function callOnce(prompt: string, model: string, timeoutMs: number, fallback?: string): string {
-  const args = ['-p', prompt, '--output-format', 'json', '--model', model];
+  // 우리가 쓰는 건 프롬프트 → 텍스트뿐이다. 파일 도구를 막지 않으면 모델이 결과를 리포에 파일로 쓴다
+  // (2026-09-10 opus가 acdt-090.json을 리포 루트에 남김)
+  const args = ['-p', prompt, '--output-format', 'json', '--model', model, '--disallowed-tools', 'Write', 'Edit', 'NotebookEdit', 'Bash'];
   // CLI 자체 대체는 과부하·모델 미제공만 다룬다. 한도 소진은 아래 runClaude가 직접 잡는다
   if (fallback) args.push('--fallback-model', fallback);
   let raw: string;
