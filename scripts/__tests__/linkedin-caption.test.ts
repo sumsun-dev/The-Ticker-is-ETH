@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { CAPTION_MAX, buildLinkedInPost, channelHtmlToText, formatDigestCaption, hashtag, parseChannelPage, pickChannelPosts, stripUrls } from '../lib/linkedin-caption';
+import { CAPTION_MAX, TRIM_NOTE, buildLinkedInPost, channelHtmlToText, fitParagraphs, formatDigestCaption, hashtag, parseChannelPage, pickChannelPosts, stripUrls } from '../lib/linkedin-caption';
 
 const digest = {
   date: '2026-09-09',
@@ -29,7 +29,7 @@ const PAGE = `
 <time datetime="2026-09-09T02:30:00+00:00">11:30</time></div></div>
 <div class="tgme_widget_message_wrap"><div class="tgme_widget_message" data-post="thetickeriseth/1562">
 <a class="tgme_widget_message_photo_wrap" style="width:800px;background-image:url('https://cdn5.telesco.pe/file/cover1562.jpg')"></a>
-<div class="tgme_widget_message_text js-message_text" dir="auto"><b>ACDT #95 · 9월 7일</b><br/>테스팅 콜이다.<br/><br/><i>결정된 것</i><br/>· EIP-8253은 헤고타로 미뤄졌다.</div>
+<div class="tgme_widget_message_text js-message_text" dir="auto"><b>ACDT #95 · 9월 7일</b><br/>테스팅 콜이다.<br/><br/><i>결정된 것</i><br/>· PR <a href="?q=%2312249%EB%8A%94">#12249는</a> 닫혔다.<br/>· EIP-8253은 헤고타로 미뤄졌다.</div>
 <time datetime="2026-09-09T05:40:00+00:00">14:40</time></div></div>
 <div class="tgme_widget_message_wrap"><div class="tgme_widget_message" data-post="thetickeriseth/1563">
 <a class="tgme_widget_message_reply user-color-default" href="https://t.me/thetickeriseth/1562" "><i class="tgme_widget_message_reply_thumb" style="background-image:url('https://cdn5.telesco.pe/file/thumb1562.jpg')"></i><div class="tgme_widget_message_author"><span dir="auto">The Ticker is ETH</span></div><div class="tgme_widget_message_text js-message_reply_text" dir="auto">ACDT #95 · 9월 7일 테스팅 콜이다. 결정된 것 · EIP-8253은 헤고타로 미뤄졌다.</div></a>
@@ -99,13 +99,31 @@ describe('telegram channel web view', () => {
     expect(v.body).toBe('새롭게 출시된 Etherscan Flow\n\n설명\n\n#Ethereum #이더리움 #ECK #TheTickerIsETH');
     expect(v.comment).toBe('원문: https://github.com/etherscan/skills\n텔레그램 채널 The Ticker is ETH: https://t.me/thetickeriseth');
 
-    // 콜 브리프: 커버 글은 본문 그대로, 답글(토론 메시지)의 사이트 링크는 첫 댓글로
+    // 콜 브리프: 커버 글과 답글(토론)을 한 게시물로 합치고, 링크는 첫 댓글로
     const all = parseChannelPage(PAGE, 'thetickeriseth');
     const brief = buildLinkedInPost(all[3], [digest], undefined, all.filter((p) => p.replyTo === 1562));
-    expect(brief.body.startsWith('ACDT #95 · 9월 7일\n테스팅 콜이다.\n\n결정된 것\n· EIP-8253은 헤고타로 미뤄졌다.')).toBe(true);
+    expect(brief.body.startsWith('ACDT #95 · 9월 7일\n테스팅 콜이다.')).toBe(true);
+    expect(brief.body).toContain('ACDT #95 · 누가 무슨 말을 했나');
+    // 텔레그램이 해시태그를 감싼 검색 링크(?q=…)는 링크가 아니라 본문 글자다
+    expect(brief.body).toContain('· PR #12249는 닫혔다.');
     expect(brief.body).not.toMatch(/https?:\/\//);
     expect(brief.comment).toBe('전체 보기: https://ethcollective.xyz/calls/acdt-95\n텔레그램 채널 The Ticker is ETH: https://t.me/thetickeriseth');
     expect(brief.photos).toEqual(['https://cdn5.telesco.pe/file/cover1562.jpg']);
+  });
+
+  it('should trim whole paragraphs, then part of the next one, and say so', () => {
+    const topic = (n: number) => `주제 ${n}\n도입 문장이다.\n${Array.from({ length: 12 }, (_, i) => `· 발언자 ${i}: ${'말'.repeat(140)}`).join('\n')}`;
+    const out = fitParagraphs(['머리말', topic(1), topic(2)]);
+    expect(out.length).toBeLessThanOrEqual(CAPTION_MAX);
+    expect(out).toContain('머리말');
+    expect(out).toContain('· 발언자 11:'); // 주제 1은 통째로
+    expect(out).toContain('주제 2\n도입 문장이다.'); // 잘린 문단도 앞부분은 남는다
+    expect(out.match(/주제 2[\s\S]*/)?.[0]).not.toContain('· 발언자 11:'); // 뒷부분은 잘렸다
+    expect(out).toContain(TRIM_NOTE);
+    expect(out.trim().endsWith('#TheTickerIsETH')).toBe(true);
+    // 상한 안에 들면 안내도 자르기도 없다
+    const short = fitParagraphs(['짧은 글', '두 번째 문단']);
+    expect(short).toBe('짧은 글\n\n두 번째 문단\n\n#Ethereum #이더리움 #ECK #TheTickerIsETH');
   });
 
   it('should pick unseen recent posts oldest first', () => {
