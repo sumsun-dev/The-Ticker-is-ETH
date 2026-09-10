@@ -146,7 +146,12 @@ export const CallDraftSchema = z.object({
       z.object({
         title: z.string().min(2).max(100),
         intro: z.string().min(4).max(400),
-        agendaN: z.number().int().min(1).optional(),
+        // 안건에 안 걸리는 주제에 모델이 0을 넣는다. 드래프트 전체를 물리지 말고 "없음"으로 본다
+        agendaN: z
+          .number()
+          .int()
+          .optional()
+          .transform((n) => (n && n >= 1 ? n : undefined)),
         decision: z.string().max(100).optional(),
         positions: z
           .array(z.object({ speaker: z.string().min(1).max(80), text: z.string().min(4).max(700), timestamp: ts.optional(), viaChat: z.boolean().optional() }))
