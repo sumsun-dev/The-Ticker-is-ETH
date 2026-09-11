@@ -1,6 +1,713 @@
 {
-  "updatedAt": "2026-09-10T02:34:12.705Z",
+  "updatedAt": "2026-09-11T00:47:23.023Z",
   "calls": [
+    {
+      "id": "acde-245",
+      "series": "acde",
+      "number": 245,
+      "date": "2026-09-10",
+      "title": "AllCoreDevs - Execution #245",
+      "forkcastUrl": "https://forkcast.org/calls/acde/245/",
+      "videoUrl": "https://youtube.com/watch?v=znJGTuHtghw",
+      "issueUrl": "https://github.com/ethereum/pm/issues/2211",
+      "kind": "full",
+      "durationMin": 92,
+      "headline": "EIP-8141 프레임\n헤고타 헤드라이너",
+      "lead": "프레임 트랜잭션이 헤고타의 간판 기능으로 확정됐다.",
+      "intro": "실행 계층(EL) 클라이언트 개발자들이 격주로 모이는 콜이다.",
+      "summary": "프레임 트랜잭션(EIP-8141, Frame Transactions)이 다음 포크 헤고타(Hegota)의 헤드라이너로 공식 확정됐다. 나머지 시간은 헤고타 스코핑을 위해 37개 EIP를 훑으며 우선 후보에서 빼는 DFI 결정을 대거 처리하는 데 쓰였다.",
+      "whyItMatters": "프레임 트랜잭션이 헤고타의 중심 기능으로 못박혀 클라이언트 팀들이 이 스펙을 기준으로 개발과 테스트 작업을 시작할 수 있게 됐다. 동시에 저평가 EIP들을 먼저 제외해 포크 범위를 좁히는 방식으로, 데브콘(Devcon) 전에 헤고타 스코핑을 마무리한다는 일정에 속도를 내고 있다.",
+      "decisions": [
+        {
+          "label": "EIP-8253 글람 제외",
+          "text": "글램스테르담(Glamsterdam)에 뒤늦게 EIP-8253을 추가하지 않기로 했다. 보안상 급할 게 없어 이 논스 조정 제안은 원래 예정대로 헤고타에서 다루며, 헤고타 즉시 SFI 요청은 스코핑 블록으로 미뤄 후보로만 남았다.",
+          "original": "EIP-8253 (replaces EIP-7610, DFI'd from Glamsterdam) not added to Glamsterdam at this late stage; Hegota SFI request deferred",
+          "eips": [
+            8253,
+            7610
+          ],
+          "status": "PFI",
+          "timestamp": "00:19:11"
+        },
+        {
+          "label": "EIP-8141 헤드라이너",
+          "text": "프레임 트랜잭션(EIP-8141)을 헤고타의 헤드라이너(headliner)로 확정했다. 이미 SFI 상태였던 이 EIP가 포크의 간판 기능이라는 점을 공식화한 것으로, 스펙은 아직 다듬는 중이다.",
+          "original": "EIP-8141 (Frame Transactions) confirmed as Hegota headliner",
+          "eips": [
+            8141
+          ],
+          "status": "SFI",
+          "fork": "Hegota",
+          "timestamp": "00:23:06"
+        },
+        {
+          "label": "AA 2건 DFI",
+          "text": "EIP-7819(set delegate 명령어)와 EIP-7851(코드 제어 EOA 위임)을 헤고타 후보에서 제외(DFI)했다. 두 EIP 모두 클라이언트 평점이 1.0 미만이었고 옹호하는 이가 없었다.",
+          "original": "DFI for Hegota: EIP-7819, EIP-7851",
+          "eips": [
+            7819,
+            7851
+          ],
+          "status": "DFI",
+          "fork": "Hegota",
+          "timestamp": "00:34:29"
+        },
+        {
+          "label": "EVM 4건 DFI",
+          "text": "EIP-2488(CALLCODE 폐지), EIP-8219(체크드 산술 opcode), EIP-8182(비공개 ETH/ERC-20 전송), EIP-7645(ORIGIN을 sender로 별칭 처리)를 제외했다. 네 건 모두 전 클라이언트 만장일치 저평가(0.0~0.8)였다.",
+          "original": "DFI for Hegota: EIP-2488, EIP-8219, EIP-8182, EIP-7645",
+          "eips": [
+            2488,
+            8219,
+            8182,
+            7645
+          ],
+          "status": "DFI",
+          "fork": "Hegota",
+          "timestamp": "00:38:42"
+        },
+        {
+          "label": "EIP-7979 보류",
+          "text": "EVM에 call/return opcode를 넣는 EIP-7979은 오늘 결정을 미뤘다. 솔리디티(Solidity)·바이퍼(Vyper) 컴파일러 팀이 실제로 통합할지 의견을 낼 때까지 2주 유예하며, 진전이 없으면 자동 DFI가 기본값이다.",
+          "original": "DFI decision delayed for Hegota: EIP-7979 (call and return opcodes) — Solidity/Vyper teams to say whether they would integrate it; default outcome is DFI in two weeks",
+          "eips": [
+            7979
+          ],
+          "status": "기타",
+          "timestamp": "00:55:08"
+        },
+        {
+          "label": "EIP-7923 DFI",
+          "text": "선형 페이지 기반 메모리 과금(EIP-7923)을 제외했다. 개선점은 인정됐지만 우선순위가 아니라는 판단으로, 여유가 생기면 재검토할 수 있다는 단서를 달았다.",
+          "original": "DFI for Hegota: EIP-7923",
+          "eips": [
+            7923
+          ],
+          "status": "DFI",
+          "fork": "Hegota",
+          "timestamp": "00:55:18"
+        },
+        {
+          "label": "EIP-8163 보류",
+          "text": "다른 EVM 체인용으로 EXTENSION opcode를 예약하는 EIP-8163은 결정을 2주 미뤘다. 챔피언(champion)이 L2·대안 L1들의 실제 수요 신호를 모아와야 하며, 그러지 못하면 DFI가 기본값이다.",
+          "original": "DFI decision delayed for Hegota: EIP-8163 (reserve EXTENSION opcode) — champion to aggregate L2/alt-L1 interest signals; default outcome is DFI in two weeks",
+          "eips": [
+            8163
+          ],
+          "status": "기타",
+          "timestamp": "00:57:50"
+        },
+        {
+          "label": "가스 3건 DFI",
+          "text": "EIP-8188(계정·슬롯의 마지막 기록 블록), EIP-8358(계정 변경 순 가스 계측), EIP-8115(블록 말미 우선수수료 일괄 처리)를 제외했다. 세 건 모두 낮은 평점이었고, 8115만 네더마인드가 지지했으나 사수할 사안은 아니라며 물러섰다.",
+          "original": "DFI for Hegota: EIP-8188, EIP-8358, EIP-8115",
+          "eips": [
+            8188,
+            8358,
+            8115
+          ],
+          "status": "DFI",
+          "fork": "Hegota",
+          "timestamp": "01:04:07"
+        },
+        {
+          "label": "EIP-8200 DFI",
+          "text": "프리컴파일(precompile)의 EVM화를 다루는 EIP-8200을 헤고타에서 제외했다. 방향은 좋다는 데 다들 동의했으나, 대체 바이트코드 성능 벤치마크가 무르익지 않아 시기상조라는 판단이다.",
+          "original": "DFI for Hegota: EIP-8200 (EVMification of precompiles)",
+          "eips": [
+            8200
+          ],
+          "status": "DFI",
+          "fork": "Hegota",
+          "timestamp": "01:10:35"
+        },
+        {
+          "label": "EIP-8372 보류",
+          "text": "정규화 스테이트 가스 한도(EIP-8372)는 오늘 DFI하지 않았다. 넓은 지지를 받는 EIP-8368(CPSB 재조정)과 함께 결정하기로 했으며, 글램스테르담이 배포된 뒤 수요 반응을 관찰하고 판단할 수 있다.",
+          "original": "DFI decision delayed for Hegota: EIP-8372 (normalized state gas limit) — to be decided alongside EIP-8368, possibly after Glamsterdam ships",
+          "eips": [
+            8372,
+            8368
+          ],
+          "status": "기타",
+          "timestamp": "01:19:19"
+        },
+        {
+          "label": "EIP-7862 DFI",
+          "text": "지연 스테이트 루트(EIP-7862)를 제외했다. BAL 이후 병렬 계산이 가능해 스테이트 루트가 큰 병목은 아니라는 반론이 우세했고, 바이너리 트라이 작업과 함께 향후 포크에서 재검토할 수 있다.",
+          "original": "DFI for Hegota: EIP-7862 (delayed state root)",
+          "eips": [
+            7862
+          ],
+          "status": "DFI",
+          "fork": "Hegota",
+          "timestamp": "01:21:49"
+        },
+        {
+          "label": "EIP-7807 DFI",
+          "text": "SSZ 실행 블록(EIP-7807)을 제외했다. 헤더·블록을 읽는 모든 코드가 바뀌어야 해 파급 범위(blast radius)가 큰 반면 사용자 이득은 작다는 이유다.",
+          "original": "DFI for Hegota: EIP-7807 (SSZ execution blocks)",
+          "eips": [
+            7807
+          ],
+          "status": "DFI",
+          "fork": "Hegota",
+          "timestamp": "01:26:06"
+        },
+        {
+          "label": "EIP-8304 보류",
+          "text": "무신뢰 로그·트랜잭션 인덱스(EIP-8304)는 결정을 2주 미뤘다. 베수(Besu)와 레스(Reth)가 비동기로 논의에 참여하기로 했으며, 진전이 없으면 DFI가 기본값이다.",
+          "original": "DFI decision delayed for Hegota: EIP-8304 (trustless log and transaction index) — Besu and Reth to engage async; default outcome is DFI in two weeks",
+          "eips": [
+            8304
+          ],
+          "status": "기타",
+          "timestamp": "01:38:10"
+        },
+        {
+          "label": "EIP-8094 DFI",
+          "text": "블롭 인지형 멤풀(EIP-8094)을 제외했다. 저자 본인도 핵심 기능 대부분이 이미 스파스 블롭 풀에 흡수됐다며 DFI에 동의했다.",
+          "original": "DFI for Hegota: EIP-8094 (blob-aware mempool)",
+          "eips": [
+            8094
+          ],
+          "status": "DFI",
+          "fork": "Hegota",
+          "timestamp": "01:39:56"
+        }
+      ],
+      "targets": [
+        {
+          "key": "hegota-scoping",
+          "text": "2주 뒤 다음 ACDE: 상위권 EIP들에 대한 CFI 처리와 오늘 보류한 모든 EIP의 최종 DFI 결정 예정",
+          "timestamp": "01:40:45"
+        }
+      ],
+      "actions": [
+        {
+          "owner": "EIP-7979 챔피언 / 콜 주최측",
+          "text": "다음 ACDE에 솔리디티·바이퍼 컴파일러 팀을 초청해 EIP-7979에 대한 의견을 듣는다",
+          "timestamp": "00:44:03"
+        },
+        {
+          "owner": "Piotr (EIP-8163 챔피언)",
+          "text": "다음 콜 전까지 EIP-8163에 대한 L2·대안 L1의 명시적 지지 신호를 모은다",
+          "timestamp": "00:45:43"
+        },
+        {
+          "owner": "EL 클라이언트 팀 전체",
+          "text": "평균 2.5 이상 상위 8개 Forkcast EIP를 검토하고, 우려 사항을 다음 콜 1주 전까지 비동기로 제기해 챔피언이 답할 수 있게 한다",
+          "timestamp": "01:41:55"
+        }
+      ],
+      "agenda": [
+        {
+          "timestamp": "00:16:00",
+          "heading": "EIP-8253과 글램스테르담 범위",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "00:22:08",
+          "heading": "EIP-8411 Fast Payload Broadcast PFI 요청"
+        },
+        {
+          "timestamp": "00:23:06",
+          "heading": "EIP-8141 프레임 트랜잭션 헤드라이너 결정",
+          "decision": true
+        },
+        {
+          "timestamp": "00:24:30",
+          "heading": "클라이언트 랭킹에 포함되지 않은 EIP들"
+        },
+        {
+          "timestamp": "00:29:37",
+          "heading": "헤고타 스코핑 절차와 Forkcast 랭킹 개요"
+        },
+        {
+          "timestamp": "00:33:46",
+          "heading": "계정 추상화 EIP DFI",
+          "decision": true
+        },
+        {
+          "timestamp": "00:38:16",
+          "heading": "EVM 기능 DFI 및 보류",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "00:58:57",
+          "heading": "EVM 과금·스테이트 가스 DFI 및 보류",
+          "decision": true
+        },
+        {
+          "timestamp": "01:05:43",
+          "heading": "ZK EVM 준비: EIP-8200 EVM화 DFI",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "01:11:00",
+          "heading": "지연 스테이트 루트와 SSZ 실행 블록 DFI",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "01:40:45",
+          "heading": "다음 콜 준비와 절차 기대치"
+        }
+      ],
+      "topics": [
+        {
+          "title": "EIP-8253을 글램스테르담에 넣을지",
+          "intro": "DFI된 EIP-7610을 대체하는 EIP-8253을 막판에 글램스테르담에 넣자는 제안이 나와, 콜 첫머리에서 처리 여부를 정했다.",
+          "decision": "글램스테르담 제외, 헤고타 SFI 결정은 스코핑 블록으로 미룸 00:20:31",
+          "positions": [
+            {
+              "speaker": "jochem-brouwer",
+              "text": "EIP-8253은 메인넷 전용이라 후디·세폴리아에서는 무효과라 넣어볼 만하다고 제안했다. 다만 글램스테르담에 안 넣는다면 헤고타에서는 SFI였던 EIP-7610의 대체이니 곧바로 SFI하자고 요청했다.",
+              "timestamp": "00:16:48",
+              "original": "Yes, I can give the context. So, EIP 8253 will replace EIP7610, I see Toni with hand, so we are, like, very late into this process. What I want to say here is that, at ACDT, we… well, I brought up this idea to add this to Glamsterdam. The reason for this is that this EIP is a mainnet-only fork. That means that for Hoodi and Sepolia, this fork is a no-all, because we only changed these 28 accounts. I just want to… to all just consider the possibility that we can… we can add this EIP to Glamsterdam. this is what we proposed on ACDT, and we said, okay, let's go back to this at ACDE so the clients can also think about this. If the decision is that we will not do this in Glamsterdam, then that's fine, then we will do it in Hegota, as it is scheduled. But then I want to immediately bring up the point, let's then immediately CFI it, because this EIP, has replaced EIP7610, which has been SFI for Glamsterdam. And I think we should then immediately, well, maybe not even CFI it, immediately SFI this EIP in Hegota. Yeah, that's the context. Yes, Hegota is fine. I just wanted, for the process itself, like, bring this up, because it would also be… I would also regret not bringing it up, and then thinking, okay, we could actually have shipped this in Amsterdam, but this is, like, totally fine. It's, it's not a security problem, so Hegota is great. But yeah, let's send SFIs, then we can end this discussion, and then that's great. No, this 7610 is to be moved from Glamsterdam. It has been…",
+              "translation": "네, 제가 맥락을 설명해 드릴 수 있습니다. EIP 8253이 EIP7610을 대체하게 되는데, Toni가 손을 든 것을 보니 이 절차에서 저희가 상당히 늦은 상황인 것 같습니다. 여기서 말씀드리고 싶은 것은, ACDT에서 저희가... 이 EIP를 Glamsterdam에 추가하자는 아이디어를 제기했다는 것입니다. 이유는 이 EIP가 메인넷 전용 포크라는 점입니다. 즉 Hoodi와 Sepolia에서는 이 포크가 아무 효과가 없는데, 저희가 변경한 것은 이 28개 계정뿐이기 때문입니다. 저는 그저 이 EIP를 Glamsterdam에 추가할 수 있는 가능성을 모두가 한번 고려해 주셨으면 합니다. 이것이 저희가 ACDT에서 제안한 내용이고, 클라이언트들도 생각해 볼 수 있도록 ACDE에서 다시 논의하자고 했습니다. 만약 Glamsterdam에서 이를 하지 않기로 결정된다면 그것도 괜찮습니다. 그러면 예정대로 Hegota에서 진행하면 됩니다. 하지만 그렇다면 바로 이 점을 제기하고 싶은데, 즉시 CFI를 하자는 것입니다. 왜냐하면 이 EIP가 Glamsterdam에서 SFI된 EIP7610을 대체했기 때문입니다. 그리고 저는 그러면 즉시, 아니 어쩌면 CFI조차 건너뛰고 바로 Hegota에서 이 EIP를 SFI해야 한다고 생각합니다. 네, 이것이 배경입니다. 네, Hegota도 괜찮습니다. 저는 그저 절차 자체를 위해 이 문제를 제기하고 싶었습니다. 제기하지 않았다가 나중에 사실 Amsterdam에서 이걸 출시할 수도 있었는데 하고 후회하고 싶지 않았기 때문입니다. 하지만 이것도 전혀 문제없습니다. 보안 문제가 아니므로 Hegota도 좋습니다. 그럼 SFI를 보내는 것으로 하고 이 논의를 마무리하면 좋겠습니다. 아니요, 이 7610은 Glamsterdam에서 빠지게 되는 것입니다. 그것은..."
+            },
+            {
+              "speaker": "Toni Wahrstätter",
+              "text": "월요일 ACDT에서 대다수 클라이언트가 반대했다며, 이 단계에 EIP를 끼워넣기엔 너무 늦었고 메인넷 전용이라 테스트넷에서 버그를 못 잡는다고 지적했다. BAL(블록 액세스 리스트) 상호작용 문제도 들며 헤고타가 적절하다고 봤다.",
+              "timestamp": "00:18:12",
+              "original": "Yeah, most clients were against doing that in Glamsterdam on ACDT on Monday. I think it's just too late to include an EIP at this stage. Also, the fact that it's mainnet only would basically mean we would not discover bugs on testnet, so I think, if we actually wanted to do this EIP, then the proper way would be to spin up a new definet that actually can do this transition. The main issue I voiced on Monday was that it interacts with BAL. We would suddenly have to also bump those accounts in the block-level access list. And… we would still have to do that in Hegota, but we just have more time to prepare everything and ball is shipped at that point. So, to me, it feels like… a clear candidate for Hegelta, but I would… recommend against putting it into Glamsterdam.",
+              "translation": "네, 월요일 ACDT에서 대부분의 클라이언트가 이를 Glamsterdam에서 진행하는 것에 반대했습니다. 이 단계에서 EIP를 포함하기에는 이미 너무 늦었다고 생각합니다. 또한 메인넷 전용이라는 사실은 테스트넷에서 버그를 발견할 수 없다는 것을 의미하므로, 만약 정말로 이 EIP를 하고자 한다면 제대로 된 방법은 이 전환을 실제로 수행할 수 있는 새로운 데브넷을 띄우는 것이라고 생각합니다. 월요일에 제가 제기한 주요 문제는 이것이 BAL(블록 레벨 접근 목록, block-level access list)과 상호작용한다는 점이었습니다. 그러면 갑자기 블록 레벨 접근 목록에서도 해당 계정들을 올려야 하는 상황이 됩니다. 그리고... Hegota에서도 여전히 그렇게 해야 하겠지만, 그때는 모든 것을 준비할 시간이 더 있고 BAL도 그 시점에는 이미 출시되어 있을 것입니다. 그래서 제게는 이것이 Hegota의 명확한 후보로 느껴집니다만, Glamsterdam에 넣는 것은 권장하지 않습니다."
+            },
+            {
+              "speaker": "Ansgar Dietrichs",
+              "text": "이 단계에서 글램스테르담에 뭔가를 더 넣으려면 예외적 사정이 필요하다며, 보안상 긴급한지 되물었다. Jochem이 긴급하지 않다고 답하자 헤고타 처리로 정리했다.",
+              "timestamp": "00:19:10",
+              "original": "Makes sense. Yes, I mean, my default take would, of course, be that this at this stage in the fork to still add something to Glamsterdam would require some exceptional circumstances, so just to double-check, Jocham, from your point of view, is there anything… very urgently, like, security critical about, doing this in Glamsterdam already, or would you also be fine with doing it in Hegota? That's good. And then that last thing, just to confirm, that would mean that the 7610 would stay in Glamsterdam unchanged. Is that correct understanding? Sorry, my bad, yes. Okay, makes sense. Makes sense. Thank you for clarifying. For Hegota, I would wait to just… until we are in the Hegota decision block for today. I don't think there's any need to specifically fast-track the decision, right? Okay, perfect. Fed up? I think it… is… which one is the PA number again? Yeah. And has one of the highest client rankings on average, so it's a pretty likely candidate anyway. Okay, perfect. Then, decision is to not, last minute add this to… to Glamsterdam. Then just quick question on Glamsterdam. Are there any other topics for today? Any… anything DevNet-related, or Tesla-related, or anything? We should discuss on the call here. Okay, then we can move on to the next agenda point, which is the Higota block. First up there, just a brief mention is a CL-side EIP that might still be PFI'd. Kamila wanted to briefly mention this? Perfect. And yeah, as Kamil already said, the decision then will be made…",
+              "translation": "이해가 됩니다. 네, 저의 기본적인 입장은 물론 포크의 이 시점에서 Glamsterdam에 무언가를 추가하려면 예외적인 상황이 필요하다는 것입니다. 그래서 다시 한번 확인하고자 하는데, Jocham, 당신의 관점에서 이것을 이미 Glamsterdam에서 진행해야 할 정도로 매우 긴급하거나 보안상 중대한 사항이 있습니까, 아니면 Hegota에서 진행해도 괜찮으십니까? 좋습니다. 그리고 마지막으로 확인할 것은, 그렇다면 7610은 Glamsterdam에 변경 없이 그대로 남는다는 뜻인데, 이렇게 이해하면 맞습니까? 죄송합니다, 제 실수입니다, 맞습니다. 알겠습니다, 이해됩니다. 이해됩니다. 명확히 해 주셔서 감사합니다. Hegota에 대해서는 오늘 Hegota 결정 블록에 들어갈 때까지 기다리겠습니다. 결정을 특별히 서두를 필요는 없다고 생각하는데, 맞습니까? 좋습니다, 완벽합니다. Fed up이었나요? 그... PA 번호가 다시 뭐였죠? 네. 그리고 평균적으로 가장 높은 클라이언트 순위 중 하나이므로 어차피 상당히 유력한 후보입니다. 좋습니다, 완벽합니다. 그러면 막판에 이것을 Glamsterdam에 추가하지 않는 것으로 결정하겠습니다. 그러면 Glamsterdam에 대해 간단히 질문드립니다. 오늘 다룰 다른 주제가 있습니까? DevNet 관련이든 Tesla 관련이든 이 콜에서 논의해야 할 것이 있습니까? 알겠습니다, 그러면 다음 안건인 Hegota 블록으로 넘어가겠습니다. 먼저 간단히 언급할 것은 여전히 PFI될 수 있는 CL 측 EIP입니다. Kamila가 이를 간단히 언급하고 싶어 하셨죠? 좋습니다. 그리고 네, Kamil이 이미 말씀하신 대로 결정은 이루어질 것입니다..."
+            },
+            {
+              "speaker": "nixo",
+              "text": "한 포크에서의 상태가 새 포크의 상태를 자동으로 부여하지 않으며 다시 사다리를 거쳐야 한다고 지적하며, SFI가 아니라 CFI가 맞지 않느냐고 물었다.",
+              "timestamp": "00:24:48",
+              "viaChat": true,
+              "original": "we've explicitly said that status in one fork doesn't automatically confer status in a new fork, it has to go back through the ladder 00:25:03\tLuca Donno | L2BEAT:\tReacted to \"we've explicitly said that status in one fork doesn't automatically confer status in a new fork, it has to go back through the ladder\" with 👍 00:25:23\tnixo:\tReacted to \"headliner!\" with 🚀 00:25:31\tnixo:\tReacted to \"Fine ;)\" with 🤣",
+              "translation": "우리는 한 포크에서의 상태가 새로운 포크에서 자동으로 상태를 부여하지 않으며, 사다리(ladder)를 다시 거쳐야 한다고 명시적으로 밝혔습니다 00:25:03 Luca Donno | L2BEAT: \"우리는 한 포크에서의 상태가 새로운 포크에서 자동으로 상태를 부여하지 않으며, 사다리를 다시 거쳐야 한다고 명시적으로 밝혔습니다\"에 👍로 반응함 00:25:23 nixo: \"headliner!\"에 🚀로 반응함 00:25:31 nixo: \"Fine ;)\"에 🤣로 반응함"
+            },
+            {
+              "speaker": "danceratopz",
+              "text": "Jochem이 말한 건 SFI가 아니라 CFI였을 것이라고 채팅으로 정리했다.",
+              "timestamp": "00:22:21",
+              "viaChat": true,
+              "original": "Yes, I think Jochem meant CFI. 00:22:39\tAnsgar Dietrichs:\tlink to EIP-8411: https://github.com/ethereum/EIPs/pull/12299 00:23:28\tlightclient:\theadliner! 00:23:35\tIván | ethrex:\tReacted to \"headliner!\" with ☝️ 00:23:36\tWill Corcoran:\tReacted to \"headliner!\" with 🔥 00:23:36\tsoispoke:\tA réagi à \"headliner!\" avec ☝️ 00:23:37\tBen Adams:\theadliner! 00:23:37\tLuca Donno | L2BEAT:\tReacted to \"headliner!\" with 🚀 00:23:38\tsoispoke:\tA réagi à \"headliner!\" avec 🔥 00:23:40\tLuca Donno | L2BEAT:\tReacted to \"headliner!\" with 🔥 00:23:40\tLuca Donno | L2BEAT:\tReacted to \"headliner!\" with ☝️",
+              "translation": "네, Jochem이 말한 것은 CFI를 의미한 것 같습니다. 00:22:39 Ansgar Dietrichs: EIP-8411 링크: https://github.com/ethereum/EIPs/pull/12299 00:23:28 lightclient: headliner! 00:23:35 Iván | ethrex: \"headliner!\"에 ☝️로 반응함 00:23:36 Will Corcoran: \"headliner!\"에 🔥로 반응함 00:23:36 soispoke: \"headliner!\"에 ☝️로 반응함 00:23:37 Ben Adams: headliner! 00:23:37 Luca Donno | L2BEAT: \"headliner!\"에 🚀로 반응함 00:23:38 soispoke: \"headliner!\"에 🔥로 반응함 00:23:40 Luca Donno | L2BEAT: \"headliner!\"에 🔥로 반응함 00:23:40 Luca Donno | L2BEAT: \"headliner!\"에 ☝️로 반응함"
+            }
+          ],
+          "quote": {
+            "text": "한 포크에서의 상태가 새 포크의 상태를 자동으로 부여하지 않으며, 다시 사다리를 거쳐야 한다고 우리는 명시적으로 말해왔다.",
+            "original": "we've explicitly said that status in one fork doesn't automatically confer status in a new fork, it has to go back through the ladder",
+            "speaker": "nixo",
+            "timestamp": "00:24:48"
+          }
+        },
+        {
+          "title": "EIP-7979 call/return opcode를 살릴지",
+          "intro": "EVM에 call/return을 넣는 EIP-7979이 저평가로 DFI 직전에 몰리자, 챔피언과 일부 개발자가 EVM 전용 EIP가 구조적으로 밀리는 문제라며 결정 보류를 요청했다.",
+          "decision": "결정 보류(오늘 DFI·CFI 모두 안 함) 00:45:03",
+          "positions": [
+            {
+              "speaker": "jochem-brouwer",
+              "text": "프로토콜에 안 중요해 보여도 EVM에는 매우 중요할 수 있는 사각지대가 있다며, 7923과 8163은 DFI에 동의하지만 7979은 오늘 결정하지 말자고 했다.",
+              "timestamp": "00:40:16",
+              "original": "Yes, I want to make a general point about EVM-only EIPs. I think this is a symptom of a problem that we might have in our, yeah, I don't know… I don't know, like, how to call it, like, our ACD ecosystem, maybe. Because, so EIP7979 is an EIP from Greg. Greg has also made EIP615. he has been working for years to get these features into the EVM, and the thing is that I believe that… so I checked… I think that Gav and Metabind had an explanation why their ranking was. I think Gav and Metabind actually have the ranking at B for EIP7979. But the usual reaction is that it is not important. And the problem is that if there are things that are not important for us, which are client developers, there could be EIPs which are actually very important for the EVM. So here is, like, a blind spot, and we should be aware of this, because something might not be imported for the protocol, but be very important for the EVM. Then specifically, because I will also put that, put that comment into the chat here. I would, like 7923 and 8163. I'm okay with this. I propose 7923, but that's… that's fine. But 7979, I… would not like to make this decision today, to also reflect on how we can make it possible to also ship EVM EIPs. Thank you. You are muted, Greg, if you were talking. Yes.",
+              "translation": "네, EVM 전용 EIP에 대해 전반적인 의견을 말씀드리고 싶습니다. 이것은 저희의... 뭐라고 불러야 할지 모르겠지만, ACD 생태계에서 있을 수 있는 문제의 한 증상이라고 생각합니다. 왜냐하면 EIP7979는 Greg의 EIP이기 때문입니다. Greg는 EIP615도 만들었고, 수년간 이러한 기능들을 EVM에 반영시키기 위해 작업해 왔습니다. 그런데 제가 확인해 보니, Gav와 Metabind가 자신들의 순위에 대한 설명을 했던 것 같습니다. Gav와 Metabind는 실제로 EIP7979에 B 등급을 매긴 것으로 알고 있습니다. 하지만 일반적인 반응은 이것이 중요하지 않다는 것입니다. 문제는 클라이언트 개발자인 저희에게 중요하지 않은 것들이 실제로는 EVM에 매우 중요한 EIP일 수 있다는 것입니다. 그러니 여기에 일종의 사각지대가 있고, 저희는 이를 인식해야 합니다. 왜냐하면 어떤 것이 프로토콜에는 중요하지 않아도 EVM에는 매우 중요할 수 있기 때문입니다. 구체적으로는, 이 의견도 채팅에 남겨 두겠습니다만, 7923과 8163은 괜찮다고 생각합니다. 7923은 제가 제안한 것이지만 그것은 괜찮습니다. 하지만 7979에 대해서는 오늘 이 결정을 내리고 싶지 않습니다. EVM EIP도 출시할 수 있도록 하는 방법에 대해서도 함께 고민해 보고 싶습니다. 감사합니다. Greg, 음소거 상태이신데 혹시 말씀하고 계셨나요. 네."
+            },
+            {
+              "speaker": "Greg Colvin",
+              "text": "call/return을 지원하지 않는 스마트 컨트랙트 VM은 사실상 이더리움뿐이며, 이게 없으면 제어 흐름 분석·컴파일·형식 검증(formal verification)이 막힌다고 호소했다. 구현·테스트까지 끝나 있고 자신이 마지막 챔피언이라며 이제는 넣자고 했다.",
+              "timestamp": "00:42:23",
+              "original": "Okay, thanks. Yes, I've been at this for years. As far as I know, we are the only smart contract VM that does not support calls and returns, and there's a reason for that. We're almost the only VM which does not Support calls and returns, going back… to the 70s, 60s, maybe even 40s, and there's a reason for that. It's not all that useful, for a lot of things if you're just writing an interpreter. If you're trying to do anything with the EVM code, Luke has tried to write compilers, and found out you can hardly do it at all. Anyone who's trying to prove that EVM code is correct, do almost any kind of analysis that simply requires extracting the control flow graph. absolutely basic analysis, it goes quadratic. It's a denial-of-service vulnerability on-chain, and it's simply impractical off-chain. We need this. It's just embarrassing that it's not there. And… this works. It works. It's very simple. It's… Very little code. We've implemented it. We've tested it. We've had it ready to ship. Over and over. There's just no reason not to do this. our champions, I'm the last one left. the second… Important champion, Max, he passed. Martin, he moved on. Brooke, he's moved on. The EOF team, they've moved on. We just need to do this. It's just not that hard to do, okay? It's just not that hard. It was proposed last time, it's like, we don't have the resources, too many other things, let's do it next time. It was one of the first PFIs on this fork. Since then, it's been buried in other…",
+              "translation": "네, 감사합니다. 저는 수년간 이 작업을 해 왔습니다. 제가 아는 한 저희는 호출과 반환(calls and returns)을 지원하지 않는 유일한 스마트 컨트랙트 VM이며, 여기에는 이유가 있습니다. 저희는 호출과 반환을 지원하지 않는 거의 유일한 VM인데, 이는 70년대, 60년대, 어쩌면 40년대까지 거슬러 올라가는 것이고 거기에는 이유가 있습니다. 단순히 인터프리터를 작성하는 경우라면 그다지 유용하지 않습니다. 하지만 EVM 코드로 뭔가를 하려고 하면, Luke가 컴파일러를 작성하려고 시도했는데 거의 할 수 없다는 것을 알게 되었습니다. EVM 코드가 올바르다는 것을 증명하려는 사람이라면, 제어 흐름 그래프(control flow graph)를 추출해야 하는 거의 모든 종류의 분석, 즉 절대적으로 기본적인 분석조차 2차(quadratic) 복잡도로 커집니다. 이는 온체인에서는 서비스 거부(denial-of-service) 취약점이 되고, 오프체인에서는 그야말로 비현실적입니다. 저희에게는 이것이 필요합니다. 이것이 없다는 것 자체가 부끄러운 일입니다. 그리고... 이것은 작동합니다. 작동합니다. 매우 간단합니다. 코드 양도 매우 적습니다. 저희는 이를 구현했습니다. 테스트했습니다. 출시할 준비가 되어 있었습니다. 여러 번이나요. 이것을 하지 않을 이유가 전혀 없습니다. 저희의 챔피언들 중에서, 저는 마지막으로 남은 사람입니다. 두 번째로 중요한 챔피언이었던 Max는 세상을 떠났습니다. Martin은 다른 곳으로 옮겼습니다. Brooke도 다른 곳으로 옮겼습니다. EOF 팀도 다른 곳으로 옮겼습니다. 저희는 그저 이것을 해야 합니다. 그렇게 어려운 일이 아닙니다, 그렇죠? 정말 어렵지 않습니다. 지난번에도 제안되었는데, 그때는 자원이 부족하고 다른 일이 너무 많으니 다음번에 하자고 했습니다. 이번 포크에서 가장 먼저 PFI된 것 중 하나였습니다. 그 이후로 다른 것들에 묻혀 왔습니다..."
+            },
+            {
+              "speaker": "Ansgar Dietrichs",
+              "text": "채팅에 보류 지지가 많다며, 오늘은 결정하지 않고 2주 뒤 콜에 컴파일러 팀을 불러 깊이 논의하자고 정리했다.",
+              "timestamp": "00:45:03",
+              "original": "Thank you, Greg. I think, looking at chat, I see quite a bit of support for delaying the decision on this EIP then, and making sure that for next, call in two weeks, we have compiler teams present as well to discuss this in more depth with. So then my proposal would be to now basically specifically say we will not make a DFI decision on EIP7979 today, and we'll definitely also not make a CFI decision today, so basically, specifically, no decision on this EIP today. Anyone, strongly opposed and would want to make the decision today? Okay, and then regarding the other two EIPs, I put in chat as well, I personally, would just want to briefly voice support for delaying the decision as well on the extension opcode, because I think the main, stakeholders here are other EVM chains that, might not be present today. We can make sure that they will be present in two weeks, and if there's no specific convincing arguments, then in two weeks, we can make the DFI decision, but of course, if clients feel strongly, we can also just make that decision today already. Mmm… Yes. Yeah, go ahead. Yes, we can hear you. Yeah, and I think we will have this a lot, that we will start to get to EIPs that are pretty clearly leaning DFI, but maybe not as clearly, maybe, as the ones that we have already DFI'd, and where there's someone speaking up in favor, so I think in these cases, it would be really valuable if some client teams could give an indication. Either their mind is just set, this is not a…",
+              "translation": "감사합니다, Greg. 채팅을 보니 이 EIP에 대한 결정을 미루자는 의견이 꽤 많은 것 같습니다. 그리고 2주 후 다음 콜에서는 컴파일러 팀들도 참석하여 이 문제를 더 깊이 논의할 수 있도록 하자는 의견도 있습니다. 그래서 제 제안은 오늘은 EIP7979에 대해 DFI 결정을 내리지 않고, 확실히 CFI 결정도 내리지 않는, 즉 오늘은 이 EIP에 대해 결정을 내리지 않는다고 구체적으로 명시하는 것입니다. 오늘 결정을 내리고 싶다고 강하게 반대하시는 분 계십니까? 좋습니다. 그리고 다른 두 EIP에 대해서도 채팅에 남겼습니다만, 저 개인적으로는 확장 오피코드(extension opcode)에 대한 결정도 미루는 것을 간단히 지지하고 싶습니다. 왜냐하면 여기서 주요 이해관계자는 오늘 참석하지 못했을 수 있는 다른 EVM 체인들이라고 생각하기 때문입니다. 2주 후에는 그들이 참석하도록 할 수 있고, 특별히 설득력 있는 논거가 없다면 2주 후에 DFI 결정을 내릴 수 있습니다. 물론 클라이언트들이 강하게 원한다면 오늘 바로 결정을 내릴 수도 있습니다. 음... 네. 네, 말씀하세요. 네, 잘 들립니다. 네, 그리고 저희는 앞으로 이런 경우가 많을 것 같습니다. 즉 이미 DFI된 것들만큼 명확하지는 않지만 상당히 DFI 쪽으로 기울어 있는 EIP들을 다루게 될 것이고, 누군가 찬성 의견을 낼 것입니다. 이런 경우에는 일부 클라이언트 팀들이 의사를 표시해 주는 것이 정말 유용할 것 같습니다. 마음을 이미 정했든, 이것이 아니든..."
+            }
+          ],
+          "quote": {
+            "text": "내가 아는 한, 우리는 call과 return을 지원하지 않는 유일한 스마트 컨트랙트 VM이다.",
+            "original": "As far as I know, we are the only smart contract VM that does not support calls and returns",
+            "speaker": "Greg Colvin",
+            "timestamp": "00:42:23"
+          }
+        },
+        {
+          "title": "EIP-8200 프리컴파일 EVM화",
+          "intro": "프리컴파일을 형식 검증된 EVM 바이트코드로 대체하는 EIP-8200은 ZK EVM 대비 차원에서 논의됐으나, 성능 근거가 무르익지 않아 헤고타 포함 여부를 가렸다.",
+          "decision": "DFI 결정 01:10:35",
+          "positions": [
+            {
+              "speaker": "Ben Adams",
+              "text": "찬성은 아니지만 흥미로운 EIP라며, MODEXP 같은 프리컴파일을 대체할 더 나은 바이트코드를 겨루는 대회가 진행 중이니 결과가 무르익을 때까지 시간이 필요하다고 했다.",
+              "timestamp": "01:06:07",
+              "original": "So this is not in favor, but I do… I think it's quite an interesting EIP, and, But there's a… there's a competition at the moment that's being run to, like. work out better EVM bytecode to replace things like Modic, XP, and so forth, so I think it's just a little bit too early. And we can see… see how those work. So, so there is… is it ETH proofs? I'm not sure. If Kev's on the call, he can maybe give… better clarity. Somebody's running a competition where people submit formally verified EVM bytecode. And there's, it's like a nerd snipe competition, and it's getting pretty fast. It's not… I don't think it's as fast as the precompile, but it's, reasonable at the moment. So, I think it needs time to, time to brew. Yeah, so we know what that bike code is, basically. Okay, precompile fast.",
+              "translation": "그래서 이것은 찬성은 아닙니다만, 저는... 상당히 흥미로운 EIP라고 생각합니다. 하지만 현재 ModExp 같은 것들을 대체할 더 나은 EVM 바이트코드를 만들어 내기 위한 경쟁(competition)이 진행 중이어서, 조금 이르다고 생각합니다. 그리고 그것들이 어떻게 작동하는지 지켜볼 수 있을 것입니다. 그러니까... ETH proofs인가요? 확실하지 않습니다. Kev가 콜에 있다면 더 명확히 설명해 줄 수 있을 것 같습니다. 누군가 형식적으로 검증된(formally verified) EVM 바이트코드를 제출받는 경쟁을 운영하고 있습니다. 이것은 일종의 너드 스나이프(nerd snipe) 경쟁이고 꽤 빨라지고 있습니다. 프리컴파일만큼 빠르지는 않다고 생각하지만 현재로서는 합리적인 수준입니다. 그래서 저는 시간을 두고 숙성될 필요가 있다고 생각합니다. 네, 그러면 그 바이트코드가 무엇인지는 기본적으로 알게 되는 것이겠죠. 알겠습니다, 프리컴파일이 더 빠르군요."
+            },
+            {
+              "speaker": "Greg Colvin",
+              "text": "일반적으로 좋은 아이디어라 DFI에 동의하지만 성능 측정이 먼저라고 했다. 자신은 정적 제어 흐름 검증을 EVM화했을 때 온갖 노력에도 충분히 빠르게 만들지 못했고, 프리컴파일의 존재 이유가 바로 성능이라고 지적했다.",
+              "timestamp": "01:06:49",
+              "original": "It should probably go to DFI, but I think it's generally a good idea. What I didn't see there were any performance measurements, and when I tried to When I tried to EVMify the validation code for static control flow. I simply could not make it fast enough, even with absolutely heroic EVM programming. So I would… for any of these, I would want to see performance measurements, because the whole point of these precompiles is performance.",
+              "translation": "아마 DFI로 가야 할 것 같지만, 전반적으로 좋은 아이디어라고 생각합니다. 제가 보지 못한 것은 성능 측정치였습니다. 그리고 제가 정적 제어 흐름(static control flow)에 대한 검증 코드를 EVM화하려고 시도했을 때, 정말 영웅적인 수준의 EVM 프로그래밍을 동원해도 도저히 충분히 빠르게 만들 수 없었습니다. 그래서 저는 이런 것들 어느 것에 대해서든 성능 측정치를 보고 싶습니다. 왜냐하면 이러한 프리컴파일의 요점 전체가 성능이기 때문입니다."
+            },
+            {
+              "speaker": "Justin Florentine (Besu)",
+              "text": "아이디어는 좋지만 아직 준비가 덜 됐다는 데 동의하며, 나중에 다시 네이티브 구현으로 되돌릴 수 없게 되는 위험을 짚었다.",
+              "timestamp": "01:08:08",
+              "original": "Yeah, so we love the idea, we kind of agree with the stance that, yeah, it's not quite ready yet. One thing we did want to bring up to the whole group, though, is that what keeps us from, you know, reverting these to native implementations in the future as we're all trying to furiously optimize our clients? We just wanted to flag that as a risk. Yeah, that makes sense. Thanks.",
+              "translation": "네, 저희는 이 아이디어를 좋아하고, 아직 준비가 완전히 되지 않았다는 입장에도 어느 정도 동의합니다. 다만 전체 그룹에 제기하고 싶었던 한 가지는, 저희 모두가 클라이언트를 맹렬히 최적화하려고 하는 상황에서 나중에 이것들을 네이티브 구현으로 되돌리지 못하게 막는 것이 무엇인가 하는 점입니다. 저희는 그저 그것을 리스크로 짚어 두고 싶었습니다. 네, 일리가 있습니다. 감사합니다."
+            },
+            {
+              "speaker": "Kevaundray Wedderburn",
+              "text": "실행하지 않고 프리컴파일의 가스 비용을 계산해야 하므로 네이티브로 되돌리는 것 자체가 불가능하다고 답했다.",
+              "timestamp": "01:08:38",
+              "original": "Yeah, I was gonna say that that wouldn't be possible, since you wouldn't… you'd need to be able to calculate the gas cost for the precompile without running it.",
+              "translation": "네, 저도 그것은 불가능할 것이라고 말씀드리려던 참이었습니다. 왜냐하면 프리컴파일을 실행하지 않고도 가스 비용을 계산할 수 있어야 하기 때문입니다."
+            },
+            {
+              "speaker": "Iván | ethrex",
+              "text": "프루버 공격 표면 축소와 ZKVM 구현 단순화라는 목표에 공감하지만 수치가 부족하고 폭넓은 클라이언트 지지도 없다고 인정하며, 향후 포크 재검토를 받아들였다.",
+              "timestamp": "01:09:01",
+              "original": "Hey, on ethrex, we think these EIPs are interesting. If we are going to a ZKVM in the near future, it's good to have them sooner than later. I agree that we still are… we still need more numbers, but I think two big features these EIPs have is automatic replacing, so you can reduce prover vector attacks. And also, you remove some complexity for CKVM teams to remove the need for implementing precompiles to handle these specific operations that are… that they don't have on Cap's numbers, at least of the last year, any use on Ethereum. Yes, I mean, if most of the teams aren't convinced, and A week… yeah, two weeks… we can't do… we can't do anything on two weeks to convince them to change their minds. Yes, I mean… It's… it's us against the world.",
+              "translation": "안녕하세요, ethrex 입장에서는 이 EIP들이 흥미롭다고 생각합니다. 만약 저희가 가까운 미래에 ZKVM으로 간다면, 이것들을 늦게보다는 일찍 갖추는 것이 좋습니다. 저희도 여전히 더 많은 수치가 필요하다는 데 동의합니다만, 이 EIP들이 가진 두 가지 큰 특징은 자동 대체(automatic replacing)로 프로버 벡터 공격(prover vector attack)을 줄일 수 있다는 것이라고 생각합니다. 또한 ZKVM 팀들의 복잡성도 일부 제거해 줍니다. 즉 지난 1년간의 데이터를 기준으로 이더리움에서 전혀 사용되지 않는 특정 연산들을 처리하기 위해 프리컴파일을 구현해야 할 필요성을 없애 줍니다. 네, 만약 대부분의 팀들이 설득되지 않는다면, 그리고 일주일... 아니 2주로는... 그들의 마음을 바꾸도록 설득하기 위해 2주 안에 할 수 있는 것이 아무것도 없습니다. 네, 그러니까... 저희 대 세상 전체인 셈입니다."
+            }
+          ],
+          "quote": {
+            "text": "무르익을 시간이 필요하다.",
+            "original": "it needs time to brew",
+            "speaker": "Ben Adams",
+            "timestamp": "01:07:24"
+          }
+        },
+        {
+          "title": "EIP-8304 무신뢰 로그·트랜잭션 인덱스",
+          "intro": "이벤트에 대한 검증 가능한 범위 쿼리를 여는 EIP-8304을 두고, 당장의 수요는 없지만 무신뢰성이 이더리움의 핵심 속성이라는 주장과 작업량 대비 이득 논쟁이 맞붙었다.",
+          "decision": "결정 보류(베수·레스 비동기 참여, 기본값은 DFI) 01:38:10",
+          "positions": [
+            {
+              "speaker": "Zsolt Felföldi",
+              "text": "자신의 EIP라며, 오늘은 불가능한 이벤트 범위의 증명 가능한 쿼리를 열어주고 온체인 증명성·네이티브 UTXO·L2 통신의 길을 연다고 설명했다. 결코 초긴급하진 않지만 장기적으로 이더리움에 큰 가치라며 지금 DFI하지 말자고 했다.",
+              "timestamp": "01:26:47",
+              "original": "Well… I… it's my EIP, so I'm, yeah, going to speak for myself, but, So the thing is, so far, from what I gathered from other people, is that some people see this as important, and some people don't. Those who care about it, generally, from those people, I generally have positive feedback, probably… others just don't see it as very urgent, but this is a kind of thing that will never be super urgent, so it's, like, hard to compare to others a bit, because it's never super urgent, but over the long term, I think Ethereum will be way better if we have this, not just because of the provable RPC, but also because on-chain provability, now it's… yeah, there's now a design for native UTXOs that could use it. Also, L2 chain communication could use it. So, I think this is, this is something that's valuable, and there's never a perfect time to include it, and I don't expect, like, like, Future Force to be less crowded, so… Yeah, I still think that… I never heard any argument against it, why it should really be, like, deified, but Yeah, I would like to not have the DFI right now, but maybe discuss it a bit further, yeah, so that's…",
+              "translation": "음... 이것은 제 EIP이니 제 입장에서 말씀드리겠습니다. 그런데 지금까지 다른 분들에게서 들은 바로는, 어떤 분들은 이것을 중요하다고 보고 어떤 분들은 그렇지 않다고 봅니다. 이것에 신경 쓰는 분들에게서는 대체로 긍정적인 피드백을 받았습니다만, 다른 분들은 그리 시급하다고 여기지 않습니다. 하지만 이것은 결코 아주 시급해질 성격의 것이 아니어서 다른 것들과 비교하기가 좀 어렵습니다. 결코 아주 시급하지 않기 때문입니다. 하지만 장기적으로는, 저는 이것이 있으면 이더리움이 훨씬 나아질 것이라고 생각합니다. 증명 가능한 RPC(provable RPC) 때문만이 아니라 온체인 증명 가능성(on-chain provability) 때문이기도 합니다. 지금은... 그렇습니다, 이것을 활용할 수 있는 네이티브 UTXO 설계도 이제 나와 있습니다. 또한 L2 체인 간 통신에서도 이것을 활용할 수 있습니다. 그래서 저는 이것이 가치 있는 것이라고 생각하며, 이것을 포함시키기에 완벽한 시점은 결코 오지 않을 것이고, 앞으로 Future Force가 덜 붐빌 것이라고도 기대하지 않습니다. 그래서... 네, 저는 여전히 이것이 정말로 DFI되어야 하는 이유에 반대하는 논거는 한 번도 들어본 적이 없다고 생각합니다만, 지금 당장 DFI를 하기보다는 조금 더 논의를 이어가고 싶습니다. 네, 그래서 그것이..."
+            },
+            {
+              "speaker": "lightclient",
+              "text": "FOCIL에 빗대어, 지금 당장 쓰는 사람이 많지 않아도 검열 저항성처럼 무신뢰 상호작용은 이더리움이 계속 제공해야 할 핵심 속성이니 만들어둘 가치가 있다고 강하게 지지했다.",
+              "timestamp": "01:30:28",
+              "original": "Yeah, I mean, I think… maybe this thread that's going in in chat, I can just say it aloud, I think that… the SSZ-ification of the EL, to me, is… Not really… like, drastically changing what's possible. I think it makes a lot of things nicer. In terms of, like, interacting with the chain trustlessly, but in general, like, a lot of… all this stuff can be done with RLP. Whereas with the Trustless Log Index, this allows RPC providers to give proofs about range queries over, like, certain events. In a way that, like, we can't… prove today. So, in that sense, like, it's providing trustless interaction to users who cannot you know, achieve that today. Whereas with the block data. In the transaction data, we can generally, like, prove this with ROP. Is it as elegant as SSZ? It's not. But we can do it. I mean, I think this is, like, the same argument that was made for FOCIL. You know, ideally, no one uses FOCIL, and in general, I don't think that… when FOCIL was chosen as headliner, the… A lot of people were saying, like, we need to be using this on a regular basis. And I think people chose it because they felt that censorship resistance is a core property of Ethereum, and it needs to be offered, and we need to make sure that it continues to be offered. And I feel that, you know, using the chain trustlessly is the same thing. So, even if we don't have tons of people banging down our door to use the chain in a trustless manner, that doesn't mean that we should Not to be building the…",
+              "translation": "네, 그러니까... 어쩌면 채팅에서 진행 중인 이 스레드를 그냥 소리 내어 말씀드리자면, 저는 EL의 SSZ화(SSZ-ification)가 가능한 것을 극적으로 바꾸는 것은 아니라고 생각합니다. 많은 것들을 더 낫게 만들어 준다고 생각합니다. 체인과 신뢰 없이(trustlessly) 상호작용한다는 측면에서 그렇습니다만, 일반적으로 이 모든 것은 RLP로도 할 수 있습니다. 반면 신뢰 없는 로그 인덱스(Trustless Log Index)는 RPC 제공자들이 특정 이벤트에 대한 범위 쿼리(range query)에 관해 증명을 제공할 수 있게 해 줍니다. 이는 오늘날에는 증명할 수 없는 방식입니다. 그런 의미에서 이것은 오늘날 그것을 달성할 수 없는 사용자들에게 신뢰 없는 상호작용을 제공하는 것입니다. 반면 블록 데이터, 트랜잭션 데이터에서는 일반적으로 ROP로 이를 증명할 수 있습니다. SSZ만큼 우아한가요? 그렇지는 않습니다. 하지만 할 수는 있습니다. 저는 이것이 FOCIL에 대해 제기되었던 것과 같은 논거라고 생각합니다. 이상적으로는 아무도 FOCIL을 사용하지 않는 것이 맞고, 일반적으로 FOCIL이 헤드라이너로 선정되었을 때 많은 분들이 이것을 정기적으로 사용해야 한다고 말했던 것은 아니라고 생각합니다. 사람들이 이것을 선택한 이유는 검열 저항성(censorship resistance)이 이더리움의 핵심 속성이며 이는 제공되어야 하고 계속 제공되도록 보장해야 한다고 느꼈기 때문이라고 생각합니다. 그리고 저는 체인을 신뢰 없이 사용하는 것도 마찬가지라고 느낍니다. 그러니 체인을 신뢰 없는 방식으로 사용하려는 사람들이 문을 두드리며 몰려들지 않는다고 해도, 그것이 저희가 이를 구축하지 말아야 한다는 뜻은 아닙니다..."
+            },
+            {
+              "speaker": "Dragan Rakita",
+              "text": "리시트에 대한 증명을 허용하는 건 맞지만 실제로 누가 쓸지가 문제라며, 큰 사용자의 명확한 수요 신호가 있으면 생각이 바뀔 수 있다고 했다.",
+              "timestamp": "01:31:36",
+              "original": "Yeah, it does, it does allow, like, proofs on the receipts, but it's like, What users are going to use this? if there is some companies, or basically bigger users, bigger… somebody that interacts with Ethereum and says, hey, we would really benefit by this. This would, I think, change our minds. If this is the case, then I would lean on DFI it for Hegota, and maybe including one of the next forks, when this becomes a bigger problem.",
+              "translation": "네, 영수증(receipt)에 대한 증명은 가능하게 해 줍니다만, 문제는 어떤 사용자들이 이것을 사용할 것인가입니다. 만약 어떤 기업들이나 기본적으로 더 큰 사용자들, 이더리움과 상호작용하는 누군가가 나타나서 이것이 정말 도움이 될 것이라고 말한다면, 이것이 저희의 생각을 바꿀 수 있을 것입니다. 만약 그런 경우라면 저는 Hegota에서 이것을 DFI하는 쪽으로 기울 것이고, 어쩌면 이것이 더 큰 문제가 될 때 다음 포크들 중 하나에 포함시키는 것도 고려하겠습니다."
+            },
+            {
+              "speaker": "Justin Florentine (Besu)",
+              "text": "하한을 1.3으로 두자고 했던 만큼 2주 유예를 받아들일 수 있다며, 오늘의 신뢰 기반 오프체인 인덱싱으로는 왜 부족한지에 대한 근거를 팀에 제시해 달라고 요청했다.",
+              "timestamp": "01:36:12",
+              "original": "So, I'll tell you what, I made a case earlier that 1.3 should be the floor. this is at 1.3, I think we can accommodate a delay. We're seeing a lot of people make points for a delay here in chat. We did look at the current state of the EIP, you know, we did recognize that it has changed. I think the thing that we would like to see as far as making a case is the fact that this can be done in a trusted fashion today, off-chain. And why that's insufficient. I understand the general arguments around trustlessness, you guys know me, you know that they resonate very strong with me. So, tell… tell our team why It should happen now, I think. Would be the big thing. And, we could accept a delay decision today instead of a DFI.",
+              "translation": "그러면 이렇게 말씀드리겠습니다. 저는 앞서 1.3이 최소 기준선(floor)이 되어야 한다는 주장을 했습니다. 이것은 1.3이므로 지연을 수용할 수 있다고 생각합니다. 채팅에서 많은 분들이 지연에 찬성하는 의견을 내고 계신 것을 봅니다. 저희는 이 EIP의 현재 상태를 살펴봤고, 변경되었다는 것도 인지했습니다. 저희가 주장을 펼치기 위해 보고 싶은 것은, 이것이 오늘날 신뢰 기반(trusted) 방식으로, 즉 오프체인에서 할 수 있다는 사실입니다. 그리고 그것이 왜 충분하지 않은가입니다. 저는 신뢰 없음(trustlessness)에 관한 일반적인 논거들을 이해하고 있고, 여러분도 저를 아시다시피 그것들이 저에게 매우 강하게 와닿는다는 것을 아실 겁니다. 그러니 저희 팀에게 왜 이것이 지금 일어나야 하는지 말씀해 주십시오. 그것이 관건이라고 생각합니다. 그리고 저희는 오늘 DFI 대신 지연 결정을 받아들일 수 있습니다."
+            },
+            {
+              "speaker": "Łukasz Rozmej",
+              "text": "B로 매겼고 다른 지지가 있으면 포함해도 좋다며 막지 않겠다고 했다. 외부 기여자의 프로토타입 PR도 있으나 헤고타 우선순위는 아니라고 밝혔다.",
+              "timestamp": "01:37:28",
+              "original": "So, we gave it B, so we are fine with including it if it has, other support, we are not blocking it in any way. We have external P… contributor PR with a prototype. In terms of, what do I think, or what do you think, it's nice to have, and, especially with other combination of pure ref, it would be… Very good. On itself, it moves just a needle in the log space, so it's not such as impactful, but we're fine, we just didn't find it as a priority for Hegota, so this is based more on priorities rather than on anything else, but we are fine with it.",
+              "translation": "저희는 여기에 B를 매겼습니다. 그러니 다른 지지가 있다면 포함시키는 것에 문제없고, 어떤 식으로도 막지 않겠습니다. 외부 기여자(contributor)가 프로토타입으로 작성한 PR도 있습니다. 제 개인적인 생각을 말씀드리자면, 이것은 있으면 좋은 것이고, 특히 순수 참조(pure ref)의 다른 조합과 함께라면 매우 좋을 것 같습니다. 그 자체로는 로그 공간(log space)에서 바늘만큼만 움직이는 정도라 그렇게 큰 영향을 주지는 않습니다. 하지만 저희는 괜찮습니다. 다만 Hegota의 우선순위로는 보지 않았을 뿐이며, 이는 다른 무엇보다도 우선순위에 근거한 것이고, 저희는 이것에 대해 괜찮습니다."
+            }
+          ],
+          "quote": {
+            "text": "무신뢰 경험을 사용자에게 제공하는 데 필요한 기능을 만들지 말아야 한다는 뜻은 아니다.",
+            "original": "that doesn't mean that we should Not to be building the functionality necessary to provide a trustless experience to users",
+            "speaker": "lightclient",
+            "timestamp": "01:32:00"
+          }
+        }
+      ],
+      "speakers": [
+        {
+          "label": "Ansgar Dietrichs",
+          "name": "Ansgar Dietrichs",
+          "org": "EF",
+          "role": "리서처",
+          "handle": "adietrichs",
+          "avatar": "https://pbs.twimg.com/profile_images/1575685906786402304/P5UbjDt6_400x400.jpg",
+          "share": 0.454
+        },
+        {
+          "label": "Dragan Rakita",
+          "name": "Dragan Rakita",
+          "org": "Tempo",
+          "role": "revm 저자",
+          "handle": "rakitadragan",
+          "avatar": "https://pbs.twimg.com/profile_images/1622380143799943169/2D-5fxsO_400x400.jpg",
+          "share": 0.051
+        },
+        {
+          "label": "jochem-brouwer",
+          "name": "Jochem Brouwer",
+          "org": "EF",
+          "role": "EthereumJS · EIP-8037 공동 저자",
+          "share": 0.044
+        },
+        {
+          "label": "Maria Silva",
+          "name": "Maria Silva",
+          "role": "EIP-8037 제1저자",
+          "handle": "misilva73",
+          "avatar": "https://pbs.twimg.com/profile_images/1551690804594458624/elGlKFpy_400x400.jpg",
+          "share": 0.044
+        },
+        {
+          "label": "Greg Colvin",
+          "name": "Greg Colvin",
+          "share": 0.041
+        },
+        {
+          "label": "Marius van der Wijden",
+          "name": "Marius van der Wijden",
+          "org": "EF",
+          "role": "geth",
+          "handle": "vdWijden",
+          "avatar": "https://pbs.twimg.com/profile_images/1334610351976026113/o0FQPHZX_400x400.jpg",
+          "share": 0.039
+        },
+        {
+          "label": "Ben Adams",
+          "name": "Ben Adams",
+          "org": "Nethermind",
+          "handle": "ben_a_adams",
+          "avatar": "https://pbs.twimg.com/profile_images/1282411238602006529/l4lHaQHE_400x400.jpg",
+          "share": 0.038
+        },
+        {
+          "label": "Łukasz Rozmej",
+          "name": "Łukasz Rozmej",
+          "org": "Nethermind",
+          "role": "EIP-8037 공동 저자",
+          "share": 0.036
+        },
+        {
+          "label": "Justin Florentine (Besu)",
+          "name": "Justin Florentine",
+          "org": "Besu",
+          "share": 0.034
+        },
+        {
+          "label": "Charles",
+          "name": "Charles",
+          "share": 0.033
+        },
+        {
+          "label": "lightclient",
+          "name": "lightclient (Matt Garnett)",
+          "org": "EF",
+          "role": "geth",
+          "handle": "lightclients",
+          "avatar": "https://pbs.twimg.com/profile_images/1554130973935030274/wHWuxuTT_400x400.jpg",
+          "share": 0.029
+        },
+        {
+          "label": "Zsolt Felföldi",
+          "name": "Zsolt Felföldi",
+          "org": "EF",
+          "role": "geth, EIP-8304",
+          "handle": "zsfelfoldi",
+          "avatar": "https://pbs.twimg.com/profile_images/598141259664990208/MB3PrmeS_400x400.jpg",
+          "share": 0.026
+        },
+        {
+          "label": "Toni Wahrstätter",
+          "name": "Toni Wahrstätter",
+          "org": "EF",
+          "role": "리서처",
+          "handle": "nero_eth",
+          "avatar": "https://pbs.twimg.com/profile_images/1858347774129094657/xUc7IS2K_400x400.jpg",
+          "share": 0.021
+        },
+        {
+          "label": "Piotr",
+          "name": "Piotr",
+          "share": 0.02
+        },
+        {
+          "label": "Iván | ethrex",
+          "name": "Iván Litteri",
+          "org": "LambdaClass",
+          "role": "ethrex 테크 리드",
+          "handle": "ivanlitteri",
+          "avatar": "https://pbs.twimg.com/profile_images/1801577809728462848/UPASaIEt_400x400.jpg",
+          "share": 0.018
+        },
+        {
+          "label": "Karim T. (matkt)",
+          "name": "Karim Taam",
+          "org": "Consensys",
+          "role": "Besu",
+          "share": 0.018
+        },
+        {
+          "label": "Anders Elowsson",
+          "name": "Anders Elowsson",
+          "org": "EF",
+          "role": "리서처",
+          "handle": "weboftrees",
+          "avatar": "https://pbs.twimg.com/profile_images/1470450426583691267/GWsw7Bwp_400x400.jpg",
+          "share": 0.011
+        },
+        {
+          "label": "Csaba",
+          "name": "Csaba",
+          "share": 0.011
+        },
+        {
+          "label": "Kamil Salakhiev",
+          "name": "Kamil Salakhiev",
+          "share": 0.01
+        },
+        {
+          "label": "Milos | enso",
+          "name": "Milos",
+          "org": "enso",
+          "share": 0.008
+        },
+        {
+          "label": "Pooja Ranjan",
+          "name": "Pooja Ranjan",
+          "org": "ECH Institute",
+          "handle": "poojaranjan19",
+          "avatar": "https://pbs.twimg.com/profile_images/2056372532299571200/Z-EwXzEQ_400x400.jpg",
+          "share": 0.005
+        },
+        {
+          "label": "Kevaundray Wedderburn",
+          "name": "Kevaundray Wedderburn",
+          "org": "EF",
+          "role": "응용 리서치",
+          "handle": "kevaundray",
+          "avatar": "https://pbs.twimg.com/profile_images/1658523090467315712/a3xJ6ySn_400x400.jpg",
+          "share": 0.003
+        },
+        {
+          "label": "nixo",
+          "name": "Nixo",
+          "org": "EF Protocol Support",
+          "role": "ACDE 진행",
+          "handle": "nixorokish",
+          "avatar": "https://pbs.twimg.com/profile_images/2086847437277478912/F-w_Sq0y_400x400.jpg",
+          "share": 0
+        },
+        {
+          "label": "danceratopz",
+          "name": "danceratopz",
+          "org": "EF",
+          "role": "테스팅",
+          "handle": "danceratopz",
+          "avatar": "https://pbs.twimg.com/profile_images/1478357444132839427/sxWspbwH_400x400.jpg",
+          "share": 0
+        }
+      ],
+      "chat": [
+        {
+          "speaker": "nixo",
+          "text": "한 포크의 상태가 새 포크에 자동 승계되지 않고 다시 사다리를 거쳐야 한다고 명시해왔는데, 헤드라이너가 아니라면 SFI보다 CFI가 맞지 않느냐.",
+          "timestamp": "00:24:48"
+        },
+        {
+          "speaker": "jochem-brouwer",
+          "text": "EIP-8360 TCREATE는 최소한 PFI 상태여야 한다. 그게 없으면 EIP-4758(SELFDESTRUCT 비활성화)을 할 수 없고, 지난 ACDE에서 암묵적으로 PFI된 것으로 이해했다.",
+          "timestamp": "00:29:18"
+        },
+        {
+          "speaker": "spencer",
+          "text": "이번 조율은 지난 포크에 비해 미친 듯이 좋다.",
+          "timestamp": "00:38:29"
+        }
+      ],
+      "glossary": [
+        {
+          "term": "SFI (Scheduled For Inclusion)",
+          "def": "포크에 포함 확정"
+        },
+        {
+          "term": "CFI (Considered For Inclusion)",
+          "def": "포함을 검토 중인 후보"
+        },
+        {
+          "term": "PFI (Proposed For Inclusion)",
+          "def": "포함 후보로 접수·유지 중"
+        },
+        {
+          "term": "DFI (Declined For Inclusion)",
+          "def": "포크 후보에서 제외"
+        },
+        {
+          "term": "헤드라이너(headliner)",
+          "def": "포크의 간판 기능"
+        },
+        {
+          "term": "챔피언(champion)",
+          "def": "제안을 책임지고 밀어붙이는 담당자"
+        },
+        {
+          "term": "BAL (block access list)",
+          "def": "블록이 접근하는 계정·슬롯 목록"
+        },
+        {
+          "term": "파급 범위(blast radius)",
+          "def": "한 변경이 다른 코드에 미치는 영향 범위"
+        }
+      ],
+      "eips": [
+        20,
+        2488,
+        7610,
+        7645,
+        7807,
+        7819,
+        7851,
+        7862,
+        7923,
+        7979,
+        8094,
+        8115,
+        8141,
+        8163,
+        8182,
+        8188,
+        8200,
+        8219,
+        8253,
+        8304,
+        8358,
+        8360,
+        8368,
+        8372,
+        8411
+      ],
+      "relatedDebates": [
+        "gas-params-privacy-leak",
+        "ethereum-zcash-privacy-competitor",
+        "aa-validation-programmable-vs-bounded",
+        "tx-format-ship-first-vs-permissionless"
+      ],
+      "telegramMessageId": 1567
+    },
     {
       "id": "acdt-95",
       "series": "acdt",
@@ -9946,14 +10653,14 @@
   "status": {
     "currentFork": {
       "name": "글램스터담",
-      "stage": "데브넷 단계",
-      "line": "세폴리아 10월 6일 확정 · 후디 미정 · 데브넷 11 출시"
+      "stage": "테스트넷 단계",
+      "line": "세폴리아 10월 6일 확정 · 후디 미정 · 데브넷 11 이번 주 출시"
     },
     "nextFork": {
       "name": "헤고타",
       "stage": "범위 정하는 중",
-      "line": "SFI EIP-8141 · PFI 다수 · 데브콘(11/3)까지 범위 확정"
+      "line": "EIP-8141 헤드라이너 확정 · 11월 3일 데브콘까지 범위 확정"
     },
-    "basis": "acdt-95"
+    "basis": "acde-245"
   }
 }
