@@ -37,6 +37,7 @@ const AUTHOR_ALIASES: Record<string, string> = {
   'Jenna Park': 'Jenna',
   'kuma hada': 'Kuma',
   'Jay | Privacy Boost': 'Jay',
+  'Ticker Data Bot': 'sose', // channel bot (digests, call briefs) run by sose
 };
 
 function prompt(question: string): Promise<string> {

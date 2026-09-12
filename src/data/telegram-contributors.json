@@ -8581,7 +8581,7 @@
     },
     {
       "name": "sose",
-      "messageCount": 348.5,
+      "messageCount": 359.5,
       "firstMessageDate": "2024-11-01T09:06:31.000Z",
       "lastMessageDate": "2026-09-11T03:25:36.000Z",
       "messages": [
@@ -16412,6 +16412,94 @@
           ]
         },
         {
+          "id": 1547,
+          "date": "2026-09-01T00:42:37.000Z",
+          "text": "자본은 이더리움에 남았지만, 토큰화 주식의 주도권은 흩어지고 있다\n\n오늘의 인사이트\n· 이더리움은 '자본이 머무는 곳'을 지키고 있지만, 그 근거는 ETH 가격이 아니라 RWA·펀드 유입이다\n· 토큰화 주식 경쟁은 '컴포저빌리티 깊이 대 유통 점유율'로 갈라졌고, 이더리움은 후자를 내주고 있다\n· '이미 배포된 코드'가 리스크의 최전선이라는 흐름이, 오늘 밸런서·폴리곤에서 다시 확인됐다\n\n프로토콜 업데이트\n· 폴리곤, 미공개 보안 취약점 복수 건 하드포크로 해결 후 공개\n\n주요 발언\n· 버크만스, '암호자본이 글로벌 보편화로 커지는 동안 이더리움이 자본 점유율을 지키고 있다'\n\n전체 요약 보기 → https://ethcollective.xyz/news",
+          "postAuthor": "sose",
+          "views": 435,
+          "forwards": 3,
+          "forwarded": false,
+          "linkEntities": [
+            {
+              "offset": 49,
+              "length": 57,
+              "url": "https://x.com/ryanberckmans/status/2094283551508177168"
+            },
+            {
+              "offset": 109,
+              "length": 55,
+              "url": "https://t.me/coinnesskr/229367"
+            },
+            {
+              "offset": 167,
+              "length": 50,
+              "url": "https://t.me/coinnesskr/229403"
+            },
+            {
+              "offset": 231,
+              "length": 34,
+              "url": "https://t.me/coinnesskr/229366"
+            },
+            {
+              "offset": 275,
+              "length": 50,
+              "url": "https://x.com/ryanberckmans/status/2094287199227244649"
+            }
+          ],
+          "imageUrls": [
+            "https://pub-e534d4b3c9914a2ea83d279b5bdc18f9.r2.dev/telegram/tg-1547.jpg"
+          ]
+        },
+        {
+          "id": 1548,
+          "date": "2026-09-02T00:43:03.000Z",
+          "text": "실행체인 난립이 'ETH 위협론'에서 'ETH 검증론'으로 재프레이밍되는 하루\n\n오늘의 인사이트\n· 실행체인 경쟁 서사가 'ETH 대체'에서 'ETH 검증'으로 뒤집히고 있다\n· 원자재 점유율은 내줬지만 '흐름 점유율'은 되찾는 중 — 어제의 분기가 데이터로 확인됐다\n· ETF의 꾸준한 매수와 고래의 엇갈린 손바꿈이 공존하는 시장 구조\n\n프로토콜 업데이트\n· 글램스테르담 데브넷-8 지나 9차 준비 — ACDT #95, 9월 7일 개최\n\n트위터 논쟁\n· '로빈후드체인 성공은 ETH에 호재인가' — FUD가 교육 캠페인 요구로 번지다\n\n주요 발언\n· 버크만스 '솔라나, 이제 대형 실행체인들과 직접 경쟁 — 이더리움 진영의 예측대로'\n· 스타니 쿨레초프 'Aave V4에서 직접 빌려야 할 이유가 더 늘었다'\n\n전체 요약 보기 → https://ethcollective.xyz/news",
+          "postAuthor": "sose",
+          "views": 393,
+          "forwards": 2,
+          "forwarded": false,
+          "linkEntities": [
+            {
+              "offset": 56,
+              "length": 41,
+              "url": "https://x.com/ryanberckmans/status/2094593377433948307"
+            },
+            {
+              "offset": 100,
+              "length": 49,
+              "url": "https://x.com/Uniswap/status/2094470341443604534"
+            },
+            {
+              "offset": 152,
+              "length": 36,
+              "url": "https://t.me/coinnesskr/229549"
+            },
+            {
+              "offset": 202,
+              "length": 42,
+              "url": "https://ethereum-magicians.org/t/all-core-devs-testing-acdt-95-september-7th-2026/29548"
+            },
+            {
+              "offset": 255,
+              "length": 44,
+              "url": "https://x.com/binji_x/status/2094595188819640725"
+            },
+            {
+              "offset": 309,
+              "length": 46,
+              "url": "https://x.com/ryanberckmans/status/2094475819615969568"
+            },
+            {
+              "offset": 358,
+              "length": 39,
+              "url": "https://x.com/StaniKulechov/status/2094499232010907693"
+            }
+          ],
+          "imageUrls": [
+            "https://pub-e534d4b3c9914a2ea83d279b5bdc18f9.r2.dev/telegram/tg-1548.jpg"
+          ]
+        },
+        {
           "id": 1550,
           "date": "2026-09-02T07:29:35.000Z",
           "text": "",
@@ -16436,6 +16524,134 @@
           ]
         },
         {
+          "id": 1551,
+          "date": "2026-09-03T00:43:51.000Z",
+          "text": "로빈후드체인이 이더리움에 던지는 질문이 '수익'에서 '정당성'으로 넘어가다\n\n오늘의 인사이트\n· 로빈후드체인의 성공이 이더리움에 던지는 질문이 '수익'에서 '정당성'으로 옮겨갔다\n· 월가는 정산 레이어를 지금 고르고 있고, 이더리움의 승부수는 '중립적 베이스'다\n· 이더리움 표준화 작업이 'AI 에이전트를 트랜잭션 주체로' 전제하기 시작했다\n\n포럼 제안\n· Procedure Manifests, AI 에이전트의 계약 분쟁 자동 해결 메커니즘 제안\n· 위임과 토큰화 자산 표준 4종 신규 제안, ERC-8391부터 8395까지\n\n주요 발언\n· 매트 가넷, '트랜잭션 어서션은 없이 어떻게 써왔나 돌아볼 기능'\n· 트렌트 반 엡스, '핵심 팀이 무너지게 두는 건 답이 아니다'\n· 헤이든 아담스, '유니스왑이 초당 약 82건 스왑을 처리 중'\n\n전체 요약 보기 → https://ethcollective.xyz/news",
+          "postAuthor": "sose",
+          "views": 433,
+          "forwards": 3,
+          "forwarded": false,
+          "linkEntities": [
+            {
+              "offset": 54,
+              "length": 45,
+              "url": "https://x.com/laurashin/status/2094951691426873657"
+            },
+            {
+              "offset": 102,
+              "length": 44,
+              "url": "https://x.com/laurashin/status/2094878476247728410"
+            },
+            {
+              "offset": 149,
+              "length": 42,
+              "url": "https://ethereum-magicians.org/t/rfc-procedure-manifests-mechanism-for-ai-agents-to-resolve-contractual-disputes/29563"
+            },
+            {
+              "offset": 201,
+              "length": 49,
+              "url": "https://ethereum-magicians.org/t/rfc-procedure-manifests-mechanism-for-ai-agents-to-resolve-contractual-disputes/29563"
+            },
+            {
+              "offset": 253,
+              "length": 41,
+              "url": "https://x.com/EtherealnewsHQ/status/2094924062275600720"
+            },
+            {
+              "offset": 304,
+              "length": 36,
+              "url": "https://x.com/lightclients/status/2094872313107988490"
+            },
+            {
+              "offset": 343,
+              "length": 34,
+              "url": "https://x.com/trent_vanepps/status/2094904293430104329"
+            },
+            {
+              "offset": 380,
+              "length": 34,
+              "url": "https://x.com/haydenzadams/status/2094904314019938670"
+            }
+          ],
+          "imageUrls": [
+            "https://pub-e534d4b3c9914a2ea83d279b5bdc18f9.r2.dev/telegram/tg-1551.jpg"
+          ]
+        },
+        {
+          "id": 1552,
+          "date": "2026-09-04T00:45:09.000Z",
+          "text": "AI 에이전트 담론 뒤에서, 디파이 펀더멘털이 다시 전면에 섰다\n\n오늘의 인사이트\n· 서사의 진자가 'AI 에이전트'에서 '디파이 펀더멘털'로 되돌아오고 있다\n· 토큰화 주식 무대 경쟁의 축이 '비용'에서 '컴포저빌리티 깊이'로 재정렬되고 있다\n· '배포된 코드가 리스크'라는 흐름의 반대편에서 프라이버시 원시 요소가 표준화되고 있다\n\n프로토콜 업데이트\n· 베이스, 개발자용 프리뷰 네트워크 '바이브넷' 공개, 세 업그레이드 동시 검증\n\n포럼 제안\n· EIP-8141, 프라이버시 애플리케이션을 위한 최소 검증 예산 규정 제안\n· ERC-8403, 계정 추상화 계정의 권한 수명주기 표준화 제안\n· EIP-8363이 작동하면 검증자 지배구조는 어떻게 되나, 리서치 제안\n\n트위터 논쟁\n· '디파이가 돌아왔다', 서사를 LLM에서 다시 프로토콜 실적으로 끌어오려는 목소리\n· 토큰화 주식의 '진짜' 경쟁, 케인은 메인넷, 버크만스는 파편화가 호재\n\n주요 발언\n· 케인 워릭, '이제 L1에서 비용은 장벽이 아니다, 메인넷이 토큰화 주식의 무대'\n· 오스틴 그리핀, '밈코인은 예상 밖의 사이퍼펑크 입구'\n· 저스틴 본스, '크립토가 혼을 팔았다, BTC·ETH는 더 이상 자유의 횃불이 아니다'\n\n전체 요약 보기 → https://ethcollective.xyz/news",
+          "postAuthor": "sose",
+          "views": 366,
+          "forwards": 1,
+          "forwarded": false,
+          "linkEntities": [
+            {
+              "offset": 48,
+              "length": 40,
+              "url": "https://x.com/haydenzadams/status/2095262316850024584"
+            },
+            {
+              "offset": 91,
+              "length": 45,
+              "url": "https://x.com/laurashin/status/2095267513840054395"
+            },
+            {
+              "offset": 139,
+              "length": 47,
+              "url": "https://ethresear.ch/t/eip-8141-and-minimum-required-validation-budget-for-privacy-applications/25889"
+            },
+            {
+              "offset": 200,
+              "length": 43,
+              "url": "https://t.me/coinnesskr/229779"
+            },
+            {
+              "offset": 253,
+              "length": 41,
+              "url": "https://ethresear.ch/t/eip-8141-and-minimum-required-validation-budget-for-privacy-applications/25889"
+            },
+            {
+              "offset": 297,
+              "length": 35,
+              "url": "https://ethereum-magicians.org/t/erc-8403-account-authority-lifecycle/29570"
+            },
+            {
+              "offset": 335,
+              "length": 39,
+              "url": "https://ethereum-magicians.org/t/research-proposal-what-happens-to-validator-control-if-eip-8363-works/29568"
+            },
+            {
+              "offset": 385,
+              "length": 45,
+              "url": "https://x.com/haydenzadams/status/2095262316850024584"
+            },
+            {
+              "offset": 433,
+              "length": 39,
+              "url": "https://x.com/ryanberckmans/status/2095174535787979067"
+            },
+            {
+              "offset": 482,
+              "length": 45,
+              "url": "https://x.com/laurashin/status/2095267513840054395"
+            },
+            {
+              "offset": 530,
+              "length": 30,
+              "url": "https://x.com/laurashin/status/2095247055405142433"
+            },
+            {
+              "offset": 563,
+              "length": 48,
+              "url": "https://x.com/Justin_Bons/status/2095186176399278461"
+            }
+          ],
+          "imageUrls": [
+            "https://pub-e534d4b3c9914a2ea83d279b5bdc18f9.r2.dev/telegram/tg-1552.jpg"
+          ]
+        },
+        {
           "id": 1553,
           "date": "2026-09-04T09:33:44.000Z",
           "text": "이더리움 발행량 논쟁을 한국에서\n\nJerome은 이더리움의 발행 정책에서 50% 이상의 ETH 공급에 대한 스테이킹 인센티브를 제거하는 것을 목표로하는 EIP-8361을 제안했었습니다.\n\n그리고 이 주제는 트위터를 뜨겁게 달구며 다양한 논쟁을 만들어냈습니다.\n\n9월 29일 \"Ethereum Korea One Genesis - Build Beyond the Narrative\" 행사에서 해당 EIP를 제안한 Jerome과 최대 규모의 이더리움 유동성 스테이킹 플랫폼인 LIDO의 Cheif of Staking인 Isidoros Passadis, 세계 2위 이더리움 DAT 회사의 CEO인 Joseph Chalom을 모시고 패널 토론을 진행합니다.\n\n모더레이터는 아시아 최대 벨리데이터 중 한 곳인 DSRV의 Co-founder 최형규님이 진행해주실 예정입니다.\n\n개인적으로는 binji의 해당 논쟁과 관련한 발언을 좋아하는데, \n\"이 사회를 유지하는 데 얼마를 투자해야 할까요?\n너무 적게 투자하면, 기관은 약해져서 결국 모든 사람들이 동시에 알아차리게 됩니다. 반대로, 너무 많은 투자를 하면, 원래 보호하도록 만들어졌던 사회를 잠식할 수 있습니다.\n\n지금까지 제가 알 수 있는 바에 따르면, 어떤 문명도 이러한 상생-상생의 균형에서 완전히 벗어난 적은 없는 것 같습니다. 이더리움 역시, 다소 예상치 못한 방식으로, 이를 \"발행\"이라고 부르고 있습니다.\n\n만약 이 논쟁에서 한 가지 분명히 기대하는 것은, 어떤 결과가 나오든, 더 많은 사람들이 이더리움의 경제적 측면을, 모든 지속 가능한 문명체가 직면해야 하는 질문으로서, 자신을 유지하기 위해 얼마나 많은 부분을 기꺼이 헌신할 수 있는지에 대한 질문으로 인식하는 것입니다.\"\n\n많은 체인이 보안에 대한 과도한 비용과 벨리데이터 보상으로 인해 체인을 L2로 이전하거나 종료하는 경우도 많고, 실제로 이더리움 생태계에서 Lido나 Bitmine의 과도한 스테이킹 점유율에 대한 걱정도 분명 존재합니다. 반대로 그러한 보상이 없다면 체인의 성장이 멈추거나 후퇴할 수도 있는 걱정도 분명 존재하겠죠.\n\n한국에서 주요 플레이어들의 생각들을 들을 수 있는 자리를 준비했으니 많은 관심과 참여 부탁드립니다 :)\n» Ethereum Korea One Genesis - Build Beyond the Narrative",
@@ -16455,6 +16671,149 @@
           ]
         },
         {
+          "id": 1554,
+          "date": "2026-09-05T00:44:08.000Z",
+          "text": "토큰화 주식은 이제 '누가 할 권리가 있나'의 싸움이 됐다\n\n오늘의 인사이트\n· 토큰화 주식의 전선이 '비용'에서 '정당성'으로 이동했다\n· L2가 커질수록 L1 데이터 레이어가 실질 병목으로 드러나고 있다\n· '배포된 코드가 리스크'라는 흐름의 답은 형식검증이지만, 그 답엔 자금이라는 조건이 붙는다\n\n프로토콜 업데이트\n· 신규 EIP, 실행 페이로드를 64청크로 쪼개 브로드캐스트하는 'Fast Execution Payload Broadcast'\n· ethresear.ch 주간 라운드업, 클라이언트 형식검증과 ecrecover 양자내성 개조가 나란히\n\n포럼 제안\n· ERC-8410, 키 없는 소프트웨어가 지갑에 넘기는 '이식 가능한 실행 계획' 표준 제안\n· '이더리움의 형태', 6년치 트랜잭션 그래프를 위상수학으로 분석한 연구\n\n트위터 논쟁\n· 로빈후드는 정말 ETH에 가치를 돌려주는가, 이더리움 진영 내부의 설전\n· 발행사의 저항, AMC CEO가 토큰화 주식을 '역겹다'며 법무 투입\n\n주요 발언\n· 라이언 버크만스, '24시간 거래가 만들 월가의 질투를 우리가 과소평가했다'\n· 헤이든 아담스, '유니스왑 UNI 소각 연 2억 달러 근접, 테더 추월 눈앞'\n· Etherealize, '스테이블코인·토큰화 펀드·원자재 대부분이 이더리움에 산다'\n\n전체 요약 보기 → https://ethcollective.xyz/news",
+          "postAuthor": "sose",
+          "views": 1856,
+          "forwards": 7,
+          "forwarded": false,
+          "linkEntities": [
+            {
+              "offset": 45,
+              "length": 31,
+              "url": "https://x.com/haydenzadams/status/2095906483221189093"
+            },
+            {
+              "offset": 79,
+              "length": 36,
+              "url": "https://ethresear.ch/t/wen-fast-payload-broadcast-segment-code-push-pull-and-everything-in-between/25913"
+            },
+            {
+              "offset": 118,
+              "length": 50,
+              "url": "https://x.com/trent_vanepps/status/2095850137851482448"
+            },
+            {
+              "offset": 182,
+              "length": 69,
+              "url": "https://x.com/ethresearchbot/status/2096010686342041885"
+            },
+            {
+              "offset": 254,
+              "length": 56,
+              "url": "https://x.com/ethresearchbot/status/2095904971682173266"
+            },
+            {
+              "offset": 320,
+              "length": 50,
+              "url": "https://ethereum-magicians.org/t/erc-8410-portable-execution-plan-artifact/29587"
+            },
+            {
+              "offset": 373,
+              "length": 39,
+              "url": "https://ethresear.ch/t/the-shape-of-ethereum-a-six-year-study-of-topological-anomalies/25902"
+            },
+            {
+              "offset": 423,
+              "length": 39,
+              "url": "https://x.com/ryanberckmans/status/2095869276892606792"
+            },
+            {
+              "offset": 465,
+              "length": 38,
+              "url": "https://x.com/laurashin/status/2095880739975733285"
+            },
+            {
+              "offset": 513,
+              "length": 42,
+              "url": "https://x.com/ryanberckmans/status/2095708396888432828"
+            },
+            {
+              "offset": 558,
+              "length": 43,
+              "url": "https://x.com/haydenzadams/status/2095932954417451020"
+            },
+            {
+              "offset": 604,
+              "length": 46,
+              "url": "https://x.com/Etherealize_io/status/2095912572134314077"
+            }
+          ],
+          "imageUrls": [
+            "https://pub-e534d4b3c9914a2ea83d279b5bdc18f9.r2.dev/telegram/tg-1554.jpg"
+          ]
+        },
+        {
+          "id": 1555,
+          "date": "2026-09-06T00:43:34.000Z",
+          "text": "프로토콜 프런티어가 실행층을 넘어 트랜잭션 포맷과 합의층으로 넓어졌다\n\n오늘의 인사이트\n· 트랜잭션 포맷 담론이 프레임즈(EIP-8141)라는 하나의 답으로 수렴하고 있다\n· 프로토콜 연구의 무게중심이 실행층과 데이터에서 합의층 재설계로 이동하고 있다\n· 형식검증은 이제 산출물을 내고, 그 산출물은 곧장 프리컴파일 경제 논쟁을 부른다\n\n프로토콜 업데이트\n· 프레임즈(EIP-8141) 진전과 ethrex의 Frames·FOCIL 테스트넷\n· 디커플드 합의로 완결성 시간 4배 단축한 개념증명\n· 크라우드소싱으로 형식검증된 MODEXP EVM 구현 완성\n\n포럼 제안\n· '역방향 자산'으로서의 태스크 토큰, 토큰에 묶인 작업 입찰 표준 제안\n\n트위터 논쟁\n· 형식검증된 대체 구현이 나온 지금, MODEXP 프리컴파일을 리프라이싱할 것인가\n· 검증자를 Tor 위에서 돌릴 것인가, 프라이버시와 지연시간의 트레이드오프\n\n주요 발언\n· lightclients, '프레임즈면 충분하다, 8141이 이더리움의 마지막 트랜잭션 타입일 수 있다'\n· ryanberckmans, 'Lighter의 성공이 곧 이더리움의 성공'\n\n전체 요약 보기 → https://ethcollective.xyz/news",
+          "postAuthor": "sose",
+          "views": 385,
+          "forwards": 1,
+          "forwarded": false,
+          "linkEntities": [
+            {
+              "offset": 51,
+              "length": 44,
+              "url": "https://x.com/VitalikButerin/status/2096378061377900881"
+            },
+            {
+              "offset": 98,
+              "length": 42,
+              "url": "https://x.com/benjaminion_xyz/status/2096154357712494719"
+            },
+            {
+              "offset": 143,
+              "length": 44,
+              "url": "https://x.com/nero_eth/status/2096201985837957276"
+            },
+            {
+              "offset": 201,
+              "length": 44,
+              "url": "https://x.com/VitalikButerin/status/2096370186094076098"
+            },
+            {
+              "offset": 248,
+              "length": 27,
+              "url": "https://x.com/barnabemonnot/status/2096160340887097420"
+            },
+            {
+              "offset": 278,
+              "length": 31,
+              "url": "https://x.com/nero_eth/status/2095940664978530448"
+            },
+            {
+              "offset": 319,
+              "length": 39,
+              "url": "https://ethereum-magicians.org/t/task-token-as-a-reverse-asset-token-bound-task-tenders/29597"
+            },
+            {
+              "offset": 369,
+              "length": 44,
+              "url": "https://x.com/nero_eth/status/2096186217985384683"
+            },
+            {
+              "offset": 416,
+              "length": 40,
+              "url": "https://x.com/barnabemonnot/status/2096161242440159316"
+            },
+            {
+              "offset": 466,
+              "length": 57,
+              "url": "https://x.com/lightclients/status/2096267977389949099"
+            },
+            {
+              "offset": 526,
+              "length": 40,
+              "url": "https://x.com/ryanberckmans/status/2096364231268425801"
+            }
+          ],
+          "imageUrls": [
+            "https://pub-e534d4b3c9914a2ea83d279b5bdc18f9.r2.dev/telegram/tg-1555.jpg"
+          ]
+        },
+        {
           "id": 1558,
           "date": "2026-09-08T02:46:20.000Z",
           "text": "최근 가장 핫한 논쟁, EIP-8141 vs EIP-8130\n\n최근에 이더리움 생태계에서 가장 핫한 주제로 AA와 관련한 EIP 논쟁이 있습니다.\n\nEIP-8130측은 해당 EIP를 제안한 코인베이스, Base & Tempo 측이 주로 이뤄져있고, 최근 WalletConnect의 창업자도 EIP-8130에 대해 더 긍정적으로 이야기하면서 이러한 논쟁이 더욱 가속화되었습니다. Ethlabs의 Derek도 참여하면서 다양한 의견들을 제시하고 있습니다. \n\n그리고 드디어 EIP-8141의 공동저자인 비탈릭도 관련한 내용을 트위터에 업로드하였습니다. 개선된 EIP-8141이 나왔고 최적에 가깝다는 이야기를 하기도 하였습니다.\n\n그리고 8월 27일 ACD 콜에서 8141이 CFI에서 SFI로 승격되어 FOCIL과 함께 Hegotá에 공식 포함됐습니다. 다만 아직 드래프트라 스펙이 바뀔 수 있고, 8130과의 비교도 계속되고 있습니다.\n\n해당 논쟁을 조금 더 정리되서 볼 수 있도록 ECK 웹사이트에 \"논쟁\" 파트를 추가했습니다.\n» https://ethcollective.xyz/debates/aa-validation-programmable-vs-bounded\n\nEIP-8141 \"Frame Transactions\"의 공동 저자이자 Geth팀의 Lead인 Felix Lange와 ZeroDev의 Tech Lead인 이태규님의 \"Native AA, But How? - The Road to Ethereum’s Account Endgame\"라는 주제로 파이어사이드 챗을 진행하니 관심있는 분들은 29일 행사에서 뵙겠습니다.\n» https://luma.com/0a4zc5a6?tk=4NOskM",
@@ -16467,12 +16826,137 @@
           ]
         },
         {
+          "id": 1559,
+          "date": "2026-09-09T01:05:39.000Z",
+          "text": "62개 EIP에 등급을 매긴 EF의 한목소리, 헤고타의 축은 프라이버시와 양자내성으로 정해지고 있다\n\n이번 호 인사이트\n· EF가 처음으로 하나의 목소리를 냈다, 헤고타는 '절제된 포크'로 설계되고 있다\n· 프라이버시가 앱 레이어의 숙제에서 L1 로드맵의 1순위 의제로 올라섰다\n· '더 빠른 이더리움'이 정식 후보가 됐다, 퀵 슬롯은 합의 재설계와의 정합성을 조건으로 달았다\n\n프로토콜 업데이트\n· EF Protocol 클러스터, 헤고타 62개 EIP 통합 티어리스트와 우선순위 공표, 양자내성 L1은 '늦어도 2029년 12월'\n· 헤고타 스코핑 개시, 프라이버시 번들과 리프라이싱, 클린업, 양자내성 준비로 테마 정리\n· 퀵 슬롯 B티어 진입, 포함 요건 4가지 공개, Prysm에는 빠른 확정 규칙 머지\n· EIP-8141 후속, 저자들은 '설계 돌파구' 언급, 'ETH 무용론'에는 반박\n\n포럼 제안\n· 프레임 트랜잭션 멤풀의 분류 기준은 '순서 의존성', CALM 정리로 admission 규칙 재해석\n· '헤고타는 가스 리프라이싱을 어떻게 다뤄야 하나', 글램스테르담의 경험이 가이드라인 제안으로\n· 코드가 아니라 ERC 표준 자체를 검증하자, '표준 전체 보증' 제안\n· 실행 페이로드 청크 브로드캐스트, EIP-8411로 번호를 받고 토론 개시\n\n트위터 논쟁\n· 가스 파라미터는 프라이버시 구멍인가, 제거할 수 있는가, 패딩이 한계인가\n· '이더리움의 최대 경쟁자는 지캐시다', 프라이버시 우선순위 설전\n· 스테이지2가 아닌 로빈후드 체인에게 블롭은 무슨 의미인가\n· 지갑 priority fee 기본값, 게으름인가 빌더 킥백인가\n\n주요 발언\n· 비탈릭 부테린, SNARK·FHE·iO 세 기술의 오버헤드에 확률 베팅을 걸다\n· EF, 네트워크 레이어까지 포함한 '풀스택 프라이버시' 작업 예고\n· decentrek, 'Ethlabs 내부에서 블롭 용량 추가 증설 논쟁이 진행 중이다'\n\n전체 요약 보기 → https://ethcollective.xyz/news",
+          "postAuthor": "sose",
+          "views": 1170,
+          "forwards": 5,
+          "forwarded": false,
+          "linkEntities": [
+            {
+              "offset": 69,
+              "length": 44,
+              "url": "https://blog.ethereum.org/en/2026/09/07/protocol-hegota-eips"
+            },
+            {
+              "offset": 116,
+              "length": 39,
+              "url": "https://x.com/nero_eth/status/2096851469580275926"
+            },
+            {
+              "offset": 158,
+              "length": 52,
+              "url": "https://x.com/barnabemonnot/status/2097028168146202813"
+            },
+            {
+              "offset": 224,
+              "length": 73,
+              "url": "https://blog.ethereum.org/en/2026/09/07/protocol-hegota-eips"
+            },
+            {
+              "offset": 300,
+              "length": 48,
+              "url": "https://x.com/nero_eth/status/2096851469580275926"
+            },
+            {
+              "offset": 351,
+              "length": 46,
+              "url": "https://x.com/barnabemonnot/status/2097028168146202813"
+            },
+            {
+              "offset": 400,
+              "length": 45,
+              "url": "https://x.com/decentrek/status/2096587220195192981"
+            },
+            {
+              "offset": 455,
+              "length": 55,
+              "url": "https://ethresear.ch/t/order-dependence-as-the-classifying-dimension-for-frame-transaction-mempool-admission/25934"
+            },
+            {
+              "offset": 513,
+              "length": 51,
+              "url": "https://ethresear.ch/t/how-hegota-should-approach-gas-repricing/25935"
+            },
+            {
+              "offset": 567,
+              "length": 38,
+              "url": "https://ethresear.ch/t/can-we-verify-an-erc-not-just-its-code/25926"
+            },
+            {
+              "offset": 608,
+              "length": 41,
+              "url": "https://ethereum-magicians.org/t/eip-8411-fast-execution-payload-broadcast/29613"
+            },
+            {
+              "offset": 660,
+              "length": 40,
+              "url": "https://x.com/pcaversaccio/status/2096894060120449333"
+            },
+            {
+              "offset": 703,
+              "length": 35,
+              "url": "https://x.com/donnoh_eth/status/2096854640868438429"
+            },
+            {
+              "offset": 741,
+              "length": 31,
+              "url": "https://x.com/donnoh_eth/status/2096685783750955283"
+            },
+            {
+              "offset": 775,
+              "length": 34,
+              "url": "https://x.com/donnoh_eth/status/2097033653737931076"
+            },
+            {
+              "offset": 819,
+              "length": 43,
+              "url": "https://x.com/VitalikButerin/status/2096589479305961591"
+            },
+            {
+              "offset": 865,
+              "length": 36,
+              "url": "https://x.com/jchaskin22/status/2096988836744073405"
+            },
+            {
+              "offset": 904,
+              "length": 48,
+              "url": "https://x.com/decentrek/status/2096653105001849329"
+            }
+          ],
+          "imageUrls": [
+            "https://pub-e534d4b3c9914a2ea83d279b5bdc18f9.r2.dev/telegram/tg-1559.jpg"
+          ]
+        },
+        {
           "id": 1561,
           "date": "2026-09-09T03:05:35.000Z",
           "text": "새롭게 출시된 Etherscan Flow\n\n• 복잡한 거래들을 명확한 지도처럼: 자금 흐름, 증거 자료 – 체인상에서 모든 거래를 확인\n• 처음부터 워크플로우를 구축하거나, Etherscan 워크플로우 기능을 사용하여 다른 전문가에게 워크플로우를 구축하도록 요청할 수 있습니다.\n\nhttps://github.com/etherscan/skills",
           "postAuthor": "sose",
           "views": 6208,
           "forwards": 80,
+          "forwarded": false
+        },
+        {
+          "id": 1562,
+          "date": "2026-09-09T05:13:44.000Z",
+          "text": "ACDT #95 · 9월 7일\n실행 계층(EL)과 합의 계층(CL) 클라이언트의 테스트 담당자들이 격주로 모이는 테스팅 콜(ACDT)이다.\n\n한 줄 요약\n논스 0인데 저장소가 남아 있는 28개 옛 계정을 손보는 EIP-8253은 글램스터담(Glamsterdam)에 넣기엔 너무 늦었다는 대략적 합의가 나와 다음 포크인 헤고타(Hegota)로 미뤄졌고, 최종 확정은 목요일 ACD 콜로 넘겼다.\n\n결정된 것\n· EIP-8253은 글램스터담에 넣기엔 너무 늦었다는 대략적 합의로 헤고타로 미뤄졌다. 논스 0 저장소 계정 수정이 이번 포크에는 들어가지 않는다는 뜻이다.\n· EIP-8037의 SELFDESTRUCT 상태 가스 환급 PR #12249는 ACDT #94의 거절 결정이 유지돼 닫기로 했다. 셀프디스트럭트로 상태 가스를 돌려받게 하는 안이 무산됐다는 뜻이다.\n· EL 리오그(reorg) 테스트 스위트를 Hive에 만들기로 했다. Geth와 Besu가 선호한 방식으로, 여러 클라이언트가 공유하는 체인 재구성 테스트가 처음 생긴다는 뜻이다.\n\n일정\n· 글램스터담 데브넷 11을 이번 주 중반에서 주말 사이 출시. Prysm alpha.14 머지를 기다리는 조건부 제안 일정이다.\n\n왜 중요한가\n블록 접근 목록(BAL)은 트랜잭션 재실행 없이 블록 상태를 적용하게 하는 글램스터담의 핵심 구조인데, 옛 계정 28개 때문에 사양에 구멍이 있다는 사실이 확인됐다. 수정을 미루면서 글램스터담 출시 일정은 지키는 대신 클라이언트들은 헤고타에서 이 예외를 처리해야 한다.\n\n용어 \n· BAL(블록 접근 목록): 블록이 건드리는 계정과 상태 변경을 나열해 재실행 없이 블록을 적용하게 하는 글램스터담의 구조 \n· DFI: 포크 포함이 거절됐다는 표시(Declined for Inclusion) \n· 데브넷(devnet): 포크를 미리 시험해 보는 개발용 임시 네트워크 \n· 리오그(reorg): 체인이 다른 분기로 갈아타며 최근 블록들이 교체되는 일",
+          "postAuthor": "sose",
+          "views": 243,
+          "forwards": 2,
+          "forwarded": false,
+          "imageUrls": [
+            "https://pub-e534d4b3c9914a2ea83d279b5bdc18f9.r2.dev/telegram/tg-1562.jpg"
+          ]
+        },
+        {
+          "id": 1563,
+          "date": "2026-09-09T05:13:45.000Z",
+          "text": "ACDT #95 · 누가 무슨 말을 했나\n블록 접근 목록의 예외 계정 수정이 다음 포크로 밀렸다\n\nEIP-8253을 글램스터담에 넣을 것인가 · 보류 결정 00:42:15\n글램스터담의 블록 접근 목록(BAL) 사양이 논스 0인데 저장소가 남아 있는 28개 옛 계정과 충돌한다는 사실이 막판에 제기돼, 이번 포크에 넣을지 헤고타로 미룰지가 논의됐다.\n· Jochem Brouwer (EF, EthereumJS · EIP-8037 공동 저자): 옐로페이퍼는 컨트랙트를 생성하면 저장소 트리가 비어 있다고 가정하는데, BAL로 재실행 없이 상태 디프만 적용하면 기존 저장소 키를 지우지 못해 상태 루트가 어긋난다고 설명했다. 늦었지만 지금 글램스터담에서 처리하는 것이 가장 깔끔하다고 제안했다.\n· Toni Wahrstätter (EF, 리서처): BAL은 사후 상태 디프만 담고 이전 저장소 내용은 상관하지 않으므로 당장 깨지는 것은 없다고 요헴에게 반박했다. EIP 자체는 타당하고 더 일찍 했어야 하지만 지금은 너무 늦어 헤고타행이 당연하다고 했다.\n· FLCL (Nethermind): 남은 포크 전환 횟수로는 제대로 테스트할 수 없어 글램스터담엔 너무 늦었고 최소 헤고타로 가야 한다고 했다.\n· Marius van der Wijden (EF, geth): 글램스터담과 헤고타의 BAL 메커니즘이 둘로 갈리는 기술 부채만 남지 않는다면 헤고타로 미루는 데 찬성한다고 했다.\n· Ben Adams (Nethermind): 포크 전에 전환용 블록을 두는 아이디어도 검토했지만 너무 늦었다고 인정했고, 해당 계정들은 최대 40개 저장소 슬롯 수준으로 작아 BAL에 넣어도 부담이 없으니 기다려도 된다고 했다.\n· Milen (Erigon): 이 문제를 다시 꺼내지 않도록 글램스터담에서 끝내는 쪽을 약간 선호하지만 어느 쪽이든 좋다고 했다. (채팅)\n\"이 EIP는 충분히 타당하고 더 일찍 했어야 하지만, 이렇게 늦은 시점에 넣지는 않겠다. 내게는 헤고타행이 고민할 것도 없는 선택으로 느껴진다.\" (Toni Wahrstätter, 00:33:22)\n\nJUMPDEST 스팸 공격과 Besu 노드 다운\n데브넷 8에서 64KB JUMPDEST 컨트랙트 수만 개를 반복 호출하는 스팸 공격이 Besu 노드 13대 중 12대를 마비시켜, 원인과 각 클라이언트의 대응이 논의됐다.\n· Stefan Starflinger (EF DevOps): 요헴의 스팸으로 Besu 노드 대부분이 다운됐고 다른 노드들도 버거워했다고 보고했다. 최종성은 유지됐지만 Besu는 주말 동안 블록 제안의 약 65%를 놓쳤고 Nethermind는 5%, Geth는 0.1%였다며 클라이언트들이 이 엣지 케이스를 최적화해야 한다고 했다.\n· Jochem Brouwer (EF, EthereumJS · EIP-8037 공동 저자): 공격은 고유 코드 해시를 가진 66,667개 계정을 돌아가며 호출해 매번 64KB의 JUMPDEST 분석을 강제한다고 설명했다. 벤치마커에서는 문제가 없었는데 지속 공격에서 노드가 떨어진다며 Geth와 Nethermind를 뺀 모든 클라이언트가 살펴봐야 한다고 했다.\n· Ameziane Hamlat (Consensys, Besu): Besu에서 한 번에 치솟는 큰 메모리 스파이크를 확인했으며, 아직 최적화되지 않은 디버그 트레이스 코드 경로가 원인일 수 있다고 봤다. 이를 고치는 PR은 있지만 머지 전이라고 했다.\n· Carlos Pérez (CPerezz) (EF, EIP-8037 공동 저자): 노드 하드웨어(8코어 16GB)가 EIP-7870 권장 사양보다 낮아 보인다며 문제의 실제 심각도를 가늠해야 한다고 지적했다. (채팅)\n· Marius van der Wijden (EF, geth): 노드에 트레이싱이 켜져 있는지 물으며 트레이싱이 켜져 있으면 상황이 훨씬 어려워진다고 했다. (채팅)\n\"그가 Besu 노드 대부분을 다운시켰고, 다른 많은 노드도 따라가는 데 애를 먹고 있다.\" (Stefan Starflinger, 00:05:42)\n\nEL 공용 리오그 테스트 스위트 · 확정 00:52:05\n클라이언트마다 따로 하고 있는 리오그(reorg) 테스트를 모두가 공유하는 하나의 스위트로 만들자는 제안이 나와, 어떤 프레임워크에 만들지가 논의됐다.\n· Carlos Pérez (CPerezz) (EF, EIP-8037 공동 저자): 각 클라이언트가 내부적으로만 리오그를 테스트하고 공용 스위트가 없다며, 최근 메인넷 포크의 MPT 관련 버그 같은 문제를 미리 잡을 일반 테스트를 만들자고 제안했다. 클라이언트 팀에는 작업 부담이 없다고 했다.\n· Marius van der Wijden (EF, geth): 유지 보수할 도구를 또 만들고 싶지 않다며, 이미 동기화 테스트와 과거 리오그 테스트가 있던 Hive를 약간 선호한다고 했다.\n· Ben Adams (Nethermind): Hive가 좋겠다며 마리우스의 의견에 동의했다.\n· Luis Pinto (Besu): 성능 테스트도 계획에 있는지 물었다.\n· Karim Taam (Consensys, Besu): Hive가 말이 되는 선택이라고 했다. (채팅)\n· danceratopz (EF, 테스팅): EEST와 비슷한 테스트 형식에 FCU 지시문을 더하면 복잡한 리오그 시나리오는 물론 같은 형식의 벤치마크 전용 테스트까지 만들 수 있다고 답했고, CPerezz도 큰 리오그 윈도의 성능 측정이 유용하다며 동의했다.\n\"나는 Hive를 약간 선호한다. 같은 기능을 갖고 우리가 유지 보수하고 들여다봐야 할 도구를 하나 더 만드는 일을 피하고 싶기 때문이다.\" (Marius van der Wijden, 00:51:07)\n\n남은 것\n· danceratopz / pk910: JUMPDEST 스팸 공격을 EEST 테스트로 표현하는 문제를 내일 벤치마킹 콜에 올린다.\n· 모든 EL 팀: EIP-8253의 글램스터담 대 헤고타 결정은 목요일 ACDE로 미뤘고, 클라이언트 팀들은 그 전에 비동기로 검토한다.\n\n콜 페이지에서 전체 보기 → https://ethcollective.xyz/calls/acdt-95",
+          "postAuthor": "sose",
+          "views": 283,
+          "forwards": 2,
           "forwarded": false
         },
         {
@@ -16486,6 +16970,27 @@
           "imageUrls": [
             "https://pub-e534d4b3c9914a2ea83d279b5bdc18f9.r2.dev/telegram/tg-1566.jpg"
           ]
+        },
+        {
+          "id": 1567,
+          "date": "2026-09-11T00:47:28.000Z",
+          "text": "ACDE #245 · 9월 10일\n실행 계층(EL) 클라이언트 개발자들이 격주로 모이는 콜이다.\n\n한 줄 요약\n프레임 트랜잭션(EIP-8141, Frame Transactions)이 다음 포크 헤고타(Hegota)의 헤드라이너로 공식 확정됐다. 나머지 시간은 헤고타 스코핑을 위해 37개 EIP를 훑으며 우선 후보에서 빼는 DFI 결정을 대거 처리하는 데 쓰였다.\n\n결정된 것\n· 글램스테르담(Glamsterdam)에 뒤늦게 EIP-8253을 추가하지 않기로 했다. 보안상 급할 게 없어 이 논스 조정 제안은 원래 예정대로 헤고타에서 다루며, 헤고타 즉시 SFI 요청은 스코핑 블록으로 미뤄 후보로만 남았다.\n· 프레임 트랜잭션(EIP-8141)을 헤고타의 헤드라이너(headliner)로 확정했다. 이미 SFI 상태였던 이 EIP가 포크의 간판 기능이라는 점을 공식화한 것으로, 스펙은 아직 다듬는 중이다.\n· EIP-7819(set delegate 명령어)와 EIP-7851(코드 제어 EOA 위임)을 헤고타 후보에서 제외(DFI)했다. 두 EIP 모두 클라이언트 평점이 1.0 미만이었고 옹호하는 이가 없었다.\n· EIP-2488(CALLCODE 폐지), EIP-8219(체크드 산술 opcode), EIP-8182(비공개 ETH/ERC-20 전송), EIP-7645(ORIGIN을 sender로 별칭 처리)를 제외했다. 네 건 모두 전 클라이언트 만장일치 저평가(0.0~0.8)였다.\n· EVM에 call/return opcode를 넣는 EIP-7979은 오늘 결정을 미뤘다. 솔리디티(Solidity)·바이퍼(Vyper) 컴파일러 팀이 실제로 통합할지 의견을 낼 때까지 2주 유예하며, 진전이 없으면 자동 DFI가 기본값이다.\n\n일정\n· 2주 뒤 다음 ACDE: 상위권 EIP들에 대한 CFI 처리와 오늘 보류한 모든 EIP의 최종 DFI 결정 예정",
+          "postAuthor": "sose",
+          "views": 150,
+          "forwards": 1,
+          "forwarded": false,
+          "imageUrls": [
+            "https://pub-e534d4b3c9914a2ea83d279b5bdc18f9.r2.dev/telegram/tg-1567.jpg"
+          ]
+        },
+        {
+          "id": 1568,
+          "date": "2026-09-11T00:47:29.000Z",
+          "text": "ACDE #245 · 누가 무슨 말을 했나\n프레임 트랜잭션이 헤고타의 간판 기능으로 확정됐다.\n\nEIP-8253을 글램스테르담에 넣을지 · 글램스테르담 제외, 헤고타 SFI 결정은 스코핑 블록으로 미룸 00:20:31\nDFI된 EIP-7610을 대체하는 EIP-8253을 막판에 글램스테르담에 넣자는 제안이 나와, 콜 첫머리에서 처리 여부를 정했다.\n· Jochem Brouwer (EF, EthereumJS · EIP-8037 공동 저자): EIP-8253은 메인넷 전용이라 후디·세폴리아에서는 무효과라 넣어볼 만하다고 제안했다. 다만 글램스테르담에 안 넣는다면 헤고타에서는 SFI였던 EIP-7610의 대체이니 곧바로 SFI하자고 요청했다.\n· Toni Wahrstätter (EF, 리서처): 월요일 ACDT에서 대다수 클라이언트가 반대했다며, 이 단계에 EIP를 끼워넣기엔 너무 늦었고 메인넷 전용이라 테스트넷에서 버그를 못 잡는다고 지적했다. BAL(블록 액세스 리스트) 상호작용 문제도 들며 헤고타가 적절하다고 봤다.\n· Ansgar Dietrichs (EF, 리서처): 이 단계에서 글램스테르담에 뭔가를 더 넣으려면 예외적 사정이 필요하다며, 보안상 긴급한지 되물었다. Jochem이 긴급하지 않다고 답하자 헤고타 처리로 정리했다.\n· Nixo (EF Protocol Support, ACDE 진행): 한 포크에서의 상태가 새 포크의 상태를 자동으로 부여하지 않으며 다시 사다리를 거쳐야 한다고 지적하며, SFI가 아니라 CFI가 맞지 않느냐고 물었다. (채팅)\n· danceratopz (EF, 테스팅): Jochem이 말한 건 SFI가 아니라 CFI였을 것이라고 채팅으로 정리했다. (채팅)\n\"한 포크에서의 상태가 새 포크의 상태를 자동으로 부여하지 않으며, 다시 사다리를 거쳐야 한다고 우리는 명시적으로 말해왔다.\" (Nixo, 00:24:48)\n\nEIP-7979 call/return opcode를 살릴지 · 결정 보류(오늘 DFI·CFI 모두 안 함) 00:45:03\nEVM에 call/return을 넣는 EIP-7979이 저평가로 DFI 직전에 몰리자, 챔피언과 일부 개발자가 EVM 전용 EIP가 구조적으로 밀리는 문제라며 결정 보류를 요청했다.\n· Jochem Brouwer (EF, EthereumJS · EIP-8037 공동 저자): 프로토콜에 안 중요해 보여도 EVM에는 매우 중요할 수 있는 사각지대가 있다며, 7923과 8163은 DFI에 동의하지만 7979은 오늘 결정하지 말자고 했다.\n· Greg Colvin: call/return을 지원하지 않는 스마트 컨트랙트 VM은 사실상 이더리움뿐이며, 이게 없으면 제어 흐름 분석·컴파일·형식 검증(formal verification)이 막힌다고 호소했다. 구현·테스트까지 끝나 있고 자신이 마지막 챔피언이라며 이제는 넣자고 했다.\n· Ansgar Dietrichs (EF, 리서처): 채팅에 보류 지지가 많다며, 오늘은 결정하지 않고 2주 뒤 콜에 컴파일러 팀을 불러 깊이 논의하자고 정리했다.\n\"내가 아는 한, 우리는 call과 return을 지원하지 않는 유일한 스마트 컨트랙트 VM이다.\" (Greg Colvin, 00:42:23)\n\nEIP-8200 프리컴파일 EVM화 · DFI 결정 01:10:35\n프리컴파일을 형식 검증된 EVM 바이트코드로 대체하는 EIP-8200은 ZK EVM 대비 차원에서 논의됐으나, 성능 근거가 무르익지 않아 헤고타 포함 여부를 가렸다.\n· Ben Adams (Nethermind): 찬성은 아니지만 흥미로운 EIP라며, MODEXP 같은 프리컴파일을 대체할 더 나은 바이트코드를 겨루는 대회가 진행 중이니 결과가 무르익을 때까지 시간이 필요하다고 했다.\n· Greg Colvin: 일반적으로 좋은 아이디어라 DFI에 동의하지만 성능 측정이 먼저라고 했다. 자신은 정적 제어 흐름 검증을 EVM화했을 때 온갖 노력에도 충분히 빠르게 만들지 못했고, 프리컴파일의 존재 이유가 바로 성능이라고 지적했다.\n· Justin Florentine (Besu): 아이디어는 좋지만 아직 준비가 덜 됐다는 데 동의하며, 나중에 다시 네이티브 구현으로 되돌릴 수 없게 되는 위험을 짚었다.\n· Kevaundray Wedderburn (EF, 응용 리서치): 실행하지 않고 프리컴파일의 가스 비용을 계산해야 하므로 네이티브로 되돌리는 것 자체가 불가능하다고 답했다.\n· Iván Litteri (LambdaClass, ethrex 테크 리드): 프루버 공격 표면 축소와 ZKVM 구현 단순화라는 목표에 공감하지만 수치가 부족하고 폭넓은 클라이언트 지지도 없다고 인정하며, 향후 포크 재검토를 받아들였다.\n\"무르익을 시간이 필요하다.\" (Ben Adams, 01:07:24)\n\nEIP-8304 무신뢰 로그·트랜잭션 인덱스 · 결정 보류(베수·레스 비동기 참여, 기본값은 DFI) 01:38:10\n이벤트에 대한 검증 가능한 범위 쿼리를 여는 EIP-8304을 두고, 당장의 수요는 없지만 무신뢰성이 이더리움의 핵심 속성이라는 주장과 작업량 대비 이득 논쟁이 맞붙었다.\n· Zsolt Felföldi (EF, geth, EIP-8304): 자신의 EIP라며, 오늘은 불가능한 이벤트 범위의 증명 가능한 쿼리를 열어주고 온체인 증명성·네이티브 UTXO·L2 통신의 길을 연다고 설명했다. 결코 초긴급하진 않지만 장기적으로 이더리움에 큰 가치라며 지금 DFI하지 말자고 했다.\n· lightclient (Matt Garnett) (EF, geth): FOCIL에 빗대어, 지금 당장 쓰는 사람이 많지 않아도 검열 저항성처럼 무신뢰 상호작용은 이더리움이 계속 제공해야 할 핵심 속성이니 만들어둘 가치가 있다고 강하게 지지했다.\n· Dragan Rakita (Tempo, revm 저자): 리시트에 대한 증명을 허용하는 건 맞지만 실제로 누가 쓸지가 문제라며, 큰 사용자의 명확한 수요 신호가 있으면 생각이 바뀔 수 있다고 했다.\n· Justin Florentine (Besu): 하한을 1.3으로 두자고 했던 만큼 2주 유예를 받아들일 수 있다며, 오늘의 신뢰 기반 오프체인 인덱싱으로는 왜 부족한지에 대한 근거를 팀에 제시해 달라고 요청했다.\n· Łukasz Rozmej (Nethermind, EIP-8037 공동 저자): B로 매겼고 다른 지지가 있으면 포함해도 좋다며 막지 않겠다고 했다. 외부 기여자의 프로토타입 PR도 있으나 헤고타 우선순위는 아니라고 밝혔다.\n\"무신뢰 경험을 사용자에게 제공하는 데 필요한 기능을 만들지 말아야 한다는 뜻은 아니다.\" (lightclient (Matt Garnett), 01:32:00)\n\n남은 것\n· EIP-7979 챔피언 / 콜 주최측: 다음 ACDE에 솔리디티·바이퍼 컴파일러 팀을 초청해 EIP-7979에 대한 의견을 듣는다\n· Piotr (EIP-8163 챔피언): 다음 콜 전까지 EIP-8163에 대한 L2·대안 L1의 명시적 지지 신호를 모은다\n· EL 클라이언트 팀 전체: 평균 2.5 이상 상위 8개 Forkcast EIP를 검토하고, 우려 사항을 다음 콜 1주 전까지 비동기로 제기해 챔피언이 답할 수 있게 한다\n\n콜 페이지에서 전체 보기 → https://ethcollective.xyz/calls/acde-245",
+          "postAuthor": "sose",
+          "views": 149,
+          "forwards": 1,
+          "forwarded": false
         },
         {
           "id": 1569,
@@ -27115,519 +27620,6 @@
           "imageUrls": [
             "https://pub-e534d4b3c9914a2ea83d279b5bdc18f9.r2.dev/telegram/tg-1544.jpg"
           ]
-        }
-      ]
-    },
-    {
-      "name": "Ticker Data Bot",
-      "messageCount": 11,
-      "firstMessageDate": "2026-09-01T00:42:37.000Z",
-      "lastMessageDate": "2026-09-11T00:47:29.000Z",
-      "messages": [
-        {
-          "id": 1547,
-          "date": "2026-09-01T00:42:37.000Z",
-          "text": "자본은 이더리움에 남았지만, 토큰화 주식의 주도권은 흩어지고 있다\n\n오늘의 인사이트\n· 이더리움은 '자본이 머무는 곳'을 지키고 있지만, 그 근거는 ETH 가격이 아니라 RWA·펀드 유입이다\n· 토큰화 주식 경쟁은 '컴포저빌리티 깊이 대 유통 점유율'로 갈라졌고, 이더리움은 후자를 내주고 있다\n· '이미 배포된 코드'가 리스크의 최전선이라는 흐름이, 오늘 밸런서·폴리곤에서 다시 확인됐다\n\n프로토콜 업데이트\n· 폴리곤, 미공개 보안 취약점 복수 건 하드포크로 해결 후 공개\n\n주요 발언\n· 버크만스, '암호자본이 글로벌 보편화로 커지는 동안 이더리움이 자본 점유율을 지키고 있다'\n\n전체 요약 보기 → https://ethcollective.xyz/news",
-          "postAuthor": "Ticker Data Bot",
-          "views": 435,
-          "forwards": 3,
-          "forwarded": false,
-          "linkEntities": [
-            {
-              "offset": 49,
-              "length": 57,
-              "url": "https://x.com/ryanberckmans/status/2094283551508177168"
-            },
-            {
-              "offset": 109,
-              "length": 55,
-              "url": "https://t.me/coinnesskr/229367"
-            },
-            {
-              "offset": 167,
-              "length": 50,
-              "url": "https://t.me/coinnesskr/229403"
-            },
-            {
-              "offset": 231,
-              "length": 34,
-              "url": "https://t.me/coinnesskr/229366"
-            },
-            {
-              "offset": 275,
-              "length": 50,
-              "url": "https://x.com/ryanberckmans/status/2094287199227244649"
-            }
-          ],
-          "imageUrls": [
-            "https://pub-e534d4b3c9914a2ea83d279b5bdc18f9.r2.dev/telegram/tg-1547.jpg"
-          ]
-        },
-        {
-          "id": 1548,
-          "date": "2026-09-02T00:43:03.000Z",
-          "text": "실행체인 난립이 'ETH 위협론'에서 'ETH 검증론'으로 재프레이밍되는 하루\n\n오늘의 인사이트\n· 실행체인 경쟁 서사가 'ETH 대체'에서 'ETH 검증'으로 뒤집히고 있다\n· 원자재 점유율은 내줬지만 '흐름 점유율'은 되찾는 중 — 어제의 분기가 데이터로 확인됐다\n· ETF의 꾸준한 매수와 고래의 엇갈린 손바꿈이 공존하는 시장 구조\n\n프로토콜 업데이트\n· 글램스테르담 데브넷-8 지나 9차 준비 — ACDT #95, 9월 7일 개최\n\n트위터 논쟁\n· '로빈후드체인 성공은 ETH에 호재인가' — FUD가 교육 캠페인 요구로 번지다\n\n주요 발언\n· 버크만스 '솔라나, 이제 대형 실행체인들과 직접 경쟁 — 이더리움 진영의 예측대로'\n· 스타니 쿨레초프 'Aave V4에서 직접 빌려야 할 이유가 더 늘었다'\n\n전체 요약 보기 → https://ethcollective.xyz/news",
-          "postAuthor": "Ticker Data Bot",
-          "views": 393,
-          "forwards": 2,
-          "forwarded": false,
-          "linkEntities": [
-            {
-              "offset": 56,
-              "length": 41,
-              "url": "https://x.com/ryanberckmans/status/2094593377433948307"
-            },
-            {
-              "offset": 100,
-              "length": 49,
-              "url": "https://x.com/Uniswap/status/2094470341443604534"
-            },
-            {
-              "offset": 152,
-              "length": 36,
-              "url": "https://t.me/coinnesskr/229549"
-            },
-            {
-              "offset": 202,
-              "length": 42,
-              "url": "https://ethereum-magicians.org/t/all-core-devs-testing-acdt-95-september-7th-2026/29548"
-            },
-            {
-              "offset": 255,
-              "length": 44,
-              "url": "https://x.com/binji_x/status/2094595188819640725"
-            },
-            {
-              "offset": 309,
-              "length": 46,
-              "url": "https://x.com/ryanberckmans/status/2094475819615969568"
-            },
-            {
-              "offset": 358,
-              "length": 39,
-              "url": "https://x.com/StaniKulechov/status/2094499232010907693"
-            }
-          ],
-          "imageUrls": [
-            "https://pub-e534d4b3c9914a2ea83d279b5bdc18f9.r2.dev/telegram/tg-1548.jpg"
-          ]
-        },
-        {
-          "id": 1551,
-          "date": "2026-09-03T00:43:51.000Z",
-          "text": "로빈후드체인이 이더리움에 던지는 질문이 '수익'에서 '정당성'으로 넘어가다\n\n오늘의 인사이트\n· 로빈후드체인의 성공이 이더리움에 던지는 질문이 '수익'에서 '정당성'으로 옮겨갔다\n· 월가는 정산 레이어를 지금 고르고 있고, 이더리움의 승부수는 '중립적 베이스'다\n· 이더리움 표준화 작업이 'AI 에이전트를 트랜잭션 주체로' 전제하기 시작했다\n\n포럼 제안\n· Procedure Manifests, AI 에이전트의 계약 분쟁 자동 해결 메커니즘 제안\n· 위임과 토큰화 자산 표준 4종 신규 제안, ERC-8391부터 8395까지\n\n주요 발언\n· 매트 가넷, '트랜잭션 어서션은 없이 어떻게 써왔나 돌아볼 기능'\n· 트렌트 반 엡스, '핵심 팀이 무너지게 두는 건 답이 아니다'\n· 헤이든 아담스, '유니스왑이 초당 약 82건 스왑을 처리 중'\n\n전체 요약 보기 → https://ethcollective.xyz/news",
-          "postAuthor": "Ticker Data Bot",
-          "views": 433,
-          "forwards": 3,
-          "forwarded": false,
-          "linkEntities": [
-            {
-              "offset": 54,
-              "length": 45,
-              "url": "https://x.com/laurashin/status/2094951691426873657"
-            },
-            {
-              "offset": 102,
-              "length": 44,
-              "url": "https://x.com/laurashin/status/2094878476247728410"
-            },
-            {
-              "offset": 149,
-              "length": 42,
-              "url": "https://ethereum-magicians.org/t/rfc-procedure-manifests-mechanism-for-ai-agents-to-resolve-contractual-disputes/29563"
-            },
-            {
-              "offset": 201,
-              "length": 49,
-              "url": "https://ethereum-magicians.org/t/rfc-procedure-manifests-mechanism-for-ai-agents-to-resolve-contractual-disputes/29563"
-            },
-            {
-              "offset": 253,
-              "length": 41,
-              "url": "https://x.com/EtherealnewsHQ/status/2094924062275600720"
-            },
-            {
-              "offset": 304,
-              "length": 36,
-              "url": "https://x.com/lightclients/status/2094872313107988490"
-            },
-            {
-              "offset": 343,
-              "length": 34,
-              "url": "https://x.com/trent_vanepps/status/2094904293430104329"
-            },
-            {
-              "offset": 380,
-              "length": 34,
-              "url": "https://x.com/haydenzadams/status/2094904314019938670"
-            }
-          ],
-          "imageUrls": [
-            "https://pub-e534d4b3c9914a2ea83d279b5bdc18f9.r2.dev/telegram/tg-1551.jpg"
-          ]
-        },
-        {
-          "id": 1552,
-          "date": "2026-09-04T00:45:09.000Z",
-          "text": "AI 에이전트 담론 뒤에서, 디파이 펀더멘털이 다시 전면에 섰다\n\n오늘의 인사이트\n· 서사의 진자가 'AI 에이전트'에서 '디파이 펀더멘털'로 되돌아오고 있다\n· 토큰화 주식 무대 경쟁의 축이 '비용'에서 '컴포저빌리티 깊이'로 재정렬되고 있다\n· '배포된 코드가 리스크'라는 흐름의 반대편에서 프라이버시 원시 요소가 표준화되고 있다\n\n프로토콜 업데이트\n· 베이스, 개발자용 프리뷰 네트워크 '바이브넷' 공개, 세 업그레이드 동시 검증\n\n포럼 제안\n· EIP-8141, 프라이버시 애플리케이션을 위한 최소 검증 예산 규정 제안\n· ERC-8403, 계정 추상화 계정의 권한 수명주기 표준화 제안\n· EIP-8363이 작동하면 검증자 지배구조는 어떻게 되나, 리서치 제안\n\n트위터 논쟁\n· '디파이가 돌아왔다', 서사를 LLM에서 다시 프로토콜 실적으로 끌어오려는 목소리\n· 토큰화 주식의 '진짜' 경쟁, 케인은 메인넷, 버크만스는 파편화가 호재\n\n주요 발언\n· 케인 워릭, '이제 L1에서 비용은 장벽이 아니다, 메인넷이 토큰화 주식의 무대'\n· 오스틴 그리핀, '밈코인은 예상 밖의 사이퍼펑크 입구'\n· 저스틴 본스, '크립토가 혼을 팔았다, BTC·ETH는 더 이상 자유의 횃불이 아니다'\n\n전체 요약 보기 → https://ethcollective.xyz/news",
-          "postAuthor": "Ticker Data Bot",
-          "views": 366,
-          "forwards": 1,
-          "forwarded": false,
-          "linkEntities": [
-            {
-              "offset": 48,
-              "length": 40,
-              "url": "https://x.com/haydenzadams/status/2095262316850024584"
-            },
-            {
-              "offset": 91,
-              "length": 45,
-              "url": "https://x.com/laurashin/status/2095267513840054395"
-            },
-            {
-              "offset": 139,
-              "length": 47,
-              "url": "https://ethresear.ch/t/eip-8141-and-minimum-required-validation-budget-for-privacy-applications/25889"
-            },
-            {
-              "offset": 200,
-              "length": 43,
-              "url": "https://t.me/coinnesskr/229779"
-            },
-            {
-              "offset": 253,
-              "length": 41,
-              "url": "https://ethresear.ch/t/eip-8141-and-minimum-required-validation-budget-for-privacy-applications/25889"
-            },
-            {
-              "offset": 297,
-              "length": 35,
-              "url": "https://ethereum-magicians.org/t/erc-8403-account-authority-lifecycle/29570"
-            },
-            {
-              "offset": 335,
-              "length": 39,
-              "url": "https://ethereum-magicians.org/t/research-proposal-what-happens-to-validator-control-if-eip-8363-works/29568"
-            },
-            {
-              "offset": 385,
-              "length": 45,
-              "url": "https://x.com/haydenzadams/status/2095262316850024584"
-            },
-            {
-              "offset": 433,
-              "length": 39,
-              "url": "https://x.com/ryanberckmans/status/2095174535787979067"
-            },
-            {
-              "offset": 482,
-              "length": 45,
-              "url": "https://x.com/laurashin/status/2095267513840054395"
-            },
-            {
-              "offset": 530,
-              "length": 30,
-              "url": "https://x.com/laurashin/status/2095247055405142433"
-            },
-            {
-              "offset": 563,
-              "length": 48,
-              "url": "https://x.com/Justin_Bons/status/2095186176399278461"
-            }
-          ],
-          "imageUrls": [
-            "https://pub-e534d4b3c9914a2ea83d279b5bdc18f9.r2.dev/telegram/tg-1552.jpg"
-          ]
-        },
-        {
-          "id": 1554,
-          "date": "2026-09-05T00:44:08.000Z",
-          "text": "토큰화 주식은 이제 '누가 할 권리가 있나'의 싸움이 됐다\n\n오늘의 인사이트\n· 토큰화 주식의 전선이 '비용'에서 '정당성'으로 이동했다\n· L2가 커질수록 L1 데이터 레이어가 실질 병목으로 드러나고 있다\n· '배포된 코드가 리스크'라는 흐름의 답은 형식검증이지만, 그 답엔 자금이라는 조건이 붙는다\n\n프로토콜 업데이트\n· 신규 EIP, 실행 페이로드를 64청크로 쪼개 브로드캐스트하는 'Fast Execution Payload Broadcast'\n· ethresear.ch 주간 라운드업, 클라이언트 형식검증과 ecrecover 양자내성 개조가 나란히\n\n포럼 제안\n· ERC-8410, 키 없는 소프트웨어가 지갑에 넘기는 '이식 가능한 실행 계획' 표준 제안\n· '이더리움의 형태', 6년치 트랜잭션 그래프를 위상수학으로 분석한 연구\n\n트위터 논쟁\n· 로빈후드는 정말 ETH에 가치를 돌려주는가, 이더리움 진영 내부의 설전\n· 발행사의 저항, AMC CEO가 토큰화 주식을 '역겹다'며 법무 투입\n\n주요 발언\n· 라이언 버크만스, '24시간 거래가 만들 월가의 질투를 우리가 과소평가했다'\n· 헤이든 아담스, '유니스왑 UNI 소각 연 2억 달러 근접, 테더 추월 눈앞'\n· Etherealize, '스테이블코인·토큰화 펀드·원자재 대부분이 이더리움에 산다'\n\n전체 요약 보기 → https://ethcollective.xyz/news",
-          "postAuthor": "Ticker Data Bot",
-          "views": 1856,
-          "forwards": 7,
-          "forwarded": false,
-          "linkEntities": [
-            {
-              "offset": 45,
-              "length": 31,
-              "url": "https://x.com/haydenzadams/status/2095906483221189093"
-            },
-            {
-              "offset": 79,
-              "length": 36,
-              "url": "https://ethresear.ch/t/wen-fast-payload-broadcast-segment-code-push-pull-and-everything-in-between/25913"
-            },
-            {
-              "offset": 118,
-              "length": 50,
-              "url": "https://x.com/trent_vanepps/status/2095850137851482448"
-            },
-            {
-              "offset": 182,
-              "length": 69,
-              "url": "https://x.com/ethresearchbot/status/2096010686342041885"
-            },
-            {
-              "offset": 254,
-              "length": 56,
-              "url": "https://x.com/ethresearchbot/status/2095904971682173266"
-            },
-            {
-              "offset": 320,
-              "length": 50,
-              "url": "https://ethereum-magicians.org/t/erc-8410-portable-execution-plan-artifact/29587"
-            },
-            {
-              "offset": 373,
-              "length": 39,
-              "url": "https://ethresear.ch/t/the-shape-of-ethereum-a-six-year-study-of-topological-anomalies/25902"
-            },
-            {
-              "offset": 423,
-              "length": 39,
-              "url": "https://x.com/ryanberckmans/status/2095869276892606792"
-            },
-            {
-              "offset": 465,
-              "length": 38,
-              "url": "https://x.com/laurashin/status/2095880739975733285"
-            },
-            {
-              "offset": 513,
-              "length": 42,
-              "url": "https://x.com/ryanberckmans/status/2095708396888432828"
-            },
-            {
-              "offset": 558,
-              "length": 43,
-              "url": "https://x.com/haydenzadams/status/2095932954417451020"
-            },
-            {
-              "offset": 604,
-              "length": 46,
-              "url": "https://x.com/Etherealize_io/status/2095912572134314077"
-            }
-          ],
-          "imageUrls": [
-            "https://pub-e534d4b3c9914a2ea83d279b5bdc18f9.r2.dev/telegram/tg-1554.jpg"
-          ]
-        },
-        {
-          "id": 1555,
-          "date": "2026-09-06T00:43:34.000Z",
-          "text": "프로토콜 프런티어가 실행층을 넘어 트랜잭션 포맷과 합의층으로 넓어졌다\n\n오늘의 인사이트\n· 트랜잭션 포맷 담론이 프레임즈(EIP-8141)라는 하나의 답으로 수렴하고 있다\n· 프로토콜 연구의 무게중심이 실행층과 데이터에서 합의층 재설계로 이동하고 있다\n· 형식검증은 이제 산출물을 내고, 그 산출물은 곧장 프리컴파일 경제 논쟁을 부른다\n\n프로토콜 업데이트\n· 프레임즈(EIP-8141) 진전과 ethrex의 Frames·FOCIL 테스트넷\n· 디커플드 합의로 완결성 시간 4배 단축한 개념증명\n· 크라우드소싱으로 형식검증된 MODEXP EVM 구현 완성\n\n포럼 제안\n· '역방향 자산'으로서의 태스크 토큰, 토큰에 묶인 작업 입찰 표준 제안\n\n트위터 논쟁\n· 형식검증된 대체 구현이 나온 지금, MODEXP 프리컴파일을 리프라이싱할 것인가\n· 검증자를 Tor 위에서 돌릴 것인가, 프라이버시와 지연시간의 트레이드오프\n\n주요 발언\n· lightclients, '프레임즈면 충분하다, 8141이 이더리움의 마지막 트랜잭션 타입일 수 있다'\n· ryanberckmans, 'Lighter의 성공이 곧 이더리움의 성공'\n\n전체 요약 보기 → https://ethcollective.xyz/news",
-          "postAuthor": "Ticker Data Bot",
-          "views": 385,
-          "forwards": 1,
-          "forwarded": false,
-          "linkEntities": [
-            {
-              "offset": 51,
-              "length": 44,
-              "url": "https://x.com/VitalikButerin/status/2096378061377900881"
-            },
-            {
-              "offset": 98,
-              "length": 42,
-              "url": "https://x.com/benjaminion_xyz/status/2096154357712494719"
-            },
-            {
-              "offset": 143,
-              "length": 44,
-              "url": "https://x.com/nero_eth/status/2096201985837957276"
-            },
-            {
-              "offset": 201,
-              "length": 44,
-              "url": "https://x.com/VitalikButerin/status/2096370186094076098"
-            },
-            {
-              "offset": 248,
-              "length": 27,
-              "url": "https://x.com/barnabemonnot/status/2096160340887097420"
-            },
-            {
-              "offset": 278,
-              "length": 31,
-              "url": "https://x.com/nero_eth/status/2095940664978530448"
-            },
-            {
-              "offset": 319,
-              "length": 39,
-              "url": "https://ethereum-magicians.org/t/task-token-as-a-reverse-asset-token-bound-task-tenders/29597"
-            },
-            {
-              "offset": 369,
-              "length": 44,
-              "url": "https://x.com/nero_eth/status/2096186217985384683"
-            },
-            {
-              "offset": 416,
-              "length": 40,
-              "url": "https://x.com/barnabemonnot/status/2096161242440159316"
-            },
-            {
-              "offset": 466,
-              "length": 57,
-              "url": "https://x.com/lightclients/status/2096267977389949099"
-            },
-            {
-              "offset": 526,
-              "length": 40,
-              "url": "https://x.com/ryanberckmans/status/2096364231268425801"
-            }
-          ],
-          "imageUrls": [
-            "https://pub-e534d4b3c9914a2ea83d279b5bdc18f9.r2.dev/telegram/tg-1555.jpg"
-          ]
-        },
-        {
-          "id": 1559,
-          "date": "2026-09-09T01:05:39.000Z",
-          "text": "62개 EIP에 등급을 매긴 EF의 한목소리, 헤고타의 축은 프라이버시와 양자내성으로 정해지고 있다\n\n이번 호 인사이트\n· EF가 처음으로 하나의 목소리를 냈다, 헤고타는 '절제된 포크'로 설계되고 있다\n· 프라이버시가 앱 레이어의 숙제에서 L1 로드맵의 1순위 의제로 올라섰다\n· '더 빠른 이더리움'이 정식 후보가 됐다, 퀵 슬롯은 합의 재설계와의 정합성을 조건으로 달았다\n\n프로토콜 업데이트\n· EF Protocol 클러스터, 헤고타 62개 EIP 통합 티어리스트와 우선순위 공표, 양자내성 L1은 '늦어도 2029년 12월'\n· 헤고타 스코핑 개시, 프라이버시 번들과 리프라이싱, 클린업, 양자내성 준비로 테마 정리\n· 퀵 슬롯 B티어 진입, 포함 요건 4가지 공개, Prysm에는 빠른 확정 규칙 머지\n· EIP-8141 후속, 저자들은 '설계 돌파구' 언급, 'ETH 무용론'에는 반박\n\n포럼 제안\n· 프레임 트랜잭션 멤풀의 분류 기준은 '순서 의존성', CALM 정리로 admission 규칙 재해석\n· '헤고타는 가스 리프라이싱을 어떻게 다뤄야 하나', 글램스테르담의 경험이 가이드라인 제안으로\n· 코드가 아니라 ERC 표준 자체를 검증하자, '표준 전체 보증' 제안\n· 실행 페이로드 청크 브로드캐스트, EIP-8411로 번호를 받고 토론 개시\n\n트위터 논쟁\n· 가스 파라미터는 프라이버시 구멍인가, 제거할 수 있는가, 패딩이 한계인가\n· '이더리움의 최대 경쟁자는 지캐시다', 프라이버시 우선순위 설전\n· 스테이지2가 아닌 로빈후드 체인에게 블롭은 무슨 의미인가\n· 지갑 priority fee 기본값, 게으름인가 빌더 킥백인가\n\n주요 발언\n· 비탈릭 부테린, SNARK·FHE·iO 세 기술의 오버헤드에 확률 베팅을 걸다\n· EF, 네트워크 레이어까지 포함한 '풀스택 프라이버시' 작업 예고\n· decentrek, 'Ethlabs 내부에서 블롭 용량 추가 증설 논쟁이 진행 중이다'\n\n전체 요약 보기 → https://ethcollective.xyz/news",
-          "postAuthor": "Ticker Data Bot",
-          "views": 1170,
-          "forwards": 5,
-          "forwarded": false,
-          "linkEntities": [
-            {
-              "offset": 69,
-              "length": 44,
-              "url": "https://blog.ethereum.org/en/2026/09/07/protocol-hegota-eips"
-            },
-            {
-              "offset": 116,
-              "length": 39,
-              "url": "https://x.com/nero_eth/status/2096851469580275926"
-            },
-            {
-              "offset": 158,
-              "length": 52,
-              "url": "https://x.com/barnabemonnot/status/2097028168146202813"
-            },
-            {
-              "offset": 224,
-              "length": 73,
-              "url": "https://blog.ethereum.org/en/2026/09/07/protocol-hegota-eips"
-            },
-            {
-              "offset": 300,
-              "length": 48,
-              "url": "https://x.com/nero_eth/status/2096851469580275926"
-            },
-            {
-              "offset": 351,
-              "length": 46,
-              "url": "https://x.com/barnabemonnot/status/2097028168146202813"
-            },
-            {
-              "offset": 400,
-              "length": 45,
-              "url": "https://x.com/decentrek/status/2096587220195192981"
-            },
-            {
-              "offset": 455,
-              "length": 55,
-              "url": "https://ethresear.ch/t/order-dependence-as-the-classifying-dimension-for-frame-transaction-mempool-admission/25934"
-            },
-            {
-              "offset": 513,
-              "length": 51,
-              "url": "https://ethresear.ch/t/how-hegota-should-approach-gas-repricing/25935"
-            },
-            {
-              "offset": 567,
-              "length": 38,
-              "url": "https://ethresear.ch/t/can-we-verify-an-erc-not-just-its-code/25926"
-            },
-            {
-              "offset": 608,
-              "length": 41,
-              "url": "https://ethereum-magicians.org/t/eip-8411-fast-execution-payload-broadcast/29613"
-            },
-            {
-              "offset": 660,
-              "length": 40,
-              "url": "https://x.com/pcaversaccio/status/2096894060120449333"
-            },
-            {
-              "offset": 703,
-              "length": 35,
-              "url": "https://x.com/donnoh_eth/status/2096854640868438429"
-            },
-            {
-              "offset": 741,
-              "length": 31,
-              "url": "https://x.com/donnoh_eth/status/2096685783750955283"
-            },
-            {
-              "offset": 775,
-              "length": 34,
-              "url": "https://x.com/donnoh_eth/status/2097033653737931076"
-            },
-            {
-              "offset": 819,
-              "length": 43,
-              "url": "https://x.com/VitalikButerin/status/2096589479305961591"
-            },
-            {
-              "offset": 865,
-              "length": 36,
-              "url": "https://x.com/jchaskin22/status/2096988836744073405"
-            },
-            {
-              "offset": 904,
-              "length": 48,
-              "url": "https://x.com/decentrek/status/2096653105001849329"
-            }
-          ],
-          "imageUrls": [
-            "https://pub-e534d4b3c9914a2ea83d279b5bdc18f9.r2.dev/telegram/tg-1559.jpg"
-          ]
-        },
-        {
-          "id": 1562,
-          "date": "2026-09-09T05:13:44.000Z",
-          "text": "ACDT #95 · 9월 7일\n실행 계층(EL)과 합의 계층(CL) 클라이언트의 테스트 담당자들이 격주로 모이는 테스팅 콜(ACDT)이다.\n\n한 줄 요약\n논스 0인데 저장소가 남아 있는 28개 옛 계정을 손보는 EIP-8253은 글램스터담(Glamsterdam)에 넣기엔 너무 늦었다는 대략적 합의가 나와 다음 포크인 헤고타(Hegota)로 미뤄졌고, 최종 확정은 목요일 ACD 콜로 넘겼다.\n\n결정된 것\n· EIP-8253은 글램스터담에 넣기엔 너무 늦었다는 대략적 합의로 헤고타로 미뤄졌다. 논스 0 저장소 계정 수정이 이번 포크에는 들어가지 않는다는 뜻이다.\n· EIP-8037의 SELFDESTRUCT 상태 가스 환급 PR #12249는 ACDT #94의 거절 결정이 유지돼 닫기로 했다. 셀프디스트럭트로 상태 가스를 돌려받게 하는 안이 무산됐다는 뜻이다.\n· EL 리오그(reorg) 테스트 스위트를 Hive에 만들기로 했다. Geth와 Besu가 선호한 방식으로, 여러 클라이언트가 공유하는 체인 재구성 테스트가 처음 생긴다는 뜻이다.\n\n일정\n· 글램스터담 데브넷 11을 이번 주 중반에서 주말 사이 출시. Prysm alpha.14 머지를 기다리는 조건부 제안 일정이다.\n\n왜 중요한가\n블록 접근 목록(BAL)은 트랜잭션 재실행 없이 블록 상태를 적용하게 하는 글램스터담의 핵심 구조인데, 옛 계정 28개 때문에 사양에 구멍이 있다는 사실이 확인됐다. 수정을 미루면서 글램스터담 출시 일정은 지키는 대신 클라이언트들은 헤고타에서 이 예외를 처리해야 한다.\n\n용어 \n· BAL(블록 접근 목록): 블록이 건드리는 계정과 상태 변경을 나열해 재실행 없이 블록을 적용하게 하는 글램스터담의 구조 \n· DFI: 포크 포함이 거절됐다는 표시(Declined for Inclusion) \n· 데브넷(devnet): 포크를 미리 시험해 보는 개발용 임시 네트워크 \n· 리오그(reorg): 체인이 다른 분기로 갈아타며 최근 블록들이 교체되는 일",
-          "postAuthor": "Ticker Data Bot",
-          "views": 243,
-          "forwards": 2,
-          "forwarded": false,
-          "imageUrls": [
-            "https://pub-e534d4b3c9914a2ea83d279b5bdc18f9.r2.dev/telegram/tg-1562.jpg"
-          ]
-        },
-        {
-          "id": 1563,
-          "date": "2026-09-09T05:13:45.000Z",
-          "text": "ACDT #95 · 누가 무슨 말을 했나\n블록 접근 목록의 예외 계정 수정이 다음 포크로 밀렸다\n\nEIP-8253을 글램스터담에 넣을 것인가 · 보류 결정 00:42:15\n글램스터담의 블록 접근 목록(BAL) 사양이 논스 0인데 저장소가 남아 있는 28개 옛 계정과 충돌한다는 사실이 막판에 제기돼, 이번 포크에 넣을지 헤고타로 미룰지가 논의됐다.\n· Jochem Brouwer (EF, EthereumJS · EIP-8037 공동 저자): 옐로페이퍼는 컨트랙트를 생성하면 저장소 트리가 비어 있다고 가정하는데, BAL로 재실행 없이 상태 디프만 적용하면 기존 저장소 키를 지우지 못해 상태 루트가 어긋난다고 설명했다. 늦었지만 지금 글램스터담에서 처리하는 것이 가장 깔끔하다고 제안했다.\n· Toni Wahrstätter (EF, 리서처): BAL은 사후 상태 디프만 담고 이전 저장소 내용은 상관하지 않으므로 당장 깨지는 것은 없다고 요헴에게 반박했다. EIP 자체는 타당하고 더 일찍 했어야 하지만 지금은 너무 늦어 헤고타행이 당연하다고 했다.\n· FLCL (Nethermind): 남은 포크 전환 횟수로는 제대로 테스트할 수 없어 글램스터담엔 너무 늦었고 최소 헤고타로 가야 한다고 했다.\n· Marius van der Wijden (EF, geth): 글램스터담과 헤고타의 BAL 메커니즘이 둘로 갈리는 기술 부채만 남지 않는다면 헤고타로 미루는 데 찬성한다고 했다.\n· Ben Adams (Nethermind): 포크 전에 전환용 블록을 두는 아이디어도 검토했지만 너무 늦었다고 인정했고, 해당 계정들은 최대 40개 저장소 슬롯 수준으로 작아 BAL에 넣어도 부담이 없으니 기다려도 된다고 했다.\n· Milen (Erigon): 이 문제를 다시 꺼내지 않도록 글램스터담에서 끝내는 쪽을 약간 선호하지만 어느 쪽이든 좋다고 했다. (채팅)\n\"이 EIP는 충분히 타당하고 더 일찍 했어야 하지만, 이렇게 늦은 시점에 넣지는 않겠다. 내게는 헤고타행이 고민할 것도 없는 선택으로 느껴진다.\" (Toni Wahrstätter, 00:33:22)\n\nJUMPDEST 스팸 공격과 Besu 노드 다운\n데브넷 8에서 64KB JUMPDEST 컨트랙트 수만 개를 반복 호출하는 스팸 공격이 Besu 노드 13대 중 12대를 마비시켜, 원인과 각 클라이언트의 대응이 논의됐다.\n· Stefan Starflinger (EF DevOps): 요헴의 스팸으로 Besu 노드 대부분이 다운됐고 다른 노드들도 버거워했다고 보고했다. 최종성은 유지됐지만 Besu는 주말 동안 블록 제안의 약 65%를 놓쳤고 Nethermind는 5%, Geth는 0.1%였다며 클라이언트들이 이 엣지 케이스를 최적화해야 한다고 했다.\n· Jochem Brouwer (EF, EthereumJS · EIP-8037 공동 저자): 공격은 고유 코드 해시를 가진 66,667개 계정을 돌아가며 호출해 매번 64KB의 JUMPDEST 분석을 강제한다고 설명했다. 벤치마커에서는 문제가 없었는데 지속 공격에서 노드가 떨어진다며 Geth와 Nethermind를 뺀 모든 클라이언트가 살펴봐야 한다고 했다.\n· Ameziane Hamlat (Consensys, Besu): Besu에서 한 번에 치솟는 큰 메모리 스파이크를 확인했으며, 아직 최적화되지 않은 디버그 트레이스 코드 경로가 원인일 수 있다고 봤다. 이를 고치는 PR은 있지만 머지 전이라고 했다.\n· Carlos Pérez (CPerezz) (EF, EIP-8037 공동 저자): 노드 하드웨어(8코어 16GB)가 EIP-7870 권장 사양보다 낮아 보인다며 문제의 실제 심각도를 가늠해야 한다고 지적했다. (채팅)\n· Marius van der Wijden (EF, geth): 노드에 트레이싱이 켜져 있는지 물으며 트레이싱이 켜져 있으면 상황이 훨씬 어려워진다고 했다. (채팅)\n\"그가 Besu 노드 대부분을 다운시켰고, 다른 많은 노드도 따라가는 데 애를 먹고 있다.\" (Stefan Starflinger, 00:05:42)\n\nEL 공용 리오그 테스트 스위트 · 확정 00:52:05\n클라이언트마다 따로 하고 있는 리오그(reorg) 테스트를 모두가 공유하는 하나의 스위트로 만들자는 제안이 나와, 어떤 프레임워크에 만들지가 논의됐다.\n· Carlos Pérez (CPerezz) (EF, EIP-8037 공동 저자): 각 클라이언트가 내부적으로만 리오그를 테스트하고 공용 스위트가 없다며, 최근 메인넷 포크의 MPT 관련 버그 같은 문제를 미리 잡을 일반 테스트를 만들자고 제안했다. 클라이언트 팀에는 작업 부담이 없다고 했다.\n· Marius van der Wijden (EF, geth): 유지 보수할 도구를 또 만들고 싶지 않다며, 이미 동기화 테스트와 과거 리오그 테스트가 있던 Hive를 약간 선호한다고 했다.\n· Ben Adams (Nethermind): Hive가 좋겠다며 마리우스의 의견에 동의했다.\n· Luis Pinto (Besu): 성능 테스트도 계획에 있는지 물었다.\n· Karim Taam (Consensys, Besu): Hive가 말이 되는 선택이라고 했다. (채팅)\n· danceratopz (EF, 테스팅): EEST와 비슷한 테스트 형식에 FCU 지시문을 더하면 복잡한 리오그 시나리오는 물론 같은 형식의 벤치마크 전용 테스트까지 만들 수 있다고 답했고, CPerezz도 큰 리오그 윈도의 성능 측정이 유용하다며 동의했다.\n\"나는 Hive를 약간 선호한다. 같은 기능을 갖고 우리가 유지 보수하고 들여다봐야 할 도구를 하나 더 만드는 일을 피하고 싶기 때문이다.\" (Marius van der Wijden, 00:51:07)\n\n남은 것\n· danceratopz / pk910: JUMPDEST 스팸 공격을 EEST 테스트로 표현하는 문제를 내일 벤치마킹 콜에 올린다.\n· 모든 EL 팀: EIP-8253의 글램스터담 대 헤고타 결정은 목요일 ACDE로 미뤘고, 클라이언트 팀들은 그 전에 비동기로 검토한다.\n\n콜 페이지에서 전체 보기 → https://ethcollective.xyz/calls/acdt-95",
-          "postAuthor": "Ticker Data Bot",
-          "views": 283,
-          "forwards": 2,
-          "forwarded": false
-        },
-        {
-          "id": 1567,
-          "date": "2026-09-11T00:47:28.000Z",
-          "text": "ACDE #245 · 9월 10일\n실행 계층(EL) 클라이언트 개발자들이 격주로 모이는 콜이다.\n\n한 줄 요약\n프레임 트랜잭션(EIP-8141, Frame Transactions)이 다음 포크 헤고타(Hegota)의 헤드라이너로 공식 확정됐다. 나머지 시간은 헤고타 스코핑을 위해 37개 EIP를 훑으며 우선 후보에서 빼는 DFI 결정을 대거 처리하는 데 쓰였다.\n\n결정된 것\n· 글램스테르담(Glamsterdam)에 뒤늦게 EIP-8253을 추가하지 않기로 했다. 보안상 급할 게 없어 이 논스 조정 제안은 원래 예정대로 헤고타에서 다루며, 헤고타 즉시 SFI 요청은 스코핑 블록으로 미뤄 후보로만 남았다.\n· 프레임 트랜잭션(EIP-8141)을 헤고타의 헤드라이너(headliner)로 확정했다. 이미 SFI 상태였던 이 EIP가 포크의 간판 기능이라는 점을 공식화한 것으로, 스펙은 아직 다듬는 중이다.\n· EIP-7819(set delegate 명령어)와 EIP-7851(코드 제어 EOA 위임)을 헤고타 후보에서 제외(DFI)했다. 두 EIP 모두 클라이언트 평점이 1.0 미만이었고 옹호하는 이가 없었다.\n· EIP-2488(CALLCODE 폐지), EIP-8219(체크드 산술 opcode), EIP-8182(비공개 ETH/ERC-20 전송), EIP-7645(ORIGIN을 sender로 별칭 처리)를 제외했다. 네 건 모두 전 클라이언트 만장일치 저평가(0.0~0.8)였다.\n· EVM에 call/return opcode를 넣는 EIP-7979은 오늘 결정을 미뤘다. 솔리디티(Solidity)·바이퍼(Vyper) 컴파일러 팀이 실제로 통합할지 의견을 낼 때까지 2주 유예하며, 진전이 없으면 자동 DFI가 기본값이다.\n\n일정\n· 2주 뒤 다음 ACDE: 상위권 EIP들에 대한 CFI 처리와 오늘 보류한 모든 EIP의 최종 DFI 결정 예정",
-          "postAuthor": "Ticker Data Bot",
-          "views": 150,
-          "forwards": 1,
-          "forwarded": false,
-          "imageUrls": [
-            "https://pub-e534d4b3c9914a2ea83d279b5bdc18f9.r2.dev/telegram/tg-1567.jpg"
-          ]
-        },
-        {
-          "id": 1568,
-          "date": "2026-09-11T00:47:29.000Z",
-          "text": "ACDE #245 · 누가 무슨 말을 했나\n프레임 트랜잭션이 헤고타의 간판 기능으로 확정됐다.\n\nEIP-8253을 글램스테르담에 넣을지 · 글램스테르담 제외, 헤고타 SFI 결정은 스코핑 블록으로 미룸 00:20:31\nDFI된 EIP-7610을 대체하는 EIP-8253을 막판에 글램스테르담에 넣자는 제안이 나와, 콜 첫머리에서 처리 여부를 정했다.\n· Jochem Brouwer (EF, EthereumJS · EIP-8037 공동 저자): EIP-8253은 메인넷 전용이라 후디·세폴리아에서는 무효과라 넣어볼 만하다고 제안했다. 다만 글램스테르담에 안 넣는다면 헤고타에서는 SFI였던 EIP-7610의 대체이니 곧바로 SFI하자고 요청했다.\n· Toni Wahrstätter (EF, 리서처): 월요일 ACDT에서 대다수 클라이언트가 반대했다며, 이 단계에 EIP를 끼워넣기엔 너무 늦었고 메인넷 전용이라 테스트넷에서 버그를 못 잡는다고 지적했다. BAL(블록 액세스 리스트) 상호작용 문제도 들며 헤고타가 적절하다고 봤다.\n· Ansgar Dietrichs (EF, 리서처): 이 단계에서 글램스테르담에 뭔가를 더 넣으려면 예외적 사정이 필요하다며, 보안상 긴급한지 되물었다. Jochem이 긴급하지 않다고 답하자 헤고타 처리로 정리했다.\n· Nixo (EF Protocol Support, ACDE 진행): 한 포크에서의 상태가 새 포크의 상태를 자동으로 부여하지 않으며 다시 사다리를 거쳐야 한다고 지적하며, SFI가 아니라 CFI가 맞지 않느냐고 물었다. (채팅)\n· danceratopz (EF, 테스팅): Jochem이 말한 건 SFI가 아니라 CFI였을 것이라고 채팅으로 정리했다. (채팅)\n\"한 포크에서의 상태가 새 포크의 상태를 자동으로 부여하지 않으며, 다시 사다리를 거쳐야 한다고 우리는 명시적으로 말해왔다.\" (Nixo, 00:24:48)\n\nEIP-7979 call/return opcode를 살릴지 · 결정 보류(오늘 DFI·CFI 모두 안 함) 00:45:03\nEVM에 call/return을 넣는 EIP-7979이 저평가로 DFI 직전에 몰리자, 챔피언과 일부 개발자가 EVM 전용 EIP가 구조적으로 밀리는 문제라며 결정 보류를 요청했다.\n· Jochem Brouwer (EF, EthereumJS · EIP-8037 공동 저자): 프로토콜에 안 중요해 보여도 EVM에는 매우 중요할 수 있는 사각지대가 있다며, 7923과 8163은 DFI에 동의하지만 7979은 오늘 결정하지 말자고 했다.\n· Greg Colvin: call/return을 지원하지 않는 스마트 컨트랙트 VM은 사실상 이더리움뿐이며, 이게 없으면 제어 흐름 분석·컴파일·형식 검증(formal verification)이 막힌다고 호소했다. 구현·테스트까지 끝나 있고 자신이 마지막 챔피언이라며 이제는 넣자고 했다.\n· Ansgar Dietrichs (EF, 리서처): 채팅에 보류 지지가 많다며, 오늘은 결정하지 않고 2주 뒤 콜에 컴파일러 팀을 불러 깊이 논의하자고 정리했다.\n\"내가 아는 한, 우리는 call과 return을 지원하지 않는 유일한 스마트 컨트랙트 VM이다.\" (Greg Colvin, 00:42:23)\n\nEIP-8200 프리컴파일 EVM화 · DFI 결정 01:10:35\n프리컴파일을 형식 검증된 EVM 바이트코드로 대체하는 EIP-8200은 ZK EVM 대비 차원에서 논의됐으나, 성능 근거가 무르익지 않아 헤고타 포함 여부를 가렸다.\n· Ben Adams (Nethermind): 찬성은 아니지만 흥미로운 EIP라며, MODEXP 같은 프리컴파일을 대체할 더 나은 바이트코드를 겨루는 대회가 진행 중이니 결과가 무르익을 때까지 시간이 필요하다고 했다.\n· Greg Colvin: 일반적으로 좋은 아이디어라 DFI에 동의하지만 성능 측정이 먼저라고 했다. 자신은 정적 제어 흐름 검증을 EVM화했을 때 온갖 노력에도 충분히 빠르게 만들지 못했고, 프리컴파일의 존재 이유가 바로 성능이라고 지적했다.\n· Justin Florentine (Besu): 아이디어는 좋지만 아직 준비가 덜 됐다는 데 동의하며, 나중에 다시 네이티브 구현으로 되돌릴 수 없게 되는 위험을 짚었다.\n· Kevaundray Wedderburn (EF, 응용 리서치): 실행하지 않고 프리컴파일의 가스 비용을 계산해야 하므로 네이티브로 되돌리는 것 자체가 불가능하다고 답했다.\n· Iván Litteri (LambdaClass, ethrex 테크 리드): 프루버 공격 표면 축소와 ZKVM 구현 단순화라는 목표에 공감하지만 수치가 부족하고 폭넓은 클라이언트 지지도 없다고 인정하며, 향후 포크 재검토를 받아들였다.\n\"무르익을 시간이 필요하다.\" (Ben Adams, 01:07:24)\n\nEIP-8304 무신뢰 로그·트랜잭션 인덱스 · 결정 보류(베수·레스 비동기 참여, 기본값은 DFI) 01:38:10\n이벤트에 대한 검증 가능한 범위 쿼리를 여는 EIP-8304을 두고, 당장의 수요는 없지만 무신뢰성이 이더리움의 핵심 속성이라는 주장과 작업량 대비 이득 논쟁이 맞붙었다.\n· Zsolt Felföldi (EF, geth, EIP-8304): 자신의 EIP라며, 오늘은 불가능한 이벤트 범위의 증명 가능한 쿼리를 열어주고 온체인 증명성·네이티브 UTXO·L2 통신의 길을 연다고 설명했다. 결코 초긴급하진 않지만 장기적으로 이더리움에 큰 가치라며 지금 DFI하지 말자고 했다.\n· lightclient (Matt Garnett) (EF, geth): FOCIL에 빗대어, 지금 당장 쓰는 사람이 많지 않아도 검열 저항성처럼 무신뢰 상호작용은 이더리움이 계속 제공해야 할 핵심 속성이니 만들어둘 가치가 있다고 강하게 지지했다.\n· Dragan Rakita (Tempo, revm 저자): 리시트에 대한 증명을 허용하는 건 맞지만 실제로 누가 쓸지가 문제라며, 큰 사용자의 명확한 수요 신호가 있으면 생각이 바뀔 수 있다고 했다.\n· Justin Florentine (Besu): 하한을 1.3으로 두자고 했던 만큼 2주 유예를 받아들일 수 있다며, 오늘의 신뢰 기반 오프체인 인덱싱으로는 왜 부족한지에 대한 근거를 팀에 제시해 달라고 요청했다.\n· Łukasz Rozmej (Nethermind, EIP-8037 공동 저자): B로 매겼고 다른 지지가 있으면 포함해도 좋다며 막지 않겠다고 했다. 외부 기여자의 프로토타입 PR도 있으나 헤고타 우선순위는 아니라고 밝혔다.\n\"무신뢰 경험을 사용자에게 제공하는 데 필요한 기능을 만들지 말아야 한다는 뜻은 아니다.\" (lightclient (Matt Garnett), 01:32:00)\n\n남은 것\n· EIP-7979 챔피언 / 콜 주최측: 다음 ACDE에 솔리디티·바이퍼 컴파일러 팀을 초청해 EIP-7979에 대한 의견을 듣는다\n· Piotr (EIP-8163 챔피언): 다음 콜 전까지 EIP-8163에 대한 L2·대안 L1의 명시적 지지 신호를 모은다\n· EL 클라이언트 팀 전체: 평균 2.5 이상 상위 8개 Forkcast EIP를 검토하고, 우려 사항을 다음 콜 1주 전까지 비동기로 제기해 챔피언이 답할 수 있게 한다\n\n콜 페이지에서 전체 보기 → https://ethcollective.xyz/calls/acde-245",
-          "postAuthor": "Ticker Data Bot",
-          "views": 149,
-          "forwards": 1,
-          "forwarded": false
         }
       ]
     },
