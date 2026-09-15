@@ -1,9 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-8 -8 302 458">
-<polygon fill="#10163A" points="143,0 0,225 143,297 286,225"/>
-<polygon fill="#10163A" points="143,0 286,225 143,297"/>
-<polygon fill="#10163A" points="5,249 143,321.6 281,249 143,442"/>
-<polygon fill="#10163A" points="281,249 143,321.6 143,442"/>
-<circle fill="#FFFFFF" cx="143" cy="216" r="81"/>
-<circle fill="#10163A" cx="143" cy="216" r="70"/>
-<path fill="#FFFFFF" transform="rotate(15 143 216)" d="M73 216A70 70 0 0 1 213 216A35 35 0 0 0 143 216A35 35 0 0 1 73 216Z"/>
+<clipPath id="ko"><path clip-rule="evenodd" d="M-50 -50H1200V600H-50ZM62 196a81 81 0 1 0 162 0a81 81 0 1 0 -162 0Z"/></clipPath>
+<g fill="#10163A" clip-path="url(#ko)"><polygon points="143,0 0,225 143,297 286,225"/><polygon points="5,249 143,321.6 281,249 143,442"/></g>
+<path fill="#10163A" transform="rotate(15 143 196)" d="M73 196A70 70 0 0 1 213 196A35 35 0 0 0 143 196A35 35 0 0 1 73 196Z"/>
 </svg>
