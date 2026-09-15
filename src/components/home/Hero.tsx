@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { Send, Linkedin, Mail, Twitter } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import MemberAvatarFlow from './MemberAvatarFlow';
@@ -16,6 +16,7 @@ const Hero: React.FC = () => {
 
     const y = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
     const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+    const reduceMotion = useReducedMotion();
 
     return (
         <div ref={containerRef} className="relative min-h-screen flex flex-col items-center justify-start overflow-hidden bg-theme-bg text-theme-text pt-24 lg:pt-32">
@@ -91,34 +92,29 @@ const Hero: React.FC = () => {
                     <MemberAvatarFlow />
                 </div>
 
-                <div className="relative z-20">
+                <div className="relative z-20" style={{ perspective: 900 }}>
                     {/* Backglow for the logo */}
                     <div className="absolute inset-0 bg-theme-surface blur-3xl rounded-full scale-75" />
 
-                    <motion.img
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 1.2, ease: "easeOut" }}
-                        src="/assets/eck-symbol.svg"
-                        alt={t('hero.logoAlt')}
-                        className="w-full h-auto object-contain mx-auto relative mix-blend-screen mask-logo-fade"
-                    />
+                    {/* Faceted SVG + colored glow + slow Y-sway for depth; static when reduced motion is on */}
+                    <motion.div
+                        animate={reduceMotion ? undefined : { rotateY: [-10, 10, -10], y: [0, -8, 0] }}
+                        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                        <motion.img
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 1.2, ease: "easeOut" }}
+                            src="/assets/eck-symbol-3d.svg"
+                            alt={t('hero.logoAlt')}
+                            className="w-full h-auto object-contain mx-auto relative"
+                            style={{ filter: 'drop-shadow(0 0 36px rgba(228,92,89,0.22)) drop-shadow(0 16px 40px rgba(52,78,131,0.4))' }}
+                        />
+                    </motion.div>
                 </div>
 
                 {/* Bottom Shadow Fade - Deeply recessed to avoid any clipping */}
                 <div className="absolute inset-x-0 -bottom-20 h-40 bg-gradient-to-t from-brand-dark via-brand-dark/20 to-transparent -z-10" />
-            </motion.div>
-
-
-            {/* Explore Indicator */}
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.5 }}
-                className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 text-white/20"
-            >
-                <span className="text-[9px] uppercase tracking-[0.4em] font-bold">{t('hero.explore')}</span>
-                <div className="w-[1px] h-12 bg-gradient-to-b from-white/20 to-transparent" />
             </motion.div>
         </div>
     );

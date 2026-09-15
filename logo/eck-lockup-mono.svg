@@ -1,7 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 520">
-<g transform="translate(117 39)">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-8 -8 1071 458">
 <clipPath id="ko"><path clip-rule="evenodd" d="M-50 -50H1200V600H-50ZM62 196a81 81 0 1 0 162 0a81 81 0 1 0 -162 0Z"/></clipPath>
 <g fill="#10163A" clip-path="url(#ko)"><polygon points="143,0 0,225 143,297 286,225"/><polygon points="5,249 143,321.6 281,249 143,442"/></g>
 <path fill="#10163A" transform="rotate(15 143 196)" d="M73 196A70 70 0 0 1 213 196A35 35 0 0 0 143 196A35 35 0 0 1 73 196Z"/>
-</g>
+<g transform="translate(347 103) scale(1.4217)"><g fill="#10163A"><path d="M0 0H142V42H49V62H137V104H49V124H142V166H0Z"/><path d="M304 28.9A87 83 0 1 0 304 137.1V116H257.7A37 39 0 1 1 257.7 50H304Z"/><polygon points="324,0 373,0 373,69.6 437,0 498,0 421.6,83 498,166 437,166 373,96.4 373,166 324,166"/></g></g>
 </svg>

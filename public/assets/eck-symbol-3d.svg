@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-8 -8 302 458">
+<defs>
+<mask id="gap"><rect x="-8" y="-8" width="302" height="458" fill="#fff"/><circle cx="143" cy="196" r="81"/></mask>
+<linearGradient id="tl" x1="143" y1="0" x2="0" y2="260" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#F07A72"/><stop offset="1" stop-color="#D84F4D"/></linearGradient>
+<linearGradient id="tr" x1="143" y1="0" x2="286" y2="260" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#BC3F50"/><stop offset="1" stop-color="#93293A"/></linearGradient>
+<linearGradient id="bl" x1="74" y1="260" x2="143" y2="442" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4C7EB6"/><stop offset="1" stop-color="#335C8E"/></linearGradient>
+<linearGradient id="br" x1="212" y1="260" x2="143" y2="442" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#3D5B95"/><stop offset="1" stop-color="#2A4070"/></linearGradient>
+<linearGradient id="ridge" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<radialGradient id="dome" cx="118" cy="162" r="100" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/><stop offset=".85" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".22"/></radialGradient>
+</defs>
+<g mask="url(#gap)">
+<polygon fill="url(#tl)" points="143,0 0,225 143,297"/>
+<polygon fill="url(#tr)" points="143,0 286,225 143,297"/>
+<polygon fill="url(#bl)" points="5,249 143,321.6 143,442"/>
+<polygon fill="url(#br)" points="281,249 143,321.6 143,442"/>
+<rect x="142" y="0" width="2" height="297" fill="url(#ridge)"/>
+</g>
+<rect x="142.2" y="321.6" width="1.6" height="120" fill="url(#ridge)" opacity=".5"/>
+<circle fill="#344E83" cx="143" cy="196" r="70"/>
+<path fill="#E45C59" transform="rotate(15 143 196)" d="M73 196A70 70 0 0 1 213 196A35 35 0 0 0 143 196A35 35 0 0 1 73 196Z"/>
+<circle fill="url(#dome)" cx="143" cy="196" r="70"/>
+</svg>
