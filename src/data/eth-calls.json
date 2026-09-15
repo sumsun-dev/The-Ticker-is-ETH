@@ -1,6 +1,483 @@
 {
-  "updatedAt": "2026-09-11T00:47:23.023Z",
+  "updatedAt": "2026-09-15T00:46:43.071Z",
   "calls": [
+    {
+      "id": "acdt-96",
+      "series": "acdt",
+      "number": 96,
+      "date": "2026-09-14",
+      "title": "AllCoreDevs - Testing #096",
+      "forkcastUrl": "https://forkcast.org/calls/acdt/096/",
+      "videoUrl": "https://www.youtube.com/watch?v=Y4aSU2zxSSk",
+      "issueUrl": "https://github.com/ethereum/pm/issues/2217",
+      "kind": "full",
+      "durationMin": 47,
+      "headline": "세폴리아 글램스터담\n10월 6일 확정",
+      "lead": "다음 하드포크가 첫 공개 테스트넷 적용 단계에 들어간다",
+      "intro": "이더리움 클라이언트 개발자들이 테스트넷 운영과 테스트 현안을 점검하는 정기 테스팅 콜(ACDT Testing)이다.",
+      "summary": "10월 6일 세폴리아 글램스터담(Glamsterdam) 업그레이드가 모든 클라이언트의 동의로 확정됐다. 콜 당일 데브넷(devnet) 11에서 글램스터담이 참여율 하락 없이 활성화돼 일정에 청신호가 켜졌다.",
+      "whyItMatters": "글램스터담이 공개 테스트넷 단계에 들어가면서 메인넷 적용까지의 일정이 구체화됐다. 리도와 옵티미즘 같은 대형 프로토콜이 이미 데브넷에서 업그레이드를 검증하고 있어 L2와 스테이킹 서비스도 대비를 시작할 시점이다.",
+      "decisions": [
+        {
+          "label": "세폴리아 10월 6일",
+          "text": "세폴리아 글램스터담 업그레이드를 10월 6일로 확정했고 모든 클라이언트가 동의했다. 다음 하드포크가 공개 테스트넷에서 실전 검증에 들어간다는 뜻이다.",
+          "original": "Sepolia Glamsterdam upgrade scheduled for October 6th; all clients confirmed",
+          "eips": [],
+          "status": "일정",
+          "fork": "Glamsterdam",
+          "timestamp": "00:10:26"
+        },
+        {
+          "label": "스펙 테스트 제한",
+          "text": "컨센서스 스펙(consensus-specs) 저장소의 트렁크 브랜치에는 CFI·SFI 단계 EIP의 테스트만 추가하기로 했다. PFI 단계 제안은 포크나 PR에서 테스트를 미리 준비해 두라는 뜻이다.",
+          "original": "Consensus-specs trunk restricted to CFI/SFI EIPs; PFI-stage tests developed in forks/PRs",
+          "eips": [],
+          "status": "확정",
+          "timestamp": "00:19:11"
+        },
+        {
+          "label": "섀도 포크 일정",
+          "text": "세폴리아 섀도 포크(shadow fork)를 다음 주 목표로 잡고 클라이언트 준비 상태는 다음 ACDT에서 다시 확인하기로 했다. 실제 네트워크를 복제해 업그레이드를 예행연습하는 절차다.",
+          "original": "Sepolia shadow fork targeted for next week; client readiness reconfirmed at the next ACDT",
+          "eips": [],
+          "status": "일정",
+          "fork": "Glamsterdam",
+          "timestamp": "00:18:24"
+        },
+        {
+          "label": "레거시 테스트 복원",
+          "text": "레거시 테스트 PR #18을 병합해 옐로페이퍼와 EIP-684의 충돌 처리 방식으로 되돌리기로 했다. 블록 접근 목록 BAL(Block Access List)의 충돌 처리는 헤고타(Hegota)의 EIP-8253이 결론 날 때까지 정의하지 않고 남겨 둔다.",
+          "original": "Merge legacytests#18 (revert to Yellow Paper + EIP-684 collision behavior); BAL collision left undefined pending EIP-8253 in Hegota",
+          "eips": [
+            7610,
+            684,
+            8253
+          ],
+          "status": "확정",
+          "timestamp": "00:35:09"
+        },
+        {
+          "label": "EIP-8038 문구",
+          "text": "EIP-8038의 SELFDESTRUCT 수혜자 관련 PR EIPs#12317을 EIP 문구 명확화로 승인했다. 스펙이나 클라이언트 동작은 아무것도 바뀌지 않는다.",
+          "original": "EIP-8038 SELFDESTRUCT beneficiary PR (EIPs#12317) approved as an EIP text clarification; no spec or client behavior change",
+          "eips": [
+            8038
+          ],
+          "status": "확정",
+          "timestamp": "00:49:13"
+        },
+        {
+          "label": "EIP-8037 병합",
+          "text": "EIP-8037에 총 상태 가스 한도를 명시하는 PR EIPs#12311이 병합됐다. 클라이언트 동작은 그대로이고 스펙에 작은 보완만 필요하다.",
+          "original": "EIP-8037 state gas limit PR (EIPs#12311) merged; no client behavior change, but a small spec update is needed",
+          "eips": [
+            8037
+          ],
+          "status": "확정",
+          "timestamp": "00:49:28"
+        }
+      ],
+      "targets": [
+        {
+          "key": "sepolia-fork",
+          "text": "10월 6일 세폴리아 글램스터담 업그레이드. 전 클라이언트 동의로 확정",
+          "timestamp": "00:10:26"
+        },
+        {
+          "key": "el-test-release",
+          "text": "다음 주 EIP-8037 테스트를 포함한 공식 EL 테스트 릴리스. 목표로 제시된 일정이며 확정은 아니다",
+          "timestamp": "00:50:49"
+        }
+      ],
+      "actions": [
+        {
+          "owner": "EL 전 팀",
+          "text": "devp2p PR #281(스파스 블롭풀 길이 인코딩) 리뷰",
+          "timestamp": "00:29:22"
+        },
+        {
+          "owner": "spencer(EF 테스팅)",
+          "text": "클라이언트 간 동작 비교용 BAL 충돌 단일 픽스처 제작",
+          "timestamp": "00:46:20"
+        }
+      ],
+      "agenda": [
+        {
+          "timestamp": "00:06:13",
+          "heading": "데브넷 8·데브넷 11 상태",
+          "discussion": true
+        },
+        {
+          "timestamp": "00:10:18",
+          "heading": "10월 6일 세폴리아 업그레이드",
+          "decision": true
+        },
+        {
+          "timestamp": "00:15:51",
+          "heading": "컨센서스 스펙의 EIP 테스트 추가 제한",
+          "discussion": true
+        },
+        {
+          "timestamp": "00:17:09",
+          "heading": "세폴리아·메인넷 섀도 포크",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "00:23:01",
+          "heading": "devp2p의 블롭 생략 길이 대 페이로드 길이"
+        },
+        {
+          "timestamp": "00:30:02",
+          "heading": "EIP-7610 제거와 레거시 테스트 기대값",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "00:47:42",
+          "heading": "EIP-8038 SELFDESTRUCT 수혜자 명확화",
+          "decision": true
+        },
+        {
+          "timestamp": "00:49:28",
+          "heading": "EIP-8037 상태 가스 한도",
+          "decision": true
+        }
+      ],
+      "topics": [
+        {
+          "title": "데브넷 8 복구와 레이어 간 조율",
+          "intro": "일주일간의 공격 테스트가 끝난 데브넷 8의 복구가 더디자 누가 문제를 추적하고 조율할 것인지가 도마에 올랐다.",
+          "positions": [
+            {
+              "speaker": "Saulius Grigaitis | Grandine",
+              "text": "데브넷 8이 다소 방치된 느낌이고 여러 클라이언트가 어려움을 겪는데 진전이 안 보인다며, 누군가 어려움을 겪는 클라이언트에 연락해 문제가 EL 쪽인지 CL 쪽인지 가려내는 조율을 해 달라고 요청했다.",
+              "timestamp": "00:12:10",
+              "original": "Yeah, my… my suggestion would be then to try to get DevNet 8, to healthy state as soon as possible, because, I mean, it kind of feels that this data is… is… somewhat abandoned. And, you know, there are multiple nodes, multiple clients that are struggling, and I don't see that much of progress here. maybe someone could coordinate, like, ping the clients that are struggling and figure out which side of… is it EL or CL of those nodes are struggling, because you can see that a lot of blocks are missing. And so on. So… Yeah, somehow this needs to get… To a much better state than it is now. Yeah, and at least for us, it was a bit… and I think for other clients also, it was a bit tricky to… to progress, because often we just see that, most likely the cause is on, on the EL side, and the EL side, was not updating for a while, you know, so it's, so we kind of see that our nodes are not proposing, but, But in most of the cases, it's an issue on the EL side. So, in such cases, I think it would be really great if the coordination for the… for this particular case, then, someone pings EL guys and, you know, and keeps pushing them. Because this is… it would be much, much easier for the CL people to actually see the real problems, instead of just thinking that EL is, you know. Doing some… some bad stuff. So yeah, maybe this would help in future Nimbus. Okay, thanks.",
+              "translation": "네, 제 제안은 DevNet 8을 최대한 빨리 정상 상태로 되돌리자는 것입니다. 왜냐하면 이 데이터가 다소 방치된 것처럼 느껴지기 때문입니다. 그리고 어려움을 겪고 있는 노드와 클라이언트가 여러 개 있는데, 여기서 별다른 진전이 보이지 않습니다. 누군가 조율을 맡아서 어려움을 겪고 있는 클라이언트들에게 연락해, 그 노드들의 문제가 EL 쪽인지 CL 쪽인지 파악하면 좋겠습니다. 왜냐하면 많은 블록이 누락되고 있는 것이 보이기 때문입니다. 그런 식으로요. 그러니 이 상태가 지금보다 훨씬 나은 상태가 되어야 합니다. 그리고 적어도 저희로서는, 그리고 다른 클라이언트들도 마찬가지라고 생각하는데, 진전을 보기가 조금 까다로웠습니다. 왜냐하면 종종 원인이 EL 쪽에 있는 것으로 보이는데, EL 쪽이 한동안 업데이트되지 않았기 때문입니다. 그래서 저희 노드가 제안(propose)을 하지 못하는 것을 보게 되지만, 대부분의 경우 문제는 EL 쪽에 있습니다. 그러니 이런 경우에는, 이 특정 사안에 대한 조율이 있어서 누군가 EL 담당자들에게 연락하고 계속 재촉해 준다면 정말 좋을 것 같습니다. 왜냐하면 그렇게 하면 CL 쪽 사람들이 EL이 뭔가 나쁜 짓을 하고 있다고 그냥 생각하는 대신, 실제 문제를 훨씬 더 쉽게 파악할 수 있을 것이기 때문입니다. 그러니 앞으로는 이것이 도움이 될 것 같습니다. Nimbus입니다. 네, 감사합니다."
+            },
+            {
+              "speaker": "pk910",
+              "text": "이미 이날 아침 문제가 있는 클라이언트들에 통지했다고 답했다. 한 클라이언트는 완전히 초기화 후 재동기화 중이고 다른 클라이언트도 최신 상태로 따라잡는 중이라 전반적으로 진전이 있다고 했다.",
+              "timestamp": "00:13:12",
+              "original": "Yep, I'm working on that. I've basically already notified some clients this morning that are the majority of struggling nodes. I think they are on a good way. Bezo is completely wiped and is re-syncing now, after several incidents, and Erigon was basically on an older head and is syncing up now, too. So… Yeah, and Nimbus is also thinking, so there is some progress in all these clients. Yep, that's a fair point. Just one thing to add is that last week we were running heavy attack transactions, so many ELs were basically struggling a bit. But yeah, good points. I think lots of ELs are currently configured to do a full sync, so they basically run through the wall trans, attack transactions from the last two weeks, too. We might change some of these to do snap syncing to speed that up a bit.",
+              "translation": "네, 지금 작업 중입니다. 오늘 아침에 어려움을 겪고 있는 노드의 대다수인 일부 클라이언트들에게 이미 알렸습니다. 잘 진행되고 있다고 생각합니다. Bezo는 완전히 초기화되어 여러 차례의 장애 이후 지금 재동기화 중이고, Erigon은 이전 헤드에 머물러 있었는데 지금 동기화되고 있습니다. 그리고 Nimbus도 검토 중이어서, 이 모든 클라이언트에서 어느 정도 진전이 있습니다. 네, 타당한 지적입니다. 한 가지 덧붙이자면, 지난주에 무거운 공격성 트랜잭션(attack transaction)을 많이 실행하고 있어서 많은 EL이 다소 어려움을 겪고 있었습니다. 하지만 좋은 지적입니다. 현재 많은 EL이 풀 싱크(full sync)를 하도록 설정되어 있어서, 지난 2주간의 공격성 트랜잭션까지 전부 처리하게 됩니다. 이를 좀 더 빠르게 하기 위해 일부를 스냅 싱크(snap sync)로 바꿀 수도 있을 것 같습니다."
+            },
+            {
+              "speaker": "Saulius Grigaitis | Grandine",
+              "text": "CL 쪽에서는 노드가 블록을 제안하지 못하는 것만 보이는데 대부분 원인이 EL 쪽이었다며, EL 팀에 직접 연락해 계속 챙기는 조율이 있으면 CL 개발자들이 진짜 문제를 훨씬 쉽게 볼 수 있다고 재차 강조했다.",
+              "timestamp": "00:13:40",
+              "original": "Yeah, and at least for us, it was a bit… and I think for other clients also, it was a bit tricky to… to progress, because often we just see that, most likely the cause is on, on the EL side, and the EL side, was not updating for a while, you know, so it's, so we kind of see that our nodes are not proposing, but, But in most of the cases, it's an issue on the EL side. So, in such cases, I think it would be really great if the coordination for the… for this particular case, then, someone pings EL guys and, you know, and keeps pushing them. Because this is… it would be much, much easier for the CL people to actually see the real problems, instead of just thinking that EL is, you know. Doing some… some bad stuff. So yeah, maybe this would help in future Nimbus. Okay, thanks.",
+              "translation": "네, 그리고 적어도 저희로서는, 그리고 다른 클라이언트들도 마찬가지라고 생각하는데, 진전을 보기가 조금 까다로웠습니다. 왜냐하면 종종 원인이 EL 쪽에 있는 것으로 보이는데, EL 쪽이 한동안 업데이트되지 않았기 때문입니다. 그래서 저희 노드가 제안을 하지 못하는 것을 보게 되지만, 대부분의 경우 문제는 EL 쪽에 있습니다. 그러니 이런 경우에는, 이 특정 사안에 대한 조율이 있어서 누군가 EL 담당자들에게 연락하고 계속 재촉해 준다면 정말 좋을 것 같습니다. 왜냐하면 그렇게 하면 CL 쪽 사람들이 EL이 뭔가 나쁜 짓을 하고 있다고 그냥 생각하는 대신, 실제 문제를 훨씬 더 쉽게 파악할 수 있을 것이기 때문입니다. 그러니 앞으로는 이것이 도움이 될 것 같습니다. Nimbus입니다. 네, 감사합니다."
+            },
+            {
+              "speaker": "pk910",
+              "text": "타당한 지적이라고 인정하면서도, 지난주에 무거운 공격 트랜잭션을 돌렸기 때문에 많은 EL이 어려움을 겪은 측면이 있다고 덧붙였다. 이어 다수 EL이 풀 싱크(full sync)로 설정돼 지난 2주의 공격 트랜잭션을 전부 재실행하느라 느리며 일부를 스냅 싱크(snap sync)로 바꿀 수 있다고 설명했다.",
+              "timestamp": "00:14:54",
+              "original": "Yep, that's a fair point. Just one thing to add is that last week we were running heavy attack transactions, so many ELs were basically struggling a bit. But yeah, good points. I think lots of ELs are currently configured to do a full sync, so they basically run through the wall trans, attack transactions from the last two weeks, too. We might change some of these to do snap syncing to speed that up a bit.",
+              "translation": "네, 타당한 지적입니다. 한 가지 덧붙이자면, 지난주에 무거운 공격성 트랜잭션을 많이 실행하고 있어서 많은 EL이 다소 어려움을 겪고 있었습니다. 하지만 좋은 지적입니다. 현재 많은 EL이 풀 싱크를 하도록 설정되어 있어서, 지난 2주간의 공격성 트랜잭션까지 전부 처리하게 됩니다. 이를 좀 더 빠르게 하기 위해 일부를 스냅 싱크로 바꿀 수도 있을 것 같습니다."
+            }
+          ],
+          "quote": {
+            "text": "대부분의 경우 문제는 EL 쪽에 있으니, 누군가 EL 쪽 사람들에게 연락해서 계속 챙겨 주면 정말 좋겠다.",
+            "original": "In most of the cases, it's an issue on the EL side, so it would be really great if someone pings EL guys and keeps pushing them.",
+            "speaker": "Saulius Grigaitis | Grandine",
+            "timestamp": "00:13:40"
+          }
+        },
+        {
+          "title": "컨센서스 스펙 테스트 추가 제한",
+          "intro": "누구나 제안할 수 있는 EIP의 테스트가 스펙 저장소 곳곳을 건드려 유지보수 부담이 커지자, 트렁크에 테스트를 넣을 수 있는 EIP를 제한하자는 제안이 나왔다.",
+          "decision": "확정 결정 00:19:11",
+          "positions": [
+            {
+              "speaker": "Justin Traglia",
+              "text": "테스트 추가는 자기완결적인 스펙 디렉터리 추가보다 침습적이므로 컨센서스 스펙 저장소의 테스트 추가를 CFI·SFI EIP로 제한하자고 제안했다.",
+              "timestamp": "00:15:33",
+              "original": "I see. Okay. Any other comments on this? I prefer moving on. Okay, the next agenda… agenda item is, from me. In the Consensus specs repo, I've made a proposal to restrict which EIPs can add tests to the repo. I'm proposing that we limit it to CFI and SFI EIPs. This is just to make, It easier for maintainers, because anyone can propose a, an EIP and modifying and adding tests to the specs is a bit more invasive than just adding a self-contained. spec directory, I'd like to discuss this with clients and the community, and Are any… is anyone for or against this, or… And you're reason not to do this. Curious to hear what you all think. And we can also discuss this offline on Discord, so if you have any thoughts, I made a thread on Discord. Alright. Yeah, PK, we can jump back to that. How do clients feel about Shadow Forks? What would you… would you need anything from clients for this? Pawan from Lighthouse is suggesting that we would wait one more week. Given that… you said, given we need to handle a few bugs on Lighthouse. Would that be fine? I think that sounds reasonable. There are some more comments regarding the… defining which EIPC NAT test thing. Jochem, would you like to talk about this? Or I can read your comment? Yep, 100%. That's also kind of what I had in mind as well. EIP champions would work on tests outside of The Consensus spec repo. In their own fork, or whatever. And they can also generate tests. And provide it to clients from… from there. Thank you for that.…",
+              "translation": "알겠습니다. 좋습니다. 이에 대해 다른 의견 있으신가요? 저는 다음으로 넘어가고 싶습니다. 자, 다음 안건은 제가 올린 것입니다. 컨센서스 스펙(Consensus specs) 저장소에서, 어떤 EIP가 저장소에 테스트를 추가할 수 있는지를 제한하는 제안을 올렸습니다. CFI와 SFI EIP로 한정하자고 제안합니다. 이는 단지 유지관리자들의 작업을 쉽게 하기 위한 것입니다. 왜냐하면 누구나 EIP를 제안할 수 있는데, 스펙에 테스트를 수정하고 추가하는 것은 독립적인 스펙 디렉터리를 추가하는 것보다 좀 더 침습적이기 때문입니다. 이를 클라이언트들 및 커뮤니티와 논의하고 싶습니다. 찬성하시거나 반대하시는 분 계신가요, 아니면 반대하시는 이유가 있으신가요. 여러분이 어떻게 생각하시는지 궁금합니다. 이 건은 Discord에서도 따로 논의할 수 있으니, 의견이 있으시면 Discord에 스레드를 만들어 두었습니다. 좋습니다. 네, PK, 그 건으로 다시 돌아가겠습니다. 클라이언트들은 섀도우 포크(Shadow Fork)에 대해 어떻게 생각하십니까? 이를 위해 클라이언트로부터 무엇이 필요하십니까? Lighthouse의 Pawan이 한 주 더 기다리자고 제안하고 있습니다. 말씀하신 대로, Lighthouse에서 처리해야 할 버그가 몇 개 있기 때문입니다. 그래도 괜찮을까요? 합리적인 것 같습니다. 어떤 EIP가 테스트를 추가할 수 있는지를 정의하는 것과 관련해 의견이 좀 더 있습니다. Jochem, 이에 대해 말씀해 주시겠습니까? 아니면 제가 의견을 읽어드릴까요? 네, 전적으로 동의합니다. 그것도 제가 염두에 두었던 것과 비슷합니다. EIP 챔피언들은 컨센서스 스펙 저장소 밖에서, 자신의 포크 등에서 테스트 작업을 하게 될 것입니다. 그리고 거기서 테스트를 생성해서 클라이언트들에게 제공할 수도 있습니다. 말씀해 주셔서 감사합니다."
+            },
+            {
+              "speaker": "jochem-brouwer",
+              "text": "트렁크 브랜치 제한 자체에는 동의하되, 테스트 작업을 미루라는 신호가 돼서는 안 된다고 선을 그었다. PFI 단계에서 PR이나 포크 저장소에 테스트를 준비해 두면 CFI로 승격되는 즉시 병합할 수 있다고 했다.",
+              "timestamp": "00:19:32",
+              "original": "Yeah, I mean, I can just explain. So, I think the idea that we only add tests for EIPs which are in CFI in the trunk range of the Consensus-ex repository itself is fine, but this should not give, like, the signal that people should not work on tests. So, if the EIP moves from PFI to CFI, then ideally, we already have the tests in some PR, or in some branch, or whatever that we can directly merge them into the junk branch. Because it will not be process efficient if people only start working on tests for this EIP once it arrives in CFI.",
+              "translation": "네, 그러니까 제가 설명드리겠습니다. 컨센서스 스펙 저장소 자체의 트렁크(trunk) 범위에서 CFI 상태인 EIP에 대해서만 테스트를 추가한다는 아이디어는 괜찮다고 생각합니다만, 이것이 사람들이 테스트 작업을 하지 말아야 한다는 신호를 주어서는 안 됩니다. 즉, EIP가 PFI에서 CFI로 이동할 때, 이상적으로는 이미 어떤 PR이나 브랜치 등에 테스트가 준비되어 있어서 트렁크 브랜치에 바로 병합할 수 있어야 합니다. 왜냐하면 사람들이 해당 EIP가 CFI에 도달한 후에야 비로소 테스트 작업을 시작한다면 프로세스 효율이 떨어질 것이기 때문입니다."
+            },
+            {
+              "speaker": "Jihoon",
+              "text": "제안 취지는 테스트가 여러 파일과 테스트 인프라를 건드려 기존 하드포크의 테스트 유지보수가 어려워지는 것을 막으려는 것이지, 테스트 개발을 억제하려는 게 아니라며 Justin의 설명에 동의했다.",
+              "timestamp": "00:21:01",
+              "original": "Oh, sorry, fat finger. Yeah, I just wanted to add, to… which EIPs can add… I mean, may add tests. The intention behind this proposal is because usually Tests, touch multiple files, and… Attempt to modify existing testing infrastructure, so… As Justin said, it may make maintaining tests for existing hard forks quite difficult. I mean, if you… if you have to remove the tests out, it will go to be messy, and I just wanted to say that this is not to discourage people, from working their tests.",
+              "translation": "아, 죄송합니다, 잘못 눌렀습니다. 네, 하나만 덧붙이고 싶었습니다. 어떤 EIP가 테스트를 추가할 수 있는지에 관한 것입니다. 이 제안의 의도는, 보통 테스트가 여러 파일을 건드리고 기존 테스트 인프라를 수정하려고 하기 때문입니다. 그래서 Justin이 말씀하신 것처럼, 기존 하드포크에 대한 테스트를 유지관리하기가 꽤 어려워질 수 있습니다. 즉, 테스트를 다시 제거해야 한다면 지저분해질 것입니다. 그리고 이것이 사람들의 테스트 작업을 막으려는 의도가 아니라는 점을 말씀드리고 싶었습니다."
+            },
+            {
+              "speaker": "Enrico Del Fante (tbenr)",
+              "text": "제한에 동의하면서도 클라이언트에게 이른 테스트가 중요하다는 점을 강조했다.",
+              "timestamp": "00:20:49",
+              "viaChat": true,
+              "original": "I agree. It is important to have early tests for clients 00:21:49\tjochem-brouwer:\tHeeft gereageerd op \"I agree. It is imp...\" met 👍 00:22:15\tJustin Traglia:\tCL breakout: https://ethereumfoundation.zoom.us/j/89441658268?pwd=yjqf4TheEb1R7ZSuesCdOAy5tdyVk7.1 00:23:25\tspencer:\tReacted to \"Agree. People can ...\" with 👍 00:26:17\tFabio Di Fabio:\thaven't looked at it yet 00:29:22\tMaria Silva:\thttps://github.com/ethereum/devp2p/pull/281 00:30:02\tMaria Silva:\tRestore pre-EIP-7610 legacy test expectations legacytests#18",
+              "translation": "동의합니다. 클라이언트를 위해 조기에 테스트를 확보하는 것이 중요합니다. 00:21:49 jochem-brouwer: 「I agree. It is imp...」에 좋아요로 반응했습니다. 00:22:15 Justin Traglia: CL breakout: https://ethereumfoundation.zoom.us/j/89441658268?pwd=yjqf4TheEb1R7ZSuesCdOAy5tdyVk7.1 00:23:25 spencer: 「Agree. People can ...」에 좋아요로 반응했습니다. 00:26:17 Fabio Di Fabio: 아직 살펴보지 못했습니다. 00:29:22 Maria Silva: https://github.com/ethereum/devp2p/pull/281 00:30:02 Maria Silva: EIP-7610 이전 레거시 테스트 기대값 복원 legacytests#18"
+            }
+          ],
+          "quote": {
+            "text": "EIP가 CFI에 도달한 뒤에야 테스트 작업을 시작한다면 프로세스 면에서 효율적이지 않을 것이다.",
+            "original": "It will not be process efficient if people only start working on tests for this EIP once it arrives in CFI.",
+            "speaker": "jochem-brouwer",
+            "timestamp": "00:19:32"
+          }
+        },
+        {
+          "title": "세폴리아 섀도 포크 시작 시점",
+          "intro": "세폴리아 업그레이드 전 예행연습인 섀도 포크를 언제 띄울지가 논의됐고, 클라이언트 준비 상태가 관건이었다.",
+          "decision": "일정 결정 00:18:24",
+          "positions": [
+            {
+              "speaker": "pk910",
+              "text": "클라이언트들의 unstable·master 브랜치가 테스트 준비만 됐다면, 반대가 없으면 이번 주 중 세폴리아 섀도 포크를 시작하자고 제안했다. 실패하면 반복해야 하는 큰 작업이라 한 번에 성공시키고 싶다고 했다.",
+              "timestamp": "00:17:45",
+              "original": "Basically, it's just an okay that there are, unstable, master, whatever branch are ready for testing it. Because we likely don't want to repeat it. So immediately it goes right. I think if no one is against, then I would, suggest to start up the Sepoliaas at Shadow Fork sometime this week. Yep, then let's talk about on the next testing call again, if everyone's ready. I think that's a good plan.",
+              "translation": "기본적으로는, unstable이든 master든 어떤 브랜치든 테스트할 준비가 되어 있다는 확인일 뿐입니다. 왜냐하면 이를 반복하고 싶지는 않기 때문입니다. 그러니 바로 진행하면 됩니다. 반대하는 분이 없다면, 이번 주 중에 Sepolia 섀도우 포크를 시작하는 것을 제안하고 싶습니다. 네, 그러면 모두 준비가 되면 다음 테스트 콜에서 다시 이야기하겠습니다. 좋은 계획인 것 같습니다."
+            },
+            {
+              "speaker": "Pawan Dhananjay",
+              "text": "프로그레시브 컨테이너(progressive container) 관련 의존성 감사가 아직 끝나지 않았다며, 수정 버전을 확보한 뒤 시작하도록 한 ACDT 주기를 더 기다리자고 요청했다.",
+              "timestamp": "00:18:42",
+              "original": "Yeah, just, like, just bringing up, like, some of the issues that we had, the progressive containers thing, like, we still haven't completely audited our dependency around that, so just wanted to make sure we have, like, a Fixed version before doing that, maybe?",
+              "translation": "네, 저희가 겪었던 몇 가지 문제를 그냥 언급하고 싶었습니다. progressive containers 관련 건인데, 그 부분에 대한 의존성을 아직 완전히 감사(audit)하지 못했습니다. 그래서 그 작업을 하기 전에 고정된 버전을 확보해 두고 싶습니다, 아마도요."
+            },
+            {
+              "speaker": "pk910",
+              "text": "Pawan의 요청을 받아들여 다음 테스팅 콜에서 모두 준비됐는지 다시 이야기하자며 좋은 계획이라고 동의했다.",
+              "timestamp": "00:19:12",
+              "original": "Yep, then let's talk about on the next testing call again, if everyone's ready. I think that's a good plan.",
+              "translation": "네, 그러면 모두 준비가 되면 다음 테스트 콜에서 다시 이야기하겠습니다. 좋은 계획인 것 같습니다."
+            },
+            {
+              "speaker": "Dragan Rakita",
+              "text": "팀들이 대비할 수 있도록 디스코드에 미리 공지를 남겨 두자고 제안했다.",
+              "timestamp": "00:18:50",
+              "viaChat": true
+            }
+          ],
+          "quote": {
+            "text": "프로그레시브 컨테이너 관련 의존성을 아직 완전히 감사하지 못했으니, 그 전에 수정된 버전을 확보하고 싶다.",
+            "original": "The progressive containers thing, we still haven't completely audited our dependency around that, so just wanted to make sure we have a fixed version before doing that.",
+            "speaker": "Pawan Dhananjay",
+            "timestamp": "00:18:42"
+          }
+        },
+        {
+          "title": "EIP-7610 롤백과 BAL 충돌 처리",
+          "intro": "컨트랙트 생성 충돌 처리를 정의하지 않은 EIP-7610 탓에 레거시 테스트가 무더기로 깨지자, 옛 동작으로 되돌릴지와 새로 도입되는 BAL이 이 경우를 어떻게 다뤄야 할지가 논의됐다.",
+          "decision": "확정 결정 00:35:09",
+          "positions": [
+            {
+              "speaker": "FLCL (Nethermind)",
+              "text": "충돌 시 스토리지를 다시 쓰는 옛 EIP 동작으로 롤백하고 테스트와 클라이언트를 그에 맞춰 정렬하자고 제안하면서, 충돌 상황에서 BAL을 어떻게 처리할지 의견을 구했다.",
+              "timestamp": "00:30:07",
+              "original": "Yeah, regarding, collisions, Well, we have, a kind of, Testing issue, we need to agree. How we update, existing tests that, that are now failing, Like, a lot of them, in high runs, related to collisions. And, it's… so, I'm just asking to maybe agree that we roll back to the old EIP that implies that if we have such collision, we just rewrite storage. And we update the tests, and like, align the client's, In such ways that they just rewrite the storage. But I guess it's a small issue, it's a testing issue. But another is, when we… Try to verify client's code. This behavior, Like, it's, of course, theoretical, but when we rephrase the code, it's kind of not fully defined. It means that we have block access list now, and I'm not sure how it should behave, and if, You guys have any opinion on how to handle this? It would be a… Great to share, for now, I would suggest to, like, include in BAL storage slot resets to zero, and, updates for such slots. In case of collision, but maybe it's too much work, and, people have, better ideas. To handle BAL, in such theoretical case. Good to me. What about, BAL? Do you have any, idea how to, Who handles this part.",
+              "translation": "네, 충돌(collision)에 관해서인데, 저희가 합의해야 할 테스트 관련 문제가 있습니다. 충돌과 관련해 지금 실패하고 있는 기존 테스트들, 특히 하이런(high run)에서 많이 실패하는 테스트들을 어떻게 업데이트할 것인가 하는 문제입니다. 그래서 제가 여쭙고 싶은 것은, 이런 충돌이 발생하면 그냥 스토리지를 다시 쓴다는 옛 EIP로 되돌아가기로 합의할 수 있는가 하는 것입니다. 그리고 테스트를 업데이트하고, 클라이언트들이 그저 스토리지를 다시 쓰도록 맞추는 것입니다. 다만 이건 작은 문제이고, 테스트상의 문제라고 생각합니다. 그런데 또 다른 문제는, 클라이언트 코드를 검증하려고 할 때입니다. 이 동작은, 물론 이론적인 것이긴 하지만, 코드를 다시 표현할 때 완전히 정의되어 있지 않은 것 같습니다. 즉 지금 블록 접근 리스트(Block Access List, BAL)가 있는데, 이것이 어떻게 동작해야 하는지 확신이 서지 않습니다. 이를 어떻게 처리할지에 대해 여러분 의견이 있으신가요? 공유해 주시면 좋겠습니다. 일단은, 충돌이 발생한 경우 BAL 스토리지 슬롯을 0으로 재설정하고 해당 슬롯들에 대한 업데이트를 포함시키는 것을 제안하고 싶습니다. 다만 이건 작업량이 너무 많을 수도 있고, 이런 이론적인 경우에 BAL을 처리할 더 나은 아이디어를 가지신 분이 있을 수도 있습니다. 저는 괜찮습니다. BAL은 어떻습니까? 이 부분을 누가 맡을지, 어떻게 할지 아이디어 있으신가요?"
+            },
+            {
+              "speaker": "milen | Erigon",
+              "text": "EIP-7610 이전 상태(옐로페이퍼와 EIP-684, 충돌 시 스토리지 슬롯 무효화)로 레거시 테스트를 복원하는 PR #18을 열었고, 복원 과정에서 자기 클라이언트의 실제 회귀를 잡아냈으니 테스트를 유지할 가치가 있다고 했다. BAL은 미정의로 두기, 충돌 시 BAL 항목 제외 명시, EIP-8253 도입의 세 가지 선택지를 제시했다.",
+              "timestamp": "00:32:21",
+              "original": "Yeah, hi, so I… I opened one of the PRs to… basically update the legacy tests to their version before EIP7610 got introduced, and I think we should go with that, because Those tests were pre-existing, before… EIP7610 got introduced, and… it basically covers the yellow paper plus EIP684, so I check… so it basically does the… It basically, like, nullifies the storage slots, if there ever is a collision, which is kind of pre-existing behavior before EIP 716. And, actually restoring these tests quota regression, which we had in Erigon, so, I think there is some value to keep them around. We just need to… like, my suggestion would be to just review… review the changes and go back to how the tests were. Before EIP7610. But, yeah, depends on what other clients think as well. Yeah, so that thing is new, and, goes back to that conversation that we had in the chat, and still… About keeping an undefined behavior about BAL, but, yeah, it's, Because it's only those 28 accounts on mainnet that can trigger this. And either we keep it… like, my thoughts are that either we keep it undefined behavior, that's option one. Option two is, we decide to explicitly say if this ever happens, we don't include the BAWs, just for simplicity. Or option 3 is maybe we do EIP8253, and kind of get rid of this issue. But yeah, these are kind of my thoughts in my head, because I was looking into this last week, But, yeah, again, it's up to what majority of the clients prefer here. I don't really have strong…",
+              "translation": "네, 안녕하세요, 제가 PR 중 하나를 열었는데, 기본적으로 레거시 테스트를 EIP7610이 도입되기 이전 버전으로 업데이트하는 것입니다. 저는 이 방향으로 가야 한다고 생각합니다. 왜냐하면 그 테스트들은 EIP7610이 도입되기 전부터 이미 존재하던 것이고, 기본적으로 옐로페이퍼(yellow paper)에 EIP684를 더한 내용을 다루기 때문입니다. 그래서 확인해 보니, 기본적으로 충돌이 발생하면 스토리지 슬롯을 무효화하는데, 이는 EIP716 이전의 기존 동작과 비슷합니다. 그리고 실제로 이 테스트들을 복원하는 것이 Erigon에서 있었던 회귀(regression)를 포착했습니다. 그래서 이를 계속 유지할 가치가 있다고 생각합니다. 저희가 해야 할 일은, 제 제안으로는 변경 사항을 검토해서 EIP7610 이전 테스트 상태로 되돌리는 것뿐입니다. 다만 다른 클라이언트들이 어떻게 생각하는지에도 달려 있습니다. 그리고 이건 새로운 사안인데, 저희가 채팅에서 나눴던 대화, 즉 BAL에 관한 정의되지 않은 동작을 그대로 유지하는 문제로 다시 돌아가는 것입니다. 다만 이는 메인넷에서 이를 유발할 수 있는 계정이 28개뿐이기 때문입니다. 제 생각에는, 첫 번째 옵션은 정의되지 않은 동작으로 그대로 두는 것입니다. 두 번째 옵션은, 이런 일이 발생하면 단순함을 위해 BAL에 포함시키지 않는다고 명시적으로 정하는 것입니다. 세 번째 옵션은 아마 EIP8253을 진행해서 이 문제 자체를 없애는 것입니다. 이것이 지난주에 이 문제를 살펴보면서 제 머릿속에 있던 생각들인데, 다시 말씀드리지만 여기서는 대다수 클라이언트가 어느 쪽을 선호하는지에 달려 있습니다. 저는 딱히 강한 의견은 없습니다."
+            },
+            {
+              "speaker": "jochem-brouwer",
+              "text": "BAL을 블록의 상태 디프로 쓰려면 충돌 시 삭제되는 스토리지 슬롯까지 담아야 하는데, 해시된 키만 저장하는 클라이언트는 프리이미지(pre-image)를 복원할 수 없어 복잡한 문제라고 설명했다. 메인넷에서 가능한 계정이 28개뿐인 만큼 이 동작을 명시적으로 테스트하지 말고 헤고타에 PFI 상태인 EIP-8253으로 근본 해결하자는 의견을 냈다.",
+              "timestamp": "00:35:09",
+              "original": "Okay, I want to quickly add something here, because, it indeed depends on what behavior we are going to define, or what we explicitly are not going to define, because the, so we have to realize that in the book access list, there's also this opportunity To implicitly use the block access list as a state div. So, you don't have to execute transactions anymore, you can just apply the stative of the block access list. The problem is that if we run into this theoretical situation that we start to create a contract on an account where the storage is not empty. Then we technically, in order to produce the right state div, we have to produce a block access list. Which clears all these accounts, and this itself does not sound super hard, but actually, this is a problem, because we need the pre-images for these storage lots. So, if we would iterate over the Marco tree, sorry, over the storage tree of these accounts, then, if we have, just… if we're just storing the, The, the, the hashed keys into the database. then it's of course not possible to retrieve the pre-images. And for clients which actually do store these PM images, this is somewhat easier, but, well, I guess you can already see that this is a somewhat complex problem. And the other thing is, is the question if you want to test this, because if we want to test this, then we are also going to explicitly define its behavior. So, this behavior, the… I think also one thing what contributed to the conclusion about EIP 7610 is…",
+              "translation": "네, 여기서 하나 빨리 덧붙이고 싶습니다. 왜냐하면 이는 실제로 저희가 어떤 동작을 정의할 것인지, 혹은 명시적으로 정의하지 않을 것인지에 달려 있기 때문입니다. 왜냐하면 블록 접근 리스트에는 이를 상태 디프(state diff)로 암묵적으로 사용할 수 있는 가능성도 있다는 점을 인식해야 하기 때문입니다. 즉 더 이상 트랜잭션을 실행할 필요 없이, 블록 접근 리스트의 상태를 그대로 적용하면 됩니다. 문제는, 저장소가 비어 있지 않은 계정에 컨트랙트를 생성하기 시작하는 이론적인 상황에 부딪히는 경우입니다. 그러면 기술적으로, 올바른 상태 디프를 만들어 내기 위해서는 이 모든 계정을 지우는 블록 접근 리스트를 만들어야 합니다. 이 자체는 그렇게 어렵게 들리지 않지만, 실제로는 문제가 됩니다. 왜냐하면 이 스토리지 슬롯들에 대한 프리이미지(pre-image)가 필요하기 때문입니다. 그래서 만약 저희가 마르코(Marco) 트리를 순회한다면, 죄송합니다, 이 계정들의 스토리지 트리를 순회한다면, 만약 저희가 그저 해시된 키만 데이터베이스에 저장하고 있다면, 당연히 프리이미지를 복원하는 것은 불가능합니다. 그리고 실제로 이 프리이미지를 저장하는 클라이언트의 경우에는 이것이 다소 쉽겠지만, 이미 이것이 다소 복잡한 문제라는 것을 아셨을 것입니다. 그리고 다른 문제는, 이를 테스트하고 싶은지에 대한 질문입니다. 왜냐하면 이를 테스트하고 싶다면, 그 동작을 명시적으로 정의해야 하기 때문입니다. 그래서 이 동작이, 제 생각에는 EIP7610에 대한 결론에 기여한 요인 중 하나도 바로 이것인데."
+            },
+            {
+              "speaker": "FLCL (Nethermind)",
+              "text": "jochem의 제안에 맞서, 미정의 동작은 클라이언트마다 구현이 갈려 검증과 버그 헌팅을 어렵게 하므로 적을수록 좋다고 반박했다. 모두가 합의한 가장 단순한 방식과 테스트 하나면 충분하다고 했다.",
+              "timestamp": "00:38:04",
+              "original": "Yep, I'm mentioning this because undefined behavior leads to, some… troubles, on, the side of, verification and, bug hunting. So, client, may implement this part, differently, and, it, kind of, kills, like, entropy, and, like… Less undefined behaviors is better. If it could be done in the simplest way, agreed by everyone, and covered by a single test, it would be, I guess, enough. If you want to keep it and define it, I will not, argue a lot. Still seems like, less, not define it, Cases is, better.",
+              "translation": "네, 이를 언급하는 이유는 정의되지 않은 동작이 검증과 버그 헌팅 측면에서 문제를 일으키기 때문입니다. 클라이언트마다 이 부분을 다르게 구현할 수 있고, 이는 일종의 엔트로피를 죽이는 것과 같습니다. 정의되지 않은 동작은 적을수록 좋습니다. 가장 단순한 방식으로, 모두가 동의하고 단일 테스트로 커버할 수 있다면, 그것으로 충분할 것 같습니다. 이를 유지하고 정의하고 싶으시다면, 크게 반대하지는 않겠습니다. 그래도 여전히 정의하지 않는 경우가 더 나은 것 같습니다."
+            },
+            {
+              "speaker": "spencer",
+              "text": "milen의 PR을 병합해 헤고타의 EIP-8253까지 가는 징검다리로 삼겠다는 계획을 밝혔고, 레거시 테스트는 연말까지 보관 처리할 예정이라고 했다. BAL 케이스는 비동기로 논의를 이어가자고 했다.",
+              "timestamp": "00:39:01",
+              "original": "I think, my plan, at least, was to merge… milen PR that basically updates the legacy tests instead of removing them, and just using that as the, kind of, stepping stone before we get to 82.53 in Hagata. Some could argue it's redundant, but if, you guys feel there's value in that, and yeah, I'll definitely, definitely do that. And I guess the… redundancy aspect comes from 82.53 in Hegota, and then also At least on our side, we're planning to archive legacy tests, hopefully by the end of the year. But we still have… to do, I guess, a lot more verification, and so we're really confident before we do that. But if… yeah, if that works for everyone, I would be happy to do that. And then, yeah, aligning to… make the undefined behavior, kind of what milen says here, to align with the yellow paper plus EIP684. M. At the moment, not… not right now, sorry. I think I'd need to look into… into the BAL aspect in a bit more detail. But in any case, why don't we merge your PR milen and legacy tests, and then maybe for… We can chat async, and we can, align on adding a case for about an ELs. Or we can try, yeah.",
+              "translation": "제 계획은, 적어도, milen의 PR을 병합하는 것이었습니다. 이는 레거시 테스트를 제거하는 대신 업데이트하는 것으로, Hagata의 82.53에 도달하기 전 일종의 디딤돌로 사용하려는 것입니다. 중복이라고 주장하실 수도 있지만, 여러분이 거기에 가치가 있다고 느끼신다면 반드시 그렇게 하겠습니다. 그리고 제 생각에 중복이라는 측면은 Hegota의 82.53에서 비롯되는데, 저희 쪽에서는 또한 올해 말까지 레거시 테스트를 archive하는 것을 계획하고 있습니다. 하지만 그 전에 아직 훨씬 더 많은 검증을 해야 하고, 그 작업을 하기 전에 충분히 확신을 가지고 싶습니다. 하지만 모두에게 괜찮으시다면, 기꺼이 그렇게 하겠습니다. 그리고 milen이 여기서 말씀하신 것처럼, 옐로페이퍼에 EIP684를 더한 것에 맞춰 정의되지 않은 동작을 정렬하는 것입니다. 지금 당장은 아닙니다, 죄송합니다. BAL 측면을 좀 더 자세히 살펴봐야 할 것 같습니다. 하지만 어쨌든, milen의 PR과 레거시 테스트를 먼저 병합하고, 그다음 비동기로 이야기를 나눠서 EL에 대한 케이스를 추가하는 것에 맞춰보는 게 어떨까요. 아니면 시도해 볼 수도 있고요, 네."
+            },
+            {
+              "speaker": "Karim Taam",
+              "text": "BAL을 스냅 싱크 힐링(healing)에 쓰려 하고 있어 BAL에서 상태 수정이 빠지면 최종 상태가 잘못될 수 있다며, 삭제까지 모두 포함하는 쪽을 선호한다고 했다.",
+              "timestamp": "00:43:57",
+              "original": "I just wanted to add, we are talking to use the Block Access List for healing, so if we are missing some state modification in block access list, it can be an issue for the healing. We can have a, yeah, an invalid state at the end, so… On my side, I will prefer to have everything.",
+              "translation": "하나만 덧붙이고 싶습니다. 저희는 힐링(healing)에 블록 접근 리스트를 사용하는 것에 대해 논의하고 있습니다. 그래서 블록 접근 리스트에 어떤 상태 변경 사항이 누락되어 있다면, 이는 힐링에 문제가 될 수 있습니다. 결국 잘못된 상태를 갖게 될 수 있습니다. 그러니 저로서는 모든 것을 포함하는 쪽을 선호합니다."
+            }
+          ],
+          "quote": {
+            "text": "미정의 동작은 검증과 버그 헌팅 쪽에서 문제를 일으킨다. 미정의 동작은 적을수록 좋다.",
+            "original": "Undefined behavior leads to some troubles on the side of verification and bug hunting. Less undefined behaviors is better.",
+            "speaker": "FLCL (Nethermind)",
+            "timestamp": "00:38:04"
+          }
+        }
+      ],
+      "speakers": [
+        {
+          "label": "Justin Traglia",
+          "name": "Justin Traglia",
+          "org": "EF",
+          "role": "보안",
+          "handle": "JustinTraglia",
+          "avatar": "https://pbs.twimg.com/profile_images/1648459994256543744/fn_SnKW5_400x400.jpg",
+          "share": 0.181
+        },
+        {
+          "label": "FLCL (Nethermind)",
+          "name": "FLCL",
+          "org": "Nethermind",
+          "share": 0.164
+        },
+        {
+          "label": "jochem-brouwer",
+          "name": "Jochem Brouwer",
+          "org": "EF",
+          "role": "EthereumJS · EIP-8037 공동 저자",
+          "share": 0.156
+        },
+        {
+          "label": "Maria Silva",
+          "name": "Maria Silva",
+          "role": "EIP-8037 제1저자",
+          "handle": "misilva73",
+          "avatar": "https://pbs.twimg.com/profile_images/1551690804594458624/elGlKFpy_400x400.jpg",
+          "share": 0.125
+        },
+        {
+          "label": "pk910",
+          "name": "pk910",
+          "org": "EF DevOps",
+          "handle": "_pk910_",
+          "avatar": "https://pbs.twimg.com/profile_images/1778392621032898560/hneq3NpH_400x400.jpg",
+          "share": 0.111
+        },
+        {
+          "label": "milen | Erigon",
+          "name": "Milen",
+          "org": "Erigon",
+          "share": 0.089
+        },
+        {
+          "label": "spencer",
+          "name": "Spencer Taylor-Brown",
+          "org": "EF",
+          "role": "테스팅",
+          "share": 0.069
+        },
+        {
+          "label": "Saulius Grigaitis | Grandine",
+          "name": "Saulius Grigaitis",
+          "org": "Grandine",
+          "share": 0.053
+        },
+        {
+          "label": "Jihoon",
+          "name": "Jihoon",
+          "share": 0.019
+        },
+        {
+          "label": "Enrico Del Fante (tbenr)",
+          "name": "Enrico Del Fante",
+          "org": "Consensys",
+          "role": "Teku",
+          "handle": "tbenr",
+          "avatar": "https://pbs.twimg.com/profile_images/1425021438269050892/3IRr4G_z_400x400.jpg",
+          "share": 0.017
+        },
+        {
+          "label": "Karim Taam",
+          "name": "Karim Taam",
+          "org": "Consensys",
+          "role": "Besu",
+          "share": 0.008
+        },
+        {
+          "label": "Pawan Dhananjay",
+          "name": "Pawan Dhananjay",
+          "share": 0.006
+        },
+        {
+          "label": "Dragan Rakita",
+          "name": "Dragan Rakita",
+          "org": "Tempo",
+          "role": "revm 저자",
+          "handle": "rakitadragan",
+          "avatar": "https://pbs.twimg.com/profile_images/1622380143799943169/2D-5fxsO_400x400.jpg",
+          "share": 0
+        }
+      ],
+      "chat": [
+        {
+          "speaker": "Luca | Vero",
+          "text": "POST produceBlockV4, SSE 이벤트, v2 proposer duties 등 비콘 API 지원이 클라이언트마다 다르다",
+          "timestamp": "00:12:27"
+        },
+        {
+          "speaker": "Jihoon",
+          "text": "어떤 EIP가 테스트를 추가할 수 있는지에 대한 논의 링크 공유: consensus-specs 이슈 #5618과 EthR&D 디스코드 스레드",
+          "timestamp": "00:18:57"
+        },
+        {
+          "speaker": "spencer",
+          "text": "(BAL 충돌 비교용 픽스처를) 내일까지 준비할 수 있다",
+          "timestamp": "00:46:20"
+        }
+      ],
+      "glossary": [
+        {
+          "term": "SFI",
+          "def": "Scheduled for Inclusion, 다음 포크 포함이 확정된 EIP 단계"
+        },
+        {
+          "term": "CFI",
+          "def": "Considered for Inclusion, 포크 포함을 검토 중인 단계"
+        },
+        {
+          "term": "PFI",
+          "def": "Proposed for Inclusion, 포함이 제안돼 후보로 접수된 단계"
+        },
+        {
+          "term": "DFI",
+          "def": "Declined for Inclusion, 포크 후보에서 제외된 단계"
+        },
+        {
+          "term": "BAL",
+          "def": "블록 접근 목록(Block Access List), 블록이 건드린 계정과 스토리지를 나열해 상태 변화를 요약하는 목록"
+        },
+        {
+          "term": "섀도 포크",
+          "def": "실제 네트워크 상태를 복제해 업그레이드를 미리 연습하는 임시 포크(shadow fork)"
+        },
+        {
+          "term": "데브넷",
+          "def": "개발 중인 기능을 시험하는 임시 개발용 네트워크(devnet)"
+        },
+        {
+          "term": "EL/CL",
+          "def": "실행 계층(Execution Layer)과 합의 계층(Consensus Layer), 이더리움 노드를 이루는 두 소프트웨어 층"
+        }
+      ],
+      "eips": [
+        684,
+        7610,
+        8037,
+        8038,
+        8253
+      ],
+      "relatedDebates": [],
+      "telegramMessageId": 1582
+    },
     {
       "id": "acde-245",
       "series": "acde",
@@ -10654,13 +11131,13 @@
     "currentFork": {
       "name": "글램스터담",
       "stage": "테스트넷 단계",
-      "line": "세폴리아 10월 6일 확정 · 후디 미정 · 데브넷 11 이번 주 출시"
+      "line": "세폴리아 10월 6일 확정 · 후디 미정 · 섀도포크 다음 주"
     },
     "nextFork": {
       "name": "헤고타",
       "stage": "범위 정하는 중",
-      "line": "EIP-8141 헤드라이너 확정 · 11월 3일 데브콘까지 범위 확정"
+      "line": "SFI 1건(EIP-8141) · 보류 4건 · 11월 3일까지 범위 확정"
     },
-    "basis": "acde-245"
+    "basis": "acdt-96"
   }
 }
