@@ -92,13 +92,13 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 <div className="container mx-auto px-6 flex justify-between items-center">
                     <Link to="/" className="flex items-center gap-2.5" aria-label="Ethereum Collective Korea Home">
                         <img
-                            src="/assets/ticker-eth-logo.svg"
+                            src="/assets/eck-lockup-on-dark.svg"
                             alt=""
                             role="presentation"
-                            className="h-6 md:h-7 w-auto"
+                            className="h-7 md:h-8 w-auto"
                         />
-                        <span className="text-lg md:text-xl font-black tracking-[-0.02em] text-theme-text uppercase italic">
-                            ECK<span className="inline text-theme-text-secondary normal-case not-italic font-medium text-[10px] sm:text-xs md:text-sm tracking-normal ml-2">Ethereum Collective Korea</span>
+                        <span className="text-theme-text-secondary font-medium text-[10px] sm:text-xs md:text-sm">
+                            Ethereum Collective Korea
                         </span>
                     </Link>
 
@@ -170,7 +170,7 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                     <div className="grid md:grid-cols-4 gap-8">
                         <div className="md:col-span-2">
                             <div className="flex items-center gap-3 mb-4">
-                                <img src="/assets/ticker-eth-logo.svg" alt="" role="presentation" className="h-8 w-auto" />
+                                <img src="/assets/eck-symbol.svg" alt="" role="presentation" className="h-8 w-auto" />
                                 <h3 className="text-xl font-bold text-theme-text">Ethereum Collective Korea</h3>
                             </div>
                             <p className="text-theme-text-muted max-w-sm">

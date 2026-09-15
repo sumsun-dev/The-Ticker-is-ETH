@@ -20,7 +20,7 @@
   <array>
     <string>/bin/bash</string>
     <string>-lc</string>
-    <string>cd /Users/jiyepark/the-ticker-is-eth &amp;&amp; exec npx tsx scripts/local/linkedin-channel-post.ts</string>
+    <string>cd /Users/jiyepark/ECK &amp;&amp; exec npx tsx scripts/local/linkedin-channel-post.ts</string>
   </array>
   <key>StartCalendarInterval</key>
   <array>
