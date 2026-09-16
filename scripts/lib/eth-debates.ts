@@ -133,6 +133,12 @@ export function unnotified(debates: ReadonlyArray<Debate>, notified: ReadonlyArr
   return debates.filter((d) => !seen.has(d.id)).sort((a, b) => a.lastActivity.localeCompare(b.lastActivity));
 }
 
+/** DM 버튼의 callback_data 해석: 'p:<id>'면 노출, 'h:<id>'면 비노출 */
+export function parseDecision(data: string | undefined): { id: string; publish: boolean } | null {
+  const parsed = /^([ph]):(.+)$/.exec(data ?? '');
+  return parsed ? { id: parsed[2], publish: parsed[1] === 'p' } : null;
+}
+
 /** 버튼 결정 반영 */
 export function setPublish(debates: ReadonlyArray<Debate>, id: string, publish: boolean): Debate[] {
   return debates.map((d) => (d.id === id ? { ...d, publish } : d));

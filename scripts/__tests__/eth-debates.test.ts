@@ -17,6 +17,7 @@ import {
   isShown,
   unnotified,
   setPublish,
+  parseDecision,
   DraftEnvelopeSchema,
   type Debate,
   type DebateDraft,
@@ -242,5 +243,19 @@ describe('사이트 노출 승인', () => {
     const b = { ...withHolders(3), id: 'b' };
     expect(setPublish([a, b], 'b', true).map((d) => d.publish)).toEqual([undefined, true]);
     expect(setPublish([a, b], 'nope', true).map((d) => d.publish)).toEqual([undefined, undefined]);
+  });
+});
+
+describe('DM 버튼 해석', () => {
+  it('should read the publish decision out of callback_data', () => {
+    expect(parseDecision('p:eip-8363-tapered-issuance-burn')).toEqual({ id: 'eip-8363-tapered-issuance-burn', publish: true });
+    expect(parseDecision('h:bpo-trigger-heuristic')).toEqual({ id: 'bpo-trigger-heuristic', publish: false });
+  });
+
+  it('should ignore callback data from other flows', () => {
+    // 예전 비탈릭 승인 버튼(pub:/rej:)과 빈 값이 섞여 들어와도 논쟁 결정으로 읽지 않는다
+    expect(parseDecision('pub:abc')).toBeNull();
+    expect(parseDecision('p:')).toBeNull();
+    expect(parseDecision(undefined)).toBeNull();
   });
 });
