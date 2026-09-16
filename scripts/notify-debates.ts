@@ -17,7 +17,7 @@ import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
 import * as dotenv from 'dotenv';
-import { MIN_PARTICIPANTS, holderCount, isShown, setPublish, unnotified, type Debate, type DebatesFile } from './lib/eth-debates';
+import { MIN_PARTICIPANTS, holderCount, isShown, parseDecision, setPublish, unnotified, type Debate, type DebatesFile } from './lib/eth-debates';
 
 dotenv.config({ path: path.resolve(process.cwd(), '.env.local') });
 dotenv.config({ path: path.resolve(process.cwd(), '.env') });
@@ -49,6 +49,17 @@ function readState(): State | null {
 
 const writeState = (state: State) => fs.writeFileSync(STATE_FILE, JSON.stringify(state, null, 2), 'utf-8');
 const esc = (text: string) => text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+/** 응답용 호출(answerCallbackQuery 등)은 실패해도 실행을 멈추지 않는다.
+ *  버튼을 늦게 누르면 텔레그램이 'query is too old'로 거절하는데, 그 때문에 결정 반영과 offset 저장까지 날리면
+ *  같은 업데이트를 영원히 다시 받는다 (2026-09-16 실측). */
+async function tgQuiet(token: string, method: string, body: unknown): Promise<void> {
+  try {
+    await tg(token, method, body);
+  } catch (error) {
+    console.warn(`  [WARN] ${(error as Error).message}`);
+  }
+}
 
 async function tg<T>(token: string, method: string, body: unknown): Promise<T> {
   const res = await fetch(`https://api.telegram.org/bot${token}/${method}`, {
@@ -100,22 +111,21 @@ async function applyCallbacks(token: string, state: State, debates: Debate[]): P
   for (const update of updates) {
     state.offset = update.update_id + 1;
     const cb = update.callback_query;
-    const parsed = /^([ph]):(.+)$/.exec(cb?.data ?? '');
-    if (!cb || !parsed) continue;
-    const [, action, id] = parsed;
-    const publish = action === 'p';
+    const decision = parseDecision(cb?.data);
+    if (!cb || !decision) continue;
+    const { id, publish } = decision;
     if (!(next ?? debates).some((d) => d.id === id)) {
-      await tg(token, 'answerCallbackQuery', { callback_query_id: cb.id, text: '없는 논쟁입니다' });
+      await tgQuiet(token, 'answerCallbackQuery', { callback_query_id: cb.id, text: '없는 논쟁입니다' });
       continue;
     }
     next = setPublish(next ?? debates, id, publish);
-    await tg(token, 'answerCallbackQuery', {
+    await tgQuiet(token, 'answerCallbackQuery', {
       callback_query_id: cb.id,
       text: publish ? '사이트에 노출합니다' : '노출하지 않습니다',
     });
     if (cb.message) {
       // 버튼을 지워 같은 논쟁을 두 번 누르지 않게 한다
-      await tg(token, 'editMessageReplyMarkup', {
+      await tgQuiet(token, 'editMessageReplyMarkup', {
         chat_id: cb.message.chat.id,
         message_id: cb.message.message_id,
         reply_markup: { inline_keyboard: [] },
@@ -152,6 +162,8 @@ async function main() {
   }
 
   const updated = await applyCallbacks(token, state, file.debates);
+  // 발송 단계에서 실패해도 처리한 업데이트를 다시 받지 않도록 offset을 먼저 저장한다
+  writeState(state);
   if (updated) {
     fs.writeFileSync(FILE, JSON.stringify({ ...file, debates: updated }, null, 2), 'utf-8');
     if (process.argv.includes('--commit')) commitAndPush();
