@@ -38,15 +38,24 @@ function resultOf(stdout: string | undefined): string {
   }
 }
 
-function callOnce(prompt: string, model: string, timeoutMs: number, fallback?: string): string {
-  // 우리가 쓰는 건 프롬프트 → 텍스트뿐이다. 파일 도구를 막지 않으면 모델이 결과를 리포에 파일로 쓴다
-  // (2026-09-10 opus가 acdt-090.json을 리포 루트에 남김)
-  const args = ['-p', prompt, '--output-format', 'json', '--model', model, '--disallowed-tools', 'Write', 'Edit', 'NotebookEdit', 'Bash'];
+/**
+ * CLI 인자. 프롬프트는 여기 넣지 않고 표준입력으로 보낸다.
+ * 인자 하나의 길이 상한이 131,072바이트(리눅스 MAX_ARG_STRLEN)라 긴 프롬프트는 실행 자체가 E2BIG으로 막힌다
+ * (2026-09-15 다이제스트가 이 한계로 실패해 그날 호와 논쟁 추출이 통째로 빠졌다).
+ * 파일 도구를 막는 이유: 안 막으면 모델이 결과를 리포에 파일로 쓴다 (2026-09-10 opus가 acdt-090.json을 리포 루트에 남김).
+ */
+export function cliArgs(model: string, fallback?: string): string[] {
+  const args = ['-p', '--output-format', 'json', '--model', model, '--disallowed-tools', 'Write', 'Edit', 'NotebookEdit', 'Bash'];
   // CLI 자체 대체는 과부하·모델 미제공만 다룬다. 한도 소진은 아래 runClaude가 직접 잡는다
   if (fallback) args.push('--fallback-model', fallback);
+  return args;
+}
+
+function callOnce(prompt: string, model: string, timeoutMs: number, fallback?: string): string {
   let raw: string;
   try {
-    raw = execFileSync('claude', args, {
+    raw = execFileSync('claude', cliArgs(model, fallback), {
+      input: prompt,
       encoding: 'utf-8',
       maxBuffer: 32 * 1024 * 1024,
       timeout: timeoutMs,

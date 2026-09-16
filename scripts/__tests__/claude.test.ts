@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from 'vitest';
-import { FALLBACK_MODEL, fallbackOf, isBlocked } from '../lib/claude';
+import { FALLBACK_MODEL, cliArgs, fallbackOf, isBlocked } from '../lib/claude';
 
 afterEach(() => {
   delete process.env.CLAUDE_FALLBACK_MODEL;
@@ -25,5 +25,21 @@ describe('headless claude fallback', () => {
     process.env.CLAUDE_FALLBACK_MODEL = 'sonnet';
     expect(fallbackOf('fable')).toBe('sonnet');
     expect(fallbackOf('opus')).toBe('sonnet');
+  });
+});
+
+describe('프롬프트 전달 방식', () => {
+  it('should never put the prompt in a command argument', () => {
+    // 인자 하나의 상한이 131,072바이트라 긴 프롬프트는 E2BIG으로 실행이 막힌다 (2026-09-15 다이제스트 실패)
+    const args = cliArgs('fable', 'opus');
+    expect(args).toEqual(['-p', '--output-format', 'json', '--model', 'fable', '--disallowed-tools', 'Write', 'Edit', 'NotebookEdit', 'Bash', '--fallback-model', 'opus']);
+    expect(args.every((a) => a.length < 40)).toBe(true);
+  });
+
+  it('should keep the file tools blocked and omit the fallback flag when there is none', () => {
+    const args = cliArgs('opus');
+    expect(args).toContain('--disallowed-tools');
+    expect(args).toContain('Bash');
+    expect(args).not.toContain('--fallback-model');
   });
 });
