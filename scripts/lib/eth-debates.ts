@@ -89,6 +89,8 @@ export interface Debate extends DebateDraft {
   status: DebateStatus;
   firstSeen: string;
   lastActivity: string;
+  /** 오너가 DM 버튼으로 정한 사이트 노출 여부. 없으면 참여 인원 기준을 따른다 (2026-09-16 오너 결정) */
+  publish?: boolean;
   /** 루트 트윗의 반응 규모 (tweet.php) — 리트윗 본문은 싣지 않고 수만 기록 */
   engagement?: Engagement;
   rootUrl?: string;
@@ -111,6 +113,29 @@ export function computeStatus(lastActivity: string, today: string, current?: Deb
   if (idle >= ARCHIVE_AFTER_DAYS) return 'archived';
   if (idle >= COOLING_AFTER_DAYS) return 'cooling';
   return 'active';
+}
+
+/** 사이트 노출 최소 인원. src/utils/debates.ts의 MIN_PARTICIPANTS와 같은 값을 따로 적는다 (src 밖을 import하지 않는 규칙) */
+export const MIN_PARTICIPANTS = 10;
+
+export function holderCount(debate: Pick<Debate, 'positions'>): number {
+  return debate.positions.reduce((n, p) => n + p.holders.length, 0);
+}
+
+/** 사이트에 보이는가. DM 버튼으로 정한 publish가 인원 기준보다 우선한다 */
+export function isShown(debate: Pick<Debate, 'positions' | 'publish'>): boolean {
+  return debate.publish ?? holderCount(debate) >= MIN_PARTICIPANTS;
+}
+
+/** 아직 DM으로 알리지 않은 논쟁, 오래된 것부터 */
+export function unnotified(debates: ReadonlyArray<Debate>, notified: ReadonlyArray<string>): Debate[] {
+  const seen = new Set(notified);
+  return debates.filter((d) => !seen.has(d.id)).sort((a, b) => a.lastActivity.localeCompare(b.lastActivity));
+}
+
+/** 버튼 결정 반영 */
+export function setPublish(debates: ReadonlyArray<Debate>, id: string, publish: boolean): Debate[] {
+  return debates.map((d) => (d.id === id ? { ...d, publish } : d));
 }
 
 function holderKey(h: Holder): string {

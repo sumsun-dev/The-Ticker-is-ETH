@@ -12,6 +12,11 @@ import {
   handleMatchesName,
   extractEipNumbers,
   discourseTopicJsonUrl,
+  MIN_PARTICIPANTS,
+  holderCount,
+  isShown,
+  unnotified,
+  setPublish,
   DraftEnvelopeSchema,
   type Debate,
   type DebateDraft,
@@ -199,5 +204,43 @@ describe('helpers', () => {
     const parsed = extractJson('```json\n{"debates": []}\n```');
     expect(DraftEnvelopeSchema.parse(parsed)).toEqual({ debates: [] });
     expect(() => DraftEnvelopeSchema.parse({ debates: [{ ...draft(), id: 'Bad Slug' }] })).toThrow();
+  });
+});
+
+describe('사이트 노출 승인', () => {
+  const withHolders = (n: number, publish?: boolean): Debate => ({
+    ...draft(),
+    status: 'active',
+    firstSeen: '2026-09-01',
+    lastActivity: '2026-09-02',
+    positions: [
+      { stance: 'pro', label: '찬성', holders: Array.from({ length: n }, (_, i) => ({ name: `p${i}` })), points: ['근거'] },
+    ],
+    ...(publish === undefined ? {} : { publish }),
+  });
+
+  it('should fall back to the participant floor when the owner has not decided', () => {
+    expect(holderCount(withHolders(4))).toBe(4);
+    expect(isShown(withHolders(4))).toBe(false);
+    expect(isShown(withHolders(MIN_PARTICIPANTS))).toBe(true);
+  });
+
+  it('should let the DM decision win over the floor in both directions', () => {
+    expect(isShown(withHolders(3, true))).toBe(true);
+    expect(isShown(withHolders(12, false))).toBe(false);
+  });
+
+  it('should list only debates not notified yet, oldest first', () => {
+    const a = { ...withHolders(3), id: 'a', lastActivity: '2026-09-05' };
+    const b = { ...withHolders(3), id: 'b', lastActivity: '2026-09-01' };
+    expect(unnotified([a, b], ['a']).map((d) => d.id)).toEqual(['b']);
+    expect(unnotified([a, b], []).map((d) => d.id)).toEqual(['b', 'a']);
+  });
+
+  it('should set publish on the matching debate only', () => {
+    const a = { ...withHolders(3), id: 'a' };
+    const b = { ...withHolders(3), id: 'b' };
+    expect(setPublish([a, b], 'b', true).map((d) => d.publish)).toEqual([undefined, true]);
+    expect(setPublish([a, b], 'nope', true).map((d) => d.publish)).toEqual([undefined, undefined]);
   });
 });

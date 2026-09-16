@@ -53,8 +53,9 @@ export function participantCount(debate: HasHolders): number {
     return debate.positions.reduce((n, p) => n + p.holders.length, 0);
 }
 
-export function isPublishable(debate: HasHolders): boolean {
-    return participantCount(debate) >= MIN_PARTICIPANTS;
+/** 노출 여부. 오너가 DM 버튼으로 정한 publish가 인원 기준보다 우선한다 (2026-09-16 오너 결정) */
+export function isPublishable(debate: HasHolders & { publish?: boolean }): boolean {
+    return debate.publish ?? participantCount(debate) >= MIN_PARTICIPANTS;
 }
 
 /** 이 인물이 한 발언(타임라인 항목), 시간순. 핸들 또는 이름으로 맞춘다. */
