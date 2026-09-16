@@ -88,6 +88,8 @@ export interface CallRecord {
     intro?: string;
     summary?: string;
     whyItMatters?: string;
+    /** AMA 브리프용 핵심 한 줄들 */
+    highlights?: string[];
     decisions: CallDecision[];
     targets: CallTarget[];
     actions: CallAction[];

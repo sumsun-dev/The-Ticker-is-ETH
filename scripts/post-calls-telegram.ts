@@ -55,7 +55,7 @@ function callCoverHtml(call: CallRecord, assets: CoverAssets): string {
     .head { display: flex; align-items: center; gap: 16px; }
     .pill { background: ${isAma ? '#FF4500' : '#2D5FBF'}; color: #fff; font-weight: 800; font-size: 22px; letter-spacing: .08em; padding: 8px 14px; border-radius: 6px; }
     .rmark { width: 40px; height: 40px; }
-    .emark { width: 34px; height: 34px; margin-right: -4px; }
+    .ewatermark { position: absolute; right: 88px; top: 150px; width: 340px; height: 340px; opacity: .55; }
     .series { font-size: 20px; color: #9AA3B8; letter-spacing: .06em; font-weight: 600; }
     .date { margin-left: auto; font-size: 20px; color: #9AA3B8; letter-spacing: .06em; font-variant-numeric: tabular-nums; }
     .body { flex: 1; display: flex; flex-direction: column; justify-content: center; padding-right: 60px; }
@@ -76,9 +76,9 @@ function callCoverHtml(call: CallRecord, assets: CoverAssets): string {
     .src { margin-left: auto; }
   </style></head><body>
     <div class="glow"></div><div class="grid"></div>
-    <div class="num">#${call.number}</div>
+    ${isAma ? `<img class="ewatermark" src="${assets.ethMarkDataUri}" alt="" />` : `<div class="num">#${call.number}</div>`}
     <div class="wrap">
-      <div class="head">${isAma ? `<img class="emark" src="${assets.ethMarkDataUri}" alt="" /><img class="rmark" src="${assets.redditMarkDataUri}" alt="" />` : ''}<span class="pill">${esc(series.pill)}</span><span class="series">${esc(series.name)}</span><span class="date">${esc(date)}</span></div>
+      <div class="head">${isAma ? `<img class="rmark" src="${assets.redditMarkDataUri}" alt="" />` : ''}<span class="pill">${esc(series.pill)}</span><span class="series">${esc(series.name)}${isAma ? ` #${call.number}` : ''}</span><span class="date">${esc(date)}</span></div>
       <div class="body">
         <div class="title">${lines.map((l, i) => `<span class="tline${i === 0 && lines.length > 1 ? ' hl' : ''}">${esc(l)}</span>`).join('')}</div>
         ${spec.lead ? `<div class="lead">${esc(spec.lead)}</div>` : ''}
