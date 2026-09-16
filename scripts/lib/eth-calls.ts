@@ -10,6 +10,8 @@ export const CALL_SERIES: Record<string, { pill: string; name: string; ko: strin
   acde: { pill: 'ACDE', name: 'All Core Devs · Execution', ko: '실행 계층(EL) 클라이언트 개발자 격주 콜' },
   acdc: { pill: 'ACDC', name: 'All Core Devs · Consensus', ko: '합의 계층(CL) 클라이언트 개발자 격주 콜' },
   acdt: { pill: 'ACDT', name: 'All Core Devs · Testing', ko: '테스트 팀 주간 콜' },
+  // 콜은 아니지만 같은 아카이브에 싣는다 (2026-09-16 오너 요청). 추출은 extract-reddit-ama.ts가 한다
+  ama: { pill: 'AMA', name: 'EF Protocol AMA', ko: '이더리움 재단 프로토콜 클러스터가 레딧에서 여는 공개 질의응답' },
 };
 /** 결정·토론까지 정리하는 시리즈. 나머지(브레이크아웃 등)는 제목과 링크만 기록한다 */
 export const FULL_SERIES = ['acde', 'acdc', 'acdt'] as const;
