@@ -603,7 +603,8 @@ export function renderCaption(call: CallRecord, opts: CaptionOptions = {}): stri
     if (call.lead) lines.push(esc(call.lead));
     // 핵심 줄이 없으면(옛 레코드나 모델이 빠뜨린 경우) 주제 제목으로 대신한다. 캡션이 리드 한 줄만 남지 않게
     const keyLines = call.highlights?.length ? call.highlights.slice(0, 5) : call.topics.slice(0, 5).map((t) => t.title);
-    if (keyLines.length) lines.push('', '<i>핵심</i>', ...keyLines.map((h) => `· ${esc(h)}`));
+    // 줄 사이에 빈 줄을 넣어야 읽힌다 (오너 2026-09-16). 텔레그램은 연속 줄바꿈을 그대로 보여준다
+    if (keyLines.length) lines.push('', '<i>핵심</i>', ...keyLines.flatMap((h, i) => (i ? ['', `· ${esc(h)}`] : [`· ${esc(h)}`])));
     if (link) lines.push('', siteLinkLine(call));
     return lines.join('\n');
   }
