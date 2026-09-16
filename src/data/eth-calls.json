@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-15T00:46:43.071Z",
+  "updatedAt": "2026-09-16T06:42:14.427Z",
   "calls": [
     {
       "id": "acdt-96",
@@ -11123,6 +11123,462 @@
         8272,
         8282,
         8298
+      ],
+      "relatedDebates": []
+    },
+    {
+      "id": "ama-14",
+      "series": "ama",
+      "number": 14,
+      "date": "2025-08-29",
+      "title": "EF 프로토콜 AMA 14회",
+      "forkcastUrl": "https://www.reddit.com/r/ethereum/comments/1n1cyd3/ama_we_are_ef_protocol_pt_14_29_august_2025/",
+      "kind": "full",
+      "headline": "스테이킹 상한\n50%면 보수적",
+      "lead": "드레이크, ETH 절반 상한은 낙담 공격 막기에 충분",
+      "intro": "이더리움 재단 프로토콜 클러스터가 레딧 r/ethereum에서 연 공개 질의응답이다.",
+      "summary": "가장 많은 표를 받은 발행량 문제부터 L1 zkEVM, RISC-V, 글램스터담 헤드라이너 결정 과정까지 프로토콜 로드맵 전반이 다뤄졌다. 재단 쪽은 현 곡선에서는 스테이킹 비중이 계속 커지므로 발행 정책을 손봐야 한다는 입장을 보였고, L1 zkEVM은 단계적으로 가되 EVM을 RISC-V로 바꾸는 일은 먼 얘기라고 선을 그었다.",
+      "whyItMatters": "발행량 축소가 다시 논의 테이블에 올랐고, 재단 연구진은 3SF 전환 시점이나 스테이킹 50% 상한 같은 구체적 시점과 수단을 거론했다. L1 zkEVM은 검증자의 하드웨어 부담을 줄이면서 가스 한도를 크게 올리는 길로 제시됐고, 현재 병목은 비용이나 보안이 아니라 전력이라는 진단이 나왔다. 글램스터담 이후 업그레이드는 기능 선택과 해법 선택을 나누는 방식으로 결정 과정이 바뀔 수 있다.",
+      "decisions": [],
+      "targets": [],
+      "actions": [],
+      "agenda": [],
+      "topics": [
+        {
+          "title": "발행량 곡선과 스테이킹 상한",
+          "intro": "가장 많은 표를 받은 질문은 장기 발행량 곡선(issuance curve)이었다. 현 곡선에서는 합리적인 보유자가 결국 모두 스테이킹하게 되는지, 언제까지 손봐야 하는지를 물었고, 이어 저스틴 드레이크(bobthesponge1)가 팟캐스트에서 말한 스테이킹 50% 상한의 부작용을 어떻게 막을지 질문이 이어졌다.",
+          "positions": [
+            {
+              "speaker": "Ethereum_AMA",
+              "text": "장기 발행량 곡선에 합의하는 절차를 연구진이 어떻게 보는지 물었다. 현 곡선에서는 합리적 보유자가 결국 전부 스테이킹하게 된다는 문제가 여전한데 긴박감이 사라진 것 같다며, 행동할 시간이 얼마나 남았는지 질문했다.",
+              "original": "How are researchers currently thinking about the process for reaching consensus on a suitable long term issuance curve? It is still true that under the current curve all rational ETH holders will eventually (be forced to) stake their ETH, but it feels like there is no longer a sense of urgency about this problem. How long do we have to take action on this?"
+            },
+            {
+              "speaker": "bobthesponge1",
+              "text": "현 곡선은 121M ETH 전부가 스테이킹돼도 명목 수익률 2% 이상을 주도록 설계됐고 운영비는 미미해서, 스테이킹 비중은 계속 커진다고 봤다. 첫걸음으로 대부분의 ETH가 스테이킹될 때 생기는 부작용, 즉 디파이에 쓰일 순수 담보의 고갈과 보안에 대한 과다 지불을 알리는 교육을 제안했다.",
+              "original": "Thank you for the question Pintail, and great to see issuance as a top voted question :) It is still true that under the current curve all rational ETH holders will eventually (be forced to) stake their ETH Short answer: IMO yes Long answer: The issuance curve is designed such that nominal yield from issuance alone is at least 2%/year, even when all 121M ETH is staked. Operational costs (compute & bandwidth, devops, inactivity & slashing risks, activation & exit inefficiencies) are typically small (measured in basis points) and will go down significantly with things like L1 EVM SNARKification and attester-proposer separation (APS). As such the dominant staking cost is arguably external opportunity cost, e.g. from defi. Today there's roughly 2.5M ETH earning 2%/year on Aave . Even at today's levels, 2%/year is insufficient to have a significant impact on staking. Going forward it may be reasonable to expect defi yields to compress, e.g. as institutional money won't be afraid to lend in size. A final note is that defi yields are somewhat correlated and indirectly boosted by staking yields which will naturally go down from the current 3%/year. To summarise, yes, IMO it's reasonable to"
+            },
+            {
+              "speaker": "bluepintail",
+              "text": "순수 담보 지위를 지키지 않는 것은 ETH가 화폐이기를 포기하는 것과 같다고 반박했다. ETH가 모두 합의층에 잠기고 유동 스테이킹 토큰(LST)으로 대체되면 스테이블코인이 못 하는 용도에도 쓸 수 없게 된다고 우려했다.",
+              "original": "I definitely feel as though falling to protect ETH's \"pristine collateral\" status in this way is a tacit acceptance that ETH is not attempting to be money in any meaningful sense, which to me feels like a terrible mistake. I've heard some people make arguments like \"Ether can't/shouldn't compete with Bitcoin\". Which I see as both defeatist and irrelevant. If Ethereum (and its ecosystem of L2s) succeeds in becoming the world computer/internet of value then there is a great opportunity for ETH to be one genuinely permissionless and uncensorable asset on the network, and a Schelling point medium for a variety of uses. Even if stablecoin volumes eclipse those of 'pure' cryptocurrencies like ETH or BTC for everyday usage, stablecoins are not suitable for all use cases. But ETH will also be rendered unsuitable if it is all locked up in the CL and replaced by LSTs."
+            },
+            {
+              "speaker": "AElowsson",
+              "text": "아무것도 안 해도 전부 스테이킹되지는 않겠지만 비중은 점차 오르며, 미룰수록 스테이킹 투자가 쌓여 발행량 축소가 더 어려워지는 끓는 개구리 현상을 지적했다. 발행 정책을 손볼 최적 시점은 3슬롯 파이널리티(3SF) 같은 새 합의 메커니즘으로 전환하면서 검증자 통합 인센티브를 도입할 때라고 봤다.",
+              "original": "I wouldn't say that all ETH will be staked if we do nothing, but it is reasonable to assume that the proportion of staked ETH will gradually increase, as frictions in the decision to stake are overcome. In essence, we can think of the staking supply curve as formed from stakers' \"reservation yields\": some may be willing to stake all their ETH at a 1.6% yield, but some might only stake 1/3 even at a 2.5% yield. The staking demand curve is specified by the protocol; it is the reward curve we are debating to change (there is also some MEV that we have less control over). The equilibrium then forms at the intersection of these curves, as explained in my Devcon presentation . To some extent, we are dealing with a boiling-frog phenomenon. The longer we wait, the more investments are made into staking, and the harder it becomes to reduce issuance. In essence, the ecosystem at large is encouraged to incur higher costs for staking than necessary due to the current reward curve, with upfront investments making a future change in issuance policy more controversial. I discuss the cost problem in this text . Another boiling frog: a higher proportion of staked ETH by itself gives staking derivat"
+            },
+            {
+              "speaker": "Ethereum_AMA",
+              "text": "50% 상한의 이점은 알지만 대형 사업자로의 스테이크 집중과 프로토콜 밖에서 더 스테이킹하는 우회 수단 같은 부작용을 어떻게 막을지 물었다.",
+              "original": "Justin, I heard you on the Zero Knowledge podcast proposing to practically cap the amount of staked eth at 50%. I can see the benefits that it brings but I can’t think of ways to mittigate the negative externalities that it can bring, like stake concentration with big parties and the possible out of protocol solutions are found to still stake more than that. What are solutions to this?"
+            },
+            {
+              "speaker": "bobthesponge1",
+              "text": "50%는 단순하고 중립적인 숫자이면서 낙담 공격(discouragement attack)을 막기에 충분히 크며, 상위 3개 스테이킹 사업자를 합쳐도 공격에 필요한 양의 4분의 1 정도라 보수적인 상한이라고 답했다. 상한에 가까워져 보상이 줄면 수익만 좇는 스테이커가 먼저 떠나고, 비용 부담이 적은 솔로 스테이커는 남을 것으로 봤다.",
+              "original": "cap the amount of staked eth at 50% Besides 50% (1/2) being a pleasantly simple and neutral number, it's also large enough to address discouragement attacks. Indeed, no single entity controls anywhere close to 60M ETH. The top three staking entities (Lido, Coinbase, Binance) combined control 15M ETH stake, roughly 25% of what it would take to pull off a discouragement attack. IMO a 50% cap is conservative. stake concentration with big parties With stake capping issuance dynamically adjusts with the market to find an equilibrium between staking rewards and staking costs. Let's imagine that the total amount of ETH staked starts to approach the 50% cap, and rewards compress. Which stakers, on the margin, would be the first to leave? I would argue the most rational stakers that are in it purely for the money would be the first to leave and chase yields elsewhere. On the rewards side of things, passionate solo stakers don't care about squeezing every bip, they are \"ideologically irrational\". On the cost side of things, solo stakers may reuse an old computer, the home internet bandwidth is a sunk cost, and the devops commitment is a fun hobby."
+            }
+          ]
+        },
+        {
+          "title": "L1 zkEVM과 실시간 증명",
+          "intro": "블록 생성과 증명 생성이 소수 전문 사업자에게 분리되는 흐름이 검열 저항성(censorship resistance)을 해치지 않는지, zkVM 도입에서 무엇이 병목이고 무엇이 기대되는지 물었다. 재단 쪽은 역할 분리가 오히려 검열 저항성을 높인다고 답하고 단계별 로드맵을 제시했다.",
+          "positions": [
+            {
+              "speaker": "Ethereum_AMA",
+              "text": "블록 빌더와 증명자가 소수일 때도 검열 저항성과 중립성이 보장되는지, 그 생태계를 충분히 크고 탄탄하게 키울 방법은 무엇인지 물었다.",
+              "original": "In Ethereum, we’ve separated block building from block proposing, and we now seem to be moving toward a similar separation between proof generation and proof verification. What is the research community’s view on whether this is the right direction? Can censorship resistance and neutrality still be guaranteed if only a small set of actors are responsible for building blocks and generating proofs? Even if the guarantees hold in theory, how can we ensure that the block builder and proof generation ecosystems grow large and resilient enough to serve as a reliable foundation for Ethereum?"
+            },
+            {
+              "speaker": "dtjfeist",
+              "text": "질문의 전제를 반박했다. 검열 저항의 근간은 다양한 검증자 집합이므로 검증자에게 다른 역할을 묶는 것이 오히려 해롭고, 증명자는 정직한 다수가 아니라 증명을 내줄 단 한 명만 있으면 되기 때문에 분리가 맞다고 했다.",
+              "original": "I actually question the premise of this question: Separation of node roles allows for more censorship resistance, not less. The backbone of Ethereum CR is a diverse validator set. If more than 50% of validators want to censor a transaction and are willing to use their attestations to fork out any block that includes it, they can. This is why it's bad to bundle roles with validators: It leads to a less diverse set and worse CR. This is why we separated block building from proposing (and are enshrining this in the protocol now with EPBS), and similar it's best if there is a specialized pool of builders rather than having this done by the validator set: With provers, as long as there is a single prover willing to provide a proof, the chain liveness and censorship resistance are safe. It does not require am honest majority (like for validators) and that's why it's best to separate these roles."
+            },
+            {
+              "speaker": "sophiagold0",
+              "text": "증명 검증이 어테스터의 의무가 되기 전에 FOCIL을 먼저 도입해 검증자 위원회가 거래 포함을 강제할 수 있게 하려 한다고 했다. 증명 하드웨어는 가정용 전기 회로에서 돌 수 있는 10kW 미만을 목표로 해 지리적으로 분산된 다수 증명자를 만들겠다고 했다.",
+              "original": "For proving we're thinking about censorship resistance primarily in two ways: We would like FOCIL to be live before verifying proofs becomes mandatory for attestors. This allows committees of validators to force the inclusion of transactions in blocks. Proving hardware will be beefier than current validator hardware, but we can still make it accessible by both keeping cost per proof low in the cloud and by targeting on-prem hardware that can run in homes and offices. For the latter, energy usage is the bottleneck and zkVM teams are currently targeting under 10kW, which is available on circuits in some residential homes used for electric vehicle chargers and other appliances. Our goal is for there to be as many provers as possible, operated by a variety of different network participants, in geographically diverse locales, and both in and out of data centers."
+            },
+            {
+              "speaker": "bobthesponge1",
+              "text": "2025년 소수 초기 스테이커가 zkEL 클라이언트로 갈아타는 0단계부터 지연 증명(2026년경), 의무 증명(2027년경), 단일 증명 시스템 내장(2028년 이후)까지의 단계를 제시하며 시점은 참고만 하라고 했다. 비용과 증명 시간, 보안은 이미 병목이 아니고 현재 병목은 전력이라고 진단했다.",
+              "original": "ethproofs will be ready to mainnet IMO Ethproofs will be sufficiently mature in 2025 for a small minority of early stakers like myself to rely on it and ditch their EL client in favour of a zkEL client like zkReth. Specifically, I expect that for every block there will be multiple zkEVM proofs backed by a diversity of zkVMs. Most of the time those proofs will be produced within a few seconds, and more exceptionally within a few slots. Those early stakers may benefit from significantly reduced hardware costs (e.g. I can sell the Macbook Air I use for staking and save on buying a larger hard drive). The trade off is that those early stakers will lose a bit on staking rewards (specifically some timeliness rewards) whenever proofs take more than a few seconds to produce (and correspondingly delay attestating). This early staking phase in 2025 is what I call \"phase 0\". The other phases I have in mind are: phase 1 (delayed proofs, ~2026): Proofs can be submitted seconds after the block within incurring a timeliness penalty for attesters relying on them. ePBS (EIP-7732) or delaying execution (EIP-7886) can unlock some form of delayed proofs. phase 2 (mandatory proofs, ~2027): To enter the"
+            },
+            {
+              "speaker": "tcoratger",
+              "text": "실시간 증명의 종착점은 검증자 역할을 재실행에서 검증으로 바꾸는 것이라고 설명했다. 그러면 가스 한도를 안전하게 올릴 수 있고 라즈베리파이 수준 기기로도 체인을 검증할 수 있게 된다고 했다.",
+              "original": "In my opinion, the \"endgame\" for real-time proving isn't just about faster confirmations, but about fundamentally re-architecting Ethereum to achieve massive scalability without sacrificing decentralization. It changes the core job of a validator from re-doing work to simply checking work. Instead of every validator on the network re-executing every single transaction in a block to confirm it's valid, the process is split into two parts: Execution & proving: A single, specialized entity called a prover executes all the transactions in a block and generates a single, tiny cryptographic proof (a ZK-proof) that certifies the outcome is correct. Verification: All the other validators on the network simply check this one small proof. This new model solves several major problems: Massive scalability & lower fees: Verifying a proof is thousands of times easier than re-executing all the transactions. This means Ethereum can safely increase its block gas limit, allowing for much higher throughput (more transactions per second). Stronger decentralization: Because validators only need to do the lightweight work of proof verification, the hardware requirements to be a validator drop drasticall"
+            },
+            {
+              "speaker": "tcoratger",
+              "text": "증명자 하드웨어 비용은 심각한 중앙화 요인이 아니라고 봤다. 증명자는 블록 내용이나 정식 체인을 정할 권한이 없는 서비스 제공자이고, 정직한 증명자 하나만 있으면 체인이 유지되는 1-of-N 모델이기 때문이다.",
+              "original": "The potential for centralization in the prover role is a valid concern, but it's mitigated by separating the prover's capabilities from the powers that govern the network's state and rules. In my opinion, high hardware cost for provers is not a worrisome centralization vector because the prover role is intentionally designed to be a permissionless, commoditized computational service, not a position of protocol governance. For instance, provers can't halt the chain, censor users, or steal funds. Their primary incentive is simply earning fees for generating proofs, and market competition ensures they act honestly. So basically I see this in the following way: - Validators: They have staked ETH, have the power to propose blocks and attest to the validity of the chain. They are responsible for the network's security and liveness. - Builders: Specialized entities that construct the most profitable block by arranging transactions to capture Maximal Extractable Value (MEV). They decide what goes into a block. - And now provers: These are the specialized hardware operators. Their only job is to take a fully constructed block from a builder and generate a ZK-proof for it. They are a service"
+            },
+            {
+              "speaker": "asn-d6",
+              "text": "zkVM은 암호학, 복잡도 이론, 수학, 컴퓨터과학, 경제학의 최전선을 동시에 다뤄야 하는 서커스 같은 작업이라고 했다. 두려운 미해결 문제가 많지만 그래서 흥미로운 일이라고 답했다.",
+              "original": "Hello! Well, let me start by saying that there are plenty of scary things about ZK and zkVMs, and many open problems to iron out. Deploying cutting-edge tech on Ethereum is very serious business and it should be treated that way. But, since you asked... yes, it can also be exciting :-) zkVMs are a strange sort of science-circus act. To pull it off, one has to dance on the bleeding edge of several sciences: - Cryptography: That's where modern SNARKs, polynomial commitments, and their delicate security proofs live. - Complexity Theory: That's the reason we kinda sorta maybe understand PCPs, interactive proofs, sumchecks and arithmetization. - Mathematics: Polynomials, polynomials, and polynomials over finite fields. Also, see our upcoming [proximity prize]( https://proximityprize.org/ ). Polynomials. - Computer Science: That's how we design prover-efficient VMs, formally verify them. We also need ultra-fast algorithms... almost always about polynomials. - Economics: Mechanism design and prover markets: that's how we design stable incentives for this weird system. So yeah, this is the circus we are called to run. Deploying so funky systems on such a large scale is certainly an excitin"
+            },
+            {
+              "speaker": "kevaundray",
+              "text": "프로젝트마다 감당할 수 있는 기묘함 예산이 있는데 L1 zkEVM은 이미 그 예산을 넘겼으니 불필요한 복잡성을 최소화하는 것이 과제라고 했다. 최근 포크된 Rust 컴파일러가 필요 없다는 결론을 내려 복잡성과 보안 위험을 줄였다고 전했다.",
+              "original": "Hey, I've been working on some of the engineering efforts required to ship zkVMs. I think the number of unknowns, inherent complexity and the weirdness budget is exciting. Weirdness budget Each project/codebase usually has a weirdness/strangeness budget. For example, most cryptography based codebases blow out the weirdness budget on the underlying math so ideally the implementation is \"simple\". Shipping zkEVMs on L1 has definitely gone into weirdness debt, so one challenge is how do we ship this with the least amount of additional unecessary complexity. Accidental complexity I think the two things I dislike in programming are bad abstractions and accidental complexity. Though I guess you could argue that they are one in the same. Past experience tells me that these usually arise when there are too many unvalidated assumptions in the system or there is not a holistic view of how all of the components fit together. With the sheer amount of unknowns even from just from an engineering perspective, it is quite easy to introduce accidental complexity that due to path dependencies are hard to remove later on. Though, I do think that we are steadily decreasing the amount of unknowns and to"
+            }
+          ]
+        },
+        {
+          "title": "RISC-V 도입과 네이티브 롤업",
+          "intro": "이더리움이 RISC-V를 프로토콜에 내장(enshrine)한다면 어떤 ISA 프로파일을 쓸지, 기존 RISC-V 프로젝트와 협업할지, 네이티브 롤업(native rollup)의 EXECUTE 프리컴파일이 EVM 외 VM도 지원할 수 있는지 물었다. 재단 쪽은 EVM 교체는 아직 먼 얘기이며 현재 초점은 L1 확장에 zkVM을 쓰는 협업이라고 선을 그었다.",
+          "positions": [
+            {
+              "speaker": "Ethereum_AMA",
+              "text": "RISC-V를 내장할 때 사용자 레벨 ISA만 쓸지, 머신이나 슈퍼바이저 같은 특권 사양까지 포함할지 물었다.",
+              "original": "Most blockchain RISC-V efforts use a minimal user-level ISA and omit the privileged ISA, which could be useful for many OS-like functions that the EVM performs. If Ethereum enshrines RISC-V, which ISA profile are you considering: user-level only, or a profile that includes the privileged spec such as the Machine or Supervisor ISA? Any intuitions on how to think about this design-space tradeoff? Thanks :)"
+            },
+            {
+              "speaker": "codygunton",
+              "text": "팀에서 직접 논의하는 주제는 아니고 내장 여부는 먼 미래라고 했다. 다만 rv64gc는 부동소수점 확장 때문에 특권 아키텍처 구현이 필요하고 컴파일러 지원이 가장 넓어 네트워크 효과 면에서 유리할 것이라고 추측했다.",
+              "original": "ZKEVM Team member here 👋 It's a great question but it's not the sort of thing our team discusses directly. We are learning a lot about ISA tradeoffs as we support ZKVM-based scaling of an EVM-based L1, but questions of enshrinement feel far down the road to me. My expectation is that if the community did decide to replace the EVM by a RISC-V-based machine, our security bar would be so high that the benefits of having a privilege model would outweigh the risk of added complexity, but I am doing little more than speculating at this point. One specific point to raise is that riscv64gc requires implementing the privileged architecture because the floating point extensions require it, and riscv64gc benefits from having the broadest compiler support afaik. E.g. there are efforts from RISE ( https://riseproject.dev/ , see https://lf-rise.atlassian.net/wiki/spaces/HOME/pages/8586561/Project+RP004+Support+64-bit+RISC-V+Linux+port+of+Rust+to+Tier-1 ) and others to support the promotion of an rv64gc target to Tier 1 status in the Rust compiler, which means guarantees about the target passing tests (up from Tier 2 status where we only have guarantees about being able to build software for the"
+            },
+            {
+              "speaker": "Ethereum_AMA",
+              "text": "Nervos, Polkadot, RISC Zero 같은 기존 RISC-V 프로젝트와 협업할지, 이더리움 고유의 해법을 독자 개발할지 물었다.",
+              "original": "Given Ethereum’s strategic adoption of a RISC-V-based execution layer to improve scalability and ZK proof efficiency, and considering existing RISC-V projects like Nervos, Polkadot, Cartesi, and RiscZero, will the Foundation pursue collaboration to leverage existing expertise and tooling, or focus on developing Ethereum-native RISC-V solutions independently?"
+            },
+            {
+              "speaker": "tcoratger",
+              "text": "Ethproofs 콜에서 여러 zkVM 팀과 표준 선정과 형식 검증을 논의했다고 소개했다. RISC-V 제안은 비효율적 프리컴파일 교체, EVM과 RISC-V 중 선택 허용, 최종적으로 EVM을 온체인 RISC-V 인터프리터로 옮기는 점진적 과정으로 이해해야 하며 그 사이 협업 시간이 충분하다고 했다.",
+              "original": "Thanks for your question, Ethproofs Call #4 contains a lot of small talks about different possible paths and collaboration avenues. I recommend watching it if you haven't seen it yet: https://www.youtube.com/watch?v=rJiEV7jJFl4 A wide range of speakers from independent zkVM projects were invited to answer this question among others like Risc0, Ceno, OpenVm... The debates which were at the center of the discussions were mainly around: - Setting some standards: for example which version of RiscV to enshrine into the protocol and Jeremy from Risc0 gave a great overview of the different possibilities. His main point was about picking a proper standard so that we can support a huge range of existing languages ​​(Rust, Go, C++...). - We also discussed toolings and security with some formal verification effort that started and must continue in order to be able to formally verify any ZKVM's RISC-V circuit against the official specification. Security is not optional here, this should be taken super seriously. But the general riscv proposal must be understood as something gradual with time for collaboration. In my mind after discussing with a bunch of people and having seen various talks, I "
+            },
+            {
+              "speaker": "codygunton",
+              "text": "RISC-V가 유일한 선택지는 아니며 WASM, MIPS 등 대안에 문을 열어둬야 한다고 했다. EVM을 RISC-V로 교체하는 연구는 비탈릭이 한 것 외에 진행 중인 것이 없고, 팀은 RISC Zero 등과 규정 준수 테스트와 퍼징 도구를 함께 만드는 중이라고 밝혔다.",
+              "original": "ZKEVM Team member here 👋 Our team so far is heavily focused on collaboration. Let me first say that, while it is true that RISC-V is the most common choice for ZKVMs, it is not the only choice, and I think it's important to keep the door open to alternatives (WASM, MIPS, custom ISAs) as the field continues to experiment. I want to also clarify that \"RISC-V-based execution layer\" could mean something strong like replacing the EVM by a RISC-V virtual machine, something Vitalik has advocated in forum posts and talks, and that this is not what our team is working on, nor am I aware of any efforts to research this idea beyond what Vitalik already did. What the ZKEVM Team focuses on is the effort to bring ZKVMs to bear on the problem of L1 scaling. This mean collaborating with ZKVM teams, execution client teams, security teams, and compiler teams. In recent months I personally have collaborated with RISC Zero (and many other ZKVM teams) and some hardware-focused RISC-V security teams to build out some RISC-V compliance testing and fuzzing tools from existing tools (RISCOF and Cascade). We are trying to bootstrap, contribute, strengthen and fill gaps. Thanks for your question!"
+            },
+            {
+              "speaker": "alexanderlhicks",
+              "text": "케임브리지 대학이 관리하는 Sail 공식 RISC-V 명세에 Lean 백엔드가 생겨 이를 기준으로 RISC-V 회로를 검증할 수 있게 됐다며, 블록체인 밖 학계와 산업의 성과를 활용하고 있다고 했다.",
+              "original": "I'll add a bit here to mention that as well as collaborating with the RISC-V zkVMs (see other replies), we've also benefited a lot from collaborating with people external to the blockchain world. For example, we have the goal of verifying the RISC-V circuits against the official RISC-V specification written in Sail ( https://github.com/riscv/sail-riscv ), which is maintained by a team at the University of Cambridge. Thanks to them, Galois, and Jakob (previously at Lindy Labs), Sail now has a general purpose Lean backend which we can use to verify RISC-V circuits in Lean. (This also means that if we wanted e.g., new RISC-V extensions, or to use another ISA, and specified these in Sail, we could make use of them in the same way.) There's a ton of great work going into RISC-V by academia and industry that we should pay attention to. :)"
+            },
+            {
+              "speaker": "donnoh",
+              "text": "EXECUTE 프리컴파일은 기본적으로 EVM 재귀 호출만 노출하지만, RISC-V 증명으로 일반화하면 EVM을 게스트 프로그램으로 넣고 다른 VM도 넣을 수 있다고 했다. 다만 게스트 프로그램이 해시로만 전달되면 버그를 재실행으로 잡기 어려워, 블롭으로 먼저 게시하게 하는 방안이 열린 질문이라고 했다.",
+              "original": "Even with validity proofs the `EXECUTE` precompile will expose a recursive call to the EVM, so by default no other VMs can be supported. The intuition though is correct: if L1 can verify validity proofs, why limit ourselves to the EVM? One reason comes from the fact that full nodes need to know what program the validity proof is proving for, and at first they will be proofs of EVM execution. Proofs can be made more generic if they prove RISC-V (or equivalent), where the EVM is \"just\" a guest program that is provided as an input, but where other inputs such as different VMs can be passed. In this world native rollups can indeed decide whether to re-use the EVM as a guest program or provide their own custom one. One problem emerges in terms of data availability and ability to detect bugs: RISC-V verifiers today (like SP1 or RISC Zero) take the guest program input in the form of a hash, meaning that if there is a bug in the validity proof, we would not be able to detect it as the original source code might not be available and we would not be able to naively re-execute the computation to double check that everything is correct. A solution for this might be requiring guest programs to "
+            },
+            {
+              "speaker": "sophiagold0",
+              "text": "EXECUTE 프리컴파일에 재실행 방식은 L1 처리량으로 감당할 수 없어 유효성 증명으로 바로 갈 것으로 봤다. 임의 게스트 프로그램의 증명을 검증하면 L1이 버그 없음을 보장한다는 목적이 무너지므로, L2용 대체 VM은 RISC-V 내장으로 여는 것이 한 방법이라고 했다.",
+              "original": "I don't think re-execution makes sense for the EXECUTE precompile because the L1 cannot have the throughput necessary to use it for non-interactive fraud proofs (executing an entire L2 state transition) so it would still leave a lot of surface for bugs and likely not eliminate security councils. I expect we'll jump right to using validity proofs for native rollups. The idea is that this would reuse the L1 zkEVM, likely with some opcode changes that would need to be standardized across L2s. The high-level reason for this is essentially that verifying proofs of arbitrary guest programs (the state transitions proven by the zkVM) would defeat the purpose of the L1 being responsible for making sure there are no bugs in the proof. One way to enable alt-VMs for L2s is by enshrining RISC-V."
+            }
+          ]
+        },
+        {
+          "title": "글램스터담 헤드라이너와 업그레이드 결정 과정",
+          "intro": "글램스터담(Glamsterdam) 헤드라이너로 6초 슬롯 대신 ePBS가 뽑힌 과정, ePBS가 빌더에게 의도적 슬롯 누락 유인을 준다는 우려, 커뮤니티를 더 일찍 참여시킬 방법을 물었다. 재단 연구진은 기능 선택과 해법 선택을 분리하는 결정 과정을 만들자고 했고, 비탈릭은 L1이 초 단위 파이널리티를 좇아서는 안 된다고 못 박았다.",
+          "positions": [
+            {
+              "speaker": "KuDeTa",
+              "text": "ePBS(EIP-7732)가 빌더의 의도적 슬롯 누락을 유도하는데 처리량 5~10배를 위해 슬롯 몇 %를 희생해도 되는지 물었다. 이 문제가 알려진 채로 포함 예정(SFI)이 결정된 거버넌스를 커뮤니티가 어떻게 봐야 하는지도 질문했다.",
+              "original": "The current iteration of EIP-7732 (ePBS) - which has been SFI'd in Glamsterdam - appears to incentivise builders to intentionally miss slots under some conditions. It's clearly very challenging to predict the effects on mainnet looking forward with any confidence, given how dynamic the builder ecosystem is. Do EF researchers think there is some threshold where the scaling advantages of ePBS outweigh this concern? I.e. would you be comfortable enshrining a system that results in an estimated ~1% of slots being sacrificed? (0.1%? 10%?) for a 5x-10x in tps? These issues (and others) were well aired before the decision to SFI was taken by client teams. On the face of it \"scheduled for inclusion\" should mean that we are all reasonably confident a proposal will be implemented. What should the community make of the current governance process for deciding which upgrades to implement in Ethereum?"
+            },
+            {
+              "speaker": "barnaabe",
+              "text": "슬롯 누락은 지연 증가, MEV 급등, 1559 공식이 반영하지 못하는 용량 손실을 부른다고 인정했다. 개발자들은 누락 페널티나 빌더가 공개를 결정하는 창을 줄이는 방법으로 완화할 수 있다고 보며, 후자가 확장성과 누락 확률 사이의 조절 장치가 될 수 있다고 했다.",
+              "original": "The side effects of missed slots can be quite bad: - Higher transaction latency - More spiky MEV in the following block - Lost capacity since the current 1559 formula does not take into account missed slots in its calculation I've followed the discussions on the free option problem, which is something that was known about ePBS for a while. The devs believe it can be mitigated, either through missed slot penalties or through reducing the window during which the builder can take their time to choose whether or not to fully release. The latter may be the best way to set the slider between \"more scale\" vs \"more probability for a missed slot to happen\"."
+            },
+            {
+              "speaker": "bobthesponge1",
+              "text": "비슷한 유인은 ePBS 이전인 지금도 있다며, 현재 누락 슬롯 비율의 구체적 수치가 ePBS 수정이나 취소 판단에 도움이 될 것이라고 했다. 본인은 어테스터·제안자 분리(APS)로 가는 디딤돌로 보고 ePBS에 약간 찬성한다고 밝혔다.",
+              "original": "ePBS [...] appears to incentivise builders to intentionally miss slots There's a similar incentive at play today, pre-ePBS. The reason is that it takes a while for the relay getHeader response to reach the proposer and for the proposer to respond with a signature. During that time the top builder may no longer be happy with his top block and may prefer to have an empty slot instead (while still paying the proposer the top bid). The ultra sound relay is considering offering cancelations as a service to builders, even in the the status quo where the cancelation window is relatively small. Having concrete numbers on the rate of missed slots pre-ePBS could help inform modifications or even potentially a cancellation of ePBS. (As a side note I lean slightly in favour of ePBS because I see it as a stepping stone towards APS.)"
+            },
+            {
+              "speaker": "Ethereum_AMA",
+              "text": "헤드라이너가 개발이 가장 진척된 ePBS로 사실상 미리 정해졌다며 다음 업그레이드에서 과정을 어떻게 개선할지, 연구자에게 프로토타입을 만들 개발자가 필요한지 물었다.",
+              "original": "Upgrade headliners: Glamsterdam upgrade headliners were essentially pre-decided as ePBS had the most development. Researchers appeared to prefer EIP7782 6-second slots whilst client teams preferred EIP7732 ePBS. How can we improve this process for the H upgrade? Do researchers need their own developers to prototype features?"
+            },
+            {
+              "speaker": "barnaabe",
+              "text": "EIP-7782는 짧은 슬롯이라는 기능 제안이고 7732는 구체적 해법이라 같은 잣대로 경쟁하기 어렵다고 했다. 작업량으로 정하는 대신 커뮤니티가 기능을 고르고 연구와 코어 개발자가 해법을 고르는 파이프라인을 만들자고 했으며, 짧은 슬롯은 여전히 가장 영향력 큰 제안이라고 봤다.",
+              "original": "I see a difference between 7782, which is a proposal for a feature (shorter slots) but is not clearly opinionated on a solution to achieve it, vs 7732 which is a specific solution to ship. Likewise, we should ideally first have a strong view on what the network needs and then coordinate on how to ship it, i.e., decide the specific solution and accelerate its development. If feature proposals cannot hope to compete against solution proposals because they are more under-specified, we need a way to have stronger commitments behind features, so that research and engineering resources can be aligned and the right features can be accelerated, vs deciding based on \"Proof-of-Work\". As for Glamsterdam, the network needs scale, and while I personally don't think that every part of 7732 justifies its cost , 7732 answers the need for scale and so is a good update in my view. Meanwhile, prototyping and metrics collection efforts are ongoing for shorter slots, mostly in EF Protocol teams but also in discussion with core devs. I remain convinced that shorter slots is one of the highest-impact proposals we should accelerate today (see the pitch here ). So I think we're working towards a better pip"
+            },
+            {
+              "speaker": "Ethereum_AMA",
+              "text": "6초 슬롯이 왜 글램스터담에서 빠졌는지, 트래드파이의 1초 미만 파이널리티 요구와 분산 합의에 필요한 시간을 어떻게 저울질하는지 물었다.",
+              "original": "Why didn’t 6 second slots make it into Glamsterdam? How does EF compare demands of tradfi systems for sub-second finality and decentralization requiring ample time for distributed consensus?"
+            },
+            {
+              "speaker": "vbuterin",
+              "text": "L1은 1초나 그 이하 파이널리티를 제공해서는 안 되며, 초저지연 응용은 L2의 몫이라고 했다. 6초 슬롯은 지리적으로 분산된 검증자의 경제성을 해칠 위험을 엄밀히 측정할 도구가 먼저 필요하다고 했다.",
+              "original": "I don't think Ethereum L1 should ever offer 1-second or sub-second finality. I'd even go so far as to say that once becomes technically possible to get slots to 1-2s or finality to all of our points into things like democratizing staking participation, making it easier and economically viable for validators to stake from behind Tor, etc. The job of Ethereum is to be decentralized and stable. It's more analogous to bitcoin than to the various high-performance L1s that people will keep coming up with and iterating and optimizing. Ethereum should offer low-enough latency that it's not painful to do things on L1 directly, but applications that require very low latency belong on L2. Ultimately, especially with AI-based trading, there's no limit to how low latency can bring further improvements (eg. I fully predict \"city chains\" in an AI-driven financial market, remember: if an AI thinks 1000x faster than a human then from its point of view the speed of light is only 300 km/s), and so we need to make sure L1 does not get sucked into that game. But that is more about far-future long-term philosophy. For the near-term question of whether or not 6s slots make sense for glamsterdam, it's a t"
+            },
+            {
+              "speaker": "Ethereum_AMA",
+              "text": "Forkcast 순위와 템플릿 피드백은 좋았지만 유력 인사들도 FOCIL이나 ePBS 논의를 늦게 알았다며 커뮤니티를 더 일찍 참여시킬 방법을 물었다.",
+              "original": "Upgrade headliner feedback: Forkcast ranking and directing formal feedback to a templated reply in Eth Magicians were fantastic, but Ameen Soleimani wasn’t aware of FOCIL until recently and Dan Robinson had concerns about ePBS. How can we engage more of the community earlier?"
+            }
+          ]
+        },
+        {
+          "title": "L1 확장: 가스 한도, 블롭, 상태",
+          "intro": "가스 한도를 스테이커 투표에 맡겨도 되는지, 푸사카(Fusaka)의 PeerDAS가 블롭(blob) 한도를 얼마나 올리는지, 버클 트리(Verkle tree)와 상태 프루닝(state pruning)은 어떻게 되는지 물었다. 재단 쪽은 가스 한도 거버넌스가 건강하다고 보면서 블롭은 단계적으로 늘리고 버클 트리는 중단했다고 밝혔다.",
+          "positions": [
+            {
+              "speaker": "Ethereum_AMA",
+              "text": "대형 스테이커가 담합해 가스 한도를 크게 올릴 위험이 있으니 상한을 두어야 하는지, 결정권이 스테이커 투표와 개발자 개입 중 어디에 있어야 하는지 물었다.",
+              "original": "At present, the gas limit is determined by staker votes. But isn’t there a significant risk that a few large stakers could coordinate to raise it substantially, potentially leading to greater centralization and network instability? Wouldn’t it be more prudent to establish a clear upper bound to mitigate that risk? That said, it appears that most stakers simply adhere to the client defaults, which in practice places effective control in the hands of the developers. So what is the most appropriate governance model here — should gas limits ultimately be decided by staker voting or by developer intervention?"
+            },
+            {
+              "speaker": "bobthesponge1",
+              "text": "스테이커의 즉각적 권한, 개발자의 기본값 설정, 커뮤니티의 포크 가능성이 서로 견제해 거버넌스는 건강하다고 봤다. 오히려 너무 느린 성장이 걱정이며, L1 SNARK화 이후 초당 1기가가스를 향해 연 3배 지수 성장을 제안한 EIP-7938을 지지한다고 했다.",
+              "original": "A few thoughts: There is an effort to SNARKify the L1 EVM and require block producers to publish validity proofs alongside their blocks. In such a regime with mandatory proofs the decentralisation of consensus participants is unaffected by the gas limit because attesters can simply verify those proofs. (Technical note: L1 block data like calldata needs to be separately metered and capped, and ideally sampled like blobs instead of downloaded in full.) IMO gas limit governance is in a healthy state because multiple constituents have power. Yes, stakers have immediate hard power on a block-by-block basis. Having said that, devs have soft power when they set client defaults and the broader community can fork the L1 to constrain the gas limit if stakers abuse their power. I'm generally more worried about the the gas limit growing too slow than too fast. IMO with L1 EVM SNARKification we should get ready to shift to an abundance mindset. My personal hope is that the L1 will eventually scale to the gigagas frontier (1 gigagas/sec, or roughly 10K TPS). I'm a fan of Dankrad's proposal to grow the gas limit exponentially (e.g. 3x/year) over several years. See EIP-7938 ."
+            },
+            {
+              "speaker": "raulk_11",
+              "text": "푸사카는 펙트라 대비 8배 확장이 목표(타깃 48, 최대 72)이나 한 번에 올리지 않고 PeerDAS v1 이후 사전 예약된 BPO 포크로 단계적으로 올린다고 했다. 글램스터담은 128~192 범위를 노려볼 수 있지만 아직 이르다고 덧붙였다.",
+              "original": "Fusaka's endgame is scaling 8x on top of Pectra; that is, target 48 and (ideally) max 72. (*) In my view, Glamsterdam could reasonably shoot for the 128-192 range, potentially slightly higher, but it's too early to tell, so don't quote me on that ;-) Constructions like the sparse EL blobpool (draft EIP incoming as a non-headliner) and p2p optimizations aim to save bandwidth that we can reallocate to higher blob capacity without downgrading security. This iteration is what I call PeerDAS v2. Beyond that, we'd seriously start breaching EIP-7870 bandwidth limits (especially for local block builders) and we'd need to evolve architecture beyond PeerDAS, towards asynchronous approaches, alternative distribution mechanisms, and opening up the design space further. --- (*) But not all at once. Fusaka ships with PeerDAS v1, followed by a series of preprogrammed BPO forks to gradually raise limits. Rationale: PeerDAS introduces unprecedented p2p network workloads that are impossible to simulate with perfect realism in devnets and testnets. BPOs give us an opportunity to monitor and react to any bottlenecks. We've already anticipated some, and are testing cell-level deltas via gossipsub as an"
+            },
+            {
+              "speaker": "raulk_11",
+              "text": "저장 용량은 수요를 약간 앞서야 하며, L2가 새 공급을 흡수하면서 AI, 실시간 결제, 게임 등 용도별 L2가 등장하길 기대한다고 했다.",
+              "original": "On L2 scaling and blob limits: we recently posted an update on the \"Scaling Blobs\" track at the EF , in case you missed it! In the storage domain, capacity needs to outpace demand. Not by a large margin, but just enough so that neither a new user or an existing growing one are denied timely, fair service due to 100% utilization (or excessive fees). Fusaka creates an 8x potential increase in throughput that will be unlocked gradually; see more in my [previous comment] . Given the increase in blob usage since Pectra (*), I'd expect L2s to continue absorbing the new supply as they increase local throughput and adoption, and lower local fees. Beyond that, I'm personally excited to see new use-case specific L2s anchoring on the Ethereum L1 (e.g. AI, real-time payment networks, gaming, DeFi, etc.) And I think there are many unexplored usages around ephemeral storage and programmability that could leverage blobs as their storage medium. --- (*) Mind you, the relevant chart shows averages, which get diluted by certain builders partially or completely excluding blobs from their blocks, but a large amount of blocks are packing >=6."
+            },
+            {
+              "speaker": "s1na_eth",
+              "text": "푸사카는 블롭 확대와 함께 높은 가스 한도를 위한 안전장치를 넣고, 글램스터담은 ePBS로 실행을 어테스터의 경로에서 빼고 블록 수준 접근 목록으로 병렬 처리를 열어 L1 확장에 집중한다고 정리했다.",
+              "original": "I will give a summary answer here: - Fusaka: * It will allow more blobs -> L2 scaling * It also removes blockers from L1 scaling by putting in safeguards in various parts of the protocol to make it suitable for higher gas limits - Glamsterdam: it's all about L1 scaling * epbs will remove execution from the \"hot path\" for attesters. It will give more time to EL clients to execute the block, unlocking higher gas limits. * block-level access lists reduce IO requirements for the validators and unlocks parallel transaction processing But that's not all. There is a big joint effort between ethPandaOps and clients to stand up devnets meant to push client software to their limits in terms of performance and state size. They are providing insights into bottlenecks that must be solved at code level."
+            },
+            {
+              "speaker": "guillaumeballet",
+              "text": "버클 트리 작업은 양자 내성과 zkVM 호환을 위해 버클 방식의 이진 트리로 방향을 바꾸며 중단됐다고 밝혔다. 단기적으로는 여전히 최선이지만 재단 차원의 우선순위 결정과 맞지 않았고, 양자 내성 대체 원시 함수는 아직 실용성이 없다고 했다.",
+              "original": "Regarding verkle trees, the effort is currently halted, in favor of a \"verkle-like\" version of binary trees. The design choice has been made to harden the quantum resistance of Ethereum, as well as support the techniques currently used by zkvms. While verkle remains the best approach in the short term (and is also the best long-term candidate for addressing issues like state growth and state expiry), a decision has been made at the EF level, to focus on some specific projects, which is at odds with spending time on this topic. Research has been conducted to find quantum-resistant cryptographic primitives for a quantum-resistant verkle tree, but these are just too impractical to constitute a replacement. We will keep watch in case such a primitive appears."
+            },
+            {
+              "speaker": "Ethereum_AMA",
+              "text": "현재 확장 목표에서 상태 프루닝이나 상태 임대료 없이 갈 수 있는지 물었다.",
+              "original": "With current Ethereum scalability goals, can we get away without state pruning/rent?"
+            },
+            {
+              "speaker": "vbuterin",
+              "text": "거래가 접근할 상태를 명시하는 의무 접근 목록이 가장 현실적이라고 봤다. 검증자가 상태를 나눠 들고 오래된 상태는 p2p 네트워크에서 증명을 받아오는 방식이 다른 제안보다 낫다고 했다.",
+              "original": "The solution for avoiding global state pruning that makes the most sense to me is mandatory access lists. Transactions would have to specify which state they access, and any access outside that state exits with an error. This would make different validators free to hold different parts of the state, and you can have off-chain norms that eg. only recent state is held by validators, and if you want to do things with older state you have to download the proofs from some p2p network yourself first. This seems much more feasible to me than the other proposals, which are either (i) only a small constant-factor reduction in state reqs or (ii) require radical re-development of apps."
+            }
+          ]
+        },
+        {
+          "title": "재단 조직과 클라이언트 팀",
+          "intro": "Geth를 재단에서 분리해야 하는지, 재단이 자체 합의 클라이언트를 가져야 하는지, 클라이언트 팀은 어떻게 유지되는지, 클라이언트 다양성 지표는 어떻게 얻는지 물었다. 재단 쪽 답은 Geth 잔류에 무게를 두면서도 장기적으로 모든 클라이언트를 중립적으로 돕는 구조를 그렸다.",
+          "positions": [
+            {
+              "speaker": "Ethereum_AMA",
+              "text": "재단이 자체 클라이언트 팀을 둬야 하는지 Geth를 분리해야 하는지, 연구자의 프로토타이핑을 위해 재단 합의 클라이언트가 필요한지 물었다.",
+              "original": "EF and client teams: does the EF need it’s own client teams or should Geth be spun out. Alternatively, should the EF have it’s own consensus layer client? Especially if researchers need to prototype features."
+            },
+            {
+              "speaker": "vdWijden",
+              "text": "Geth가 재단 안에 있어야 이론 논의에 현장 관점을 더할 수 있다고 봤다. 연구용 합의 클라이언트는 실행 가능한 명세가 있어 불필요하지만 프로덕션급 합의 클라이언트는 가치가 있으며, 새 팀과 큰 투자가 필요하다고 했다.",
+              "original": "I still believe that there is significant value in having Geth be part of the EF. The geth team brings a different perspective to a lot of the more theoretical discussions. The insights from working with users on a daily basis and the headaches of maintaining production quality software are very useful. I don't think a research-only consensus client makes sense (since we have the executable consensus layer specs), but I do see the value in having a production grade consensus client in the EF. This project would require spinning up a new team and significant investment. Alternatively we could spend more resources to make the executable consensus into a fully fletched client, by writing replacement modules for the less performing part, so it can be run on testnets and devnets."
+            },
+            {
+              "speaker": "bobthesponge1",
+              "text": "재단이 모든 클라이언트를 중립적으로 돕는 프로토콜 클라이언트 팀을 두는 것이 자연스러운 종착점일 수 있다고 했다. Geth가 재단 안에 있는 것은 경로 의존의 산물이며, zkVM 시대에는 Rust 기반 Reth 같은 클라이언트가 커질 수 있다고 봤다.",
+              "original": "A couple personal thoughts to be taken with a big grain of salt: A natural endgame could potentially be for the EF to have a \"Protocol Clients\" team supporting all CL and/or EL clients, holistically. I believe current members of the Geth team could be part of such a \"Protocol Clients\" team, and help lift all ELs in a neutral way. Having Geth be part of the EF is arguably an artefact of path dependence. In 2025 Ethereum enjoys unprecedented diversity with roughly 6 CL and 6 EL clients. All 12 of those clients—with the exception of Geth—are outside of the EF. Historically Geth has played a systemic role due to its first-mover advantage and correspondingly high dominance. Today Geth's dominance (41%) is close to Nethermind's (38%). With the advent of zkEVMs I expect zkVM-friendly clients to significantly grow in dominance. For example there's an opportunity for Reth (currently at just 2% dominance) to rise due to Rust being one of the best languages to compile down to RISC-V zkVMs. In contrast, Go is significantly unfriendlier to zkVMs. It is still to be determined how Geth's performance will fair in this new paradigm."
+            },
+            {
+              "speaker": "parithosh93",
+              "text": "단일 합의 클라이언트 팀은 없지만 올해 p2p 전담 팀이 생겼고, 장기적으로 STEEL이 실행층에서 한 것처럼 완전히 실행 가능한 합의 명세를 목표로 해야 한다고 했다.",
+              "original": "While there's no single consensus client team at the EF, we're getting better at shoring up our consensus knowledge. We've always had researchers deeply involved in critical bits like incentives and forkchoice - However p2p was a weak point. Since earlier this year, we have a full p2p team at the EF that's doing great job at advancing the front on consensus p2p. The PandaOps team is slowly working on instrumenting monitoring code directly into consensus clients and thereby learning a lot about their internals. I do think long term we should strive to a fully executable consensus spec - very similar to what the STEEL team has achieved for the execution layer. This would give us a much better idea of tradeoffs upgrades will have on the consensus layer."
+            },
+            {
+              "speaker": "tcoratger",
+              "text": "재단 안에 연구자 가까이 있는 프로덕션급 합의 클라이언트의 가치를 인정하며, 린 컨센서스(lean consensus) 관련 내부 작업이 향후 그런 노력으로 이어지길 바란다고 했다.",
+              "original": "Even if it's not that easy to build a new team and create a new consensus client, I also see the value of having this within the EF playing exactly the same role as Geth right now: a production-grade consensus client close to all the researchers. I'd like to highlight here the efforts currently being made for the future at the Lean Consensus level. Of course, nothing is production-ready right now, and no full consensus client currently exists. However, many efforts are being made internally at the EF regarding this lean consensus. For example, we have internally: - The post quantum signature scheme: https://github.com/b-wagne/hash-sig - A python spec under construction to experiment and do research with it: https://github.com/leanEthereum/leanSpec - Soon a full proof stack to aggregate post quantum signatures: https://github.com/leanEthereum/leanMultisig I hope all this could potentially lead in the future to a global consensus layer client effort at the EF"
+            },
+            {
+              "speaker": "samcm",
+              "text": "Blockprint 이후 ethPandaOps가 p2p 크롤러로 노드 수를 더 정확히 집계하고 있으며 스테이크 가중 집계도 진전 중이라고 했다. 검증자 익명성 문제가 있어 신중히 다루되 수개월 안에 집계치를 공개할 수 있을 것으로 봤다.",
+              "original": "Vale Blockprint :salute: Our team (ethPandaOps) has recently been spending time on EL & CL network crawlers, and increasing our data collection on the p2p layers to help cover the gaps here. This give us more accurate \"node count\" values, but obviously \"stake-weighted node count\" is the more important metric when it comes to client diversity. Historically this data has been a hard task to derive with any degree of accuracy outside of Blockprint, but our team is making progress. I know of one other team that is working on this with good results too. This data is sensitive since it has the potential to de-anonymize validators to varying degrees, so it's a delicate balance. I'd expect that these new methodologies will be ironed out in the coming weeks/months and aggregates can be made public similar to how Blockprint used to :)"
+            },
+            {
+              "speaker": "trent_vanepps",
+              "text": "Protocol Guild가 약 190명의 코어 개발자에게 3,200만 달러를 분배했고, 재단의 클라이언트 인센티브 프로그램이 팀당 144개 검증자를 지원했다고 소개했다. 프로토콜 내 자금 조달이 없고 오픈소스 수익화가 어렵다며 지원이 충분한지 물음을 던졌다.",
+              "original": "Extending Marius' response with some other ways core contributors are supported: Protocol Guild is an independent org I contribute to which has distributed $32mm directly to ~190 core devs via a 4 year streaming basket of assets (ETH, stables, ecosystem tokens from 1% Pledges, etc) https://www.protocolguild.org/ -- 60% of the membership state that this funding is \"extremely/very important\" to their continued contributions many client entities are are supported by the Ethereum Foundation's \"Client Incentive Program\" which gave active teams 144 validators (4608 ETH) announced in 2021 https://blog.ethereum.org/2021/12/13/client-incentive-program I will slightly disagree with his statement that new clients appearing must mean its profitable. I believe there will be dozens of clients eventually, with varying motivations https://x.com/trent_vanepps/status/1518198895960117249 Ethereum has no in-protocol funding, and it's quite hard to monetize the open source client software - there are strong community norms which preclude software licenses to constrain usage without contracts. If we consider credibly neutral chains as \"emerging economies\" (as suggested in this recent Fidelity report) - "
+            },
+            {
+              "speaker": "nixorokish",
+              "text": "펙트라 테스트넷 설정 버그 이후 포크마다 비상 연락망과 사고 대응 계획을 마련했다고 밝혔다. 클라이언트, 보안, 테스트, 조정 팀에서 대기 인력을 정해 두는 방식이다.",
+              "original": "the Pectra testnet config bugs woke up a lot caution in the testing and security teams to create better processes and tests to both reduce the likelihood of fork issues and also to know what to do in case of something like nonfinality following a fork. it also spurred us to have an incident response plan and emergency points of contact for each team during a fork - people from client, security, testing, and coordination teams who essentially agree to be 'on call' in case anything goes wrong. 'consensus layer hardening' was a topic of discussion at the core developer interop in berlin this year: https://blog.ethereum.org/2025/06/19/checkpoint-4#cl-hardening"
+            }
+          ]
+        }
+      ],
+      "speakers": [
+        {
+          "label": "bobthesponge1",
+          "name": "bobthesponge1",
+          "share": 1
+        },
+        {
+          "label": "tcoratger",
+          "name": "tcoratger",
+          "share": 0.68
+        },
+        {
+          "label": "codygunton",
+          "name": "codygunton",
+          "share": 0.36
+        },
+        {
+          "label": "raulk_11",
+          "name": "raulk_11",
+          "share": 0.35
+        },
+        {
+          "label": "vbuterin",
+          "name": "vbuterin",
+          "share": 0.28
+        },
+        {
+          "label": "barnaabe",
+          "name": "barnaabe",
+          "share": 0.28
+        },
+        {
+          "label": "sophiagold0",
+          "name": "sophiagold0",
+          "share": 0.25
+        },
+        {
+          "label": "AElowsson",
+          "name": "AElowsson",
+          "share": 0.18
+        },
+        {
+          "label": "asn-d6",
+          "name": "asn-d6",
+          "share": 0.18
+        },
+        {
+          "label": "kevaundray",
+          "name": "Kevaundray Wedderburn",
+          "org": "EF",
+          "role": "응용 리서치",
+          "handle": "kevaundray",
+          "avatar": "https://pbs.twimg.com/profile_images/1658523090467315712/a3xJ6ySn_400x400.jpg",
+          "share": 0.18
+        },
+        {
+          "label": "donnoh",
+          "name": "donnoh",
+          "share": 0.18
+        },
+        {
+          "label": "trent_vanepps",
+          "name": "Trent Van Epps",
+          "org": "Protocol Guild",
+          "handle": "trent_vanepps",
+          "avatar": "https://pbs.twimg.com/profile_images/1695072606045515777/97BhkqE6_400x400.jpg",
+          "share": 0.18
+        },
+        {
+          "label": "dtjfeist",
+          "name": "dtjfeist",
+          "share": 0.13
+        },
+        {
+          "label": "KuDeTa",
+          "name": "KuDeTa",
+          "share": 0.13
+        },
+        {
+          "label": "bluepintail",
+          "name": "bluepintail",
+          "share": 0.13
+        },
+        {
+          "label": "alexanderlhicks",
+          "name": "alexanderlhicks",
+          "share": 0.13
+        },
+        {
+          "label": "samcm",
+          "name": "samcm",
+          "share": 0.12
+        },
+        {
+          "label": "s1na_eth",
+          "name": "s1na_eth",
+          "share": 0.12
+        },
+        {
+          "label": "vdWijden",
+          "name": "Marius van der Wijden",
+          "org": "EF",
+          "role": "geth",
+          "handle": "vdWijden",
+          "avatar": "https://pbs.twimg.com/profile_images/1334610351976026113/o0FQPHZX_400x400.jpg",
+          "share": 0.12
+        },
+        {
+          "label": "guillaumeballet",
+          "name": "guillaumeballet",
+          "share": 0.11
+        },
+        {
+          "label": "parithosh93",
+          "name": "parithosh93",
+          "share": 0.11
+        },
+        {
+          "label": "nixorokish",
+          "name": "Nixo",
+          "org": "EF Protocol Support",
+          "role": "ACDE 진행",
+          "handle": "nixorokish",
+          "avatar": "https://pbs.twimg.com/profile_images/2086847437277478912/F-w_Sq0y_400x400.jpg",
+          "share": 0.1
+        }
+      ],
+      "chat": [],
+      "glossary": [
+        {
+          "term": "발행량 곡선(issuance curve)",
+          "def": "스테이킹된 ETH 양에 따라 신규 ETH 발행량과 수익률이 정해지는 프로토콜 규칙"
+        },
+        {
+          "term": "유동 스테이킹 토큰(LST)",
+          "def": "스테이킹한 ETH를 대신해 유통되는 토큰으로 stETH 등이 대표적"
+        },
+        {
+          "term": "3슬롯 파이널리티(3SF)",
+          "def": "블록이 세 슬롯 안에 확정되도록 하는 차세대 합의 메커니즘 제안"
+        },
+        {
+          "term": "낙담 공격(discouragement attack)",
+          "def": "큰 지분을 가진 공격자가 다른 검증자의 보상을 깎아 이탈시키는 공격"
+        },
+        {
+          "term": "zkEVM / zkVM",
+          "def": "EVM 또는 범용 가상머신의 실행 결과를 영지식 증명으로 검증할 수 있게 만든 시스템"
+        },
+        {
+          "term": "FOCIL",
+          "def": "검증자 위원회가 거래 포함 목록을 강제해 검열을 막는 메커니즘"
+        },
+        {
+          "term": "ePBS(EIP-7732)",
+          "def": "블록 제안자와 빌더의 분리를 프로토콜 안에 내장하는 제안으로 글램스터담 헤드라이너"
+        },
+        {
+          "term": "APS(어테스터·제안자 분리)",
+          "def": "블록 제안 역할을 어테스터 집합에서 분리하는 장기 로드맵 항목"
+        }
+      ],
+      "eips": [
+        7732,
+        7782,
+        7870,
+        7886,
+        7938
       ],
       "relatedDebates": []
     }

@@ -5,6 +5,7 @@ export const SERIES_INFO: Record<string, { label: string; name: string; classNam
     acde: { label: 'ACDE', name: 'All Core Devs · Execution', className: 'bg-brand-primary' },
     acdc: { label: 'ACDC', name: 'All Core Devs · Consensus', className: 'bg-teal-700' },
     acdt: { label: 'ACDT', name: 'All Core Devs · Testing', className: 'bg-violet-700' },
+    ama: { label: 'AMA', name: 'EF Protocol AMA', className: 'bg-amber-700' },
 };
 export const MAIN_SERIES = ['acde', 'acdc', 'acdt'] as const;
 

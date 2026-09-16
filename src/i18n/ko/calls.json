@@ -32,6 +32,7 @@
     "host": "진행",
     "video": "영상 (YouTube)",
     "forkcast": "Forkcast 기록",
+    "reddit": "레딧 원문",
     "issue": "회의 이슈",
     "speakers": "발언",
     "speakersCount": "{{count}}명",
