@@ -9,12 +9,12 @@
  * 실행: npx tsx scripts/vitalik-blog-alert.ts [--test]
  *   --test: 상태와 무관하게 최신 글 1건을 분석해 DM으로 발송
  */
-import { execFileSync } from 'node:child_process';
 import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
 import * as dotenv from 'dotenv';
 import { parseFeed, type NewsItem } from './lib/eth-news';
+import { runClaude } from './lib/claude';
 
 dotenv.config({ path: path.resolve(process.cwd(), '.env.local') });
 dotenv.config({ path: path.resolve(process.cwd(), '.env') });
@@ -112,14 +112,8 @@ async function fetchPostText(url: string): Promise<string> {
 
 function analyze(post: NewsItem, content: string): string {
   const prompt = ANALYSIS_PROMPT.replace('{TITLE}', post.title).replace('{CONTENT}', content);
-  const raw = execFileSync('claude', ['-p', prompt, '--output-format', 'json', '--model', 'opus'], {
-    encoding: 'utf-8',
-    maxBuffer: 32 * 1024 * 1024,
-    timeout: 10 * 60 * 1000,
-  });
-  const envelope = JSON.parse(raw) as { result?: string; is_error?: boolean };
-  if (envelope.is_error || !envelope.result) throw new Error('headless claude returned an error');
-  return envelope.result.trim();
+  // 공용 lib로 부른다: 프롬프트를 표준입력으로 넘기고(인자 길이 한계 회피) 한도 소진 시 대체 모델도 따라온다
+  return runClaude(prompt, 'opus', 10 * 60 * 1000).trim();
 }
 
 /** 문단 경계 기준으로 텔레그램 길이 제한에 맞게 분할 */
