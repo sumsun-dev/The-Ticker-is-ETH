@@ -321,6 +321,8 @@ describe('AMA 브리프 길이', () => {
     const caption = fitCaption({ ...amaCall, highlights: ['발행량은 현 곡선이면 계속 오른다', '증명 병목은 비용이 아니라 전력이다', 'L1은 1초 파이널리티를 좇지 않는다'] }, 1024, { link: true });
     expect(caption).toContain('<i>핵심</i>');
     expect(caption).toContain('· 발행량은 현 곡선이면 계속 오른다');
+    // 핵심 줄 사이에는 빈 줄이 들어간다 (오너 2026-09-16, 가독성)
+    expect(caption).toContain('· 발행량은 현 곡선이면 계속 오른다\n\n· 증명 병목은 비용이 아니라 전력이다');
     expect(caption).toContain('AMA 페이지에서 전체 보기 → https://ethcollective.xyz/calls/ama-14');
     // 긴 요약 문단은 캡션에서 뺀다 (사이트에서 본다)
     expect(caption).not.toContain('한 줄 요약');
