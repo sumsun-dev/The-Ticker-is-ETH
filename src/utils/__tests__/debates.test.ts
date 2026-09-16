@@ -56,3 +56,17 @@ describe('debates utils', () => {
         expect(relatedDigestDates({ timeline })).toEqual(['2026-09-05', '2026-09-02']);
     });
 });
+
+describe('노출 승인', () => {
+    const withHolders = (n: number, publish?: boolean) => ({
+        positions: [{ holders: Array.from({ length: n }, () => ({})) }],
+        ...(publish === undefined ? {} : { publish }),
+    });
+
+    it('should let the DM decision win over the participant floor', () => {
+        expect(isPublishable(withHolders(3, true))).toBe(true);
+        expect(isPublishable(withHolders(12, false))).toBe(false);
+        expect(isPublishable(withHolders(12))).toBe(true);
+        expect(isPublishable(withHolders(3))).toBe(false);
+    });
+});

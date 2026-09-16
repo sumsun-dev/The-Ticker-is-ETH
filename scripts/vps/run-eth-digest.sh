@@ -19,6 +19,8 @@ main() {
   npx tsx scripts/generate-eth-digest.ts
   npx tsx scripts/sync-x-profiles.ts
   npx tsx scripts/extract-eth-debates.ts
+  # 새 논쟁을 오너 DM으로 알린다. 노출 버튼 응답 처리는 5분 크론(notify-debates.ts --commit)이 맡는다. 실패해도 나머지는 진행
+  npx tsx scripts/notify-debates.ts || true
   npx tsx scripts/extract-eth-calls.ts
   npx tsx scripts/render-digest-cover.ts
   npx tsx scripts/post-digest-telegram.ts

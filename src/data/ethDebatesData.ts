@@ -58,6 +58,8 @@ export interface Debate {
     timeline: DebateTimelineEntry[];
     engagement?: { likes: number; retweets: number; quotes: number; replies: number; views: number };
     rootUrl?: string;
+    /** 오너가 DM 버튼으로 정한 노출 여부. 없으면 참여 인원 기준을 따른다 */
+    publish?: boolean;
 }
 
 import { isPublishable } from '../utils/debates';
