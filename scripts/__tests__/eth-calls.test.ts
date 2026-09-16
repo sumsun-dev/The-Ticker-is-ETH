@@ -16,6 +16,7 @@ import {
   reapplyRoster,
   renderCaption,
   renderDiscussion,
+  discussionParagraphs,
   renderDiscussionParts,
   resolveSpeaker,
   secToTs,
@@ -274,5 +275,51 @@ describe('telegram rendering', () => {
     const input = callInput({ title: META.title, date: META.date, decisions: [{ original_text: 'A' }, { original_text: 'B', fork: 'Hegota' }], tldr: {}, notes: {}, vtt: VTT, chat: [] });
     expect(input).toContain('1. A\n2. B [fork: Hegota]');
     expect(input).toContain('[00:11:13] Barnabas:');
+  });
+});
+
+describe('AMA 브리프 길이', () => {
+  const amaCall = {
+    id: 'ama-14',
+    series: 'ama',
+    number: 14,
+    date: '2025-08-29',
+    title: 'EF 프로토콜 AMA 14회',
+    forkcastUrl: 'https://www.reddit.com/r/ethereum/comments/x/',
+    kind: 'full' as const,
+    headline: '스테이킹 상한\n50%면 보수적',
+    lead: '드레이크, ETH 절반 상한은 낙담 공격 막기에 충분',
+    summary: '요약',
+    decisions: [],
+    targets: [],
+    actions: [],
+    agenda: [],
+    topics: Array.from({ length: 6 }, (_, i) => ({
+      title: `주제 ${i + 1}`,
+      intro: '가'.repeat(180),
+      positions: [
+        { speaker: 'Ethereum_AMA', text: '나'.repeat(150) },
+        { speaker: 'vbuterin', text: '다'.repeat(180) },
+        { speaker: 'barnaabe', text: '라'.repeat(180) },
+        { speaker: 'bobthesponge1', text: '마'.repeat(180) },
+      ],
+    })),
+    speakers: [
+      { label: 'vbuterin', name: 'vbuterin', share: 1 },
+      { label: 'barnaabe', name: 'barnaabe', share: 0.5 },
+      { label: 'bobthesponge1', name: 'bobthesponge1', share: 0.5 },
+    ],
+    chat: [],
+    glossary: [],
+    eips: [],
+    relatedDebates: [],
+  };
+
+  it('should drop the relay account lines and cap remarks so one message is enough', () => {
+    const paras = discussionParagraphs(amaCall);
+    expect(paras.join('\n')).not.toContain('Ethereum_AMA');
+    // 주제당 발언 2건까지만
+    expect(paras[1].match(/· <b>/g)?.length).toBe(2);
+    expect(renderDiscussionParts(amaCall)).toHaveLength(1);
   });
 });

@@ -631,7 +631,13 @@ export function collapseTopics(text: string): string {
 }
 
 /** "누가 무슨 말을 했나" 메시지 단락들: 제목, 주제별, 남은 것. 각 주제는 발언·인용이 접힌다 */
+/** AMA는 주제도 발언도 많아 그대로 쓰면 메시지가 서너 개로 늘어난다. 주제당 발언 수를 줄여 한 메시지에 담는다 (2026-09-16 오너 "3개 메세지 분량은 너무 길다") */
+const AMA_POSITIONS_PER_TOPIC = 2;
+
 export function discussionParagraphs(call: CallRecord): string[] {
+  const isAma = call.series === 'ama';
+  // AMA에서 질문을 옮겨 다는 운영 계정은 참여자 명단에 없다. 그 줄은 빼고 답변만 싣는다 (질문 내용은 주제 소개에 있다)
+  const participants = new Set(call.speakers.map((s) => s.label));
   const who = (label: string) => {
     const s = call.speakers.find((x) => x.label === label);
     const org = s ? [s.org, s.role].filter(Boolean).join(', ') : '';
@@ -641,7 +647,8 @@ export function discussionParagraphs(call: CallRecord): string[] {
   for (const t of call.topics) {
     // 주제 제목은 굵은 기울임: 발언자 이름(굵게)과 구분되는 소제목
     const lines = [`<b><i>${esc(t.title)}</i></b>${t.decision ? ` · ${esc(t.decision)}` : ''}`, esc(t.intro)];
-    for (const p of t.positions) lines.push(`· ${who(p.speaker)}: ${esc(p.text)}${p.viaChat ? ' (채팅)' : ''}`);
+    const positions = isAma ? t.positions.filter((p) => participants.has(p.speaker)).slice(0, AMA_POSITIONS_PER_TOPIC) : t.positions;
+    for (const p of positions) lines.push(`· ${who(p.speaker)}: ${esc(p.text)}${p.viaChat ? ' (채팅)' : ''}`);
     if (t.quote) lines.push(`<i>"${esc(t.quote.text)}"</i> (${esc(call.speakers.find((s) => s.label === t.quote?.speaker)?.name ?? t.quote.speaker)}, ${t.quote.timestamp})`);
     paras.push(collapseTopics(lines.join('\n')));
   }

@@ -110,12 +110,17 @@ export function coverHtml(spec: CoverSpec, logoDataUri: string, fontDataUri: str
 export interface CoverAssets {
   logoDataUri: string;
   fontDataUri: string;
+  /** 레딧 AMA 커버용 마크 (브랜드 주황) */
+  redditMarkDataUri: string;
 }
 
 export function coverAssets(): CoverAssets {
+  // 레딧 마크는 원본 그대로 두고(단색 path) 쓸 때 브랜드 색을 입힌다
+  const redditMark = readFileSync(path.resolve(process.cwd(), 'scripts/assets/reddit-mark.svg'), 'utf-8').replace('<svg ', '<svg fill="#FF4500" ');
   return {
     logoDataUri: `data:image/png;base64,${readFileSync(path.resolve(process.cwd(), 'public/assets/eck-logo.png')).toString('base64')}`,
     fontDataUri: `data:font/woff2;base64,${readFileSync(path.resolve(process.cwd(), 'scripts/assets/PretendardVariable.woff2')).toString('base64')}`,
+    redditMarkDataUri: `data:image/svg+xml;base64,${Buffer.from(redditMark, 'utf-8').toString('base64')}`,
   };
 }
 
