@@ -33,6 +33,8 @@ const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replac
 /** 콜 전용 커버: 다크 배경, 시리즈 필 + 회차 워터마크, 두 줄 헤드라인, 리드, 결정 칩 */
 function callCoverHtml(call: CallRecord, assets: CoverAssets): string {
   const spec = coverSpecOf(call);
+  // AMA는 코어 개발자 콜이 아니다. 커버 문구와 출처 표기를 자리에 맞게 바꾼다
+  const isAma = call.series === 'ama';
   const series = CALL_SERIES[call.series] ?? { pill: call.series.toUpperCase(), name: 'Core Dev Call' };
   const date = call.date.replace(/-/g, '.');
   const lines = spec.headline.split(/\\n|\n/).map((l) => l.trim()).filter(Boolean);
@@ -80,7 +82,7 @@ function callCoverHtml(call: CallRecord, assets: CoverAssets): string {
         ${spec.lead ? `<div class="lead">${esc(spec.lead)}</div>` : ''}
         <div class="tags">${tags}</div>
       </div>
-      <div class="foot"><div class="brand"><img src="${assets.logoDataUri}" alt="" /><span>ECK<b>Core Dev Call Brief</b></span></div><span class="src">forkcast.org · ethcollective.xyz/calls</span></div>
+      <div class="foot"><div class="brand"><img src="${assets.logoDataUri}" alt="" /><span>ECK<b>${isAma ? 'EF Protocol AMA' : 'Core Dev Call Brief'}</b></span></div><span class="src">${isAma ? 'reddit.com/r/ethereum' : 'forkcast.org'} · ethcollective.xyz/calls</span></div>
     </div>
   </body></html>`;
 }
