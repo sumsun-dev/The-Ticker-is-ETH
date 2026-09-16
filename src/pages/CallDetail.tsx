@@ -251,7 +251,7 @@ const CallDetail: React.FC = () => {
                                     </a>
                                 )}
                                 <a href={call.forkcastUrl} target="_blank" rel="noopener noreferrer" className={BTN}>
-                                    {t('detail.forkcast')} <ExternalLink size={11} aria-hidden />
+                                    {t(call.series === 'ama' ? 'detail.reddit' : 'detail.forkcast')} <ExternalLink size={11} aria-hidden />
                                 </a>
                                 {call.issueUrl && (
                                     <a href={call.issueUrl} target="_blank" rel="noopener noreferrer" className={BTN}>

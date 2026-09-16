@@ -32,6 +32,7 @@
     "host": "Host",
     "video": "Video (YouTube)",
     "forkcast": "Forkcast record",
+    "reddit": "Reddit thread",
     "issue": "Meeting issue",
     "speakers": "Speakers",
     "speakersCount": "{{count}}",
