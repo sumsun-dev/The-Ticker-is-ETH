@@ -86,6 +86,11 @@ export const AmaDraftSchema = z.object({
   intro: z.string().min(4).max(120),
   summary: z.string().min(20).max(600),
   whyItMatters: z.string().min(20).max(600),
+  /**
+   * 브리프 한 메시지에 들어갈 핵심 한 줄들. 질문이 아니라 답의 알맹이를 적는다 (2026-09-16 오너 "인사이트도 너무 없다").
+   * 하한을 두지 않는다: 이것 때문에 정리 전체가 반려되면 손해가 크다. 비면 캡션이 주제 제목으로 대신한다.
+   */
+  highlights: z.array(z.string().min(10).max(200)).max(6).optional().transform((a) => a ?? []),
   topics: z
     .array(
       z.object({
@@ -172,6 +177,7 @@ export function buildAmaRecord(args: {
     intro: args.draft.intro,
     summary: args.draft.summary,
     whyItMatters: args.draft.whyItMatters,
+    highlights: args.draft.highlights,
     decisions: [],
     targets: [],
     actions: [],

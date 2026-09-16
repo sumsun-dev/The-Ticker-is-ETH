@@ -316,13 +316,22 @@ describe('AMA 브리프 길이', () => {
     relatedDebates: [],
   };
 
-  it('should carry the topic list and the site link in a single caption', () => {
-    // 오너 2026-09-16: AMA는 메시지 1개. 주제 목록이 캡션에 들어가고 사이트 링크가 캡션 끝에 붙는다
-    const caption = fitCaption(amaCall, 1024, { link: true });
-    expect(caption).toContain('<i>다룬 주제</i>');
-    expect(caption).toContain('· 주제 1');
+  it('should carry the lead, the key lines and the site link in a single caption', () => {
+    // 오너 2026-09-16: AMA는 메시지 1개. 긴 문단 대신 핵심 한 줄 목록으로 읽히게 한다
+    const caption = fitCaption({ ...amaCall, highlights: ['발행량은 현 곡선이면 계속 오른다', '증명 병목은 비용이 아니라 전력이다', 'L1은 1초 파이널리티를 좇지 않는다'] }, 1024, { link: true });
+    expect(caption).toContain('<i>핵심</i>');
+    expect(caption).toContain('· 발행량은 현 곡선이면 계속 오른다');
     expect(caption).toContain('AMA 페이지에서 전체 보기 → https://ethcollective.xyz/calls/ama-14');
+    // 긴 요약 문단은 캡션에서 뺀다 (사이트에서 본다)
+    expect(caption).not.toContain('한 줄 요약');
+    expect(caption).not.toContain('왜 중요한가');
     expect(plainLength(caption)).toBeLessThanOrEqual(1024);
+  });
+
+  it('should fall back to topic titles when the record has no key lines', () => {
+    const caption = fitCaption(amaCall, 1024, { link: true });
+    expect(caption).toContain('<i>핵심</i>');
+    expect(caption).toContain('· 주제 1');
   });
 
   it('should drop the relay account lines and cap remarks so one message is enough', () => {

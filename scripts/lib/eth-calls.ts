@@ -103,6 +103,8 @@ export interface CallRecord {
   intro?: string;
   summary?: string;
   whyItMatters?: string;
+  /** AMA 브리프용 핵심 한 줄들 (콜에는 없다) */
+  highlights?: string[];
   decisions: CallDecision[];
   targets: CallTarget[];
   actions: CallAction[];
@@ -596,10 +598,17 @@ export function renderCaption(call: CallRecord, opts: CaptionOptions = {}): stri
   const { targets = true, why = true, glossary = false, link = false } = opts;
   const lines: string[] = [];
   lines.push(`<b>${esc(callLabel(call))} · ${koDate(call.date)}</b>`);
+  // AMA는 메시지 하나로 끝내므로 캡션을 읽히게 짠다: 한 줄 리드 + 핵심 한 줄 목록. 긴 문단을 두 개씩 쌓지 않는다 (오너 2026-09-16)
+  if (call.series === 'ama') {
+    if (call.lead) lines.push(esc(call.lead));
+    // 핵심 줄이 없으면(옛 레코드나 모델이 빠뜨린 경우) 주제 제목으로 대신한다. 캡션이 리드 한 줄만 남지 않게
+    const keyLines = call.highlights?.length ? call.highlights.slice(0, 5) : call.topics.slice(0, 5).map((t) => t.title);
+    if (keyLines.length) lines.push('', '<i>핵심</i>', ...keyLines.map((h) => `· ${esc(h)}`));
+    if (link) lines.push('', siteLinkLine(call));
+    return lines.join('\n');
+  }
   if (call.intro) lines.push(esc(call.intro));
   if (call.summary) lines.push('', '<i>한 줄 요약</i>', esc(call.summary));
-  // AMA에는 결정·일정이 없다. 대신 다룬 주제를 한 줄씩 넣어 캡션 하나로 무엇을 다뤘는지 보이게 한다 (오너 2026-09-16)
-  if (call.series === 'ama' && call.topics.length) lines.push('', '<i>다룬 주제</i>', ...call.topics.slice(0, 6).map((t) => `· ${esc(t.title)}`));
   if (call.decisions.length) lines.push('', '<i>결정된 것</i>', ...call.decisions.slice(0, 5).map((d) => `· ${esc(d.text)}`));
   if (targets && call.targets.length) lines.push('', '<i>일정</i>', ...call.targets.slice(0, 4).map((t) => `· ${esc(t.text)}`));
   if (why && call.whyItMatters) lines.push('', '<i>왜 중요한가</i>', esc(call.whyItMatters));
