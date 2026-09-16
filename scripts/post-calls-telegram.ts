@@ -55,6 +55,7 @@ function callCoverHtml(call: CallRecord, assets: CoverAssets): string {
     .head { display: flex; align-items: center; gap: 16px; }
     .pill { background: ${isAma ? '#FF4500' : '#2D5FBF'}; color: #fff; font-weight: 800; font-size: 22px; letter-spacing: .08em; padding: 8px 14px; border-radius: 6px; }
     .rmark { width: 40px; height: 40px; }
+    .emark { width: 34px; height: 34px; margin-right: -4px; }
     .series { font-size: 20px; color: #9AA3B8; letter-spacing: .06em; font-weight: 600; }
     .date { margin-left: auto; font-size: 20px; color: #9AA3B8; letter-spacing: .06em; font-variant-numeric: tabular-nums; }
     .body { flex: 1; display: flex; flex-direction: column; justify-content: center; padding-right: 60px; }
@@ -77,7 +78,7 @@ function callCoverHtml(call: CallRecord, assets: CoverAssets): string {
     <div class="glow"></div><div class="grid"></div>
     <div class="num">#${call.number}</div>
     <div class="wrap">
-      <div class="head">${isAma ? `<img class="rmark" src="${assets.redditMarkDataUri}" alt="" />` : ''}<span class="pill">${esc(series.pill)}</span><span class="series">${esc(series.name)}</span><span class="date">${esc(date)}</span></div>
+      <div class="head">${isAma ? `<img class="emark" src="${assets.ethMarkDataUri}" alt="" /><img class="rmark" src="${assets.redditMarkDataUri}" alt="" />` : ''}<span class="pill">${esc(series.pill)}</span><span class="series">${esc(series.name)}</span><span class="date">${esc(date)}</span></div>
       <div class="body">
         <div class="title">${lines.map((l, i) => `<span class="tline${i === 0 && lines.length > 1 ? ' hl' : ''}">${esc(l)}</span>`).join('')}</div>
         ${spec.lead ? `<div class="lead">${esc(spec.lead)}</div>` : ''}
@@ -145,7 +146,8 @@ async function main() {
   const replyTo = process.env.CALLS_REPLY_TO ? Number(process.env.CALLS_REPLY_TO) : undefined;
 
   for (const call of selected) {
-    const discussion = call.topics.length > 0 ? renderDiscussionParts(call) : [];
+    // AMA는 커버+캡션 한 메시지로 끝낸다 (오너 2026-09-16 "메세지 1개 버전"). 발언 전문은 사이트에서 본다
+    const discussion = call.series !== 'ama' && call.topics.length > 0 ? renderDiscussionParts(call) : [];
     // 사이트 링크는 브리프 맨 아래 한 번: 토론 메시지가 있으면 그 끝에, 없으면 캡션 끝에
     const caption = fitCaption(call, 1024, { link: discussion.length === 0 });
     const outFile = path.join(OUT_DIR, `${call.id}.png`);

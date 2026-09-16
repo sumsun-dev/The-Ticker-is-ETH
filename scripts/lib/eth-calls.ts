@@ -580,7 +580,7 @@ export function callLabel(call: Pick<CallRecord, 'series' | 'number'>): string {
 export const SITE_URL = 'https://ethcollective.xyz';
 export const siteCallUrl = (id: string) => `${SITE_URL}/calls/${id}`;
 /** 브리프 맨 아래 한 줄. Forkcast·영상 링크 대신 사이트 콜 페이지로 바로 보낸다 (오너 지시 2026-09-09) */
-export const siteLinkLine = (call: Pick<CallRecord, 'id'>) => `콜 페이지에서 전체 보기 → ${siteCallUrl(call.id)}`;
+export const siteLinkLine = (call: Pick<CallRecord, 'id' | 'series'>) => `${call.series === 'ama' ? 'AMA' : '콜'} 페이지에서 전체 보기 → ${siteCallUrl(call.id)}`;
 
 export interface CaptionOptions {
   targets?: boolean;
@@ -598,6 +598,8 @@ export function renderCaption(call: CallRecord, opts: CaptionOptions = {}): stri
   lines.push(`<b>${esc(callLabel(call))} · ${koDate(call.date)}</b>`);
   if (call.intro) lines.push(esc(call.intro));
   if (call.summary) lines.push('', '<i>한 줄 요약</i>', esc(call.summary));
+  // AMA에는 결정·일정이 없다. 대신 다룬 주제를 한 줄씩 넣어 캡션 하나로 무엇을 다뤘는지 보이게 한다 (오너 2026-09-16)
+  if (call.series === 'ama' && call.topics.length) lines.push('', '<i>다룬 주제</i>', ...call.topics.slice(0, 6).map((t) => `· ${esc(t.title)}`));
   if (call.decisions.length) lines.push('', '<i>결정된 것</i>', ...call.decisions.slice(0, 5).map((d) => `· ${esc(d.text)}`));
   if (targets && call.targets.length) lines.push('', '<i>일정</i>', ...call.targets.slice(0, 4).map((t) => `· ${esc(t.text)}`));
   if (why && call.whyItMatters) lines.push('', '<i>왜 중요한가</i>', esc(call.whyItMatters));

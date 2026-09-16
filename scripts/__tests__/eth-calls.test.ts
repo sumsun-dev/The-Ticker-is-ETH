@@ -17,6 +17,7 @@ import {
   renderCaption,
   renderDiscussion,
   discussionParagraphs,
+  fitCaption,
   renderDiscussionParts,
   resolveSpeaker,
   secToTs,
@@ -314,6 +315,15 @@ describe('AMA 브리프 길이', () => {
     eips: [],
     relatedDebates: [],
   };
+
+  it('should carry the topic list and the site link in a single caption', () => {
+    // 오너 2026-09-16: AMA는 메시지 1개. 주제 목록이 캡션에 들어가고 사이트 링크가 캡션 끝에 붙는다
+    const caption = fitCaption(amaCall, 1024, { link: true });
+    expect(caption).toContain('<i>다룬 주제</i>');
+    expect(caption).toContain('· 주제 1');
+    expect(caption).toContain('AMA 페이지에서 전체 보기 → https://ethcollective.xyz/calls/ama-14');
+    expect(plainLength(caption)).toBeLessThanOrEqual(1024);
+  });
 
   it('should drop the relay account lines and cap remarks so one message is enough', () => {
     const paras = discussionParagraphs(amaCall);
