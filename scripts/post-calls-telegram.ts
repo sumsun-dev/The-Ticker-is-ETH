@@ -8,7 +8,7 @@
 import fs from 'fs';
 import path from 'path';
 import * as dotenv from 'dotenv';
-import { CALL_SERIES, callLabel, coverSpecOf, fitCaption, plainLength, renderDiscussionParts, type CallRecord, type CallStatus, type CallsFile } from './lib/eth-calls';
+import { CALL_SERIES, callLabel, coverSpecOf, fitCaption, plainLength, renderDiscussionParts, selectForChannel, type CallRecord, type CallStatus, type CallsFile } from './lib/eth-calls';
 import { coverAssets, renderHtml, type CoverAssets } from './lib/cover';
 
 dotenv.config({ path: path.resolve(process.cwd(), '.env.local') });
@@ -135,7 +135,7 @@ async function main() {
   // 자동 실행(CALLS 없음): 채널 브리프를 시작한 날 이후의 콜 중 아직 안 올린 것만. 그 전 콜은 사이트에만 둔다
   const pool = wanted
     ? wanted.map((id) => file.calls.find((c) => c.id === id)).filter((c): c is CallRecord => Boolean(c))
-    : file.calls.filter((c) => c.date >= cutoff && c.date >= CALLS_POST_SINCE && !c.telegramMessageId).slice(0, 3);
+    : selectForChannel(file.calls, { cutoff, since: CALLS_POST_SINCE });
   // 오래된 콜부터 보내 시간순으로 읽히게
   const selected = pool.filter((c) => c.kind === 'full').sort((a, b) => a.date.localeCompare(b.date));
   if (selected.length === 0) {
