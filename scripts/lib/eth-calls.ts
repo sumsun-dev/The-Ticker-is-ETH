@@ -697,6 +697,22 @@ export function plainLength(html: string): number {
 }
 
 /** 커버용: 헤드라인·리드·결정 칩 */
+/**
+ * 채널에 자동으로 올릴 콜 고르기. 코어 개발자 콜(FULL_SERIES)만 대상이다.
+ * AMA는 제외한다: 아카이브에는 싣지만 채널 자동 게시는 승인받은 적이 없고,
+ * 2026-09-17 새 AMA 레코드가 이 조건에 걸려 채널로 나가는 사고가 있었다 (오너가 삭제).
+ * 명시적으로 CALLS=<id>를 주면 이 함수를 거치지 않으므로 수동 게시는 그대로 가능하다.
+ */
+export function selectForChannel(
+  calls: ReadonlyArray<CallRecord>,
+  opts: { cutoff: string; since: string; limit?: number },
+): CallRecord[] {
+  return calls
+    .filter((c) => (FULL_SERIES as readonly string[]).includes(c.series))
+    .filter((c) => c.kind === 'full' && c.date >= opts.cutoff && c.date >= opts.since && !c.telegramMessageId)
+    .slice(0, opts.limit ?? 3);
+}
+
 export function coverSpecOf(call: CallRecord): { headline: string; lead: string; tags: Array<{ label: string; status: CallStatus }> } {
   return { headline: call.headline ?? callLabel(call), lead: call.lead ?? '', tags: call.decisions.slice(0, 4).map((d) => ({ label: d.label, status: d.status })) };
 }

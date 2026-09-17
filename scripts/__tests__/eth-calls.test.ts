@@ -19,6 +19,7 @@ import {
   discussionParagraphs,
   fitCaption,
   renderDiscussionParts,
+  selectForChannel,
   resolveSpeaker,
   secToTs,
   speakerShares,
@@ -342,5 +343,29 @@ describe('AMA 브리프 길이', () => {
     // 주제당 발언 2건까지만
     expect(paras[1].match(/· <b>/g)?.length).toBe(2);
     expect(renderDiscussionParts(amaCall)).toHaveLength(1);
+  });
+});
+
+describe('채널 자동 게시 대상', () => {
+  const call = (over: Partial<CallRecord> = {}): CallRecord => ({
+    id: 'acde-245', series: 'acde', number: 245, date: '2026-09-10', title: '', forkcastUrl: '', kind: 'full',
+    decisions: [], targets: [], actions: [], agenda: [], topics: [], speakers: [], chat: [], glossary: [], eips: [], relatedDebates: [],
+    ...over,
+  });
+
+  it('should never pick an AMA record for the channel', () => {
+    // 2026-09-17: 새 AMA 레코드가 러너의 자동 게시에 걸려 채널로 나갔다 (오너가 삭제)
+    const calls = [call(), call({ id: 'ama-15', series: 'ama', number: 15, date: '2026-09-16' })];
+    expect(selectForChannel(calls, { cutoff: '2026-09-01', since: '2026-09-07' }).map((c) => c.id)).toEqual(['acde-245']);
+  });
+
+  it('should skip records already posted, older than the cutoff, or not summarized', () => {
+    const calls = [
+      call({ id: 'acde-244', date: '2026-08-01' }),
+      call({ id: 'acdc-186', series: 'acdc', number: 186, telegramMessageId: 1500 }),
+      call({ id: 'acdt-96', series: 'acdt', number: 96, kind: 'record' }),
+      call(),
+    ];
+    expect(selectForChannel(calls, { cutoff: '2026-09-01', since: '2026-09-07' }).map((c) => c.id)).toEqual(['acde-245']);
   });
 });
