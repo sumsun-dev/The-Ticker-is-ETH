@@ -141,7 +141,10 @@ function commitAndPush(): void {
   git('add', 'src/data/eth-debates.json');
   if (!git('diff', '--cached', '--name-only').trim()) return;
   git('commit', '-m', 'chore: 논쟁 사이트 노출 승인 반영 [automated]');
-  git('pull', '--rebase', '--autostash', 'origin', 'main');
+  // fetch + rebase로 올린다. `git pull --rebase origin main`은 FETCH_HEAD에 브랜치가 여러 개 남아 있으면
+  // "Cannot rebase onto multiple branches"로 죽는다 (2026-09-17 실측: 버튼 결과가 VPS에만 남고 푸시가 안 됨)
+  git('fetch', 'origin');
+  git('rebase', '--autostash', 'origin/main');
   git('push', 'origin', 'main');
   console.log('  커밋·푸시 완료');
 }
