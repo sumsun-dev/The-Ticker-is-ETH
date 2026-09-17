@@ -77,11 +77,24 @@ const arg = (name: string): string | undefined => {
   return i >= 0 ? process.argv[i + 1] : undefined;
 };
 
-async function feedText(url: string, file?: string): Promise<string> {
+const sleep = (ms: number) => new Promise((done) => setTimeout(done, ms));
+
+/**
+ * 레딧 피드. 403·429가 간헐적으로 나므로(2026-09-17 예약 실행이 403으로 통째로 실패, 30초 뒤엔 정상) 간격을 두고 몇 번 다시 받는다.
+ * URL은 슬러그까지 포함한 전체 permalink여야 한다. `/comments/<id>/.rss`는 429로 막힌다.
+ */
+async function feedText(url: string, file?: string, tries = 4): Promise<string> {
   if (file) return fs.readFileSync(file, 'utf-8');
-  const res = await fetch(`${url.replace(/\/$/, '')}/.rss?limit=500`, { headers: { 'User-Agent': USER_AGENT } });
-  if (!res.ok) throw new Error(`레딧 피드를 받지 못했습니다 (http ${res.status}). 로컬에서는 --file로 받아 둔 피드를 넣으세요.`);
-  return res.text();
+  const target = `${url.replace(/\/$/, '')}/.rss?limit=500`;
+  let last = '';
+  for (let i = 0; i < tries; i++) {
+    if (i) await sleep(30_000);
+    const res = await fetch(target, { headers: { 'User-Agent': USER_AGENT } });
+    if (res.ok) return res.text();
+    last = `http ${res.status}`;
+    console.warn(`  [WARN] 레딧 피드 ${last}, ${i + 1}/${tries}회`);
+  }
+  throw new Error(`레딧 피드를 받지 못했습니다 (${last}). 로컬에서는 --file로 받아 둔 피드를 넣으세요.`);
 }
 
 /** 명단(call-speakers.json)과 X 프로필에서 레딧 핸들과 같은 핸들만 가져온다. 확인 못 한 사람은 핸들 그대로 둔다 */
