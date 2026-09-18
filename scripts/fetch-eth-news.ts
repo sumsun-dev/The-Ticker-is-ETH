@@ -27,7 +27,7 @@ const USER_AGENT = 'eck-news-bot/1.0 (+https://ethcollective.xyz)';
  * 상한에 닿으면 남은 계정을 포기하고 받은 만큼 기록한다. 타임라인은 매번 최근 50건을 다시 받으므로
  * 하루 걸러도 다음 실행에서 복구된다.
  */
-const TWITTER_BUDGET_MS = Number(process.env.TWITTER_BUDGET_MS ?? 15 * 60_000);
+const TWITTER_BUDGET_MS = Number(process.env.TWITTER_BUDGET_MS ?? 20 * 60_000);
 
 const FEEDS = [
   { source: 'ef-blog', url: 'https://blog.ethereum.org/en/feed.xml' },
