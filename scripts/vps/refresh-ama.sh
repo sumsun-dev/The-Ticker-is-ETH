@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# 레딧 AMA 재확인 — 스레드에 답변이 더 붙었을 때만 다시 정리하고, 브리프를 오너 DM으로 보낸다.
-# 채널에는 올리지 않는다 (오너 2026-09-17: 수동 요청 뒤에 자동 전환 여부를 정한다).
+# 레딧 AMA 재확인 — 스레드에 답변이 더 붙었을 때만 다시 정리하고, 브리프를 채널에 올린다.
+# (오너 2026-09-18: Pt.15를 수동으로 올린 뒤 자동 전환 승인.)
 #
 # 사용: refresh-ama.sh <스레드 URL> <회차> <날짜> <제목>
 # 상태: ~/.eck-ama-<회차>.items — 마지막으로 정리한 시점의 항목 수. 늘지 않았으면 그냥 끝낸다.
@@ -43,12 +43,14 @@ git rebase --autostash origin/main -q
 git push -q origin main
 echo "$items" > "$STATE"
 
-# 브리프는 오너 DM으로만 보낸다. 발송 기록은 되돌려 레코드에 남기지 않는다
-CHAT=$(grep -h '^DEBATES_ALERT_CHAT=\|^VITALIK_ALERT_CHAT=' .env 2>/dev/null | head -1 | cut -d= -f2- | tr -d '"')
-if [ -n "$CHAT" ]; then
-  CALLS_CHAT="$CHAT" CALLS="ama-$NUM" npx tsx scripts/post-calls-telegram.ts
-  git checkout src/data/eth-calls.json
-else
-  echo "[WARN] DM chat id를 찾지 못해 브리프를 보내지 않았다"
-fi
+# 브리프를 채널에 올린다. 게시하면 telegramMessageId가 박히므로 그대로 커밋해
+# 다음 실행(여기서도, 매일 도는 run-eth-digest.sh에서도)이 같은 회차를 다시 올리지 않는다
+CALLS_CHAT=@thetickeriseth CALLS="ama-$NUM" npx tsx scripts/post-calls-telegram.ts
+git add src/data/eth-calls.json
+git diff --cached --quiet || (
+  git commit -q -m "chore: 레딧 AMA Pt.$NUM 채널 게시 기록 [automated]" &&
+  git fetch origin -q &&
+  git rebase --autostash origin/main -q &&
+  git push -q origin main
+)
 echo "완료"
