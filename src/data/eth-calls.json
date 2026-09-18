@@ -1,6 +1,640 @@
 {
-  "updatedAt": "2026-09-17T00:48:51.310Z",
+  "updatedAt": "2026-09-18T00:49:23.925Z",
   "calls": [
+    {
+      "id": "acdc-187",
+      "series": "acdc",
+      "number": 187,
+      "date": "2026-09-17",
+      "title": "AllCoreDevs - Consensus #187",
+      "forkcastUrl": "https://forkcast.org/calls/acdc/187/",
+      "videoUrl": "https://youtube.com/watch?v=3wr0wlNjLAU",
+      "issueUrl": "https://github.com/ethereum/pm/issues/2222",
+      "kind": "full",
+      "durationMin": 97,
+      "headline": "세폴리아 포크\n10월 6일 확정",
+      "lead": "글램스터담(Glamsterdam)이 첫 공개 테스트넷에 오른다",
+      "intro": "이더리움 합의 계층(CL) 클라이언트 개발자들이 격주로 모이는 콜이다.",
+      "summary": "세폴리아(Sepolia) 테스트넷의 글램스터담 포크가 10월 6일로 확정됐고, 후디(Hoodi)는 10월 27일 잠정이다. 다음 포크 헤고타(Hegota)의 후보 정리도 시작돼 EIP-8015가 포함 검토(CFI)로 올라가고 일곱 건이 제외(DFI)됐으며, 발행량 축소 EIP-8363은 결정 없이 보류됐다.",
+      "whyItMatters": "글램스터담이 공개 테스트넷 일정에 오르면서 가스 한도 상향 등 변화가 메인넷에 성큼 다가왔다. 한편 스테이킹 보상을 줄이는 발행량 EIP는 코어 개발자만으로 결정할 수 없다는 공감대가 확인돼, 이런 제안을 다룰 새 의사결정 절차 논의가 시작된다.",
+      "decisions": [
+        {
+          "label": "QUIC 기본화",
+          "text": "모든 클라이언트가 글램스터담 릴리스에서 QUIC을 기본값으로 켜고, MPLEX는 메인넷 활성화 이후 릴리스에서 폐기(제거는 아님)하기로 했다. 노드 간 통신을 새 프로토콜로 옮기는 준비 단계이며, 스펙 PR 3866은 포크 뒤에 병합한다.",
+          "original": "QUIC default for all clients at Glamsterdam release; MPLEX deprecated (not removed) post-Glamsterdam mainnet activation; spec PR 3866 merged after fork",
+          "eips": [],
+          "status": "확정",
+          "timestamp": "00:15:32"
+        },
+        {
+          "label": "세폴리아 10월 6일",
+          "text": "세폴리아 포크를 10월 6일로 확정하고 후디 포크는 10월 27일 잠정으로 잡았다. 세폴리아가 순조로우면 10월 8일 ACD 콜에서 후디 날짜를 확정한다.",
+          "original": "Sepolia fork set for October 6; Hoodi fork tentatively October 27, confirmed on ACD October 8 if Sepolia goes smoothly",
+          "eips": [],
+          "status": "일정",
+          "fork": "Glamsterdam",
+          "timestamp": "00:33:10"
+        },
+        {
+          "label": "EIP-8411 PFI",
+          "text": "EIP-8411(빠른 실행 페이로드 브로드캐스트)을 헤고타 후보로 접수(PFI)했다. 포함 검토(CFI) 여부는 다른 EIP들의 범위 결정이 끝난 뒤로 미뤘다.",
+          "original": "PFI for Hegota: EIP-8411 (Fast Execution Payload Broadcast); CFI decision deferred until after other EIPs scoped",
+          "eips": [
+            8411
+          ],
+          "status": "PFI",
+          "fork": "Hegota",
+          "timestamp": "00:45:32"
+        },
+        {
+          "label": "EIP-8015 CFI",
+          "text": "쓰이지 않는 비컨 상태 필드 deposit과 eth1data를 제거하는 EIP-8015를 헤고타 포함 검토(CFI)로 올렸다. 지금은 아무 기능도 하지 않는 데이터를 정리하는 변경이다.",
+          "original": "CFI for Hegota: EIP-8015 (remove unused `deposit` and `eth1data` beacon state fields)",
+          "eips": [
+            8015
+          ],
+          "status": "CFI",
+          "fork": "Hegota",
+          "timestamp": "00:54:39"
+        },
+        {
+          "label": "EIP-8365 축소",
+          "text": "EIP-8365는 강제 퇴출을 빼고 신규 0x00 예치 차단만 남기는 축소안으로 CFI가 유력해졌으며, 퇴출은 I-Star 포크로 미룬다. 수정본을 다음 ACDC에서 정식 CFI로 확정할 예정이다.",
+          "original": "EIP-8365 CFI pending with reduced scope (no forced exits in Hegota; exits deferred to I-Star); revised EIP to be confirmed CFI on next ACDC",
+          "eips": [
+            8365
+          ],
+          "status": "기타",
+          "fork": "Hegota",
+          "timestamp": "01:07:28"
+        },
+        {
+          "label": "7건 일괄 DFI",
+          "text": "EIP-8237, 8341, 8367, 8321, 8243, 8146, 8375 일곱 건을 헤고타 후보에서 제외(DFI)했다. 해시체인 RANDAO를 포함한 양자내성(PQ) 관련 작업은 헤고타 기간에 비공식적으로 계속한다.",
+          "original": "DFI for Hegota: EIP-8237, EIP-8341, EIP-8367, EIP-8321, EIP-8243, EIP-8146, EIP-8375; PQ-related work (incl. hash-chain RANDAO) to continue informally during H-Star",
+          "eips": [
+            8237,
+            8341,
+            8367,
+            8321,
+            8243,
+            8146,
+            8375
+          ],
+          "status": "DFI",
+          "fork": "Hegota",
+          "timestamp": "01:18:40"
+        },
+        {
+          "label": "발행량 보류",
+          "text": "발행량 축소 EIP-8363은 오늘 결정하지 않고 보류했다. stokes가 다음 ACDC 전까지 더 넓은 커뮤니티 의견을 모을 절차를 제안하기로 했다.",
+          "original": "EIP-8363 (issuance reduction) tabled; no decision today; stokes to propose a process for broader community input before next ACDC",
+          "eips": [
+            8363
+          ],
+          "status": "기타",
+          "timestamp": "01:20:47"
+        }
+      ],
+      "targets": [
+        {
+          "key": "sepolia-fork",
+          "text": "세폴리아 글램스터담 포크, 2026년 10월 6일. 확정.",
+          "timestamp": "00:16:50"
+        },
+        {
+          "key": "glamsterdam-releases",
+          "text": "모든 글램스터담 클라이언트 릴리스, 2026년 9월 29일까지. 확정된 최종 기한이며 보안 검토를 위해 더 이른 릴리스를 권장.",
+          "timestamp": "00:22:48"
+        },
+        {
+          "key": "hoodi-fork",
+          "text": "후디 글램스터담 포크, 2026년 10월 27일 잠정. 10월 8일 ACD 콜에서 진행 여부를 확정.",
+          "timestamp": "00:33:10"
+        }
+      ],
+      "actions": [
+        {
+          "owner": "stokes / EF",
+          "text": "세폴리아 포크 블로그 게시, eth-clients 저장소 업데이트, 10월 6일 포크용 메타 EIP 병합. 오늘 또는 내일까지.",
+          "timestamp": "00:17:58"
+        },
+        {
+          "owner": "모든 CL 클라이언트 팀",
+          "text": "9월 29일까지 글램스터담 클라이언트 릴리스를 낸다. 버그바운티와 보안 검토 시간을 확보하도록 더 이른 릴리스를 목표로 한다.",
+          "timestamp": "00:22:48"
+        },
+        {
+          "owner": "모든 CL 클라이언트 팀",
+          "text": "테스트넷 포크 전에 빌더 서킷 브레이커(circuit breaker)를 갖춘다.",
+          "timestamp": "00:19:12"
+        },
+        {
+          "owner": "NC (EIP-8365 저자)",
+          "text": "EIP-8365 PR에서 강제 퇴출을 제거하고 수정본을 다음 ACDC에 가져와 CFI를 받는다.",
+          "timestamp": "01:07:58"
+        }
+      ],
+      "agenda": [
+        {
+          "timestamp": "00:05:13",
+          "heading": "데브넷 11과 데브넷 8 현황"
+        },
+        {
+          "timestamp": "00:08:19",
+          "heading": "MPLEX 폐기와 QUIC 기본화",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "00:17:10",
+          "heading": "세폴리아 포크 날짜와 클라이언트 릴리스"
+        },
+        {
+          "timestamp": "00:19:12",
+          "heading": "테스트넷용 빌더 서킷 브레이커",
+          "discussion": true
+        },
+        {
+          "timestamp": "00:26:46",
+          "heading": "후디 포크 계획",
+          "decision": true
+        },
+        {
+          "timestamp": "00:35:16",
+          "heading": "EIP-8411 PFI 요청 (빠른 실행 페이로드 브로드캐스트)",
+          "decision": true
+        },
+        {
+          "timestamp": "00:54:10",
+          "heading": "EIP-8015 CFI (미사용 비컨 상태 필드 제거)",
+          "decision": true
+        },
+        {
+          "timestamp": "00:55:21",
+          "heading": "EIP-8365 범위 축소 (BLS 인출 자격증명 퇴역)",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "01:10:41",
+          "heading": "헤고타 DFI 일괄 처리와 PQ 로드맵",
+          "decision": true
+        },
+        {
+          "timestamp": "01:20:03",
+          "heading": "EIP-8363 발행량 변경",
+          "discussion": true,
+          "decision": true
+        }
+      ],
+      "topics": [
+        {
+          "title": "MPLEX 폐기와 QUIC 기본화",
+          "intro": "노드 간 통신에 쓰는 구식 다중화 프로토콜 MPLEX를 없애고 QUIC으로 옮기는 문제로, 3년째 미뤄져 온 사안이다.",
+          "decision": "확정 결정 00:15:32",
+          "positions": [
+            {
+              "speaker": "Stefan Bratanov",
+              "text": "테쿠는 QUIC을 이미 기본으로 켰지만 사용자들이 QUIC 네트워크 설정을 마쳤는지 데이터가 없어, 글램스터담에서 MPLEX나 TCP를 제거하는 것은 위험하며 첫 글램스터담 릴리스 이후에 비활성화를 시작하자고 했다.",
+              "timestamp": "00:08:40",
+              "original": "Yeah, it's, Stefan from Teku. Yeah, so we had a discussion internally with the team. And, what we… Like, basically our thoughts are that we… Don't want to deprecate NPLEX for Glamsterdam releases. And then, slowly, after the first glance enamelis, we can… not even only deprecate NPLEX, but also just completely remove TCP. But we would like for Glamsterdam to have TCP. enabled, just because right now we don't have the data, actually, how many people still use TCP. How many people use Quick? So… Just to be safe, we, would like to… Start disabling it after Glamsterdam? Yeah, so we have Quick enabled by default. But, problem is, right now, Not every user has migrated, potentially, to latest versions. So… yeah, we don't have the data, and I think it's risky to just completely remove TCP from Glamsterdam. But after that, yeah.",
+              "translation": "저는 Teku의 Stefan입니다. 팀 내부에서 논의를 했습니다. 저희 생각은 기본적으로 Glamsterdam 릴리스에서 NPLEX(mplex)를 폐기하고 싶지 않다는 것입니다. 그리고 나서 천천히, 첫 enamelis 이후에는 NPLEX뿐만 아니라 TCP도 완전히 제거할 수 있습니다. 하지만 Glamsterdam에서는 TCP를 활성화한 상태로 유지하고 싶습니다. 왜냐하면 지금 당장은 실제로 얼마나 많은 사람들이 여전히 TCP를 사용하는지, 얼마나 많은 사람들이 Quick(QUIC)을 사용하는지에 대한 데이터가 없기 때문입니다. 그래서 안전을 위해 Glamsterdam 이후에 비활성화를 시작하고 싶습니다. 저희는 기본값으로 Quick을 활성화해 두었습니다. 하지만 문제는 지금 모든 사용자가 최신 버전으로 마이그레이션한 것은 아닐 수 있다는 점입니다. 그래서 데이터가 없고, Glamsterdam에서 TCP를 완전히 제거하는 것은 위험하다고 생각합니다. 하지만 그 이후에는 괜찮습니다."
+            },
+            {
+              "speaker": "Daniel Knopik",
+              "text": "MPLEX 폐기 논의가 3년째이고 올해 초 글램스터담에서 하기로 합의했는데 또 미뤄지는 데 실망을 표했다. MPLEX 폐기는 TCP 폐기가 아니며 TCP와 Yamux 조합이 남는다고 반박했다.",
+              "timestamp": "00:10:37",
+              "original": "Yeah, so… We have to… So… so the ongoing efforts, to deprecate MPLEX is… Yeah, has been ongoing for… Three years now. And, we, earlier in the year, agreed to deprecate it for Glamster Dam, and it's a bit unfortunate that it's now considered not ready. So that is, like, the first point I want to make. And the second point is, this is not, like, deprecating MPLEX is not deprecating TCP, because MPLEX, Yannux is still… Existing, in principle, and supported by a large share of the network. So… Yeah. I guess it's… it's… yeah. a bit disheartening to see that Teku is now pushing again for a delay after 3 years, and… I don't… it's that confidence-inspiring that we will, like, ever get rid of this. Sorry? Well, the thing is, we need to communicate somehow. That is either TCP and MPLEX, TCP and Yamooks, or Quick. And deprecating MPLEX, like, having some clients actually remove it, without enabling quick. Would render some clients unable to communicate. So, but… So, Teku's… is Teku is quick and enabled by default, right? Bye now. Cool. So I think…",
+              "translation": "MPLEX를 폐기하려는 노력은 지금까지 3년째 진행되어 왔습니다. 저희는 연초에 Glamsterdam에서 이를 폐기하기로 합의했는데, 지금 와서 준비가 안 되었다고 여겨지는 것은 다소 유감스럽습니다. 이것이 제가 말씀드리고 싶은 첫 번째 지점입니다. 두 번째 지점은, MPLEX를 폐기하는 것이 TCP를 폐기하는 것은 아니라는 점입니다. 왜냐하면 MPLEX와 Yamux는 원칙적으로 여전히 존재하고 네트워크의 상당 부분에서 지원되고 있기 때문입니다. 3년이 지난 지금 Teku가 다시 지연을 요구하는 것을 보니 다소 낙담스럽고, 저희가 언젠가 이것을 정말로 없앨 수 있을지에 대한 확신이 별로 들지 않습니다. 죄송합니다? 문제는 저희가 어떻게든 소통해야 한다는 것입니다. 그것은 TCP와 MPLEX, TCP와 Yamux, 또는 Quick 중 하나입니다. 그리고 MPLEX를 폐기한다는 것, 즉 일부 클라이언트가 Quick을 활성화하지 않은 채 실제로 이를 제거한다면, 일부 클라이언트는 통신할 수 없게 될 것입니다. 그런데 Teku는 기본값으로 Quick이 활성화되어 있지 않나요? 그렇다면 좋습니다. 그럼 제 생각에는..."
+            },
+            {
+              "speaker": "Enrico Del Fante",
+              "text": "머지 때처럼 QUIC 피어가 없는 노드에 설정을 점검하라는 경고를 모든 클라이언트에 넣자고 제안했다. 그렇지 않으면 사용자 상태를 모르는 채 진행하는 셈이라고 했다.",
+              "timestamp": "00:13:45",
+              "original": "We were also thinking about suggesting putting stuff into our… into all clients, saying. some, like, some warning, like we did during the merge, to check the configuration and say, if you, if you are not actively using quick, and you don't have peers on QUIC currently, you throw a warning, say, hey, please check your configuration, because in the… we're gonna deprecate TCP connections soon, so please migrate to QUIC. But unless you don't do that, it's kind of unsafe, because we are Blindly. We're blind. Sure, no problem. It's already like that. Its bite is not… force deprecating MPLEX before Glamsterdam activates. After that, It's okay.",
+              "translation": "저희는 또한 모든 클라이언트에 병합(merge) 때 했던 것과 같은 일종의 경고를 넣자고 제안하는 것을 생각하고 있었습니다. 설정을 확인해서, 만약 Quick을 적극적으로 사용하고 있지 않고 현재 QUIC 상의 피어가 없다면 경고를 띄우는 것입니다. 설정을 확인해 달라고, 곧 TCP 연결을 폐기할 예정이니 QUIC으로 마이그레이션해 달라고 말하는 것입니다. 하지만 그렇게 하지 않으면 다소 안전하지 않은데, 왜냐하면 저희가 눈먼 상태이기 때문입니다. 저희는 눈이 멀어 있습니다. 네, 문제없습니다. 이미 그렇게 되어 있습니다. 그 취지는 Glamsterdam이 활성화되기 전에 MPLEX를 강제로 폐기하자는 것이 아닙니다. 그 이후에는 괜찮습니다."
+            },
+            {
+              "speaker": "potuz",
+              "text": "사용자 설정 현황을 모른다는 Enrico의 주장에 동의하지 않았다. 글램스터담 릴리스에서 QUIC을 기본값으로 강제하고, 문제가 없으면 포크 후 첫 릴리스에서 MPLEX를 폐기하자고 했다.",
+              "timestamp": "00:14:38",
+              "original": "Just a quick comment. I don't buy Enrico's comment of, like, not knowing how many people change their configuration. Just flip the flag now that you're gonna have Glamsterdam releases, and they are forced to use them. Make, quick by default. and then we can just quickly deprecate it on the first release after Glamster, and if there's no problems.",
+              "translation": "짧게 한 말씀 드리겠습니다. 얼마나 많은 사람들이 설정을 바꿀지 모른다는 Enrico의 의견에는 동의하지 않습니다. Glamsterdam 릴리스가 나오면 사람들은 어차피 그것을 사용하도록 강제되므로, 지금 그냥 플래그를 뒤집어서 Quick을 기본값으로 만들면 됩니다. 그러면 Glamsterdam 이후 첫 릴리스에서 문제가 없다면 곧바로 이를 폐기할 수 있습니다."
+            },
+            {
+              "speaker": "Matthew Keil",
+              "text": "potuz와 정확히 같은 생각이라며 QUIC 기본화와 곧 폐기한다는 경고 표시에 동의했다.",
+              "timestamp": "00:15:01",
+              "original": "That was exactly what I was gonna say. Just make it by default, and then, with a warning that we're gonna deprecate soon after, and get rid of everything else, just use quick.",
+              "translation": "제가 하려던 말이 정확히 그것이었습니다. 그냥 기본값으로 만들고, 곧 폐기할 것이라는 경고를 붙인 다음, 나머지는 다 없애고 Quick만 사용하면 됩니다."
+            }
+          ],
+          "quote": {
+            "text": "글램스터담 릴리스가 나올 지금 플래그를 바꾸면 사용자들이 쓸 수밖에 없다. QUIC을 기본값으로 만들어라.",
+            "original": "Just flip the flag now that you're gonna have Glamsterdam releases, and they are forced to use them. Make QUIC by default.",
+            "speaker": "potuz",
+            "timestamp": "00:14:38"
+          }
+        },
+        {
+          "title": "테스트넷 빌더 서킷 브레이커",
+          "intro": "블록 제작을 대행하는 빌더(builder)를 테스트넷에서 공짜 ETH로 위조해 체인을 마비시킬 수 있어, 포크 전에 방어 장치를 요구한 논의다.",
+          "positions": [
+            {
+              "speaker": "potuz",
+              "text": "테스트넷에서는 ETH가 공짜라 높은 입찰을 내고 페이로드를 내지 않는 가짜 빌더로 체인을 헐값에 마비시킬 수 있으니, 포크 전에 제대로 된 서킷 브레이커를 갖추라고 클라이언트들에 요구했다.",
+              "timestamp": "00:19:12",
+              "original": "Just a comment, if… if we are going to fork soon, I would… Strongly advise clients to have a ready, good circuit breaker for the P2P stack on DevNets. It might not need to be the same as the… I'm sorry, for DevNets. Might not need to be the same for Mainnet, but on DevNet, it's just trivial and cheap to… to, like, dust the entire chain by sending high bids, so please have good circuit breakers. We're not gonna work without circuit breakers on DevNets. I don't think Fred… I don't think we have, we have all clients having circuit breakers, especially none that are banning per builder. I think most circuit breakers, like, just fall back quickly to To… to local building, Only after a lot of blocks have been missing?",
+              "translation": "한 말씀 드리자면, 만약 곧 포크를 하게 된다면 저는 클라이언트들이 DevNet에서 P2P 스택에 대한 잘 준비된 서킷 브레이커(circuit breaker)를 갖추기를 강력히 권고하고 싶습니다. 이것은 메인넷과 동일할 필요는 없을 수도 있습니다만, DevNet에서는 높은 입찰가를 보내는 것만으로 체인 전체를 흔드는 것이 매우 사소하고 저렴한 일이므로, 부디 좋은 서킷 브레이커를 갖춰주시기 바랍니다. DevNet에서 서킷 브레이커 없이는 작동하지 않을 것입니다. 모든 클라이언트가 서킷 브레이커를 갖추고 있다고는 생각하지 않으며, 특히 빌더별로 차단하는 것은 전혀 없다고 생각합니다. 대부분의 서킷 브레이커는 많은 블록이 누락된 이후에야 로컬 빌딩으로 빠르게 폴백하는 정도인 것 같습니다."
+            },
+            {
+              "speaker": "Toni Wahrstätter",
+              "text": "빌더를 이용해 EL 테스트를 하고 있다며 테스트넷 서킷 브레이커가 메인넷보다 엄격해야 할 이유를 물었고, 메인넷과 같은 기준을 쓰자고 했다.",
+              "timestamp": "00:23:22",
+              "original": "Yeah, I had a comment, not to the dates, but to what you said earlier. I was wondering why we would, be stricter on the definite when it comes to the P2P circuit breakers, because I've been using a few builders to test EL things, and having, like, strict circuit breakers would make that impossible. I think we should just use the same circuit breakers that we have on mainnet. Yeah, but it's also possible on Monet, like, that's how… Like, if you can take the… Right, but if the attack works, then… It might be worth it, even if it costs money. Yeah, I'm not thinking of… I'm not thinking of attacks like this, I'm more thinking of an attack like I buy a payload, I wait a few slots, I release it into a different payload, I try to DOS the proposal of this different slot by releasing a completely different payload way too late. Causing the EL node to reorg back to that state, and then execute the block. There are, like, scenarios like this that I try to test. And for that, I'm always, like, missing my payload, because I'm releasing way too late.",
+              "translation": "날짜에 대한 것이 아니라 앞서 말씀하신 것에 대해 코멘트가 있습니다. 저는 왜 P2P 서킷 브레이커에 대해 더 엄격해져야 하는지 의문이 들었습니다. 왜냐하면 저는 EL 관련 사항을 테스트하기 위해 몇몇 빌더를 사용해 왔는데, 엄격한 서킷 브레이커가 있으면 그것이 불가능해지기 때문입니다. 저희는 그냥 메인넷에 있는 것과 동일한 서킷 브레이커를 사용해야 한다고 생각합니다. 네, 하지만 메인넷에서도 가능한 일입니다. 만약 공격이 통한다면, 비용이 들더라도 그럴 만한 가치가 있을 수 있습니다. 저는 그런 종류의 공격을 생각하고 있는 것이 아니라, 이런 공격을 더 생각하고 있습니다. 페이로드를 사고, 몇 슬롯을 기다렸다가, 다른 페이로드로 그것을 공개합니다. 완전히 다른 페이로드를 너무 늦게 공개함으로써 이 다른 슬롯의 제안을 DOS하려고 시도하는 것입니다. 그렇게 하면 EL 노드가 그 상태로 리오그(reorg)를 하게 되고, 그 다음 그 블록을 실행하게 됩니다. 제가 테스트하려는 것은 이런 시나리오들입니다. 그리고 그 때문에 저는 항상 너무 늦게 공개하기 때문에 제 페이로드를 놓치게 됩니다."
+            },
+            {
+              "speaker": "potuz",
+              "text": "Toni에게 재반박하며 메인넷에서는 블록을 사서 버리는 데 실제 ETH가 들지만 테스트넷에서는 공짜라 누구나 규모를 키울 수 있다고 했다.",
+              "timestamp": "00:23:51",
+              "original": "Well, because I can just spin up a thousand builders, rotate them, offer very high bids, and not produce payloads. for free. And I just dOS the chain for free. I expect this to happen. Any teenager can do this. Yeah, but it may not. Yes, but that's not a problem, that's just the market. You can do this today. So today, I can buy a block, I am paying Ethereum to buy a block, and produce an empty block. That's something that is fine, and we live with that. I can do this today on Mainnet. But on DeathNet, this becomes trustless, and it's not something that we want to accept. Because it's free. that's… that's fine, and we are going to carry those kind of tests. Both we're doing this on DevNet now, and we're going to do this on testnets. But, I mean, facilitating this kind of testing by allowing anyone to come in on a testnet that is free to get ETH, and honestly just take every block out by just outbeating everyone? It sounds crazy to me. We… users are relying on these testnets to actually test their infra. We cannot make it, like, have zero payloads and ruin everyone's testing on these testnets.",
+              "translation": "저는 그냥 천 개의 빌더를 띄우고, 그것들을 순환시키면서 매우 높은 입찰가를 제시하고, 페이로드는 생성하지 않을 수 있습니다. 공짜로요. 그러면 저는 공짜로 체인을 DOS 시킬 수 있습니다. 저는 이런 일이 일어날 것이라고 예상합니다. 어떤 십 대라도 이걸 할 수 있습니다. 네, 하지만 그렇지 않을 수도 있습니다. 네, 하지만 그건 문제가 아니라 그냥 시장입니다. 오늘날에도 이렇게 할 수 있습니다. 그래서 오늘 저는 블록을 살 수 있고, 저는 블록을 사기 위해 이더리움에 돈을 지불하고, 빈 블록을 생성할 수 있습니다. 그것은 괜찮은 일이고, 저희는 그것을 감수하며 살고 있습니다. 저는 오늘 메인넷에서 이렇게 할 수 있습니다. 하지만 DevNet에서는 이것이 트러스트리스(trustless)해지는데, 그것은 저희가 받아들이고 싶은 것이 아닙니다. 공짜이기 때문입니다. 그건 괜찮고, 저희는 그런 종류의 테스트를 계속 진행할 것입니다. 저희는 지금 DevNet에서 이것을 하고 있고, 테스트넷에서도 할 것입니다. 하지만, 제 말은, ETH를 공짜로 얻을 수 있는 테스트넷에 누구나 들어와서 모두를 압도하는 입찰로 모든 블록을 그냥 빼앗아 가도록 이런 종류의 테스트를 조장하는 것이요? 저에게는 말이 안 되게 들립니다. 사용자들은 실제로 자신들의 인프라를 테스트하기 위해 이 테스트넷에 의존하고 있습니다. 저희는 페이로드가 0이 되어 이 테스트넷에서 모든 사람의 테스트를 망치게 만들 수는 없습니다."
+            },
+            {
+              "speaker": "potuz",
+              "text": "타이탄과 울트라사운드 같은 실제 프로덕션 빌더가 포크 전환을 거치는 테스트가 전혀 안 됐다며, 메인넷 전에 공개 테스트넷에서 이들과 함께 테스트하자고 했다.",
+              "timestamp": "00:30:53",
+              "original": "Yeah, but it… We are not… we're not really testing the actual builders that are the ones that we're using on… on mainnet, and it'd be nice to test them with them already ready at the fork, because that's what's going to happen on Mainnet, and we haven't been doing this on DevNet. I hope to do this on testnets, at least. just direct connections to builders, that's going to be, like, most of our blocks on mainnet, and we're not testing this neither them depositing before the fork and trying to build payloads after the fork, and having all validators, or most validators, actually connecting and calling them. I think even CL clients, I'm not sure how many of them are actually calling already on the builder API. So I know Prysm and Lodestar are, I'm not sure other clients. And this is really how we build our blocks, so we really need to test this, and it's completely under-tested now. It is being tested on DevNets. Yeah, we need at least Titan ultrasound, the normal builders, to actually deploy. Otherwise, we're gonna go without knowing what's gonna happen. No, that's not true. No, wait, wait, why would you do that? You only need to call 32 or 64 maximum.",
+              "translation": "네, 하지만 저희는 실제로 메인넷에서 사용하고 있는 그 빌더들을 제대로 테스트하고 있지 않습니다. 포크 시점에 이미 준비된 상태로 그것들을 테스트하는 것이 좋을 텐데, 그것이 메인넷에서 실제로 일어날 일이기 때문입니다. 그리고 저희는 DevNet에서 이것을 해오지 않았습니다. 적어도 테스트넷에서는 이것을 하고 싶습니다. 빌더로의 직접 연결, 그것이 메인넷에서 저희 블록의 대부분이 될 텐데, 저희는 이것을 테스트하고 있지 않고, 그들이 포크 전에 디파짓하고 포크 후에 페이로드를 빌드하려고 시도하는 것, 그리고 모든 검증자 혹은 대부분의 검증자가 실제로 연결해서 그들을 호출하는 것도 테스트하고 있지 않습니다. CL 클라이언트들조차도 이미 빌더 API를 호출하고 있는 클라이언트가 몇 개나 되는지 잘 모르겠습니다. Prysm과 Lodestar는 그렇게 한다고 알고 있는데, 다른 클라이언트들은 잘 모르겠습니다. 그리고 이것이 실제로 저희가 블록을 만드는 방식이므로, 저희는 정말로 이것을 테스트할 필요가 있는데, 지금은 완전히 테스트가 부족한 상태입니다. DevNet에서는 테스트되고 있습니다. 네, 저희는 적어도 Titan, ultrasound 같은 일반적인 빌더들이 실제로 배포되어야 합니다. 그렇지 않으면 무슨 일이 일어날지 모른 채로 나가게 될 것입니다. 아니요, 그건 사실이 아닙니다. 아니, 잠깐만요, 왜 그렇게 하시겠어요? 최대 32개나 64개만 호출하면 됩니다."
+            },
+            {
+              "speaker": "pk910",
+              "text": "세폴리아는 게이트가 걸린 예치 컨트랙트 때문에 포크 전 빌더 예치가 불가능하고 후디에서는 가능하다고 짚었다.",
+              "timestamp": "00:33:03",
+              "viaChat": true,
+              "original": "sepolia has the gated deposit contract, so early builder deposits aren't possible there. but fine on hoodi 00:33:07\tJustin Florentine:\tis sepolia/hegota orderflow through those builders helpful? 00:34:17\tpotuz:\tI think we want to do builder testing on Sepolia more than Hoodi cause we can try to make sure that most validators do connect to builders’ endpoints. We can’t do that on Hoodi 00:35:12\tcayman:\tReacted to \"Can we please wait u...\" with 👍 00:36:43\tmarc | wolovim:\t8411: https://github.com/ethereum/EIPs/pull/12299 00:36:46\tpotuz:\tWhat’s the subtitle?",
+              "translation": "sepolia는 게이트된 디파짓 컨트랙트를 가지고 있어서, 그곳에서는 초기 빌더 디파짓이 불가능합니다. 하지만 hoodi에서는 괜찮습니다.\n00:33:07 Justin Florentine: sepolia/hegota 오더플로우가 그 빌더들을 통해 흐르는 것이 도움이 되나요?\n00:34:17 potuz: 저는 대부분의 검증자가 실제로 빌더 엔드포인트에 연결하도록 만들 수 있기 때문에, Hoodi보다 Sepolia에서 빌더 테스트를 하고 싶습니다. Hoodi에서는 그렇게 할 수 없습니다.\n00:35:12 cayman: \"Can we please wait u...\"에 👍로 반응함\n00:36:43 marc | wolovim: 8411: https://github.com/ethereum/EIPs/pull/12299\n00:36:46 potuz: 부제가 뭔가요?"
+            },
+            {
+              "speaker": "Stefan Bratanov",
+              "text": "테쿠는 빌더 API를 갖추고 있어 세폴리아 대응에 문제가 없다고 확인했다.",
+              "timestamp": "00:32:28",
+              "viaChat": true
+            }
+          ],
+          "quote": {
+            "text": "가짜 빌더 천 개를 돌려가며 높은 입찰을 내고 페이로드를 안 내면 공짜로 체인을 마비시킬 수 있다. 십대라도 할 수 있는 일이다.",
+            "original": "I can just spin up a thousand builders, rotate them, offer very high bids, and not produce payloads, for free. And I just DOS the chain for free. Any teenager can do this.",
+            "speaker": "potuz",
+            "timestamp": "00:23:51"
+          }
+        },
+        {
+          "title": "EIP-8365 강제 퇴출 축소",
+          "intro": "구형 BLS 인출 자격증명(0x00)을 퇴역시키는 EIP-8365에서, 기존 검증자 강제 퇴출까지 헤고타에 넣을지가 쟁점이 됐다.",
+          "decision": "CFI 합의 01:07:28",
+          "positions": [
+            {
+              "speaker": "terence",
+              "text": "프리즘의 A 티어 평가는 신규 0x00 예치 차단 부분에만 해당하며, 강제 퇴출이 포함된 현재 형태라면 C 티어나 DFI에 가깝다고 밝혔다.",
+              "timestamp": "00:49:08",
+              "original": "Now, there's one thing that I realized, and it's probably my fault for not reading this correctly. So basically, from our stance, we have this EIP that would give it, like, a very high tier, but then we say only if the EIP conditioning does something else, right? So basically, one example is this BOS withdraw credential retirement, that basically the EIP does two things. First. you basically block the deposit through the deposit contract. Second is that it… I think it forced, ejects 0x00 Validator, and for us, we really, really love the first part, we don't like the second part, so we basically say that we will give this an A tier if it only does the first part. But today, it does two parts, so I think it may be more like a C or DFI tier in… in basically today's state versus, A tier, that's what we wrote it. But if you look at the forecast ranking page, it actually counts as an A, so I just want to throw that out. It may screw some, like, number here and there.",
+              "translation": "이제 제가 깨달은 것이 하나 있는데, 아마 제가 이것을 제대로 읽지 못한 제 잘못일 것입니다. 기본적으로 저희 입장에서는, 이 EIP에 매우 높은 티어를 주고 싶지만, 그 EIP가 다른 조건을 만족하는 경우에만 그렇다고 말합니다, 그렇죠? 기본적으로 한 예시는 이 BOS 인출 자격증명(withdraw credential) 퇴역인데, 기본적으로 이 EIP는 두 가지를 합니다. 첫째, 디파짓(deposit) 컨트랙트를 통한 디파짓을 차단합니다. 둘째는, 제 생각에 0x00 검증자(Validator)를 강제로 이젝트(eject)합니다. 그런데 저희는 첫 번째 부분은 정말, 정말 좋아하지만, 두 번째 부분은 좋아하지 않습니다. 그래서 저희는 기본적으로 첫 번째 부분만 한다면 A 티어를 주겠다고 말합니다. 하지만 오늘은 두 가지를 다 하기 때문에, 오늘의 상태에서는 A 티어보다는 C나 DFI 티어에 더 가까울 것 같습니다. 그것이 저희가 작성한 내용입니다. 하지만 예측 순위 페이지를 보면 실제로는 A로 집계되어 있어서, 그 점을 그냥 짚고 넘어가고 싶습니다. 여기저기 숫자에 오류가 있을 수 있습니다."
+            },
+            {
+              "speaker": "potuz",
+              "text": "예치 중단에는 찬성하지만 강제 퇴출에는 강하게 반대했다. 표준 폐기 절차는 먼저 예치를 막고 다음 포크에서 퇴출하는 것이며, 도난 키로 추정되는 검증자들에게 복구를 시도할 시간을 줘야 한다고 했다.",
+              "timestamp": "00:56:32",
+              "original": "of 8365, I think Prysm would DFI it, and it would change very much the scope, if we keep the scope… it would change very much the score if we keep the scope as it is. And I believe Lighthouse posted essentially the same view. That we… we are fine with… deprecating BLS at the fork, not allowing any more deposits, but we definitely do not want to force exits. So, I think this is not a… yeah. We strongly believe this. It's not… it's not a minor issue.",
+              "translation": "8365에 대해서는, Prysm이 이것을 DFI할 것이라고 생각합니다. 그리고 만약 저희가 범위를 그대로 유지한다면, 그것은 점수를 크게 바꿀 것입니다. 그리고 Lighthouse도 본질적으로 같은 입장을 밝혔다고 알고 있습니다. 즉 저희는 포크 시점에 BLS를 폐기하고 더 이상 디파짓을 허용하지 않는 것에는 괜찮지만, 강제 이탈(force exit)은 확실히 원하지 않습니다. 그래서 이것은 사소한 문제가 아니라고 생각합니다. 저희는 이것을 강하게 믿습니다. 이것은 사소한 문제가 아닙니다."
+            },
+            {
+              "speaker": "NC",
+              "text": "저자로서 예치 차단만 남기면 0x00에서 갈아타라는 신호가 약해진다고 지적하면서도, 클라이언트 지지가 많다면 축소를 수용하겠다고 했다.",
+              "timestamp": "00:59:35",
+              "original": "I would say the signal, for encouraging, people to switch to 001 or 002 will be weaker without force exiting these, validators. Because if you are only doing the deposit guard, it really doesn't touch Or, it doesn't touch their daily lives, like. It's just… it's mostly, yeah, it's not really… like, you're not, like, hitting them with a stick to encourage them to switch, basically. So in the status quo in Glamsterdam, you can still create a new 000 Validators. There's nothing that rejects or drops them. So, the first part of this… With this EIP, it would drop them. But the top-up deposits to exist, the 000 validators will still be processed as usual. Some arguments I've, seen is that it might be too rushed, and we might not be given enough grace periods For… for those, people to switch. Before freezing their funds and essentially take away their ability to earn rewards, basically. And by reducing the scope, that means that maybe in a future fork, we do the forced exits, but not in the current fork. Right, so the argument is, like, how long… Over time should we give them? if we do the announcement right now, if the EIP is CFI'd to the live day of Ekoda, that would be, like, 6 to 8 months. Would that be enough? Or are you saying… consensus. That also means that, in the PQ world. We're still going to maintain these 000 validators and potentially design a new credential switch mechanism just to take care of these 9,000 validators. Okay, so you're… okay, so you are proposing that…",
+              "translation": "저는 이 검증자들을 강제로 이탈시키지 않으면 사람들이 001이나 002로 전환하도록 장려하는 신호가 더 약해질 것이라고 말씀드리고 싶습니다. 왜냐하면 디파짓 가드만 한다면, 그것은 사실 그들의 일상생활에 영향을 주지 않기 때문입니다. 그것은 대체로, 네, 사실상 그들을 전환하도록 채찍질하는 것이 아닙니다. 그래서 Glamsterdam의 현 상태에서는 새로운 000 검증자를 여전히 생성할 수 있습니다. 그것들을 거부하거나 탈락시키는 것은 아무것도 없습니다. 그래서 이 EIP의 첫 번째 부분은 그들을 탈락시킬 것입니다. 하지만 기존 000 검증자에 대한 탑업(top-up) 디파짓은 여전히 평소대로 처리될 것입니다. 제가 본 몇 가지 주장은, 이것이 너무 성급할 수 있고, 사람들이 전환할 수 있는 충분한 유예 기간이 주어지지 않을 수 있다는 것입니다. 그들의 자금을 동결하고 사실상 보상을 얻을 능력을 빼앗기 전에 말입니다. 그리고 범위를 줄이면, 이는 미래의 포크에서 강제 이탈을 할 수도 있지만 현재 포크에서는 하지 않는다는 것을 의미합니다. 맞습니다, 그래서 논점은 그들에게 시간이 얼마나 주어져야 하는가입니다. 만약 지금 당장 발표를 하고, EIP가 Ekoda 라이브 데이 시점에 CFI 된다면, 그것은 대략 6개월에서 8개월 정도가 될 것입니다. 그것으로 충분할까요? 아니면 말씀하시는 것은... 컨센서스입니다. 그것은 또한 PQ 세계에서도, 저희가 이 000 검증자들을 계속 유지하고 이 9,000개의 검증자를 처리하기 위해 새로운 자격증명 전환 메커니즘을 설계해야 할 수도 있다는 것을 의미합니다. 알겠습니다, 그러니까 당신은... 알겠습니다, 그러니까 당신이 제안하시는 것은..."
+            },
+            {
+              "speaker": "terence",
+              "text": "양자내성(PQ) 로드맵이 어떻게 될지 모르는 채로 특정 해법에 미리 묶이는 느낌이라고 했다.",
+              "timestamp": "01:01:58",
+              "original": "It feels like we're, like, committing to, like, a solution, but, like, without knowing what is the future roadmap of the PQ landscape, right?",
+              "translation": "저희가 PQ 지형의 미래 로드맵이 어떻게 될지도 모른 채 하나의 해법에 커밋하고 있는 것 같은 느낌입니다, 그렇죠?"
+            },
+            {
+              "speaker": "Matthew Keil",
+              "text": "EIP에 두 단계를 명시하자고 제안했다. 헤고타에서 예치를 막고 I-Star에서 강제 퇴출한다는 일정을 문서화하면 사람들이 키를 정리할 시간이 생긴다고 했다.",
+              "timestamp": "01:04:02",
+              "original": "you know, this is what I was just thinking. Is it possible, and we've never done something like this before, where we have a two-fork, a two-fork EIP, where it's written into the EIP as, as of now, that In H, we close the door, and then in I, We're gonna do the force exits so that there is a well-trodden timeline that people will be able to, to refer back to in order to get their keys sorted and get themselves ready to… before we exit them. And can we just write that into the EIP as it is, so that 8365 covers both situations? H star is the closing the door for new ones, and I-star is going to be the exiting of, exiting of any that are existing. And then that way, there's, like, it's documented that we're doing it in two forks. That's plenty of time for someone to react.",
+              "translation": "이것이 제가 방금 생각하고 있던 것입니다. 저희가 전에 이런 것을 해본 적은 없지만, 두 번의 포크에 걸친, 즉 투포크(two-fork) EIP를 만드는 것이 가능할까요? EIP에 지금 시점부터 명시해서, H에서는 문을 닫고, I에서는 강제 이탈을 시행한다고 적어 놓는 것입니다. 그러면 사람들이 자신의 키를 정리하고 이탈되기 전에 준비할 수 있도록 참고할 수 있는 잘 다져진 타임라인이 생기게 됩니다. 그리고 그것을 있는 그대로 EIP에 적어서 8365가 두 상황을 모두 다루도록 할 수 있을까요? H스타(H*)는 새로운 검증자에 대해 문을 닫는 것이고, I스타(I*)는 기존에 존재하는 검증자들을 이탈시키는 것이 될 것입니다. 그렇게 하면 저희가 이것을 두 번의 포크에 걸쳐 진행한다는 것이 문서화됩니다. 그것은 누군가 대응하기에 충분한 시간입니다."
+            },
+            {
+              "speaker": "potuz",
+              "text": "0x00 키들은 공개 서명을 한 적이 없어 양자 공격에도 안전할 가능성이 높으므로 포크 전에 퇴출을 서두를 이유가 없다고 덧붙였다.",
+              "timestamp": "01:04:45",
+              "original": "Also, I want to stress that most likely, these keys are PQ-safe. They have never signed a public message, and we can just keep them as they are. They are PQ-safe. We can trust the signature from those keys because they've never signed anything public on the withdrawal credentials. So I don't see how this is a problem. We're gonna be frozen… freezing these keys right now, in Hagota, and by the time that we actually come up with a solution for PQ, then, well, we can trust the opening of those keys. They are hashed. That's not true. That's only if PQ happens before we force exits, which is very unlikely, according to any of the expectations we have for PQ. Yes. the… the… the EIP still burns ETH that deposits into a 00 Validator. By the way, so what Greg is saying is not crazy, but it can be discussed, perhaps, on the chat. We can just hardcode an epoch a year after the Hagota, if people are worried that we might backtrack for the iFork. We can just hardcore an epoch in which we just force the exits.",
+              "translation": "또한 강조하고 싶은 것은, 이 키들은 십중팔구 PQ 안전(PQ-safe)하다는 것입니다. 이들은 공개 메시지에 서명한 적이 없으므로, 저희는 그것들을 그대로 둘 수 있습니다. 그것들은 PQ 안전합니다. 저희는 그 키들의 서명을 신뢰할 수 있는데, 왜냐하면 그것들이 인출 자격증명에 공개적으로 서명한 적이 없기 때문입니다. 그래서 저는 이것이 왜 문제인지 모르겠습니다. 저희는 지금 Hagota에서 이 키들을 동결시킬 것이고, 저희가 실제로 PQ에 대한 해법을 마련할 즈음에는, 그 키들을 여는 것을 신뢰할 수 있을 것입니다. 그것들은 해시되어 있습니다. 그것은 사실이 아닙니다. 그것은 PQ가 저희가 강제 이탈을 시키기 전에 일어날 경우에만 해당되는데, 저희가 PQ에 대해 가지고 있는 어떤 예상에 비추어 보아도 그럴 가능성은 매우 낮습니다. 네. 이 EIP는 여전히 00 검증자에 디파짓되는 ETH를 소각합니다. 그런데 Greg이 말하는 것이 터무니없는 것은 아니고, 아마 채팅에서 논의될 수 있을 것입니다. 만약 사람들이 저희가 i포크에서 후퇴할 것을 걱정한다면, Hagota 1년 후의 에폭(epoch)을 그냥 하드코딩해 둘 수 있습니다. 저희가 강제로 이탈시킬 에폭을 그냥 하드코딩해 두면 됩니다."
+            }
+          ],
+          "quote": {
+            "text": "이 키들은 공개 메시지에 서명한 적이 없어 양자 공격에도 안전할 가능성이 높다. 지금 그대로 둬도 된다.",
+            "original": "Also, I want to stress that most likely, these keys are PQ-safe. They have never signed a public message, and we can just keep them as they are.",
+            "speaker": "potuz",
+            "timestamp": "01:04:45"
+          }
+        },
+        {
+          "title": "EIP-8363 발행량 결정 절차",
+          "intro": "이더리움 발행량을 줄이는 EIP-8363을 두고, 코어 개발자 콜이 이런 결정을 내릴 자격과 절차가 있는지가 쟁점이 됐다.",
+          "decision": "보류 01:20:47",
+          "positions": [
+            {
+              "speaker": "potuz",
+              "text": "영향받는 스테이커들은 압도적으로 반대하는데 찬성 논거는 연구자들 것뿐이라 불공정하며, 코어 개발자는 통화정책을 결정할 전문성이 없다고 했다. 저자들이 외부의 통화정책 전문가를 데려와 덜 편향된 분석을 내놓으라고 제안했다.",
+              "timestamp": "01:23:25",
+              "original": "My personal feeling on that EIP is that it's… it's an unfair situation in which the community members that are affected by this EIP are all overwhelmingly against, because, well, they're just gonna earn less. And we haven't heard at the other side, we just only have the opinion of researchers. making a point about LSTs, and we are… by and large, not capable of making this decision. So it seems to me, if we keep just, like, postponing this, we are eventually going to either DFI it or make a choice without really understanding it. Ourselves, we're not… This is not our topic. So that's why I really strongly propose the authors, or whomever is pushing for this EIP, to try to get people that are outside of our community, but that work on international money policy, that work on these classical topics that might Might have an opinion Yeah, that is not directly biased.",
+              "translation": "그 EIP에 대한 제 개인적인 느낌은, 이것이 불공평한 상황이라는 것입니다. 이 EIP의 영향을 받는 커뮤니티 구성원들은 압도적으로 반대하고 있는데, 왜냐하면 그들은 그냥 더 적게 벌게 될 것이기 때문입니다. 그리고 저희는 반대편의 이야기는 듣지 못했고, LST에 대해 논점을 제기하는 연구자들의 의견만 가지고 있습니다. 그리고 저희는 대체로 이 결정을 내릴 능력이 없습니다. 그래서 제가 보기에는, 저희가 이것을 계속 미루기만 한다면, 결국은 이것을 DFI 하거나 제대로 이해하지 못한 채 선택을 하게 될 것 같습니다. 저희 스스로는, 이것은 저희의 주제가 아닙니다. 그래서 저는 이 EIP의 저자들이나 이것을 추진하는 사람들이, 저희 커뮤니티 밖에 있지만 국제 통화 정책이나 이런 고전적인 주제를 다루는, 직접적으로 편향되지 않은 의견을 가질 수 있는 사람들을 데려오려고 시도해야 한다고 강력히 제안합니다."
+            },
+            {
+              "speaker": "Enrico Del Fante",
+              "text": "potuz에 동의하며 비기술 이해관계자가 참여하는 전용 콜이 필요하고, 2주가 지나도 상황은 달라지지 않을 것이라고 했다.",
+              "timestamp": "01:25:18",
+              "original": "I just want to echo Bos and add a comment on your comments, which is, today we are not In the right place to discuss that, but it will be… it won't be anywhere, anyway, into… In two weeks. because I believe, like Paul said, he thinks it's a little bit outside our… our knowledge, and it's a broader and bigger… Topic that needs to be discussed in proper… in proper dedicated calls. like, we can be… we can be there as ACDC guys, but other people must be there too, and discussion are not technically driven, mostly.",
+              "translation": "저는 Bos의 말에 동의하고 당신의 코멘트에 한마디 덧붙이고 싶습니다. 오늘 저희는 그것을 논의할 적절한 자리가 아니고, 어쨌든 2주 후에도 마찬가지일 것입니다. 왜냐하면 Paul이 말했듯이, 저도 이것이 저희의 지식 범위를 다소 벗어나 있고, 제대로 된 전용 콜에서 논의되어야 할 더 넓고 더 큰 주제라고 생각하기 때문입니다. 저희는 ACDC 사람들로서 그 자리에 있을 수는 있지만, 다른 사람들도 그 자리에 있어야 하고, 논의는 대체로 기술적으로 주도되는 것이 아닙니다."
+            },
+            {
+              "speaker": "Jerome de Tychey",
+              "text": "저자 측으로서 더 넓은 합의가 필요하다는 점을 인정하고, 제기된 코멘트를 정리한 문서와 이해관계자 참여 작업을 하겠다고 약속했다.",
+              "timestamp": "01:26:44",
+              "original": "Yeah, I appreciate the different comments here, regarding issuance. As was, suggested by several other organizations, we need to, come up with a way to get everybody on consensus on what should happen, and if anything should happen. Regarding the push forward on making a decision on the EIP potentially later, it's giving us time, the offers, to come up with a proper write-up on all the comments that were done, Regarding the, the, on the, ethereum thread, and also, to, convene to what should be the next steps, with the different parties that have voiced their opinion and have voiced wanting to participate on something broader. And as you mentioned, to, get, people that are not in the room, or didn't express their opinion, to actually, voice, what they think about this kind of change. So, yeah, in a, in a process where, you want to, shrink the list as much as possible, as, as quickly as possible, issuance is, kind of, a people in the, in the shoe, but, we're working very hard to, make it, easy to remove and, toss around. Yeah, and additionally, we appreciate the, EF protocol teams, mentioning it, to say that, yeah, this needs a bigger forum, and it needs to, something broader, to reach, broader consensus. So, yeah, we're working hard on the matter.",
+              "translation": "이슈언스(issuance)에 관해 여기 나온 여러 코멘트에 감사드립니다. 다른 여러 조직들이 제안했듯이, 저희는 무엇이 일어나야 하는지, 그리고 무엇이든 일어나야 하는지에 대해 모두가 합의에 이를 수 있는 방법을 마련해야 합니다. 이 EIP에 대한 결정을 나중으로 미루는 것과 관련해서는, 그것이 저희에게 이더리움 스레드에서 있었던 모든 코멘트에 대한 제대로 된 정리 문서를 작성할 시간을 주고, 또한 의견을 표명했거나 더 넓은 논의에 참여하고 싶다고 밝힌 여러 당사자들과 함께 다음 단계가 무엇이 되어야 할지 모일 시간을 줍니다. 그리고 말씀하신 대로, 이 자리에 없거나 의견을 표명하지 않은 사람들이 이런 종류의 변화에 대해 실제로 어떻게 생각하는지 목소리를 낼 수 있도록 하는 것도 있습니다. 그래서, 가능한 한 빨리 목록을 최대한 줄이고자 하는 과정에서, 이슈언스는 다소 걸림돌 같은 존재이지만, 저희는 그것을 제거하고 다루기 쉽게 만들기 위해 매우 열심히 노력하고 있습니다. 그리고 추가로, EF 프로토콜 팀들이 이것이 더 큰 포럼이 필요하고, 더 넓은 합의에 도달하기 위해 더 넓은 무언가가 필요하다고 언급해 주신 것에 감사드립니다. 그래서 저희는 이 사안에 대해 열심히 노력하고 있습니다."
+            },
+            {
+              "speaker": "Greg K | Lido",
+              "text": "3개 팀이 DFI, 3개 팀이 무의견인 상황에서 최종 결정이 어떤 절차로 내려질지 물었고, 지금대로면 2주 뒤에도 같은 결론 없는 논의가 반복될 위험이 있다고 했다.",
+              "timestamp": "01:28:39",
+              "original": "Yeah, sorry, just… I didn't intend to talk today, but just in order to understand what are we expecting now to happen? So, we have currently 3 clients suggesting to DFI, and 3 clients not expressing opinion. So, just in terms of process, like, How could, finally, let's say. take a decision about this particular EIP, because this is exactly the reason that they had asked to not PFI this particular EIP, because it's… it makes Ethereum's change and this EIP looking equivalent, while this is not. So, one thing is discussion about changing issuance, which cannot be done in ACD, of course, and the… and this EIP, this particular EIP, is just one very, very special case of it. So, I don't see what should we expect to happen in the next two weeks, and how could the final decision will be taken? Are we going to say client team opinion is not important at all, and we will create another process for this? Or, like, I just don't see… I'm okay with not designing today, I don't say, let's do something today, but I have no clue what is the expectation here to happen? Like, what… from the way that people are talking now, I expect that in two weeks, we are going to have rough, more or less the similar discussion. Like, we're not qualified, we don't know, like. So, is there some idea on how to move forward, or we'll just keep it?",
+              "translation": "죄송합니다, 그냥... 오늘 발언할 생각은 없었는데, 저희가 지금 무엇을 기대하고 있는지 이해하기 위해서입니다. 현재 3개 클라이언트가 DFI를 제안하고 있고, 3개 클라이언트는 의견을 표명하지 않고 있습니다. 그래서 프로세스 측면에서, 결국 어떻게 이 특정 EIP에 대한 결정을 내릴 수 있을까요? 왜냐하면 이것이 바로 그들이 이 특정 EIP를 PFI하지 말자고 요청했던 이유이기 때문입니다. 그것이 이더리움의 변화와 이 EIP를 동등하게 보이게 만드는데, 실제로는 그렇지 않기 때문입니다. 그래서 한 가지는 이슈언스 변경에 대한 논의인데, 이것은 물론 ACD에서 할 수 없는 것이고, 이 특정 EIP는 그것의 아주, 아주 특수한 하나의 사례일 뿐입니다. 그래서 저는 앞으로 2주 동안 무엇을 기대해야 하는지, 그리고 최종 결정이 어떻게 내려질 수 있는지 모르겠습니다. 클라이언트 팀의 의견은 전혀 중요하지 않다고 말하고 이것을 위한 또 다른 프로세스를 만들 것인가요? 아니면... 저는 그냥 모르겠습니다. 오늘 무언가를 설계하지 않는 것은 괜찮습니다, 오늘 뭔가를 하자는 말이 아닙니다. 하지만 저는 여기서 무엇이 일어날 것으로 기대되는지 전혀 모르겠습니다. 지금 사람들이 이야기하는 방식을 보면, 2주 후에도 대략 비슷한 논의를 하게 될 것이라고 예상합니다. 즉 저희는 자격이 없다, 저희는 모른다, 같은 식으로요. 그래서 어떻게 나아갈지에 대한 어떤 아이디어가 있는 건가요, 아니면 그냥 이대로 계속 두는 건가요?"
+            },
+            {
+              "speaker": "Ansgar Dietrichs",
+              "text": "미루다 막판에 밀어넣으려는 음모가 아니라 이런 유형의 EIP를 위한 의사결정 틀 자체가 없는 것이 진짜 문제라고 했다. 성급한 DFI는 같은 거버넌스 공백을 반복시킬 뿐이라며 반대했다.",
+              "timestamp": "01:31:24",
+              "original": "Yeah, so, one more comment. I just, I do think… One thing that I do feel a bit bad about is that, like, I think many people are specific on this topic, following the ACD process, because by default, ACD is where decisions about hardfogs are made, and they… I think a lot of… a big portion of the community is worried about this change. again, I personally even speak as someone who actually thinks this might be a good idea, but again, I understand, like, many, many people are really worried about this, and I think they might see us not making a decision as somehow, like, maybe get the feeling, or maybe there's some sort of conspiracy that is trying to basically delay and then last minute push this in. I just would want to reiterate that this is very much not what's happening here. I think it's more that we're seeing that with this EIP, I think as was obvious for everyone who paid attention, the fact that we just didn't really know how would even a decision-making process here look like, I think, caused a lot of extra friction. Like, when this was initially proposed, there was a lot of discussion about PFI timelines, and why would CR Devs even be the right group, and who else are stakeholders here, and I think all of these are just really, really important questions, and so I think the reason why I think we would want to have some proper time to figure out how to even think about approaches to this is less because it's still so up in the air what the fate of this specific…",
+              "translation": "네, 한 가지 더 코멘트하겠습니다. 제가 다소 유감스럽게 느끼는 한 가지는, 많은 사람들이 이 주제에 대해 ACD 프로세스를 따르는 데 민감하다는 것입니다. 왜냐하면 기본적으로 ACD가 하드포크에 대한 결정이 내려지는 곳이기 때문입니다. 그리고 저는 커뮤니티의 상당 부분이 이 변화에 대해 걱정하고 있다고 생각합니다. 다시 말씀드리지만 저는 개인적으로 이것이 실제로 좋은 아이디어일 수도 있다고 생각하는 사람으로서 말씀드리는 것이지만, 그럼에도 많은, 정말 많은 사람들이 이것에 대해 정말로 걱정하고 있다는 것을 이해합니다. 그리고 저는 그들이 저희가 결정을 내리지 않는 것을 보고 어쩌면, 이것을 기본적으로 지연시켰다가 막판에 밀어넣으려는 일종의 음모라는 느낌을 받을 수도 있다고 생각합니다. 저는 이것이 결코 여기서 일어나고 있는 일이 아니라는 것을 다시 한번 강조하고 싶습니다. 제 생각에는 오히려, 주의를 기울인 모든 사람에게 분명했듯이, 이 EIP와 관련해서 저희가 여기서 의사결정 프로세스가 어떤 모습이어야 할지조차 제대로 알지 못했다는 사실이 많은 추가적인 마찰을 일으켰다고 봅니다. 이것이 처음 제안되었을 때, PFI 타임라인에 대한 많은 논의가 있었고, 왜 코어 개발자(CR Devs)가 애초에 적절한 그룹이어야 하는지, 그리고 여기서 다른 이해관계자는 누구인지에 대한 논의가 있었습니다. 그리고 저는 이 모든 것들이 정말, 정말 중요한 질문들이라고 생각합니다. 그래서 저희가 이것에 대한 접근법을 어떻게 생각해야 할지조차 파악할 제대로 된 시간을 갖고 싶은 이유는, 이 특정 사안의 운명이 아직 매우 불확실하기 때문이라기보다는..."
+            },
+            {
+              "speaker": "lightclient",
+              "text": "Ansgar와 달리 지금 DFI하고 절차 논의는 별도로 하자고 주장했다. 결정을 열어두면 변경이 기정사실처럼 정당화될 수 있다고 우려했다.",
+              "timestamp": "01:34:50",
+              "original": "Yeah, I just wanted to ask… kind of related to Ansgar's point, if… There's, quote, not really much chance that this issuance change makes it to go to why would we not be DFI-ing it right now? And in the meantime, figure out what the right process in the future for accepting and issuance changes, because I'm afraid that if we don't DFI it and we have this discussion. That in the process, will also start legitimizing And people will start accepting that this issuance change is happening, when I don't think that that's what the current You know, belief of the core Devs or the community is. So I think that those need to be very separate, and I think that we shouldn't… Leave it op… the door open while we figure out what the right process to accept it is, to avoid, like, overfitting and figuring out a process that will accept that specific change.",
+              "translation": "네, Ansgar의 논점과 관련해서 여쭤보고 싶은 것이 있습니다. 만약, 소위 이 이슈언스 변화가 실제로 통과될 가능성이 별로 없다면, 왜 지금 당장 이것을 DFI 하지 않는 것인가요? 그리고 그러는 동안, 향후 이슈언스 변화를 받아들이기 위한 올바른 프로세스가 무엇인지 파악하면 됩니다. 왜냐하면 저는 저희가 이것을 DFI 하지 않고 이 논의를 계속한다면, 그 과정에서 이것이 정당화되기 시작하고 사람들이 이 이슈언스 변화가 일어나고 있다는 것을 받아들이기 시작할까봐 걱정되기 때문입니다. 저는 그것이 현재 코어 개발자나 커뮤니티의 믿음이라고 생각하지 않습니다. 그래서 저는 이 둘이 매우 분리되어야 한다고 생각하고, 그 특정 변화를 받아들이는 데 오버피팅된 프로세스를 만드는 것을 피하기 위해, 그것을 받아들일 올바른 프로세스를 파악하는 동안 문을 열어두어서는 안 된다고 생각합니다."
+            }
+          ],
+          "quote": {
+            "text": "이 제안이 헤고타에 들어갈 시나리오와는 아주 거리가 멀다는 점은 사실 꽤 분명하다.",
+            "original": "It's actually quite clear that we are very far away from any scenario in which this would go into Hegota.",
+            "speaker": "Ansgar Dietrichs",
+            "timestamp": "01:31:24"
+          }
+        }
+      ],
+      "speakers": [
+        {
+          "label": "stokes",
+          "name": "stokes",
+          "share": 0.566
+        },
+        {
+          "label": "potuz",
+          "name": "Potuz",
+          "org": "Offchain Labs",
+          "role": "Prysm",
+          "handle": "potuz_eth",
+          "avatar": "https://pbs.twimg.com/profile_images/1494001194427158539/bfrZyMsG_400x400.jpg",
+          "share": 0.08
+        },
+        {
+          "label": "Kamil Salakhiev",
+          "name": "Kamil Salakhiev",
+          "share": 0.051
+        },
+        {
+          "label": "NC",
+          "name": "NC",
+          "share": 0.045
+        },
+        {
+          "label": "Kevaundray Wedderburn",
+          "name": "Kevaundray Wedderburn",
+          "org": "EF",
+          "role": "응용 리서치",
+          "handle": "kevaundray",
+          "avatar": "https://pbs.twimg.com/profile_images/1658523090467315712/a3xJ6ySn_400x400.jpg",
+          "share": 0.027
+        },
+        {
+          "label": "Matthew Keil",
+          "name": "Matthew Keil",
+          "org": "ChainSafe",
+          "role": "Lodestar",
+          "handle": "matthewkeil",
+          "avatar": "https://pbs.twimg.com/profile_images/1455695649899438083/nWUpW5EK_400x400.jpg",
+          "share": 0.022
+        },
+        {
+          "label": "Daniel Knopik",
+          "name": "Daniel Knopik",
+          "share": 0.022
+        },
+        {
+          "label": "Ansgar Dietrichs",
+          "name": "Ansgar Dietrichs",
+          "org": "EF",
+          "role": "리서처",
+          "handle": "adietrichs",
+          "avatar": "https://pbs.twimg.com/profile_images/1575685906786402304/P5UbjDt6_400x400.jpg",
+          "share": 0.022
+        },
+        {
+          "label": "Enrico Del Fante",
+          "name": "Enrico Del Fante",
+          "org": "Consensys",
+          "role": "Teku",
+          "handle": "tbenr",
+          "avatar": "https://pbs.twimg.com/profile_images/1425021438269050892/3IRr4G_z_400x400.jpg",
+          "share": 0.021
+        },
+        {
+          "label": "soispoke",
+          "name": "soispoke",
+          "share": 0.018
+        },
+        {
+          "label": "pk910",
+          "name": "pk910",
+          "org": "EF DevOps",
+          "handle": "_pk910_",
+          "avatar": "https://pbs.twimg.com/profile_images/1778392621032898560/hneq3NpH_400x400.jpg",
+          "share": 0.017
+        },
+        {
+          "label": "Stefan Bratanov",
+          "name": "Stefan Bratanov",
+          "org": "Consensys",
+          "role": "Teku",
+          "share": 0.017
+        },
+        {
+          "label": "Fredrik",
+          "name": "Fredrik",
+          "share": 0.017
+        },
+        {
+          "label": "Toni Wahrstätter",
+          "name": "Toni Wahrstätter",
+          "org": "EF",
+          "role": "리서처",
+          "handle": "nero_eth",
+          "avatar": "https://pbs.twimg.com/profile_images/1858347774129094657/xUc7IS2K_400x400.jpg",
+          "share": 0.016
+        },
+        {
+          "label": "lightclient",
+          "name": "lightclient (Matt Garnett)",
+          "org": "EF",
+          "role": "geth",
+          "handle": "lightclients",
+          "avatar": "https://pbs.twimg.com/profile_images/1554130973935030274/wHWuxuTT_400x400.jpg",
+          "share": 0.011
+        },
+        {
+          "label": "Greg K | Lido",
+          "name": "Greg K",
+          "org": "Lido",
+          "share": 0.009
+        },
+        {
+          "label": "terence",
+          "name": "Terence Tsao",
+          "org": "Offchain Labs",
+          "role": "Prysm",
+          "handle": "terencechain",
+          "avatar": "https://pbs.twimg.com/profile_images/1767254738008240129/7hA2_fDm_400x400.jpg",
+          "share": 0.008
+        },
+        {
+          "label": "Csaba",
+          "name": "Csaba",
+          "share": 0.008
+        },
+        {
+          "label": "Jerome de Tychey",
+          "name": "Jerome de Tychey",
+          "share": 0.008
+        },
+        {
+          "label": "Pooja Ranjan",
+          "name": "Pooja Ranjan",
+          "org": "ECH Institute",
+          "handle": "poojaranjan19",
+          "avatar": "https://pbs.twimg.com/profile_images/2056372532299571200/Z-EwXzEQ_400x400.jpg",
+          "share": 0.006
+        },
+        {
+          "label": "nixo",
+          "name": "Nixo",
+          "org": "EF Protocol Support",
+          "role": "ACDE 진행",
+          "handle": "nixorokish",
+          "avatar": "https://pbs.twimg.com/profile_images/2086847437277478912/F-w_Sq0y_400x400.jpg",
+          "share": 0.002
+        },
+        {
+          "label": "Justin Florentine",
+          "name": "Justin Florentine",
+          "org": "Besu",
+          "share": 0.002
+        },
+        {
+          "label": "marc | wolovim",
+          "name": "marc",
+          "org": "wolovim",
+          "share": 0.002
+        }
+      ],
+      "chat": [
+        {
+          "speaker": "Fredrik",
+          "text": "세폴리아가 괜찮은지 확인한 뒤 후디 날짜를 잡는 편이 낫고, 세폴리아와 후디 사이에 최소 2주는 두는 것이 이상적이다.",
+          "timestamp": "00:32:30"
+        },
+        {
+          "speaker": "potuz",
+          "text": "참고로 300 MGas로 가면 글램스터담에서 혼잡 상황의 예상 페이로드 크기는 2MB이고, 이런 크기를 정기적으로 보게 될 것이다.",
+          "timestamp": "00:38:10"
+        },
+        {
+          "speaker": "Toni Wahrstätter",
+          "text": "EIP-8411은 해야 한다. BAL 사이드카 가치의 상당 부분을 흡수하며, 특히 이른 BAL 마감과 함께 가면 큰 이득이다.",
+          "timestamp": "00:40:33"
+        }
+      ],
+      "glossary": [
+        {
+          "term": "SFI",
+          "def": "Scheduled for Inclusion, 포크 포함이 확정된 상태"
+        },
+        {
+          "term": "CFI",
+          "def": "Considered for Inclusion, 포크 포함을 공식 검토하는 상태"
+        },
+        {
+          "term": "PFI",
+          "def": "Proposed for Inclusion, 포크 후보로 접수된 상태"
+        },
+        {
+          "term": "DFI",
+          "def": "Declined for Inclusion, 포크 후보에서 제외된 상태"
+        },
+        {
+          "term": "QUIC",
+          "def": "TCP를 대체하는 UDP 기반의 최신 전송 프로토콜"
+        },
+        {
+          "term": "MPLEX",
+          "def": "노드 간 연결에 쓰여 온 구식 스트림 다중화 프로토콜로 폐기 예정"
+        },
+        {
+          "term": "빌더",
+          "def": "블록 제작을 전문으로 맡아 검증자에게 입찰하는 주체"
+        },
+        {
+          "term": "PQ",
+          "def": "포스트 퀀텀(post-quantum), 양자컴퓨터 공격을 견디는 암호 체계"
+        }
+      ],
+      "eips": [
+        8015,
+        8146,
+        8237,
+        8243,
+        8321,
+        8341,
+        8363,
+        8365,
+        8367,
+        8375,
+        8411
+      ],
+      "relatedDebates": [
+        "eip-8363-tapered-issuance-burn"
+      ],
+      "telegramMessageId": 1589
+    },
     {
       "id": "ama-15",
       "series": "ama",
@@ -11916,13 +12550,13 @@
     "currentFork": {
       "name": "글램스터담",
       "stage": "테스트넷 단계",
-      "line": "세폴리아 10월 6일 확정 · 후디 미정 · 섀도포크 다음 주"
+      "line": "세폴리아 10월 6일 확정 · 후디 10월 27일 잠정 · 클라이언트 릴리스 9월 29일까지"
     },
     "nextFork": {
       "name": "헤고타",
       "stage": "범위 정하는 중",
-      "line": "SFI 1건(EIP-8141) · 보류 4건 · 11월 3일까지 범위 확정"
+      "line": "헤드라이너 EIP-8141 확정 · CFI 8015 · PFI 8411 · 8365 축소 CFI 대기"
     },
-    "basis": "acdt-96"
+    "basis": "acdc-187"
   }
 }
