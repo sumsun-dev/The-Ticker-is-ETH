@@ -60,9 +60,9 @@ jobs:
 
       - name: Fetch ETH news sources
         run: npx tsx scripts/fetch-eth-news.ts
-        # 스크립트가 TWITTER_BUDGET_MS(기본 15분)에서 스스로 수집을 접고 기록하므로
+        # 스크립트가 TWITTER_BUDGET_MS(기본 20분)에서 스스로 수집을 접고 기록하므로
         # 이 상한은 그 뒤 단계(포크캐스트·기록)를 위한 여유분이다. 여기서 잘리면 수집분이 전량 폐기된다
-        timeout-minutes: 20
+        timeout-minutes: 25
         env:
           CI: 'true'
           TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
