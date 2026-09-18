@@ -44,13 +44,20 @@ git push -q origin main
 echo "$items" > "$STATE"
 
 # 브리프를 채널에 올린다. 게시하면 telegramMessageId가 박히므로 그대로 커밋해
-# 다음 실행(여기서도, 매일 도는 run-eth-digest.sh에서도)이 같은 회차를 다시 올리지 않는다
-CALLS_CHAT=@thetickeriseth CALLS="ama-$NUM" npx tsx scripts/post-calls-telegram.ts
-git add src/data/eth-calls.json
-git diff --cached --quiet || (
-  git commit -q -m "chore: 레딧 AMA Pt.$NUM 채널 게시 기록 [automated]" &&
-  git fetch origin -q &&
-  git rebase --autostash origin/main -q &&
-  git push -q origin main
-)
+# 매일 도는 run-eth-digest.sh가 같은 회차를 다시 올리지 않는다.
+# CALLS=<id>는 post-calls-telegram.ts에서 selectForChannel을 건너뛰어 그 검사를 받지 않으므로
+# (재확인 크론은 회차당 여러 번 돈다) 여기서 직접 기록을 보고 재게시를 막는다
+posted=$(node -p "require('./src/data/eth-calls.json').calls.find((c) => c.id === 'ama-$NUM')?.telegramMessageId ?? ''")
+if [ -n "$posted" ]; then
+  echo "[SKIP] Pt.$NUM은 이미 채널에 올렸다 (message $posted). 정리 내용만 갱신했다"
+else
+  CALLS_CHAT=@thetickeriseth CALLS="ama-$NUM" npx tsx scripts/post-calls-telegram.ts
+  git add src/data/eth-calls.json
+  git diff --cached --quiet || (
+    git commit -q -m "chore: 레딧 AMA Pt.$NUM 채널 게시 기록 [automated]" &&
+    git fetch origin -q &&
+    git rebase --autostash origin/main -q &&
+    git push -q origin main
+  )
+fi
 echo "완료"
