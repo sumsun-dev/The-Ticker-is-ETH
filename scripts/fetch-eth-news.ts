@@ -20,6 +20,15 @@ dotenv.config({ path: path.resolve(process.cwd(), '.env') });
 const OUTPUT = path.resolve(process.cwd(), 'src/data/eth-news-inbox.json');
 const USER_AGENT = 'eck-news-bot/1.0 (+https://ethcollective.xyz)';
 
+/**
+ * 트위터 수집 시간 상한. 계정이 늘어 한 바퀴가 스텝 상한을 넘기면 러너가 프로세스를 죽이고,
+ * 인박스 기록이 맨 끝 한 번뿐이라 그때까지 받은 것이 통째로 사라진다
+ * (2026-09-18 실측: 98개 중 70개까지 받고 전량 폐기, 커밋 단계까지 skip).
+ * 상한에 닿으면 남은 계정을 포기하고 받은 만큼 기록한다. 타임라인은 매번 최근 50건을 다시 받으므로
+ * 하루 걸러도 다음 실행에서 복구된다.
+ */
+const TWITTER_BUDGET_MS = Number(process.env.TWITTER_BUDGET_MS ?? 15 * 60_000);
+
 const FEEDS = [
   { source: 'ef-blog', url: 'https://blog.ethereum.org/en/feed.xml' },
   { source: 'ethresearch', url: 'https://ethresear.ch/latest.rss' },
@@ -78,8 +87,13 @@ async function collectTwitter(): Promise<NewsItem[]> {
 
   const timelineItems: NewsItem[] = [];
   const replyItems: NewsItem[] = [];
+  const startedAt = Date.now();
   for (let i = 0; i < accounts.length; i++) {
     const { screenname } = accounts[i];
+    if (Date.now() - startedAt > TWITTER_BUDGET_MS) {
+      console.warn(`[WARN] 트위터 수집 ${Math.round(TWITTER_BUDGET_MS / 60_000)}분 상한 — 남은 ${accounts.length - i}개 계정은 다음 실행으로 넘긴다`);
+      break;
+    }
     if (i > 0) await sleep(500);
     try {
       const tweets = (await fetchTweets('timeline', screenname)).slice(0, 50);

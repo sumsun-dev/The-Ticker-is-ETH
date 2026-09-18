@@ -19,7 +19,7 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     # 세션 장애 시 재시도 루프로 몇 시간씩 매달리는 것 방지. 단계별 상한(아래)의 합보다 여유 있게
-    timeout-minutes: 45
+    timeout-minutes: 60
 
     steps:
       - uses: actions/checkout@v4
@@ -60,7 +60,9 @@ jobs:
 
       - name: Fetch ETH news sources
         run: npx tsx scripts/fetch-eth-news.ts
-        timeout-minutes: 15
+        # 스크립트가 TWITTER_BUDGET_MS(기본 15분)에서 스스로 수집을 접고 기록하므로
+        # 이 상한은 그 뒤 단계(포크캐스트·기록)를 위한 여유분이다. 여기서 잘리면 수집분이 전량 폐기된다
+        timeout-minutes: 20
         env:
           CI: 'true'
           TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
@@ -70,7 +72,10 @@ jobs:
           X_RAPIDAPI_KEY: ${{ secrets.X_RAPIDAPI_KEY }}
 
       # 다이제스트 생성·송출은 VPS 크론(scripts/vps/run-eth-digest.sh)에서 헤드리스로 처리
+      # 수집 단계가 하나 실패해도 그때까지 모은 데이터는 남긴다.
+      # always()이므로 잡은 여전히 빨간불로 남아 실패 신호는 유지된다 (2026-09-18: 수집 성공분 전량 유실)
       - name: Commit and push if changed
+        if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
