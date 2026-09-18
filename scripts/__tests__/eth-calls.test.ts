@@ -353,10 +353,15 @@ describe('채널 자동 게시 대상', () => {
     ...over,
   });
 
-  it('should never pick an AMA record for the channel', () => {
-    // 2026-09-17: 새 AMA 레코드가 러너의 자동 게시에 걸려 채널로 나갔다 (오너가 삭제)
+  it('should pick AMA records for the channel alongside core dev calls', () => {
+    // 2026-09-17에는 AMA를 제외했다가, Pt.15를 수동으로 올린 뒤 2026-09-18 오너가 자동 전환을 승인했다
     const calls = [call(), call({ id: 'ama-15', series: 'ama', number: 15, date: '2026-09-16' })];
-    expect(selectForChannel(calls, { cutoff: '2026-09-01', since: '2026-09-07' }).map((c) => c.id)).toEqual(['acde-245']);
+    expect(selectForChannel(calls, { cutoff: '2026-09-01', since: '2026-09-07' }).map((c) => c.id)).toEqual(['acde-245', 'ama-15']);
+  });
+
+  it('should skip an AMA already posted to the channel', () => {
+    const calls = [call({ id: 'ama-15', series: 'ama', number: 15, date: '2026-09-16', telegramMessageId: 1591 })];
+    expect(selectForChannel(calls, { cutoff: '2026-09-01', since: '2026-09-07' })).toEqual([]);
   });
 
   it('should skip records already posted, older than the cutoff, or not summarized', () => {

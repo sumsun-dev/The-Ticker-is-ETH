@@ -15,6 +15,11 @@ export const CALL_SERIES: Record<string, { pill: string; name: string; ko: strin
 };
 /** 결정·토론까지 정리하는 시리즈. 나머지(브레이크아웃 등)는 제목과 링크만 기록한다 */
 export const FULL_SERIES = ['acde', 'acdc', 'acdt'] as const;
+/**
+ * 채널에 자동으로 올리는 시리즈. 코어 개발자 콜에 AMA를 더한다
+ * (오너 2026-09-18: Pt.15를 수동으로 올린 뒤 자동 전환 승인. 그전까지는 DM으로만 보냈다)
+ */
+const CHANNEL_SERIES: readonly string[] = [...FULL_SERIES, 'ama'];
 
 export const CALL_STATUSES = ['SFI', 'CFI', 'PFI', 'DFI', '보류', '확정', '일정', '기타'] as const;
 export type CallStatus = (typeof CALL_STATUSES)[number];
@@ -698,9 +703,8 @@ export function plainLength(html: string): number {
 
 /** 커버용: 헤드라인·리드·결정 칩 */
 /**
- * 채널에 자동으로 올릴 콜 고르기. 코어 개발자 콜(FULL_SERIES)만 대상이다.
- * AMA는 제외한다: 아카이브에는 싣지만 채널 자동 게시는 승인받은 적이 없고,
- * 2026-09-17 새 AMA 레코드가 이 조건에 걸려 채널로 나가는 사고가 있었다 (오너가 삭제).
+ * 채널에 자동으로 올릴 콜 고르기. 코어 개발자 콜과 AMA(CHANNEL_SERIES)가 대상이다.
+ * AMA는 2026-09-17에 한 번 제외했다가(승인 전 자동 게시 사고, 오너가 삭제) Pt.15를 수동으로 올린 뒤 다시 포함했다.
  * 명시적으로 CALLS=<id>를 주면 이 함수를 거치지 않으므로 수동 게시는 그대로 가능하다.
  */
 export function selectForChannel(
@@ -708,7 +712,7 @@ export function selectForChannel(
   opts: { cutoff: string; since: string; limit?: number },
 ): CallRecord[] {
   return calls
-    .filter((c) => (FULL_SERIES as readonly string[]).includes(c.series))
+    .filter((c) => CHANNEL_SERIES.includes(c.series))
     .filter((c) => c.kind === 'full' && c.date >= opts.cutoff && c.date >= opts.since && !c.telegramMessageId)
     .slice(0, opts.limit ?? 3);
 }
