@@ -108,14 +108,28 @@ function fitCallCover() {
   while (tags && tags.children.length > 1 && tags.scrollWidth > tags.clientWidth) tags.lastElementChild?.remove();
 }
 
-async function telegram(token: string, method: string, body: FormData | Record<string, unknown>): Promise<number | undefined> {
-  const res = await fetch(`https://api.telegram.org/bot${token}/${method}`, {
-    method: 'POST',
-    ...(body instanceof FormData ? { body } : { headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) }),
-  });
-  const json = (await res.json()) as { ok?: boolean; description?: string; result?: { message_id?: number } };
-  if (!json.ok) throw new Error(`telegram ${res.status}: ${json.description ?? 'unknown error'}`);
-  return json.result?.message_id;
+/**
+ * 텔레그램 발송. 429(Too Many Requests)는 몇 초 기다리면 풀리는데 재시도가 없어
+ * AMA Pt.15 브리프가 통째로 유실됐다 (2026-09-18: `telegram 429: retry after 5` 한 번에 포기, 수동 재발송으로 복구).
+ * 응답이 알려주는 retry_after만큼 기다렸다 다시 보낸다. 그 외 오류는 이전처럼 그대로 던진다.
+ */
+async function telegram(token: string, method: string, body: FormData | Record<string, unknown>, tries = 3): Promise<number | undefined> {
+  for (let attempt = 1; ; attempt++) {
+    const res = await fetch(`https://api.telegram.org/bot${token}/${method}`, {
+      method: 'POST',
+      ...(body instanceof FormData ? { body } : { headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) }),
+    });
+    const json = (await res.json()) as { ok?: boolean; description?: string; parameters?: { retry_after?: number }; result?: { message_id?: number } };
+    if (json.ok) return json.result?.message_id;
+    const retryAfter = json.parameters?.retry_after;
+    // 상한 60초. 그보다 긴 제한은 기다릴 가치가 없어 그냥 실패시킨다
+    if (res.status === 429 && retryAfter !== undefined && retryAfter <= 60 && attempt < tries) {
+      console.warn(`  [WARN] telegram 429 — ${retryAfter}초 후 재시도 (${attempt}/${tries - 1})`);
+      await new Promise((resolve) => setTimeout(resolve, (retryAfter + 1) * 1000));
+      continue;
+    }
+    throw new Error(`telegram ${res.status}: ${json.description ?? 'unknown error'}`);
+  }
 }
 
 /** 채널 브리프 시작일. 자동 실행은 이 날짜 이후 콜만 올린다 (첫 채널 브리프 ACDT #95, 2026-09-09 게시) */
