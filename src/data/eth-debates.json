@@ -356,7 +356,8 @@
         "quotes": 134,
         "replies": 366,
         "views": 684596
-      }
+      },
+      "publish": true
     },
     {
       "id": "glamsterdam-gaslimit-client-readiness",
