@@ -967,7 +967,8 @@
         "ethereum-zcash-privacy-competitor",
         "tx-format-ship-first-vs-permissionless",
         "eip-8363-tapered-issuance-burn"
-      ]
+      ],
+      "telegramMessageId": 1595
     },
     {
       "id": "acdt-96",
