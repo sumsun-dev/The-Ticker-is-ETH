@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-18T01:11:40.297Z",
+  "updatedAt": "2026-09-19T01:10:38.971Z",
   "calls": [
     {
       "id": "acdc-187",
@@ -643,17 +643,17 @@
       "title": "EF 프로토콜 AMA 15회",
       "forkcastUrl": "https://www.reddit.com/r/ethereum/comments/1wf48x3/ama_we_are_ef_protocol_pt_15_16_september_2026/",
       "kind": "full",
-      "headline": "발행 보조금은\n지속 불가능",
-      "lead": "저스틴 드레이크가 현 스테이킹 보상 구조를 지속 불가능하다고 진단했다",
-      "intro": "이더리움 재단 프로토콜 클러스터(옛 EF 리서치)가 레딧 r/ethereum에서 여는 공개 질의응답이다.",
-      "summary": "발행량 축소와 양자내성 전환에 질문이 가장 많이 몰렸다. 재단 연구진은 개인 의견을 전제로 현 스테이킹 보상이 지속 불가능하다는 진단을 내놨고, 2029년 12월 양자내성 L1이 공식 약속이 됐다는 점, 원안 단일슬롯 완결성은 사실상 폐기됐다는 점도 확인해 줬다.",
-      "whyItMatters": "발행량 논쟁은 ETH 보유자 전체의 희석과 리도 같은 유동 스테이킹 토큰 집중 문제와 직결되는데, 재단 핵심 연구자들이 축소 쪽에 서 있다는 사실이 분명해졌다. 양자내성은 2029년 12월이라는 시한이 공식 목표로 굳었고, 그 대가로 짧은 슬롯 같은 성능 업그레이드는 뒤로 밀린다. 완결 시간 단축과 실시간 증명은 일반 사용자의 체감 속도와 노드 운영 문턱을 바꿀 변화다.",
+      "headline": "양자내성 L1\n2029년 말 목표",
+      "lead": "재단이 양자내성 전환을 공식 일정으로 못박고 포크별 계획을 내놨다",
+      "intro": "이더리움 재단 프로토콜 클러스터가 레딧 r/ethereum에서 여는 공개 질의응답이다.",
+      "summary": "발행량 곡선과 스테이킹 비중, 양자내성 전환 일정에 질문이 가장 많이 몰렸다. 재단 연구자들은 현 스테이킹 유인이 지속 불가능하다는 개인 의견을 공개적으로 밝혔고, 양자내성은 2029년 12월 완료라는 공식 목표와 포크별 단계 계획으로 답했다.",
+      "whyItMatters": "양자내성이 최우선 과제로 확정되면서 퀵 슬롯 같은 성능 업그레이드는 당분간 뒤로 밀린다는 점이 분명해졌다. 발행량 축소는 아직 합의 전이지만 재단 연구자가 요건을 명시하고 EIP를 준비 중이라고 밝혀 논쟁이 구체적 제안 단계로 넘어간다. 실시간 증명이 사실상 검증됐다는 답은 검증자 하드웨어 부담을 낮추는 zkEVM 전환의 시간표를 앞당긴다.",
       "highlights": [
-        "저스틴 드레이크는 현 보상 구조를 경제적 유사에 비유하며, 이대로면 2020년대 말 스테이킹이 ETH 공급의 50%를 넘을 것으로 내다봤다.",
-        "벤 에징턴은 원안 단일슬롯 완결성이 죽었다고 인정했다. 대신 디커플드 합의로 완결 시간을 16분에서 4분으로 줄이는 단계적 개선을 예고했다.",
-        "저스틴 드레이크는 L1 실시간 증명의 위험이 깔끔하게 해소됐다고 평가했다. 재단 기준은 GPU 16장인데 ZisK는 4장으로 통과했고, 주요 zkVM 팀들이 2027년 2초 증명을 자신한다고 전했다.",
-        "tcoratger는 2029년 12월 양자내성 L1이 추정치가 아니라 프로토콜 클러스터의 명시적 약속이 됐다고 밝혔다. Q데이는 2030년을 공격적 가정으로 쓴다.",
-        "s0isp0ke는 Hegotá에서 EIP-8250과 7272가 실리면 L1 네이티브 프라이버시가 열리고, 자원이 충분하면 2028년 말 양자내성 익명 전송까지 가능하다고 봤다."
+        "저스틴 드레이크는 현 보상 곡선이면 2030년 전에 스테이킹 비중이 공급의 50%를 넘을 것으로 보고, 시장 압력 없이 연 1.5% 수익을 찍어 보장하는 현 구조를 경제적 유사에 빗대 지속 불가능하다고 답했다.",
+        "양자내성 일정이 추정치에서 공식 약속으로 바뀌었다. tcoratger는 2029년 12월까지 실행, 합의, 데이터 전 계층의 양자내성 완료가 프로토콜 클러스터의 명시적 목표라고 밝혔다.",
+        "저스틴 드레이크는 L1 실시간 증명의 리스크가 사실상 해소됐다며, ZisK는 GPU 4개로 목표를 통과하고 있고 여러 zkVM 팀이 2027년 2초 증명까지 낙관한다고 답했다.",
+        "s0isp0ke는 EIP-8250과 7272가 헤고타에 실리면 L1 네이티브 프라이버시가 열리고, EIP-8288 방식의 증명 집계가 더해지면 2028년 말 양자내성 프라이버시 거래도 가능하다는 개인 전망을 냈다.",
+        "벤 에징턴은 원래 구상한 싱글 슬롯 완결성은 사실상 폐기됐다고 인정하고, 대신 완결 시간을 16분에서 4분으로 줄이는 첫 단계부터 점진적으로 개선한다고 답했다."
       ],
       "decisions": [],
       "targets": [],
@@ -661,168 +661,183 @@
       "agenda": [],
       "topics": [
         {
-          "title": "발행량 곡선과 스테이킹 비율",
-          "intro": "스테이킹 비율이 무한정 오르는 것이 문제냐는 사전 질문에서 시작해, 발행량 축소가 포크에 오르려면 무엇이 필요한지, EIP-8363을 티어리스트에서 뺀 '다자 생태계 과정'은 누가 소집하는지까지 이어졌다. 재단 연구자 두 명이 개인 의견임을 전제로 축소 쪽 입장을 분명히 했고, 커뮤니티에서는 재단이 논의를 주도하라는 요구와 과격한 축소를 경계하는 반론이 함께 나왔다.",
+          "title": "발행량 곡선과 스테이킹 비중",
+          "intro": "스테이킹 비중이 35%에 달한 지금 상한 없는 성장 자체가 문제인지, 발행량 변경이 포크에 오르려면 무엇이 필요한지, EIP-8363을 거절한 근거가 무엇인지 질문이 이어졌다. 재단 연구자 두 명이 개인 의견임을 전제로 현 구조가 지속 불가능하다는 진단을 내놨다.",
           "positions": [
             {
               "speaker": "bobthesponge1",
-              "text": "저스틴 드레이크는 발행이 스테이커에게 최소 연 1.5% 명목 수익을 보장해 시장의 역압력이 없다고 지적했다. 6년간 4320만 ETH가 쌓였고 현 추세면 2020년대 말 50%를 넘는데, 이는 비스테이커의 선택권을 잠식하고 stETH 같은 가공된 ETH의 파편화와 리도류 대형 풀의 시스템 리스크를 키운다고 경고했다.",
+              "text": "저스틴 드레이크는 총 스테이크 규모와 무관하게 연 1.5% 명목 수익을 발행으로 보장하는 현 구조에는 시장의 역압력이 없어 지속 불가능하며, 2030년 전에 공급의 50%가 스테이킹될 것으로 본다고 답했다. 비스테이커의 희석 부담이 커지고 stETH 같은 가공된 ETH로 쏠리면서 리도처럼 시스템 리스크가 집중되는 점을 문제로 꼽았다.",
               "original": "does EF Protocol consider an unbounded staking ratio a problem The following is my opinion, not an official EF Protocol take :) I do see current staking incentives as problematic, unsustainable so. Regardless of total stake, Ethereum prints ETH to guarantee stakers at least 1.5%/year nominal yield. There is no market-driven backpressure, no price discovery driving the staking yield towards the organic cost of money. In six years of proof-of-stake we have accumulated 43.2M ETH stake, about one third of the supply. It's economic quicksand. Year after year, increasing amounts of ETH held by rational actors is sucked down the staking pit. Net staking inflows have held surprisingly steady, at roughly 20K ETH/day. As far as I can tell no defi application can plausibly compete in size with the 1.5%+/year subsidy: the opportunity cost of money simply isn't that high. This imbalance should continue pulling staking inflows. I expect we'll blow past 50% of the supply staked by decade end. Such high staking ratios are unhealthy for a number of reasons detailed below. erosion of optionality : Dilution is a transfer from non-stakers to stakers. So as the staked share grows, abstaining from staki"
             },
             {
               "speaker": "AElowsson",
-              "text": "안데르스 엘로우손(AElowsson)은 비율 35%인 지금도 한 달 넘는 진입 대기열이 보여주듯 보안에 과잉 지불하고 있으며, 특정 임계치를 기다리지 말고 발행량을 줄이는 편이 낫다고 답했다. 축소는 희석을 줄여 비스테이커는 물론 생태계 전체의 후생을 높인다고 봤다.",
+              "text": "안데르스 엘로우손은 한 달짜리 진입 대기열이 보여주듯 35%인 지금도 경제 보안에 과잉 지불 중이므로 특정 임계치를 기다리지 말고 발행량을 줄이는 편이 낫다고 답했다. 축소는 희석을 줄여 비스테이커를 포함한 보유자 전반의 후생을 높인다고 설명했다.",
               "original": "Speaking for myself, yes we need a design that ensures economic security, moderates the costs of achieving it, and upholds decentralization. We are already overpaying for economic security today at 35% (the month-long entry queue you mention indicates that we pay more than the marginal staker requires at this ratio), and the current reward curve increases total issuance as more ETH is staked. I expect welfare to decrease as the ratio rises under reasonable supply curves and would favor a change already, without waiting for the ratio to cross some particular threshold. The current reward curve compels users to incur higher costs than necessary for securing Ethereum (costs broadly defined to include hardware, labor, risks, illiquidity, taxes, etc.). Reducing issuance improves welfare by lowering these costs in aggregate. All ETH holders gain directly from the reduced dilution. As a non-staker, you would clearly benefit from reducing it. Those who stop staking give up the rewards but also avoid the associated costs. They lose only the surplus above their reservation yield, and may come out ahead once the reduced dilution is counted. Even remaining stakers may profit directly, if the s"
             },
             {
               "speaker": "AElowsson",
-              "text": "안데르스 엘로우손(AElowsson)은 발행량 변경의 포크 진입 조건으로 러프 컨센서스를 들고 세 가지를 제시했다. 솔로 스테이커의 플러스 수익을 보존하는 단순한 설계, 스테이킹 비용을 반영한 확률적 균형 모형, 후생 개선을 설명하는 근거다. 이런 방향의 EIP를 직접 작업 중이라고 밝혔다.",
+              "text": "안데르스 엘로우손은 발행량 변경의 포크 요건으로 대략적 커뮤니티 합의를 제시하며, 솔로 스테이커의 플러스 수익을 보존하는 단순한 설계, 스테이크 규모와 구성에 대한 확률적 균형 모델, 후생 개선 근거 설명 세 가지를 꼽았다. 이런 방향의 EIP를 직접 작업 중이라고 밝혔다.",
               "original": "An issuance change requires rough community consensus. The community decision process is difficult to define top-down, but I believe that the following three things would be required for consensus: A simple design with well-understood incentive effects that preserves positive regular yield for diligent solo stakers under normal network conditions. I favor the approach outlined here , which can be implemented in just a few lines in the pyspec. In this design, there is always a positive staking yield, and issuance is maintained at a level relative to the base rewards where solo stakers receive steady rewards even without special-duty assignments (like proposing). A probabilistic equilibrium model of the quantity and composition of stake that accounts for the costs (broadly defined to include hardware, labor, risks, illiquidity, taxes, etc.) associated with staking. This is the appropriate format for discussing how a reduction affects the ecosystem. A rationale that clearly explains the expected welfare gains and trade-offs, and which may extend beyond the EIP as general community outreach. Naturally, client implementations and testing would also need to meet the normal requirements f"
             },
             {
               "speaker": "AElowsson",
-              "text": "EIP-8363을 다룰 '다자 과정'에 대해 안데르스 엘로우손(AElowsson)은 특정 주체가 결정하지 않는 과정이며 이미 수년째 공개 포럼에서 진행 중이라 새로 시작할 것이 없다고 답했다. EIP-8363은 여러 설계안 중 하나로 장점 기준으로 평가돼야 한다고 했다.",
+              "text": "안데르스 엘로우손은 EIP-8363 평가에서 언급된 멀티 노드 프로세스는 누가 새로 소집하는 것이 아니라 ethresear.ch와 코어 개발자 콜에서 수년째 진행돼 온 공개 논의 그 자체이며, 8363은 여러 설계 중 하나로 장점에 따라 평가되면 된다고 답했다.",
               "original": "Answering the three questions: Who convenes the process? To me, “multi-node” means that no single party decides the outcome. Different participants can help convene discussions, while any eventual change requires rough community consensus. In practice, the process should involve researchers inside and outside the EF, client teams, staking operators, etc., to each produce their input and argue it out in the open on ethresear.ch , Ethereum Magicians and the core dev calls. The protocol cluster should participate in that as part of the ecosystem. That is how I read the tier list. When does the process start? The process started around half a decade ago with early research posts on issuance policy, and has been ongoing ever since in the relevant forums. We are all part of the process and it does not need to be started anew. Does it start from the EIP-8363 spec as the working draft or from a blank page? The process started a long time ago and we have been writing the pages ever since. EIP-8363 is one design among several possible ones, and these ideas should all be evaluated on their merits."
             },
             {
               "speaker": "bluepintail",
-              "text": "커뮤니티 쪽 bluepintail은 현 곡선이 비스테이킹 ETH의 기회비용을 계속 키워 무허가 자산의 성격을 훼손한다며, 참여를 넘어 재단이 직접 합의 형성을 주도해 달라고 요구했다.",
+              "text": "커뮤니티 참여자 bluepintail은 현 발행 곡선이 장기적으로 비스테이킹 ETH의 기회비용을 계속 키워 무허가 자산의 성격을 훼손한다며, 재단이 참여를 넘어 합의 형성을 주도해 달라고 요구했다.",
               "original": "I'm not EF but I believe this is a serious flaw in Ethereum's issuance curve. I believe in the long run it will undermine ETH as a permissionless asset (since the opportunity cost associated with holding unstaked ETH keeps increasing), and will increase the likelihood of capture by centralised entities. At present the signs are not good. The Robust Incentives Group is no more. EF leadership figures have by and large chosen not to participate in the issuance debate. I would welcome the EF playing a leadership role in consensus building on this topic, because many loud voices are not incentive aligned with the long term health of the protocol."
             }
           ]
         },
         {
           "title": "양자내성 전환",
-          "intro": "Hegotá가 여는 양자내성 계정 이행 경로, 전체 마이그레이션 순서, 5월 이후 상황 변화까지 질문이 여러 갈래로 나왔다. 답변의 공통 골자는 단일 포크가 아닌 실행, 합의, 데이터 세 계층의 순차 전환이고, 2029년 12월 완료가 공식 목표라는 것이다.",
+          "intro": "양자내성으로 가는 업그레이드 경로, Frames가 당장 여는 것과 나중에 필요한 것, 5월 이후 일정 변화에 대한 질문이 많았다. 재단 쪽 답은 2029년 12월 완료 목표와 포크별 단계 계획으로 모아졌다.",
           "positions": [
             {
               "speaker": "tcoratger",
-              "text": "tcoratger는 프레임즈(EIP-8141)가 계정 인증을 프로그래머블하게 만들어 하드포크 없이 새 서명 방식을 도입할 길을 즉시 연다고 설명했다. 다만 기존 EOA가 secp256k1을 완전히 버리려면 EIP-8298과 8151이 함께 필요하고, 이후 포크들은 효율화와 표준화를 맡는다고 했다.",
-              "original": "Frames unlocks the important part immediately: cryptographic agility. With EIP-8141, account validation becomes programmable at the protocol level, so new signature schemes can be introduced without a hard fork for each one. That gives accounts a native path toward PQ authentication instead of being permanently tied to secp256k1. But Frames alone does not fully retire secp256k1 for existing EOAs. The Hegotá package also needs EIP-8298 and EIP-8151: the first turns a delegated account into a real smart-contract account, and the second prevents legacy ecRecover-based authentication once code is installed. Together, those are the path for removing secp256k1 as the account’s master key. What comes later is mostly efficiency and standardization. Hegotá deliberately does not enshrine a specific PQ scheme such as ML-DSA; the point of Frames is that schemes can compete and evolve without another fork. The roadmap currently places leanSPHINCS transactions in future forks, together with the broader minimum-viable PQ milestone. So I would frame it as: Hegotá gives us the account architecture needed to leave secp256k1; later forks make a concrete PQ path efficient and deployable at scale."
-            },
-            {
-              "speaker": "vbuterin",
-              "text": "비탈릭 부테린은 프레임즈로 EOA와 같은 성질의 양자내성 계정이 가능해지지만 남는 문제는 효율이라고 답했다. SPHINCS 서명은 가스가 10만에서 25만으로 ECDSA의 4천에 비해 크게 비싸므로, 멤풀에서 서명을 증명으로 묶는 EIP-8288을 Hegotá 다음 포크에 넣고 싶다고 했다.",
-              "original": "Frames makes it possible to have quantum-safe accounts that have all the same properties that you expect of EOAs (alongside other features). The main problem that it does not solve is efficiency. An ECDSA signature costs ~4000 gas (including computation and data). A quantum-safe SPHINCS- signature costs 100k-250k gas depending on parameters. This is a large increase in cost. The EIP that is most likely to deliver large improvements in cost efficiency is EIP-8288 (see also: my post here https://firefly.social/post/x/2097711433073172837 ), which allows these signatures to get aggregated and replaced by proofs in the mempool, so the computation and data never needs to go onchain directly. That will also make privacy on Ethereum vastly cheaper. I am hoping we can get 8288 included in I* (the fork after Hegota)."
-            },
-            {
-              "speaker": "bobthesponge1",
-              "text": "저스틴 드레이크는 스트로맵상 I* 포크가 PQ 공개키 레지스트리와 leanVM을 깔고, J* 포크가 합의 하트비트, leanDA, leanSPHINCS 트랜잭션으로 세 계층에 양자내성 암호를 배치한다고 정리했다. leanSPHINCS를 I*로 앞당기는 안을 띄우는 등 일정이 일부 빨라질 수 있다고 덧붙였다.",
-              "original": "Which upcoming Ethereum upgrades are designed to make the protocol compatible with post-quantum cryptography, and what is the migration path? The strawmap now has purple quantum emojis to easily identify the 9 items that involve post-quantum cryptography. In I* we have: pubkey registry : infrastructure for validators to register the PQ equivalent of their BLS pubkey leanVM : the centerpiece of the PQ strategy, in a production-grade state I* lays the foundation for a big J* fork which deploys PQ cryptography at all three layers: CL : PQ heartbeat, for liveness DL : PQ data availability (aka leanDA) EL : PQ transactions (aka leanSPHINCS) It's possible timelines will partially accelerate. For example, I have recently been floating the idea of moving leanSPHINCS from J* to I*."
+              "text": "tcoratger는 5월 이후 양자 하드웨어 상황이 근본적으로 변하지는 않았지만, 이더리움 쪽에서는 2029년이 추정에서 명시적 커밋으로 바뀌었다고 답했다. Q데이를 2030년으로 잡는 공격적 가정 아래 2029년 12월까지 양자내성 L1을 완성한다는 목표다.",
+              "original": "I don’t think the picture has fundamentally changed since May. Neutral-atom systems are still one of the most performant and scalable hardware approaches worth watching closely, alongside superconducting and trapped-ion systems, but we still do not have a cryptographically relevant quantum computer or a reliable date for one. What has changed on the Ethereum side is that 2029 has moved from an estimate to an explicit Protocol commitment. The Protocol cluster is now targeting a quantum-resistant L1 across execution, consensus and data by December 2029, while using Q-day in 2030 as an intentionally aggressive planning assumption. We plan to reassess that assumption with external quantum experts soon as the hardware picture evolves. We have also turned the transition into concrete tentative fork milestones. I* tentatively introduces the PQ public-key registry. J* tentatively targets a minimum viable PQ Ethereum with the PQ consensus heartbeat, leanSPHINCS transactions and leanDA sampling. Full PQ consensus, including post-quantum attestations and proof aggregation, follows on the path to full resistance by the end of 2029. So the main evolution since May is not that we suddenly know Q"
             },
             {
               "speaker": "tcoratger",
-              "text": "tcoratger는 5월 이후 양자 하드웨어 상황이 근본적으로 달라지지는 않았지만, 2029년 12월 양자내성 L1이 추정이 아닌 프로토콜 클러스터의 명시적 약속으로 바뀐 것이 가장 큰 변화라고 답했다. Q데이 2030년은 의도적으로 공격적인 계획 가정이며 외부 전문가들과 재점검할 예정이라고 했다.",
-              "original": "I don’t think the picture has fundamentally changed since May. Neutral-atom systems are still one of the most performant and scalable hardware approaches worth watching closely, alongside superconducting and trapped-ion systems, but we still do not have a cryptographically relevant quantum computer or a reliable date for one. What has changed on the Ethereum side is that 2029 has moved from an estimate to an explicit Protocol commitment. The Protocol cluster is now targeting a quantum-resistant L1 across execution, consensus and data by December 2029, while using Q-day in 2030 as an intentionally aggressive planning assumption. We plan to reassess that assumption with external quantum experts soon as the hardware picture evolves. We have also turned the transition into concrete tentative fork milestones. I* tentatively introduces the PQ public-key registry. J* tentatively targets a minimum viable PQ Ethereum with the PQ consensus heartbeat, leanSPHINCS transactions and leanDA sampling. Full PQ consensus, including post-quantum attestations and proof aggregation, follows on the path to full resistance by the end of 2029. So the main evolution since May is not that we suddenly know Q"
+              "text": "tcoratger는 이행 경로를 설명했다. 실행 계층에서는 EIP-8141로 계정 인증을 프로그래밍 가능하게 만들고, 합의 계층은 PQ 공개키 레지스트리 등록부터 시작해 소규모 검증자 집합에서 leanXMSS 서명을 시험한 뒤, 전체 검증자 집합에서는 leanVM이 서명을 하나의 STARK 증명으로 재귀 집계한다.",
+              "original": "Ethereum’s post-quantum migration is a sequence of upgrades across execution, consensus, and data availability rather than a single fork. On execution, EIP-8141 makes account authentication programmable. Today EOAs are tied to ECDSA; with programmable authentication, accounts can adopt a post-quantum signature scheme such as leanSPHINCS and later change schemes again without having to move funds to a new account. Consensus is harder because BLS gives us both small signatures and native aggregation. The current path starts with a post-quantum public-key registry, allowing validators to generate and register their leanXMSS keys well before they are needed. We can then deploy a PQ heartbeat on the smaller ~512-validator available chain, using raw leanXMSS signatures without aggregation. This lets us test PQ signatures and their networking impact on the real protocol before making the proving system consensus-critical. For the full validator set, sending raw signatures is not viable. Instead, leanVM verifies and recursively aggregates the leanXMSS signatures into a single STARK proof. Essentially, we replace BLS’s mathematical aggregation with proof aggregation. The same infrastructure"
+            },
+            {
+              "speaker": "vbuterin",
+              "text": "비탈릭 부테린은 Frames로 EOA와 같은 성질의 양자안전 계정이 가능해지지만 효율이 문제라고 답했다. ECDSA 서명이 약 4천 가스인 데 비해 SPHINCS 계열은 10만에서 25만 가스라서, 멤풀에서 서명을 증명으로 집계하는 EIP-8288이 비용을 크게 낮출 핵심이며 헤고타 다음 포크 포함을 희망한다고 밝혔다.",
+              "original": "Frames makes it possible to have quantum-safe accounts that have all the same properties that you expect of EOAs (alongside other features). The main problem that it does not solve is efficiency. An ECDSA signature costs ~4000 gas (including computation and data). A quantum-safe SPHINCS- signature costs 100k-250k gas depending on parameters. This is a large increase in cost. The EIP that is most likely to deliver large improvements in cost efficiency is EIP-8288 (see also: my post here https://firefly.social/post/x/2097711433073172837 ), which allows these signatures to get aggregated and replaced by proofs in the mempool, so the computation and data never needs to go onchain directly. That will also make privacy on Ethereum vastly cheaper. I am hoping we can get 8288 included in I* (the fork after Hegota)."
+            },
+            {
+              "speaker": "tcoratger",
+              "text": "tcoratger는 Frames가 당장 확보하는 것은 하드포크 없이 새 서명 방식을 도입할 수 있는 암호 민첩성이고, 기존 EOA가 secp256k1을 완전히 벗어나려면 헤고타의 EIP-8298과 8151이 함께 필요하다고 답했다. 특정 PQ 방식은 일부러 고정하지 않았다고 덧붙였다.",
+              "original": "Frames unlocks the important part immediately: cryptographic agility. With EIP-8141, account validation becomes programmable at the protocol level, so new signature schemes can be introduced without a hard fork for each one. That gives accounts a native path toward PQ authentication instead of being permanently tied to secp256k1. But Frames alone does not fully retire secp256k1 for existing EOAs. The Hegotá package also needs EIP-8298 and EIP-8151: the first turns a delegated account into a real smart-contract account, and the second prevents legacy ecRecover-based authentication once code is installed. Together, those are the path for removing secp256k1 as the account’s master key. What comes later is mostly efficiency and standardization. Hegotá deliberately does not enshrine a specific PQ scheme such as ML-DSA; the point of Frames is that schemes can compete and evolve without another fork. The roadmap currently places leanSPHINCS transactions in future forks, together with the broader minimum-viable PQ milestone. So I would frame it as: Hegotá gives us the account architecture needed to leave secp256k1; later forks make a concrete PQ path efficient and deployable at scale."
+            },
+            {
+              "speaker": "bobthesponge1",
+              "text": "저스틴 드레이크는 스트로맵 기준으로 I* 포크에 PQ 공개키 레지스트리와 leanVM이 들어가고, J* 포크가 합의의 PQ 하트비트, leanDA, leanSPHINCS 거래까지 세 계층에 양자내성 암호를 배치한다고 답했다. leanSPHINCS를 I*로 앞당기는 아이디어도 띄우고 있다고 했다.",
+              "original": "Which upcoming Ethereum upgrades are designed to make the protocol compatible with post-quantum cryptography, and what is the migration path? The strawmap now has purple quantum emojis to easily identify the 9 items that involve post-quantum cryptography. In I* we have: pubkey registry : infrastructure for validators to register the PQ equivalent of their BLS pubkey leanVM : the centerpiece of the PQ strategy, in a production-grade state I* lays the foundation for a big J* fork which deploys PQ cryptography at all three layers: CL : PQ heartbeat, for liveness DL : PQ data availability (aka leanDA) EL : PQ transactions (aka leanSPHINCS) It's possible timelines will partially accelerate. For example, I have recently been floating the idea of moving leanSPHINCS from J* to I*."
             }
           ]
         },
         {
-          "title": "zkEVM 실시간 증명과 프로토콜 단순화",
-          "intro": "실시간 증명이 얼마나 가까운지, 증명 도입이 중앙화를 심화시키지 않는지, 업그레이드마다 커지는 복잡도를 어디서 덜어낼지가 이어졌다. 재단 쪽 답은 증명 성능은 이미 검증됐고, 새 기능만큼 오래된 기계장치를 걷어내는 것이 계획의 핵심이라는 것이다.",
+          "title": "L1 zkEVM과 프로토콜 단순화",
+          "intro": "실시간 증명이 실제로 얼마나 가까운지, 게스트 프로그램은 몇 개가 되는지, 업그레이드마다 커지는 복잡도를 어떻게 줄일지 물었다. 재단 쪽은 증명 성능은 이미 검증됐고, zkEVM과 양자내성 전환을 오래된 기계장치를 걷어내는 기회로 삼겠다고 답했다.",
           "positions": [
             {
               "speaker": "bobthesponge1",
-              "text": "저스틴 드레이크는 L1 실시간 증명이 깔끔하게 리스크 해소됐다고 평가했다. 재단 기준은 GPU 16장에 10kW인데 ZisK는 4장으로 통과했고, OpenVM, SP1, ZisK 모두 2초 증명이 가능하다고 보며 2027년 달성에 낙관적인 팀도 있다고 전했다.",
+              "text": "저스틴 드레이크는 L1 실시간 증명의 리스크가 이미 깔끔하게 해소됐다고 답했다. 재단이 제시한 GPU 16개, 10kW 기준을 ZisK는 4개로 통과하고 있으며, 주요 zkVM 팀 모두 2초 증명이 달성 가능하다고 보고 일부는 2027년 실현까지 낙관한다고 전했다.",
               "original": "how close are we honestly As astonishing as it may sound, I believe real-time proving for Ethereum L1 has now been cleanly derisked. RISC-V zkVMs (e.g. OpenVM, SP1, ZisK) are capable of proving mainnet with all the requirements set by the EF. On power draw and GPU count, the EF is targeting a 16-GPU 10kW setup. Teams like ZisK are breezing through with significantly fewer GPUs, e.g. just 4. what happens to the roadmap if latency stalls at, say, 10 seconds? I'd question the premise that proving latency may stall at 10 seconds. By today's standards 10-sec latency is already sluggish. Proving latency should continue dropping like a rock. I have discussed 2-sec proving for 99.9% of mainnet blocks with each of OpenVM, SP1, ZisK. None of these teams doubt this is achievable, with several bullish on 2-sec proving by 2027."
             },
             {
               "speaker": "Safe_Stop_931",
-              "text": "Safe_Stop_931은 증명 생성이 이미 중앙화된 블록 빌딩을 더 밀어붙일 수 있음을 인정했다. 다만 비싼 연산을 빌더와 프루버에 몰고 검증자의 검증은 가스 한도와 무관하게 싸게 유지하는 것이 교환 조건이며, GPU 16장 미만으로 단일 프루버 요건을 낮춰 증명 참여층을 넓히는 것이 목표라고 답했다.",
-              "original": "Block building on mainnet is already quite centralised, and we agree that adding proof generation pushes it further in that direction. Regarding distributed proving, Jordi from the Zisk team has this Ethresearch post that you might find interesting. Distributed proving may face challenges with proof-building latency, mainly depending on upcoming changes to the gas limit and available proving time. A simpler strategy is to keep pushing for better efficiency in single-prover hardware requirements (e.g., less than 16 GPUs) so this doesn't become a strong centralisation force. To take a step back, Ethereum has already implicitly accepted that builder resource requirements can be significantly higher than those of the average validator, and Glamsterdam further enshrines this direction. With zkEVMs, we double down on this asymmetry: builders and provers may require more specialised hardware, but in return we can dramatically reduce the work required of validators by making payload validation effectively independent of the block gas limit. This is an important part of the trade-off. Rather than requiring every validator to scale its hardware alongside execution throughput, expensive compu"
+              "text": "Safe_Stop_931은 지난 1년간 사양, 테스트, 성능, 도구 전반에서 진전이 컸고, 지금 가장 큰 걸림돌은 기술이 아니라 양자내성 등 다른 과제와의 우선순위 조정이라고 답했다. 다음 이정표는 증명을 선택 사항으로 도입하는 EIP-8025의 헤고타 포함 결정이다.",
+              "original": "There has been a lot of progress in the last year on multiple fronts: execution specs with specs and tests for guest programs are very advanced, multiple zkVMs have made lots of progress on performance and security, many ELs and guest programs are already passing spec tests regarding execution witness generation and block validation , a lot of open-source tooling for proof generation and benchmarking has been created, breakout calls have openly shared and discussed many fronts of the effort, among many other things. Our team has collected most of what we think is relevant in this repo : in particular, you can see the progress document . The “main obstacle” is probably deciding on ACD prioritisation with regard to other needs such as PQ. The next most important milestone is the decision on EIP-8025 in Hegota, which we think is a low-ask to settle much of last year's progress , so we can lower maintenance work while focusing on other projects within our team (e.g. PQ upcoming changes)."
             },
             {
               "speaker": "vbuterin",
-              "text": "비탈릭 부테린은 단기적으로 없앨 후보로 거의 안 쓰는 프리컴파일의 EVM 바이트코드 대체, 머클 패트리샤 트리의 파티션드 바이너리 트리(EIP-8297) 교체, RLP의 SSZ 교체, SELFDESTRUCT 제거, 싱크 커미티의 ZK 증명 대체 등을 열거했다.",
+              "text": "비탈릭 부테린은 단기 제거 후보로 거의 쓰이지 않는 프리컴파일의 EVM 바이트코드 대체, 머클 패트리샤 트리의 파티션 이진 트리 전환, RLP의 SSZ 전환, SELFDESTRUCT 완전 제거, 싱크 커미티의 ZK 증명 대체 등을 열거했다.",
               "original": "Shorter term, I'd excited about getting rid of: Precompiles (especially the ones we almost never use already) - do a fork that swaps each precompile in-place with a blob of EVM bytecode that does the same thing. The only chance people would notice is that those ops get 10-100x more expensive, but that's fine if they're almost never used anyway. The Merkle patricia tree - the proposed partitioned binary tree (PBT) ( https://eips.ethereum.org/EIPS/eip-8297 ) is significantly cleaner and more efficient RLP - SSZ is significantly cleaner and more efficient Finally getting rid of the SELFDESTRUCT opcode more fully The concept of delegation - with PBT we're moving to a world where contracts store pointers to code that lives in a separate tree, so deploying many copies of a contract with the same code is cheap, and there are EIPs already being proposed to make that code hash editable. The sync committee - replace it with just doing ZK proofs of the consensus layer The current LMD-GHOST Gasper consensus - the proposed few-slot-finality designs are significantly simpler and more rigorous, at the same time as being more performant."
             },
             {
               "speaker": "vbuterin",
-              "text": "비탈릭 부테린은 장기적으로 EVM 자체를 프로토콜에서 빼는 것이 야심찬 희망이라고 했다. RISC-V를 네이티브 명령어 집합으로 삼으면 EVM은 상위 레이어의 변환 계약으로 내려가 합의에 필수적이지 않게 된다는 구상이다.",
+              "text": "비탈릭 부테린은 장기적으로 EVM 자체를 프로토콜의 공식 요소에서 내리는 것이 야심찬 희망이라고 답했다. RISC-V를 사용자에게 직접 노출하고 EVM은 필요한 쪽만 쓰는 상위 구성물로 분리하면 큰 효율 개선이 가능하다고 봤다.",
               "original": "My longer-term ambitious hope is that we can eventually de-enshrine the EVM itself. We are already starting to move in the direction of enshrining RISC-V as an ISA, both for internal use and to expose to users (eg. in EIP-8288 ). RISC-V is simply a much simpler, more modern and more efficient (eg. no need to put everything including yes/no flags and counters into 256-bit registers) ISA than the EVM, and furthermore current zkEVMs are being implemented by writing an EVM interpreter in RISC-V. So if you expose RISC-V as an ISA to users directly (including for all smart contract writing), you are cutting out the middleman, potentially with massive efficiency savings. At that point, there is no reason for the EVM to be an \"official\" part of the protocol. We already have ways to translate EVM into RISC-V. We would already have the ability to execute RISC-V as an execution ISA in ethereum directly. So all we have to do is properly separate out those components, and have the EVM-to-RISC-V compilation happen as a higher-level construction for those who need it (eg. it's a specialized delegation contract), and then it's not consensus-critical for anyone else who does not need to bother with"
             },
             {
-              "speaker": "bobthesponge1",
-              "text": "저스틴 드레이크는 zkVM의 증명 오버헤드가 범용 연산 기준 현재 약 1만 배라며, 소프트웨어와 하드웨어에서 각각 10배씩 줄여 100배 수준까지 내려가는 경로가 보인다고 답했다.",
-              "original": "What is the \"endgame\" for zkVMs? Is it 10x computational overhead? It's hard to tell. For certain types of structured compute (e.g. AI inference or pure hashing) getting close to 10x overhead may indeed be possible under some circumstances. For general purpose compute, e.g. the emulation of a RISC-V zkVM, we're currently at roughly 10,000x overhead. Ballpark, one CPU core can run RISC-V at 1GHz but only prove it at 100KHz. One reasonable-sounding potential endgame for general compute is that overhead converges towards the security parameter. In other words, with 128-bit security, every proving every bit of compute may cost ~128 bits of compute. I could see a path reducing today's four orders-of-magnitude (OOM) overhead to just two OOMs: one OOM via software, and one OOM via hardware."
+              "speaker": "Safe_Stop_931",
+              "text": "Safe_Stop_931은 증명 생성이 블록 빌딩 중앙화를 심화시킨다는 점을 인정하면서, 대신 검증자 쪽 부담은 가스 한도와 무관하게 가볍게 유지된다는 것이 교환 조건이라고 답했다. GPU 16개 미만으로 단일 증명자 요구 사양을 낮추는 것이 대응책이라고 했다.",
+              "original": "Block building on mainnet is already quite centralised, and we agree that adding proof generation pushes it further in that direction. Regarding distributed proving, Jordi from the Zisk team has this Ethresearch post that you might find interesting. Distributed proving may face challenges with proof-building latency, mainly depending on upcoming changes to the gas limit and available proving time. A simpler strategy is to keep pushing for better efficiency in single-prover hardware requirements (e.g., less than 16 GPUs) so this doesn't become a strong centralisation force. To take a step back, Ethereum has already implicitly accepted that builder resource requirements can be significantly higher than those of the average validator, and Glamsterdam further enshrines this direction. With zkEVMs, we double down on this asymmetry: builders and provers may require more specialised hardware, but in return we can dramatically reduce the work required of validators by making payload validation effectively independent of the block gas limit. This is an important part of the trade-off. Rather than requiring every validator to scale its hardware alongside execution throughput, expensive compu"
             }
           ]
         },
         {
-          "title": "완결성과 슬롯 시간",
-          "intro": "몇 년째 이야기되던 단일슬롯 완결성이 디커플드 합의에 흡수되면서 원안이 죽은 것 아니냐는 질문, 가용 체인의 재편성 위험, 에스랩스가 제안한 10초 퀵 슬롯이 왜 우선순위에서 밀렸는지가 다뤄졌다.",
-          "positions": [
-            {
-              "speaker": "benjaminion",
-              "text": "벤 에징턴은 원안 단일슬롯 완결성이 사실상 죽었다고 봤다. 모든 문제를 한꺼번에 풀어야 해 몇 년이 걸리는 대신, 디커플드 합의로 완결 시간을 16분에서 4분으로 줄이는 것부터 단계적으로 개선하고, 최종적으로 1~2슬롯 완결이 가능하다고 답했다. 양자내성 암호가 이를 다소 늦출 수는 있다고 했다.",
-              "original": "Tl;dr In my view, SSF as originally pitched is indeed dead. Nevertheless, we are working towards similar time to finality in the endgame. The challenge with jumping straight to single-slot finality (or its evolution, three-slot finality ) is that you need to solve everything before you can really deliver anything . Many factors play into time to finality: validator consolidation, networking design, efficient post-quantum aggregation, to name a few. If we have a hard target of, say, three slots to gather attestations from the whole validator set (twice), we have to make progress simultaneously on all these fronts, and there would be no finality improvement until they are all solved. With this constraint, faster finality could still be many years away. Decoupling consensus allows us to make continual progress towards faster finality: improving time to finality (TTF) in steps as we incrementally roll-out improvements, measure and observe their behaviour, and feed those learnings into the next round of upgrades. This is better project management, better risk management, and delivers much earlier benefits both to users and the protocol (a more secure fork choice and a clearer path to PQ"
-            },
-            {
-              "speaker": "robertosef",
-              "text": "robertosef는 골드피시가 동기 네트워크에서는 정직한 제안자의 블록이 절대 밀려나지 않는, 가스퍼에 없는 보장을 주지만, 네트워크 교란 중에는 깊이와 무관하게 재편성이 가능해질 수 있다고 인정했다. 보완으로 체인 앞부분을 굳히는 메모리 있는 안정화 가젯을 계획 중이라고 했다.",
-              "original": "With respect to today, in some respects it does, and in others it doesn't Where Goldfish reduces reorg risk Goldfish guarantees that, under synchrony and honest-majority participation, any block proposed by an honest proposer will never be reorged out. Gasper does not provide the same guarantee. An adversary that can control the network can perform ex-ante reorg or balancing attacks on a block proposed by an honest validator. Goldfish also allows committees to be selected via VRFs, so committee membership is not known far in advance. This reduces the risk of targeted DoS attacks or bribery against committee members, which further improves reorg resilience. Where Goldfish can be more reorg-prone The reorg-resilience guarantee above holds with certainty only under network synchrony. During even a short network disruption, that guarantee no longer holds with certainty, regardless of how deep a block is in the available chain. This does not mean that a network disruption will necessarily cause those blocks to be reorged. It means that, once synchrony is lost, there are scenarios in which a reorg becomes possible. Gasper provides better resilience to short periods of network disruption "
-            },
-            {
-              "speaker": "justintraglia",
-              "text": "저스틴 트라글리아는 퀵 슬롯이 좋은 아이디어지만 지금은 때가 아니라고 답했다. 양자내성 서명은 메시지가 크고 검증이 느려 짧은 슬롯과 상충하며, 빠른 확인 규칙과 디커플드 합의가 사용자 경험을 대신 개선할 것이라고 했다.",
-              "original": "In my opinion, Quick Slots is a good idea but it's just not the right time to make such a change. It will make accomplishing our other objectives (most notably PQ) more difficult. For example, PQ will increase message sizes and shorter slots will reduce the time nodes have to propagate messages. I suspect that PQ signatures will also be slower to sign/verify than BLS. And I believe that changing the slot duration will be more complex than we imagine; within the protocol it's fairly well-understood but I'm afraid there are edge cases outside of the protocol we haven't thought of yet. The big benefit of Quick Slots is faster inclusion time and I just don't think it's worth it. I believe that waiting until after J* to reduce the slot duration is acceptable. Other improvements, such as the fast confirmation rule and decoupled consensus, will improve user experience."
-            },
-            {
-              "speaker": "bobthesponge1",
-              "text": "저스틴 드레이크는 퀵 슬롯 자체에 강한 의견은 없고 제2의 R&D 엔진이 될 수 있는 에스랩스에 우호적이라면서도, 양자내성이 계속 관심을 빨아들여 짧은 슬롯, 빠른 완결, 블롭 확대 같은 성능 업그레이드는 이후 포크들에서 상대적으로 덜 다뤄질 것으로 예상했다.",
-              "original": "> Why does the EF not see quick slots as a Hegota S or A tier priority The following is a personal take, not an EF-wide one. I don't have a strong opinion on the fundamentals of 10-sec quick slots in H*. I do however lean supportive of the proposal in so far that I'm sympathetic to the Ethlabs team and their potential to blossom as second R&D engine complementing the Ethereum Foundation. Having said the above, I do expect post-quantum to continue sucking the air out of the room. This may come at the expense of performance upgrades (like shorter slots, faster finality, more blobs, increased gas limit) receiving comparatively less love in I*, J*, K*."
-            }
-          ]
-        },
-        {
-          "title": "L1 네이티브 프라이버시",
-          "intro": "이더리움도 지캐시처럼 익명 전송이 가능해지느냐는 질문에 재단 쪽이 구체적 일정과 설계를 내놨다. 이미 프라이버시 L2와 앱이 있는데 왜 L1에 넣느냐는 커뮤니티 비판도 나왔다.",
+          "title": "L1 프라이버시",
+          "intro": "이더리움이 지캐시 같은 실드 거래를 갖게 되는지, 내장 프라이버시 풀이 실제 결제를 감당할 물건인지 물었고, 이미 L2가 있는데 왜 L1에 넣느냐는 비판도 나왔다. 재단 쪽은 단일 풀을 고정하지 않는 접근과 구체적 시간표로 답했다.",
           "positions": [
             {
               "speaker": "s0isp0ke",
-              "text": "s0isp0ke는 Hegotá(2027)에서 EIP-8250과 7272가 실리면 L1 네이티브 프라이버시가 열린다고 답했다. 지캐시와 달리 단일 풀을 프로토콜에 박지 않고 여러 프라이버시 앱이 경쟁하게 하며, 자원이 충분하면 개인 의견으로 2028년 말까지 양자내성 프라이버시 전송도 가능하다고 봤다.",
+              "text": "s0isp0ke는 헤고타에서 EIP-8250과 7272가 실리면 L1 네이티브 프라이버시가 열리고, 지캐시와 달리 단일 풀을 프로토콜에 고정하지 않고 여러 프라이버시 앱이 경쟁하게 한다고 답했다. 멤풀에서 PQ 증명을 집계하는 단계까지 마치면 2028년 말 양자내성 익명 거래도 가능하다는 개인 의견을 냈다.",
               "original": "Yes Ethereum will natively support shielded transactions (even though the exact properties differ from what Zcash is doing) here is the plan: By Hegota (2027), if we ship EIP-8250 and EIP-7272, this unlocks native privacy on the L1, meaning all the transactions from privacy applications on Ethereum will benefit from the trustless and censorship resistance guarantees given by the public mempool and FOCIL. The biggest difference with Zcash is that we don’t enshrine one single privacy pool in the protocol, instead we make private transactions first class citizens but allow many different privacy apps to flourish on Ethereum. The next crucial step will be to unlock post quantum privacy transactions, and for this we need something like EIP-8288 that allows to recursively aggregate PQ privacy proofs in the mempool at scale. My personal opinion is that it should be possible to ship the second part by the end of 2028 if we dedicate enough resources to it. After completing both steps we get native, PQ privacy on Ethereum L1 and users can transact anonymously, at scale."
             },
             {
               "speaker": "bobthesponge1",
-              "text": "저스틴 드레이크는 스트로맵상 스테이킹된 ETH를 기본 실드 처리하고 나머지는 웜홀로 연결하는 구상을 소개했다. 스테이크가 공급의 50%에서 상한되면 약 6천만 ETH, 현 시세로 1천억 달러가 넘는 익명성 집합이 생겨 지캐시의 실드 ZEC 약 60억 달러를 크게 앞선다고 했다.",
+              "text": "저스틴 드레이크는 스트로맵상 스테이킹된 ETH를 기본 실드 처리하고 비스테이킹 ETH는 웜홀로 연결하는 구상을 소개했다. 스테이크가 공급의 50%에서 제한되면 약 6천만 ETH, 현 시세로 1천억 달러가 넘는 익명성 집합이 생겨 실드된 ZEC 약 60억 달러와 비교해 압도적이라고 답했다.",
               "original": "Will Ethereum have properties of Zcash (eg. shielded txs), so that users may transact annonymously IMO we have an exciting roadmap for Zcash-grade shielded ETH transactions at Ethereum L1. The current strawmap suggests having staked ETH be shielded by default, with non-staked ETH having the option to plug into it via so-called wormholes. (For details see the \"CL-enshrined shielded pool\" and \"wormholes\" boxes under the \"longer term\" strawmap column. See also the privacy section of Vitalik's extremely lean chain idea.) With stake capping at 50% of the ETH supply we can expect the CL-enshrined pool to enjoy on the order of 60M ETH from stakers. At current ETH prices that's over $100B, sufficient to bootstrap a best-in-class anonymity set. For comparison, there's currently roughly $6B of shielded ZEC."
             },
             {
               "speaker": "bobthesponge1",
-              "text": "저스틴 드레이크는 네이티브 실드 전송의 최대 걸림돌이 SNARK 건전성 버그였다고 짚었다. 지캐시는 위조 발행을 허용하는 치명적 버그를 두 번 겪었는데, AI 덕에 실용화된 종단간 형식검증으로 이 리스크를 풀겠다고 답했다.",
+              "text": "저스틴 드레이크는 실드 전송의 역사적 걸림돌이 지캐시에서 두 차례 있었던 SNARK 건전성 버그 같은 위험이었고, AI 덕에 실용화된 끝단 형식검증이 해법이라며 재단이 암호 형식검증에 크게 투자하고 있다고 답했다.",
               "original": "I would say yes, at least with high probability. One of the big historical impediments towards native support of ETH shielded transfers has been SNARK soundness bugs. Zcash has historically had two critical bugs which allowed an attacker to stealthily print unlimited amounts of counterfeit shielded ZEC. This is not an acceptable risk for Ethereum L1. The solution to SNARK soundness bugs is end-to-end formal verification. This is a form of extreme due-diligence which has become particularly practical in recent months thanks to AI. The Ethereum Foundation is going big on cryptographic formal verification (see verified-zkevm.org), and now has explicit \"wormhole\" and \"CL-enshrined shielded pool\" boxes on the strawmap :)"
             },
             {
               "speaker": "s0isp0ke",
-              "text": "s0isp0ke는 인샤인드 프라이버시 풀이 실제 결제 볼륨을 감당할 때만 추진할 가치가 있다면서도, Hegotá 이후에는 프로토콜에 박지 않은 불변 앱으로도 거의 같은 성질을 얻을 수 있어 인샤인 여부 자체가 열린 문제라고 했다.",
+              "text": "s0isp0ke는 내장 프라이버시 풀은 실제 결제량을 감당할 때만 추진할 가치가 있다고 보며, 헤고타 이후에는 거의 같은 성질을 가진 불변 앱으로도 구현할 수 있어 프로토콜에 고정할 필요가 있는지 자체가 아직 열린 질문이라고 답했다.",
               "original": "In my opinion the idea of an enshrined privacy pool is only worth pursuing if meant to carry real settlement volume, but ofc it wouldn’t be able to accommodate all privacy use cases. Its most likely shape is to be the canonical pool for private ETH transfers, but to me it’s still an open question whether we even need to go all the way and enshrine it in the first place. After Hegota upgrades (8141/8250/8272) it could also live as a private, immutable app with almost the same exact properties. To answer the second part of your question, I think we will see a large range of private applications on L1 that compose or offer different features (e.g., private DeFi, private stablecoins, etc…) than the canonical lean privacy pool. And privacy L2s will be very useful for users that want to benefit from other properties (e.g., private contracts on Aztec)."
             },
             {
               "speaker": "ReasonableTree2461",
-              "text": "커뮤니티의 ReasonableTree2461은 레일건이나 아즈텍처럼 이미 프라이버시를 제공하는 앱과 L2가 있는데, L1 기능이 새 용례를 실제로 여는지 검증해 봤느냐고 비판했다. 프라이빗 전송 재현에 그친다면 자원 낭비이자 기존 프로젝트 죽이기라는 지적이다.",
+              "text": "커뮤니티 참여자 ReasonableTree2461은 Railgun이나 Aztec 같은 기존 프로젝트가 이미 있는데 L1 프라이버시가 새 사용처를 여는지 검증해 봤느냐고 비판하며, 사적 전송 이상을 실제로 만들어 보면 사적 공유 상태 같은 문제가 곧바로 드러날 것이라고 지적했다.",
               "original": "Why are privacy features being added to L1 when there are already smart contracts and L2s that provide privacy (and in some cases more advanced privacy features than what you’re planning)? One might say you’re just building for the intellectual stimulation of it, and likely making the same mistakes that private L1s and private L2s made: building infra without thinking about whether it unlocks any new or useful apps. If the outcome of the new privacy features is that you’ll only be able to rebuild existing apps/L2s like Railgun, Privacy Pools, TC, Miden, Aztec, Semaphore, then that seems like a bad approach. You’ll waste resources, make the protocol more complicated, won’t have unlocked any more use cases, and might kill projects that chose to build on Ethereum. Have you stepped back and thought about whether your privacy features will actually unlock new use cases and apps that aren’t already possible on Ethereum L1/L2? Have you tried to build on existing L2s? Have you tried to design ambitious apps on L1 testnets that contain the proposed privacy features? I imagine you’ve not tried to build much beyond private transfers (which are already possible), because you’d quickly realise "
             }
           ]
         },
         {
-          "title": "클라이언트 자금난과 다양성",
-          "intro": "여러 클라이언트 팀이 자금난이라는 보도를 두고 자금 지원과 클라이언트 다양성 보존 방법을 묻는 질문이 여럿 나왔다. 재단 쪽은 문제의 실재를 인정하면서도 구조적 긴장을 설명했다.",
+          "title": "합의 개편과 완결성 시간",
+          "intro": "몇 년째 얘기되던 싱글 슬롯 완결성이 디커플드 합의로 흡수되면서 원안이 죽은 것인지, 사용 가능 체인이 리오그에 더 취약해지는 것은 아닌지, 10초 퀵 슬롯은 왜 후순위인지 물었다.",
+          "positions": [
+            {
+              "speaker": "benjaminion",
+              "text": "벤 에징턴은 원래 구상한 싱글 슬롯 완결성은 죽었다고 보며, 모든 문제를 한 번에 풀어야 하는 접근 대신 디커플드 합의로 단계적으로 개선한다고 답했다. 첫 단계는 완결 시간을 약 16분에서 4분으로 줄이는 4배 개선이고, 궁극적으로는 슬롯 한두 개 수준이 가능하다고 봤다.",
+              "original": "Tl;dr In my view, SSF as originally pitched is indeed dead. Nevertheless, we are working towards similar time to finality in the endgame. The challenge with jumping straight to single-slot finality (or its evolution, three-slot finality ) is that you need to solve everything before you can really deliver anything . Many factors play into time to finality: validator consolidation, networking design, efficient post-quantum aggregation, to name a few. If we have a hard target of, say, three slots to gather attestations from the whole validator set (twice), we have to make progress simultaneously on all these fronts, and there would be no finality improvement until they are all solved. With this constraint, faster finality could still be many years away. Decoupling consensus allows us to make continual progress towards faster finality: improving time to finality (TTF) in steps as we incrementally roll-out improvements, measure and observe their behaviour, and feed those learnings into the next round of upgrades. This is better project management, better risk management, and delivers much earlier benefits both to users and the protocol (a more secure fork choice and a clearer path to PQ"
+            },
+            {
+              "speaker": "robertosef",
+              "text": "robertosef는 골드피시 설계가 동기 네트워크와 정직 다수 아래에서는 정직한 제안자의 블록이 절대 리오그되지 않는, 현행 개스퍼에는 없는 보장을 준다고 답했다. 다만 네트워크 교란 시에는 깊이와 무관하게 리오그 가능성이 생기므로 체인 앞부분을 안정화하는 기억 가젯을 추가할 계획이라고 했다.",
+              "original": "With respect to today, in some respects it does, and in others it doesn't Where Goldfish reduces reorg risk Goldfish guarantees that, under synchrony and honest-majority participation, any block proposed by an honest proposer will never be reorged out. Gasper does not provide the same guarantee. An adversary that can control the network can perform ex-ante reorg or balancing attacks on a block proposed by an honest validator. Goldfish also allows committees to be selected via VRFs, so committee membership is not known far in advance. This reduces the risk of targeted DoS attacks or bribery against committee members, which further improves reorg resilience. Where Goldfish can be more reorg-prone The reorg-resilience guarantee above holds with certainty only under network synchrony. During even a short network disruption, that guarantee no longer holds with certainty, regardless of how deep a block is in the available chain. This does not mean that a network disruption will necessarily cause those blocks to be reorged. It means that, once synchrony is lost, there are scenarios in which a reorg becomes possible. Gasper provides better resilience to short periods of network disruption "
+            },
+            {
+              "speaker": "justintraglia",
+              "text": "저스틴 트라글리아는 퀵 슬롯이 좋은 아이디어지만 지금은 때가 아니라고 답했다. 양자내성 서명은 메시지를 키우고 검증을 느리게 하는데 슬롯 단축은 전파 시간을 줄여 서로 충돌하며, 빠른 포함의 이점은 빠른 확인 규칙과 디커플드 합의로 상당 부분 대체된다고 봤다.",
+              "original": "In my opinion, Quick Slots is a good idea but it's just not the right time to make such a change. It will make accomplishing our other objectives (most notably PQ) more difficult. For example, PQ will increase message sizes and shorter slots will reduce the time nodes have to propagate messages. I suspect that PQ signatures will also be slower to sign/verify than BLS. And I believe that changing the slot duration will be more complex than we imagine; within the protocol it's fairly well-understood but I'm afraid there are edge cases outside of the protocol we haven't thought of yet. The big benefit of Quick Slots is faster inclusion time and I just don't think it's worth it. I believe that waiting until after J* to reduce the slot duration is acceptable. Other improvements, such as the fast confirmation rule and decoupled consensus, will improve user experience."
+            },
+            {
+              "speaker": "bobthesponge1",
+              "text": "저스틴 드레이크는 퀵 슬롯 자체에 강한 의견은 없지만, 양자내성이 계속 자원을 빨아들여 이후 서너 개 포크에서 슬롯 단축, 블롭 확대, 가스 한도 상향 같은 성능 업그레이드가 상대적으로 밀릴 것으로 예상한다고 답했다.",
+              "original": "> Why does the EF not see quick slots as a Hegota S or A tier priority The following is a personal take, not an EF-wide one. I don't have a strong opinion on the fundamentals of 10-sec quick slots in H*. I do however lean supportive of the proposal in so far that I'm sympathetic to the Ethlabs team and their potential to blossom as second R&D engine complementing the Ethereum Foundation. Having said the above, I do expect post-quantum to continue sucking the air out of the room. This may come at the expense of performance upgrades (like shorter slots, faster finality, more blobs, increased gas limit) receiving comparatively less love in I*, J*, K*."
+            }
+          ]
+        },
+        {
+          "title": "클라이언트 자금과 탈중앙화",
+          "intro": "여러 클라이언트 팀의 자금난을 어떻게 풀 것인지, 검증자 집중을 막을 EIP는 왜 밀렸는지 물었다. 재단 쪽은 중립성과 안정적 자금의 근본적 긴장을 인정하면서 티어리스트의 오류 하나를 공개 정정했다.",
           "positions": [
             {
               "speaker": "uuill_eth",
-              "text": "프로토콜 클러스터 코디네이터인 uuill_eth는 신뢰중립성과 중앙계획식 자금 지원이 근본적으로 긴장 관계라고 답했다. 확실하게 돈을 대는 단일 주체는 곧 영향력이 되기 때문이다. 6월 개편 이후 그랜트가 개방형 지원에서 성과물 중심으로 바뀌어 여러 팀의 자금 불확실성이 커진 점은 인정했다.",
+              "text": "프로토콜 클러스터 코디네이터 uuill_eth는 신뢰 중립적인 클라이언트와 안정적으로 지급하는 단일 자금원은 서로 긴장 관계라 어떤 단일 지급자도 영향력의 거점이 된다고 답했다. 6월 개편 이후 그랜트가 포괄 지원에서 산출물 중심으로 바뀌면서 일부 팀의 자금 불확실성이 커진 점도 인정했다.",
               "original": "Thanks for the question. Speaking for myself here, as one of the people coordinating the Protocol cluster at the EF. Not for the EF, and not for any client team. I care a lot about client diversity, public goods funding, and governance. These are all difficult and important topics. Client diversity in particular is a property that makes Ethereum resilient in a way no other L1 has managed. Where I think the framing of your question goes a bit sideways is \"we are incapable of securing funding.\" The harder truth is that two things we want are in tension: credible neutrality and centrally planned funding. We want client teams to be independent and credibly neutral, and we want someone (or a fund or a mechanism) to reliably fund them. Unfortunately, any single payer that reliably pays, whether the EF, a consortium of the largest stakeholders, or an in-protocol mechanism, or single coordinator of allocating funds becomes a point of influence over the thing it funds. None of that makes the current pressure less real. I am hearing the same thing you are: several client teams are under real strain right now. Consider EF Protocol an interested party that takes this seriously. We work with th"
             },
             {
               "speaker": "uuill_eth",
-              "text": "uuill_eth는 인재층과 클라이언트 수는 어느 L1보다 훌륭하지만, 신뢰중립을 지키면서 굴러가는 수익 모델은 여전히 미해결이라고 진단했다. 건강한 L1에 가장 크게 의존하는 쪽이 비용 분담에 나서야 더 빨리 풀린다고 봤다.",
+              "text": "uuill_eth는 인재와 클라이언트 수는 어느 L1보다 훌륭하지만 중립성을 지키며 수익을 내는 모델은 여전히 미해결이라며, 건강한 L1에 가장 크게 의존하는 주체들이 비용을 분담하기로 하면 해결이 빨라진다고 답했다.",
               "original": "Speaking for myself again, and I will keep this shorter since I covered the funding mechanics in my reply to 5dayoldburrito (linked below). My read on health: the depth of talent is incredible, the client count is fantastic, but building a revenue model that lets client teams stay credibly neutral is still unsolved. Ethereum has more independent production clients than any other L1 (and new ones are still entering), which is remarkable given how hard the last year has been. However, a healthy client ecosystem can change fast and that is the thing Trent and others are sounding the alarm about. What I can say from inside Protocol: we are close with these teams. We are on calls with them every week, we see the challenges as they happen, and we are working through several of them together right now, this week included. It has not been an easy year for many kinds of teams in this ecosystem. I think we get there, and I think we get there faster if the parties that depend most on a healthy L1 decide they have a stake in paying for it. https://www.reddit.com/r/ethereum/comments/1wf48x3/comment/pa6bssw/"
             },
             {
               "speaker": "bobthesponge1",
-              "text": "저스틴 드레이크는 합의 계층 클라이언트 다양성은 L1 보안에 계속 핵심이며 라이트하우스 쏠림이 우려스럽다고 답했다. 반면 실행 계층은 zkEVM 증명이 의무화되면 검증자에게 실행 클라이언트의 의미가 줄어, 다양성의 중요성도 대부분 옅어질 것으로 봤다.",
+              "text": "저스틴 드레이크는 합의 클라이언트 다양성은 계속 보안의 핵심이며 라이트하우스 지배는 우려된다고 답했다. 반면 실행 클라이언트는 zkEVM 증명이 의무화되면 검증자에게 의미가 줄어들어, 다양성의 중요성이 장기적으로 대부분 사라질 것으로 봤다.",
               "original": "Do we need to be concerned about client diversity? I would distinguish CL client diversity from EL client diversity. CL clients are fundamental to the security of Ethereum L1. They are the substrate through which stakers exercise their duties, and as such will remain perennially close to the metal and relevant to L1 security. Lighthouse's dominance is indeed cause for concern. On the other hand, I expect EL client diversity to eventually lose most of its relevance and meaning for L1 security. Today's EL clients are consensus-bearing through their enforcement of the EL state transition function (STF). This EL STF is a purely deterministic function which makes it a perfect fit for formal verification (FV). The current plan is to leverage this FV-friendliness in the context of zkEVM proofs. We can have implementations of the EL STF in RISC-V assembly which are proven to be equivalent to the EL STF spec. In such an environment the spec (and the equivalence class of its faithful implementations) can effectively be the canonical implementation, with attesters enforcing the EL STF by verifying cheap zkEVM proofs. With mandatory zkEVM proofs EL clients may no longer be relevant for validat"
+            },
+            {
+              "speaker": "jihoonsong",
+              "text": "송지훈은 상관 페널티 EIP-7716에 대한 티어리스트 설명이 내부 소통 착오였다며 문구를 정정했다. 7716은 좋은 아이디어지만 스테이커 지형에 미칠 영향과 멀티 클라이언트 구성 같은 경계 사례에 연구가 더 필요해, 합의 계층을 가볍게 가져가는 이번 포크에서는 우선순위가 아니라고 답했다.",
+              "original": "There was some miscommunication regarding EIP-7716 internally and the note has been modified as follow: \"EIP-7716 increases penalties for correlated missed attestations. The impact on the current and future staker landscape, how effectively it reduces centralization forces, and edge cases such as multi-client setups that pause together during client disagreement all need more research and community discussion first. EIP-7716 is a good idea, but not a high priority in a fork where we are keeping CL scope light.\""
+            },
+            {
+              "speaker": "vbuterin",
+              "text": "비탈릭 부테린은 탈중앙화 유지를 위해 노드 운영을 로컬 LLM을 돌리는 정도의 난도로 낮추는 데 자원을 투입해야 한다고 답했다. zkEVM과 블록 접근 목록 같은 최근 기술이면 증명자와 빌더를 제외한 일반 노드는 그 수준까지 갈 수 있다고 봤다.",
+              "original": "One thing I am personally excited about, that we do really need to put resources toward, is making it easier to run nodes. We need to walk back from the present-day world where node-running is perceived as a scary thing for either devops professionals or hobbyists with extra cash and lots of spare time, and back to a world where a few components are like that (eg. provers and builders) but everything else is only as difficult to run as eg. a local LLM. The qwen 3.8 flash next that's currently sitting and running two parallel tasks on my laptop as I'm typing this is not a small thing: it takes up over half my RAM, it decreases my battery life 4x if I run it unplugged, and it was nontrivial to install. But nevertheless, not only does it run on my laptop, it does so without interfering with the rest of my work. With ZK-EVMs and BALs and other recent tech, it should be possible to get node running down to this level, or even further. The minimum that a properly-participating node would need to hold is the VOPS, everything else can be managed with proofs."
             }
           ]
         }
@@ -834,49 +849,49 @@
           "share": 1
         },
         {
-          "label": "AElowsson",
-          "name": "AElowsson",
-          "share": 0.5
-        },
-        {
           "label": "vbuterin",
           "name": "vbuterin",
-          "share": 0.45
+          "share": 0.68
         },
         {
           "label": "tcoratger",
           "name": "tcoratger",
-          "share": 0.34
+          "share": 0.58
+        },
+        {
+          "label": "AElowsson",
+          "name": "AElowsson",
+          "share": 0.57
         },
         {
           "label": "uuill_eth",
           "name": "uuill_eth",
-          "share": 0.33
-        },
-        {
-          "label": "s0isp0ke",
-          "name": "s0isp0ke",
-          "share": 0.28
+          "share": 0.37
         },
         {
           "label": "Safe_Stop_931",
           "name": "Safe_Stop_931",
-          "share": 0.17
+          "share": 0.35
         },
         {
-          "label": "benjaminion",
-          "name": "benjaminion",
-          "share": 0.17
-        },
-        {
-          "label": "robertosef",
-          "name": "robertosef",
-          "share": 0.17
+          "label": "s0isp0ke",
+          "name": "s0isp0ke",
+          "share": 0.31
         },
         {
           "label": "ReasonableTree2461",
           "name": "ReasonableTree2461",
-          "share": 0.17
+          "share": 0.19
+        },
+        {
+          "label": "benjaminion",
+          "name": "benjaminion",
+          "share": 0.19
+        },
+        {
+          "label": "robertosef",
+          "name": "robertosef",
+          "share": 0.19
         },
         {
           "label": "justintraglia",
@@ -885,51 +900,58 @@
           "role": "보안",
           "handle": "JustinTraglia",
           "avatar": "https://pbs.twimg.com/profile_images/1648459994256543744/fn_SnKW5_400x400.jpg",
-          "share": 0.13
+          "share": 0.14
         },
         {
           "label": "bluepintail",
           "name": "bluepintail",
-          "share": 0.09
+          "share": 0.1
+        },
+        {
+          "label": "jihoonsong",
+          "name": "jihoonsong",
+          "share": 0.08
         }
       ],
       "chat": [],
       "glossary": [
         {
-          "term": "스테이킹 비율",
-          "def": "전체 ETH 공급 중 검증자로 예치된 비중. 현재 약 35%다."
+          "term": "스테이킹 비중",
+          "def": "전체 ETH 공급 가운데 스테이킹에 묶인 비율. 현재 약 35%다"
         },
         {
-          "term": "LST(유동 스테이킹 토큰)",
-          "def": "예치한 ETH 대신 받아 거래할 수 있는 토큰. stETH, rETH가 대표적이다."
-        },
-        {
-          "term": "프레임즈(Frames, EIP-8141)",
-          "def": "계정 인증 로직을 프로토콜 차원에서 프로그래머블하게 만드는 Hegotá 헤드라이너."
-        },
-        {
-          "term": "단일슬롯 완결성(SSF)",
-          "def": "블록을 한 슬롯 안에 확정하려던 구상. 이번 답변에서 단계적 접근으로의 대체가 공식화됐다."
+          "term": "LST(유동성 스테이킹 토큰)",
+          "def": "stETH처럼 스테이킹한 지분을 유통 가능하게 만든 토큰"
         },
         {
           "term": "zkEVM",
-          "def": "EVM 실행을 영지식 증명으로 검증하는 기술. 검증자가 블록을 재실행하지 않아도 되게 한다."
+          "def": "EVM 실행 결과를 영지식 증명으로 검증해 재실행 없이 블록을 확인하게 하는 기술"
         },
         {
-          "term": "leanDA",
-          "def": "블롭 데이터 가용성의 KZG 커밋을 해시 기반 머클 커밋과 STARK 증명으로 바꾸는 양자내성 설계."
+          "term": "실시간 증명",
+          "def": "블록이 만들어지는 속도에 맞춰 그 블록의 유효성 증명을 생성하는 것"
         },
         {
-          "term": "스트로맵(strawmap)",
-          "def": "재단 아키텍처 팀이 관리하는 장기 로드맵 초안. 향후 포크를 I*, J* 같은 알파벳으로 부른다."
+          "term": "Frames(EIP-8141)",
+          "def": "계정의 서명 검증 로직을 프로그래밍 가능하게 만드는 헤고타 포크의 대표 제안"
         },
         {
-          "term": "Hegotá(헤고타)",
-          "def": "글램스테르담 다음 하드포크. FOCIL과 프레임즈가 헤드라이너이며 2027년을 바라본다."
+          "term": "헤고타(Hegotá)",
+          "def": "글램스테르담 다음으로 예정된 이더리움 하드포크"
+        },
+        {
+          "term": "스트로맵",
+          "def": "재단 아키텍처 팀이 유지하는 장기 로드맵 초안. I*, J* 같은 알파벳으로 향후 포크를 부른다"
+        },
+        {
+          "term": "Q데이",
+          "def": "양자컴퓨터가 현행 타원곡선 암호를 실제로 깰 수 있게 되는 시점"
         }
       ],
       "eips": [
         7272,
+        7716,
+        8025,
         8141,
         8151,
         8250,
@@ -939,13 +961,13 @@
         8363
       ],
       "relatedDebates": [
+        "tornado-cash-anonset-obsolete",
         "aa-validation-programmable-vs-bounded",
         "gas-params-privacy-leak",
         "ethereum-zcash-privacy-competitor",
         "tx-format-ship-first-vs-permissionless",
         "eip-8363-tapered-issuance-burn"
-      ],
-      "telegramMessageId": 1591
+      ]
     },
     {
       "id": "acdt-96",
