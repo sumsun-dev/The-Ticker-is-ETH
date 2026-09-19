@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-16T01:04:43.499Z",
+  "updatedAt": "2026-09-19T01:02:59.465Z",
   "processedDigests": [
     "2026-08-24",
     "2026-08-25",
@@ -17,9 +17,457 @@
     "2026-09-06",
     "2026-09-09",
     "2026-09-12",
-    "2026-09-16"
+    "2026-09-16",
+    "2026-09-19"
   ],
   "debates": [
+    {
+      "id": "l2s-competitors-or-allies",
+      "title": "L2는 동맹으로 위장한 ETH의 경쟁자인가?",
+      "category": "확장성 · L2",
+      "summary": "Justin Bons는 L2가 사용자와 수수료를 가져가고 L1이 작게 머물도록 로비하는, 동맹으로 위장한 ETH의 경쟁자(느린 뱀파이어 공격)라고 주장했고, Gabriel Shapiro(lex_node)는 글로벌 규모와 커스터마이징 수요를 감당할 방법은 L1+L2 모델뿐이라며 반박하되 기업 L2는 이더리움 정산을 옵션으로만 쥘 뿐 실제로 정산하지 않는다고 선을 그었다.",
+      "keyPoints": [
+        "L2는 ETH의 수요와 수수료를 빼앗는 경쟁자인가, 아니면 확장을 위한 필수 구조인가?",
+        "기업 L2는 실제로 이더리움에 정산하는가, 아니면 정산 옵션만 확보하고 있는가?",
+        "Stage 2에 도달하지 못하는 L2의 활용은 ETH에 가치를 더하는가?"
+      ],
+      "background": "L2(레이어2)는 이더리움 L1 위에서 트랜잭션을 처리하고 그 데이터·증명을 L1에 올려 보안을 상속받는 롤업(rollup)을 말한다. Stage 2는 L2Beat의 탈중앙화 등급 중 최상위로, 관리자 키(admin key) 없이 사기 증명·유효성 증명만으로 자금을 지킬 수 있는 상태를 뜻한다. 현재 다수의 기업·거래소 계열 L2는 중앙화된 시퀀서(sequencer)와 업그레이드 권한을 유지해 Stage 2에 이르지 못하고 있다. 이 때문에 L2가 이더리움의 보안·수요를 실제로 강화하는지, 아니면 브랜드만 빌린 채 가치를 빨아가는지에 대한 논쟁이 반복돼 왔다.",
+      "whyItMatters": "L2가 ETH 가치에 기여하는지에 대한 판단은 이더리움의 확장 전략과 L1 하드포크 우선순위의 정당성 근거가 된다. Stage 2 도달 여부를 기준으로 L2를 가르는 lex_node의 프레임이 확산되면 기업 L2의 '이더리움 정렬' 주장에 대한 커뮤니티의 검증 잣대가 강화될 수 있다.",
+      "keywords": [
+        "L2 vampire attack",
+        "Stage 2 rollup",
+        "corporate L2 settlement",
+        "L1+L2 model"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "동맹으로 위장한 경쟁자다",
+          "holders": [
+            {
+              "handle": "Justin_Bons",
+              "name": "Justin Bons",
+              "role": "Cyber Capital 창업자, 이더리움 비판론자",
+              "avatar": "https://pbs.twimg.com/profile_images/2072140561616719872/puZrhMSk_400x400.jpg"
+            }
+          ],
+          "points": [
+            "L2는 사용자와 수수료를 가져가면서 L1이 작게 머물도록 로비하는 느린 뱀파이어 공격(slow vampire attack)이며, 결국 이주하거나 스스로 L1이 되어 ETH만 빈손으로 남긴다.",
+            "ETH 관점에서 L2는 기생체(parasite)에 가까우며, 돌려주는 수수료 일부는 서사(narrative)를 흐리는 역할만 한다.",
+            "지연 없이 사용자 자금을 훔칠 수 있는 관리자 키와 검열 가능한 중앙화 시퀀서를 가진 L2는 크립토가 아니다."
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "L1+L2 모델은 이더리움 성공의 핵심이다",
+          "holders": [
+            {
+              "handle": "lex_node",
+              "name": "_gabrielShapir0",
+              "role": "크립토 법률·규제 논객, MetaLeX Labs",
+              "avatar": "https://pbs.twimg.com/profile_images/2058233189882032128/pRSMN_6C_400x400.jpg"
+            }
+          ],
+          "points": [
+            "전 세계적 규모와 다양한 커스터마이징 수요를 감당하려면 L1+L2 모델 외에 다른 확장 방법이 없다.",
+            "다만 기업 L2는 이더리움 정산을 옵션으로만 확보했을 뿐 실제로 정산하지 않으며, 인센티브가 급진적으로 바뀌지 않는 한 어느 곳도 Stage 2에 도달하지 못할 것이다.",
+            "Stage 2 이전 L2의 활용은 이더리움의 신뢰 중립성(credible neutrality)을 입증할 뿐 ETH에는 큰 도움이 되지 않는다."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-09-18",
+          "by": "Justin_Bons",
+          "stance": "pro",
+          "quote": "L2는 동맹으로 위장한 ETH의 경쟁자다. 그들은 사용자를 데려가고 수수료를 챙기며 L1이 작게 머물도록 로비한다. 느린 뱀파이어 공격이다. L2는 이주하거나 L1이 될 것이고, 어느 쪽이든 ETH만 빈손으로 남는다.",
+          "url": "https://x.com/Justin_Bons/status/2100926003715420363",
+          "digest": "2026-09-19",
+          "relation": "none",
+          "original": "L2s are ETH competitors disguised as allies\n\nThey take the users, keep the fees &amp; lobby the L1 to stay small; a slow vampire attack\n\nAt best, they are competitors; at worst, they are draining ETH of life\n\nThe L2s will migrate or become L1s; either way, ETH is left holding the bag",
+          "translation": "L2는 동맹으로 위장한 ETH의 경쟁자다. 사용자를 가져가고 수수료(fees)를 독차지하며 L1이 작게 머물도록 로비한다. 느린 흡혈 공격(vampire attack)이다. 잘해야 경쟁자고, 최악의 경우 ETH의 생명력을 빨아먹고 있는 것이다. L2는 결국 이주하거나 L1이 될 것이다. 어느 쪽이든 ETH만 뒤집어쓰게 된다."
+        },
+        {
+          "date": "2026-09-18",
+          "by": "Justin_Bons",
+          "stance": "pro",
+          "quote": "그 비유는 너무 착하다. 아이가 부모의 생명을 빨아먹지는 않는다. ETH 관점에서 L2는 기생체에 가깝다. 그들은 가져가기만 하고 거의 돌려주지 않으며, ETH에 돌려주는 수수료 일부는 서사를 혼란스럽게 만드는 역할만 한다.",
+          "url": "https://x.com/Justin_Bons/status/2100928310762951160",
+          "digest": "2026-09-19",
+          "replyTo": "Hiraweb3",
+          "relation": "reply",
+          "original": "@Hiraweb3 That framing is far too nice; children do not drain the parents of life, quite the opposite!\n\nL2's are closer to parasites from ETH's perspective\n\nThey take &amp; give almost nothing back. The fraction of fees returned to ETH only serves to confuse the narrative\n\nWhat a travesty!",
+          "translation": "@Hiraweb3 그 비유는 너무 후하다. 자식은 부모의 생명력을 빨아먹지 않는다, 오히려 정반대다! ETH의 관점에서 보면 L2는 기생충에 더 가깝다. 그들은 가져가기만 하고 거의 아무것도 돌려주지 않는다. ETH로 돌아오는 수수료의 일부는 오히려 서사를 혼란스럽게 만들 뿐이다. 이 얼마나 개탄스러운 일인가!"
+        },
+        {
+          "date": "2026-09-18",
+          "by": "lex_node",
+          "stance": "con",
+          "quote": "L1+L2 모델은 이더리움 성공의 핵심이다. 그렇지 않으면 세상의 온갖 커스터마이징 수요를 안고 어떻게 글로벌 규모로 확장하겠는가? 사람들은 자기 것을 하고 싶어 하고 L2가 바로 그것을 제공한다.",
+          "url": "https://x.com/lex_node/status/2100890879422595399",
+          "digest": "2026-09-19",
+          "replyTo": "lex_node",
+          "relation": "reply",
+          "original": "@lex_node the L1+L2 model is core to Ethereum success\n\nhow could we otherwise scale to a global scale with all the customization needs out there? ppl wanna do their own thing and that’s what L2s offer",
+          "translation": "@lex_node L1+L2 모델은 이더리움 성공의 핵심이다. 그렇지 않고서야 저 밖에 존재하는 모든 커스터마이징 요구를 충족하면서 글로벌 규모로 스케일링할 방법이 있겠는가? 사람들은 자기만의 방식으로 하고 싶어 하고, 그것이 바로 L2가 제공하는 것이다."
+        },
+        {
+          "date": "2026-09-18",
+          "by": "lex_node",
+          "stance": "con",
+          "quote": "기업 L2는 '이더리움을 확장'하지 않는다. 이건 이미 반박됐다. 기업 L2 중 어느 것도 Stage 2가 되지 못할 것이다. 그들은 이더리움 정산을 옵션으로 잡아뒀을 뿐 실제로 정산하지 않으며, 인센티브가 급진적으로 바뀌지 않는 한 앞으로도 그럴 것이다.",
+          "url": "https://x.com/lex_node/status/2100893199208235206",
+          "digest": "2026-09-19",
+          "replyTo": "nextalphaa",
+          "relation": "reply",
+          "original": "@nextalphaa corporate L2s don't \"scale Ethereum\" this has already been debunked, none of the corporate L2s will ever be Stage 2 imo\n\nthey have optioned Ethereum settlement, they are not actually settling on Ethereum &amp; unless something with incentives changes radically, they never will",
+          "translation": "@nextalphaa 기업형 L2는 '이더리움을 스케일링'하지 않는다. 이는 이미 반박된 이야기다. 내 생각엔 기업형 L2 중 어느 것도 결코 Stage 2에 도달하지 못할 것이다. 그들은 이더리움 정산(settlement)을 옵션으로 걸어둔 것이지, 실제로 이더리움에서 정산하고 있는 것이 아니다. 그리고 인센티브 구조에 급진적인 변화가 없는 한, 앞으로도 그렇게 하지 않을 것이다."
+        }
+      ],
+      "firstSeen": "2026-09-18",
+      "lastActivity": "2026-09-18",
+      "status": "active",
+      "rootUrl": "https://x.com/Justin_Bons/status/2100926003715420363",
+      "engagement": {
+        "likes": 40,
+        "retweets": 5,
+        "quotes": 3,
+        "replies": 14,
+        "views": 4797
+      }
+    },
+    {
+      "id": "tornado-cash-anonset-obsolete",
+      "title": "L1 프라이버시 업그레이드가 오면 토네이도캐시는 낡은 것이 되나?",
+      "category": "프로토콜 설계",
+      "summary": "Gabriel Shapiro(lex_node)는 이더리움 업그레이드가 릴레이어(relayer)를 불필요하게 만들면 토네이도캐시(Tornado Cash, TC)는 한물간 것 아니냐고 물었고, Pascal Caversaccio(pcaversaccio)는 TC의 익명성 집합(anonymity set, anonset)은 유일하고 포크할 수 없으며 TC가 무조건적(unconditional) 프라이버시를 제공하는 유일한 프로토콜이라고 반박했다.",
+      "keyPoints": [
+        "릴레이어를 없애는 L1 업그레이드(EIP-8141)가 TC의 존재 이유를 대체하는가?",
+        "누적된 익명성 집합은 새 프로토콜이 포크로 복제할 수 없는 고유 자산인가?",
+        "TC의 무조건적 프라이버시는 계정 추상화와 결합해 강화되는가, 대체되는가?"
+      ],
+      "background": "토네이도캐시는 예치와 인출을 영지식 증명으로 끊어 자금 흐름을 가리는 이더리움 프라이버시 믹서로, 예치자들이 이루는 익명성 집합이 클수록 개별 인출의 추적이 어려워진다. 종래 TC는 인출 시 가스를 대납하는 릴레이어에 의존해 새 주소의 초기 자금 문제를 풀었다. EIP-8141(프레임 트랜잭션, Frame Transaction)은 계정 추상화(account abstraction)를 네이티브로 도입해 검증·가스 지불을 계정 코드로 정의할 수 있게 하며, 이 경우 제3자 릴레이어 없이도 프라이버시 인출의 가스를 처리할 수 있다. EF의 프라이버시 지갑 Kohaku가 TC와 결합을 예고하면서 기존 프라이버시 프로토콜의 가치가 무엇인지가 쟁점이 됐다.",
+      "whyItMatters": "L1 프라이버시 로드맵이 진전될 때 축적된 익명성 집합처럼 포크로 복제되지 않는 자산이 무엇인지 규정하는 것은 새 프라이버시 도구와 기존 프로토콜의 공존·통합 방식을 좌우한다. pcaversaccio가 제시한 실제 트랜잭션 예시는 EIP-8141의 계정 추상화가 TC를 대체하기보다 결합해 사용성을 높일 수 있음을 시사한다.",
+      "sources": [
+        {
+          "title": "EIP-8141: Frame Transaction",
+          "url": "https://eips.ethereum.org/EIPS/eip-8141"
+        }
+      ],
+      "keywords": [
+        "Tornado Cash anonset",
+        "EIP-8141",
+        "Kohaku",
+        "unconditional privacy"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "업그레이드가 오면 낡은 것이다",
+          "holders": [
+            {
+              "handle": "lex_node",
+              "name": "_gabrielShapir0",
+              "role": "크립토 법률·규제 논객, MetaLeX Labs",
+              "avatar": "https://pbs.twimg.com/profile_images/2058233189882032128/pRSMN_6C_400x400.jpg"
+            }
+          ],
+          "points": [
+            "이더리움 업그레이드가 릴레이어를 불필요하게 만들면, 릴레이어 의존을 전제로 설계된 TC는 시대에 뒤처진 것으로 보인다.",
+            "이더리움 프라이버시는 앞으로 대단해질 것이라 크게 걱정하지 않으며, ETH는 프로토콜이고 ZEC는 돈이라 범주가 다르다."
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "익명성 집합은 포크할 수 없다",
+          "holders": [
+            {
+              "handle": "pcaversaccio",
+              "name": "sudo rm -rf --no-preserve-root /",
+              "role": "스마트컨트랙트 보안 리서처",
+              "avatar": "https://pbs.twimg.com/profile_images/1734666604049289216/7ezXxfGv_400x400.jpg"
+            }
+          ],
+          "points": [
+            "TC의 익명성 집합은 유일하며 포크로 복제할 수 없고, TC는 무조건적 프라이버시를 제공하는 유일한 프로토콜이다.",
+            "lex_node가 말한 업그레이드는 EIP-8141이며, TC는 그것에 대체되는 것이 아니라 계정 추상화·아토믹 스왑(atomic swap)과 결합해 실제 트랜잭션에서 함께 쓰일 수 있다."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-09-18",
+          "by": "lex_node",
+          "stance": "pro",
+          "quote": "왜 TC인가? 꽤 낡아 보인다. 특히 이더리움 업그레이드(EIP 번호는 잊었다)가 릴레이어를 무의미하게 만들면 더욱 그렇다.",
+          "url": "https://x.com/lex_node/status/2100896824030552163",
+          "digest": "2026-09-19",
+          "replyTo": "pcaversaccio",
+          "relation": "reply",
+          "original": "@pcaversaccio why TC? it seems pretty outmoded. . .esp. once Ethereum upgrades (I forget the EIP #) make relayers irrelevant...",
+          "translation": "@pcaversaccio 왜 TC인가? 꽤 시대에 뒤떨어진 것 같다... 특히 이더리움 업그레이드(EIP 번호가 기억나지 않는다)로 릴레이어(relayer)가 무의미해지고 나면 더더욱..."
+        },
+        {
+          "date": "2026-09-18",
+          "by": "lex_node",
+          "stance": "pro",
+          "quote": "ETH는 프로토콜이고 ZEC는 돈이다. 범주가 다르다.",
+          "url": "https://x.com/lex_node/status/2100897491386327302",
+          "digest": "2026-09-19",
+          "replyTo": "lex_node",
+          "relation": "reply",
+          "original": "@lex_node eth is a protocol\nzec is money\ndifferent category",
+          "translation": "@lex_node ETH는 프로토콜이고 ZEC은 화폐다. 서로 다른 범주다."
+        },
+        {
+          "date": "2026-09-18",
+          "by": "pcaversaccio",
+          "stance": "con",
+          "quote": "익명성 집합은 유일하고 포크할 수 없기 때문이며, TC는 무조건적 프라이버시를 제공하는 유일한 프로토콜이기 때문이다. 아마 EIP-8141을 말하는 것 같다.",
+          "url": "https://x.com/pcaversaccio/status/2100898145903477166",
+          "digest": "2026-09-19",
+          "replyTo": "lex_node",
+          "relation": "reply",
+          "original": "@lex_node because the anonset is unique (and cannot be forked) &amp; it's the only privacy protocol that offers _unconditional_ privacy. you probably mean EIP-8141?",
+          "translation": "@lex_node 익명집합(anonset)이 유일하기 때문이다 (그리고 포크할 수 없다). 그리고 그것은 무조건적(unconditional) 프라이버시를 제공하는 유일한 프라이버시 프로토콜이다. 아마 EIP-8141을 말하는 것 같다?"
+        },
+        {
+          "date": "2026-09-18",
+          "by": "pcaversaccio",
+          "stance": "con",
+          "quote": "TC와 계정 추상화, 아토믹 스왑 액션을 결합해 사용한 이 예시 트랜잭션을 보라.",
+          "url": "https://x.com/pcaversaccio/status/2100899224770805775",
+          "digest": "2026-09-19",
+          "relation": "none",
+          "original": "@lex_node look at this example tx using TC, AA &amp; atomic swap actions (h/t @kassandraETH for building &amp; showcasing this!): https://etherscan.io/tx/0xa7a412bd4e38c98fad5ea4bb0fc6b38d6d31a863f19feeed80b332c7a37ce769",
+          "translation": "@lex_node TC, 계정 추상화(account abstraction, AA), 그리고 원자적 스왑(atomic swap) 액션을 사용한 이 예시 트랜잭션(tx)을 보라 (이를 만들고 시연해준 @kassandraETH에게 감사를): https://etherscan.io/tx/0xa7a412bd4e38c98fad5ea4bb0fc6b38d6d31a863f19feeed80b332c7a37ce769"
+        },
+        {
+          "date": "2026-09-18",
+          "by": "lex_node",
+          "stance": "pro",
+          "quote": "이더리움 프라이버시는 크게 걱정하지 않는다. 굉장해질 것이다.",
+          "url": "https://x.com/lex_node/status/2100929142581538910",
+          "digest": "2026-09-19",
+          "replyTo": "lex_node",
+          "relation": "reply",
+          "original": "@lex_node I wouldn't worry too much about privacy on Ethereum, it's going to be epic",
+          "translation": "@lex_node 이더리움의 프라이버시에 대해서는 크게 걱정하지 않을 것이다. 엄청날 것이다."
+        }
+      ],
+      "firstSeen": "2026-09-18",
+      "lastActivity": "2026-09-18",
+      "status": "active",
+      "rootUrl": "https://x.com/pcaversaccio/status/2100898145903477166",
+      "engagement": {
+        "likes": 7,
+        "retweets": 0,
+        "quotes": 0,
+        "replies": 4,
+        "views": 403
+      }
+    },
+    {
+      "id": "ai-formal-verification-security",
+      "title": "AI 시대에 형식검증으로 소프트웨어 보안을 보장할 수 있나?",
+      "category": "프로토콜 설계",
+      "summary": "Vitalik Buterin은 AI 해킹이 사이버보안을 무너뜨린다는 통념에 반대하며, AI가 나비에-스토크스나 페르마의 마지막 정리를 증명할 수 있다면 '이 프로그램은 안전하다'도 수학 정리로 증명할 수 있어 사이버보안은 본질적으로 방어 우위라고 주장했다. Arweave·AO의 Sam Williams(samecwilliams)는 방향에는 동의하면서도 검증된 모델만으로는 부족하며 모델과 실제 코드 사이의 번역 격차(translation gap)를 속성 기반 테스트(property-based testing)로 메워야 한다고 단서를 달았다.",
+      "keyPoints": [
+        "형식검증(formal verification)된 정의(definition)로 소프트웨어 보안을 수학 정리처럼 증명할 수 있는가?",
+        "검증된 모델과 실제 배포 코드 사이의 번역 격차는 어떻게 메우는가?",
+        "정의는 구현(implementation)보다 작은 공격 표면인가?"
+      ],
+      "background": "형식검증은 프로그램이 명세(정의)를 만족함을 수학적으로 증명하는 기법이다. Vitalik의 논지는 보안의 정의 자체가 수천 줄에 이를 만큼 미묘하지만 정의는 구현보다 훨씬 작은 공격 표면이며, 서로 다른 정의를 더해가며(additive) 함께 검증할 수 있다는 것이다. Sam Williams가 지적한 번역 격차는 검증된 모델과 실제 배포되는 코드가 일치하는지의 문제로, 정형 증명이 붙지 않은 방대한 어셈블리·C 코드를 동반한 seL4(2009)가 대표 사례다. 그는 이 격차를 속성 기반 테스트로 좁혀 모델과 실제 코드 양쪽을 검증해야 한다고 본다.",
+      "whyItMatters": "AI 시대의 보안 베팅이 형식검증 쪽으로 기우느냐는 이더리움의 형식검증 투자와 '배포된 코드' 리스크 관리의 우선순위를 좌우한다. Vitalik이 순자산의 약 90%를 암호화폐로 보유한 것을 이 베팅의 실천으로 제시한 만큼, 정의의 인간 가독성과 번역 격차를 줄이는 도구가 실제 보안 기준을 끌어올릴지 지켜볼 지점이다.",
+      "keywords": [
+        "formal verification",
+        "translation gap",
+        "property-based testing",
+        "AI cybersecurity"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "정의를 검증하면 보안은 방어 우위다",
+          "holders": [
+            {
+              "handle": "VitalikButerin",
+              "name": "vitalik.eth",
+              "role": "이더리움 공동창시자",
+              "avatar": "https://pbs.twimg.com/profile_images/2042521108067352576/3rv2_9m1_400x400.jpg"
+            }
+          ],
+          "points": [
+            "AI가 나비에-스토크스나 페르마의 마지막 정리를 증명할 수 있다면, 아무리 복잡한 프로그램이라도 '이 프로그램은 안전하다'를 수학 정리로 증명할 수 있다.",
+            "보안의 정의는 수천 줄에 이를 만큼 미묘하지만, 보안이 중요한 구성요소에서 정의는 구현보다 훨씬 작은 공격 표면이며 정의는 더해서(additive) 함께 증명할 수 있다.",
+            "정의를 인간이 읽을 수 있게 만드는 일이 지금 유일하게 중요한 고수준 언어일 수 있다."
+          ]
+        },
+        {
+          "stance": "neutral",
+          "label": "모델 검증만으로는 부족하다",
+          "holders": [
+            {
+              "handle": "samecwilliams",
+              "name": "🐘🔗 sam.arweave.net",
+              "role": "Arweave·AO 빌더",
+              "avatar": "https://pbs.twimg.com/profile_images/1817300548741210113/YKnwux9B_400x400.jpg"
+            }
+          ],
+          "points": [
+            "방향에는 동의하지만 모델 검증만으로는 충분치 않으며, 정리 증명기 자체에 버그가 거의 확실히 존재한다.",
+            "Vitalik이 말한 명세 격차(spec gap)에 더해 검증된 모델과 실제 배포 코드가 일치하는지의 번역 격차가 남으며, seL4가 그 사례다.",
+            "실무에서는 형식검증과 속성 기반 테스트를 함께 써서 '코드가 모델과 맞기를 바란다'를 '불변식이 정리와 맞아야 한다'로 좁혀야 한다."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-09-16",
+          "by": "VitalikButerin",
+          "stance": "pro",
+          "quote": "AI 해킹은 사이버보안이 끝났다는 뜻이라는 견해가 점점 흔해지지만 나는 동의하지 않는다. 사람들이 정신을 차리면 사이버보안은 본질적으로 방어 우위다. 암호화폐를 계속 보유하는 사람(순자산의 약 90%인 나를 포함해)은 암묵적으로 그 베팅을 하고 있는 것이다.",
+          "url": "https://x.com/VitalikButerin/status/2100337594722890145",
+          "digest": "2026-09-19",
+          "relation": "none",
+          "original": "It's an increasingly common take that AI hacking means cybersecurity is doomed.\n\nI disagree. I think cybersecurity is naturally defense-favoring once people get their shit together. And anyone who continues to hold cryptocurrency (including me, ~90% of my net worth) is implicitly making that bet.\n\nHere's why I am making that bet.\n\nFirst, the oversimplified punchy one-line statement:\n\nIf AI can prove Navier-Stokes and FLT, then AI can prove the statement \"this program is secure\" as a mathematical theorem. Even if the program is very complicated.\n\nNow, the nuance:\n\n(See also: https://t.co/6YPWgVT7rO )\n\nThe word \"secure\" is hiding all kinds of skeletons in the closet in terms of what it actually means. What does it mean for Signal (the encrypted messenger) to be \"secure\"?\n\nThe most basic definition you might think of is: no one who doesn't hold the recipient's secret key can read the contents of the message.\n\nBut:\n\n* Did you remember to include _other_ critical forms of security? Can the adversary forge messages? Can the attacker prevent messages from reaching the recipient? Can they cause your client to crash by sending malformed messages?\n* Have you made sure that your model of the adversary includes attackers that interfere with the protocol actively and not just passively? And attackers that interfere by replaying messages to you or the recipient that either of you sent over the wire at any point earlier?\n* What if the adversary hacked (or _is_) the Signal server?\n* How did you learn which public key belongs to the recipient in the first place? What if that process was tampered with?\n* What if your device gets hacked at some point in the past or future - is your message still safe then?\n* What if your key leaks because of a bug in your operating system? Or because you got a bugged version of the Signal client? Or what if the database is corrupted?\n* Or the libraries, interpreter or compiler of the programming language you wrote it in?\n* What if your key leaks because tiny perturbations in perceptible signals generated by the hardware leak mathematical relationships that can extract the key a few hundredths of a bit at a time?\n* Are you hiding the *size* of the payload? Does that matter?\n* You're definitely not hiding the identity of the sender and the recipient, and the exact time each message was sent (think: not just time-of-day, but also time deltas between one message and the next). Is that not enough to deduce a lot of important facts about what relationships you have, and what *kinds* of conversations you are having?\n\nSo ... even definitions can be over a thousand lines of code, and need deep careful thought to figure them out.\n\nWorking on making definitions more human-readable is of extreme importance - it's perhaps the only \"high-level language\" that matters right now.\n\nBut even still, even despite all of the above, for security-critical components, the definition is a much smaller attack surface than the implementation. Verifying that the definition is adequate is a much more tractable task than scanning over the code directly - and can become even more tractable with better tooling.\n\nDefinitions are also _additive_: if two groups have two different definitions A and B, then, well, you can just prove that the program satisfies both A and B. Code is not additive in this way: if a program is A + B, a bug in A _or_ B can sink the whole thing. Definitions are additive. And if you can't satisfy A and B at the same time, you've isolated the most important philosophical issue for your project to spend its next few weeks grappling with.\n\nSometimes, definitions are not much smaller than the implementation - UI components might be one example. But for many of the most critical components - message-passing protocols, sandboxes, cryptography like SNARKs and FHE - the asymmetry is real.\n\nHistorically, a large class of failures with this approach have come from people only verifying a small portion of their code, that they self-declared to be the security-critical portion, and ignoring the rest - and it turns out that something in the rest of the code is security-critical too.\n\nThis was reasonable back when verification was difficult and scarce. The solution today: sorry, you have to verify over literally your entire program, including database, networking, any caching layers, everything. Modern AI can do it.\n\nSo it's not about \"the good guys find all the vulnerabilities before the bad guys do\" - that could maybe work too, after all a finite program only has a finite number of vulns, but it's riskier - it's specifically an asymmetric strategy of making code that is much more resilient in the first place.\n\nThis is the kind of direction that Ethereum is going in for the next few years. There is no future for blockchains - especially blockchains with scalability and privacy - without doing this. We need to make software actually secure. And we have already made a lot of progress.",
+          "translation": "AI 해킹이 곧 사이버보안의 종말을 의미한다는 견해가 점점 흔해지고 있다. 나는 동의하지 않는다. 나는 사람들이 제대로 정신을 차리기만 하면 사이버보안은 본질적으로 방어자에게 유리한 게임이라고 생각한다. 그리고 계속해서 암호화폐를 보유하는 사람은 누구든지 (순자산의 약 90%를 보유한 나를 포함해서) 암묵적으로 그 쪽에 베팅하고 있는 셈이다. 내가 그 베팅을 하는 이유는 다음과 같다. 먼저, 지나치게 단순화한 한 줄짜리 강렬한 명제부터 말하자면: AI가 나비에-스토크스(Navier-Stokes) 방정식과 페르마의 마지막 정리(FLT)를 증명할 수 있다면, AI는 \"이 프로그램은 안전하다\"는 명제도 수학적 정리로서 증명할 수 있다. 그 프로그램이 아무리 복잡하더라도 말이다. 이제 뉘앙스를 짚어보자 (관련 링크도 참고하라): \"안전하다(secure)\"라는 단어는 그것이 실제로 무엇을 의미하는지에 관해 온갖 골치 아픈 문제들을 감추고 있다. 암호화 메신저인 시그널(Signal)이 \"안전하다\"는 것은 무엇을 의미하는가? 여러분이 떠올릴 수 있는 가장 기본적인 정의는 이렇다: 수신자의 비밀키를 갖고 있지 않은 사람은 그 누구도 메시지의 내용을 읽을 수 없다는 것. 하지만: 그 밖의 중요한 보안 형태들도 포함시켰는가? 공격자가 메시지를 위조할 수 있는가? 공격자가 메시지가 수신자에게 도달하는 것을 막을 수 있는가? 공격자가 형식이 잘못된(malformed) 메시지를 보내서 여러분의 클라이언트를 다운시킬 수 있는가? 여러분의 공격자 모델이 프로토콜을 단순히 수동적으로만이 아니라 능동적으로 방해하는 공격자까지 포함하는지 확인했는가? 그리고 이전 어느 시점에 여러분이나 수신자가 전송했던 메시지를 재전송(replay)하는 방식으로 방해하는 공격자는? 공격자가 시그널 서버를 해킹했다면, 혹은 공격자가 곧 시그널 서버 그 자체라면 어떻게 되는가? 애초에 어떤 공개키가 수신자의 것인지 어떻게 알게 되었는가? 그 과정이 조작되었다면 어떻게 되는가? 여러분의 기기가 과거나 미래의 어느 시점에 해킹당한다면, 그래도 여러분의 메시지는 여전히 안전한가? 운영체제의 버그 때문에 키가 유출된다면 어떻게 되는가? 혹은 버그가 있는 버전의 시그널 클라이언트를 받았기 때문이라면? 혹은 데이터베이스가 손상되었다면? 혹은 그것을 작성한 프로그래밍 언어의 라이브러리, 인터프리터, 컴파일러 때문이라면? 하드웨어가 만들어내는 감지 가능한 신호의 미세한 섭동(perturbation)이 수학적 관계를 누출시켜, 한 번에 수백분의 1비트씩 키를 추출할 수 있게 만든다면 어떻게 되는가? 페이로드(payload)의 *크기*는 숨기고 있는가? 그것이 중요한가? 여러분은 발신자와 수신자의 신원, 그리고 각 메시지가 전송된 정확한 시각(단순히 하루 중 시각뿐 아니라 메시지와 메시지 사이의 시간 간격까지)은 분명 숨기고 있지 않다. 그것만으로도 여러분이 어떤 관계를 맺고 있는지, 어떤 *종류*의 대화를 나누고 있는지에 관한 많은 중요한 사실을 추론하기에 충분하지 않은가? 그러니... 정의(definition) 하나만 해도 천 줄이 넘는 코드가 될 수 있고, 이를 제대로 규명하려면 깊고 신중한 사고가 필요하다. 정의를 좀 더 사람이 읽기 쉽게 만드는 작업은 대단히 중요하다. 어쩌면 그것이 지금 시점에서 중요한 유일한 \"고수준 언어(high-level language)\"일지도 모른다. 하지만 그럼에도, 위의 모든 문제에도 불구하고, 보안이 핵심적인(security-critical) 구성 요소에 있어서 정의는 구현(implementation)보다 훨씬 작은 공격 표면(attack surface)을 갖는다. 정의가 적절한지 검증하는 작업은 코드를 직접 훑어보는 것보다 훨씬 다루기 쉬운 과제이며, 더 나은 도구가 갖춰지면 더욱더 다루기 쉬워질 수 있다. 정의는 또한 _가산적(additive)_이다. 두 그룹이 서로 다른 정의 A와 B를 갖고 있다면, 그냥 그 프로그램이 A와 B를 모두 충족한다는 것을 증명하면 된다. 코드는 이런 식으로 가산적이지 않다. 프로그램이 A + B로 이루어져 있다면, A 또는 B 어느 한쪽의 버그만으로도 전체가 무너질 수 있다. 정의는 가산적이다. 그리고 만약 A와 B를 동시에 충족시킬 수 없다면, 여러분은 자신의 프로젝트가 앞으로 몇 주간 씨름해야 할 가장 중요한 철학적 쟁점을 하나 찾아낸 셈이다. 때로는 정의가 구현보다 그리 작지 않은 경우도 있다. UI 구성 요소가 그 한 예일 수 있다. 하지만 메시지 전달 프로토콜, 샌드박스(sandbox), SNARK나 FHE 같은 암호학 등 가장 핵심적인 구성 요소들 다수에 있어서는 이 비대칭성이 실재한다. 역사적으로 이런 접근법에서 나타난 실패의 상당수는, 사람들이 자기 코드 중 스스로 보안이 핵심적이라고 선언한 작은 일부분만 검증하고 나머지는 무시했는데, 알고 보니 나머지 코드 중 일부도 보안상 핵심적이었던 경우에서 비롯되었다. 검증이 어렵고 희소했던 시절에는 이런 방식도 합리적이었다. 오늘날의 해법은 이렇다. 미안하지만, 데이터베이스, 네트워킹, 캐싱 계층 등 그야말로 프로그램 전체를 문자 그대로 전부 검증해야 한다. 현대의 AI는 그것을 해낼 수 있다. 그러니 이는 \"선한 쪽이 악한 쪽보다 먼저 모든 취약점을 찾아낸다\"는 이야기가 아니다. 그것도 어쩌면 통할 수는 있을 것이다. 어쨌든 유한한 프로그램에는 유한한 개수의 취약점만 존재하니까. 하지만 그쪽은 더 위험하다. 이것은 구체적으로, 애초에 훨씬 더 견고한 코드를 만드는 비대칭적 전략이다. 이것이 바로 이더리움이 앞으로 몇 년간 나아가고자 하는 방향이다. 이를 해내지 않고서는 블록체인에, 특히 확장성(scalability)과 프라이버시를 갖춘 블록체인에 미래는 없다. 우리는 소프트웨어를 실제로 안전하게 만들어야 한다. 그리고 우리는 이미 많은 진전을 이루었다."
+        },
+        {
+          "date": "2026-09-18",
+          "by": "samecwilliams",
+          "stance": "neutral",
+          "quote": "이 지적은 정확하다. 다만 모델 검증만으로는 충분치 않을 때가 많다. 속성 테스트가 많은 빈틈을 메운다. 정리 증명기에 버그가 없다는 전제 하에서만 증명이 정확성을 보장하는데, 그런 버그는 거의 확실히 존재한다.",
+          "url": "https://x.com/samecwilliams/status/2100684615849542046",
+          "digest": "2026-09-19",
+          "replyTo": "VitalikButerin",
+          "relation": "quote",
+          "original": "This is on point. For the new real-time rewards version of @aoTheComputer's mint we built Lean formal proofs of each of the relevant property of the system (paper [1]).\n\nModel verification is often not enough alone, though. Property Testing fills in many gaps. Deep dive 👇\n\ntl;dr: Describe invariants of your system and how to generate random valid 'scenarios' for your data. Use these to generate test cases and run millions/billions of simulations to gain confidence in correctness.\n\nWe built a system for this in HyperBEAM last year because @aoTheComputer's devices are a perfect environment for these kinds of quasi-proofs -- including covering probabilistic behavior and emergent properties of highly parallel systems. Traditional proofs get exponentially more complex if your build isn't just pure, stateless math.\n\nThe trade-off, of course, is that you don't get a shiny proof that guarantees correctness -- assuming there aren't bugs in the theorem prover (...which there almost certainly are [2]). With property/invariant-based testing you do, however, get validation against your actual code -- not just a mathematical model [3].\n\nThis was formal verification's other achilles heel that partners the 'spec gap' Vitalik described in the original post: The 'translation gap'. Once you have your model, how do you know that the code you have written actually matches it? Depending on the environment, you normally cannot deploy the formally verified model itself to production. So you deploy code that you think matches the model -- but what if it doesn't?\n\nThe archetypal example of this is SeL4 in 2009 [4]: An OS built for highly resilient systems with formal correctness guaranteed... Via a model that accompanies massive amounts of raw assembly and C code that had no direct proofs.\n\nIn practice you likely want to use both formal verification as well as property-based testing of invariants that match your theorems. This narrows the translation gap from 'I hope my code matches my model' to 'my invariants must match my theorems'. Not perfect still, but the latter is radically easier to achieve.\n\nThis is what we did with ~pot@1.0: Simulating ~500 billion (IIRC) different random scenarios against the real code, running checks that ensure all of the properties from the verified model hold in every single situation.\n\nFor the builders: If you want to create property-based invariants for your devices in HyperBEAM checkout [5]. We tried to make it friendly but the API could probably be improved. PRs welcome! 🙂",
+          "translation": "정확한 지적이다. @aoTheComputer의 민트(mint)의 새로운 실시간 보상(real-time rewards) 버전을 위해 우리는 시스템의 각 관련 속성(property)에 대해 Lean 형식 증명(formal proof)을 구축했다 (논문 [1]). 다만 모델 검증(model verification)만으로는 흔히 충분하지 않다. 속성 기반 테스트(Property Testing)가 많은 공백을 메운다. 자세히 살펴보자. 요약: 시스템의 불변식(invariant)들을 기술하고, 데이터에 대해 무작위로 유효한 '시나리오'를 생성하는 방법을 기술한다. 이를 이용해 테스트 케이스를 생성하고 수백만에서 수십억 번의 시뮬레이션을 돌려 정확성(correctness)에 대한 확신을 얻는다. 우리는 작년에 HyperBEAM에서 이를 위한 시스템을 구축했다. @aoTheComputer의 디바이스(device)들이 이런 종류의 준증명(quasi-proof)에, 즉 확률적 행동과 고도로 병렬화된 시스템의 창발적(emergent) 속성까지 포괄하는 증명에 완벽한 환경이기 때문이다. 전통적인 증명은 여러분이 만드는 것이 순수하고 상태가 없는(stateless) 수학이 아니라면 기하급수적으로 복잡해진다. 물론 그 대가로, 여러분은 정확성을 보장하는 번쩍이는 증명을 얻지는 못한다. 정리 증명기(theorem prover) 자체에 버그가 없다는 전제하에 말이다 (...그런데 버그는 거의 확실히 있을 것이다 [2]). 하지만 속성/불변식 기반 테스트를 사용하면, 단순한 수학적 모델이 아니라 여러분의 실제 코드에 대한 검증을 얻게 된다 [3]. 이것이 바로 Vitalik이 원래 게시물에서 설명한 '스펙 공백(spec gap)'과 짝을 이루는, 형식 검증(formal verification)의 또 다른 아킬레스건이다. 바로 '번역 공백(translation gap)'이다. 일단 모델을 확보했다면, 여러분이 작성한 코드가 실제로 그 모델과 일치하는지 어떻게 알 수 있는가? 환경에 따라 다르지만, 보통은 형식 검증된 모델 자체를 프로덕션(production)에 배포할 수 없다. 그래서 여러분은 모델과 일치한다고 생각하는 코드를 배포한다. 하지만 만약 일치하지 않는다면? 이것의 전형적인 사례가 2009년의 SeL4다 [4]. 형식적 정확성이 보장된, 고도로 회복탄력적인(resilient) 시스템을 위해 만들어진 운영체제인데... 직접적인 증명이 없는 방대한 양의 원시 어셈블리(assembly) 및 C 코드를 동반하는 모델을 통해서였다. 실무에서는 형식 검증과 더불어, 여러분의 정리(theorem)와 일치하는 불변식에 대한 속성 기반 테스트도 함께 사용하고 싶을 것이다. 이렇게 하면 번역 공백이 '내 코드가 내 모델과 일치하길 바란다'에서 '내 불변식이 내 정리와 일치해야 한다'로 좁혀진다. 여전히 완벽하지는 않지만, 후자가 달성하기에는 훨씬 더 쉽다. 이것이 바로 우리가 ~pot@1.0에서 한 일이다. 실제 코드를 대상으로 약 5000억 개(내 기억이 맞다면)의 서로 다른 무작위 시나리오를 시뮬레이션하면서, 검증된 모델에서 나온 모든 속성이 단 하나의 예외도 없이 모든 상황에서 성립하는지 확인하는 점검을 실행했다. 빌더들에게: HyperBEAM에서 여러분의 디바이스를 위한 속성 기반 불변식을 만들고 싶다면 [5]를 확인해보라. 우리는 이를 친근하게 만들려고 노력했지만 API는 아마 개선의 여지가 있을 것이다. PR 환영한다!"
+        }
+      ],
+      "firstSeen": "2026-09-16",
+      "lastActivity": "2026-09-18",
+      "status": "active",
+      "rootUrl": "https://x.com/VitalikButerin/status/2100337594722890145",
+      "engagement": {
+        "likes": 3193,
+        "retweets": 415,
+        "quotes": 134,
+        "replies": 366,
+        "views": 684596
+      }
+    },
+    {
+      "id": "glamsterdam-gaslimit-client-readiness",
+      "title": "글램스테르담의 200M 가스 상향에 이더리움은 준비돼 있나?",
+      "category": "프로토콜 설계",
+      "summary": "Nethermind의 Ben Adams(ben_a_adams)는 EIP-7890 밸리데이터 하드웨어에서 3분 15초에 570GGas, 현재 24시간 사용량의 2.6배를 처리하는 성능 수치를 공개하며 클라이언트가 글램스테르담(Glamsterdam)의 200M 가스 리밋(gas limit)을 감당한다고 주장했고, evmone 저자 Paweł Bylica(chfast)는 반대로 글램스테르담이 이더리움에 준비돼 있는지 모르겠다고 받아쳐 클라이언트 벤치마크와 프로토콜 차원의 준비 상태는 별개라고 반박했다.",
+      "keyPoints": [
+        "클라이언트의 벤치마크 처리 성능이 곧 가스 리밋 상향의 안전성을 뜻하는가?",
+        "200M 가스 블록으로의 점프를 안전하게 만드는 것은 리프라이싱(repricing)인가, 대역폭(bandwidth) 등 시스템 병목인가?"
+      ],
+      "background": "글램스테르담은 가스 리밋을 200M 수준으로 올리는 항목을 담고 있고, EIP-7890은 밸리데이터가 갖춰야 할 표준 하드웨어 기준을 정의한다. Ben Adams가 제시한 수치는 순수 연산(compute) 처리량으로, 그는 스토리지 상태 변경이 BAL(block access list)을 통해 대역폭을 소비하며 다른 병목 때문에 이 속도가 그대로는 안전하지 않아 추가 리프라이싱이 필요하다고 스스로 단서를 달았다. 그 리프라이싱 메커니즘이 이미 글램스테르담에 들어 있어 200M 블록으로 안전하게 점프할 수 있다는 것이 그의 논지다.",
+      "whyItMatters": "가스 리밋의 상한선이 클라이언트 최적화가 아니라 리프라이싱·대역폭 같은 시스템 병목에서 결정된다는 점은, 앞으로의 가스 리밋·블롭(blob) 증설 논의에서 '벤치마크가 빠르다'는 근거만으로 상향을 정당화할 수 없음을 시사한다.",
+      "keywords": [
+        "Glamsterdam gas limit",
+        "EIP-7890",
+        "200 MGas repricing",
+        "Nethermind benchmark"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "클라이언트는 이미 훨씬 더 처리한다",
+          "holders": [
+            {
+              "handle": "ben_a_adams",
+              "name": "Ben {chmark} Adams ⟠",
+              "role": "Nethermind 코어 개발자",
+              "avatar": "https://pbs.twimg.com/profile_images/1282411238602006529/l4lHaQHE_400x400.jpg"
+            }
+          ],
+          "points": [
+            "EIP-7890 밸리데이터 하드웨어에서 3분 15초에 570GGas, 현재 24시간 사용량의 2.6배를 처리했으며, 이는 글램스테르담 이후 목표 한도를 크게 웃돈다.",
+            "그 속도 자체는 다른 병목 때문에 안전하지 않아 추가 리프라이싱이 필요하지만, 이를 가능하게 하는 메커니즘이 이미 글램스테르담에 들어 있어 200M 가스 블록으로 안전하게 점프할 수 있다."
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "글램스테르담이 이더리움에 준비됐는지 모르겠다",
+          "holders": [
+            {
+              "handle": "chfast",
+              "name": "Paweł Bylica",
+              "role": "EF, evmone 저자",
+              "avatar": "https://pbs.twimg.com/profile_images/849982543982145536/mRbvphSB_400x400.jpg"
+            }
+          ],
+          "points": [
+            "클라이언트 벤치마크가 빠르다는 것과 프로토콜이 200M 가스 상향에 준비됐다는 것은 별개의 문제다."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-09-16",
+          "by": "ben_a_adams",
+          "stance": "pro",
+          "quote": "여러분은 이더리움에서 글램스테르담을 맞을 준비가 안 돼 있는 것 같다.",
+          "url": "https://x.com/ben_a_adams/status/2100249669024596284",
+          "digest": "2026-09-19",
+          "relation": "none",
+          "original": "I am not sure you are prepared for Glamsterdam on Ethereum",
+          "translation": "나는 여러분이 이더리움에서의 글램스테르담(Glamsterdam)을 맞이할 준비가 되어 있는지 잘 모르겠다."
+        },
+        {
+          "date": "2026-09-16",
+          "by": "ben_a_adams",
+          "stance": "pro",
+          "quote": "200M 가스 12초 블록이면 16MGas/s다. 3분 15초에 570GGas는 현재 24시간 동안 쓰이는 양의 2.6배다.",
+          "url": "https://x.com/ben_a_adams/status/2100286805442469924",
+          "digest": "2026-09-19",
+          "replyTo": "Christo17120844",
+          "relation": "reply",
+          "original": "@Christo17120844 @ryanberckmans @Nethermind 200MGas 12sec block is 16MGas/s?\n\nSo 182 times higher\n\n570 GGas in 3min 15sec is 2.6x more than used in 24hours currently",
+          "translation": "@Christo17120844 @ryanberckmans @Nethermind 200MGas 12초 블록이면 16MGas/s인가? 그러면 182배 더 높은 셈이다. 3분 15초 동안의 570GGas는 현재 24시간 동안 사용되는 가스량보다 2.6배 더 많다."
+        },
+        {
+          "date": "2026-09-16",
+          "by": "ben_a_adams",
+          "stance": "pro",
+          "quote": "아쉽게도 다른 병목들 때문에 이 속도가 안전하지는 않아 추가 리프라이싱이 필요하다. 다만 이를 가능하게 하는 메커니즘은 이미 글램스테르담에 들어 있고, 그래서 200M 가스 블록으로 안전하게 점프할 수 있다. 이 수치는 EIP-7890 밸리데이터 하드웨어에서 측정한 것이다.",
+          "url": "https://x.com/ben_a_adams/status/2100297787640332624",
+          "digest": "2026-09-19",
+          "relation": "none",
+          "original": "@materkel @Christo17120844 @ryanberckmans @Nethermind Alas won't be this speed as are other bottlenecks wouldn't make it safe so would need some more repricing\n\nHowever mechanism to do this is live in Glamsterdam (and why we can jump to 200MGas blocks safely); and this is measured on  EIP-7890 validator hardware",
+          "translation": "@materkel @Christo17120844 @ryanberckmans @Nethermind 안타깝게도 실제로는 이 속도가 나오지 않을 것이다. 다른 병목(bottleneck)들이 있어서 안전하지 않을 것이고, 따라서 리프라이싱(repricing)이 좀 더 필요할 것이기 때문이다. 다만 이를 위한 메커니즘은 글램스테르담(Glamsterdam)에 이미 도입되어 있다 (그리고 이것이 우리가 안전하게 200MGas 블록으로 뛰어오를 수 있는 이유다). 그리고 이는 EIP-7890 검증자(validator) 하드웨어에서 측정된 것이다."
+        },
+        {
+          "date": "2026-09-17",
+          "by": "chfast",
+          "stance": "con",
+          "quote": "나는 글램스테르담이 이더리움에 준비돼 있는지 모르겠다.",
+          "url": "https://x.com/chfast/status/2100488518392815842",
+          "digest": "2026-09-19",
+          "replyTo": "ben_a_adams",
+          "relation": "reply",
+          "original": "@ben_a_adams @Nethermind I am not sure Glamsterdam is prepared for Ethereum",
+          "translation": "@ben_a_adams @Nethermind 나는 글램스테르담이 이더리움을 맞이할 준비가 되어 있는지 잘 모르겠다."
+        }
+      ],
+      "firstSeen": "2026-09-16",
+      "lastActivity": "2026-09-17",
+      "status": "active",
+      "rootUrl": "https://x.com/chfast/status/2100488518392815842",
+      "engagement": {
+        "likes": 2,
+        "retweets": 0,
+        "quotes": 0,
+        "replies": 0,
+        "views": 77
+      }
+    },
     {
       "id": "clarity-failure-blame-trump",
       "title": "CLARITY 부결의 책임은 트럼프 일가의 크립토 셀프딜링에 있나",
@@ -1014,7 +1462,7 @@
       ],
       "firstSeen": "2026-09-10",
       "lastActivity": "2026-09-11",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/trent_vanepps/status/2098176271691755709",
       "engagement": {
         "likes": 59,
@@ -1165,7 +1613,7 @@
       ],
       "firstSeen": "2026-09-11",
       "lastActivity": "2026-09-11",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/fradamt/status/2098358457275420832",
       "engagement": {
         "likes": 4,
@@ -1322,7 +1770,7 @@
       ],
       "firstSeen": "2026-09-10",
       "lastActivity": "2026-09-10",
-      "status": "active"
+      "status": "cooling"
     },
     {
       "id": "gas-params-privacy-leak",
