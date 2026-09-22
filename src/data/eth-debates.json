@@ -482,7 +482,8 @@
         "quotes": 0,
         "replies": 6,
         "views": 1819
-      }
+      },
+      "publish": true
     },
     {
       "id": "is-privacy-dead-ai-era",
@@ -688,7 +689,8 @@
         "quotes": 17,
         "replies": 69,
         "views": 62248
-      }
+      },
+      "publish": true
     },
     {
       "id": "l2s-competitors-or-allies",
