@@ -1,6 +1,503 @@
 {
-  "updatedAt": "2026-09-19T01:10:38.971Z",
+  "updatedAt": "2026-09-22T01:06:26.586Z",
   "calls": [
+    {
+      "id": "acdt-97",
+      "series": "acdt",
+      "number": 97,
+      "date": "2026-09-21",
+      "title": "AllCoreDevs - Testing #097",
+      "forkcastUrl": "https://forkcast.org/calls/acdt/097/",
+      "videoUrl": "https://www.youtube.com/watch?v=ESJMv-hVxPw",
+      "issueUrl": "https://github.com/ethereum/pm/issues/2225",
+      "kind": "full",
+      "durationMin": 57,
+      "headline": "헤고타 데브넷\n분리 후 통합",
+      "lead": "포실과 프레임을 따로 시작해 나중에 합치기로 했다",
+      "intro": "이더리움 코어 개발자들이 테스트넷과 데브넷 준비를 조율하려 모이는 콜이다.",
+      "summary": "이 콜에서 새 결정은 크지 않았다. 헤고타(Hegota) 데브넷을 FOCIL 전용과 프레임(Frames) 전용으로 따로 시작한 뒤 통합하기로 합의했고, CL 블록 서빙 윈도우와 BAL 보관 기간 문제는 결론 없이 비동기 논의로 넘겼다.",
+      "whyItMatters": "복잡한 EIP를 초반에 분리해 테스트하면 문제 원인을 빨리 찾아 헤고타 개발 주기를 단축할 수 있다. 서빙 윈도우와 BAL 보관 기간을 맞추는 문제는 결정되면 노드 저장 용량을 줄일 수 있어 EL·CL 운영자 모두에게 영향이 있다.",
+      "decisions": [
+        {
+          "label": "서빙 윈도우 미결",
+          "text": "글램스터담(Glamsterdam) CL 블록 서빙 윈도우와 BAL 보관 기간을 이 콜에서 정하지 않고 비동기 논의와 ACDE로 넘겼다. 33,024 에폭 유지, 약 14,299로 축소, 8,192로 축소(EIP-8383, 헤고타 후보라 범위 밖) 세 안이 올라왔고 테스트넷 출시는 막지 않는다.",
+          "original": "Serving window / BAL retention not resolved; not blocking testnet launch; continue async. Three options tabled for the Glamsterdam CL serving window: keep 33,024 epochs, reduce to ~14,299 per the EIP-8061 derivation, or reduce to 8,192 per EIP-8383 (already PFI for Hegota, so out of scope for Glamsterdam)",
+          "eips": [
+            7928,
+            8061,
+            8383
+          ],
+          "status": "기타",
+          "timestamp": "00:23:10"
+        },
+        {
+          "label": "헤고타 데브넷 계획",
+          "text": "헤고타 데브넷을 FOCIL 전용과 프레임 전용으로 따로 시작한 뒤 안정되면 통합 헤고타 데브넷으로 합치기로 했다. 복잡한 상호작용을 초반에 분리해 원인 파악을 쉽게 하려는 것이다.",
+          "original": "Hegota devnet strategy: start FOCIL-only and Frames-only devnets separately, then merge into a combined Hegota devnet",
+          "eips": [
+            7805,
+            8141
+          ],
+          "status": "확정",
+          "fork": "Hegota",
+          "timestamp": "00:44:22"
+        },
+        {
+          "label": "EIP-8142 철회",
+          "text": "EIP-8142(BiB)를 챔피언(champion)이 철회하고 대체안으로 EIP-8411(빠른 실행 페이로드 브로드캐스트, Fast Execution Payload Broadcast)을 제안했다는 공지였고 이 콜에서 결정은 없었다. CL 팀들은 다음 ACDC 전에 평점을 매겨달라는 요청을 받았다.",
+          "original": "PSA (no decision taken on this call): EIP-8142 (BiB) is being withdrawn by its champion, who has proposed EIP-8411 (Fast Execution Payload Broadcast) as a replacement; CL teams asked to add ratings ahead of the next ACDC",
+          "eips": [
+            8142,
+            8411
+          ],
+          "status": "기타",
+          "fork": "Hegota",
+          "timestamp": "00:45:03"
+        }
+      ],
+      "targets": [
+        {
+          "key": "sepolia-fork",
+          "text": "글램스터담 세폴리아(Sepolia): 10월 6일 (에폭 353024). 클라이언트 릴리스는 9월 29일까지. 확정.",
+          "timestamp": "00:30:06"
+        },
+        {
+          "key": "hoodi-fork",
+          "text": "글램스터담 후디(Hoodi): 잠정 10월 27일, 진행 여부 결정은 10월 8일. 제안.",
+          "timestamp": "00:30:43"
+        },
+        {
+          "key": "amsterdam-test-fixtures",
+          "text": "뉴 암스테르담 안정 테스트 픽스처 릴리스: 9월 23일 수요일 목표.",
+          "timestamp": "00:33:27"
+        },
+        {
+          "key": "frames-focil-devnet",
+          "text": "프레임+FOCIL 통합 데브넷: 데브콘(DevCon) 이전 목표.",
+          "timestamp": "00:40:44"
+        }
+      ],
+      "actions": [
+        {
+          "owner": "Kevaundray Wedderburn / Toni Wahrstätter",
+          "text": "BAL/CL 보관 기간 정렬에 대한 비동기 스레드를 열고 다음 콜 전 ACDE에 올린다.",
+          "timestamp": "00:23:27"
+        },
+        {
+          "owner": "CL 팀",
+          "text": "다음 ACDC 전에 EIP-8411(빠른 실행 페이로드 브로드캐스트) 평점을 추가한다.",
+          "timestamp": "00:45:03"
+        },
+        {
+          "owner": "모든 클라이언트 팀",
+          "text": "아직 안 했다면 세폴리아 글램스터담 활성화 PR을 검토·승인한다.",
+          "timestamp": "00:30:32"
+        }
+      ],
+      "agenda": [
+        {
+          "timestamp": "00:04:25",
+          "heading": "데브넷 8·데브넷 11 상태"
+        },
+        {
+          "timestamp": "00:06:37",
+          "heading": "EIP-8061 이후 CL 블록 서빙 윈도우",
+          "discussion": true
+        },
+        {
+          "timestamp": "00:12:43",
+          "heading": "BAL 보관 기간 정렬 (EIP-7928)",
+          "decision": true
+        },
+        {
+          "timestamp": "00:29:56",
+          "heading": "글램스터담 테스트넷 일정"
+        },
+        {
+          "timestamp": "00:34:21",
+          "heading": "예비 헤고타 데브넷 일정",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "00:46:23",
+          "heading": "암스테르담용 BPO 테스트 일정"
+        },
+        {
+          "timestamp": "00:50:27",
+          "heading": "벤치마킹 하드웨어 목표",
+          "discussion": true
+        }
+      ],
+      "topics": [
+        {
+          "title": "CL 서빙 윈도우와 BAL 보관 기간",
+          "intro": "EIP-8061이 약한 주관성 기간(Weak Subjectivity Period, WSP)을 줄였지만 CL 블록 서빙 윈도우는 33,024 에폭으로 남아, 이를 줄일지와 BAL 보관 기간을 맞출지를 논의했다.",
+          "positions": [
+            {
+              "speaker": "Jihoon",
+              "text": "8061로 WSP가 줄어 서빙 윈도우를 약 14K 에폭으로 줄일 수 있고, 33K에서 14K로 줄이면 BAL 저장이 약 144GB 절약된다고 소개했다.",
+              "timestamp": "00:07:40",
+              "original": "Thank you, Dan. So, As just Dan described, currently the EL should be able to serve blocks for 30,000 sorry, 33,024 epochs. You can get this number by putting CFDK as 100 to week subjectivity period. A month ago, Kev brought this up and updated EIP force to align CL's and EL's block retention period. In Glas, we're gonna ship. 80-61, which reduces a week's subjectivity period, so we can reduce it… we could reduce it to 14K epochs. So I think there are two things to decide. One is whether we want to reduce the block retention period for CL, more precisely, is the return value of compute BN epochs for block requests? And… If we do so, we will need to decide whether we want to make the EL to reduce its history retention period matching to the CL1, So if you reduce it from 33K to 40K-ish epochs, then the size saving from Balls would be around 144 gigabytes, assuming 200… Guest limit. It was actually based on your analysis on 60 mil, and I just assumed that it was gonna increase linearly.",
+              "translation": "감사합니다, Dan. 방금 Dan이 설명한 대로, 현재 실행 계층(EL)은 30,000, 아니 죄송합니다, 33,024 에폭(epoch) 동안 블록을 제공할 수 있어야 합니다. 이 숫자는 CFDK를 100으로 두고 약한 주관성 기간(weak subjectivity period)에 대입하면 얻을 수 있습니다. 한 달 전 Kev가 이 문제를 제기했고, 합의 계층(CL)과 EL의 블록 보존 기간을 맞추기 위해 EIP를 업데이트했습니다. 글램스테르담에서는 8061을 출시할 예정인데, 이는 약한 주관성 기간을 줄여주므로 14K 에폭까지 줄일 수 있습니다. 그래서 결정해야 할 사항이 두 가지 있다고 생각합니다. 하나는 CL의 블록 보존 기간을 줄이고 싶은지 여부인데, 더 정확히는 블록 요청에 대한 compute BN epochs의 반환값을 줄이고 싶은지 여부입니다. 그리고, 만약 그렇게 한다면, EL의 히스토리 보존 기간도 CL에 맞춰 줄일지 결정해야 할 것입니다. 33K에서 40K 정도의 에폭으로 줄인다면, BAL로부터의 용량 절감은 가스 한도(gas limit)를 200... 이라고 가정할 때 약 144기가바이트 정도가 될 것입니다. 이는 실제로 6천만에 대한 분석을 기반으로 한 것이고, 저는 그것이 선형적으로 증가할 것이라고 가정했을 뿐입니다."
+            },
+            {
+              "speaker": "Potuz",
+              "text": "CL 데이터베이스 크기는 사용자 불만이 된 적이 없다며, 이건 ACDT가 아니라 ACD의 거버넌스 결정이라고 봤다.",
+              "timestamp": "00:09:36",
+              "original": "I have two independent comments here. One is that I find weird, this… push to try to reduce the retention of blocks on the CL side, where the CL database has never been a problem on users complaining about, like, our usage. So I find it already strange. But, the second one is… I think we should not even be discussing this on ACDT. This is some… this is something for ACD, not for ACDT. I mean, this… the change is technically trivial. It's just a governance decision of whether… of what the node should have on what it shouldn't. I don't see how this belongs here.",
+              "translation": "여기서 독립적인 의견이 두 가지 있습니다. 하나는, CL 쪽에서 블록 보존 기간을 줄이려는 이러한 움직임이 이상하다고 생각한다는 것입니다. CL 데이터베이스는 사용자들이 사용량에 대해 불평한 적이 한 번도 없었던 부분이기 때문입니다. 그래서 이미 이상하다고 생각합니다. 하지만 두 번째는, 이것을 ACDT에서 논의해서는 안 된다고 생각한다는 것입니다. 이것은 ACDT가 아니라 ACD를 위한 것입니다. 즉, 이 변경 사항은 기술적으로는 사소합니다. 이것은 그저 노드가 무엇을 가지고 있어야 하고 무엇을 가지고 있지 않아야 하는지에 대한 거버넌스 결정일 뿐입니다. 이것이 왜 여기서 다뤄져야 하는지 모르겠습니다."
+            },
+            {
+              "speaker": "Toni Wahrstätter",
+              "text": "이 문제는 스테이트 디프 등 EL의 여러 보관 윈도우를 통일하려는 더 큰 작업과 맞물린다고 지적했다.",
+              "timestamp": "00:10:53",
+              "original": "Yeah, I just wanted to add, this also plays into this larger topic that we have been trying to tackle for a while now, where we try to, unify all the retention windows on the EL as well. For example, there's also different retention windows when it comes to state divs, so not every EL client could reorg that far back, and it feels like This is… this also plays into that decision, where we should just align all those numbers such that clients agree on them. Yeah, and I very much agree with Nico, like, the goal should be to enable deduplication of the BAL. Like, this should be possible, and we should get to something where CL clients can do that safely. So this was discussed… we had this definitely on 223 breakout calls, and also on ACDC and ACDE, like, what should the barrel retention window be? And by the time it was set to the week subjectivity period, of 3,533 epochs. And the reason was because if an EL client goes offline for a while, then they can stay offline for exactly that period for 3,533 epochs, and then, if they want, they can still catch up by doing re-execution. This is super slow, because, You have to catch up a lot of blocks, but at the same time, you at least have the ball, so you can parallelize, and if you wouldn't have the ball, then catching up would basically be impossible. This is… this is just weak subjectivity. This has nothing to do even with, inactivity leaks and safety decays, and restoring finality. This is purely weak subjectivity. Maybe a naive…",
+              "translation": "네, 덧붙이고 싶은 것은, 이것이 우리가 한동안 다루려고 해온 더 큰 주제와도 연결된다는 점입니다. 즉 EL에서도 모든 보존 기간을 통일하려는 시도입니다. 예를 들어 상태 diff와 관련해서도 서로 다른 보존 기간이 있어서, 모든 EL 클라이언트가 그렇게 멀리까지 리오그(reorg)할 수 있는 것은 아닙니다. 그리고 이것도 그 결정과 연결되는 것 같은데, 클라이언트들이 서로 동의할 수 있도록 이 모든 숫자를 맞춰야 한다는 것입니다. 네, 그리고 저는 Nico의 의견에 매우 동의합니다. 목표는 BAL의 중복 제거(deduplication)를 가능하게 하는 것이어야 한다는 것입니다. 이것이 가능해야 하고, CL 클라이언트들이 이를 안전하게 할 수 있는 지점에 도달해야 합니다. 그래서 이것은 223 브레이크아웃 콜(breakout call)에서도, 그리고 ACDC와 ACDE에서도 확실히 논의되었습니다. 배럴(barrel) 보존 기간이 어떻게 되어야 하는가에 대해서요. 그리고 그 당시에는 3,533 에폭이라는 약한 주관성 기간으로 설정되었습니다. 그 이유는, EL 클라이언트가 한동안 오프라인 상태가 되면 정확히 그 기간인 3,533 에폭 동안 오프라인으로 있을 수 있고, 그런 다음 원한다면 재실행(re-execution)을 통해 여전히 따라잡을 수 있기 때문입니다. 이것은 매우 느린데, 많은 블록을 따라잡아야 하기 때문입니다. 하지만 동시에 최소한 BAL은 가지고 있으므로 병렬화할 수 있고, BAL이 없다면 따라잡는 것은 기본적으로 불가능할 것입니다. 이것은 그냥 약한 주관성입니다. 이것은 비활성 유출(inactivity leak)이나 안전성 저하(safety decay), 파이널리티(finality) 복원과는 전혀 관련이 없습니다. 이것은 순전히 약한 주관성입니다. 어쩌면 순진하게 생각하면..."
+            },
+            {
+              "speaker": "Nico Flaig",
+              "text": "EL이 BAL을 프루닝하면 CL이 페이로드를 중복 제거(dedupe)하지 못해 전체를 저장해야 하고, EL 보관을 줄여야 큰 저장 이득이 난다며 CL DB가 작다는 Potuz의 점에 답했다.",
+              "timestamp": "00:11:31",
+              "original": "Yeah, so my comment is related to what Potu said, which is the CL database size, but basically the EL today has to follow the retention period. That we need on the CL side, so you can dedupe the data. So basically, you bet… so while the CLDB is small in that case, we can also reduce the EL side retention. Which is where you get the big gains, in terms of storage.",
+              "translation": "네, 제 의견은 Potu가 말한 것, 즉 CL 데이터베이스 크기와 관련이 있는데, 기본적으로 오늘날 EL은 데이터를 중복 제거할 수 있도록 CL 쪽에서 필요한 보존 기간을 따라야 합니다. 그러니까 기본적으로, CLDB가 그 경우 작은 동안, EL 쪽 보존 기간도 줄일 수 있습니다. 바로 그 지점에서 저장 용량 측면의 큰 이득을 얻게 됩니다."
+            },
+            {
+              "speaker": "Potuz",
+              "text": "상태 재생성 목적이면 33K 에폭 비확정 전에 이미 네트워크가 망가지므로, 보관은 주로 히스토리 가용성(history availability)을 위한 것이라고 주장했다.",
+              "timestamp": "00:16:42",
+              "original": "Yeah, but the question here is not about what the spec says. I think what Toni is aiming is, like, why do we even have these numbers? And yes, we only need to process states both on the CL or the EL. If you need to regenerate a state. And on the CL side, that only makes sense either if you're an archive node, or if you are not finalizing. And I think that's the core of the question here. We need to keep data around for two different reasons. One is if we actually actively need to generate a state, and that's because we are not finalizing, or we need to serve that And the other one is just to make history available, for example, for archetype nodes that need to serve information. And I think these two things have different purposes, and we can probably have a discussion as to what needs to be available and what's not. But, for the purpose of regenerating state, because we're not finalizing, we can relax things, but for the purposes of making history available, it's not really clear to me that we can relax these things. Same for Prysm. We don't store anything that we do not need to store. What data? If it's columns, those are based on… I mean, we have a retention period, which is what waste. No, that's… that I don't think is true. If that's true, that's a bug that was introduced in Prysm. We never prune… we used to never prune on World Clock. We only finalize and we migrate to cold. And essentially never prune, except if the user is forcing us to prune. But that's, that's…",
+              "translation": "네, 하지만 여기서 질문은 스펙이 무엇을 말하는가에 대한 것이 아닙니다. Toni가 겨냥하는 것은, 애초에 왜 이런 숫자들을 가지고 있는가라고 생각합니다. 그리고 맞습니다, 우리는 CL이든 EL이든 상태를 재생성해야 할 때만 상태를 처리하면 됩니다. 그리고 CL 쪽에서는, 아카이브 노드이거나 파이널라이즈하지 않는 경우에만 그것이 의미가 있습니다. 그리고 저는 이것이 여기서 질문의 핵심이라고 생각합니다. 우리가 데이터를 계속 보관해야 하는 이유는 두 가지가 있습니다. 하나는 실제로 능동적으로 상태를 생성해야 하는 경우인데, 이는 파이널라이즈하지 않고 있거나 그것을 제공해야 하기 때문입니다. 그리고 다른 하나는 단순히 히스토리를 이용 가능하게 만들기 위한 것인데, 예를 들어 정보를 제공해야 하는 아카이브 타입 노드를 위한 것입니다. 그리고 저는 이 두 가지가 서로 다른 목적을 가지고 있다고 생각하며, 무엇이 이용 가능해야 하고 무엇이 그렇지 않아야 하는지에 대해 논의할 수 있을 것입니다. 하지만 파이널라이즈하지 않기 때문에 상태를 재생성하는 목적을 위해서는 완화할 수 있지만, 히스토리를 이용 가능하게 만드는 목적을 위해서는 이를 완화할 수 있는지 저에게는 명확하지 않습니다. Prysm도 마찬가지입니다. 우리는 저장할 필요가 없는 것은 아무것도 저장하지 않습니다. 어떤 데이터인가요? 컬럼이라면, 그것들은... 그러니까 우리는 보존 기간을 가지고 있는데, 그것이 낭비되는 부분입니다. 아니요, 그건... 그건 사실이 아니라고 생각합니다. 만약 그것이 사실이라면, 그것은 Prysm에 도입된 버그입니다. 우리는 절대 정리(prune)하지 않습니다... 우리는 예전에 World Clock에서 절대 정리하지 않았습니다. 우리는 오직 파이널라이즈만 하고 콜드 스토리지로 마이그레이션합니다. 그리고 사용자가 강제로 정리하도록 하지 않는 한 사실상 절대 정리하지 않습니다. 하지만 그건, 그건..."
+            },
+            {
+              "speaker": "Kevaundray Wedderburn",
+              "text": "안건이 많으니 디스코드 스레드로 비동기 논의를 이어 ACDE 전에 결론을 내자고 제안했다.",
+              "timestamp": "00:29:11",
+              "original": "I propose that we continue this async. I have some other questions, but The agenda looks pretty packed, so I don't want to take up too much time. I can create a thread for… Toni Marius… protests, and whoever wants to join in on that discussion, maybe we'll reach a conclusion before ACDE.",
+              "translation": "이 논의는 비동기로 계속 진행할 것을 제안합니다. 다른 질문들도 있습니다만, 안건이 꽤 빡빡해 보여서 시간을 너무 많이 쓰고 싶지 않습니다. Toni, Marius… protests, 그리고 그 논의에 참여하고 싶은 분들을 위해 스레드를 만들 수 있습니다. 아마 ACDE 전에 결론에 도달할 수 있을 것입니다."
+            }
+          ],
+          "quote": {
+            "text": "EL이 이걸 프루닝하면 저장 측면에서 얻는 게 없다. CL이 BAL을 전부 저장하도록 강제하기 때문이다.",
+            "original": "the problem we have is that if the EL brunes it, we don't gain anything in terms of storage, because that forces the CL to store the balls in full.",
+            "speaker": "Nico Flaig",
+            "timestamp": "00:15:23"
+          }
+        },
+        {
+          "title": "헤고타 데브넷 구성 순서",
+          "intro": "글램스터담에서 복잡한 EIP를 과소평가한 경험을 살려, 헤고타 데브넷을 어떤 순서로 구성할지 논의했다.",
+          "decision": "확정 00:44:22",
+          "positions": [
+            {
+              "speaker": "spencer",
+              "text": "헤고타 EIP가 CFI되면 데브넷 개수와 EIP 배치를 미리 느슨하게 맞추자며, 복잡한 EIP를 주기 초반에 넣자고 제안했다.",
+              "timestamp": "00:34:52",
+              "original": "Hey, yeah, I guess, we can be brief on this call, but, just to give… Everyone a high-level overview. basically looking back on Glamsterdam. I thought I had of how we can try and speed up the DevNet process, development cycle is… trying to align on a DevNet plan, and I don't think this is anything we should do now, but it's mostly a… Let's keep this in the back of our minds, and… Once all the EIPs for Hegota are CFI'd, maybe that's in a few weeks. We come back to this topic on ACDT, and we try and align on A loose plan, not a concrete plan on… How many dev nets we should have on the EL, how many dev nets we should have on the CL, what EIPs we add to each dev net first. And I guess, looking back on Glamsterdam. And one of the mistakes we made on our side on the EL was underestimating the complexity of 8037, so… M… With, this kind of… loose to have in that plan, the idea would be to include the more complex EIPs a lot earlier in the cycle. And yeah, try and potentially reduce the number of demets, but I guess that's, like, the loose overview, so maybe we can be more concrete about that in a follow-up ACDT, but I guess for today. I think one thing that I would be interested in us aligning on would be… I guess specifically, the FOCIL and Frames, DevNets, whether we should… and have a single CL thread. Where it's just the FOCIL, FOCIL, and then the CL EIPs. And Frames, and then the… EL EIPs, and then merging the two at the end, kind of like what we did for Glamsterdam. Or do we…",
+              "translation": "네, 이번 콜에서는 간단히 하겠습니다만, 모두에게 상위 수준의 개요를 드리자면, 기본적으로 글램스테르담을 돌아보면서, 데브넷(DevNet) 프로세스, 개발 주기를 어떻게 가속화할 수 있을지에 대한 생각이 있었습니다. 데브넷 계획에 대해 합의하려는 것인데, 지금 당장 해야 할 일이라고는 생각하지 않지만, 대체로 이것을 마음 한켠에 담아두고, Hegota의 모든 EIP가 CFI 되면, 아마 몇 주 후가 될 텐데, ACDT에서 이 주제로 다시 돌아와서, 느슨한 계획, 즉 구체적인 계획이 아니라, EL에 데브넷을 몇 개 두어야 하는지, CL에 데브넷을 몇 개 두어야 하는지, 각 데브넷에 어떤 EIP를 먼저 추가할지에 대해 합의를 시도하려고 합니다. 그리고 글램스테르담을 돌아보면, EL 쪽에서 저희가 저지른 실수 중 하나는 8037의 복잡성을 과소평가한 것이었습니다. 그래서 이런 느슨한 계획에는, 더 복잡한 EIP들을 주기 초반에 훨씬 더 일찍 포함시키자는 아이디어가 있을 것입니다. 그리고 데브넷의 수를 잠재적으로 줄이려고 시도하는 것인데, 이것이 느슨한 개요라고 생각하며, 후속 ACDT에서 이에 대해 더 구체적으로 이야기할 수 있을 것 같습니다. 하지만 오늘은, 저희가 합의하는 데 관심 있는 한 가지는, 구체적으로 FOCIL과 Frames 데브넷에 대한 것인데, 단일 CL 스레드를 가져야 하는지 여부입니다. 즉 FOCIL, FOCIL 그리고 CL EIP들만 있고, 그다음 Frames와 EL EIP들이 있고, 마지막에 이 둘을 합치는 방식으로, 글램스테르담 때 했던 것과 비슷하게 할지, 아니면..."
+            },
+            {
+              "speaker": "Stefan Starflinger",
+              "text": "초반엔 프레임 데브넷과 FOCIL 데브넷을 분리해 근본 원인 파악을 쉽게 하고, 기본이 안정되면 통합 헤고타 데브넷으로 합치자고 했다.",
+              "timestamp": "00:37:27",
+              "original": "Yeah, I would like to say that, for me, I think it was nice to separate EL and EL into two different definets, so that we would have a Frames DevNets and a FOCIL definites running, and we would try to separate whatever is CL and EL as much as possible. And then, once things mature more, we can combine it into a Hegota DevNets network, and that also makes it a little bit easier To really go from a very rough stage to a little bit more stable stage, and we can focus on the issues there that arise without any other issues or any interactions that might confuse, kind of, where the root cause is. And then later, to have the more complex relationships together in one Hegota DevNets, where we can then be sure that the basics are running well, and we can try to tackle the more complicated edge cases and interactions. That would be my take.",
+              "translation": "네, 저는 개인적으로 CL과 EL을 서로 다른 두 개의 데브넷으로 분리한 것이 좋았다고 말씀드리고 싶습니다. 그래서 Frames 데브넷과 FOCIL 데브넷을 각각 운영하면서, CL에 해당하는 것과 EL에 해당하는 것을 최대한 분리하려고 했습니다. 그런 다음 상황이 더 성숙해지면, 이를 하나의 Hegota 데브넷 네트워크로 합칠 수 있습니다. 그리고 이렇게 하면 매우 초기 단계에서 좀 더 안정적인 단계로 실제로 넘어가는 것이 조금 더 쉬워지고, 근본 원인이 어디인지 혼란스럽게 만들 수 있는 다른 문제나 상호작용 없이 거기서 발생하는 문제에 집중할 수 있습니다. 그런 다음 나중에는 더 복잡한 관계들을 하나의 Hegota 데브넷에 함께 두어, 기본 사항들이 잘 작동하고 있다는 것을 확신한 상태에서, 더 복잡한 엣지 케이스와 상호작용을 다룰 수 있습니다. 이것이 제 생각입니다."
+            },
+            {
+              "speaker": "Toni Wahrstätter",
+              "text": "ePBS와 BAL은 상호작용이 거의 없었지만 FOCIL과 프레임은 멤풀에서 상호작용이 크고, EL에서 인클루전 리스트에 프레임 트랜잭션을 넣는 게 가장 복잡해 빨리 합치는 게 좋다고 했다.",
+              "timestamp": "00:39:16",
+              "original": "Right, yeah. It's only EL, and the interesting point here is the mempool, such that EL clients will have to build inclusion lists. Including frame transactions, and frame transactions are the most complicated transaction type we have when it comes to inclusion. So, in that regard, it would be great to have them combined as early as possible. SEO clients. Yeah, this is correct. I agree. I just see more complexity on the EL side than on the SL side, so it's fine if we get the SL side done. I think the EL size will be more complex when it comes to FOCIL plus Frames.",
+              "translation": "맞습니다, 네. 이것은 EL에만 해당하는데, 여기서 흥미로운 점은 멤풀(mempool)입니다. EL 클라이언트들이 프레임 트랜잭션(frame transaction)을 포함한 인클루전 리스트(inclusion list)를 구축해야 하는데, 프레임 트랜잭션은 인클루전 측면에서 우리가 가진 가장 복잡한 트랜잭션 유형입니다. 그런 점에서, 이것들을 가능한 한 일찍 합치는 것이 좋을 것입니다. CL 클라이언트들이요. 네, 맞습니다. 동의합니다. 저는 CL 쪽보다 EL 쪽에서 복잡성이 더 크다고 봅니다. 그래서 CL 쪽이 먼저 끝나도 괜찮습니다. FOCIL과 Frames가 결합될 때 EL 쪽이 더 복잡할 것이라고 생각합니다."
+            },
+            {
+              "speaker": "Potuz",
+              "text": "그 복잡성은 EL 쪽이고 CL에서 FOCIL과 AA 상호작용은 사소하니 FOCIL만으로 CL 테스트를 먼저 진행할 수 있다며 Toni 의견에 부분 동의했다.",
+              "timestamp": "00:38:56",
+              "original": "But that's only on the EL, right? So, from the EL side. the interaction of FOCIL with AA, it's just trivial. There's zero. On the EL side, there are some interactions, so you… anyways, you're gonna want to have that… those testing on EL branches, not on CL branches. Yeah, but… You can test on the CL side of the implementation as soon as you just have FOCIL. That'll make the testing much easier, because you could just, like. have it working correctly on the CL side, and then it becomes only an EL testing when you want to combine them.",
+              "translation": "하지만 그것은 EL에만 해당하는 것이죠? 그러니까 EL 쪽에서 보면, FOCIL과 계정 추상화(AA)의 상호작용은 그냥 사소합니다. 거의 없습니다. EL 쪽에는 몇 가지 상호작용이 있으므로, 어쨌든 그 테스트들은 CL 브랜치가 아니라 EL 브랜치에서 하고 싶을 것입니다. 네, 하지만 FOCIL만 있으면 바로 구현의 CL 쪽을 테스트할 수 있습니다. 그러면 테스트가 훨씬 쉬워질 텐데, CL 쪽에서 올바르게 작동하도록 만들어 놓고, 그것들을 합치고 싶을 때만 EL 테스트가 되기 때문입니다."
+            },
+            {
+              "speaker": "lightclient",
+              "text": "프레임 데브넷-0을 먼저 하고 잘되면 10월에 FOCIL+프레임 데브넷을 목표로, 데브콘 전에 동작을 목표하자고 했다.",
+              "timestamp": "00:40:25",
+              "original": "I tried to post a comment, but for some reason I had a lot of autocorrects, so just to say it loud, my mental model for the plan here was to have, EthPandaOps DevNet Zero for Frames, as, like, a first step, and if that generally goes well. spend October working towards the FOCIL and Frames DevNet. So, we would do want to move towards FOCIL and Frames early. if things don't go well on DevNet0, then maybe we can, like, revisit and look at doing DevNet1. There's a couple spec items for Frames that are sort of, like. pending a bit to consider for the next devnets. But if that sounds good to people, I think that's, like, the right plan, and try to target a working Frames FOCIL DevNet before DevCon. That would be ideal to me.",
+              "translation": "댓글을 달려고 했는데, 어떤 이유에서인지 자동 수정이 많이 걸려서, 그냥 말로 하겠습니다. 여기서 제 계획에 대한 사고 모델은, 첫 단계로 Frames를 위한 EthPandaOps DevNet Zero를 두고, 그것이 대체로 잘 진행되면, 10월 한 달 동안 FOCIL과 Frames 데브넷을 향해 작업하는 것이었습니다. 그러니까 저희는 FOCIL과 Frames를 향해 일찍 나아가고 싶습니다. 만약 DevNet0에서 일이 잘 풀리지 않으면, 다시 검토해서 DevNet1을 진행하는 것을 고려할 수도 있습니다. Frames에 대해 다음 데브넷들을 위해 조금 더 고려해야 할 스펙 항목이 몇 가지 있습니다. 하지만 사람들이 그것이 괜찮다고 생각한다면, 저는 그것이 옳은 계획이라고 생각하며, DevCon 전에 작동하는 Frames FOCIL 데브넷을 목표로 하려고 합니다. 그것이 저에게는 이상적일 것 같습니다."
+            },
+            {
+              "speaker": "Iván | ethrex",
+              "text": "구현이 충분하면 데브넷을 미루지 말자며, EL은 프레임 트랜잭션 구현이 3개 클라이언트에 있지만 FOCIL은 아직 CL 2개가 합의 중이라고 했다.",
+              "timestamp": "00:41:21",
+              "viaChat": true,
+              "original": "I wouldn’t delay starting a devnet if there are enough implementations ready. For ELs we have 3 clients with frame transactions implementations already, while for FOCIL we are still trying to make 2 CLs agree",
+              "translation": "충분한 구현체가 준비되어 있다면 데브넷 시작을 미루지 않겠습니다. EL의 경우 이미 프레임 트랜잭션 구현체를 갖춘 클라이언트가 3개 있는 반면, FOCIL의 경우에는 여전히 CL 2개가 합의하도록 만들려고 노력하는 중입니다."
+            }
+          ],
+          "quote": {
+            "text": "데브콘 전에 동작하는 프레임·FOCIL 데브넷을 목표로 하고 싶다.",
+            "original": "try to target a working Frames FOCIL DevNet before DevCon. That would be ideal to me.",
+            "speaker": "lightclient",
+            "timestamp": "00:40:25"
+          }
+        },
+        {
+          "title": "벤치마킹 하드웨어 목표",
+          "intro": "벤치마킹이 최소 풀노드 사양만 겨냥하는데, 더 엄격한 어테스터 노드 사양도 테스트해야 하는지 제기됐다.",
+          "positions": [
+            {
+              "speaker": "Ben Adams",
+              "text": "현재 EIP-7870 풀노드 사양을 테스트하는데, 어테스터 노드는 마감이 더 짧고 하드웨어가 약 2배 강하니 이를 테스트해야 할지 물었다.",
+              "timestamp": "00:51:12",
+              "original": "Yeah, I was gonna bring it up in the… I was gonna bring it up in the call tomorrow, but, the… what we're testing on Benchmarker is essentially a… Weekend Validator node… sorry, full node. on EIP7870. And I'm just wondering if we should be testing, a tester node, which is, like, has double the hardware. Because for a full node, they can… They can essentially work at the average. Of the chain, because if a block is too heavy, they can catch it up when blocks are light, and… Whereas the attester node has a shorter deadline, it doesn't have the full slot. And it also has to meet a deadline, so it's… It's a much stricter… That's where the worst cases are really important. But it's also stronger hardware, so at the moment, we're testing on weaker hardware. Yeah, I'll add it there. Yeah, but the… the… the pessimistic ones have a longer time to… to process, and they also… they don't have to meet the deadline, and… They will be operating at the average Of, of the, of the chain. Whereas the attesters have to meet the deadline the worst case of the chain. So I think they have different… Constraints, also. I'll bring it up tomorrow. It's more to… Raise awareness. That was all.",
+              "translation": "네, 저는 내일 콜에서 이 얘기를 꺼내려고 했었는데, 저희가 Benchmarker에서 테스트하고 있는 것은 기본적으로 주말 밸리데이터 노드, 아니 죄송합니다, EIP7870 기준의 풀 노드(full node)입니다. 그리고 저는 하드웨어가 두 배인 테스터 노드도 테스트해야 하는 건 아닌지 궁금합니다. 왜냐하면 풀 노드의 경우 체인의 평균 수준에서 작동할 수 있기 때문인데, 블록이 너무 무거우면 블록이 가벼울 때 따라잡을 수 있기 때문입니다. 반면 어테스터(attester) 노드는 데드라인이 더 짧고, 전체 슬롯을 가지고 있지 않습니다. 그리고 데드라인도 맞춰야 하므로 훨씬 더 엄격합니다. 그래서 워스트 케이스(worst case)가 정말 중요해지는 지점이 바로 여기입니다. 하지만 이는 더 강한 하드웨어이기도 해서, 현재로서는 더 약한 하드웨어에서 테스트하고 있습니다. 네, 거기에 추가하겠습니다. 네, 하지만 비관적인 쪽은 처리할 시간이 더 길고, 데드라인을 맞출 필요도 없습니다. 그들은 체인의 평균 수준에서 작동할 것입니다. 반면 어테스터들은 체인의 워스트 케이스에 맞춰 데드라인을 지켜야 합니다. 그래서 이들은 서로 다른 제약 조건도 가지고 있다고 생각합니다. 내일 이 얘기를 꺼내겠습니다. 그저 인식을 높이려는 것이었습니다. 이상입니다."
+            },
+            {
+              "speaker": "Toni Wahrstätter",
+              "text": "ePBS에서는 어테스터가 어테스트 전에 페이로드를 실행할 필요가 없고 다음 슬롯까지만 끝내면 된다고 했다.",
+              "timestamp": "00:52:29",
+              "original": "Yeah, with ePBS, we… Testers don't have to execute the payload anymore, right? Before they attests, so they only have to finish payload execution until the next slot.",
+              "translation": "네, ePBS를 사용하면, 테스터들은 더 이상 어테스트하기 전에 페이로드를 실행할 필요가 없습니다, 맞죠? 그래서 다음 슬롯까지 페이로드 실행만 끝내면 됩니다."
+            },
+            {
+              "speaker": "Maria Silva",
+              "text": "이 벤치마킹은 옵코드 가격 결정에도 쓰이므로 저사양 노드의 네트워크 부하를 고려해 비관적 경우로 가격을 매겨야 한다고 주장했다.",
+              "timestamp": "00:52:58",
+              "original": "Okay, thank you. So, I would say, although I do understand, the idea of, like. We should only care about worst cases for our testers. In reality. we are using this not just for worst-case testing, right? Like, we are using this to also decide how much an opcode should cost. And in that case, I think we need to consider the loads it adds to the network for the low-powered. Nodes, not just… the EF era testers. And so I think in that case, that's… I think there's… Where the rationale comes that we should price by The more pessimistic case, and not the more optimistic one.",
+              "translation": "네, 감사합니다. 그래서 저는, 테스터들에 대해서는 워스트 케이스만 신경 쓰면 된다는 아이디어는 이해하지만, 실제로는 이것을 워스트 케이스 테스트만을 위해 사용하는 것은 아니라고 말씀드리고 싶습니다. 그렇죠? 예를 들어 우리는 이것을 오피코드(opcode) 비용을 얼마로 정할지 결정하는 데도 사용합니다. 그리고 그런 경우에는, EF 시대의 테스터들뿐만 아니라 저사양 노드들에게 그것이 네트워크에 추가하는 부하도 고려해야 한다고 생각합니다. 그래서 저는 그 경우에는, 그것이 더 낙관적인 경우가 아니라 더 비관적인 경우를 기준으로 가격을 책정해야 한다는 근거가 나온다고 생각합니다."
+            },
+            {
+              "speaker": "Łukasz Rozmej",
+              "text": "DOS 최악의 경우는 어테스터 사양으로, 평균 경우는 풀노드가 실제 처리하는 10배 이상 가벼운 부하로 측정하면 된다고 구분했다.",
+              "timestamp": "00:54:34",
+              "original": "If I can weigh in something, yeah, it's probably… depends what you want to measure. If you want to measure… DOS scenarios, so worst… worst case, then definitely you… you want to… Use… A tester spec. Because that's what you're measuring against. While average case, as we observe it today, I'm not sure how it will be after repricing. Average case is probably 10 times lighter than the… or even more, right, currently, than the worst case, so… We don't really have to focus on that, and average case is what will be actually processed on full nodes, so we don't have to do We don't have to… make them… Be compliant with those protection cases.",
+              "translation": "제가 의견을 하나 보태자면, 이는 아마도 무엇을 측정하고 싶은가에 달려 있다고 생각합니다. DoS 시나리오, 즉 워스트 케이스를 측정하고 싶다면, 확실히 테스터 스펙을 사용해야 합니다. 왜냐하면 그것이 바로 측정 기준이 되는 것이기 때문입니다. 반면 오늘날 우리가 관찰하는 평균적인 경우는, 리프라이싱(repricing) 이후에 어떻게 될지 확신할 수 없습니다. 현재로서는 평균적인 경우가 워스트 케이스보다 아마 10배, 혹은 그 이상 가벼울 것입니다. 그래서 우리는 굳이 거기에 집중할 필요가 없고, 평균적인 경우가 바로 풀 노드에서 실제로 처리될 것이므로, 그것들을 그 보호 사례들에 부합하게 만들 필요는 없습니다."
+            }
+          ],
+          "quote": {
+            "text": "DOS 시나리오, 즉 최악의 경우를 측정하려면 반드시 어테스터 사양을 써야 한다.",
+            "original": "If you want to measure DOS scenarios, so worst case, then definitely you want to use a tester spec.",
+            "speaker": "Łukasz Rozmej",
+            "timestamp": "00:54:34"
+          }
+        }
+      ],
+      "speakers": [
+        {
+          "label": "danceratopz",
+          "name": "danceratopz",
+          "org": "EF",
+          "role": "테스팅",
+          "handle": "danceratopz",
+          "avatar": "https://pbs.twimg.com/profile_images/1478357444132839427/sxWspbwH_400x400.jpg",
+          "share": 0.4
+        },
+        {
+          "label": "Potuz",
+          "name": "Potuz",
+          "org": "Offchain Labs",
+          "role": "Prysm",
+          "handle": "potuz_eth",
+          "avatar": "https://pbs.twimg.com/profile_images/1494001194427158539/bfrZyMsG_400x400.jpg",
+          "share": 0.113
+        },
+        {
+          "label": "spencer",
+          "name": "Spencer Taylor-Brown",
+          "org": "EF",
+          "role": "테스팅",
+          "share": 0.078
+        },
+        {
+          "label": "Toni Wahrstätter",
+          "name": "Toni Wahrstätter",
+          "org": "EF",
+          "role": "리서처",
+          "handle": "nero_eth",
+          "avatar": "https://pbs.twimg.com/profile_images/1858347774129094657/xUc7IS2K_400x400.jpg",
+          "share": 0.058
+        },
+        {
+          "label": "Nico Flaig",
+          "name": "Nico Flaig",
+          "org": "ChainSafe",
+          "role": "Lodestar",
+          "handle": "nicoflaig",
+          "avatar": "https://pbs.twimg.com/profile_images/1618325595397447689/9kzomyhR_400x400.jpg",
+          "share": 0.056
+        },
+        {
+          "label": "Jihoon",
+          "name": "Jihoon",
+          "share": 0.049
+        },
+        {
+          "label": "Marius",
+          "name": "Marius van der Wijden",
+          "org": "EF",
+          "role": "geth",
+          "handle": "vdWijden",
+          "avatar": "https://pbs.twimg.com/profile_images/1334610351976026113/o0FQPHZX_400x400.jpg",
+          "share": 0.049
+        },
+        {
+          "label": "Ben Adams",
+          "name": "Ben Adams",
+          "org": "Nethermind",
+          "handle": "ben_a_adams",
+          "avatar": "https://pbs.twimg.com/profile_images/1282411238602006529/l4lHaQHE_400x400.jpg",
+          "share": 0.039
+        },
+        {
+          "label": "pk910",
+          "name": "pk910",
+          "org": "EF DevOps",
+          "handle": "_pk910_",
+          "avatar": "https://pbs.twimg.com/profile_images/1778392621032898560/hneq3NpH_400x400.jpg",
+          "share": 0.029
+        },
+        {
+          "label": "Kevaundray Wedderburn",
+          "name": "Kevaundray Wedderburn",
+          "org": "EF",
+          "role": "응용 리서치",
+          "handle": "kevaundray",
+          "avatar": "https://pbs.twimg.com/profile_images/1658523090467315712/a3xJ6ySn_400x400.jpg",
+          "share": 0.029
+        },
+        {
+          "label": "Enrico Del Fante",
+          "name": "Enrico Del Fante",
+          "org": "Consensys",
+          "role": "Teku",
+          "handle": "tbenr",
+          "avatar": "https://pbs.twimg.com/profile_images/1425021438269050892/3IRr4G_z_400x400.jpg",
+          "share": 0.025
+        },
+        {
+          "label": "Maria Silva",
+          "name": "Maria Silva",
+          "role": "EIP-8037 제1저자",
+          "handle": "misilva73",
+          "avatar": "https://pbs.twimg.com/profile_images/1551690804594458624/elGlKFpy_400x400.jpg",
+          "share": 0.019
+        },
+        {
+          "label": "Stefan Starflinger",
+          "name": "Stefan Starflinger",
+          "org": "EF DevOps",
+          "share": 0.016
+        },
+        {
+          "label": "Łukasz Rozmej",
+          "name": "Łukasz Rozmej",
+          "org": "Nethermind",
+          "role": "EIP-8037 공동 저자",
+          "share": 0.016
+        },
+        {
+          "label": "lightclient",
+          "name": "lightclient (Matt Garnett)",
+          "org": "EF",
+          "role": "geth",
+          "handle": "lightclients",
+          "avatar": "https://pbs.twimg.com/profile_images/1554130973935030274/wHWuxuTT_400x400.jpg",
+          "share": 0.008
+        },
+        {
+          "label": "Parithosh Jayanthi",
+          "name": "Parithosh Jayanthi",
+          "org": "EF DevOps",
+          "handle": "parithosh_j",
+          "avatar": "https://pbs.twimg.com/profile_images/1257719305459904512/x5MkzrAf_400x400.jpg",
+          "share": 0.006
+        },
+        {
+          "label": "Barnabas",
+          "name": "Barnabas Busa",
+          "org": "EF DevOps",
+          "handle": "BarnabasBusa",
+          "avatar": "https://pbs.twimg.com/profile_images/534855342300352514/m-C5ReWq_400x400.jpeg",
+          "share": 0.004
+        },
+        {
+          "label": "Iván | ethrex",
+          "name": "Iván Litteri",
+          "org": "LambdaClass",
+          "role": "ethrex 테크 리드",
+          "handle": "ivanlitteri",
+          "avatar": "https://pbs.twimg.com/profile_images/1801577809728462848/UPASaIEt_400x400.jpg",
+          "share": 0
+        }
+      ],
+      "chat": [
+        {
+          "speaker": "cayman",
+          "text": "BAL 보관 기간이 맞지 않으면 페이로드 중복 제거가 불안정해진다.",
+          "timestamp": "00:12:43"
+        },
+        {
+          "speaker": "Karim Taam",
+          "text": "스냅싱크 힐링에 BAL이 필요하지만 며칠치면 되고, 스냅싱크는 보통 하루도 안 걸린다.",
+          "timestamp": "00:18:02"
+        },
+        {
+          "speaker": "Csaba",
+          "text": "상태 체크포인트를 신뢰하는 것과 스테이트 디프(BAL)를 신뢰하는 것이 무엇이 다른가?",
+          "timestamp": "00:30:25"
+        }
+      ],
+      "glossary": [
+        {
+          "term": "SFI",
+          "def": "포함 확정(Scheduled for Inclusion). 포크에 넣기로 확정"
+        },
+        {
+          "term": "CFI",
+          "def": "포함 검토(Considered for Inclusion). 포함을 검토 중"
+        },
+        {
+          "term": "PFI",
+          "def": "포함 제안(Proposed for Inclusion). 후보로 접수·유지"
+        },
+        {
+          "term": "DFI",
+          "def": "제외(Declined for Inclusion). 후보에서 제외되거나 철회"
+        },
+        {
+          "term": "BAL",
+          "def": "블록 접근 리스트(Block Access List, EIP-7928). 블록이 접근한 상태 목록"
+        },
+        {
+          "term": "WSP",
+          "def": "약한 주관성 기간(Weak Subjectivity Period). 노드가 신뢰 체크포인트 없이 오프라인 뒤 따라잡을 수 있는 기간"
+        },
+        {
+          "term": "FOCIL",
+          "def": "포크초이스 강제 인클루전 리스트(EIP-7805). 검열 저항용 인클루전 리스트"
+        },
+        {
+          "term": "프레임(Frames)",
+          "def": "프레임(Frames, EIP-8141). 새 트랜잭션 포맷"
+        }
+      ],
+      "eips": [
+        7805,
+        7870,
+        7928,
+        8061,
+        8141,
+        8142,
+        8383,
+        8411
+      ],
+      "relatedDebates": [
+        "tornado-cash-anonset-obsolete",
+        "aa-validation-programmable-vs-bounded",
+        "gas-params-privacy-leak",
+        "tx-format-ship-first-vs-permissionless"
+      ],
+      "telegramMessageId": 1608
+    },
     {
       "id": "acdc-187",
       "series": "acdc",
@@ -12549,13 +13046,13 @@
     "currentFork": {
       "name": "글램스터담",
       "stage": "테스트넷 단계",
-      "line": "세폴리아 10월 6일 확정 · 후디 10월 27일 잠정 · 클라이언트 릴리스 9월 29일까지"
+      "line": "세폴리아 10월 6일 확정 · 후디 10월 27일 잠정 10월 8일 결정"
     },
     "nextFork": {
       "name": "헤고타",
       "stage": "범위 정하는 중",
-      "line": "헤드라이너 EIP-8141 확정 · CFI 8015 · PFI 8411 · 8365 축소 CFI 대기"
+      "line": "헤드라이너 EIP-8141 · PFI EIP-8411 · CFI EIP-8015 · 데브콘 전 통합 데브넷 목표"
     },
-    "basis": "acdc-187"
+    "basis": "acdt-97"
   }
 }

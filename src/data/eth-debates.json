@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-19T01:02:59.465Z",
+  "updatedAt": "2026-09-22T00:59:08.983Z",
   "processedDigests": [
     "2026-08-24",
     "2026-08-25",
@@ -18,9 +18,678 @@
     "2026-09-09",
     "2026-09-12",
     "2026-09-16",
-    "2026-09-19"
+    "2026-09-19",
+    "2026-09-22"
   ],
   "debates": [
+    {
+      "id": "ethereum-zcash-privacy-competitor",
+      "title": "이더리움의 최대 경쟁자는 지캐시이고 프라이버시를 최우선해야 하나?",
+      "category": "프로토콜 설계",
+      "summary": "David Hoffman은 ETH가 ZEC보다 나은 가치저장 수단(SoV)이자 프라이버시 코인이라고 주장했고, ryanberckmans는 '이더리움에는 네이티브 프라이버시가 없다'는 반박이 이제 문자 그대로만 참인 말이 됐다며 2~3년 안에 시작될 네이티브 프라이버시가 영구적일 것이라 했다. 반대편에서 zectrillionaire는 이더리움이 서사 없는 체인이 됐다며 ZEC로 갈아탔다고 맞섰다. 앞서 donnoh_eth와 lex_node는 이더리움의 최대 경쟁자가 지캐시라며 무조건적 프라이버시를 최우선해야 한다고 봤고, zayn4pf는 그 프레임 자체를 거부했다.",
+      "keyPoints": [
+        "ETH가 ZEC보다 나은 프라이버시 코인이자 가치저장 수단인가",
+        "이더리움의 네이티브 프라이버시 부재는 결정적 약점인가, 2~3년 내 해소될 일시적 공백인가",
+        "블록체인의 최우선 용도가 무조건적 프라이버시를 갖춘 주권적 가치 이전인가"
+      ],
+      "background": "지캐시(ZEC)는 영지식 증명 기반 실드(shielded) 트랜잭션으로 무조건적 프라이버시를 제공하는 프라이버시 특화 체인이다. 이더리움은 프로토콜 차원의 네이티브 프라이버시가 아직 없고 스마트컨트랙트 기반 프라이버시 도구(예: 프라이버시 풀)에 의존한다. 2026년 ZEC 랠리가 비트코인 고래들의 지지를 얻으면서 이더리움의 프라이버시 로드맵 시간표가 서사 경쟁의 변수로 부상했다.",
+      "whyItMatters": "프라이버시 로드맵의 배포 속도가 기술 문제를 넘어 이더리움 서사 경쟁력의 변수가 되고 있다. 2~3년으로 제시된 네이티브 프라이버시 도입 시간표가 실제로 지켜지는지, ZEC가 이더리움 생태계의 유동성 시장에 접근할 수 있게 되는지가 지켜볼 지점이다.",
+      "sources": [
+        {
+          "title": "EIP-8141: Frame Transaction",
+          "url": "https://eips.ethereum.org/EIPS/eip-8141"
+        }
+      ],
+      "keywords": [
+        "ZEC",
+        "ETH privacy coin",
+        "native privacy",
+        "SoV"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "지캐시가 최대 경쟁자다",
+          "holders": [
+            {
+              "handle": "donnoh_eth",
+              "name": "donnoh.gwei 💗",
+              "role": "L2Beat 리서치 헤드",
+              "avatar": "https://pbs.twimg.com/profile_images/1906978600311521280/aSbKSjtX_400x400.jpg"
+            },
+            {
+              "name": "lex_node",
+              "watchlist": false
+            },
+            {
+              "handle": "zectrillionaire",
+              "name": "big z",
+              "role": "전 ETH 고래, ZEC 지지자",
+              "avatar": "https://pbs.twimg.com/profile_images/2062711045878431744/uGFeBElS_400x400.jpg"
+            }
+          ],
+          "points": [
+            "블록체인의 1순위 용도는 주권적 가치 이전이고 무조건적 프라이버시 없이는 주권이 실현되지 않으므로, 정말 중요한 영역에서 이더리움의 최대 경쟁자는 지캐시다",
+            "zectrillionaire: 이더리움은 서사 없는 체인이 됐고 재단을 자선단체처럼 운영한다, 나를 포함한 OG들은 이미 갈아탔다"
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "이더리움이 우월하니 그 프레임은 과하다",
+          "holders": [
+            {
+              "handle": "zayn4pf",
+              "name": "zayn",
+              "avatar": "https://pbs.twimg.com/profile_images/2096586358982602754/Vxp-9lsh_400x400.jpg"
+            },
+            {
+              "handle": "TrustlessState",
+              "name": "David Hoffman",
+              "role": "Bankless 진행자·미디어",
+              "avatar": "https://pbs.twimg.com/profile_images/2067341164508753920/liVbRn0l_400x400.jpg"
+            },
+            {
+              "handle": "ryanberckmans",
+              "name": "⟠",
+              "role": "이더리움 커뮤니티 논객·ETH 투자자",
+              "avatar": "https://pbs.twimg.com/profile_images/1517698378259480577/OyjdGW3D_400x400.jpg"
+            }
+          ],
+          "points": [
+            "이더리움이 지캐시가 될 수 있어도 그 역은 불가능하다 (zayn4pf)",
+            "Hoffman: ETH가 ZEC보다 나은 가치저장 수단이자 프라이버시 코인이라는 것은 삼키기 힘든 진실이다",
+            "ryanberckmans: '이더리움에 네이티브 프라이버시가 없다'는 말은 이제 문자 그대로만 참인 말이 됐고, 이더리움은 2~3년 뒤부터 영구적으로 네이티브 프라이버시를 갖게 된다"
+          ]
+        },
+        {
+          "stance": "neutral",
+          "label": "여러 프라이버시 방식의 공존이 강점이나 파편화도 낳는다",
+          "holders": [
+            {
+              "handle": "jchaskin22",
+              "name": "chaskin.eth",
+              "role": "EF 리서처",
+              "avatar": "https://pbs.twimg.com/profile_images/2016950149633691648/Kht-necI_400x400.jpg"
+            }
+          ],
+          "points": [
+            "여러 프라이버시 방식이 공존하는 것이 이더리움의 강점이지만 동시에 파편화도 낳는다"
+          ]
+        },
+        {
+          "stance": "neutral",
+          "label": "네이티브의 정의와 유틸리티를 되묻는다",
+          "holders": [
+            {
+              "handle": "jchaskin22",
+              "name": "chaskin.eth",
+              "role": "EF 리서처",
+              "avatar": "https://pbs.twimg.com/profile_images/2016950149633691648/Kht-necI_400x400.jpg"
+            },
+            {
+              "handle": "CloutedMind",
+              "name": "Clouted",
+              "avatar": "https://pbs.twimg.com/profile_images/2094043814939828224/P8BWaZPT_400x400.jpg"
+            },
+            {
+              "handle": "cryptrus",
+              "name": "Cryptrus",
+              "avatar": "https://pbs.twimg.com/profile_images/1896564895585275904/vat1ASBl_400x400.jpg"
+            }
+          ],
+          "points": [
+            "CloutedMind: '이더리움에는 네이티브 프라이버시가 없다'고 반박했다가, 불변(immutable) 스마트컨트랙트야말로 가장 네이티브한 것이라 할 수 있다고 되짚었다",
+            "cryptrus: 흥미로운 것은 유틸리티 부분이며, ZEC가 같은 시장에 접근할 수 있게 되면 이 주장은 어떻게 되는가"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-09-07",
+          "by": "donnoh_eth",
+          "stance": "pro",
+          "quote": "이더리움의 (정말 중요한 것들에서) 최대 경쟁자는 지캐시다. 그에 맞게 행동하라.",
+          "url": "https://x.com/donnoh_eth/status/2096854640868438429",
+          "digest": "2026-09-09",
+          "replyTo": "nero_eth",
+          "relation": "quote",
+          "original": "ethereum’s biggest competitor (in the things that actually matter) is zcash. act accordingly",
+          "translation": "이더리움의 가장 큰 경쟁자는(진짜로 중요한 부분에서는) 지캐시(zcash)입니다. 그에 맞게 행동하세요."
+        },
+        {
+          "date": "2026-09-07",
+          "by": "donnoh_eth",
+          "stance": "pro",
+          "quote": "블록체인의 1순위 용도는 주권적 가치 이전이다. 무조건적 프라이버시 없이는 주권이 실제로 달성되지 않는다고 본다. 스마트컨트랙트는 좋지만 노드 운영을 어렵게 하고 사용자에게 도움이 안 되는 여러 방향으로 초점을 분산시킨다.",
+          "url": "https://x.com/donnoh_eth/status/2096903522486780012",
+          "digest": "2026-09-09",
+          "replyTo": "ox_shaman",
+          "relation": "reply",
+          "original": "top 1 blockchain use case is sovereign transfer of value. i dont believe sovereignty is achieved in practice without unconditional privacy. smart contracts are nice, but they make it harder to run nodes and diverts focus to many different things that dont help users to be fully sovereign. zcash has amazing ux for this already (try zodl wallet over tor), and it’s rapidly improving, in comparison the most similar protocol on ethereum (tornado cash) is super painful to use. not having smart contracts has many limitations, mainly being that many things you want to do on top require trusted parties. this is where ethereum can compete and eventually win over zcash, but the foundation is currently missing and it’s much harder for us to get there. this is fixable but we need to work on it. i 100% think zcash can surpass ethereum market cap with just private transfers and no smart contracts if ethereum doesnt catch up.",
+          "translation": "블록체인의 최고 사용 사례는 가치의 주권적 전송(sovereign transfer of value)입니다. 저는 무조건적인 프라이버시(unconditional privacy) 없이는 실제로 주권(sovereignty)이 달성될 수 없다고 봅니다. 스마트 컨트랙트(smart contract)는 좋지만, 노드를 운영하기 어렵게 만들고, 사용자가 완전히 주권을 가지는 데 도움이 되지 않는 여러 다른 것들로 초점을 분산시킵니다. 지캐시는 이미 이 부분에서 놀라운 UX를 갖추고 있고(토르(Tor)로 zodl 지갑을 써보세요), 빠르게 개선되고 있는 반면, 이더리움에서 가장 비슷한 프로토콜인 토네이도캐시(tornado cash)는 사용하기 매우 고통스럽습니다. 스마트 컨트랙트가 없다는 것은 여러 한계를 가지는데, 주로 그 위에서 하고 싶은 많은 일들이 신뢰받는 제3자(trusted party)를 필요로 한다는 점입니다. 바로 이 지점이 이더리움이 경쟁해서 결국 지캐시를 이길 수 있는 부분이지만, 지금은 그 기반이 빠져 있고 우리가 거기에 도달하기가 훨씬 어렵습니다. 이건 고칠 수 있는 문제지만 우리가 노력해야 합니다. 만약 이더리움이 따라잡지 못한다면, 저는 지캐시가 프라이빗 전송(private transfer)만으로, 스마트 컨트랙트 없이도 이더리움의 시가총액을 뛰어넘을 수 있다고 100% 생각합니다."
+        },
+        {
+          "date": "2026-09-07",
+          "by": "zayn4pf",
+          "stance": "con",
+          "quote": "이더리움은 지캐시가 무엇이든 그것이 될 수 있고 그 이상이다. 지캐시는 이더리움이 될 수 없다. 이 트윗은 이더리움을 깎아내리는 것과 같다.",
+          "url": "https://x.com/zayn4pf/status/2096941739781079386",
+          "digest": "2026-09-09",
+          "relation": "none",
+          "original": "@donnoh_eth @lex_node Ethereum can be whatever ZCASH is, and more.\n\nZCASH can’t be what Ethereum is.\n\nthis tweet is like cucking Ethereum lmfao.",
+          "translation": "@donnoh_eth @lex_node 이더리움은 지캐시가 할 수 있는 무엇이든 될 수 있고, 그 이상도 될 수 있습니다. 지캐시는 이더리움이 하는 것을 할 수 없습니다. 이 트윗은 이더리움을 스스로 깎아내리는 것 같네요 ㅋㅋㅋ."
+        },
+        {
+          "date": "2026-09-07",
+          "by": "donnoh_eth",
+          "stance": "pro",
+          "quote": "그들은 그럴 필요도 없다. 네이티브 증명 검증만 있으면 어떤 스마트컨트랙트 환경이든 그 위에 퍼미션리스하게 세워 zk증명으로 검증할 수 있다. 훨씬 쉽다. 셀레스티아가 한때 VM을 도입하지 않으려 했던 계획이 바로 이것이다.",
+          "url": "https://x.com/donnoh_eth/status/2096944960369054054",
+          "digest": "2026-09-09",
+          "replyTo": "zayn4pf",
+          "relation": "reply",
+          "original": "as i said they don’t need to. they just need native proof verification which allows any smart contract environment to be permissionlessly built on top and verified via zk proofs. it is way way easier. this is what also celestia was planning a while ago not to introduce a vm, it’s not a new idea.",
+          "translation": "제가 말했듯이 그들이 (스마트 컨트랙트를) 가질 필요는 없습니다. 그들에게 필요한 건 네이티브 증명 검증(native proof verification)뿐이고, 이를 통해 어떤 스마트 컨트랙트 환경이든 그 위에 무허가로(permissionlessly) 구축되고 영지식증명(zk proof)으로 검증될 수 있습니다. 이게 훨씬, 훨씬 더 쉽습니다. 이건 셀레스티아(celestia)도 예전에 VM을 도입하지 않는 방향으로 계획했던 것이라, 새로운 아이디어가 아닙니다."
+        },
+        {
+          "date": "2026-09-07",
+          "by": "jchaskin22",
+          "stance": "neutral",
+          "quote": "이더리움의 강점 하나는 경쟁하는 여러 프라이버시 방식을 제공할 수 있다는 것이다. 토네이도 캐시는 검열 저항을 극대화하고, 프라이버시 풀은 자금이 불법 활동과 무관함을 증명하게 하며, Railgun은 디파이를 사적으로 쓰게 한다. 다만 이는 파편화를 낳는다.",
+          "url": "https://x.com/jchaskin22/status/2096984156433465605",
+          "digest": "2026-09-09",
+          "replyTo": "donnoh_eth",
+          "relation": "reply",
+          "original": "One of Ethereum’s advantage is that it can offer competing flavors of privacy\n\nTornado Cash maximizes censorship resistance, while Privacy Pools let users prove their funds aren’t linked to illicit activity, while Railgun lets you use defi privately\n\nBut it does fragments liquidity. If enough people are willing to provide the anonymity set (they currently aren't, it's a culture problem we need to fix), that tradeoff becomes much less significant",
+          "translation": "이더리움의 장점 중 하나는 서로 경쟁하는 여러 형태의 프라이버시를 제공할 수 있다는 것입니다. 토네이도캐시(Tornado Cash)는 검열 저항성(censorship resistance)을 극대화하고, 프라이버시 풀(Privacy Pools)은 사용자가 자신의 자금이 불법 행위와 연관되어 있지 않다는 것을 증명할 수 있게 해주며, 레일건(Railgun)은 디파이(defi)를 비공개로 사용할 수 있게 해줍니다. 다만 이는 유동성(liquidity)을 분산시킵니다. 충분히 많은 사람들이 익명성 집합(anonymity set)을 제공할 의향이 있다면(현재는 그렇지 않으며, 이건 우리가 고쳐야 할 문화적 문제입니다) 그 트레이드오프는 훨씬 덜 중요해집니다."
+        },
+        {
+          "date": "2026-09-20",
+          "by": "TrustlessState",
+          "stance": "con",
+          "quote": "삼키기 힘든 진실인 듯하다. ETH는 ZEC보다 나은 가치저장 수단이자 프라이버시 코인이다.",
+          "url": "https://x.com/TrustlessState/status/2101754078187405565",
+          "digest": "2026-09-22",
+          "relation": "none",
+          "original": "apparently hard truth pill to swallow:\n\nETH is a better SoV and privacy coin than ZEC",
+          "translation": "보아하니 받아들이기 힘든 진실인 것 같다: ETH가 ZEC보다 더 나은 가치저장수단(store of value)이자 프라이버시 코인이다."
+        },
+        {
+          "date": "2026-09-20",
+          "by": "TrustlessState",
+          "stance": "con",
+          "quote": "이더리움에 네이티브 프라이버시가 없다고?",
+          "url": "https://x.com/TrustlessState/status/2101764200075043003",
+          "digest": "2026-09-22",
+          "replyTo": "CloutedMind",
+          "relation": "reply",
+          "original": "@CloutedMind Eth has no native privacy?",
+          "translation": "@CloutedMind Eth에는 네이티브 프라이버시가 없다고?"
+        },
+        {
+          "date": "2026-09-20",
+          "by": "ryanberckmans",
+          "stance": "con",
+          "quote": "'이더리움에 네이티브 프라이버시가 없다'는 이제 문자 그대로만 참인 말 중 하나가 됐다. 이더리움은 2~3년 뒤부터 영구적으로 네이티브 프라이버시를 갖게 된다.",
+          "url": "https://x.com/ryanberckmans/status/2101784680156873180",
+          "digest": "2026-09-22",
+          "replyTo": "TrustlessState",
+          "relation": "reply",
+          "original": "\"Eth has no native privacy\" has become one of those things that is merely literally true.\n\nEth will have native privacy forever, starting in 2-3 years.\n\nSo if you want to bet that this doesn't happen, or that the time value of privacy is so high that eth's privacy roadmap is irrelevant, be our guest.",
+          "translation": "“Eth에는 네이티브 프라이버시가 없다”는 이제 문자 그대로만 맞는 말이 되어버렸다. Eth는 2~3년 뒤부터 영원히 네이티브 프라이버시를 갖추게 될 것이다. 그러니 이 일이 일어나지 않는다는 데 걸고 싶거나, 프라이버시의 시간 가치가 너무 높아서 eth의 프라이버시 로드맵이 무의미하다는 데 걸고 싶다면, 얼마든지 해보라."
+        },
+        {
+          "date": "2026-09-20",
+          "by": "zectrillionaire",
+          "stance": "pro",
+          "quote": "지분증명 스테이크는 유사 탈중앙의 중앙은행 시스템이다. 완전히 서사 없는 체인이고, 나를 포함한 OG들은 이미 갈아탔다. 나는 거의 10년간 ETH 고래였지만 이제 재단을 자선단체처럼 운영한다.",
+          "url": "https://x.com/zectrillionaire/status/2101784292997452154",
+          "digest": "2026-09-22",
+          "replyTo": "CloutedMind",
+          "relation": "quote",
+          "original": "Proof-of-coins stakes are psuedo-decentralized, central-banking systems.\n\nIt probably won't go to zero, but will range 2k-4k forever, unless we hit actual hyperinflation.\n\nIt's a completely narrative-less chain.\n\nA snake with its head chopped.\n\nAll the OGs, including myself have jumped ship.\n\nEven Vitalik doesn't care about anymore.\n\nIt's a central-bank ran by weird liberals and leftists now.\n\nI don't hate $ETH either but they operate the foundation like a charity.\n\nI was an $ETH whale for almost a decade, sized in $4-$7 range late 2016, early 2017(my size back then was like 12k, lmao I was a poor graduate student)\n\nI have a soft spot in my heart for it. It fueled my initial come up, but I gotta call a spade a spade.\n\nZigher.",
+          "translation": "지분증명(proof-of-stake) 코인들은 유사 탈중앙화된 중앙은행 시스템이다. 아마 0으로 가지는 않겠지만, 실제 초인플레이션이 오지 않는 한 영원히 2천에서 4천 사이를 오갈 것이다. 완전히 서사가 없는 체인이다. 목이 잘린 뱀이다. 나를 포함한 모든 OG들이 배를 버리고 떠났다. 이제는 Vitalik조차 신경 쓰지 않는다. 지금은 이상한 리버럴과 좌파들이 운영하는 중앙은행이다. 나도 $ETH를 싫어하지는 않지만, 그들은 재단을 자선단체처럼 운영한다. 나는 거의 10년 동안 $ETH 고래였고, 2016년 말에서 2017년 초 4달러에서 7달러 구간에서 물량을 쌓았다(당시 내 보유량은 1만 2천 개 정도였다, 웃기게도 그때 나는 가난한 대학원생이었다). 마음속에 애틋한 자리가 남아 있다. 그것이 내 초기 성공의 동력이 되어주었지만, 있는 그대로 말할 건 말해야겠다. Zigher."
+        },
+        {
+          "date": "2026-09-21",
+          "by": "CloutedMind",
+          "stance": "neutral",
+          "quote": "내가 보기엔 불변 스마트컨트랙트야말로 가장 네이티브한 것이라 할 수 있다.",
+          "url": "https://x.com/CloutedMind/status/2101912087983239486",
+          "digest": "2026-09-22",
+          "replyTo": "TrustlessState",
+          "relation": "reply",
+          "original": "@TrustlessState also as far as im concerned\n\nimmutable smart contracts are as native as one can be",
+          "translation": "@TrustlessState 그리고 내가 보기엔 불변(immutable) 스마트 컨트랙트야말로 가장 네이티브에 가까운 것이다."
+        },
+        {
+          "date": "2026-09-21",
+          "by": "cryptrus",
+          "stance": "neutral",
+          "quote": "흥미로운 건 유틸리티 부분이다. ZEC가 같은 시장에 접근할 수 있게 되면 이 주장은 어떻게 되나?",
+          "url": "https://x.com/cryptrus/status/2102024736779780439",
+          "digest": "2026-09-22",
+          "replyTo": "CloutedMind",
+          "relation": "reply",
+          "original": "@CloutedMind @TrustlessState the utility part is the interesting one.. what happens to this take if ZEC can access those same markets?",
+          "translation": "@CloutedMind @TrustlessState 흥미로운 부분은 유틸리티 쪽이다.. ZEC가 같은 시장에 접근할 수 있게 된다면 이 주장은 어떻게 되는가?"
+        }
+      ],
+      "firstSeen": "2026-09-07",
+      "lastActivity": "2026-09-21",
+      "status": "active",
+      "rootUrl": "https://x.com/TrustlessState/status/2101754078187405565",
+      "engagement": {
+        "likes": 381,
+        "retweets": 21,
+        "quotes": 5,
+        "replies": 28,
+        "views": 26949
+      }
+    },
+    {
+      "id": "mini-payload-vs-quick-slots",
+      "title": "potuz의 미니 페이로드 설계는 퀵 슬롯의 대안인가, 보완에 그치는가?",
+      "category": "프로토콜 설계",
+      "summary": "potuz는 한 슬롯 안에서 여러 페이로드(payload)를 순차 공개해 포함 지연을 줄이는 설계를 퀵 슬롯(quick slots)의 대안으로 내놨고, Barnabé Monnot은 이것이 약한 프리컨펌(weak preconf)이라 퀵 슬롯이 주는 확정 보장을 대체하지 못하므로 대안이 아니라 보완이라고 반박했다. terence Tsao는 이익은 명백하지만 빠른 파이널리티 상실과 구현 복잡도가 트레이드오프라며 정리했다.",
+      "keyPoints": [
+        "미니 페이로드 체인이 퀵 슬롯의 포함 확정 보장, 즉 전체 블록 리오그(reorg)로만 되돌릴 수 있는 확인을 대체할 수 있는가",
+        "슬롯 시간을 줄이지 않고도 포함 지연(inclusion latency)을 실제로 단축하는가, 아니면 여전히 12초를 기다려야 하는가",
+        "사전 옥션(ahead-of-time auction)을 L1에 도입하는 것이 옳은가"
+      ],
+      "background": "퀵 슬롯은 슬롯 시간을 단축해 트랜잭션의 포함과 확정을 빠르게 하려는 Hegotá 포크 후보 제안이다. potuz의 대안은 슬롯 시간은 그대로 두되 한 슬롯 안에서 각각 완결된 독립 페이로드를 순차적으로 공개(reveal)해 포함 지연을 줄이는 방식이다. Gloas 기준 최대 포함 지연은 18초인데, PTC(Payload Timeliness Committee) 비트리스트(bitlist)만 추가해도 이를 8초로 줄일 수 있다는 것이 potuz의 계산이다. 사전 옥션은 시퀀서가 정해진 슬롯 이전에 포함 순서를 경매하는 방식으로, potuz는 Arbitrum의 Timeboost 사례를 들어 L1 도입에 반대한다.",
+      "whyItMatters": "퀵 슬롯이 Hegotá 포크 후보로 논의되는 시점에 무엇을 희생해 무엇을 빠르게 할지에 대한 대안 지형이 처음 구체적으로 그려졌다. 빠른 파이널리티와 낮은 포함 지연 사이의 트레이드오프, 그리고 사전 옥션의 L1 도입 여부가 앞으로의 코어 개발자 콜에서 다뤄질 쟁점이다.",
+      "sources": [],
+      "keywords": [
+        "quick slots",
+        "mini payload",
+        "PTC bitlist",
+        "inclusion latency"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "퀵 슬롯의 대안이 될 수 있다",
+          "holders": [
+            {
+              "handle": "potuz_eth",
+              "name": "Potuz",
+              "role": "Offchain Labs · Prysm 개발자, 코어 개발자 콜 참여자",
+              "avatar": "https://pbs.twimg.com/profile_images/1494001194427158539/bfrZyMsG_400x400.jpg"
+            }
+          ],
+          "points": [
+            "한 슬롯 안에서 각각 완결된 독립 페이로드를 순차 공개하면 EL(실행 레이어) 관점에서는 즉시 정직한 블록이 되고, 안전·확정 해시만 두세 단계로 지연·전진한다",
+            "PTC 비트리스트만 추가해도 최대 포함 지연이 Gloas 기준 18초에서 8초로 준다",
+            "사전 옥션은 L1에 도입하면 안 된다. 유일하게 가동 중인 Timeboost조차 조작이 쉬워 Arbitrum이 폐기 중이며, 시퀀싱 독점이 있는 퍼미션리스(permissionless) 환경에서는 훨씬 나빠질 것이다"
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "대안이 아니라 보완이다",
+          "holders": [
+            {
+              "handle": "barnabemonnot",
+              "name": "Barnabé Monnot | barnabé.eth",
+              "role": "Ethlabs 리서처, 전 EF 프로토콜 공동리드",
+              "avatar": "https://pbs.twimg.com/profile_images/2069104465202814976/alWWQ8SG_400x400.jpg"
+            }
+          ],
+          "points": [
+            "이것은 약한 프리컨펌이라 퀵 슬롯이 주는 포함 확인, 즉 전체 블록의 리오그로만 되돌릴 수 있는 확정 보장을 주지 못한다",
+            "슬롯 시간 단축이 없으면 지갑에 '트랜잭션 포함됨'이 뜨기까지 여전히 12초를 기다려야 한다",
+            "부분 블록의 빠른 포함을 활용하려면 상당한 툴링을 다시 만들어야 한다"
+          ]
+        },
+        {
+          "stance": "neutral",
+          "label": "이익은 명백하나 트레이드오프가 있다",
+          "holders": [
+            {
+              "handle": "terencechain",
+              "name": "terence",
+              "role": "Prysm 컨센서스 클라이언트 개발자",
+              "avatar": "https://pbs.twimg.com/profile_images/1767254738008240129/7hA2_fDm_400x400.jpg"
+            }
+          ],
+          "points": [
+            "이들은 부분 페이로드가 아니라 각각 완결된 독립 페이로드이며, 커밋먼트는 오늘날처럼 브로드캐스트를 지연시키는 것일 뿐이다",
+            "포함 시간은 최대 8초, 평균 6초, 최선 4초로 봐야 하며, 18초에서 8초로 주는 것만도 상당하다",
+            "이익은 명백하지만 빠른 파이널리티 상실과 억제되긴 하나 추가되는 구현 복잡도가 트레이드오프이며, 미니 페이로드 중 하나라도 늦으면 셋 다 리오그하는 편이 나을 수 있다"
+          ]
+        },
+        {
+          "stance": "other",
+          "label": "근본 문제는 검열저항의 정의다",
+          "holders": [
+            {
+              "handle": "dataalways",
+              "name": "dataalways ⚡️🤖",
+              "avatar": "https://pbs.twimg.com/profile_images/2067329108619481088/eJb7QRAP_400x400.jpg"
+            }
+          ],
+          "points": [
+            "개발자와 리서처가 검열저항(censorship resistance, CR)의 정의에서 실행 품질(execution quality)을 배제하고 '결국 언젠가 온체인에 포함되려는 시도'로만 정의한 것이 문제의 뿌리다",
+            "더 나은 UX와 빠른 포함 보장의 토대는 CR 메커니즘에 세웠어야 했는데 그러지 않았다",
+            "이더리움이 UX를 우선한 적이 없어 해결 공간이 줄었고, 그래서 사전 옥션 같은 것이 편리해 보이게 됐다"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-09-19",
+          "by": "potuz_eth",
+          "stance": "pro",
+          "quote": "퀵 슬롯의 대안을 소개한다. 매우 흥미로운 트레이드오프들이 있다.",
+          "url": "https://x.com/potuz_eth/status/2101310896920314088",
+          "digest": "2026-09-22",
+          "relation": "none",
+          "original": "Here's an alternative to quick slots with some very interesting tradeoffs.\npotuz.net/posts/quick-bl…",
+          "translation": "퀵 슬롯(quick slots)에 대한 대안이 여기 있는데, 매우 흥미로운 트레이드오프들이 있다. potuz.net/posts/quick-bl…"
+        },
+        {
+          "date": "2026-09-19",
+          "by": "dataalways",
+          "stance": "other",
+          "quote": "좋은 답이 내게는 없다. 사전 옥션과 시퀀싱 독점으로 가지 않기를 바란다. 문제의 뿌리는 개발자와 리서처가 검열저항의 정의에서 실행 품질 개념을 배제하고 '결국 언젠가 온체인에 포함되려는 시도'로만 정의한 데 있다.",
+          "url": "https://x.com/dataalways/status/2101378150890418365",
+          "digest": "2026-09-22",
+          "replyTo": "potuz_eth",
+          "relation": "reply",
+          "original": "i don't have a good answer. i hope we don't move towards ahead of time auctions and sequencing monopolies, but with the path we've gone and the constraints in place it's obviously a convenient solution\n\nimo the root of the issue is that devs and researchers chose to exclude any notion of execution quality in their definition of CR --> preferring to define it as \"attempting to be included onchain eventually\". the right place to build the foundation of better ux (and faster inclusion guarantees) is in the CR mechanism, but that's not what was done.\n\nethereum has never prioritized good ux, despite people in mev pushing for it. to me, the fact that it's now an important focus isn't a win but instead a loss because we've shrunk the solution space from where we should be --> and that's why something like ahead of time auctions now look convenient.",
+          "translation": "나도 좋은 답은 없다. 우리가 사전 경매(ahead of time auctions)와 시퀀싱 독점(sequencing monopolies) 쪽으로 가지 않기를 바라지만, 지금까지 걸어온 경로와 현재의 제약 조건들을 감안하면 그것이 편리한 해법으로 보이는 것은 분명하다고 생각한다. 내가 보기에 문제의 근본 원인은 개발자와 연구자들이 CR(censorship resistance, 검열 저항성)을 정의할 때 실행 품질(execution quality)이라는 개념을 아예 배제하기로 선택했다는 데 있다. 그들은 대신 \"결국에는 온체인에 포함되려는 시도\"로 정의하는 쪽을 택했다. 더 나은 UX(그리고 더 빠른 포함 보장)의 토대를 마련해야 할 올바른 지점은 CR 메커니즘 안이었지만, 실제로 그렇게 하지 않았다. mev 진영 사람들이 밀어붙였음에도 불구하고 이더리움은 좋은 UX를 우선시한 적이 한 번도 없다. 내가 보기에는 그것이 이제 중요한 초점이 되었다는 사실 자체가 승리가 아니라 오히려 패배인데, 왜냐하면 우리가 원래 있어야 할 지점보다 해법의 공간(solution space)을 스스로 좁혀버렸기 때문이다. 그리고 바로 그 때문에 사전 경매 같은 것이 이제 편리해 보이는 것이다."
+        },
+        {
+          "date": "2026-09-19",
+          "by": "potuz_eth",
+          "stance": "pro",
+          "quote": "유일하게 가동 중인 사전 옥션인 Timeboost는 너무 나쁘고 조작이 쉬워 Arbitrum이 없애는 중이다. 왜 이걸 L1에서 하자는지 모르겠다. 시퀀싱 독점이 있는 퍼미션리스 환경에서는 훨씬 나쁠 것이다.",
+          "url": "https://x.com/potuz_eth/status/2101351715324735526",
+          "digest": "2026-09-22",
+          "replyTo": "potuz_eth",
+          "relation": "reply",
+          "original": "@potuz_eth the only ahead of time auction that's live (timeboost) is so bad and easily manipulable that arbitrum is getting rid of it. idk why people keep suggesting doing it on the L1; like it would be so much worse in a permissionless setting with a monopoly on sequencing.",
+          "translation": "@potuz_eth 현재 실제로 운영 중인 유일한 사전 경매인 timeboost는 너무 형편없고 쉽게 조작 가능해서 arbitrum이 이를 없애려 하고 있다. 사람들이 왜 계속 이것을 L1에 적용하자고 제안하는지 모르겠다. 허가 없는(permissionless) 환경에서 시퀀싱 독점까지 걸리면 훨씬 더 나빠질 것이 뻔하다."
+        },
+        {
+          "date": "2026-09-19",
+          "by": "barnabemonnot",
+          "stance": "con",
+          "quote": "나는 이것을 퀵 슬롯의 대안이 아니라 보완으로 본다. UX 이점을 얻으려면 부분 블록의 빠른 포함을 활용하도록 많은 툴링을 다시 만들어야 하지 않나. 게다가 약한 프리컨펌이라 위협이 있다.",
+          "url": "https://x.com/barnabemonnot/status/2101411297879552182",
+          "digest": "2026-09-22",
+          "replyTo": "potuz_eth",
+          "relation": "reply",
+          "original": "I wouldn't frame this as an alternative to quick slots, more of a possible complement.\n- To achieve UX benefits, wouldn't you have to rebuild a lot of the tooling to benefit from faster inclusions in the partial blocks? Plus given that it's a weak preconf, there is the threat that what you saw as included gets all reverted by the end.\n- I don't see why a proposer/builder, who controls the whole slot, wouldn't delay their MEV-relevant transactions to the latest possible opportunity, so you likely don't have much benefits in terms of prices or markets, vs shorter slots. You do increase optionality for the builder to cancel their partial sequence at three points in time instead of one, which seems worse intuitively.\n- No increase in censorship-resistance.\n- No decrease in finality time.\n\nInteresting to think through the fork-choice, and I could see progressive partial building having some use for e.g., based rollups that could virtually settle more often in a single block.",
+          "translation": "나라면 이것을 퀵 슬롯의 대안이라기보다는 있을 수 있는 보완책으로 규정하겠다. UX 이점을 얻으려면 부분 블록(partial blocks)에서의 더 빠른 포함으로부터 혜택을 보기 위해 툴링(tooling)의 많은 부분을 다시 구축해야 하지 않겠는가? 게다가 이것이 약한 프리컨펌(weak preconf)이라는 점을 감안하면, 포함된 것으로 봤던 것이 결국에는 전부 되돌려질(reverted) 위험이 있다. 프로포저(proposer)/빌더(builder)가 슬롯 전체를 통제하는 상황에서, 왜 그들이 MEV 관련 트랜잭션을 가능한 한 가장 늦은 시점까지 미루지 않겠는가? 그러니 더 짧은 슬롯과 비교해서 가격이나 시장 측면에서 얻는 이점은 별로 없을 가능성이 크다. 빌더가 부분 시퀀스(partial sequence)를 취소할 수 있는 옵션성(optionality)이 한 시점이 아니라 세 시점으로 늘어나는데, 직관적으로는 이것이 오히려 더 나빠 보인다. 검열 저항성(censorship-resistance)의 증가는 없다. 파이널리티(finality) 시간의 감소도 없다. 포크초이스(fork-choice) 관점에서 따져보는 것은 흥미롭고, 예를 들어 하나의 블록 안에서 사실상 더 자주 정산(settle)할 수 있는 기반 롤업(based rollups) 같은 곳에서는 점진적 부분 빌딩(progressive partial building)이 어느 정도 쓸모가 있을 수 있다고 본다."
+        },
+        {
+          "date": "2026-09-20",
+          "by": "barnabemonnot",
+          "stance": "con",
+          "quote": "같은 보장을 얻지 못한다. 퀵 슬롯에서는 전체 블록의 리오그로만 되돌릴 수 있는 빠른 포함 확인을 얻지만, 당신 방식은 슬롯 시간 단축 없이는 여전히 12초를 기다려야 한다.",
+          "url": "https://x.com/barnabemonnot/status/2101644162110017623",
+          "digest": "2026-09-22",
+          "replyTo": "potuz_eth",
+          "relation": "reply",
+          "original": "You do not get the same guarantees. With quick slots you actually get a faster inclusion confirmation that only a reorg of the entire block can revert. With what you describe, without a slot time reduction, you still have to wait 12 seconds for this to be happen.\n\nAnother way to say it is that the leader rotates between two slots, and a round of attesting is triggered. This doesn't happen between two sub-blocks, so the guarantees are weaker.",
+          "translation": "동일한 보장을 얻는 것은 아니다. 퀵 슬롯에서는 블록 전체의 재조직(reorg)만이 되돌릴 수 있는, 실제로 더 빠른 포함 확인(inclusion confirmation)을 얻게 된다. 당신이 설명한 방식에서는 슬롯 시간 단축이 없다면 이것이 일어나기까지 여전히 12초를 기다려야 한다. 다르게 말하면, 리더(leader)가 두 슬롯 사이에서 교체되고 어테스팅(attesting) 라운드가 촉발된다는 것이다. 두 개의 서브블록(sub-blocks) 사이에서는 이런 일이 일어나지 않으므로, 보장이 더 약하다."
+        },
+        {
+          "date": "2026-09-20",
+          "by": "terencechain",
+          "stance": "neutral",
+          "quote": "이들은 부분 페이로드가 아니라 각각 완결된 독립 페이로드다. 커밋먼트는 오늘날과 같이 브로드캐스트를 지연시키는 것일 뿐이며, 빌더가 입찰을 낼 때 페이로드를 준비해 두었다가 나중에 공개한다.",
+          "url": "https://x.com/terencechain/status/2101680114035536277",
+          "digest": "2026-09-22",
+          "replyTo": "barnabemonnot",
+          "relation": "reply",
+          "original": "These are not partial payloads, these are each a full independent payload. The commitment is just like today: a delay in the broadcast, the builder has the payload ready when it delivers the bid and reveals later. This is the same just that the builder can be including transactions for the next payload while it awaits for the block.",
+          "translation": "이것들은 부분 페이로드(partial payloads)가 아니라, 각각이 완전히 독립적인 페이로드다. 커밋먼트(commitment)는 오늘날과 똑같다. 즉 브로드캐스트를 지연시키는 방식으로, 빌더는 입찰(bid)을 제출하는 시점에 이미 페이로드를 준비해두고 나중에 이를 공개(reveal)한다. 이는 동일하되, 다만 빌더가 블록을 기다리는 동안 다음 페이로드에 들어갈 트랜잭션들을 계속 포함시킬 수 있다는 점만 다르다."
+        },
+        {
+          "date": "2026-09-20",
+          "by": "terencechain",
+          "stance": "neutral",
+          "quote": "'포함 시간이 최대 4초로 준다'는 표현에 혼란스러웠다. 내게는 최대 8초, 평균 6초, 최선 4초여야 한다.",
+          "url": "https://x.com/terencechain/status/2101795330220270055",
+          "digest": "2026-09-22",
+          "replyTo": "potuz_eth",
+          "relation": "reply",
+          "original": "@potuz_eth @barnabemonnot that's my understanding as well, i was just confused when the post said \"transaction inclusion time reduces to a max of 4 seconds\", which to me it should be max 8s, avg 6s and best case 4s. Slot auction would be awesome here but there's the trusted advantage here",
+          "translation": "@potuz_eth @barnabemonnot 나도 그렇게 이해하고 있다. 다만 글에서 \"트랜잭션 포함 시간이 최대 4초로 줄어든다\"고 한 부분이 헷갈렸는데, 내가 보기엔 최대 8초, 평균 6초, 최선의 경우 4초가 되어야 할 것 같다. 여기서는 슬롯 경매(slot auction)가 있으면 훌륭하겠지만, 여기에는 신뢰받는 우위(trusted advantage) 문제가 있다."
+        },
+        {
+          "date": "2026-09-20",
+          "by": "terencechain",
+          "stance": "neutral",
+          "quote": "동의하지 않는 건 아니다. 이익은 명백하다. 트레이드오프는 빠른 파이널리티 상실과, 억제되긴 하나 추가되는 구현 복잡도다. 미니 페이로드 중 하나라도 늦으면 셋 다 리오그하는 게 낫지 않나.",
+          "url": "https://x.com/terencechain/status/2101806511442018597",
+          "digest": "2026-09-22",
+          "replyTo": "potuz_eth",
+          "relation": "reply",
+          "original": "ya, I don’t disagree. The benefit is obvious. The tradeoffs are losing faster finality (which people seem to care about?) and some added, but seemingly contained implementation complexity.\nWhy not just reorg all 3 mini-payloads if any of them is late? Then you don’t even need a bitfield, same boolean as today. Is preserving the timely prefix that important?",
+          "translation": "그래, 동의한다. 이점은 명백하다. 트레이드오프는 (사람들이 신경 쓰는 것 같은) 더 빠른 파이널리티를 잃는다는 것과, 어느 정도 늘어나지만 통제 가능해 보이는 구현 복잡성이다. 만약 3개의 미니 페이로드(mini-payloads) 중 하나라도 늦으면 그냥 셋 다 재조직(reorg)하면 안 되는가? 그러면 비트필드(bitfield)조차 필요 없고, 오늘날과 같은 동일한 불리언(boolean)이면 된다. 시의적절한 프리픽스(timely prefix)를 보존하는 것이 그렇게까지 중요한가?"
+        }
+      ],
+      "firstSeen": "2026-09-19",
+      "lastActivity": "2026-09-20",
+      "status": "active",
+      "rootUrl": "https://x.com/potuz_eth/status/2101310896920314088",
+      "engagement": {
+        "likes": 24,
+        "retweets": 2,
+        "quotes": 0,
+        "replies": 6,
+        "views": 1819
+      }
+    },
+    {
+      "id": "is-privacy-dead-ai-era",
+      "title": "이더리움에서 프라이버시는 죽었는가?",
+      "category": "프로토콜 설계",
+      "summary": "gakonst가 앞으로 프라이버시가 얼마나 죽어가는지가 주된 고민이라고 하자, pcaversaccio는 프라이버시는 죽지 않았고 그동안 잘못된 기본값(default)을 만들어 왔을 뿐이며 L1에 새겨진 무조건적 프라이버시(unconditional privacy)를 배포해야 한다고 반박했다. AI 시대에 프라이버시는 진 싸움이라는 쪽과, 이는 어느 쪽도 이기지 못하는 끝없는 군비경쟁이라는 쪽으로 갈렸다.",
+      "keyPoints": [
+        "프라이버시는 AI 시대에 근본적으로 패배하는 싸움인가, 아니면 기본값 설계의 문제일 뿐인가",
+        "프라이버시를 사용자가 설정하는 옵션이 아니라 런타임(실행 레이어·브라우저)에 기본 탑재해야 하는가",
+        "AI와 프라이버시의 관계는 어느 한쪽이 이기는 것인가, 끝없는 군비경쟁인가"
+      ],
+      "background": "이 논쟁은 프라이버시가 개별 기능이 아니라 이더리움 프로토콜에 기본으로 새겨져야(enshrined) 하는가라는 오래된 물음의 연장선이다. pcaversaccio는 수년간 L1에 새겨진 무조건적 프라이버시, 즉 기본 트랜잭션 자체가 프라이빗한 상태를 주장해 왔다. 배경에는 ZEC(지캐시) 랠리와 AI 기반 체인 분석의 발전이 프라이버시 기술의 실효성에 대한 회의를 키운 정황이 있다.",
+      "whyItMatters": "프라이버시가 개별 기능 논쟁을 넘어 이더리움이 프라이버시 서사에서 밀리는지를 가르는 시금석이 되고 있다. L1 무조건적 프라이버시를 기본값으로 배포할지 여부와 그 시간표가 앞으로 지켜볼 지점이다.",
+      "sources": [],
+      "keywords": [
+        "L1 enshrined privacy",
+        "unconditional privacy",
+        "privacy is dead",
+        "shielded"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "프라이버시는 죽어가고 있다",
+          "holders": [
+            {
+              "handle": "gakonst",
+              "name": "Georgios Konstantopoulos",
+              "role": "Paradigm CTO",
+              "avatar": "https://pbs.twimg.com/profile_images/1596214564470734849/1Tg5-gNh_400x400.jpg"
+            },
+            {
+              "handle": "mayazi",
+              "name": "Maya Zehavi",
+              "avatar": "https://pbs.twimg.com/profile_images/1661366493324488710/2sa5OqWv_400x400.jpg"
+            }
+          ],
+          "points": [
+            "gakonst: 지금 가장 신경 쓰이는 것은 앞으로 프라이버시가 얼마나 죽어 있는가다",
+            "mayazi: AI 시대에 프라이버시는 진 싸움(lost cause)이다"
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "죽은 게 아니라 기본값을 잘못 만들어 왔을 뿐이다",
+          "holders": [
+            {
+              "handle": "pcaversaccio",
+              "name": "sudo rm -rf --no-preserve-root /",
+              "role": "스마트컨트랙트 보안 리서처",
+              "avatar": "https://pbs.twimg.com/profile_images/1734666604049289216/7ezXxfGv_400x400.jpg"
+            },
+            {
+              "handle": "0xprivacypools",
+              "name": "Privacy Pools",
+              "role": "Privacy Pools 프로젝트 계정",
+              "avatar": "https://pbs.twimg.com/profile_images/1999543825342046213/nDnNC98J_400x400.png"
+            },
+            {
+              "handle": "web3privacy",
+              "name": "Web3Privacy Now",
+              "role": "프라이버시 애드보커시 단체",
+              "avatar": "https://pbs.twimg.com/profile_images/1788241316549210113/dfvA8wDS_400x400.jpg"
+            },
+            {
+              "handle": "therealchaseeb",
+              "name": "chase",
+              "avatar": "https://pbs.twimg.com/profile_images/2096865349681750017/aei1jAPp_400x400.jpg"
+            }
+          ],
+          "points": [
+            "pcaversaccio: 프라이버시는 죽지 않았고 지금까지 잘못된 기본값을 만들어 왔을 뿐이다. 모든 프라이버시는 사용자가 설정하는 것이 아니라 런타임(실행 레이어·브라우저)의 일부여야 한다",
+            "pcaversaccio: L1에 새겨진 무조건적 프라이버시를 배포해 기본 트랜잭션을 프라이빗하게 만들면 프라이버시가 확장되고 이긴다. 내 XMR 거래를 ETH 거래로 대체할 수 있을 때까지 멈추지 않겠다",
+            "0xprivacypools: 프라이버시는 우리가 죽게 내버려 둘 때만 죽는다, 싸움은 계속된다",
+            "web3privacy: 누군가는 불평하고 누군가는 행동한다. 프라이버시가 그렇게 죽었다면 사이퍼펑크 콩그레스에 이미 2000명이 등록할 리 없다"
+          ]
+        },
+        {
+          "stance": "neutral",
+          "label": "어느 쪽도 이기지 못하는 영원한 군비경쟁이다",
+          "holders": [
+            {
+              "handle": "vers_laLune",
+              "name": "𝕧𝕖𝕣𝕤 𝕝𝕒 𝕃𝕦𝕟𝕖",
+              "avatar": "https://pbs.twimg.com/profile_images/2047766914366066688/ljj9G8M0_400x400.jpg"
+            },
+            {
+              "handle": "Franacc_",
+              "name": "Fran ~ priv/acc",
+              "avatar": "https://pbs.twimg.com/profile_images/1998380218218696704/9N8FtiBL_400x400.png"
+            }
+          ],
+          "points": [
+            "vers_laLune: 오히려 격화되지만 이것은 끊임없는 군비경쟁이다",
+            "Franacc_: AI와 프라이버시는 영구적 군비경쟁 속 대립하는 힘이다. AI가 강해질수록 프라이버시의 가치는 커지고, 프라이버시가 개선될수록 AI는 새 우회로를 찾으므로 어느 쪽도 진짜로 이기지 못한다"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-09-19",
+          "by": "gakonst",
+          "stance": "pro",
+          "quote": "내가 가장 신경 쓰는 것은 앞으로 프라이버시가 얼마나 죽어 있는가다.",
+          "url": "https://x.com/gakonst/status/2101382182799552834",
+          "digest": "2026-09-22",
+          "relation": "none",
+          "original": "the main thing i think about is how dead privacy is from here on forward",
+          "translation": "내가 가장 많이 생각하는 것은 앞으로 프라이버시가 얼마나 죽어버릴 것인가 하는 점이다."
+        },
+        {
+          "date": "2026-09-19",
+          "by": "mayazi",
+          "stance": "pro",
+          "quote": "한동안 말해 왔다. AI 시대에 프라이버시는 진 싸움이다.",
+          "url": "https://x.com/mayazi/status/2101402909334253691",
+          "digest": "2026-09-22",
+          "replyTo": "gakonst",
+          "relation": "quote",
+          "original": "Been saying that for a while.\nPrivacy is a lost cause in the age of AI.",
+          "translation": "한동안 계속 그렇게 말해왔다. AI 시대에 프라이버시는 이미 승산 없는 싸움이다."
+        },
+        {
+          "date": "2026-09-19",
+          "by": "vers_laLune",
+          "stance": "neutral",
+          "quote": "오히려 격화된다, 하지만 이것은 끊임없는 군비경쟁이다.",
+          "url": "https://x.com/vers_laLune/status/2101387309081911666",
+          "digest": "2026-09-22",
+          "replyTo": "gakonst",
+          "relation": "quote",
+          "original": "eh if anything it ramps up, but its a constant arms race",
+          "translation": "음, 오히려 커지고 있다고 봐야겠지만, 그것은 끊임없는 군비 경쟁(arms race)이다."
+        },
+        {
+          "date": "2026-09-19",
+          "by": "0xprivacypools",
+          "stance": "con",
+          "quote": "프라이버시는 우리가 죽게 내버려 둘 때만 죽는다. 싸움은 계속된다.",
+          "url": "https://x.com/0xprivacypools/status/2101431994513076410",
+          "digest": "2026-09-22",
+          "replyTo": "gakonst",
+          "relation": "quote",
+          "original": "privacy is only dead if we allow it to die\n\nthe fight continues",
+          "translation": "프라이버시는 우리가 죽도록 내버려둘 때만 죽는다. 싸움은 계속된다."
+        },
+        {
+          "date": "2026-09-19",
+          "by": "Franacc_",
+          "stance": "neutral",
+          "quote": "AI와 프라이버시는 영구적 군비경쟁 속 대립하는 힘이다. AI가 강해질수록 프라이버시의 가치는 커지고, 프라이버시 기술이 개선될수록 AI는 그 보호를 우회할 새 방법을 계속 찾는다. 어느 쪽도 진짜로 이기지 못한다.",
+          "url": "https://x.com/Franacc_/status/2101664926825893994",
+          "digest": "2026-09-22",
+          "replyTo": "gakonst",
+          "relation": "quote",
+          "original": "AI and privacy are opposing forces in a permanent arms race.\nThe more powerful AI becomes, the more valuable privacy becomes.\n\nAnd as privacy technology improves, AI will keep finding new ways around those protections.\n\nNeither side really \"wins\". The pressure on one side creates demand for the other, pushing both forward.\n\nIt's a war that keeps escalating forever.",
+          "translation": "AI와 프라이버시는 영구적인 군비 경쟁 속에서 서로 대립하는 힘이다. AI가 강력해질수록 프라이버시의 가치는 더 높아진다. 그리고 프라이버시 기술이 발전할수록 AI는 그 보호 장치를 우회할 새로운 방법을 계속 찾아낼 것이다. 어느 쪽도 진짜로 \"승리\"하지는 못한다. 한쪽에 가해지는 압력이 다른 쪽에 대한 수요를 만들어내며 양쪽 모두를 앞으로 밀어붙인다. 이것은 영원히 계속 격화되는 전쟁이다."
+        },
+        {
+          "date": "2026-09-20",
+          "by": "pcaversaccio",
+          "stance": "con",
+          "quote": "아니, 프라이버시는 죽지 않았다. 우리가 지금까지 잘못된 기본값을 만들어 왔을 뿐이다. 모든 프라이버시는 사용자가 설정하는 것이 아니라 런타임의 일부여야 한다. 그래서 나는 수년간 L1에 새겨진 무조건적 프라이버시를 배포해야 한다고 말해 왔다. 내 XMR 거래를 ETH 거래로 대체할 수 있을 때까지 멈추지 않겠다.",
+          "url": "https://x.com/pcaversaccio/status/2101604296290607327",
+          "digest": "2026-09-22",
+          "replyTo": "gakonst",
+          "relation": "quote",
+          "original": "lol nah, privacy is _not_ dead, we've just built the wrong defaults so far. any kind of privacy must be part of the _runtime_ (can be an execution layer, can be a browser, etc.), not something users have to configure. that's why i've been saying for years: we must ship _L1 enshrined unconditional_ privacy. if the default tx is private by default, you scale privacy and you win. i won't stop until i can replace my xmr txs with eth txs. build the right system defaults, and you win. ethereum enshrined privacy will win.",
+          "translation": "ㅋㅋ 아니, 프라이버시는 죽지 _않았다_. 우리가 지금까지 잘못된 기본값(defaults)을 만들어온 것뿐이다. 어떤 종류의 프라이버시든 사용자가 직접 설정해야 하는 것이 아니라 _런타임(runtime)_의 일부여야 한다(그것이 실행 계층일 수도 있고, 브라우저일 수도 있다). 그래서 나는 수년간 계속 이렇게 말해왔다. 우리는 반드시 _L1에 온전히 내재화된 무조건적_ 프라이버시를 내놓아야 한다. 기본 트랜잭션이 기본값으로 프라이빗하다면, 프라이버시는 스케일되고 당신이 승리한다. 나는 내 xmr 트랜잭션을 eth 트랜잭션으로 대체할 수 있을 때까지 멈추지 않을 것이다. 올바른 시스템 기본값을 만들어라, 그러면 승리한다. 이더리움에 내재화된(enshrined) 프라이버시가 승리할 것이다."
+        },
+        {
+          "date": "2026-09-20",
+          "by": "therealchaseeb",
+          "stance": "con",
+          "quote": "그래도 내 실드된(shielded) 코인은 못 찾을걸.",
+          "url": "https://x.com/therealchaseeb/status/2101482358692258207",
+          "digest": "2026-09-22",
+          "replyTo": "gakonst",
+          "relation": "quote",
+          "original": "Bet you can’t find my shielded coins tho",
+          "translation": "그래도 내 실드(shielded) 코인은 못 찾을 걸."
+        },
+        {
+          "date": "2026-09-20",
+          "by": "web3privacy",
+          "stance": "con",
+          "quote": "누군가는 불평하고, 누군가는 행동한다. 프라이버시가 그렇게 죽었다는데 사이퍼펑크 콩그레스에 이미 2000명이 등록했다.",
+          "url": "https://x.com/web3privacy/status/2101677100969210040",
+          "digest": "2026-09-22",
+          "replyTo": "gakonst",
+          "relation": "quote",
+          "original": "some people complain.\nthe others act.\n\nPrivacy is so dead, that already 2000 people registered for Cypherpunk Congress. https://t.co/060STlJSOX\n\nSo dead that almost 20.000 visited our events.\n\nSo dead that Internet Archive, Tor, Bluesky, Ethereum Foundation, bitchat, Brave, & 90 more leaders gathered for our and @protocollabs Retreat last year.\n\nSo dead that millions of people use privacy tech featured at our events.\n\nWish everyone and everything be \"dead\" as privacy.\nOnwards.",
+          "translation": "어떤 사람들은 불평만 한다. 다른 사람들은 행동한다. 프라이버시가 얼마나 죽었는지, 벌써 2000명이 Cypherpunk Congress에 등록했다. https://t.co/060STlJSOX 얼마나 죽었으면 거의 2만 명이 우리 행사를 방문했다. 얼마나 죽었으면 Internet Archive, Tor, Bluesky, Ethereum Foundation, bitchat, Brave를 비롯한 90개 이상의 리더들이 작년에 우리와 @protocollabs의 Retreat에 모였다. 얼마나 죽었으면 수백만 명이 우리 행사에서 소개된 프라이버시 기술을 사용한다. 모든 사람과 모든 것이 프라이버시만큼 \"죽어\" 있기를 바란다. 계속 나아가자."
+        }
+      ],
+      "firstSeen": "2026-09-19",
+      "lastActivity": "2026-09-20",
+      "status": "active",
+      "rootUrl": "https://x.com/gakonst/status/2101382182799552834",
+      "engagement": {
+        "likes": 322,
+        "retweets": 7,
+        "quotes": 17,
+        "replies": 69,
+        "views": 62248
+      }
+    },
     {
       "id": "l2s-competitors-or-allies",
       "title": "L2는 동맹으로 위장한 ETH의 경쟁자인가?",
@@ -1287,7 +1956,7 @@
       ],
       "firstSeen": "2026-08-24",
       "lastActivity": "2026-09-15",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/VitalikButerin/status/2096378061377900881",
       "engagement": {
         "likes": 1370,
@@ -1955,156 +2624,6 @@
         "quotes": 0,
         "replies": 1,
         "views": 987
-      }
-    },
-    {
-      "id": "ethereum-zcash-privacy-competitor",
-      "title": "이더리움의 최대 경쟁자는 지캐시이고 프라이버시를 최우선해야 하나?",
-      "category": "프로토콜 설계",
-      "summary": "donnoh_eth는 블록체인의 1순위 용도가 주권적 가치 이전이고 무조건적 프라이버시 없이는 주권이 실현되지 않는다며 정말 중요한 영역에서 이더리움의 최대 경쟁자는 지캐시라고 주장했고, zayn4pf는 이더리움이 지캐시가 될 수 있어도 그 역은 불가능하다며 그 프레임 자체를 거부했다.",
-      "keyPoints": [
-        "이더리움이 자원을 프라이버시에 우선 배분할 만큼 지캐시가 실질적 경쟁자인가",
-        "지캐시가 네이티브 증명 검증만으로 스마트컨트랙트 환경을 얹을 수 있어 이더리움에 근접할 수 있는가",
-        "여러 프라이버시 모델이 공존하는 것이 이더리움의 강점인가 파편화인가"
-      ],
-      "background": "지캐시(Zcash)는 zk-SNARK 기반의 프라이버시 코인으로, 셸디드(shielded) 트랜잭션을 통해 송수신자와 금액을 숨긴다. donnoh_eth는 주권적 가치 이전(sovereign transfer of value)이 블록체인의 1순위 용도이며 무조건적 프라이버시가 그 전제라고 본다. 네이티브 프라이버시는 EIP-8141 프레임 트랜잭션(frame transaction)의 명시적 목표 중 하나로, 이더리움이 프로토콜 차원에서 프라이버시를 내재화하려는 방향과 맞닿아 있다. 반대편은 이더리움의 범용 스마트컨트랙트 능력이 지캐시보다 우월하며 지캐시를 최대 경쟁자로 세우는 것 자체가 과하다고 본다.",
-      "whyItMatters": "프라이버시를 경쟁 생존 조건으로 보는 프레임이 EF의 헤고타 스코핑 방향과 공명하며, 로드맵 자원 배분 논의에 실제 압력으로 작용한다. 이 프레임이 받아들여질수록 프라이버시 번들의 우선순위가 올라가고, 반대로 이더리움의 범용성이 우위라는 관점이 강할수록 자원은 확장성·범용 인프라로 향한다.",
-      "sources": [
-        {
-          "title": "EIP-8141: Frame Transaction",
-          "url": "https://eips.ethereum.org/EIPS/eip-8141"
-        }
-      ],
-      "keywords": [
-        "Zcash Ethereum competitor",
-        "native privacy",
-        "EIP-8141",
-        "sovereign transfer"
-      ],
-      "positions": [
-        {
-          "stance": "pro",
-          "label": "지캐시가 최대 경쟁자다",
-          "holders": [
-            {
-              "handle": "donnoh_eth",
-              "name": "donnoh.gwei 💗",
-              "role": "L2Beat 리서치 헤드",
-              "avatar": "https://pbs.twimg.com/profile_images/1906978600311521280/aSbKSjtX_400x400.jpg"
-            },
-            {
-              "name": "lex_node",
-              "watchlist": false
-            }
-          ],
-          "points": [
-            "블록체인의 1순위 용도는 주권적 가치 이전이며, 무조건적 프라이버시 없이는 주권이 실제로 달성되지 않으므로 정말 중요한 영역에서 이더리움의 최대 경쟁자는 지캐시다.",
-            "스마트컨트랙트는 좋지만 노드 운영을 어렵게 만들고 사용자의 주권과 무관한 여러 방향으로 초점을 분산시킨다.",
-            "지캐시는 범용 VM을 넣을 필요 없이 네이티브 증명 검증만 추가하면 어떤 스마트컨트랙트 환경이든 그 위에 퍼미션리스하게 얹어 zk증명으로 검증할 수 있으므로, 어떤 형태로는 지캐시도 이더리움이 하는 일을 할 수 있다."
-          ]
-        },
-        {
-          "stance": "con",
-          "label": "이더리움이 우월하니 그 프레임은 과하다",
-          "holders": [
-            {
-              "handle": "zayn4pf",
-              "name": "zayn",
-              "avatar": "https://pbs.twimg.com/profile_images/2096586358982602754/Vxp-9lsh_400x400.jpg"
-            }
-          ],
-          "points": [
-            "이더리움은 지캐시가 하는 모든 것을 할 수 있고 그 이상이지만 지캐시는 이더리움이 될 수 없으므로, 지캐시를 최대 경쟁자로 세우는 것은 이더리움을 스스로 깎아내리는 것이다."
-          ]
-        },
-        {
-          "stance": "neutral",
-          "label": "여러 프라이버시 방식의 공존이 강점이나 파편화도 낳는다",
-          "holders": [
-            {
-              "handle": "jchaskin22",
-              "name": "chaskin.eth",
-              "role": "EF 리서처",
-              "avatar": "https://pbs.twimg.com/profile_images/2016950149633691648/Kht-necI_400x400.jpg"
-            }
-          ],
-          "points": [
-            "이더리움의 강점 하나는 경쟁하는 여러 프라이버시 방식을 동시에 제공할 수 있다는 점으로, 토네이도 캐시는 검열 저항을 극대화하고 프라이버시 풀(Privacy Pools)은 자금이 불법과 무관함을 증명하게 하며 Railgun은 디파이를 사적으로 쓰게 한다.",
-            "다만 이렇게 여러 방식이 공존하는 것은 유동성과 익명성 집합을 파편화시킨다."
-          ]
-        }
-      ],
-      "timeline": [
-        {
-          "date": "2026-09-07",
-          "by": "donnoh_eth",
-          "stance": "pro",
-          "quote": "이더리움의 (정말 중요한 것들에서) 최대 경쟁자는 지캐시다. 그에 맞게 행동하라.",
-          "url": "https://x.com/donnoh_eth/status/2096854640868438429",
-          "digest": "2026-09-09",
-          "replyTo": "nero_eth",
-          "relation": "quote",
-          "original": "ethereum’s biggest competitor (in the things that actually matter) is zcash. act accordingly",
-          "translation": "이더리움의 가장 큰 경쟁자는(진짜로 중요한 부분에서는) 지캐시(zcash)입니다. 그에 맞게 행동하세요."
-        },
-        {
-          "date": "2026-09-07",
-          "by": "donnoh_eth",
-          "stance": "pro",
-          "quote": "블록체인의 1순위 용도는 주권적 가치 이전이다. 무조건적 프라이버시 없이는 주권이 실제로 달성되지 않는다고 본다. 스마트컨트랙트는 좋지만 노드 운영을 어렵게 하고 사용자에게 도움이 안 되는 여러 방향으로 초점을 분산시킨다.",
-          "url": "https://x.com/donnoh_eth/status/2096903522486780012",
-          "digest": "2026-09-09",
-          "replyTo": "ox_shaman",
-          "relation": "reply",
-          "original": "top 1 blockchain use case is sovereign transfer of value. i dont believe sovereignty is achieved in practice without unconditional privacy. smart contracts are nice, but they make it harder to run nodes and diverts focus to many different things that dont help users to be fully sovereign. zcash has amazing ux for this already (try zodl wallet over tor), and it’s rapidly improving, in comparison the most similar protocol on ethereum (tornado cash) is super painful to use. not having smart contracts has many limitations, mainly being that many things you want to do on top require trusted parties. this is where ethereum can compete and eventually win over zcash, but the foundation is currently missing and it’s much harder for us to get there. this is fixable but we need to work on it. i 100% think zcash can surpass ethereum market cap with just private transfers and no smart contracts if ethereum doesnt catch up.",
-          "translation": "블록체인의 최고 사용 사례는 가치의 주권적 전송(sovereign transfer of value)입니다. 저는 무조건적인 프라이버시(unconditional privacy) 없이는 실제로 주권(sovereignty)이 달성될 수 없다고 봅니다. 스마트 컨트랙트(smart contract)는 좋지만, 노드를 운영하기 어렵게 만들고, 사용자가 완전히 주권을 가지는 데 도움이 되지 않는 여러 다른 것들로 초점을 분산시킵니다. 지캐시는 이미 이 부분에서 놀라운 UX를 갖추고 있고(토르(Tor)로 zodl 지갑을 써보세요), 빠르게 개선되고 있는 반면, 이더리움에서 가장 비슷한 프로토콜인 토네이도캐시(tornado cash)는 사용하기 매우 고통스럽습니다. 스마트 컨트랙트가 없다는 것은 여러 한계를 가지는데, 주로 그 위에서 하고 싶은 많은 일들이 신뢰받는 제3자(trusted party)를 필요로 한다는 점입니다. 바로 이 지점이 이더리움이 경쟁해서 결국 지캐시를 이길 수 있는 부분이지만, 지금은 그 기반이 빠져 있고 우리가 거기에 도달하기가 훨씬 어렵습니다. 이건 고칠 수 있는 문제지만 우리가 노력해야 합니다. 만약 이더리움이 따라잡지 못한다면, 저는 지캐시가 프라이빗 전송(private transfer)만으로, 스마트 컨트랙트 없이도 이더리움의 시가총액을 뛰어넘을 수 있다고 100% 생각합니다."
-        },
-        {
-          "date": "2026-09-07",
-          "by": "zayn4pf",
-          "stance": "con",
-          "quote": "이더리움은 지캐시가 무엇이든 그것이 될 수 있고 그 이상이다. 지캐시는 이더리움이 될 수 없다. 이 트윗은 이더리움을 깎아내리는 것과 같다.",
-          "url": "https://x.com/zayn4pf/status/2096941739781079386",
-          "digest": "2026-09-09",
-          "relation": "none",
-          "original": "@donnoh_eth @lex_node Ethereum can be whatever ZCASH is, and more.\n\nZCASH can’t be what Ethereum is.\n\nthis tweet is like cucking Ethereum lmfao.",
-          "translation": "@donnoh_eth @lex_node 이더리움은 지캐시가 할 수 있는 무엇이든 될 수 있고, 그 이상도 될 수 있습니다. 지캐시는 이더리움이 하는 것을 할 수 없습니다. 이 트윗은 이더리움을 스스로 깎아내리는 것 같네요 ㅋㅋㅋ."
-        },
-        {
-          "date": "2026-09-07",
-          "by": "donnoh_eth",
-          "stance": "pro",
-          "quote": "그들은 그럴 필요도 없다. 네이티브 증명 검증만 있으면 어떤 스마트컨트랙트 환경이든 그 위에 퍼미션리스하게 세워 zk증명으로 검증할 수 있다. 훨씬 쉽다. 셀레스티아가 한때 VM을 도입하지 않으려 했던 계획이 바로 이것이다.",
-          "url": "https://x.com/donnoh_eth/status/2096944960369054054",
-          "digest": "2026-09-09",
-          "replyTo": "zayn4pf",
-          "relation": "reply",
-          "original": "as i said they don’t need to. they just need native proof verification which allows any smart contract environment to be permissionlessly built on top and verified via zk proofs. it is way way easier. this is what also celestia was planning a while ago not to introduce a vm, it’s not a new idea.",
-          "translation": "제가 말했듯이 그들이 (스마트 컨트랙트를) 가질 필요는 없습니다. 그들에게 필요한 건 네이티브 증명 검증(native proof verification)뿐이고, 이를 통해 어떤 스마트 컨트랙트 환경이든 그 위에 무허가로(permissionlessly) 구축되고 영지식증명(zk proof)으로 검증될 수 있습니다. 이게 훨씬, 훨씬 더 쉽습니다. 이건 셀레스티아(celestia)도 예전에 VM을 도입하지 않는 방향으로 계획했던 것이라, 새로운 아이디어가 아닙니다."
-        },
-        {
-          "date": "2026-09-07",
-          "by": "jchaskin22",
-          "stance": "neutral",
-          "quote": "이더리움의 강점 하나는 경쟁하는 여러 프라이버시 방식을 제공할 수 있다는 것이다. 토네이도 캐시는 검열 저항을 극대화하고, 프라이버시 풀은 자금이 불법 활동과 무관함을 증명하게 하며, Railgun은 디파이를 사적으로 쓰게 한다. 다만 이는 파편화를 낳는다.",
-          "url": "https://x.com/jchaskin22/status/2096984156433465605",
-          "digest": "2026-09-09",
-          "replyTo": "donnoh_eth",
-          "relation": "reply",
-          "original": "One of Ethereum’s advantage is that it can offer competing flavors of privacy\n\nTornado Cash maximizes censorship resistance, while Privacy Pools let users prove their funds aren’t linked to illicit activity, while Railgun lets you use defi privately\n\nBut it does fragments liquidity. If enough people are willing to provide the anonymity set (they currently aren't, it's a culture problem we need to fix), that tradeoff becomes much less significant",
-          "translation": "이더리움의 장점 중 하나는 서로 경쟁하는 여러 형태의 프라이버시를 제공할 수 있다는 것입니다. 토네이도캐시(Tornado Cash)는 검열 저항성(censorship resistance)을 극대화하고, 프라이버시 풀(Privacy Pools)은 사용자가 자신의 자금이 불법 행위와 연관되어 있지 않다는 것을 증명할 수 있게 해주며, 레일건(Railgun)은 디파이(defi)를 비공개로 사용할 수 있게 해줍니다. 다만 이는 유동성(liquidity)을 분산시킵니다. 충분히 많은 사람들이 익명성 집합(anonymity set)을 제공할 의향이 있다면(현재는 그렇지 않으며, 이건 우리가 고쳐야 할 문화적 문제입니다) 그 트레이드오프는 훨씬 덜 중요해집니다."
-        }
-      ],
-      "firstSeen": "2026-09-07",
-      "lastActivity": "2026-09-07",
-      "status": "cooling",
-      "rootUrl": "https://x.com/donnoh_eth/status/2096854640868438429",
-      "engagement": {
-        "likes": 73,
-        "retweets": 1,
-        "quotes": 0,
-        "replies": 16,
-        "views": 7717
       }
     },
     {

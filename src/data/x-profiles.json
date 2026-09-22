@@ -1983,5 +1983,77 @@
     "name": "HERO",
     "avatar": "https://pbs.twimg.com/profile_images/2074732773399482368/sIOZEB5h_400x400.jpg",
     "followers": 5681
+  },
+  "dataalways": {
+    "handle": "dataalways",
+    "name": "dataalways ⚡️🤖",
+    "avatar": "https://pbs.twimg.com/profile_images/2067329108619481088/eJb7QRAP_400x400.jpg",
+    "followers": 10030
+  },
+  "abcoathup": {
+    "handle": "abcoathup",
+    "name": "abcoathup.eth",
+    "avatar": "https://pbs.twimg.com/profile_images/2037414961132269568/1IpfyAd5_400x400.jpg",
+    "followers": 5811
+  },
+  "therealchaseeb": {
+    "handle": "therealchaseeb",
+    "name": "chase",
+    "avatar": "https://pbs.twimg.com/profile_images/2096865349681750017/aei1jAPp_400x400.jpg",
+    "followers": 120904
+  },
+  "vers_lalune": {
+    "handle": "vers_laLune",
+    "name": "𝕧𝕖𝕣𝕤 𝕝𝕒 𝕃𝕦𝕟𝕖",
+    "avatar": "https://pbs.twimg.com/profile_images/2047766914366066688/ljj9G8M0_400x400.jpg",
+    "followers": 25707
+  },
+  "mayazi": {
+    "handle": "mayazi",
+    "name": "Maya Zehavi",
+    "avatar": "https://pbs.twimg.com/profile_images/1661366493324488710/2sa5OqWv_400x400.jpg",
+    "followers": 16238
+  },
+  "web3privacy": {
+    "handle": "web3privacy",
+    "name": "Web3Privacy Now",
+    "avatar": "https://pbs.twimg.com/profile_images/1788241316549210113/dfvA8wDS_400x400.jpg",
+    "followers": 14247
+  },
+  "cameron_dennis_": {
+    "handle": "Cameron_Dennis_",
+    "name": "Cameron.near",
+    "avatar": "https://pbs.twimg.com/profile_images/1867013405795815425/tg5f3VpE_400x400.jpg",
+    "followers": 14208
+  },
+  "0xprivacypools": {
+    "handle": "0xprivacypools",
+    "name": "Privacy Pools",
+    "avatar": "https://pbs.twimg.com/profile_images/1999543825342046213/nDnNC98J_400x400.png",
+    "followers": 8146
+  },
+  "franacc_": {
+    "handle": "Franacc_",
+    "name": "Fran ~ priv/acc",
+    "avatar": "https://pbs.twimg.com/profile_images/1998380218218696704/9N8FtiBL_400x400.png",
+    "followers": 4614
+  },
+  "cloutedmind": {
+    "handle": "CloutedMind",
+    "name": "Clouted",
+    "avatar": "https://pbs.twimg.com/profile_images/2094043814939828224/P8BWaZPT_400x400.jpg",
+    "followers": 30858
+  },
+  "cryptrus": {
+    "handle": "cryptrus",
+    "name": "Cryptrus",
+    "avatar": "https://pbs.twimg.com/profile_images/1896564895585275904/vat1ASBl_400x400.jpg",
+    "followers": 22854
+  },
+  "zectrillionaire": {
+    "handle": "zectrillionaire",
+    "name": "big z",
+    "avatar": "https://pbs.twimg.com/profile_images/2062711045878431744/uGFeBElS_400x400.jpg",
+    "followers": 2533
   }
 }
