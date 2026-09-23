@@ -15,7 +15,7 @@ import { runClaude } from './lib/claude';
 import { z } from 'zod';
 import * as fs from 'fs';
 import * as path from 'path';
-import { detectDebates, isDigestDue, type NewsItem } from './lib/eth-news';
+import { detectDebates, findMultiVoiceItems, isDigestDue, type NewsItem } from './lib/eth-news';
 
 const INBOX = path.resolve(process.cwd(), 'src/data/eth-news-inbox.json');
 const OUTPUT = path.resolve(process.cwd(), 'src/data/eth-digests.json');
@@ -110,6 +110,10 @@ const EDITOR_PROMPT = `당신은 ECK(Ethereum Collective Korea)의 시니어 리
   완결된 문장으로 자연스럽게 풀어 씁니다 (타이틀 포함).
 - 기술 맥락을 붙입니다: 관련 EIP·업그레이드·선행 논의와 연결해 "무엇이 어디서 이어지는 이야기인지"를 보여줍니다.
 - 트윗은 해당 인물의 발언·발표로 처리하고, 확인되지 않은 주장은 "~라는 제보/주장" 형태로 씁니다.
+- 한 항목에 여러 사람의 발언을 인용하지 마세요. 항목에는 url이 하나뿐이고 이후 논쟁 정리는 그 url만 따라가므로,
+  한 항목에 3인 설전을 담고 url을 발제자 것만 달면 나머지 두 사람의 발언은 통째로 사라집니다.
+  설전은 "트위터 논쟁" 섹션에 쟁점 항목 하나로 요약하고, 그중 독립적으로 주목할 발언은 "주요 발언" 섹션에
+  그 발언 자체의 url을 단 항목으로 따로 싣습니다.
 - 소스 우선순위: 트위터(X)와 포럼(ethresear.ch, Ethereum Magicians, EF Blog)을 우선합니다.
   코인니스(tg:) 항목은 싣지 않습니다.
 - 가격·시세 내용은 최대한 자제합니다: 등락률·가격 전망·단순 시세 뉴스는 싣지 않습니다.
@@ -268,6 +272,12 @@ async function main() {
 
   const parsed = DigestSchema.parse(extractJson(result));
   const digest: Digest = { date: today, ...parsed };
+  // 한 항목이 여러 사람을 인용하면 url은 하나뿐이라 나머지 발언이 논쟁 추출기에 도달하지 못한다.
+  // 자동으로 쪼개지 않고 경고만 남겨, 프롬프트 규칙이 지켜지는지 로그로 본다
+  for (const { where, title, url, quotes } of findMultiVoiceItems(digest)) {
+    console.warn(`[WARN] 다화자 항목 (${where}) "${title}" — 인용 ${quotes.length}건에 url 1개 (${url})`);
+    for (const quote of quotes) console.warn(`         · ${quote}`);
+  }
   const digests = [digest, ...existing.digests].slice(0, KEEP_DIGESTS);
   fs.writeFileSync(OUTPUT, JSON.stringify({ digests }, null, 2), 'utf-8');
   console.log(`Written digest "${digest.title}" (${digest.sections.length} sections) to ${OUTPUT}`);

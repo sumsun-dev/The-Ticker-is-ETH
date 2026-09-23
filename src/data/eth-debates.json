@@ -531,6 +531,11 @@
           "label": "죽은 게 아니라 기본값을 잘못 만들어 왔을 뿐이다",
           "holders": [
             {
+              "handle": "VitalikButerin",
+              "name": "vitalik.eth",
+              "role": "이더리움 공동창시자"
+            },
+            {
               "handle": "pcaversaccio",
               "name": "sudo rm -rf --no-preserve-root /",
               "role": "스마트컨트랙트 보안 리서처",
@@ -555,6 +560,7 @@
             }
           ],
           "points": [
+            "비탈릭 부테린: 프라이버시는 포기할 때만 죽는 것이며, 자신은 포기하지 않고 더 밀어붙인다",
             "pcaversaccio: 프라이버시는 죽지 않았고 지금까지 잘못된 기본값을 만들어 왔을 뿐이다. 모든 프라이버시는 사용자가 설정하는 것이 아니라 런타임(실행 레이어·브라우저)의 일부여야 한다",
             "pcaversaccio: L1에 새겨진 무조건적 프라이버시를 배포해 기본 트랜잭션을 프라이빗하게 만들면 프라이버시가 확장되고 이긴다. 내 XMR 거래를 ETH 거래로 대체할 수 있을 때까지 멈추지 않겠다",
             "0xprivacypools: 프라이버시는 우리가 죽게 내버려 둘 때만 죽는다, 싸움은 계속된다",
@@ -593,6 +599,18 @@
           "relation": "none",
           "original": "the main thing i think about is how dead privacy is from here on forward",
           "translation": "내가 가장 많이 생각하는 것은 앞으로 프라이버시가 얼마나 죽어버릴 것인가 하는 점이다."
+        },
+        {
+          "date": "2026-09-19",
+          "by": "VitalikButerin",
+          "stance": "con",
+          "quote": "포기할 때만 죽는 것이다. 나는 프라이버시를 포기하지 않는다. 더 밀어붙인다.",
+          "url": "https://x.com/VitalikButerin/status/2101414022839218479",
+          "digest": "2026-09-22",
+          "replyTo": "gakonst",
+          "relation": "quote",
+          "original": "It's only dead if you give up\n\nI'm not giving up on privacy. I'm doubling down.",
+          "translation": "포기할 때만 죽는 것입니다. 저는 프라이버시(privacy)를 포기하지 않습니다. 오히려 더 밀어붙입니다."
         },
         {
           "date": "2026-09-19",

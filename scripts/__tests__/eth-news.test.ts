@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { parseFeed, tweetsToItems, telegramToItems, mergeInbox, detectDebates, isDigestDue, parseForkcastFeed, forkcastArtifactBase, forkcastToItem, type NewsItem } from '../lib/eth-news';
+import { parseFeed, tweetsToItems, telegramToItems, mergeInbox, detectDebates, isDigestDue, parseForkcastFeed, forkcastArtifactBase, forkcastToItem, findMultiVoiceItems, type NewsItem } from '../lib/eth-news';
 
 const RSS2 = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
@@ -286,5 +286,90 @@ describe('mergeInbox forkcast retention', () => {
     const merged = mergeInbox([call], Array.from({ length: 10 }, (_, i) => tweet(i)), 5);
     expect(merged.filter((i) => i.source === 'forkcast')).toHaveLength(1);
     expect(merged.filter((i) => i.source !== 'forkcast')).toHaveLength(5);
+  });
+});
+
+describe('findMultiVoiceItems', () => {
+  // 2026-09-22 실제 사고: gakonst·비탈릭·pcaversaccio 3인 설전을 한 항목에 담고 url은 gakonst 것만 달아,
+  // 항목 url만 보는 논쟁 추출기가 비탈릭의 "포기할 때만 죽는다"를 통째로 놓쳤다.
+  const section = (heading: string, items: Array<{ title?: string; summary?: string; why?: string; url: string }>) => ({
+    heading,
+    items: items.map((it) => ({ title: it.title ?? '', summary: it.summary ?? '', why: it.why ?? '', url: it.url, source: '', date: '2026-09-22' })),
+  });
+
+  it('should flag an item that quotes several speakers behind one url', () => {
+    const digest = {
+      sections: [
+        section('트위터 논쟁', [
+          {
+            title: "'프라이버시는 죽었다' 한마디가 부른 반박 릴레이",
+            summary: "gakonst가 '앞으로 프라이버시가 얼마나 죽었는지가 주된 고민'이라고 하자, 비탈릭 부테린이 '포기할 때만 죽는다, 나는 더블다운한다'고 받았다.",
+            url: 'https://x.com/gakonst/status/2101382182799552834',
+          },
+        ]),
+      ],
+    };
+    const found = findMultiVoiceItems(digest);
+    expect(found).toHaveLength(1);
+    expect(found[0].url).toBe('https://x.com/gakonst/status/2101382182799552834');
+    expect(found[0].quotes).toContain('포기할 때만 죽는다, 나는 더블다운한다');
+    expect(found[0].where).toBe('트위터 논쟁');
+  });
+
+  it('should leave an item alone when one speaker is quoted several times', () => {
+    // Aave 항목(2026-09-12)이 이 형태다. 한 사람의 발언을 조각내 인용했을 뿐이라 누락이 없다
+    const digest = {
+      sections: [
+        section('생태계 · 보안', [
+          {
+            title: 'Aave V4 액티브 대출 사상 최고',
+            summary: "스타니 쿠레체프는 '차입 수요가 Aave로 돌아오고 있다'고 밝혔다. 그는 'Aave V4, 10억 달러를 향해 성장 중'이라는 전망도 덧붙였다.",
+            url: 'https://x.com/StaniKulechov/status/2096291788369625216',
+          },
+        ]),
+      ],
+    };
+    expect(findMultiVoiceItems(digest)).toEqual([]);
+  });
+
+  it('should not flag a single quote', () => {
+    const digest = {
+      sections: [section('주요 발언', [{ title: '한 발언', summary: "비탈릭은 '포기할 때만 죽는다'고 밝혔다", url: 'https://x.com/VitalikButerin/status/1' }])],
+    };
+    expect(findMultiVoiceItems(digest)).toEqual([]);
+  });
+
+  it('should dedupe a phrase quoted in both the title and the summary', () => {
+    const digest = {
+      sections: [
+        section('프로토콜 업데이트', [
+          {
+            title: "Ethlabs 13주차, '더 빠른 이더리움 L1' 연구",
+            summary: "Ethlabs가 '더 빠른 이더리움 L1'이라고 내걸자, barnabemonnot는 '빠른 파이널리티 언급은 실제로 좋은 일'이라며 호응했다.",
+            url: 'https://x.com/ethlabs_org/status/1',
+          },
+        ]),
+      ],
+    };
+    const found = findMultiVoiceItems(digest);
+    expect(found).toHaveLength(1);
+    expect(found[0].quotes).toEqual(['더 빠른 이더리움 L1', '빠른 파이널리티 언급은 실제로 좋은 일']);
+  });
+
+  it('should not mistake prose for a quote when apostrophes span a clause', () => {
+    // 경계 조건이 없으면 "라는 분업론을 폈는데, ZKsync 측" 같은 서술문이 인용으로 잡혔다
+    const digest = {
+      sections: [
+        section('트위터 논쟁', [
+          { title: '분업론', summary: "decentrek이 'Ethlabs는 오늘의 빌더'라는 분업론을 폈는데, donnoh_eth가 반박했다", url: 'https://x.com/decentrek/status/1' },
+        ]),
+      ],
+    };
+    const found = findMultiVoiceItems(digest);
+    expect(found).toEqual([]);
+  });
+
+  it('should ignore a digest with no sections', () => {
+    expect(findMultiVoiceItems({ intro: "인용이 '있어도' 섹션이 없으면 대상이 아니다" })).toEqual([]);
   });
 });
