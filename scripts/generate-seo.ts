@@ -21,6 +21,9 @@ import {
     collectionPageLd,
     SITE_URL,
 } from '../src/utils/structuredData';
+// 노출 판정은 사이트와 같은 함수를 써야 SEO와 화면이 어긋나지 않는다
+import { isPublishable, participantCount } from '../src/utils/debates';
+import type { Debate } from '../src/data/ethDebatesData';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -89,6 +92,13 @@ const newsItems: ContentItem[] = (newsFeed.items || []).map((n) => ({
     thumbnailUrl: '',
     html: n.content,
 }));
+// 논쟁 아카이브. 사이트에 노출되는 것만 shell·sitemap 대상으로 삼는다
+// (참여 인원 기준 또는 오너가 DM으로 정한 publish. src/utils/debates.ts의 isPublishable과 같은 판정)
+const allDebates = readJson<{ debates: Debate[] }>(join(DATA, 'eth-debates.json')).debates;
+const debates = allDebates
+    .filter(isPublishable)
+    .sort((a, b) => (b.lastActivity || '').localeCompare(a.lastActivity || ''));
+
 const contents: ContentItem[] = [...research, ...newsItems];
 
 const members = [...mockMembers, ...mockContributors];
@@ -133,7 +143,14 @@ const memberEntries: SitemapEntry[] = members.map((m) => ({
     priority: '0.5',
 }));
 
-const allEntries = [...staticRoutes, ...contentEntries, ...memberEntries];
+const debateEntries: SitemapEntry[] = debates.map((d) => ({
+    loc: `/debates/${d.id}`,
+    lastmod: toIso(d.lastActivity),
+    changefreq: 'weekly',
+    priority: '0.6',
+}));
+
+const allEntries = [...staticRoutes, ...contentEntries, ...memberEntries, ...debateEntries];
 
 const sitemapXml =
     '<?xml version="1.0" encoding="UTF-8"?>\n' +
@@ -244,6 +261,59 @@ for (const item of contents) {
     });
     writePage(`contents/${item.id}`, html);
     contentPages++;
+}
+
+// 논쟁 상세
+let debatePages = 0;
+for (const d of debates) {
+    const url = `${SITE_URL}/debates/${d.id}`;
+    const stanceLabel: Record<string, string> = { pro: '찬성', con: '반대', neutral: '중립', other: '기타' };
+    const bodyHtml =
+        `<article>` +
+        `<h1>${esc(d.title)}</h1>` +
+        `<p>${esc(d.category)} · 참여 ${participantCount(d)}명 · 인용 ${d.timeline.length}건 · ${esc(d.firstSeen)} ~ ${esc(d.lastActivity)}</p>` +
+        `<p>${esc(d.summary)}</p>` +
+        (d.background ? `<h2>배경</h2><p>${esc(d.background)}</p>` : '') +
+        (d.whyItMatters ? `<h2>왜 중요한가</h2><p>${esc(d.whyItMatters)}</p>` : '') +
+        (d.resolution ? `<h2>결론</h2><p>${esc(d.resolution)}</p>` : '') +
+        (d.keyPoints.length ? `<h2>쟁점</h2><ul>${d.keyPoints.map((k) => `<li>${esc(k)}</li>`).join('')}</ul>` : '') +
+        d.positions
+            .map(
+                (p) =>
+                    `<h2>${esc(stanceLabel[p.stance] ?? p.stance)} — ${esc(p.label)}</h2>` +
+                    `<p>${esc(p.holders.map((h) => h.name || h.handle || '').filter(Boolean).join(', '))}</p>` +
+                    `<ul>${p.points.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>`,
+            )
+            .join('') +
+        `<p><a href="/debates">← Debates</a></p>` +
+        `</article>`;
+
+    const html = buildShell({
+        title: d.title,
+        description: d.summary || d.title,
+        url,
+        image: DEFAULT_IMAGE,
+        type: 'article',
+        publishedTime: toIso(d.firstSeen),
+        jsonLd: [
+            // 논쟁은 질문 하나에 입장이 갈리는 구조라 쟁점을 Q&A로 싣는다
+            faqLd([
+                { q: d.title, a: d.summary },
+                ...d.keyPoints.map((k) => ({
+                    q: k,
+                    a: d.positions.map((p) => `${stanceLabel[p.stance] ?? p.stance}(${p.label}): ${p.points[0] ?? ''}`).join(' / '),
+                })),
+            ]),
+            breadcrumbLd([
+                { name: 'Home', url: '/' },
+                { name: 'Debates', url: '/debates' },
+                { name: d.title, url: `/debates/${d.id}` },
+            ]),
+        ],
+        bodyHtml,
+    });
+    writePage(`debates/${d.id}`, html);
+    debatePages++;
 }
 
 // 멤버 상세
@@ -384,6 +454,31 @@ const staticPages: StaticPage[] = [
         ],
     },
     {
+        path: 'debates',
+        title: 'Ethereum Debates',
+        description: `이더리움 코어 개발자와 리서처들이 공개적으로 갈린 쟁점 ${debates.length}건. 각 논쟁의 배경, 입장별 논거, 발언 타임라인을 한국어로 정리합니다.`,
+        bodyHtml:
+            `<h1>Ethereum Debates</h1>` +
+            `<p>이더리움 코어 개발자와 리서처들이 X(트위터)와 포럼에서 공개적으로 갈린 쟁점을 추적합니다. ` +
+            `각 논쟁마다 무엇을 다투는지, 누가 어떤 논거로 어느 편에 섰는지, 발언이 어떻게 오갔는지를 한국어로 정리합니다.</p>` +
+            `<h2>진행 중인 논쟁</h2><ul>` +
+            debates
+                .map(
+                    (d) =>
+                        `<li><a href="/debates/${escAttr(d.id)}">${esc(d.title)}</a> — ${esc(d.category)} · 참여 ${participantCount(d)}명 · ${esc(d.lastActivity)}<br>${esc(d.summary)}</li>`,
+                )
+                .join('') +
+            `</ul>`,
+        jsonLd: [
+            collectionPageLd({
+                name: 'Ethereum Debates',
+                url: '/debates',
+                description: '이더리움 코어 개발자·리서처가 갈린 쟁점 아카이브',
+                items: debates.map((d) => ({ name: d.title, url: `/debates/${d.id}` })),
+            }),
+        ],
+    },
+    {
         path: 'team',
         title: 'Core Team',
         description: 'Ethereum Collective Korea 코어팀 멤버 소개.',
@@ -458,6 +553,7 @@ const llms =
     `- [About](${SITE_URL}/about): 미션과 비전\n` +
     `- [Contents](${SITE_URL}/contents): 리서치·뉴스·주간 리포트 (${contents.length}건)\n` +
     `- [Ethereum News](${SITE_URL}/news): 이더리움 최신 소식 데일리 피드 (${ethNews.items.length}건)\n` +
+    `- [Ethereum Debates](${SITE_URL}/debates): 코어 개발자·리서처가 갈린 쟁점 (${debates.length}건)\n` +
     `- [Core Team](${SITE_URL}/team): 코어팀 멤버\n` +
     `- [Contributors](${SITE_URL}/contributors): 기여자\n` +
     `- [Ecosystem](${SITE_URL}/ecosystem): 이더리움 생태계\n` +
@@ -523,5 +619,5 @@ writeFileSync(join(DIST, 'feed.xml'), rss);
 
 // ── 요약 출력 ───────────────────────────────────────────────
 console.log(
-    `[generate-seo] sitemap: ${allEntries.length} urls · static: ${staticPagesCount} · content shells: ${contentPages} · member shells: ${memberPages} · llms.txt: ${recent.length} · llms-full: ${sortedContents.length} · rss: ${feedItems.length}`,
+    `[generate-seo] sitemap: ${allEntries.length} urls · static: ${staticPagesCount} · content shells: ${contentPages} · debate shells: ${debatePages} · member shells: ${memberPages} · llms.txt: ${recent.length} · llms-full: ${sortedContents.length} · rss: ${feedItems.length}`,
 );
