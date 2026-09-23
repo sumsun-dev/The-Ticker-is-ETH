@@ -22,7 +22,12 @@ const MUTED = '#9ca3af'; // text-muted — overline
 const SUBTLE = '#d1d5db'; // text-secondary — Korean subtitle
 const GLOW = '#2D5FBF'; // brand.primary — radial glow
 
-const FONT_DIR = 'node_modules/@expo-google-fonts/inter';
+// sharp·opentype.js·@expo-google-fonts/inter는 이 스크립트에서만 쓰고 용량이 커서 package.json에 넣지 않는다.
+// `.cache/og`에 따로 설치해 두고 여기서 찾는다 (없으면 리포 node_modules).
+const DEP_ROOT = fs.existsSync('.cache/og/node_modules/@expo-google-fonts/inter')
+  ? '.cache/og/node_modules'
+  : 'node_modules';
+const FONT_DIR = `${DEP_ROOT}/@expo-google-fonts/inter`;
 const titleFont = opentype.parse(
   fs.readFileSync(`${FONT_DIR}/900Black_Italic/Inter_900Black_Italic.ttf`).buffer,
 );
@@ -71,8 +76,14 @@ function measureRuns(font, runs, size, tracking = 0) {
 
 // Logo on the right, vertically centered.
 const logoH = 380;
-const logoRaw = await sharp('tie_logo_no_background.png')
-  .trim()
+// 마스터(logo/eck-symbol.svg)에서 파생된 다크 배경용 심볼을 직접 읽는다.
+// 예전에는 리포 루트에 따로 둔 래스터 한 장을 읽었는데, 2026-09-15 로고 교체 때
+// 그 파일만 갱신되지 않아 OG와 JSON-LD 로고가 옛 심볼인 채로 배포됐다(그 파일은 이 커밋에서 삭제).
+// 마스터가 바뀌면 이 산출물도 따라오도록 파생본을 입력으로 쓴다.
+// 흰 원을 투명 구멍으로 처리한 파생본이라 어두운 배경(커버 #0A0A12)에서는 배경이 비치고,
+// 흰 배경(JSON-LD Organization.logo)에서는 흰 링처럼 보여 양쪽 모두 맞는다.
+const SYMBOL = 'public/assets/eck-symbol.svg';
+const logoRaw = await sharp(SYMBOL, { density: 600 })
   .resize({ height: logoH })
   .toBuffer();
 const { width: lw, height: lh } = await sharp(logoRaw).metadata();
@@ -157,8 +168,7 @@ console.log(`generated public/assets/eck-og.png ${out.width}x${out.height} (titl
 
 // --- square, transparent logo for schema.org Organization "logo" ---------
 const S = 512;
-const sqLogo = await sharp('tie_logo_no_background.png')
-  .trim()
+const sqLogo = await sharp(SYMBOL, { density: 600 })
   .resize({ height: Math.round(S * 0.86) })
   .toBuffer();
 const { width: sw, height: sh } = await sharp(sqLogo).metadata();
