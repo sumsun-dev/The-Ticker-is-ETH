@@ -285,6 +285,88 @@ export function mergeInbox(prev: NewsItem[], incoming: NewsItem[], cap = 600, ke
   return [...calls, ...rest].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
 }
 
+export interface DigestProseLike {
+  intro?: string;
+  sections?: Array<{ heading: string; items: Array<{ title?: string; summary?: string; why?: string; url: string }> }>;
+}
+
+/** 여러 사람의 발언을 인용하면서 링크는 하나만 달고 있는 항목 */
+export interface MultiVoiceItem {
+  /** 그 항목이 속한 섹션 heading */
+  where: string;
+  title: string;
+  /** 항목이 단 하나뿐인 링크 */
+  url: string;
+  /** 항목이 인용한 발언들 (등장 순서, 중복 제거) */
+  quotes: string[];
+}
+
+/**
+ * 인용 추출. 여는 홑따옴표는 문장 시작이나 공백·괄호 뒤, 닫는 홑따옴표는 조사·구두점 앞으로 못박는다.
+ * 이 경계 조건이 없으면 홑따옴표가 인용을 넘어 짝지어져 "라는 분업론을 폈는데, ZKsync 측" 같은 서술문이 인용으로 잡힌다.
+ */
+const QUOTED_RE = /(?:^|[\s(])'([^'\n]{4,140}?)'(?=[\uAC00-\uD7A3,.\s)]|$)/g;
+
+/**
+ * 인용 사이에 끼어든 "누가 말했다"는 서술. 화자가 누구인지는 몰라도 화자가 **바뀌었다**는 것만 알면 된다.
+ * 한국어 인명 매핑이 파이프라인에 없어(본문은 "비탈릭 부테린", url은 VitalikButerin) 화자 식별은 불가능하다.
+ */
+const SPEAKER_SWITCH_RE = /(고 (하자|밝혔|말했|답했|덧붙였)|는 (반박|지적|주장|응수|받았|맞섰|물었)|가 (받았|반박|응수|맞섰)|에 (반박|맞서)|이라고|라며|면서)/;
+
+/**
+ * 다음 인용의 주어가 대명사면 앞 발언과 **같은 사람**이다.
+ * "'차입 수요가 돌아오고 있다'고 밝혔다. 그는 'V4는 성장 중'이라고 덧붙였다" 처럼
+ * 한 사람의 발언을 조각내 인용한 것을 전환으로 오인하면 안 된다.
+ */
+const SAME_SPEAKER_RE = /(?:^|[\s.,])(그|그녀|자신|본인)(?:는|은|이|가)\s*$/;
+
+/** 인용 사이 간격이 짧고(60자 이내) 그 안에 화자 전환 서술이 있으면 화자가 바뀐 것으로 본다 */
+const SWITCH_GAP_CHARS = 60;
+
+function quotesWithSpans(text: string): Array<{ quote: string; start: number; end: number }> {
+  QUOTED_RE.lastIndex = 0;
+  const out: Array<{ quote: string; start: number; end: number }> = [];
+  let match: RegExpExecArray | null;
+  while ((match = QUOTED_RE.exec(text)) !== null) {
+    out.push({ quote: match[1].trim(), start: match.index, end: match.index + match[0].length });
+  }
+  return out;
+}
+
+/**
+ * 여러 사람의 발언을 인용하면서 링크는 하나만 달고 있는 항목을 찾는다.
+ *
+ * 논쟁 추출기(extract-eth-debates.ts)는 다이제스트 **항목의 url**만 입력으로 받아 그 트윗의
+ * 답글·인용 관계를 따라간다. 그래서 한 항목이 세 사람의 설전을 요약하고 url은 발제자 것만 달면,
+ * 나머지 두 사람의 발언은 추출기에 도달하지 못한다
+ * (2026-09-22: gakonst·비탈릭·pcaversaccio 3인 설전을 한 항목에 담고 url은 gakonst 것만 달아,
+ *  비탈릭의 "포기할 때만 죽는다"가 is-privacy-dead-ai-era 카드에서 통째로 누락).
+ *
+ * 항목을 자동으로 쪼개지는 않는다. 관련성 판단은 편집자 모델의 몫이고, 기계적 승격은
+ * 정당한 누락(홍보·잡담)까지 되살려 다이제스트를 망친다. 여기서는 탐지해 경고만 남긴다.
+ */
+export function findMultiVoiceItems(digest: DigestProseLike): MultiVoiceItem[] {
+  const found: MultiVoiceItem[] = [];
+  for (const section of digest.sections ?? []) {
+    for (const item of section.items) {
+      const text = [item.title, item.summary, item.why].filter(Boolean).join(' ');
+      const spans = quotesWithSpans(text);
+      if (spans.length < 2) continue;
+      const switched = spans.some((span, i) => {
+        if (i === 0) return false;
+        const gap = text.slice(spans[i - 1].end, span.start);
+        if (gap.length > SWITCH_GAP_CHARS || !SPEAKER_SWITCH_RE.test(gap)) return false;
+        return !SAME_SPEAKER_RE.test(gap);
+      });
+      if (!switched) continue;
+      // 같은 문구를 본문과 제목에서 두 번 인용하는 일이 흔하다. 순서는 유지하고 중복만 걷는다
+      const quotes = [...new Set(spans.map((span) => span.quote))];
+      found.push({ where: section.heading, title: item.title ?? '', url: item.url, quotes });
+    }
+  }
+  return found;
+}
+
 /** 발행 주기 가드 — 마지막 호(YYYY-MM-DD)로부터 intervalDays 이상 지났을 때만 true. 첫 호는 항상 true. */
 export function isDigestDue(lastDate: string | undefined, today: string, intervalDays: number): boolean {
   if (!lastDate) return true;
