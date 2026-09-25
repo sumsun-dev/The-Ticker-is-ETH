@@ -1,6 +1,687 @@
 {
-  "updatedAt": "2026-09-22T01:06:26.586Z",
+  "updatedAt": "2026-09-25T01:06:03.350Z",
   "calls": [
+    {
+      "id": "acde-246",
+      "series": "acde",
+      "number": 246,
+      "date": "2026-09-24",
+      "title": "AllCoreDevs - Execution #246",
+      "forkcastUrl": "https://forkcast.org/calls/acde/246/",
+      "videoUrl": "https://youtube.com/watch?v=Kff_x7n5OWk",
+      "issueUrl": "https://github.com/ethereum/pm/issues/2223",
+      "kind": "full",
+      "durationMin": 88,
+      "headline": "세폴리아 200M\n포크 즉시 신호",
+      "lead": "테스트넷 가스 한도가 포크와 동시에 200M을 향해 오르기 시작한다",
+      "intro": "실행 계층(EL) 클라이언트 개발자들이 격주로 모이는 콜이다.",
+      "summary": "세폴리아(Sepolia)가 글램스터담(Glamsterdam) 포크와 동시에 가스 한도 200M 신호를 시작하기로 확정했고, 다음 포크 헤고타(Hegota) 후보를 대거 정리해 EIP 아홉 건 이상을 포함 검토(CFI)로 올렸다.",
+      "whyItMatters": "가스 한도를 60M에서 200M으로 올리는 글램스터담의 확장 노선이 테스트넷에서 실전 검증에 들어간다. 헤고타의 범위도 일괄 CFI로 윤곽이 잡혀 지갑, L2, 개발자가 대비할 기능 목록이 구체화됐다.",
+      "decisions": [
+        {
+          "label": "세폴리아 가스 200M",
+          "text": "세폴리아의 글램스터담 포크 시점에 가스 한도 200M을 신호하기로 했다. 단계적 인상 없이 포크 직후부터 1/1024 투표 방식으로 한도가 올라가기 시작한다는 뜻이다.",
+          "original": "200M gas limit signaled at Glamsterdam fork for Sepolia (not phased; starts trending up via 1/1024 voting post-fork)",
+          "eips": [],
+          "status": "확정",
+          "timestamp": "00:30:08"
+        },
+        {
+          "label": "CL 보관 기간",
+          "text": "합의 계층(CL) 블록 보관 기간 축소는 하드포크 변경이 아니며 Gloas를 막지 않고 비동기로 정하기로 했다. 콜 밖 디스코드 논의로 결론을 낸다는 뜻이다.",
+          "original": "CL block retention window reduction is not a hard fork change and not blocking Gloas; to be resolved async",
+          "eips": [],
+          "status": "확정",
+          "timestamp": "00:46:53"
+        },
+        {
+          "label": "EIP-8304 제외",
+          "text": "EIP-8304(트러스트리스 로그 인덱스)를 헤고타에서 제외했다. 이번 포크 후보에서 최종적으로 빠졌다는 뜻이다.",
+          "original": "DFI for Hegota: EIP-8304 (Trustless Log Index)",
+          "eips": [
+            8304
+          ],
+          "status": "DFI",
+          "fork": "Hegota",
+          "timestamp": "00:49:54"
+        },
+        {
+          "label": "EIP-7979 옵코드",
+          "text": "EIP-7979(EVM 콜과 리턴 옵코드)를 헤고타 포함 검토로 올렸다. 클라이언트들이 구현을 전제로 검토한다는 뜻이다.",
+          "original": "CFI for Hegota: EIP-7979 (Call and Return Opcodes for EVM)",
+          "eips": [
+            7979
+          ],
+          "status": "CFI",
+          "fork": "Hegota",
+          "timestamp": "01:02:43"
+        },
+        {
+          "label": "EIP-8163 예약",
+          "text": "EIP-8163(EXTENSION 0xae 옵코드 예약)을 헤고타 포함 검토로 올렸다. L1에서는 아무 일도 안 하는 옵코드 하나를 다른 용도로 쓰지 않겠다고 보장하는 것이다.",
+          "original": "CFI for Hegota: EIP-8163 (Reserve EXTENSION 0xae opcode)",
+          "eips": [
+            8163
+          ],
+          "status": "CFI",
+          "fork": "Hegota",
+          "timestamp": "01:05:57"
+        },
+        {
+          "label": "가스 재조정 PFI",
+          "text": "EIP-8368과 EIP-8372는 메인넷 글램스터담 데이터가 포크 후 30일 이상 쌓일 때까지 PFI로 남긴다. 실측 데이터 없이는 결정하지 않겠다는 뜻이다.",
+          "original": "EIP-8368 and EIP-8372 remain PFI pending mainnet Glamsterdam data (≥30 days post-fork)",
+          "eips": [
+            8368,
+            8372
+          ],
+          "status": "PFI",
+          "timestamp": "01:16:57"
+        },
+        {
+          "label": "7건 일괄 CFI",
+          "text": "EIP-7906, EIP-8250, EIP-8272, EIP-7668, EIP-8253, EIP-3298, EIP-8131과 BAL 바이트 플로어 EIP(EIP-8131과 묶음)를 헤고타 포함 검토로 올렸다. 평가가 가장 높던 후보들이 한꺼번에 다음 단계로 넘어갔다는 뜻이다.",
+          "original": "CFI for Hegota: EIP-7906, EIP-8250, EIP-8272, EIP-7668, EIP-8253, EIP-3298, EIP-8131, and BAL byte floor EIP (bundled with EIP-8131)",
+          "eips": [
+            7906,
+            8250,
+            8272,
+            7668,
+            8253,
+            3298,
+            8131,
+            8279
+          ],
+          "status": "CFI",
+          "fork": "Hegota",
+          "timestamp": "01:18:04"
+        },
+        {
+          "label": "TCREATE 보류",
+          "text": "EIP-8360(TCREATE 옵코드) 결정을 미뤘다. 글램스터담이 일회용 컨트랙트의 가스 환급을 없애면서 생긴 문제라, 셀프디스트럭트(self-destruct) 폐기 논의와 함께 정하기로 했다는 뜻이다.",
+          "original": "EIP-8360 (TCREATE opcode): deferred — Glamsterdam removes gas refunds for ephemeral contracts; decision linked to self-destruct deprecation discussion",
+          "eips": [
+            8360
+          ],
+          "status": "보류",
+          "timestamp": "01:09:43"
+        }
+      ],
+      "targets": [
+        {
+          "key": "sepolia-fork",
+          "text": "2026년 10월 6일 세폴리아 글램스터담 포크. 확정",
+          "timestamp": "00:13:04"
+        },
+        {
+          "key": "sepolia-releases",
+          "text": "2026년 9월 29일 세폴리아 포크용 클라이언트 릴리스 마감. 확정, 블로그 공지에 맞춰 28일 월요일 선호",
+          "timestamp": "00:13:25"
+        }
+      ],
+      "actions": [
+        {
+          "owner": "Kevaundray, Jihoon 또는 Toni",
+          "text": "CL 블록 보관 기간 축소와 BAL 기간 정렬을 논의할 ETH R&D 디스코드 스레드 개설. Gloas를 막는 사안은 아님",
+          "timestamp": "00:45:30"
+        },
+        {
+          "owner": "Milos와 전체 EL 클라이언트 팀",
+          "text": "EIP-8360 챔피언(champion, 제안을 책임지고 밀어붙이는 담당자) Milos가 클라이언트들과 협의하고, 클라이언트는 다음 콜 전까지 검토해 셀프디스트럭트 폐기와 함께 결정",
+          "timestamp": "01:10:44"
+        },
+        {
+          "owner": "nixo",
+          "text": "남은 헤고타 EIP 약 10건(EIP-8298 포함) 목록을 다음 콜 전에 ExecutionDev와 EthRD 채널에 게시",
+          "timestamp": "01:36:38"
+        }
+      ],
+      "agenda": [
+        {
+          "timestamp": "00:11:23",
+          "heading": "글램스터담 데브넷 현황"
+        },
+        {
+          "timestamp": "00:13:02",
+          "heading": "세폴리아 포크 클라이언트 릴리스"
+        },
+        {
+          "timestamp": "00:14:17",
+          "heading": "글램스터담 가스 한도, 포크 시점 200M",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "00:31:01",
+          "heading": "CL 블록과 BAL 보관 기간",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "00:48:03",
+          "heading": "EIP-8304 트러스트리스 로그 인덱스, DFI",
+          "decision": true
+        },
+        {
+          "timestamp": "00:50:13",
+          "heading": "EIP-7979 콜과 리턴 옵코드, CFI",
+          "decision": true
+        },
+        {
+          "timestamp": "01:03:02",
+          "heading": "EIP-8163 EXTENSION 옵코드 예약, CFI",
+          "decision": true
+        },
+        {
+          "timestamp": "01:06:22",
+          "heading": "EIP-8360 TCREATE 옵코드, 보류",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "01:16:05",
+          "heading": "EIP-8368과 EIP-8372 가스 재조정, PFI 유지",
+          "decision": true
+        },
+        {
+          "timestamp": "01:17:37",
+          "heading": "최고 평가 헤고타 EIP 일괄 CFI",
+          "decision": true
+        },
+        {
+          "timestamp": "01:25:47",
+          "heading": "SETCODEFROM(EIP-8298), 다음 콜로 연기",
+          "discussion": true
+        }
+      ],
+      "topics": [
+        {
+          "title": "가스 한도 200M과 점프데스트 공격",
+          "intro": "세폴리아 설정에서 가스 한도 일정이 빠진 것이 발견돼 포크 시점에 200M을 신호할지 정해야 했는데, 마침 데브넷 8에서 점프데스트(JUMPDEST) 분석 공격으로 실행에 8초 넘게 걸리는 유효 블록이 나오면서 안전성 논쟁이 붙었다.",
+          "decision": "200M 확정 00:30:08",
+          "positions": [
+            {
+              "speaker": "potuz",
+              "text": "데브넷 8에서 유효 블록이 8초 넘게, 일부 클라이언트는 13에서 14초 걸려 실행됐다며 6초를 넘는 페이로드는 Gloas에 위험하다고 경고했다. 이후 공격이 매우 비싸고 지속될 수 없으며 다음 제안자를 리오그하는 정도의 제한된 위험이라고 톤을 낮췄다.",
+              "timestamp": "00:15:43",
+              "original": "Is Paweł here? He can probably describe his attack, but, apparently he's triggered blocks that take over 8 seconds, and there are some clients reporting 13 to 14 seconds to To validate some blocks. And we just can't handle that. That's, that's… yeah, that's… that blocks us. Any payload that takes over 6 seconds is dangerous for Gloas. Valid one, Toni. Valid ones. And the problem is, Maria is saying about the benchmarks, but it seems that there's a disconnect between what's… what's being benchmarked on isolation and what's actually happening on the devnet. No, this is the JUMPDEST attack. I mean, there's a particular contract that Paweł deployed on the devnet, and you just hit that contract with a lot of gas. And then it produces a lot of valid blocks that take a long time to execute. And the problem is that if we… and this is even… It's even the lower bound. So, on the devnet, the builders are releasing the payload immediately. So these payloads are being seen at 2 seconds into the slot, 3 seconds into the slot, and still, they take until the next slot to execute. And on an actual mainnet, or an actual testnet, if we are attacked, these payloads are going to be released at 6 seconds into the slot, and they're definitely going to be executed into the next slot. We cannot handle that situation. Firstly, the test changed. And I don't think this has anything to do with network, because the devnet already is giving us a bound. These payloads are being seen very, very early. So,…",
+              "translation": "Paweł가 여기 있나요? 아마 자신의 공격을 설명할 수 있을 텐데, 그가 8초가 넘게 걸리는 블록들을 유발한 것으로 보입니다. 그리고 일부 클라이언트들은 어떤 블록을 검증하는 데 13초에서 14초가 걸린다고 보고하고 있습니다. 그리고 우리는 그것을 감당할 수 없습니다. 그건, 그건... 네, 그게... 그게 우리를 막고 있습니다. 6초가 넘게 걸리는 어떤 페이로드(payload)든 Gloas에 위험합니다. 유효한 것들이요, Toni. 유효한 것들입니다. 그리고 문제는, Maria가 벤치마크에 대해 말하고 있지만, 격리 환경(isolation)에서 벤치마크되고 있는 것과 실제로 데브넷(devnet)에서 일어나고 있는 것 사이에 괴리가 있는 것으로 보입니다. 아니요, 이건 JUMPDEST 공격입니다. 제 말은, Paweł가 데브넷에 배포한 특정 컨트랙트가 있고, 거기에 많은 가스를 투입해 타격을 가하는 것입니다. 그러면 그것이 실행하는 데 오랜 시간이 걸리는 유효한 블록을 대량으로 만들어냅니다. 그리고 문제는, 만약 우리가... 그리고 이건 심지어... 이건 하한값에 불과합니다. 그러니까, 데브넷에서는 빌더들이 페이로드를 즉시 공개하고 있습니다. 그래서 이 페이로드들은 슬롯 진입 2초 시점, 3초 시점에 보이는데도, 여전히 실행하는 데 다음 슬롯까지 걸립니다. 그리고 실제 메인넷(mainnet)이나 실제 테스트넷(testnet)에서 우리가 공격을 받는다면, 이 페이로드들은 슬롯 진입 6초 시점에 공개될 것이고, 그러면 확실히 다음 슬롯으로 넘어가서 실행될 것입니다. 우리는 그런 상황을 감당할 수 없습니다. 첫째로, 테스트가 바뀌었습니다. 그리고 이게 네트워크와는 무관하다고 생각하는데, 데브넷이 이미 우리에게 하한값을 보여주고 있기 때문입니다. 이 페이로드들은 아주, 아주 일찍 보이고 있습니다. 그래서..."
+            },
+            {
+              "speaker": "Ben Adams",
+              "text": "메인넷에서 할 계획이라면 세폴리아에서 먼저 테스트해야 하는 것 아니냐며 200M 신호를 지지했다.",
+              "timestamp": "00:15:15",
+              "original": "I mean, isn't the plan to do it on… Main app, so shouldn't we be testing it on Sepolia?",
+              "translation": "제 말은, 이걸 메인에서 하는 게 계획 아닌가요? 그러면 Sepolia에서 테스트해야 하는 것 아닌가요?"
+            },
+            {
+              "speaker": "Maria Silva",
+              "text": "EIP-8037의 상태 생성 비용 인상 때문에 한도가 150M 아래면 위험하고 90M 가스가 필요한 트랜잭션도 있다며, 포크 시점에 바로 설정해야 기저 수수료 변동을 줄인다고 주장했다.",
+              "timestamp": "00:20:48",
+              "original": "Yeah, so I guess the reason for increasing it is because of the cost per state byte, so 8037. If we take longer, so… Pam Eliason, what we are doing now is that the cost per state byte doesn't change with the gas limit, right? So this was a simplification. We decided on 8037, and this means that from the fork. Once the fork kicks in, that is the gas costs per byte for all. state creation. And if… what happens is that if we take too long for the… the gas limit to reach, I would say, at least 150, then, essentially. the CAC limit is too small for some transactions, and we could see, like, higher volatility on base fees. So I think it would be better to decide on the gas limit, and then set it right at the fork, and then it will take 4 hours for the… if we do the 200 million, it will take around 4 hours for the gas limit to slowly go up. And still we do see some… Or we expect some volatility in those 4 hours, but if we let it take more than that, then the more time that volatility will be there. I think I shared an analysis, in the past on Discord, but I can, I can, link it here again. One second. So, I think I agree. This is two different discussions. So, first is the discussion of, is 200 million safe? And the second discussion is, like, once we set the limit, how should it look like? And I feel strongly that it should look like you set it at the fork. instead of a phased increase. Regarding on what is safe, I think that, I guess, we need to look more into this attack and…",
+              "translation": "네, 그래서 제 생각에는 그것을 늘리는 이유가 상태 바이트당 비용(cost per state byte), 즉 8037 때문인 것 같습니다. 만약 시간이 더 걸리면... Pam Eliason, 우리가 지금 하고 있는 것은 상태 바이트당 비용이 가스 한도(gas limit)와 함께 변하지 않는다는 것이죠? 이건 단순화였습니다. 우리는 8037로 결정했고, 이는 포크가 시작되면, 그러니까 포크가 발동하면 그게 모든 상태 생성에 대한 바이트당 가스 비용이 된다는 의미입니다. 그리고 만약... 일어나는 일은, 가스 한도가 도달하는 데 시간이 너무 오래 걸리면, 적어도 150 정도는 되어야 한다고 봅니다만, 그러면 사실상 일부 트랜잭션에는 가스 한도가 너무 작아서, 기본 수수료(base fee)에서 더 높은 변동성을 볼 수 있습니다. 그래서 가스 한도를 정하고 나서 포크 시점에 바로 설정하는 게 더 나을 것 같습니다. 그러면 2억으로 하면 가스 한도가 서서히 올라가는 데 약 4시간이 걸릴 것입니다. 그리고 그 4시간 동안에도 어느 정도의 변동성을 보게 되거나 예상하게 되지만, 만약 그보다 더 오래 걸리게 두면, 그 변동성이 지속되는 시간이 더 길어질 것입니다. 예전에 Discord에 분석 자료를 공유했던 것 같은데, 여기에 다시 링크를 걸 수 있습니다. 잠시만요. 그래서, 저는 동의합니다. 이건 서로 다른 두 가지 논의입니다. 첫째는 2억이 안전한가에 대한 논의이고, 둘째는 일단 한도를 정하고 나면 그것이 어떤 모습이어야 하는가에 대한 논의입니다. 그리고 저는 포크 시점에 바로 설정하는 방식이어야 한다고 강하게 느낍니다. 단계적 증가 방식이 아니라요. 무엇이 안전한가에 대해서는, 이 공격에 대해 좀 더 살펴봐야 할 것 같고..."
+            },
+            {
+              "speaker": "Csaba",
+              "text": "포크와 동시에 올리면 여러 신호가 섞인다며 일주일쯤 뒤로 분리하자고 반대했으나, 논의 끝에 Maria의 논거를 받아들여 진행에 동의했다.",
+              "timestamp": "00:25:11",
+              "original": "Yeah, I just think it's not a good idea to do it at the fault, because we are mixing signals from a bunch of directions. and The… the bump will… will bring in. Networking effects and all kind of… effects because of the rock size and so on and so forth. So I would just bump it with the amount that we kind of really placing Gives us, in some sense, or what the pricing needs, and then change it. A week after or something, enough time that things are settling, and then we are changing it. And Maria, you're… Why is it lazy? Are you guys having slides? So you are assuming stability, and then it's longer. My problem is that we are… Potentially shooting ourselves in the foot by, by… Trying to do it all together, when we can just spread it out. And, yeah, but I think we should increase by the amounts required by the, by the replacing. I have no idea how much is that. But that… the. I'm surprised to hear that, but I don't know on that, yeah. I think… We don't have an equivalent network on which we tested. We tested many, many things in isolation, and that's really good. It's just… it's different from testing everything together, and… And if we don't want to do it like this on mainnet, then we don't have to do it like this on Sepolia. One thing is the transition, one thing is the… is… is. Yeah, I'm not saying it will fail, I'm not saying we have… I have evidence it will fail, I'm just saying we have no reason to do it like this. I see the Renaissance also in that point, so. We can go…",
+              "translation": "네, 저는 그냥 그걸 포크 시점에 하는 게 좋은 생각이 아니라고 생각합니다. 왜냐하면 우리가 여러 방향에서 오는 신호들을 섞고 있기 때문입니다. 그리고... 그 인상 폭은 블록 크기 등등 때문에 네트워킹 효과와 온갖 종류의 효과를 가져올 것입니다. 그래서 저는 우리가 정말로 필요로 하는, 혹은 가격 책정에 필요한 만큼의 양으로 인상한 다음, 그 후에 바꾸는 게 좋을 것 같습니다. 일주일 후든 뭐든, 상황이 안정될 만한 충분한 시간을 두고, 그다음에 바꾸는 것입니다. 그리고 Maria, 당신은... 왜 그게 느긋한가요? 슬라이드가 있나요? 그러니까 안정성을 가정하고, 그러면 더 길어지는 거죠. 제 문제는, 우리가 모든 것을 한꺼번에 하려고 하다가 잠재적으로 자충수를 두고 있을 수 있다는 것입니다. 그냥 나눠서 할 수 있는데도 말이죠. 그리고, 네, 하지만 저는 대체가 필요로 하는 만큼만 늘려야 한다고 생각합니다. 그게 얼마나 되는지는 전혀 모르겠지만요. 그건... 그거 듣고 놀랐는데, 그 부분은 잘 모르겠네요, 네. 제 생각에는... 우리가 테스트한 동등한 네트워크가 없습니다. 우리는 격리된 상태에서 아주 많은 것들을 테스트했고, 그건 정말 좋은 일입니다. 다만... 모든 것을 함께 테스트하는 것과는 다릅니다. 그리고... 그리고 만약 메인넷에서 이런 식으로 하고 싶지 않다면, Sepolia에서도 이런 식으로 할 필요는 없습니다. 하나는 전환이고, 다른 하나는... 그건... 네, 저는 실패할 거라고 말하는 게 아니고, 실패할 거라는 증거가 있다고 말하는 것도 아니고, 그냥 우리가 이런 식으로 해야 할 이유가 없다고 말하는 것입니다. 그 점에서 Renaissance도 보이네요, 그래서. 우리는 갈 수 있습니다..."
+            },
+            {
+              "speaker": "Ansgar Dietrichs",
+              "text": "테스트넷은 공격적인 스트레스 테스트에 써야 하며 테스트넷에서 부드럽게 가면 메인넷에서 심각한 문제를 자초한다고 Maria 쪽에 힘을 실었다.",
+              "timestamp": "00:28:49",
+              "original": "Yeah, I mean, I just would say… I think, from my point of view. if this is actually as serious as it sounds, then I think the implications are actually relatively serious, just also because to me, Glamsterdam is basically all about scaling, so if it turns out we would end up having overlooked something, and that one thing, basically, is it, I don't know, 5x worse bottleneck than everything else in the fork, then? I personally think… at least I think it's very plausible that we decide that we couldn't roll out Glamsterdam like that, and we might… I mean, it's obviously very possible we might be able to do client optimizations, but if that was not possible, we might, I think, have to make adjustments to Glamsterdam. Given that, I feel like we should double down on using test nets for actual stress testing, and not I feel like if we are now trying to basically, like, be more gentle in our testnet behavior, then I think we're setting ourselves up for potential serious issue on mainnet. So I would bias both in terms of, like, the transition at the fork boundary, but then also the gas limit we target for on the testnet. I would always aim towards Like, more… Challenging conditions because I mean otherwise we're just risking mainnet.",
+              "translation": "네, 제 말은, 저는 그냥... 제 생각에는, 제 관점에서, 만약 이게 실제로 들리는 만큼 심각하다면, 그 함의는 실제로 상당히 심각하다고 봅니다. 왜냐하면 저에게 Glamsterdam은 기본적으로 전부 확장성(scaling)에 관한 것인데, 만약 우리가 뭔가를 간과한 것으로 드러나고, 그 한 가지가, 그러니까, 이 포크의 다른 모든 것보다 5배 더 나쁜 병목이라면 어떻게 될까요? 저 개인적으로는... 적어도 우리가 Glamsterdam을 그런 상태로 출시할 수 없다고 결정하는 것이 상당히 그럴듯하다고 생각합니다. 그리고 물론 클라이언트 최적화로 해결할 수 있을 가능성도 충분히 있지만, 만약 그게 불가능하다면, Glamsterdam에 조정을 가해야 할 수도 있다고 생각합니다. 그런 점을 감안하면, 저는 우리가 실제 스트레스 테스트를 위해 테스트넷 활용을 두 배로 강화해야 한다고 느낍니다. 그리고 만약 지금 우리가 테스트넷에서의 행동을 기본적으로 더 온건하게 하려고 한다면, 저는 우리가 메인넷에서 잠재적으로 심각한 문제를 자초하고 있다고 생각합니다. 그래서 저는 포크 경계에서의 전환뿐 아니라, 테스트넷에서 목표로 하는 가스 한도에 대해서도 편향을 두고 싶습니다. 저는 항상, 더 도전적인 조건을 지향하고 싶습니다. 왜냐하면 그렇지 않으면 우리는 그저 메인넷을 위험에 빠뜨리는 것이기 때문입니다."
+            },
+            {
+              "speaker": "Nico Flaig",
+              "text": "데브넷 8에서 사전 리오그가 관측되는데 200M이 어떻게 안전하냐고 물었고, 자신의 서버에서도 Geth가 블록 하나에 9초 걸렸다고 보고했다.",
+              "timestamp": "00:16:07",
+              "viaChat": true
+            }
+          ],
+          "quote": {
+            "text": "지금 테스트넷에서 더 부드럽게 가려고 한다면, 메인넷에서 심각한 문제가 생기도록 스스로를 몰아넣는 것이라고 생각한다.",
+            "original": "If we are now trying to be more gentle in our testnet behavior, then I think we're setting ourselves up for potential serious issue on mainnet.",
+            "speaker": "Ansgar Dietrichs",
+            "timestamp": "00:28:49"
+          }
+        },
+        {
+          "title": "CL 블록과 BAL 보관 기간",
+          "intro": "EIP-8061이 약한 주관성 기간 계산을 바꿨는데 CL 블록 보관 기간이 그대로 남아 있어, 이를 줄일지와 블록 접근 목록(BAL, Block Access List) 보관 기간을 여기에 맞출지가 논의됐다.",
+          "decision": "비동기 이관 00:46:53",
+          "positions": [
+            {
+              "speaker": "Jihoon",
+              "text": "CL 블록 보관 기간 축소, EL 히스토리 보관 기간 정렬, BAL 보관 기간 인상이라는 세 가지 질문을 정리해 제기했고, 줄인다면 Gloas와 헤고타 중 언제 줄일지도 물었다.",
+              "timestamp": "00:33:08",
+              "original": "Yeah, I think there are. Multiple questions here. A sense that one is. Reducing CL's block retention period. According to WIC subjectivity period change in GLOAS. And if you were to reduce it, the next question would be whether changing EL's history retention period. To match CL's reduced retention period. And besides that, The other question… is… Nico's PR, Increasing BAL's retention period to match history retention period, which is 33,024 epochs. And… From my understanding, today's discussion… Work to be focused on. Both and history retention period, if I'm not wrong. Yeah. And in the chat, Kev listed some questions, so… We can also refer to that.",
+              "translation": "네, 여러 질문이 있다고 생각합니다. 하나는 CL의 블록 보존 기간(block retention period)을 줄이는 것으로, GLOAS에서의 약한 주관성 기간(weak subjectivity period) 변경에 따른 것입니다. 그리고 만약 그것을 줄인다면, 다음 질문은 EL의 히스토리 보존 기간(history retention period)을 CL의 줄어든 보존 기간에 맞추도록 바꿀 것인가입니다. 그리고 그 외에, 다른 질문은 Nico의 PR인데, BAL의 보존 기간을 히스토리 보존 기간, 즉 33,024 에폭(epoch)에 맞추도록 늘리는 것입니다. 그리고 제가 이해하기로는, 오늘 논의는 둘 다에 초점을 맞추는 작업이 될 것입니다, 히스토리 보존 기간도 포함해서요, 제가 틀리지 않았다면요. 네. 그리고 채팅에서 Kev가 몇 가지 질문을 올렸으니, 그것도 참고할 수 있습니다."
+            },
+            {
+              "speaker": "Łukasz Rozmej",
+              "text": "BAL은 네트워크 동작에 필수가 아닌 보조 구조라 2주에서 4주면 충분하고 몇 달치는 과하다고 했으며, 네트워크 보관 기간을 한 달 수준으로 줄이려면 현재 수동인 ERA 파일 호스팅을 완전 자동화해야 한다고 경고했다.",
+              "timestamp": "00:36:02",
+              "original": "So the balls are like a helper structure, right? So they are not really required by the network to function in any way, or it might make… Catching up a bit harder for the nodes that are really, really behind, but they are not really, crucial, so I wouldn't like to have too many of them, like, 2 weeks, 4 weeks, whatever is fine. But, having, like, multiple months of them is probably an overkill. that I wouldn't like to mandate. So that's why the the time for ball retention was chose quite small. And, okay, if I can add one more thing, and about the… about the… reducing the retention window and aligning ELs with that. I would say it depends on the RAE files hosting strategies. So I know that few organizations are hosting those files. Nevermind is one of them. And I asked our colleagues, do we have an automated way of updating them? And we currently don't. We will work on it. But if we, like, reduce the retention window in the network to, like. a month or something, I think that's more or less what's proposed, yeah, without… Without automating that on all the hosting… providers. That's a big… and having some kind of, also, you know, alerting around that, etc, it's then actually quite… quite important, because if we have, like, 6-month retention window, every few months we can do it manually, but if we have, like, a month retention window, we probably have to completely automate it and have it very reliable on all the operators. So, those are my… Comments here.",
+              "translation": "그러니까 BAL은 일종의 보조 구조체(helper structure) 같은 것이죠? 그래서 네트워크가 기능하는 데 실제로 필요한 것은 아니고, 다만 아주 많이 뒤처진 노드들이 따라잡는 것을 좀 더 어렵게 만들 수는 있지만, 정말로 중요한 건 아닙니다. 그래서 저는 그게 너무 많이, 예를 들어 2주, 4주, 뭐든 상관없지만 너무 많이 있는 것은 원치 않습니다. 하지만 몇 달씩 갖고 있는 건 아마 과한 것 같고, 그걸 의무화하고 싶지는 않습니다. 그래서 BAL 보존 기간이 꽤 짧게 선택된 것입니다. 그리고, 좋습니다, 한 가지 더 덧붙이자면, 보존 기간을 줄이고 EL을 그것에 맞추는 것에 관해서는, 그건 RAE 파일 호스팅 전략에 달려 있다고 말씀드리고 싶습니다. 저는 몇몇 조직이 그 파일들을 호스팅하고 있다는 걸 알고 있습니다. Nethermind가 그중 하나입니다. 그리고 저는 동료들에게 그것들을 업데이트하는 자동화된 방법이 있는지 물었는데, 현재는 없습니다. 저희가 작업할 예정입니다. 하지만 만약 우리가 네트워크의 보존 기간을 한 달 정도로 줄인다면, 그게 제안된 것과 대략 비슷할 텐데, 네, 그것을 모든 호스팅 제공자에게 자동화하지 않은 채로는 그건 큰 문제이고, 그것에 관한 일종의 경보 체계 같은 것도 필요한데, 그러면 그게 사실 꽤 중요해집니다. 왜냐하면 만약 우리가 6개월짜리 보존 기간을 가지고 있다면 몇 달에 한 번씩 수동으로 할 수 있지만, 한 달짜리 보존 기간을 가지고 있다면 아마 완전히 자동화해서 모든 운영자에게 매우 신뢰성 있게 적용해야 할 것입니다. 그래서, 그게 제 의견입니다."
+            },
+            {
+              "speaker": "Marius Van Der Wijden (M)",
+              "text": "며칠 꺼둔 노드가 따라잡으려면 BAL로 병렬 실행이 가능해야 하며, BAL이 없으면 블록당 9에서 10초짜리 순차 실행만 남아 높은 가스 한도에서는 풀 싱크가 불가능해진다며 Łukasz와 반대로 최대한 긴 보관 기간을 요구했다.",
+              "timestamp": "00:38:32",
+              "original": "Yeah, sorry. Mmm. So I… I… we recently come across this bug on Definite H. And guess where Geth would, Basically, if you shut down the node for 2 weeks. We would, and start it up again, we would start catching the bells. And we would, prioritize bells at the head. Because they were pretty fresh, and they were available. But what that would mean is that. we didn't have any bouts at the point where we are actually sinking. So we have, like, the bouts from the last 3 days, but we don't have the bouts from the point where we're actually sinking from, so 2 weeks ago. And what happens then is. Is, the only way we can catch up is if we go into full sync. The problem with. Full sync… oh, like, we're full syncing, the… the only way we can catch up is to, Linear execution. The problem with linear execution is that it's, like, an order of 3x slower than parallel execution. And so what we ended up with is blocks that take like, 9 to 10 seconds to execute, because we don't have the power. So if we… Keep this, bowel retention period as too short. Then, it is virtually impossible For someone to full sync. Because, the more we increase the parallelism. The slower a single block will be. So, right now, if the slot is 12 seconds, and our block is, on average, 10 seconds in sequential execution, then. It is still possible to catch up to that in, like, 10-12th of the time. But, if it's, like, if the linear execution is 13 seconds, while the, while the block time is 12, then you will never,…",
+              "translation": "네, 죄송합니다. 음. 그러니까 저희는 최근에 Definite H에서 이 버그를 마주쳤습니다. 그리고 짐작하시겠지만 Geth는 기본적으로, 만약 노드를 2주 동안 꺼두었다가 다시 켠다면 벨(bells)을 따라잡기 시작할 것입니다. 그리고 저희는 헤드(head)에 있는 벨들을 우선시할 것입니다. 그것들이 꽤 최신이고 이용 가능했기 때문입니다. 하지만 그게 의미하는 바는, 우리가 실제로 싱크하고 있는 지점에는 벨이 전혀 없었다는 것입니다. 그래서 우리는 지난 3일간의 벨은 가지고 있지만, 실제로 싱크를 시작한 지점, 그러니까 2주 전의 벨은 가지고 있지 않습니다. 그러면 그때 일어나는 일은, 따라잡을 수 있는 유일한 방법이 풀 싱크(full sync)로 들어가는 것뿐이라는 것입니다. 문제는, 아, 그러니까, 풀 싱크를 할 때, 따라잡을 수 있는 유일한 방법은 선형 실행(linear execution)입니다. 선형 실행의 문제는 병렬 실행(parallel execution)보다 대략 3배 느리다는 것입니다. 그래서 결국 우리는 실행하는 데 9초에서 10초가 걸리는 블록들을 갖게 되었는데, 그럴 처리 능력이 없기 때문입니다. 그래서 만약 우리가 이 BAL 보존 기간을 너무 짧게 유지한다면, 누군가가 풀 싱크를 하는 것은 사실상 불가능해집니다. 왜냐하면 병렬성을 더 높일수록, 단일 블록은 더 느려지기 때문입니다. 그래서 지금, 만약 슬롯이 12초이고 우리 블록이 순차 실행(sequential execution)으로 평균 10초라면, 그 시간의 10분의 12 정도 만에 따라잡는 게 여전히 가능합니다. 하지만 만약 선형 실행이 13초인데 블록 시간이 12초라면, 절대로..."
+            },
+            {
+              "speaker": "potuz",
+              "text": "스펙상 CL은 BAL을 포함한 완전한 블록을 제공해야 하므로 EL이 안 들고 있으면 CL이 중복 보관해야 한다며, 최소한 CL이 요구하는 만큼은 EL이 보관해야 한다고 했다.",
+              "timestamp": "00:41:33",
+              "original": "Well, I mean, you guys are discussing how you guys think, but the point is that we need to serve those blocks. We need to serve them complete because otherwise we're serving invalid data. So, someone needs to keep them. It's not… I mean, the spec requires us to keep them. So, if you guys are not going to keep them, then we are going to keep them, and then we're going to have them doubled. And that's going to be a deep change for us, because at least two clients already just drop everything that is EL-related, and we only keep the CL-related data on our database. We're gonna have to change this if the EL is not keeping them. Yeah, so the only ask from the CL, the only ask is that at least what the CL needs to keep should be kept on the EL. And then you guys can discuss whether or not you want to keep more.",
+              "translation": "음, 그러니까, 여러분이 어떻게 생각하는지 논의하고 계신데, 요점은 우리가 그 블록들을 서빙(serve)해야 한다는 것입니다. 우리는 그것들을 완전하게 서빙해야 합니다. 그렇지 않으면 유효하지 않은 데이터를 서빙하는 것이기 때문입니다. 그러니 누군가는 그것들을 보관해야 합니다. 그건, 제 말은, 스펙(spec)이 우리에게 그것들을 보관하도록 요구합니다. 그래서 만약 여러분이 그것들을 보관하지 않을 거라면, 우리가 보관할 것이고, 그러면 두 배로 갖게 되는 것입니다. 그리고 그건 우리에게 상당히 큰 변경이 될 텐데, 왜냐하면 적어도 두 개의 클라이언트는 이미 EL 관련된 모든 것을 그냥 버리고, CL 관련 데이터만 데이터베이스에 보관하고 있기 때문입니다. EL이 그것들을 보관하지 않는다면 이걸 바꿔야 할 것입니다. 네, 그래서 CL 측의 유일한 요청은, 적어도 CL이 필요로 하는 것은 EL에도 보관되어야 한다는 것입니다. 그러고 나서 여러분은 더 보관하고 싶은지 아닌지를 논의하면 됩니다."
+            },
+            {
+              "speaker": "Kevaundray Wedderburn",
+              "text": "BAL 기간을 CL 블록 보관 기간과 같게 할지부터 정하자고 논점을 정리했고, 현재 약 5개월인 CL 기간이 8061을 따르면 약 2개월로 준다고 설명했다. 첫 질문에는 반대가 없었다.",
+              "timestamp": "00:42:46",
+              "original": "Yeah, so just to be a bit more explicit, to ask the question again, should the BAL window equal the CL window? Just to say POTUS's question a bit more explicit. Which would currently be… I believe it's, like, 5 months, unless we decide to reduce the CL window according to 8061. Which would then bring it to about 2 months. So yeah, I guess the first question, it seems folks are fine with, like, the BAL window equal in the CL window. Yes, to Toni's question, it would be… 33,000 epochs, unless we decide to reduce it, which was the next question. Yeah, it was, like, roughly half, if I remember correctly.",
+              "translation": "네, 그러니까 좀 더 명확하게 하기 위해, 질문을 다시 하자면, BAL 윈도우가 CL 윈도우와 같아야 하는가입니다. POTUS의 질문을 좀 더 명확하게 말씀드리자면요. 지금 현재로서는, 약 5개월인 것으로 알고 있는데, 8061에 따라 CL 윈도우를 줄이기로 결정하지 않는 한 그렇습니다. 그렇게 되면 약 2개월이 됩니다. 그래서, 첫 번째 질문에 대해서는 사람들이 BAL 윈도우가 CL 윈도우와 같은 것에 대해 괜찮다고 생각하는 것 같습니다. 네, Toni의 질문에 대해서는, 그건 33,000 에폭이 될 것입니다, 우리가 그것을 줄이기로 결정하지 않는 한이요, 그게 다음 질문이었죠. 네, 제가 제대로 기억한다면 대략 절반 정도였습니다."
+            }
+          ],
+          "quote": {
+            "text": "선형 실행이 13초인데 블록 타임이 12초라면, 전속력으로도 영원히 따라잡을 수 없다.",
+            "original": "If the linear execution is 13 seconds, while the block time is 12, then you will never, ever be able to catch up in full speed.",
+            "speaker": "Marius Van Der Wijden (M)",
+            "timestamp": "00:38:32"
+          }
+        },
+        {
+          "title": "TCREATE, 일회용 컨트랙트의 운명",
+          "intro": "글램스터담이 가스 환급을 없애면서 한 트랜잭션 안에서 만들고 지우는 일회용 컨트랙트 비용이 크게 올라, 이를 대체할 새 옵코드 TCREATE를 헤고타에 넣을지가 논의됐다.",
+          "decision": "보류 01:15:36",
+          "positions": [
+            {
+              "speaker": "Milos | enso.build",
+              "text": "결제, 입금 주소, 크로스체인 인텐트, 지정가 주문이 쓰는 일회용 컨트랙트가 이더리움에서 하루 1,000에서 2,000건, BNB 체인에서는 10배쯤 쓰이는데, 글램스터담의 환급 제거로 사실상 기능이 사라진다며 TCREATE나 환급 복원이 필요하다고 했다.",
+              "timestamp": "01:07:00",
+              "original": "Yeah, So, we made some updates, I will give some context. This is for TCreate, which is a new opcode for creating contracts that only exist for one single transaction. You can think about them as disposable contracts or ephemeral accounts. They gave some names. This is a use case, that has been there since a while. I think Axelar and Socket were first doing it. And nowadays, it's widely used by… for payments, deposit addresses, cross-chain, intents, limit orders, and stuff like this. It's currently possible by appending a self-destruct in the same transaction. Though the Gramsterdam update, doesn't, doesn't, give gas refills anymore for Glamsterdam. And this is… should be kind of treated as a bug, in my opinion, because we are basically paying for. State that is not, used. So, basically, the idea is, that we will have this that will cover the breaking change that was introduced with Glamsterdam. Wait, so… Yeah, I can name some teams. There is ZeroDev building on this, and so Flashnet, and some others in the past. I think we're running on, like, 1,000, 2,000 transactions per day on Ethereum. It's a kind of a use case that scales better with price, because they're disposable. So, on Binance Chain, there are, like, 10 times more, I think a couple of hundred thousand transactions per month. And in general, I think this is quite important because otherwise this basically moves this use case to either other chain or to a centralized approach. I'm championing the creator. But I…",
+              "translation": "네, 그래서 몇 가지 업데이트를 했는데, 배경을 좀 설명드리겠습니다. 이건 TCreate에 관한 것인데, 단 하나의 트랜잭션에서만 존재하는 컨트랙트를 생성하기 위한 새로운 옵코드(opcode)입니다. 이것들을 일회용 컨트랙트(disposable contracts) 또는 일시적 계정(ephemeral accounts)이라고 생각하시면 됩니다. 사람들이 여러 이름을 붙였습니다. 이건 꽤 오래전부터 있어온 사용 사례입니다. Axelar와 Socket이 처음으로 이걸 했던 것 같습니다. 그리고 요즘에는 결제, 입금 주소, 크로스체인, 인텐트(intent), 지정가 주문(limit order) 등에 널리 쓰이고 있습니다. 현재는 같은 트랜잭션 안에 self-destruct를 덧붙이는 방식으로 가능합니다. 하지만 Glamsterdam 업데이트를 거치면, Glamsterdam에서는 더 이상 가스 환급(gas refund)을 주지 않습니다. 그리고 이건, 제 생각에는 일종의 버그로 취급되어야 합니다. 왜냐하면 우리가 기본적으로 사용되지 않는 상태에 대해 비용을 지불하고 있는 것이기 때문입니다. 그래서, 기본적인 아이디어는, Glamsterdam에서 도입된 이 파괴적 변경(breaking change)을 보완하는 것입니다. 잠깐만요, 그래서, 네, 몇몇 팀을 언급할 수 있습니다. ZeroDev가 이걸로 구축하고 있고, Flashnet도 그렇고, 과거에는 다른 곳들도 있었습니다. 이더리움에서 하루에 1,000건에서 2,000건 정도의 트랜잭션이 발생하고 있는 것 같습니다. 이건 가격에 따라 더 잘 확장되는 종류의 사용 사례인데, 일회용이기 때문입니다. 그래서 Binance Chain에서는 그것보다 10배 정도 많은, 한 달에 몇십만 건 정도의 트랜잭션이 있는 것 같습니다. 그리고 전반적으로, 저는 이게 꽤 중요하다고 생각하는데, 그렇지 않으면 이 사용 사례가 결국 다른 체인이나 중앙화된 방식으로 옮겨가게 되기 때문입니다. 저는 이 제안의 챔피언을 맡고 있습니다. 하지만 저는..."
+            },
+            {
+              "speaker": "jochem-brouwer",
+              "text": "이 EIP는 의존성 없는 독립 제안이라고 정리하면서, 실제로 쓰이는 EVM 기능을 대안 없이 사실상 폐기하는 것은 안 되며 글램스터담에서 했어야 할 일을 지금 헤고타에서 해야 한다고 주장했다.",
+              "timestamp": "01:10:48",
+              "original": "Yes, so this EIP is like a standalone EIP, so no other EIPs have to be scheduled with Hakota to focus in. There seems to be some confusion because I see some chat about this toy. T loads, that's also implied, but S store and S load behaves as T store and T load in this EIP, but this is like EIP, but this is 1153, so that's already part of the chain. And maybe to add like my own opinion here, like I see a lot of clients, they are against this change. I want to say that we are, well, somewhat effectively deprecating and removing this feature of the EVM. Without giving an alternative. So we are essentially taking away an engineering opportunity from the EVM what is now more actively being used. And I personally think that we cannot do that. We should have scheduled an alternative for this in Glamsterdam. We did not do so. So that means we should do that now in ECODE.",
+              "translation": "네, 그래서 이 EIP는 독립형(standalone) EIP라서, Hegota에 초점을 맞추기 위해 다른 EIP들과 함께 스케줄될 필요는 없습니다. 이것에 대해 약간의 혼란이 있는 것 같은데, 채팅에서 이 toy에 관한 이야기가 보이기 때문입니다. T load도 암묵적으로 포함되지만, 이 EIP에서 S store와 S load는 T store와 T load처럼 동작합니다. 하지만 이건 EIP이긴 한데, 1153이라서 이미 체인의 일부입니다. 그리고 제 개인적인 의견을 덧붙이자면, 많은 클라이언트들이 이 변경에 반대하는 것을 보는데, 저는 우리가, 음, 어느 정도는 효과적으로 EVM의 이 기능을 폐지하고 제거하는 것이라고 말씀드리고 싶습니다. 대안을 제공하지 않은 채로요. 그래서 우리는 사실상 지금 더 적극적으로 사용되고 있는 EVM의 엔지니어링 기회를 앗아가고 있는 것입니다. 그리고 저는 개인적으로 우리가 그렇게 할 수 없다고 생각합니다. 우리는 Glamsterdam에서 이것에 대한 대안을 스케줄했어야 합니다. 우리는 그렇게 하지 않았습니다. 그러니 그건 우리가 지금 ECODE에서 그것을 해야 한다는 의미입니다."
+            },
+            {
+              "speaker": "Ben Adams",
+              "text": "셀프디스트럭트 용도 일부는 SETCODEFROM이 대신하지만 전부는 아니라며, TCREATE가 있으면 셀프디스트럭트를 완전히 없앨 수 있어 찬성한다고 했다. 안 넣으면 사람들이 컨트랙트를 지우지 않고 쌓아두는 쪽이 더 싸진다고도 덧붙였다.",
+              "timestamp": "01:12:10",
+              "original": "Yeah, I think… I think some of the use cases of self-destruct are… will… can be covered by SETCODEFROM, which is… can go in, but there are some extra ones. That aren't covered. And so I would be for this on the basis that it would mean we could completely get rid of self-destruct. After. It's not being removed in Gramster Dam, but the gas costs sort of get prohibitive in some corner cases. I mean, I'd say a downside of not putting it in and the change to the cost of self-destruct will mean that people won't use self-destruct and they'll just leave tons of contracts around because that will be cheaper.",
+              "translation": "네, 저는 self-destruct의 몇몇 사용 사례들이 SETCODEFROM으로 커버될 수 있다고 생각합니다. 그건 들어갈 수 있지만, 커버되지 않는 몇 가지 추가적인 것들이 있습니다. 그래서 저는 이것이 self-destruct를 완전히 제거할 수 있다는 근거로 찬성할 것 같습니다. 그 이후에요. Glamsterdam에서 제거되는 건 아니지만, 일부 코너 케이스에서는 가스 비용이 다소 지나치게 비싸집니다. 제 말은, 이걸 넣지 않는 것의 단점은, self-destruct 비용 변경이 사람들로 하여금 self-destruct를 사용하지 않게 만들고 그냥 수많은 컨트랙트를 그대로 남겨두게 만들 것이라는 점입니다. 그게 더 저렴할 것이기 때문입니다."
+            },
+            {
+              "speaker": "Dragan Rakita",
+              "text": "셀프디스트럭트 제거를 DFI했던 이유가 대안 부재였으므로 TCREATE가 그 대안이 될 수 있다며 Ben에 동의했지만, 가스와 스토리지 관련 엣지 케이스는 따져봐야 한다고 했다.",
+              "timestamp": "01:12:39",
+              "original": "Yeah, I'm thinking the same. The reason why we DFI self-destruct removal is because there was no alternative in Hegota. So, the grade can be alternative to… Basically, the current usage of self-destruct, then we should probably do it. The question is the same that was mentioned in the chat is, do you want to do it now in Hegota? Maybe there are some edge cases around it, how to do it with gas, how to do it with new account, how to do it with storage. Maybe it's too much for Hegota. I don't think so, to be honest, but it is a valid question to make.",
+              "translation": "네, 저도 같은 생각입니다. 우리가 self-destruct 제거를 DFI한 이유는 Hegota에 대안이 없었기 때문입니다. 그러니 그 등급이 대안이 될 수 있다면, 기본적으로 self-destruct의 현재 사용 방식에 대해서요, 그렇다면 아마 그렇게 해야 할 것입니다. 문제는 채팅에서 언급된 것과 같은데, 지금 Hegota에서 그걸 하고 싶은가입니다. 아마 그것을 둘러싼 몇 가지 엣지 케이스가 있을 텐데, 가스를 어떻게 처리할지, 새 계정을 어떻게 처리할지, 스토리지를 어떻게 처리할지 같은 것들입니다. 어쩌면 Hegota에게는 너무 많을 수도 있습니다. 솔직히 말하면 저는 그렇게 생각하지 않지만, 그건 물어볼 가치가 있는 타당한 질문입니다."
+            },
+            {
+              "speaker": "Maria Silva",
+              "text": "이 EIP는 셀프디스트럭트 폐기 제안과 함께 논의해야 하며 지금 성급하게 DFI해서는 안 된다고 주장했다.",
+              "timestamp": "01:15:05",
+              "original": "To be honest, I think the discussion of this EIP should be done together with the proposal of deprecating self-destruct, because I feel like the decision we take there will also inform the decision we should take here. So I feel strongly that we shouldn't DFI this right now, even if clients feel they want to DFI it, so I would… Ask for, maybe pushing it to that, the same time we have that discussion.",
+              "translation": "솔직히 말씀드리면, 이 EIP에 대한 논의는 self-destruct 폐지 제안과 함께 이루어져야 한다고 생각합니다. 왜냐하면 거기서 내리는 결정이 여기서 내려야 할 결정에도 영향을 줄 것이기 때문입니다. 그래서 저는 클라이언트들이 지금 DFI하고 싶어하더라도 우리가 지금 당장 이걸 DFI해서는 안 된다고 강하게 느낍니다. 그래서 저는 그것을, 그 논의를 하게 될 같은 시점으로 미루는 것을 요청하고 싶습니다."
+            }
+          ],
+          "quote": {
+            "text": "우리는 대안을 주지 않은 채 EVM의 이 기능을 사실상 폐기하고 제거하는 셈이다.",
+            "original": "We are somewhat effectively deprecating and removing this feature of the EVM without giving an alternative.",
+            "speaker": "jochem-brouwer",
+            "timestamp": "01:10:48"
+          }
+        },
+        {
+          "title": "SETCODEFROM과 양자 전환 시간표",
+          "intro": "EOA를 코드 계정이나 양자내성 계정으로 통째로 옮기게 해주는 SETCODEFROM(EIP-8298)을 헤고타에 넣을지가 채팅에서 불붙어 즉석 안건이 됐다.",
+          "decision": "다음 콜로 연기 01:36:11",
+          "positions": [
+            {
+              "speaker": "CPerezz",
+              "text": "SETCODEFROM은 EOA와 위임을 없애고 완전한 코드 계정이나 양자내성 계정으로 이주하게 해주며, EOA 느낌을 유지하고 싶으면 지금처럼 7702를 쓰면 된다고 설명했다.",
+              "timestamp": "01:29:16",
+              "original": "I have an entire well, it's tiny, but explain with images how all of this works. But basically, the idea is fairly simple. Here you have the lingo. You can pull SETCODEFROM, and you will go to a pure code, wallet. If you still want, for some reason, with a code wallet, the EOA feeling, you can enable it with frames, but it will not be native. If you want to have code in your EOA, you just need to use 7702. So, SETCODEFROM basically allows you to get rid of the EOA, and get rid of the delegations, and migrate to a full code slash post-quantum account, or smart account. And if you want… you don't want to go all the way, and you want to keep your EOA natively, you can just use 7702 as it is today. So, that is mostly it.",
+              "translation": "제가 전체적으로, 뭐 작긴 하지만, 이미지로 이 모든 게 어떻게 작동하는지 설명한 게 있습니다. 하지만 기본적으로 아이디어는 꽤 단순합니다. 여기 용어가 있습니다. SETCODEFROM을 당겨서 순수 코드 지갑(pure code wallet)으로 갈 수 있습니다. 만약 어떤 이유로든 코드 지갑을 가지면서도 EOA의 느낌을 원한다면, frames로 그걸 활성화할 수 있지만, 그건 네이티브하지 않을 것입니다. EOA에 코드를 갖고 싶다면, 그냥 7702를 사용하면 됩니다. 그러니 SETCODEFROM은 기본적으로 EOA를 없애고 위임(delegation)을 없애고, 완전한 코드 또는 포스트 퀀텀(post-quantum) 계정, 즉 스마트 계정(smart account)으로 마이그레이션할 수 있게 해줍니다. 그리고 만약 거기까지 가고 싶지 않고 EOA를 네이티브하게 유지하고 싶다면, 그냥 지금처럼 7702를 사용하면 됩니다. 그게 대부분입니다."
+            },
+            {
+              "speaker": "Ben Adams",
+              "text": "유니스왑 유동성 풀처럼 같은 코드를 반복 배포할 때 전체 배포 비용 대신 코드 해시 비용만 내게 되는 두 번째 이점을 강조했고, 가상의 SETCODEHASH는 노드마다 코드 DB가 달라 합의 분열 위험이 있어 SETCODEFROM이어야 한다고 했다.",
+              "timestamp": "01:30:14",
+              "original": "I'd also like to highlight the second benefit of it, which is When deploying contracts, especially since we've increased the price of it, both in call data and, state gas. If you're doing something, say. Like Uniswap V2, V3, where they they create liquidity pools which are identical code. They pay pay the full Gas for the contract, even though essentially it's just changing a… Code hash, so you… with this, you could change it to only paying for a code hash. And one of the ways Currently, RANDA is maybe you do a proxy instead. But then you're paying, you know, you're introducing a double call. And also we've… Told people not to trust proxies. So it's sort of a dual benefit.",
+              "translation": "저는 또한 두 번째 이점도 강조하고 싶습니다. 컨트랙트를 배포할 때, 특히 우리가 콜데이터(calldata)와 상태 가스 양쪽 모두에서 가격을 올렸기 때문에 그렇습니다. 만약 예를 들어 Uniswap V2, V3처럼 동일한 코드를 가진 유동성 풀(liquidity pool)을 만드는 작업을 한다면, 사실상 그냥 코드 해시(code hash)만 바뀌는 것인데도 컨트랙트에 대한 전체 가스를 지불하게 됩니다. 이것을 사용하면 코드 해시에 대해서만 비용을 지불하도록 바꿀 수 있습니다. 현재 방법 중 하나는 아마 대신 프록시(proxy)를 쓰는 것인데, 그러면 이중 호출(double call)을 도입하게 되어 비용을 지불하게 됩니다. 그리고 또한 우리는 사람들에게 프록시를 신뢰하지 말라고 말해왔습니다. 그래서 이건 일종의 이중 이점입니다."
+            },
+            {
+              "speaker": "Dragan Rakita",
+              "text": "코드 변경 관련 결정은 프레임(Frames)이 나온 뒤로 미루자는 것이 DFI 이유였다고 밝히면서도, 강한 의견은 아니고 변경이 작아 클라이언트들이 원하면 CFI해도 괜찮다고 물러섰다.",
+              "timestamp": "01:31:26",
+              "original": "The reason why is DFI for us is basically We want to delay decisions related to the Change the code. Anything related to, like, after post-quantum thing? After the frames came. Because with frames, you have new mechanisms that we need to figure out how they're going to work, how the user's going to basically use them. And the idea is let's delay SETCODEFROM or anything that's led to EIP7702 or setting code or anything like that after frames come. That was the reasoning for DFI-ing, not a strong one, but that's the thinking that we had. Just to mention, this is not a strong opinion at all. It's like if people SETCODEFROM is like even a small change to the protocol. So if people, clients want to do it, so it seems fine to CFI.",
+              "translation": "DFI한 이유는 기본적으로 코드를 바꾸는 것과 관련된 결정을, 포스트 퀀텀 관련된 그 어떤 것 이후로 미루고 싶기 때문입니다. frames가 온 이후로요. 왜냐하면 frames와 함께라면, 우리가 어떻게 작동할지, 사용자가 기본적으로 그것들을 어떻게 사용하게 될지를 파악해야 하는 새로운 메커니즘들이 생기기 때문입니다. 그래서 아이디어는 SETCODEFROM이나 EIP7702, 코드 설정 등과 관련된 어떤 것이든 frames가 온 이후로 미루자는 것입니다. 그게 DFI한 이유였는데, 강한 이유는 아니지만, 저희가 그런 생각을 했었습니다. 그냥 언급하자면, 이건 전혀 강한 의견이 아닙니다. SETCODEFROM은 프로토콜에 대한 작은 변경 정도라서요. 그래서 만약 사람들이, 클라이언트들이 그걸 하고 싶다면, CFI하는 게 괜찮아 보입니다."
+            },
+            {
+              "speaker": "Nico",
+              "text": "기다리는 것도 합리적이지만 그러면 다음 포크 ISTAR로 밀리고, 2028년 말로 보는 양자 전환 시간표와 충돌해 2028년 말이나 2029년 초 긴급 포크가 될 위험이 있다며 Dragan의 대기론에 반박했다.",
+              "timestamp": "01:32:13",
+              "original": "Yeah, I think it's a reasonable thing to do, to just wait, but unfortunately, like, the timing is going to play against us here. Because that would mean pushing these two EIPs to ISTAR. And then that clashes with, pessimistic or optimistic, depending on how you view this quantum transition timeline. So. If we take a scenario where like end of 2028 we're doing ISTAR and Then we are kind of. Plain… of… Yeah, you're kind of playing with the risk that Sometime in 2028, there is a big Progress and big headlines saying that Q-Day is near, and then… we would be in a very unfortunate situation. So, yeah, I do hear the arguments. Do you just wanna… Wait to see frames in actions before going through this, but it's, it then becomes a very risky bet, and… And this could be an emergency fork sometime end of 2028. Beginning of 2029, so yeah. That's. So yeah, basically, I think. This should go… in ISTAR. But yeah, for timing reasons. Oh, and that would be a… Also, the same for 8151.",
+              "translation": "네, 저는 그냥 기다리는 게 합리적인 일이라고 생각하지만, 불행히도 타이밍이 우리에게 불리하게 작용할 것 같습니다. 왜냐하면 그건 이 두 EIP를 ISTAR로 미룬다는 의미이기 때문입니다. 그리고 그건, 이 양자 전환(quantum transition) 타임라인을 어떻게 보느냐에 따라 비관적이든 낙관적이든, 충돌합니다. 그래서, 만약 우리가 2028년 말에 ISTAR를 한다는 시나리오를 취한다면, 그러면 우리는, 음, 네, 여러분은 일종의 위험을 감수하는 것인데, 2028년 어느 시점에 큰 진전이 있고 Q-Day가 가까워졌다는 헤드라인이 나온다면, 그러면 우리는 아주 곤란한 상황에 처하게 될 것입니다. 그래서, 네, 저는 그 논거를 이해합니다. 이걸 진행하기 전에 frames가 실제로 작동하는 걸 보고 기다리고 싶다는 것 말이죠. 하지만 그건 아주 위험한 도박이 됩니다. 그리고 이건 2028년 말이나 2029년 초쯤에 긴급 포크(emergency fork)가 될 수도 있습니다. 그래서 네. 그게, 그래서 네, 기본적으로, 저는 이게 ISTAR에 들어가야 한다고 생각합니다. 하지만 네, 타이밍상의 이유로요. 아, 그리고 그건 8151에 대해서도 마찬가지일 것입니다."
+            },
+            {
+              "speaker": "Justin Florentine",
+              "text": "Besu는 현재 C 등급이며 논거가 설득력 있다고 보지만 완전히 결정하려면 시간이 더 필요하다고 요청했고, 이에 따라 결정이 다음 콜로 넘어갔다.",
+              "timestamp": "01:35:00",
+              "original": "I think Besu might… we have this at the C tier? We are finding these arguments compelling, but maybe not super compelling, so we would be able to more fully make that decision in some time.",
+              "translation": "저는 Besu가 아마 이걸 C tier에 두고 있는 것 같습니다. 우리는 이 논거들이 설득력이 있다고 보지만, 아주 강하게 설득력이 있지는 않은 것 같아서, 시간을 좀 더 두고 그 결정을 더 완전하게 내릴 수 있을 것 같습니다."
+            }
+          ],
+          "quote": {
+            "text": "이건 2028년 말이나 2029년 초 어느 시점에 긴급 포크가 될 수도 있다.",
+            "original": "This could be an emergency fork sometime end of 2028, beginning of 2029.",
+            "speaker": "Nico",
+            "timestamp": "01:32:13"
+          }
+        }
+      ],
+      "speakers": [
+        {
+          "label": "nixo",
+          "name": "Nixo",
+          "org": "EF Protocol Support",
+          "role": "ACDE 진행",
+          "handle": "nixorokish",
+          "avatar": "https://pbs.twimg.com/profile_images/2086847437277478912/F-w_Sq0y_400x400.jpg",
+          "share": 0.343
+        },
+        {
+          "label": "Ben Adams",
+          "name": "Ben Adams",
+          "org": "Nethermind",
+          "handle": "ben_a_adams",
+          "avatar": "https://pbs.twimg.com/profile_images/1282411238602006529/l4lHaQHE_400x400.jpg",
+          "share": 0.056
+        },
+        {
+          "label": "Marius Van Der Wijden (M)",
+          "name": "Marius van der Wijden",
+          "org": "EF",
+          "role": "geth",
+          "handle": "vdWijden",
+          "avatar": "https://pbs.twimg.com/profile_images/1334610351976026113/o0FQPHZX_400x400.jpg",
+          "share": 0.055
+        },
+        {
+          "label": "Milos | enso.build",
+          "name": "Milos",
+          "org": "enso.build",
+          "share": 0.049
+        },
+        {
+          "label": "Maria Silva",
+          "name": "Maria Silva",
+          "role": "EIP-8037 제1저자",
+          "handle": "misilva73",
+          "avatar": "https://pbs.twimg.com/profile_images/1551690804594458624/elGlKFpy_400x400.jpg",
+          "share": 0.046
+        },
+        {
+          "label": "Dragan Rakita",
+          "name": "Dragan Rakita",
+          "org": "Tempo",
+          "role": "revm 저자",
+          "handle": "rakitadragan",
+          "avatar": "https://pbs.twimg.com/profile_images/1622380143799943169/2D-5fxsO_400x400.jpg",
+          "share": 0.039
+        },
+        {
+          "label": "Greg Colvin",
+          "name": "Greg Colvin",
+          "share": 0.039
+        },
+        {
+          "label": "potuz",
+          "name": "Potuz",
+          "org": "Offchain Labs",
+          "role": "Prysm",
+          "handle": "potuz_eth",
+          "avatar": "https://pbs.twimg.com/profile_images/1494001194427158539/bfrZyMsG_400x400.jpg",
+          "share": 0.037
+        },
+        {
+          "label": "Kevaundray Wedderburn",
+          "name": "Kevaundray Wedderburn",
+          "org": "EF",
+          "role": "응용 리서치",
+          "handle": "kevaundray",
+          "avatar": "https://pbs.twimg.com/profile_images/1658523090467315712/a3xJ6ySn_400x400.jpg",
+          "share": 0.035
+        },
+        {
+          "label": "Csaba",
+          "name": "Csaba",
+          "share": 0.033
+        },
+        {
+          "label": "Ansgar Dietrichs",
+          "name": "Ansgar Dietrichs",
+          "org": "EF",
+          "role": "리서처",
+          "handle": "adietrichs",
+          "avatar": "https://pbs.twimg.com/profile_images/1575685906786402304/P5UbjDt6_400x400.jpg",
+          "share": 0.032
+        },
+        {
+          "label": "Nico",
+          "name": "Nico Flaig",
+          "org": "ChainSafe",
+          "role": "Lodestar",
+          "handle": "nicoflaig",
+          "avatar": "https://pbs.twimg.com/profile_images/1618325595397447689/9kzomyhR_400x400.jpg",
+          "share": 0.029
+        },
+        {
+          "label": "Jihoon",
+          "name": "Jihoon",
+          "share": 0.027
+        },
+        {
+          "label": "Łukasz Rozmej",
+          "name": "Łukasz Rozmej",
+          "org": "Nethermind",
+          "role": "EIP-8037 공동 저자",
+          "share": 0.027
+        },
+        {
+          "label": "Justin Traglia",
+          "name": "Justin Traglia",
+          "org": "EF",
+          "role": "보안",
+          "handle": "JustinTraglia",
+          "avatar": "https://pbs.twimg.com/profile_images/1648459994256543744/fn_SnKW5_400x400.jpg",
+          "share": 0.022
+        },
+        {
+          "label": "danceratopz",
+          "name": "danceratopz",
+          "org": "EF",
+          "role": "테스팅",
+          "handle": "danceratopz",
+          "avatar": "https://pbs.twimg.com/profile_images/1478357444132839427/sxWspbwH_400x400.jpg",
+          "share": 0.02
+        },
+        {
+          "label": "Stefan Starflinger",
+          "name": "Stefan Starflinger",
+          "org": "EF DevOps",
+          "share": 0.017
+        },
+        {
+          "label": "Radek | solidity",
+          "name": "Radek",
+          "org": "solidity",
+          "share": 0.014
+        },
+        {
+          "label": "Piotr",
+          "name": "Piotr",
+          "share": 0.014
+        },
+        {
+          "label": "Justin Florentine",
+          "name": "Justin Florentine",
+          "org": "Besu",
+          "share": 0.013
+        },
+        {
+          "label": "jochem-brouwer",
+          "name": "Jochem Brouwer",
+          "org": "EF",
+          "role": "EthereumJS · EIP-8037 공동 저자",
+          "share": 0.013
+        },
+        {
+          "label": "Toni Wahrstätter",
+          "name": "Toni Wahrstätter",
+          "org": "EF",
+          "role": "리서처",
+          "handle": "nero_eth",
+          "avatar": "https://pbs.twimg.com/profile_images/1858347774129094657/xUc7IS2K_400x400.jpg",
+          "share": 0.012
+        },
+        {
+          "label": "Zsolt Felföldi",
+          "name": "Zsolt Felföldi",
+          "org": "EF",
+          "role": "geth, EIP-8304",
+          "handle": "zsfelfoldi",
+          "avatar": "https://pbs.twimg.com/profile_images/598141259664990208/MB3PrmeS_400x400.jpg",
+          "share": 0.007
+        },
+        {
+          "label": "CPerezz",
+          "name": "Carlos Pérez (CPerezz)",
+          "org": "EF",
+          "role": "EIP-8037 공동 저자",
+          "handle": "CPerezz19",
+          "avatar": "https://pbs.twimg.com/profile_images/1254074532417200128/M2uQcW5K_400x400.jpg",
+          "share": 0.007
+        },
+        {
+          "label": "Parithosh Jayanthi",
+          "name": "Parithosh Jayanthi",
+          "org": "EF DevOps",
+          "handle": "parithosh_j",
+          "avatar": "https://pbs.twimg.com/profile_images/1257719305459904512/x5MkzrAf_400x400.jpg",
+          "share": 0.004
+        },
+        {
+          "label": "andrew (erigon)",
+          "name": "andrew",
+          "share": 0.003
+        },
+        {
+          "label": "Andrew Ashikhmin",
+          "name": "Andrew Ashikhmin",
+          "org": "Erigon",
+          "handle": "yperbasis",
+          "avatar": "https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png",
+          "share": 0.003
+        },
+        {
+          "label": "Nico Flaig",
+          "name": "Nico Flaig",
+          "org": "ChainSafe",
+          "role": "Lodestar",
+          "handle": "nicoflaig",
+          "avatar": "https://pbs.twimg.com/profile_images/1618325595397447689/9kzomyhR_400x400.jpg",
+          "share": 0
+        }
+      ],
+      "chat": [
+        {
+          "speaker": "Nico Flaig",
+          "text": "블록은 유효했고, 다음 제안자는 그 블록을 제시간에 처리하지 못해 리오그당했다",
+          "timestamp": "00:20:34"
+        },
+        {
+          "speaker": "Ansgar Dietrichs",
+          "text": "이게 개별 클라이언트 문제인지, 아니면 테스트 커버리지에 대한 우리의 확신이 전반적으로 틀렸고 포크 배포를 멈춰야 한다는 뜻인지 아주 정확히 해야 한다",
+          "timestamp": "00:20:05"
+        },
+        {
+          "speaker": "Toni Wahrstätter",
+          "text": "포크 시점에 한다는 건 그때부터 올리기 시작한다는 뜻이다. 1/1024 규칙을 우회하는 게 아니다",
+          "timestamp": "00:26:04"
+        }
+      ],
+      "glossary": [
+        {
+          "term": "SFI",
+          "def": "Scheduled for Inclusion, 포크 포함이 확정된 상태"
+        },
+        {
+          "term": "CFI",
+          "def": "Considered for Inclusion, 클라이언트들이 구현을 전제로 포함을 검토하는 상태"
+        },
+        {
+          "term": "PFI",
+          "def": "Proposed for Inclusion, 포함이 제안돼 후보로 접수된 상태"
+        },
+        {
+          "term": "DFI",
+          "def": "Declined for Inclusion, 이번 포크 후보에서 제외된 상태"
+        },
+        {
+          "term": "BAL",
+          "def": "블록 접근 목록(Block Access List), 블록이 건드린 상태를 미리 알려 병렬 실행을 돕는 데이터"
+        },
+        {
+          "term": "리오그",
+          "def": "reorg, 이미 만들어진 블록이 체인에서 밀려나는 재구성"
+        },
+        {
+          "term": "프레임",
+          "def": "Frames, 헤고타에서 논의 중인 새 트랜잭션 실행 형식"
+        },
+        {
+          "term": "셀프디스트럭트",
+          "def": "self-destruct, 컨트랙트가 스스로를 소멸시키는 EVM 명령"
+        }
+      ],
+      "eips": [
+        3298,
+        7668,
+        7906,
+        7979,
+        8037,
+        8061,
+        8131,
+        8163,
+        8250,
+        8253,
+        8272,
+        8279,
+        8298,
+        8304,
+        8360,
+        8368,
+        8372,
+        8383
+      ],
+      "relatedDebates": [],
+      "telegramMessageId": 1619
+    },
     {
       "id": "acdt-97",
       "series": "acdt",
@@ -13046,13 +13727,13 @@
     "currentFork": {
       "name": "글램스터담",
       "stage": "테스트넷 단계",
-      "line": "세폴리아 10월 6일 확정 · 후디 10월 27일 잠정 10월 8일 결정"
+      "line": "세폴리아 10월 6일 확정 · 후디 10월 27일 잠정, 10월 8일 결정"
     },
     "nextFork": {
       "name": "헤고타",
       "stage": "범위 정하는 중",
-      "line": "헤드라이너 EIP-8141 · PFI EIP-8411 · CFI EIP-8015 · 데브콘 전 통합 데브넷 목표"
+      "line": "헤드라이너 EIP-8141 확정 · CFI 11건 · 데브넷 데브콘 전 목표"
     },
-    "basis": "acdt-97"
+    "basis": "acde-246"
   }
 }

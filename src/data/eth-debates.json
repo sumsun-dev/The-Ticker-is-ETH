@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-22T00:59:08.983Z",
+  "updatedAt": "2026-09-25T00:59:20.325Z",
   "processedDigests": [
     "2026-08-24",
     "2026-08-25",
@@ -19,9 +19,300 @@
     "2026-09-12",
     "2026-09-16",
     "2026-09-19",
-    "2026-09-22"
+    "2026-09-22",
+    "2026-09-25"
   ],
   "debates": [
+    {
+      "id": "noncustodial-vault-curator-discretion",
+      "title": "재량을 가진 큐레이터 볼트를 타임락이 있다는 이유로 논커스터디얼로 분류할 수 있나?",
+      "category": "규제",
+      "summary": "Stani Kulechov는 큐레이터가 자본 배분 재량을 갖는 볼트(vault)를 타임락(timelock)이 있다는 이유만으로 논커스터디얼(non-custodial)로 분류하는 것은 자기 잇속을 챙기는 약한 논거라고 비판했고, 논커스터디얼은 스펙트럼이라며 큐레이터를 배제하지 말자는 반론과, 커스터디(수탁)와 재량(discretion)은 별개 축이라는 중립론이 맞섰다.",
+      "keyPoints": [
+        "자본 배분 재량이 있는 볼트를 타임락만으로 논커스터디얼로 볼 수 있는가",
+        "커스터디와 재량은 같은 축인가 다른 축인가",
+        "논커스터디얼 표준을 누구의 이해관계 위에서 정할 것인가"
+      ],
+      "background": "온체인 볼트는 예치된 자금을 큐레이터(curator)가 여러 대출 시장에 배분하는 구조가 많다. Morpho 같은 프로토콜에서는 큐레이터가 사용자의 초기 위임 범위를 넘어 새 시장으로 배분을 확장할 수 있고, 변경 전 타임락으로 지연을 두지만 사용자가 이를 감시할 도구는 제한적이다. 논커스터디얼로 분류되면 규제 적용을 피할 여지가 생겨, 분류 기준이 실무적으로 규제 여부를 가르는 선이 된다. 이 논쟁 하루 전 Stani Kulechov의 Aave는 큐레이티드 볼트 대비 Aave V4의 hub-and-spoke 구조를 방어하는 글을 올린 상태여서 프로토콜 간 경쟁 이해가 얽혀 있다.",
+      "whyItMatters": "논커스터디얼 분류는 어떤 온체인 상품이 규제 대상이 되는지를 가르는 실무 기준이 되고 있어, 그 표준을 누가 어떤 이해관계 위에서 쓰느냐가 DeFi 대출 시장 전체의 규제 리스크를 좌우한다. 커스터디와 재량을 별개 축으로 보는 프레임이 표준으로 자리 잡을지가 지켜볼 지점이다.",
+      "sources": [],
+      "keywords": [
+        "non-custodial vault",
+        "curator discretion",
+        "Morpho vault",
+        "timelock"
+      ],
+      "positions": [
+        {
+          "stance": "con",
+          "label": "타임락만으로는 논커스터디얼이 아니다",
+          "holders": [
+            {
+              "handle": "StaniKulechov",
+              "name": "Stani",
+              "role": "Aave 창업자",
+              "avatar": "https://pbs.twimg.com/profile_images/2040150832155668480/NuKn2fQi_400x400.jpg"
+            },
+            {
+              "handle": "lex_node",
+              "name": "_gabrielShapir0",
+              "role": "MetaLeX Labs 변호사·크립토 법률",
+              "avatar": "https://pbs.twimg.com/profile_images/2058233189882032128/pRSMN_6C_400x400.jpg"
+            },
+            {
+              "handle": "timbrobro",
+              "name": "Tim哥",
+              "avatar": "https://pbs.twimg.com/profile_images/1955592230250631168/KCOHY9aq_400x400.jpg"
+            },
+            {
+              "handle": "stakeingermany",
+              "name": "Validatus.com",
+              "avatar": "https://pbs.twimg.com/profile_images/1536819199682691072/NllqSe_7_400x400.jpg"
+            }
+          ],
+          "points": [
+            "큐레이터가 사용자의 초기 위임을 넘어 새 시장으로 자금을 옮길 수 있는 재량 볼트를 타임락이 있다는 이유만으로 논커스터디얼로 부르는 것은 젖은 유럽 종이 빨대만큼이나 약한 논거다",
+            "매니저가 없는 볼트, 예컨대 예치를 대출 프로토콜에 그대로 랩핑하는 볼트나 초기 Yearn 볼트 정도만 합리적으로 논커스터디얼로 볼 수 있다",
+            "역할 분리(relying roles)는 책임 소재만 흐리고 실제 문제를 풀지 못하며, 표준은 특정 프로토콜의 이익이 아니라 업계 전체를 위해 만들어야 한다",
+            "예치가 온체인이라는 이유만으로 비규제 헤지펀드가 같은 대우를 받는다면 Yearn이 투명성과 비재량성에 들인 노력이 무의미해진다"
+          ]
+        },
+        {
+          "stance": "pro",
+          "label": "논커스터디얼은 스펙트럼이므로 큐레이터를 배제하지 말자",
+          "holders": [
+            {
+              "handle": "0xYager",
+              "name": "Reid Yager",
+              "avatar": "https://pbs.twimg.com/profile_images/2066483096136855552/VzLusm-k_400x400.jpg"
+            }
+          ],
+          "points": [
+            "논커스터디얼은 스펙트럼이며, 명확히 규제된 상품이 있고 그다음에 여러 층위의 논커스터디얼이 공존한다",
+            "Yearn을 순수성 테스트로 삼아 큐레이터를 처음부터 배제하는 것이 갈 길은 아니다"
+          ]
+        },
+        {
+          "stance": "neutral",
+          "label": "커스터디와 재량은 다른 축이고 용어 자체가 미정립이다",
+          "holders": [
+            {
+              "handle": "sonyasunkim",
+              "name": "Sonya Kim",
+              "avatar": "https://pbs.twimg.com/profile_images/1599842510536413189/iURu_KwM_400x400.jpg"
+            },
+            {
+              "handle": "TuongvyLe12",
+              "name": "TuongVy Le",
+              "avatar": "https://pbs.twimg.com/profile_images/2092585113758408704/mlJvkgXB_400x400.jpg"
+            }
+          ],
+          "points": [
+            "커스터디는 누가 키와 자산을 쥐느냐, 재량은 누가 투자 결정을 하느냐의 문제로 서로 다른 차원이며 혼동해서는 안 된다",
+            "관리형 온체인 볼트는 논커스터디얼이면서 재량적이며, 핵심 쟁점은 무엇을 재량적이라 볼 것인가다",
+            "논커스터디얼은 기술적으로도 법적으로도 정착된 의미가 없다는 것이 문제의 핵심이다"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-09-24",
+          "by": "StaniKulechov",
+          "stance": "con",
+          "quote": "큐레이터가 자본을 여러 시장에 어떻게 배분할지 재량을 갖고 사용자의 초기 위임을 넘어 새 시장으로 확장까지 할 수 있는 볼트를, 단지 타임락이 있다는 이유로 논커스터디얼로 봐야 한다는 주장은 젖은 유럽 종이 빨대만큼이나 약한 논거다. 합리적으로 논커스터디얼로 볼 수 있는 볼트는 매니저가 없는 볼트, 예컨대 예치를 대출 프로토콜에 그대로 랩핑하는 볼트나 초기 Yearn 볼트다.",
+          "url": "https://x.com/StaniKulechov/status/2103117429605880069",
+          "digest": "2026-09-25",
+          "replyTo": "PaulFrambot",
+          "relation": "quote",
+          "original": "This categorisation doesn’t make sense and is pretty much self-serving.\n\nFirst of all, arguing that a vault where a curator has discretion over how capital is allocated across markets, and can even expand into new markets beyond the user’s initial mandate, which, btw, is a known Morpho drawback (very non-LP friendly), should be considered non-custodial simply because it has a timelock is about as strong an argument as a wet European paper straw.\n\nEspecially the part of implicit approvals that simply changes the whole allocation mandate and users don’t even have the proper tools to monitor these changes.\n\nAlso the part on relying roles, doesn't really solve much, simply creates a blame game and relocates potentially liability but doesn't solve the actual problem.\n\nVaults that could reasonably be considered non-custodial are those without a manager. For example, vaults that simply wrap deposits into a lending protocol, or the original Yearn vaults. These are make sense to be categorized as non-custodial vaults.\n\nThere’s nothing inherently wrong with discretionary vaults, as long as the regulatory path is figured out. I’m all for developing industry standards, but let’s at least do it in a way that serves the broader industry rather than your own interests. 😂",
+          "translation": "이 분류는 말이 되지 않으며 사실상 자기 잇속을 챙기는 것이다. 우선, 큐레이터(curator)가 자본을 여러 시장에 어떻게 배분할지에 대해 재량권(discretion)을 갖고 있고, 심지어 사용자가 처음에 위임한 범위를 넘어 새로운 시장으로 확장할 수도 있는 볼트(vault, 이는 참고로 Morpho의 잘 알려진 단점이며 유동성 공급자(LP)에게 매우 불친절하다)를, 단지 타임락(timelock)이 있다는 이유만으로 무수탁형(non-custodial)으로 간주해야 한다는 주장은 젖은 유럽산 종이 빨대만큼이나 설득력이 약하다. 특히 할당 위임 전체를 그냥 바꿔버리는 암묵적 승인(implicit approvals) 부분이 그렇고, 사용자들은 이런 변화를 모니터링할 제대로 된 도구조차 갖고 있지 않다. 또한 역할에 의존한다는 부분도 실제로는 별로 해결해주는 게 없고, 그저 책임 떠넘기기 게임을 만들고 잠재적 법적 책임(liability)의 소재를 옮길 뿐 실제 문제를 해결하지는 못한다. 합리적으로 무수탁형이라 볼 수 있는 볼트는 매니저가 없는 볼트다. 예를 들어 예치금을 그냥 대출 프로토콜에 감싸 넣기만 하는 볼트, 혹은 원조 Yearn 볼트 같은 것들이다. 이런 것들이야말로 무수탁형 볼트로 분류되는 게 말이 된다. 재량형(discretionary) 볼트 자체에 본질적으로 잘못된 점은 없다, 규제 경로만 명확히 정리된다면 말이다. 나는 업계 표준을 만드는 것에 전적으로 찬성하지만, 적어도 자기 자신의 이익이 아니라 업계 전반에 도움이 되는 방식으로 하자."
+        },
+        {
+          "date": "2026-09-24",
+          "by": "0xYager",
+          "stance": "pro",
+          "quote": "논커스터디얼도 스펙트럼임을 인정하자. 명확히 규제된 상품이 있고 그다음에 여러 층위의 논커스터디얼이 있다. Yearn 순수성 테스트로 큐레이터를 처음부터 배제하는 것이 갈 길은 아니라고 본다.",
+          "url": "https://x.com/StaniKulechov/status/2103133607019856162",
+          "digest": "2026-09-25",
+          "replyTo": "StaniKulechov",
+          "relation": "reply",
+          "original": "@StaniKulechov maybe we acknowledge non-custodial is a spectrum too; which is how I read the piece.\n\nThere are clear regulated offerings and then a range of non-custodial. I dont think dismissing curators based on the yearn purity test is where to go off the bat.",
+          "translation": "@StaniKulechov 어쩌면 우리는 무수탁형(non-custodial)이라는 것도 하나의 스펙트럼이라는 걸 인정해야 할지도 모른다. 나는 그 글을 그렇게 읽었다. 명백히 규제 대상인 상품들이 있고, 그다음에 무수탁형이라는 범위가 존재한다. 나는 Yearn 순수성 테스트(purity test)를 기준으로 큐레이터들을 처음부터 깎아내리는 것이 맞는 방향이라고는 생각하지 않는다."
+        },
+        {
+          "date": "2026-09-24",
+          "by": "StaniKulechov",
+          "stance": "con",
+          "quote": "Yearn을 순수성 테스트로 볼 필요는 없다. 다만 제안된 구조는 너무 약해서 설득력 있는 논거가 되기 어렵고 더 힘든 싸움이 될 것이다.",
+          "url": "https://x.com/StaniKulechov/status/2103135576572461465",
+          "digest": "2026-09-25",
+          "replyTo": "0xYager",
+          "relation": "reply",
+          "original": "@0xYager don't think we need to see yearn as the purity test, the proposed setup is too weak, and don't think it simply will be convincing argument and higher uphill battle",
+          "translation": "@0xYager Yearn을 순수성 테스트로 봐야 한다고 생각하지는 않지만, 제안된 구조는 너무 약하고, 그것만으로는 설득력 있는 주장이 되지 못할 것이며 더 힘든 싸움이 될 것이라고 생각한다."
+        },
+        {
+          "date": "2026-09-24",
+          "by": "lex_node",
+          "stance": "con",
+          "quote": "전적으로 동의한다. 예치가 온체인이라는 이유만으로 비규제 헤지펀드가 같은 대우를 받을 수 있다면, Yearn 같은 프로젝트가 모든 것을 투명하고 감사 가능하고 비재량적으로 만들려 그토록 애쓴 이유가 무엇인가. 말이 안 된다.",
+          "url": "https://x.com/lex_node/status/2103139823376621967",
+          "digest": "2026-09-25",
+          "replyTo": "StaniKulechov",
+          "relation": "reply",
+          "original": "@StaniKulechov fully agree with you\n\nwhy did projects like Yearn bend over backwards to make everything transparent, auditable, and non-discretionary if a literal unregulated hedge fund can get the same treatment just by having the deposit be onchain?\n\nit's ridiculous",
+          "translation": "@StaniKulechov 전적으로 동의한다. 만약 말 그대로 규제받지 않는 헤지펀드가 그저 예치금이 온체인(onchain)에 있다는 이유만으로 똑같은 취급을 받을 수 있다면, Yearn 같은 프로젝트들이 왜 그렇게까지 애써서 모든 것을 투명하고(transparent) 감사 가능하며(auditable) 비재량적(non-discretionary)으로 만들었겠는가? 말도 안 된다."
+        },
+        {
+          "date": "2026-09-24",
+          "by": "sonyasunkim",
+          "stance": "neutral",
+          "quote": "커스터디와 재량은 서로 다른 두 차원이며 혼동해서는 안 된다. 커스터디는 누가 키를, 따라서 자산을 쥐느냐의 문제이고, 재량은 누가 그 자산에 대한 투자 결정을 내리느냐의 문제다. 관리형 온체인 볼트는 논커스터디얼이면서 재량적이다.",
+          "url": "https://x.com/sonyasunkim/status/2103210357225582744",
+          "digest": "2026-09-25",
+          "replyTo": "StaniKulechov",
+          "relation": "quote",
+          "original": "My two cents on this debate is that custody and discretion are two different dimensions and should not be conflated.\n\nCustody is about who holds the keys and therefore assets\n\nDiscretion is about who makes the investment calls on assets. Examples:\n\n1. Custodial & non discretionary:  Coinbase spot account where you decide on your own investments\n\n2. Custodial & discretionary: hedge fund/mutual fund\n\n3. Noncustodial & non-discretionary: self directed defi like swapping on Uniswap\n\n4. Noncustodial & discretionary: managed onchain vault\n\nYou can give up one without giving up the other.\n\nMuch of DeFi is noncustodial because you own the keys and the assets. But the meat of the debate really is around what should be considered discretionary or not.\n\nVaults that are more programmatic in nature with user ability to veto any decisions would be closer to the non discretionary end to my mind vs designs where users don’t have control over subsequent decisions that are made to the product evolution",
+          "translation": "이 논쟁에 대한 내 생각은, 수탁(custody)과 재량(discretion)이 서로 다른 두 차원이며 이를 혼동해서는 안 된다는 것이다. 수탁은 누가 키를, 따라서 자산을 보유하고 있는지에 관한 것이고, 재량은 누가 자산에 대한 투자 결정을 내리는지에 관한 것이다. 예시: 1. 수탁형이면서 비재량적: 사용자 본인이 직접 투자를 결정하는 Coinbase 현물 계좌. 2. 수탁형이면서 재량적: 헤지펀드나 뮤추얼펀드. 3. 무수탁형이면서 비재량적: Uniswap에서 스왑하는 것 같은 자기주도형 디파이(DeFi). 4. 무수탁형이면서 재량적: 매니지드 온체인 볼트(managed onchain vault). 둘 중 하나를 포기하지 않고도 다른 하나를 포기할 수 있다. 디파이의 상당 부분이 무수탁형인 이유는 사용자가 키와 자산을 소유하고 있기 때문이다. 하지만 이 논쟁의 핵심은 실제로는 무엇을 재량적이라고 볼 것인가, 아닌가에 있다. 내 생각에는 사용자가 어떤 결정이든 거부권(veto)을 행사할 수 있는, 보다 프로그래밍적(programmatic) 성격을 띤 볼트가 비재량적 쪽에 더 가깝고, 반면 사용자가 상품의 이후 발전 과정에서 내려지는 결정들에 대해 통제권을 갖지 못하는 설계는 그 반대쪽에 가깝다."
+        },
+        {
+          "date": "2026-09-24",
+          "by": "TuongvyLe12",
+          "stance": "neutral",
+          "quote": "논커스터디얼은 기술적으로도 법적으로도 그 밖으로도 정착된 의미가 없고, 그것이 바로 문제다.",
+          "url": "https://x.com/TuongvyLe12/status/2103138305340571951",
+          "digest": "2026-09-25",
+          "replyTo": "0xYager",
+          "relation": "reply",
+          "original": "@0xYager @StaniKulechov \"non-custodial\" has no settled meaning (technical, legal, or otherwise) which is the problem",
+          "translation": "@0xYager @StaniKulechov '무수탁형(non-custodial)'이라는 말에는 기술적으로든 법적으로든 그 밖의 의미로든 확정된 정의가 없다는 것이 바로 문제다."
+        },
+        {
+          "date": "2026-09-24",
+          "by": "stakeingermany",
+          "stance": "con",
+          "quote": "핵심 쟁점은 자본이 어디로 가는지를 실제로 누가 통제하느냐다. 매니저가 여전히 재량을 갖는다면 타임락은 그것을 바꾸지 못한다.",
+          "url": "https://x.com/stakeingermany/status/2103152473582252035",
+          "digest": "2026-09-25",
+          "replyTo": "StaniKulechov",
+          "relation": "reply",
+          "original": "@StaniKulechov The key issue is who actually controls where the capital goes. A timelock doesn’t change that when the manager still has discretion.",
+          "translation": "@StaniKulechov 핵심 쟁점은 자본이 어디로 가는지를 실제로 누가 통제하느냐이다. 매니저가 여전히 재량권을 갖고 있는 한 타임락이 있다고 해서 그것이 달라지지는 않는다."
+        },
+        {
+          "date": "2026-09-24",
+          "by": "timbrobro",
+          "stance": "con",
+          "quote": "큐레이터가 사용자가 동의한 적 없는 시장으로 자금을 옮길 수 있다면, 그것을 논커스터디얼이라 부르는 것은 억지다.",
+          "url": "https://x.com/timbrobro/status/2103221566414971308",
+          "digest": "2026-09-25",
+          "replyTo": "StaniKulechov",
+          "relation": "reply",
+          "original": "@StaniKulechov If a curator can move funds into markets the user never signed up for, calling that non-custodial is a stretch",
+          "translation": "@StaniKulechov 큐레이터가 사용자가 애초에 동의한 적 없는 시장으로 자금을 옮길 수 있다면, 그것을 무수탁형이라고 부르는 것은 무리한 주장이다."
+        }
+      ],
+      "firstSeen": "2026-09-24",
+      "lastActivity": "2026-09-24",
+      "status": "active",
+      "rootUrl": "https://x.com/StaniKulechov/status/2103117429605880069",
+      "engagement": {
+        "likes": 258,
+        "retweets": 18,
+        "quotes": 9,
+        "replies": 30,
+        "views": 43209
+      }
+    },
+    {
+      "id": "kalshi-volume-real-or-wash",
+      "title": "Kalshi의 거래량은 진짜인가, 미드마켓을 오가는 워시트레이딩에 가까운가?",
+      "category": "토큰화 · 기관",
+      "summary": "Unchained 팟캐스트에서 Kain Warwick와 Austin Griffith가 예측시장(prediction market) Kalshi의 거래량이 실체가 있는지를 놓고 갈렸다. Kain은 음수 리베이트(negative rebate)를 받는 마켓메이커가 미드마켓(mid-market)에서 체결하고 있어 2018년식 워시트레이딩(wash trading)과 다르다고 봤고, Austin은 유동성과 별개로 그 볼륨이 답을 찾는다는 예측시장의 목적에는 기여하지 않는다고 반박했다.",
+      "keyPoints": [
+        "Kalshi의 거래량이 실제 가격 발견에 기여하는가, 아니면 이미 찾은 중립점을 오가는 것뿐인가",
+        "미드마켓 체결은 워시트레이딩과 구분되는 신호인가",
+        "유동성 깊이는 가격 신뢰도를 높이는가"
+      ],
+      "background": "Kalshi는 미국 규제를 받는 예측시장 거래소로, 특정 사건의 결과에 베팅하는 계약이 거래된다. 예측시장의 목적은 거래를 통해 사건의 확률에 대한 답을 찾는 가격 발견(price discovery)이다. 마켓메이커에게 거래할 때마다 보상을 주는 음수 리베이트 구조에서는 실제 정보 없이 볼륨만 부풀려질 수 있고, 2018년 거래 채굴(transaction mining) 거래소들이 미드마켓에서 크게 벗어난 가격에서만 서로 체결해 워시트레이딩을 위장한 전례가 있다.",
+      "whyItMatters": "예측시장이 제도권으로 편입되며 볼륨 지표가 시장 신뢰의 근간이 되는 국면에서, 거래량이 진짜 가격 발견을 반영하는지가 이 시장의 정당성을 좌우한다. Kalshi 체결이 실제로 미드마켓에서 이뤄지는지가 판단의 핵심 지표다.",
+      "sources": [],
+      "keywords": [
+        "Kalshi volume",
+        "prediction market",
+        "wash trading",
+        "market maker rebate"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "미드마켓에서 체결되니 워시트레이딩과 다르다",
+          "holders": [
+            {
+              "handle": "kain",
+              "name": "kain",
+              "role": "Synthetix 창업자",
+              "avatar": "https://pbs.twimg.com/profile_images/2078565051456520192/EJbcGljp_400x400.jpg"
+            }
+          ],
+          "points": [
+            "음수 리베이트를 받는 마켓메이커들이 Kalshi에서 최대한 추출하려 앉아 있지만, 이는 문제 삼을 일이 아니다",
+            "2018년 거래 채굴 거래소들은 미드마켓에서 150bp씩 벗어난 곳에서만 체결해 서로 거래를 회피했던 반면, Kalshi는 실제로 미드마켓에서 체결되고 있어 그런 워시트레이딩 패턴과 다르다"
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "유동성은 있어도 진실에 다가가지 못한다",
+          "holders": [
+            {
+              "handle": "austingriffith",
+              "name": "Austin Griffith",
+              "avatar": "https://pbs.twimg.com/profile_images/2101802766658310144/N8xPpVOU_400x400.jpg"
+            }
+          ],
+          "points": [
+            "유동성은 별개 문제이고, 예측시장의 목적은 답을 찾는 것인데 이 거래는 거기에 기여하지 않는다",
+            "이미 찾은 중립점을 오갈 뿐 실제로 진실에 다가가지 못한다"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-09-23",
+          "by": "kain",
+          "stance": "pro",
+          "quote": "음수 리베이트를 받는 일부 마켓메이커가 그냥 앉아서 Kalshi에서 최대한 추출하려 하고 있는데, 나는 그것을 지지한다. 2018년의 어느 거래 채굴 거래소는 모든 체결이 미드마켓에서 150bp씩 벗어난 곳에서만 일어나 말이 안 됐지만, 여기서는 그런 일이 벌어지는 것 같지 않다. 그들은 실제로 미드마켓에서 체결하고 있다.",
+          "url": "https://x.com/laurashin/status/2102869919545405919",
+          "digest": "2026-09-25",
+          "relation": "none",
+          "original": "Kain on whether Kalshi's volume is real\n\n\"You just have some market makers that have negative rebates that are just sitting there, trying to max extract from Kalshi, which again, I'm here for.\"\n\nAustin: \"Liquidity is one thing, but are they getting to the answer? The goal of the prediction market is to find the answer. None of this helps that. Maybe they're providing liquidity, but it seems like it's going back and forth on a previously found neutral point. They're not actually getting to the truth.\"\n\n\"This is the million dollar, billion dollar, $20 billion question. Is this actually going back and forth? You imagine a system where all of the regular orders are here, and these two guys, and we've seen this many times before in centralized exchange.\"\n\n\"There was some exchange, one of the transaction mining exchanges from like 2018, where you've got an order book and magically every cross was like 150 bips from mid market. So basically the only time anyone ever traded with each other was way outside of the actual price, which makes no sense.\"\n\n\"Why is there someone who's always showing up with this huge block trade way outside of mid-market? The reason why you do that is to avoid anyone else ever taking it. So you're just bouncing around mid-market.\"\n\n\"It doesn't seem like this is what's happening here. They are actually crossing at mid-market.\"",
+          "translation": "Kalshi의 거래량이 진짜인지에 대한 Kain의 발언: '그저 마이너스 리베이트(negative rebate)를 받는 마켓메이커(market maker)들이 그 자리에 앉아서 Kalshi로부터 최대한 뽑아내려 하고 있는 것뿐이다, 그리고 나는 다시 한번 말하지만 그것도 괜찮다고 본다.' Austin: '유동성(liquidity)은 그렇다 쳐도, 그들이 답에 도달하고 있는가? 예측 시장(prediction market)의 목표는 답을 찾는 것이다. 이 중 어느 것도 그 일에는 도움이 되지 않는다. 어쩌면 그들이 유동성을 제공하고 있는 것일 수도 있지만, 이전에 찾아낸 중립적인 지점을 그저 왔다갔다 하고 있는 것처럼 보인다. 그들은 실제로 진실에 도달하고 있는 게 아니다.' '이것이 백만 달러, 아니 10억 달러, 200억 달러짜리 질문이다. 이게 정말로 왔다갔다 하는 거래인가? 일반적인 주문들이 여기 다 있고, 이 둘이 있는 시스템을 상상해보라. 우리는 중앙화 거래소(centralized exchange)에서 이런 걸 이미 여러 번 봐왔다.' '2018년쯤의 거래 채굴(transaction mining) 거래소들 중 하나에는 오더북(order book)이 있었는데, 신기하게도 모든 크로스(cross) 체결이 항상 미드마켓(mid market)에서 150bp(bips) 떨어진 지점에서 이루어졌다. 그러니까 사실상 누군가와 누군가가 서로 거래하는 유일한 순간은 실제 가격에서 한참 벗어난 지점뿐이었다는 것인데, 이건 말이 안 된다.' '왜 항상 미드마켓에서 한참 벗어난 지점에서 이런 거대한 블록 거래(block trade)로 나타나는 사람이 있는 걸까? 그렇게 하는 이유는 다른 누구도 그 주문을 절대 체결시키지 못하게 하기 위해서다. 그러니까 그냥 미드마켓 주변에서 왔다갔다 하는 것일 뿐이다.' '여기서 벌어지고 있는 일은 그런 것 같지 않다. 그들은 실제로 미드마켓에서 체결하고 있다.'"
+        },
+        {
+          "date": "2026-09-23",
+          "by": "realbillyuzi",
+          "stance": "con",
+          "quote": "거래가 새로운 정보를 찾아내지 못한다면 거래량은 의미가 덜하다.",
+          "url": "https://x.com/realbillyuzi/status/2102871913164935370",
+          "digest": "2026-09-25",
+          "replyTo": "laurashin",
+          "relation": "reply",
+          "original": "@laurashin volume means less if the trades dont find new info",
+          "translation": "@laurashin 거래가 새로운 정보를 찾아내지 못한다면 거래량은 그만큼 의미가 줄어든다."
+        }
+      ],
+      "firstSeen": "2026-09-23",
+      "lastActivity": "2026-09-23",
+      "status": "active",
+      "rootUrl": "https://x.com/laurashin/status/2102869919545405919",
+      "engagement": {
+        "likes": 6,
+        "retweets": 0,
+        "quotes": 0,
+        "replies": 5,
+        "views": 5557
+      }
+    },
     {
       "id": "ethereum-zcash-privacy-competitor",
       "title": "이더리움의 최대 경쟁자는 지캐시이고 프라이버시를 최우선해야 하나?",
@@ -533,7 +824,8 @@
             {
               "handle": "VitalikButerin",
               "name": "vitalik.eth",
-              "role": "이더리움 공동창시자"
+              "role": "이더리움 공동창시자",
+              "avatar": "https://pbs.twimg.com/profile_images/2042521108067352576/3rv2_9m1_400x400.jpg"
             },
             {
               "handle": "pcaversaccio",
@@ -815,7 +1107,7 @@
       ],
       "firstSeen": "2026-09-18",
       "lastActivity": "2026-09-18",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/Justin_Bons/status/2100926003715420363",
       "engagement": {
         "likes": 40,
@@ -946,7 +1238,7 @@
       ],
       "firstSeen": "2026-09-18",
       "lastActivity": "2026-09-18",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/pcaversaccio/status/2100898145903477166",
       "engagement": {
         "likes": 7,
@@ -1037,7 +1329,7 @@
       ],
       "firstSeen": "2026-09-16",
       "lastActivity": "2026-09-18",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/VitalikButerin/status/2100337594722890145",
       "engagement": {
         "likes": 3193,
@@ -1148,7 +1440,7 @@
       ],
       "firstSeen": "2026-09-16",
       "lastActivity": "2026-09-17",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/chfast/status/2100488518392815842",
       "engagement": {
         "likes": 2,
@@ -1314,7 +1606,7 @@
       ],
       "firstSeen": "2026-09-15",
       "lastActivity": "2026-09-16",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/laurashin/status/2099970946161410528",
       "engagement": {
         "likes": 301,
@@ -4768,7 +5060,7 @@
       ],
       "firstSeen": "2026-08-25",
       "lastActivity": "2026-08-26",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/trent_vanepps/status/2092318394431451157",
       "engagement": {
         "likes": 12,
@@ -4871,7 +5163,7 @@
       ],
       "firstSeen": "2026-08-24",
       "lastActivity": "2026-08-24",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/trent_vanepps/status/2091941584883351702",
       "engagement": {
         "likes": 12,
