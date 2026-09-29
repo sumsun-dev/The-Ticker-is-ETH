@@ -1,6 +1,474 @@
 {
-  "updatedAt": "2026-09-25T01:06:03.350Z",
+  "updatedAt": "2026-09-29T01:13:09.652Z",
   "calls": [
+    {
+      "id": "acdt-98",
+      "series": "acdt",
+      "number": 98,
+      "date": "2026-09-28",
+      "title": "AllCoreDevs - Testing #098",
+      "forkcastUrl": "https://forkcast.org/calls/acdt/098/",
+      "videoUrl": "https://www.youtube.com/watch?v=-7l2yAQQSm8",
+      "issueUrl": "https://github.com/ethereum/pm/issues/2230",
+      "kind": "full",
+      "durationMin": 50,
+      "headline": "200M 가스 한도\n실행 안전 확인",
+      "lead": "2억 가스 블록도 안전, 느린 블록은 디버그 기록 탓이었다",
+      "intro": "이더리움 코어 개발자들이 포크 전 테스트 진행 상황을 점검하는 격주 테스팅 콜(ACDT)이다.",
+      "summary": "데브넷 8의 느린 블록이 디버그 트레이싱(debug tracing) 탓으로 확인되면서 2억(200M) 가스 한도가 실행 시간 관점에서 안전하다는 결론에 이견이 없었다. 패스트 컨펌 룰(Fast Confirmation Rule, FCR)용 새 블록 태그는 'confirmed'라는 이름이 선호됐고 하드포크 없이 선택 기능으로 도입하는 방향이 합의됐다.",
+      "whyItMatters": "가스 한도를 2억으로 올려도 안전하다는 근거가 쌓이면 메인넷 처리량 확대와 수수료 인하에 한 걸음 다가선다. 또 confirmed 태그가 도입되면 브리지와 L2가 하드포크를 기다리지 않고도 빠르게 확정된 블록을 표준 방식으로 쓸 수 있게 된다.",
+      "decisions": [
+        {
+          "label": "200M 가스 안전",
+          "text": "2억 가스 한도가 실행 시간 관점에서 안전하며 데브넷 8의 느린 블록은 디버그 트레이싱 탓이라는 결론에 이견이 없었다. 가스 비용 재조정(repricing) 여부는 트레이싱을 끈 측정 결과가 나올 때까지 열어 뒀다.",
+          "original": "No objections to the finding that 200M gas remains safe on execution time; slow devnet-8 blocks attributed to debug tracing rather than execution. Repricing left open pending a measurement with tracing disabled.",
+          "eips": [],
+          "status": "확정",
+          "timestamp": "00:19:34"
+        },
+        {
+          "label": "트레이싱 재실험",
+          "text": "디버그 트레이싱을 끈 재실험을 지금 데브넷 8에서, 그리고 약 1.5~2주 뒤 메인넷 섀도 포크(shadow fork)에서 둘 다 진행하기로 했다. 둘 중 하나가 아니라 두 환경 모두에서 검증한다는 뜻이다.",
+          "original": "Retest without debug tracing will run both on devnet-8 now and on the mainnet shadow fork in ~1.5–2 weeks, rather than one or the other.",
+          "eips": [],
+          "status": "확정",
+          "timestamp": "00:23:41"
+        },
+        {
+          "label": "confirmed 태그",
+          "text": "새 블록 태그(block tag) 이름으로 'fast'나 'fcr' 대신 'confirmed'가 선호됐다. 빠르게 확정된 블록을 조회할 때 쓸 이름이 사실상 정해진 것이다.",
+          "original": "New block tag name preferred: 'confirmed' (over 'fast' or 'fcr')",
+          "eips": [],
+          "status": "확정",
+          "timestamp": "00:29:57"
+        },
+        {
+          "label": "FCR 하드포크 불필요",
+          "text": "FCR 블록 태그는 하드포크가 필요 없고, 호환되는 CL과 EL 조합을 돌리는 노드만 선택적으로 켜는 방식에 이견이 없었다. 대다수 노드 운영자는 아무것도 바꿀 필요가 없다는 뜻이며 구현 방식은 더 조사하기로 했다.",
+          "original": "FCR block tag does not require a hard fork; no objections to making it opt-in via compatible CL+EL pairs, with the implementation approach still to be investigated.",
+          "eips": [],
+          "status": "확정",
+          "timestamp": "00:33:25"
+        }
+      ],
+      "targets": [
+        {
+          "key": "sepolia-fork",
+          "text": "내일 업무 종료까지 세폴리아 섀도 포크 준비를 위한 모든 클라이언트 릴리스 마감. 확정된 기한이다.",
+          "timestamp": "00:13:59"
+        },
+        {
+          "key": "mainnet-shadow-fork",
+          "text": "약 1.5~2주 뒤 메인넷 섀도 포크 진행, 세폴리아 자체 포크는 약 1주 뒤. 합의된 계획이다.",
+          "timestamp": "00:23:40"
+        }
+      ],
+      "actions": [
+        {
+          "owner": "EthPandaOps(Stefan)와 Paweł",
+          "text": "데브넷 8에서 디버그 트레이싱을 끄고 Paweł과 Jochem의 JUMPDEST 공격을 다시 실행해 트레이싱 오버헤드를 분리한다. 이때 Besu와 Nethermind는 세폴리아 릴리스 대신 trunk 브랜치를 쓴다.",
+          "timestamp": "00:57:18"
+        },
+        {
+          "owner": "Julian Ma",
+          "text": "'confirmed' 블록 태그 PR(execution-apis #908)에 대한 비동기 논의 스레드를 EF R&D 디스코드나 EF Magicians에 연다.",
+          "timestamp": "00:31:23"
+        }
+      ],
+      "agenda": [
+        {
+          "timestamp": "00:12:55",
+          "heading": "데브넷 8 상태와 공격 저항성"
+        },
+        {
+          "timestamp": "00:15:04",
+          "heading": "세폴리아 릴리스 준비 상황"
+        },
+        {
+          "timestamp": "00:17:05",
+          "heading": "2억(200M) 가스 한도 안전성",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "00:24:08",
+          "heading": "패스트 컨펌 룰을 위한 새 블록 태그",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "00:39:50",
+          "heading": "제네시스 JSON alloc 키 버그"
+        },
+        {
+          "timestamp": "00:40:41",
+          "heading": "메인넷 부트노드 이전"
+        },
+        {
+          "timestamp": "00:42:43",
+          "heading": "JUMPDEST 분석 공격: 데브넷과 벤치마크 결과 차이",
+          "discussion": true
+        }
+      ],
+      "topics": [
+        {
+          "title": "2억 가스 한도는 정말 안전한가",
+          "intro": "지난 실행 계층 콜(ACDE)에서 데브넷 8의 느린 블록을 근거로 2억 가스 한도의 안전성에 의문이 제기됐고, 이번 콜에서 심층 분석 결과가 공유됐다.",
+          "decision": "확정 00:19:34",
+          "positions": [
+            {
+              "speaker": "Maria Silva",
+              "text": "Potuz가 서로 다른 시점의 두 공격을 혼동했다고 해명했다. Paweł의 공격은 최악 2.5초 실행으로 느린 블록을 만들지 않았고, Jochem의 공격에서 느렸던 블록은 메모리 집약 공격과 디버그 트레이싱을 동시에 돌린 탓이라며 2억 가스는 실행 시간 관점에서 안전하다고 결론지었다.",
+              "timestamp": "00:17:06",
+              "original": "Sure, I just wanted to clarify, I'm happy to bring this up on another ACD if you guys feel important, but I think it should be… we… I really want to clarify, because on… the last ACDE, there was, this question around, is 200 million still safe, based on the slow blocks we were observing on devnet 8? And. Since then, we did a deep dive, and the takeaways are, yes, we are still safe, and the reason is. So I think Potuz was mixing up two different attacks that happened at two different times. So there was some attacks that Paweł did. And those actually… were not producing slow blocks. They were at worse taking 2.5 seconds to execute. And we verified these by looking at the actual payloads during the devnet, but also, in the meantime, we also deployed that same attack in Benchmark Core. We are benchmarking it, and the worst client is also taking, at most, 2.5 seconds on that attack. So that's… all that… Set of attacks that Paweł was testing. They are safe. Now, there was blocks that were slower, and that happened before the attack that Paweł Eitan, it was something that Jochem was, deploying. And essentially, it was also a JUMPDEST analysis, attack vector. And the main issue was that clients were going out of memory. Once we looked into that, and it… we kind of, like, realized that the issue was actually because we were both running these heavy, memory-intensive thing at the same time as we had the debug traces, on, which is not something we would expect to happen in a normal…",
+              "translation": "네, 그냥 명확히 하고 싶은 부분이 있습니다. 필요하다고 생각하시면 다음 ACD에서 다시 다뤄도 좋습니다만, 명확히 짚고 넘어가고 싶습니다. 지난 ACDE에서, devnet 8에서 관찰된 슬로우 블록(slow block)을 근거로 200 million이 여전히 안전한지에 대한 질문이 있었습니다. 그 이후로 저희가 심층 분석을 진행했고, 결론은 네, 여전히 안전하다는 것입니다. 그 이유는 이렇습니다. 제 생각에 Potuz가 서로 다른 시점에 발생한 두 가지 다른 공격을 혼동한 것 같습니다. Paweł이 진행한 공격들이 있었는데, 이것들은 실제로 슬로우 블록을 발생시키지 않았습니다. 최악의 경우에도 실행에 2.5초가 걸렸을 뿐입니다. 저희는 devnet에서의 실제 페이로드를 살펴봄으로써 이를 검증했고, 동시에 Benchmark Core에서도 동일한 공격을 배포해 벤치마킹했는데, 가장 느린 클라이언트도 해당 공격에 대해 최대 2.5초가 걸렸습니다. 그러니까 Paweł이 테스트하던 그 일련의 공격들은 모두 안전합니다. 한편 더 느렸던 블록들이 있었는데, 이는 Paweł의 공격보다 앞서 발생한 것으로, Jochem이 배포하고 있던 것이었습니다. 이것도 본질적으로는 JUMPDEST 분석(JUMPDEST analysis) 공격 벡터였습니다. 주된 문제는 클라이언트들이 메모리 부족(out of memory) 상태가 되었다는 것이었습니다. 이를 조사해본 결과, 문제는 사실 저희가 디버그 트레이스(debug trace)를 켠 상태에서 동시에 이런 메모리 집약적인 무거운 작업을 실행하고 있었기 때문이라는 것을 알게 되었는데, 이는 일반적인 상황에서는 예상되지 않는 것입니다."
+            },
+            {
+              "speaker": "Justin Florentine",
+              "text": "트레이싱을 끈 상태로 재시뮬레이션을 했는지 물어 재검증 논의의 물꼬를 텄다.",
+              "timestamp": "00:19:59",
+              "viaChat": true
+            },
+            {
+              "speaker": "Stefan Starflinger",
+              "text": "데브넷에서는 아직 트레이싱을 끈 적이 없다고 확인했고, 이후 데브넷 8과 메인넷 섀도 포크 중 하나만 고를 필요 없이 양쪽 모두에서 테스트하자고 제안했다.",
+              "timestamp": "00:20:26",
+              "original": "Yeah, on the devnet, we haven't, turned tracing off. Yeah, I think it would just generally be good to understand all of the differences that there are between running it in the devnet and running it on Benchmarker. I don't think we have to do either or. I think we can do devnet 8 now, and the main fork in the… One and a half, two weeks.",
+              "translation": "네, devnet에서는 트레이싱(tracing)을 끄지 않았습니다. 네, devnet에서 실행하는 것과 Benchmarker에서 실행하는 것 사이의 모든 차이점을 전반적으로 파악해두는 것이 좋을 것 같습니다. 둘 중 하나만 선택해야 한다고 생각하지는 않습니다. 지금 devnet 8을 진행하고, 메인 포크(main fork)는 한 주 반에서 두 주 후에 진행하면 될 것 같습니다."
+            },
+            {
+              "speaker": "Łukasz Rozmej",
+              "text": "가정에 어긋난 것이 없는지 항상 재검증해야 한다며 트레이싱을 끈 재실험에 동의했다.",
+              "timestamp": "00:21:52",
+              "viaChat": true
+            },
+            {
+              "speaker": "Csaba",
+              "text": "네트워크 전파 효과는 실행 차이가 아니어서 벤치마크에는 잡히지 않고 실제 네트워크에서만 드러난다는 점을 상기시켰다.",
+              "timestamp": "00:22:43",
+              "original": "Yeah, I just wanted to mention that That will be much more sapphic. It's just good to be aware it's not an execution difference. So you don't see it on the benchmarks, you only see it on the network. Okay. We will see the effect of it on the network.",
+              "translation": "네, 그냥 언급하고 싶었던 것은, 그것은 훨씬 더 sapphic 할 것이라는 점입니다. 이것이 실행상의 차이가 아니라는 점을 알아두면 좋을 것 같습니다. 그래서 벤치마크에서는 보이지 않고, 네트워크에서만 보이게 됩니다. 알겠습니다. 네트워크에서 그 영향을 확인하게 될 것입니다."
+            }
+          ],
+          "quote": {
+            "text": "지금 우리의 결론은, 벤치마크와 데브넷에서 관찰한 것 모두에 근거해, 적어도 실행 시간 관점에서는 2억 가스가 안전하다는 것이다.",
+            "original": "Our conclusion right now, based both on benchmarks and what we've observed on devnet, is that 200 millions is safe, at least from an execution time perspective.",
+            "speaker": "Maria Silva",
+            "timestamp": "00:17:06"
+          }
+        },
+        {
+          "title": "패스트 컨펌 룰을 위한 새 블록 태그",
+          "intro": "체인링크가 이날 FCR을 가동하는 등 채택이 시작됐지만 RPC 제공자들이 기존 safe 태그와의 하위 호환 문제에 막혀 있어, safe를 재활용하는 대신 새 태그를 만들자는 제안이 나왔다.",
+          "decision": "확정 00:33:25",
+          "positions": [
+            {
+              "speaker": "Julian Ma",
+              "text": "safe 태그를 재활용하는 대신 빠르게 확정된 블록용 새 태그를 만들자고 제안했다. RPC 제공자들이 기존 고객을 위해 justified 블록과 FCR을 동시에 서비스해야 해서 하위 호환 문제가 도입을 막고 있으며, 체인링크가 이날 FCR을 가동했고 다른 브리지와 L2도 원한다고 밝혔다.",
+              "timestamp": "00:24:18",
+              "original": "Yep. Yeah, so I wanted to share some learnings from trying to get adoption for FCR and propose a change, namely to create a new FAST block tag. So today, FCR, or the FAST Confirmation Rule, or the FAST Confirmed Blocks, are served behind the SAFE block tag, with a flag, usually. And the proposal is to create a new FastBlock tag for FastConfirmBlocks. The reason is that, we're seeing backwards compatibility issues. So previously, it was thought that justification, which is served behind SAFE today, wasn't used much, and that FCR has a very, comparable set of assumptions, and so just users that would use justification would be able to move over to FCR, and there wouldn't be many users in general. We're seeing now that while people aren't necessarily arguing against that. It is hindering adoption that RPCs want to be backwards compatible for legal reasons, for many other reasons. And that's why they want to continue serving JustifyBlocks to their customers as well, because apparently there is a cohort of customers that relies on justification. And these backwards compatibility concerns are really hindering adoption, which otherwise is going quite well. So Chainlink just announced that it went live with FCR today. Other bridges and L2s want to use it as well. So really, the blocker is RPC support here, and RPCs in turn are blocked by backwards compatibility. And so the ask is to create a new FAST block tag. Mikhail already made a draft implementation, which I'm linking in the…",
+              "translation": "네. 네, 그래서 FCR(Fast Confirmation Rule) 채택을 추진하면서 얻은 교훈을 공유하고, 새로운 FAST 블록 태그를 만드는 변경을 제안하고 싶습니다. 현재 FCR, 즉 Fast Confirmation Rule 또는 Fast Confirmed Blocks는 보통 플래그와 함께 SAFE 블록 태그 뒤에서 제공되고 있습니다. 제안 내용은 FastConfirmBlocks를 위한 새로운 FastBlock 태그를 만드는 것입니다. 이유는 저희가 하위 호환성(backwards compatibility) 문제를 겪고 있기 때문입니다. 이전에는 현재 SAFE 뒤에서 제공되는 justification이 별로 사용되지 않으며, FCR이 이와 매우 비슷한 가정 집합을 가지고 있어서 justification을 사용하던 사용자들이 FCR로 옮겨갈 수 있고 전반적으로 사용자가 많지 않을 것이라고 생각되었습니다. 그런데 지금 보니, 사람들이 그것에 반드시 반대하는 것은 아니지만, RPC들이 법적인 이유 등 여러 이유로 하위 호환성을 유지하고 싶어하는 것이 채택을 저해하고 있습니다. 그래서 RPC들은 justification 기반 블록(JustifyBlocks)도 고객들에게 계속 제공하고 싶어하는데, 왜냐하면 justification에 의존하는 고객 집단이 실제로 존재하는 것으로 보이기 때문입니다. 그리고 이러한 하위 호환성 우려가 채택을 크게 저해하고 있는데, 그 외에는 채택이 꽤 잘 진행되고 있습니다. Chainlink는 오늘 FCR을 라이브로 적용했다고 발표했습니다. 다른 브리지들과 L2들도 이를 사용하고 싶어합니다. 그래서 실제 병목은 RPC 지원이고, RPC는 다시 하위 호환성 문제에 막혀 있습니다. 그래서 요청 사항은 새로운 FAST 블록 태그를 만드는 것입니다. Mikhail이 이미 초안 구현을 만들어두었고, 이는 제가 링크해두겠습니다."
+            },
+            {
+              "speaker": "Dustin",
+              "text": "justification과 safe의 정의는 CL 스펙 역사 중간에 이미 바뀌었으므로 다시 바꿔도 오래된 호환성을 깨는 것이 아니라고 반론했다.",
+              "timestamp": "00:26:33",
+              "original": "Sure. Yeah. So. Justification could always go forward, backwards, sideways, and any which way it was, as it were, not final. It was sometimes sort of propagandized as being, I was pretty sure that's going to be like this, but Okay, not backwards. But… That was… It was both slow. Although not as slow as finalization, and also not actually final. It was a middle ground which didn't make sense to begin with, and it also was changed… actually, if one looks at the history on the CL specs, maybe this is more from a spec-based argument rather than just my, you know, subjective view. It actually the definition changed of exactly what CL sent in forktories updated at partway through the history of the CL specs to In terms of what Justified was. or what SAFE was. And SAFE became… sort of… the definition has already changed, basically. So, it was not consistent to begin with, and changing it again doesn't really break some kind of long-standing compatibility point. From that perspective.",
+              "translation": "네. 그렇습니다. justification은 항상 앞으로도, 뒤로도, 옆으로도, 어느 방향으로든 갈 수 있었고, 말하자면 파이널(final)하지 않았습니다. 때로는 마치 확정적인 것처럼 다소 과장되게 알려지기도 했는데, 저는 그것이 이런 식일 것이라고 꽤 확신했었습니다만, 뒤로 가지는 않는다고요. 하지만 그것은 느리기도 했습니다. 파이널리티(finalization)만큼 느리지는 않았지만요. 그리고 실제로 파이널하지도 않았습니다. 그것은 애초에 말이 되지 않는 중간 지점이었고, 실제로도 바뀌었습니다. CL 스펙(CL specs)의 이력을 살펴보면, 아마 이것은 제 주관적인 견해라기보다는 스펙에 근거한 논거에 가까울 것입니다. 실제로 CL이 forkchoiceUpdated에서 보내는 정의가, CL 스펙 이력 중간에 justified가 정확히 무엇인지, 혹은 SAFE가 무엇인지에 대해 바뀌었습니다. 그리고 SAFE는, 말하자면, 이미 정의 자체가 바뀐 상태입니다. 그러니 애초부터 일관성이 없었던 것이고, 그것을 다시 바꾼다고 해서 어떤 오래된 호환성 지점을 깨뜨리는 것은 아닙니다. 그런 관점에서 보면 그렇습니다."
+            },
+            {
+              "speaker": "Jihoon",
+              "text": "'fast' 블록이 있으면 느린 블록은 무엇이냐며 'confirmed'에 투표했고, 이 이름이 채팅에서 다수의 지지를 얻어 결정 3으로 이어졌다.",
+              "timestamp": "00:28:16",
+              "viaChat": true,
+              "original": "Not sure if it has to be 4-letters, but I'd vote for  confirmed . fast block makes me wonder what's slow block then 🤷‍♂️",
+              "translation": "4글자여야 하는지는 잘 모르겠지만, 저는 confirmed에 투표하겠습니다. fast block이라고 하면 그러면 slow block은 무엇인지 궁금해집니다."
+            },
+            {
+              "speaker": "Mikhail Kalinin",
+              "text": "원칙적으로 하드포크는 필요 없지만 CL과 EL 간 조율이 필요하며, 엔진 API의 capabilities 엔드포인트를 활용할 수 있다고 설명했다.",
+              "timestamp": "00:33:25",
+              "original": "It does not require a hard fork in principle, but it requires coordination between CL and EL, but they will, yeah, they can use the capability, the capabilities endpoint of Engine API, I guess. So… Yeah, I don't know. Maybe hard fork would be helpful, but yeah, not necessary. Because, we are, we are, we will add a new, a new hash to FCU, so we will have to update the FCU. And, if we don't do it as a part of the hard fork, like, the CL will have to To know if, like, EL supports and you… Hash in FCU. Yeah, just, because we want this, this new tag in, in, in JSON RPC. Yeah, but then CL will need to somehow communicate that, what's passed on the FCU. it's not justified anymore. I mean, like, if we… if you safe block hash for this, is this what you mean? Yeah, that's… that's one of the options, but yeah, maybe, Julian. And share his opinion on that. Why do we want this in the… I don't know, India. RPC, like in the JSON-RPC.",
+              "translation": "원칙적으로는 하드포크(hard fork)가 필요하지 않지만, CL과 EL 간의 조정은 필요합니다. 다만 Engine API의 capabilities 엔드포인트를 사용할 수 있을 것 같습니다. 그러니까 잘 모르겠습니다. 하드포크가 도움이 될 수도 있지만, 필수는 아닙니다. 왜냐하면 저희는 FCU에 새로운 해시를 추가할 것이기 때문에, FCU를 업데이트해야 할 것입니다. 그리고 이것을 하드포크의 일부로 하지 않는다면, CL은 EL이 FCU에서 이 해시를 지원하는지 알아야 할 것입니다. 네, 그냥, 저희가 JSON RPC에 이 새로운 태그를 넣고 싶기 때문입니다. 하지만 그러면 CL은 FCU에서 전달된 것이 더 이상 justified가 아니라는 것을 어떻게든 전달해야 할 것입니다. 그러니까, 이것을 위해 safe 블록 해시를 사용한다는 말씀이신가요? 네, 그것도 한 가지 옵션이긴 합니다만, Julian이 이에 대한 의견을 공유해줄 수도 있을 것 같습니다. 왜 이것을 JSON-RPC에 넣고 싶어하는지 말입니다."
+            },
+            {
+              "speaker": "Potuz",
+              "text": "FCR은 소수 노드만 쓸 선택 기능인데 왜 기본 노드 동작을 바꾸느냐며, 필요한 운영자만 호환 조합을 돌리게 하고 대다수 노드의 FCU는 건드리지 말자고 Mikhail에게 반박했다.",
+              "timestamp": "00:34:12",
+              "original": "Why do you want to change the normal node behavior? I thought we were just talking about this FCR as something that's optional, very few nodes would be running it. Why do we need to change the default node behavior? But why don't you just make it optional? If the EL supports it, it's fine. The node operator that is running this node should know this, that it's supporting it. And the rest majority of mortals will not care about this, neither this fork nor the next fork. I'm just saying that we have now, some nodes that are able to serve fast. And this is going to be the very few nodes on Mainnet that are going to be using this. We can just keep having this as an optional thing, that very few nodes… node operators set up in versions that know that they support this, and we just don't affect FCU at all. Why would we need to, like, change FCU on nodes?",
+              "translation": "왜 일반 노드의 동작을 바꾸려고 하시나요? 저는 이 FCR이 선택적인 것이고 극소수의 노드만 실행할 것이라는 이야기를 하고 있는 줄 알았습니다. 왜 기본 노드 동작을 바꿔야 하나요? 그냥 선택적으로 만들면 안 되나요? EL이 이를 지원하면 괜찮습니다. 이 노드를 운영하는 노드 운영자는 자신이 이를 지원한다는 것을 알고 있어야 합니다. 그리고 대다수의 평범한 사람들은 이번 포크든 다음 포크든 신경 쓰지 않을 것입니다. 저는 그저 지금 fast를 제공할 수 있는 노드들이 일부 있다는 것을 말씀드리는 것입니다. 그리고 이것은 Mainnet에서 이를 사용하게 될 극소수의 노드일 뿐입니다. 저희는 이를 계속 선택적인 것으로 유지하면서, 이를 지원한다는 것을 아는 소수의 노드 운영자들만 이를 설정하도록 하고, FCU는 전혀 건드리지 않을 수 있습니다. 왜 노드에서 FCU를 바꿔야 하는 거죠?"
+            },
+            {
+              "speaker": "Enrico Del Fante",
+              "text": "기본값에서는 새 필드를 아예 넣지 않고 CL에서 FCR을 켤 때만 추가하면 일반 사용자에게 완전히 투명한 수동 선택 기능이 된다며 Potuz와 같은 취지로 정리했다.",
+              "timestamp": "00:37:14",
+              "original": "I mean, the easiest way is just not… not… Put this field into it by default, and then just add it when the fast confirmation is enabled on the… on the CL side, and when you do that, you want to make sure that your counterparty on the EL side also supports that. So it's a completely manual and optional To enable, otherwise it would be completely transparent for normal users.",
+              "translation": "제 생각에 가장 쉬운 방법은 그냥 이 필드를 기본값으로 넣지 않는 것입니다. 그리고 CL 쪽에서 fast confirmation이 활성화되었을 때만 이를 추가하는 것입니다. 그렇게 할 때는 EL 쪽의 상대방도 이를 지원하는지 확실히 해야 합니다. 그러니까 이는 완전히 수동이고 선택적으로 활성화하는 것이며, 그렇지 않으면 일반 사용자들에게는 완전히 투명하게 작동할 것입니다."
+            }
+          ],
+          "quote": {
+            "text": "이 하위 호환성 우려가, 그 외에는 꽤 잘 진행되고 있는 도입을 정말로 가로막고 있다.",
+            "original": "And these backwards compatibility concerns are really hindering adoption, which otherwise is going quite well.",
+            "speaker": "Julian Ma",
+            "timestamp": "00:24:18"
+          }
+        },
+        {
+          "title": "JUMPDEST 공격, 데브넷과 벤치마크의 격차",
+          "intro": "같은 JUMPDEST 분석 공격이 벤치마크 코어(Benchmark Core)에서는 최악 2.5초인데 데브넷 8에서는 1억 가스 블록에 약 5초가 걸려, 격차의 원인과 가스 리프라이싱 필요성이 논의됐다.",
+          "positions": [
+            {
+              "speaker": "Daniel Lehrner",
+              "text": "Paweł의 공격은 약 4.4GB의 컨트랙트를 디스크에서 로드해야 했고 Besu에서는 코드 캐시가 전부 축출됐다며, 컨트랙트 로딩이 분명한 요인이라고 짚었다.",
+              "timestamp": "00:48:50",
+              "original": "But, I mean, the test that Paweł did, we needed to load around 4.4GB of contracts from disk, so I mean, that's definitely a factor. It's just you need to load the contract and then do the JUMPDEST. It's like both… In Besu's case, it was also because, The existing state, and how many contracts are loaded during this block. completely… Gaozi, So basically, we have the code… we have a code cache. This test is loading so many contracts, basically, that we have evicted Everything that is not our cache. So, I mean… In a way, it does depend a bit how much of the contract… you have already in your cache or not. So, if the state is bigger, you have a smaller percentage. Yeah, yeah, yeah, I mean, that's, that, that, that on top of it. This is for sure. If the BALs are still available, then I think you can do a performance check. If the BALs are not available, you run slower than during the normal… Block import. So, I mean, if you do a full sync and the BALs are not available anymore, it is blocked, and then you're definitely slower. What would have been otherwise.",
+              "translation": "하지만 제 말은, Paweł이 진행한 테스트에서는 디스크에서 약 4.4GB의 컨트랙트를 로드해야 했으니, 그것도 분명히 하나의 요인입니다. 컨트랙트를 로드한 다음 JUMPDEST를 수행해야 하니까요. 이건 둘 다인데, Besu의 경우, 기존 상태(state)와 이 블록 동안 얼마나 많은 컨트랙트가 로드되는지도 원인이었습니다. 완전히 Gaozi, 그러니까 기본적으로 저희에게는 코드 캐시(code cache)가 있습니다. 이 테스트는 너무 많은 컨트랙트를 로드해서 사실상 저희 캐시에 있지 않은 모든 것을 몰아낸(evict) 것입니다. 그러니까 어느 정도는 이미 캐시에 얼마나 많은 컨트랙트가 있는지에 따라 달라집니다. 상태(state)가 더 크면, 그 비율이 더 작아집니다. 네, 네, 네, 그리고 그 위에 이것도 더해집니다. 이건 확실합니다. BAL(Block Access List)이 여전히 사용 가능하다면, 성능 확인을 할 수 있을 것 같습니다. BAL이 사용 가능하지 않다면, 일반적인 블록 임포트(block import) 때보다 더 느리게 실행됩니다. 그러니까, 만약 풀 싱크(full sync)를 하는데 BAL이 더 이상 사용 가능하지 않다면, 막히게 되고, 그러면 원래보다 확실히 더 느려집니다."
+            },
+            {
+              "speaker": "Dragan Rakita",
+              "text": "문제 블록의 실행 시간이 일관되게 5초 안팎이라고 확인하고, JUMPDEST 가스를 올리거나 모든 클라이언트가 Nethermind처럼 최적화하는 두 갈래 길을 제시했다. reth는 며칠에서 1주 안에 크게 최적화할 계획이라고 밝혔다.",
+              "timestamp": "00:52:26",
+              "original": "I'm looking at the block that Paweł shared. It seems that we have consistent around 5 seconds of execution time. Four six, four seven to like five. 5, 5, 5, 6. And this is one block that has 100 million gas. So if you dub. Double that… maybe with BAL it's not going to be double time, but it's going to… Strain your cores. Either way, There is like two paths. This seems okay to go with it. This is a TAG, but it seems that we are 5 seconds should be okay to propagate everything. The question is, do we want to increase the gas for the JUMPDEST analysis, or… push every client to make optimization the same as that Nethermind did, basically with some specific instructions. From reth's side, we are going to optimize it, so it should be a lot lower in a few days, maybe a week. But either way, it's up to the group.",
+              "translation": "Paweł이 공유한 블록을 보고 있습니다. 저희는 대략 5초의 실행 시간을 꾸준히 보이는 것 같습니다. 4.6, 4.7에서 5 정도까지요. 5, 5, 5, 6. 그리고 이건 100 million 가스인 블록 하나입니다. 그러니 이걸 두 배로 하면, BAL이 있으면 시간이 두 배가 되지는 않겠지만, 코어에 부담을 줄 것입니다. 어느 쪽이든, 두 가지 방향이 있는 것 같습니다. 이대로 진행해도 괜찮아 보입니다. 이건 태그입니다만, 5초면 모든 것을 전파하기에 괜찮을 것 같습니다. 문제는, JUMPDEST 분석에 대한 가스를 인상하고 싶은지, 아니면 모든 클라이언트가 Nethermind가 특정 명령어로 했던 것과 같은 최적화를 하도록 밀어붙이고 싶은지입니다. reth 쪽에서는 저희가 최적화를 진행할 예정이라, 며칠 내로, 아마 일주일 내로 훨씬 낮아질 것입니다. 하지만 어느 쪽이든, 이건 그룹에 달려 있습니다."
+            },
+            {
+              "speaker": "Maria Silva",
+              "text": "벤치마크 코어에서는 2억 가스 블록도 최악 2.5초라며, 디버그 트레이서를 끄고 측정하기 전에는 리프라이싱 결정을 해서는 안 된다고 Dragan이 제기한 리프라이싱 안에 반대했다.",
+              "timestamp": "00:53:41",
+              "original": "Yeah, I'm still not convinced about the repricing, to be honest, because again, like, we are running this on Benchmark Core, and the worst case is 2.5 seconds with a 200 million block. So, until we actually measure this without the debug tracer on, I don't think we should make any repricing decisions, to be honest.",
+              "translation": "네, 솔직히 말씀드리면 저는 여전히 리프라이싱(repricing)에 대해 확신이 서지 않습니다. 왜냐하면 다시 말씀드리지만, 저희는 이것을 Benchmark Core에서 실행하고 있고, 200 million 블록에서 최악의 경우가 2.5초이기 때문입니다. 그러니 디버그 트레이서(debug tracer)를 끈 상태에서 실제로 이를 측정하기 전까지는, 솔직히 어떤 리프라이싱 결정도 내려서는 안 된다고 생각합니다."
+            },
+            {
+              "speaker": "Parithosh Jayanthi",
+              "text": "데브넷은 네트워크 연결 디스크를 쓰는 클라우드 드로플렛에서 돌아 전용 하드웨어인 벤치마커와 지연이 다르므로, 데브넷 결과가 위양성일 수 있다고 지적했다.",
+              "timestamp": "00:55:13",
+              "original": "There's maybe only… there's, like, one other data point here, especially when you're trying to do a lot of database reads, since we're running on, like, cloud droplets, they would perform differently than what Benchmarker has. Benchmarker has more dedicated machinery that That's sort of closer to what people run on Mainnet. So it might also just be a false positive that we see on devnets, because it involves reading from disk. Exactly. So the latency would also be different. Yeah.",
+              "translation": "여기에 아마 데이터 포인트가 하나 더 있는 것 같습니다. 특히 데이터베이스 읽기(database read)를 많이 시도할 때, 저희는 클라우드 드롭릿(cloud droplet) 같은 곳에서 실행하고 있기 때문에, Benchmarker가 가지고 있는 것과는 성능이 다를 것입니다. Benchmarker는 사람들이 Mainnet에서 실행하는 것에 더 가까운, 더 전용화된 장비를 가지고 있습니다. 그러니 이것은 디스크에서 읽어오는 것을 포함하기 때문에, devnet에서 저희가 보는 것이 그냥 오탐(false positive)일 수도 있습니다. 맞습니다. 그러니 레이턴시(latency)도 다를 것입니다. 네."
+            },
+            {
+              "speaker": "Ben Adams",
+              "text": "최적화 전 벤치마크에서 한 코어로 2초 걸리던 것이 지금은 0.3초라며, 디스크 로딩만이 아니라 분석 자체가 문제라고 Daniel의 진단을 보완했다.",
+              "timestamp": "00:55:54",
+              "original": "I mean, before we did optimization, some of the benchmarker tests were like, if you ran it on one core, we were. 2 seconds, and now… We're, like.3. So, I mean, I don't think it's just loading it from disk, it's the actual analysis. I mean, can we switch off the debug trace on devnet and then retry it? I don't know if… There was a conclusion on that. Okay, that's a good point, because, Barnabas said they just… Just switched to our 2.0 release this morning, so that doesn't have the optimizations in. All right. Yeah, if you can swap back to our main branch and then before doing the test. Because we'll have that out for, Hoodi. But we don't have it for Sepolia.",
+              "translation": "저희가 최적화를 하기 전에는, 벤치마커 테스트 중 일부가, 코어 하나로 실행했을 때 2초 정도였는데, 지금은 0.3초 정도입니다. 그러니까 이게 단순히 디스크에서 로드하는 것 때문만은 아니고, 실제 분석(analysis) 자체 때문이라고 생각합니다. devnet에서 디버그 트레이스를 꺼보고 다시 시도해볼 수 있을까요? 그것에 대한 결론이 있었는지 모르겠습니다. 좋은 지적입니다. Barnabas가 오늘 아침에 막 저희 2.0 릴리스로 전환했다고 했으니, 거기에는 최적화가 들어있지 않습니다. 알겠습니다. 그러면 테스트를 하기 전에 메인 브랜치(main branch)로 다시 바꿀 수 있다면 좋겠습니다. Hoodi를 위해서는 그것을 내놓을 예정이지만, Sepolia를 위해서는 아직 없습니다."
+            }
+          ],
+          "quote": {
+            "text": "디버그 트레이서를 끄고 실제로 측정하기 전까지는 어떤 리프라이싱 결정도 내려서는 안 된다고 생각한다.",
+            "original": "Until we actually measure this without the debug tracer on, I don't think we should make any repricing decisions.",
+            "speaker": "Maria Silva",
+            "timestamp": "00:53:41"
+          }
+        }
+      ],
+      "speakers": [
+        {
+          "label": "Justin Traglia",
+          "name": "Justin Traglia",
+          "org": "EF",
+          "role": "보안",
+          "handle": "JustinTraglia",
+          "avatar": "https://pbs.twimg.com/profile_images/1648459994256543744/fn_SnKW5_400x400.jpg",
+          "share": 0.255
+        },
+        {
+          "label": "Stefan Starflinger",
+          "name": "Stefan Starflinger",
+          "org": "EF DevOps",
+          "share": 0.109
+        },
+        {
+          "label": "Maria Silva",
+          "name": "Maria Silva",
+          "role": "EIP-8037 제1저자",
+          "handle": "misilva73",
+          "avatar": "https://pbs.twimg.com/profile_images/1551690804594458624/elGlKFpy_400x400.jpg",
+          "share": 0.098
+        },
+        {
+          "label": "Julian Ma",
+          "name": "Julian Ma",
+          "share": 0.073
+        },
+        {
+          "label": "Barnabas",
+          "name": "Barnabas Busa",
+          "org": "EF DevOps",
+          "handle": "BarnabasBusa",
+          "avatar": "https://pbs.twimg.com/profile_images/534855342300352514/m-C5ReWq_400x400.jpeg",
+          "share": 0.056
+        },
+        {
+          "label": "Parithosh Jayanthi",
+          "name": "Parithosh Jayanthi",
+          "org": "EF DevOps",
+          "handle": "parithosh_j",
+          "avatar": "https://pbs.twimg.com/profile_images/1257719305459904512/x5MkzrAf_400x400.jpg",
+          "share": 0.053
+        },
+        {
+          "label": "Daniel Lehrner",
+          "name": "Daniel Lehrner",
+          "share": 0.053
+        },
+        {
+          "label": "Mario Vega",
+          "name": "Mario Vega",
+          "org": "EF",
+          "role": "테스팅, ACDT 진행",
+          "handle": "elbuenmayini",
+          "avatar": "https://pbs.twimg.com/profile_images/1616232824415342592/Wly-1ddA_400x400.jpg",
+          "share": 0.048
+        },
+        {
+          "label": "Mikhail Kalinin",
+          "name": "Mikhail Kalinin",
+          "share": 0.045
+        },
+        {
+          "label": "Ben Adams",
+          "name": "Ben Adams",
+          "org": "Nethermind",
+          "handle": "ben_a_adams",
+          "avatar": "https://pbs.twimg.com/profile_images/1282411238602006529/l4lHaQHE_400x400.jpg",
+          "share": 0.043
+        },
+        {
+          "label": "Dustin",
+          "name": "Dustin Brody",
+          "org": "Sigma Prime",
+          "role": "Lighthouse",
+          "share": 0.035
+        },
+        {
+          "label": "Dragan Rakita",
+          "name": "Dragan Rakita",
+          "org": "Tempo",
+          "role": "revm 저자",
+          "handle": "rakitadragan",
+          "avatar": "https://pbs.twimg.com/profile_images/1622380143799943169/2D-5fxsO_400x400.jpg",
+          "share": 0.033
+        },
+        {
+          "label": "Potuz",
+          "name": "Potuz",
+          "org": "Offchain Labs",
+          "role": "Prysm",
+          "handle": "potuz_eth",
+          "avatar": "https://pbs.twimg.com/profile_images/1494001194427158539/bfrZyMsG_400x400.jpg",
+          "share": 0.03
+        },
+        {
+          "label": "Csaba",
+          "name": "Csaba",
+          "share": 0.015
+        },
+        {
+          "label": "Enrico Del Fante",
+          "name": "Enrico Del Fante",
+          "org": "Consensys",
+          "role": "Teku",
+          "handle": "tbenr",
+          "avatar": "https://pbs.twimg.com/profile_images/1425021438269050892/3IRr4G_z_400x400.jpg",
+          "share": 0.015
+        },
+        {
+          "label": "danceratopz",
+          "name": "danceratopz",
+          "org": "EF",
+          "role": "테스팅",
+          "handle": "danceratopz",
+          "avatar": "https://pbs.twimg.com/profile_images/1478357444132839427/sxWspbwH_400x400.jpg",
+          "share": 0.015
+        },
+        {
+          "label": "Louis",
+          "name": "Louis",
+          "share": 0.01
+        },
+        {
+          "label": "Marius van der Wijden",
+          "name": "Marius van der Wijden",
+          "org": "EF",
+          "role": "geth",
+          "handle": "vdWijden",
+          "avatar": "https://pbs.twimg.com/profile_images/1334610351976026113/o0FQPHZX_400x400.jpg",
+          "share": 0.008
+        },
+        {
+          "label": "Justin Florentine",
+          "name": "Justin Florentine",
+          "org": "Besu",
+          "share": 0.003
+        },
+        {
+          "label": "Łukasz Rozmej",
+          "name": "Łukasz Rozmej",
+          "org": "Nethermind",
+          "role": "EIP-8037 공동 저자",
+          "share": 0
+        },
+        {
+          "label": "Jihoon",
+          "name": "Jihoon",
+          "share": 0
+        }
+      ],
+      "chat": [
+        {
+          "speaker": "Łukasz Rozmej",
+          "text": "디버그 트레이싱이 없는 대조군을 둬야 한다.",
+          "timestamp": "00:44:52"
+        },
+        {
+          "speaker": "Toni Wahrstätter",
+          "text": "내 이해로는 EL이 RPC 사용자에게 이 값을 노출하려면 엔진 API에 넣어야 한다.",
+          "timestamp": "00:36:44"
+        },
+        {
+          "speaker": "Justin Florentine",
+          "text": "꽤 무서운 공격이지만 실험실에 고립돼 있고, 실제 적용된 형태로는 아직 재현해 보지 못한 것으로 들린다.",
+          "timestamp": "00:56:24"
+        }
+      ],
+      "glossary": [
+        {
+          "term": "FCR",
+          "def": "패스트 컨펌 룰(Fast Confirmation Rule). 최종 확정보다 훨씬 빨리 블록을 확정된 것으로 간주하는 규칙"
+        },
+        {
+          "term": "블록 태그(block tag)",
+          "def": "RPC에서 latest, safe, finalized처럼 특정 상태의 블록을 가리키는 이름표"
+        },
+        {
+          "term": "FCU",
+          "def": "forkchoiceUpdated. CL이 EL에 체인 헤드와 안전·확정 블록을 알리는 엔진 API 호출"
+        },
+        {
+          "term": "JUMPDEST 분석",
+          "def": "EVM이 컨트랙트 실행 전에 점프 가능 지점을 훑는 과정. 큰 코드를 반복 로드시켜 노드를 느리게 하는 공격에 쓰였다"
+        },
+        {
+          "term": "디버그 트레이싱(debug tracing)",
+          "def": "블록 실행의 모든 단계를 JSON으로 기록하는 기능. 기가바이트급 출력으로 노드를 크게 느리게 만든다"
+        },
+        {
+          "term": "섀도 포크(shadow fork)",
+          "def": "실제 네트워크 상태를 복제해 포크를 미리 연습하는 테스트"
+        },
+        {
+          "term": "벤치마크 코어(Benchmark Core)",
+          "def": "CL 없이 EL만 전용 하드웨어에서 돌려 블록 실행 시간을 재는 벤치마킹 환경"
+        },
+        {
+          "term": "데브넷(devnet)",
+          "def": "새 포크 기능을 시험하는 개발용 임시 네트워크. 이번 콜의 devnet-8은 글램스터담(Glamsterdam)용이다"
+        }
+      ],
+      "eips": [],
+      "relatedDebates": [],
+      "telegramMessageId": 1624
+    },
     {
       "id": "acde-246",
       "series": "acde",
@@ -13727,13 +14195,13 @@
     "currentFork": {
       "name": "글램스터담",
       "stage": "테스트넷 단계",
-      "line": "세폴리아 10월 6일 확정 · 후디 10월 27일 잠정, 10월 8일 결정"
+      "line": "세폴리아 10월 6일 확정 · 후디 잠정 10월 27일, 10월 8일 결정"
     },
     "nextFork": {
       "name": "헤고타",
       "stage": "범위 정하는 중",
-      "line": "헤드라이너 EIP-8141 확정 · CFI 11건 · 데브넷 데브콘 전 목표"
+      "line": "CFI 11건 · 프레임+FOCIL 통합 데브넷 데브콘 이전 목표"
     },
-    "basis": "acde-246"
+    "basis": "acdt-98"
   }
 }
