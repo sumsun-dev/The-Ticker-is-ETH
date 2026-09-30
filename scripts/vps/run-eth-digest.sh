@@ -7,6 +7,8 @@
 #   2) claude CLI 설치·로그인 (구독 인증 — API 키 불필요)
 #   3) .env에 TELEGRAM_BOT_TOKEN 설정
 #   4) crontab: 40 0 * * * /home/gv/projects/the-ticker-is-eth/scripts/vps/run-eth-digest.sh >> ~/logs/eth-digest.log 2>&1
+#              0 9 * * * /home/gv/projects/the-ticker-is-eth/scripts/vps/run-eth-digest.sh calls >> ~/logs/eth-digest.log 2>&1
+#      두 번째 줄은 저녁(18:00 KST) 콜 브리프 게시. 다이제스트가 올라간 날 아침엔 콜을 미뤄 두 글이 겹치지 않게 한다.
 set -euo pipefail
 
 # 본문을 함수로 감싼다: bash는 함수 정의를 끝까지 파싱한 뒤 실행하므로, 아래 git pull이 이 파일을 바꿔도
@@ -16,6 +18,14 @@ main() {
 
   # --autostash: 이전 실행이 남긴 미커밋 산출물이 있어도 pull이 막히지 않게
   git pull --rebase --autostash origin main
+
+  # 저녁 실행: 아침에 미뤄 둔 콜 브리프만 올린다
+  if [ "${1:-}" = calls ]; then
+    CALLS_CHAT=@thetickeriseth npx tsx scripts/post-calls-telegram.ts || true
+    commit_and_push "chore: publish call briefs [automated]"
+    return
+  fi
+
   npx tsx scripts/generate-eth-digest.ts
   npx tsx scripts/sync-x-profiles.ts
   npx tsx scripts/extract-eth-debates.ts
@@ -23,13 +33,29 @@ main() {
   npx tsx scripts/notify-debates.ts || true
   npx tsx scripts/extract-eth-calls.ts
   npx tsx scripts/render-digest-cover.ts
+  local before after
+  before=$(latest_digest_message_id)
   npx tsx scripts/post-digest-telegram.ts
+  after=$(latest_digest_message_id)
   # 새로 정리된 코어 개발자 콜 브리프를 채널에 (올린 콜은 eth-calls.json에 telegramMessageId 기록). 실패해도 커밋은 진행
-  CALLS_CHAT=@thetickeriseth npx tsx scripts/post-calls-telegram.ts || true
+  # 방금 다이제스트를 올렸으면 콜은 저녁 실행(calls)으로 미룬다. 같은 시각에 올라오면 하나가 묻힌다(오너, 2026-09-30)
+  if [ "$after" != "$before" ]; then
+    echo "[DEFER] digest posted this morning, call briefs go out in the evening run"
+  else
+    CALLS_CHAT=@thetickeriseth npx tsx scripts/post-calls-telegram.ts || true
+  fi
 
+  commit_and_push "chore: publish eth digest [automated]"
+}
+
+latest_digest_message_id() {
+  node -p "require('./src/data/eth-digests.json').digests[0]?.telegramMessageId ?? ''"
+}
+
+commit_and_push() {
   git add src/data/eth-digests.json src/data/eth-debates.json src/data/eth-calls.json src/data/x-profiles.json public/assets/digests/
   git diff --cached --quiet || (
-    git commit -m "chore: publish eth digest [automated]" &&
+    git commit -m "$1" &&
     git pull --rebase --autostash origin main &&
     git push origin main
   )
