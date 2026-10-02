@@ -128,6 +128,7 @@ const staticRoutes: SitemapEntry[] = [
     { loc: '/contributors', changefreq: 'weekly', priority: '0.7' },
     { loc: '/ecosystem', changefreq: 'monthly', priority: '0.7' },
     { loc: '/events', changefreq: 'weekly', priority: '0.7' },
+    { loc: '/events/ek1-genesis', changefreq: 'monthly', priority: '0.6' },
 ];
 
 const contentEntries: SitemapEntry[] = contents.map((c) => ({
@@ -516,8 +517,15 @@ const staticPages: StaticPage[] = [
     {
         path: 'events',
         title: 'Events',
-        description: 'Ethcon Korea 등 이더리움 이벤트 일정과 소식.',
-        bodyHtml: `<h1>Events</h1><p>Ethcon Korea를 비롯한 이더리움 이벤트 소식을 전합니다.</p>`,
+        description: 'Ethereum Korea One, Ethcon Korea 등 ECK가 함께한 이더리움 행사 기록.',
+        bodyHtml: `<h1>Events</h1><p>ECK가 함께 만들거나 참여한 이더리움 행사 기록입니다.</p><p><a href="/events/ek1-genesis">Ethereum Korea One Genesis (2026.09.28–29)</a></p>`,
+        jsonLd: [],
+    },
+    {
+        path: 'events/ek1-genesis',
+        title: 'Ethereum Korea One · Genesis',
+        description: 'Ethereum Korea One Genesis(2026.09.28–29) 행사 기록. Day 1 기관 초청 행사와 Day 2 빌더 데이의 세션 요약, 전문, 현장 사진.',
+        bodyHtml: `<h1>Ethereum Korea One · Genesis</h1><p>2026.09.28 – 09.29. Day 1 기관 초청 행사(콘래드 서울)와 Day 2 빌더 데이 Build Beyond the Narrative(성수)의 세션 기록입니다.</p>`,
         jsonLd: [],
     },
 ];
