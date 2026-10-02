@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-29T01:06:16.638Z",
+  "updatedAt": "2026-10-02T00:53:52.114Z",
   "processedDigests": [
     "2026-08-24",
     "2026-08-25",
@@ -21,9 +21,139 @@
     "2026-09-19",
     "2026-09-22",
     "2026-09-25",
-    "2026-09-29"
+    "2026-09-29",
+    "2026-10-02"
   ],
   "debates": [
+    {
+      "id": "do-layers-add-intermediaries",
+      "title": "레이어드 스케일링과 토큰화는 중개자를 없애는가, 더하는가?",
+      "category": "확장성 · L2",
+      "summary": "EF RIG의 Julian Ma가 제대로 된 토큰화와 레이어드 스케일링(layered scaling)은 중개자를 제거하고 커스터마이즈 가능성을 더한다고 정리하자, L2BEAT의 donnoh가 '레이어는 중개자를 더한다'고 한 줄로 맞받으며 L2 확장 서사의 핵심 전제를 두고 갈렸다.",
+      "keyPoints": [
+        "토큰화와 레이어드 스케일링은 전통 금융의 중개자를 제거하는가, 아니면 시퀀서·브리지 같은 새 신뢰 주체(레이어)를 더하는가?",
+        "체인이 공식 장부(ledger of record)가 되는 구조에서 실제로 탈중개가 일어나는가?",
+        "레이어가 더하는 것이 '커스터마이즈 가능성'인가 '중개자'인가?"
+      ],
+      "background": "레이어드 스케일링은 이더리움 L1 위에 L2 롤업(rollup) 등 여러 계층을 쌓아 처리량을 늘리는 확장 전략이다. 이 서사에서 토큰화된 자산은 체인 자체가 공식 장부가 되어 전통 금융의 예탁·정산 중개자를 없앤다고 설명된다. 반면 L2BEAT는 각 L2가 시퀀서, 브리지, 증명 시스템 등 새로운 신뢰 가정(trust assumption)을 도입한다는 점을 상시 평가해 온 곳으로, 레이어 하나하나가 곧 새로운 중개자일 수 있다고 본다. 이 교환은 Julian Ma가 대학 토큰화 강연 주제를 크라우드소싱하는 스레드에서 오갔다.",
+      "whyItMatters": "L2 중심 확장 전략의 공식 낙관 서사와, L2의 신뢰 가정을 감시해 온 쪽의 시각차가 한 문장으로 응축된 장면이다. 로빈후드 같은 기업의 자산 토큰화 수용이 늘수록 '레이어가 탈중개를 가져오는가, 새 중개자를 끼워 넣는가'라는 긴장은 커질 수밖에 없으며, 실제로 각 레이어의 신뢰 가정이 사용자에게 어떤 카운터파티 리스크를 남기는지를 지켜봐야 한다.",
+      "sources": [],
+      "keywords": [
+        "layers add intermediaries",
+        "tokenization intermediaries",
+        "layered scaling",
+        "ledger of record"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "제대로 하면 중개자를 없앤다",
+          "holders": [
+            {
+              "handle": "_julianma",
+              "name": "Julian",
+              "role": "EF RIG 리서처",
+              "avatar": "https://pbs.twimg.com/profile_images/1547668260383993858/Nnl7DnFp_400x400.jpg"
+            }
+          ],
+          "points": [
+            "제대로 된 토큰화는 새 중개자를 만드는 대신 전통 금융의 중개자를 제거한다.",
+            "레이어드 스케일링은 로빈후드 같은 기업이 자신의 사업을 프로그래밍하고 자산을 토큰화하도록 이끄는 동력이며, 레이어는 커스터마이즈 가능성을 더한다."
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "레이어는 중개자를 더한다",
+          "holders": [
+            {
+              "handle": "donnoh_eth",
+              "name": "donnoh.gwei 💗",
+              "role": "L2BEAT 리서치 총괄",
+              "avatar": "https://pbs.twimg.com/profile_images/1906978600311521280/aSbKSjtX_400x400.jpg"
+            }
+          ],
+          "points": [
+            "레이어가 '커스터마이즈 가능성'을 더한다는 정리에 맞서, 레이어는 (시퀀서·브리지 같은) 중개자를 더한다고 반박한다."
+          ]
+        },
+        {
+          "stance": "other",
+          "label": "토큰화 낙관론",
+          "holders": [
+            {
+              "handle": "binji_x",
+              "name": "binji",
+              "role": "EthLabs, 이더리움 커뮤니케이션·커뮤니티",
+              "avatar": "https://pbs.twimg.com/profile_images/2057797822666473472/Ns8EleJw_400x400.jpg"
+            }
+          ],
+          "points": [
+            "토큰화는 프로그래머빌리티라는 결과로 프레이밍하는 것이 유용하며, 인터넷이 정보에 한 일을 토큰화가 가치에 한다."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-09-29",
+          "by": "_julianma",
+          "stance": "pro",
+          "quote": "제대로 하면 토큰화는 새 중개자를 만드는 대신 중개자를 제거할 수 있다.",
+          "url": "https://x.com/_julianma/status/2104972985211772945",
+          "digest": "2026-10-02",
+          "replyTo": "_julianma",
+          "relation": "reply",
+          "original": "@_julianma @binji_x how tokenization, when done right, can remove intermediaries instead of creating new ones",
+          "translation": "토큰화(tokenization)가 제대로 이루어지면 어떻게 새로운 중개자를 만드는 대신 중개자를 제거할 수 있는지에 대한 이야기"
+        },
+        {
+          "date": "2026-09-29",
+          "by": "_julianma",
+          "stance": "pro",
+          "quote": "레이어드 스케일링의 중요성과, 그것이 로빈후드 같은 기업이 자신의 사업을 프로그래밍하고 자산을 토큰화하도록 이끄는 방식.",
+          "url": "https://x.com/_julianma/status/2104976681593459069",
+          "digest": "2026-10-02",
+          "replyTo": "_julianma",
+          "relation": "reply",
+          "original": "@_julianma the importance of layered scaling and how it leads to companies like robinhood programming their business and tokenizing their assets",
+          "translation": "계층화된 스케일링(layered scaling)의 중요성, 그리고 그것이 어떻게 로빈후드(Robinhood) 같은 기업들이 자신들의 비즈니스를 프로그래밍하고 자산을 토큰화하도록 이끄는지에 대한 이야기"
+        },
+        {
+          "date": "2026-09-29",
+          "by": "binji_x",
+          "stance": "other",
+          "quote": "토큰화를 그것이 가져오는 결과, 특히 프로그래머빌리티 관점에서 프레이밍하는 것이 매우 유용하다. 인터넷이 정보에 한 일을 토큰화가 가치에 한다.",
+          "url": "https://x.com/binji_x/status/2104984750783910309",
+          "digest": "2026-10-02",
+          "replyTo": "_julianma",
+          "relation": "reply",
+          "original": "I think it is very helpful to frame tokenization in terms of the outcomes it brings, specifically in the realm of programmability. What the internet did for information, tokenization does for value, and thus tokenizing that value will lead to the ability to rethink financial experiences themselves.\n\n\"Information\" in the old sense was gatekept by publishing houses, but the internet let anyone become a publisher, which was odd at first (lots of porn), but over time people discovered they can DO things with online information, like build social media apps, search engines etc, these led to the world today.\n\nFinance, however, has been stagnant, its the same old banking system, the same old assets, and the same old lingo that gatekeeps everyone else, let alone the geographical segregation of finance.\n\nBy tokenizing things, you give them the ability to be programmable, by giving things the ability to become programmable you give budding entrepreneurs, many of which are in college, a chance to build beautiful experiences that change the world. And of course, by tokenizing things on Ethereum, you give them a chance to live forever.",
+          "translation": "토큰화(tokenization)가 가져오는 결과, 특히 프로그래밍 가능성(programmability)의 영역에서의 결과를 중심으로 토큰화를 설명하는 것이 매우 유용하다고 생각한다. 인터넷이 정보에 대해 했던 일을, 토큰화는 가치(value)에 대해 하고 있으며, 따라서 그 가치를 토큰화하는 것은 금융 경험 자체를 다시 생각할 수 있는 능력으로 이어질 것이다. 과거의 의미에서 \"정보\"는 출판사들에 의해 게이트키핑되었지만, 인터넷은 누구나 퍼블리셔가 될 수 있게 해주었고, 처음에는 이상했지만(포르노가 많았다), 시간이 지나면서 사람들은 온라인 정보로 무언가를 할 수 있다는 것을 발견했다. 예를 들어 소셜 미디어 앱이나 검색 엔진을 만드는 것 같은 일들 말이다. 이런 것들이 오늘날의 세상으로 이어졌다. 반면 금융은 정체되어 있었다. 여전히 똑같은 낡은 은행 시스템이고, 똑같은 낡은 자산들이며, 금융의 지리적 분리는 말할 것도 없고 다른 모든 사람들을 게이트키핑하는 똑같은 낡은 용어들이다. 사물을 토큰화함으로써 그것들에 프로그래밍 가능한 능력을 부여하게 되고, 사물이 프로그래밍 가능해질 수 있는 능력을 부여함으로써 신진 창업가들에게, 그들 중 많은 이들이 대학생인데, 세상을 바꾸는 아름다운 경험을 만들 기회를 주게 된다. 그리고 물론, 이더리움(Ethereum) 위에서 사물을 토큰화함으로써, 그것들에게 영원히 살아갈 기회를 주게 된다."
+        },
+        {
+          "date": "2026-09-29",
+          "by": "donnoh_eth",
+          "stance": "con",
+          "quote": "레이어는 중개자를 더한다.",
+          "url": "https://x.com/donnoh_eth/status/2105005910028329265",
+          "digest": "2026-10-02",
+          "replyTo": "_julianma",
+          "relation": "reply",
+          "original": "@_julianma @bfresh layers add intermediaries",
+          "translation": "레이어(layer)들은 중개자를 추가한다"
+        }
+      ],
+      "firstSeen": "2026-09-29",
+      "lastActivity": "2026-09-29",
+      "status": "active",
+      "rootUrl": "https://x.com/donnoh_eth/status/2105005910028329265",
+      "engagement": {
+        "likes": 1,
+        "retweets": 0,
+        "quotes": 0,
+        "replies": 1,
+        "views": 42
+      }
+    },
     {
       "id": "ethereum-mass-adoption-vs-small",
       "title": "이더리움은 대중화를 목표해야 하나, 작게 남는 것이 기능인가?",
@@ -897,7 +1027,7 @@
       ],
       "firstSeen": "2026-09-24",
       "lastActivity": "2026-09-24",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/StaniKulechov/status/2103117429605880069",
       "engagement": {
         "likes": 258,
@@ -986,7 +1116,7 @@
       ],
       "firstSeen": "2026-09-23",
       "lastActivity": "2026-09-23",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/laurashin/status/2102869919545405919",
       "engagement": {
         "likes": 6,

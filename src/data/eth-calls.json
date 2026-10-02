@@ -1,6 +1,499 @@
 {
-  "updatedAt": "2026-09-29T01:13:09.652Z",
+  "updatedAt": "2026-10-02T00:59:09.935Z",
   "calls": [
+    {
+      "id": "acdc-188",
+      "series": "acdc",
+      "number": 188,
+      "date": "2026-10-01",
+      "title": "AllCoreDevs - Consensus #188",
+      "forkcastUrl": "https://forkcast.org/calls/acdc/188/",
+      "videoUrl": "https://youtube.com/watch?v=8TaMYavJcts",
+      "issueUrl": "https://github.com/ethereum/pm/issues/2227",
+      "kind": "full",
+      "durationMin": 91,
+      "headline": "퀵 슬롯 10초\n헤고타 CFI",
+      "lead": "블록 간격 12초를 10초로 줄이는 안이 공식 검토 대상이 됐다",
+      "intro": "합의 계층(CL) 클라이언트 개발자들이 격주로 모이는 콜이다.",
+      "summary": "슬롯 시간을 12초에서 10초로 줄이는 퀵 슬롯(quick slots, EIP-8198)이 헤고타(Hegota) 포함 검토(CFI)로 올라갔다. 양자내성 전환이 먼저라는 반대가 있었지만, 포함 확정(SFI) 전에 추가 데이터로 다시 검증하고 필요하면 뺄 수 있다는 조건이 붙었다.",
+      "whyItMatters": "블록 간격이 10초로 줄면 거래 확인이 빨라지고 L2와 앱의 가격 갱신, 입출금 체감 속도도 좋아진다. 다만 CFI는 출시 약속이 아니라 검토 단계여서 테스트 결과에 따라 빠질 수 있고, 10월 6일 세폴리아의 글램스터담(Glamsterdam) 포크가 당장의 관문이다.",
+      "decisions": [
+        {
+          "label": "EIP-8365 예치 가드",
+          "text": "예치 가드(deposit guard)만 남긴 EIP-8365를 헤고타 포함 검토 대상으로 올렸다. 강제 퇴출(forced exit) 부분은 별도 EIP로 분리해 미래 포크에서 다룬다.",
+          "original": "CFI for Hegota: EIP-8365 (deposit guard only; forced-exit split into separate future EIP)",
+          "eips": [
+            8365
+          ],
+          "status": "CFI",
+          "fork": "Hegota",
+          "timestamp": "00:23:28"
+        },
+        {
+          "label": "EIP-8198 퀵 슬롯",
+          "text": "슬롯 시간을 조정 가능하게 만드는 퀵 슬롯을 헤고타 포함 검토 대상으로 올렸다. 실제 12초에서 10초로의 단축은 포함 확정 전에 추가 검증을 거쳐야 한다.",
+          "original": "CFI for Hegota: EIP-8198 (quick slots / slot time parameterization); actual 12→10s reduction requires further validation before SFI",
+          "eips": [
+            8198
+          ],
+          "status": "CFI",
+          "fork": "Hegota",
+          "timestamp": "01:02:49"
+        },
+        {
+          "label": "EIP-8379 탑업 싱크",
+          "text": "탑업 싱크(Top Up Sync)를 헤고타 후보에서 제외했다. 원하는 팀은 포크 일정 밖에서 엔진 API 실험을 계속할 수 있다.",
+          "original": "DFI: EIP-8379 (Top Up Sync); engine API experimentation may continue outside fork cadence",
+          "eips": [
+            8379
+          ],
+          "status": "DFI",
+          "timestamp": "01:26:38"
+        },
+        {
+          "label": "EIP-8333 철회",
+          "text": "체크포인트를 에포크 경계 블록에 맞추는 EIP-8333을 로드스타 팀이 철회했다. 디커플드 합의(decoupled consensus)를 살펴본 결과 지금 다룰 가치가 없다고 판단했다.",
+          "original": "EIP-8333 (Align Checkpoint with Epoch Boundary Block) withdrawn by Lodestar; decoupling concerns",
+          "eips": [
+            8333
+          ],
+          "status": "DFI",
+          "timestamp": "00:19:09"
+        },
+        {
+          "label": "EIP-8363 철회",
+          "text": "발행량 점감 소각(tapered issuance burn) EIP-8363을 챔피언(champion, 제안을 책임지고 밀어붙이는 담당자)들이 철회했다. 코어 개발자 콜 스코핑 대신 더 넓은 커뮤니티 주도 절차를 밟기로 했다.",
+          "original": "EIP-8363 (tapered issuance burn) withdrawn; champions pursuing broader community-driven process instead",
+          "eips": [
+            8363
+          ],
+          "status": "DFI",
+          "timestamp": "00:19:47"
+        }
+      ],
+      "targets": [
+        {
+          "key": "sepolia-fork",
+          "text": "세폴리아가 2026년 10월 6일 13:53 UTC에 글램스터담으로 포크한다. 확정된 일정이다.",
+          "timestamp": "00:08:22"
+        },
+        {
+          "key": "hoodi-fork",
+          "text": "후디(Hoodi) 업그레이드는 데브콘 한 주 전인 10월 27일로 잠정 제안됐다. 세폴리아 결과를 보고 다음 주 ACDE에서 확정한다.",
+          "timestamp": "00:10:18"
+        }
+      ],
+      "actions": [
+        {
+          "owner": "모든 CL 클라이언트 팀",
+          "text": "월요일까지 PM 저장소에 PR을 올려 팀별 인시던트 대응 코디네이터를 지명한다. 지명하지 않으면 바나바스가 대신 정한다.",
+          "timestamp": "00:14:01"
+        },
+        {
+          "owner": "모든 CL 클라이언트 팀",
+          "text": "다음 ACDC 전까지 EIP-8383(CL 블록 보관 기간 축소)을 검토한다.",
+          "timestamp": "01:27:48"
+        }
+      ],
+      "agenda": [
+        {
+          "timestamp": "00:07:19",
+          "heading": "글램스터담 데브넷과 세폴리아 섀도 포크"
+        },
+        {
+          "timestamp": "00:08:22",
+          "heading": "세폴리아 업그레이드와 후디 일정"
+        },
+        {
+          "timestamp": "00:09:25",
+          "heading": "인시던트 대응 계획과 코디네이터 지명"
+        },
+        {
+          "timestamp": "00:16:47",
+          "heading": "헤고타 스코핑: 철회된 EIP",
+          "decision": true
+        },
+        {
+          "timestamp": "00:21:45",
+          "heading": "EIP-8365 예치 가드 업데이트와 CFI",
+          "decision": true
+        },
+        {
+          "timestamp": "00:25:30",
+          "heading": "퀵 슬롯(EIP-8198) 논의와 CFI",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "01:03:54",
+          "heading": "EIP-8379 탑업 싱크",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "01:27:32",
+          "heading": "EIP-8383 CL 블록 보관 기간 축소"
+        },
+        {
+          "timestamp": "01:28:43",
+          "heading": "EIP-8025 선택적 실행 증명",
+          "discussion": true
+        }
+      ],
+      "topics": [
+        {
+          "title": "퀵 슬롯(EIP-8198), 블록 간격 12초에서 10초로",
+          "intro": "블록 생성 간격인 슬롯 시간을 12초에서 10초로 줄이는 첫걸음을 헤고타에 넣을지가 이번 스코핑의 최대 쟁점이었고, 양자내성 전환과의 우선순위 충돌이 논쟁의 축이었다.",
+          "decision": "CFI 결정 01:02:49",
+          "positions": [
+            {
+              "speaker": "Ryan Berckmans",
+              "text": "L2와 앱 레이어 팀들이 퀵 슬롯 포함을 강하게 원한다고 전했다. 12초에서 10초로의 단축 자체보다, 슬롯 단축 체계를 지금 시작해 3, 4년 뒤에도 여전히 12초일 위험을 줄이는 것이 중요하다고 했다.",
+              "timestamp": "00:17:46",
+              "original": "Go ahead and do that now. I've been speaking extensively to folks involved in L2s and the app layer, and the general sentiment is that they would really like to see quick slots included. It's not so much that the reduction from 12 to 10 seconds is gonna be, you know, an operative benefit, immediately, it's that beginning the system of reducing slot time seems like something that would be great to get in front of now, to reduce the risk that slot times are still 12 seconds, you know, 3 to 4 years from now. We really like this one, we really appreciate all the work on it, and, you know, thanks for considering it. Okay. That's all. Thanks, guys. Appreciate everything. Have a good day.",
+              "translation": "지금 바로 진행해 주세요. 저는 L2와 앱 레이어에 관여하는 분들과 폭넓게 이야기를 나눠봤는데, 전반적인 정서는 퀵 슬롯(quick slots)이 포함되기를 정말 원한다는 것입니다. 12초에서 10초로의 단축이 당장 실질적인 이점이 된다는 것보다는, 슬롯 시간을 줄이는 시스템을 지금 시작해 두는 것이 좋겠다는 것입니다. 3~4년 후에도 슬롯 시간이 여전히 12초로 남아 있을 위험을 줄이기 위해서입니다. 저희는 이 제안이 정말 마음에 들고, 여기에 들인 모든 작업에 감사드리며, 검토해 주셔서 감사합니다. 네, 이상입니다. 여러분 감사합니다. 모든 것에 감사드리고, 좋은 하루 보내세요."
+            },
+            {
+              "speaker": "Barnabé Monnot",
+              "text": "더 나은 UX, 빠른 확정, MEV 누수 감소, 검열 저항 강화 등 가치를 들어 CFI를 요청했다. 스펙은 머지됐고 헤고타 목표는 10초이며, 디커플드 합의 설계 덕분에 10초가 양자내성 전환을 막지 않는다고 확신한다고 했다.",
+              "timestamp": "00:26:08",
+              "original": "Okay, cool. Yeah, I wanted to jump in today to make the case for considering for inclusion quick slots in Hegota. Wanted to give a bit of a status report, and what are the next steps here? Quick recap, we think, QuickSlots has a lot of value to ethereum users. You've heard it from Ryan a little bit before in the call. But just to like brush up on where exactly this value comes from, it's many different places. There's better UX from confirmation being faster. better markets from prices being updated more often, less MEV leaked to arbitragers, faster finality, faster confirmation rule as well. And more censorship resistance from having, more proposals per unit of time. So our thesis is that a faster ethereum in general makes for more valuable Blockspace, which is value that accrues to the network, to the users, and to ETH as well, in particular. And if you don't want to take it from me, you can take it from 20 teams that are building very well-known applications on Ethereum who have given us quotes in support of, of quick slots in Hegota in this fairly long but very interesting ecosystem survey that we published. So as a recap again, our proposal for Hegota is basically two things. The first one is removing the hard-coded 12-second slot assumption where it exists, so both in client code, as well as tooling, as well as smart contracts that are deployed on-chain. And then, second step, proceed with a first decrease. So, our target for Hegota is 10 seconds. You may have seen 8…",
+              "translation": "네, 좋습니다. 오늘은 Hegota에 퀵 슬롯(quick slots)을 포함시키는 것을 고려해 달라는 주장을 하기 위해 참여하고 싶었습니다. 현황 보고를 좀 드리고, 다음 단계가 무엇인지 말씀드리고자 합니다. 간단히 정리하면, 저희는 QuickSlots가 이더리움 사용자들에게 많은 가치를 제공한다고 생각합니다. 통화에서 앞서 Ryan에게서 조금 들으셨을 겁니다. 하지만 이 가치가 정확히 어디서 오는지 다시 짚어보면, 여러 곳에서 발생합니다. 확인(confirmation)이 더 빨라짐에 따른 더 나은 UX, 가격이 더 자주 갱신됨에 따른 더 나은 시장, 차익거래자(arbitragers)에게 유출되는 MEV 감소, 더 빠른 완결성(finality), 더 빠른 확인 규칙(confirmation rule)이 있습니다. 그리고 단위 시간당 더 많은 제안(proposals)이 이루어짐에 따른 더 높은 검열 저항성(censorship resistance)도 있습니다. 따라서 저희의 논지는, 전반적으로 더 빠른 이더리움이 더 가치 있는 블록스페이스(Blockspace)를 만들어내며, 이는 네트워크와 사용자, 그리고 특히 ETH에도 축적되는 가치라는 것입니다. 제 말을 믿지 못하시겠다면, 저희가 발표한 이 다소 길지만 매우 흥미로운 생태계 설문조사에서 Hegota의 퀵 슬롯을 지지하는 발언을 해주신, 이더리움에서 매우 잘 알려진 애플리케이션을 구축 중인 20개 팀의 말을 믿으셔도 됩니다. 다시 정리하면, Hegota에 대한 저희의 제안은 기본적으로 두 가지입니다. 첫째는 하드코딩된 12초 슬롯 가정을 존재하는 모든 곳, 즉 클라이언트 코드뿐 아니라 툴링, 그리고 온체인에 배포된 스마트 컨트랙트에서도 제거하는 것입니다. 그리고 두 번째 단계로, 첫 번째 단축을 진행하는 것입니다. 그래서 Hegota에 대한 저희의 목표는 10초입니다. 8을 보신 분도 계실 텐데요..."
+            },
+            {
+              "speaker": "Matthew Keil",
+              "text": "저스틴 트라글리아의 우려에 강하게 동의하며 반대편에 섰다. 구현 자체는 쉽지만 짧은 슬롯에 맞춘 클라이언트 CPU 튜닝이 어렵고, 실존 위협인 양자내성(PQ)에 개발 역량을 집중해야 하며, 디커플드 합의가 슬롯 구조를 재편할 것이라 지금의 테스트가 헛수고가 될 수 있다고 했다. 슬롯 조정 기계만 넣고 실제 단축은 미루자는 입장이다.",
+              "timestamp": "00:31:38",
+              "original": "I tend to stand on the other side of this discussion, and I side with Justin Traglia's sentiment, quite strongly, that, while it's not technically difficult in order to implement the short slots, I think it… the tuning of the client, like, it's not, it's not easy to tune the client in order to reduce slot times. And then, but more importantly, taking the focus off PQ, I think, is something that we really, really, really need to, be fervent about. PQ is an existential threat, and all development efforts really should be focused on that, in particular, decoupled consensus. There's one other piece of that that I think should be at least highlighted, is, decoupled consensus is gonna drastically rework how slot mechanics, are… are organized, and how work is scheduled within the slot. And I think there is, something to be said about, the potential of shortening slots when we're doing decoupled consensus. because of how the rework happens, I think it opens the door for possibly even more drastic slot time reduction. But it feels kind of like chasing our tail to do so much effort in order to test shorter slots and prove it out now when we're literally going to be doing that Again… once we rework the slot mechanics. So… this is something that… that's my personal feeling. Our official stance as a team, though, is that we're open to the idea of adding the machinery in order to adjust slot times to the client, because again, it's not a technically difficult process in order to, to make…",
+              "translation": "저는 이 논의에서 반대편에 서는 편이고, Justin Traglia의 의견에 상당히 강하게 동의합니다. 짧은 슬롯을 구현하는 것이 기술적으로 어렵지는 않지만, 클라이언트 튜닝이... 슬롯 시간을 줄이기 위해 클라이언트를 튜닝하는 것은 쉽지 않다고 생각합니다. 그리고 더 중요하게는, PQ(양자내성, post-quantum)에서 초점을 돌리는 것은 저희가 정말, 정말, 정말 경계해야 할 일이라고 생각합니다. PQ는 실존적 위협이며, 모든 개발 노력은 실제로 여기에, 특히 디커플드 합의(decoupled consensus)에 집중되어야 합니다. 적어도 한 가지 더 강조하고 싶은 점은, 디커플드 합의가 슬롯 메커니즘이 구성되는 방식과 슬롯 내 작업이 스케줄링되는 방식을 대대적으로 재편하게 될 것이라는 점입니다. 그리고 디커플드 합의를 진행할 때 슬롯을 단축할 가능성에 대해서는 할 말이 있다고 생각합니다. 그 재편이 이루어지는 방식 때문에, 어쩌면 훨씬 더 과감한 슬롯 시간 단축의 문도 열릴 수 있다고 생각합니다. 하지만 지금 더 짧은 슬롯을 테스트하고 검증하는 데 그렇게 많은 노력을 들이는 것은, 슬롯 메커니즘을 재편하고 나면 어차피 그 작업을 다시 하게 될 것이기 때문에 일종의 제자리걸음처럼 느껴집니다. 이것이... 이것은 제 개인적인 생각입니다. 다만 팀으로서 저희의 공식 입장은, 클라이언트에 슬롯 시간을 조정하는 장치를 추가하는 아이디어에 열려 있다는 것입니다. 다시 말씀드리지만 그것을 만드는 과정 자체가 기술적으로 어렵지는 않기 때문입니다..."
+            },
+            {
+              "speaker": "Fredrik",
+              "text": "퀵 슬롯의 가치는 인정하지만 양자내성 일정이 앞당겨질 수 있는 상황에서 헤고타를 지연시킬까 우려했다. 기술 구현이 쉽다면 기계만 넣고 12초를 유지한 뒤 나중에 낮추는 중간안도 제시했다.",
+              "timestamp": "00:37:35",
+              "original": "Yeah, I don't question the usefulness or the value of Quick Slots and I think It's definitely something we should strive for and implement, and we should strive for something that's much less than 10 seconds, what the lower bound is, I'm not sure, but I hope we can get very, very, very low. And I know that Barnabe and everyone else who's working on this are… like, great researchers, and they are… they do have the ability to look at all the edge cases and so forth. My concern is… I guess, similar to Matt, how this will… affect our ability to basically secure Ethereum from the post-quantum threat, and I think… we've been talking about 2030, etc, but I do think this is likely to accelerate. Who knows what's going to happen from an AI point of view next year? And it might not be that a post-quantum computer arrives, it might just be that existing cryptography is broken in various ways, and the sooner we can migrate away to something that's more secure, that's probably better. And I guess my… Where is that… quick slots in some way might end up delaying Heguta, primarily because of these unknowns that might affect the ecosystem at large. So basically, I'm primarily concerned about that. I'm not sure how long it will take from a technical point of view to implement. Quick slots… But unless it's very easy, then… I mean, that basically means that CL teams are spending time on implementing quick slots instead of starting on the PQ items in ISTAR, for example. Maybe some kind of a…",
+              "translation": "네, 저는 퀵 슬롯의 유용성이나 가치 자체에는 의문이 없고, 저희가 반드시 추구하고 구현해야 할 것이라고 생각합니다. 그리고 10초보다 훨씬 더 낮은 수준을 추구해야 한다고 생각하는데, 하한선이 어디인지는 잘 모르겠지만 아주, 아주, 아주 낮게 갈 수 있기를 바랍니다. 그리고 Barnabe를 비롯해 이 작업을 하고 있는 모든 분들이 훌륭한 연구자들이고, 모든 엣지 케이스 등을 살펴볼 능력이 있다는 것도 압니다. 제 우려는, Matt와 비슷하게, 이것이 양자내성(post-quantum) 위협으로부터 이더리움을 지키는 저희의 능력에 어떤 영향을 미칠 것인가 하는 점입니다. 저희가 2030년 등을 이야기해 왔지만, 저는 이것이 앞당겨질 가능성이 높다고 생각합니다. 내년에 AI 관점에서 무슨 일이 일어날지 누가 알겠습니까? 양자 컴퓨터가 등장하는 것이 아니라, 기존 암호 체계가 여러 방식으로 깨지는 것일 수도 있고, 더 안전한 것으로 하루라도 빨리 이전할 수 있다면 그게 아마 더 나을 것입니다. 그리고 제 생각에는, 퀵 슬롯이 어떤 식으로든 Hegota를 지연시킬 수도 있다는 것인데, 주로 생태계 전체에 영향을 미칠 수 있는 이러한 불확실성들 때문입니다. 그래서 기본적으로 저는 그 점을 가장 우려하고 있습니다. 기술적인 관점에서 퀵 슬롯을 구현하는 데 얼마나 걸릴지는 잘 모르겠습니다. 하지만 그것이 아주 쉽지 않다면, 결국 CL 팀들이 예를 들어 ISTAR의 PQ 항목 작업을 시작하는 대신 퀵 슬롯 구현에 시간을 쓰게 된다는 뜻입니다. 어쩌면 일종의..."
+            },
+            {
+              "speaker": "saulius",
+              "text": "지지하지 않는다고 밝혔다. 스테이블 컨테이너 때처럼 원하는 팀들이 먼저 구현을 밀어붙여 경험을 공유한 뒤 몇 달 후 다시 판단하자고 제안했고, 바나바스는 보통 CFI 먼저 하고 문제가 보이면 뺀다고 반박했다.",
+              "timestamp": "00:56:07",
+              "original": "Yes, we are not in support of the EIP and I think that Maybe a way to move forward with that would be something similar like we had with the stable containers, where essentially the feature was not accepted at the beginning. And then some teams pushed it, and during the hard fork implementation, it was… it became clear that it's possible to ship it. So my suggestion would be, as there is some people that are pushing shorter slots, I think maybe we can just not accepted for now, but some teams could push it and share their experience, and then maybe it will happen, you know, in a few months or so, after it becomes much more clear what are the efforts to ship this quick slots. Well, I'm, I mean, I don't like to, to, you know, to, to agree to this feature right now. I mean, I think it's… it will… it's really something that will delay the, the hard work.",
+              "translation": "네, 저희는 이 EIP를 지지하지 않습니다. 그리고 앞으로 나아갈 방법으로는 스테이블 컨테이너(stable containers) 때와 비슷한 방식이 있을 것 같습니다. 그때는 사실 처음에는 이 기능이 채택되지 않았습니다. 그러다 일부 팀들이 밀어붙였고, 하드포크 구현 과정에서 이를 출시하는 것이 가능하다는 것이 명확해졌습니다. 그래서 제 제안은, 짧은 슬롯을 밀어붙이는 분들이 계시니, 지금은 일단 채택하지 않되 일부 팀들이 이를 추진하고 경험을 공유하도록 하면, 아마 몇 달 후쯤 이 퀵 슬롯을 출시하는 데 어떤 노력이 필요한지가 훨씬 더 명확해진 뒤에 실현될 수도 있을 것 같습니다. 저는, 지금 당장 이 기능에 동의하고 싶지는 않습니다. 제 생각에는 이것이 하드포크 작업을 정말로 지연시킬 것 같습니다."
+            },
+            {
+              "speaker": "Łukasz Rozmej",
+              "text": "EL 쪽 블록 처리 꼬리 시간이 50에서 200밀리초라 CPU는 문제가 아니라고 했다. zkVM이 프로토콜 개선을 인질로 잡게 둬서는 안 되며 네더마인드는 CFI에 찬성한다고 밝혔다.",
+              "timestamp": "00:57:55",
+              "original": "Two points from me. We'll try to be quick. CPUs, I don't know what you guys are planning to do. CPUs currently tail block processing on EL is from 50 to 200 milliseconds, depending on the On the client and on the reference hardware, so I don't think CPU is a problem. BALs will increase that a little bit, but, or maybe not, we'll see, but I don't expect huge changes. So we not a problem, in my opinion, from the EL side, even in the Crist load. I don't know what is planned on CL. So we'll see about that. But I don't see CPU as a problem. And zkvms and I'm telling from the person who's currently optimizing guest program for zkvm I wouldn't allow them to hold the protocol hostage and improvements to the protocol hostage. They need to keep up both zkvm and guest programs. They need to be optimized. And here we can at least throw more hardware at the problem if really needed, so, I don't see this as a blocker either, so never mind this for, shorter slots. I wouldn't commit to any, actual numbers, before we measure them, but I would, I would, I am very far, actually… Putting the work to be able to do it.",
+              "translation": "저는 두 가지 말씀드리겠습니다. 빨리 하겠습니다. CPU 관련해서는, 여러분이 무엇을 계획하고 계신지 모르겠습니다. 현재 EL에서 블록 처리의 테일(tail)은 클라이언트와 레퍼런스 하드웨어에 따라 50에서 200밀리초 정도입니다. 그래서 저는 CPU가 문제라고 생각하지 않습니다. BAL이 이를 약간 늘릴 수도 있고, 아닐 수도 있는데, 지켜봐야겠지만 큰 변화는 없을 것으로 예상합니다. 그래서 제 생각에는 EL 측에서는, 최악의 부하 상황에서도 문제가 되지 않습니다. CL 쪽에서 무엇이 계획되어 있는지는 모르겠으니 지켜봐야겠지만, CPU는 문제가 아니라고 봅니다. 그리고 zkVM에 대해서는, 제가 현재 zkVM용 게스트 프로그램을 최적화하고 있는 사람으로서 말씀드리면, 저는 zkVM이 프로토콜과 프로토콜 개선을 인질로 잡도록 허용하지 않겠습니다. zkVM과 게스트 프로그램 둘 다 보조를 맞추어야 합니다. 둘 다 최적화되어야 합니다. 그리고 여기서는 정말 필요하다면 적어도 하드웨어를 더 투입하는 방법이 있으니, 이것 역시 걸림돌이라고 보지 않습니다. 그러니 짧은 슬롯에 대해서는 이 부분은 신경 쓰지 않으셔도 됩니다. 실제로 측정해 보기 전까지는 구체적인 수치를 약속드리지는 않겠지만, 저는 사실 이 작업을 해낼 수 있도록 매우 적극적으로 노력을 기울이고 있습니다."
+            }
+          ],
+          "quote": {
+            "text": "지금 하지 않으면 슬롯 시간을 줄이기까지 또 3년을 기다려야 하고, 우리에게는 지금 하는 것이 당연한 선택으로 보인다.",
+            "original": "If we don't do it now, we have to wait another 3 years to reduce the slot time, and to us, it just seems like a no-brainer to do it now.",
+            "speaker": "terence",
+            "timestamp": "00:53:50"
+          }
+        },
+        {
+          "title": "탑업 싱크(EIP-8379), CL이 EL 동기화를 이끌 수 있는가",
+          "intro": "CL이 EL의 동기화 상태를 조회해 싱크를 이끌 수 있게 하는 엔진 API 제안으로, CL과 EL의 역할 분담을 어디까지 정하고 갈지가 쟁점이 됐다.",
+          "decision": "DFI 결정 01:26:38",
+          "positions": [
+            {
+              "speaker": "Dustin",
+              "text": "홀레스키 펙트라 사고처럼 CL과 EL이 동시에 멈추는 상황에서 복원력을 높이고, 중복 가십 트래픽과 공격 표면을 줄이며, 스토리지 중복 제거를 유연하게 한다고 설명했다. 모두 선택 사항이며 스냅 싱크를 대체하려는 것이 아니라고 했다.",
+              "timestamp": "01:04:13",
+              "original": "Yeah, so I can… so first I can, I just have a, A slide, but I, you know, it's not, it's not super critical, I don't have a whole presentation in the sense that, you know, Barnabe did. So I want to… Essentially, this is a way of, of Driving… so the CL can… can drive the sync on the EL side, and… and it can do so by, sort of distinguishing between different kinds of, sort of… so if we have a blockhead and execution head, as if… so where… how many blocks this… the EL might have, even if it hasn't calculated the state through that, which means it can backfill the block from the exact right place the EL, rather, needs to actually sync. which is a capability that doesn't really exist today. So, and I would say there's a few general items that sort of enable sort of functionalities, resilience that we don't have in a standardized way right now. One is, as we're talking about sort of potential sort of recovery plans, and earlier on. Well, one of the things here is that one of… In Pectra, in Holesky, one of the things that went wrong, right, is that when you had the CLs and ELs, the CLs couldn't actually sync fully properly without the ELs, syncing. And both found it difficult for the same forked chain reasons, but both at the same time was even more unlikely, and that made it more likely to get stuck, so therefore, this would enable… only the CL has to stay synced, the EL can sort of follow along with this CL much more directly. So that sort of enables resilience there. So that's…",
+              "translation": "네, 그래서 저는... 우선 슬라이드가 하나 있긴 한데, 그렇게 중요한 것은 아니고, Barnabe가 했던 것 같은 전체 발표는 없습니다. 그래서 말씀드리고 싶은 것은... 본질적으로 이것은 CL이 EL 쪽의 동기화(sync)를 주도할 수 있게 하는 방법입니다. 그리고 이를 블록헤드(blockhead)와 실행 헤드(execution head)를 서로 다른 종류로 구분함으로써 해낼 수 있습니다. 즉 EL이 상태를 그 지점까지 계산하지 않았더라도 몇 개의 블록을 가지고 있는지를 알 수 있어서, EL이 실제로 동기화해야 할 정확히 올바른 지점부터 블록을 백필(backfill)할 수 있다는 것입니다. 이는 오늘날 실제로 존재하지 않는 기능입니다. 그리고 현재 표준화된 방식으로는 갖추고 있지 않은 몇 가지 기능과 복원력(resilience)을 가능하게 하는 일반적인 항목들이 몇 가지 있다고 말씀드리고 싶습니다. 하나는 앞서 이야기한 잠재적인 복구 계획과 관련된 것입니다. 여기서 한 가지는, Pectra 당시 Holesky에서 잘못됐던 것 중 하나가, CL과 EL이 있을 때 EL이 동기화되지 않으면 CL이 제대로 완전히 동기화될 수 없었다는 점입니다. 둘 다 같은 포크된 체인 문제로 어려움을 겪었는데, 동시에 둘 다 그럴 가능성은 더 낮았음에도 오히려 멈춰버릴 가능성이 더 높아졌습니다. 따라서 이를 통해 CL만 동기화 상태를 유지하면 되고, EL은 이 CL을 훨씬 더 직접적으로 따라갈 수 있게 됩니다. 그래서 그 부분에서 복원력을 가능하게 합니다. 그래서 그것이..."
+            },
+            {
+              "speaker": "Łukasz Rozmej",
+              "text": "네더마인드가 극도로 최적화한 EL 싱크 과정의 통제권을 잃을까 우려했다. 더스틴이 정보 제공용 엔드포인트일 뿐 EL에 아무 행동도 강제하지 않는다고 설명하자, 그렇다면 스펙에 더 명확히 써야 한다고 했다.",
+              "timestamp": "01:08:23",
+              "original": "So, our concerns with TopUpSync are that we extremely optimize our sync process on the EL side, and this, is. This EIP… is… Removing… Our control from us, to some extent, so we are very wary of it, and… That's our problem with it. Or did I, or did I, or did I, confuse the APs? Okay, let me get, get back, actually, sorry. Maybe… I confused the EIPs because there are two sync EIPs in proposed. Sorry, I'm not sure. I got confused. Too many things.",
+              "translation": "저희가 TopUpSync에 대해 우려하는 점은, 저희가 EL 측 동기화 프로세스를 극도로 최적화해 두었는데, 이 EIP가 그 통제권을 어느 정도 저희로부터 빼앗아간다는 것입니다. 그래서 이를 매우 경계하고 있고, 그것이 저희의 문제점입니다. 아니면 제가 EIP를 착각한 걸까요? 죄송합니다, 다시 정리해 보겠습니다. 제안된 동기화 관련 EIP가 두 개 있어서 제가 혼동했을 수도 있습니다. 죄송합니다, 확실하지 않네요. 헷갈렸습니다. 너무 많은 것들이 있어서요."
+            },
+            {
+              "speaker": "Enrico Del Fante",
+              "text": "CL과 EL의 책임 분리에 대한 최종 그림을 정하지 않은 채 양방향으로 선택 기능만 더하는 것은 문제 해결이 아니라고 반박했다. 반대 방향의 EIP가 이미 DFI됐으니 이것도 DFI하고 방향 논의부터 하자고 했다.",
+              "timestamp": "01:15:55",
+              "original": "Just one quick comment. So, this belief… this enables possible ways of thinking, and then there was another EIP that was taking a completely different direction, assuming that CL doesn't want to take care of anything about payloads, and want to fully, fully give up and let the EL do completely its own thinking. So there are two completely different approaches, and I get the fact that this DCIP could enable different approaches, but I believe that the end game is not having multiple possible scenarios. I believe that those two things need to be discussed. So, what… I believe in one of the, meetings that we had, somewhere. we discussed the fact… we need to think about what will be the end… the end deployment of CL and EL, which are… which will be the responsibility, and then when we… when we envision what we… what we want as an end game, then we… We decide to go in one direction or the other. Keep having both possible conditions, I believe, is just not addressing the issue. But we should actually be clear on. On the responsibility, on one side and on the other, and going in one direction. Yeah, it seems like we are spending time and effort doing something that, without Without taking the decisions on. what will be the end game. So in some sense we should do some planning first. And then… And then go in one direction. Which means DFI also this one, and take the argument one. Nice. I mean, is… Network efficiency. So you need to. One Direction, because you don't want to have…",
+              "translation": "간단히 한 말씀만 드리겠습니다. 이 사고방식은 가능한 여러 접근을 열어주는데, 완전히 다른 방향을 취하는 또 다른 EIP가 있었습니다. 그 EIP는 CL이 페이로드(payloads)에 관해 아무것도 신경 쓰고 싶어하지 않는다고 가정하고, 완전히 포기한 채 EL이 전적으로 알아서 하도록 맡기는 것입니다. 그래서 완전히 다른 두 접근법이 있는 것인데, 이 DCIP가 여러 접근법을 가능하게 할 수 있다는 점은 이해하지만, 저는 최종 목표(end game)가 여러 가능한 시나리오를 함께 두는 것이 되어서는 안 된다고 생각합니다. 이 두 가지는 논의되어야 한다고 생각합니다. 그래서... 저희가 가졌던 회의 중 한 곳에서, CL과 EL의 최종 배포 형태, 즉 어느 쪽이 책임을 지게 될 것인지를 생각해야 한다고 논의했던 것으로 기억합니다. 그리고 저희가 최종 목표로 무엇을 원하는지를 그려본 뒤에, 한 방향이든 다른 방향이든 결정해야 합니다. 두 가지 가능한 조건을 계속 함께 두는 것은 문제를 해결하는 것이 아니라고 생각합니다. 오히려 한쪽과 다른 쪽의 책임을 명확히 하고 한 방향으로 나아가야 합니다. 네, 최종 목표가 무엇이 될지에 대한 결정을 내리지 않은 채 무언가에 시간과 노력을 쓰고 있는 것처럼 보입니다. 그러니 어떤 의미에서는 먼저 계획을 좀 세운 다음, 한 방향으로 나아가야 합니다. 이는 DFI도 마찬가지이고, 그 논거를 하나로 모아야 한다는 뜻입니다. 좋습니다. 제 말은, 네트워크 효율성 문제입니다. 그러니 한 방향이 필요합니다. 왜냐하면 여러분은 원하지 않으실 테니까요..."
+            },
+            {
+              "speaker": "cayman",
+              "text": "클라이언트 행동을 강제하지 않으면서 일부가 탐색하고 싶어하는 유연성을 열어주는 작은 엔진 API 수정이라며 지지했다.",
+              "timestamp": "01:24:20",
+              "original": "Yeah, just voicing some support for this EIP from, I think, from my perspective, it looks like a minor engine Api tweak that doesn't really mandate any Changing behavior of clients and unlock some flexibility. that… we want to. Some people want to explore. So I I say, let them cook if it's a small thing, but it's optional. So That's it.",
+              "translation": "네, 제 관점에서 이 EIP를 지지한다는 말씀을 드리고 싶습니다. 이것은 클라이언트의 동작 변경을 딱히 강제하지 않는 엔진 API(engine API)의 사소한 조정처럼 보이고, 저희가 원하는 어떤 유연성을 열어줍니다. 일부 사람들이 탐구해 보고 싶어 합니다. 그래서 저는 작은 것이라면, 선택사항(optional)이라면, 그냥 해보게 두자고 말씀드리고 싶습니다. 이상입니다."
+            },
+            {
+              "speaker": "ethDreamer (Mark)",
+              "text": "엔진 API 수정에 불과하다면 기존 capabilities 엔드포인트를 활용해 하드포크와 분리할 수도 있다고 제안했고, 더스틴은 그 메커니즘이 멀티플렉서 환경에서 신뢰할 수 없다고 반박했다.",
+              "timestamp": "01:24:53",
+              "original": "Yeah, I mean, I need to verify this, but if it is, especially if it is just engine API tweaks, we have, I want to point out that we have the Git capabilities. Like… Endpoint, and so… We could potentially utilize that to even decouple this upgrade from a hard fork.",
+              "translation": "네, 제 말은, 이것을 확인해 봐야겠지만, 만약 그렇다면, 특히 이것이 단지 엔진 API 조정일 뿐이라면, 저희에게 Git 기능이 있다는 점을 짚고 싶습니다. 엔드포인트(endpoint) 같은 것 말이죠. 그러니 이를 활용해서 이 업그레이드를 하드포크로부터 완전히 분리(decouple)할 수도 있을 것입니다."
+            }
+          ],
+          "quote": {
+            "text": "효율적이고 진짜인 중복 제거를 원한다면 결정을 내려야 한다.",
+            "original": "If we want to make an efficient and real deduplication, we need to take decisions.",
+            "speaker": "Enrico Del Fante",
+            "timestamp": "01:20:29"
+          }
+        },
+        {
+          "title": "선택적 실행 증명(EIP-8025), 포크에 미완성 기능을 실어도 되는가",
+          "intro": "zkVM 실행 증명(execution proofs)을 의무화 없이 선택 기능으로 스펙에 넣자는 제안으로, 시간 부족으로 결론은 다음 콜로 넘어갔다.",
+          "positions": [
+            {
+              "speaker": "ignacio",
+              "text": "CFI를 제안했다. 특정 zkVM 페어링이나 증명 시스템을 못 박지 않고 선택적 증명의 스펙만 정의하는 것이며, zkVM 작업을 공용 저장소로 합쳐 다른 프로토콜 변경과의 상호작용 분석 위험을 줄이는 것이 핵심 동기라고 했다.",
+              "timestamp": "01:28:54",
+              "original": "Yeah, sure. Well, we actually want to propose CFI in this. I know I've been talking about with many people around this EIP, And I think the most, Contentious thing is that it's an optional feature for the network. I don't know, we will have time, within 6 minutes to fully discuss this, but… Instead of me shilling about. DCIP, I would also prefer to hear from CL clients what they think about it, or which are the angles of the proposal that they might have more concerns, and maybe that's more useful.",
+              "translation": "네, 물론입니다. 사실 저희는 이 안건에서 CFI를 제안하고 싶습니다. 이 EIP에 대해 많은 분들과 이야기를 나눠왔다는 것을 알고 있고, 가장 논쟁적인 부분은 이것이 네트워크에 선택적인(optional) 기능이라는 점이라고 생각합니다. 6분 안에 이것을 완전히 논의할 시간이 있을지 모르겠지만, 제가 DCIP에 대해 계속 홍보하는 것보다는 CL 클라이언트 쪽에서 이것에 대해 어떻게 생각하시는지, 또는 이 제안의 어떤 측면에 더 우려를 가지고 계신지 듣는 편이 더 유용할 것 같습니다."
+            },
+            {
+              "speaker": "Łukasz Rozmej",
+              "text": "실행 증명 자체는 지지하지만 두 가지 문제를 들었다. 역사적으로 포크에 실린 기능은 프로덕션 준비가 끝난 것이었는데 가스 리프라이싱 없이는 안전하지 않은 것을 싣게 되어 커뮤니티에 잘못된 신호를 주고, 위원회가 게스트 프로그램과 zkVM 짝을 고르는 방식은 열린 클라이언트 경쟁 문화를 깬다고 했다.",
+              "timestamp": "01:30:25",
+              "original": "Okay, I have 2 problems with the CIP. So to give a bit more context, I love the idea of execution proofs. I am working on a Nethermind guest client that would support creating execution proofs in zkVMs. We already have support for 3 different zkVMs, and currently I'm optimizing it, so just to give you the context. So, I love the whole concept, but I'm… I'm not sure if I can get behind, CFI-ing this. with 2 to be major problems. One problem is that historically, when we ship something in in the fork, it's ready for productional use. even if it's optional, this won't be actually secure enough due to, for example, gas repricing that will need to happen for this to actually be secure. So we'll ship something that we know that isn't secure enough, and that users shouldn't actually use it, so I don't see the point of shipping it in the fork. That's one thing, right? So, we are giving mixed signals to the community. Okay, we ship something, but it's not really production ready, so this is… this is wrong to me, this is not what's… We should be putting into the the fork. And second problem is that I think with the current solution, unless it's changed, the, pairs of guest programs and zkVMs are kind of chosen by committee. So historically, anyone could write. protocol implementations of clients, and they could compete on their technical prowess, for example, security, stability, and technical prowess. Here, there will be some decision made up front, and some clients and VM pairs will…",
+              "translation": "저는 이 CIP에 대해 두 가지 문제가 있다고 생각합니다. 좀 더 맥락을 드리자면, 저는 실행 증명(execution proofs)이라는 아이디어 자체를 매우 좋아합니다. 저는 zkVM에서 실행 증명을 생성하는 것을 지원할 Nethermind 게스트 클라이언트 작업을 하고 있습니다. 저희는 이미 3가지 서로 다른 zkVM을 지원하고 있고, 현재 이를 최적화하는 중입니다. 맥락을 드리기 위해 말씀드렸습니다. 그래서 저는 이 전체 개념을 좋아하지만, 이것을 CFI 하는 것을 지지할 수 있을지는 확신이 서지 않습니다. 두 가지 주요 문제가 있습니다. 첫 번째 문제는, 역사적으로 저희가 포크에 무언가를 출시할 때는 그것이 실제 운영 환경에서 사용할 준비가 되어 있었다는 것입니다. 선택사항이라 하더라도, 이것은 예를 들어 실제로 안전하려면 필요한 가스 리프라이싱(gas repricing) 때문에 실제로 충분히 안전하지는 않을 것입니다. 그래서 저희는 충분히 안전하지 않다는 것을 알면서, 사용자들이 실제로 사용해서는 안 되는 무언가를 출시하게 되는 것인데, 그렇다면 그것을 포크에 출시하는 의미를 모르겠습니다. 그게 하나입니다, 맞죠? 그래서 저희는 커뮤니티에 혼재된 신호를 주게 됩니다. 그러니까, 저희가 무언가를 출시하긴 하는데 그것이 실제로 운영 준비가 되어 있지 않다는 것, 이것은... 이것은 제가 보기에 잘못된 것이고, 이것은 저희가 포크에 담아야 할 것이 아닙니다. 두 번째 문제는, 현재 솔루션대로라면, 바뀌지 않는 한, 게스트 프로그램과 zkVM의 조합이 일종의 위원회에 의해 선정된다는 것입니다. 역사적으로는 누구나 클라이언트의 프로토콜 구현체를 작성할 수 있었고, 보안성, 안정성, 기술력 등 기술적 역량으로 경쟁할 수 있었습니다. 여기서는 사전에 어떤 결정이 내려지게 되고, 일부 클라이언트와 VM 조합만..."
+            },
+            {
+              "speaker": "ignacio",
+              "text": "그 우려들은 의무 증명에 해당하는 것이지 선택적 증명인 EIP-8025와는 거리가 있다고 반박했다. zkVM 브랜치와 PVD 브랜치를 따로 유지하는 것이 갈수록 비효율적이라며 다음 콜에서 논의를 잇겠다고 했다.",
+              "timestamp": "01:33:12",
+              "original": "Yeah, I just wanted to touch on Lukasz's comments. I think many of his concerns are more related to mandatory proofs than to EIP-8025, which is optional proofs. EIP-8025 is not really committing to any kind of pairing of guest programs on zkVMs or enshrining any kind of proof system or anything like that. It's mainly about defining the specs and upstreaming this work into. a repository where we can settle a lot of work that we have done, that we know it is useful, and we can defer all this discussion about, okay, which guest programs, which zkVMs, and all that to mandatory proofs until we have more data, and we know what is safe. The main idea for us, on why we think EIP-8025 is important to to be included in the specs is that it will de-risk a lot of analysis on how zkVMs behave on other protocol changes, such as PVD. Umm. If we don't do this, we have to maintain, like, a zkVM branch on the specs, PVT branch on the specs, we have to mix both, and this is… Increasingly inefficient, considering that we have limited resources also to work. on many other important things for Ethereum. So that's kind of a short answer to these points, but I'm happy to keep talking about this in the next call, if needed. Well, I already know if information on the EIPs means that will get merged into these specs. Maybe I'm not… Fully aware how precise the process is on this front.",
+              "translation": "네, Lukasz의 의견에 대해 간단히 짚고 싶습니다. 그의 우려 중 많은 부분은 선택적 증명(optional proofs)인 EIP-8025보다는 의무적 증명(mandatory proofs)과 더 관련이 있다고 생각합니다. EIP-8025는 사실 zkVM에서의 게스트 프로그램 조합을 어떤 식으로든 확정하거나 어떤 증명 시스템을 못박는 것이 아닙니다. 이것은 주로 스펙을 정의하고, 저희가 이미 해 놓은, 유용하다고 알고 있는 많은 작업을 정리할 수 있는 저장소(repository)로 이 작업을 업스트림(upstream)하는 것에 관한 것입니다. 그리고 어떤 게스트 프로그램을, 어떤 zkVM을 쓸지 등의 모든 논의는, 더 많은 데이터를 확보하고 무엇이 안전한지 알게 될 때까지 의무적 증명 쪽으로 미룰 수 있습니다. 저희가 EIP-8025가 스펙에 포함되어야 한다고 생각하는 주된 이유는, zkVM이 PVD 같은 다른 프로토콜 변경에 대해 어떻게 동작하는지에 대한 많은 분석의 리스크를 낮춰줄 것이기 때문입니다. 저희가 이것을 하지 않으면, 스펙에 zkVM 브랜치, PVT 브랜치를 따로 유지해야 하고, 둘을 섞어야 하는데, 이는 저희가 이더리움을 위한 다른 많은 중요한 작업에 쓸 자원도 한정되어 있다는 점을 고려하면 점점 더 비효율적입니다. 그래서 이 지점들에 대한 간단한 답변은 이 정도이고, 필요하다면 다음 통화에서 이에 대해 계속 이야기 나눌 수 있어 기쁩니다. 음, 저는 이미 EIP에 대한 정보가 이 스펙에 병합(merge)된다는 것을 의미하는지는 알고 있습니다. 어쩌면 저는 이 부분의 프로세스가 얼마나 정확한지 완전히 알지는 못하는 것 같습니다."
+            }
+          ],
+          "quote": {
+            "text": "안전하지 않다는 것을 알면서 사용자가 쓰면 안 되는 것을 싣게 되니, 포크에 넣을 이유를 모르겠다.",
+            "original": "So we'll ship something that we know that isn't secure enough, and that users shouldn't actually use it, so I don't see the point of shipping it in the fork.",
+            "speaker": "Łukasz Rozmej",
+            "timestamp": "01:30:25"
+          }
+        }
+      ],
+      "speakers": [
+        {
+          "label": "stokes",
+          "name": "stokes",
+          "share": 0.419
+        },
+        {
+          "label": "Dustin",
+          "name": "Dustin Brody",
+          "org": "Sigma Prime",
+          "role": "Lighthouse",
+          "share": 0.127
+        },
+        {
+          "label": "Barnabé Monnot",
+          "name": "Barnabé Monnot",
+          "share": 0.125
+        },
+        {
+          "label": "Łukasz Rozmej",
+          "name": "Łukasz Rozmej",
+          "org": "Nethermind",
+          "role": "EIP-8037 공동 저자",
+          "share": 0.049
+        },
+        {
+          "label": "Enrico Del Fante",
+          "name": "Enrico Del Fante",
+          "org": "Consensys",
+          "role": "Teku",
+          "handle": "tbenr",
+          "avatar": "https://pbs.twimg.com/profile_images/1425021438269050892/3IRr4G_z_400x400.jpg",
+          "share": 0.048
+        },
+        {
+          "label": "Matthew Keil",
+          "name": "Matthew Keil",
+          "org": "ChainSafe",
+          "role": "Lodestar",
+          "handle": "matthewkeil",
+          "avatar": "https://pbs.twimg.com/profile_images/1455695649899438083/nWUpW5EK_400x400.jpg",
+          "share": 0.038
+        },
+        {
+          "label": "Fredrik",
+          "name": "Fredrik",
+          "share": 0.034
+        },
+        {
+          "label": "ignacio",
+          "name": "ignacio",
+          "share": 0.03
+        },
+        {
+          "label": "Barnabas",
+          "name": "Barnabas Busa",
+          "org": "EF DevOps",
+          "handle": "BarnabasBusa",
+          "avatar": "https://pbs.twimg.com/profile_images/534855342300352514/m-C5ReWq_400x400.jpeg",
+          "share": 0.024
+        },
+        {
+          "label": "Ben Adams",
+          "name": "Ben Adams",
+          "org": "Nethermind",
+          "handle": "ben_a_adams",
+          "avatar": "https://pbs.twimg.com/profile_images/1282411238602006529/l4lHaQHE_400x400.jpg",
+          "share": 0.017
+        },
+        {
+          "label": "cayman",
+          "name": "Cayman Nava",
+          "org": "ChainSafe",
+          "role": "Lodestar",
+          "share": 0.014
+        },
+        {
+          "label": "terence",
+          "name": "Terence Tsao",
+          "org": "Offchain Labs",
+          "role": "Prysm",
+          "handle": "terencechain",
+          "avatar": "https://pbs.twimg.com/profile_images/1767254738008240129/7hA2_fDm_400x400.jpg",
+          "share": 0.014
+        },
+        {
+          "label": "Francesco Risitano (Tau)",
+          "name": "Francesco Risitano",
+          "share": 0.014
+        },
+        {
+          "label": "NC",
+          "name": "NC",
+          "share": 0.008
+        },
+        {
+          "label": "saulius",
+          "name": "Saulius Grigaitis",
+          "org": "Grandine",
+          "share": 0.008
+        },
+        {
+          "label": "Ryan Berckmans",
+          "name": "Ryan Berckmans",
+          "share": 0.006
+        },
+        {
+          "label": "Will Corcoran",
+          "name": "Will Corcoran",
+          "share": 0.004
+        },
+        {
+          "label": "Walter Himmelsbach",
+          "name": "Walter Himmelsbach",
+          "share": 0.004
+        },
+        {
+          "label": "nixo",
+          "name": "Nixo",
+          "org": "EF Protocol Support",
+          "role": "ACDE 진행",
+          "handle": "nixorokish",
+          "avatar": "https://pbs.twimg.com/profile_images/2086847437277478912/F-w_Sq0y_400x400.jpg",
+          "share": 0.003
+        },
+        {
+          "label": "marc | wolovim",
+          "name": "marc",
+          "org": "wolovim",
+          "share": 0.003
+        },
+        {
+          "label": "Miguel",
+          "name": "Miguel",
+          "share": 0.003
+        },
+        {
+          "label": "ethDreamer (Mark)",
+          "name": "ethDreamer",
+          "share": 0.003
+        },
+        {
+          "label": "Kevaundray Wedderburn",
+          "name": "Kevaundray Wedderburn",
+          "org": "EF",
+          "role": "응용 리서치",
+          "handle": "kevaundray",
+          "avatar": "https://pbs.twimg.com/profile_images/1658523090467315712/a3xJ6ySn_400x400.jpg",
+          "share": 0.003
+        }
+      ],
+      "chat": [
+        {
+          "speaker": "potuz",
+          "text": "인시던트 대응을 테스트할 작은 비최종화 데브넷을 만들 수 있나. 예를 들어 최종화되지 않은 체크포인트 싱크를 테스트하고 싶다. 데브넷 8에서 밸리데이터 일부를 내리는 방법도 괜찮다.",
+          "timestamp": "00:12:03"
+        },
+        {
+          "speaker": "Oisin Kyne",
+          "text": "EIP-7716의 2026년 업데이트가 머지됐으니 살펴봐 달라. 이해를 돕는 계산기와 FAQ 사이트도 만들었다. 탈중앙화를 장려할 가치가 있으니 헤고타에 B티어급 CFI로 넣어주길 바란다.",
+          "timestamp": "00:17:25"
+        },
+        {
+          "speaker": "Justin Traglia",
+          "text": "CFI 하자. (EIP-8365 예치 가드에 대한 지지, 다수가 동의 반응을 남겼다)",
+          "timestamp": "00:23:04"
+        }
+      ],
+      "glossary": [
+        {
+          "term": "CFI",
+          "def": "Considered for Inclusion, 포크 포함을 검토하기로 하고 구현과 검증 작업을 진행하는 단계. 출시 약속은 아니다"
+        },
+        {
+          "term": "SFI",
+          "def": "Scheduled for Inclusion, 포크 포함이 확정된 단계"
+        },
+        {
+          "term": "PFI",
+          "def": "Proposed for Inclusion, 포크 포함이 제안되어 후보로 접수된 단계"
+        },
+        {
+          "term": "DFI",
+          "def": "Declined for Inclusion, 이번 포크 후보에서 제외된 상태"
+        },
+        {
+          "term": "PQ",
+          "def": "포스트 퀀텀(post-quantum), 양자컴퓨터 공격에도 안전한 암호로 바꾸는 양자내성 전환"
+        },
+        {
+          "term": "디커플드 합의",
+          "def": "decoupled consensus, 슬롯 구조와 검증자 역할을 재편하는 차기 합의 계층 재설계. 양자내성 전환의 전제로 꼽힌다"
+        },
+        {
+          "term": "엔진 API",
+          "def": "engine API, 합의 계층(CL)과 실행 계층(EL) 클라이언트가 통신하는 표준 인터페이스"
+        },
+        {
+          "term": "섀도 포크",
+          "def": "shadow fork, 실제 네트워크 상태를 복제해 업그레이드를 미리 돌려보는 리허설 테스트"
+        }
+      ],
+      "eips": [
+        8025,
+        8198,
+        8333,
+        8363,
+        8365,
+        8379,
+        8383
+      ],
+      "relatedDebates": [
+        "eip-8363-tapered-issuance-burn"
+      ],
+      "telegramMessageId": 1637
+    },
     {
       "id": "acdt-98",
       "series": "acdt",
@@ -14195,13 +14688,13 @@
     "currentFork": {
       "name": "글램스터담",
       "stage": "테스트넷 단계",
-      "line": "세폴리아 10월 6일 확정 · 후디 잠정 10월 27일, 10월 8일 결정"
+      "line": "세폴리아 10월 6일 13:53 UTC 확정 · 후디 10월 27일 잠정"
     },
     "nextFork": {
       "name": "헤고타",
       "stage": "범위 정하는 중",
-      "line": "CFI 11건 · 프레임+FOCIL 통합 데브넷 데브콘 이전 목표"
+      "line": "CFI 13건 · 프레임+FOCIL 통합 데브넷 데브콘 전 목표"
     },
-    "basis": "acdt-98"
+    "basis": "acdc-188"
   }
 }
