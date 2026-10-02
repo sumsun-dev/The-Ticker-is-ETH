@@ -1,17 +1,77 @@
 {
-  "upcoming": "Upcoming Events",
-  "upcomingSubtitle": "Stay tuned for our next community gatherings",
+  "subtitle": "Ethereum events ECK has organized or taken part in.",
+  "metaDescription": "Ethereum events ECK has been part of, including Ethereum Korea One and Ethcon Korea.",
+  "upcomingEmptyTitle": "Our next event is in the works",
+  "upcomingEmptyBody": "We announce new dates on our Telegram channel first.",
+  "subscribe": "Join the channel",
+  "recent": "Latest event",
   "past": "Past Events",
   "ctaTitle": "Want to host an event?",
   "ctaDescription": "We support community initiatives. Reach out to us!",
   "contactUs": "Contact Us",
+  "links": {
+    "website": "Event page",
+    "archive": "Archive"
+  },
+  "locations": {
+    "dsrv": "DSRV, Seoul",
+    "seoul": "Seoul",
+    "platz2": "Platz2, Seoul",
+    "seoulOnline": "Seoul and online",
+    "coex": "COEX Grand Ballroom, Seoul"
+  },
   "descriptions": {
-    "upcoming": "Coming soon — details to be announced.",
-    "ethereumKoreaWeek": "A two-day conference with separate tracks for institutions and builders. Day 1 covers 'capital and policy' (tokenization, stablecoins); Day 2 focuses on 'code and community' for developers and protocol teams.",
     "ethereumKoreaOne": "\"Where institutional legacy meets the infinite garden\" — Connecting Korea's established financial institutions with the Ethereum ecosystem. Sessions on institutional adoption, blockchain infrastructure, stablecoins, and RWAs.",
     "ethcon2024": "\"Ignite your Cypherpunk Vision\" — The 4th non-profit Ethereum developer conference. Developers, researchers, and students discussing the cypherpunk vision together.",
     "ethcon2023": "\"Proof of Sharing\" — Vitalik Buterin as headline guest. A 3-day event combining hackathon and conference.",
     "ethcon2020": "\"Explore the Network of Opportunities!\" — Global speakers including Vitalik Buterin, Sandeep Nailwal (Polygon), 0xMaki (SushiSwap), and Sebastien Borget (The Sandbox).",
     "ethcon2019": "\"Discover the Light\" — The first non-profit Ethereum developer conference with 60 speakers and 500 attendees. Featuring Ethereum 101, Vyper & Solidity workshops."
+  },
+  "genesis": {
+    "bannerAlt": "The Build Beyond the Narrative banner on the Day 2 venue in Seongsu",
+    "lead": "A two-day event hosted by the Ethereum Korea consortium. Day 1 invited financial institutions to discuss tokenization, stablecoins and staking. Day 2, a builder day themed Build Beyond the Narrative, brought client developers and protocol teams together on what comes next for Ethereum.",
+    "day1": "Day 1 · Institutional (invite-only)",
+    "day2": "Day 2 · Builder Day",
+    "day1Meta": "Conrad Seoul · 14 sessions",
+    "day1Who": "Tom Lee, Joseph Lubin, Joseph Chalom, BlackRock, Franklin Templeton",
+    "day2Meta": "Build Beyond the Narrative · Seongsu, Seoul Forest · 16 sessions, 4 roundtables",
+    "day2Who": "Geth, Prysm, Arbitrum, Optimism, Uniswap, Lido",
+    "day1Tab": "Sep 28 (Mon) · Conrad Seoul",
+    "day2Tab": "Sep 29 (Tue) · Seongsu, Seoul Forest",
+    "day1Venue": "Day 1 Conrad Seoul",
+    "day2Venue": "Day 2 Seongsu, Seoul Forest",
+    "viewRecord": "View the event record",
+    "officialSite": "Official site",
+    "otherEvents": "Other events",
+    "metaDescription": "Record of Ethereum Korea One Genesis (Sep 28–29, 2026): session summaries, transcripts and photos from the institutional day and the builder day.",
+    "intro": "A two-day event hosted by the Ethereum Korea consortium. On the invite-only institutional day, Korean and global financial institutions discussed how, not whether, to use public blockchains. On the builder day (Build Beyond the Narrative), client developers, researchers and protocol teams talked about Ethereum after Glamsterdam across a Korean and an English stage. Session summaries and transcripts are in Korean. ECK joined the consortium introduction and the roadmap panel on Day 2.",
+    "statSessions": "Sessions (Day 1 14 · Day 2 16)",
+    "statRoundtables": "Day 2 roundtables",
+    "program": "Program",
+    "day1Note": "An invite-only day for financial institutions and companies, co-hosted with Korea Economic TV. Title sponsor: DB Securities.",
+    "day2Note": "A builder day for developers and protocol teams, themed Build Beyond the Narrative. 2F ran in Korean, 3F in English, and 4F hosted small private roundtables.",
+    "floor": {
+      "2f": "2F Korean sessions",
+      "3f": "3F English sessions",
+      "4f": "4F Roundtables"
+    },
+    "summary": "Summary and key remarks",
+    "readTranscript": "Read transcript · {{chars}} chars",
+    "transcript": "Session transcript",
+    "transcriptOf": "Transcript of {{title}}",
+    "footnotes": "Notes",
+    "loading": "Loading…",
+    "loadError": "Couldn't load the transcript. Please try again in a moment.",
+    "gallery": "Around the venue",
+    "net": {
+      "net-d1-pre": "Day 1 · Registration and lobby",
+      "net-d1": "Day 1 · Booths and networking",
+      "net-d2": "Day 2 · Booths, networking and dinner"
+    },
+    "openPhoto": "Open photo {{n}}",
+    "allPhotos": "See all {{count}} photos",
+    "prevPhoto": "Previous photo",
+    "nextPhoto": "Next photo",
+    "close": "Close"
   }
 }
