@@ -152,7 +152,8 @@
         "quotes": 0,
         "replies": 1,
         "views": 42
-      }
+      },
+      "publish": true
     },
     {
       "id": "ethereum-mass-adoption-vs-small",
