@@ -102,6 +102,7 @@ describe('EventGenesis', () => {
         const dialog = await screen.findByRole('dialog', { name: /전문/ });
         await waitFor(() => expect(within(dialog).getByText('전문 본문입니다.')).toBeInTheDocument());
         expect(within(dialog).getByText('각주 내용')).toBeInTheDocument();
+        expect(within(dialog).getByRole('note')).toHaveTextContent('참고 자료');
         expect(dialog.querySelector('img[onerror]')).toBeNull();
     });
 });

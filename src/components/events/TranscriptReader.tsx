@@ -63,7 +63,10 @@ const TranscriptReader: React.FC<TranscriptReaderProps> = ({ session, onClose })
                 className="genesis-transcript mx-auto w-full max-w-3xl min-h-0 flex-1 overflow-y-auto rounded-2xl border border-theme-border bg-brand-surface px-5 py-6 sm:px-7 outline-none"
             >
                 <h2 className="text-xl font-bold text-theme-text">{session.title}</h2>
-                <p className="mt-1 mb-5 text-sm text-theme-text-muted">{session.speakers}</p>
+                <p className="mt-1 mb-4 text-sm text-theme-text-muted">{session.speakers}</p>
+                <p role="note" className="mb-5 rounded-lg border border-amber-400/30 bg-amber-400/[0.06] px-3.5 py-2.5 text-[13px] leading-relaxed text-amber-100/90">
+                    {t('genesis.transcriptNotice')}
+                </p>
                 {tx === null && <p className="text-theme-text-muted">{t('genesis.loading')}</p>}
                 {tx === 'error' && <p className="text-theme-text-muted">{t('genesis.loadError')}</p>}
                 {tx && tx !== 'error' && (
