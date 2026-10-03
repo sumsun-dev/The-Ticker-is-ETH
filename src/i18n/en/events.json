@@ -73,6 +73,7 @@
     "prevPhoto": "Previous photo",
     "nextPhoto": "Next photo",
     "close": "Close",
-    "swipeHint": "Swipe left or right to browse"
+    "swipeHint": "Swipe left or right to browse",
+    "transcriptNotice": "This transcript is a reference compiled from the event’s automatic captions. Names, figures and wording may differ from what speakers actually said, and unclear passages were dropped or smoothed over. Please check against official materials or recordings before quoting anyone."
   }
 }
