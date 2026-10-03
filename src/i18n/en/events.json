@@ -72,6 +72,7 @@
     "allPhotos": "See all {{count}} photos",
     "prevPhoto": "Previous photo",
     "nextPhoto": "Next photo",
-    "close": "Close"
+    "close": "Close",
+    "swipeHint": "Swipe left or right to browse"
   }
 }

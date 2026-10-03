@@ -72,6 +72,7 @@
     "allPhotos": "사진 {{count}}장 모두 보기",
     "prevPhoto": "이전 사진",
     "nextPhoto": "다음 사진",
-    "close": "닫기"
+    "close": "닫기",
+    "swipeHint": "좌우로 밀어서 넘겨 보세요"
   }
 }

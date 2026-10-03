@@ -12,10 +12,11 @@ interface LightboxProps {
     onClose: () => void;
 }
 
-/** 사진 크게 보기. 좌우 화살표 키, 사진 클릭으로 넘기고 Esc로 닫는다 */
+/** 사진 크게 보기. 좌우 화살표 키, 사진 클릭, 모바일 좌우 밀기로 넘기고 Esc로 닫는다 */
 const Lightbox: React.FC<LightboxProps> = ({ title, set, photos, index, onIndex, onClose }) => {
     const { t } = useTranslation('events');
     const closeRef = useRef<HTMLButtonElement>(null);
+    const touchX = useRef<number | null>(null);
     const step = useCallback((d: number) => onIndex((index + d + photos.length) % photos.length), [index, onIndex, photos.length]);
 
     useEffect(() => {
@@ -37,11 +38,29 @@ const Lightbox: React.FC<LightboxProps> = ({ title, set, photos, index, onIndex,
         return () => window.removeEventListener('keydown', onKey);
     }, [onClose, step]);
 
-    const [n] = photos[index];
+    // 앞뒤 사진을 미리 받아 넘길 때 끊기지 않게 한다
+    useEffect(() => {
+        for (const d of [1, -1]) {
+            const [m] = photos[(index + d + photos.length) % photos.length];
+            new Image().src = photoUrl(set, m);
+        }
+    }, [index, photos, set]);
+
+    const onTouchStart = (e: React.TouchEvent) => {
+        touchX.current = e.touches[0].clientX;
+    };
+    const onTouchEnd = (e: React.TouchEvent) => {
+        if (touchX.current === null) return;
+        const dx = e.changedTouches[0].clientX - touchX.current;
+        touchX.current = null;
+        if (Math.abs(dx) > 40) step(dx < 0 ? 1 : -1);
+    };
+
+    const [n, , , color] = photos[index];
     const nav = 'hidden sm:grid shrink-0 w-11 h-11 place-items-center rounded-full border border-white/15 bg-white/5 text-white hover:bg-white/10';
 
     return (
-        <div role="dialog" aria-modal="true" aria-label={title} className="fixed inset-0 z-[100] flex flex-col bg-black/95 px-4 py-3">
+        <div role="dialog" aria-modal="true" aria-label={title} className="fixed inset-0 z-[100] flex flex-col bg-brand-dark px-4 py-3">
             <div className="mx-auto mb-2 flex w-full max-w-6xl items-center gap-3 text-sm text-theme-text-secondary">
                 <b className="truncate text-theme-text font-semibold">{title}</b>
                 <span className="ml-auto tabular-nums">
@@ -56,20 +75,24 @@ const Lightbox: React.FC<LightboxProps> = ({ title, set, photos, index, onIndex,
                     <X size={14} /> {t('genesis.close')}
                 </button>
             </div>
-            <div className="flex min-h-0 flex-1 items-center justify-center gap-3">
+            <div className="flex min-h-0 flex-1 items-center justify-center gap-3" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
                 <button type="button" onClick={() => step(-1)} aria-label={t('genesis.prevPhoto')} className={nav}>
                     <ChevronLeft size={20} />
                 </button>
                 <img
+                    key={n}
                     src={photoUrl(set, n)}
                     alt=""
                     onClick={() => step(1)}
-                    className="max-h-full max-w-full rounded-md object-contain cursor-pointer"
+                    style={{ backgroundColor: color }}
+                    className="max-h-full max-w-full rounded-md object-contain cursor-pointer select-none"
+                    draggable={false}
                 />
                 <button type="button" onClick={() => step(1)} aria-label={t('genesis.nextPhoto')} className={nav}>
                     <ChevronRight size={20} />
                 </button>
             </div>
+            <p className="mt-2 text-center text-xs text-theme-text-muted sm:hidden">{t('genesis.swipeHint')}</p>
         </div>
     );
 };

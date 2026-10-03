@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import usePageMeta from '../hooks/usePageMeta';
-import PhotoGrid from '../components/events/PhotoGrid';
+import SessionPhotos from '../components/events/SessionPhotos';
+import JustifiedGallery from '../components/events/JustifiedGallery';
 import Lightbox from '../components/events/Lightbox';
 import TranscriptReader from '../components/events/TranscriptReader';
 import {
@@ -74,7 +75,7 @@ const SessionRow: React.FC<SessionRowProps> = ({ s, onPhoto, onTranscript }) => 
                 )}
                 {photos.length > 0 && (
                     <div className="mt-3.5">
-                        <PhotoGrid set={s.id} photos={photos} max={6} onOpen={onPhoto} />
+                        <SessionPhotos set={s.id} photos={photos} onOpen={onPhoto} />
                     </div>
                 )}
             </div>
@@ -186,7 +187,7 @@ const EventGenesis: React.FC = () => {
                         {NETWORKING_SETS.map((set) => (
                             <div key={set}>
                                 <h3 className="mb-2 text-sm font-semibold text-theme-text-secondary">{t(`genesis.net.${set}`)}</h3>
-                                <PhotoGrid set={set} photos={GENESIS_PHOTOS[set] ?? []} max={8} height={150} onOpen={openPhoto} />
+                                <JustifiedGallery set={set} photos={GENESIS_PHOTOS[set] ?? []} rows={2} onOpen={openPhoto} />
                             </div>
                         ))}
                     </div>
