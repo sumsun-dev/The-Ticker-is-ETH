@@ -8,16 +8,7 @@
    "title": "DB증권 개회사",
    "titleEn": "Opening by DB Securities",
    "speakers": "Hyunil Jang (CFO)",
-   "summary": "타이틀 스폰서 DB증권의 장현일 CFO가 Day 2 빌더 데이 첫 순서로, 금융사가 빌더 앞에서 개회사를 하는 의미를 설명했다. 디지털자산을 단기 수익이 아니라 금융 인프라 변화를 검증하는 과제로 보며, 부산 해운 탄소저감 STO 실증과 Optimism Foundation과의 협력 검토를 소개하고 빌더에게 세 가지 협업 원칙을 제안했다.",
-   "quote": "한국 디지털자산 시장의 경쟁은 이제 누가 더 화려하게 말하느냐가 아니라, 누가 더 책임 있게 실제 서비스를 만들어내느냐가 되어야 합니다.",
-   "points": [
-    "'어제(Day 1) 기관 대상 행사에선 모두 정장이었는데 오늘 개발자 행사는 드레스코드를 잘못 맞췄다'는 인사로 시작 · 금융인과 빌더의 문화 차이를 짚음",
-    "전통 금융은 신뢰·책임·규율, 블록체인은 개방성·조합성(composability)·빠른 실험을 쌓아 왔고, 둘이 연결되면 자산 발행·관리·청산의 비용과 시간을 크게 줄일 수 있다고 설명",
-    "투자자가 묻는 다섯 가지 질문(권리 보장 주체, 자산 가치 검증, 부정거래 방지, 개인·거래정보 보호, 오류 시 책임)은 혁신을 늦추는 질문이 아니라 기술이 시장에 오래 남게 하는 질문 · 규제·보안·UX를 설계 첫 단계에서 다루는 빌더를 찾는다고 강조",
-    "역할 분담: 금융사는 투자자 보호·상품 구조화·리스크 관리·규제 준수, 빌더는 지갑·보안·스마트 컨트랙트·데이터·UX · 코드가 있다고 금융 책임이 사라지지 않으므로 기술 설계·법적 권리·운영 통제를 함께 설계해야 한다고 지적"
-   ],
-   "eck": false,
-   "transcriptChars": 3425
+   "eck": false
   },
   {
    "id": "2f-02",
@@ -27,16 +18,7 @@
    "title": "이더리움 코리아 원 소개",
    "titleEn": "Introduction of Ethereum Korea One",
    "speakers": "Youbin Kang (Nonce Classic), Sose (ECK)",
-   "summary": "ECK 공동창업자 엄상현(Sose)과 논스클래식 강유빈 대표가 이더리움 코리아 컨소시엄과 EK1을 시작한 배경, 세 가지 목표, 13개 회원사 구성, 아시아·글로벌 협력 방향을 대담 형식으로 소개했다.",
-   "quote": "우리 목표는 이것을 1회성 행사가 아니라 매년 여는 것입니다.",
-   "points": [
-    "강유빈: 지난해 KBW에 이더리움 관련 행사가 하나도 없었던 것이 '충격'이었고, 당시 EF 공동 Executive Director였던 Tomasz Stańczak에게 제안해 이더리움 코리아 컨소시엄 구상이 나왔으며, 국내 최대 이더리움 빌더 커뮤니티였던 ECK와 뜻을 모아 출범",
-    "컨소시엄 3대 목표: ①한국을 대표하는 이더리움 플래그십 행사를 1회성이 아닌 매년 개최 ②회원사 출연금의 약 절반을 빌더 지원 그랜트 풀로 사용 ③국내 기관·정책 담당자와 해외 재단·프로젝트를 잇는 커넥터 역할",
-    "기관 설득법: 스마트 컨트랙트·영지식 같은 기술 용어 대신 BlackRock의 토큰화 미 국채 펀드 BUIDL, 홍콩 사례, 'RWA의 절반 이상이 이더리움 생태계' 같은 글로벌 사례·통계를 제시하는 것이 효과적이었다고 설명",
-    "정책 담당자에게는 허가형 프라이빗 체인과 달리 미 SEC가 퍼블릭 블록체인 위 토큰증권을 허용하게 된 배경을 설명; 컨소시엄 정책 라운드테이블에서 축사한 민병덕 의원(디지털자산기본법 발의)이 규제당국과 EF의 연결을 더 요청하고 있다고 언급"
-   ],
-   "eck": true,
-   "transcriptChars": 6025
+   "eck": true
   },
   {
    "id": "2f-03",
@@ -46,16 +28,7 @@
    "title": "글램스테르담 업그레이드 해설",
    "titleEn": "What's in the Glamsterdam Upgrade",
    "speakers": "Hudson Jang (Four Pillars)",
-   "summary": "Four Pillars의 장혁수가 EF의 장기 로드맵 Strawmap과 불변 가치 CROPS를 먼저 소개한 뒤, 차기 업그레이드 Glamsterdam의 두 헤드라이너 ePBS(EIP-7732)와 BAL(EIP-7928), 가스 리프라이싱을 설명했다. Glamsterdam은 즉각적인 체감 변화보다 L1 가스 한도를 하드웨어 사양 인상 없이 구조적으로 더 올리기 위한 기반 작업이며, FOCIL·Frame Transactions 등은 다음 포크 Hegotá로 넘어갔다고 정리했다.",
-   "quote": "Glamsterdam이 적용돼도 당장 바뀌는 건 없습니다. 더 확장할 수 있도록 구조적 가능성을 열어 두는 업그레이드입니다.",
-   "points": [
-    "직전 업그레이드 Fusaka(2025-12-03)는 PeerDAS(EIP-7594) 중심의 L2 데이터 확장용이었고, Glamsterdam은 L1 확장 기반을 다지는 총 18개 EIP를 담음 · 이름은 CL 'Gloas'(별 이름) + EL 'Amsterdam'(Devconnect 개최 도시)",
-    "Strawmap(strawman+roadmap, 2026년 2월 EF 프로토콜 팀 공개): 2029년을 향한 5개 North Star · Fast L1(12초 슬롯→6·4·2초, 약 16분인 파이널리티를 초 단위로), Gigagas L1, Teragas L2, Post-quantum, Private L1; 로드맵이 바뀌어도 지킬 가치로 CROPS(검열 저항·오픈소스·프라이버시·보안) 제시",
-    "왜 다시 L1 확장인가: 가스 한도는 약 1년 새 3,000만→6,000만으로 2배, 목표는 2억(ACDE #243에서 리프라이싱 확정으로 200M 안전 결론)이지만 블록 전파 지연과 순차 실행 시간이라는 구조적 벽에 부딪힘",
-    "일정(연사 발언): Platåberget 이후 여러 devnet을 거쳐 devnet 12에서 통과, 10월 6일 Sepolia → Hoodi → 12월 초 메인넷 목표(원래 2026년 상반기 예정). ECK 기준 Sepolia 10/6은 ACDC #186·ACDT #96에서 확정, Hoodi 날짜는 미정, 메인넷 확정일 없음"
-   ],
-   "eck": false,
-   "transcriptChars": 14565
+   "eck": false
   },
   {
    "id": "2f-04",
@@ -65,16 +38,7 @@
    "title": "이더리움의 북극성: 로드맵과 CROPS",
    "titleEn": "Ethereum's North Star: Roadmap & CROPS",
    "speakers": "Bosul Mun (Geth), Lucia Kim (Nonce Classic), Sose (ECK), Hudson Jang (Four Pillars), Christopher Choi (Remilia Korea)",
-   "summary": "Strawmap이 내건 다섯 가지 '북극성' 목표(Fast L1·Gigagas L1·Teragas L2·Post-Quantum L1·Private L1)와 L1의 핵심 가치 CROPS(검열·포획 저항, 오픈소스, 프라이버시, 보안)를 주제로, EF·커뮤니티·리서치·인프라 관점의 패널이 이더리움의 방향은 누가 어떻게 정하는지를 이야기했다. 후반 Q&A에서는 Hegotá 티어리스트로 드러난 EF 의사결정 방식, ACD의 개방성과 느린 합의, AI를 거버넌스에 쓸 수 있는지, 기관이 본 '양자내성 vs AI' 우선순위 논쟁이 비교적 선명하게 기록됐다.",
-   "quote": "이더리움은 재단이 '이렇게 하자'고 정하는 게 아닙니다. 각자의 관점을 공유하고 서로 확인하는 과정이 가장 중요합니다.",
-   "points": [
-    "문보설(EF·Geth): 재단의 영향력은 점점 줄고 사람 중심으로 바뀌는 중이라고 했다. '북극성'은 재단이나 한 사람이 정하는 게 아니라 관점을 공유하고 확인하는 과정 자체가 중요하며, EF의 이상적 역할은 영향력을 최소화하는 것이라고 정리했다.",
-    "EF 의사결정 구조: Ethlabs 등이 스핀아웃해 각자 티어리스트를 내는 전환기이지만, ACD(All Core Devs)는 누구나 들어와 EIP 포함 여부를 논의하는 형식을 유지한다. Ethlabs의 Hegotá 티어리스트에 자극받아 EF도 프로토콜 티어리스트를 만들어 팀 간 토론을 거쳤다고 소개했다. 실제로 EF Protocol 클러스터는 2026-09-09 9개 팀 약 60명이 62개 EIP에 등급을 매긴 통합 티어리스트를 공표했다.",
-    "합의 기반이라 느려지는 트레이드오프는 인정했다. 요즘은 Forkcast 등 도구로 논의를 압축하고, AI는 EIP 평가나 중재가 아니라 콜 요약 정도로만 쓰인다고 했다. 코어 개발자는 '실질적 권력이 없다'며, 발행량 축소 논쟁처럼 검증자 운영사 등 다양한 주체가 참여해 의견을 낸다고 답했다.",
-    "장혁수(Four Pillars): 검증자 인프라 운영이 GPT·Claude 같은 소수 LLM에 의존하게 되면 새로운 단일 장애점(SPOF)이 될 수 있다고 우려했다. 다른 패널은 AI 도입의 최대 병목이 '결과에 대한 책임 소재'라고 지적했다."
-   ],
-   "eck": true,
-   "transcriptChars": 14019
+   "eck": true
   },
   {
    "id": "2f-05",
@@ -84,16 +48,7 @@
    "title": "실행 레이어의 포스트 퀀텀 이더리움",
    "titleEn": "Post-Quantum Ethereum on the Execution Layer",
    "speakers": "Yoonhyung Lee (Yonsei CNL · Ethereum Korea Grantee)",
-   "summary": "EIP-7885(NTT 프리컴파일) 공동 저자인 이윤형 연구원이 Strawmap의 실행 레이어 양자내성 해법이 어떻게 바뀌어 왔는지 설명했다. 흐름은 NTT 프리컴파일 → 임시 키(ephemeral key) → leanSPHINCS 해시 기반 서명 + Frames(EIP-8141) 위 멤풀 집계(EIP-8288)다. 바이너리 필드 증명의 발전으로 표준 해시 증명 비용이 급락하면서 '표준(SLH-DSA)은 바꾸지 않고 증명·집계를 최적화하는' 방향이 현실화되고 있다는 것이 핵심 메시지다. 배경에는 EF가 공식 확약한 '늦어도 2029년 12월 양자내성 L1' 일정이 있다.",
-   "quote": "표준 해시를 쓰면 증명이 너무 느리다는 옛 가정은 점점 약해지고 있습니다.",
-   "points": [
-    "해시 기반 서명 분류: XMSS 같은 stateful 서명은 상태 롤백이나 다중 기기 서명 때 같은 일회용 키(WOTS)가 재사용되면 서명 위조가 가능해 사용자 지갑(EL)에 부적합하다. NIST 표준 SLH-DSA(FIPS 205, SPHINCS+ 계열)는 메시지가 트리·리프를 정하는 stateless 방식이지만, FORS와 다층 XMSS 하이퍼트리 때문에 서명이 크고 해시 연산이 많아 집계가 중요하다.",
-    "Strawmap의 EL 해법 변천: 초기 NTT 프리컴파일 → ephemeral key → 현재 leanSPHINCS + 증명 집계. Justin Drake에 따르면 Strawmap의 PQ 항목은 9개이며, J* 포크에서 실행 계층에 leanSPHINCS를 배치한다(I*로 앞당기는 안도 검토 중).",
-    "EIP-7885: 격자 기반 암호(ML-DSA·Falcon·ML-KEM)의 핵심 연산인 정방향·역방향 NTT와 모듈러 벡터 곱셈·덧셈을 범용 프리컴파일로 제공한다. 커스텀 OP Stack 테스트넷에서 Falcon 검증 가스를 약 180만에서 47.9만으로(약 73% 절감), ML-DSA를 약 780만에서 약 570만으로 줄였다(최종 수치는 ECK 정리 기준으로 보완).",
-    "Ephemeral key: 계정 추상화로 주소는 유지하고 승인 서명자만 매번 교체한다. ECDSA 버전은 멤풀 대기 중 공개키가 노출돼 양자 공격에 취약해 FORS(few-time, 재사용 시 보안이 점진적으로 저하) 기반 커밋먼트 교체로 바꿨지만, 상태 관리 부담과 비표준 스킴이라는 한계가 남았다."
-   ],
-   "eck": false,
-   "transcriptChars": 11154
+   "eck": false
   },
   {
    "id": "2f-06",
@@ -103,16 +58,7 @@
    "title": "이더리움을 지탱하는 인프라, 밸리데이터의 다음 시대",
    "titleEn": "The Next Era of Validators",
    "speakers": "Hudson Jang (Four Pillars), Youngseok Yang (Nodeinfra), Joonkyo Kim (DSRV), Hyung Lee (Altus)",
-   "summary": "국내 대표 밸리데이터 3사(Altus·Nodeinfra·DSRV)의 리더가 세 가지를 논의했다. 밸리데이터 사업의 진입장벽과 집중화, 이더리움 발행량 축소 제안 EIP-8363(Tapered Issuance Burn)이 사업에 미칠 영향, 한국 인프라 기업이 Figment·P2P.org 같은 글로벌 톱에 오르지 못한 이유다. 공통 진단은 '기술 장벽은 이미 무너졌고, 해자는 신뢰·트랙레코드·기관 네트워크·라이선스'라는 것이다. EIP-8363에는 장기 방향에는 공감하지만 시기상조이며 솔로·소형 검증자를 밀어내 중앙화를 가속할 수 있다는 우려가 모였다.",
-   "quote": "기술적 장벽은 많이 내려왔다. 결국 진입장벽은 VC·기관과의 관계, 즉 네트워킹이다. — 이형연(Altus)",
-   "points": [
-    "진입장벽의 이동: 이형연(Altus)은 밸리데이터 대회 1위·GitHub 버그 리포트 같은 기술 기여가 위임(delegation) 물량으로 이어지지 않았다고 했다. 토큰 보유자가 리테일에서 VC·기관으로 바뀌면서 진입장벽은 기술이 아니라 'VC·기관 네트워킹'이 됐다는 것이다. Nodeinfra는 신규 체인 감소까지 겹쳐 장벽이 더 높아졌다고 봤고, Altus·Nodeinfra 모두 밸리데이터에서 기술 개발로 무게를 옮겼다",
-    "DSRV(김준교): 해자는 슬래싱 리스크를 떠안고 자산을 맡기는 '신뢰'와 트랙레코드다. 기관 진입으로 위임형 보상은 줄고 AI 수요로 서버 비용은 올랐다. 여기에 ISMS(국내 매출 기준), SOC 1/SOC 2(커스터디 영역은 SOC 1), VASP 라이선스 인력 요건 같은 기관 컴플라이언스 비용이 소형 사업자의 진입을 막는다",
-    "EIP-8363(Tapered Issuance Burn, 2026-08-04 제출, Hegotá PFI): 스테이킹 비율이 오를수록 합의 보상 일부를 소각해 비율 약 50%에서 순수익률이 0이 되게 하고, 18개월에 걸쳐 단계 적용하는 제안이다. 패널은 '즉시 적용되면 매출이 반토막'이라며 장기 방향에는 공감하지만 시기상조라고 봤다",
-    "중앙화 역설: 최하단 검증자의 인센티브를 바꾸면 솔로·소형 검증자가 먼저 밀려나 EF가 경계하는 중앙화를 오히려 가속할 수 있다. LST·스테이킹 수익률에 기대는 DeFi 시장도 흔들 수 있다는 우려다. 연사는 'Hegotá에서는 빠진 것으로 안다'고 했다(ACD 기록상 공식 DFI는 미확인)"
-   ],
-   "eck": false,
-   "transcriptChars": 10365
+   "eck": false
   },
   {
    "id": "2f-07",
@@ -122,16 +68,7 @@
    "title": "이더리움에서 프라이버시 구현하기 · Privacy Boost 구축기",
    "titleEn": "Privacy on Ethereum",
    "speakers": "Harry Jeon (Sunnyside Labs)",
-   "summary": "Sunnyside Labs가 만든 온체인 프라이버시 솔루션 Privacy Boost의 설계 배경과 기술적 선택, 그리고 그 트레이드오프를 솔직하게 공유한 발표다. 기술적 선택은 shielded pool(UTXO·note·nullifier) 위에서 ZK 증명을 TEE 서버가 생성하는 구조, Groth16, viewing key 기반 escape hatch, account ID·Auth Registry 기반 자체 계정 추상화다. 기존 지갑(EOA·Safe·MPC)과 이더리움 유동성을 그대로 쓰면서, 500ms 이하 지연과 셀프 커스터디를 함께 보장하는 것이 목표다.",
-   "quote": "완벽한 프라이버시 솔루션은 없다고 생각한다. 결국 트레이드오프의 문제다.",
-   "points": [
-    "문제의식: 급여·결제·월세까지 온체인으로 옮겨 가면 주소 하나로 개인의 모든 금융 활동이 노출된다. 기업이 온체인 급여를 주면 직원끼리 연봉을 알게 된다. 2025년 11월 개발을 시작했고, 2026년 3월 첫 출시, 8월 V2를 냈다",
-    "세 가지 요구사항: ①빠를 것. Railgun은 클라이언트 ZK 증명에 수 초~10초 이상, 잔액 조회는 viewing key로 전체 암호문을 시도 복호화하는 체인 스캔이라 수 분이 걸린다. ②기존 지갑(EOA·Safe·MPC)과 이더리움 기존 유동성을 그대로 쓸 것. ③서버가 사라져도 사용자가 자금을 인출할 수 있을 것",
-    "기존 접근 비교: 클라이언트 측 ZK(Railgun·Privacy Pools)는 속도, Aztec 같은 프라이버시 전용 ZK 롤업은 사용자·유동성 부트스트랩, FHE는 ZK 대비 약 100배 느린 처리량과 앱 재작성이 문제다. 그래서 ZK와 TEE를 결합했다",
-    "구조: note commitment Merkle tree와 nullifier 기반 shielded pool에서 ZK 증명을 TEE 서버 안에서 생성해 1초 내 증명과 빠른 정산을 얻는다. 잔액·내역 API를 체인 스캔 없이 제공한다. 상태 전이의 정당성은 온체인 ZK 검증과 컨트랙트가 강제하므로, TEE가 뚫려도 자금은 임의로 옮길 수 없다"
-   ],
-   "eck": false,
-   "transcriptChars": 12892
+   "eck": false
   },
   {
    "id": "2f-08",
@@ -141,16 +78,7 @@
    "title": "ZK의 다음 돌파구는 어디서 오는가",
    "titleEn": "Where the Next ZK Breakthrough Comes From",
    "speakers": "Wonjae Choi (SNU VMO), Taehoon Kim (Succinct), Ryan Kim (Fractalyze), Jason Park (zkSecurity)",
-   "summary": "ZK 업계의 병목(수요·증명 비용·성능), zkVM 추상화와 커스텀 회로(프리컴파일)의 선택, Lean 4 기반 형식 검증과 신뢰 컴퓨팅 기반(TCB)의 범위, 이더리움 L1의 zkEVM화 이후 ZK의 쓰임새를 약 1시간 논의했다. AI가 프루버 최적화와 프리컴파일·회로 작성을 크게 앞당기고 있다는 데 공감대가 있었고, 다음 수요처로는 확장성(롤업·OP Succinct류), x402 기반 에이전트 결제에서의 API 결과 검증, 검증 가능한 AI 연산, 신원 정보의 선택적 공개가 거론됐다.",
-   "quote": "6개월 안에 10배 성능을 짜내야 한다면, 나는 AI를 활용한 프루버 최적화에 올인하겠다.",
-   "points": [
-    "김태훈(Succinct): 병목은 결국 '수요'이고 그 원인은 증명 비용·성능 · TLS처럼 비용이 무시할 수준이 돼야 표준이 된다. 기관이 거래 처리를 전부 ZK로 증명하려면 GPU 최소 100대급, 모바일 클라이언트 증명은 아직 무겁다",
-    "검증 가능성 수단 비교: 옵티미스틱 챌린지·TEE·재연산·ZK. Ryan Kim은 AI 영역이 성능·비용 때문에 샌드박스·confidential VM(TEE)에 머물러 있으며 오프체인 ML 검증은 대부분 TEE로 갈 것이라 보면서도, UCP·AP2·x402로 열리는 에이전트 결제에서 API 제공자가 올바른 결과를 줬는지 검증하는 자리는 ZK라고 주장. 박진석(zkSecurity)은 '민감 정보는 TEE 처리 불가' 같은 규제가 ZK 수요의 촉매가 될 수 있다고 봄",
-    "추상화: SP1처럼 Rust/C++→RISC-V로 ZK를 몰라도 쓰게 하는 방향에 대체로 공감. 김태훈은 AI 덕에 단순한 상태 전이는 가벼운 커스텀 스택이 더 쌀 수도 있다고 인정. 좌장은 Tamir Hemo가 제시한 SP1 4단계 로드맵(1세대 RISC Zero → 2세대 처리량 → 3세대 실시간 증명 → 4세대 AI로 작성·검증한 프리컴파일 회로를 조합하는 zkVM)을 소개했고, Succinct는 차세대 프루버를 내년 1분기까지 프로덕션 수준으로 만드는 것을 목표로 한다고 밝힘",
-    "형식 검증만으로는 부족: 김태훈은 '수신자가 바뀌었는데 증명은 통과'하는 류의 스펙 오류를 막으려면 프로토콜 수준 손실 모델링·비상 정지·E2E 테스트가 필요하다고 강조. Ryan Kim은 손실 규모·자율성에 따라 사람 책임 → 중앙화된 주체만 증명 생성(최근 회로 버그 사례) → 형식 검증 총동원의 단계로 정리. 박진석은 zkVM 같은 프레임워크 버그는 사용자 전원에 영향을 주므로 CVE식 공지·대피 절차와 버그바운티 유지가 필수라고 지적"
-   ],
-   "eck": false,
-   "transcriptChars": 24034
+   "eck": false
   },
   {
    "id": "3f-02",
@@ -160,16 +88,7 @@
    "title": "지속가능한 DeFi 만들기",
    "titleEn": "How to Build Sustainable DeFi",
    "speakers": "Guzus (Axis), Derek Walkush (Uniswap), Christopher Donovan (Compound), Mike Silagadze (EtherFi), Heejin Kim (Radius)",
-   "summary": "인센티브 의존 성장의 한계, 외부 수익 기반의 인센티브 설계, 앱과 대출 프로토콜 사이의 가치 배분, Uniswap 수수료 스위치(UNIfication)의 실제 영향, V4 동적 수수료가 차익거래·솔버 인프라에 주는 부담, 4월 KelpDAO rsETH 브리지 익스플로잇 이후의 손실 분담 문제를 다룬 DeFi 패널입니다. '카지노가 아니라 외부 수익을 만드는 앱을 만들라'는 메시지로 마무리됐습니다.",
-   "quote": "카지노를 만들지 마십시오. 실제로 외부 수익원을 만들어내는 앱을 만드세요. (Mike Silagadze, ether.fi)",
-   "points": [
-    "Christopher(Compound Foundation COO): 2020년 DeFi Summer의 인센티브가 카테고리를 만들었지만, 인센티브가 유일한 성장 동력이면 소진 후 리텐션이 무너진다. 수년간 반복 개선이 없어 경쟁 우위를 잃은 것이 Compound의 교훈이며, 개발 중인 V4는 ether.fi 같은 앱이 연결되는 '중립적 인프라'를 지향",
-    "Mike(ether.fi CEO): 최근 리스테이킹을 끄고 일반 스테이킹으로 돌아갔으며 크립토 네오뱅크로 전환. 카드 결제 가맹점 수수료 약 3%, 전략 볼트·대출 수수료 등 외부 수익으로 캐시백을 주고, 인센티브는 고객 획득비용(예: 1인당 100달러) 예산으로 관리 · '토큰 약속으로 빚지는 구조'에서 벗어나 거의 평범한 비즈니스가 됐다고 설명",
-    "Derek(Uniswap Labs): 작년 12월 V2·V3(UNIfication 통과), 7월 V4에 프로토콜 수수료를 켰고 인터페이스·API 수수료는 없애 오히려 라우팅 물량과 점유율이 늘었음. 달러 기준 유동성의 99%가 잔류(이탈 1%), LP 수수료 일부가 TokenJar 컨트랙트를 거쳐 UNI 소각에 쓰임",
-    "Derek: 9월 출시된 Stable pair 훅은 페그 이탈 시 수수료를 올리는 동적 수수료 훅으로, 차익거래자 수익 일부를 LP에게 돌려 초기 벤치마크상 LP 수익 20~40% 개선. EVM 스테이블-스테이블 스왑 점유율은 연초 약 30%에서 약 65%로 상승"
-   ],
-   "eck": false,
-   "transcriptChars": 11284
+   "eck": false
   },
   {
    "id": "3f-03",
@@ -179,16 +98,7 @@
    "title": "이더리움 클라이언트, 다음은 무엇인가",
    "titleEn": "Ethereum Clients: What Comes Next?",
    "speakers": "Youngseok Yang (Nodeinfra), Jun Song (Prysm), Felix Lange (EF Geth), Luca Zanolini (Alumni of EF)",
-   "summary": "Glamsterdam(CL: Gloas)의 ePBS(EIP-7732)가 합의 클라이언트에 주는 복잡성과 확장성 이득, L1 확장과 L2 중심 로드맵의 관계, ZK·PeerDAS가 트릴레마를 실제로 푸는지, 그리고 포스트퀀텀·Lean 형식검증·노드 구조 등 향후 5~10년 클라이언트의 모습을 다룬 기술 패널입니다.",
-   "quote": "로드맵의 진입점은 바뀔 수 있지만, 바뀌지 않는 것은 신뢰 최소화와 탈중앙화라는 이더리움의 철학입니다. (Luca Zanolini)",
-   "points": [
-    "Jun(Prysm): ePBS로 검증인에게 PTC(Payload Timeliness Committee) 의무가 추가되고, 포크 초이스의 슬롯 경우의 수가 2가지에서 3가지(슬롯 누락 / 블록+페이로드 / 페이로드 없는 블록)로 늘어 구현 복잡성이 커짐",
-    "Jun: 지금은 슬롯 4초 어테스테이션 마감 탓에 블록 실행·검증에 몇 초밖에 없지만 ePBS로 이 창이 최대 약 5배 늘어남. 가스 한도를 6천만에서 2억으로 올리는 것이 목표(원래는 3억 희망) · ACDE #243(8/13)에서 200M 안전 결론, 데브넷7은 300M으로 시험. 릴레이 안의 불투명한 경매가 프로토콜 안으로 들어와 입찰 하한이 보이고 솔로 스테이커도 입찰 가능",
-    "Luca: 빌더가 프로토콜 안으로 들어오면서 '어떤 가정에서 어떤 성질이 보장되는지'를 정리로 증명할 수 있게 됨. 빌더가 페이로드를 보류해도 프로토콜이 제안자 지급을 강제하는 식. 대가로 동기성 등 정리해야 할 가정이 늘어남",
-    "L1 확장 vs L2: Jun은 롤업 중심 로드맵이 성공적이었고 이제 L1 가스비가 저렴해 대부분 앱이 L1에 배포 가능하며 L2는 기관·기업용 특화 블록스페이스로 갈 것이라 봄. Felix는 두 방향이 배타적이지 않다고 했고, Luca는 로드맵의 진입점보다 '신뢰 최소화·탈중앙화·중립적 정산 레이어'라는 원칙을 따르라고 조언"
-   ],
-   "eck": false,
-   "transcriptChars": 12945
+   "eck": false
   },
   {
    "id": "3f-04",
@@ -198,16 +108,7 @@
    "title": "예측시장 사용자층 분석: 플래시 보이즈인가 초예측가인가",
    "titleEn": "Flash Boys or Superforecasters? A Look Into Prediction Market User Base",
    "speakers": "Danning Sui (Pantera Capital)",
-   "summary": "Pantera가 2026년 상반기 Polymarket·Kalshi 데이터로 예측시장의 성장·경제성, 사용자 코호트, 단기 크립토 시장의 오라클 종가 조작형 MEV 전략을 분석한 발표입니다. 거래량은 소수의 프로·봇이 주도하고, 인센티브와 시장 설계가 참여자 행동과 공정성을 좌우한다는 결론을 제시했습니다.",
-   "quote": "시장 설계가 참여자의 행동과, 시장 참여가 얼마나 공정할 수 있는지를 결정합니다. (Danning Sui, Pantera Capital)",
-   "points": [
-    "규제 구도: 주별로 규제되는 스포츠 베팅과 달리 CFTC의 DCM(지정 계약시장) 라이선스를 받으면 결과를 이진 계약으로 정의해 연방 차원에서 주 경계를 넘어 영업 가능 · Kalshi·Polymarket US가 이 구조. Polymarket International은 오프체인 CLOB 매칭 + Polygon 온체인 정산이라 지갑 단위 분석이 가능하지만, 미국 플랫폼은 완전 오프체인이라 자전거래 탐지가 어려움",
-    "시장 규모(7월 스냅샷): Kalshi 월 거래량 약 130억 달러·미결제약정 약 10억 달러로 압도적, Polymarket International+US 합산 약 50억 달러(미결제약정 각 약 4억·1억 달러). 9월에는 Polymarket US(약 20억 달러)가 International(약 19.9억 달러)을 거래량에서 추월. Pantera 포트폴리오 Novig 점유율 23%",
-    "지표: 명목 거래량은 플랫폼마다 계산이 달라 테이커 한쪽 기준 거래량, 미결제약정, 회전율(거래량/미결제약정)을 봐야 하며, 미결제약정 대비 과도한 거래량은 인위적 거래량의 신호",
-    "카테고리: Polymarket US는 거의 전부 스포츠라 사실상 베팅 플랫폼이며 회전율 최고. Polymarket International 수수료의 98%가 크립토·스포츠에서 나오고 지정학 시장은 의도적으로 수수료 0. Kalshi 크립토 시장은 미결제약정은 작지만 일일 회전율 6배"
-   ],
-   "eck": false,
-   "transcriptChars": 9479
+   "eck": false
   },
   {
    "id": "3f-05",
@@ -217,16 +118,7 @@
    "title": "재단 너머의 이더리움",
    "titleEn": "Ethereum Beyond the Foundation",
    "speakers": "Jay Jang (Sunnyside Labs), Jerome de Tychey (EthCoordinate), Mashal Waqar (Octant), Kartik Talwar (ETHGlobal)",
-   "summary": "이더리움 재단(EF) 밖에서 생태계를 떠받치는 컨퍼런스(EthCC)·그랜트(Octant)·해커톤(ETHGlobal) 조직들이 EF의 역할과 한계, 2026년 6월 구조조정 이후 '5년 뒤 EF'의 모습, 그랜트 선정 기준, 한국 커뮤니티 운영 조언을 나눈 패널입니다. EF가 예산을 줄이는 사이 Ethlabs 같은 EF 출신 조직과 외부 펀더가 그 공백을 어떻게 메울지가 밑바탕에 깔린 질문이었습니다.",
-   "quote": "허울뿐인 지표를 목표로 삼지 마세요. 작은 행사를 자주 여는 것이 1년에 한 번 크게 하는 것보다 낫습니다. (Kartik Talwar, ETHGlobal)",
-   "points": [
-    "Jerome de Tychey(EthCoordinate·EthCC): EthCoordinate는 '누구에게 연락할지' 알려 주는 생태계 지도와 EIP 예측, 발행량 논의(같은 날 16:30 세션 주제인 EIP-8363) 같은 난제의 조율을 맡는다고 소개. 이더리움은 '시가총액 빼고 모든 면에서 1위'이며, 한 조직이 모든 지역 시장을 알 수는 없으니 EthCC는 같은 장소·같은 시기에 매년 여는 허브 전략을 택했다고 설명",
-    "Mashal Waqar(Octant): Golem Foundation 쪽 공공재 펀딩 플랫폼 Octant는 14번의 라운드(에포크)로 4,000 ETH 이상을 조건 없이 지급, 200개 이상 팀 지원. 2021년 그랜트 의존을 줄이는 액셀러레이터로 20개 프로젝트 졸업. 일반인·대학생은 리플·솔라나·비트코인을 먼저 떠올린다며 EF의 메시지·스토리텔링 부족을 지적했고, ETH/GLM 보유자가 분기별 매칭 풀 배분에 직접 참여할 수 있다고 강조",
-    "Kartik Talwar(ETHGlobal): 9년간 130개 도시 350개+ 행사, 20만 명 이상 대면 유입. 이더리움을 '개발자 플랫폼'으로 보고 DevRel 역할을 하려고 시작했으며, PayPal·은행 등 비크립토 기업 문의가 늘자 3년 전 비개발자 대상 컨퍼런스 Pragma를 출범",
-    "EthCC 10년: 코로나 직전 마지막·직후 첫 컨퍼런스였고, 사이퍼펑크·오픈소스 가치를 지키면서도 Société Générale이 스폰서로 참여하는 등 기관과 공존. Ethereum France 비영리 구조로 '이더리움 노드가 살아 있는 한 EthCC도 있을 것'"
-   ],
-   "eck": false,
-   "transcriptChars": 14129
+   "eck": false
   },
   {
    "id": "3f-06",
@@ -236,16 +128,7 @@
    "title": "이더리움 발행량 전쟁",
    "titleEn": "Ethereum's Issuance Wars",
    "speakers": "Hyung-Kyu Choi (DSRV), Jerome de Tychey (EthCoordinate), Isidoros Passadis (Lido)",
-   "summary": "스테이킹 비율이 공급의 50%에 가까워질수록 검증자 보상 일부를 소각해 발행 유인을 없애는 EIP-8363 'Tapered Issuance Burn'(2026-08-04 Draft, Hegotá PFI)을 두고, 공동 저자 Jerome과 반대 진영의 Lido가 맞붙은 토론. 현 발행 곡선(연 발행 ≈ 166×√스테이킹량)의 문제, 50% 상한의 근거, 운영자 집중 vs 스테이킹 비율, LST·DeFi의 역할, 진입 대기열, MEV와 솔로 스테이커를 다뤘다. 좌장은 이 제안이 다음 포크 Hegotá에는 반영되지 않는다고 소개했다.",
-   "quote": "스테이킹하지 않으면 희석되는 겁니다. — Jerome de Tychey",
-   "points": [
-    "좌장 HQ(DSRV): 머지 전부터 검증인을 운영해 온 DSRV의 공동창업자로서 '매출은 걱정되지만 이더리움이 영원히 살아남길 바란다'며, 핵심 질문을 '이더리움이 보안에 얼마를 지불해야 하고 누가 그걸 정하느냐'로 정리. EIP-8363은 Hegotá에 들어가지 않는다고 언급(ECK 데이터상 2026-08-06 ACDC #184에서 PFI 접수, 커뮤니티 합의가 전제라는 단서만 확인됨)",
-    "Jerome: 현재 산식은 연 발행 ≈ 166×√(스테이킹된 ETH)로 상한이 없어, 약 35% 스테이킹인 지금 수익률 약 2.5%·희석 약 0.85%/년(12~24개월 뒤 1% 근접 전망), 100% 스테이킹 시 수익률 1.5%=희석 1.5%로 실질 수익 0. 이더리움은 지금까지 7번 발행 방식을 바꿨고 매번 낮췄다고 강조",
-    "EIP-8363 설계: 목표는 스테이킹 비율 50% 초과 억제. 증명·제안·싱크 커미티 보상 중 소각 비율을 스테이킹 비율에 따라 선형으로 높여 50%(포화 잔고)에서 100%가 되게 함(18개월 단계 적용, 현 수준에서 순수익률 약 2.6%→1.2%). Jerome 스스로 '50%에서 0은 좀 가혹했고, 문제를 한꺼번에 풀려 한다는 비판도 받았다'고 인정",
-    "Izzy(Lido): Lido는 700개+ 노드 운영자에게 알고리즘으로 스테이크를 분배하되 전문 운영자 34곳이 약 90%를 운영, ETH의 약 22%가 Lido를 거침. stETH 담보로 스테이블코인을 빌려 ETH를 팔지 않고 헤지·운영비 조달이 가능하므로 '스테이커는 ETH 순매도자'라는 주장은 맞지 않고, 비트코인에 없는 ETH 수익률은 DAT·ETF 시대의 경쟁 우위라며 '발행 감축의 순효과는 아직 충분히 연구되지 않았다'고 반박"
-   ],
-   "eck": false,
-   "transcriptChars": 15792
+   "eck": false
   },
   {
    "id": "3f-07",
@@ -255,16 +138,7 @@
    "title": "계정 추상화의 미래",
    "titleEn": "Future of Account Abstraction",
    "speakers": "Harry Jeon (Sunnyside Labs), Felix Lange (EF Geth), Taek Lee (ZeroDev)",
-   "summary": "ERC-4337과 EIP-7702 이후에도 네이티브 계정 추상화가 왜 필요한지를 다룬 패널. Hegotá 헤드라이너로 확정된 프레임 트랜잭션(EIP-8141)과, Base가 주도하고 Optimism·Arbitrum이 지지한 EIP-8130의 설계 철학 차이를 짚었다. 행사 2주 전(9월 14일) 두 표준의 통합 작업이 결렬된 직후라, 두 표준이 공존할 때 지갑의 부담, L1에서 키 레지스트리를 누가 관리하느냐, 포스트퀀텀 서명 집계 문제가 핵심 쟁점이었다.",
-   "quote": "프레임 트랜잭션은 8130의 상위집합입니다. 8130이 할 수 있는 건 거의 다 할 수 있고, 그 이상도 할 수 있습니다. — Felix Lange",
-   "points": [
-    "Felix(EF Geth): ERC-4337은 스마트 계정의 시험대였지만 프로토콜상 트랜잭션은 여전히 키에서만 시작된다는 근본 한계가 있음. 4337 흐름을 메인넷에 옮기는 EIP-7701은 트랜잭션 흐름을 규정해 '이더리움 정신에 맞지 않아' 더 일반적인 프레임 트랜잭션으로 선회했고, 일반화 아이디어는 Vitalik이 제시, 이후 실무 주도는 Matt Garnett(lightclient)이 이어받았다고 소개",
-    "이규택(ZeroDev, 2025년 8월 Offchain Labs에 인수): L2가 네이티브 AA를 원하는 이유는 ① PQ(포스트퀀텀) 마이그레이션을 트랜잭션 유형과 분리하고 더 미룰 수 없기 때문, ② L1보다 UX를 우선하기 때문. L1이 중시하는 프라이버시·키 분리는 L2에서 상대적으로 낮게 평가된다고 봄",
-    "7702의 한계: 이규택은 임베디드 계정·세션 키 등 UX를 출시했지만 주요 사용자는 여전히 EOA에 머물고 7702는 사실상 배칭 정도에 그친다고 진단. Felix는 7702가 기존 주소에 코드를 넣어도 원래 키로 여전히 ETH를 보낼 수 있어 '진짜 스마트 계정이 아니다'라며, 프로토콜은 범용 프리미티브만 제공하고 계정 구현은 ZeroDev 같은 회사에 맡긴다는 원칙을 설명. 논의 중 네이티브 배칭과 트랜잭션 어서션(EIP-7906 계열, 예상 결과를 사후 조건으로 강제) 요구가 더해졌다고 소개",
-    "8141 vs 8130: 좌장은 8141이 범용 실행 모델(프레임)인 반면 8130은 서명 검증·가스 지불자 같은 계정 설정을 시스템 컨트랙트에 두는 방식이라 정리. Felix는 '프레임 트랜잭션은 8130의 상위집합'이라며 무허가형 혁신을 지키되 퍼블릭 멤풀 제약이 핵심 난제이고, 빌더·제3자 가스 후원 흐름과 PQ 서명(서명당 약 4KB) 집계를 블록·멤풀 단계에서 푸는 데 많은 시간을 썼다고 설명"
-   ],
-   "eck": false,
-   "transcriptChars": 11699
+   "eck": false
   },
   {
    "id": "3f-08",
@@ -274,16 +148,7 @@
    "title": "L2는 여전히 이더리움을 확장하고 있는가",
    "titleEn": "Are L2s Still Scaling Ethereum?",
    "speakers": "Harry Jeon (Sunnyside Labs), Ed Felten (Offchain Labs), Chris Andreola (Optimism), Ilia Volokh (StarkWare)",
-   "summary": "Vitalik이 2026년 2월 \"L2를 더 이상 이더리움의 브랜디드 샤드로 보지 말자\"고 한 진단을 출발점으로, L2의 실제 확장 기여, L2BEAT Stage 2와 탈중앙화의 의미, blob 수수료를 둘러싼 L2→L1 가치 환원 논쟁, Circle·Stripe 같은 기업이 자체 L1(Arc·Tempo)을 내는 흐름을 토론했다. 청중 질의응답에서는 프라이버시 로드맵과 기관·리테일 온보딩 전략까지 다뤘다.",
-   "quote": "우리는 만들면 사람들이 올 거라고 생각했지만, 오지 않습니다. 그래서 우리가 그들을 데려와야 합니다. — Ilia Volokh (StarkWare)",
-   "points": [
-    "Ilia Volokh(StarkWare): Vitalik의 방향은 '증명하기 효율적인 새 VM'을 채택하겠다는 것이고, StarkNet은 처음부터 그렇게 해 왔다고 설명. EF가 Cairo를 쓰지 않기로 한 건 '올바른 선택은 아니라고 보지만 이해는 된다'고 발언. 이더리움이 확장하려면 증명(ZK)이 필요하다는 데는 동의.",
-    "Ed Felten(Offchain Labs): 가스 사용량·거래 수로 보면 L2 전체가 L1보다 훨씬 많은 트래픽을 처리한다고 강조하며, 'L1의 바라는 미래'를 'L2의 현재'와 비교하는 함정을 경계해야 한다고 지적. 인터넷의 TCP/IP처럼 레이어 구조가 이더리움 성공의 핵심이라고 봄. Chris도 앞으로 L2가 L1보다 훨씬 더 많이 확장할 것이며, 1~2년 안에 Stage 2와 그 이상의 시퀀서 탈중앙화가 나올 것이라고 전망.",
-    "L2BEAT Stage 2 논쟁: Ilia와 Ed 모두 L2BEAT 기준에 매달리지 않는다고 밝힘. Ed는 Stage 2가 '30일보다 빠른 거버넌스 기반 변경을 프로토콜이 막을 것'을 요구하는데 이 정의대로라면 '이더리움 L1도 Stage 2가 아니다'라고 지적했고, 중요한 건 중앙화된 통제 지점이 없는 책임 있는 거버넌스라고 강조. Ilia는 거버넌스를 코드로 정제하려는 건 '환상'이라는 냉소적 견해를 냄.",
-    "Chris Andreola(Optimism): 파트너들이 Stage 2를 추진하는 건 순수한 탈중앙화 때문이 아니라, 정부가 체인 업그레이드 같은 온체인 조치를 요구할 때 '우리는 할 수 없다'고 말할 방어 논리가 필요해서라고 설명. 커스터마이즈와 프로덕션 테스트를 원하는 체인을 정의로 불리하게 만들면 안 된다고 했고, Ed는 각 L2 커뮤니티가 스스로 결정하는 '거버넌스 주권'이 모놀리식 설계에는 없는 L2만의 특징이라고 강조(이에 '프로덕션 테스트는 베스트 프랙티스는 아니다'라는 농담도)."
-   ],
-   "eck": false,
-   "transcriptChars": 15331
+   "eck": false
   },
   {
    "id": "3f-09",
@@ -293,16 +158,7 @@
    "title": "온체인 에이전트: 자율 AI를 위한 경제 구축",
    "titleEn": "Onchain Agents: Building an Economy for Autonomous AI",
    "speakers": "Junhyeok Yoo (Four Pillars), Jansen Teng (Virtuals), David Park (Base), Francesco Andreoli (MetaMask)",
-   "summary": "Day 2 3F의 마지막 세션으로, 블록체인이 AI 에이전트에게 줄 수 있는 것(무허가 금융 인프라, x402 결제와 ERC-8004 신원·평판 표준, 스마트 컨트랙트 기반 커머스)과 각 사의 제품·전략을 다뤘다. MetaMask 에이전트 지갑과 MetaMask Money/mUSD, Virtuals의 채팅 네이티브 트레이딩 에이전트와 aGDP, Base의 트레이딩·금융·결제 3축 전략(CB Stocks·Aave 담보, APAC 에이전틱 결제)이 소개됐고, 사람들이 에이전트에 돈을 맡기게 할 신뢰와 가드레일이 핵심 논점이었다. 약 5분 넘겨 19:12에 끝난 뒤 행사 폐회 안내가 이어졌다.",
-   "quote": "솔직히 말해 가장 완벽하고 가장 빠른 인프라를 다 만들어도, 아무도 안 쓰면 소용이 없습니다. — Jansen Teng (Virtuals)",
-   "points": [
-    "블록체인의 역할(Jansen Teng): x402와 ERC-8004(Trustless Agents) 표준으로 결제·평판 기반은 이미 강하지만, 임계 채택 전에 신뢰·평판 시스템부터 고민하는 건 이르다고 봄. 결제와 달리 커머스는 서비스 이행 확인이 필요해 스마트 컨트랙트가 잘 들어맞으며, 기업끼리 사람의 조달 과정 없이 에이전트로 거래하는 시대를 전망. 현재 문제로 오케스트레이터 파편화를 꼽음.",
-    "David Park(Base): 블록체인은 퍼미션리스라 에이전트가 사용자 정책대로 자금을 자율 운용할 수 있고, 서명·BaseScan/Etherscan 읽기 같은 UX 장벽을 에이전트가 추상화해 줄 것이라고 봄. 지난 12개월은 MetaMask·Coinbase Developer Platform(CDP) 등이 정책·보안 설정 도구를 갖춘 인프라 단계였고, 이제 리테일·서비스 최적화 에이전트의 단계로 넘어간다고 진단.",
-    "Francesco Andreoli(MetaMask): 6월 얼리 액세스로 출시한 에이전트 지갑은 CLI로 perps·현물 등을 거래하고 Hermes·Grok 봇·자체 오케스트레이터와 연동되며, 모바일·확장 프로그램과 같은 악성 컨트랙트·토큰 검사를 지갑 단계에 넣었다고 소개. 현재 주 사용자는 DCA·센티먼트·스테이블코인 차익거래를 하는 전문 트레이더이며, AI 에이전트로 거래해 봤다는 청중은 많지 않았음.",
-    "MetaMask Money와 mUSD: 거래하지 않는 자금이 놀지 않도록 셀프 커스터디 방식으로 이자가 붙고 곧바로 트레이딩으로 옮길 수 있는 머니 계정이며, 수익 기능도 에이전트 지갑이 백그라운드에서 구동. 한 빌더가 에이전트 지갑과 x402로 Skyscanner·Lastminute의 에이전틱 예약 API에 연결해 선불 가상카드로 항공권을 예약한 사례를 소개. 좌장은 한국 거래소들이 비수탁 지갑으로 사실상 MetaMask만 허용한다고 언급."
-   ],
-   "eck": false,
-   "transcriptChars": 16227
+   "eck": false
   },
   {
    "id": "4f-1",
@@ -312,11 +168,7 @@
    "title": "백서 읽기 모임 (WRC)",
    "titleEn": null,
    "speakers": "Decipher",
-   "summary": null,
-   "quote": null,
-   "points": [],
-   "eck": false,
-   "transcriptChars": null
+   "eck": false
   },
   {
    "id": "4f-2",
@@ -326,11 +178,7 @@
    "title": "Build, Debug, Deploy: Remix 핸즈온",
    "titleEn": null,
    "speakers": "Sooyoung Hyun (Remix IDE)",
-   "summary": null,
-   "quote": null,
-   "points": [],
-   "eck": false,
-   "transcriptChars": null
+   "eck": false
   },
   {
    "id": "4f-3",
@@ -340,11 +188,7 @@
    "title": "한국인이 이더리움에 기여하기",
    "titleEn": null,
    "speakers": "Bosul Mun (Geth), Jun Song (Prysm), Wonjae Choi (SNU)",
-   "summary": null,
-   "quote": null,
-   "points": [],
-   "eck": false,
-   "transcriptChars": null
+   "eck": false
   },
   {
    "id": "4f-4",
@@ -354,11 +198,7 @@
    "title": "Bay & Geth: 코드에서 커리어까지",
    "titleEn": null,
    "speakers": "BAY, Felix Lange · Bosul Mun (Geth)",
-   "summary": null,
-   "quote": null,
-   "points": [],
-   "eck": false,
-   "transcriptChars": null
+   "eck": false
   }
  ],
  "photos": {

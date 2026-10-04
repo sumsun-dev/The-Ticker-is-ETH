@@ -37,7 +37,7 @@
     "viewRecord": "행사 기록 보기",
     "officialSite": "공식 사이트",
     "otherEvents": "다른 행사 보기",
-    "metaDescription": "Ethereum Korea One Genesis 빌더 데이(2026.09.29, Build Beyond the Narrative) 기록. 세션 요약, 전문, 현장 사진.",
+    "metaDescription": "Ethereum Korea One Genesis 빌더 데이(2026.09.29, Build Beyond the Narrative) 기록. 세션 프로그램과 현장 사진.",
     "intro": "이더리움 코리아 컨소시엄이 연 빌더 행사입니다. Build Beyond the Narrative를 주제로 클라이언트 개발자, 리서처, 프로토콜 팀이 글램스테르담 이후의 이더리움을 한국어(2F)와 영어(3F) 두 무대에서 나눴고, 4F에서는 소규모 라운드테이블이 열렸습니다. ECK는 컨소시엄 소개 대담과 로드맵 패널에 참여했습니다.",
     "statSessions": "세션 (2F 8 · 3F 8)",
     "statRoundtables": "4F 라운드테이블",
@@ -48,13 +48,6 @@
       "3f": "3F 영어 세션",
       "4f": "4F 라운드테이블"
     },
-    "summary": "요약과 핵심 발언",
-    "readTranscript": "전문 읽기 · {{chars}}자",
-    "transcript": "세션 전문",
-    "transcriptOf": "{{title}} 전문",
-    "footnotes": "각주",
-    "loading": "불러오는 중입니다.",
-    "loadError": "전문을 불러오지 못했습니다. 잠시 뒤 다시 열어 주세요.",
     "gallery": "현장과 네트워킹",
     "net": {
       "net-d2": "부스, 네트워킹, 저녁"
@@ -65,6 +58,6 @@
     "nextPhoto": "다음 사진",
     "close": "닫기",
     "swipeHint": "좌우로 밀어서 넘겨 보세요",
-    "transcriptNotice": "이 전문은 행사 현장의 자동 자막을 바탕으로 정리한 참고 자료입니다. 인명, 수치, 표현이 실제 발언과 다를 수 있고 알아듣기 어려운 구간은 빠지거나 다듬어졌습니다. 발언을 인용할 때는 연사의 공식 자료나 영상으로 한 번 더 확인해 주세요."
+    "contentPending": "요약과 전문은 추후 제공 예정입니다"
   }
 }

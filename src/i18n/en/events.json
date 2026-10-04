@@ -37,8 +37,8 @@
     "viewRecord": "View the event record",
     "officialSite": "Official site",
     "otherEvents": "Other events",
-    "metaDescription": "Record of the Ethereum Korea One Genesis builder day (Sep 29, 2026, Build Beyond the Narrative): session summaries, transcripts and photos.",
-    "intro": "A builder day hosted by the Ethereum Korea consortium. Under the theme Build Beyond the Narrative, client developers, researchers and protocol teams talked about Ethereum after Glamsterdam on a Korean stage (2F) and an English stage (3F), with small roundtables on 4F. Session summaries and transcripts are in Korean. ECK joined the consortium introduction and the roadmap panel.",
+    "metaDescription": "Record of the Ethereum Korea One Genesis builder day (Sep 29, 2026, Build Beyond the Narrative): session program and photos.",
+    "intro": "A builder day hosted by the Ethereum Korea consortium. Under the theme Build Beyond the Narrative, client developers, researchers and protocol teams talked about Ethereum after Glamsterdam on a Korean stage (2F) and an English stage (3F), with small roundtables on 4F. ECK joined the consortium introduction and the roadmap panel.",
     "statSessions": "Sessions (2F 8 · 3F 8)",
     "statRoundtables": "4F roundtables",
     "program": "Program",
@@ -48,13 +48,6 @@
       "3f": "3F English sessions",
       "4f": "4F Roundtables"
     },
-    "summary": "Summary and key remarks",
-    "readTranscript": "Read transcript · {{chars}} chars",
-    "transcript": "Session transcript",
-    "transcriptOf": "Transcript of {{title}}",
-    "footnotes": "Notes",
-    "loading": "Loading…",
-    "loadError": "Couldn't load the transcript. Please try again in a moment.",
     "gallery": "Around the venue",
     "net": {
       "net-d2": "Booths, networking and dinner"
@@ -65,6 +58,6 @@
     "nextPhoto": "Next photo",
     "close": "Close",
     "swipeHint": "Swipe left or right to browse",
-    "transcriptNotice": "This transcript is a reference compiled from the event’s automatic captions. Names, figures and wording may differ from what speakers actually said, and unclear passages were dropped or smoothed over. Please check against official materials or recordings before quoting anyone."
+    "contentPending": "Summary and transcript coming later"
   }
 }
