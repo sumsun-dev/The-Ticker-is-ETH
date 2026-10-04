@@ -37,8 +37,8 @@
     "viewRecord": "View the event record",
     "officialSite": "Official site",
     "otherEvents": "Other events",
-    "metaDescription": "Record of the Ethereum Korea One Genesis builder day (Sep 29, 2026, Build Beyond the Narrative): session program and photos.",
-    "intro": "A builder day hosted by the Ethereum Korea consortium. Under the theme Build Beyond the Narrative, client developers, researchers and protocol teams talked about Ethereum after Glamsterdam on a Korean stage (2F) and an English stage (3F), with small roundtables on 4F. ECK joined the consortium introduction and the roadmap panel.",
+    "metaDescription": "Record of the Ethereum Korea One Genesis builder day (Sep 29, 2026, Build Beyond the Narrative): session summaries and photos.",
+    "intro": "A builder day hosted by the Ethereum Korea consortium. Under the theme Build Beyond the Narrative, client developers, researchers and protocol teams talked about Ethereum after Glamsterdam on a Korean stage (2F) and an English stage (3F), with small roundtables on 4F. Session summaries are in Korean. ECK joined the consortium introduction and the roadmap panel.",
     "statSessions": "Sessions (2F 8 · 3F 8)",
     "statRoundtables": "4F roundtables",
     "program": "Program",
@@ -58,6 +58,6 @@
     "nextPhoto": "Next photo",
     "close": "Close",
     "swipeHint": "Swipe left or right to browse",
-    "contentPending": "Summary and transcript coming later"
+    "contentPending": "Full transcript coming later"
   }
 }

@@ -44,6 +44,7 @@ const SessionRow: React.FC<SessionRowProps> = ({ s, onPhoto }) => {
                 <h3 className="text-[17px] font-semibold leading-snug text-theme-text">{s.title}</h3>
                 {s.titleEn && <div className="mt-0.5 text-[13px] text-theme-text-muted">{s.titleEn}</div>}
                 <div className="mt-1.5 text-[13px] text-theme-text-secondary">{s.speakers}</div>
+                {s.summary && <p className="mt-3 text-sm leading-relaxed text-theme-text-secondary">{s.summary}</p>}
                 {s.track !== '4f' && (
                     <p className="mt-3 inline-block rounded-full border border-theme-border-secondary px-3 py-1 text-[12.5px] text-theme-text-muted">{t('genesis.contentPending')}</p>
                 )}

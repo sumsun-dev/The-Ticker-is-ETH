@@ -79,12 +79,15 @@ describe('EventGenesis', () => {
         expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     });
 
-    it('should mark summaries and transcripts as coming later, not for roundtables', () => {
+    it('should show stage session summaries and mark only the transcript as coming later', () => {
         renderWithProviders(<EventGenesis />);
-        expect(screen.getAllByText('요약과 전문은 추후 제공 예정입니다')).toHaveLength(sessionsOf('2f').length);
+        const first = sessionsOf('2f')[0];
+        expect(screen.getByText(first.summary!)).toBeInTheDocument();
+        expect(screen.getAllByText('전문은 추후 제공 예정입니다')).toHaveLength(sessionsOf('2f').length);
         expect(screen.queryByRole('button', { name: /전문 읽기/ })).not.toBeInTheDocument();
+        expect(document.querySelector('blockquote')).toBeNull();
         fireEvent.click(screen.getByRole('button', { name: '4F 라운드테이블' }));
-        expect(screen.queryByText('요약과 전문은 추후 제공 예정입니다')).not.toBeInTheDocument();
+        expect(screen.queryByText('전문은 추후 제공 예정입니다')).not.toBeInTheDocument();
     });
 });
 
