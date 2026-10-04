@@ -524,7 +524,7 @@ const staticPages: StaticPage[] = [
     {
         path: 'events/ek1-genesis',
         title: 'Ethereum Korea One · Genesis',
-        description: 'Ethereum Korea One Genesis 빌더 데이(2026.09.29, Build Beyond the Narrative) 기록. 세션 프로그램과 현장 사진.',
+        description: 'Ethereum Korea One Genesis 빌더 데이(2026.09.29, Build Beyond the Narrative) 기록. 세션 요약과 현장 사진.',
         bodyHtml: `<h1>Ethereum Korea One · Genesis</h1><p>2026.09.29 성수. 빌더 데이 Build Beyond the Narrative의 세션 기록입니다.</p>`,
         jsonLd: [],
     },

@@ -37,7 +37,7 @@
     "viewRecord": "행사 기록 보기",
     "officialSite": "공식 사이트",
     "otherEvents": "다른 행사 보기",
-    "metaDescription": "Ethereum Korea One Genesis 빌더 데이(2026.09.29, Build Beyond the Narrative) 기록. 세션 프로그램과 현장 사진.",
+    "metaDescription": "Ethereum Korea One Genesis 빌더 데이(2026.09.29, Build Beyond the Narrative) 기록. 세션 요약과 현장 사진.",
     "intro": "이더리움 코리아 컨소시엄이 연 빌더 행사입니다. Build Beyond the Narrative를 주제로 클라이언트 개발자, 리서처, 프로토콜 팀이 글램스테르담 이후의 이더리움을 한국어(2F)와 영어(3F) 두 무대에서 나눴고, 4F에서는 소규모 라운드테이블이 열렸습니다. ECK는 컨소시엄 소개 대담과 로드맵 패널에 참여했습니다.",
     "statSessions": "세션 (2F 8 · 3F 8)",
     "statRoundtables": "4F 라운드테이블",
@@ -58,6 +58,6 @@
     "nextPhoto": "다음 사진",
     "close": "닫기",
     "swipeHint": "좌우로 밀어서 넘겨 보세요",
-    "contentPending": "요약과 전문은 추후 제공 예정입니다"
+    "contentPending": "전문은 추후 제공 예정입니다"
   }
 }
