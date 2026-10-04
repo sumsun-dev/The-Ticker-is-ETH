@@ -114,13 +114,10 @@ const Events: React.FC = () => {
                                 <span className="mb-1 block text-xs font-semibold uppercase tracking-widest text-brand-accent">Ethereum Korea One</span>
                                 Genesis
                             </h2>
-                            <span className="rounded-lg bg-brand-accent/15 px-3 py-1.5 text-sm font-bold tabular-nums text-brand-accent">2026.09.28 – 09.29</span>
+                            <span className="rounded-lg bg-brand-accent/15 px-3 py-1.5 text-sm font-bold tabular-nums text-brand-accent">2026.09.29</span>
                         </div>
                         <p className="text-theme-text-secondary">{t('genesis.lead')}</p>
-                        <div className="grid gap-3 sm:grid-cols-2">
-                            <DayBox title={t('genesis.day1')} lines={[t('genesis.day1Meta'), t('genesis.day1Who')]} />
-                            <DayBox title={t('genesis.day2')} lines={[t('genesis.day2Meta'), t('genesis.day2Who')]} />
-                        </div>
+                        <DayBox title={t('genesis.day2')} lines={[t('genesis.day2Meta'), t('genesis.day2Who')]} />
                         <div className="flex flex-wrap gap-2.5">
                             <Link
                                 to="/events/ek1-genesis"
