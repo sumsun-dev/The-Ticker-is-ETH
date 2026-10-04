@@ -518,14 +518,14 @@ const staticPages: StaticPage[] = [
         path: 'events',
         title: 'Events',
         description: 'Ethereum Korea One, Ethcon Korea 등 ECK가 함께한 이더리움 행사 기록.',
-        bodyHtml: `<h1>Events</h1><p>ECK가 함께 만들거나 참여한 이더리움 행사 기록입니다.</p><p><a href="/events/ek1-genesis">Ethereum Korea One Genesis (2026.09.28–29)</a></p>`,
+        bodyHtml: `<h1>Events</h1><p>ECK가 함께 만들거나 참여한 이더리움 행사 기록입니다.</p><p><a href="/events/ek1-genesis">Ethereum Korea One Genesis</a></p>`,
         jsonLd: [],
     },
     {
         path: 'events/ek1-genesis',
         title: 'Ethereum Korea One · Genesis',
-        description: 'Ethereum Korea One Genesis(2026.09.28–29) 행사 기록. Day 1 기관 초청 행사와 Day 2 빌더 데이의 세션 요약, 전문, 현장 사진.',
-        bodyHtml: `<h1>Ethereum Korea One · Genesis</h1><p>2026.09.28 – 09.29. Day 1 기관 초청 행사(콘래드 서울)와 Day 2 빌더 데이 Build Beyond the Narrative(성수)의 세션 기록입니다.</p>`,
+        description: 'Ethereum Korea One Genesis 빌더 데이(2026.09.29, Build Beyond the Narrative) 기록. 세션 요약, 전문, 현장 사진.',
+        bodyHtml: `<h1>Ethereum Korea One · Genesis</h1><p>2026.09.29 성수. 빌더 데이 Build Beyond the Narrative의 세션 기록입니다.</p>`,
         jsonLd: [],
     },
 ];

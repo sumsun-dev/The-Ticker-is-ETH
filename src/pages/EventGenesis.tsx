@@ -87,7 +87,6 @@ const EventGenesis: React.FC = () => {
     const { t } = useTranslation('events');
     usePageMeta({ title: 'Ethereum Korea One · Genesis', description: t('genesis.metaDescription'), image: GENESIS_BANNER });
 
-    const [day, setDay] = useState<'d1' | 'd2'>('d1');
     const [floor, setFloor] = useState<Track>('2f');
     const [lightbox, setLightbox] = useState<{ set: string; index: number } | null>(null);
     const [reading, setReading] = useState<GenesisSession | null>(null);
@@ -99,9 +98,7 @@ const EventGenesis: React.FC = () => {
     const titleOf = (set: string) =>
         (NETWORKING_SETS as readonly string[]).includes(set) ? t(`genesis.net.${set}`) : (GENESIS_SESSIONS.find((s) => s.id === set)?.title ?? '');
 
-    const list = sessionsOf(day === 'd1' ? 'd1' : floor);
-    const tab = (active: boolean) =>
-        `grid gap-0.5 rounded-xl border px-4 py-2.5 text-left transition-colors ${active ? 'border-brand-accent/60 bg-brand-accent/10' : 'border-theme-border hover:bg-white/5'}`;
+    const list = sessionsOf(floor);
 
     return (
         <div className="min-h-screen pt-20 pb-20">
@@ -114,8 +111,7 @@ const EventGenesis: React.FC = () => {
                     <div className="text-xs font-semibold uppercase tracking-widest text-brand-accent">Ethereum Korea One</div>
                     <h1 className="mt-2 text-4xl font-bold tracking-tight text-theme-text sm:text-6xl">Genesis</h1>
                     <div className="mt-4 flex flex-wrap gap-x-5 gap-y-1 text-sm tabular-nums text-theme-text-secondary">
-                        <span>2026.09.28 – 09.29</span>
-                        <span>{t('genesis.day1Venue')}</span>
+                        <span>2026.09.29</span>
                         <span>{t('genesis.day2Venue')}</span>
                     </div>
                 </div>
@@ -126,7 +122,7 @@ const EventGenesis: React.FC = () => {
                     <p className="text-base leading-relaxed text-theme-text-secondary">{t('genesis.intro')}</p>
                     <div className="grid grid-cols-2 self-start overflow-hidden rounded-2xl border border-theme-border-secondary bg-theme-border-secondary gap-px">
                         <div className="bg-brand-surface px-4 py-4">
-                            <b className="block text-3xl font-bold tabular-nums text-theme-text">30</b>
+                            <b className="block text-3xl font-bold tabular-nums text-theme-text">16</b>
                             <span className="text-xs text-theme-text-muted">{t('genesis.statSessions')}</span>
                         </div>
                         <div className="bg-brand-surface px-4 py-4">
@@ -143,32 +139,20 @@ const EventGenesis: React.FC = () => {
                         </h2>
                         <div className="h-px flex-1 bg-white/10" />
                     </div>
-                    <div className="mb-2 flex flex-wrap gap-2" role="tablist" aria-label={t('genesis.program')}>
-                        <button type="button" role="tab" aria-selected={day === 'd1'} onClick={() => setDay('d1')} className={tab(day === 'd1')}>
-                            <b className="text-[15px] text-theme-text">{t('genesis.day1')}</b>
-                            <span className="text-xs text-theme-text-muted">{t('genesis.day1Tab')}</span>
-                        </button>
-                        <button type="button" role="tab" aria-selected={day === 'd2'} onClick={() => setDay('d2')} className={tab(day === 'd2')}>
-                            <b className="text-[15px] text-theme-text">{t('genesis.day2')}</b>
-                            <span className="text-xs text-theme-text-muted">{t('genesis.day2Tab')}</span>
-                        </button>
+                    <p className="mb-4 text-sm text-theme-text-muted">{t('genesis.day2Note')}</p>
+                    <div className="mb-4 flex flex-wrap gap-1.5">
+                        {FLOORS.map((f) => (
+                            <button
+                                key={f}
+                                type="button"
+                                aria-pressed={floor === f}
+                                onClick={() => setFloor(f)}
+                                className={`rounded-full border px-3 py-1.5 text-[13px] ${floor === f ? 'border-white bg-white font-semibold text-black' : 'border-theme-border-secondary bg-brand-surface text-theme-text-secondary'}`}
+                            >
+                                {t(`genesis.floor.${f}`)}
+                            </button>
+                        ))}
                     </div>
-                    <p className="mt-3.5 mb-4 text-sm text-theme-text-muted">{day === 'd1' ? t('genesis.day1Note') : t('genesis.day2Note')}</p>
-                    {day === 'd2' && (
-                        <div className="mb-4 flex flex-wrap gap-1.5">
-                            {FLOORS.map((f) => (
-                                <button
-                                    key={f}
-                                    type="button"
-                                    aria-pressed={floor === f}
-                                    onClick={() => setFloor(f)}
-                                    className={`rounded-full border px-3 py-1.5 text-[13px] ${floor === f ? 'border-white bg-white font-semibold text-black' : 'border-theme-border-secondary bg-brand-surface text-theme-text-secondary'}`}
-                                >
-                                    {t(`genesis.floor.${f}`)}
-                                </button>
-                            ))}
-                        </div>
-                    )}
                     <ol className="border-t border-theme-border-secondary">
                         {list.map((s) => (
                             <SessionRow key={s.id} s={s} onPhoto={openPhoto} onTranscript={setReading} />

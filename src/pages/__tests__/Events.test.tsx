@@ -12,9 +12,9 @@ vi.mock('../../data/ek1GenesisData', async () => {
     return {
         ...actual,
         loadTranscripts: vi.fn().mockResolvedValue({
-            'd1-01': {
+            '2f-01': {
                 toc: ['16:15 시작'],
-                body: '<h4 id="d1-01-s1">16:15 시작</h4><p><b class="who">사회자</b>전문 본문입니다.<img src=x onerror="alert(1)"></p>',
+                body: '<h4 id="2f-01-s1">16:15 시작</h4><p><b class="who">사회자</b>전문 본문입니다.<img src=x onerror="alert(1)"></p>',
                 notes: [{ n: 1, kind: '교정', html: '각주 내용' }],
                 chars: 10,
             },
@@ -48,7 +48,7 @@ describe('Events', () => {
 describe('EventGenesis data', () => {
     it('should give every session a photo set and a known track', () => {
         for (const s of GENESIS_SESSIONS) {
-            expect(['d1', '2f', '3f', '4f']).toContain(s.track);
+            expect(['2f', '3f', '4f']).toContain(s.track);
             expect(GENESIS_PHOTOS[s.id]?.length ?? 0).toBeGreaterThan(0);
         }
     });
@@ -60,19 +60,17 @@ describe('EventGenesis data', () => {
         }
     });
 
-    it('should keep 14 Day 1 sessions and 16 Day 2 stage sessions', () => {
-        expect(sessionsOf('d1')).toHaveLength(14);
+    it('should hold only Day 2: 16 stage sessions and 4 roundtables, no Day 1 photos', () => {
+        expect(Object.keys(GENESIS_PHOTOS).some((k) => k.startsWith('d1-') || k.startsWith('net-d1'))).toBe(false);
         expect(sessionsOf('2f').length + sessionsOf('3f').length).toBe(16);
         expect(sessionsOf('4f')).toHaveLength(4);
     });
 });
 
 describe('EventGenesis', () => {
-    it('should show Day 1 sessions first and switch to Day 2 floors', () => {
+    it('should open on the 2F stage and switch floors', () => {
         renderWithProviders(<EventGenesis />);
-        expect(screen.getByText(sessionsOf('d1')[0].title)).toBeInTheDocument();
-
-        fireEvent.click(screen.getByRole('tab', { name: /Day 2/ }));
+        expect(screen.queryByRole('tab')).not.toBeInTheDocument();
         expect(screen.getByText(sessionsOf('2f')[0].title)).toBeInTheDocument();
 
         fireEvent.click(screen.getByRole('button', { name: '3F 영어 세션' }));
@@ -81,7 +79,7 @@ describe('EventGenesis', () => {
 
     it('should show a lead and two side shots, then open the full set in the lightbox', () => {
         renderWithProviders(<EventGenesis />);
-        const big = sessionsOf('d1').find((s) => GENESIS_PHOTOS[s.id].length > 3)!;
+        const big = sessionsOf('2f').find((s) => GENESIS_PHOTOS[s.id].length > 4)!;
         const total = GENESIS_PHOTOS[big.id].length;
         fireEvent.click(screen.getByRole('button', { name: `사진 ${total}장 모두 보기` }));
         const dialog = screen.getByRole('dialog', { name: big.title });
