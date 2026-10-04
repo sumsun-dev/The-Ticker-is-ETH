@@ -6,7 +6,6 @@ import usePageMeta from '../hooks/usePageMeta';
 import SessionPhotos from '../components/events/SessionPhotos';
 import JustifiedGallery from '../components/events/JustifiedGallery';
 import Lightbox from '../components/events/Lightbox';
-import TranscriptReader from '../components/events/TranscriptReader';
 import {
     GENESIS_BANNER,
     GENESIS_PHOTOS,
@@ -29,10 +28,9 @@ const formatClass = (f: string) =>
 interface SessionRowProps {
     s: GenesisSession;
     onPhoto: (set: string, i: number) => void;
-    onTranscript: (s: GenesisSession) => void;
 }
 
-const SessionRow: React.FC<SessionRowProps> = ({ s, onPhoto, onTranscript }) => {
+const SessionRow: React.FC<SessionRowProps> = ({ s, onPhoto }) => {
     const { t } = useTranslation('events');
     const photos = GENESIS_PHOTOS[s.id] ?? [];
     return (
@@ -46,32 +44,8 @@ const SessionRow: React.FC<SessionRowProps> = ({ s, onPhoto, onTranscript }) => 
                 <h3 className="text-[17px] font-semibold leading-snug text-theme-text">{s.title}</h3>
                 {s.titleEn && <div className="mt-0.5 text-[13px] text-theme-text-muted">{s.titleEn}</div>}
                 <div className="mt-1.5 text-[13px] text-theme-text-secondary">{s.speakers}</div>
-                {s.quote && <blockquote className="mt-3 border-l-2 border-eth-purple pl-3 text-sm text-theme-text">“{s.quote}”</blockquote>}
-                {(s.summary || s.points.length > 0) && (
-                    <details className="group mt-3">
-                        <summary className="inline-block cursor-pointer list-none text-[13px] text-brand-accent [&::-webkit-details-marker]:hidden">
-                            <span className="group-open:hidden">+ </span>
-                            <span className="hidden group-open:inline">− </span>
-                            {t('genesis.summary')}
-                        </summary>
-                        {s.summary && <p className="mt-2 text-sm leading-relaxed text-theme-text-secondary">{s.summary}</p>}
-                        {s.points.length > 0 && (
-                            <ul className="mt-2.5 grid list-disc gap-1.5 pl-5 text-[13.5px] leading-relaxed text-theme-text-secondary">
-                                {s.points.map((p) => (
-                                    <li key={p}>{p}</li>
-                                ))}
-                            </ul>
-                        )}
-                    </details>
-                )}
-                {s.transcriptChars && (
-                    <button
-                        type="button"
-                        onClick={() => onTranscript(s)}
-                        className="mt-3 rounded-full border border-theme-border px-3 py-1 text-[13px] text-theme-text-secondary hover:bg-white/5 hover:text-theme-text"
-                    >
-                        {t('genesis.readTranscript', { chars: s.transcriptChars.toLocaleString() })}
-                    </button>
+                {s.track !== '4f' && (
+                    <p className="mt-3 inline-block rounded-full border border-theme-border-secondary px-3 py-1 text-[12.5px] text-theme-text-muted">{t('genesis.contentPending')}</p>
                 )}
                 {photos.length > 0 && (
                     <div className="mt-3.5">
@@ -89,11 +63,9 @@ const EventGenesis: React.FC = () => {
 
     const [floor, setFloor] = useState<Track>('2f');
     const [lightbox, setLightbox] = useState<{ set: string; index: number } | null>(null);
-    const [reading, setReading] = useState<GenesisSession | null>(null);
 
     const openPhoto = useCallback((set: string, index: number) => setLightbox({ set, index }), []);
     const closeLightbox = useCallback(() => setLightbox(null), []);
-    const closeReader = useCallback(() => setReading(null), []);
 
     const titleOf = (set: string) =>
         (NETWORKING_SETS as readonly string[]).includes(set) ? t(`genesis.net.${set}`) : (GENESIS_SESSIONS.find((s) => s.id === set)?.title ?? '');
@@ -155,7 +127,7 @@ const EventGenesis: React.FC = () => {
                     </div>
                     <ol className="border-t border-theme-border-secondary">
                         {list.map((s) => (
-                            <SessionRow key={s.id} s={s} onPhoto={openPhoto} onTranscript={setReading} />
+                            <SessionRow key={s.id} s={s} onPhoto={openPhoto} />
                         ))}
                     </ol>
                 </section>
@@ -202,7 +174,6 @@ const EventGenesis: React.FC = () => {
                     onClose={closeLightbox}
                 />
             )}
-            {reading && <TranscriptReader session={reading} onClose={closeReader} />}
         </div>
     );
 };

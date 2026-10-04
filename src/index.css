@@ -103,32 +103,3 @@
     cursor: auto !important;
   }
 }
-/* EK1 Genesis 세션 전문 (대시보드 세션 기록의 HTML) */
-.genesis-transcript h4 {
-  margin: 1.6rem 0 0.5rem;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #629FFF;
-  scroll-margin-top: 0.75rem;
-}
-
-.genesis-transcript p {
-  margin: 0 0 0.75rem;
-  font-size: 0.95rem;
-  line-height: 1.75;
-  color: var(--text-secondary);
-}
-
-.genesis-transcript b.who {
-  display: block;
-  margin-bottom: 0.125rem;
-  font-size: 0.8rem;
-  color: var(--text-primary);
-}
-
-.genesis-transcript sup a {
-  padding: 0 1px;
-  font-size: 0.7rem;
-  color: #A086FC;
-  text-decoration: none;
-}

@@ -1,26 +1,11 @@
-import { describe, it, expect, vi, beforeAll } from 'vitest';
-import { screen, fireEvent, waitFor, within } from '@testing-library/react';
+import { describe, it, expect, beforeAll } from 'vitest';
+import { screen, fireEvent, within } from '@testing-library/react';
 import Events from '../Events';
 import EventGenesis from '../EventGenesis';
 import { renderWithProviders } from '../../test/helpers/render';
 import i18n from '../../i18n';
 import { GENESIS_FEATURED, GENESIS_PHOTOS, GENESIS_SESSIONS, sessionsOf } from '../../data/ek1GenesisData';
 import { layoutRows } from '../../utils/justify';
-
-vi.mock('../../data/ek1GenesisData', async () => {
-    const actual = await vi.importActual<typeof import('../../data/ek1GenesisData')>('../../data/ek1GenesisData');
-    return {
-        ...actual,
-        loadTranscripts: vi.fn().mockResolvedValue({
-            '2f-01': {
-                toc: ['16:15 시작'],
-                body: '<h4 id="2f-01-s1">16:15 시작</h4><p><b class="who">사회자</b>전문 본문입니다.<img src=x onerror="alert(1)"></p>',
-                notes: [{ n: 1, kind: '교정', html: '각주 내용' }],
-                chars: 10,
-            },
-        }),
-    };
-});
 
 beforeAll(async () => {
     await i18n.changeLanguage('ko');
@@ -94,14 +79,12 @@ describe('EventGenesis', () => {
         expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     });
 
-    it('should load the transcript on demand and strip unsafe markup', async () => {
+    it('should mark summaries and transcripts as coming later, not for roundtables', () => {
         renderWithProviders(<EventGenesis />);
-        fireEvent.click(screen.getAllByRole('button', { name: /전문 읽기/ })[0]);
-        const dialog = await screen.findByRole('dialog', { name: /전문/ });
-        await waitFor(() => expect(within(dialog).getByText('전문 본문입니다.')).toBeInTheDocument());
-        expect(within(dialog).getByText('각주 내용')).toBeInTheDocument();
-        expect(within(dialog).getByRole('note')).toHaveTextContent('참고 자료');
-        expect(dialog.querySelector('img[onerror]')).toBeNull();
+        expect(screen.getAllByText('요약과 전문은 추후 제공 예정입니다')).toHaveLength(sessionsOf('2f').length);
+        expect(screen.queryByRole('button', { name: /전문 읽기/ })).not.toBeInTheDocument();
+        fireEvent.click(screen.getByRole('button', { name: '4F 라운드테이블' }));
+        expect(screen.queryByText('요약과 전문은 추후 제공 예정입니다')).not.toBeInTheDocument();
     });
 });
 
