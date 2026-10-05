@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-02T00:53:52.114Z",
+  "updatedAt": "2026-10-05T01:00:49.810Z",
   "processedDigests": [
     "2026-08-24",
     "2026-08-25",
@@ -22,9 +22,590 @@
     "2026-09-22",
     "2026-09-25",
     "2026-09-29",
-    "2026-10-02"
+    "2026-10-02",
+    "2026-10-05"
   ],
   "debates": [
+    {
+      "id": "tokenized-equity-ledger-home",
+      "title": "자기 주식을 토큰화하는 기업은 어디에 발행할 것인가, 브로커 체인인가 메인넷·자가 운영 L2인가?",
+      "category": "토큰화 · 기관",
+      "summary": "lex_node는 지금의 토큰화 주식 거래량 대부분이 브로커 체인 위의 브로커 IOU일 뿐이며, 실제 자기 주식을 토큰화하는 기업은 공유지인 이더리움 메인넷이나 개방이 보장된 자가 운영 L2를 쓸 것이라고 주장했다. Brice Noyal 등은 구분 자체에는 동의하면서도 가능한 거처가 둘뿐이라는 데는 이의를 제기하며 더 넓은 설계 공간을 제시했다.",
+      "keyPoints": [
+        "브로커가 발행한 청구권 토큰(broker IOU)과 발행사가 직접 토큰화한 주식은 같은 자산인가, 서로 다른 자산인가",
+        "발행 기업의 실제 주식 원장(stock ledger)이 살 곳은 중립 L1과 자가 운영 L2 둘로 좁혀지는가, 더 넓은가",
+        "L1 자산과 L2 기밀 실행을 결합하는 모델은 비동기 상호운용으로 충분한가, 같은 트랜잭션 안의 원자적 호출이 필요한가"
+      ],
+      "background": "토큰화 주식(tokenized equities)은 실제 주식을 블록체인 토큰으로 표현한 것이다. 현재 거래량 대부분은 브로커가 발행한 청구권 토큰(broker IOU)으로, 실제 주식은 브로커 장부에 남고 토큰은 그 체인 안에서만 유효하다. lex_node는 실제 주식 원장이 어디 사는가와 브로커가 래퍼(wrapper)를 어디 두는가를 구분한다. 그가 언급하는 prividium은 L1에 자산을 두고 L2에서 기밀 실행(confidential execution)을 하는 모델이다. 이 논쟁은 토큰화 주식이 이더리움 위에 쌓일지, 각 브로커 체인에 갇힐지를 가른다.",
+      "whyItMatters": "발행사가 어느 체인에 실제 주식 원장을 두느냐에 따라 토큰화 주식이 이더리움 공유 유동성에 모이는지, 아니면 브로커별로 상호 호환되지 않는 자산으로 파편화되는지가 결정된다. 발행사가 중립 L1이나 탈출 경로가 보장된 L2로 끌릴지, 브로커 체인에 머물지가 향후 기관 토큰화의 지형을 좌우하므로 지켜볼 지점이다.",
+      "sources": [],
+      "keywords": [
+        "tokenized equities",
+        "broker IOU",
+        "company town L2",
+        "prividium"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "발행 기업은 공유지 메인넷이나 개방 보장 자가 운영 L2를 쓴다",
+          "holders": [
+            {
+              "handle": "lex_node",
+              "name": "_gabrielShapir0",
+              "role": "크립토 법률·규제 변호사, MetaLeX Labs 창업자",
+              "avatar": "https://pbs.twimg.com/profile_images/2058233189882032128/pRSMN_6C_400x400.jpg"
+            },
+            {
+              "handle": "ryanberckmans",
+              "name": "⟠",
+              "role": "이더리움 커뮤니티 논객·ETH 투자자",
+              "avatar": "https://pbs.twimg.com/profile_images/1517698378259480577/OyjdGW3D_400x400.jpg"
+            },
+            {
+              "handle": "RobinHill85",
+              "name": "Robin | Poker x AI",
+              "avatar": "https://pbs.twimg.com/profile_images/1986799926651559936/Mh1MCFoG_400x400.jpg"
+            },
+            {
+              "handle": "preditmarket",
+              "name": "predit.market",
+              "avatar": "https://pbs.twimg.com/profile_images/2039699614291619840/SxEv8-6a_400x400.jpg"
+            },
+            {
+              "handle": "fairmint",
+              "name": "Fairmint",
+              "avatar": "https://pbs.twimg.com/profile_images/2096559552783142914/g4qt8tKo_400x400.jpg"
+            }
+          ],
+          "points": [
+            "지금의 토큰화 주식 거래량은 거의 전부 브로커 체인 위의 브로커 IOU(청구권 토큰)이며, 이는 발행사가 뒷받침하는 주식과 다르다.",
+            "자기 주식을 토큰화하는 기업은 공유지인 이더리움 메인넷이나 개방이 보장된 자가 운영 L2('컴퍼니 타운')를 쓸 것이다.",
+            "브로커마다 토큰이 다른 자산이 되는 파편화는 탈중개와 즉시성이라는 크립토의 강점에 반하며, 거버넌스 리스크가 편의성을 능가한다.",
+            "이더리움 L1은 이미 토큰화된 BTC의 57%, 토큰화된 금의 95%를 갖고 있어 주식도 성숙하면 같은 방향으로 갈 것이다."
+          ]
+        },
+        {
+          "stance": "neutral",
+          "label": "가능한 거처는 둘뿐이 아니며 설계 공간이 더 넓다",
+          "holders": [
+            {
+              "handle": "Tokenoya",
+              "name": "Brice Noyal",
+              "avatar": "https://pbs.twimg.com/profile_images/1971124709359075328/it1-kynp_400x400.jpg"
+            }
+          ],
+          "points": [
+            "브로커가 래퍼를 어디 둘지 고르는 것과 발행사가 실제 주식이 어디 살지 정하는 것의 구분에는 동의한다.",
+            "다만 실제 주식 원장을 말하는 순간 발행사는 프라이버시, 통제, 상호운용성, 누가 무엇을 볼 수 있는지를 신경 쓰므로 거처가 둘뿐이라는 전제는 설득력이 약하고 설계 공간이 훨씬 넓다."
+          ]
+        },
+        {
+          "stance": "other",
+          "label": "L1-L2 원자적 실행이 비동기 prividium보다 낫다",
+          "holders": [
+            {
+              "handle": "epochzer0",
+              "name": "Armagan",
+              "avatar": "https://pbs.twimg.com/profile_images/2100666092930703360/AadOrJDW_400x400.jpg"
+            }
+          ],
+          "points": [
+            "prividium 상호운용은 비동기라 한쪽은 L1에 정산하고 다른 쪽은 릴레이어(relayer)를 통해 나중에 실행해 시장가 비효율과 보안 리스크를 낳는다.",
+            "EEZ 방식에서는 L2가 L1을 호출해 같은 트랜잭션 안에서 결과를 받으므로 공유 유동성 풀 하나로 자본 이동이 없고 공격할 브리지 사본이나 미완성 상태가 없다."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-10-03",
+          "by": "lex_node",
+          "stance": "pro",
+          "quote": "토큰화 주식 거래량은 거의 전부 브로커 체인 위의 브로커 IOU다. 자기 주식을 토큰화하는 기업은 그런 방식을 쓰지 않을 것이다. 그들은 공유지인 이더리움 메인넷이나, 개방이 보장된 자신이 운영하는 L2('컴퍼니 타운')를 쓸 것이다.",
+          "url": "https://x.com/lex_node/status/2106388135592575003",
+          "digest": "2026-10-05",
+          "relation": "none",
+          "original": "Tokenized stock volume is almost all broker IOUs on broker chains. Companies tokenizing their own shares will not do it that way.\n\nThey will use Ethereum mainnet (the commons), or an L2 they run themselves--a \"company town\" with a guaranteed open-gate. https://x.com/i/article/2106373038786715649",
+          "translation": "토큰화된 주식(tokenized stock) 거래량은 거의 전부가 브로커 체인 위의 브로커 IOU다. 자사 주식을 토큰화하는 기업들은 그런 방식을 쓰지 않을 것이다. 그들은 이더리움 메인넷(공유지)을 사용하거나, 혹은 직접 운영하는 L2, 즉 개방형 출입구가 보장된 '회사 마을(company town)'을 사용할 것이다."
+        },
+        {
+          "date": "2026-10-03",
+          "by": "lex_node",
+          "stance": "pro",
+          "quote": "그래서 'backpack에서' 토큰화된 주식 한 주는 'base에서'나 'robinhood에서' 토큰화된 주식과 '같지 않다'. 장기적으로 이는 좋은 형태의 파편화가 아니며, 탈중개와 즉시성이라는 크립토의 강점에 반한다.",
+          "url": "https://x.com/lex_node/status/2106399236698812920",
+          "digest": "2026-10-05",
+          "replyTo": "0xJoshAlpha",
+          "relation": "reply",
+          "original": "yes that's why one share tokenized 'on backpack' is not 'the same as' a share tokenized 'on base' or 'on robinhood'...long term this will not be a good form of fragmentation and it's not playing to crypto's strength, which is *disintermediation* and *immediacy* not adding more intermediaries and abstractions",
+          "translation": "맞다, 그래서 '백팩(backpack) 위에서' 토큰화된 주식 1주는 '베이스(base) 위에서' 혹은 '로빈후드(robinhood) 위에서' 토큰화된 주식과 '같은 것'이 아니다. 장기적으로 이것은 좋은 형태의 파편화(fragmentation)가 아니며, 크립토의 강점인 탈중개화(disintermediation)와 즉시성(immediacy)을 살리는 것이 아니다. 오히려 중개자와 추상화 계층을 더 추가하는 셈이다."
+        },
+        {
+          "date": "2026-10-03",
+          "by": "ryanberckmans",
+          "stance": "pro",
+          "quote": "이더리움 L1은 토큰화된 모든 BTC의 57%, 토큰화된 모든 금의 95%를 갖고 있다. 지형이 성숙하면 주식에서도 이것이 반영되지 않으리라 생각하다니.",
+          "url": "https://x.com/ryanberckmans/status/2106397440723075533",
+          "digest": "2026-10-05",
+          "replyTo": "lex_node",
+          "relation": "quote",
+          "original": "Eth L1 has 57% of all tokenized BTC and 95% of all tokenized gold. Imagine thinking this won't also reflect in stocks as the landscape matures",
+          "translation": "이더리움 L1은 토큰화된 비트코인(BTC) 전체의 57퍼센트와 토큰화된 금 전체의 95퍼센트를 보유하고 있다. 시장 지형이 성숙해가면서 이것이 주식에서도 똑같이 반영되지 않을 거라고 생각한다니, 상상이 가는가."
+        },
+        {
+          "date": "2026-10-03",
+          "by": "preditmarket",
+          "stance": "pro",
+          "quote": "브로커 IOU는 발행사가 뒷받침하는 주식이 아니다.",
+          "url": "https://x.com/preditmarket/status/2106510211704029324",
+          "digest": "2026-10-05",
+          "replyTo": "lex_node",
+          "relation": "reply",
+          "original": "@lex_node Broker IOUs aren't issuer-backed equity.",
+          "translation": "브로커 IOU는 발행사가 보증하는 지분(issuer-backed equity)이 아니다."
+        },
+        {
+          "date": "2026-10-03",
+          "by": "fairmint",
+          "stance": "pro",
+          "quote": "이것이야말로 우리가 더 보고 싶은 대화다. 실제 주식 원장이 어디 사는가가 어느 체인이 토큰화 주식 거래량이 가장 많은가보다 훨씬 흥미로운 질문이다.",
+          "url": "https://x.com/fairmint/status/2106529372031369389",
+          "digest": "2026-10-05",
+          "replyTo": "lex_node",
+          "relation": "reply",
+          "original": "@lex_node This is the conversation we want to see more of. Where the actual stock ledger lives is a much more interesting question than which chain has the most tokenized stock volume.",
+          "translation": "이런 대화를 더 많이 보고 싶다. 실제 주식 원장(stock ledger)이 어디에 존재하는가가, 어느 체인이 가장 많은 토큰화된 주식 거래량을 가지고 있는가보다 훨씬 더 흥미로운 질문이다."
+        },
+        {
+          "date": "2026-10-03",
+          "by": "Tokenoya",
+          "stance": "neutral",
+          "quote": "브로커가 래퍼를 어디 둘지 고르는 것과 발행사가 실제 주식이 어디 살지 정하는 것의 구분에는 동의한다. 다만 가능한 거처가 둘뿐이라는 데는 덜 설득된다. 실제 주식 원장을 말하는 순간 발행사는 프라이버시, 통제, 상호운용성, 누가 무엇을 볼 수 있는지를 신경 쓸 것이고, 이는 훨씬 넓은 설계 공간을 연다.",
+          "url": "https://x.com/Tokenoya/status/2106530284715885054",
+          "digest": "2026-10-05",
+          "replyTo": "lex_node",
+          "relation": "reply",
+          "original": "I agree with the distinction between a broker choosing where to put a wrapper and an issuer deciding where its actual shares should live.\n\nI’m less convinced there are only 2 possible homes though. Once you’re talking about the actual stock ledger, issuers are going to to care about privacy, control, interoperability and who can actually see what.. That opens up a much broader design space imo",
+          "translation": "브로커가 래퍼(wrapper)를 어디에 둘지 선택하는 것과, 발행사가 실제 주식이 어디에 존재해야 하는지를 결정하는 것 사이의 구분에는 동의한다. 다만 가능한 거처가 단 두 곳뿐이라는 데는 그다지 확신이 들지 않는다. 실제 주식 원장을 이야기하게 되면, 발행사들은 프라이버시(privacy), 통제권(control), 상호운용성(interoperability), 그리고 누가 실제로 무엇을 볼 수 있는지에 신경을 쓰게 될 것이다. 그 점이 훨씬 더 넓은 설계 공간(design space)을 열어준다고 생각한다."
+        },
+        {
+          "date": "2026-10-03",
+          "by": "epochzer0",
+          "stance": "other",
+          "quote": "prividium 상호운용은 비동기라 한쪽은 L1에 정산하고 다른 쪽은 릴레이어를 통해 나중에 실행한다. EEZ에서는 L2가 L1을 호출해 같은 트랜잭션 안에서 결과를 받으므로 공유 유동성 풀 하나에 이동 중인 자본이 없고, 공격할 브리지 사본도 악용할 미완성 상태도 없다.",
+          "url": "https://x.com/epochzer0/status/2106477827877224820",
+          "digest": "2026-10-05",
+          "replyTo": "lex_node",
+          "relation": "reply",
+          "original": "Prividium interop is asynchronous so one side settles on L1 and the other executes later through a relayer. That opens the door to inefficient market price also bunch of security risks. With EEZ, the L2 calls L1 and gets the result back within the same transaction. If we think economically that means one shared liquidity pool and no capital in transit. On security wise there are no bridged copies to attack and no half finished state to exploit. I'd argue that the atomic relationship between L1 and L2 operates at a vastly different level compared to others in terms of security and access to liquidity.",
+          "translation": "프리비디움(Prividium)의 상호운용성(interop)은 비동기적이어서, 한쪽은 L1에서 정산(settle)되고 다른 쪽은 나중에 릴레이어(relayer)를 통해 실행된다. 이는 비효율적인 시장 가격으로 이어질 여지를 열어줄 뿐만 아니라 여러 보안 위험도 함께 열어준다. EEZ의 경우, L2가 L1을 호출하고 같은 트랜잭션 내에서 그 결과를 돌려받는다. 경제적으로 보면 이는 하나의 공유된 유동성 풀(liquidity pool)이 존재하고 이동 중인 자본이 없다는 뜻이다. 보안 측면에서는 공격할 수 있는 브리지된 복제본도 없고 악용할 수 있는 반쯘 완료된 상태도 없다. 나는 L1과 L2 사이의 원자적(atomic) 관계가 보안과 유동성 접근성 측면에서 다른 것들과는 완전히 다른 수준에서 작동한다고 주장하고 싶다."
+        },
+        {
+          "date": "2026-10-04",
+          "by": "RobinHill85",
+          "stance": "pro",
+          "quote": "발행사가 중립적 L1이나 탈출 경로가 있는 자가 운영 L2로 끌릴 것이라는 말이 일리 있다. 안 그러면 거버넌스 리스크가 편의성을 능가한다.",
+          "url": "https://x.com/RobinHill85/status/2106682142109422068",
+          "digest": "2026-10-05",
+          "replyTo": "lex_node",
+          "relation": "reply",
+          "original": "@lex_node Makes sense that issuers will gravitate to neutral L1 or self run L2s with exit paths, otherwise governance risk outweighs convenience",
+          "translation": "발행사들이 중립적인 L1이나 탈출 경로(exit path)가 있는 자체 운영 L2 쪽으로 향하는 것은 타당하다. 그렇지 않으면 거버넌스 위험(governance risk)이 편의성을 압도하게 된다."
+        }
+      ],
+      "firstSeen": "2026-10-03",
+      "lastActivity": "2026-10-04",
+      "status": "active",
+      "rootUrl": "https://x.com/lex_node/status/2106388135592575003",
+      "engagement": {
+        "likes": 122,
+        "retweets": 22,
+        "quotes": 6,
+        "replies": 33,
+        "views": 12751
+      }
+    },
+    {
+      "id": "ethereum-business-development-gap",
+      "title": "이더리움은 전담 비즈니스 개발(BD) 조직이 있어야 뒤처지지 않는가?",
+      "category": "거버넌스 · 커뮤니티",
+      "summary": "전 EF 리서처이자 현재 Tempo 소속인 dankrad가 '아무도 이더리움을 위한 비즈니스 개발(BD)을 하지 않아 이더리움이 뒤처지고 있다'고 주장하자, jfab는 오프체인 자산 경쟁에서 BD 부재가 실질적 문제라며 동조한 반면, Omid Malekan과 kenny 등 다수는 BD는 성공의 열쇠가 아니며 탈중앙화가 이더리움의 강점이라고 반박했다.",
+      "keyPoints": [
+        "이더리움에 전담 BD 조직이 없는 것이 채택 경쟁에서 실제로 뒤처지는 원인인가",
+        "역사적으로 BD에 많이 투자한 체인이 더 성공했는가, 오히려 덜 성공했는가",
+        "로빈후드·Base 같은 L2의 채택은 이더리움의 성과로 볼 수 있는가, BD 부재의 반례인가"
+      ],
+      "background": "이더리움 생태계에는 솔라나·아발란체 등과 달리 체인 차원의 전담 비즈니스 개발(BD, business development) 조직이 없다. EF(Ethereum Foundation)는 연구·조율 조직이며 발행사나 기관을 영업하지 않는다. 최근 ethlabs_org와 Ethereum Institute가 이 역할을 맡을 것으로 거론된다. 로빈후드 체인은 이더리움 L2지만 발행사 관계·유통·상품을 로빈후드가 직접 구축하고 있어, 전담 BD 없이 진행되는 채택의 사례로 읽힌다.",
+      "whyItMatters": "이 논쟁은 EF가 영업 조직이어야 하는가라는 이더리움 성장 모델의 오래된 질문을, Tempo로 떠난 인사를 통해 재점화한다. 토큰화 경쟁이 오프체인 자산 유치 싸움으로 넘어가는 국면에서, 이더리움이 중앙화된 BD 조직을 세울지 아니면 탈중앙 커뮤니티 모델을 유지할지가 기관 채택 지형을 좌우할 수 있다.",
+      "sources": [],
+      "keywords": [
+        "Ethereum BD",
+        "business development Ethereum",
+        "ethlabs",
+        "tokenization race"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "BD 부재는 실질적 위기다",
+          "holders": [
+            {
+              "handle": "dankrad",
+              "name": "Dankrad Feist",
+              "role": "전 EF 리서처, 현 Tempo",
+              "avatar": "https://pbs.twimg.com/profile_images/1115816977061351424/HdvT_PLp_400x400.png"
+            },
+            {
+              "handle": "josefabregab",
+              "name": "jfab",
+              "avatar": "https://pbs.twimg.com/profile_images/1889822163835715584/PGrXlrzB_400x400.jpg"
+            }
+          ],
+          "points": [
+            "이더리움은 아무도 이더리움을 위한 BD를 하지 않아서 뒤처지고 있다.",
+            "크립토가 오프체인에서 발생하는 자산을 두고 경쟁하면서 BD 부재는 큰 문제가 되며, 인프라만으로는 자산을 가져오지 못하고 발행사·유동성 장소·대출 시장·유통을 능동적으로 조율할 누군가가 필요하다.",
+            "이더리움은 가장 견고한 인프라를 가졌으니 누군가 그것을 팔아야 한다."
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "BD는 성공의 열쇠가 아니다",
+          "holders": [
+            {
+              "handle": "malekanoms",
+              "name": "Omid Malekan",
+              "avatar": "https://pbs.twimg.com/profile_images/1532345187766239233/PL-5UUmZ_400x400.jpg"
+            },
+            {
+              "handle": "kennyistyping",
+              "name": "kenny",
+              "avatar": "https://pbs.twimg.com/profile_images/1769523490967982080/FDrYb1C8_400x400.jpg"
+            },
+            {
+              "handle": "GSkrovina",
+              "name": "Garrett",
+              "avatar": "https://pbs.twimg.com/profile_images/1556688496651378690/MJFo94wA_400x400.png"
+            },
+            {
+              "handle": "XQTStrategy",
+              "name": "XQTStrategy.eurosky.social ⿻ 🚀⭐️👨‍🎤",
+              "avatar": "https://pbs.twimg.com/profile_images/1820732840109035520/Pc7sDT2u_400x400.jpg"
+            },
+            {
+              "handle": "blockchainjames",
+              "name": "James 🔥_🔥",
+              "avatar": "https://pbs.twimg.com/profile_images/1236225920589062144/JZoUlTCP_400x400.jpg"
+            },
+            {
+              "handle": "cartoonitunes",
+              "name": "cartoon.the🦄.eth 🛡️📖 ⟠",
+              "avatar": "https://pbs.twimg.com/profile_images/1995583961192374272/VjXTSdWq_400x400.jpg"
+            },
+            {
+              "handle": "lex_node",
+              "name": "_gabrielShapir0",
+              "role": "크립토 법률·규제 변호사, MetaLeX Labs 창업자",
+              "avatar": "https://pbs.twimg.com/profile_images/2058233189882032128/pRSMN_6C_400x400.jpg"
+            }
+          ],
+          "points": [
+            "역사적으로 BD를 가장 많이 한 체인들이 가장 성공하지 못했고, 수십 개 사례에서 수천만 달러가 헛되이 쓰였다.",
+            "비트코인이 BD 팀 없이 시가총액 1조 달러에 도달한 것이 곧 BD가 성공의 조건이 아님을 보여준다.",
+            "이더리움의 과제는 경제 모델 정비이지 BD가 아니며, 이더리움을 회사처럼 하나의 중앙화된 조직이 운영하길 원하지 않는 탈중앙성이 그 고유함이다.",
+            "로빈후드와 Base가 이미 이더리움이므로 이더리움은 그 채택의 수혜자이며, 적어도 이더리움은 Tempo와 달리 리스트에 올라 있다."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-10-02",
+          "by": "dankrad",
+          "stance": "pro",
+          "quote": "이더리움은 아무도 이더리움을 위한 BD를 하지 않아서 뒤처지고 있다.",
+          "url": "https://x.com/dankrad/status/2106119279242293410",
+          "digest": "2026-10-05",
+          "replyTo": "LorenzoARK",
+          "relation": "quote",
+          "original": "Ethereum is getting left behind because nobody is doing BD for Ethereum.",
+          "translation": "이더리움을 위해 사업개발(BD, business development)을 하는 사람이 아무도 없기 때문에 이더리움이 뒤처지고 있다."
+        },
+        {
+          "date": "2026-10-02",
+          "by": "lex_node",
+          "stance": "con",
+          "quote": "그래도 이더리움은 적어도 리스트에 올라 있다, Tempo와 달리.",
+          "url": "https://x.com/lex_node/status/2106164317339205769",
+          "digest": "2026-10-05",
+          "replyTo": "dankrad",
+          "relation": "reply",
+          "original": "@dankrad well Ethereum is on the list at least, unlike Tempo",
+          "translation": "그래도 이더리움은 적어도 그 목록에는 들어 있다, 템포(Tempo)와는 달리."
+        },
+        {
+          "date": "2026-10-03",
+          "by": "malekanoms",
+          "stance": "con",
+          "quote": "역사적으로 BD를 가장 많이 한 체인들이 가장 성공하지 못했다. 수십 개 사례, 수천만 달러가 쓰였다.",
+          "url": "https://x.com/malekanoms/status/2106411098756755852",
+          "digest": "2026-10-05",
+          "replyTo": "dankrad",
+          "relation": "reply",
+          "original": "@dankrad Historically the chains that have done the most BD have had the least success. Dozens of examples, tens of millions spent, etc.",
+          "translation": "역사적으로 사업개발(BD)을 가장 많이 한 체인들이 가장 성공하지 못했다. 수십 가지 사례가 있고, 수천만 달러가 쓰였다."
+        },
+        {
+          "date": "2026-10-03",
+          "by": "kennyistyping",
+          "stance": "con",
+          "quote": "비트코인이 BD 팀 없이 1조 달러에 도달한 건 정말 기적이다.",
+          "url": "https://x.com/kennyistyping/status/2106177882045534250",
+          "digest": "2026-10-05",
+          "replyTo": "dankrad",
+          "relation": "quote",
+          "original": "it's truly a miracle Bitcoin made it to $1T without a BD team",
+          "translation": "비트코인이 사업개발(BD) 팀 없이 1조 달러에 도달했다는 것은 정말 기적이다."
+        },
+        {
+          "date": "2026-10-03",
+          "by": "GSkrovina",
+          "stance": "con",
+          "quote": "이더리움은 경제성과 속도보다 탈중앙화와 보안을 우선해 왔고, 이제 더 많은 활동에 맞게 경제 모델을 정리해야 한다. 그건 BD와는 아무 상관이 없다.",
+          "url": "https://x.com/GSkrovina/status/2106181916097700248",
+          "digest": "2026-10-05",
+          "replyTo": "dankrad",
+          "relation": "quote",
+          "original": "Ethereum has prioritized decentralization and security over economics and speed.\n\nThis was probably the right decision to establish Ethereum as the global computer.\n\nNow, Ethereum needs to figure out its economic model so that it becomes more scalable and sustainable for more types of activities.\n\nThat has nothing to do with BD.",
+          "translation": "이더리움은 경제성과 속도보다 탈중앙화(decentralization)와 보안(security)을 우선시해왔다. 이는 이더리움을 글로벌 컴퓨터로 자리매김시키는 데 있어 아마도 옳은 결정이었을 것이다. 이제 이더리움은 더 다양한 유형의 활동에 대해 더 확장 가능(scalable)하고 지속 가능(sustainable)해지도록 자신의 경제 모델을 정립해야 한다. 그것은 사업개발(BD)과는 아무 관련이 없다."
+        },
+        {
+          "date": "2026-10-03",
+          "by": "XQTStrategy",
+          "stance": "con",
+          "quote": "나는 25년 넘게 B2B 테크 세일즈를 해왔다. 당신은 무슨 말을 하는지 모른다. 우리는 이더리움이 회사처럼 하나의 중앙화된 조직에 의해 운영되길 원하지 않는다. 그것이 이더리움의 고유함과 혁신의 일부다.",
+          "url": "https://x.com/XQTStrategy/status/2106391482336706944",
+          "digest": "2026-10-05",
+          "replyTo": "dankrad",
+          "relation": "reply",
+          "original": "I am in B2B Tech Sales for more than 25 years. You don’t know what you are talking about. We don’t want Ethereum being managed by one centralized organisation like a company. This is part of its uniqueness and innovation. Decentralisation is not only a technical matter. The best community will win. 🖖",
+          "translation": "나는 25년 넘게 B2B 기술 영업(B2B Tech Sales)을 해왔다. 당신은 자신이 무슨 말을 하는지도 모른다. 우리는 이더리움이 회사 같은 하나의 중앙화된 조직에 의해 관리되는 것을 원하지 않는다. 이것은 이더리움의 독창성과 혁신의 일부다. 탈중앙화(decentralisation)는 단지 기술적인 문제가 아니다. 최고의 커뮤니티가 승리할 것이다."
+        },
+        {
+          "date": "2026-10-03",
+          "by": "cartoonitunes",
+          "stance": "con",
+          "quote": "오 안돼! 그럼 Robinhood ETH가 ETH 가치를 넘어서겠네.. Base ETH 조심해!",
+          "url": "https://x.com/cartoonitunes/status/2106414639273624033",
+          "digest": "2026-10-05",
+          "replyTo": "dankrad",
+          "relation": "reply",
+          "original": "@dankrad Oh no! Robinhood ETH is going to pass ETH in value then..\n\nWatch out for Base ETH!",
+          "translation": "이런! 그러면 로빈후드 ETH가 ETH의 가치를 넘어서게 되겠네. 베이스(Base) ETH도 조심해야겠다!"
+        },
+        {
+          "date": "2026-10-04",
+          "by": "josefabregab",
+          "stance": "pro",
+          "quote": "'아무도 이더리움을 위한 BD를 하지 않는다'는 크립토가 오프체인에서 발생하는 자산을 두고 경쟁하면서 꽤 큰 문제가 된다. 인프라만으로는 자산을 가져오지 못하며, 발행사·유동성 장소·대출 시장·유통을 능동적으로 조율할 누군가가 여전히 필요하다. 이더리움은 가장 견고한 인프라를 가졌다. 누군가 그것을 팔아야 한다.",
+          "url": "https://x.com/josefabregab/status/2106565468236517409",
+          "digest": "2026-10-05",
+          "replyTo": "dankrad",
+          "relation": "quote",
+          "original": "\"Nobody is doing BD for Ethereum\" becomes quite a big problem as crypto competes for assets that originate offchain.\n\nProtocols like @Aave V4 and @Chainlink CRE, alongside projects like Fulcrum, are paving the way regarding infrastructure for tokenized assets on Ethereum, but infrastructure alone doesn't bring the assets.\n\nYou still need someone actively coordinating issuers, liquidity venues, lending markets and distribution. I understand that @ethlabs_org and @ethereuminsti will take on this, but it should happen soon.\n\nThe tokenization race won't just be won by whoever has the best rails. It'll be won by whoever gets the entire stack working together.\n\nThat's why we're seeing so much of this activity happening on Robinhood Chain, Solana, Avalanche, etc.\n\nRobinhood Chain is perhaps the clearest example. It's an Ethereum L2, but Robinhood is the one building the issuer relationships, distribution and product around those rails. Ethereum is not benefitting from this.\n\nEthereum has the most robust infrastructure. It needs someone to sell it.",
+          "translation": "\"이더리움을 위해 사업개발(BD)을 하는 사람이 아무도 없다\"는 말은, 크립토가 온체인 밖에서 기원한 자산들을 두고 경쟁하게 되면서 꽤 큰 문제가 된다. Aave V4와 Chainlink CRE 같은 프로토콜들이, Fulcrum 같은 프로젝트들과 함께, 이더리움 위에서 토큰화된 자산을 위한 인프라 측면에서 길을 닦고 있지만, 인프라만으로는 자산을 끌어오지 못한다. 발행사, 유동성 거래소(liquidity venue), 대출 시장(lending market), 유통(distribution)을 적극적으로 조율하는 누군가가 여전히 필요하다. ethlabs_org와 ethereuminsti가 이 역할을 맡을 것이라고 이해하고 있지만, 그 일은 곧 일어나야 한다. 토큰화 경쟁은 단순히 누가 최고의 레일(rail)을 가지고 있느냐로 승부가 나지 않을 것이다. 전체 스택을 함께 작동시키는 쪽이 승리할 것이다. 그래서 우리는 로빈후드 체인(Robinhood Chain), 솔라나(Solana), 아발란체(Avalanche) 등에서 이런 활동이 그렇게나 많이 일어나는 것을 보고 있는 것이다. 로빈후드 체인이 아마 가장 명확한 예일 것이다. 그것은 이더리움 L2이지만, 그 레일을 중심으로 발행사와의 관계, 유통, 제품을 쌓아올리고 있는 것은 로빈후드다. 이더리움은 이로부터 혜택을 보지 못하고 있다. 이더리움은 가장 견고한 인프라를 가지고 있다. 그것을 팔아줄 누군가가 필요하다."
+        },
+        {
+          "date": "2026-10-04",
+          "by": "blockchainjames",
+          "stance": "con",
+          "quote": "아니면 대기업들이 인재를 다 쓸어가서 그럴 수도. 게다가 토큰화 주식 대다수는 헛것이다. 그리고 robinhood와 base는 이더리움이다.",
+          "url": "https://x.com/blockchainjames/status/2106555672481718639",
+          "digest": "2026-10-05",
+          "replyTo": "dankrad",
+          "relation": "reply",
+          "original": "@dankrad Lmfao or maybe because big corporates are buying up all the humans, build the technology for the old guard like a good boy Dankrad.\n\nAlso idk what this chart is tracking as a ‘tokenised equity’ but a majority of tokenised stocks are just bs.\n\nALSO robinhood and base are Ethereum",
+          "translation": "ㅋㅋㅋ 아니면 어쩌면 대기업들이 사람들을 다 사들이고 있어서일지도. 댕크라드(Dankrad)답게 착한 아이처럼 구세력(old guard)을 위한 기술이나 만들어라. 그리고 이 차트가 '토큰화된 지분(tokenised equity)'으로 추적하고 있는 게 뭔지 모르겠지만, 토큰화된 주식 대부분은 그냥 허튼소리다. 그리고 로빈후드와 베이스도 이더리움이다."
+        }
+      ],
+      "firstSeen": "2026-10-02",
+      "lastActivity": "2026-10-04",
+      "status": "active",
+      "rootUrl": "https://x.com/dankrad/status/2106119279242293410",
+      "engagement": {
+        "likes": 236,
+        "retweets": 8,
+        "quotes": 8,
+        "replies": 81,
+        "views": 46858
+      }
+    },
+    {
+      "id": "thorchain-permissionless-dprk-zec",
+      "title": "THORChain의 ZEC 상장은 퍼미션리스의 원칙인가, 북한 세탁을 돕는 선택적 중립인가?",
+      "category": "거버넌스 · 커뮤니티",
+      "summary": "북한(DPRK)이 처음으로 대량의 ZEC를 탈취한 시점에 THORChain이 ZEC 거래를 상장하자, Taylor Monahan은 THORChain이 북한에는 퍼미션리스지만 무고한 사용자와 노드 운영자에게는 그렇지 않다고 비판했다. ThorTrades는 THORChain이 최대 사용자의 수요에 응답했을 뿐이라고 옹호했고, zmanian은 ZEC 상장이 1년 넘게 계획된 일이며 자금 추적은 어차피 어렵다고 짚었다.",
+      "keyPoints": [
+        "THORChain이 북한 탈취 자금의 ZEC 세탁 경로를 열어주면서도 피해자·노드 운영자에게는 제약을 둔다면, 이는 선택적 퍼미션리스인가",
+        "ZEC 상장 타이밍은 북한 탈취에 대한 반응인가, 오래전 계획된 일의 우연한 겹침인가",
+        "퍼미션리스(permissionless)는 규칙이 모두에게 동등하게 적용될 때만 의미가 있는가, 아니면 수요에 응답하는 중립 자체가 원칙인가"
+      ],
+      "background": "THORChain은 중앙 조정자 없이 자산을 교환하는 탈중앙 크로스체인 프로토콜이다. 2026년 Bitget 해킹 이후 북한(DPRK)으로 지목된 세력이 처음으로 대량의 ZEC(지캐시)를 탈취했고, 같은 시기 THORChain이 ZEC 거래를 상장했다. NEAR Intents 등 일부 프로토콜은 도난자금을 탐지해 차단했다. 이로써 퍼미션리스(permissionless)가 곧 중립(neutral)을 뜻하는지, 세탁을 거부하는 것이 퍼미션리스 원칙과 양립하는지가 쟁점이 됐다. 이 논쟁의 동결 반대 진영의 직접 반론은 이번 기간 수집되지 않았다.",
+      "whyItMatters": "10월 2일에 시작된 동결 대 거부 논쟁이 추상론을 지나 프로토콜별 실제 행동으로 판가름나기 시작했다. THORChain과 NEAR Intents가 대조군이 되면서, 탈중앙 프로토콜이 불법 자금 앞에서 어떤 입장을 취하느냐가 각 프로토콜의 정당성과 규제 노출을 가르는 실천적 기준으로 떠오르고 있다.",
+      "sources": [],
+      "keywords": [
+        "THORChain ZEC",
+        "permissionless neutral",
+        "DPRK Bitget",
+        "Zcash laundering"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "THORChain의 퍼미션리스는 선택적이다",
+          "holders": [
+            {
+              "handle": "tayvano_",
+              "name": "Tay 💖",
+              "role": "온체인 해킹·탈취 추적 보안 연구자",
+              "avatar": "https://pbs.twimg.com/profile_images/1581795350087667713/iMrb6XX__400x400.jpg"
+            },
+            {
+              "handle": "crypto_ninjas",
+              "name": "CryptoNinjas",
+              "avatar": "https://pbs.twimg.com/profile_images/1879443366158774272/LShK75fk_400x400.jpg"
+            },
+            {
+              "handle": "0xRezush",
+              "name": "Reza",
+              "avatar": "https://pbs.twimg.com/profile_images/1997317823761125376/-o1Z__5o_400x400.jpg"
+            },
+            {
+              "handle": "CupOJoseph",
+              "name": "JOSΞPH 🌳",
+              "avatar": "https://pbs.twimg.com/profile_images/2044458088162279424/VbmL3abg_400x400.jpg"
+            }
+          ],
+          "points": [
+            "북한이 처음으로 상당량의 ZEC를 탈취하자 THORChain이 ZEC 상장을 밀어붙였으며, THORChain은 북한에는 퍼미션리스지만 무고한 사용자나 노드 운영자에게는 그렇지 않다.",
+            "북한의 ZEC 탈취는 '퍼미션리스'가 양날의 검임을 보여주며, 퍼미션리스는 규칙이 모두에게 동등하게 적용될 때만 의미가 있다.",
+            "북한이 이 상장이 나올 때까지 익스플로잇을 쥐고 있었을 가능성이 있어 타이밍이 의심스럽다."
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "THORChain은 사용자 수요에 응답했을 뿐이다",
+          "holders": [
+            {
+              "handle": "ThorTrades8",
+              "name": "ThorTrades ⚡️",
+              "avatar": "https://pbs.twimg.com/profile_images/1528427210838884355/ETbyi5Si_400x400.jpg"
+            }
+          ],
+          "points": [
+            "THORChain의 최대 사용자가 ZEC를 필요로 했고 THORChain은 그것을 전달했을 뿐이며, 이것이야말로 크립토에서 보기 드문 고객 서비스다."
+          ]
+        },
+        {
+          "stance": "neutral",
+          "label": "상장은 오래전 계획됐고 자금 추적은 어차피 어렵다",
+          "holders": [
+            {
+              "handle": "zmanian",
+              "name": "zmanian",
+              "avatar": "https://pbs.twimg.com/profile_images/1787602143869853696/2eghYl-r_400x400.jpg"
+            }
+          ],
+          "points": [
+            "ZEC 상장은 1년 넘게 계획된 일이라 북한 탈취에 대한 반응이 아니며, 타이밍에 아이러니가 있을 뿐이다.",
+            "그 자금의 출구를 실제로 식별할 사람은 없을 것 같아 상장이 실질적 세탁 통로가 되리라 단정하기 어렵다."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-10-02",
+          "by": "tayvano_",
+          "stance": "pro",
+          "quote": "북한이 처음으로 상당량의 ZEC를 탈취하자, THORChain이 ZEC를 상장하려고 산을 옮긴다. 웃기지도 않는다. NO 표까지 더 러그했다. 기억하라: THORChain은 당신이 북한이면 '퍼미션리스'다. 당신이 무고한 사용자나 노드 운영자면 아니다.",
+          "url": "https://x.com/tayvano_/status/2106055842206531682",
+          "digest": "2026-10-05",
+          "replyTo": "THORChain",
+          "relation": "quote",
+          "original": "&gt; DPRK steals a sizable amount of ZEC for the first time\n\n&gt; THORChain moves mountains to get ZEC launched\n\nLOL\n\nThey even had to rug more NO's\n\nRemember: THORChain is \"permissionless\" if you're DPRK. It's not if you're an innocent user or node operator 😘",
+          "translation": "> 북한(DPRK)이 처음으로 상당한 양의 ZEC를 훔친다 > 토르체인(THORChain)이 ZEC를 상장시키기 위해 온갖 수를 다 쓴다 ㅋㅋㅋ 그들은 '아니오(NO)' 투표를 더 많이 러그(rug)해야 했다. 기억하라: 토르체인은 당신이 북한이라면 '허가 없이(permissionless)' 이용할 수 있다. 당신이 아무 죄 없는 사용자나 노드 운영자(node operator)라면 그렇지 않다."
+        },
+        {
+          "date": "2026-10-02",
+          "by": "ThorTrades8",
+          "stance": "con",
+          "quote": "THORChain의 최대 사용자가 ZEC를 필요로 한다. THORChain은 전달한다. 크립토에서 이보다 나은 고객 서비스를 어디서 찾겠나?",
+          "url": "https://x.com/ThorTrades8/status/2106070528310104297",
+          "digest": "2026-10-05",
+          "replyTo": "tayvano_",
+          "relation": "quote",
+          "original": "Biggest user of @THORChain needs $ZEC. Thorchain delivers.\n\nWhere do you find better customer service in crypto? ⚡️",
+          "translation": "토르체인(THORChain)의 최대 사용자가 ZEC가 필요하다. 토르체인이 그것을 제공한다. 크립토 어디에서 이보다 나은 고객 서비스를 찾을 수 있겠는가?"
+        },
+        {
+          "date": "2026-10-02",
+          "by": "zmanian",
+          "stance": "neutral",
+          "quote": "이건 1년 넘게 계획된 일이다. 타이밍에 아이러니가 있지만, 그 자금의 출구를 실제로 식별할 사람은 없을 것 같다.",
+          "url": "https://x.com/zmanian/status/2106144747400450075",
+          "digest": "2026-10-05",
+          "replyTo": "tayvano_",
+          "relation": "reply",
+          "original": "@tayvano_ This has been planned for over a year.\n\nThere is some irony to the timing but it’s unlikely that anyone is really going to identify exits on those funds.",
+          "translation": "이것은 1년 넘게 계획되어 있던 일이다. 타이밍에 어떤 아이러니가 있긴 하지만, 누군가가 그 자금의 출구를 실제로 식별해낼 가능성은 낮다."
+        },
+        {
+          "date": "2026-10-03",
+          "by": "crypto_ninjas",
+          "stance": "pro",
+          "quote": "북한의 ZEC 탈취는 '퍼미션리스'가 양날의 검임을 보여준다.",
+          "url": "https://x.com/crypto_ninjas/status/2106207053584953820",
+          "digest": "2026-10-05",
+          "replyTo": "tayvano_",
+          "relation": "reply",
+          "original": "@tayvano_ DPRK's ZEC theft shows how \"permissionless\" is a double-edged sword.",
+          "translation": "북한의 ZEC 탈취는 '허가 없음(permissionless)'이 어떻게 양날의 검이 되는지를 보여준다."
+        },
+        {
+          "date": "2026-10-03",
+          "by": "CupOJoseph",
+          "stance": "pro",
+          "quote": "내 베팅: 북한은 이게 출시될 때까지 익스플로잇을 쥐고 있었다.",
+          "url": "https://x.com/CupOJoseph/status/2106223160999981313",
+          "digest": "2026-10-05",
+          "replyTo": "tayvano_",
+          "relation": "reply",
+          "original": "@tayvano_ My bet: Dprk was sitting on the exploit until this launched",
+          "translation": "내 예상은: 북한이 이것이 출시될 때까지 익스플로잇(exploit)을 가지고 기다리고 있었다는 것이다."
+        },
+        {
+          "date": "2026-10-03",
+          "by": "0xRezush",
+          "stance": "pro",
+          "quote": "퍼미션리스는 규칙이 모두에게 동등하게 적용될 때만 의미가 있다.",
+          "url": "https://x.com/0xRezush/status/2106524141339738327",
+          "digest": "2026-10-05",
+          "replyTo": "tayvano_",
+          "relation": "reply",
+          "original": "@tayvano_ permissionless only means something when the rules apply equally to everyone",
+          "translation": "허가 없음(permissionless)은 규칙이 모두에게 동등하게 적용될 때에만 의미를 갖는다."
+        }
+      ],
+      "firstSeen": "2026-10-02",
+      "lastActivity": "2026-10-03",
+      "status": "active",
+      "rootUrl": "https://x.com/tayvano_/status/2106055842206531682",
+      "engagement": {
+        "likes": 289,
+        "retweets": 15,
+        "quotes": 3,
+        "replies": 41,
+        "views": 34015
+      }
+    },
     {
       "id": "do-layers-add-intermediaries",
       "title": "레이어드 스케일링과 토큰화는 중개자를 없애는가, 더하는가?",
@@ -332,7 +913,7 @@
       ],
       "firstSeen": "2026-09-26",
       "lastActivity": "2026-09-28",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/pcaversaccio/status/2103785672373104828",
       "engagement": {
         "likes": 472,
@@ -481,7 +1062,7 @@
       ],
       "firstSeen": "2026-09-26",
       "lastActivity": "2026-09-27",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/TrustlessState/status/2103818463261098197",
       "engagement": {
         "likes": 89,
@@ -692,7 +1273,7 @@
       ],
       "firstSeen": "2026-09-26",
       "lastActivity": "2026-09-27",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/gakonst/status/2103641301371724207",
       "engagement": {
         "likes": 1214,
@@ -827,7 +1408,7 @@
       ],
       "firstSeen": "2026-09-25",
       "lastActivity": "2026-09-26",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/lex_node/status/2103567124719653285",
       "engagement": {
         "likes": 454,
@@ -4414,7 +4995,7 @@
       ],
       "firstSeen": "2026-09-04",
       "lastActivity": "2026-09-05",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/nero_eth/status/2095940664978530448",
       "engagement": {
         "likes": 70,
@@ -4642,7 +5223,7 @@
       ],
       "firstSeen": "2026-08-25",
       "lastActivity": "2026-09-05",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/lightclients/status/2096267670912143774",
       "engagement": {
         "likes": 148,
@@ -4765,7 +5346,7 @@
       ],
       "firstSeen": "2026-08-25",
       "lastActivity": "2026-09-04",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/laurashin/status/2095880739975733285",
       "engagement": {
         "likes": 12,
@@ -5710,7 +6291,7 @@
       ],
       "firstSeen": "2026-08-04",
       "lastActivity": "2026-09-03",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/jdetychey/status/2084638778677751889",
       "engagement": {
         "likes": 467,
