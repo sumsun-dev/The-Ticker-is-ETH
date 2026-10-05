@@ -223,7 +223,8 @@
         "quotes": 6,
         "replies": 33,
         "views": 12751
-      }
+      },
+      "publish": false
     },
     {
       "id": "ethereum-business-development-gap",
@@ -436,7 +437,8 @@
         "quotes": 8,
         "replies": 81,
         "views": 46858
-      }
+      },
+      "publish": true
     },
     {
       "id": "thorchain-permissionless-dprk-zec",
@@ -604,7 +606,8 @@
         "quotes": 3,
         "replies": 41,
         "views": 34015
-      }
+      },
+      "publish": false
     },
     {
       "id": "do-layers-add-intermediaries",
