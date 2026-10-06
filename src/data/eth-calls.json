@@ -1,6 +1,462 @@
 {
-  "updatedAt": "2026-10-02T00:59:09.935Z",
+  "updatedAt": "2026-10-06T00:45:19.844Z",
   "calls": [
+    {
+      "id": "acdt-99",
+      "series": "acdt",
+      "number": 99,
+      "date": "2026-10-05",
+      "title": "AllCoreDevs - Testing #099",
+      "forkcastUrl": "https://forkcast.org/calls/acdt/099/",
+      "videoUrl": "https://www.youtube.com/watch?v=E7Ix7U9lFEw",
+      "issueUrl": "https://github.com/ethereum/pm/issues/2242",
+      "kind": "full",
+      "durationMin": 34,
+      "headline": "세폴리아 포크\n준비 완료",
+      "lead": "글램스터담 업그레이드가 첫 공개 테스트넷 적용을 하루 앞뒀다",
+      "intro": "이더리움 클라이언트의 테스트와 데브넷 운영을 점검하는 코어 개발자 테스팅 콜(ACDT)이다.",
+      "summary": "세폴리아(Sepolia) 글램스터담(Glamsterdam) 포크가 10월 6일 13:53 UTC로 하루 앞으로 다가온 가운데 전 클라이언트가 준비 상태를 확인했다. 빌더(builder)는 포크 전에 온보딩하지 않고 포크 직후 일반 세폴리아 ETH로 예치하기로 했다.",
+      "whyItMatters": "글램스터담이 처음으로 공개 테스트넷에 올라가는 단계로, 메인넷 적용 전 마지막 검증 구간의 출발점이다. 함께 정리된 eth_call 가스 한도 버그 수정은 NFT 렌더러나 어그리게이터처럼 대용량 시뮬레이션에 기대는 개발자 도구가 계속 동작하게 한다.",
+      "decisions": [
+        {
+          "label": "빌더 온보딩",
+          "text": "세폴리아에서는 포크 전에 빌더를 온보딩하지 않고, 포크 전 빌더 테스트는 후디(Hoodi)에서 하도록 권장하기로 했다. 포크 직후에는 일반 세폴리아 ETH로 바로 예치할 수 있다는 뜻이다.",
+          "original": "Builders will not be onboarded pre-fork on Sepolia; Hoodi recommended for pre-fork builder testing",
+          "eips": [],
+          "status": "확정",
+          "timestamp": "00:25:50"
+        },
+        {
+          "label": "eth_call 가스 명세",
+          "text": "eth_call 가스 한도 수정은 EIP가 아니라 execution-apis 저장소에서 추적하기로 했다. RPC 동작의 공식 명세는 API 저장소가 맡는다는 뜻이다.",
+          "original": "ETH call gas limit fix to be tracked in execution-apis repo, not the EIP",
+          "eips": [],
+          "status": "확정",
+          "timestamp": "00:32:11"
+        }
+      ],
+      "targets": [
+        {
+          "key": "sepolia-fork",
+          "text": "세폴리아 글램스터담 포크, 2026년 10월 6일 13:53 UTC. 확정",
+          "timestamp": "00:13:00"
+        }
+      ],
+      "actions": [
+        {
+          "owner": "Maria Silva / Gary (Geth)",
+          "text": "eth_call의 올바른 가스 한도 동작(16M 트랜잭션 상한 없음)을 execution-apis 명세에 문서화",
+          "timestamp": "00:32:00"
+        },
+        {
+          "owner": "글램스터담 EIP 저자들",
+          "text": "다음 EIP 에디팅 오피스아워 전까지 글램스터담 EIP를 라스트 콜(Last Call) 상태로 옮기는 PR 제출",
+          "timestamp": "00:24:06"
+        }
+      ],
+      "agenda": [
+        {
+          "timestamp": "00:07:39",
+          "heading": "세폴리아 섀도 포크 결과"
+        },
+        {
+          "timestamp": "00:11:04",
+          "heading": "FOCIL 데브넷 0 중단 사고"
+        },
+        {
+          "timestamp": "00:13:14",
+          "heading": "세폴리아 업그레이드 준비 상태 (글램스터담)"
+        },
+        {
+          "timestamp": "00:24:10",
+          "heading": "글램스터담 제안들의 EIP 라스트 콜 상태"
+        },
+        {
+          "timestamp": "00:24:59",
+          "heading": "세폴리아 빌더 온보딩",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "00:26:30",
+          "heading": "클라이언트 릴리스 공지와 버전 관리 절차",
+          "discussion": true
+        },
+        {
+          "timestamp": "00:30:05",
+          "heading": "EIP-8037 이후 eth_call의 실행 가스 한도",
+          "discussion": true,
+          "decision": true
+        }
+      ],
+      "topics": [
+        {
+          "title": "EIP-8037 이후 eth_call 가스 한도 버그",
+          "intro": "상태 생성 가스 비용을 올린 EIP-8037 적용 뒤 게스(Geth)의 eth_call이 단일 트랜잭션 한도에 묶이면서, 대용량 시뮬레이션에 의존하는 도구들이 깨지는 문제가 EL 브레이크아웃에서 다뤄졌다.",
+          "decision": "확정 결정 00:32:11",
+          "positions": [
+            {
+              "speaker": "Maria Silva",
+              "text": "게스의 eth_call이 단일 트랜잭션과 같은 16M 가스 한도를 적용해 대용량 호출 시뮬레이션 용례가 깨진다고 제기했다. 합의 변경 없이 고칠 수 있는 문제이며 다른 클라이언트들과 동작을 일관되게 맞춰야 한다고 했다.",
+              "timestamp": "00:30:33",
+              "original": "Yeah, so this was, this is actually something that, is not a consensus change, so this is something we could do, without any consensus breaking, but essentially, and this was something that was only… confirming gas, so I don't know what the other clients did for ETH call. But essentially, for Geth, ETH call is, implementing the same Gas limit for execution as the, transaction. As the… the transaction limit, so the… the 16 million, gas. And essentially, there are, cases where people want to simulate calls that take more than the 16 million, Gazan for them. This is kind of, breaking their… their use case. So before ETH call was already… didn't have, the limit that a single transaction has. And so… the point here is that, so Gary from Geth already confirmed this and said he was fixing it in Geth. The question now is, like. What did other clients do? And, should we make it consistent? So my idea was initially to maybe add a comment on the EIP itself to describe that this should be the behavior for ETH call. But yeah, I would like to also see the opinions from the other clients. Right, so you say it doesn't make sense to be in the EIP. At all. Do clients have any comments here? Yes, so essentially I want to know if… everyone is okay with just keeping the current behavior of ETH call, because my understanding is, like, this would be changing it. Sorry, I would just add on that comment, on the EIPMA decisions, they specifically refer the, the. the renderers for, for SVGs, so what's…",
+              "translation": "네, 이것은 사실 합의 변경(consensus change)이 아닌 것이라서, 합의를 깨지 않고도 할 수 있는 것입니다만, 이것은 가스를 확인하는 것에만 관련된 것이어서, 다른 클라이언트들이 ETH call에 대해 어떻게 했는지는 모르겠습니다. 하지만 기본적으로 Geth의 경우 ETH call은 실행(execution)에 대해 트랜잭션과 동일한 가스 한도(Gas limit)를 적용하고 있습니다. 트랜잭션 한도, 즉 1600만 가스입니다. 그런데 사람들이 1600만 가스보다 더 많은 가스가 필요한 호출을 시뮬레이션하고자 하는 경우가 있습니다. 이는 그들의 사용 사례(use case)를 깨뜨리는 셈입니다. 그래서 이전에는 ETH call에 단일 트랜잭션이 갖는 그 한도가 없었습니다. 여기서 중요한 점은, Geth의 Gary가 이미 이를 확인했고 Geth에서 고치겠다고 했다는 것입니다. 이제 문제는 다른 클라이언트들은 어떻게 했는지, 그리고 이를 일관되게 맞춰야 하는지입니다. 그래서 제 생각은 처음에는 EIP 자체에 ETH call의 동작이 이래야 한다는 설명을 주석으로 추가하는 것이었습니다. 하지만 다른 클라이언트들의 의견도 듣고 싶습니다. 그러니까 이것이 EIP에 들어가는 게 전혀 맞지 않다는 말씀이시군요. 클라이언트들 의견 있으신가요? 네, 저는 기본적으로 모두가 ETH call의 현재 동작을 그대로 유지하는 데 동의하는지 알고 싶습니다. 제가 이해하기로는 이것이 그 동작을 바꾸는 것이기 때문입니다. 죄송합니다, 그 의견에 덧붙이자면, EIPMA 결정에서는 특히 SVG용 렌더러(renderer)를 구체적으로 언급하고 있어서, 그게 뭔지…"
+            },
+            {
+              "speaker": "Marius Van Der Wijden (M)",
+              "text": "이 동작은 API의 공식 명세인 execution-apis 저장소에 명시해야 한다며, EIP에 넣는 것보다 그쪽이 맞는 자리라고 했다.",
+              "timestamp": "00:32:11",
+              "original": "Shouldn't this just be specified in the execution APIs repo? I think that's at least, like, the place. that this should… Probably be in. Well… I'm not saying that, like, it can be added to the EIP, but I think the important bit is to add it to the execution APIs repo. Because it's, like, the canonical specification for the APIs. It's, it's, it's, heavy view functions in contracts. So, for example, there are some few functions that, that paint a picture of the, of the NFT, and so you want to be able to do that in the front end, via the deployed code, but you don't, like, you will never do this on-chain.",
+              "translation": "이것은 그냥 execution APIs 저장소(repo)에 명시되어야 하는 것 아닙니까? 적어도 그게 맞는 곳이라고 생각합니다. 아마… 이것이 EIP에 추가될 수 없다는 말은 아니지만, 중요한 부분은 execution APIs 저장소에 추가하는 것이라고 생각합니다. 그것이 API들의 정전(canonical) 명세이기 때문입니다. 이는 컨트랙트 내의 무거운 뷰 함수(view function)들에 관한 것입니다. 예를 들어 NFT의 그림을 그려주는 몇몇 함수들이 있는데, 그것을 배포된 코드(deployed code)를 통해 프런트엔드에서 실행하고 싶지만, 온체인(on-chain)에서는 절대 하지 않을 것이기 때문입니다."
+            },
+            {
+              "speaker": "Luis Pinto",
+              "text": "최대 트랜잭션 가스 한도를 넘어 온체인에서는 돌릴 수 없는 호출을 시뮬레이션하는 용례가 무엇이냐고 물었다.",
+              "timestamp": "00:33:55",
+              "original": "I was waiting, I was waiting for you to give me a… Oh, sorry. Okay, yeah, so I'm wondering, because if the maximum transaction gas limit is reached, what's their use case for simulating an ETH call that does not work on chain from now on?",
+              "translation": "저는 기다리고 있었습니다, 말씀해 주시기를 기다리고 있었습니다… 아, 죄송합니다. 네, 그래서 궁금한 점은, 최대 트랜잭션 가스 한도에 도달하면, 앞으로 온체인에서 동작하지 않을 ETH call을 시뮬레이션하는 그들의 사용 사례는 무엇인가 하는 것입니다."
+            },
+            {
+              "speaker": "Marius Van Der Wijden (M)",
+              "text": "루이스의 질문에 NFT 이미지를 그리는 무거운 뷰 함수처럼 프런트엔드에서만 쓰고 온체인에서는 절대 실행하지 않는 용례라고 답했다.",
+              "timestamp": "00:34:16",
+              "original": "It's, it's, it's, heavy view functions in contracts. So, for example, there are some few functions that, that paint a picture of the, of the NFT, and so you want to be able to do that in the front end, via the deployed code, but you don't, like, you will never do this on-chain.",
+              "translation": "이는 컨트랙트 내의 무거운 뷰 함수(view function)들에 관한 것입니다. 예를 들어 NFT의 그림을 그려주는 몇몇 함수들이 있는데, 그것을 배포된 코드(deployed code)를 통해 프런트엔드에서 실행하고 싶지만, 온체인(on-chain)에서는 절대 하지 않을 것이기 때문입니다."
+            },
+            {
+              "speaker": "jochem-brouwer",
+              "text": "eth_call에 상태 가스와 실행 가스를 따로 둬야 하는 것 아니냐고 물었고, 모든 가스를 실행 가스에 넣으면 상태에도 쓸 수 있다는 마리아의 설명에 문제없다고 수긍했다.",
+              "timestamp": "00:36:28",
+              "original": "Yeah, so I'm reading this comment on magicians, but And… Does that not imply that we should actually change this API to have both state gas and execution gas? This is what we are proposing here. Okay, because I think this is somewhat problematic, because, so for magicians, the thing is that for SVG vendors, so this is an execution, which needs, like, a lot of execution gas, but for ETH call, we also have to, the purpose of ETH call could also be what would happen if I would execute this on-chain. So… That means that, a call, which, on-chain would create, like, a lot of state. That would mean that… if we lift this limit, then the question is, okay, but how do we lift this limit? So, do we put all the gas in the execution gas, or do we put all the gas in the simulation… oh, in the state gas, right, but if you put… Yeah, it needs… Yeah, I see, I see. Okay, then, okay, then I think that's not a problem. Yeah, okay, sorry, yeah, thanks. That's all. Bye bye.",
+              "translation": "네, 매지션즈(magicians)에 있는 이 댓글을 읽고 있는데요. 그런데 이것은 사실 우리가 이 API를 state gas와 execution gas 둘 다 갖도록 바꿔야 한다는 것을 의미하지 않습니까? 이것이 바로 우리가 여기서 제안하는 바입니다. 왜냐하면 이것이 다소 문제가 있다고 생각하기 때문입니다. 매지션즈의 경우, SVG 벤더들에게는 이것이 많은 실행 가스(execution gas)가 필요한 실행이지만, ETH call의 경우 ETH call의 목적은 '이것을 온체인에서 실행하면 무슨 일이 일어날까'일 수도 있습니다. 그렇다면 온체인에서 많은 상태(state)를 생성하게 될 호출이라는 뜻이 됩니다. 그 말은, 만약 우리가 이 한도를 없앤다면, 문제는 그 한도를 어떻게 없애느냐가 됩니다. 모든 가스를 실행 가스에 넣을 것인가, 아니면 모든 가스를 시뮬레이션에... 아, state gas에 넣을 것인가입니다. 그런데 넣는다면... 네, 필요합니다... 네, 알겠습니다, 알겠습니다. 네, 그러면 그건 문제가 안 된다고 생각합니다. 네, 알겠습니다, 죄송합니다, 네, 감사합니다. 그게 다입니다. 안녕히 계세요."
+            },
+            {
+              "speaker": "Toni Wahrstätter",
+              "text": "이 기능은 반드시 유지돼야 하며 게스의 버그로 보이니 다른 클라이언트들도 재확인해야 한다고 했다.",
+              "timestamp": "00:35:32",
+              "viaChat": true
+            }
+          ],
+          "quote": {
+            "text": "중요한 건 execution-apis 저장소에 추가하는 것이다. 그게 API의 공식 명세이기 때문이다.",
+            "original": "I think the important bit is to add it to the execution APIs repo. Because it's the canonical specification for the APIs.",
+            "speaker": "Marius Van Der Wijden (M)",
+            "timestamp": "00:32:33"
+          }
+        },
+        {
+          "title": "세폴리아 빌더 온보딩",
+          "intro": "글램스터담에서 도입되는 빌더 역할을 세폴리아 포크 시점에 활성화할지가 포크 하루 전에 정리됐다.",
+          "decision": "확정 결정 00:25:50",
+          "positions": [
+            {
+              "speaker": "Nico Flaig",
+              "text": "세폴리아에서 직접 빌더를 운영할 계획이라며 접속 URL을 공유했고, 포크 시점에 빌더를 활성화할 수는 없지만 지금은 그게 필요하지 않다고 봤다.",
+              "timestamp": "00:22:02",
+              "original": "Yeah, all good from that. We have the gas limit as well. And, I'm planning to run a builder on Sepolia as well. So if people want to connect to that, you can share the URL here. The only caveat we have on Sepolia is that it will not be possible to get them active at the fork, but I guess that is fine. I let EF DevOps speak to that if we want that, but I think right now we don't want it, so… Yeah, with the gas schedule.",
+              "translation": "네, 그 점은 다 괜찮습니다. 가스 한도(gas limit)도 갖추고 있습니다. 그리고 Sepolia에서도 빌더(builder)를 운영할 계획입니다. 그래서 연결하고 싶은 분들이 있으면 여기에 URL을 공유해 주시면 됩니다. Sepolia에서 유일한 주의사항은 포크(fork) 시점에 활성화되게 할 수는 없다는 것인데, 그건 괜찮을 것 같습니다. 우리가 그것을 원하는지에 대해서는 EF DevOps가 말하도록 하겠습니다만, 지금은 그걸 원하지 않는 것 같습니다. 가스 스케줄(gas schedule)과 관련해서요."
+            },
+            {
+              "speaker": "Barnabas",
+              "text": "세폴리아의 특수 예치 컨트랙트가 베폴리아(Bepolia) 토큰을 요구해 포크 전 빌더 예치는 비실용적이라고 설명했다. 섀도 포크에서 이미 잘 동작함을 확인했으니 포크 전 테스트를 원하는 빌더는 후디를 쓰라고 권했다.",
+              "timestamp": "00:24:59",
+              "original": "Yeah, I would like to raise one thing. So as Nico mentioned, we are not going to include any builders. before the fork. This is due to the fact that we have a special deposit contract on Sepolia that is Limiting us to the Bepolia token, and We basically just don't want to deal with making more deposits, validator deposits, to create the queue in order for us to have builders available at the fork. We have tested this on the Shadow Fork, and it was actually working well there. But for the fork tomorrow, I don't think we will be sending out Bepolia tokens to all the builders that would like to be participating before the fork. So, what I would actually advise is. If builders want to test this, then, to do that on Hoodi. But yeah, everyone can just make a deposit immediately after the fork. That's when the deposit contract for the builders will become live. And just normal Sepolia ETH will be sufficient there. Oh, yeah, the deposit contract is already live, I guess. 2 weeks ago. Nikki has deployed the contract. Yeah, I would say so.",
+              "translation": "네, 한 가지 말씀드리고 싶은 것이 있습니다. Nico가 언급했듯이, 포크 이전에는 어떤 빌더도 포함하지 않을 것입니다. 이는 Sepolia에 Bepolia 토큰으로 제한된 특수한 예치 컨트랙트(deposit contract)가 있기 때문이며, 우리는 포크 시점에 빌더들을 사용 가능하게 하기 위한 대기열(queue)을 만들려고 더 많은 예치, 즉 검증자 예치(validator deposit)를 처리하고 싶지 않습니다. 이것을 섀도우 포크(Shadow Fork)에서 테스트해봤고 실제로 잘 작동했습니다. 하지만 내일 있을 포크의 경우, 포크 전에 참여하고 싶은 모든 빌더들에게 Bepolia 토큰을 보낼 것 같지는 않습니다. 그래서 제가 실제로 권하고 싶은 것은, 빌더들이 이것을 테스트하고 싶다면 Hoodi에서 하라는 것입니다. 하지만 누구나 포크 직후에 바로 예치를 할 수 있습니다. 그때가 빌더용 예치 컨트랙트가 활성화되는 시점입니다. 그리고 그때는 그냥 일반 Sepolia ETH만 있으면 충분합니다. 아, 예치 컨트랙트는 이미 활성화되어 있는 것 같습니다, 2주 전에요. Nikki가 컨트랙트를 배포했습니다. 네, 그렇다고 생각합니다."
+            },
+            {
+              "speaker": "Parithosh Jayanthi",
+              "text": "포크 직후에는 토큰 없이 바로 예치할 수 있다고 보충했다.",
+              "timestamp": "00:25:54",
+              "viaChat": true,
+              "original": "“Someone” 00:27:41\tChris Berry:\tSepolia TG would be pretty useful for this 00:27:53\tNico Flaig:\tReacted to \"“Someone”\" with 😄 00:28:31\tBarnabas:\thopefully we won’t be making multiple releases a day before mainnet fork date 00:28:33\tnixo:\tyea would assume validators subscribe to updates 00:29:11\tspencer:\tReacted to \"hopefully we won’...\" with 😅 00:29:38\tPooja Ranjan:\thttps://ethereumfoundation.zoom.us/j/89441658268?pwd=yjqf4TheEb1R7ZSuesCdOAy5tdyVk7.1 00:29:43\tPooja Ranjan:\tCL breakout 00:29:48\tmarc | wolovim:\tReacted to \"https://ethereumfoundation.zoom.us/j/89441658268?pwd=yjqf4TheEb1R7ZSuesCdOAy5tdyVk7.1\" with 👆 00:30:00\tWill Corcoran:\tReacted to \"https://ethereumfoundation.zoom.us/j/89441658268?pwd=yjqf4TheEb1R7ZSuesCdOAy5tdyVk7.1\" with 🫡 00:30:46\tMario Vega:\thttps://ethereum-magicians.org/t/eip-8037-state-creation-gas-cost-increase/25694/47 00:33:15\tMario Vega:\tI guess also something that would be good to know is preference from teams? 00:34:40\tChase Wright:\tExecution-apis tests have not been upgrade for glamsterdam, we’re waiting on 2 or 3 PRs from go-ethereum to get merged so we can bump the reference and hivechain - but we can add tests after 00:34:46\tToni Wahrstätter:\tReading and simulating things with traces for example @Luis Pinto 00:35:32\tToni Wahrstätter:\tThis must stay possible. Seems like a geth bug and other clients should double check 00:39:43\tlightclient:\tthanks",
+              "translation": "00:27:41\tChris Berry:\t이를 위해서는 Sepolia TG(텔레그램)가 꽤 유용할 것 같습니다\n00:27:53\tNico Flaig:\t\"“Someone”\"에 웃음 이모지로 반응함\n00:28:31\tBarnabas:\t메인넷 포크 날짜 전에 하루에 여러 번 릴리스를 내지 않기를 바랍니다\n00:28:33\tnixo:\t네, 검증자들이 업데이트를 구독할 것이라고 가정할 수 있을 것 같습니다\n00:29:11\tspencer:\t\"hopefully we won't...\"에 당황한 웃음 이모지로 반응함\n00:29:38\tPooja Ranjan:\thttps://ethereumfoundation.zoom.us/j/89441658268?pwd=yjqf4TheEb1R7ZSuesCdOAy5tdyVk7.1\n00:29:43\tPooja Ranjan:\tCL 브레이크아웃(breakout)\n00:29:48\tmarc | wolovim:\t\"https://ethereumfoundation.zoom.us/j/89441658268?pwd=yjqf4TheEb1R7ZSuesCdOAy5tdyVk7.1\"에 위쪽 가리킴 이모지로 반응함\n00:30:00\tWill Corcoran:\t\"https://ethereumfoundation.zoom.us/j/89441658268?pwd=yjqf4TheEb1R7ZSuesCdOAy5tdyVk7.1\"에 경례 이모지로 반응함\n00:30:46\tMario Vega:\thttps://ethereum-magicians.org/t/eip-8037-state-creation-gas-cost-increase/25694/47\n00:33:15\tMario Vega:\t팀들의 선호도를 아는 것도 좋을 것 같습니다\n00:34:40\tChase Wright:\texecution-apis 테스트가 글램스테르담(glamsterdam)용으로 업그레이드되지 않았습니다. go-ethereum에서 2~3개의 PR이 머지되기를 기다리고 있어서 그래야 레퍼런스와 hivechain을 올릴 수 있습니다만, 테스트는 나중에 추가할 수 있습니다\n00:34:46\tToni Wahrstätter:\t예를 들어 트레이스(trace)로 사물을 읽고 시뮬레이션하는 것입니다 @Luis Pinto\n00:35:32\tToni Wahrstätter:\t이것은 계속 가능해야 합니다. geth의 버그로 보이며 다른 클라이언트들도 다시 확인해봐야 합니다\n00:39:43\tlightclient:\t감사합니다"
+            },
+            {
+              "speaker": "Nico Flaig",
+              "text": "예치는 지금도 이미 가능하며 빌더 인덱스 0은 자신이라고 밝혔다.",
+              "timestamp": "00:26:09",
+              "viaChat": true
+            }
+          ],
+          "quote": {
+            "text": "내가 권하고 싶은 건, 빌더들이 이걸 테스트하고 싶다면 후디에서 하라는 것이다.",
+            "original": "What I would actually advise is, if builders want to test this, to do that on Hoodi.",
+            "speaker": "Barnabas",
+            "timestamp": "00:24:59"
+          }
+        },
+        {
+          "title": "포크 직전 클라이언트 버전 공지 방식",
+          "intro": "포크 전날까지 새 릴리스가 나오는 상황에서 노드 운영자들이 어떤 버전을 써야 하는지 어떻게 알리는지가 두 차례에 걸쳐 도마에 올랐다.",
+          "positions": [
+            {
+              "speaker": "Ben Adams",
+              "text": "ENR 스캐너로 확인해 보니 세폴리아의 네더마인드(Nethermind) 노드 상당수가 포크 지원 릴리스조차 없는 아주 오래된 버전이라며, 업그레이드를 알릴 방법이 있는지 물었다.",
+              "timestamp": "00:11:58",
+              "original": "Yeah, one thing about Sepolia, so I was having a look on ENR Scout to to check how many people were on the previous version, and not upgraded to 2.1, and I've noticed, at least for Nethermind, there's a lot of nodes that are on a very old version. So, is there any… Any way we can tell people to upgrade? I mean, they aren't on the version that even has the Sepolia, releasing it.",
+              "translation": "네, Sepolia에 관해 한 가지 말씀드리면, ENR Scout에서 이전 버전에 있고 2.1로 업그레이드하지 않은 사람이 몇 명인지 확인해 보았는데, 적어도 Nethermind의 경우 매우 오래된 버전에 있는 노드가 많다는 것을 발견했습니다. 그래서 사람들에게 업그레이드하라고 알릴 방법이 있을까요? 그들은 심지어 Sepolia를 릴리스하는 버전조차 사용하고 있지 않은 상태입니다."
+            },
+            {
+              "speaker": "Łukasz Rozmej",
+              "text": "벤의 우려에 대해 그들은 내일이면 알게 될 거라고 받아쳤다.",
+              "timestamp": "00:12:47",
+              "original": "They will notice tomorrow.",
+              "translation": "그들은 내일 알게 될 것입니다."
+            },
+            {
+              "speaker": "spencer",
+              "text": "포크 하루 전에도 버전이 바뀌는데 클라이언트들이 써야 할 버전을 어떻게 공지하는지, 블로그 포스트를 계속 모니터링해야 하는 건지, 개선할 수 있는지 물었다.",
+              "timestamp": "00:26:30",
+              "original": "Yeah, just a more of a question from my side. Just around versioning for testnet. So my understanding is that We have the blog post with all the versions for all the clients. But what's, like, the process that goes on, like, when there's a new version that needs to be bumped? And, like, how do clients actually announce the versions that should be used? And as a general, is this something that could be improved? And I guess I'm asking this now because… Sepolia's tomorrow, and we have Like new version bumps happening, I guess, within the space of a day. So the blog post is like the default source of truth. I guess I'd ask as well, like, for me, if I'm updating my version, like, I would look at the blog post once and be like, it's done. Is it expected for people to… Continuously monitor the blog posts. Thanks, yes. Sorry if that's a random question. I just figured it was, for me it was useful, so thank you.",
+              "translation": "네, 제 쪽에서 좀 더 질문이 있습니다. 테스트넷 버전 관리(versioning)에 관한 것입니다. 제가 이해하기로는, 모든 클라이언트의 모든 버전이 담긴 블로그 포스트가 있습니다. 하지만 새 버전으로 올려야 할 때 어떤 절차가 진행되는 건가요? 그리고 클라이언트들은 사용해야 할 버전을 실제로 어떻게 공지하나요? 그리고 일반적으로, 이것이 개선될 수 있는 부분인가요? 지금 이걸 묻는 이유는, Sepolia가 내일이고, 하루 사이에 새 버전 범프(version bump)가 일어나고 있기 때문인 것 같습니다. 그러니까 블로그 포스트가 기본적인 진실의 원천(source of truth)이라는 거죠. 저도 마찬가지로 묻고 싶은데, 제가 버전을 업데이트한다면 블로그 포스트를 한 번 보고 '다 됐다'고 생각할 것 같습니다. 사람들이 블로그 포스트를 계속 모니터링할 것으로 기대되는 건가요? 감사합니다, 네. 엉뚱한 질문이었다면 죄송합니다. 저한테는 유용했던 것 같아서, 감사합니다."
+            },
+            {
+              "speaker": "Barnabas",
+              "text": "글램스터담 테스트넷 공지 블로그 포스트가 클라이언트 버전의 공식 소스라고 답했다.",
+              "timestamp": "00:27:29",
+              "original": "Yeah, I would say so.",
+              "translation": "네, 그렇다고 생각합니다."
+            },
+            {
+              "speaker": "Parithosh Jayanthi",
+              "text": "네트워크마다 다르다며, 세폴리아와 후디는 검증자 채팅으로 거의 전원에게 닿지만 메인넷은 중심 조율 장소가 없어 릴리스 채널과 트위터, 블로그를 조합해 전파된다고 했다. 공식적인 절차 변경은 제안되지 않았다.",
+              "timestamp": "00:27:47",
+              "original": "I think it depends on maybe the network, so for Sepolia, we'd also be posting these updates on the validator chat, and you'd be quite sure that all the validators know about a version, so even a day is not too crazy. For Hoodi, it's also roughly the same. I think majority of validators are on the validator chat, and everyone else would basically hear from either the blog or Twitter. For mainnet, that's where it gets, I guess, a bit fuzzier, because there's no central location to coordinate people, so it would just depend on client release channels and Twitter and the blog posts and a combination of everything. I think it changes per network, basically.",
+              "translation": "네트워크에 따라 다를 것 같습니다. Sepolia의 경우 이런 업데이트들을 검증자 채팅(validator chat)에도 올릴 것이고, 그러면 모든 검증자들이 버전에 대해 알게 될 것이라고 상당히 확신할 수 있으므로, 하루 정도도 그렇게 무리한 건 아닙니다. Hoodi도 대체로 비슷합니다. 검증자 대다수가 검증자 채팅에 있다고 생각하고, 나머지는 블로그나 트위터를 통해 듣게 될 것입니다. 메인넷의 경우에는 좀 더 모호해지는데, 사람들을 조율할 중앙 집중된 장소가 없기 때문입니다. 그래서 클라이언트 릴리스 채널, 트위터, 블로그 포스트 등 여러 가지가 결합되어 결정될 것입니다. 네트워크마다 달라진다고 생각합니다."
+            }
+          ],
+          "quote": {
+            "text": "메인넷은 좀 더 애매해진다. 사람들을 조율할 중심 장소가 없어서 클라이언트 릴리스 채널과 트위터, 블로그 포스트를 전부 합친 것에 의존하게 된다.",
+            "original": "For mainnet, that's where it gets a bit fuzzier, because there's no central location to coordinate people, so it would just depend on client release channels and Twitter and the blog posts and a combination of everything.",
+            "speaker": "Parithosh Jayanthi",
+            "timestamp": "00:27:47"
+          }
+        }
+      ],
+      "speakers": [
+        {
+          "label": "Mario Vega",
+          "name": "Mario Vega",
+          "org": "EF",
+          "role": "테스팅, ACDT 진행",
+          "handle": "elbuenmayini",
+          "avatar": "https://pbs.twimg.com/profile_images/1616232824415342592/Wly-1ddA_400x400.jpg",
+          "share": 0.308
+        },
+        {
+          "label": "Maria Silva",
+          "name": "Maria Silva",
+          "role": "EIP-8037 제1저자",
+          "handle": "misilva73",
+          "avatar": "https://pbs.twimg.com/profile_images/1551690804594458624/elGlKFpy_400x400.jpg",
+          "share": 0.15
+        },
+        {
+          "label": "Barnabas",
+          "name": "Barnabas Busa",
+          "org": "EF DevOps",
+          "handle": "BarnabasBusa",
+          "avatar": "https://pbs.twimg.com/profile_images/534855342300352514/m-C5ReWq_400x400.jpeg",
+          "share": 0.079
+        },
+        {
+          "label": "Stefan Starflinger",
+          "name": "Stefan Starflinger",
+          "org": "EF DevOps",
+          "share": 0.059
+        },
+        {
+          "label": "james",
+          "name": "james",
+          "share": 0.055
+        },
+        {
+          "label": "Ben Adams",
+          "name": "Ben Adams",
+          "org": "Nethermind",
+          "handle": "ben_a_adams",
+          "avatar": "https://pbs.twimg.com/profile_images/1282411238602006529/l4lHaQHE_400x400.jpg",
+          "share": 0.043
+        },
+        {
+          "label": "Marius Van Der Wijden (M)",
+          "name": "Marius van der Wijden",
+          "org": "EF",
+          "role": "geth",
+          "handle": "vdWijden",
+          "avatar": "https://pbs.twimg.com/profile_images/1334610351976026113/o0FQPHZX_400x400.jpg",
+          "share": 0.036
+        },
+        {
+          "label": "jochem-brouwer",
+          "name": "Jochem Brouwer",
+          "org": "EF",
+          "role": "EthereumJS · EIP-8037 공동 저자",
+          "share": 0.036
+        },
+        {
+          "label": "spencer",
+          "name": "Spencer Taylor-Brown",
+          "org": "EF",
+          "role": "테스팅",
+          "share": 0.032
+        },
+        {
+          "label": "Marius van der Wijden",
+          "name": "Marius van der Wijden",
+          "org": "EF",
+          "role": "geth",
+          "handle": "vdWijden",
+          "avatar": "https://pbs.twimg.com/profile_images/1334610351976026113/o0FQPHZX_400x400.jpg",
+          "share": 0.028
+        },
+        {
+          "label": "Pawan Dhananjay",
+          "name": "Pawan Dhananjay",
+          "share": 0.024
+        },
+        {
+          "label": "Enrico Del Fante",
+          "name": "Enrico Del Fante",
+          "org": "Consensys",
+          "role": "Teku",
+          "handle": "tbenr",
+          "avatar": "https://pbs.twimg.com/profile_images/1425021438269050892/3IRr4G_z_400x400.jpg",
+          "share": 0.024
+        },
+        {
+          "label": "Iván | ethrex",
+          "name": "Iván Litteri",
+          "org": "LambdaClass",
+          "role": "ethrex 테크 리드",
+          "handle": "ivanlitteri",
+          "avatar": "https://pbs.twimg.com/profile_images/1801577809728462848/UPASaIEt_400x400.jpg",
+          "share": 0.02
+        },
+        {
+          "label": "Parithosh Jayanthi",
+          "name": "Parithosh Jayanthi",
+          "org": "EF DevOps",
+          "handle": "parithosh_j",
+          "avatar": "https://pbs.twimg.com/profile_images/1257719305459904512/x5MkzrAf_400x400.jpg",
+          "share": 0.02
+        },
+        {
+          "label": "Nico Flaig",
+          "name": "Nico Flaig",
+          "org": "ChainSafe",
+          "role": "Lodestar",
+          "handle": "nicoflaig",
+          "avatar": "https://pbs.twimg.com/profile_images/1618325595397447689/9kzomyhR_400x400.jpg",
+          "share": 0.016
+        },
+        {
+          "label": "Potuz",
+          "name": "Potuz",
+          "org": "Offchain Labs",
+          "role": "Prysm",
+          "handle": "potuz_eth",
+          "avatar": "https://pbs.twimg.com/profile_images/1494001194427158539/bfrZyMsG_400x400.jpg",
+          "share": 0.012
+        },
+        {
+          "label": "Caleb",
+          "name": "Caleb",
+          "share": 0.012
+        },
+        {
+          "label": "Pooja Ranjan",
+          "name": "Pooja Ranjan",
+          "org": "ECH Institute",
+          "handle": "poojaranjan19",
+          "avatar": "https://pbs.twimg.com/profile_images/2056372532299571200/Z-EwXzEQ_400x400.jpg",
+          "share": 0.012
+        },
+        {
+          "label": "Łukasz Rozmej",
+          "name": "Łukasz Rozmej",
+          "org": "Nethermind",
+          "role": "EIP-8037 공동 저자",
+          "share": 0.008
+        },
+        {
+          "label": "Jihoon",
+          "name": "Jihoon",
+          "share": 0.008
+        },
+        {
+          "label": "Luis Pinto",
+          "name": "Luis Pinto",
+          "org": "Besu",
+          "share": 0.008
+        },
+        {
+          "label": "Toni Wahrstätter",
+          "name": "Toni Wahrstätter",
+          "org": "EF",
+          "role": "리서처",
+          "handle": "nero_eth",
+          "avatar": "https://pbs.twimg.com/profile_images/1858347774129094657/xUc7IS2K_400x400.jpg",
+          "share": 0
+        }
+      ],
+      "chat": [
+        {
+          "speaker": "Povilas",
+          "text": "몇 가지 수정 작업 중이지만 큰 건 없다. 현재 릴리스 버전 3.0.0-rc.0은 세폴리아 준비가 됐고 200M 가스도 설정돼 있다.",
+          "timestamp": "00:22:50"
+        },
+        {
+          "speaker": "Enrico Del Fante",
+          "text": "200M 가스를 적용하기 위해 우리 노드는 develop 브랜치로 돌리겠다. 공식 설정은 며칠 안에 나온다.",
+          "timestamp": "00:24:12"
+        },
+        {
+          "speaker": "Barnabas",
+          "text": "메인넷 포크 전날에는 하루에 여러 릴리스를 내는 일이 없기를 바란다.",
+          "timestamp": "00:28:31"
+        }
+      ],
+      "glossary": [
+        {
+          "term": "섀도 포크(shadow fork)",
+          "def": "실제 네트워크를 복제해 포크를 미리 돌려보는 리허설 테스트"
+        },
+        {
+          "term": "빌더(builder)",
+          "def": "글램스터담에서 도입되는, 예치를 하고 블록 제작을 맡는 역할"
+        },
+        {
+          "term": "eth_call",
+          "def": "트랜잭션을 보내지 않고 컨트랙트 실행 결과를 시뮬레이션하는 RPC 메서드"
+        },
+        {
+          "term": "라스트 콜(Last Call)",
+          "def": "EIP가 최종 확정 전 마지막 의견을 받는 표준화 단계"
+        },
+        {
+          "term": "슈퍼노드(supernode)",
+          "def": "모든 데이터 컬럼을 보관해 유실 데이터 복원을 가능하게 하는 노드"
+        },
+        {
+          "term": "FOCIL",
+          "def": "검열 저항을 위한 포함 목록(inclusion list) 제안으로 전용 데브넷에서 테스트 중"
+        },
+        {
+          "term": "베폴리아(Bepolia) 토큰",
+          "def": "세폴리아의 허가형 검증자 예치 컨트랙트가 요구하는 전용 토큰"
+        },
+        {
+          "term": "DFI",
+          "def": "포크 후보에서 제외됨(Declined for Inclusion)을 뜻하는 상태 표기"
+        }
+      ],
+      "eips": [
+        8037
+      ],
+      "relatedDebates": [],
+      "telegramMessageId": 1645
+    },
     {
       "id": "acdc-188",
       "series": "acdc",
@@ -14676,13 +15132,13 @@
     "currentFork": {
       "name": "글램스터담",
       "stage": "테스트넷 단계",
-      "line": "세폴리아 10월 6일 13:53 UTC 확정 · 후디 10월 27일 잠정"
+      "line": "세폴리아 10월 6일 13:53 UTC 포크 확정 · 후디 10월 27일 잠정"
     },
     "nextFork": {
       "name": "헤고타",
       "stage": "범위 정하는 중",
-      "line": "CFI 13건 · 프레임+FOCIL 통합 데브넷 데브콘 전 목표"
+      "line": "CFI 12건 이상 · FOCIL과 프레임 데브넷 데브콘 전 통합 목표"
     },
-    "basis": "acdc-188"
+    "basis": "acdt-99"
   }
 }
