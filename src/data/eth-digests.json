@@ -1,6 +1,342 @@
 {
   "digests": [
     {
+      "date": "2026-10-08",
+      "title": "머지 이후 최대 포크가 세폴리아에 올랐다, 구호는 측정값이 되기 시작했다",
+      "shortTitle": "글램스테르담 세폴리아 가동",
+      "subTitle": "머지 이후 최대 포크가 실측 국면에 들어섰다",
+      "intro": "10월 6일 글램스테르담이 세폴리아 테스트넷에서 활성화되면서, 지난 몇 달간 거버넌스 절차와 티어리스트로만 다뤄지던 '더 빠른 이더리움'이 처음으로 가스 사용량과 클라이언트 벤치마크라는 숫자로 검증되기 시작했습니다. 같은 기간 트위터에서는 FCR 통합과 THORChain 탈중앙성 같은 주장들이 온체인 데이터와 합의 메커니즘 수치로 조목조목 팩트체크되는 장면이 이어졌습니다. 홍보 문구와 실제 가동 상태의 간극을 커뮤니티가 직접 검증하는 문화가 자리잡고 있다는 뜻입니다. 한편 AI는 포크 파이프라인 전반의 참여자이자 보안 위협의 원천으로, 이더리움 개발 체제의 설계 변수로 공식화되고 있습니다. 이번 호는 숫자와 검증이 수사를 대체해 가는 사흘의 기록입니다.",
+      "sections": [
+        {
+          "heading": "이번 호 인사이트",
+          "items": [
+            {
+              "title": "머지 이후 최대 포크는 이제 구호가 아니라 측정값으로 말한다",
+              "summary": "글램스테르담이 10월 6일 세폴리아에서 활성화되면서 처음으로 실측 수치가 나오기 시작했다. 포크 직후 세폴리아 가스 사용량이 83MGas까지 오르고, Nethermind는 게이밍 머신에서 메인넷 2배 크기 블록을 초당 166개 처리하는 벤치마크를 공개했다. 지난 호에서 '더 빠른 이더리움'이 거버넌스 절차로 들어왔다고 짚었는데, 이번 호에서는 그 절차가 테스트넷 실측 국면으로 넘어간 것이다. 동시에 ryanberckmans는 2026년 내 출시나 데브콘 전 메인넷 컷 같은 인위적 데드라인은 없다고 선을 그어, 속도 담론이 100% 업타임 원칙과 긴장을 유지하고 있음을 보여줬다. 다음 단계인 Hoodi 포크와 Glamsterdam EIP들의 Last Call 전환, 그리고 메인넷 시점 윤곽이 관전 포인트다.",
+              "why": "테스트넷 수치가 좋으면 메인넷 일정 논의가 빨라지고, 문제가 드러나면 '데드라인 없음' 원칙이 시험대에 오른다.",
+              "url": "https://x.com/EthCoordinate/status/2107463388787855589",
+              "source": "@EthCoordinate",
+              "date": "2026-10-06"
+            },
+            {
+              "title": "탈중앙성과 라이브니스 주장은 이제 온체인 데이터로 팩트체크된다",
+              "summary": "L2BEAT의 donnoh는 Ethlabs가 홍보한 'CCIP의 첫 FCR 통합'이 실제로는 아직 사용자에게 라이브가 아님을 온체인 검증 스레드로 입증했고, Ethlabs는 'production code의 라이브와 사용자에게 라이브는 구분해야 한다'고 인정했다. 같은 기간 THORChain 공동창업자의 '비트코인과 이더리움보다 탈중앙화됐다'는 주장은 barnabemonnot이 합의 메커니즘 특성과 스테이킹 분포 수치로 반박했다. 여기에 Synthetix 창업자 Kain의 '대부분의 L2가 원하면 자금을 동결할 수 있다'는 발언과 Conduit의 동결 지갑 소송까지 겹치며, 탈중앙성과 중립성이라는 단어의 실체가 데이터와 법정에서 동시에 검증받는 국면이 됐다. 지난 호들의 '퍼미션리스는 중립이 아니다' 담론이 추상적 원칙 논쟁에서 구체적 검증과 소송으로 내려온 것이다.",
+              "why": "이 검증 문화가 정착하면 '라이브'와 '탈중앙'이라는 말이 마케팅 용어가 아니라 다시 기술적 의미를 갖게 된다.",
+              "url": "https://x.com/donnoh_eth/status/2107059228716196077",
+              "source": "@donnoh_eth",
+              "date": "2026-10-05"
+            },
+            {
+              "title": "AI는 이더리움 개발의 보조 도구를 지나 체제 변수가 됐다",
+              "summary": "nero_eth는 글램스테르담을 리서치, 벤치마킹, 테스트, 클라이언트 구현, 보안 감사까지 AI가 전 파이프라인에서 주요한 역할을 한 첫 포크로 규정했다. 전 Geth 리드 peter_szilagyi는 AI 생산성을 '개발자 80% 해고'가 아니라 '같은 인력으로 3~5배 더 출시'로 써야 하며 전자는 명백한 실패라고 주장했다. 방어 쪽에서는 EigenLayer와 Zcash 진영이 AI가 사이버보안을 흔드는 상황에 대비해 해시 함수 공격을 크라우드소싱하는 Hashsmash 챌린지를 열었고, SSZ 형식검증 제안 Bend는 AI 생성 리포트임을 서두에 명시한 채 포럼에 올라왔다. 생산 가속, 위협 대응, 산출물 투명성까지 AI가 개발 체제의 설계 변수로 들어온 것으로, 지난 호의 geth 개발자 AI 에이전트가 Cloudflare 버그를 찾아낸 사례와 이어지는 흐름이다.",
+              "why": "AI 배당을 출시 속도로 쓸지 비용 절감으로 쓸지의 선택이 향후 수년 이더리움 개발 문화와 인력 구조를 결정한다.",
+              "url": "https://x.com/peter_szilagyi/status/2107424306649035123",
+              "source": "@peter_szilagyi",
+              "date": "2026-10-06"
+            }
+          ]
+        },
+        {
+          "heading": "코어 개발자 콜",
+          "items": [
+            {
+              "title": "ACDT #99, 10월 5일",
+              "summary": "세폴리아 글램스테르담 업그레이드를 10월 6일 13:53 UTC로 확정하고 최종 점검을 진행했다. Geth가 eth_call의 가스를 16M 트랜잭션 한도로 잘못 캡핑하는 버그가 확인돼, 수정은 EIP가 아닌 execution-apis 레포에서 추적하기로 했고 범위는 eth_call, trace_call, eth_simulate다. 섀도 포크 1라운드에서 Nethermind(2.1에서 수정), Besu(피어링과 빈 블록), ethrex(P2P) 이슈가 나왔으나 2라운드는 순조로웠고, 빌더는 세폴리아 포크 전에 온보딩하지 않되 사전 테스트는 Hoodi를 권장하기로 했다. Prysm v7.2.1이 200M 가스 리밋을 포함해 릴리스됐고, EIP 저자들은 다음 EIP Editing Office Hour 전까지 글램스테르담 EIP들의 Last Call 전환 PR을 열기로 했다.",
+              "why": "포크 전날까지 버그를 공개 추적하고 수정하는 과정 자체가 글램스테르담의 품질 게이트로 작동하고 있다.",
+              "url": "https://forkcast.org/calls/acdt/099/",
+              "source": "Forkcast",
+              "date": "2026-10-05"
+            },
+            {
+              "title": "Frame Transaction Breakout #6, 10월 6일",
+              "summary": "시스템 컨트랙트 기반 keyed nonces(EIP-8250)는 임시방편이지만 PBT 이전에는 더 나은 대안이 없다는 점과 마이그레이션 경로가 가능하다는 점이 확인됐고, EIP-8141의 expiry verifier는 Nick's method로 배포하기로 했다. EIP-7999에서 가져온 max-fee 비용 바운딩은 Nethermind 측 리뷰가 안 돼 devnet-2로 연기됐다. frames-devnet-1은 EIP-8250, EIP-8272, EIP-7906을 담아 10월 15일 출시가 목표이며, frames와 FOCIL을 병합한 hegota-devnet-0을 10월 28일에 띄우고 병합 후에는 개별 데브넷을 폐지하는 일정이 제안됐다. frames-devnet-0은 블록당 약 10개의 프레임 트랜잭션을 처리하며 깨끗하게 가동 중이다.",
+              "why": "frames와 FOCIL이 별도 트랙에서 Hegotá라는 하나의 통합 데브넷으로 수렴하는 경로가 날짜와 함께 구체화됐다.",
+              "url": "https://forkcast.org/calls/aa/006/",
+              "source": "Forkcast",
+              "date": "2026-10-06"
+            },
+            {
+              "title": "RPC Standards #36, 10월 5일",
+              "summary": "에러 코드 블로커가 해소됐다. 양수 코드는 새 그룹형 카탈로그를 쓰고 음수 코드는 레거시로 남기며, eth_simulate V1의 에러 코드 통합은 V2로 미뤄 V1에 호환성 파괴 없이 진행하기로 했다. 트레이싱 스펙은 거의 완성됐으나 전 클라이언트 합의 전까지 확정하지 않기로 했고, Nimbus EL이 트레이싱 호환성 작업에서 누락된 점이 확인돼 후속 확인에 들어갔다. Parity trace_* API 표준화와 eth_getLogsV2도 안건에 올랐다.",
+              "why": "클라이언트 다양성의 마지막 마일인 RPC 동작 통일이 시뮬레이션과 트레이싱까지 확장되고 있다.",
+              "url": "https://forkcast.org/calls/rpc/036/",
+              "source": "Forkcast",
+              "date": "2026-10-05"
+            }
+          ]
+        },
+        {
+          "heading": "프로토콜 업데이트",
+          "items": [
+            {
+              "title": "글램스테르담, 세폴리아에서 활성화",
+              "summary": "10월 6일 13:53 UTC 글램스테르담(Gloas+Amsterdam)이 첫 공개 테스트넷인 세폴리아에서 활성화됐다. 18개 Core와 7개 Other EIP가 포함되며 헤드라이너는 ePBS(EIP-7732)와 블록 레벨 액세스 리스트(EIP-7928)이고, 최대 컨트랙트 크기 상향과 컨솔리데이션 큐 가속도 들어갔다. 포크 후 Prysm의 potuz는 세폴리아가 83MGas 수준으로 상승 중이라고 전했다. 순조로우면 Hoodi 테스트넷을 거쳐 메인넷으로 가며, 코디네이터 측은 이번 포크 이후 메인넷 시점의 윤곽이 잡힐 것이라고 밝혔다.",
+              "why": "머지 이후 최대 규모 포크가 공개 테스트넷 검증에 들어가면서 메인넷 일정 논의의 전제가 마련됐다.",
+              "url": "https://x.com/EthCoordinate/status/2107463388787855589",
+              "source": "@EthCoordinate",
+              "date": "2026-10-06"
+            },
+            {
+              "title": "Nethermind, 세폴리아 포크 후 성능 실측치 공개",
+              "summary": "Nethermind의 ben_a_adams는 세폴리아 포크 이후 측정 기준으로, 게이밍 머신에서 60FPS 프레임당 120MGas(메인넷 2배) 블록 2.7개, 즉 초당 메인넷 2배 크기 블록 166개를 생산할 수 있다고 공개했다. Nethermind의 비컨 체인 플러그인으로 EL과 CL을 단일 앱으로 구동해도 메모리 오버헤드가 크지 않다는 실험 결과도 함께 공유했다. 글램스테르담이 목표로 하는 3배 이상의 L1 스케일에 클라이언트 성능이 따라오고 있음을 보여주는 수치다.",
+              "why": "처리량 상향의 병목이 프로토콜 스펙이 아니라 클라이언트 성능이라는 점에서, 이런 실측치가 가스 리밋 논의의 실질적 근거가 된다.",
+              "url": "https://x.com/ben_a_adams/status/2107581024553377955",
+              "source": "@ben_a_adams",
+              "date": "2026-10-06"
+            },
+            {
+              "title": "EF, 네이티브 트랜잭션 assertion(EIP-7906) 탐구 발표",
+              "summary": "EF 블로그가 Trillion Dollar Security 이니셔티브의 일환으로 블라인드 서명과 트랜잭션 결과 불확실성 리스크를 지목하고, Clear Signing 다음 단계로 네이티브 트랜잭션 assertion을 탐구한다고 발표했다. 읽기 전용 코드가 트랜잭션이 바꾼 모든 것을 검사해 사전에 정한 규칙을 어기면 되돌리는 설계로, 현재는 온체인 코드가 트랜잭션의 변경 내역을 일반화된 방식으로 검사할 길이 없다는 공백을 겨냥한다. EIP-7906은 frames-devnet-1 스코프에도 포함돼 있어 연구 단계를 넘어 데브넷 검증 경로에 올라 있다.",
+              "why": "유효한 서명이 기대한 결과를 보장하지 않는 문제는 피싱과 해킹 피해의 구조적 원인이어서, 프로토콜 차원 해법이 생기면 지갑 보안의 기본선이 달라진다.",
+              "url": "https://blog.ethereum.org/en/2026/10/05/transaction-assertions",
+              "source": "EF Blog",
+              "date": "2026-10-05"
+            },
+            {
+              "title": "네이티브 롤업, 클로즈드 데브넷에서 첫 가동",
+              "summary": "L2BEAT의 donnoh가 frames-devnet-0 기반 클로즈드 데브넷에서 '절반 모킹된' 네이티브 롤업을 가동했다고 발표했다. optional proofs(EIP-8025), Frame Transactions(EIP-8141), leanVM Frames(EIP-8288), EVM VKey Registry(EIP-8357)의 조합으로, L1이 자신을 위해 증명을 검증하는 인프라를 사용자에게 노출한다는 발상이다. 데브넷의 롤업은 immutable이고 사전확정과 이퀴보케이션 슬래싱을 갖춘 허가형 시퀀서로 돌며, EIP-8288이 아직 없어 state root 정산은 중앙화 오퍼레이터가 맡는다. 그는 네이티브 롤업이 L1의 상태 전이 함수를 직접 상속해 복잡성, 거버넌스, 버그 리스크를 크게 줄이며, 이 구조에서는 '스테이지 2가 아닐 이유가 전혀 없다'고 설명했다.",
+              "why": "네이티브 롤업이 ethresear.ch의 아이디어에서 실행되는 코드로 넘어오면서, L2 보안 논쟁의 종착점 후보가 구체적 형태를 갖췄다.",
+              "url": "https://x.com/donnoh_eth/status/2107130971095171114",
+              "source": "@donnoh_eth",
+              "date": "2026-10-05"
+            }
+          ]
+        },
+        {
+          "heading": "포럼 제안",
+          "items": [
+            {
+              "title": "SETCODEFROM의 댕글링 바이트코드, 지금 설계에 넣어야 할 청소 규칙",
+              "summary": "CPerezz가 ethresear.ch에 올린 글이다. 현재는 합의가 코드 해시만 커밋하고 코드 바이트 자체는 커밋하지 않아, 참조 없는 바이트코드(Cancun 시점 약 27,869건)가 있어도 비합의적이고 무해했다. 그러나 PBT와 코드 청킹(EIP-8297)으로 코드가 state 커밋 안으로 들어가면 삭제가 프로토콜 차원의 결정이 되고, SETCODEFROM(EIP-8298)은 트랜잭션이 코드의 마지막 참조를 제거해 주인 없는 코드를 만들 수 있다. 저자는 참조 카운팅 또는 명시적 삭제 규칙을 SETCODEFROM 설계 단계에서 넣어야 하며, 포스트퀀텀 전환과 코드 배포 비용 할인을 위해 Hegotá에서 CFI돼야 한다고 주장한다.",
+              "why": "상태 설계의 사소해 보이는 구멍이 포크 이후에는 고치기 어려운 프로토콜 부채가 된다는 점에서, 지난 호들의 '배포된 코드 리스크' 담론과 같은 결의 사전 설계 논의다.",
+              "url": "https://ethresear.ch/t/who-cleans-up-the-code-setcodefroms-dangling-bytecode-and-futureproof-design-choices/26127",
+              "source": "ethresear.ch",
+              "date": "2026-10-06"
+            },
+            {
+              "title": "암호화 멤풀의 책임 추적성, 유출자를 잡는 traceable secret sharing",
+              "summary": "Aditi Partap와 Arantxa Zapico가 암호화 멤풀의 커미티 기반 복호화에서 복호화 셰어를 사전에 유출하는 행위를 'partial decoder box'로 형식화하고, traceable secret sharing을 threshold Paillier에 적용해 유출 멤버를 추적하는 방안을 제안했다. trusted setup 필요성, 추적 권한의 거버넌스, stateful 복호화 서비스 미대응, 포스트퀀텀 미지원을 미해결 과제로 명시했다. Encrypt the Mempool 워킹그룹이 진행 중인 암호화 멤풀 로드맵에서 '커미티를 어떻게 믿을 것인가'라는 공백을 메우는 연구다.",
+              "why": "암호화 멤풀의 실효성은 복호화 커미티의 정직성에 달려 있어, 유출을 추적 가능하게 만드는 것이 검열 저항 설계의 전제 조건이 된다.",
+              "url": "https://ethresear.ch/t/accountability-for-encrypted-mempools/26123",
+              "source": "ethresear.ch",
+              "date": "2026-10-05"
+            },
+            {
+              "title": "직렬 검증 루프를 깨는 비동기 파이프라인 합의 제안",
+              "summary": "블록 n+1의 생산이 블록 n의 전파와 검증에 묶이는 구조를 'Serial Verification Model' 병목으로 지목하고, 압축 트랜잭션 식별자 리스트인 Compact Block, 헤더 1비트와 n+k 시점 검증을 쓰는 지연 검증 시그널, difficulty multiplier와 Dual-Coinbase를 결합한 비동기 파이프라인 아키텍처를 제안한 글이다. 디커플드 합의와 FCR 등 파이널리티 가속 연구가 이어지는 가운데 나온 또 하나의 파이프라이닝 접근이다.",
+              "why": "슬롯 단축과 처리량 상향이 로드맵의 중심이 되면서 검증과 생산의 디커플링 아이디어들이 경쟁적으로 제출되고 있다.",
+              "url": "https://ethresear.ch/t/breaking-the-serial-verification-loop-via-an-asynchronous-pipeline-consensus-architecture/26125",
+              "source": "ethresear.ch",
+              "date": "2026-10-06"
+            },
+            {
+              "title": "EIP-8435, last_written_block을 PBT 리프에 내장",
+              "summary": "EIP-8188의 last_written_block을 PBT(EIP-8297) 리프에 내장하는 제안이다. 계정은 BASIC_DATA 리프 오프셋 1에 4바이트를 쓰고(code_size를 4바이트에서 3바이트로 줄이되 EIP-7954 한도상 무해), 스토리지 리프는 32바이트에서 36바이트로 늘린다. 상태 티어링 제안인 EIP-8295와 8296의 기반이 되며, EIP-8297과의 동시 활성화를 권장한다.",
+              "why": "상태가 언제 마지막으로 쓰였는지를 트리 자체에 기록하는 것은 상태 만료와 티어링으로 가는 길의 공통 기반 공사다.",
+              "url": "https://ethereum-magicians.org/t/eip-8435-last-written-block-in-pbt-leaves/29860",
+              "source": "Ethereum Magicians",
+              "date": "2026-10-04"
+            },
+            {
+              "title": "Bend, SSZ를 형식적으로 증명하자는 제안",
+              "summary": "Giulio2002가 모든 합의 클라이언트가 동일 바이트와 동일 머클 루트를 내야 하는 SSZ를 테스트 벡터 의존 대신 형식적으로 증명하자고 제안했다. 글 서두에 AI 생성 리포트임을 명시한 점이 눈에 띈다. 형식검증이 사후 감사에서 설계 방법론으로 이동하는 최근 흐름이 직렬화 레이어까지 확장된 사례다.",
+              "why": "합의 깨짐의 단골 원인인 직렬화 불일치를 수학적으로 봉인할 수 있다면 클라이언트 다양성의 비용이 낮아진다.",
+              "url": "https://ethereum-magicians.org/t/bend-ssz-formally-proving-ssz/29861",
+              "source": "Ethereum Magicians",
+              "date": "2026-10-04"
+            },
+            {
+              "title": "신규 ERC 묶음, 월렛 패스부터 온체인 IP 레지스트리까지",
+              "summary": "Ethereal news 주간 정리에 애플리케이션 레이어 표준 6건이 소개됐다. NFT를 Apple과 Google Wallet 패스에 연동하는 ERC-8426, ERC-721 부모 관계를 기록하는 계보 레지스트리 ERC-8428, 보유 시간 기반 자동 스테이킹 ERC-8431, 온체인 IP 자산과 라이선스 레지스트리 ERC-8432 등이 새로 올라왔다. 지난 호에 다룬 Portable spend grants(ERC-8427)와 Agent identity(ERC-8434)도 묶음에 포함됐다.",
+              "why": "지갑, IP, 에이전트 신원까지 애플리케이션 표준의 폭이 넓어지는 것은 이더리움 위 실사용 시나리오가 다양해지고 있다는 신호다.",
+              "url": "https://x.com/EtherealnewsHQ/status/2107578053773885658",
+              "source": "@EtherealnewsHQ",
+              "date": "2026-10-06"
+            }
+          ]
+        },
+        {
+          "heading": "트위터 논쟁",
+          "items": [
+            {
+              "title": "FCR은 CCIP에서 정말 '라이브'인가, 온체인 검증이 홍보를 반박하다",
+              "summary": "barnabemonnot이 Chainlink CCIP와의 첫 FCR 통합을 Ethlabs 주간 성과로 홍보하자, L2BEAT의 donnoh가 온체인 검증 스레드로 반박했다. 대부분의 목적지가 기본 verifier의 onRamp v2 컨트랙트를 쓰고, verifier의 finality 설정에는 full finality나 고정 블록 깊이만 허용돼 FCR에 해당하는 'safe'는 비활성이라 해당 요청은 InvalidRequestFinality로 실패하며, 실제 전송은 약 15분이 걸리고, L2BEAT가 수집한 CCIP 전송 중 피널리티보다 빨리 확정된 건은 없다는 논거였다. Ethlabs의 julianma는 'production code에서 라이브인 것과 사용자에게 라이브인 것은 더 분명히 구분해야 한다'고 인정했고, barnabemonnot은 zk 라이트 클라이언트로 브리지가 Chainlink 노드의 보고 대신 이더리움의 확정을 직접 검증할 수 있다는 맥락 스레드로 응답했다. donnoh는 신뢰 중개자를 더하지 않는 크로스체인 인터롭이야말로 L2 공간에서 여전히 기대하는 몇 안 되는 기술이라며 협업 지속을 요청하는 것으로 마무리했다.",
+              "why": "리서치 성과의 '통합 발표'와 실제 가동 상태의 간극을 제3자가 온체인으로 검증하는 선례가 만들어졌고, Ethlabs가 이를 수용하면서 검증 문화가 한 단계 자리잡았다.",
+              "url": "https://x.com/donnoh_eth/status/2107059228716196077",
+              "source": "@donnoh_eth",
+              "date": "2026-10-05"
+            },
+            {
+              "title": "THORChain은 비트코인과 이더리움보다 탈중앙화됐는가",
+              "summary": "THORChain 공동창업자 Chad Barraford가 Unchained 팟캐스트에서 4개 오퍼레이터 주소가 39개 노드를 통제한다는 지적에 1/3+1 정지 기준을 들어, 같은 기준이면 비트코인은 3개, 이더리움은 1~2개 엔티티면 멈춘다며 THORChain이 더 탈중앙화됐다고 주장했다. barnabemonnot은 비트코인과 이더리움은 dynamically available이어서 오퍼레이터 1/3+1이 꺼져도 블록 생산은 멈추지 않고 파이널리티만 정지하며 inactivity leak으로 곧 복구되고, Lido의 약 21%는 단일체가 아닌 분산 오퍼레이터 풀이며 Binance 7.5~8% 등 수치상 1~2개 주체의 담합으로 체인이 내려간다는 주장은 성립하지 않는다고 반박했다. 같은 방송에서는 바이비트 해킹 자금 세탁 조직이 THORChain을 권했다는 수사 내용을 두고 tayvano가 '돈세탁범들이 THORChain 디스코드에 있었다'고 지적했고, Barraford는 실크로드 이용자들도 비트코인 포럼에 있었다며 방어했다. lex_node는 오히려 Barraford가 적대적 인터뷰를 잘 버텼다며 THORChain 쪽으로 기울었다고 밝혀 평가가 갈렸다.",
+              "why": "탈중앙성 비교가 수사적 구호에서 합의 메커니즘의 정확한 이해를 요구하는 기술 논쟁으로 바뀌고 있으며, 이는 '퍼미션리스는 중립이 아니다' 담론의 연장선이다.",
+              "url": "https://x.com/barnabemonnot/status/2107398728403312970",
+              "source": "@barnabemonnot",
+              "date": "2026-10-06"
+            },
+            {
+              "title": "포크 24시간 전 준비율 절반, 늑장인가 합리적 대기인가",
+              "summary": "mysticryuujin이 글램스테르담 세폴리아 활성화 24시간 전에 네트워크의 절반만 준비 시그널을 보내고 있다며 막판 스크램블을 꼬집자, ryanberckmans는 클라이언트 팀들이 여전히 버그를 찾아 패치를 내고 있어 운영자 입장에서는 업데이트를 미루는 것이 합리적이라고 반박했다. 그는 나아가 2026년 내 글램스테르담 출시나 데브콘 전 메인넷 릴리스 컷 같은 인위적 데드라인은 어떤 것도 존재하지 않으며, 합리적 일정으로 좋은 포크를 내보내되 중요한 것은 영원한 100% 업타임이라고 강조했다.",
+              "why": "포크 속도를 둘러싼 공동체의 기대치 관리 문제로, '빠른 이더리움' 압박 속에서도 안정성 우선 원칙이 공개적으로 재확인됐다.",
+              "url": "https://x.com/ryanberckmans/status/2107218159094710723",
+              "source": "@ryanberckmans",
+              "date": "2026-10-05"
+            },
+            {
+              "title": "싱크 커미티 비용과 설계를 둘러싼 비판 담론",
+              "summary": "lex_node가 라이트 클라이언트용 attestation을 만드는 싱크 커미티가 슬래싱 없이 연 8천만 달러 상당의 ETH를 받으며, proving으로 대체해 발행량을 줄일 수 있다는 사실을 지적하면서 담론이 번졌다. toghrulmaharram은 한발 더 나아가 1.1일마다 교체되는 512명 무작위 샘플의 서명을 검증하는 구조라 실제 합의 attestation 검증이 아니어서 진짜 라이트 클라이언트도 가능하게 하지 못한다고 비판했다. zk 기반 라이트 클라이언트와 FCR이 실용화 단계에 들어서면서, 머지 시절 설계된 싱크 커미티의 비용 대비 효용이 재평가 대상이 되고 있다.",
+              "why": "proving 기반 대체가 현실화되면 발행량 절감과 라이트 클라이언트 보안 강화를 동시에 얻는 프로토콜 정리 대상이 하나 더 생긴다.",
+              "url": "https://x.com/lex_node/status/2107437506798960647",
+              "source": "@lex_node",
+              "date": "2026-10-06"
+            }
+          ]
+        },
+        {
+          "heading": "주요 발언",
+          "items": [
+            {
+              "title": "peter_szilagyi, 'AI로 80% 해고하면 실패, 3~5배 출시가 성공'",
+              "summary": "전 Geth 리드 peter_szilagyi는 AI가 이더리움 개발에 미칠 영향을 두 갈래로 제시했다. 개발자 80%를 해고하고 같은 속도로 출시하거나, 아무도 자르지 않고 연간 3~5배 더 출시하거나이며, 전자는 명백히 실패로 간주해야 한다는 것이다. 이어진 스레드에서는 이더리움을 떠난 OG와 공동창업자들이 하나같이 그것이 최고의 결정이었다고 말하는 현실이 더 무서운 부분이며 수습은 거기서 시작해야 한다고 짚었고, Paradigm의 gakonst가 공감을 표했다.",
+              "why": "AI 생산성 배당의 사용처와 핵심 인재 유출이라는 이더리움 개발 조직의 두 구조적 과제를 내부자가 정면으로 공론화했다.",
+              "url": "https://x.com/peter_szilagyi/status/2107424306649035123",
+              "source": "@peter_szilagyi",
+              "date": "2026-10-06"
+            },
+            {
+              "title": "nero_eth, '머지 이후 최대 포크이자 AI가 전 과정에 참여한 첫 포크'",
+              "summary": "nero_eth는 글램스테르담이 머지 이후 가장 큰 이더리움 포크가 될 가능성이 높고 처음부터 야심찬 포크였다며, 리서치, 벤치마킹, 테스트, 클라이언트 구현, 보안 감사까지 파이프라인 전반에서 AI가 주요한 역할을 한 첫 포크라고 평가했다. 그는 글램스테르담이 이더리움 출시 이래 최대의 처리량 증가를 가져올 것이라고도 덧붙였다.",
+              "why": "포크의 규모와 개발 방법론의 전환을 함께 규정한 발언으로, AI가 코어 개발 체제에 편입됐음을 보여주는 내부 증언이다.",
+              "url": "https://x.com/nero_eth/status/2107391098297471335",
+              "source": "@nero_eth",
+              "date": "2026-10-06"
+            },
+            {
+              "title": "Kain, '아비트럼 동결 이후 고양이는 자루에서 나왔다'",
+              "summary": "Synthetix 창업자 Kain은 Unchained 팟캐스트에서 Arbitrum의 도난 자금 동결 이후 대부분의 L2가 원하기만 하면 도난 자금을 동결할 수 있다는 사실이 공공연해졌다고 발언했다. 같은 방송에서 그는 비탈릭의 2030 로드맵을 오랜만에 읽은 가장 강세적인 글로 꼽으며 AI가 그 달성을 가능하게 한다고 평가했다.",
+              "why": "L2 동결 권한이 예외적 사건이 아니라 구조적 현실이라는 인식이 생태계 핵심 빌더의 입으로 확인됐다.",
+              "url": "https://x.com/laurashin/status/2106765607505195027",
+              "source": "@laurashin",
+              "date": "2026-10-04"
+            }
+          ]
+        },
+        {
+          "heading": "생태계 · 보안",
+          "items": [
+            {
+              "title": "Conduit, 동결 지갑 해제와 276만 달러 배상 청구 소송",
+              "summary": "Arbitrum의 자금 동결 후폭풍이 법정으로 갔다. 결제사 Conduit은 동결된 지갑이 고객 결제를 선지급하는 운전자본이었고 이를 잃으면서 해고까지 발생했다며, 지갑 동결 해제와 최소 276만 달러의 손해배상을 청구하는 소송을 제기했다. lex_node는 어떤 법을 지키고 어떤 법을 무시할지 알려주는 존재를 '시큐리티 카운슬'이라 부른다고 비꼬며 L2 거버넌스의 법적 지위 문제를 환기했다.",
+              "why": "L2의 동결 권한 행사가 소송 대상이 되면서, 시큐리티 카운슬의 법적 책임과 정당성 기준이 판례로 만들어질 가능성이 열렸다.",
+              "url": "https://x.com/laurashin/status/2107609889828979145",
+              "source": "@laurashin",
+              "date": "2026-10-06"
+            },
+            {
+              "title": "Hashsmash, 해시 함수 공격을 크라우드소싱하는 공개 챌린지",
+              "summary": "EigenLayer의 Sreeram Kannan이 Zcash 공동창업자 Zooko Wilcox, Shielded Labs, Project Eleven과 협력해 해싱 스킴에 대한 최선의 공격을 크라우드소싱하는 Yukon 오픈 리서치 챌린지 Hashsmash를 발표했다. AI 기법이 사이버보안을 흔드는 상황에서 기초 암호학을 재평가하자는 취지다. 지난 호의 EF와 EigenLabs 포스트퀀텀 서명 공개 챌린지, L2BEAT 디어나너마이즈 챌린지에 이어 보안 검증의 크라우드소싱이 해시 함수라는 가장 기초적인 레이어까지 내려온 것이다.",
+              "why": "포스트퀀텀 전환의 유력 후보가 해시 기반 서명인 만큼, 해시 자체의 공격 내성을 공개 검증하는 것은 이더리움 양자내성 로드맵의 토대 점검이다.",
+              "url": "https://x.com/sreeramkannan/status/2107096012905156722",
+              "source": "@sreeramkannan",
+              "date": "2026-10-05"
+            },
+            {
+              "title": "USDG, Arbitrum One 출시와 Uniswap StablePair 훅",
+              "summary": "Paxos의 Global Dollar Network 스테이블코인 USDG가 Arbitrum One에 출시되며 Morpho, Fluid, GMX, Uniswap, Kraken 등 1일차 통합을 발표했다. Uniswap에서는 StablePair 훅으로 구동되는데, 참조 가격 주변에 범위를 설정하고 가격을 더 벗어나게 하는 스왑은 수수료를 받지 않으며 가격을 교정하는 스왑에는 LP 수수료가 블록마다 내려가는 더치 옥션을 적용하는 설계다. 토큰화 주식에 이어 스테이블코인 페그 유지까지 v4 훅이 시장 구조 설계 도구로 쓰이는 사례가 늘고 있다.",
+              "why": "스테이블코인의 페그 안정화가 외부 마켓메이커 의존에서 AMM 메커니즘 설계로 옮겨가는 흐름을 보여준다.",
+              "url": "https://x.com/Uniswap/status/2107456049418571818",
+              "source": "@Uniswap",
+              "date": "2026-10-06"
+            },
+            {
+              "title": "Ethlabs, L2 대상 DA·블롭 피드백 창구 가동",
+              "summary": "Ethlabs의 decentrek(ZeroDev 창업자)이 DA와 블롭 개선을 위해 L2들을 인터뷰하고 있으며, L2들로부터 L1에 피드백할 통로를 몰랐는데 먼저 연락해줘서 고맙다는 반응을 받고 있다고 공유했다. 코어 개발자와 L1 사용자(L2) 사이의 다리 역할 자체가 큰 가치라며, L1에 바라는 개선이 있으면 연락하라고 공개 요청했다.",
+              "why": "블롭 수요자의 목소리가 코어 개발에 닿는 공식 통로가 없었다는 사실 자체가 드러난 것으로, DA 스케일링 우선순위 결정 방식이 달라질 수 있다.",
+              "url": "https://x.com/decentrek/status/2107176087851860144",
+              "source": "@decentrek",
+              "date": "2026-10-05"
+            }
+          ]
+        },
+        {
+          "heading": "시장 브리핑",
+          "items": [
+            {
+              "title": "NYSE 모회사 ICE, OKX와 이더리움 L2에서 토큰화 주식 출시",
+              "summary": "NYSE 모회사 ICE가 OKX와 함께 SEC와 협의를 거쳐 이더리움 L2인 X Layer에서 토큰화 주식(TSV)을 출시하며, 거래는 Uniswap v4 훅으로 구동된다. Uniswap의 Hayden Adams는 v4 훅이 TSV에 이상적인 시장 구조라고 밝혔다. Coinbase는 Base, Robinhood는 자체 체인, Kraken은 Ink, OKX와 ICE는 X Layer로, 거래소들이 각자 L2를 운영하면서 이더리움이라는 공통 정산 레이어에 접속하는 구도가 뚜렷해졌다. X Layer의 xStocks는 Uniswap 누적 프로토콜 볼륨 20억 달러를 돌파했다.",
+              "why": "전통 거래소의 본산인 NYSE 계열이 이더리움 L2를 택하면서, 토큰화 주식의 발행 구조 경쟁에서 이더리움 정산 레이어가 기본값이 되고 있다.",
+              "url": "https://x.com/haydenzadams/status/2107095328675491920",
+              "source": "@haydenzadams",
+              "date": "2026-10-05"
+            },
+            {
+              "title": "CFTC, Clarity Act 불발분을 자체 규칙으로 시행 착수",
+              "summary": "CFTC가 의회가 통과시키지 못한 Clarity Act의 내용 중 가능한 부분을 자체 규칙 제정으로 시행하겠다고 발표했다. 암호화폐 거래소의 연방 등록 경로 신설, ETH를 포함한 주요 자산의 상품(commodity) 취급, 비수탁 지갑 전송의 거래 규제 면제, 수동적 소프트웨어 개발자의 등록 면제가 골자이며, 의회 표결 없이 코멘트 기간 후 커미셔너 승인만 거치면 된다. nixorokish는 수동적 개발자 면제 조항이 Roman Storm 사건과 어떻게 양립하는지 물으며 법 집행과의 긴장을 짚었다.",
+              "why": "입법 실패를 규제기관이 우회하는 경로가 열리면서, ETH의 상품 지위와 개발자 면책이 법률 없이도 제도화될 수 있는 국면이 됐다.",
+              "url": "https://x.com/nixorokish/status/2107144346114134106",
+              "source": "@nixorokish",
+              "date": "2026-10-05"
+            },
+            {
+              "title": "Superform, Coinbase 토큰화 주식 기반 수익 상품을 Base에 출시",
+              "summary": "Superform이 Coinbase 토큰화 주식을 기반으로 MAG 7 종목에 수익을 얹는 Earn Stocks를 Aave를 이용해 Base에 출시했다. Aave의 Stani Kulechov는 주식에서 수익을 얻는 것은 한 예일 뿐이라며 토큰화 주식의 핵심을 프로그래머블 혁신으로 규정했다. 지난 호에 다룬 Base 토큰화 주식 26종 추가에 이어, 발행된 토큰화 주식이 디파이 레고의 재료로 쓰이는 단계로 넘어간 것이다.",
+              "why": "토큰화 주식의 경쟁력이 거래 접근성에서 전통 증권이 제공할 수 없는 조합 가능성으로 이동하고 있음을 보여준다.",
+              "url": "https://x.com/StaniKulechov/status/2107482347478372677",
+              "source": "@StaniKulechov",
+              "date": "2026-10-06"
+            }
+          ]
+        },
+        {
+          "heading": "그 밖의 소식",
+          "items": [
+            {
+              "title": "Devcon 8, 비탈릭 등판 확정과 '조용한 양자 공격' 세션",
+              "summary": "11월 3일부터 6일까지 뭄바이에서 열리는 Devcon 8에 비탈릭 부테린이 무대에 선다고 공식 발표됐다. Veridise의 Jon은 양자 컴퓨터가 공개적으로 암호를 깨기 훨씬 전에 리스크가 도래할 수 있다는 'steal now, reveal never' 공격을 다루는 세션을 예고했다.",
+              "why": "양자 위협이 미래 시점 문제가 아니라 비공개 진행형 리스크일 수 있다는 프레임이 메인 컨퍼런스 의제로 올라왔다.",
+              "url": "https://x.com/EFDevcon/status/2107468508074512531",
+              "source": "@EFDevcon",
+              "date": "2026-10-06"
+            },
+            {
+              "title": "donnoh, 세폴리아에 EIP-7708 활용 퍼블릭 챗 앱 배포",
+              "summary": "donnoh가 글램스테르담 세폴리아에서 ETH 전송 로그(EIP-7708)를 인덱싱에 활용하는 퍼블릭 챗 앱을 배포했다. 메시지는 주소로 인코딩된 채널에 calldata로 전송된다.",
+              "why": "새 EIP가 활성화 당일 장난감 앱으로라도 쓰이기 시작하는 것은 테스트넷 검증의 가장 빠른 형태다.",
+              "url": "https://x.com/donnoh_eth/status/2107489348950401232",
+              "source": "@donnoh_eth",
+              "date": "2026-10-06"
+            },
+            {
+              "title": "밸리데이터 865k까지 감소, 통합 계속",
+              "summary": "trent_vanepps가 밸리데이터 수가 865k까지 줄었다며 이것이 좋은 일이라고 전했다. 지난 호의 890k에서 더 내려간 수치로, MaxEB 이후 밸리데이터 통합이 꾸준히 진행되고 있다.",
+              "why": "밸리데이터 수 감소는 합의 부하를 줄여 슬롯 단축과 파이널리티 가속 로드맵의 공간을 넓힌다.",
+              "url": "https://x.com/trent_vanepps/status/2107496299176370240",
+              "source": "@trent_vanepps",
+              "date": "2026-10-06"
+            },
+            {
+              "title": "EIP Editing Office Hour #115, 글램스테르담 EIP의 Last Call 전환 안건",
+              "summary": "10월 7일 열리는 EIP Editing Office Hour #115에서 EIP-7843 등 글램스테르담 EIP들의 Last Call 전환이 안건으로 올랐다. ACDT #99에서 EIP 저자들에게 전환 PR 오픈이 액션 아이템으로 배정된 것의 후속이다.",
+              "why": "Last Call 전환은 스펙 동결의 마지막 관문으로, 메인넷 포크 준비의 문서화 측면이 마무리 단계라는 신호다.",
+              "url": "https://ethereum-magicians.org/t/eip-editing-office-hour-eip-erc-meeting-115-october-07-2026/29876",
+              "source": "Ethereum Magicians",
+              "date": "2026-10-07"
+            },
+            {
+              "title": "Privy 공동창업자 Henri Stern, Stripe 내 새 역할",
+              "summary": "Stripe에 인수된 임베디드 지갑 인프라 Privy의 공동창업자 Henri Stern이 Stripe 내 새 역할을 발표해 gakonst, Hayden Adams, Stani Kulechov 등 생태계 인사들의 축하가 이어졌다. ZeroDev의 decentrek은 인수 후에 오히려 더 세게 달리는 창업자라며 Privy의 문화는 연구 대상이라고 평가했다.",
+              "why": "이더리움 지갑 인프라 출신 인사가 글로벌 결제 기업의 핵심으로 이동하는 것은 크립토 레일과 전통 결제의 통합 흐름을 보여준다.",
+              "url": "https://x.com/decentrek/status/2107150576589168664",
+              "source": "@decentrek",
+              "date": "2026-10-05"
+            }
+          ]
+        }
+      ],
+      "coverImage": "/assets/digests/2026-10-08.png?v=3d45b872",
+      "telegramMessageId": 1649
+    },
+    {
       "date": "2026-10-05",
       "title": "세폴리아 포크 전야, 더 빠른 슬롯과 프라이빗 AI 결제가 절차에 올랐다",
       "shortTitle": "퀵 슬롯 CFI와 zkAPI",
