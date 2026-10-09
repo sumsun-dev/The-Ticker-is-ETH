@@ -29,6 +29,8 @@ main() {
   npx tsx scripts/generate-eth-digest.ts
   npx tsx scripts/sync-x-profiles.ts
   npx tsx scripts/extract-eth-debates.ts
+  # 종결(14일 무활동) 전인 논쟁의 후속 반응·콜 결정을 매일 따라간다. 다이제스트가 같은 쟁점을 다시 싣지 않아도 갱신되게. 실패해도 나머지는 진행
+  DEBATES_FOLLOWUP=1 npx tsx scripts/extract-eth-debates.ts || true
   # 새 논쟁을 오너 DM으로 알린다. 노출 버튼 응답 처리는 5분 크론(notify-debates.ts --commit)이 맡는다. 실패해도 나머지는 진행
   npx tsx scripts/notify-debates.ts || true
   npx tsx scripts/extract-eth-calls.ts

@@ -18,6 +18,9 @@ import {
   unnotified,
   setPublish,
   parseDecision,
+  followupTargets,
+  repliesAfter,
+  laterDevelopments,
   DraftEnvelopeSchema,
   type Debate,
   type DebateDraft,
@@ -40,10 +43,11 @@ const draft = (over: Partial<DebateDraft> = {}): DebateDraft => ({
 });
 
 describe('computeStatus', () => {
-  it('should move active → cooling after 7 idle days → archived after 30', () => {
+  it('should move active → cooling after 7 idle days → archived after 14', () => {
     expect(computeStatus('2026-09-01', '2026-09-06')).toBe('active');
     expect(computeStatus('2026-09-01', '2026-09-08')).toBe('cooling');
-    expect(computeStatus('2026-09-01', '2026-10-01')).toBe('archived');
+    expect(computeStatus('2026-09-01', '2026-09-14')).toBe('cooling');
+    expect(computeStatus('2026-09-01', '2026-09-15')).toBe('archived');
   });
   it('should keep resolved regardless of activity', () => {
     expect(computeStatus('2026-09-06', '2026-09-06', 'resolved')).toBe('resolved');
@@ -257,5 +261,72 @@ describe('DM 버튼 해석', () => {
     expect(parseDecision('pub:abc')).toBeNull();
     expect(parseDecision('p:')).toBeNull();
     expect(parseDecision(undefined)).toBeNull();
+  });
+});
+
+describe('후속 반응 추적', () => {
+  const debate = (over: Partial<Debate> = {}): Debate => ({
+    ...draft(),
+    firstSeen: '2026-09-02',
+    lastActivity: '2026-09-02',
+    status: 'cooling',
+    ...over,
+  });
+
+  it('should target non-archived debates by rootUrl, falling back to the first X timeline url', () => {
+    const targets = followupTargets([
+      debate({ id: 'a', rootUrl: 'https://x.com/a/status/9' }),
+      debate({ id: 'b' }),
+      debate({ id: 'c', status: 'archived' }),
+    ]);
+    expect(targets.map((t) => [t.debate.id, t.url])).toEqual([
+      ['a', 'https://x.com/a/status/9'],
+      ['b', 'https://x.com/ryanberckmans/status/1'],
+    ]);
+  });
+
+  it('should take explicit ids including archived, and skip debates without a tweet url', () => {
+    const noTweet = debate({ id: 'd', timeline: [{ ...draft().timeline[0], url: 'https://ethresear.ch/t/1' }] });
+    const targets = followupTargets([debate({ id: 'c', status: 'archived' }), noTweet, debate({ id: 'e' })], ['c', 'd']);
+    expect(targets.map((t) => t.debate.id)).toEqual(['c']);
+  });
+
+  it('should keep only replies dated after the last activity', () => {
+    const r = (id: string, date: string) => ({ id, handle: 'h', name: 'h', followers: 1, text: '', date, url: '' });
+    expect(repliesAfter([r('1', '2026-09-02T10:00:00Z'), r('2', '2026-09-03T01:00:00Z')], '2026-09-02').map((x) => x.id)).toEqual(['2']);
+    expect(repliesAfter([], '2026-09-02')).toEqual([]);
+  });
+});
+
+describe('laterDevelopments', () => {
+  const item = (title: string) => ({ title, summary: `${title} 요약`, url: `https://e.x/${title}`, source: 's', date: '2026-10-01' });
+  const digests = [
+    { date: '2026-10-02', sections: [
+      { heading: '코어 개발자 콜', items: [item('콜')] },
+      { heading: '트위터 논쟁', items: [item('논쟁')] },
+      { heading: '이번 호 인사이트', items: [item('인사이트')] },
+    ] },
+    { date: '2026-09-01', sections: [{ heading: '시장 브리핑', items: [item('옛날')] }] },
+  ];
+  const calls = [
+    { date: '2026-10-01', title: 'ACDC #188', forkcastUrl: 'https://forkcast.org/calls/acdc/188/', decisions: [{ label: 'EIP-8198 퀵 슬롯', text: 'CFI로 올렸다' }] },
+    { date: '2026-08-01', title: 'ACDC #184', forkcastUrl: 'https://forkcast.org/calls/acdc/184/', decisions: [{ label: '옛 결정', text: '-' }] },
+  ];
+
+  it('should list call decisions and non-debate digest items after the given date', () => {
+    const lines = laterDevelopments(digests, calls, '2026-09-15').map((x) => x.line);
+    expect(lines).toEqual([
+      '- [2026-10-01 ACDC #188] EIP-8198 퀵 슬롯: CFI로 올렸다 — https://forkcast.org/calls/acdc/188/',
+      '- [2026-10-02 코어 개발자 콜] 콜: 콜 요약 — https://e.x/콜',
+    ]);
+  });
+
+  it('should skip developments already handed over in an earlier follow-up', () => {
+    const seen = new Set(['https://forkcast.org/calls/acdc/188/#EIP-8198 퀵 슬롯']);
+    expect(laterDevelopments(digests, calls, '2026-09-15', seen).map((x) => x.key)).toEqual(['https://e.x/콜']);
+  });
+
+  it('should return nothing when no development is newer', () => {
+    expect(laterDevelopments(digests, calls, '2026-10-05')).toEqual([]);
   });
 });

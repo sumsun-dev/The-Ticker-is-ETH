@@ -16,6 +16,9 @@
  *      DEBATES_REPLY_PAGES(기본 1) · DEBATES_REPLY_LIMIT(기본 8): 루트 트윗 답글을 몇 페이지(20건씩) 훑고 상위 몇 명을 남길지. 인용 트윗은 항상 1페이지 추가.
  *      DEBATES_FILL_ROLES=1: 소속·직책(role)이 비어 있는 인물만 프로필 바이오를 근거로 채운다 (추출 없이).
  *      DEBATES_FILL_TEXT=1: 인용 트윗의 원문 전문과 번역이 빈 항목만 채운다 (추출 없이). 팝업의 원문·번역이 여기서 나온다.
+ *      DEBATES_FOLLOWUP=1 또는 id 목록: 다이제스트 없이 기존 논쟁의 루트 트윗에 마지막 활동 이후 달린 답글·인용만 모아 갱신한다.
+ *        콜 결정과 다이제스트의 다른 섹션(콜·시장 등) 소식도 함께 넘겨 결론·새 국면을 반영한다.
+ *        1이면 보관되지 않은 논쟁 전부, id 목록이면 보관된 것도 포함. 새 반응도 이후 소식도 없으면 건너뛴다. 처리 이력은 남기지 않는다.
  *      DEBATES_REFINE=1 또는 id 목록: 기존 레코드를 인용 트윗 원문 전문을 근거로 교정한다 (입장·논거·인용 다시 쓰기, id·인물 프로필 유지).
  */
 import { runClaude } from './lib/claude';
@@ -30,9 +33,12 @@ import {
   DebateDraftSchema,
   DraftEnvelopeSchema,
   extractJson,
+  followupTargets,
+  laterDevelopments,
   handleMatchesName,
   mergeDebates,
   parseThreadReplies,
+  repliesAfter,
   personLines,
   pickNotableReplies,
   tweetIdOf,
@@ -55,6 +61,7 @@ dotenv.config({ path: path.resolve(process.cwd(), '.env') });
 
 const DIGESTS = path.resolve(process.cwd(), 'src/data/eth-digests.json');
 const INBOX = path.resolve(process.cwd(), 'src/data/eth-news-inbox.json');
+const CALLS = path.resolve(process.cwd(), 'src/data/eth-calls.json');
 const OUTPUT = path.resolve(process.cwd(), 'src/data/eth-debates.json');
 const PROFILES = path.resolve(process.cwd(), 'src/data/x-profiles.json');
 const ACCOUNTS = path.resolve(process.cwd(), 'scripts/config/twitter-accounts.json');
@@ -429,23 +436,50 @@ async function main() {
     return;
   }
   const topic = process.env.DEBATES_TOPIC ? new RegExp(process.env.DEBATES_TOPIC, 'i') : null;
-  const pending = topic
-    ? [...digests].sort((a, b) => a.date.localeCompare(b.date))
-    : digests.filter((d) => !processed.has(d.date)).sort((a, b) => a.date.localeCompare(b.date)).slice(-MAX_DIGESTS);
-  if (pending.length === 0) {
+  const followupEnv = process.env.DEBATES_FOLLOWUP;
+  const followup = followupEnv
+    ? followupTargets(file.debates, followupEnv === '1' ? undefined : followupEnv.split(',').map((s) => s.trim()).filter(Boolean))
+    : null;
+  const pending = followup
+    ? []
+    : topic
+      ? [...digests].sort((a, b) => a.date.localeCompare(b.date))
+      : digests.filter((d) => !processed.has(d.date)).sort((a, b) => a.date.localeCompare(b.date)).slice(-MAX_DIGESTS);
+  if (!followup && pending.length === 0) {
     console.log('[SKIP] no unprocessed digests');
     return;
   }
 
   const inbox = readJson<{ items: NewsItem[] }>(INBOX, { items: [] }).items;
   const rootByTweetId = new Map(inbox.filter((i) => i.sourceType === 'twitter').map((i) => [tweetIdOf(i.url), i]));
-  type Entry = DigestItem & { digestDate: string };
+  // since: 후속 모드에서 이 날짜 이후 반응만 본다
+  type Entry = DigestItem & { digestDate: string; since?: string };
   const matches = (it: DigestItem) => !topic || topic.test(`${it.title} ${it.summary} ${it.why ?? ''}`);
   const items: Entry[] = pending.flatMap((d) =>
     d.sections
       .filter((s) => topic || /논쟁|담론/.test(s.heading))
       .flatMap((s) => s.items.filter(matches).map((it) => ({ ...it, digestDate: d.date }))),
   );
+  const calls = followup ? readJson<{ calls: Parameters<typeof laterDevelopments>[1] }>(CALLS, { calls: [] }).calls : [];
+  const seen = new Set(file.followupSeen ?? []);
+  const fed: string[] = [];
+  const developmentsSince = (since: string) => laterDevelopments(digests, calls, since, seen);
+  if (followup) {
+    items.push(
+      ...followup.map(({ debate: d, url }) => ({
+        title: `[후속 확인 · id: ${d.id} · 마지막 활동 ${d.lastActivity}] ${d.title}`,
+        // 다시 쓰는 레코드가 기존 쟁점·배경·결론을 잃지 않게 함께 넘긴다
+        summary: [d.summary, `쟁점: ${d.keyPoints.join(' / ')}`, d.background && `배경: ${d.background}`, d.resolution && `기존 결론: ${d.resolution}`]
+          .filter(Boolean)
+          .join('\n'),
+        url,
+        source: `@${d.timeline[0]?.by ?? ''}`,
+        date: d.lastActivity,
+        digestDate: today,
+        since: d.lastActivity,
+      })),
+    );
+  }
   if (topic) {
     // 인박스에서 주제에 맞는 트윗 스레드의 루트를 항목으로 추가 (다이제스트 항목이 이미 가리키는 스레드는 제외, 큰 스레드 순 4개)
     const coveredConv = new Set(items.map((it) => rootByTweetId.get(tweetIdOf(it.url))?.conversationId).filter(Boolean));
@@ -511,7 +545,9 @@ async function main() {
   const markProcessed = (debates: Debate[], profiles: Record<string, XProfile>) => {
     const out: DebatesFile = {
       updatedAt: new Date().toISOString(),
-      processedDigests: topic ? file.processedDigests : [...processed, ...pending.map((d) => d.date)].sort(),
+      processedDigests: topic || followup ? file.processedDigests : [...processed, ...pending.map((d) => d.date)].sort(),
+      // 최근 것만 남긴다: 소식은 다이제스트·인박스에서 한 달 안에 빠지므로 그보다 오래된 키는 다시 올 일이 없다
+      ...(followup || file.followupSeen ? { followupSeen: [...new Set([...(file.followupSeen ?? []), ...fed])].slice(-3000) } : {}),
       debates,
     };
     fs.writeFileSync(OUTPUT, JSON.stringify(out, null, 2), 'utf-8');
@@ -561,12 +597,18 @@ async function main() {
       }
       const quotes = parseThreadReplies(await xApi('search', { query: `quoted_tweet_id:${tweetId}`, search_type: 'Latest' })).map((r) => ({ ...r, text: `[인용] ${r.text}` }));
       const pool = [...fetched, ...quotes].filter((r) => r.id !== tweetId && !seenIds.has(r.id));
-      replies = pickNotableReplies(pool, watchlist, { limit: replyLimit });
+      const fresh = item.since ? repliesAfter(pool, item.since).filter((r) => !seen.has(r.url)) : pool;
+      replies = pickNotableReplies(fresh, watchlist, { limit: replyLimit });
+      if (item.since) fed.push(...replies.map((r) => r.url));
       engagement = toEngagement(await xApi('tweet', { id: tweetId }));
       if (engagement) engagementByUrl.set(item.url, engagement);
       for (const r of replies) {
         profiles[r.handle.toLowerCase()] ??= { handle: r.handle, name: r.name, avatar: r.avatar, followers: r.followers, bio: r.bio };
       }
+    }
+    if (item.since && replies.length === 0 && developmentsSince(item.since).length === 0) {
+      console.log(`  followup: no new reactions — ${item.title}`);
+      continue;
     }
     for (const h of [...thread.map((t) => t.author), ...replies.map((r) => r.handle), ...(item.source.match(/@(\w+)/g) ?? [])]) people.add(h);
     bgTexts.push(item.title, item.summary, ...thread.map((t) => t.summary), ...replies.map((r) => r.text));
@@ -585,6 +627,11 @@ async function main() {
     );
   }
 
+  if (blocks.length === 0) {
+    console.log('[SKIP] no new reactions on followed-up debates');
+    return;
+  }
+
   const active = file.debates.filter((d) => d.status === 'active' || d.status === 'cooling');
   const activeLines = active.map(
     (d) =>
@@ -601,6 +648,11 @@ async function main() {
   const auto = await collectBackground(bgTexts, bgUrls);
   const callLines = relatedCalls(inbox, eipNumbers, topic).map((c) => `### ${c.title} (${c.url})\n${c.summary.slice(0, 2500)}`);
   if (auto.text) console.log(`  background: ${auto.sources.length} docs (EIP ${eipNumbers.slice(0, 6).join(', ') || '-'}), calls: ${callLines.length}`);
+  // 후속 모드: 가장 오래된 마지막 활동일 이후 소식을 한 번에 넘기고, 논쟁별 날짜 기준은 모델이 항목 제목의 '마지막 활동'으로 가린다
+  const followupSince = items.flatMap((it) => (it.since ? [it.since] : [])).sort()[0];
+  const developments = followupSince ? developmentsSince(followupSince) : [];
+  fed.push(...developments.map((x) => x.key));
+  const developmentLines = developments.map((x) => x.line);
   const prompt =
     `${EDITOR_PROMPT}\n\n오늘 날짜: ${today}\n\n` +
     (peopleLines.length ? `인물 정보 (소속·직책 판단 근거):\n${peopleLines.join('\n')}\n\n` : '') +
@@ -610,6 +662,14 @@ async function main() {
       ? `이번 요청의 주제: ${hint}\n주제와 무관한 항목은 무시하고 이 주제에 해당하는 논쟁만 정리하세요. 같은 주제 안에서도 쟁점이 뚜렷이 다르면 레코드를 나눕니다.\n\n`
       : '') +
     (context ? `배경 자료 (사실 확인용. 인용과 url의 출처로는 쓰지 않습니다):\n${context}\n\n` : '') +
+    (followup
+      ? `이번 요청은 기존 논쟁의 후속 확인입니다. 각 항목은 제목에 적힌 id의 논쟁이고, 아래 답글·인용은 그 논쟁의 마지막 활동 이후 새로 나온 반응입니다.\n` +
+        `새 반응이 실제로 그 쟁점에 대한 발언이면 같은 id로 레코드를 다시 작성해 타임라인에 추가하고, 단순 동조·잡담·무관한 답글뿐이면 그 논쟁은 결과에서 빼세요.\n` +
+        `아래 '이후 소식'에서 각 논쟁의 마지막 활동일보다 뒤에 나온, 그 쟁점에 직접 해당하는 결정·진전도 찾으세요. 콜 결정은 resolution에 콜 이름과 함께 적고 background·summary에 반영합니다. ` +
+        `쟁점과 직접 관련된 시장·정책 소식은 summary와 background에 반영하고, 그 소식이 특정 인물의 발언이면 타임라인에 추가할 수 있습니다(url은 소식의 링크). 키워드만 겹치는 소식은 무시하세요.\n` +
+        `새 반응도 관련 소식도 없는 논쟁은 결과에서 빼세요.\n\n`
+      : '') +
+    (developmentLines.length ? `이후 소식 (콜 결정과 다이제스트 기사, ${followupSince} 이후):\n${developmentLines.join('\n')}\n\n` : '') +
     (activeLines.length ? `활성 논쟁 목록 (같은 쟁점이면 id 재사용):\n${activeLines.join('\n')}\n\n` : '활성 논쟁 목록: 없음\n\n') +
     `다이제스트 논쟁 항목 (${items.length}건):\n\n${blocks.join('\n')}`;
 
