@@ -1,6 +1,631 @@
 {
-  "updatedAt": "2026-10-06T00:45:19.844Z",
+  "updatedAt": "2026-10-09T00:49:00.388Z",
   "calls": [
+    {
+      "id": "acde-247",
+      "series": "acde",
+      "number": 247,
+      "date": "2026-10-08",
+      "title": "AllCoreDevs - Execution #247",
+      "forkcastUrl": "https://forkcast.org/calls/acde/247/",
+      "videoUrl": "https://youtube.com/watch?v=0ZGRqRYac1k",
+      "issueUrl": "https://github.com/ethereum/pm/issues/2234",
+      "kind": "full",
+      "durationMin": 87,
+      "headline": "양자내성 EOA\n이행 경로 CFI",
+      "lead": "일반 계정을 양자내성 서명으로 옮길 길이 다음 포크 후보에 올랐다",
+      "intro": "실행 계층(EL) 클라이언트 개발자들이 격주로 모이는 올코어데브(AllCoreDevs) 콜이다.",
+      "summary": "후디(Hoodi) 테스트넷의 글램스터담(Glamsterdam) 포크가 10월 26일로 잡혔고, 다음 포크 헤고타(Hegota)의 막바지 스코핑에서 EIP 8건이 검토 대상(CFI)으로 올라가고 3건이 제외(DFI)됐다. 특히 EIP-8151과 EIP-8298이 일반 계정(EOA)의 양자내성 이행 경로로 묶여 살아남았다.",
+      "whyItMatters": "헤고타의 윤곽이 잡히면서 글램스터담 다음으로 이더리움이 무엇을 바꿀지가 정해지고 있다. 일반 사용자 계정이 양자컴퓨터 시대로 넘어갈 경로는 열렸고, 격자 기반 서명 프리컴파일은 빠지면서 해시 기반의 보수적 노선이 힘을 얻었다.",
+      "decisions": [
+        {
+          "label": "후디 포크 일정",
+          "text": "후디의 글램스터담 포크를 2026년 10월 26일 월요일 17:42 UTC로 정하고 클라이언트 릴리스는 10월 16일까지 내기로 했다. 세폴리아에 이어 두 번째 테스트넷의 업그레이드 날짜가 잡힌 것이다.",
+          "original": "Hoodi fork: Monday October 26, 2026 at 17:42 UTC; client releases by October 16",
+          "eips": [],
+          "status": "일정",
+          "timestamp": "00:21:44"
+        },
+        {
+          "label": "가스한도 발동 시점",
+          "text": "가스 한도 변경을 후디와 메인넷 모두 포크 에포크에 맞춰 발동하기로 확인했다. 포크되는 순간부터 블록 용량이 커진다는 뜻이다.",
+          "original": "Gas limit change activates on fork epoch for Hoodi and Mainnet",
+          "eips": [],
+          "status": "확정",
+          "timestamp": "00:30:13"
+        },
+        {
+          "label": "EIP-7907 미터링",
+          "text": "EIP-7907(컨트랙트 크기 미터링)을 PFI 목록에 추가하고 결정은 다음 콜로 미뤘다. 글램스터담이 컨트랙트 크기 한도만 올리고 크기 기반 과금을 빼면서 생긴 DoS 여지를 메우려는 제안이다.",
+          "original": "EIP-7907 (contract size metering) added to PFI list; decision deferred to next call",
+          "eips": [
+            7907
+          ],
+          "status": "PFI",
+          "fork": "Hegota",
+          "timestamp": "00:59:27"
+        },
+        {
+          "label": "EIP-5920 PAY",
+          "text": "EIP-5920(PAY 옵코드)을 헤고타 검토 대상으로 올렸다. 복잡도는 중간이고 대부분 클라이언트가 지지해 반대가 없었다.",
+          "original": "CFI for Hegota: EIP-5920 (PAY opcode)",
+          "eips": [
+            5920
+          ],
+          "status": "CFI",
+          "fork": "Hegota",
+          "timestamp": "01:03:00"
+        },
+        {
+          "label": "EIP-8151·8298",
+          "text": "EIP-8151(ecRecover 제한)과 EIP-8298(SETCODEFROM)을 한 쌍으로 묶어 검토 대상으로 올렸다. 일반 계정이 ECDSA에 기대지 않고 양자내성으로 이주할 경로를 여는 조합이다.",
+          "original": "CFI for Hegota: EIP-8151 (ecRecover deprecation) and EIP-8298 (SETCODEFROM) — paired as PQ EOA migration path",
+          "eips": [
+            8151,
+            8298
+          ],
+          "status": "CFI",
+          "fork": "Hegota",
+          "timestamp": "01:03:00"
+        },
+        {
+          "label": "EIP-8360·4758",
+          "text": "EIP-8360(TCREATE)과 EIP-4758(SELFDESTRUCT 비활성화)을 묶어 검토 대상으로 올렸다. 글램스터담에서 도입된 문제를 고치는 수정이다.",
+          "original": "CFI for Hegota: EIP-8360 (TCREATE) and EIP-4758 (Deactivate SELFDESTRUCT) — paired; fix for issue introduced in Glamsterdam",
+          "eips": [
+            8360,
+            4758
+          ],
+          "status": "CFI",
+          "fork": "Hegota",
+          "timestamp": "01:03:00"
+        },
+        {
+          "label": "EIP-7709 블록해시",
+          "text": "EIP-7709(스토리지에서 BLOCKHASH 읽기)를 검토 대상으로 올렸다. 네더마인드가 A등급으로 올려 평가했고 BAL 기반 라이트 클라이언트 활용에 이득이 있다.",
+          "original": "CFI for Hegota: EIP-7709 (BLOCKHASH from storage) — upgraded to A-tier by Nethermind; benefits BAL light-client use case",
+          "eips": [
+            7709
+          ],
+          "status": "CFI",
+          "fork": "Hegota",
+          "timestamp": "01:03:00"
+        },
+        {
+          "label": "EIP-8077 멤풀",
+          "text": "EIP-8077(eth/xx 멤풀 네트워킹)을 프레임·수수료 필드까지 포함한 심층 분석을 조건으로 검토 대상으로 올렸다. 가스 한도가 오를 때 멤풀(mempool)이 버티게 하는 통신 개선이다.",
+          "original": "CFI for Hegota: EIP-8077 (eth/xx mempool networking) — conditional on deeper analysis including frame/fee fields",
+          "eips": [
+            8077
+          ],
+          "status": "CFI",
+          "fork": "Hegota",
+          "timestamp": "01:03:00"
+        },
+        {
+          "label": "EIP-8116 영수증",
+          "text": "EIP-8116(누적 영수증 필드 교체)을 검토 대상에 올리되 우선순위 맨 아래에 뒀다. 기술 부채 청소 성격이라 급하지 않다는 평가다.",
+          "original": "CFI for Hegota: EIP-8116 (replace cumulative receipt fields) — low priority, placed at bottom of CFI list",
+          "eips": [
+            8116
+          ],
+          "status": "CFI",
+          "fork": "Hegota",
+          "timestamp": "01:03:00"
+        },
+        {
+          "label": "EIP-7666 제외",
+          "text": "EIP-7666(identity 프리컴파일의 EVM화)을 후보에서 제외했다. 가스 책정의 엣지 케이스가 있고 얻는 가치가 작다는 이유다.",
+          "original": "DFI for Hegota: EIP-7666 (EVM-ify identity precompile) — gas pricing edge cases and low value",
+          "eips": [
+            7666
+          ],
+          "status": "DFI",
+          "fork": "Hegota",
+          "timestamp": "01:27:03"
+        },
+        {
+          "label": "EIP-8355 ML-DSA",
+          "text": "EIP-8355(ML-DSA 프리컴파일)를 후보에서 제외했다. 격자(lattice) 기반 서명에 합의가 없고 zkEVM 비용 우려가 커 해시 기반 접근이 선호됐다.",
+          "original": "DFI for Hegota: EIP-8355 (ML-DSA precompile) — no consensus on lattice schemes; zkEVM cost concerns; hash-based approach preferred",
+          "eips": [
+            8355
+          ],
+          "status": "DFI",
+          "fork": "Hegota",
+          "timestamp": "01:27:03"
+        },
+        {
+          "label": "EIP-8374 웜셋",
+          "text": "EIP-8374(리버트 후에도 웜 액세스 세트 유지)를 후보에서 제외했다. 지지가 미지근했고 포크 경계의 깊은 변경이 복잡도만큼의 가치가 없다고 봤다.",
+          "original": "DFI for Hegota: EIP-8374 (persist warm access sets across reverts) — lukewarm support, deep fork boundary change not worth complexity",
+          "eips": [
+            8374
+          ],
+          "status": "DFI",
+          "fork": "Hegota",
+          "timestamp": "01:27:03"
+        }
+      ],
+      "targets": [
+        {
+          "key": "hoodi-fork",
+          "text": "2026년 10월 26일 월요일 17:42 UTC에 후디 글램스터담 포크. 확정",
+          "timestamp": "00:21:44"
+        },
+        {
+          "key": "hoodi-client-releases",
+          "text": "2026년 10월 16일 금요일까지 후디 포크용 클라이언트 릴리스. 확정",
+          "timestamp": "00:22:52"
+        }
+      ],
+      "actions": [
+        {
+          "owner": "Csaba(EIP-8077 챔피언)",
+          "text": "멤풀 필터링을 위해 제안을 발신자+논스 너머 수수료·프레임 필드까지 확장한다",
+          "timestamp": "01:18:39"
+        },
+        {
+          "owner": "EL 클라이언트 팀들",
+          "text": "엔터프라이즈의 세폴리아 피드백 수집용 글램스터담 생태계 준비 체크리스트 PR(#2266)을 검토한다",
+          "timestamp": "01:41:07"
+        }
+      ],
+      "agenda": [
+        {
+          "timestamp": "00:17:08",
+          "heading": "글램스터담 세폴리아 포크 업데이트"
+        },
+        {
+          "timestamp": "00:20:19",
+          "heading": "후디 포크 일정 잡기",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "00:32:37",
+          "heading": "회고적 EIP 복잡도 평가"
+        },
+        {
+          "timestamp": "00:47:00",
+          "heading": "AI로 포크 개발 가속하기",
+          "discussion": true
+        },
+        {
+          "timestamp": "00:58:30",
+          "heading": "EIP-7907: 컨트랙트 크기 미터링",
+          "decision": true
+        },
+        {
+          "timestamp": "01:00:06",
+          "heading": "헤고타 EIP 스코핑 결정",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "01:41:38",
+          "heading": "글램스터담 생태계 준비 체크리스트"
+        }
+      ],
+      "topics": [
+        {
+          "title": "후디 포크 날짜와 릴리스 시한",
+          "intro": "세폴리아 다음 테스트넷인 후디의 포크 날짜를 정하면서 운영자에게 업그레이드 시간을 얼마나 줄지가 쟁점이 됐다.",
+          "decision": "일정 확정 00:21:44",
+          "positions": [
+            {
+              "speaker": "Barnabas",
+              "text": "데브콘 일주일 전이라 사람들이 비행기 탈 시간을 벌도록 가능한 한 이른 월요일에 하자고 했다.",
+              "timestamp": "00:20:55",
+              "original": "One thing I would like to raise is, this is a week before Devcon, and the earlier we do, the more time people will have to fly. So, ideally, I think we should do this as early as possible, and I would vote for Monday. Even though it's a Monday. I would do at least 10 days.",
+              "translation": "제가 제기하고 싶은 것 하나는, 이게 Devcon 일주일 전이라는 점인데, 더 일찍 할수록 사람들이 비행기를 탈 시간이 더 많아진다는 것입니다. 그래서 이상적으로는 가능한 한 빨리 하는 것이 좋다고 생각하고, 월요일에 투표하겠습니다. 월요일이긴 하지만요. 저는 최소 10일은 두고 싶습니다."
+            },
+            {
+              "speaker": "potuz",
+              "text": "릴리스와 운영자 양쪽 모두 빠듯하다며, 후디에는 로켓풀과 리도와 홈 스테이커가 배포돼 있어 릴리스 공지가 2주 미만이면 문제가 생길 것이라고 경고했다. 프리즘에는 P2P 빌더 스택을 끄는 플래그도 아직 없다고 덧붙였다.",
+              "timestamp": "00:22:28",
+              "original": "It's tight on both ends. It's for the operators, for ourselves to send releases. I mean, it's probably fine, we are probably ready to fork on the 26th. But we have, like, staking pools that are… that are deployed on Hoodi, like, all of the home stakers are deployed on Hoodi. It's a much more complicated fork to have than just Sepolia, where we know every validator. So if you give them less than two weeks advance on releases, I presume we're gonna have problems, and if we give them more than… I mean, if we give us less, the two weeks, we're not going to be able to put them. Right? So we should, like, get a release today or tomorrow? In order to be able to be ready for Hoodi. And besides anything, I really think we should have, for Hoodi, we should have a plan, since that's not permissioned, we should have a plan, we should make sure that we can, sync from unfinalized, and that we have flags to disable the P2P builders, and to fall back to the trusted builders. Or fall back to local building, we should have these, these flags ready on clients. Prysm does not have a way of disabling the P2P stack. Immediately. It's an easy flag to add, we can add it, but the thing is that… and we don't even need to test it, it's a very simple change. But, again, these things add up. We are talking about how… if we want to give two weeks for, say, like, Rocketpool or Lido, then we need to cut up the release tomorrow, and we're gonna be rushing today, therefore, to merge all of these things. I…",
+              "translation": "양쪽 다 빡빡합니다. 운영자들을 위해서, 그리고 우리 자신이 릴리스를 내보내기 위해서도 그렇습니다. 제 말은, 아마 괜찮을 겁니다, 26일에 포크할 준비는 될 것 같습니다. 하지만 Hoodi에 배포된 스테이킹 풀들이 있습니다. 홈 스테이커들이 전부 Hoodi에 배포되어 있습니다. 모든 검증자를 아는 Sepolia와는 비교할 수 없이 훨씬 더 복잡한 포크입니다. 그래서 릴리스 사전 공지를 2주 미만으로 주면 문제가 생길 거라고 생각하고, 그보다 더 많이 주면... 아니, 2주보다 적게 주면 그들이 제때 반영하지 못할 겁니다. 그렇죠? 그러니 Hoodi를 준비하려면 오늘이나 내일 릴리스를 내야 하는 거 아닙니까? 그리고 무엇보다, Hoodi에 대해서는 계획이 있어야 한다고 생각합니다. 이것이 허가형이 아니기 때문에, 미완결 상태에서 동기화할 수 있는지 확인하고, P2P 빌더를 비활성화하고 신뢰할 수 있는 빌더로 폴백하는 플래그를 갖추는 계획이 있어야 합니다. 아니면 로컬 빌딩으로 폴백하든가요. 클라이언트들에 이런 플래그들이 준비되어 있어야 합니다. Prysm은 P2P 스택을 비활성화하는 방법이 없습니다. 당장은요. 추가하기 쉬운 플래그이고 추가할 수 있습니다만, 문제는... 테스트도 할 필요 없는 아주 간단한 변경이긴 한데, 그래도 이런 것들이 쌓입니다. 요컨대 Rocketpool이나 Lido 같은 곳에 2주를 주고 싶다면, 내일 릴리스를 잘라내야 하고, 그러면 오늘 이 모든 걸 머지하느라 서두르게 될 거라는 얘기입니다. 저는..."
+            },
+            {
+              "speaker": "james",
+              "text": "10월 13일 릴리스는 너무 일러 머지를 서두르다 후디용 수정을 많이 놓치게 된다고 했다.",
+              "timestamp": "00:24:31",
+              "viaChat": true,
+              "original": "Oct 13 feels really early, we’ll have to basically rush to merge things and miss a lot of fixes for hoodi",
+              "translation": "10월 13일은 정말 너무 이른 것 같습니다. 거의 서둘러서 머지해야 할 것이고 Hoodi를 위한 수정 사항들을 많이 놓치게 될 겁니다."
+            },
+            {
+              "speaker": "Justin Traglia",
+              "text": "그렇다면 10월 16일 금요일이면 괜찮고 10일이면 충분하다며, 업그레이드를 늦추느니 공지를 조금 줄이는 쪽을 선호한다고 했다.",
+              "timestamp": "00:25:15",
+              "viaChat": true,
+              "original": "Hmm okay, so maybe Friday October 16th is fine then. I think 10 days is sufficient.",
+              "translation": "음, 알겠습니다, 그러면 10월 16일 금요일이 괜찮을 것 같습니다. 10일이면 충분하다고 생각합니다."
+            },
+            {
+              "speaker": "Iván | ethrex",
+              "text": "팀 대부분이 26일과 27일 사이에 비행기를 타므로 화요일로 옮기자고 제안했으나, 화요일에 비행하는 사람이 더 많을 것이라는 반박을 수긍했다.",
+              "timestamp": "00:27:10",
+              "original": "Yes, I'd like to try to move from Monday to Tuesday. most of the ethrex team will be flying, on… between 26th and 27th. We are making a couple of days to Europe, because to avoid a plus 35 hours flight to India, so… in that day, we'll be flying. Maybe if we can do it Tuesday, will it be better? ER. Okay, fair. That's fair.",
+              "translation": "네, 월요일에서 화요일로 옮기고 싶습니다. ethrex 팀 대부분이 26일에서 27일 사이에 비행기를 탈 예정입니다. 인도까지 35시간 넘는 비행을 피하기 위해 유럽까지 며칠에 걸쳐 가는 중이라서, 그날에 비행기를 타게 됩니다. 화요일로 하면 더 나을까요? 좋습니다, 타당하네요. 그건 타당합니다."
+            }
+          ],
+          "quote": {
+            "text": "릴리스를 2주 미만으로 미리 주면 문제가 생길 것으로 본다.",
+            "original": "So if you give them less than two weeks advance on releases, I presume we're gonna have problems.",
+            "speaker": "potuz",
+            "timestamp": "00:22:28"
+          }
+        },
+        {
+          "title": "AI로 포크 개발을 얼마나 앞당길 수 있나",
+          "intro": "네더마인드가 AI 도구를 활용한 하드포크 주기 단축을 제안하면서, 남는 역량을 어디에 쓸지와 스펙의 역할을 두고 토론이 벌어졌다.",
+          "positions": [
+            {
+              "speaker": "Łukasz Rozmej",
+              "text": "네더마인드는 이미 헤고타 관련 PR이 150여 개로 구현은 사실상 해결됐고 진짜 병목은 조정과 테스트와 툴링이라며, 대시보드와 알림 시스템, 그리고 EIP 챔피언(champion)이 프로덕트 오너 역할을 하게 할 도구를 제안했다.",
+              "timestamp": "00:47:00",
+              "original": "Thank you. One comment about the tool. I like the tool. I think it's probably can be iterated upon and made better, even if it's already useful today. And I agree that's actually giving LLMs EIPs to prototype, not only to look at the spec. Made them do better assessments, because they often, discover things while they're doing it. So, my… going to my point, which is somewhat similar, that I would prefer to try to accelerate and doing more hard forks per year, doing more work in parallel, doing more things. What inspired me? So, for example, in Nethermind, we are currently implementing EIPs as soon as they get CFI'd. We already have 100, 50 PRs related to Hegota, most of them already merged, I think 12 are open. we can go… really fast and even faster. This is, this is not a problem for us, so implementation is somewhat solved. And I think the… the main problems for speeding up is actually coordination, testing, and other things, which were always really, really hard. But we are… doing better tools. One of them we just saw. We have forecast which actually streamlines a lot scoping. We have initiatives like Bantek initiative to standardize tracing, which I think should be looked upon and studied by more people how it works. I can… send the link in the chat, I will drop it now. Basically, he's leading that, he's coordinating on many levels and getting things done. I think we should create more different tools that, for example, would help, EIP champions to be more involved in…",
+              "translation": "감사합니다. 도구에 대해 한 말씀 드리겠습니다. 저는 그 도구가 마음에 듭니다. 오늘날에도 이미 유용하지만 계속 반복 개선해서 더 좋게 만들 수 있을 것 같습니다. 그리고 LLM에게 스펙만 보게 하는 게 아니라 EIP를 프로토타이핑하게 시키는 것이 실제로 맞는 접근이라는 데 동의합니다. 그렇게 하면 더 나은 평가를 하게 되는데, 작업을 하면서 문제를 발견하는 경우가 많기 때문입니다. 그래서 제 요점은, 비슷한 맥락인데, 저는 연간 하드포크 수를 늘리고, 더 많은 작업을 병렬로 하고, 더 많은 일을 하는 방향으로 속도를 내는 것을 선호한다는 것입니다. 무엇이 저에게 이런 생각을 하게 했는가 하면, 예를 들어 Nethermind에서는 EIP가 CFI(Considered For Inclusion)되는 즉시 구현을 시작하고 있습니다. Hegota 관련해서 이미 PR이 100개, 아니 50개 있고, 대부분 이미 머지되었고, 12개 정도가 열려 있는 것 같습니다. 우리는 정말 빠르게, 더 빠르게도 갈 수 있습니다. 이건 우리에게 문제가 되지 않습니다, 그러니 구현 자체는 어느 정도 해결된 문제입니다. 그리고 속도를 내는 데 있어 진짜 문제는 사실 조정, 테스트, 그리고 늘 정말 어려웠던 다른 것들이라고 생각합니다. 하지만 우리는 더 나은 도구들을 만들고 있습니다. 방금 본 것도 그중 하나입니다. 스코핑을 많이 간소화해주는 forecast라는 것도 있습니다. 트레이싱을 표준화하려는 Bantek 이니셔티브 같은 것도 있는데, 더 많은 사람들이 그것이 어떻게 작동하는지 살펴보고 연구해야 한다고 생각합니다. 채팅에 링크를 보내드리겠습니다, 지금 올리겠습니다. 기본적으로 그가 그걸 주도하고 있고, 여러 층위에서 조정하며 일을 진행시키고 있습니다. 저는 예를 들어 EIP 챔피언들이 더 많이 참여할 수 있도록 돕는 다양한 도구들을 더 만들어야 한다고 생각합니다..."
+            },
+            {
+              "speaker": "ethDreamer (Mark)",
+              "text": "일렉트라 때 MaxEB는 한 클라이언트만 복잡도를 들여다볼 여력이 있었다며, 이제 AI가 모든 EIP의 초기 스펙과 구현을 내놓을 수 있으니 아무것도 없던 과거보다 낫다고 동의했다.",
+              "timestamp": "00:51:39",
+              "original": "Yeah, I… Kind of just also want to echo the sentiment, because… Like, I can remember back in the Electra fork scheduling, when we were considering MaxEB, like, at the time, just due to the resources that we had, we basically had one client, Prysm, that had, like, even been able to… had the bandwidth to, like, look into it and start to implement it, and we had… Just at least at first, it was just potuz who had had like any kind of handle on how complex MaxEB would be, and then… So we kind of went with that because it was all we had, and then later we kind of reassessed that, and that's how Max EB ended up getting in. But the, the point is that like. Yeah, we are in a different regime now. Like, it's totally possible to have every single EIP all the, like, at least initially spec'd and through implementation. Even if it's AI slop, and then rated against each other. And that's going to realistically be more work than. like we've ever had in the past. For… for as much as you can say is, like, it may not be correct, it's not a… it's not foolproof, and all of that kind of thing, it's still significantly more, like, vetting than we've basically ever had. before, so I think, yeah, the taking advantage of that would help significantly.",
+              "translation": "네, 저도 그 취지에 공감하고 싶습니다. Electra 포크 일정을 짤 때, MaxEB를 고려하던 당시가 기억나는데, 그때는 우리가 가진 자원 때문에 사실상 클라이언트가 하나, Prysm뿐이었습니다, 그것을 들여다보고 구현을 시작할 여력이 있었던 것이요. 적어도 처음에는 MaxEB가 얼마나 복잡할지 제대로 파악하고 있던 사람이 potuz 한 명뿐이었습니다. 그래서 가진 게 그것뿐이었기 때문에 그걸로 진행했고, 나중에 재평가를 해서 결국 MaxEB가 들어가게 된 겁니다. 하지만 요점은, 네, 지금은 상황이 다르다는 겁니다. 이제는 모든 EIP를, 적어도 초기 단계에서는, 스펙 작성부터 구현까지 전부 해볼 수 있습니다. 설령 그것이 AI가 날림으로 만든 결과물이라 해도, 그것들을 서로 비교 평가할 수 있습니다. 그리고 그건 현실적으로 우리가 과거에 해왔던 것보다 더 많은 작업이 될 겁니다. 그게 틀릴 수도 있고, 완벽하지 않다는 것 등을 감안하더라도, 그래도 이전에 우리가 가져본 적 있는 검증 수준보다는 훨씬 더 많은 검증이 되는 겁니다. 그래서 그것을 활용하는 것이 상당히 도움이 될 거라고 생각합니다."
+            },
+            {
+              "speaker": "Justin Florentine",
+              "text": "속도를 위한 속도에는 회의적이라며, 새로 생긴 역량은 PQ처럼 분명한 위험에 집중하고 연 4회 포크 같은 고정 목표는 강제하지 말자고 했다.",
+              "timestamp": "00:53:20",
+              "original": "Great, alright, let's try that again. So, yeah, two points I want to make. You know, I'm generally. averse to speed for speed's sake. However. I do see the writing on the wall, and I do think that there's plenty of capacity here, to… To take that up. So, I think I'd like to frame this question around, great, we have this new capacity that's been unlocked. Do we have specific things that we want to do with it, or do we just want to randomly accelerate? So, for example, PQ. I think that's probably the only thing that I see on our roadmap. that is a clear and present danger, and that if I had unlimited capacity to accelerate, I would accelerate in that direction. So I would like us to be specific about this, and follow-up point to that is, like. Lukas, I liked your write-up, it was very good. The idea of kind of just going towards 4 hard forks a year of the same size. to me seems a little arbitrary, and I'm sure that's really, you know, that's just a starting point, that's just a, you know, an idea. But, you know, maybe we couch this in terms of, let's just accelerate, let's just see how fast we can go, without forcing a target that we feel that we have to meet, because there's just… there's just so many unknowns here. So yeah, I just wanted to float that out there, thanks.",
+              "translation": "좋습니다, 다시 해보겠습니다. 드리고 싶은 말씀이 두 가지 있습니다. 저는 대체로 속도를 위한 속도에는 반대하는 편입니다. 하지만 흐름을 보면 그런 방향으로 가고 있다는 것이 보이고, 이를 받아들일 역량이 충분히 있다고 생각합니다. 그래서 이 질문을 이렇게 틀을 잡고 싶습니다. 좋습니다, 새로운 역량이 생겼습니다. 그걸로 하고자 하는 구체적인 것들이 있습니까, 아니면 그냥 무작위로 속도를 내고 싶은 겁니까? 예를 들어 PQ(post-quantum)를 보면, 저는 그것이 우리 로드맵에서 명백하고 현존하는 위험으로 보이는 유일한 것이라고 생각합니다. 만약 제게 무제한의 가속 역량이 있다면 저는 그 방향으로 가속하겠습니다. 그러니 이 부분에 대해서는 구체적이었으면 좋겠고, 이어서 말씀드릴 점은, Lukas, 당신의 글이 좋았습니다, 정말 좋았습니다. 다만 같은 규모로 연 4회 하드포크를 하자는 아이디어는 저에게는 다소 임의적으로 느껴지는데, 물론 그건 그냥 시작점이고 그냥 하나의 아이디어라는 걸 압니다. 하지만 어쩌면 이것을 그냥 가속해보자, 얼마나 빨리 갈 수 있는지 한번 보자는 식으로 풀어내고, 반드시 맞춰야 한다고 느끼는 목표를 강제하지는 말았으면 합니다. 왜냐하면 여기에는 정말 알 수 없는 것들이 너무 많기 때문입니다. 네, 그냥 이 생각을 던져보고 싶었습니다, 감사합니다."
+            },
+            {
+              "speaker": "Luis Pinto",
+              "text": "AI가 스펙과 구현을 바이브 코딩하면 클라이언트들이 스펙을 저마다 해석하고 비판하며 얻던 다양성의 가치가 줄지 않느냐고 우려했다.",
+              "timestamp": "00:54:50",
+              "original": "Yeah, I wanted to raise a point about the specs and the use of AI writing specs. I think we need to be, like, specific, simple and concise on the spec side, because that's really what drives AI implementations. And, if we are vibe coding specs and, implementations, then, aren't we kind of losing a bit, the side of client diversity that are interpreting, the specifications? on each own, and being critic about the specification, so which allows us to improve, and make the best version of the EIP yeah, I… I would like, like, to hear, like, how do we solve this problem, and, what's your thoughts about that?",
+              "translation": "네, 스펙과 AI를 이용한 스펙 작성에 대해 한 가지 말씀드리고 싶습니다. 저는 스펙 쪽에서는 구체적이고, 단순하고, 간결해야 한다고 생각합니다. 그게 실제로 AI 구현을 이끄는 요소이기 때문입니다. 그리고 우리가 스펙과 구현을 바이브 코딩(vibe coding)으로 한다면, 각자 스펙을 해석하고 그에 대해 비판적으로 검토함으로써 EIP의 최선의 버전을 만들어가게 하는 클라이언트 다양성 측면을 어느 정도 잃어버리는 것 아닙니까? 네, 이 문제를 어떻게 해결할지 듣고 싶고, 이에 대한 여러분의 생각이 어떤지 궁금합니다."
+            },
+            {
+              "speaker": "Łukasz Rozmej",
+              "text": "루이스에게 반박하며 핵심 스펙은 클라이언트들이 합의해야 하는 대상이고, 스펙 해석의 다양성은 합의 버그를 낳을 뿐이라고 했다.",
+              "timestamp": "00:55:53",
+              "original": "So, client diversity doesn't… shouldn't be considered in terms of the core spec, because we… clients need to agree on the core spec, actually, so it's actually the other way around. All the testing we are doing is to make sure that clients do agree on the core specs and all its edge cases, so we don't want diversity of spec, because those are consensus issues.",
+              "translation": "클라이언트 다양성은 코어 스펙 차원에서 고려되어서는 안 됩니다. 왜냐하면 클라이언트들은 실제로 코어 스펙에 합의해야 하기 때문입니다. 그러니 사실은 그 반대입니다. 우리가 하는 모든 테스트는 클라이언트들이 코어 스펙과 그 모든 엣지 케이스에 대해 합의하도록 보장하기 위한 것입니다. 그래서 우리는 스펙의 다양성을 원하지 않습니다, 그것은 합의(consensus) 문제이기 때문입니다."
+            },
+            {
+              "speaker": "Ben Adams",
+              "text": "저스틴의 논점을 이어받아 PQ는 병목이 구현이 아니라 의사결정이라 AI로 가속하기 어렵다고 했다.",
+              "timestamp": "00:56:20",
+              "original": "Just to follow up on your point, Justin, PQ, for instance, I don't think is an easy thing To accelerate with AI and maybe in terms of implementation and, how it works. But I think the main bottleneck, bottleneck there is decision making and. We can't really do that. With AI. Yeah, but there's a lot of admin, and there's a lot of stuff that can be automated around it. That's… them. Yeah, that could accelerate it. But yeah, the decision making we still have to do. Yeah, so this, we already did half of this, the original, in, Glamsterdam, which was increasing the contract size and the other half was, to charge based on the contract size. And we didn't do that. So this is reintroducing that aspect, and this comes from the testing we did. And it showed that… this… this will potentially be our new ceiling based on how many contracts we can load, and based on disk speed. So the idea is we… we… I would like us to reconsider, not necessarily, you know, CFI it for the fork. But reconsider the metering based on contract size.",
+              "translation": "Justin, 당신 의견에 덧붙이자면, 예를 들어 PQ는 AI로 가속하기 쉬운 것은 아니라고 생각합니다, 구현 측면이나 작동 방식 측면에서요. 그보다 거기서 주된 병목은 의사결정이라고 생각하는데, 그건 AI로 할 수 있는 일이 아닙니다. 하지만 그 주변에는 자동화할 수 있는 행정 업무가 많이 있습니다. 그런 것들은 가속할 수 있겠지만, 의사결정은 여전히 우리가 해야 합니다. 네, 그래서 이건, 우리가 원래 Glamsterdam에서 이것의 절반을 이미 했었는데, 그건 컨트랙트 크기를 늘리는 것이었고, 나머지 절반은 컨트랙트 크기에 기반해서 과금하는 것이었습니다. 그런데 그건 하지 않았습니다. 그래서 이건 그 부분을 다시 도입하는 것이고, 이는 우리가 수행한 테스트에서 나온 것입니다. 그 테스트에서 드러난 것은, 이것이 우리가 로드할 수 있는 컨트랙트 수와 디스크 속도를 기준으로 우리의 새로운 한계가 될 수 있다는 점이었습니다. 그래서 제 생각은, 꼭 이번 포크를 위해 CFI하자는 것은 아니지만, 컨트랙트 크기 기반 미터링(metering)을 재고해야 한다는 것입니다."
+            }
+          ],
+          "quote": {
+            "text": "스펙의 다양성은 원하지 않는다. 그것은 합의 문제이기 때문이다.",
+            "original": "We don't want diversity of spec, because those are consensus issues.",
+            "speaker": "Łukasz Rozmej",
+            "timestamp": "00:55:53"
+          }
+        },
+        {
+          "title": "EOA의 양자내성 이행 경로: EIP-8151과 EIP-8298",
+          "intro": "ecRecover 제한과 SETCODEFROM을 한 쌍으로 묶어 일반 계정(EOA)의 양자내성(PQ) 이행 경로로 삼을지가 헤고타 스코핑의 핵심 쟁점이었다.",
+          "decision": "CFI 결정 01:03:00",
+          "positions": [
+            {
+              "speaker": "CPerezz",
+              "text": "두 EIP는 반드시 함께 가야 하며, 조합해야 ECDSA에 더는 기대지 않고 자금과 포지션을 그대로 들고 양자내성으로 넘어갈 수 있다고 주장했다.",
+              "timestamp": "01:03:24",
+              "original": "This should be paired directly with SETCODEFROM both together, as the combination of both is what allows you to transition into post-quantum, without no longer relying on your ECDSA and taking all the funds and positions and whatever you have with you, so… If we CFI, we should CFI both together.",
+              "translation": "이것은 SETCODEFROM과 직접 함께 짝을 이루어야 합니다. 둘을 결합해야만 ECDSA(타원곡선 전자서명 알고리즘)에 더 이상 의존하지 않고도 포스트 양자로 전환하면서 자금과 포지션, 그리고 가진 모든 것을 그대로 가져갈 수 있기 때문입니다. 그러니 CFI를 한다면, 둘 다 함께 CFI해야 합니다."
+            },
+            {
+              "speaker": "Justin Florentine",
+              "text": "베수는 SETCODEFROM을 C등급으로 평가했지만 막지는 않겠다며 입장을 'C+'라고 표현했고, 다른 제안과 묶이면 더 중요해질 수 있다고 했다.",
+              "timestamp": "01:03:57",
+              "original": "I can go for Besu. We discussed this a little bit further. We are more open to it, but not enough to actually change it to B. I think that might change as we pair it with, other things, I think, that, you know, were just mentioned. As well as, I think, deactivating self-destruct, that goes in, that becomes a thing that we care more about as well. So, I treat us as a C+? I don't have an answer to that right off the top of my head. So I think our current thinking is kind of some of the existing models Might be sufficient for it. But we don't have examples that I can give you as an alternate path for that, so I don't think I'm prepared to answer that question. We recognize the point, though, for sure, like, if we were to prioritize like, a pure PQ fork. That for sure would go in there. We also have trouble teasing out the size and complexity that comes with some of these ratings as well. Yeah, let me clarify Besu's position here. We don't want to be a blocker on this. This is kind of our, you know, our ranking of it amongst everything else. So, like, if everybody else thinks that this should go in, we're certainly not going to put up a fight.",
+              "translation": "Besu 입장에서 말씀드릴 수 있습니다. 저희는 이 부분을 조금 더 논의했습니다. 더 열려 있는 편이지만, 실제로 B로 바꿀 정도는 아닙니다. 방금 언급된 다른 것들과 짝을 이루게 되면 바뀔 수도 있다고 생각합니다. 그리고 셀프디스트럭트(self-destruct) 비활성화가 들어가면, 그것도 저희가 더 신경 쓰게 되는 요소가 될 것입니다. 그러면 저희를 C+로 봐야 할까요? 그 질문에는 바로 답을 드리기 어렵습니다. 저희의 현재 생각은, 기존 모델 중 일부로 충분할 수도 있다는 것입니다. 하지만 그에 대한 대안 경로로 제시할 수 있는 예시가 없어서, 그 질문에 답할 준비가 되어 있지는 않다고 생각합니다. 다만 그 논점은 분명히 인정합니다, 만약 순수한 PQ 포크를 우선시한다면, 그것은 분명 거기에 들어갈 것입니다. 또한 이런 등급 평가에 따라오는 규모와 복잡성을 가늠하는 데도 어려움이 있습니다. 네, Besu의 입장을 여기서 명확히 하겠습니다. 저희는 이것의 블로커가 되고 싶지는 않습니다. 이건 그저 다른 모든 것들 사이에서 저희가 매긴 순위일 뿐입니다. 그러니 다른 모두가 이게 들어가야 한다고 생각한다면, 저희는 분명 반대하지 않을 것입니다."
+            },
+            {
+              "speaker": "lightclient",
+              "text": "베수에 EOA의 양자내성 이행에 선호하는 대안 경로가 있느냐고 따져 물으며, SETCODEFROM은 자신이 그리는 경로의 핵심이라 높은 순위가 중요하다고 했다.",
+              "timestamp": "01:04:55",
+              "original": "Because to me, like, SETCODEFROM is, like. a critical part of like what I'm imagining is the path for EOAs to become post-quantum. So that's why I feel ranking it so highly is important. But if you guys have an alternative approach that you prefer, like, we could discuss that. I just think that, like, we need to figure out in Hegota how EOAs can become post-quantum, and if it's not this, then we should decide that.",
+              "translation": "제게는 SETCODEFROM이 EOA(Externally Owned Account)가 포스트 양자로 전환하는 경로라고 제가 그리고 있는 그림에서 핵심적인 부분이기 때문입니다. 그래서 이것을 높게 평가하는 것이 중요하다고 느낍니다. 하지만 여러분이 선호하는 다른 접근법이 있다면, 그것에 대해 논의할 수 있습니다. 저는 그저 Hegota에서 EOA가 어떻게 포스트 양자로 전환될 수 있을지를 밝혀내야 한다고 생각하고, 그것이 이것이 아니라면, 그것을 결정해야 한다고 생각합니다."
+            },
+            {
+              "speaker": "Justin Florentine",
+              "text": "기존 모델로 충분할 수 있다고 보지만 대안 경로를 제시할 준비는 돼 있지 않다며 lightclient의 지적을 인정했다.",
+              "timestamp": "01:05:23",
+              "original": "So I think our current thinking is kind of some of the existing models Might be sufficient for it. But we don't have examples that I can give you as an alternate path for that, so I don't think I'm prepared to answer that question. We recognize the point, though, for sure, like, if we were to prioritize like, a pure PQ fork. That for sure would go in there. We also have trouble teasing out the size and complexity that comes with some of these ratings as well. Yeah, let me clarify Besu's position here. We don't want to be a blocker on this. This is kind of our, you know, our ranking of it amongst everything else. So, like, if everybody else thinks that this should go in, we're certainly not going to put up a fight.",
+              "translation": "저희의 현재 생각은, 기존 모델 중 일부로 충분할 수도 있다는 것입니다. 하지만 그에 대한 대안 경로로 제시할 수 있는 예시가 없어서, 그 질문에 답할 준비가 되어 있지는 않다고 생각합니다. 다만 그 논점은 분명히 인정합니다, 만약 순수한 PQ 포크를 우선시한다면, 그것은 분명 거기에 들어갈 것입니다. 또한 이런 등급 평가에 따라오는 규모와 복잡성을 가늠하는 데도 어려움이 있습니다. 네, Besu의 입장을 여기서 명확히 하겠습니다. 저희는 이것의 블로커가 되고 싶지는 않습니다. 이건 그저 다른 모든 것들 사이에서 저희가 매긴 순위일 뿐입니다. 그러니 다른 모두가 이게 들어가야 한다고 생각한다면, 저희는 분명 반대하지 않을 것입니다."
+            }
+          ],
+          "quote": {
+            "text": "헤고타에서 EOA가 어떻게 양자내성이 될지를 정해야 하고, 그 답이 이것이 아니라면 무엇인지 결정해야 한다.",
+            "original": "I just think that we need to figure out in Hegota how EOAs can become post-quantum, and if it's not this, then we should decide that.",
+            "speaker": "lightclient",
+            "timestamp": "01:04:55"
+          }
+        },
+        {
+          "title": "ML-DSA 프리컴파일 논쟁: 격자냐 해시냐",
+          "intro": "양자내성 서명 가운데 격자(lattice) 기반 ML-DSA를 프리컴파일로 넣을지를 두고 암호학적 유연성 논리와 보수적 해시 기반 노선이 맞붙었다.",
+          "decision": "DFI 결정 01:33:59",
+          "positions": [
+            {
+              "speaker": "Kevaundray Wedderburn",
+              "text": "한 서명 스킴의 세 가지 변형을 모두 CFI하는 것은 말이 안 되고 격자 기반 스킴의 CFI 자체에 반대한다면서도, EVM 바이트코드로 구현할 때의 가스 비용은 확인해 보자고 했다.",
+              "timestamp": "01:28:11",
+              "original": "Yeah, I think I brought up this argument that, even if we were okay with lattices, it doesn't really make sense to me that we'd be, CFI-ing three different versions of a particular signature, scheme. like. We're not gonna use all of them, and this argument that maybe one country needs to use the weaker version, while another needs to use the stronger version doesn't… At least that's not a strong argument for me. Outside of that? I think we should definitely look at. what the gas cost is in the EVM bytecode. I'm personally not okay with, CFI and a lattice-based scheme. But I still think we should look at what it costs, just for people to do it, like, in EVM bytecode.",
+              "translation": "네, 제가 이 주장을 꺼낸 적이 있는데, 설령 격자(lattice) 기반 방식에 괜찮다고 해도, 특정 서명 방식의 세 가지 다른 버전을 동시에 CFI하는 것은 저에게는 말이 안 되는 것 같습니다. 우리는 그걸 전부 다 쓰지는 않을 것이고, 어떤 나라는 더 약한 버전을 써야 하고 다른 나라는 더 강한 버전을 써야 할 수도 있다는 주장은, 적어도 저에게는 강한 논거가 아닙니다. 그 외에는, EVM 바이트코드에서의 가스 비용이 어떤지는 반드시 살펴봐야 한다고 생각합니다. 저는 개인적으로 격자 기반 방식을 CFI하는 것에는 동의하지 않습니다. 하지만 그래도 사람들이 EVM 바이트코드로 그것을 하는 데 드는 비용이 얼마인지는 살펴봐야 한다고 생각합니다."
+            },
+            {
+              "speaker": "Danno Ferrin",
+              "text": "암호학적 유연성을 위해 복수의 서명 계열이 필요하고, EVM만으로는 약 100만 가스가 들어 4337의 50만 한도와 또 다른 AA 솔루션의 10만 한도를 넘는다며, 헤고타에 바로 넣는 대신 프리컴파일 주소를 예약하고 테스트를 써 두는 중간안을 제안했다.",
+              "timestamp": "01:29:07",
+              "original": "So a couple of questions there. So, first, the overarching… my overarching motivation for this is cryptographic agility. We need to have multiple signature families available for people to put their funds in. We can't… locking in on just one is, is, is incredibly risky, in my opinion. As far as why all three, because people need choices. We can lock down into one of them. But to directly address Kevaundray's question, what's the cost of doing this in the EVM? It's about a million, and they've had… it started out at 5 million, and it's gone down about a million, and that includes, a lot of AI performance improvements to get the cost of doing this evaluation in raw EVM. And that runs into a couple of major problems, because 4337 limits, validation to 500,000 gas, and 3160, which is BASIS, response to frame limits validation to 100,000 gas. So, doing this in EVM-only bytecode locks out two of the major account abstraction solutions that are going to be out there. So that's one of the reasons why I think we need to look at specifying what it would look like if it were to be. a precompile One of the strong arguments brought against it is, well, look at what happened with Blake, and look at what happened with RIPEMD. Nobody's using those. Look at, you know, BLS, you know, nobody's using those, it's relatively low impact. But I think that's the wrong comparison. What we need to look at is P256. And that has been, brought around… that has been brought up over 8 to 10 years before it…",
+              "translation": "여기에 몇 가지 질문이 있습니다. 먼저, 저의 전반적인 동기는 암호학적 애질리티(cryptographic agility)입니다. 사람들이 자금을 맡길 수 있는 서명 체계(signature family)를 여러 개 갖추어야 합니다. 단 하나에만 묶이는 것은, 제 생각에는 매우 위험합니다. 왜 세 가지 모두냐 하면, 사람들에게 선택권이 필요하기 때문입니다. 그중 하나로 고정할 수도 있겠죠. 하지만 Kevaundray의 질문에 직접 답하자면, 이것을 EVM에서 하는 비용이 얼마인가 하면, 약 100만 가스입니다. 처음에는 500만에서 시작해서 약 100만까지 내려왔는데, 여기에는 순수 EVM에서 이 평가를 수행하는 비용을 줄이기 위한 많은 AI 성능 개선이 포함됩니다. 그리고 여기서 몇 가지 큰 문제에 부딪히는데, 4337은 검증(validation)을 500,000 가스로 제한하고, BASIS인 3160은 프레임에 대한 응답에서 검증을 100,000 가스로 제한합니다. 그러니 이것을 EVM 바이트코드만으로 하면 앞으로 나올 주요 계정 추상화(account abstraction) 솔루션 중 두 가지를 배제하게 됩니다. 그래서 이것이 프리컴파일(precompile)로 만들어졌을 때 어떤 모습일지 스펙을 살펴봐야 한다고 생각하는 이유 중 하나입니다. 이에 반대하는 강한 논거 중 하나는, Blake에 어떤 일이 있었는지, RIPEMD에 어떤 일이 있었는지를 보라는 것입니다. 아무도 그것들을 쓰지 않습니다. BLS를 보십시오, 아무도 그것들을 쓰지 않습니다, 영향이 상대적으로 적습니다. 하지만 저는 그것이 잘못된 비교라고 생각합니다. 우리가 봐야 할 것은 P256입니다. 그것은 도입되기 전까지 8년에서 10년에 걸쳐 거론되어 왔습니다..."
+            },
+            {
+              "speaker": "Antonio Sanso",
+              "text": "확장 계획이 없고 zkVM 전환을 감안하면 가스가 잘못 책정됐으며 최근 암호학 동향상 시기도 나쁘다며 격자에 반대했고, 집계가 가능한 SPHINCS 기반(다이수기 테스트넷)을 선호한다고 했다.",
+              "timestamp": "01:32:00",
+              "original": "Right, yeah, I mean, probably people know already my opinion, and as you probably know, we have been running bi-weekly. Breakout rooms on this topic. We've been looking at the beginning at lattices, but with time, we've been moving away from it for several reasons. I can, I can summarize some of this. Start from the end, we have, some testnet called Daisugi, where we actually are running, at the moment, a version of SPHINCS with aggregation. So it's gonna be really, really cheap on gas. And this is actually, thanks to aggregation, of course. And this is actually one of the issue with this, with this. EIP is the fact that it's really short-sighted. Namely, like, there is no plan to scale this. If literally every user of Ethereum is gonna use this this precompile, the network is basically frozen, or, like, the gas is gonna spike, like, the level that we were at the 2021. This is the first issue. The second issue is, like, zkVM compatibility. We're… the moment is… I mean, the gas is really mispriced at the moment. If we keep in consideration that the fact that we're gonna move to zkVM, this is gonna be really a total bad price at the moment. And the last but not least, I mean, I have 10 other reasons, but I don't want to take all the evening, is basically, like, we are introducing this new assumption in Ethereum at really bad timing. We have seen what happened in the last weeks, months, introducing this right now. I don't know if it's the best things. Once we have a solution…",
+              "translation": "네, 맞습니다, 제 의견은 다들 이미 아실 것 같고, 아시겠지만 저희는 이 주제에 대해 2주마다 브레이크아웃 룸을 운영해왔습니다. 처음에는 격자 기반 방식을 살펴보고 있었지만, 시간이 지나면서 여러 이유로 그로부터 멀어지고 있습니다. 그중 일부를 요약해 드릴 수 있습니다. 끝에서부터 시작하면, 저희는 Daisugi라는 테스트넷을 가지고 있는데, 현재 그곳에서 애그리게이션(aggregation)을 적용한 SPHINCS 버전을 실제로 운영하고 있습니다. 그래서 가스 비용이 정말, 정말 저렴해질 것입니다. 이는 물론 애그리게이션 덕분입니다. 그리고 이것이 사실 이 EIP의 문제점 중 하나인데, 이 EIP가 정말 근시안적이라는 점입니다. 즉, 이것을 확장할 계획이 없습니다. 만약 이더리움의 모든 사용자가 문자 그대로 이 프리컴파일을 쓰게 된다면, 네트워크는 거의 멈춰버리거나, 가스가 2021년 수준으로 치솟을 것입니다. 이것이 첫 번째 문제입니다. 두 번째 문제는 zkVM 호환성입니다. 현재로서는, 가스 가격이 정말 잘못 책정되어 있습니다. 우리가 zkVM으로 이전할 것이라는 사실을 고려한다면, 이것은 현재 시점에서 정말 완전히 잘못된 가격이 될 것입니다. 그리고 마지막으로, 다른 이유도 10가지 정도 있지만 밤새 시간을 쓰고 싶지는 않으니, 기본적으로 우리가 이 새로운 가정을 이더리움에 정말 안 좋은 시점에 도입하고 있다는 것입니다. 최근 몇 주, 몇 달 동안 무슨 일이 있었는지 우리는 보았습니다. 지금 이것을 도입하는 것이 최선인지 모르겠습니다. 해결책이 마련되면..."
+            }
+          ],
+          "quote": {
+            "text": "이더리움의 모든 사용자가 이 프리컴파일을 쓰게 되면 네트워크는 사실상 얼어붙거나 가스가 2021년 수준으로 치솟을 것이다.",
+            "original": "If literally every user of Ethereum is gonna use this precompile, the network is basically frozen, or the gas is gonna spike to the level that we were at the 2021.",
+            "speaker": "Antonio Sanso",
+            "timestamp": "01:32:00"
+          }
+        }
+      ],
+      "speakers": [
+        {
+          "label": "nixo",
+          "name": "Nixo",
+          "org": "EF Protocol Support",
+          "role": "ACDE 진행",
+          "handle": "nixorokish",
+          "avatar": "https://pbs.twimg.com/profile_images/2086847437277478912/F-w_Sq0y_400x400.jpg",
+          "share": 0.331
+        },
+        {
+          "label": "danceratopz",
+          "name": "danceratopz",
+          "org": "EF",
+          "role": "테스팅",
+          "handle": "danceratopz",
+          "avatar": "https://pbs.twimg.com/profile_images/1478357444132839427/sxWspbwH_400x400.jpg",
+          "share": 0.135
+        },
+        {
+          "label": "Ben Adams",
+          "name": "Ben Adams",
+          "org": "Nethermind",
+          "handle": "ben_a_adams",
+          "avatar": "https://pbs.twimg.com/profile_images/1282411238602006529/l4lHaQHE_400x400.jpg",
+          "share": 0.071
+        },
+        {
+          "label": "Łukasz Rozmej",
+          "name": "Łukasz Rozmej",
+          "org": "Nethermind",
+          "role": "EIP-8037 공동 저자",
+          "share": 0.07
+        },
+        {
+          "label": "Justin Florentine",
+          "name": "Justin Florentine",
+          "org": "Besu",
+          "share": 0.056
+        },
+        {
+          "label": "Barnabas",
+          "name": "Barnabas Busa",
+          "org": "EF DevOps",
+          "handle": "BarnabasBusa",
+          "avatar": "https://pbs.twimg.com/profile_images/534855342300352514/m-C5ReWq_400x400.jpeg",
+          "share": 0.047
+        },
+        {
+          "label": "Felix (Geth)",
+          "name": "Felix",
+          "share": 0.044
+        },
+        {
+          "label": "Csaba",
+          "name": "Csaba",
+          "share": 0.04
+        },
+        {
+          "label": "Kevaundray Wedderburn",
+          "name": "Kevaundray Wedderburn",
+          "org": "EF",
+          "role": "응용 리서치",
+          "handle": "kevaundray",
+          "avatar": "https://pbs.twimg.com/profile_images/1658523090467315712/a3xJ6ySn_400x400.jpg",
+          "share": 0.029
+        },
+        {
+          "label": "Stefan Starflinger",
+          "name": "Stefan Starflinger",
+          "org": "EF DevOps",
+          "share": 0.027
+        },
+        {
+          "label": "ethDreamer (Mark)",
+          "name": "ethDreamer",
+          "share": 0.026
+        },
+        {
+          "label": "potuz",
+          "name": "Potuz",
+          "org": "Offchain Labs",
+          "role": "Prysm",
+          "handle": "potuz_eth",
+          "avatar": "https://pbs.twimg.com/profile_images/1494001194427158539/bfrZyMsG_400x400.jpg",
+          "share": 0.023
+        },
+        {
+          "label": "Danno Ferrin",
+          "name": "Danno Ferrin",
+          "org": "Sei Labs",
+          "role": "전 Besu",
+          "handle": "shemnon",
+          "avatar": "https://pbs.twimg.com/profile_images/2037631420873789440/Ik2HuQiv_400x400.jpg",
+          "share": 0.021
+        },
+        {
+          "label": "Antonio Sanso",
+          "name": "Antonio Sanso",
+          "share": 0.018
+        },
+        {
+          "label": "Iván | ethrex",
+          "name": "Iván Litteri",
+          "org": "LambdaClass",
+          "role": "ethrex 테크 리드",
+          "handle": "ivanlitteri",
+          "avatar": "https://pbs.twimg.com/profile_images/1801577809728462848/UPASaIEt_400x400.jpg",
+          "share": 0.014
+        },
+        {
+          "label": "jochem-brouwer",
+          "name": "Jochem Brouwer",
+          "org": "EF",
+          "role": "EthereumJS · EIP-8037 공동 저자",
+          "share": 0.009
+        },
+        {
+          "label": "lightclient",
+          "name": "lightclient (Matt Garnett)",
+          "org": "EF",
+          "role": "geth",
+          "handle": "lightclients",
+          "avatar": "https://pbs.twimg.com/profile_images/1554130973935030274/wHWuxuTT_400x400.jpg",
+          "share": 0.009
+        },
+        {
+          "label": "ignacio",
+          "name": "ignacio",
+          "share": 0.009
+        },
+        {
+          "label": "Luis Pinto",
+          "name": "Luis Pinto",
+          "org": "Besu",
+          "share": 0.006
+        },
+        {
+          "label": "CPerezz",
+          "name": "Carlos Pérez (CPerezz)",
+          "org": "EF",
+          "role": "EIP-8037 공동 저자",
+          "handle": "CPerezz19",
+          "avatar": "https://pbs.twimg.com/profile_images/1254074532417200128/M2uQcW5K_400x400.jpg",
+          "share": 0.005
+        },
+        {
+          "label": "james",
+          "name": "james",
+          "share": 0.003
+        },
+        {
+          "label": "Pooja Ranjan",
+          "name": "Pooja Ranjan",
+          "org": "ECH Institute",
+          "handle": "poojaranjan19",
+          "avatar": "https://pbs.twimg.com/profile_images/2056372532299571200/Z-EwXzEQ_400x400.jpg",
+          "share": 0.003
+        },
+        {
+          "label": "Justin Traglia",
+          "name": "Justin Traglia",
+          "org": "EF",
+          "role": "보안",
+          "handle": "JustinTraglia",
+          "avatar": "https://pbs.twimg.com/profile_images/1648459994256543744/fn_SnKW5_400x400.jpg",
+          "share": 0
+        }
+      ],
+      "chat": [
+        {
+          "speaker": "Barnabas",
+          "text": "우리는 여전히 후디 검증자 세트의 95%를 통제하고 있다",
+          "timestamp": "00:23:18"
+        },
+        {
+          "speaker": "Nico Flaig",
+          "text": "지금 세폴리아 페이로드 대부분을 내가 만들고 있고, 확실히 로컬보다 더 높게 입찰하고 있다",
+          "timestamp": "00:25:24"
+        },
+        {
+          "speaker": "Łukasz Rozmej",
+          "text": "설정만 바꾸는 릴리스는 언제든 낼 수 있다",
+          "timestamp": "00:27:22"
+        }
+      ],
+      "glossary": [
+        {
+          "term": "SFI",
+          "def": "Scheduled for Inclusion. 포크 포함이 확정된 상태"
+        },
+        {
+          "term": "CFI",
+          "def": "Considered for Inclusion. 포함을 전제로 검토 중인 상태"
+        },
+        {
+          "term": "PFI",
+          "def": "Proposed for Inclusion. 포함이 제안돼 후보로 접수된 상태"
+        },
+        {
+          "term": "DFI",
+          "def": "Declined for Inclusion. 이번 포크 후보에서 제외된 상태"
+        },
+        {
+          "term": "프리컴파일(precompile)",
+          "def": "자주 쓰는 연산을 EVM 밖에 내장해 싸게 제공하는 특수 컨트랙트"
+        },
+        {
+          "term": "BAL",
+          "def": "블록 접근 목록(Block Access List). 블록이 읽고 쓰는 상태를 담은 목록"
+        },
+        {
+          "term": "ePBS",
+          "def": "프로토콜에 내장된 제안자와 블록 빌더의 역할 분리"
+        },
+        {
+          "term": "EOA",
+          "def": "외부 소유 계정. 개인 키로 움직이는 일반 지갑 계정"
+        }
+      ],
+      "eips": [
+        4758,
+        5920,
+        7666,
+        7709,
+        7907,
+        7954,
+        8077,
+        8116,
+        8151,
+        8298,
+        8355,
+        8360,
+        8374
+      ],
+      "relatedDebates": [],
+      "telegramMessageId": 1652
+    },
     {
       "id": "acdt-99",
       "series": "acdt",
@@ -15132,13 +15757,13 @@
     "currentFork": {
       "name": "글램스터담",
       "stage": "테스트넷 단계",
-      "line": "세폴리아 10월 6일 13:53 UTC 포크 확정 · 후디 10월 27일 잠정"
+      "line": "세폴리아 10월 6일 포크 · 후디 10월 26일 확정 · 릴리스 10월 16일까지"
     },
     "nextFork": {
       "name": "헤고타",
       "stage": "범위 정하는 중",
-      "line": "CFI 12건 이상 · FOCIL과 프레임 데브넷 데브콘 전 통합 목표"
+      "line": "CFI 20건 축적 · FOCIL과 프레임즈 데브넷 데브콘 전 통합 목표"
     },
-    "basis": "acdt-99"
+    "basis": "acde-247"
   }
 }
