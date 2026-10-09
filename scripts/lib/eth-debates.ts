@@ -9,9 +9,12 @@ export const STANCES = ['pro', 'con', 'neutral', 'other'] as const;
 /** 인용 트윗이 누구에게 답한 것인지: reply(답글) · quote(인용) · none(확인했으나 관계 없음) */
 export const RELATIONS = ['reply', 'quote', 'none'] as const;
 
-/** 진행 중 → 식어감(7일 무활동) → 종결(30일 무활동). 결론 남(resolved)은 편집자가 JSON에서 직접 표기. */
+/**
+ * 진행 중 → 식어감(7일 무활동) → 종결(14일 무활동). 결론 남(resolved)은 편집자가 JSON에서 직접 표기.
+ * 종결 전까지는 후속 확인(DEBATES_FOLLOWUP)이 매 실행 따라간다 (2026-10-10 오너 결정, 30일 → 14일).
+ */
 export const COOLING_AFTER_DAYS = 7;
-export const ARCHIVE_AFTER_DAYS = 30;
+export const ARCHIVE_AFTER_DAYS = 14;
 
 const HolderSchema = z.object({
   /** X 핸들(@ 없이). 워치리스트 밖 인물은 없을 수 있다 */
@@ -100,6 +103,8 @@ export interface DebatesFile {
   updatedAt: string;
   /** 이미 추출을 끝낸 다이제스트 날짜 — 같은 호를 두 번 넣지 않기 위함 */
   processedDigests: string[];
+  /** 후속 확인에서 이미 모델에 넘긴 답글·콜 결정·기사의 키(url) — 매일 같은 소식을 다시 넣지 않기 위함 */
+  followupSeen?: string[];
   debates: Debate[];
 }
 
@@ -125,6 +130,50 @@ export function holderCount(debate: Pick<Debate, 'positions'>): number {
 /** 사이트에 보이는가. DM 버튼으로 정한 publish가 인원 기준보다 우선한다 */
 export function isShown(debate: Pick<Debate, 'positions' | 'publish'>): boolean {
   return debate.publish ?? holderCount(debate) >= MIN_PARTICIPANTS;
+}
+
+/**
+ * 후속 반응을 다시 훑을 논쟁과 그 기준 트윗. 다이제스트가 같은 쟁점을 다시 싣지 않으면 갱신이 끊기므로
+ * 기존 논쟁의 루트 트윗에 달린 새 답글·인용을 직접 확인한다 (2026-10-09).
+ * ids가 없으면 보관되지 않은 논쟁 전부, 있으면 보관된 것도 포함해 그 id만.
+ */
+export function followupTargets(debates: ReadonlyArray<Debate>, ids?: ReadonlyArray<string>): Array<{ debate: Debate; url: string }> {
+  const picked = ids ? debates.filter((d) => ids.includes(d.id)) : debates.filter((d) => d.status !== 'archived');
+  return picked.flatMap((d) => {
+    const url = [d.rootUrl, ...d.timeline.map((t) => t.url)].find((u) => u && tweetIdOf(u));
+    return url ? [{ debate: d, url }] : [];
+  });
+}
+
+/** 마지막 활동일 다음 날 이후의 답글만 (이미 반영된 반응을 다시 넣지 않게) */
+export function repliesAfter(replies: ReadonlyArray<ThreadReply>, since: string): ThreadReply[] {
+  return replies.filter((r) => r.date.slice(0, 10) > since);
+}
+
+/**
+ * since 이후의 콜 결정과 다이제스트 항목 (논쟁·인사이트 섹션 제외). 후속 확인에서 기존 논쟁의 결론·새 국면을 찾는 재료.
+ * 콜·시장 섹션에 실린 소식은 정규 추출이 논쟁에 잇지 않아서 따로 넘긴다 (2026-10-09, 퀵 슬롯 CFI·8363 철회 누락).
+ */
+export function laterDevelopments(
+  digests: ReadonlyArray<{ date: string; sections: ReadonlyArray<{ heading: string; items: ReadonlyArray<{ title: string; summary: string; url: string }> }> }>,
+  calls: ReadonlyArray<{ date: string; title: string; forkcastUrl?: string; decisions?: ReadonlyArray<{ label: string; text: string }> }>,
+  since: string,
+  seen: ReadonlySet<string> = new Set(),
+): Array<{ key: string; line: string }> {
+  const decisionLines = calls
+    .filter((c) => c.date > since)
+    .flatMap((c) => (c.decisions ?? []).map((d) => ({ date: c.date, key: `${c.forkcastUrl ?? c.title}#${d.label}`, line: `- [${c.date} ${c.title}] ${d.label}: ${d.text} — ${c.forkcastUrl ?? ''}` })));
+  const digestLines = digests
+    .filter((g) => g.date > since)
+    .flatMap((g) =>
+      g.sections
+        .filter((s) => !/논쟁|담론|인사이트/.test(s.heading))
+        .flatMap((s) => s.items.map((i) => ({ date: g.date, key: i.url, line: `- [${g.date} ${s.heading}] ${i.title}: ${i.summary} — ${i.url}` }))),
+    );
+  return [...decisionLines, ...digestLines]
+    .filter((x) => !seen.has(x.key))
+    .sort((a, b) => a.date.localeCompare(b.date))
+    .map(({ key, line }) => ({ key, line }));
 }
 
 /** 아직 DM으로 알리지 않은 논쟁, 오래된 것부터 */
