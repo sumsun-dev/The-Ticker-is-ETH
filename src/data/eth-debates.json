@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-08T00:59:37.300Z",
+  "updatedAt": "2026-10-11T01:03:25.743Z",
   "processedDigests": [
     "2026-08-24",
     "2026-08-25",
@@ -24,9 +24,791 @@
     "2026-09-29",
     "2026-10-02",
     "2026-10-05",
-    "2026-10-08"
+    "2026-10-08",
+    "2026-10-11"
   ],
   "debates": [
+    {
+      "id": "thorchain-permissionless-dprk-zec",
+      "title": "THORChain의 ZEC 상장은 퍼미션리스의 원칙인가, 북한 세탁을 돕는 선택적 중립인가?",
+      "category": "거버넌스 · 커뮤니티",
+      "summary": "Unchained 팟캐스트에서 THORChain 공동창업자 Chad Barraford는 '모든 프로토콜이 불법 거래에서 수수료를 벌며 유니스왑도 그렇다'고 방어했지만, Taylor Monahan은 THORChain 수수료가 KelpDAO·Bitget 해킹 이후 급증해 한 구간만 약 1,000만 달러로 추산된다며 도둑의 자금 이동을 돕는 프로토콜은 직접 차단에 나서야 한다고 요구했다. Chad Barraford는 중앙화 없이는 불가능하다고 맞섰다. 앞선 북한의 ZEC 세탁을 둘러싼 퍼미션리스 논쟁의 연장선이다.",
+      "keyPoints": [
+        "프로토콜이 도난 자금 거래에서 수수료를 버는 것이 능동적 차단 의무를 발생시키는가?",
+        "유니스왑 등 다른 프로토콜도 같은 수수료를 버는데 THORChain만 문제 삼는 것이 공정한가?",
+        "중앙화 없이 도난 자금의 경유를 차단하는 것이 기술적으로 가능한가?"
+      ],
+      "background": "THORChain은 네이티브 자산 간 크로스체인 스왑을 중개인 없이 제공하는 탈중앙 유동성 프로토콜이다. KelpDAO와 Bitget 해킹 이후 탈취 자금이 THORChain을 거쳐 이동하며 수수료가 급증했고, 보안 연구자 Taylor Monahan(tayvano_)은 한 구간만 약 1,000만 달러로 추산했다. 공동창업자 Chad Barraford는 Unchained 팟캐스트에서 모든 프로토콜이 불법 거래에서 일부 수수료를 벌며 중앙화 없이는 차단이 불가능하다고 방어했다. 이는 북한(DPRK)의 대량 ZEC 탈취 직후 THORChain이 ZEC 거래를 상장한 데서 촉발된 퍼미션리스 중립성 논쟁의 연장선이다.",
+      "whyItMatters": "'퍼미션리스는 중립이 아니다'라는 담론이 추상적 원칙론을 지나 특정 프로토콜의 수수료 수익이라는 구체적 이해관계 충돌로 좁혀지고 있다. THORChain 거버넌스가 어떤 형태로든 차단을 도입하는지, 아니면 퍼미션리스 노선을 고수하는지가 탈중앙 프로토콜의 책임 경계를 가르는 선례가 된다.",
+      "sources": [],
+      "keywords": [
+        "THORChain",
+        "tayvano_",
+        "cbarraford",
+        "illicit fees"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "THORChain의 퍼미션리스는 선택적이며 도난 자금 경유를 능동적으로 막아야 한다",
+          "holders": [
+            {
+              "handle": "tayvano_",
+              "name": "Tay 💖",
+              "role": "온체인 해킹·탈취 추적 보안 연구자",
+              "avatar": "https://pbs.twimg.com/profile_images/1581795350087667713/iMrb6XX__400x400.jpg"
+            },
+            {
+              "handle": "crypto_ninjas",
+              "name": "CryptoNinjas",
+              "avatar": "https://pbs.twimg.com/profile_images/1879443366158774272/LShK75fk_400x400.jpg"
+            },
+            {
+              "handle": "0xRezush",
+              "name": "Reza",
+              "avatar": "https://pbs.twimg.com/profile_images/1997317823761125376/-o1Z__5o_400x400.jpg"
+            },
+            {
+              "handle": "CupOJoseph",
+              "name": "JOSΞPH 🌳",
+              "avatar": "https://pbs.twimg.com/profile_images/2044458088162279424/VbmL3abg_400x400.jpg"
+            },
+            {
+              "handle": "omega_netw0rk",
+              "name": "Omega",
+              "watchlist": false,
+              "avatar": "https://pbs.twimg.com/profile_images/1989025429605285889/6k1RMps5_400x400.jpg"
+            },
+            {
+              "handle": "Tajwan_Tamim",
+              "name": "Tajwan Tamim",
+              "watchlist": false,
+              "avatar": "https://pbs.twimg.com/profile_images/1827713998076387329/c9j_nJSt_400x400.jpg"
+            }
+          ],
+          "points": [
+            "THORChain의 수수료는 KelpDAO와 Bitget 해킹 직후 급증했고 한 구간만 약 1,000만 달러로 추산된다.",
+            "도둑의 자금 이동을 돕는 프로토콜은 생태계 모두에게 해를 끼치는 유인을 만드므로, 능동적 차단에 나서야 한다.",
+            "해킹 수수료만 셀 게 아니라 모든 불법 거래에서 나오는 수수료가 집계돼야 한다."
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "모든 프로토콜이 불법 거래에서 수수료를 벌며 중앙화 없이는 차단이 불가능하다",
+          "holders": [
+            {
+              "handle": "ThorTrades8",
+              "name": "ThorTrades ⚡️",
+              "avatar": "https://pbs.twimg.com/profile_images/1528427210838884355/ETbyi5Si_400x400.jpg"
+            },
+            {
+              "handle": "cbarraford",
+              "name": "Chad Barraford",
+              "role": "THORChain 공동창업자",
+              "avatar": "https://pbs.twimg.com/profile_images/1690937544572305409/swoZ2i95_400x400.jpg"
+            }
+          ],
+          "points": [
+            "모든 프로토콜이 불법 거래에서 일부 수수료를 벌며 유니스왑도 예외가 아니다.",
+            "중앙화 없이는 도난 자금의 경유를 선별해 차단하는 것이 불가능하다.",
+            "THORChain은 최대 사용자층의 거래 수요에 응답했을 뿐이다."
+          ]
+        },
+        {
+          "stance": "neutral",
+          "label": "상장은 오래전 계획됐고 자금 추적은 어차피 어렵다",
+          "holders": [
+            {
+              "handle": "zmanian",
+              "name": "zmanian",
+              "avatar": "https://pbs.twimg.com/profile_images/1787602143869853696/2eghYl-r_400x400.jpg"
+            }
+          ],
+          "points": [
+            "ZEC 상장은 1년 넘게 계획된 일이며, 자금 추적은 어차피 어렵다."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-10-02",
+          "by": "tayvano_",
+          "stance": "pro",
+          "quote": "북한이 처음으로 상당량의 ZEC를 탈취하자, THORChain이 ZEC를 상장하려고 산을 옮긴다. 웃기지도 않는다. NO 표까지 더 러그했다. 기억하라: THORChain은 당신이 북한이면 '퍼미션리스'다. 당신이 무고한 사용자나 노드 운영자면 아니다.",
+          "url": "https://x.com/tayvano_/status/2106055842206531682",
+          "digest": "2026-10-05",
+          "replyTo": "THORChain",
+          "relation": "quote",
+          "original": "&gt; DPRK steals a sizable amount of ZEC for the first time\n\n&gt; THORChain moves mountains to get ZEC launched\n\nLOL\n\nThey even had to rug more NO's\n\nRemember: THORChain is \"permissionless\" if you're DPRK. It's not if you're an innocent user or node operator 😘",
+          "translation": "> 북한(DPRK)이 처음으로 상당한 양의 ZEC를 훔친다 > 토르체인(THORChain)이 ZEC를 상장시키기 위해 온갖 수를 다 쓴다 ㅋㅋㅋ 그들은 '아니오(NO)' 투표를 더 많이 러그(rug)해야 했다. 기억하라: 토르체인은 당신이 북한이라면 '허가 없이(permissionless)' 이용할 수 있다. 당신이 아무 죄 없는 사용자나 노드 운영자(node operator)라면 그렇지 않다."
+        },
+        {
+          "date": "2026-10-02",
+          "by": "ThorTrades8",
+          "stance": "con",
+          "quote": "THORChain의 최대 사용자가 ZEC를 필요로 한다. THORChain은 전달한다. 크립토에서 이보다 나은 고객 서비스를 어디서 찾겠나?",
+          "url": "https://x.com/ThorTrades8/status/2106070528310104297",
+          "digest": "2026-10-05",
+          "replyTo": "tayvano_",
+          "relation": "quote",
+          "original": "Biggest user of @THORChain needs $ZEC. Thorchain delivers.\n\nWhere do you find better customer service in crypto? ⚡️",
+          "translation": "토르체인(THORChain)의 최대 사용자가 ZEC가 필요하다. 토르체인이 그것을 제공한다. 크립토 어디에서 이보다 나은 고객 서비스를 찾을 수 있겠는가?"
+        },
+        {
+          "date": "2026-10-02",
+          "by": "zmanian",
+          "stance": "neutral",
+          "quote": "이건 1년 넘게 계획된 일이다. 타이밍에 아이러니가 있지만, 그 자금의 출구를 실제로 식별할 사람은 없을 것 같다.",
+          "url": "https://x.com/zmanian/status/2106144747400450075",
+          "digest": "2026-10-05",
+          "replyTo": "tayvano_",
+          "relation": "reply",
+          "original": "@tayvano_ This has been planned for over a year.\n\nThere is some irony to the timing but it’s unlikely that anyone is really going to identify exits on those funds.",
+          "translation": "이것은 1년 넘게 계획되어 있던 일이다. 타이밍에 어떤 아이러니가 있긴 하지만, 누군가가 그 자금의 출구를 실제로 식별해낼 가능성은 낮다."
+        },
+        {
+          "date": "2026-10-03",
+          "by": "crypto_ninjas",
+          "stance": "pro",
+          "quote": "북한의 ZEC 탈취는 '퍼미션리스'가 양날의 검임을 보여준다.",
+          "url": "https://x.com/crypto_ninjas/status/2106207053584953820",
+          "digest": "2026-10-05",
+          "replyTo": "tayvano_",
+          "relation": "reply",
+          "original": "@tayvano_ DPRK's ZEC theft shows how \"permissionless\" is a double-edged sword.",
+          "translation": "북한의 ZEC 탈취는 '허가 없음(permissionless)'이 어떻게 양날의 검이 되는지를 보여준다."
+        },
+        {
+          "date": "2026-10-03",
+          "by": "CupOJoseph",
+          "stance": "pro",
+          "quote": "내 베팅: 북한은 이게 출시될 때까지 익스플로잇을 쥐고 있었다.",
+          "url": "https://x.com/CupOJoseph/status/2106223160999981313",
+          "digest": "2026-10-05",
+          "replyTo": "tayvano_",
+          "relation": "reply",
+          "original": "@tayvano_ My bet: Dprk was sitting on the exploit until this launched",
+          "translation": "내 예상은: 북한이 이것이 출시될 때까지 익스플로잇(exploit)을 가지고 기다리고 있었다는 것이다."
+        },
+        {
+          "date": "2026-10-03",
+          "by": "0xRezush",
+          "stance": "pro",
+          "quote": "퍼미션리스는 규칙이 모두에게 동등하게 적용될 때만 의미가 있다.",
+          "url": "https://x.com/0xRezush/status/2106524141339738327",
+          "digest": "2026-10-05",
+          "replyTo": "tayvano_",
+          "relation": "reply",
+          "original": "@tayvano_ permissionless only means something when the rules apply equally to everyone",
+          "translation": "허가 없음(permissionless)은 규칙이 모두에게 동등하게 적용될 때에만 의미를 갖는다."
+        },
+        {
+          "date": "2026-10-08",
+          "by": "laurashin",
+          "stance": "other",
+          "quote": "모든 프로토콜은 불법 거래에서 일부 수수료를 벌며 cbarraford는 유니스왑도 그렇다고 내게 말했다. 하지만 THORChain의 수수료는 KelpDAO와 Bitget 해킹 이후 급증했고, tayvano_는 한 구간을 약 1,000만 달러 수수료로 추산했다.",
+          "url": "https://x.com/laurashin/status/2108278801973326139",
+          "digest": "2026-10-11",
+          "relation": "none",
+          "original": "Every protocol earns some fees on illicit trades, @cbarraford told me, and he says @Uniswap has too. 💸\n\nBut @THORChain's fees spiked after the @KelpDAO and @Bitget hacks, and @tayvano_ put one stretch at about $10M in fees.",
+          "translation": "모든 프로토콜은 불법 거래(illicit trades)에서도 일정한 수수료를 벌어들인다고 @cbarraford가 나에게 말했다. 그는 @Uniswap도 마찬가지라고 말한다. 하지만 @THORChain의 수수료는 @KelpDAO와 @Bitget 해킹 이후 급증했고, @tayvano_는 한 구간의 수수료를 약 1000만 달러로 추산했다."
+        },
+        {
+          "date": "2026-10-09",
+          "by": "omega_netw0rk",
+          "stance": "pro",
+          "quote": "THORChain의 수수료가 해킹 이후 급증했다는데, 모든 불법 거래에서 나오는 수수료는 대체 누가 세고 있나?",
+          "url": "https://x.com/omega_netw0rk/status/2108351021227647138",
+          "digest": "2026-10-11",
+          "replyTo": "laurashin",
+          "relation": "reply",
+          "original": "@laurashin @CBarraford @Uniswap @THORChain @KelpDAO @bitget @tayvano_ So, THORChain's fees spiked after the hacks, but who's counting the fees from all the illicit trades?",
+          "translation": "그러니까 THORChain의 수수료는 해킹 이후 급증했는데, 그렇다면 모든 불법 거래에서 나오는 수수료는 누가 집계하고 있는가?"
+        },
+        {
+          "date": "2026-10-09",
+          "by": "Tajwan_Tamim",
+          "stance": "pro",
+          "quote": "tayvano_가 그런 1,000만 달러 급증을 그렇게 포착했다니 놀랍다.",
+          "url": "https://x.com/Tajwan_Tamim/status/2108491303344570791",
+          "digest": "2026-10-11",
+          "replyTo": "laurashin",
+          "relation": "reply",
+          "original": "@laurashin @CBarraford @Uniswap @THORChain @KelpDAO @bitget @tayvano_ wild that tayv caught a ten mil spike like that",
+          "translation": "tayv가 그런 1000만 달러 규모의 급증을 그렇게 포착했다는 게 놀랍다."
+        }
+      ],
+      "firstSeen": "2026-10-02",
+      "lastActivity": "2026-10-09",
+      "status": "active",
+      "rootUrl": "https://x.com/tayvano_/status/2106055842206531682",
+      "engagement": {
+        "likes": 289,
+        "retweets": 15,
+        "quotes": 3,
+        "replies": 41,
+        "views": 34015
+      },
+      "publish": false
+    },
+    {
+      "id": "ethereum-zcash-privacy-competitor",
+      "title": "이더리움의 최대 경쟁자는 지캐시이고 프라이버시를 최우선해야 하나?",
+      "category": "프로토콜 설계",
+      "summary": "lex_node가 저스틴 드레이크(Justin Drake)의 최근 공개 기여가 발행량(issuance) 축소 사이드쇼와 비탈릭이 정정해야 했던 '크립토 파괴 FUD'였다며 중요한 일에 집중하라고 공개 요구하자, binji_x와 LaLiLuLeL0x 등은 공개적으로 틀릴 자유 없이는 대담한 연구도 없다고 옹호했고, ryanberckmans는 비판과 옹호를 오가며 '그가 있어 다행이지만 발언의 포구 크기를 의식하라'는 절충으로 수렴했다.",
+      "keyPoints": [
+        "수백억 달러 시장을 움직이는 리더의 공개 발언에는 더 높은 신중함이 요구되는가, 아니면 소신을 그대로 말할 자유가 우선인가?",
+        "저스틴 드레이크의 최근 공개 기여(발행량 축소 논쟁, 양자·ECC 마이그레이션 글)는 생산적이었는가 역효과였는가?",
+        "리서치 문화의 '공개적으로 틀릴 자유'와 플랫폼 책임은 어떻게 양립하는가?"
+      ],
+      "background": "저스틴 드레이크는 EF의 핵심 리서처로 Lean Ethereum과 울트라사운드 머니(ultrasound money) 밈을 주도해 왔다. 이 논쟁은 Haseeb Qureshi의 '저스틴의 진단은 맞지만 해법은 매우 틀렸다'는 평가를 TrustlessState가 인용하면서 시작됐고, 직전에는 양자 위협에 대비해 자산을 새 주소로 통제된 대규모 마이그레이션하자는 저스틴의 글이 커뮤니티 논란을 낳은 상황이었다. lex_node는 그 글을 '비탈릭이 점잖게 정정해야 했던 크립토 파괴 FUD'라고 지목했다.",
+      "whyItMatters": "EF 핵심 인사의 공개 발언 규범이 처음으로 정면에서 토론된 사례로, 리서치의 '공개적으로 틀릴 자유'와 ETH 시장을 흔드는 플랫폼 책임 사이의 경계가 쟁점이 됐다. 비판자와 옹호자가 '그가 있어 다행이지만 전송 전 한 번 더 숙고하라'는 절충으로 수렴한 점은 향후 EF 인사들의 커뮤니케이션 톤 변화 여부를 지켜볼 지표다.",
+      "sources": [
+        {
+          "title": "EIP-8141: Frame Transaction",
+          "url": "https://eips.ethereum.org/EIPS/eip-8141"
+        }
+      ],
+      "keywords": [
+        "Justin Drake",
+        "Lean Ethereum",
+        "ultrasound money",
+        "lex_node"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "영향력에 걸맞게 공개 기여를 신중히 하고 정말 중요한 일에 집중해야 한다",
+          "holders": [
+            {
+              "handle": "donnoh_eth",
+              "name": "donnoh.gwei 💗",
+              "role": "L2Beat 리서치 헤드",
+              "avatar": "https://pbs.twimg.com/profile_images/1906978600311521280/aSbKSjtX_400x400.jpg"
+            },
+            {
+              "name": "lex_node",
+              "watchlist": false,
+              "role": "MetaLeX Labs 창업자·크립토 변호사"
+            },
+            {
+              "handle": "zectrillionaire",
+              "name": "big z",
+              "role": "전 ETH 고래, ZEC 지지자",
+              "avatar": "https://pbs.twimg.com/profile_images/2062711045878431744/uGFeBElS_400x400.jpg"
+            },
+            {
+              "name": "Haseeb Qureshi",
+              "watchlist": false
+            },
+            {
+              "handle": "TrustlessState",
+              "name": "David Hoffman",
+              "role": "Bankless 공동창업자",
+              "watchlist": false,
+              "avatar": "https://pbs.twimg.com/profile_images/2067341164508753920/liVbRn0l_400x400.jpg"
+            }
+          ],
+          "points": [
+            "저스틴의 최근 공개 기여는 그의 이름값 때문에 과도하게 번진 발행량 축소 사이드쇼와, 비탈릭이 직접 정정해야 했던 크립토 파괴 FUD였다.",
+            "500억 달러 규모의 시장을 흔드는 자리에서는 소신을 말하되 불난 집에 기름을 붓지 않는 방식이 필요하다.",
+            "양자·ECC 대응 글은 문제 진단은 맞지만 제안한 해법은 매우 틀렸다는 평가가 논쟁의 출발점이 됐다."
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "그는 이더리움에 없어선 안 될 리더이고 공개적으로 틀릴 자유가 있어야 한다",
+          "holders": [
+            {
+              "handle": "zayn4pf",
+              "name": "zayn",
+              "avatar": "https://pbs.twimg.com/profile_images/2096586358982602754/Vxp-9lsh_400x400.jpg"
+            },
+            {
+              "handle": "TrustlessState",
+              "name": "David Hoffman",
+              "role": "Bankless 진행자·미디어",
+              "avatar": "https://pbs.twimg.com/profile_images/2067341164508753920/liVbRn0l_400x400.jpg"
+            },
+            {
+              "handle": "ryanberckmans",
+              "name": "⟠",
+              "role": "이더리움 커뮤니티 논객·ETH 투자자",
+              "avatar": "https://pbs.twimg.com/profile_images/1517698378259480577/OyjdGW3D_400x400.jpg"
+            },
+            {
+              "handle": "binji_x",
+              "name": "binji",
+              "watchlist": false,
+              "avatar": "https://pbs.twimg.com/profile_images/2057797822666473472/Ns8EleJw_400x400.jpg"
+            },
+            {
+              "handle": "LaLiLuLeL0x",
+              "name": "La-Li-Lu-Le-Lo",
+              "role": "glue.fi 기여자·Lean Ethereum 지지자",
+              "avatar": "https://pbs.twimg.com/profile_images/2090373729578532864/T5jsuU-4_400x400.jpg"
+            }
+          ],
+          "points": [
+            "공개적으로 틀릴 용기가 없으면 대담한 연구도 없으며, 저스틴 없이 지금의 이더리움은 없었다.",
+            "그의 글이 촉발한 주소 정리·멀티시그 서명자 정리 조언은 실제로 유용하며, ETH에 암호학 분야 최고의 두뇌가 모여 있다는 증거다."
+          ]
+        },
+        {
+          "stance": "neutral",
+          "label": "그가 틀릴 수 있다고 보면서도 없어선 안 될 인물로 여긴다, 다만 발언의 포구 크기를 의식하라",
+          "holders": [
+            {
+              "handle": "jchaskin22",
+              "name": "chaskin.eth",
+              "role": "EF 리서처",
+              "avatar": "https://pbs.twimg.com/profile_images/2016950149633691648/Kht-necI_400x400.jpg"
+            },
+            {
+              "handle": "ryanberckmans",
+              "name": "⟠",
+              "role": "이더리움 커뮤니티 멤버·ETH 투자자",
+              "avatar": "https://pbs.twimg.com/profile_images/1517698378259480577/OyjdGW3D_400x400.jpg"
+            }
+          ],
+          "points": [
+            "많은 기여를 했다는 것이 덜 숙고된 말을 쏘아붙일 면허는 아니며, 울트라사운드 머니 밈도 ETH의 성공을 현물 인플레이션율에 묶는 것이 최적인지 생각 없이 추진됐다.",
+            "'자산의 통제된 대규모 마이그레이션'을 그토록 단정적으로 말한 것은 리더 위치에서 급진적이며 '포구의 크기'가 중요하다.",
+            "그럼에도 그는 경기장에서 싸우는 사람이고 전체적으로 그가 있어 대단히 운이 좋으니, 전송 버튼 전에 커피 한 잔 더 하고 멈춰 단어를 고르면 된다."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-09-07",
+          "by": "donnoh_eth",
+          "stance": "pro",
+          "quote": "이더리움의 (정말 중요한 것들에서) 최대 경쟁자는 지캐시다. 그에 맞게 행동하라.",
+          "url": "https://x.com/donnoh_eth/status/2096854640868438429",
+          "digest": "2026-09-09",
+          "replyTo": "nero_eth",
+          "relation": "quote",
+          "original": "ethereum’s biggest competitor (in the things that actually matter) is zcash. act accordingly",
+          "translation": "이더리움의 가장 큰 경쟁자는(진짜로 중요한 부분에서는) 지캐시(zcash)입니다. 그에 맞게 행동하세요."
+        },
+        {
+          "date": "2026-09-07",
+          "by": "donnoh_eth",
+          "stance": "pro",
+          "quote": "블록체인의 1순위 용도는 주권적 가치 이전이다. 무조건적 프라이버시 없이는 주권이 실제로 달성되지 않는다고 본다. 스마트컨트랙트는 좋지만 노드 운영을 어렵게 하고 사용자에게 도움이 안 되는 여러 방향으로 초점을 분산시킨다.",
+          "url": "https://x.com/donnoh_eth/status/2096903522486780012",
+          "digest": "2026-09-09",
+          "replyTo": "ox_shaman",
+          "relation": "reply",
+          "original": "top 1 blockchain use case is sovereign transfer of value. i dont believe sovereignty is achieved in practice without unconditional privacy. smart contracts are nice, but they make it harder to run nodes and diverts focus to many different things that dont help users to be fully sovereign. zcash has amazing ux for this already (try zodl wallet over tor), and it’s rapidly improving, in comparison the most similar protocol on ethereum (tornado cash) is super painful to use. not having smart contracts has many limitations, mainly being that many things you want to do on top require trusted parties. this is where ethereum can compete and eventually win over zcash, but the foundation is currently missing and it’s much harder for us to get there. this is fixable but we need to work on it. i 100% think zcash can surpass ethereum market cap with just private transfers and no smart contracts if ethereum doesnt catch up.",
+          "translation": "블록체인의 최고 사용 사례는 가치의 주권적 전송(sovereign transfer of value)입니다. 저는 무조건적인 프라이버시(unconditional privacy) 없이는 실제로 주권(sovereignty)이 달성될 수 없다고 봅니다. 스마트 컨트랙트(smart contract)는 좋지만, 노드를 운영하기 어렵게 만들고, 사용자가 완전히 주권을 가지는 데 도움이 되지 않는 여러 다른 것들로 초점을 분산시킵니다. 지캐시는 이미 이 부분에서 놀라운 UX를 갖추고 있고(토르(Tor)로 zodl 지갑을 써보세요), 빠르게 개선되고 있는 반면, 이더리움에서 가장 비슷한 프로토콜인 토네이도캐시(tornado cash)는 사용하기 매우 고통스럽습니다. 스마트 컨트랙트가 없다는 것은 여러 한계를 가지는데, 주로 그 위에서 하고 싶은 많은 일들이 신뢰받는 제3자(trusted party)를 필요로 한다는 점입니다. 바로 이 지점이 이더리움이 경쟁해서 결국 지캐시를 이길 수 있는 부분이지만, 지금은 그 기반이 빠져 있고 우리가 거기에 도달하기가 훨씬 어렵습니다. 이건 고칠 수 있는 문제지만 우리가 노력해야 합니다. 만약 이더리움이 따라잡지 못한다면, 저는 지캐시가 프라이빗 전송(private transfer)만으로, 스마트 컨트랙트 없이도 이더리움의 시가총액을 뛰어넘을 수 있다고 100% 생각합니다."
+        },
+        {
+          "date": "2026-09-07",
+          "by": "zayn4pf",
+          "stance": "con",
+          "quote": "이더리움은 지캐시가 무엇이든 그것이 될 수 있고 그 이상이다. 지캐시는 이더리움이 될 수 없다. 이 트윗은 이더리움을 깎아내리는 것과 같다.",
+          "url": "https://x.com/zayn4pf/status/2096941739781079386",
+          "digest": "2026-09-09",
+          "relation": "none",
+          "original": "@donnoh_eth @lex_node Ethereum can be whatever ZCASH is, and more.\n\nZCASH can’t be what Ethereum is.\n\nthis tweet is like cucking Ethereum lmfao.",
+          "translation": "@donnoh_eth @lex_node 이더리움은 지캐시가 할 수 있는 무엇이든 될 수 있고, 그 이상도 될 수 있습니다. 지캐시는 이더리움이 하는 것을 할 수 없습니다. 이 트윗은 이더리움을 스스로 깎아내리는 것 같네요 ㅋㅋㅋ."
+        },
+        {
+          "date": "2026-09-07",
+          "by": "donnoh_eth",
+          "stance": "pro",
+          "quote": "그들은 그럴 필요도 없다. 네이티브 증명 검증만 있으면 어떤 스마트컨트랙트 환경이든 그 위에 퍼미션리스하게 세워 zk증명으로 검증할 수 있다. 훨씬 쉽다. 셀레스티아가 한때 VM을 도입하지 않으려 했던 계획이 바로 이것이다.",
+          "url": "https://x.com/donnoh_eth/status/2096944960369054054",
+          "digest": "2026-09-09",
+          "replyTo": "zayn4pf",
+          "relation": "reply",
+          "original": "as i said they don’t need to. they just need native proof verification which allows any smart contract environment to be permissionlessly built on top and verified via zk proofs. it is way way easier. this is what also celestia was planning a while ago not to introduce a vm, it’s not a new idea.",
+          "translation": "제가 말했듯이 그들이 (스마트 컨트랙트를) 가질 필요는 없습니다. 그들에게 필요한 건 네이티브 증명 검증(native proof verification)뿐이고, 이를 통해 어떤 스마트 컨트랙트 환경이든 그 위에 무허가로(permissionlessly) 구축되고 영지식증명(zk proof)으로 검증될 수 있습니다. 이게 훨씬, 훨씬 더 쉽습니다. 이건 셀레스티아(celestia)도 예전에 VM을 도입하지 않는 방향으로 계획했던 것이라, 새로운 아이디어가 아닙니다."
+        },
+        {
+          "date": "2026-09-07",
+          "by": "jchaskin22",
+          "stance": "neutral",
+          "quote": "이더리움의 강점 하나는 경쟁하는 여러 프라이버시 방식을 제공할 수 있다는 것이다. 토네이도 캐시는 검열 저항을 극대화하고, 프라이버시 풀은 자금이 불법 활동과 무관함을 증명하게 하며, Railgun은 디파이를 사적으로 쓰게 한다. 다만 이는 파편화를 낳는다.",
+          "url": "https://x.com/jchaskin22/status/2096984156433465605",
+          "digest": "2026-09-09",
+          "replyTo": "donnoh_eth",
+          "relation": "reply",
+          "original": "One of Ethereum’s advantage is that it can offer competing flavors of privacy\n\nTornado Cash maximizes censorship resistance, while Privacy Pools let users prove their funds aren’t linked to illicit activity, while Railgun lets you use defi privately\n\nBut it does fragments liquidity. If enough people are willing to provide the anonymity set (they currently aren't, it's a culture problem we need to fix), that tradeoff becomes much less significant",
+          "translation": "이더리움의 장점 중 하나는 서로 경쟁하는 여러 형태의 프라이버시를 제공할 수 있다는 것입니다. 토네이도캐시(Tornado Cash)는 검열 저항성(censorship resistance)을 극대화하고, 프라이버시 풀(Privacy Pools)은 사용자가 자신의 자금이 불법 행위와 연관되어 있지 않다는 것을 증명할 수 있게 해주며, 레일건(Railgun)은 디파이(defi)를 비공개로 사용할 수 있게 해줍니다. 다만 이는 유동성(liquidity)을 분산시킵니다. 충분히 많은 사람들이 익명성 집합(anonymity set)을 제공할 의향이 있다면(현재는 그렇지 않으며, 이건 우리가 고쳐야 할 문화적 문제입니다) 그 트레이드오프는 훨씬 덜 중요해집니다."
+        },
+        {
+          "date": "2026-09-20",
+          "by": "TrustlessState",
+          "stance": "con",
+          "quote": "삼키기 힘든 진실인 듯하다. ETH는 ZEC보다 나은 가치저장 수단이자 프라이버시 코인이다.",
+          "url": "https://x.com/TrustlessState/status/2101754078187405565",
+          "digest": "2026-09-22",
+          "relation": "none",
+          "original": "apparently hard truth pill to swallow:\n\nETH is a better SoV and privacy coin than ZEC",
+          "translation": "보아하니 받아들이기 힘든 진실인 것 같다: ETH가 ZEC보다 더 나은 가치저장수단(store of value)이자 프라이버시 코인이다."
+        },
+        {
+          "date": "2026-09-20",
+          "by": "TrustlessState",
+          "stance": "con",
+          "quote": "이더리움에 네이티브 프라이버시가 없다고?",
+          "url": "https://x.com/TrustlessState/status/2101764200075043003",
+          "digest": "2026-09-22",
+          "replyTo": "CloutedMind",
+          "relation": "reply",
+          "original": "@CloutedMind Eth has no native privacy?",
+          "translation": "@CloutedMind Eth에는 네이티브 프라이버시가 없다고?"
+        },
+        {
+          "date": "2026-09-20",
+          "by": "ryanberckmans",
+          "stance": "con",
+          "quote": "'이더리움에 네이티브 프라이버시가 없다'는 이제 문자 그대로만 참인 말 중 하나가 됐다. 이더리움은 2~3년 뒤부터 영구적으로 네이티브 프라이버시를 갖게 된다.",
+          "url": "https://x.com/ryanberckmans/status/2101784680156873180",
+          "digest": "2026-09-22",
+          "replyTo": "TrustlessState",
+          "relation": "reply",
+          "original": "\"Eth has no native privacy\" has become one of those things that is merely literally true.\n\nEth will have native privacy forever, starting in 2-3 years.\n\nSo if you want to bet that this doesn't happen, or that the time value of privacy is so high that eth's privacy roadmap is irrelevant, be our guest.",
+          "translation": "“Eth에는 네이티브 프라이버시가 없다”는 이제 문자 그대로만 맞는 말이 되어버렸다. Eth는 2~3년 뒤부터 영원히 네이티브 프라이버시를 갖추게 될 것이다. 그러니 이 일이 일어나지 않는다는 데 걸고 싶거나, 프라이버시의 시간 가치가 너무 높아서 eth의 프라이버시 로드맵이 무의미하다는 데 걸고 싶다면, 얼마든지 해보라."
+        },
+        {
+          "date": "2026-09-20",
+          "by": "zectrillionaire",
+          "stance": "pro",
+          "quote": "지분증명 스테이크는 유사 탈중앙의 중앙은행 시스템이다. 완전히 서사 없는 체인이고, 나를 포함한 OG들은 이미 갈아탔다. 나는 거의 10년간 ETH 고래였지만 이제 재단을 자선단체처럼 운영한다.",
+          "url": "https://x.com/zectrillionaire/status/2101784292997452154",
+          "digest": "2026-09-22",
+          "replyTo": "CloutedMind",
+          "relation": "quote",
+          "original": "Proof-of-coins stakes are psuedo-decentralized, central-banking systems.\n\nIt probably won't go to zero, but will range 2k-4k forever, unless we hit actual hyperinflation.\n\nIt's a completely narrative-less chain.\n\nA snake with its head chopped.\n\nAll the OGs, including myself have jumped ship.\n\nEven Vitalik doesn't care about anymore.\n\nIt's a central-bank ran by weird liberals and leftists now.\n\nI don't hate $ETH either but they operate the foundation like a charity.\n\nI was an $ETH whale for almost a decade, sized in $4-$7 range late 2016, early 2017(my size back then was like 12k, lmao I was a poor graduate student)\n\nI have a soft spot in my heart for it. It fueled my initial come up, but I gotta call a spade a spade.\n\nZigher.",
+          "translation": "지분증명(proof-of-stake) 코인들은 유사 탈중앙화된 중앙은행 시스템이다. 아마 0으로 가지는 않겠지만, 실제 초인플레이션이 오지 않는 한 영원히 2천에서 4천 사이를 오갈 것이다. 완전히 서사가 없는 체인이다. 목이 잘린 뱀이다. 나를 포함한 모든 OG들이 배를 버리고 떠났다. 이제는 Vitalik조차 신경 쓰지 않는다. 지금은 이상한 리버럴과 좌파들이 운영하는 중앙은행이다. 나도 $ETH를 싫어하지는 않지만, 그들은 재단을 자선단체처럼 운영한다. 나는 거의 10년 동안 $ETH 고래였고, 2016년 말에서 2017년 초 4달러에서 7달러 구간에서 물량을 쌓았다(당시 내 보유량은 1만 2천 개 정도였다, 웃기게도 그때 나는 가난한 대학원생이었다). 마음속에 애틋한 자리가 남아 있다. 그것이 내 초기 성공의 동력이 되어주었지만, 있는 그대로 말할 건 말해야겠다. Zigher."
+        },
+        {
+          "date": "2026-09-21",
+          "by": "CloutedMind",
+          "stance": "neutral",
+          "quote": "내가 보기엔 불변 스마트컨트랙트야말로 가장 네이티브한 것이라 할 수 있다.",
+          "url": "https://x.com/CloutedMind/status/2101912087983239486",
+          "digest": "2026-09-22",
+          "replyTo": "TrustlessState",
+          "relation": "reply",
+          "original": "@TrustlessState also as far as im concerned\n\nimmutable smart contracts are as native as one can be",
+          "translation": "@TrustlessState 그리고 내가 보기엔 불변(immutable) 스마트 컨트랙트야말로 가장 네이티브에 가까운 것이다."
+        },
+        {
+          "date": "2026-09-21",
+          "by": "cryptrus",
+          "stance": "neutral",
+          "quote": "흥미로운 건 유틸리티 부분이다. ZEC가 같은 시장에 접근할 수 있게 되면 이 주장은 어떻게 되나?",
+          "url": "https://x.com/cryptrus/status/2102024736779780439",
+          "digest": "2026-09-22",
+          "replyTo": "CloutedMind",
+          "relation": "reply",
+          "original": "@CloutedMind @TrustlessState the utility part is the interesting one.. what happens to this take if ZEC can access those same markets?",
+          "translation": "@CloutedMind @TrustlessState 흥미로운 부분은 유틸리티 쪽이다.. ZEC가 같은 시장에 접근할 수 있게 된다면 이 주장은 어떻게 되는가?"
+        },
+        {
+          "date": "2026-10-09",
+          "by": "lex_node",
+          "stance": "pro",
+          "quote": "모든 이더리움 평민을 대신해 저스틴 드레이크에게 이더리움에 정말 도움이 되는 중요한 일에 집중해 달라고 요청한다. 그는 분명 뛰어난 연구자지만 최근의 공개 기여는 그의 이름이 없었다면 그만큼 번지지 않았을 거대한 발행량 축소 사이드쇼와, 비탈릭이 점잖게 정정해야 했던 크립토 파괴 FUD였다.",
+          "url": "https://x.com/lex_node/status/2108549202426909146",
+          "digest": "2026-10-11",
+          "relation": "none",
+          "original": "on behalf of all eth plebs, I ask @drakefjustin  to focus on shit that matters for helping Ethereum...he is obviously a brilliant researcher but his recent *public* contributions are (1) a massive issuance reduction debate sideshow that never would've gotten as far as it did without his name on it and (2) now this crypto-breaking FUD that even Vitalik had to gently correct...it's doing a disservice to your legacy ser, there is so much *positive* and *constructive* we can focus on. . . pair problems with solutions and why Ethereum will be the best at them. . .growth mindset!",
+          "translation": "모든 이더리움 평민(eth pleb)들을 대신해서, 나는 @drakefjustin에게 이더리움을 돕는 데 정말 중요한 일에 집중해 달라고 요청한다... 그는 분명 뛰어난 연구자이지만, 그의 최근 *공개적인* 기여는 (1) 그의 이름이 붙지 않았다면 그렇게까지 커지지 않았을 거대한 발행량(issuance) 축소 논쟁이라는 부수적인 소동이었고, (2) 이제는 Vitalik조차 부드럽게 정정해야 했던, 이번의 암호화폐를 무너뜨릴 만한 공포 조장(FUD)이다... 이건 당신의 유산에 해가 되고 있다, 형씨(ser). 우리가 집중할 수 있는 *긍정적*이고 *건설적*인 것들이 정말 많다... 문제에 해결책을 짝지어 제시하고 이더리움이 왜 그 분야에서 최고가 될 것인지를 보여주자... 성장 마인드셋(growth mindset)!"
+        },
+        {
+          "date": "2026-10-09",
+          "by": "ryanberckmans",
+          "stance": "pro",
+          "quote": "울트라사운드 머니도 잊지 말라. 저스틴이 만들어 밀어붙인 그 밈은 이더리움과 ETH의 성공을 현재의 현물 인플레이션율에 묶는 것이 현명하거나 최적인지 생각하지 않은 채 추진됐다.",
+          "url": "https://x.com/ryanberckmans/status/2108582651850564073",
+          "digest": "2026-10-11",
+          "replyTo": "lex_node",
+          "relation": "reply",
+          "original": "@lex_node @drakefjustin yeah and don't forget ultrasound money, the meme Justin invented and pushed without thinking about whether tying the success of Ethereum and ETH to the current spot inflation rate was a wise or optimal thing to do",
+          "translation": "그래, 그리고 울트라사운드 머니(ultrasound money)도 잊지 말자. 이더리움과 ETH의 성공을 현재의 현물 인플레이션율(spot inflation rate)에 결부시키는 것이 현명하거나 최선의 선택인지에 대한 고민 없이 Justin이 만들어내고 밀어붙인 밈이다."
+        },
+        {
+          "date": "2026-10-09",
+          "by": "ryanberckmans",
+          "stance": "pro",
+          "quote": "이더리움에 많은 기여를 했다는 것이, 자기 영향력과 평판과 플랫폼을 이용해 좀 더 묵혔어야 할, 더 넓게 검토됐어야 할 말을 쏘아붙일 면허가 되지는 않는다. 올해 초 비탈릭의 L2 글 표현에 대해서도 같은 비판을 했다.",
+          "url": "https://x.com/ryanberckmans/status/2108626563843686552",
+          "digest": "2026-10-11",
+          "replyTo": "0xquasarproject",
+          "relation": "reply",
+          "original": "@0xquasarproject @lex_node @drakefjustin Yes. Yet having done a lot for ethereum is not a license to use your influence, reputation, and platform to fire off words that should be slept on or reviewed a bit more widely. I had the same criticism of Vitalik's choice of words in his L2 post earlier this year.",
+          "translation": "그렇다. 하지만 이더리움을 위해 많은 일을 해왔다는 사실이, 좀 더 숙고하거나 더 널리 검토되어야 할 말을 영향력과 명성, 플랫폼을 이용해 그대로 쏟아내도 된다는 면허는 아니다. 올해 초 Vitalik이 L2 관련 글에서 선택한 단어들에 대해서도 나는 같은 비판을 했었다."
+        },
+        {
+          "date": "2026-10-09",
+          "by": "LaLiLuLeL0x",
+          "stance": "con",
+          "quote": "그의 마지막 글을 두고 많은 이들이 과한 드라마를 벌이는 걸 본다. 하지만 요즘 주소 정리나, 비탈릭이 권한 멀티시그 서명자 정리는 매우 유용할 수 있다. 그리고 ETH에 암호학 분야 최고의 두뇌들이 있다는 게 자랑스럽다.",
+          "url": "https://x.com/LaLiLuLeL0x/status/2108628626409239033",
+          "digest": "2026-10-11",
+          "replyTo": "lex_node",
+          "relation": "reply",
+          "original": "Fair, I see a lot of people going over crazy drama about his last post.\n\nBut in these days, doing address cleaning, or as advised by Vitalik, also multisig signer cleaning, can be very useful. And I’m proud that on ETH we have the brightest minds on the encryption side. Because the same issues they unveiled are also on web2 and literally few teams are prepared.\n\nBut probably I’m the only person on X that seeing these posts and see that the most advanced research on this issue are on ETH make me ultra sound bullish 😅",
+          "translation": "그건 맞다. 그의 마지막 게시물을 두고 많은 사람들이 엄청난 드라마를 벌이는 것을 많이 보고 있다. 하지만 요즘 같은 시기에는 주소 정리(address cleaning), 혹은 Vitalik이 권고한 대로 멀티시그 서명자(multisig signer) 정리도 매우 유용할 수 있다. 그리고 암호화(encryption) 분야에서 ETH에 가장 뛰어난 인재들이 모여 있다는 사실이 자랑스럽다. 왜냐하면 그들이 밝혀낸 바로 그 문제들이 web2에도 존재하는데, 정말로 이에 대비된 팀은 거의 없기 때문이다. 하지만 아마 X에서 이런 게시물들을 보면서, 이 문제에 대한 가장 앞선 연구가 ETH에서 이루어지고 있다는 사실이 나를 울트라사운드하게 불리시(bullish)하게 만든다고 생각하는 사람은 나밖에 없을 것이다."
+        },
+        {
+          "date": "2026-10-09",
+          "by": "lex_node",
+          "stance": "pro",
+          "quote": "500억 달러 시장의 쓰레기통 화재에 기름을 붓지 않고도 '소신을 말하는' 방법이 있다고 믿고 싶다, 뭐 나만 그런 걸 수도 있지만.",
+          "url": "https://x.com/lex_node/status/2108628833125405108",
+          "digest": "2026-10-11",
+          "replyTo": "0xquasarproject",
+          "relation": "reply",
+          "original": "@0xquasarproject @ryanberckmans @drakefjustin I'd like to think there is a way you can \"speak your mind\" without throwing fuel on a $50B market dumpster fire but hey that's just me",
+          "translation": "500억 달러 규모 시장의 쓰레기통 화재에 기름을 붓지 않으면서도 '솔직하게 생각을 말할' 방법이 있을 거라고 믿고 싶다. 하지만 뭐, 그건 내 생각일 뿐이다."
+        },
+        {
+          "date": "2026-10-09",
+          "by": "ryanberckmans",
+          "stance": "pro",
+          "quote": "저스틴이 첫 문단에서 '자산의 통제된 대규모 마이그레이션을 새 주소로 개시하자'고 그토록 단정적으로, 심지어 '침착하게' 말한 것은 그의 리더십 위치에서 급진적이다. 포구의 크기가 중요하다.",
+          "url": "https://x.com/ryanberckmans/status/2108629395199942781",
+          "digest": "2026-10-11",
+          "replyTo": "0xquasarproject",
+          "relation": "reply",
+          "original": "@0xquasarproject @lex_node @drakefjustin I love how we speak our mind, tell the truth, and aim for balance.\n\nimo Justin saying in 1st paragraph to \"set in motion a controlled mass migration of assets to fresh addresses\" in such definitive terms, even \"calmy\", is radical his leadership role. \"Size of the cannon\" matters",
+          "translation": "우리가 솔직하게 생각을 말하고, 진실을 이야기하며, 균형을 추구하는 방식이 좋다. 내 생각엔 Justin이 첫 문단에서 '통제된 대규모 자산 이전을 새 주소로 촉발시킨다'는 말을, 그렇게 단정적인 표현으로, 심지어 '차분하게' 말한 것은 그의 리더십 역할을 고려하면 급진적이다. '대포의 크기'가 중요하다."
+        },
+        {
+          "date": "2026-10-09",
+          "by": "ryanberckmans",
+          "stance": "neutral",
+          "quote": "적어도 그는 경기장에 나와 싸우고 있으니, 어느 정도는 봐줘야 한다.",
+          "url": "https://x.com/ryanberckmans/status/2108664304857731510",
+          "digest": "2026-10-11",
+          "replyTo": "ryanberckmans",
+          "relation": "reply",
+          "original": "@ryanberckmans @lex_node @drakefjustin At least he's out there in the arena fighting, gotta cut him some slack.",
+          "translation": "적어도 그는 경기장에 나가서 싸우고 있다. 어느 정도는 봐줘야 한다."
+        },
+        {
+          "date": "2026-10-09",
+          "by": "ryanberckmans",
+          "stance": "neutral",
+          "quote": "나는 저스틴 드레이크의 열렬한 팬이다. 다만 전송 버튼을 누르기 전에 커피 한 잔 더 하고 멈춰서 단어 선택을 고민해, 이더리움 위의 수천억 자본이 제 인생 선택을 의심하게 만들지 않기를 바랄 뿐이다. 전체적으로 우리는 그가 있어 대단히 운이 좋다.",
+          "url": "https://x.com/ryanberckmans/status/2108684164740329713",
+          "digest": "2026-10-11",
+          "replyTo": "0xSqueemo",
+          "relation": "reply",
+          "original": "@0xSqueemo @lex_node @drakefjustin I'm a huge Justin Drake fan. Only want him to have another coffee and pause to consider word choices before clicking send tweet and making literal hundreds of billions of capital on ethereum question its life choices. Overall we are extremely fortunate to have him.",
+          "translation": "나는 Justin Drake의 열렬한 팬이다. 다만 그가 트윗 전송 버튼을 누르기 전에 커피 한 잔 더 마시고 잠시 멈춰서 단어 선택을 고민해서, 이더리움에 투입된 말 그대로 수천억 달러 규모의 자본이 자신의 인생 선택을 의심하게 만드는 일이 없기를 바랄 뿐이다. 전체적으로 우리는 그를 갖고 있다는 것에 매우 운이 좋다."
+        },
+        {
+          "date": "2026-10-09",
+          "by": "lex_node",
+          "stance": "neutral",
+          "quote": "동의한다(+1).",
+          "url": "https://x.com/lex_node/status/2108684415480090783",
+          "digest": "2026-10-11",
+          "replyTo": "ryanberckmans",
+          "relation": "reply",
+          "original": "@ryanberckmans @0xSqueemo @drakefjustin +1",
+          "translation": "+1 (동의)"
+        }
+      ],
+      "firstSeen": "2026-09-07",
+      "lastActivity": "2026-10-09",
+      "status": "active",
+      "rootUrl": "https://x.com/lex_node/status/2108549202426909146",
+      "engagement": {
+        "likes": 380,
+        "retweets": 24,
+        "quotes": 2,
+        "replies": 39,
+        "views": 17305
+      }
+    },
+    {
+      "id": "stake-state-provision-role",
+      "title": "스테이크는 ZK 시대에도 상태 제공 백본을 겸해야 하나, 검증과 분리해야 하나?",
+      "category": "프로토콜 설계",
+      "summary": "EF의 Barnabé Monnot은 2027년까지 실행 레이어(EL) 없이 ZK 증명(ZK proof)에만 의존해 어테스트하는 스테이크 비율은 0%가 바람직하다며 스테이커가 상태(state)·히스토리·멤풀(mempool) 제공 백본을 겸해야 한다고 주장했고, L2BEAT의 donnoh는 상태 제공과 검증은 분리 가능한 역할이며 LST 때문에 비용 경쟁으로 치닫는 검증자(validator)보다 비검증 풀노드가 더 나은 백본이라고 반박했다.",
+      "keyPoints": [
+        "ZK 증명으로 검증을 대체하더라도 스테이커가 상태·히스토리·멤풀 제공을 겸해야 하는가?",
+        "상태 제공과 검증은 분리 가능한 별개 역할인가?",
+        "비검증 풀노드와 스테이커 중 누가 이타적 상태 제공 네트워크의 더 나은 백본인가?"
+      ],
+      "background": "이더리움은 ZK 증명으로 블록 유효성을 검증하는 방향(스테이트리스·싱크 증명, 예: EIP-8440 계열)으로 나아가고 있으며, 그 경우 검증자가 실행 레이어(EL)를 직접 돌리지 않고도 페이로드 유효성을 어테스트할 수 있게 된다. 문제는 그때 누가 상태, 히스토리, 멤풀을 제공하느냐다. Barnabé Monnot은 스테이크된 주체가 이 백본 역할을 겸해야 하며 그 비용은 블롭(blob) 가용성 비용에 비하면 작다고 보고, donnoh는 두 역할이 분리 가능하며 리퀴드 스테이킹 토큰(LST)으로 비용 경쟁에 내몰리는 검증자보다 비검증 풀노드가 더 적합하다고 본다.",
+      "whyItMatters": "싱크 증명이 현실화될수록 '검증은 ZK가 맡는데 상태는 누가 무슨 인센티브로 제공하느냐'가 ZK 시대 노드 아키텍처의 핵심 공백이 된다. 상태 제공을 스테이킹에 묶을지 분리할지에 따라 풀노드 생태계와 멤풀의 지속성이 갈릴 수 있다.",
+      "sources": [],
+      "keywords": [
+        "ZK proofs",
+        "EIP-8440",
+        "validator serve state",
+        "stateless Ethereum"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "스테이크는 ZK 증명을 쓰더라도 상태·히스토리·멤풀 백본으로 남아야 한다",
+          "holders": [
+            {
+              "handle": "barnabemonnot",
+              "name": "Barnabé Monnot | barnabé.eth",
+              "role": "EF 리서처, 인센티브·이슈언스",
+              "avatar": "https://pbs.twimg.com/profile_images/2069104465202814976/alWWQ8SG_400x400.jpg"
+            }
+          ],
+          "points": [
+            "2027년까지 스테이크가 EL 없이 ZK 증명에만 의존해 페이로드 유효성을 어테스트하는 비율은 0%가 바람직하다.",
+            "스테이크된 주체가 상태와 히스토리를 제공하고 멤풀에 참여하기를 바란다.",
+            "그 비용은 블롭을 가용하게 만드는 비용에 비하면 작으며, 각 노드가 데이터를 적게 가진 넓은 네트워크가 각 노드에 더 많은 제공을 기대하는 좁은 네트워크보다 서비스 품질이 낫다고 확신하지 못한다.",
+            "상태·히스토리 제공의 백본이 될 더 나은 노드는 네트워크에 달리 없다."
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "상태 제공과 검증은 분리 가능한 역할이며 비검증 풀노드가 더 나은 백본이다",
+          "holders": [
+            {
+              "handle": "donnoh_eth",
+              "name": "donnoh.gwei 💗",
+              "role": "L2BEAT 리서치 책임자",
+              "avatar": "https://pbs.twimg.com/profile_images/1906978600311521280/aSbKSjtX_400x400.jpg"
+            }
+          ],
+          "points": [
+            "상태를 제공하는 것과 검증자가 되는 것은 별개의 역할이며, 검증자가 아니어도 기꺼이 상태·히스토리를 제공하고 멤풀에 참여할 수 있다.",
+            "역할을 나눌 수 있다면 굳이 스테이커에게 묶을 이유가 없다.",
+            "검증자는 특히 LST 때문에 비용 절감 경쟁으로 치닫기 때문에, 비검증 풀노드가 궁극적으로 이타적인 네트워크의 백본으로 더 적합하다."
+          ]
+        },
+        {
+          "stance": "other",
+          "label": "비검증 풀노드 운영자가 이제 얼마 남지 않았다는 자조",
+          "holders": [
+            {
+              "handle": "CPerezz19",
+              "name": "CPerezz.eth ⟠ 🦀",
+              "role": "EF 리서처",
+              "avatar": "https://pbs.twimg.com/profile_images/1254074532417200128/M2uQcW5K_400x400.jpg"
+            }
+          ],
+          "points": [
+            "비검증 풀노드를 돌리는 운영자는 이제 정말 얼마 남지 않았다(이에 donnoh는 그것이 오해라고 응수)."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-10-09",
+          "by": "barnabemonnot",
+          "stance": "pro",
+          "quote": "2027년까지 얼마나 많은 이더리움 스테이크가 EL을 돌리지 않고 ZK 증명에 의존해 페이로드 유효성을 어테스트해야 하는가?",
+          "url": "https://x.com/barnabemonnot/status/2108532863151010290",
+          "digest": "2026-10-11",
+          "relation": "none",
+          "original": "How much Ethereum stake should be relying on ZK proofs to attest to payload validity by 2027? (running without an EL)",
+          "translation": "2027년까지 얼마나 많은 이더리움 스테이크(stake)가 페이로드 유효성(payload validity)을 증명하기 위해 ZK 증명(ZK proof)에 의존해야 할까? (EL(실행 레이어, Execution Layer) 없이 운영되는 경우)"
+        },
+        {
+          "date": "2026-10-09",
+          "by": "barnabemonnot",
+          "stance": "pro",
+          "quote": "스테이크가 ZK 증명으로 돌아가길 바라지만, 특별히 EL을 돌리지 않는 쪽을 선호하지는 않는다. 멤풀에 참여하고 상태도 제공하길 바란다. 그래서 0%를 택했다.",
+          "url": "https://x.com/barnabemonnot/status/2108549586587643940",
+          "digest": "2026-10-11",
+          "replyTo": "dapplion",
+          "relation": "reply",
+          "original": "@dapplion I’d like Ethereum stake to run on ZK proofs but I’d not prefer them specifically to not run an EL, I’d like them to participate in the mempool and serve state too. So I chose 0%",
+          "translation": "이더리움 스테이크가 ZK 증명을 기반으로 운영되길 원하지만, 그것들이 굳이 EL을 실행하지 않는 쪽을 특별히 선호하는 것은 아니다. 나는 그것들이 멤풀(mempool)에도 참여하고 상태(state)도 제공하길 원한다. 그래서 0%를 선택했다."
+        },
+        {
+          "date": "2026-10-09",
+          "by": "donnoh_eth",
+          "stance": "con",
+          "quote": "상태를 제공하는 것과 검증자가 되는 것은 다른 역할 아닌가? 나는 검증자가 아니어도 기꺼이 상태와 히스토리를 제공하고 멤풀에 참여할 것이다.",
+          "url": "https://x.com/barnabemonnot/status/2108556306621563083",
+          "digest": "2026-10-11",
+          "replyTo": "barnabemonnot",
+          "relation": "reply",
+          "original": "@barnabemonnot @dapplion serving the state and being a validator are two different roles? i’d happily serve the state, history and participate in the mempool without being a validator",
+          "translation": "상태를 제공하는 것과 검증자(validator)가 되는 것은 서로 다른 역할이 아닌가? 나는 검증자가 되지 않고도 기꺼이 상태와 히스토리(history)를 제공하고 멤풀에 참여하고 싶다."
+        },
+        {
+          "date": "2026-10-09",
+          "by": "barnabemonnot",
+          "stance": "pro",
+          "quote": "맞다, 다만 너는 역의 함의를 말하고 있다. 나는 스테이크된 주체가 상태·히스토리를 제공하고 멤풀에 참여하기를 바라는 것이다.",
+          "url": "https://x.com/barnabemonnot/status/2108556902653444411",
+          "digest": "2026-10-11",
+          "replyTo": "donnoh_eth",
+          "relation": "reply",
+          "original": "@donnoh_eth @dapplion Sure, but you're talking about the reverse implication. I want staked parties to serve state, history and participate in the mempool",
+          "translation": "그렇다, 하지만 그건 역방향의 함의를 이야기하는 것이다. 나는 스테이킹한 당사자들이 상태와 히스토리를 제공하고 멤풀에 참여하길 원한다."
+        },
+        {
+          "date": "2026-10-09",
+          "by": "donnoh_eth",
+          "stance": "con",
+          "quote": "동의하지 않는다. 비검증 풀노드가 궁극적으로 이타적인 네트워크의 백본으로 더 나은 후보라고 본다. 검증자들은 특히 LST 때문에 어차피 비용 절감 경쟁으로 치닫는 게 분명하다.",
+          "url": "https://x.com/barnabemonnot/status/2108562139203920321",
+          "digest": "2026-10-11",
+          "replyTo": "barnabemonnot",
+          "relation": "reply",
+          "original": "@barnabemonnot @dapplion i disagree! i'd argue that non-validator full nodes are better candidates at being at the backbone of an ultimately altruistic network. i definitely see validators racing to the bottom to cut costs anyway, especially with LSTs",
+          "translation": "나는 동의하지 않는다! 궁극적으로 이타적인 네트워크의 중추가 되기에는 검증자가 아닌 풀 노드(full node)가 더 나은 후보라고 주장하고 싶다. 어차피 검증자들이, 특히 LST(유동성 스테이킹 토큰, Liquid Staking Token)와 함께 비용을 줄이기 위해 바닥을 향한 경쟁을 벌이는 것을 분명히 보게 될 것이다."
+        },
+        {
+          "date": "2026-10-09",
+          "by": "barnabemonnot",
+          "stance": "pro",
+          "quote": "그 비용은 예컨대 블롭을 가용하게 만드는 비용에 비하면 작다. 각 노드가 많은 데이터를 갖지 않는 넓은 네트워크가, 각 노드가 더 많은 데이터를 제공하도록 기대되는 좁은 네트워크보다 서비스 품질이 나을지 확신하지 못한다.",
+          "url": "https://x.com/barnabemonnot/status/2108564457693847773",
+          "digest": "2026-10-11",
+          "replyTo": "donnoh_eth",
+          "relation": "reply",
+          "original": "@donnoh_eth @dapplion The cost is small, compared to the cost of making blobs available for instance. I am not convinced the quality of service of a wide network with each node having not much data, would be better than a smaller network with each node being expected to serve more data.",
+          "translation": "예를 들어 블롭(blob)을 사용 가능하게 만드는 비용에 비하면 그 비용은 작다. 각 노드가 많지 않은 데이터를 가진 넓은 네트워크의 서비스 품질이, 각 노드가 더 많은 데이터를 제공하도록 요구되는 더 작은 네트워크보다 더 나을 것이라는 확신은 들지 않는다."
+        },
+        {
+          "date": "2026-10-09",
+          "by": "CPerezz",
+          "stance": "other",
+          "quote": "우리 같은 사람은 이제 정말 얼마 남지 않았다.",
+          "url": "https://x.com/donnoh_eth/status/2108568641427956050",
+          "digest": "2026-10-11",
+          "replyTo": "donnoh_eth",
+          "relation": "reply",
+          "original": "@donnoh_eth @barnabemonnot @dapplion There are very few of us left :(",
+          "translation": "우리 같은 사람은 이제 거의 남지 않았다 :("
+        },
+        {
+          "date": "2026-10-09",
+          "by": "donnoh_eth",
+          "stance": "con",
+          "quote": "아니, 그건 오해라고 본다.",
+          "url": "https://x.com/donnoh_eth/status/2108569220921627097",
+          "digest": "2026-10-11",
+          "replyTo": "CPerezz19",
+          "relation": "reply",
+          "original": "@CPerezz19 @barnabemonnot @dapplion nahhh i think this is a misconception",
+          "translation": "아니, 나는 이게 오해라고 생각한다."
+        }
+      ],
+      "firstSeen": "2026-10-09",
+      "lastActivity": "2026-10-09",
+      "status": "active",
+      "rootUrl": "https://x.com/barnabemonnot/status/2108532863151010290",
+      "engagement": {
+        "likes": 6,
+        "retweets": 0,
+        "quotes": 0,
+        "replies": 2,
+        "views": 3899
+      }
+    },
     {
       "id": "thorchain-more-decentralized-than-eth",
       "title": "THORChain은 비트코인·이더리움보다 탈중앙화됐는가?",
@@ -523,7 +1305,7 @@
       ],
       "firstSeen": "2026-10-03",
       "lastActivity": "2026-10-04",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/lex_node/status/2106388135592575003",
       "engagement": {
         "likes": 122,
@@ -737,7 +1519,7 @@
       ],
       "firstSeen": "2026-10-02",
       "lastActivity": "2026-10-04",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/dankrad/status/2106119279242293410",
       "engagement": {
         "likes": 236,
@@ -747,175 +1529,6 @@
         "views": 46858
       },
       "publish": true
-    },
-    {
-      "id": "thorchain-permissionless-dprk-zec",
-      "title": "THORChain의 ZEC 상장은 퍼미션리스의 원칙인가, 북한 세탁을 돕는 선택적 중립인가?",
-      "category": "거버넌스 · 커뮤니티",
-      "summary": "북한(DPRK)이 처음으로 대량의 ZEC를 탈취한 시점에 THORChain이 ZEC 거래를 상장하자, Taylor Monahan은 THORChain이 북한에는 퍼미션리스지만 무고한 사용자와 노드 운영자에게는 그렇지 않다고 비판했다. ThorTrades는 THORChain이 최대 사용자의 수요에 응답했을 뿐이라고 옹호했고, zmanian은 ZEC 상장이 1년 넘게 계획된 일이며 자금 추적은 어차피 어렵다고 짚었다.",
-      "keyPoints": [
-        "THORChain이 북한 탈취 자금의 ZEC 세탁 경로를 열어주면서도 피해자·노드 운영자에게는 제약을 둔다면, 이는 선택적 퍼미션리스인가",
-        "ZEC 상장 타이밍은 북한 탈취에 대한 반응인가, 오래전 계획된 일의 우연한 겹침인가",
-        "퍼미션리스(permissionless)는 규칙이 모두에게 동등하게 적용될 때만 의미가 있는가, 아니면 수요에 응답하는 중립 자체가 원칙인가"
-      ],
-      "background": "THORChain은 중앙 조정자 없이 자산을 교환하는 탈중앙 크로스체인 프로토콜이다. 2026년 Bitget 해킹 이후 북한(DPRK)으로 지목된 세력이 처음으로 대량의 ZEC(지캐시)를 탈취했고, 같은 시기 THORChain이 ZEC 거래를 상장했다. NEAR Intents 등 일부 프로토콜은 도난자금을 탐지해 차단했다. 이로써 퍼미션리스(permissionless)가 곧 중립(neutral)을 뜻하는지, 세탁을 거부하는 것이 퍼미션리스 원칙과 양립하는지가 쟁점이 됐다. 이 논쟁의 동결 반대 진영의 직접 반론은 이번 기간 수집되지 않았다.",
-      "whyItMatters": "10월 2일에 시작된 동결 대 거부 논쟁이 추상론을 지나 프로토콜별 실제 행동으로 판가름나기 시작했다. THORChain과 NEAR Intents가 대조군이 되면서, 탈중앙 프로토콜이 불법 자금 앞에서 어떤 입장을 취하느냐가 각 프로토콜의 정당성과 규제 노출을 가르는 실천적 기준으로 떠오르고 있다.",
-      "sources": [],
-      "keywords": [
-        "THORChain ZEC",
-        "permissionless neutral",
-        "DPRK Bitget",
-        "Zcash laundering"
-      ],
-      "positions": [
-        {
-          "stance": "pro",
-          "label": "THORChain의 퍼미션리스는 선택적이다",
-          "holders": [
-            {
-              "handle": "tayvano_",
-              "name": "Tay 💖",
-              "role": "온체인 해킹·탈취 추적 보안 연구자",
-              "avatar": "https://pbs.twimg.com/profile_images/1581795350087667713/iMrb6XX__400x400.jpg"
-            },
-            {
-              "handle": "crypto_ninjas",
-              "name": "CryptoNinjas",
-              "avatar": "https://pbs.twimg.com/profile_images/1879443366158774272/LShK75fk_400x400.jpg"
-            },
-            {
-              "handle": "0xRezush",
-              "name": "Reza",
-              "avatar": "https://pbs.twimg.com/profile_images/1997317823761125376/-o1Z__5o_400x400.jpg"
-            },
-            {
-              "handle": "CupOJoseph",
-              "name": "JOSΞPH 🌳",
-              "avatar": "https://pbs.twimg.com/profile_images/2044458088162279424/VbmL3abg_400x400.jpg"
-            }
-          ],
-          "points": [
-            "북한이 처음으로 상당량의 ZEC를 탈취하자 THORChain이 ZEC 상장을 밀어붙였으며, THORChain은 북한에는 퍼미션리스지만 무고한 사용자나 노드 운영자에게는 그렇지 않다.",
-            "북한의 ZEC 탈취는 '퍼미션리스'가 양날의 검임을 보여주며, 퍼미션리스는 규칙이 모두에게 동등하게 적용될 때만 의미가 있다.",
-            "북한이 이 상장이 나올 때까지 익스플로잇을 쥐고 있었을 가능성이 있어 타이밍이 의심스럽다."
-          ]
-        },
-        {
-          "stance": "con",
-          "label": "THORChain은 사용자 수요에 응답했을 뿐이다",
-          "holders": [
-            {
-              "handle": "ThorTrades8",
-              "name": "ThorTrades ⚡️",
-              "avatar": "https://pbs.twimg.com/profile_images/1528427210838884355/ETbyi5Si_400x400.jpg"
-            }
-          ],
-          "points": [
-            "THORChain의 최대 사용자가 ZEC를 필요로 했고 THORChain은 그것을 전달했을 뿐이며, 이것이야말로 크립토에서 보기 드문 고객 서비스다."
-          ]
-        },
-        {
-          "stance": "neutral",
-          "label": "상장은 오래전 계획됐고 자금 추적은 어차피 어렵다",
-          "holders": [
-            {
-              "handle": "zmanian",
-              "name": "zmanian",
-              "avatar": "https://pbs.twimg.com/profile_images/1787602143869853696/2eghYl-r_400x400.jpg"
-            }
-          ],
-          "points": [
-            "ZEC 상장은 1년 넘게 계획된 일이라 북한 탈취에 대한 반응이 아니며, 타이밍에 아이러니가 있을 뿐이다.",
-            "그 자금의 출구를 실제로 식별할 사람은 없을 것 같아 상장이 실질적 세탁 통로가 되리라 단정하기 어렵다."
-          ]
-        }
-      ],
-      "timeline": [
-        {
-          "date": "2026-10-02",
-          "by": "tayvano_",
-          "stance": "pro",
-          "quote": "북한이 처음으로 상당량의 ZEC를 탈취하자, THORChain이 ZEC를 상장하려고 산을 옮긴다. 웃기지도 않는다. NO 표까지 더 러그했다. 기억하라: THORChain은 당신이 북한이면 '퍼미션리스'다. 당신이 무고한 사용자나 노드 운영자면 아니다.",
-          "url": "https://x.com/tayvano_/status/2106055842206531682",
-          "digest": "2026-10-05",
-          "replyTo": "THORChain",
-          "relation": "quote",
-          "original": "&gt; DPRK steals a sizable amount of ZEC for the first time\n\n&gt; THORChain moves mountains to get ZEC launched\n\nLOL\n\nThey even had to rug more NO's\n\nRemember: THORChain is \"permissionless\" if you're DPRK. It's not if you're an innocent user or node operator 😘",
-          "translation": "> 북한(DPRK)이 처음으로 상당한 양의 ZEC를 훔친다 > 토르체인(THORChain)이 ZEC를 상장시키기 위해 온갖 수를 다 쓴다 ㅋㅋㅋ 그들은 '아니오(NO)' 투표를 더 많이 러그(rug)해야 했다. 기억하라: 토르체인은 당신이 북한이라면 '허가 없이(permissionless)' 이용할 수 있다. 당신이 아무 죄 없는 사용자나 노드 운영자(node operator)라면 그렇지 않다."
-        },
-        {
-          "date": "2026-10-02",
-          "by": "ThorTrades8",
-          "stance": "con",
-          "quote": "THORChain의 최대 사용자가 ZEC를 필요로 한다. THORChain은 전달한다. 크립토에서 이보다 나은 고객 서비스를 어디서 찾겠나?",
-          "url": "https://x.com/ThorTrades8/status/2106070528310104297",
-          "digest": "2026-10-05",
-          "replyTo": "tayvano_",
-          "relation": "quote",
-          "original": "Biggest user of @THORChain needs $ZEC. Thorchain delivers.\n\nWhere do you find better customer service in crypto? ⚡️",
-          "translation": "토르체인(THORChain)의 최대 사용자가 ZEC가 필요하다. 토르체인이 그것을 제공한다. 크립토 어디에서 이보다 나은 고객 서비스를 찾을 수 있겠는가?"
-        },
-        {
-          "date": "2026-10-02",
-          "by": "zmanian",
-          "stance": "neutral",
-          "quote": "이건 1년 넘게 계획된 일이다. 타이밍에 아이러니가 있지만, 그 자금의 출구를 실제로 식별할 사람은 없을 것 같다.",
-          "url": "https://x.com/zmanian/status/2106144747400450075",
-          "digest": "2026-10-05",
-          "replyTo": "tayvano_",
-          "relation": "reply",
-          "original": "@tayvano_ This has been planned for over a year.\n\nThere is some irony to the timing but it’s unlikely that anyone is really going to identify exits on those funds.",
-          "translation": "이것은 1년 넘게 계획되어 있던 일이다. 타이밍에 어떤 아이러니가 있긴 하지만, 누군가가 그 자금의 출구를 실제로 식별해낼 가능성은 낮다."
-        },
-        {
-          "date": "2026-10-03",
-          "by": "crypto_ninjas",
-          "stance": "pro",
-          "quote": "북한의 ZEC 탈취는 '퍼미션리스'가 양날의 검임을 보여준다.",
-          "url": "https://x.com/crypto_ninjas/status/2106207053584953820",
-          "digest": "2026-10-05",
-          "replyTo": "tayvano_",
-          "relation": "reply",
-          "original": "@tayvano_ DPRK's ZEC theft shows how \"permissionless\" is a double-edged sword.",
-          "translation": "북한의 ZEC 탈취는 '허가 없음(permissionless)'이 어떻게 양날의 검이 되는지를 보여준다."
-        },
-        {
-          "date": "2026-10-03",
-          "by": "CupOJoseph",
-          "stance": "pro",
-          "quote": "내 베팅: 북한은 이게 출시될 때까지 익스플로잇을 쥐고 있었다.",
-          "url": "https://x.com/CupOJoseph/status/2106223160999981313",
-          "digest": "2026-10-05",
-          "replyTo": "tayvano_",
-          "relation": "reply",
-          "original": "@tayvano_ My bet: Dprk was sitting on the exploit until this launched",
-          "translation": "내 예상은: 북한이 이것이 출시될 때까지 익스플로잇(exploit)을 가지고 기다리고 있었다는 것이다."
-        },
-        {
-          "date": "2026-10-03",
-          "by": "0xRezush",
-          "stance": "pro",
-          "quote": "퍼미션리스는 규칙이 모두에게 동등하게 적용될 때만 의미가 있다.",
-          "url": "https://x.com/0xRezush/status/2106524141339738327",
-          "digest": "2026-10-05",
-          "replyTo": "tayvano_",
-          "relation": "reply",
-          "original": "@tayvano_ permissionless only means something when the rules apply equally to everyone",
-          "translation": "허가 없음(permissionless)은 규칙이 모두에게 동등하게 적용될 때에만 의미를 갖는다."
-        }
-      ],
-      "firstSeen": "2026-10-02",
-      "lastActivity": "2026-10-03",
-      "status": "active",
-      "rootUrl": "https://x.com/tayvano_/status/2106055842206531682",
-      "engagement": {
-        "likes": 289,
-        "retweets": 15,
-        "quotes": 3,
-        "replies": 41,
-        "views": 34015
-      },
-      "publish": false
     },
     {
       "id": "do-layers-add-intermediaries",
@@ -2017,271 +2630,6 @@
         "quotes": 0,
         "replies": 5,
         "views": 5557
-      }
-    },
-    {
-      "id": "ethereum-zcash-privacy-competitor",
-      "title": "이더리움의 최대 경쟁자는 지캐시이고 프라이버시를 최우선해야 하나?",
-      "category": "프로토콜 설계",
-      "summary": "David Hoffman은 ETH가 ZEC보다 나은 가치저장 수단(SoV)이자 프라이버시 코인이라고 주장했고, ryanberckmans는 '이더리움에는 네이티브 프라이버시가 없다'는 반박이 이제 문자 그대로만 참인 말이 됐다며 2~3년 안에 시작될 네이티브 프라이버시가 영구적일 것이라 했다. 반대편에서 zectrillionaire는 이더리움이 서사 없는 체인이 됐다며 ZEC로 갈아탔다고 맞섰다. 앞서 donnoh_eth와 lex_node는 이더리움의 최대 경쟁자가 지캐시라며 무조건적 프라이버시를 최우선해야 한다고 봤고, zayn4pf는 그 프레임 자체를 거부했다.",
-      "keyPoints": [
-        "ETH가 ZEC보다 나은 프라이버시 코인이자 가치저장 수단인가",
-        "이더리움의 네이티브 프라이버시 부재는 결정적 약점인가, 2~3년 내 해소될 일시적 공백인가",
-        "블록체인의 최우선 용도가 무조건적 프라이버시를 갖춘 주권적 가치 이전인가"
-      ],
-      "background": "지캐시(ZEC)는 영지식 증명 기반 실드(shielded) 트랜잭션으로 무조건적 프라이버시를 제공하는 프라이버시 특화 체인이다. 이더리움은 프로토콜 차원의 네이티브 프라이버시가 아직 없고 스마트컨트랙트 기반 프라이버시 도구(예: 프라이버시 풀)에 의존한다. 2026년 ZEC 랠리가 비트코인 고래들의 지지를 얻으면서 이더리움의 프라이버시 로드맵 시간표가 서사 경쟁의 변수로 부상했다.",
-      "whyItMatters": "프라이버시 로드맵의 배포 속도가 기술 문제를 넘어 이더리움 서사 경쟁력의 변수가 되고 있다. 2~3년으로 제시된 네이티브 프라이버시 도입 시간표가 실제로 지켜지는지, ZEC가 이더리움 생태계의 유동성 시장에 접근할 수 있게 되는지가 지켜볼 지점이다.",
-      "sources": [
-        {
-          "title": "EIP-8141: Frame Transaction",
-          "url": "https://eips.ethereum.org/EIPS/eip-8141"
-        }
-      ],
-      "keywords": [
-        "ZEC",
-        "ETH privacy coin",
-        "native privacy",
-        "SoV"
-      ],
-      "positions": [
-        {
-          "stance": "pro",
-          "label": "지캐시가 최대 경쟁자다",
-          "holders": [
-            {
-              "handle": "donnoh_eth",
-              "name": "donnoh.gwei 💗",
-              "role": "L2Beat 리서치 헤드",
-              "avatar": "https://pbs.twimg.com/profile_images/1906978600311521280/aSbKSjtX_400x400.jpg"
-            },
-            {
-              "name": "lex_node",
-              "watchlist": false
-            },
-            {
-              "handle": "zectrillionaire",
-              "name": "big z",
-              "role": "전 ETH 고래, ZEC 지지자",
-              "avatar": "https://pbs.twimg.com/profile_images/2062711045878431744/uGFeBElS_400x400.jpg"
-            }
-          ],
-          "points": [
-            "블록체인의 1순위 용도는 주권적 가치 이전이고 무조건적 프라이버시 없이는 주권이 실현되지 않으므로, 정말 중요한 영역에서 이더리움의 최대 경쟁자는 지캐시다",
-            "zectrillionaire: 이더리움은 서사 없는 체인이 됐고 재단을 자선단체처럼 운영한다, 나를 포함한 OG들은 이미 갈아탔다"
-          ]
-        },
-        {
-          "stance": "con",
-          "label": "이더리움이 우월하니 그 프레임은 과하다",
-          "holders": [
-            {
-              "handle": "zayn4pf",
-              "name": "zayn",
-              "avatar": "https://pbs.twimg.com/profile_images/2096586358982602754/Vxp-9lsh_400x400.jpg"
-            },
-            {
-              "handle": "TrustlessState",
-              "name": "David Hoffman",
-              "role": "Bankless 진행자·미디어",
-              "avatar": "https://pbs.twimg.com/profile_images/2067341164508753920/liVbRn0l_400x400.jpg"
-            },
-            {
-              "handle": "ryanberckmans",
-              "name": "⟠",
-              "role": "이더리움 커뮤니티 논객·ETH 투자자",
-              "avatar": "https://pbs.twimg.com/profile_images/1517698378259480577/OyjdGW3D_400x400.jpg"
-            }
-          ],
-          "points": [
-            "이더리움이 지캐시가 될 수 있어도 그 역은 불가능하다 (zayn4pf)",
-            "Hoffman: ETH가 ZEC보다 나은 가치저장 수단이자 프라이버시 코인이라는 것은 삼키기 힘든 진실이다",
-            "ryanberckmans: '이더리움에 네이티브 프라이버시가 없다'는 말은 이제 문자 그대로만 참인 말이 됐고, 이더리움은 2~3년 뒤부터 영구적으로 네이티브 프라이버시를 갖게 된다"
-          ]
-        },
-        {
-          "stance": "neutral",
-          "label": "여러 프라이버시 방식의 공존이 강점이나 파편화도 낳는다",
-          "holders": [
-            {
-              "handle": "jchaskin22",
-              "name": "chaskin.eth",
-              "role": "EF 리서처",
-              "avatar": "https://pbs.twimg.com/profile_images/2016950149633691648/Kht-necI_400x400.jpg"
-            }
-          ],
-          "points": [
-            "여러 프라이버시 방식이 공존하는 것이 이더리움의 강점이지만 동시에 파편화도 낳는다"
-          ]
-        },
-        {
-          "stance": "neutral",
-          "label": "네이티브의 정의와 유틸리티를 되묻는다",
-          "holders": [
-            {
-              "handle": "jchaskin22",
-              "name": "chaskin.eth",
-              "role": "EF 리서처",
-              "avatar": "https://pbs.twimg.com/profile_images/2016950149633691648/Kht-necI_400x400.jpg"
-            },
-            {
-              "handle": "CloutedMind",
-              "name": "Clouted",
-              "avatar": "https://pbs.twimg.com/profile_images/2094043814939828224/P8BWaZPT_400x400.jpg"
-            },
-            {
-              "handle": "cryptrus",
-              "name": "Cryptrus",
-              "avatar": "https://pbs.twimg.com/profile_images/1896564895585275904/vat1ASBl_400x400.jpg"
-            }
-          ],
-          "points": [
-            "CloutedMind: '이더리움에는 네이티브 프라이버시가 없다'고 반박했다가, 불변(immutable) 스마트컨트랙트야말로 가장 네이티브한 것이라 할 수 있다고 되짚었다",
-            "cryptrus: 흥미로운 것은 유틸리티 부분이며, ZEC가 같은 시장에 접근할 수 있게 되면 이 주장은 어떻게 되는가"
-          ]
-        }
-      ],
-      "timeline": [
-        {
-          "date": "2026-09-07",
-          "by": "donnoh_eth",
-          "stance": "pro",
-          "quote": "이더리움의 (정말 중요한 것들에서) 최대 경쟁자는 지캐시다. 그에 맞게 행동하라.",
-          "url": "https://x.com/donnoh_eth/status/2096854640868438429",
-          "digest": "2026-09-09",
-          "replyTo": "nero_eth",
-          "relation": "quote",
-          "original": "ethereum’s biggest competitor (in the things that actually matter) is zcash. act accordingly",
-          "translation": "이더리움의 가장 큰 경쟁자는(진짜로 중요한 부분에서는) 지캐시(zcash)입니다. 그에 맞게 행동하세요."
-        },
-        {
-          "date": "2026-09-07",
-          "by": "donnoh_eth",
-          "stance": "pro",
-          "quote": "블록체인의 1순위 용도는 주권적 가치 이전이다. 무조건적 프라이버시 없이는 주권이 실제로 달성되지 않는다고 본다. 스마트컨트랙트는 좋지만 노드 운영을 어렵게 하고 사용자에게 도움이 안 되는 여러 방향으로 초점을 분산시킨다.",
-          "url": "https://x.com/donnoh_eth/status/2096903522486780012",
-          "digest": "2026-09-09",
-          "replyTo": "ox_shaman",
-          "relation": "reply",
-          "original": "top 1 blockchain use case is sovereign transfer of value. i dont believe sovereignty is achieved in practice without unconditional privacy. smart contracts are nice, but they make it harder to run nodes and diverts focus to many different things that dont help users to be fully sovereign. zcash has amazing ux for this already (try zodl wallet over tor), and it’s rapidly improving, in comparison the most similar protocol on ethereum (tornado cash) is super painful to use. not having smart contracts has many limitations, mainly being that many things you want to do on top require trusted parties. this is where ethereum can compete and eventually win over zcash, but the foundation is currently missing and it’s much harder for us to get there. this is fixable but we need to work on it. i 100% think zcash can surpass ethereum market cap with just private transfers and no smart contracts if ethereum doesnt catch up.",
-          "translation": "블록체인의 최고 사용 사례는 가치의 주권적 전송(sovereign transfer of value)입니다. 저는 무조건적인 프라이버시(unconditional privacy) 없이는 실제로 주권(sovereignty)이 달성될 수 없다고 봅니다. 스마트 컨트랙트(smart contract)는 좋지만, 노드를 운영하기 어렵게 만들고, 사용자가 완전히 주권을 가지는 데 도움이 되지 않는 여러 다른 것들로 초점을 분산시킵니다. 지캐시는 이미 이 부분에서 놀라운 UX를 갖추고 있고(토르(Tor)로 zodl 지갑을 써보세요), 빠르게 개선되고 있는 반면, 이더리움에서 가장 비슷한 프로토콜인 토네이도캐시(tornado cash)는 사용하기 매우 고통스럽습니다. 스마트 컨트랙트가 없다는 것은 여러 한계를 가지는데, 주로 그 위에서 하고 싶은 많은 일들이 신뢰받는 제3자(trusted party)를 필요로 한다는 점입니다. 바로 이 지점이 이더리움이 경쟁해서 결국 지캐시를 이길 수 있는 부분이지만, 지금은 그 기반이 빠져 있고 우리가 거기에 도달하기가 훨씬 어렵습니다. 이건 고칠 수 있는 문제지만 우리가 노력해야 합니다. 만약 이더리움이 따라잡지 못한다면, 저는 지캐시가 프라이빗 전송(private transfer)만으로, 스마트 컨트랙트 없이도 이더리움의 시가총액을 뛰어넘을 수 있다고 100% 생각합니다."
-        },
-        {
-          "date": "2026-09-07",
-          "by": "zayn4pf",
-          "stance": "con",
-          "quote": "이더리움은 지캐시가 무엇이든 그것이 될 수 있고 그 이상이다. 지캐시는 이더리움이 될 수 없다. 이 트윗은 이더리움을 깎아내리는 것과 같다.",
-          "url": "https://x.com/zayn4pf/status/2096941739781079386",
-          "digest": "2026-09-09",
-          "relation": "none",
-          "original": "@donnoh_eth @lex_node Ethereum can be whatever ZCASH is, and more.\n\nZCASH can’t be what Ethereum is.\n\nthis tweet is like cucking Ethereum lmfao.",
-          "translation": "@donnoh_eth @lex_node 이더리움은 지캐시가 할 수 있는 무엇이든 될 수 있고, 그 이상도 될 수 있습니다. 지캐시는 이더리움이 하는 것을 할 수 없습니다. 이 트윗은 이더리움을 스스로 깎아내리는 것 같네요 ㅋㅋㅋ."
-        },
-        {
-          "date": "2026-09-07",
-          "by": "donnoh_eth",
-          "stance": "pro",
-          "quote": "그들은 그럴 필요도 없다. 네이티브 증명 검증만 있으면 어떤 스마트컨트랙트 환경이든 그 위에 퍼미션리스하게 세워 zk증명으로 검증할 수 있다. 훨씬 쉽다. 셀레스티아가 한때 VM을 도입하지 않으려 했던 계획이 바로 이것이다.",
-          "url": "https://x.com/donnoh_eth/status/2096944960369054054",
-          "digest": "2026-09-09",
-          "replyTo": "zayn4pf",
-          "relation": "reply",
-          "original": "as i said they don’t need to. they just need native proof verification which allows any smart contract environment to be permissionlessly built on top and verified via zk proofs. it is way way easier. this is what also celestia was planning a while ago not to introduce a vm, it’s not a new idea.",
-          "translation": "제가 말했듯이 그들이 (스마트 컨트랙트를) 가질 필요는 없습니다. 그들에게 필요한 건 네이티브 증명 검증(native proof verification)뿐이고, 이를 통해 어떤 스마트 컨트랙트 환경이든 그 위에 무허가로(permissionlessly) 구축되고 영지식증명(zk proof)으로 검증될 수 있습니다. 이게 훨씬, 훨씬 더 쉽습니다. 이건 셀레스티아(celestia)도 예전에 VM을 도입하지 않는 방향으로 계획했던 것이라, 새로운 아이디어가 아닙니다."
-        },
-        {
-          "date": "2026-09-07",
-          "by": "jchaskin22",
-          "stance": "neutral",
-          "quote": "이더리움의 강점 하나는 경쟁하는 여러 프라이버시 방식을 제공할 수 있다는 것이다. 토네이도 캐시는 검열 저항을 극대화하고, 프라이버시 풀은 자금이 불법 활동과 무관함을 증명하게 하며, Railgun은 디파이를 사적으로 쓰게 한다. 다만 이는 파편화를 낳는다.",
-          "url": "https://x.com/jchaskin22/status/2096984156433465605",
-          "digest": "2026-09-09",
-          "replyTo": "donnoh_eth",
-          "relation": "reply",
-          "original": "One of Ethereum’s advantage is that it can offer competing flavors of privacy\n\nTornado Cash maximizes censorship resistance, while Privacy Pools let users prove their funds aren’t linked to illicit activity, while Railgun lets you use defi privately\n\nBut it does fragments liquidity. If enough people are willing to provide the anonymity set (they currently aren't, it's a culture problem we need to fix), that tradeoff becomes much less significant",
-          "translation": "이더리움의 장점 중 하나는 서로 경쟁하는 여러 형태의 프라이버시를 제공할 수 있다는 것입니다. 토네이도캐시(Tornado Cash)는 검열 저항성(censorship resistance)을 극대화하고, 프라이버시 풀(Privacy Pools)은 사용자가 자신의 자금이 불법 행위와 연관되어 있지 않다는 것을 증명할 수 있게 해주며, 레일건(Railgun)은 디파이(defi)를 비공개로 사용할 수 있게 해줍니다. 다만 이는 유동성(liquidity)을 분산시킵니다. 충분히 많은 사람들이 익명성 집합(anonymity set)을 제공할 의향이 있다면(현재는 그렇지 않으며, 이건 우리가 고쳐야 할 문화적 문제입니다) 그 트레이드오프는 훨씬 덜 중요해집니다."
-        },
-        {
-          "date": "2026-09-20",
-          "by": "TrustlessState",
-          "stance": "con",
-          "quote": "삼키기 힘든 진실인 듯하다. ETH는 ZEC보다 나은 가치저장 수단이자 프라이버시 코인이다.",
-          "url": "https://x.com/TrustlessState/status/2101754078187405565",
-          "digest": "2026-09-22",
-          "relation": "none",
-          "original": "apparently hard truth pill to swallow:\n\nETH is a better SoV and privacy coin than ZEC",
-          "translation": "보아하니 받아들이기 힘든 진실인 것 같다: ETH가 ZEC보다 더 나은 가치저장수단(store of value)이자 프라이버시 코인이다."
-        },
-        {
-          "date": "2026-09-20",
-          "by": "TrustlessState",
-          "stance": "con",
-          "quote": "이더리움에 네이티브 프라이버시가 없다고?",
-          "url": "https://x.com/TrustlessState/status/2101764200075043003",
-          "digest": "2026-09-22",
-          "replyTo": "CloutedMind",
-          "relation": "reply",
-          "original": "@CloutedMind Eth has no native privacy?",
-          "translation": "@CloutedMind Eth에는 네이티브 프라이버시가 없다고?"
-        },
-        {
-          "date": "2026-09-20",
-          "by": "ryanberckmans",
-          "stance": "con",
-          "quote": "'이더리움에 네이티브 프라이버시가 없다'는 이제 문자 그대로만 참인 말 중 하나가 됐다. 이더리움은 2~3년 뒤부터 영구적으로 네이티브 프라이버시를 갖게 된다.",
-          "url": "https://x.com/ryanberckmans/status/2101784680156873180",
-          "digest": "2026-09-22",
-          "replyTo": "TrustlessState",
-          "relation": "reply",
-          "original": "\"Eth has no native privacy\" has become one of those things that is merely literally true.\n\nEth will have native privacy forever, starting in 2-3 years.\n\nSo if you want to bet that this doesn't happen, or that the time value of privacy is so high that eth's privacy roadmap is irrelevant, be our guest.",
-          "translation": "“Eth에는 네이티브 프라이버시가 없다”는 이제 문자 그대로만 맞는 말이 되어버렸다. Eth는 2~3년 뒤부터 영원히 네이티브 프라이버시를 갖추게 될 것이다. 그러니 이 일이 일어나지 않는다는 데 걸고 싶거나, 프라이버시의 시간 가치가 너무 높아서 eth의 프라이버시 로드맵이 무의미하다는 데 걸고 싶다면, 얼마든지 해보라."
-        },
-        {
-          "date": "2026-09-20",
-          "by": "zectrillionaire",
-          "stance": "pro",
-          "quote": "지분증명 스테이크는 유사 탈중앙의 중앙은행 시스템이다. 완전히 서사 없는 체인이고, 나를 포함한 OG들은 이미 갈아탔다. 나는 거의 10년간 ETH 고래였지만 이제 재단을 자선단체처럼 운영한다.",
-          "url": "https://x.com/zectrillionaire/status/2101784292997452154",
-          "digest": "2026-09-22",
-          "replyTo": "CloutedMind",
-          "relation": "quote",
-          "original": "Proof-of-coins stakes are psuedo-decentralized, central-banking systems.\n\nIt probably won't go to zero, but will range 2k-4k forever, unless we hit actual hyperinflation.\n\nIt's a completely narrative-less chain.\n\nA snake with its head chopped.\n\nAll the OGs, including myself have jumped ship.\n\nEven Vitalik doesn't care about anymore.\n\nIt's a central-bank ran by weird liberals and leftists now.\n\nI don't hate $ETH either but they operate the foundation like a charity.\n\nI was an $ETH whale for almost a decade, sized in $4-$7 range late 2016, early 2017(my size back then was like 12k, lmao I was a poor graduate student)\n\nI have a soft spot in my heart for it. It fueled my initial come up, but I gotta call a spade a spade.\n\nZigher.",
-          "translation": "지분증명(proof-of-stake) 코인들은 유사 탈중앙화된 중앙은행 시스템이다. 아마 0으로 가지는 않겠지만, 실제 초인플레이션이 오지 않는 한 영원히 2천에서 4천 사이를 오갈 것이다. 완전히 서사가 없는 체인이다. 목이 잘린 뱀이다. 나를 포함한 모든 OG들이 배를 버리고 떠났다. 이제는 Vitalik조차 신경 쓰지 않는다. 지금은 이상한 리버럴과 좌파들이 운영하는 중앙은행이다. 나도 $ETH를 싫어하지는 않지만, 그들은 재단을 자선단체처럼 운영한다. 나는 거의 10년 동안 $ETH 고래였고, 2016년 말에서 2017년 초 4달러에서 7달러 구간에서 물량을 쌓았다(당시 내 보유량은 1만 2천 개 정도였다, 웃기게도 그때 나는 가난한 대학원생이었다). 마음속에 애틋한 자리가 남아 있다. 그것이 내 초기 성공의 동력이 되어주었지만, 있는 그대로 말할 건 말해야겠다. Zigher."
-        },
-        {
-          "date": "2026-09-21",
-          "by": "CloutedMind",
-          "stance": "neutral",
-          "quote": "내가 보기엔 불변 스마트컨트랙트야말로 가장 네이티브한 것이라 할 수 있다.",
-          "url": "https://x.com/CloutedMind/status/2101912087983239486",
-          "digest": "2026-09-22",
-          "replyTo": "TrustlessState",
-          "relation": "reply",
-          "original": "@TrustlessState also as far as im concerned\n\nimmutable smart contracts are as native as one can be",
-          "translation": "@TrustlessState 그리고 내가 보기엔 불변(immutable) 스마트 컨트랙트야말로 가장 네이티브에 가까운 것이다."
-        },
-        {
-          "date": "2026-09-21",
-          "by": "cryptrus",
-          "stance": "neutral",
-          "quote": "흥미로운 건 유틸리티 부분이다. ZEC가 같은 시장에 접근할 수 있게 되면 이 주장은 어떻게 되나?",
-          "url": "https://x.com/cryptrus/status/2102024736779780439",
-          "digest": "2026-09-22",
-          "replyTo": "CloutedMind",
-          "relation": "reply",
-          "original": "@CloutedMind @TrustlessState the utility part is the interesting one.. what happens to this take if ZEC can access those same markets?",
-          "translation": "@CloutedMind @TrustlessState 흥미로운 부분은 유틸리티 쪽이다.. ZEC가 같은 시장에 접근할 수 있게 된다면 이 주장은 어떻게 되는가?"
-        }
-      ],
-      "firstSeen": "2026-09-07",
-      "lastActivity": "2026-09-21",
-      "status": "cooling",
-      "rootUrl": "https://x.com/TrustlessState/status/2101754078187405565",
-      "engagement": {
-        "likes": 381,
-        "retweets": 21,
-        "quotes": 5,
-        "replies": 28,
-        "views": 26949
       }
     },
     {
@@ -4150,7 +4498,7 @@
       ],
       "firstSeen": "2026-09-10",
       "lastActivity": "2026-09-11",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/trent_vanepps/status/2098176271691755709",
       "engagement": {
         "likes": 59,
@@ -4301,7 +4649,7 @@
       ],
       "firstSeen": "2026-09-11",
       "lastActivity": "2026-09-11",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/fradamt/status/2098358457275420832",
       "engagement": {
         "likes": 4,
@@ -4458,7 +4806,7 @@
       ],
       "firstSeen": "2026-09-10",
       "lastActivity": "2026-09-10",
-      "status": "cooling"
+      "status": "archived"
     },
     {
       "id": "gas-params-privacy-leak",
