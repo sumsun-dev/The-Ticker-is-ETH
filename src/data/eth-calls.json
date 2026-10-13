@@ -1,6 +1,591 @@
 {
-  "updatedAt": "2026-10-09T00:49:00.388Z",
+  "updatedAt": "2026-10-13T00:49:05.297Z",
   "calls": [
+    {
+      "id": "acdt-100",
+      "series": "acdt",
+      "number": 100,
+      "date": "2026-10-12",
+      "title": "AllCoreDevs - Testing #100",
+      "forkcastUrl": "https://forkcast.org/calls/acdt/100/",
+      "videoUrl": "https://www.youtube.com/watch?v=Y62XSNXxku8",
+      "issueUrl": "https://github.com/ethereum/pm/issues/2264",
+      "kind": "full",
+      "durationMin": 66,
+      "headline": "프레임 데브넷\n목요일 출범",
+      "lead": "프레임 등 헤고타 후보 EIP 4종이 데브넷 검증에 들어간다",
+      "intro": "이더리움 클라이언트 개발자들이 데브넷 운영과 테스트 진행을 조율하는 테스팅 콜(ACDT)이다.",
+      "summary": "프레임(Frames) 중심의 bogota-devnet-1이 목요일 출범을 목표로 확정됐고, FOCIL 중심의 heze-devnet-2는 슬롯 12초를 유지한 채 10월 28일까지 띄우기로 했다. 콜 직전 보고된 프로포저 선택 버그는 글램스터담(Glamsterdam)에서 고치지 않고 헤고타(Hegota) 이후로 미뤘다.",
+      "whyItMatters": "헤고타 업그레이드의 두 축인 프레임과 FOCIL이 각각 전용 데브넷에서 실전 검증 단계에 들어가면서, 어떤 EIP가 실제 포크에 담길지 판단할 근거가 쌓이기 시작한다. 하드웨어 권장 사양(EIP-7870) 상향 논의는 노드 운영자가 준비해야 할 디스크 성능 기준이 달라진다는 뜻이다.",
+      "decisions": [
+        {
+          "label": "프로포저 버그 보류",
+          "text": "프로포저 선택 버그 수정을 글램스터담에 넣지 않고 헤고타 또는 그 이후로 미뤘다. 공격에 자기 슬래싱이 필요해 실익이 없다고 판단한 것이다.",
+          "original": "Proposer selection bug deferred to Hegota (or later); no fix in Glamsterdam",
+          "eips": [],
+          "status": "보류",
+          "timestamp": "00:16:50"
+        },
+        {
+          "label": "EIP-7870 유지",
+          "text": "하드웨어 권장 사양 EIP-7870을 포크마다 새 EIP로 쪼개지 않고 하나의 살아있는 문서(living document)로 유지하며 포크별 이력을 덧붙여 갱신하기로 했다. 사용자가 사양을 찾을 때 혼란을 줄이려는 결정이다.",
+          "original": "EIP-7870 remains a living document; update in place with fork-specific history rather than creating per-fork EIPs",
+          "eips": [
+            7870
+          ],
+          "status": "확정",
+          "timestamp": "00:19:09"
+        },
+        {
+          "label": "데브넷 이름 변경",
+          "text": "focil-devnet 계열은 heze-devnet으로, frames-devnet 계열은 bogota-devnet으로 모두 이름을 바꿨다. 앞으로 데브넷은 헤드라이너 EIP가 아니라 포크 이름을 따른다는 뜻이다.",
+          "original": "All focil-devnet-* renamed to heze-devnet-*, all frames-devnet-* renamed to bogota-devnet-*",
+          "eips": [],
+          "status": "확정",
+          "timestamp": "00:34:25"
+        },
+        {
+          "label": "슬롯 12초 유지",
+          "text": "heze-devnet-2의 슬롯 길이를 12초로 유지하고 퀵 슬롯(quick slots, EIP-8198)은 포함하되 10초 단축은 아직 하지 않는다. 기능은 넣되 실제 시간 단축은 클라이언트 준비를 더 보고 하겠다는 것이다.",
+          "original": "heze-devnet-2 slot duration stays at 12 seconds; quick slots (EIP-8198) included but not yet at 10s",
+          "eips": [
+            8198
+          ],
+          "status": "확정",
+          "timestamp": "00:38:01"
+        },
+        {
+          "label": "보고타 데브넷 1 출범",
+          "text": "키드 논스(keyed nonces) 합의 변경을 반영한 테스트 릴리스 v1.1.0을 태그하고 bogota-devnet-1 출범을 목요일로 잡았다. 테스트 기준을 최신 스펙에 맞춘 뒤 바로 네트워크를 띄운다는 뜻이다.",
+          "original": "bogota-devnet-1 test release to tag v1.1.0 including keyed nonce consensus change; launch targeting Thursday",
+          "eips": [],
+          "status": "일정",
+          "timestamp": "00:54:06"
+        },
+        {
+          "label": "헤제 데브넷 2 구성",
+          "text": "heze-devnet-2에 EIP-7805(FOCIL), EIP-8015(eth1data 제거), EIP-8365(0x00 검증자 금지), EIP-8198(퀵 슬롯, 12초)을 포함한다. 합의 계층(CL) 쪽 헤고타 후보들을 한 데브넷에서 함께 검증한다는 것이다.",
+          "original": "heze-devnet-2 includes EIP-7805 (FOCIL), EIP-8015 (remove eth1data), EIP-8365 (disallow 0x00 validators), EIP-8198 (quick slots at 12s)",
+          "eips": [
+            7805,
+            8015,
+            8365,
+            8198
+          ],
+          "status": "확정",
+          "timestamp": "00:29:13"
+        },
+        {
+          "label": "보고타 EIP 4종",
+          "text": "bogota-devnet-1에 EIP-8141(프레임), EIP-8250(키드 논스), EIP-8272(리센트 루트), EIP-7906(트랜잭션 어서션)을 포함한다. 실행 계층(EL) 쪽 헤고타 후보들을 묶어 검증한다는 것이다.",
+          "original": "bogota-devnet-1 EIPs: EIP-8141, EIP-8250, EIP-8272, EIP-7906 (frames, keyed nonces, recent roots, transaction assertions)",
+          "eips": [
+            8141,
+            8250,
+            8272,
+            7906
+          ],
+          "status": "확정",
+          "timestamp": "00:49:28"
+        }
+      ],
+      "targets": [
+        {
+          "key": "hoodi-fork",
+          "text": "10월 16일 금요일까지 후디(Hoodi) 대응 클라이언트 릴리스 마감, 같은 날 블로그 공지 발행. 확정된 기한이다.",
+          "timestamp": "00:09:57"
+        },
+        {
+          "key": "heze-devnet-2",
+          "text": "늦어도 10월 28일 heze-devnet-2 출범. CL 클라이언트 3개 이상이 준비되는 대로 더 일찍 띄울 수 있다는 목표다.",
+          "timestamp": "00:30:07"
+        },
+        {
+          "key": "bogota-devnet-1",
+          "text": "10월 15일 목요일 bogota-devnet-1 출범. 클라이언트 이미지가 준비되면 진행하는 목표 일정이다.",
+          "timestamp": "00:48:26"
+        }
+      ],
+      "actions": [
+        {
+          "owner": "전체 클라이언트 팀",
+          "text": "후디 릴리스가 준비되면 블로그 작성 담당인 Alex Stokes에게 알린다.",
+          "timestamp": "00:09:22"
+        },
+        {
+          "owner": "jochem",
+          "text": "EIP-8253 테스트 계정을 데브넷 제네시스 템플릿에 추가하는 PR을 연다.",
+          "timestamp": "00:57:40"
+        },
+        {
+          "owner": "EL 팀 / spencer",
+          "text": "다음 콜에서 bogota-devnet-2의 EIP 범위(SETCODEFROM, 데이터 리프라이싱, 논스 범프, 셀프디스트럭트 비활성화)를 확정한다.",
+          "timestamp": "01:04:42"
+        }
+      ],
+      "agenda": [
+        {
+          "timestamp": "00:06:45",
+          "heading": "글램스터담 데브넷과 세폴리아 현황"
+        },
+        {
+          "timestamp": "00:09:45",
+          "heading": "후디 릴리스 마감"
+        },
+        {
+          "timestamp": "00:10:22",
+          "heading": "프로포저 선택 결함",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "00:17:20",
+          "heading": "글램스터담 최소 하드웨어 요구사항",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "00:29:23",
+          "heading": "heze-devnet-2 계획과 퀵 슬롯",
+          "discussion": true
+        },
+        {
+          "timestamp": "00:29:47",
+          "heading": "헤제·보고타 데브넷 이름 변경",
+          "decision": true
+        },
+        {
+          "timestamp": "00:40:37",
+          "heading": "bogota-devnet-1 출범과 EL 업데이트"
+        },
+        {
+          "timestamp": "00:42:08",
+          "heading": "향후 헤고타 데브넷 EIP 계획",
+          "discussion": true
+        },
+        {
+          "timestamp": "00:47:32",
+          "heading": "CL 브레이크아웃: v1.7.0-beta.4와 스펙 PR",
+          "decision": true
+        }
+      ],
+      "topics": [
+        {
+          "title": "프로포저 선택 버그, 지금 고칠 것인가",
+          "intro": "슬롯 31의 프로포저가 자기 슬래싱으로 셔플 인덱스를 조작해 다음 두 에포크의 프로포저 선정에 끼어들 수 있다는 스펙 버그가 콜 직전 보고돼, 금요일 후디 릴리스 마감 전에 글램스터담 수정 여부를 정해야 했다.",
+          "decision": "보류 결정 00:16:50",
+          "positions": [
+            {
+              "speaker": "Justin Traglia",
+              "text": "합의를 깨는 변경이라 지금 넣으면 세폴리아가 깨지고 구현을 두 벌 관리해야 하는데, 공격은 자기 슬래싱이 필요해 실익이 적다며 헤고타에서 고치자고 했다.",
+              "timestamp": "00:12:29",
+              "original": "I mean, there does need to be consensus. Yeah, this would be a breaking change. Consensus breaking change. Pawan, Pretty much, my understanding is that if a A proposer could slash themselves. At the end of an epoch to influence the next couple of epochs. of proposer selection. to like include themselves or different validators that they have. That would be proposed. Oh! I don't fully understand it either, like the details, but I'm just like, I've had time to look at it. I personally don't think that we're going to want to make this change, because it would very quickly break Sepolia, and we'd have to manage two different implementations of this if we don't want to do that. And it's really just not… And to my opinion, in my opinion, my understanding is that This would be difficult to do, and with little benefit, and they would have to slash themselves. To even do it. So… My personal recommendation would be to wait for Hegota, and just fix it there as, like, a small Smart folks. Yep, thank you, Barnabas. Yes, you can Nico. You can manipulate via the RANDAO. Yeah, I mean… I think we just need more time to think about this as well. Yeah. Can we agree to this now, so that we can move forward? Is there anyone that would be supportive of doing this now in Glamsterdam. I know you haven't had that much time to think about it. It might be too late to do it then, if client releases are expected to be… are expected before Friday. I think if we need to make a call, the call should just…",
+              "translation": "합의가 필요하긴 합니다. 네, 이건 합의 계층을 깨는 변경(consensus breaking change)이 될 것입니다. 파완, 제가 이해하기로는 거의 그런데, 프로포저(proposer)가 에포크(epoch) 말에 자기 자신을 슬래싱(slashing)해서 다음 몇 에포크의 프로포저 선정에 영향을 줄 수 있다는 것입니다. 그래서 자기 자신이나 자신이 보유한 다른 밸리데이터(validator)를 포함시킬 수 있다는 것이 제안된 내용입니다. 저도 세부 내용을 완전히 이해하지는 못했지만, 살펴볼 시간은 있었습니다. 개인적으로는 이 변경을 하고 싶지 않다고 생각합니다. 세폴리아(Sepolia)가 매우 빨리 깨질 것이고, 이를 원하지 않는다면 두 가지 서로 다른 구현을 관리해야 하기 때문입니다. 그리고 사실 이건... 제 의견으로는, 제가 이해하기로는 이걸 하기는 어려운데 이득은 적고, 이걸 하려면 본인이 슬래싱을 당해야 하기도 합니다. 그래서... 제 개인적인 권고는 헤고타(Hegota)까지 기다렸다가 거기서 작은 수정으로 처리하자는 것입니다. 스마트한 분들이니까요. 네, 바나바스 감사합니다. 네, 니코, 가능합니다. RANDAO를 통해 조작할 수 있습니다. 네, 저는 이 부분도 좀 더 생각할 시간이 필요하다고 봅니다. 네. 지금 이 자리에서 합의해서 진행할 수 있을까요? 지금 글램스테르담(Glamsterdam)에서 이걸 하는 것을 지지하는 분이 있나요? 아직 충분히 생각할 시간이 없었다는 건 알고 있습니다. 클라이언트 릴리스가 금요일 전으로 예정되어 있다면, 그때는 하기에는 너무 늦을 수도 있습니다. 결정을 내려야 한다면, 그 결정은 그냥..."
+            },
+            {
+              "speaker": "Barnabas",
+              "text": "버그를 보고하면서도 실제로 일어날 일이 거의 없다며 헤고타에서조차 고칠 필요가 있는지 의문이라고 했고, 글램스터담 포함에는 분명히 반대했다.",
+              "timestamp": "00:14:02",
+              "original": "Yeah, I'm not even sure if you want to fix it for Hegota. Like, this is a bit… Like, it's never really gonna happen, I feel like. And also, like, the benefit of fixing it is. Yeah, sure. But for sure, I would not push for Glamsterdam. Maybe we can make the final call on Thursday? I mean, we would need to fix it only for Mainnet, no? Realistically. If you actually want to fix it. Yeah, I mean, we would need to have a slashing event happen on one of the testnets for this to be triggered, and that would lead to a… A fork. So, assuming that there's no slashing… You could just throw out a new update on Sepolia nodes. And we could make sure that this doesn't get exploited. I know on Hoodi, this would not be the case, but Exactly. Like, I don't think there's a benefit in doing this in Amsterdam, because I think this would just cause more headache than. That benefit.",
+              "translation": "네, 헤고타에서 이걸 고치는 게 맞는지도 확실하지 않습니다. 이건 좀... 실제로 일어날 일이 아니라고 느껴집니다. 그리고 이걸 고쳤을 때의 이득도 그렇고요. 네, 그렇습니다. 하지만 글램스테르담에서 이걸 밀고 가지는 확실히 않을 것입니다. 목요일에 최종 결정을 내릴 수 있을까요? 실질적으로 보면, 메인넷(Mainnet)에 대해서만 고치면 되는 것 아닌가요? 실제로 고치려고 한다면 말입니다. 네, 이게 트리거되려면 테스트넷 중 하나에서 슬래싱 이벤트가 발생해야 하고, 그러면 포크(fork)로 이어질 것입니다. 그러니 슬래싱이 없다고 가정하면, 세폴리아 노드에 새 업데이트를 그냥 배포할 수 있습니다. 그러면 이게 악용되지 않도록 할 수 있습니다. 후디(Hoodi)에서는 그렇지 않다는 걸 알지만, 맞습니다. 암스테르담(Amsterdam)에서 이걸 하는 게 이득이 있다고는 생각하지 않습니다. 그 이득보다 더 큰 골칫거리만 생길 것 같습니다."
+            },
+            {
+              "speaker": "Dustin",
+              "text": "메인넷만 고치는 방안은 성립하지 않는다고 반박했다. 님버스는 네트워크별로 릴리스를 쪼개지 않고 단일 릴리스만 내기 때문이라는 근거다.",
+              "timestamp": "00:15:36",
+              "original": "There's also not, as far as just fix it for mainnet, that doesn't… work. It doesn't work because, at least for Nimbus, we do not have, and absolutely 100% do not want to start bifurcating, trifurcating, etc, our releases this way, though I know some CLs effectively do. A mainnet release or a Hoodi release, there's a Nimbus release, period. Done.",
+              "translation": "메인넷만 고친다는 것도, 그건... 작동하지 않습니다. 작동하지 않는 이유는, 적어도 Nimbus의 경우에는 이런 식으로 릴리스를 이원화, 삼원화하는 것을 하지 않고 있고, 100% 절대로 그렇게 하고 싶지 않기 때문입니다. 일부 컨센서스 레이어(CL)들은 실제로 그렇게 하고 있다는 건 알고 있습니다. 메인넷 릴리스나 후디 릴리스가 따로 있는 게 아니라, Nimbus 릴리스가 하나 있을 뿐입니다. 그걸로 끝입니다."
+            },
+            {
+              "speaker": "Toni Wahrstätter",
+              "text": "공격자 입장에서 매우 비매력적인 공격이라 사실상 문제가 아니라고 봤고, 같은 조작이 RANDAO로도 가능하다는 점을 짚었다.",
+              "timestamp": "00:19:04",
+              "viaChat": true,
+              "original": "non-problem, imo. Attack is very unattractrive from attacker perspective 00:19:17\tDustin:\tReacted to \"I think it should ...\" with 👍",
+              "translation": "제 생각엔 문제가 아닙니다. 공격자 입장에서 봤을 때 이 공격은 매력적이지 않습니다.\n00:19:17 더스틴: \"I think it should ...\"에 👍로 반응함"
+            },
+            {
+              "speaker": "Pawan Dhananjay",
+              "text": "수정을 다음 포크로 미루는 데 동의한다고 밝혔다.",
+              "timestamp": "00:15:35",
+              "viaChat": true
+            }
+          ],
+          "quote": {
+            "text": "이건 실행하기 어렵고 이득은 거의 없으며, 하려면 스스로를 슬래싱까지 해야 한다.",
+            "original": "This would be difficult to do, and with little benefit, and they would have to slash themselves to even do it.",
+            "speaker": "Justin Traglia",
+            "timestamp": "00:12:29"
+          }
+        },
+        {
+          "title": "EIP-7870 하드웨어 사양, 얼마나 올리고 어떻게 관리하나",
+          "intro": "글램스터담에서 컨트랙트 크기(24에서 64KB), 가스 한도(60에서 200M)가 크게 오르면서 EIP-7870의 디스크 속도 기준 500MB/s가 현실과 맞지 않게 돼, 수치 상향 폭과 문서 관리 방식이 논의됐다.",
+          "decision": "리빙 문서 유지 확정 00:19:09",
+          "positions": [
+            {
+              "speaker": "jochem-brouwer",
+              "text": "현 사양으로는 글램스터담 최악 블록 처리에 8초가 걸려 너무 느리다며 순차 읽기·쓰기를 최소 1000MB/s, 가급적 2000MB/s로 올리자고 했고, 소통의 명확성을 위해 포크마다 별도 사양 EIP를 두자고 제안했다.",
+              "timestamp": "00:17:20",
+              "original": "Yes. So this is about this EIP. So EIP 7870. And this EIP needs an update because we currently have a minimum reads write sequential speed of 500 megabytes per second. And if he… fork to Glamsterdam, then we are both increasing the contract code size from 24 to 64. We are increasing the gas limit from 60 to 200, and we are slightly increasing the gas cost to call an account from 2600 to 3000. Now you might ask, why are you discussing this here and not on the EL channel? The point is that we need to communicate this to the community. We need to update this EIP and there are basically two things how we can do this. This is currently a living EIP. And… We can either change this EIP or we can create a new EIP for every fork so that it is clear what the minimum specs are for the fork. And there's also the question like how to what number we want to increase this. So let me share the at least in discussion. So that's also linked. This is on Discord, the discussion about this. And here is a draft EIP how we can, how we can, We could create this new EIP. So this is basically open. I think this is not a discussion or a decision what we can make today because I think this will lead to some discussion. But the main point is that we should update this EIP because the minimum specs as it is currently stated on this EIP, it is wrong. And they should at least increase this from 500 megabyte to 1000 megabyte per second. But I would advise to go to 2000 megabytes per second. But currently…",
+              "translation": "네. 이건 이 EIP에 관한 것입니다. EIP 7870입니다. 그리고 이 EIP는 업데이트가 필요합니다. 현재 최소 읽기/쓰기 순차 속도(sequential speed)가 초당 500메가바이트로 되어 있기 때문입니다. 그리고 글램스테르담으로 포크하게 되면, 컨트랙트 코드 크기를 24에서 64로 늘리고, 가스 한도(gas limit)를 60에서 200으로 늘리며, 계정을 호출하는 가스 비용도 2600에서 3000으로 약간 늘리게 됩니다. 그런데 왜 이걸 실행 계층(EL) 채널이 아니라 여기서 논의하는지 궁금하실 수 있습니다. 핵심은 이걸 커뮤니티에 전달해야 한다는 점입니다. 이 EIP를 업데이트해야 하는데, 기본적으로 이를 할 수 있는 방법이 두 가지 있습니다. 이건 현재 리빙 EIP(living EIP)입니다. 우리는 이 EIP를 직접 수정할 수도 있고, 포크마다 새로운 EIP를 만들어서 해당 포크의 최소 스펙이 무엇인지 명확히 할 수도 있습니다. 그리고 이 수치를 얼마로 올릴 것인가 하는 질문도 있습니다. 적어도 논의된 내용을 공유해 드리겠습니다. 이것도 링크되어 있습니다. 디스코드(Discord)에 이에 대한 논의가 있습니다. 그리고 여기 이 새로운 EIP를 어떻게 만들 수 있는지에 대한 초안 EIP가 있습니다. 그래서 이건 기본적으로 열려 있는 문제입니다. 오늘 여기서 논의하거나 결정할 수 있는 사안은 아니라고 생각합니다. 이게 추가 논의로 이어질 것 같기 때문입니다. 하지만 핵심은 이 EIP를 업데이트해야 한다는 것입니다. 현재 이 EIP에 명시된 최소 스펙이 잘못되었기 때문입니다. 적어도 초당 500메가바이트에서 1000메가바이트로는 올려야 합니다. 하지만 저는 2000메가바이트까지 올리는 것을 권장합니다. 하지만 현재로서는..."
+            },
+            {
+              "speaker": "Maria Silva",
+              "text": "이번 포크의 병목 때문만이 아니라 현 수치 자체가 실제 노드가 쓰는 장비 대비 이상하게 낮아서 고치는 것이라고 논점을 보탰다.",
+              "timestamp": "00:19:57",
+              "original": "Sorry, sorry, I was muted. I would also say, like. Just to be clear, I don't think this is just a question of, oh, we realize we have a bottleneck, and now we need to up the… up the specs. It's really… looking at the specs, they seem to be weirdly low, to a sense that it's hard to find machines that are actually that For performing. And so it's… it's not only about saying, like, yeah, without… like, these are the minimum specs because of the new EIP, but it's really, like, trying to get to what is the realistic specs that nodes today are running. And so in that case, it's not just let's update the minimum specs at every fork is more like, yeah, we now looked into this and it seems like it's strangely low, so we should update it. So I think this is also part of the rationale is not only about that we now realize this is a bottleneck. But yeah, just wanted to add.",
+              "translation": "죄송합니다, 음소거 상태였습니다. 저도 한 가지 덧붙이고 싶은데, 분명히 하자면, 저는 이게 단순히 '아, 병목이 있다는 걸 알았으니 이제 스펙을 올려야 한다'는 식의 문제라고 생각하지 않습니다. 실제로 스펙을 살펴보면, 이상하게 낮게 설정되어 있어서 실제로 그 성능을 내는 머신을 찾기가 어려운 수준입니다. 그래서 이건 단순히 '새 EIP 때문에 최소 스펙이 이렇게 된다'고 말하는 것뿐만 아니라, 실제로 오늘날 노드들이 운영되고 있는 현실적인 스펙이 무엇인지를 파악하려는 것입니다. 그런 의미에서 이건 단순히 '포크마다 최소 스펙을 업데이트하자'는 게 아니라, '지금 이걸 살펴봤는데 이상하게 낮아 보이니 업데이트해야 한다'는 쪽에 더 가깝습니다. 그래서 이 근거의 일부는 단순히 지금 병목을 발견했다는 것만이 아니라는 점을 말씀드리고 싶었습니다."
+            },
+            {
+              "speaker": "Ben Adams",
+              "text": "Maria에 동조하며 스펙에 적힌 낮은 속도의 NVMe 드라이브는 해당 용량에서 애초에 존재한 적이 없다고 지적했다.",
+              "timestamp": "00:21:03",
+              "original": "Yeah, just following up on Maria's point, the disk speed, Never existed for NVMEs, that's in the spec, so it's like a, it is a high-end SSD. But the spec also says that you need a NVMe eDrive. And even a four gig NVMe drive and that The low speed that's specified has never existed as an NVMe drive at 4 gigs. I don't know if we're trying to push up the, CPU and, memories. It's just the… The disk speed is crazy low.",
+              "translation": "네, 마리아의 지적에 덧붙이자면, 디스크 속도는 NVMe에서 존재한 적이 없는 수치입니다. 스펙에는 그렇게 되어 있어서, 말하자면 고급 SSD 수준입니다. 그런데 스펙에는 또 NVMe 드라이브가 필요하다고 되어 있습니다. 심지어 4기가 NVMe 드라이브조차도, 명시된 그 낮은 속도는 4기가 NVMe 드라이브로 존재한 적이 없습니다. CPU와 메모리까지 올리려는 건지는 모르겠지만, 디스크 속도는 정말 비정상적으로 낮습니다."
+            },
+            {
+              "speaker": "Dustin",
+              "text": "사양이 전반적으로 낮다는 서사에는 반박했다. RAM과 CPU 같은 다른 항목은 오히려 지나치게 높으며 님버스 사용자들은 16GB ARM 보드에서도 잘 돌린다는 근거를 들었다.",
+              "timestamp": "00:21:53",
+              "original": "That said, I want to push back a little against this narrative of the specs being on 7870. I mean… For specifically IOPS or sequential or random reads, I have no strong view on that. I'll be honest. I've never looked into that or checked this, so I'm going to stipulate slash trust that everything everyone just said here is true. I will say, as far as a lot of the rest, that as far as, amount of disk capacity, well, disk capacity, but memory, CPU cores, and speed, those have actually struck me as, from the beginning, as crazy high. Now, I understand the rationale for this. I discussed this at the time with people, and I look, it's that, well, there's future hard forks, and we want to do this. Great. But the point is for Ethereum as it existed then and Ethereum as it exists today, claiming that you need 64 gigabytes of memory to attest is absolutely 100% crazy. I'm sorry. And to say that those are too low and not realistic is no. We have to be, like… no. That may be, and this is why I'm starting by stipulating that may be the case. But, like, I'm more responding to Maria's point and her more general narrative that she's trying to sell. Here. Okay, I see. Yeah. Sorry, I just wanted to acknowledge, Lukasz's point and say, yeah, that is, that is, that is a fair point, about, about the worst case blocks and, you know, we don't I haven't… on these SBCs and such, I haven't seen systematic testing of how they respond to that, so… sure. Rented.",
+              "translation": "그렇다 해도, 7870의 스펙에 관한 이러한 서사에는 조금 반박하고 싶습니다. IOPS나 순차/랜덤 읽기에 대해서는 특별히 강한 의견은 없습니다. 솔직히 말하면 그 부분을 살펴보거나 확인해본 적이 없어서, 여기서 다들 말씀하신 내용이 모두 사실이라고 가정하고 믿겠습니다. 다만 나머지 부분, 즉 디스크 용량, 그리고 메모리, CPU 코어, 속도에 대해서는 처음부터 비정상적으로 높다고 느껴졌다는 점은 말씀드리고 싶습니다. 이에 대한 근거는 이해합니다. 당시에 사람들과 이에 대해 논의했고, 앞으로 하드포크가 더 있을 것이고 이를 위해 그렇게 하고 싶다는 것이었습니다. 좋습니다. 하지만 핵심은, 당시 존재했던 이더리움과 현재 존재하는 이더리움을 기준으로 봤을 때, 증명(attest)하는 데 64기가바이트의 메모리가 필요하다고 주장하는 것은 100% 완전히 말이 안 됩니다. 죄송하지만요. 그리고 그 수치들이 너무 낮고 비현실적이라고 말하는 것은, 아닙니다. 음, 그럴 수도 있습니다, 그래서 처음부터 그럴 수도 있다고 가정하며 시작한 것입니다. 하지만 저는 마리아의 지적과 그녀가 전달하려는 좀 더 일반적인 서사에 대해 반응하는 것에 더 가깝습니다. 네, 알겠습니다. 죄송합니다, 루카시의 지적을 인정하고 싶었습니다. 최악의 경우 블록(worst case block)에 대한 그 지적은 타당합니다. 이런 SBC 등에 대해 그것들이 어떻게 반응하는지에 대한 체계적인 테스트는 보지 못했습니다. 그러니... 네, 맞습니다. 대여된 것입니다."
+            },
+            {
+              "speaker": "Łukasz Rozmej",
+              "text": "평소 블록은 낮은 장비로도 돌지만 권장 사양은 최악의 공격 블록을 감당해야 한다며 둘을 구분했고, 사양 EIP는 여러 개로 쪼개면 더 혼란스러우니 하나로 유지하며 포크별 이력을 담자고 jochem에 반대했다.",
+              "timestamp": "00:23:34",
+              "original": "If I can chime in here for one thing, it's one thing to have, Something running on some relatively low-end hardware compared to the spec, because the average blocks are… really easy to run in practice. And there's a second thing that we… what we craft, the worst case block, so potential DOS attack vector block, and the… hardware we put in the EIP as a requirement has to handle the worst-case block, and that's the distinction. So, in practice, if you don't have an attack, you can get by by hardware that is Few times slower. At least. But if there were an attack, you potentially need this type of hardware to… then we can guarantee you will be able to handle the load fine, and don't even register it much.",
+              "translation": "한 가지만 덧붙이자면, 스펙보다 상대적으로 낮은 사양의 하드웨어에서 뭔가를 돌리는 것과, 평균적인 블록은 실제로 돌리기가 매우 쉽다는 것은 별개의 문제입니다. 그리고 두 번째로, 우리가 만드는 것은 최악의 경우 블록(worst case block), 즉 잠재적인 DOS 공격 벡터가 될 수 있는 블록이며, EIP에 요구사항으로 명시하는 하드웨어는 이 최악의 경우 블록을 처리할 수 있어야 합니다. 그게 바로 구분점입니다. 그래서 실제로는 공격이 없다면 몇 배 느린 하드웨어로도 버틸 수 있습니다. 적어도는 그렇습니다. 하지만 공격이 있다면, 이런 수준의 하드웨어가 필요할 수 있습니다. 그래야 부하를 문제없이 처리할 수 있다고 보장할 수 있고, 거의 체감도 되지 않을 것입니다."
+            },
+            {
+              "speaker": "Barnabas",
+              "text": "EVM 작업에는 순차 처리량보다 랜덤 4K IOPS가 훨씬 중요하므로 그 수치에 집중해야 한다고 했다.",
+              "timestamp": "00:19:31",
+              "viaChat": true
+            }
+          ],
+          "quote": {
+            "text": "EIP에 요구사항으로 넣는 하드웨어는 최악의 블록을 처리할 수 있어야 하고, 그게 바로 차이점이다.",
+            "original": "The hardware we put in the EIP as a requirement has to handle the worst-case block, and that's the distinction.",
+            "speaker": "Łukasz Rozmej",
+            "timestamp": "00:23:34"
+          }
+        },
+        {
+          "title": "퀵 슬롯과 heze-devnet-2의 슬롯 길이",
+          "intro": "FOCIL 중심의 heze-devnet-2에 퀵 슬롯(EIP-8198)을 넣되 슬롯을 12초로 둘지 10초로 줄일지를 두고 클라이언트별 준비 상황이 갈렸다.",
+          "decision": "12초 유지 결정 00:38:01",
+          "positions": [
+            {
+              "speaker": "Justin Traglia",
+              "text": "클라이언트들이 시간 내 구현을 못 하면 슬롯을 12초로 두어 퀵 슬롯을 사실상 선택 사항으로 하고, 3개 이상 클라이언트가 준비되면 그때 10초로 바꾸자고 제안했다.",
+              "timestamp": "00:31:55",
+              "original": "Yeah, no strong opinions for me. Spencer, are you saying that 2 will be easier than 0? for the index. And I'm sorry, I wasn't looking at the comments. Yes, all three of those CFI'd EIPs. Matthew listed, including quick slots. And if, for whatever reason, clients are unable to, or they don't have enough time to get all of these in, I propose we leave the slot duration. To be 12 seconds. So… Sort of, it'd be an optional EIP at that point. But if we can test it locally in Kurtosis and see that, like, at least 3 clients support Different slot durations, then we could change it to 10 seconds in the dev net. Does that seem reasonable? Greg. We could launch as soon as, three clients have support for all of this. Okay. I saw some reactions, In support of this. Is there anyone that's against this? I would want it to be only focused on the CL side before I joined Hegota devnet. I mean, yeah, that's what makes sense to me, but it doesn't really matter. It's just a name. Let's just do whatever's easiest for you guys now, is my opinion. And then, like, think more about it next time. Alright, that sounds great to me, Barnabas, let's do that. I see lots of support for it in the comments. Okay, I… Sorry, I just want to give one more opportunity for CL Devs to… reject the proposal that I made. Is there anyone that thinks that this is not a good idea? Or that this is not possible for them. Alright, like the end of October. Justin Florentine, yeah, I mean, October 28th would be the latest, I…",
+              "translation": "네, 저는 특별히 강한 의견은 없습니다. 스펜서, 인덱스상 2번이 0번보다 더 쉽다는 말씀이신가요? 죄송합니다, 댓글을 보지 못했습니다. 네, CFI(Considered For Inclusion)된 세 가지 EIP 모두 말씀하시는 거죠. 매튜가 나열한 것들이고, 퀵 슬롯(quick slots)도 포함됩니다. 그리고 어떤 이유로든 클라이언트들이 이걸 전부 넣지 못하거나 시간이 부족하다면, 저는 슬롯 지속시간(slot duration)을 12초로 유지하자고 제안합니다. 그러면 그 시점에서는 일종의 선택적(optional) EIP가 되는 것입니다. 하지만 쿠르토시스(Kurtosis)에서 로컬로 테스트해서 적어도 3개 클라이언트가 다른 슬롯 지속시간을 지원하는 것을 확인할 수 있다면, 데브넷(devnet)에서 10초로 바꿀 수 있습니다. 그레그, 이게 합리적으로 보이나요? 세 클라이언트가 이 모든 것을 지원하는 즉시 런칭할 수 있을 것입니다. 네. 이를 지지하는 반응 몇 개를 봤습니다. 반대하는 분이 있나요? 저는 헤고타 데브넷에 합류하기 전에는 이걸 CL 쪽에만 집중하고 싶습니다. 네, 그게 저한테는 맞는 것 같은데, 사실 크게 중요하지는 않습니다. 그냥 이름일 뿐이니까요. 지금은 여러분에게 가장 쉬운 방식으로 하고, 다음에 좀 더 생각해보자는 게 제 의견입니다. 좋습니다, 바나바스, 그렇게 하죠. 댓글에 지지가 많이 보입니다. 네... 죄송하지만 CL 개발자분들께 제가 제안한 걸 거부할 기회를 한 번 더 드리고 싶습니다. 이게 좋은 생각이 아니라고 생각하시는 분 있나요? 또는 본인에게는 불가능하다고 생각하시는 분 있나요? 알겠습니다, 10월 말쯔음으로요. 저스틴 플로렌틴, 네, 10월 28일이 최대한 늦은 시점일 것 같습니다..."
+            },
+            {
+              "speaker": "Barnabas",
+              "text": "선택 사항이라면 아예 한 주 일찍 띄우자고 했고, 2주를 미룰 거라면 그때는 참여자 모두가 10초 전환 능력을 갖춰야 한다고 봤다. 채팅에서는 10월 21일 12초안 또는 10월 28일 10초안을 선호한다고 밝혔다.",
+              "timestamp": "00:32:57",
+              "original": "Then why not just launch a bit earlier, like a week earlier, if it's optional anyway? Every EIP is our first time. Like, I only… I wasn't dead, like, basically. I mean, we could… Yeah, I agree. So the only time I would do this if we also rename the frames devnet stuff, because we also kept adding some new EIPs there, so then that would become just, Bogota devnet 0, Bogota devnet 1. And then let's… let's just do the renaming there as well. And then, we basically going forward. We're not never gonna do like headliner, devnet specific. But we're gonna do maybe CFI, devnet specific, so, like, if we CFI a… a specific EIP, then… then we're gonna just call it that fork name, and that's zero. And then so frame devnet one will not happen. It just can be called Bogota devnet one. And then all the URLs we're gonna basically change to Bogota and Heze. and so forth, and firms. But then please make sure that you're also running on your branches accordingly. That's why it would be optional. That's… that would be the point. Functionality is not real. The option, like, if we would be able to launch next week, we could keep it optional, but if we push it by 2 weeks, then I would say that at that time, everybody that wants to be participating should already have 10 seconds. capabilities to to adjust it. Yeah. But can still merge in the PR, right? For some times, that… Yep. Because we have a bunch of blockers on that, Pierre. To add the support, at least in the tooling side, so that next time…",
+              "translation": "그러면 어차피 선택적인 거라면, 그냥 조금 더 일찍, 한 주 정도 더 일찍 런칭하는 건 어떨까요? 모든 EIP가 우리에겐 처음입니다. 저는 그냥... 사실 거의 죽은 건 아니었습니다. 음, 그러니까 우리는... 네, 동의합니다. 그래서 제가 이걸 할 유일한 경우는, 프레임즈(frames) 데브넷 관련된 것도 함께 이름을 바꾸는 경우입니다. 거기에도 새로운 EIP들을 계속 추가해왔으니까요. 그러면 그냥 보고타(Bogota) 데브넷 0, 보고타 데브넷 1이 되는 것입니다. 그리고 거기서도 이름을 바꾸도록 합시다. 그리고 앞으로는 더 이상 헤드라이너(headliner) 전용 데브넷 같은 건 하지 않을 것입니다. 대신 CFI 전용 데브넷을 할 수는 있습니다. 즉, 특정 EIP를 CFI하면, 그 포크 이름으로 부르고 그게 0번이 되는 것입니다. 그러면 프레임즈 데브넷 1은 일어나지 않고, 그냥 보고타 데브넷 1로 불릴 수 있습니다. 그리고 모든 URL을 기본적으로 보고타와 헤제(Heze) 등으로 바꿀 것입니다. 하지만 각자 브랜치에서도 그에 맞게 돌리고 있는지 꼭 확인해 주십시오. 그래서 이게 선택적이 되는 이유입니다. 그게... 그게 핵심입니다. 기능은 실제가 아닙니다. 선택사항이라는 것은, 만약 다음 주에 런칭할 수 있다면 선택적으로 유지할 수 있지만, 2주 늦춘다면 그 시점에는 참여하고자 하는 모두가 이미 10초로 조정할 수 있는 능력을 갖추고 있어야 한다고 말씀드리고 싶습니다. 네. 하지만 PR은 여전히 머지할 수 있는 거죠? 어떤 경우에는요... 네. 그쪽에 블로커가 많이 있기 때문입니다, 피에르. 적어도 툴링 쪽에서 그 지원을 추가하기 위해서요. 그래야 다음번에는..."
+            },
+            {
+              "speaker": "Dustin",
+              "text": "님버스는 이 기간 안에 퀵 슬롯을 구현하지 못할 것이며, 10초가 필수가 되면 님버스는 참여하지 않을 가능성이 크다고 했다.",
+              "timestamp": "00:36:58",
+              "original": "Nimbus is not likely to have that, I mean, that's actually sort of the key question for us. Right? But we're not going to be ready for quick slots in this time frame. The other stuff is harder to say. I mean, we've fossilized. Well, but it's not optional if it's 10 seconds, or unless it starts at 10 seconds. So, no, that… this is… this is not… all. Okay, I mean, it's fine either way, but… Just… If it's the latter Nimbus is very likely not to join. Not more than 3 cards.",
+              "translation": "Nimbus는 그걸 갖추지 못할 가능성이 큽니다. 사실 그게 저희에게는 핵심적인 질문입니다. 그렇죠? 하지만 이 시간 범위 안에서는 퀵 슬롯을 준비할 수 없을 것입니다. 나머지는 말하기 더 어렵습니다. 저희는 이미 고정해버렸습니다. 음, 하지만 10초라면 그건 선택적인 게 아닙니다. 10초로 시작하지 않는 한 말이죠. 그래서, 아니요, 이건... 이건 전부가 아닙니다. 네, 어느 쪽이든 괜찮긴 한데... 그냥... 후자라면 Nimbus는 참여하지 않을 가능성이 매우 큽니다. 3개 카드를 넘지 않을 것입니다."
+            },
+            {
+              "speaker": "Jihoon",
+              "text": "테쿠도 12초 퀵 슬롯은 지원한다고 채팅에 밝혔다며 12초 유지안에 힘을 실었다.",
+              "timestamp": "00:38:16",
+              "original": "Yeah, I think Teku also said that. They support for 12 seconds quick slots. Something wrong. In the chat. We're supposed to discuss it in the CL breakout, but… Speaking of which, maybe we can also decide on that. Lighthouse, I believe. Yeah, so… 3. Yeah, yeah. And then… indefinite to… With 12 seconds slot duration, we can also have Nimbus and… did I miss one more client? So we can add. 5 clients. Yeah.",
+              "translation": "네, Teku도 그렇게 말했던 것 같습니다. 12초 퀵 슬롯을 지원한다고요. 채팅에 뭔가 잘못된 게 있네요. CL 브레이크아웃(breakout)에서 논의하기로 되어 있었는데... 말씀하신 김에, 거기서도 결정할 수 있을 것 같습니다. Lighthouse도 그렇다고 생각합니다. 네, 그러면... 3개네요. 네, 네. 그리고... 12초 슬롯 지속시간이면 Nimbus도 추가할 수 있고... 클라이언트 하나를 더 빠뜨렸나요? 그러면 추가할 수 있습니다. 5개 클라이언트네요. 네."
+            },
+            {
+              "speaker": "Matthew Keil",
+              "text": "슬롯을 12초로 유지해야 한다고 했다.",
+              "timestamp": "00:36:06",
+              "viaChat": true
+            },
+            {
+              "speaker": "Pawan Dhananjay",
+              "text": "라이트하우스는 28일까지 준비할 수 있다고 했다.",
+              "timestamp": "00:32:54",
+              "viaChat": true
+            }
+          ],
+          "quote": {
+            "text": "어느 쪽이든 괜찮지만, 후자라면 님버스는 참여하지 않을 가능성이 매우 크다.",
+            "original": "It's fine either way, but if it's the latter Nimbus is very likely not to join.",
+            "speaker": "Dustin",
+            "timestamp": "00:37:51"
+          }
+        },
+        {
+          "title": "데브넷 계획을 얼마나 앞서 짤 것인가",
+          "intro": "데브넷에 넣을 EIP를 몇 단계 앞서 계획해 클라이언트 팀의 번아웃을 줄이자는 제안을 두고 속도와 검증 순서 사이의 긴장이 드러났고, 차기 데브넷 후보 EIP들이 거론됐다.",
+          "positions": [
+            {
+              "speaker": "spencer",
+              "text": "데브넷 두 단계 앞까지 EIP를 미리 정하면 팀들이 앞서 일할 수 있고 번아웃도 줄일 수 있다며, 이번 포크가 아니라 다음 포크부터라도 프로세스를 바꿔보자고 제안했다.",
+              "timestamp": "00:42:22",
+              "original": "I guess I had a small kind of adjacent topic kind of around devnet planning. And I guess I wanted to ask. How do client teams feel about Potentially planning what goes into devnets. A bit further ahead than where we are now, so, like, maybe having, like, a devnet Plus to look ahead of what EIP should go in. I'm not saying we should do that for this fork, but maybe for… The process for the next works. Yeah, I guess I'd add, like, I feel like planning for this fork, it wouldn't… It wouldn't be ideal just where we are now, but for example, could we extend the process for the next fork so that when we have CFI'd all the EIPs. We immediately start going to this kind of. process of… What EIPs do we want in the next… three devnets, so that we kind of allow clients, client teams to work ahead. If the… if they are able to. And… I guess the whole point of this is, can we… Work in a way that helps us move faster and with less burnout. From my side, these are really good points, and sorry for bringing this up without putting it on the agenda, but maybe this is something we can discuss. To Mumbai. Yep. Yeah, no, sounds good. I was unmuted, sorry. Yeah, this PR, Do we want to add this to… No, not Frames devnet 1, but Bogota devnet 1. It's basically just the open question. And if, Clients are happy to do that. We will… Tag in a release, I guess, hopefully by the end of today. And then I guess the question is… Assuming we release by the end of today, is, are we still ready for… Launching a…",
+              "translation": "데브넷 계획과 관련해서 약간 인접한 주제가 하나 있는 것 같습니다. 클라이언트 팀들이 지금보다 좀 더 앞서서 데브넷에 무엇을 넣을지 계획하는 것에 대해 어떻게 생각하시는지 여쭤보고 싶습니다. 예를 들어 어떤 EIP가 들어가야 할지 미리 내다보는 '데브넷 플러스' 같은 것이 있을 수 있습니다. 이번 포크에 대해 그렇게 하자는 건 아니지만, 다음 포크들을 위한 프로세스로는 가능할 것 같습니다. 네, 덧붙이자면, 이번 포크에 대한 계획은 지금 시점에서는 이상적이지 않겠지만, 예를 들어 다음 포크를 위해서는 프로세스를 확장해서, 모든 EIP를 CFI하고 나면 바로 다음 세 개 데브넷에 어떤 EIP를 넣고 싶은지 논의하는 과정으로 들어갈 수 있지 않을까요? 그렇게 하면 클라이언트 팀들이 가능하다면 미리 작업할 수 있게 됩니다. 그리고 이 전체적인 요점은, 우리가 좀 더 빠르게, 그리고 번아웃을 덜 겪으면서 움직일 수 있는 방식으로 작업할 수 있는가 하는 것입니다. 제 입장에서는 정말 좋은 지적이라고 생각합니다. 그리고 안건에 올리지 않고 이걸 꺼내서 죄송하지만, 이건 논의해볼 만한 주제인 것 같습니다. 뭄바이(Mumbai) 쪽으로요. 네. 아니요, 좋은 것 같습니다. 음소거가 풀려 있었네요, 죄송합니다. 네, 이 PR 말인데, 이걸 추가하고 싶은지... 프레임즈 데브넷 1이 아니라, 보고타 데브넷 1에요. 기본적으로 열려 있는 질문입니다. 그리고 클라이언트들이 그렇게 하는 게 괜찮다면, 오늘 안에, 바라건대, 릴리스에 태그를 달겠습니다. 그러면 질문은, 오늘 안에 릴리스한다고 가정했을 때, 우리가 여전히... 런칭할 준비가 되어 있는가 하는 것입니다..."
+            },
+            {
+              "speaker": "Dustin",
+              "text": "CFI의 목적은 EIP가 실제로 작동하는지 확인하는 것인데, 파이프라인식 계획은 아직 모르는 앞선 데브넷의 결과를 미리 가정하게 된다며 신중론을 폈다.",
+              "timestamp": "00:43:31",
+              "original": "Oh, so yeah, and I want to specifically say, might maybe have a misunderstanding or misapprehension of the purpose, or what CFI is supposed to mean, but part of it is to see that it works, and I would say one risk of this kind of. planning pipelining is that it starts assuming outcomes we don't yet know for earlier devnets. I guess generically a risk with, you know, planning, but… This is, this is something I would be cautious about. Generically, and wonder… would want to see some payoff for…",
+              "translation": "아, 그리고 구체적으로 말씀드리고 싶은 게 있는데, CFI의 목적이나 의미에 대해 제가 오해하고 있는 것일 수도 있지만, 그 일부는 '그게 실제로 작동하는지' 확인하는 것입니다. 그리고 이런 식의 계획 파이프라이닝(pipelining)이 가진 한 가지 위험은, 아직 알지 못하는 이전 데브넷들의 결과를 미리 가정하기 시작한다는 점이라고 생각합니다. 일반적으로 계획 수립 자체가 가진 위험이라고 보긴 하지만, 이 부분은 제가 조심스럽게 접근하고 싶은 부분입니다. 일반적으로요. 그리고 어느 정도의 성과(payoff)를 확인하고 싶다는 생각이 듭니다..."
+            },
+            {
+              "speaker": "Justin Florentine",
+              "text": "제안의 취지는 인정하면서도 FOCIL과 프레임처럼 상호작용이 용량에까지 영향을 줄 수 있으므로, CFI 전부를 구현해놓고 나중에 고르는 방식으로 가기 전에 이 순환 문제부터 풀어야 한다고 했다.",
+              "timestamp": "00:45:41",
+              "original": "I think this is, well meant, and I think this is actually a viable thing to do, but I would love to make sure that we're super aware of interactions. So for instance, if we imagine a world where we just implement everything that's CFI, everything's feature flagged, and then we test it all and we decide which subset of that is going to get SFI'd, we have a nasty problem when it comes to interactions. Right? So I think FOCIL and Frames is a great example of one of the reasons we want to get them. you know, on a devnet quickly is because we expect those interactions. And because those interactions could be severe enough that it impacts capacity. So we have a little bit of a circular issue in Ouroboros, if you will, that I think we need to maybe sort out before we head towards a world where we're more aggressive in including things that are CFI'd on devnets, so that we can determine whether or not, you know, they're effective later in the planning process.",
+              "translation": "저는 이게 좋은 의도에서 나온 것이고, 실제로 실행 가능한 일이라고 생각합니다. 하지만 상호작용(interaction)에 대해 우리가 충분히 인식하고 있는지 확인하고 싶습니다. 예를 들어, CFI된 모든 것을 그냥 전부 구현하고 전부 기능 플래그(feature flag)로 처리한 다음, 전부 테스트해서 그중 어떤 부분집합을 SFI(Scheduled For Inclusion)할지 결정하는 세상을 상상해본다면, 상호작용 문제에서 골치 아픈 문제가 생깁니다. 그렇죠? 그래서 저는 FOCIL과 프레임즈(Frames)가 좋은 예시라고 생각합니다. 우리가 이들을 데브넷에 빨리 올리고 싶은 이유 중 하나가 바로 이런 상호작용을 예상하기 때문입니다. 그리고 이 상호작용이 용량(capacity)에 영향을 줄 정도로 심각할 수 있기 때문입니다. 그래서 우로보로스(Ouroboros)적인, 말하자면 약간 순환적인 문제가 있는데, CFI된 것들을 데브넷에 더 적극적으로 포함시키는 방향으로 나아가기 전에 이 부분을 먼저 정리해야 한다고 생각합니다. 그래야 나중에 계획 과정에서 그것들이 효과적인지 아닌지를 판단할 수 있을 것입니다."
+            },
+            {
+              "speaker": "Maria Silva",
+              "text": "셀프디스트럭트 비활성화를 일찍 넣으면 테스트에서 엣지 케이스가 줄어드는지 물었고, 그렇다는 답을 듣자 복잡하지 않은 EIP이니 조기 포함이 합리적이라고 했다.",
+              "timestamp": "00:59:04",
+              "original": "Oh, I was going to say, I'm not sure if this will be true, but would adding DEACTIVATE self-destruct earlier on actually help with testing? Because it would remove some… Edge cases, or not really? Then even though it's not a very complex EIP, it makes sense to just add it. earlier.",
+              "translation": "아, 제가 말씀드리려던 건, 이게 맞을지는 모르겠지만, DEACTIVATE self-destruct를 더 일찍 추가하는 것이 실제로 테스트에 도움이 될까요? 그게 일부 엣지 케이스(edge case)를 제거해줄 수 있을 것 같아서입니다. 아니면 실제로는 그렇지 않은가요? 그렇다면 비록 아주 복잡한 EIP는 아니더라도, 더 일찍 추가하는 게 합리적일 것 같습니다."
+            },
+            {
+              "speaker": "jochem-brouwer",
+              "text": "셀프디스트럭트를 비활성화하면 기존 패턴이 경제적으로 비싸지므로 EIP-8360(TCREATE)도 함께 우선해야 한다고 했다가, 테스트 관점에서는 별개 문제라는 Justin Florentine의 반박에 좋은 지적이라고 수긍했다.",
+              "timestamp": "00:59:51",
+              "original": "Yeah. Okay. Then just for the record, then I also want to mention that if we indeed ship the DEACTIVATE self-destruct, then we also have to ship EIP-8360, so TCREATE. Because if you deactivate self-destruct, then, currently some patterns which use self-destruct will get economically, well. More expensive in Amsterdam, and if you also deactivate Delft self-destruct, then that actually removes this pattern, so we should also include EIP-8360, Maybe not in the next devnet, but prioritize it. Yeah, okay, that's actually a good point. I was more thinking about this as the perspective from The community, especially the ecosystem, how this might be perceived. So if we have a devnet with DEACTIVATE self-destruct and not TCREATE, then people might somewhat panic. But we can communicate it clearly. Yeah, okay, that's a good point, thanks.",
+              "translation": "네. 알겠습니다. 그럼 기록을 위해 말씀드리자면, 실제로 DEACTIVATE self-destruct를 배포한다면, EIP-8360, 즉 TCREATE도 함께 배포해야 한다는 점을 말씀드리고 싶습니다. self-destruct를 비활성화하면, 현재 self-destruct를 사용하는 일부 패턴들이 암스테르담(Amsterdam)에서 경제적으로 더 비싸지게 되고, 거기에 Delft self-destruct까지 비활성화하면 그 패턴 자체가 완전히 제거되기 때문입니다. 그래서 EIP-8360도 포함해야 합니다. 다음 데브넷에는 아닐 수 있지만, 우선순위로는 두어야 합니다. 네, 그건 정말 좋은 지적입니다. 저는 좀 더 커뮤니티, 특히 생태계 쪽 관점에서 이게 어떻게 받아들여질지를 생각하고 있었습니다. 그래서 DEACTIVATE self-destruct만 있고 TCREATE는 없는 데브넷이 나오면, 사람들이 다소 패닉에 빠질 수 있습니다. 하지만 이걸 명확하게 전달할 수 있습니다. 네, 좋은 지적입니다, 감사합니다."
+            },
+            {
+              "speaker": "CPerezz",
+              "text": "SETCODEFROM은 포스트퀀텀 마이그레이션의 사실상 유일한 경로이고 네서민드와 게스가 이미 구현해 테스트를 통과했으며 프레임과의 통합 검증에도 도움이 된다며 조기 포함을 주장했다.",
+              "timestamp": "01:01:31",
+              "original": "Yeah, I mean, we have the tests. It's Mainly the only way that we have, to have some post-quantum migration, if needed, early. And Nethermind Geth already implemented the entire thing and are passing all of the tests in the EEST PR. And it would also allow us to test a lot more the integration with frames, which is… not trivial, I would say. So yeah, I think it would be good, but of course, if we prefer to test frames exhaustively by itself, I'm not gonna oppose, so to say. It's just that I think the earlier we start testing everything, the better.",
+              "translation": "네, 저희는 테스트를 가지고 있습니다. 이게 사실상 필요하다면 조기에 포스트 퀀텀(post-quantum) 마이그레이션을 할 수 있는 유일한 방법입니다. 그리고 Nethermind와 Geth는 이미 전체를 구현해서 EEST PR의 모든 테스트를 통과하고 있습니다. 그리고 이를 통해 프레임즈(frames)와의 통합도 훨씬 더 많이 테스트할 수 있을 것입니다. 이게 간단하지 않다고 말씀드리고 싶습니다. 그래서 저는 이게 좋다고 생각하지만, 물론 프레임즈만 독립적으로 철저하게 테스트하는 것을 선호하신다면 반대하지는 않겠습니다. 그냥 모든 것을 더 일찍 테스트하기 시작할수록 더 좋다고 생각할 뿐입니다."
+            }
+          ],
+          "quote": {
+            "text": "이런 식의 계획 파이프라인의 위험 하나는, 앞선 데브넷에서 아직 알지 못하는 결과를 미리 가정하기 시작한다는 것이다.",
+            "original": "One risk of this kind of planning pipelining is that it starts assuming outcomes we don't yet know for earlier devnets.",
+            "speaker": "Dustin",
+            "timestamp": "00:43:31"
+          }
+        }
+      ],
+      "speakers": [
+        {
+          "label": "Justin Traglia",
+          "name": "Justin Traglia",
+          "org": "EF",
+          "role": "보안",
+          "handle": "JustinTraglia",
+          "avatar": "https://pbs.twimg.com/profile_images/1648459994256543744/fn_SnKW5_400x400.jpg",
+          "share": 0.298
+        },
+        {
+          "label": "Barnabas",
+          "name": "Barnabas Busa",
+          "org": "EF DevOps",
+          "handle": "BarnabasBusa",
+          "avatar": "https://pbs.twimg.com/profile_images/534855342300352514/m-C5ReWq_400x400.jpeg",
+          "share": 0.167
+        },
+        {
+          "label": "spencer",
+          "name": "Spencer Taylor-Brown",
+          "org": "EF",
+          "role": "테스팅",
+          "share": 0.137
+        },
+        {
+          "label": "jochem-brouwer",
+          "name": "Jochem Brouwer",
+          "org": "EF",
+          "role": "EthereumJS · EIP-8037 공동 저자",
+          "share": 0.076
+        },
+        {
+          "label": "Mario Vega",
+          "name": "Mario Vega",
+          "org": "EF",
+          "role": "테스팅, ACDT 진행",
+          "handle": "elbuenmayini",
+          "avatar": "https://pbs.twimg.com/profile_images/1616232824415342592/Wly-1ddA_400x400.jpg",
+          "share": 0.068
+        },
+        {
+          "label": "Stefan Starflinger",
+          "name": "Stefan Starflinger",
+          "org": "EF DevOps",
+          "share": 0.051
+        },
+        {
+          "label": "Dustin",
+          "name": "Dustin Brody",
+          "org": "Nimbus",
+          "share": 0.048
+        },
+        {
+          "label": "Łukasz Rozmej",
+          "name": "Łukasz Rozmej",
+          "org": "Nethermind",
+          "role": "EIP-8037 공동 저자",
+          "share": 0.025
+        },
+        {
+          "label": "Jihoon",
+          "name": "Jihoon",
+          "share": 0.025
+        },
+        {
+          "label": "Maria Silva",
+          "name": "Maria Silva",
+          "role": "EIP-8037 제1저자",
+          "handle": "misilva73",
+          "avatar": "https://pbs.twimg.com/profile_images/1551690804594458624/elGlKFpy_400x400.jpg",
+          "share": 0.018
+        },
+        {
+          "label": "Toni Wahrstätter",
+          "name": "Toni Wahrstätter",
+          "org": "EF",
+          "role": "리서처",
+          "handle": "nero_eth",
+          "avatar": "https://pbs.twimg.com/profile_images/1858347774129094657/xUc7IS2K_400x400.jpg",
+          "share": 0.018
+        },
+        {
+          "label": "Justin Florentine",
+          "name": "Justin Florentine",
+          "org": "Besu",
+          "share": 0.017
+        },
+        {
+          "label": "Ben Adams",
+          "name": "Ben Adams",
+          "org": "Nethermind",
+          "handle": "ben_a_adams",
+          "avatar": "https://pbs.twimg.com/profile_images/1282411238602006529/l4lHaQHE_400x400.jpg",
+          "share": 0.012
+        },
+        {
+          "label": "Matthew Keil",
+          "name": "Matthew Keil",
+          "org": "ChainSafe",
+          "role": "Lodestar",
+          "handle": "matthewkeil",
+          "avatar": "https://pbs.twimg.com/profile_images/1455695649899438083/nWUpW5EK_400x400.jpg",
+          "share": 0.012
+        },
+        {
+          "label": "CPerezz",
+          "name": "Carlos Pérez (CPerezz)",
+          "org": "EF",
+          "role": "EIP-8037 공동 저자",
+          "handle": "CPerezz19",
+          "avatar": "https://pbs.twimg.com/profile_images/1254074532417200128/M2uQcW5K_400x400.jpg",
+          "share": 0.01
+        },
+        {
+          "label": "Pooja Ranjan",
+          "name": "Pooja Ranjan",
+          "org": "ECH Institute",
+          "handle": "poojaranjan19",
+          "avatar": "https://pbs.twimg.com/profile_images/2056372532299571200/Z-EwXzEQ_400x400.jpg",
+          "share": 0.008
+        },
+        {
+          "label": "Guru",
+          "name": "Guru",
+          "share": 0.005
+        },
+        {
+          "label": "Pawan Dhananjay",
+          "name": "Pawan Dhananjay",
+          "share": 0.003
+        }
+      ],
+      "chat": [
+        {
+          "speaker": "Jun Song",
+          "text": "프리즘은 focil-devnet-2 대응을 트래킹 이슈에서 추적하며 10월 28일을 목표로 한다.",
+          "timestamp": "00:29:56"
+        },
+        {
+          "speaker": "Jihoon",
+          "text": "EIP-8198은 실행 계층 쪽 지원도 일부 필요하다(execution-specs PR #3703).",
+          "timestamp": "00:31:34"
+        },
+        {
+          "speaker": "Barnabé Monnot",
+          "text": "슬롯 안에는 블록 크기에 비례하지 않는 고정 오버헤드 구간이 있어(어테스테이션 마감이 그 예) 마감 시각을 슬롯 시간에 선형으로 줄이는 것이 최적은 아닐 것이다.",
+          "timestamp": "00:40:30"
+        }
+      ],
+      "glossary": [
+        {
+          "term": "CFI",
+          "def": "Considered for Inclusion, 포크 포함을 검토 중인 후보 상태"
+        },
+        {
+          "term": "SFI",
+          "def": "Scheduled for Inclusion, 포크 포함이 확정된 상태"
+        },
+        {
+          "term": "데브넷(devnet)",
+          "def": "새 기능을 메인넷 전에 시험하는 개발용 임시 네트워크"
+        },
+        {
+          "term": "FOCIL(EIP-7805)",
+          "def": "포크초이스로 강제되는 인클루전 리스트, 검열 저항을 높이는 합의 계층 기능"
+        },
+        {
+          "term": "프레임(Frames, EIP-8141)",
+          "def": "트랜잭션을 여러 실행 단위로 나누는 새 트랜잭션 구조"
+        },
+        {
+          "term": "퀵 슬롯(quick slots, EIP-8198)",
+          "def": "블록 생성 주기인 슬롯을 12초에서 10초로 줄이는 제안"
+        },
+        {
+          "term": "키드 논스(keyed nonces, EIP-8250)",
+          "def": "계정당 하나이던 논스를 키별로 여러 개 두게 하는 제안"
+        },
+        {
+          "term": "BAL",
+          "def": "블록 액세스 리스트(block access list), 블록이 접근하는 상태를 미리 선언하는 목록"
+        }
+      ],
+      "eips": [
+        7805,
+        7870,
+        7906,
+        8015,
+        8141,
+        8198,
+        8250,
+        8253,
+        8272,
+        8279,
+        8360,
+        8365
+      ],
+      "relatedDebates": [
+        "tornado-cash-anonset-obsolete",
+        "aa-validation-programmable-vs-bounded",
+        "gas-params-privacy-leak",
+        "tx-format-ship-first-vs-permissionless"
+      ],
+      "telegramMessageId": 1662
+    },
     {
       "id": "acde-247",
       "series": "acde",
@@ -15757,13 +16342,13 @@
     "currentFork": {
       "name": "글램스터담",
       "stage": "테스트넷 단계",
-      "line": "세폴리아 10월 6일 포크 · 후디 10월 26일 확정 · 릴리스 10월 16일까지"
+      "line": "세폴리아 10월 6일 포크 · 후디 10월 26일 17:42 UTC 확정"
     },
     "nextFork": {
       "name": "헤고타",
       "stage": "범위 정하는 중",
-      "line": "CFI 20건 축적 · FOCIL과 프레임즈 데브넷 데브콘 전 통합 목표"
+      "line": "CFI 20건 누적 · bogota 데브넷 10월 15일, heze 10월 28일"
     },
-    "basis": "acde-247"
+    "basis": "acdt-100"
   }
 }
