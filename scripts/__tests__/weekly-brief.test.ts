@@ -71,6 +71,17 @@ describe('formatBrief', () => {
     expect(text).toContain('· 10.26 후디 테스트넷 글램스테르담 포크');
   });
 
+  it('should label ECK site links as ECK and list them first', () => {
+    const sources = [
+      { label: 'Forkcast 회의록', url: 'https://forkcast.org/calls/acde/247/' },
+      { label: 'ECK 해설', url: 'https://ethcollective.xyz/calls/acde-247' },
+    ];
+    const withEck = { ...brief, sections: [{ ...brief.sections[0], items: [{ ...brief.sections[0].items[0], sources }] }] };
+    expect(formatBrief(withEck, weekWindow('2026-10-11'))).toContain(
+      '출처: <a href="https://ethcollective.xyz/calls/acde-247">ECK</a> · <a href="https://forkcast.org/calls/acde/247/">Forkcast 회의록</a>',
+    );
+  });
+
   it('should not contain an inquiry block, dashes or emoji', () => {
     expect(text).not.toContain('문의');
     expect(text).not.toMatch(/—|\p{Extended_Pictographic}/u);

@@ -80,6 +80,10 @@ export function keepKnownSources(brief: Brief, allowed: Set<string>): { brief: B
 
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const escAttr = (s: string) => esc(s).replace(/"/g, '&quot;');
+/** 오너 지시(2026-10-14): ECK 사이트 링크는 모델 라벨·순서와 상관없이 "ECK"로 적고 맨 앞에 둔다 */
+const isEck = (s: { url: string }) => s.url.startsWith(SITE);
+const eckFirst = <T extends { url: string }>(sources: T[]): T[] => [...sources.filter(isEck), ...sources.filter((s) => !isEck(s))];
+const sourceLabel = (s: { label: string; url: string }) => (isEck(s) ? 'ECK' : s.label);
 
 /** 텔레그램 HTML 블록 목록. 메시지에서는 빈 줄로 이어 붙이고, splitMessages는 블록 경계에서만 자른다 */
 export function briefBlocks(brief: Brief, w: { start: string; end: string }): string[] {
@@ -93,7 +97,7 @@ export function briefBlocks(brief: Brief, w: { start: string; end: string }): st
       const title = item.date ? `${item.title} (${item.date})` : item.title;
       const lines = [`<b>${esc(title)}</b>`, esc(item.summary)];
       if (item.sources.length) {
-        lines.push(`출처: ${item.sources.map((s) => `<a href="${escAttr(s.url)}">${esc(s.label)}</a>`).join(' · ')}`);
+        lines.push(`출처: ${eckFirst(item.sources).map((s) => `<a href="${escAttr(s.url)}">${esc(sourceLabel(s))}</a>`).join(' · ')}`);
       }
       // 섹션 제목은 첫 항목과 한 블록으로 묶어, 메시지가 나뉠 때 제목만 앞 메시지 끝에 남지 않게 한다
       if (i === 0) lines.unshift(`<b>[${section.heading}]</b>`, '');
