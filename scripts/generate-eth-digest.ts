@@ -12,6 +12,7 @@
  * env: DIGEST_MODEL(기본 fable) · DIGEST_BRIEF_MODEL(기본 fable) · DIGEST_DRY_RUN=1(브리핑만 만들어 출력하고 저장하지 않음)
  */
 import { runClaude } from './lib/claude';
+import { humanizeTexts } from './lib/humanize';
 import { z } from 'zod';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -177,6 +178,21 @@ function todayKst(): string {
 
 
 /** 헤드리스 응답에서 JSON만 추출 (혹시 붙은 코드펜스 제거) */
+/** im-not-ai 룰북으로 문장만 윤문한다. url·출처·날짜·섹션 구조는 그대로 (shortTitle은 커버용 짧은 문구라 제외) */
+function humanizeDigest(d: z.infer<typeof DigestSchema>): z.infer<typeof DigestSchema> {
+  const items = d.sections.flatMap((s) => s.items);
+  const texts = [d.title, d.subTitle, d.intro, ...items.flatMap((i) => [i.title, i.summary, i.why])];
+  const out = humanizeTexts(texts, '이더리움 뉴스 다이제스트(에디터 칼럼과 항목 요약)', (p) => runClaude(p, DIGEST_MODEL));
+  let k = 3;
+  return {
+    ...d,
+    title: out[0],
+    subTitle: out[1],
+    intro: out[2],
+    sections: d.sections.map((s) => ({ ...s, items: s.items.map((i) => ({ ...i, title: out[k++], summary: out[k++], why: out[k++] })) })),
+  };
+}
+
 function extractJson(text: string): unknown {
   const trimmed = text.trim().replace(/^```(?:json)?\s*/, '').replace(/\s*```$/, '');
   const start = trimmed.indexOf('{');
@@ -270,7 +286,7 @@ async function main() {
   console.log(`Generating digest for ${today} from ${candidates.length} items (${DIGEST_MODEL})...`);
   const result = runClaude(prompt, DIGEST_MODEL);
 
-  const parsed = DigestSchema.parse(extractJson(result));
+  const parsed = humanizeDigest(DigestSchema.parse(extractJson(result)));
   const digest: Digest = { date: today, ...parsed };
   // 한 항목이 여러 사람을 인용하면 url은 하나뿐이라 나머지 발언이 논쟁 추출기에 도달하지 못한다.
   // 자동으로 쪼개지 않고 경고만 남겨, 프롬프트 규칙이 지켜지는지 로그로 본다

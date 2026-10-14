@@ -8,7 +8,9 @@
 #   3) .env에 TELEGRAM_BOT_TOKEN 설정
 #   4) crontab: 40 0 * * * /home/gv/projects/the-ticker-is-eth/scripts/vps/run-eth-digest.sh >> ~/logs/eth-digest.log 2>&1
 #              0 9 * * * /home/gv/projects/the-ticker-is-eth/scripts/vps/run-eth-digest.sh calls >> ~/logs/eth-digest.log 2>&1
+#              0 10 * * 0 /home/gv/projects/the-ticker-is-eth/scripts/vps/run-eth-digest.sh weekly >> ~/logs/eth-digest.log 2>&1
 #      두 번째 줄은 저녁(18:00 KST) 콜 브리프 게시. 다이제스트가 올라간 날 아침엔 콜을 미뤄 두 글이 겹치지 않게 한다.
+#      세 번째 줄은 일요일 19:00 KST 기자 그룹방 주간 브리프 (.env에 WEEKLY_CHAT 필요).
 set -euo pipefail
 
 # 본문을 함수로 감싼다: bash는 함수 정의를 끝까지 파싱한 뒤 실행하므로, 아래 git pull이 이 파일을 바꿔도
@@ -23,6 +25,13 @@ main() {
   if [ "${1:-}" = calls ]; then
     CALLS_CHAT=@thetickeriseth npx tsx scripts/post-calls-telegram.ts || true
     commit_and_push "chore: publish call briefs [automated]"
+    return
+  fi
+
+  # 일요일 저녁 실행: 기자 그룹방 주간 브리프 (월~일)
+  if [ "${1:-}" = weekly ]; then
+    npx tsx scripts/post-weekly-brief.ts
+    commit_and_push "chore: publish weekly press brief [automated]"
     return
   fi
 
@@ -53,7 +62,7 @@ latest_digest_message_id() {
 }
 
 commit_and_push() {
-  git add src/data/eth-digests.json src/data/eth-debates.json src/data/eth-calls.json src/data/x-profiles.json public/assets/digests/
+  git add src/data/eth-digests.json src/data/eth-debates.json src/data/eth-calls.json src/data/x-profiles.json src/data/weekly-briefs.json public/assets/digests/
   git diff --cached --quiet || (
     git commit -m "$1" &&
     git pull --rebase --autostash origin main &&

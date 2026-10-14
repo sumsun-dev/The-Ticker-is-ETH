@@ -12,8 +12,10 @@ import * as dotenv from 'dotenv';
 import { forkcastArtifactBase, parseForkcastFeed, type ForkcastCall } from './lib/eth-news';
 import { extractJson } from './lib/eth-debates';
 import { runClaude } from './lib/claude';
+import { humanizeTexts } from './lib/humanize';
 import {
   CallDraftSchema,
+  type CallDraft,
   FULL_SERIES,
   StatusDraftSchema,
   TranslationsSchema,
@@ -128,6 +130,33 @@ function draftWithRetry(prompt: string) {
   }
 }
 
+/**
+ * im-not-ai 룰북으로 설명 문장만 윤문한다. 제목·라벨·직접 인용·용어집은 건드리지 않는다.
+ * 윤문 결과가 스키마 길이 제한을 넘으면 원래 드래프트를 쓴다
+ */
+function humanizeDraft(draft: CallDraft): CallDraft {
+  const texts = [
+    draft.lead,
+    draft.summary,
+    draft.whyItMatters,
+    ...draft.decisions.map((d) => d.text),
+    ...draft.topics.flatMap((t) => [t.intro, ...t.positions.map((p) => p.text)]),
+  ];
+  const out = humanizeTexts(texts, '이더리움 코어 개발자 콜 정리("~다" 평서체)', (p) => runClaude(p, MODEL));
+  let k = 3;
+  const next = {
+    ...draft,
+    lead: out[0],
+    summary: out[1],
+    whyItMatters: out[2],
+    decisions: draft.decisions.map((d) => ({ ...d, text: out[k++] })),
+    topics: draft.topics.map((t) => ({ ...t, intro: out[k++], positions: t.positions.map((p) => ({ ...p, text: out[k++] })) })),
+  };
+  const checked = CallDraftSchema.safeParse(next);
+  if (!checked.success) console.warn('[WARN] humanize 결과가 스키마를 벗어나 원래 드래프트를 씁니다');
+  return checked.success ? checked.data : draft;
+}
+
 async function processCall(
   call: ForkcastCall,
   ctx: { roster: Record<string, SpeakerInfo>; avatars: Record<string, string | undefined>; debates: Array<{ id: string; title: string; summary: string; keywords?: string[] }> },
@@ -161,7 +190,7 @@ async function processCall(
     return recordOnly(meta);
   }
   console.log(`  ${id}: drafting with ${MODEL} (${prompt.length} chars, ${cues.length} cues)...`);
-  const draft = draftWithRetry(prompt);
+  const draft = humanizeDraft(draftWithRetry(prompt));
   let record = buildRecord({ meta, draft, decisions, tldr, notes, config, cues, chat, ...ctx });
 
   // 발언 원문 번역 (한 콜의 발언을 한 번에)
