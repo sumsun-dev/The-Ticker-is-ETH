@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-11T01:03:25.743Z",
+  "updatedAt": "2026-10-14T00:58:31.008Z",
   "processedDigests": [
     "2026-08-24",
     "2026-08-25",
@@ -25,9 +25,334 @@
     "2026-10-02",
     "2026-10-05",
     "2026-10-08",
-    "2026-10-11"
+    "2026-10-11",
+    "2026-10-14"
   ],
   "debates": [
+    {
+      "id": "eth-value-accrual-broken",
+      "title": "ETH의 가치 귀속은 깨졌고 L1은 증명 게시 레이어로 수렴하는가?",
+      "category": "확장성 · L2",
+      "summary": "ARK Invest의 Lorenzo Valente가 Unchained 인터뷰에서 활동과 수수료가 Base와 Robinhood 같은 소수 L2로 외주화돼 ETH 가치 귀속(value accrual)이 깨졌다고 주장하자, William Mougayar와 Leo Lanza 등은 수수료는 애초에 ETH 평가 기준이 아니라고 반박했다.",
+      "keyPoints": [
+        "L2가 사용자 수수료를 가져가면 L1은 자산 저장·증명 게시 레이어로만 남아 가치를 포착하지 못하는가?",
+        "ETH는 수수료 같은 현금흐름으로 평가해야 하는가, 아니면 금 같은 화폐적 상품(monetary commodity)이나 인프라로 평가해야 하는가?",
+        "성장이 L1이 아니라 Base·Robinhood 위에서 일어난다면 ETH 보유의 근거는 무엇인가?"
+      ],
+      "background": "이더리움의 L2 롤업(rollup)은 트랜잭션 실행을 L1 밖에서 처리하고 데이터와 증명만 L1에 게시하며, EIP-4844 이후 주로 블롭(blob) 데이터 비용만 L1에 낸다. 활동이 Base와 Robinhood 체인 등 소수 L2로 옮겨가면서 사용자 수수료는 L2가 포착하고 L1 수수료 수입은 급감했다. ARK Invest는 상당한 ETH 비중을 보유한 자산운용사로, Lorenzo Valente가 이 구조를 근거로 가치 귀속이 깨졌다는 약세론을 폈다. 이는 L2가 동맹인가 경쟁자인가를 둘러싼 기존 논쟁의 연장선이며, ETH를 현금흐름 자산으로 볼지 화폐적 상품으로 볼지의 평가 프레임 다툼이기도 하다.",
+      "whyItMatters": "L1 수수료 귀속 문제는 인터롭(interop), FCR, 네이티브 롤업 로드맵의 우선순위를 정하는 배경 압력으로 작동한다. ARK처럼 ETH를 보유한 기관이 가치 귀속을 어떻게 읽는지는 기관 수요와 가격 서사에 직접 영향을 주므로, ETH가 수수료 기반 자산으로 평가될지 화폐적 상품으로 평가될지의 프레임 경쟁을 지켜봐야 한다.",
+      "sources": [],
+      "keywords": [
+        "ETH value accrual",
+        "LorenzoARK",
+        "ARK Invest ETH",
+        "L2 fees Ethereum"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "가치 귀속이 깨졌고 L1은 증명 게시 레이어로 수렴한다",
+          "holders": [
+            {
+              "handle": "LorenzoARK",
+              "name": "Lorenzo Valente",
+              "role": "ARK Invest",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/1792933131541991424/XHwyx1CZ_400x400.jpg"
+            }
+          ],
+          "points": [
+            "Robinhood가 하루 수백만 달러를 버는 동안 이더리움 베이스 레이어는 100달러를 벌었고, 활동이 Base와 Robinhood 등 소수 L2로 외주화되면서 그 수수료가 L1에 귀속되지 않는다.",
+            "이더리움은 Base와 Robinhood라는 맥도날드식 프랜차이즈로 확장하고 있어 성장이 더 이상 L1에서 일어나지 않으며, 베이스 레이어는 자산 저장용으로만 쓰인다.",
+            "TCP/IP 자체는 무가치하고 아마존이 가치 있듯, 가치는 L1이 아니라 그 위 애플리케이션 레이어로 간다."
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "수수료는 ETH 가치평가의 기준이 아니다",
+          "holders": [
+            {
+              "handle": "wmougayar",
+              "name": "William Mougayar",
+              "watchlist": false,
+              "avatar": "https://pbs.twimg.com/profile_images/1639261787328598020/wLYIZiuO_400x400.jpg"
+            },
+            {
+              "handle": "leolanza",
+              "name": "Leo Lanza | Lanza.eth",
+              "watchlist": false,
+              "avatar": "https://pbs.twimg.com/profile_images/2047467548594130945/PCpuUqrt_400x400.jpg"
+            },
+            {
+              "handle": "milkroaddaily",
+              "name": "Milk Road Crypto",
+              "watchlist": false,
+              "avatar": "https://pbs.twimg.com/profile_images/2090058114229821440/TuhsrTzG_400x400.jpg"
+            }
+          ],
+          "points": [
+            "수수료는 ETH 가치평가 기준이 아니며, 이더리움은 인터넷 같은 인프라라 포착하는 것보다 더 많은 가치를 창출하고 생태계가 커질 때 가치가 자란다(Mougayar).",
+            "ETH는 금과 같은 화폐적 상품(monetary commodity)이라 수수료가 아니라 채택과 희소성으로 평가된다(Lanza, Milk Road).",
+            "토큰이 있는 인터넷이라면 수조 달러로 평가됐을 것이다(Mougayar)."
+          ]
+        },
+        {
+          "stance": "neutral",
+          "label": "수수료 귀속은 약하지만 정산·담보가 ETH에 쌓여 ETH는 저평가됐다",
+          "holders": [
+            {
+              "handle": "ETH_MAXER",
+              "name": "언성재",
+              "watchlist": false,
+              "avatar": "https://pbs.twimg.com/profile_images/2090220708098088960/VjjslL2F_400x400.jpg"
+            }
+          ],
+          "points": [
+            "L1 수수료 가치포획 문제는 오래된 쟁점이지만 수수료를 L2가 가져가도 정산과 담보는 결국 ETH 위에 쌓인다.",
+            "가치저장 수단은 결국 BTC와 ETH 투트랙이 되고 ETH는 아직 그 가치를 제대로 인정받지 못했다."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-10-12",
+          "by": "Lorenzo Valente",
+          "stance": "pro",
+          "quote": "오늘 우리가 있는 위치에서 가치 귀속이 꽤 고장 났다는 건 분명하다. 이더리움이 수십억 달러를 벌어들이는 세상을 상상하기란 매우 어렵고 명백히 불가능에 가깝다. 활동은 Base와 Robinhood 두 L2로 외주화됐고 그 수수료는 이더리움에 귀속되지 않는다. Robinhood는 하루 수백만 달러를 벌었는데 이더리움 베이스 레이어는 100달러를 벌었다.",
+          "url": "https://x.com/laurashin/status/2109783276277924181",
+          "digest": "2026-10-14",
+          "relation": "none",
+          "original": "ARK Invest's Lorenzo Valente says $ETH accruing billions is hard to imagine as L2s take the activity and fees\n\n\"It's pretty clear that where we are today the value accrual is pretty broken. Imagining a world where Ethereum accrues several billions of dollars is just very, very hard to imagine, if not clearly impossible.\"\n\n\"The base layer is used to store assets. Not much activity is happening at the base layer, so it's not producing a lot of fees.\"\n\n\"And activity has been outsourced to these L2s. Mainly two L2s, it's Base and Robinhood. It's basically 5 to 7 L2s that have 99% of the activity. And those fees are not accruing to Ethereum.\"\n\n\"Robinhood was making several millions of dollars a day and basically, Ethereum base layer was accruing $100.\"\n\n\"Ethereum has this franchise model where, basically, it's scaling through franchises, really Base and Robinhood. You can think of it as a McDonald's franchise.\"\n\n\"Growth is not happening anymore at the Ethereum layer 1.\"",
+          "translation": "ARK Invest의 로렌조 발렌테(Lorenzo Valente)는 L2가 활동과 수수료를 가져가는 상황에서 ETH가 수십억 달러를 쌓아올리는 모습은 상상하기 어렵다고 말합니다. \"지금 우리가 서 있는 지점에서 가치 포착(value accrual)이 꽤 고장 났다는 점은 분명합니다. 이더리움이 수십억 달러를 쌓아올리는 세상을 상상하는 것은 매우, 매우 어렵습니다. 명백히 불가능하지는 않더라도요.\" \"베이스 레이어(base layer)는 자산을 보관하는 데 쓰입니다. 베이스 레이어에서는 그다지 많은 활동이 일어나지 않기 때문에 수수료도 많이 발생하지 않습니다.\" \"그리고 활동은 이 L2들로 외주화되었습니다. 주로 두 개의 L2, 바로 Base와 Robinhood입니다. 사실상 전체 활동의 99%를 5개에서 7개의 L2가 차지하고 있습니다. 그리고 그 수수료는 이더리움으로 쌓이지 않습니다.\" \"Robinhood는 하루에 수백만 달러를 벌어들이고 있었는데, 이더리움 베이스 레이어는 기본적으로 100달러를 쌓고 있었습니다.\" \"이더리움은 일종의 프랜차이즈 모델을 갖고 있는데, 기본적으로 프랜차이즈를 통해 확장하는 것입니다. 실제로는 Base와 Robinhood죠. 맥도날드 프랜차이즈라고 생각하면 됩니다.\" \"더 이상 이더리움 레이어1(layer 1)에서는 성장이 일어나지 않고 있습니다.\""
+        },
+        {
+          "date": "2026-10-13",
+          "by": "LorenzoARK",
+          "stance": "pro",
+          "quote": "TCP/IP는 무가치하니 당신은 오히려 내 논점을 입증하는 셈이다. 아마존은 당연히 매우 가치 있다.",
+          "url": "https://x.com/LorenzoARK/status/2109984556778737927",
+          "digest": "2026-10-14",
+          "replyTo": "wmougayar",
+          "relation": "reply",
+          "original": "@wmougayar @laurashin TCP/IP is worthless, so you are kinda making my point, amazon is obviously very valuable",
+          "translation": "TCP/IP는 가치가 없으니, 사실 당신은 제 주장을 뒷받침하는 셈입니다. 아마존은 명백히 매우 가치가 있죠."
+        },
+        {
+          "date": "2026-10-13",
+          "by": "wmougayar",
+          "stance": "con",
+          "quote": "수수료는 ETH 가치평가의 기준이 아니다. 이더리움은 인터넷 같은 인프라다. 우리가 인터넷을 TCP/IP 수수료로, 아마존을 배송 수익으로 평가하는가? 아니다. 인프라는 포착하는 것보다 더 많은 가치를 창출하며, 그 가치는 생태계가 커질 때 자란다.",
+          "url": "https://x.com/wmougayar/status/2109972997750784302",
+          "digest": "2026-10-14",
+          "replyTo": "laurashin",
+          "relation": "reply",
+          "original": "@laurashin Fees are NOT the benchmark for ETH valuation.\nEthereum is infrastructure, like the Internet.\nDo we value the Internet on TCP/IP fees or Amazon on shipping revenues? No.\nInfrastructure creates more value than it captures. Its value grows when its ecosystem grows. @LorenzoARK",
+          "translation": "수수료는 ETH 가치 평가의 기준이 아닙니다. 이더리움은 인터넷처럼 인프라입니다. 우리가 인터넷을 TCP/IP 수수료로, 아마존을 배송 수익으로 평가하나요? 아닙니다. 인프라는 자신이 포착하는 것보다 더 많은 가치를 창출합니다. 인프라의 가치는 그 생태계가 성장할 때 함께 성장합니다."
+        },
+        {
+          "date": "2026-10-13",
+          "by": "leolanza",
+          "stance": "con",
+          "quote": "원자재(commodity)는 수수료로 평가되지 않는다. 금이 수수료를 얼마나 창출하는가? ETH는 금과 같은 화폐적 상품 자산군에 속하며 수수료로 평가되지 않는다.",
+          "url": "https://x.com/leolanza/status/2109994609640153551",
+          "digest": "2026-10-14",
+          "replyTo": "laurashin",
+          "relation": "reply",
+          "original": "@laurashin Commodities are NOT valued on fees.\n\nStop giving attention to people that do not understand basic economics.\n\nHow many fees does gold generate?\n\nETH falls into the same asset class as gold a monetary commodity and they’re not valued on fees.",
+          "translation": "원자재(commodities)는 수수료로 가치를 평가받지 않습니다. 기본적인 경제학을 이해하지 못하는 사람들에게 관심을 주는 일은 그만두세요. 금은 수수료를 얼마나 발생시키나요? ETH는 금과 같은 자산군, 즉 화폐적 원자재(monetary commodity)에 속하며 이런 자산들은 수수료로 가치를 평가받지 않습니다."
+        },
+        {
+          "date": "2026-10-13",
+          "by": "milkroaddaily",
+          "stance": "con",
+          "quote": "ETH는 제품의 관점으로 평가할 수 없다. ETH는 미래 암호화 월드 컴퓨터를 위한 화폐다. 화폐는 현금흐름이 아니라 채택과 희소성으로 평가한다.",
+          "url": "https://x.com/milkroaddaily/status/2110019129948438780",
+          "digest": "2026-10-14",
+          "replyTo": "laurashin",
+          "relation": "reply",
+          "original": "@laurashin ETH can't be evaluated with a product lens. Many investors make this mistake. ETH is money for the future cryptographic world computer. How do you value money? Not through cash flows, but through adoption and scarcity.",
+          "translation": "ETH는 제품의 관점으로 평가할 수 없습니다. 많은 투자자들이 이런 실수를 합니다. ETH는 미래의 암호학적 세계 컴퓨터(cryptographic world computer)를 위한 화폐입니다. 화폐의 가치는 어떻게 평가하나요? 현금흐름이 아니라 채택(adoption)과 희소성(scarcity)을 통해서입니다."
+        },
+        {
+          "date": "2026-10-13",
+          "by": "ETH_MAXER",
+          "stance": "neutral",
+          "quote": "L1 수수료 가치포획 문제는 오랫동안 나왔지만, 수수료는 L2가 가져가도 정산과 담보는 결국 ETH 위에 쌓인다. 가치저장 수단은 결국 BTC와 ETH 투트랙이 될 것이고, ETH는 아직 그 가치를 제대로 인정받지 못했다.",
+          "url": "https://x.com/ETH_MAXER/status/2109808660084044037",
+          "digest": "2026-10-14",
+          "replyTo": "laurashin",
+          "relation": "quote",
+          "original": "ARK, ETH는 가치 포착이 고장 났다\n\n1. ARK의 로렌조 발렌테는 Unchained에서 \"가치 포착은 꽤 고장 났다\"고 말함\n\n2. 근거로 \"로빈후드는 하루 수백만 달러를 버는데 L1은 100달러\"를 듦\n\n3. 결론은 L1은 데이터 저장 레이어가 되고, 승자는 실물자산(RWA)이라는 것\n\n4. 가치저장 수단으로는 BTC가 압도적이고, 이제 금융사 담보자산으로도 채택되기 시작함\n\n5. 금융사 입장에서 다음 후보는 지분증명(PoS) 코인 중 가치저장 수단으로 가장 탄탄한 ETH\n\n6. 이유는 스테이킹으로 현금흐름을 줄 수 있어서 고객을 모으기 좋기 때문\n\n7. 수수료는 L2가 가져가도 정산과 담보는 결국 ETH 위에 쌓임\n\n결론 : L1 수수료 가치포획 문제는 오랫동안 나왔는데, 개인적인 생각으로 가치저장 수단은 결국 BTC와 ETH 투트랙이 될 것임. ETH는 아직 그 가치를 제대로 인정받지 못했으니, 이번 상승 모멘텀에서 더 크게 움직일 수 있을거라 생각.\n\nethereum:native",
+          "translation": "ARK, ETH는 가치 포착이 고장 났다 1. ARK의 로렌조 발렌테는 Unchained에서 \"가치 포착은 꽤 고장 났다\"고 말함 2. 근거로 \"로빈후드는 하루 수백만 달러를 버는데 L1은 100달러\"를 듦 3. 결론은 L1은 데이터 저장 레이어가 되고, 승자는 실물자산(RWA)이라는 것 4. 가치저장 수단으로는 BTC가 압도적이고, 이제 금융사 담보자산으로도 채택되기 시작함 5. 금융사 입장에서 다음 후보는 지분증명(PoS) 코인 중 가치저장 수단으로 가장 탄탄한 ETH 6. 이유는 스테이킹으로 현금흐름을 줄 수 있어서 고객을 모으기 좋기 때문 7. 수수료는 L2가 가져가도 정산과 담보는 결국 ETH 위에 쌓임 결론 : L1 수수료 가치포획 문제는 오랫동안 나왔는데, 개인적인 생각으로 가치저장 수단은 결국 BTC와 ETH 투트랙이 될 것임. ETH는 아직 그 가치를 제대로 인정받지 못했으니, 이번 상승 모멘텀에서 더 크게 움직일 수 있을거라 생각."
+        }
+      ],
+      "firstSeen": "2026-10-12",
+      "lastActivity": "2026-10-13",
+      "status": "active",
+      "rootUrl": "https://x.com/laurashin/status/2109783276277924181",
+      "engagement": {
+        "likes": 22,
+        "retweets": 0,
+        "quotes": 4,
+        "replies": 16,
+        "views": 12867
+      }
+    },
+    {
+      "id": "best-crypto-wallet-infinex",
+      "title": "시장 최고의 지갑은 Infinex인가?",
+      "category": "거버넌스 · 커뮤니티",
+      "summary": "Bankless의 David Hoffman이 Infinex를 비교 불가한 시장 최고 지갑으로 꼽고 기기 비종속성을 핵심 장점으로 들자 Evan Van Ness가 동조했고, Backpack과 Vultisig 지지자, 그리고 Infinex 토큰 부진의 원인을 둘러싼 회의론이 맞섰다.",
+      "keyPoints": [
+        "지갑의 우수성은 기기 비종속성과 크로스플랫폼 UX로 판가름나는가?",
+        "Infinex 토큰 부진은 InfoFi 내러티브 전투 탓인가, 제품·신뢰 문제 탓인가?",
+        "메타마스크가 이더리움과 동일시되는 것이 이더리움에 걸림돌인가?"
+      ],
+      "whyItMatters": "지갑 UX와 계정 구조가 셀프커스터디 이탈을 막는 최전선이라는 인식이 논쟁 형태로 드러났다. 기기 비종속성과 멀티인증(multi-auth) 같은 차별화 요소가 어떤 지갑으로 사용자를 모을지, 그리고 지갑 신뢰 위기 국면에서 마케팅 서사가 실제 채택으로 이어질지를 지켜봐야 한다.",
+      "sources": [],
+      "keywords": [
+        "Infinex wallet",
+        "Backpack wallet",
+        "best crypto wallet",
+        "Vultisig"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "Infinex가 비교 불가한 최고",
+          "holders": [
+            {
+              "handle": "TrustlessState",
+              "name": "David Hoffman",
+              "role": "Bankless",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/2067341164508753920/liVbRn0l_400x400.jpg"
+            },
+            {
+              "handle": "evan_van_ness",
+              "name": "Evan Van Ness 🧉",
+              "role": "전 Week in Ethereum News 편집자",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/1881390553842995200/7ykf9ese_400x400.jpg"
+            }
+          ],
+          "points": [
+            "Infinex는 특정 기기에 묶이지 않아 셀프커스터디·온체인에서 수년간 느껴온 위험감을 없앴다(Hoffman).",
+            "폰 앱과 브라우저 확장 전반에서 동급 최고 UX를 제공한다(Van Ness).",
+            "모두가 메타마스크를 이더리움과 동일시하는 것이 이더리움의 발목을 잡으므로 Infinex를 써야 한다(Van Ness)."
+          ]
+        },
+        {
+          "stance": "other",
+          "label": "다른 지갑이 더 낫다",
+          "holders": [
+            {
+              "handle": "0xpmush",
+              "name": "Mush 🍄",
+              "watchlist": false,
+              "avatar": "https://pbs.twimg.com/profile_images/2077699953833750528/jpi-snOB_400x400.jpg"
+            },
+            {
+              "handle": "TheDivingPaaao",
+              "name": "paaao | ACEL",
+              "watchlist": false,
+              "avatar": "https://pbs.twimg.com/profile_images/1970079525036843008/bz4A1f5W_400x400.jpg"
+            }
+          ],
+          "points": [
+            "의심의 여지 없이 Backpack이 지금 크립토에서 가장 완성된 앱이자 최고의 지갑이며 모든 걸 원클릭으로 한다(Mush).",
+            "남은 업그레이드는 원하는 어떤 기기로든 멀티인증(multi-auth)하는 것이고 그래서 Vultisig가 존재한다(paaao)."
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "내러티브가 아니라 제품·신뢰의 문제다",
+          "holders": [
+            {
+              "handle": "banterlytics",
+              "name": "banterlytics",
+              "watchlist": false,
+              "avatar": "https://pbs.twimg.com/profile_images/2102821733011181570/q8StPFeY_400x400.jpg"
+            }
+          ],
+          "points": [
+            "Infinex 토큰 부진은 내러티브 전투 때문이 아니라 Kain이 SNX·sUSD에서 사람들에게 손실을 안긴 전력과 TGE 이후 의미 있는 성과가 없었던 탓이다."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-10-10",
+          "by": "TrustlessState",
+          "stance": "pro",
+          "quote": "Infinex 지갑은 비교 불가한, 단연 시장 최고의 지갑이다. 셀프커스터디·온체인은 수년간 위험하게 느껴졌는데 지금은 그런 느낌이 전혀 없다. 여러 이유 중에서도 어떤 기기에도 묶이지 않는 점이 큰 업그레이드다.",
+          "url": "https://x.com/TrustlessState/status/2108947848607756290",
+          "digest": "2026-10-14",
+          "relation": "none",
+          "original": "Infinex wallet is, by far, the best wallet on the market\n\nnot even close\n\nSelf-custody/onchain has felt risky for years, which is when I started using Infinex. I don't feel any of that now.\n\nAmong many reasons, not being tied to any one device is a huge upgrade",
+          "translation": "Infinex 지갑(wallet)은 단연코 시장에서 최고의 지갑입니다. 비교가 안 될 정도입니다. 자기보관(self-custody)/온체인(onchain) 방식은 수년간 위험하게 느껴졌는데, 그때부터 저는 Infinex를 쓰기 시작했습니다. 지금은 그런 느낌이 전혀 들지 않습니다. 여러 이유 중에서도 특정 기기 하나에 묶이지 않는다는 점이 큰 업그레이드입니다."
+        },
+        {
+          "date": "2026-10-10",
+          "by": "0xpmush",
+          "stance": "other",
+          "quote": "의심의 여지가 없다. Backpack이 지금 크립토에서 최고의 지갑이자 가장 완성된 앱이다. 모든 걸 원클릭으로.",
+          "url": "https://x.com/0xpmush/status/2109043433126158641",
+          "digest": "2026-10-14",
+          "replyTo": "TrustlessState",
+          "relation": "quote",
+          "original": "Not a shill. For some reason there is no doubt about it, Backpack has the best wallet and the most complete app in crypto right now\n\nOne click for everything\n\nIt is just a @Backpack 🎒🎒🎒\n\nhttps://backpack.exchange/join/mush",
+          "translation": "홍보가 아닙니다. 어쩐지 의심의 여지가 없는데, Backpack은 현재 크립토 업계에서 가장 좋은 지갑이자 가장 완성도 높은 앱입니다. 모든 것이 클릭 한 번이면 됩니다. 그냥 Backpack일 뿐입니다. https://backpack.exchange/join/mush"
+        },
+        {
+          "date": "2026-10-11",
+          "by": "evan_van_ness",
+          "stance": "pro",
+          "quote": "David가 맞다. Infinex는 폰 앱과 브라우저 확장 전반에서 최고의 UX를 가진 최고의 크립토 지갑이다. 이더리움의 발목을 잡는 한 가지는 모두가 메타마스크를 이더리움과 동일시한다는 것이다. 그냥 Infinex를 써라.",
+          "url": "https://x.com/evan_van_ness/status/2109377938390982847",
+          "digest": "2026-10-14",
+          "replyTo": "TrustlessState",
+          "relation": "quote",
+          "original": "David is right\n\nInfinex is the best crypto wallet out there, best in class UX across phone app and browser extension\n\nOne thing that holds Ethereum back is the fact that everyone associates Metamask with ETH.\n\nJust use infinex.",
+          "translation": "David가 맞습니다. Infinex는 현존하는 최고의 크립토 지갑이며, 휴대폰 앱과 브라우저 확장 프로그램 모두에서 업계 최고 수준의 사용자 경험(UX)을 제공합니다. 이더리움을 가로막는 한 가지는 모두가 Metamask를 ETH와 연결해서 생각한다는 사실입니다. 그냥 infinex를 쓰세요."
+        },
+        {
+          "date": "2026-10-11",
+          "by": "TheDivingPaaao",
+          "stance": "other",
+          "quote": "이제 남은 유일한 업그레이드는 원하는 어떤 기기로든 멀티인증하는 것이다. 그래서 Vultisig가 존재한다.",
+          "url": "https://x.com/TheDivingPaaao/status/2109126833249919133",
+          "digest": "2026-10-14",
+          "replyTo": "TrustlessState",
+          "relation": "reply",
+          "original": "@TrustlessState Now only missing upgrade is multi-auth with any device you want.\n\nThats why @vultisig exists",
+          "translation": "이제 유일하게 빠진 업그레이드는 원하는 어떤 기기로도 가능한 다중 인증(multi-auth)입니다. 그게 바로 vultisig가 존재하는 이유입니다."
+        },
+        {
+          "date": "2026-10-11",
+          "by": "banterlytics",
+          "stance": "con",
+          "quote": "정말 토큰이 내러티브 전투 때문에 내렸다고 생각하나? Kain이 SNX와 sUSD에서 사람들을 태웠고, Infinex가 TGE 이후 한동안 의미 있는 게 없었던 탓 아닌가.",
+          "url": "https://x.com/banterlytics/status/2109116814857035996",
+          "digest": "2026-10-14",
+          "replyTo": "TrustlessState",
+          "relation": "reply",
+          "original": "@TrustlessState you really think token is down due to narrative battle and not that kain burnt people on snx and susd\n\nand that inx didn't had anything meaningful for a while post tge",
+          "translation": "정말로 토큰이 내려간 이유가 내러티브 전쟁 때문이라고 생각하나요? kain이 SNX와 sUSD에서 사람들에게 손실을 입혔고, INX가 TGE(토큰 생성 이벤트) 이후 한동안 의미 있는 것을 전혀 내놓지 못했다는 사실 때문이 아니라요?"
+        }
+      ],
+      "firstSeen": "2026-10-10",
+      "lastActivity": "2026-10-11",
+      "status": "active",
+      "rootUrl": "https://x.com/TrustlessState/status/2108947848607756290",
+      "engagement": {
+        "likes": 176,
+        "retweets": 13,
+        "quotes": 4,
+        "replies": 40,
+        "views": 57067
+      }
+    },
     {
       "id": "thorchain-permissionless-dprk-zec",
       "title": "THORChain의 ZEC 상장은 퍼미션리스의 원칙인가, 북한 세탁을 돕는 선택적 중립인가?",
@@ -975,7 +1300,7 @@
       ],
       "firstSeen": "2026-10-06",
       "lastActivity": "2026-10-07",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/barnabemonnot/status/2107398728403312970",
       "engagement": {
         "likes": 94,
@@ -1106,7 +1431,7 @@
       ],
       "firstSeen": "2026-10-05",
       "lastActivity": "2026-10-05",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/donnoh_eth/status/2107059228716196077",
       "engagement": {
         "likes": 95,
