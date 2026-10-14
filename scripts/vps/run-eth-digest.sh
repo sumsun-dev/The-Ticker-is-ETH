@@ -29,8 +29,15 @@ main() {
   fi
 
   # 일요일 저녁 실행: 기자 그룹방 주간 브리프 (월~일)
+  # 실패하거나 경고(윤문 실패·항목 삭제·출처 제거)가 있으면 오너 DM으로 알린다 (오너 2026-10-14)
   if [ "${1:-}" = weekly ]; then
-    npx tsx scripts/post-weekly-brief.ts
+    local out status=0
+    out=$(npx tsx scripts/post-weekly-brief.ts 2>&1) || status=$?
+    echo "$out"
+    if [ "$status" -ne 0 ] || ! grep -q "Sent weekly brief" <<<"$out" || grep -q "\[WARN\]" <<<"$out"; then
+      notify_owner "[주간 브리프] 확인 필요 (exit $status)
+$(grep -v dotenv <<<"$out" | tail -15)"
+    fi
     commit_and_push "chore: publish weekly press brief [automated]"
     return
   fi
@@ -59,6 +66,16 @@ main() {
 
 latest_digest_message_id() {
   node -p "require('./src/data/eth-digests.json').digests[0]?.telegramMessageId ?? ''"
+}
+
+# 오너 DM 알림. .env를 source하지 않고 필요한 값만 읽는다 (값에 셸 특수문자가 있어도 안전)
+notify_owner() {
+  local token chat
+  token=$(grep -m1 '^TELEGRAM_BOT_TOKEN=' .env | cut -d= -f2-)
+  chat=$(grep -m1 '^VITALIK_ALERT_CHAT=' .env | cut -d= -f2-)
+  [ -n "$token" ] && [ -n "$chat" ] || { echo "[WARN] notify_owner: token/chat 없음"; return 0; }
+  curl -s -o /dev/null "https://api.telegram.org/bot$token/sendMessage" \
+    --data-urlencode "chat_id=$chat" --data-urlencode "text=${1:0:3500}" || echo "[WARN] notify_owner 전송 실패"
 }
 
 commit_and_push() {
