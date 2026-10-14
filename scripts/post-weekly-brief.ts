@@ -59,8 +59,8 @@ const PROMPT = `당신은 ECK(Ethereum Collective Korea)의 홍보 담당 에디
 - sections: heading은 "프로토콜 · 코어 개발", "업계 동향", "커뮤니티 논쟁" 중 하나. 각각 최대 2개 항목, 중요한 순서대로. 해당 소식이 없으면 섹션을 뺍니다.
 - 항목 하나에는 사건 하나만 담습니다. 서로 다른 회사나 프로젝트의 소식을 한 항목으로 묶지 않습니다.
 - 항목: title은 사실형 제목, date는 사건 날짜 "MM.DD"(예: "10.06", 모르면 ""), summary는 2문장, 공백 포함 200자 안쪽. EIP 번호를 길게 나열하지 말고 핵심만 씁니다.
-- sources는 항목당 최대 2개 (원문 1개 + ECK 해설 1개가 기본).
-- sources: 원문(X, Forkcast, 공식 발표)을 먼저, ECK 해설 링크를 뒤에. label은 짧게 (예: "Forkcast 회의록", "ECK 해설", "@EthCoordinate"). url은 반드시 입력에 나온 URL만 씁니다.
+- sources는 항목당 최대 2개 (ECK 1개 + 원문 1개가 기본).
+- sources: ECK 링크를 먼저, 원문(X, Forkcast, 공식 발표)을 뒤에. label은 짧게 (예: "Forkcast 회의록", "ECK", "@EthCoordinate"). url은 반드시 입력에 나온 URL만 씁니다.
 - upcoming: 입력에 나온 다음 주 이후 일정만 "MM.DD 내용" 형태로. 없으면 빈 배열.
 - 전체 분량은 공백 포함 2500자 안쪽. 텔레그램 메시지 하나에 들어가야 하므로 이 한도를 꼭 지킵니다.
 
@@ -94,7 +94,7 @@ function collectInput(w: { start: string; end: string }): { input: string; urls:
 
   const { digests } = readJson<{ digests: { date: string; title: string; sections: { heading: string; items: { title: string; summary: string; url: string; source: string; date: string }[] }[] }[] }>('eth-digests.json');
   for (const d of digests.filter((d) => inWindow(d.date, w))) {
-    parts.push(`## 다이제스트 ${d.date}: ${d.title}\nECK 해설: ${SITE}/news?date=${d.date}`);
+    parts.push(`## 다이제스트 ${d.date}: ${d.title}\nECK: ${SITE}/news?date=${d.date}`);
     for (const s of d.sections) {
       for (const i of s.items) parts.push(`- [${s.heading}] ${i.title} (${i.date}, ${i.source})\n  ${i.summary}\n  원문: ${i.url}`);
     }
@@ -103,14 +103,14 @@ function collectInput(w: { start: string; end: string }): { input: string; urls:
   const { calls } = readJson<{ calls: { id: string; date: string; title: string; forkcastUrl?: string; summary?: string; intro?: string; decisions?: unknown; targets?: unknown }[] }>('eth-calls.json');
   for (const c of calls.filter((c) => inWindow(c.date, w))) {
     parts.push(
-      `## 코어 개발자 콜 ${c.date}: ${c.title}\n원문: ${c.forkcastUrl ?? ''}\nECK 해설: ${SITE}/calls/${c.id}\n${c.summary ?? c.intro ?? ''}\n결정: ${JSON.stringify(c.decisions ?? [])}\n일정: ${JSON.stringify(c.targets ?? [])}`,
+      `## 코어 개발자 콜 ${c.date}: ${c.title}\n원문: ${c.forkcastUrl ?? ''}\nECK: ${SITE}/calls/${c.id}\n${c.summary ?? c.intro ?? ''}\n결정: ${JSON.stringify(c.decisions ?? [])}\n일정: ${JSON.stringify(c.targets ?? [])}`,
     );
   }
 
   const { debates } = readJson<{ debates: { id: string; title: string; summary: string; lastActivity: string; rootUrl: string; publish?: boolean }[] }>('eth-debates.json');
   for (const d of debates.filter((d) => inWindow(d.lastActivity, w))) {
     // 사이트에 노출된 논쟁만 ECK 페이지 링크가 살아 있다
-    const eck = d.publish ? `\nECK 해설: ${SITE}/debates/${d.id}` : '';
+    const eck = d.publish ? `\nECK: ${SITE}/debates/${d.id}` : '';
     parts.push(`## 논쟁 (최근 활동 ${d.lastActivity}): ${d.title}\n원문: ${d.rootUrl}${eck}\n${d.summary}`);
   }
 
@@ -119,7 +119,7 @@ function collectInput(w: { start: string; end: string }): { input: string; urls:
     const file = path.join(DATA, 'articles', `${r.id}.md`);
     const body = fs.existsSync(file) ? fs.readFileSync(file, 'utf-8').replace(/!\[[^\]]*\]\([^)]*\)/g, '').trim() : '';
     if (body.length < 80) continue; // 이미지만 올린 글
-    parts.push(`## Short ${normDate(r.date)} (${r.author}): ${r.title}\nECK 해설: ${SITE}/contents/${r.id}\n${body.slice(0, ARTICLE_CHARS)}`);
+    parts.push(`## Short ${normDate(r.date)} (${r.author}): ${r.title}\nECK: ${SITE}/contents/${r.id}\n${body.slice(0, ARTICLE_CHARS)}`);
   }
 
   const input = parts.join('\n\n');
