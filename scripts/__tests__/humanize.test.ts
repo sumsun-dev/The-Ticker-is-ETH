@@ -1,11 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { guardRewrites, humanizeTexts } from '../lib/humanize';
+import { guardRewrites, humanizeTexts, normalizeTerms } from '../lib/humanize';
 
-const originals = ['글램스터담이 세폴리아에서 활성화됐습니다.', 'ACDE #247에서 후디 포크 일정을 정했습니다.'];
+const originals = ['글램스테르담이 세폴리아에서 활성화됐습니다.', 'ACDE #247에서 후디 포크 일정을 정했습니다.'];
 
 describe('guardRewrites', () => {
   it('should take rewrites of similar length', () => {
-    const rewrites = ['글램스터담이 세폴리아에서 켜졌습니다.', 'ACDE #247이 후디 포크 일정을 정했습니다.'];
+    const rewrites = ['글램스테르담이 세폴리아에서 켜졌습니다.', 'ACDE #247이 후디 포크 일정을 정했습니다.'];
     expect(guardRewrites(originals, rewrites)).toEqual({ texts: rewrites, reverted: 0 });
   });
 
@@ -22,8 +22,8 @@ describe('guardRewrites', () => {
 
 describe('humanizeTexts', () => {
   it('should parse the model JSON and keep order', () => {
-    const run = () => '```json\n{"texts": ["글램스터담이 세폴리아에서 켜졌습니다.", "ACDE #247이 후디 포크 일정을 정했습니다."]}\n```';
-    expect(humanizeTexts(originals, '테스트', run)).toEqual(['글램스터담이 세폴리아에서 켜졌습니다.', 'ACDE #247이 후디 포크 일정을 정했습니다.']);
+    const run = () => '```json\n{"texts": ["글램스테르담이 세폴리아에서 켜졌습니다.", "ACDE #247이 후디 포크 일정을 정했습니다."]}\n```';
+    expect(humanizeTexts(originals, '테스트', run)).toEqual(['글램스테르담이 세폴리아에서 켜졌습니다.', 'ACDE #247이 후디 포크 일정을 정했습니다.']);
   });
 
   it('should fall back to originals when the model call fails', () => {
@@ -38,5 +38,12 @@ describe('humanizeTexts', () => {
       throw new Error('should not be called');
     };
     expect(humanizeTexts([], '테스트', run)).toEqual([]);
+  });
+});
+
+describe('normalizeTerms', () => {
+  it('should unify the Glamsterdam spelling in every nested string', () => {
+    const out = normalizeTerms({ title: '글램스터담 포크', items: [{ text: '후디 글램스터담, 글램스테르담' }], n: 1 });
+    expect(out).toEqual({ title: '글램스테르담 포크', items: [{ text: '후디 글램스테르담, 글램스테르담' }], n: 1 });
   });
 });

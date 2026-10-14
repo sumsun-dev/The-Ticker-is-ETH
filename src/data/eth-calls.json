@@ -15,12 +15,12 @@
       "headline": "프레임 데브넷\n목요일 출범",
       "lead": "프레임 등 헤고타 후보 EIP 4종이 데브넷 검증에 들어간다",
       "intro": "이더리움 클라이언트 개발자들이 데브넷 운영과 테스트 진행을 조율하는 테스팅 콜(ACDT)이다.",
-      "summary": "프레임(Frames) 중심의 bogota-devnet-1이 목요일 출범을 목표로 확정됐고, FOCIL 중심의 heze-devnet-2는 슬롯 12초를 유지한 채 10월 28일까지 띄우기로 했다. 콜 직전 보고된 프로포저 선택 버그는 글램스터담(Glamsterdam)에서 고치지 않고 헤고타(Hegota) 이후로 미뤘다.",
+      "summary": "프레임(Frames) 중심의 bogota-devnet-1이 목요일 출범을 목표로 확정됐고, FOCIL 중심의 heze-devnet-2는 슬롯 12초를 유지한 채 10월 28일까지 띄우기로 했다. 콜 직전 보고된 프로포저 선택 버그는 글램스테르담(Glamsterdam)에서 고치지 않고 헤고타(Hegota) 이후로 미뤘다.",
       "whyItMatters": "헤고타 업그레이드의 두 축인 프레임과 FOCIL이 각각 전용 데브넷에서 실전 검증 단계에 들어가면서, 어떤 EIP가 실제 포크에 담길지 판단할 근거가 쌓이기 시작한다. 하드웨어 권장 사양(EIP-7870) 상향 논의는 노드 운영자가 준비해야 할 디스크 성능 기준이 달라진다는 뜻이다.",
       "decisions": [
         {
           "label": "프로포저 버그 보류",
-          "text": "프로포저 선택 버그 수정을 글램스터담에 넣지 않고 헤고타 또는 그 이후로 미뤘다. 공격에 자기 슬래싱이 필요해 실익이 없다고 판단한 것이다.",
+          "text": "프로포저 선택 버그 수정을 글램스테르담에 넣지 않고 헤고타 또는 그 이후로 미뤘다. 공격에 자기 슬래싱이 필요해 실익이 없다고 판단한 것이다.",
           "original": "Proposer selection bug deferred to Hegota (or later); no fix in Glamsterdam",
           "eips": [],
           "status": "보류",
@@ -126,7 +126,7 @@
       "agenda": [
         {
           "timestamp": "00:06:45",
-          "heading": "글램스터담 데브넷과 세폴리아 현황"
+          "heading": "글램스테르담 데브넷과 세폴리아 현황"
         },
         {
           "timestamp": "00:09:45",
@@ -140,7 +140,7 @@
         },
         {
           "timestamp": "00:17:20",
-          "heading": "글램스터담 최소 하드웨어 요구사항",
+          "heading": "글램스테르담 최소 하드웨어 요구사항",
           "discussion": true,
           "decision": true
         },
@@ -172,7 +172,7 @@
       "topics": [
         {
           "title": "프로포저 선택 버그, 지금 고칠 것인가",
-          "intro": "슬롯 31의 프로포저가 자기 슬래싱으로 셔플 인덱스를 조작해 다음 두 에포크의 프로포저 선정에 끼어들 수 있다는 스펙 버그가 콜 직전 보고돼, 금요일 후디 릴리스 마감 전에 글램스터담 수정 여부를 정해야 했다.",
+          "intro": "슬롯 31의 프로포저가 자기 슬래싱으로 셔플 인덱스를 조작해 다음 두 에포크의 프로포저 선정에 끼어들 수 있다는 스펙 버그가 콜 직전 보고돼, 금요일 후디 릴리스 마감 전에 글램스테르담 수정 여부를 정해야 했다.",
           "decision": "보류 결정 00:16:50",
           "positions": [
             {
@@ -184,7 +184,7 @@
             },
             {
               "speaker": "Barnabas",
-              "text": "버그를 보고하면서도 실제로 일어날 일이 거의 없다며 헤고타에서조차 고칠 필요가 있는지 의문이라고 했고, 글램스터담 포함에는 분명히 반대했다.",
+              "text": "버그를 보고하면서도 실제로 일어날 일이 거의 없다며 헤고타에서조차 고칠 필요가 있는지 의문이라고 했고, 글램스테르담 포함에는 분명히 반대했다.",
               "timestamp": "00:14:02",
               "original": "Yeah, I'm not even sure if you want to fix it for Hegota. Like, this is a bit… Like, it's never really gonna happen, I feel like. And also, like, the benefit of fixing it is. Yeah, sure. But for sure, I would not push for Glamsterdam. Maybe we can make the final call on Thursday? I mean, we would need to fix it only for Mainnet, no? Realistically. If you actually want to fix it. Yeah, I mean, we would need to have a slashing event happen on one of the testnets for this to be triggered, and that would lead to a… A fork. So, assuming that there's no slashing… You could just throw out a new update on Sepolia nodes. And we could make sure that this doesn't get exploited. I know on Hoodi, this would not be the case, but Exactly. Like, I don't think there's a benefit in doing this in Amsterdam, because I think this would just cause more headache than. That benefit.",
               "translation": "네, 헤고타에서 이걸 고치는 게 맞는지도 확실하지 않습니다. 이건 좀... 실제로 일어날 일이 아니라고 느껴집니다. 그리고 이걸 고쳤을 때의 이득도 그렇고요. 네, 그렇습니다. 하지만 글램스테르담에서 이걸 밀고 가지는 확실히 않을 것입니다. 목요일에 최종 결정을 내릴 수 있을까요? 실질적으로 보면, 메인넷(Mainnet)에 대해서만 고치면 되는 것 아닌가요? 실제로 고치려고 한다면 말입니다. 네, 이게 트리거되려면 테스트넷 중 하나에서 슬래싱 이벤트가 발생해야 하고, 그러면 포크(fork)로 이어질 것입니다. 그러니 슬래싱이 없다고 가정하면, 세폴리아 노드에 새 업데이트를 그냥 배포할 수 있습니다. 그러면 이게 악용되지 않도록 할 수 있습니다. 후디(Hoodi)에서는 그렇지 않다는 걸 알지만, 맞습니다. 암스테르담(Amsterdam)에서 이걸 하는 게 이득이 있다고는 생각하지 않습니다. 그 이득보다 더 큰 골칫거리만 생길 것 같습니다."
@@ -220,12 +220,12 @@
         },
         {
           "title": "EIP-7870 하드웨어 사양, 얼마나 올리고 어떻게 관리하나",
-          "intro": "글램스터담에서 컨트랙트 크기(24에서 64KB), 가스 한도(60에서 200M)가 크게 오르면서 EIP-7870의 디스크 속도 기준 500MB/s가 현실과 맞지 않게 돼, 수치 상향 폭과 문서 관리 방식이 논의됐다.",
+          "intro": "글램스테르담에서 컨트랙트 크기(24에서 64KB), 가스 한도(60에서 200M)가 크게 오르면서 EIP-7870의 디스크 속도 기준 500MB/s가 현실과 맞지 않게 돼, 수치 상향 폭과 문서 관리 방식이 논의됐다.",
           "decision": "리빙 문서 유지 확정 00:19:09",
           "positions": [
             {
               "speaker": "jochem-brouwer",
-              "text": "현 사양으로는 글램스터담 최악 블록 처리에 8초가 걸려 너무 느리다며 순차 읽기·쓰기를 최소 1000MB/s, 가급적 2000MB/s로 올리자고 했고, 소통의 명확성을 위해 포크마다 별도 사양 EIP를 두자고 제안했다.",
+              "text": "현 사양으로는 글램스테르담 최악 블록 처리에 8초가 걸려 너무 느리다며 순차 읽기·쓰기를 최소 1000MB/s, 가급적 2000MB/s로 올리자고 했고, 소통의 명확성을 위해 포크마다 별도 사양 EIP를 두자고 제안했다.",
               "timestamp": "00:17:20",
               "original": "Yes. So this is about this EIP. So EIP 7870. And this EIP needs an update because we currently have a minimum reads write sequential speed of 500 megabytes per second. And if he… fork to Glamsterdam, then we are both increasing the contract code size from 24 to 64. We are increasing the gas limit from 60 to 200, and we are slightly increasing the gas cost to call an account from 2600 to 3000. Now you might ask, why are you discussing this here and not on the EL channel? The point is that we need to communicate this to the community. We need to update this EIP and there are basically two things how we can do this. This is currently a living EIP. And… We can either change this EIP or we can create a new EIP for every fork so that it is clear what the minimum specs are for the fork. And there's also the question like how to what number we want to increase this. So let me share the at least in discussion. So that's also linked. This is on Discord, the discussion about this. And here is a draft EIP how we can, how we can, We could create this new EIP. So this is basically open. I think this is not a discussion or a decision what we can make today because I think this will lead to some discussion. But the main point is that we should update this EIP because the minimum specs as it is currently stated on this EIP, it is wrong. And they should at least increase this from 500 megabyte to 1000 megabyte per second. But I would advise to go to 2000 megabytes per second. But currently…",
               "translation": "네. 이건 이 EIP에 관한 것입니다. EIP 7870입니다. 그리고 이 EIP는 업데이트가 필요합니다. 현재 최소 읽기/쓰기 순차 속도(sequential speed)가 초당 500메가바이트로 되어 있기 때문입니다. 그리고 글램스테르담으로 포크하게 되면, 컨트랙트 코드 크기를 24에서 64로 늘리고, 가스 한도(gas limit)를 60에서 200으로 늘리며, 계정을 호출하는 가스 비용도 2600에서 3000으로 약간 늘리게 됩니다. 그런데 왜 이걸 실행 계층(EL) 채널이 아니라 여기서 논의하는지 궁금하실 수 있습니다. 핵심은 이걸 커뮤니티에 전달해야 한다는 점입니다. 이 EIP를 업데이트해야 하는데, 기본적으로 이를 할 수 있는 방법이 두 가지 있습니다. 이건 현재 리빙 EIP(living EIP)입니다. 우리는 이 EIP를 직접 수정할 수도 있고, 포크마다 새로운 EIP를 만들어서 해당 포크의 최소 스펙이 무엇인지 명확히 할 수도 있습니다. 그리고 이 수치를 얼마로 올릴 것인가 하는 질문도 있습니다. 적어도 논의된 내용을 공유해 드리겠습니다. 이것도 링크되어 있습니다. 디스코드(Discord)에 이에 대한 논의가 있습니다. 그리고 여기 이 새로운 EIP를 어떻게 만들 수 있는지에 대한 초안 EIP가 있습니다. 그래서 이건 기본적으로 열려 있는 문제입니다. 오늘 여기서 논의하거나 결정할 수 있는 사안은 아니라고 생각합니다. 이게 추가 논의로 이어질 것 같기 때문입니다. 하지만 핵심은 이 EIP를 업데이트해야 한다는 것입니다. 현재 이 EIP에 명시된 최소 스펙이 잘못되었기 때문입니다. 적어도 초당 500메가바이트에서 1000메가바이트로는 올려야 합니다. 하지만 저는 2000메가바이트까지 올리는 것을 권장합니다. 하지만 현재로서는..."
@@ -600,12 +600,12 @@
       "headline": "양자내성 EOA\n이행 경로 CFI",
       "lead": "일반 계정을 양자내성 서명으로 옮길 길이 다음 포크 후보에 올랐다",
       "intro": "실행 계층(EL) 클라이언트 개발자들이 격주로 모이는 올코어데브(AllCoreDevs) 콜이다.",
-      "summary": "후디(Hoodi) 테스트넷의 글램스터담(Glamsterdam) 포크가 10월 26일로 잡혔고, 다음 포크 헤고타(Hegota)의 막바지 스코핑에서 EIP 8건이 검토 대상(CFI)으로 올라가고 3건이 제외(DFI)됐다. 특히 EIP-8151과 EIP-8298이 일반 계정(EOA)의 양자내성 이행 경로로 묶여 살아남았다.",
-      "whyItMatters": "헤고타의 윤곽이 잡히면서 글램스터담 다음으로 이더리움이 무엇을 바꿀지가 정해지고 있다. 일반 사용자 계정이 양자컴퓨터 시대로 넘어갈 경로는 열렸고, 격자 기반 서명 프리컴파일은 빠지면서 해시 기반의 보수적 노선이 힘을 얻었다.",
+      "summary": "후디(Hoodi) 테스트넷의 글램스테르담(Glamsterdam) 포크가 10월 26일로 잡혔고, 다음 포크 헤고타(Hegota)의 막바지 스코핑에서 EIP 8건이 검토 대상(CFI)으로 올라가고 3건이 제외(DFI)됐다. 특히 EIP-8151과 EIP-8298이 일반 계정(EOA)의 양자내성 이행 경로로 묶여 살아남았다.",
+      "whyItMatters": "헤고타의 윤곽이 잡히면서 글램스테르담 다음으로 이더리움이 무엇을 바꿀지가 정해지고 있다. 일반 사용자 계정이 양자컴퓨터 시대로 넘어갈 경로는 열렸고, 격자 기반 서명 프리컴파일은 빠지면서 해시 기반의 보수적 노선이 힘을 얻었다.",
       "decisions": [
         {
           "label": "후디 포크 일정",
-          "text": "후디의 글램스터담 포크를 2026년 10월 26일 월요일 17:42 UTC로 정하고 클라이언트 릴리스는 10월 16일까지 내기로 했다. 세폴리아에 이어 두 번째 테스트넷의 업그레이드 날짜가 잡힌 것이다.",
+          "text": "후디의 글램스테르담 포크를 2026년 10월 26일 월요일 17:42 UTC로 정하고 클라이언트 릴리스는 10월 16일까지 내기로 했다. 세폴리아에 이어 두 번째 테스트넷의 업그레이드 날짜가 잡힌 것이다.",
           "original": "Hoodi fork: Monday October 26, 2026 at 17:42 UTC; client releases by October 16",
           "eips": [],
           "status": "일정",
@@ -621,7 +621,7 @@
         },
         {
           "label": "EIP-7907 미터링",
-          "text": "EIP-7907(컨트랙트 크기 미터링)을 PFI 목록에 추가하고 결정은 다음 콜로 미뤘다. 글램스터담이 컨트랙트 크기 한도만 올리고 크기 기반 과금을 빼면서 생긴 DoS 여지를 메우려는 제안이다.",
+          "text": "EIP-7907(컨트랙트 크기 미터링)을 PFI 목록에 추가하고 결정은 다음 콜로 미뤘다. 글램스테르담이 컨트랙트 크기 한도만 올리고 크기 기반 과금을 빼면서 생긴 DoS 여지를 메우려는 제안이다.",
           "original": "EIP-7907 (contract size metering) added to PFI list; decision deferred to next call",
           "eips": [
             7907
@@ -655,7 +655,7 @@
         },
         {
           "label": "EIP-8360·4758",
-          "text": "EIP-8360(TCREATE)과 EIP-4758(SELFDESTRUCT 비활성화)을 묶어 검토 대상으로 올렸다. 글램스터담에서 도입된 문제를 고치는 수정이다.",
+          "text": "EIP-8360(TCREATE)과 EIP-4758(SELFDESTRUCT 비활성화)을 묶어 검토 대상으로 올렸다. 글램스테르담에서 도입된 문제를 고치는 수정이다.",
           "original": "CFI for Hegota: EIP-8360 (TCREATE) and EIP-4758 (Deactivate SELFDESTRUCT) — paired; fix for issue introduced in Glamsterdam",
           "eips": [
             8360,
@@ -735,7 +735,7 @@
       "targets": [
         {
           "key": "hoodi-fork",
-          "text": "2026년 10월 26일 월요일 17:42 UTC에 후디 글램스터담 포크. 확정",
+          "text": "2026년 10월 26일 월요일 17:42 UTC에 후디 글램스테르담 포크. 확정",
           "timestamp": "00:21:44"
         },
         {
@@ -752,14 +752,14 @@
         },
         {
           "owner": "EL 클라이언트 팀들",
-          "text": "엔터프라이즈의 세폴리아 피드백 수집용 글램스터담 생태계 준비 체크리스트 PR(#2266)을 검토한다",
+          "text": "엔터프라이즈의 세폴리아 피드백 수집용 글램스테르담 생태계 준비 체크리스트 PR(#2266)을 검토한다",
           "timestamp": "01:41:07"
         }
       ],
       "agenda": [
         {
           "timestamp": "00:17:08",
-          "heading": "글램스터담 세폴리아 포크 업데이트"
+          "heading": "글램스테르담 세폴리아 포크 업데이트"
         },
         {
           "timestamp": "00:20:19",
@@ -789,7 +789,7 @@
         },
         {
           "timestamp": "01:41:38",
-          "heading": "글램스터담 생태계 준비 체크리스트"
+          "heading": "글램스테르담 생태계 준비 체크리스트"
         }
       ],
       "topics": [
@@ -1223,10 +1223,10 @@
       "kind": "full",
       "durationMin": 34,
       "headline": "세폴리아 포크\n준비 완료",
-      "lead": "글램스터담 업그레이드가 첫 공개 테스트넷 적용을 하루 앞뒀다",
+      "lead": "글램스테르담 업그레이드가 첫 공개 테스트넷 적용을 하루 앞뒀다",
       "intro": "이더리움 클라이언트의 테스트와 데브넷 운영을 점검하는 코어 개발자 테스팅 콜(ACDT)이다.",
-      "summary": "세폴리아(Sepolia) 글램스터담(Glamsterdam) 포크가 10월 6일 13:53 UTC로 하루 앞으로 다가온 가운데 전 클라이언트가 준비 상태를 확인했다. 빌더(builder)는 포크 전에 온보딩하지 않고 포크 직후 일반 세폴리아 ETH로 예치하기로 했다.",
-      "whyItMatters": "글램스터담이 처음으로 공개 테스트넷에 올라가는 단계로, 메인넷 적용 전 마지막 검증 구간의 출발점이다. 함께 정리된 eth_call 가스 한도 버그 수정은 NFT 렌더러나 어그리게이터처럼 대용량 시뮬레이션에 기대는 개발자 도구가 계속 동작하게 한다.",
+      "summary": "세폴리아(Sepolia) 글램스테르담(Glamsterdam) 포크가 10월 6일 13:53 UTC로 하루 앞으로 다가온 가운데 전 클라이언트가 준비 상태를 확인했다. 빌더(builder)는 포크 전에 온보딩하지 않고 포크 직후 일반 세폴리아 ETH로 예치하기로 했다.",
+      "whyItMatters": "글램스테르담이 처음으로 공개 테스트넷에 올라가는 단계로, 메인넷 적용 전 마지막 검증 구간의 출발점이다. 함께 정리된 eth_call 가스 한도 버그 수정은 NFT 렌더러나 어그리게이터처럼 대용량 시뮬레이션에 기대는 개발자 도구가 계속 동작하게 한다.",
       "decisions": [
         {
           "label": "빌더 온보딩",
@@ -1248,7 +1248,7 @@
       "targets": [
         {
           "key": "sepolia-fork",
-          "text": "세폴리아 글램스터담 포크, 2026년 10월 6일 13:53 UTC. 확정",
+          "text": "세폴리아 글램스테르담 포크, 2026년 10월 6일 13:53 UTC. 확정",
           "timestamp": "00:13:00"
         }
       ],
@@ -1259,8 +1259,8 @@
           "timestamp": "00:32:00"
         },
         {
-          "owner": "글램스터담 EIP 저자들",
-          "text": "다음 EIP 에디팅 오피스아워 전까지 글램스터담 EIP를 라스트 콜(Last Call) 상태로 옮기는 PR 제출",
+          "owner": "글램스테르담 EIP 저자들",
+          "text": "다음 EIP 에디팅 오피스아워 전까지 글램스테르담 EIP를 라스트 콜(Last Call) 상태로 옮기는 PR 제출",
           "timestamp": "00:24:06"
         }
       ],
@@ -1275,11 +1275,11 @@
         },
         {
           "timestamp": "00:13:14",
-          "heading": "세폴리아 업그레이드 준비 상태 (글램스터담)"
+          "heading": "세폴리아 업그레이드 준비 상태 (글램스테르담)"
         },
         {
           "timestamp": "00:24:10",
-          "heading": "글램스터담 제안들의 EIP 라스트 콜 상태"
+          "heading": "글램스테르담 제안들의 EIP 라스트 콜 상태"
         },
         {
           "timestamp": "00:24:59",
@@ -1356,7 +1356,7 @@
         },
         {
           "title": "세폴리아 빌더 온보딩",
-          "intro": "글램스터담에서 도입되는 빌더 역할을 세폴리아 포크 시점에 활성화할지가 포크 하루 전에 정리됐다.",
+          "intro": "글램스테르담에서 도입되는 빌더 역할을 세폴리아 포크 시점에 활성화할지가 포크 하루 전에 정리됐다.",
           "decision": "확정 결정 00:25:50",
           "positions": [
             {
@@ -1422,7 +1422,7 @@
             },
             {
               "speaker": "Barnabas",
-              "text": "글램스터담 테스트넷 공지 블로그 포스트가 클라이언트 버전의 공식 소스라고 답했다.",
+              "text": "글램스테르담 테스트넷 공지 블로그 포스트가 클라이언트 버전의 공식 소스라고 답했다.",
               "timestamp": "00:27:29",
               "original": "Yeah, I would say so.",
               "translation": "네, 그렇다고 생각합니다."
@@ -1634,7 +1634,7 @@
         },
         {
           "term": "빌더(builder)",
-          "def": "글램스터담에서 도입되는, 예치를 하고 블록 제작을 맡는 역할"
+          "def": "글램스테르담에서 도입되는, 예치를 하고 블록 제작을 맡는 역할"
         },
         {
           "term": "eth_call",
@@ -1682,7 +1682,7 @@
       "lead": "블록 간격 12초를 10초로 줄이는 안이 공식 검토 대상이 됐다",
       "intro": "합의 계층(CL) 클라이언트 개발자들이 격주로 모이는 콜이다.",
       "summary": "슬롯 시간을 12초에서 10초로 줄이는 퀵 슬롯(quick slots, EIP-8198)이 헤고타(Hegota) 포함 검토(CFI)로 올라갔다. 양자내성 전환이 먼저라는 반대가 있었지만, 포함 확정(SFI) 전에 추가 데이터로 다시 검증하고 필요하면 뺄 수 있다는 조건이 붙었다.",
-      "whyItMatters": "블록 간격이 10초로 줄면 거래 확인이 빨라지고 L2와 앱의 가격 갱신, 입출금 체감 속도도 좋아진다. 다만 CFI는 출시 약속이 아니라 검토 단계여서 테스트 결과에 따라 빠질 수 있고, 10월 6일 세폴리아의 글램스터담(Glamsterdam) 포크가 당장의 관문이다.",
+      "whyItMatters": "블록 간격이 10초로 줄면 거래 확인이 빨라지고 L2와 앱의 가격 갱신, 입출금 체감 속도도 좋아진다. 다만 CFI는 출시 약속이 아니라 검토 단계여서 테스트 결과에 따라 빠질 수 있고, 10월 6일 세폴리아의 글램스테르담(Glamsterdam) 포크가 당장의 관문이다.",
       "decisions": [
         {
           "label": "EIP-8365 예치 가드",
@@ -1740,7 +1740,7 @@
       "targets": [
         {
           "key": "sepolia-fork",
-          "text": "세폴리아가 2026년 10월 6일 13:53 UTC에 글램스터담으로 포크한다. 확정된 일정이다.",
+          "text": "세폴리아가 2026년 10월 6일 13:53 UTC에 글램스테르담으로 포크한다. 확정된 일정이다.",
           "timestamp": "00:08:22"
         },
         {
@@ -1764,7 +1764,7 @@
       "agenda": [
         {
           "timestamp": "00:07:19",
-          "heading": "글램스터담 데브넷과 세폴리아 섀도 포크"
+          "heading": "글램스테르담 데브넷과 세폴리아 섀도 포크"
         },
         {
           "timestamp": "00:08:22",
@@ -2619,7 +2619,7 @@
         },
         {
           "term": "데브넷(devnet)",
-          "def": "새 포크 기능을 시험하는 개발용 임시 네트워크. 이번 콜의 devnet-8은 글램스터담(Glamsterdam)용이다"
+          "def": "새 포크 기능을 시험하는 개발용 임시 네트워크. 이번 콜의 devnet-8은 글램스테르담(Glamsterdam)용이다"
         }
       ],
       "eips": [],
@@ -2640,12 +2640,12 @@
       "headline": "세폴리아 200M\n포크 즉시 신호",
       "lead": "테스트넷 가스 한도가 포크와 동시에 200M을 향해 오르기 시작한다",
       "intro": "실행 계층(EL) 클라이언트 개발자들이 격주로 모이는 콜이다.",
-      "summary": "세폴리아(Sepolia)가 글램스터담(Glamsterdam) 포크와 동시에 가스 한도 200M 신호를 시작하기로 확정했고, 다음 포크 헤고타(Hegota) 후보를 대거 정리해 EIP 아홉 건 이상을 포함 검토(CFI)로 올렸다.",
-      "whyItMatters": "가스 한도를 60M에서 200M으로 올리는 글램스터담의 확장 노선이 테스트넷에서 실전 검증에 들어간다. 헤고타의 범위도 일괄 CFI로 윤곽이 잡혀 지갑, L2, 개발자가 대비할 기능 목록이 구체화됐다.",
+      "summary": "세폴리아(Sepolia)가 글램스테르담(Glamsterdam) 포크와 동시에 가스 한도 200M 신호를 시작하기로 확정했고, 다음 포크 헤고타(Hegota) 후보를 대거 정리해 EIP 아홉 건 이상을 포함 검토(CFI)로 올렸다.",
+      "whyItMatters": "가스 한도를 60M에서 200M으로 올리는 글램스테르담의 확장 노선이 테스트넷에서 실전 검증에 들어간다. 헤고타의 범위도 일괄 CFI로 윤곽이 잡혀 지갑, L2, 개발자가 대비할 기능 목록이 구체화됐다.",
       "decisions": [
         {
           "label": "세폴리아 가스 200M",
-          "text": "세폴리아의 글램스터담 포크 시점에 가스 한도 200M을 신호하기로 했다. 단계적 인상 없이 포크 직후부터 1/1024 투표 방식으로 한도가 올라가기 시작한다는 뜻이다.",
+          "text": "세폴리아의 글램스테르담 포크 시점에 가스 한도 200M을 신호하기로 했다. 단계적 인상 없이 포크 직후부터 1/1024 투표 방식으로 한도가 올라가기 시작한다는 뜻이다.",
           "original": "200M gas limit signaled at Glamsterdam fork for Sepolia (not phased; starts trending up via 1/1024 voting post-fork)",
           "eips": [],
           "status": "확정",
@@ -2694,7 +2694,7 @@
         },
         {
           "label": "가스 재조정 PFI",
-          "text": "EIP-8368과 EIP-8372는 메인넷 글램스터담 데이터가 포크 후 30일 이상 쌓일 때까지 PFI로 남긴다. 실측 데이터 없이는 결정하지 않겠다는 뜻이다.",
+          "text": "EIP-8368과 EIP-8372는 메인넷 글램스테르담 데이터가 포크 후 30일 이상 쌓일 때까지 PFI로 남긴다. 실측 데이터 없이는 결정하지 않겠다는 뜻이다.",
           "original": "EIP-8368 and EIP-8372 remain PFI pending mainnet Glamsterdam data (≥30 days post-fork)",
           "eips": [
             8368,
@@ -2723,7 +2723,7 @@
         },
         {
           "label": "TCREATE 보류",
-          "text": "EIP-8360(TCREATE 옵코드) 결정을 미뤘다. 글램스터담이 일회용 컨트랙트의 가스 환급을 없애면서 생긴 문제라, 셀프디스트럭트(self-destruct) 폐기 논의와 함께 정하기로 했다는 뜻이다.",
+          "text": "EIP-8360(TCREATE 옵코드) 결정을 미뤘다. 글램스테르담이 일회용 컨트랙트의 가스 환급을 없애면서 생긴 문제라, 셀프디스트럭트(self-destruct) 폐기 논의와 함께 정하기로 했다는 뜻이다.",
           "original": "EIP-8360 (TCREATE opcode): deferred — Glamsterdam removes gas refunds for ephemeral contracts; decision linked to self-destruct deprecation discussion",
           "eips": [
             8360
@@ -2735,7 +2735,7 @@
       "targets": [
         {
           "key": "sepolia-fork",
-          "text": "2026년 10월 6일 세폴리아 글램스터담 포크. 확정",
+          "text": "2026년 10월 6일 세폴리아 글램스테르담 포크. 확정",
           "timestamp": "00:13:04"
         },
         {
@@ -2764,7 +2764,7 @@
       "agenda": [
         {
           "timestamp": "00:11:23",
-          "heading": "글램스터담 데브넷 현황"
+          "heading": "글램스테르담 데브넷 현황"
         },
         {
           "timestamp": "00:13:02",
@@ -2772,7 +2772,7 @@
         },
         {
           "timestamp": "00:14:17",
-          "heading": "글램스터담 가스 한도, 포크 시점 200M",
+          "heading": "글램스테르담 가스 한도, 포크 시점 200M",
           "discussion": true,
           "decision": true
         },
@@ -2924,19 +2924,19 @@
         },
         {
           "title": "TCREATE, 일회용 컨트랙트의 운명",
-          "intro": "글램스터담이 가스 환급을 없애면서 한 트랜잭션 안에서 만들고 지우는 일회용 컨트랙트 비용이 크게 올라, 이를 대체할 새 옵코드 TCREATE를 헤고타에 넣을지가 논의됐다.",
+          "intro": "글램스테르담이 가스 환급을 없애면서 한 트랜잭션 안에서 만들고 지우는 일회용 컨트랙트 비용이 크게 올라, 이를 대체할 새 옵코드 TCREATE를 헤고타에 넣을지가 논의됐다.",
           "decision": "보류 01:15:36",
           "positions": [
             {
               "speaker": "Milos | enso.build",
-              "text": "결제, 입금 주소, 크로스체인 인텐트, 지정가 주문이 쓰는 일회용 컨트랙트가 이더리움에서 하루 1,000에서 2,000건, BNB 체인에서는 10배쯤 쓰이는데, 글램스터담의 환급 제거로 사실상 기능이 사라진다며 TCREATE나 환급 복원이 필요하다고 했다.",
+              "text": "결제, 입금 주소, 크로스체인 인텐트, 지정가 주문이 쓰는 일회용 컨트랙트가 이더리움에서 하루 1,000에서 2,000건, BNB 체인에서는 10배쯤 쓰이는데, 글램스테르담의 환급 제거로 사실상 기능이 사라진다며 TCREATE나 환급 복원이 필요하다고 했다.",
               "timestamp": "01:07:00",
               "original": "Yeah, So, we made some updates, I will give some context. This is for TCreate, which is a new opcode for creating contracts that only exist for one single transaction. You can think about them as disposable contracts or ephemeral accounts. They gave some names. This is a use case, that has been there since a while. I think Axelar and Socket were first doing it. And nowadays, it's widely used by… for payments, deposit addresses, cross-chain, intents, limit orders, and stuff like this. It's currently possible by appending a self-destruct in the same transaction. Though the Gramsterdam update, doesn't, doesn't, give gas refills anymore for Glamsterdam. And this is… should be kind of treated as a bug, in my opinion, because we are basically paying for. State that is not, used. So, basically, the idea is, that we will have this that will cover the breaking change that was introduced with Glamsterdam. Wait, so… Yeah, I can name some teams. There is ZeroDev building on this, and so Flashnet, and some others in the past. I think we're running on, like, 1,000, 2,000 transactions per day on Ethereum. It's a kind of a use case that scales better with price, because they're disposable. So, on Binance Chain, there are, like, 10 times more, I think a couple of hundred thousand transactions per month. And in general, I think this is quite important because otherwise this basically moves this use case to either other chain or to a centralized approach. I'm championing the creator. But I…",
               "translation": "네, 그래서 몇 가지 업데이트를 했는데, 배경을 좀 설명드리겠습니다. 이건 TCreate에 관한 것인데, 단 하나의 트랜잭션에서만 존재하는 컨트랙트를 생성하기 위한 새로운 옵코드(opcode)입니다. 이것들을 일회용 컨트랙트(disposable contracts) 또는 일시적 계정(ephemeral accounts)이라고 생각하시면 됩니다. 사람들이 여러 이름을 붙였습니다. 이건 꽤 오래전부터 있어온 사용 사례입니다. Axelar와 Socket이 처음으로 이걸 했던 것 같습니다. 그리고 요즘에는 결제, 입금 주소, 크로스체인, 인텐트(intent), 지정가 주문(limit order) 등에 널리 쓰이고 있습니다. 현재는 같은 트랜잭션 안에 self-destruct를 덧붙이는 방식으로 가능합니다. 하지만 Glamsterdam 업데이트를 거치면, Glamsterdam에서는 더 이상 가스 환급(gas refund)을 주지 않습니다. 그리고 이건, 제 생각에는 일종의 버그로 취급되어야 합니다. 왜냐하면 우리가 기본적으로 사용되지 않는 상태에 대해 비용을 지불하고 있는 것이기 때문입니다. 그래서, 기본적인 아이디어는, Glamsterdam에서 도입된 이 파괴적 변경(breaking change)을 보완하는 것입니다. 잠깐만요, 그래서, 네, 몇몇 팀을 언급할 수 있습니다. ZeroDev가 이걸로 구축하고 있고, Flashnet도 그렇고, 과거에는 다른 곳들도 있었습니다. 이더리움에서 하루에 1,000건에서 2,000건 정도의 트랜잭션이 발생하고 있는 것 같습니다. 이건 가격에 따라 더 잘 확장되는 종류의 사용 사례인데, 일회용이기 때문입니다. 그래서 Binance Chain에서는 그것보다 10배 정도 많은, 한 달에 몇십만 건 정도의 트랜잭션이 있는 것 같습니다. 그리고 전반적으로, 저는 이게 꽤 중요하다고 생각하는데, 그렇지 않으면 이 사용 사례가 결국 다른 체인이나 중앙화된 방식으로 옮겨가게 되기 때문입니다. 저는 이 제안의 챔피언을 맡고 있습니다. 하지만 저는..."
             },
             {
               "speaker": "jochem-brouwer",
-              "text": "이 EIP는 의존성 없는 독립 제안이라고 정리하면서, 실제로 쓰이는 EVM 기능을 대안 없이 사실상 폐기하는 것은 안 되며 글램스터담에서 했어야 할 일을 지금 헤고타에서 해야 한다고 주장했다.",
+              "text": "이 EIP는 의존성 없는 독립 제안이라고 정리하면서, 실제로 쓰이는 EVM 기능을 대안 없이 사실상 폐기하는 것은 안 되며 글램스테르담에서 했어야 할 일을 지금 헤고타에서 해야 한다고 주장했다.",
               "timestamp": "01:10:48",
               "original": "Yes, so this EIP is like a standalone EIP, so no other EIPs have to be scheduled with Hakota to focus in. There seems to be some confusion because I see some chat about this toy. T loads, that's also implied, but S store and S load behaves as T store and T load in this EIP, but this is like EIP, but this is 1153, so that's already part of the chain. And maybe to add like my own opinion here, like I see a lot of clients, they are against this change. I want to say that we are, well, somewhat effectively deprecating and removing this feature of the EVM. Without giving an alternative. So we are essentially taking away an engineering opportunity from the EVM what is now more actively being used. And I personally think that we cannot do that. We should have scheduled an alternative for this in Glamsterdam. We did not do so. So that means we should do that now in ECODE.",
               "translation": "네, 그래서 이 EIP는 독립형(standalone) EIP라서, Hegota에 초점을 맞추기 위해 다른 EIP들과 함께 스케줄될 필요는 없습니다. 이것에 대해 약간의 혼란이 있는 것 같은데, 채팅에서 이 toy에 관한 이야기가 보이기 때문입니다. T load도 암묵적으로 포함되지만, 이 EIP에서 S store와 S load는 T store와 T load처럼 동작합니다. 하지만 이건 EIP이긴 한데, 1153이라서 이미 체인의 일부입니다. 그리고 제 개인적인 의견을 덧붙이자면, 많은 클라이언트들이 이 변경에 반대하는 것을 보는데, 저는 우리가, 음, 어느 정도는 효과적으로 EVM의 이 기능을 폐지하고 제거하는 것이라고 말씀드리고 싶습니다. 대안을 제공하지 않은 채로요. 그래서 우리는 사실상 지금 더 적극적으로 사용되고 있는 EVM의 엔지니어링 기회를 앗아가고 있는 것입니다. 그리고 저는 개인적으로 우리가 그렇게 할 수 없다고 생각합니다. 우리는 Glamsterdam에서 이것에 대한 대안을 스케줄했어야 합니다. 우리는 그렇게 하지 않았습니다. 그러니 그건 우리가 지금 ECODE에서 그것을 해야 한다는 의미입니다."
@@ -3326,7 +3326,7 @@
       "decisions": [
         {
           "label": "서빙 윈도우 미결",
-          "text": "글램스터담(Glamsterdam) CL 블록 서빙 윈도우와 BAL 보관 기간을 이 콜에서 정하지 않고 비동기 논의와 ACDE로 넘겼다. 33,024 에폭 유지, 약 14,299로 축소, 8,192로 축소(EIP-8383, 헤고타 후보라 범위 밖) 세 안이 올라왔고 테스트넷 출시는 막지 않는다.",
+          "text": "글램스테르담(Glamsterdam) CL 블록 서빙 윈도우와 BAL 보관 기간을 이 콜에서 정하지 않고 비동기 논의와 ACDE로 넘겼다. 33,024 에폭 유지, 약 14,299로 축소, 8,192로 축소(EIP-8383, 헤고타 후보라 범위 밖) 세 안이 올라왔고 테스트넷 출시는 막지 않는다.",
           "original": "Serving window / BAL retention not resolved; not blocking testnet launch; continue async. Three options tabled for the Glamsterdam CL serving window: keep 33,024 epochs, reduce to ~14,299 per the EIP-8061 derivation, or reduce to 8,192 per EIP-8383 (already PFI for Hegota, so out of scope for Glamsterdam)",
           "eips": [
             7928,
@@ -3364,12 +3364,12 @@
       "targets": [
         {
           "key": "sepolia-fork",
-          "text": "글램스터담 세폴리아(Sepolia): 10월 6일 (에폭 353024). 클라이언트 릴리스는 9월 29일까지. 확정.",
+          "text": "글램스테르담 세폴리아(Sepolia): 10월 6일 (에폭 353024). 클라이언트 릴리스는 9월 29일까지. 확정.",
           "timestamp": "00:30:06"
         },
         {
           "key": "hoodi-fork",
-          "text": "글램스터담 후디(Hoodi): 잠정 10월 27일, 진행 여부 결정은 10월 8일. 제안.",
+          "text": "글램스테르담 후디(Hoodi): 잠정 10월 27일, 진행 여부 결정은 10월 8일. 제안.",
           "timestamp": "00:30:43"
         },
         {
@@ -3396,7 +3396,7 @@
         },
         {
           "owner": "모든 클라이언트 팀",
-          "text": "아직 안 했다면 세폴리아 글램스터담 활성화 PR을 검토·승인한다.",
+          "text": "아직 안 했다면 세폴리아 글램스테르담 활성화 PR을 검토·승인한다.",
           "timestamp": "00:30:32"
         }
       ],
@@ -3417,7 +3417,7 @@
         },
         {
           "timestamp": "00:29:56",
-          "heading": "글램스터담 테스트넷 일정"
+          "heading": "글램스테르담 테스트넷 일정"
         },
         {
           "timestamp": "00:34:21",
@@ -3492,7 +3492,7 @@
         },
         {
           "title": "헤고타 데브넷 구성 순서",
-          "intro": "글램스터담에서 복잡한 EIP를 과소평가한 경험을 살려, 헤고타 데브넷을 어떤 순서로 구성할지 논의했다.",
+          "intro": "글램스테르담에서 복잡한 EIP를 과소평가한 경험을 살려, 헤고타 데브넷을 어떤 순서로 구성할지 논의했다.",
           "decision": "확정 00:44:22",
           "positions": [
             {
@@ -3816,14 +3816,14 @@
       "kind": "full",
       "durationMin": 97,
       "headline": "세폴리아 포크\n10월 6일 확정",
-      "lead": "글램스터담(Glamsterdam)이 첫 공개 테스트넷에 오른다",
+      "lead": "글램스테르담(Glamsterdam)이 첫 공개 테스트넷에 오른다",
       "intro": "이더리움 합의 계층(CL) 클라이언트 개발자들이 격주로 모이는 콜이다.",
-      "summary": "세폴리아(Sepolia) 테스트넷의 글램스터담 포크가 10월 6일로 확정됐고, 후디(Hoodi)는 10월 27일 잠정이다. 다음 포크 헤고타(Hegota)의 후보 정리도 시작돼 EIP-8015가 포함 검토(CFI)로 올라가고 일곱 건이 제외(DFI)됐으며, 발행량 축소 EIP-8363은 결정 없이 보류됐다.",
-      "whyItMatters": "글램스터담이 공개 테스트넷 일정에 오르면서 가스 한도 상향 등 변화가 메인넷에 성큼 다가왔다. 한편 스테이킹 보상을 줄이는 발행량 EIP는 코어 개발자만으로 결정할 수 없다는 공감대가 확인돼, 이런 제안을 다룰 새 의사결정 절차 논의가 시작된다.",
+      "summary": "세폴리아(Sepolia) 테스트넷의 글램스테르담 포크가 10월 6일로 확정됐고, 후디(Hoodi)는 10월 27일 잠정이다. 다음 포크 헤고타(Hegota)의 후보 정리도 시작돼 EIP-8015가 포함 검토(CFI)로 올라가고 일곱 건이 제외(DFI)됐으며, 발행량 축소 EIP-8363은 결정 없이 보류됐다.",
+      "whyItMatters": "글램스테르담이 공개 테스트넷 일정에 오르면서 가스 한도 상향 등 변화가 메인넷에 성큼 다가왔다. 한편 스테이킹 보상을 줄이는 발행량 EIP는 코어 개발자만으로 결정할 수 없다는 공감대가 확인돼, 이런 제안을 다룰 새 의사결정 절차 논의가 시작된다.",
       "decisions": [
         {
           "label": "QUIC 기본화",
-          "text": "모든 클라이언트가 글램스터담 릴리스에서 QUIC을 기본값으로 켜고, MPLEX는 메인넷 활성화 이후 릴리스에서 폐기(제거는 아님)하기로 했다. 노드 간 통신을 새 프로토콜로 옮기는 준비 단계이며, 스펙 PR 3866은 포크 뒤에 병합한다.",
+          "text": "모든 클라이언트가 글램스테르담 릴리스에서 QUIC을 기본값으로 켜고, MPLEX는 메인넷 활성화 이후 릴리스에서 폐기(제거는 아님)하기로 했다. 노드 간 통신을 새 프로토콜로 옮기는 준비 단계이며, 스펙 PR 3866은 포크 뒤에 병합한다.",
           "original": "QUIC default for all clients at Glamsterdam release; MPLEX deprecated (not removed) post-Glamsterdam mainnet activation; spec PR 3866 merged after fork",
           "eips": [],
           "status": "확정",
@@ -3902,17 +3902,17 @@
       "targets": [
         {
           "key": "sepolia-fork",
-          "text": "세폴리아 글램스터담 포크, 2026년 10월 6일. 확정.",
+          "text": "세폴리아 글램스테르담 포크, 2026년 10월 6일. 확정.",
           "timestamp": "00:16:50"
         },
         {
           "key": "glamsterdam-releases",
-          "text": "모든 글램스터담 클라이언트 릴리스, 2026년 9월 29일까지. 확정된 최종 기한이며 보안 검토를 위해 더 이른 릴리스를 권장.",
+          "text": "모든 글램스테르담 클라이언트 릴리스, 2026년 9월 29일까지. 확정된 최종 기한이며 보안 검토를 위해 더 이른 릴리스를 권장.",
           "timestamp": "00:22:48"
         },
         {
           "key": "hoodi-fork",
-          "text": "후디 글램스터담 포크, 2026년 10월 27일 잠정. 10월 8일 ACD 콜에서 진행 여부를 확정.",
+          "text": "후디 글램스테르담 포크, 2026년 10월 27일 잠정. 10월 8일 ACD 콜에서 진행 여부를 확정.",
           "timestamp": "00:33:10"
         }
       ],
@@ -3924,7 +3924,7 @@
         },
         {
           "owner": "모든 CL 클라이언트 팀",
-          "text": "9월 29일까지 글램스터담 클라이언트 릴리스를 낸다. 버그바운티와 보안 검토 시간을 확보하도록 더 이른 릴리스를 목표로 한다.",
+          "text": "9월 29일까지 글램스테르담 클라이언트 릴리스를 낸다. 버그바운티와 보안 검토 시간을 확보하도록 더 이른 릴리스를 목표로 한다.",
           "timestamp": "00:22:48"
         },
         {
@@ -3999,14 +3999,14 @@
           "positions": [
             {
               "speaker": "Stefan Bratanov",
-              "text": "테쿠는 QUIC을 이미 기본으로 켰지만 사용자들이 QUIC 네트워크 설정을 마쳤는지 데이터가 없어, 글램스터담에서 MPLEX나 TCP를 제거하는 것은 위험하며 첫 글램스터담 릴리스 이후에 비활성화를 시작하자고 했다.",
+              "text": "테쿠는 QUIC을 이미 기본으로 켰지만 사용자들이 QUIC 네트워크 설정을 마쳤는지 데이터가 없어, 글램스테르담에서 MPLEX나 TCP를 제거하는 것은 위험하며 첫 글램스테르담 릴리스 이후에 비활성화를 시작하자고 했다.",
               "timestamp": "00:08:40",
               "original": "Yeah, it's, Stefan from Teku. Yeah, so we had a discussion internally with the team. And, what we… Like, basically our thoughts are that we… Don't want to deprecate NPLEX for Glamsterdam releases. And then, slowly, after the first glance enamelis, we can… not even only deprecate NPLEX, but also just completely remove TCP. But we would like for Glamsterdam to have TCP. enabled, just because right now we don't have the data, actually, how many people still use TCP. How many people use Quick? So… Just to be safe, we, would like to… Start disabling it after Glamsterdam? Yeah, so we have Quick enabled by default. But, problem is, right now, Not every user has migrated, potentially, to latest versions. So… yeah, we don't have the data, and I think it's risky to just completely remove TCP from Glamsterdam. But after that, yeah.",
               "translation": "저는 Teku의 Stefan입니다. 팀 내부에서 논의를 했습니다. 저희 생각은 기본적으로 Glamsterdam 릴리스에서 NPLEX(mplex)를 폐기하고 싶지 않다는 것입니다. 그리고 나서 천천히, 첫 enamelis 이후에는 NPLEX뿐만 아니라 TCP도 완전히 제거할 수 있습니다. 하지만 Glamsterdam에서는 TCP를 활성화한 상태로 유지하고 싶습니다. 왜냐하면 지금 당장은 실제로 얼마나 많은 사람들이 여전히 TCP를 사용하는지, 얼마나 많은 사람들이 Quick(QUIC)을 사용하는지에 대한 데이터가 없기 때문입니다. 그래서 안전을 위해 Glamsterdam 이후에 비활성화를 시작하고 싶습니다. 저희는 기본값으로 Quick을 활성화해 두었습니다. 하지만 문제는 지금 모든 사용자가 최신 버전으로 마이그레이션한 것은 아닐 수 있다는 점입니다. 그래서 데이터가 없고, Glamsterdam에서 TCP를 완전히 제거하는 것은 위험하다고 생각합니다. 하지만 그 이후에는 괜찮습니다."
             },
             {
               "speaker": "Daniel Knopik",
-              "text": "MPLEX 폐기 논의가 3년째이고 올해 초 글램스터담에서 하기로 합의했는데 또 미뤄지는 데 실망을 표했다. MPLEX 폐기는 TCP 폐기가 아니며 TCP와 Yamux 조합이 남는다고 반박했다.",
+              "text": "MPLEX 폐기 논의가 3년째이고 올해 초 글램스테르담에서 하기로 합의했는데 또 미뤄지는 데 실망을 표했다. MPLEX 폐기는 TCP 폐기가 아니며 TCP와 Yamux 조합이 남는다고 반박했다.",
               "timestamp": "00:10:37",
               "original": "Yeah, so… We have to… So… so the ongoing efforts, to deprecate MPLEX is… Yeah, has been ongoing for… Three years now. And, we, earlier in the year, agreed to deprecate it for Glamster Dam, and it's a bit unfortunate that it's now considered not ready. So that is, like, the first point I want to make. And the second point is, this is not, like, deprecating MPLEX is not deprecating TCP, because MPLEX, Yannux is still… Existing, in principle, and supported by a large share of the network. So… Yeah. I guess it's… it's… yeah. a bit disheartening to see that Teku is now pushing again for a delay after 3 years, and… I don't… it's that confidence-inspiring that we will, like, ever get rid of this. Sorry? Well, the thing is, we need to communicate somehow. That is either TCP and MPLEX, TCP and Yamooks, or Quick. And deprecating MPLEX, like, having some clients actually remove it, without enabling quick. Would render some clients unable to communicate. So, but… So, Teku's… is Teku is quick and enabled by default, right? Bye now. Cool. So I think…",
               "translation": "MPLEX를 폐기하려는 노력은 지금까지 3년째 진행되어 왔습니다. 저희는 연초에 Glamsterdam에서 이를 폐기하기로 합의했는데, 지금 와서 준비가 안 되었다고 여겨지는 것은 다소 유감스럽습니다. 이것이 제가 말씀드리고 싶은 첫 번째 지점입니다. 두 번째 지점은, MPLEX를 폐기하는 것이 TCP를 폐기하는 것은 아니라는 점입니다. 왜냐하면 MPLEX와 Yamux는 원칙적으로 여전히 존재하고 네트워크의 상당 부분에서 지원되고 있기 때문입니다. 3년이 지난 지금 Teku가 다시 지연을 요구하는 것을 보니 다소 낙담스럽고, 저희가 언젠가 이것을 정말로 없앨 수 있을지에 대한 확신이 별로 들지 않습니다. 죄송합니다? 문제는 저희가 어떻게든 소통해야 한다는 것입니다. 그것은 TCP와 MPLEX, TCP와 Yamux, 또는 Quick 중 하나입니다. 그리고 MPLEX를 폐기한다는 것, 즉 일부 클라이언트가 Quick을 활성화하지 않은 채 실제로 이를 제거한다면, 일부 클라이언트는 통신할 수 없게 될 것입니다. 그런데 Teku는 기본값으로 Quick이 활성화되어 있지 않나요? 그렇다면 좋습니다. 그럼 제 생각에는..."
@@ -4020,7 +4020,7 @@
             },
             {
               "speaker": "potuz",
-              "text": "사용자 설정 현황을 모른다는 Enrico의 주장에 동의하지 않았다. 글램스터담 릴리스에서 QUIC을 기본값으로 강제하고, 문제가 없으면 포크 후 첫 릴리스에서 MPLEX를 폐기하자고 했다.",
+              "text": "사용자 설정 현황을 모른다는 Enrico의 주장에 동의하지 않았다. 글램스테르담 릴리스에서 QUIC을 기본값으로 강제하고, 문제가 없으면 포크 후 첫 릴리스에서 MPLEX를 폐기하자고 했다.",
               "timestamp": "00:14:38",
               "original": "Just a quick comment. I don't buy Enrico's comment of, like, not knowing how many people change their configuration. Just flip the flag now that you're gonna have Glamsterdam releases, and they are forced to use them. Make, quick by default. and then we can just quickly deprecate it on the first release after Glamster, and if there's no problems.",
               "translation": "짧게 한 말씀 드리겠습니다. 얼마나 많은 사람들이 설정을 바꿀지 모른다는 Enrico의 의견에는 동의하지 않습니다. Glamsterdam 릴리스가 나오면 사람들은 어차피 그것을 사용하도록 강제되므로, 지금 그냥 플래그를 뒤집어서 Quick을 기본값으로 만들면 됩니다. 그러면 Glamsterdam 이후 첫 릴리스에서 문제가 없다면 곧바로 이를 폐기할 수 있습니다."
@@ -4034,7 +4034,7 @@
             }
           ],
           "quote": {
-            "text": "글램스터담 릴리스가 나올 지금 플래그를 바꾸면 사용자들이 쓸 수밖에 없다. QUIC을 기본값으로 만들어라.",
+            "text": "글램스테르담 릴리스가 나올 지금 플래그를 바꾸면 사용자들이 쓸 수밖에 없다. QUIC을 기본값으로 만들어라.",
             "original": "Just flip the flag now that you're gonna have Glamsterdam releases, and they are forced to use them. Make QUIC by default.",
             "speaker": "potuz",
             "timestamp": "00:14:38"
@@ -4377,7 +4377,7 @@
         },
         {
           "speaker": "potuz",
-          "text": "참고로 300 MGas로 가면 글램스터담에서 혼잡 상황의 예상 페이로드 크기는 2MB이고, 이런 크기를 정기적으로 보게 될 것이다.",
+          "text": "참고로 300 MGas로 가면 글램스테르담에서 혼잡 상황의 예상 페이로드 크기는 2MB이고, 이런 크기를 정기적으로 보게 될 것이다.",
           "timestamp": "00:38:10"
         },
         {
@@ -4784,15 +4784,15 @@
       "issueUrl": "https://github.com/ethereum/pm/issues/2217",
       "kind": "full",
       "durationMin": 47,
-      "headline": "세폴리아 글램스터담\n10월 6일 확정",
+      "headline": "세폴리아 글램스테르담\n10월 6일 확정",
       "lead": "다음 하드포크가 첫 공개 테스트넷 적용 단계에 들어간다",
       "intro": "이더리움 클라이언트 개발자들이 테스트넷 운영과 테스트 현안을 점검하는 정기 테스팅 콜(ACDT Testing)이다.",
-      "summary": "10월 6일 세폴리아 글램스터담(Glamsterdam) 업그레이드가 모든 클라이언트의 동의로 확정됐다. 콜 당일 데브넷(devnet) 11에서 글램스터담이 참여율 하락 없이 활성화돼 일정에 청신호가 켜졌다.",
-      "whyItMatters": "글램스터담이 공개 테스트넷 단계에 들어가면서 메인넷 적용까지의 일정이 구체화됐다. 리도와 옵티미즘 같은 대형 프로토콜이 이미 데브넷에서 업그레이드를 검증하고 있어 L2와 스테이킹 서비스도 대비를 시작할 시점이다.",
+      "summary": "10월 6일 세폴리아 글램스테르담(Glamsterdam) 업그레이드가 모든 클라이언트의 동의로 확정됐다. 콜 당일 데브넷(devnet) 11에서 글램스테르담이 참여율 하락 없이 활성화돼 일정에 청신호가 켜졌다.",
+      "whyItMatters": "글램스테르담이 공개 테스트넷 단계에 들어가면서 메인넷 적용까지의 일정이 구체화됐다. 리도와 옵티미즘 같은 대형 프로토콜이 이미 데브넷에서 업그레이드를 검증하고 있어 L2와 스테이킹 서비스도 대비를 시작할 시점이다.",
       "decisions": [
         {
           "label": "세폴리아 10월 6일",
-          "text": "세폴리아 글램스터담 업그레이드를 10월 6일로 확정했고 모든 클라이언트가 동의했다. 다음 하드포크가 공개 테스트넷에서 실전 검증에 들어간다는 뜻이다.",
+          "text": "세폴리아 글램스테르담 업그레이드를 10월 6일로 확정했고 모든 클라이언트가 동의했다. 다음 하드포크가 공개 테스트넷에서 실전 검증에 들어간다는 뜻이다.",
           "original": "Sepolia Glamsterdam upgrade scheduled for October 6th; all clients confirmed",
           "eips": [],
           "status": "일정",
@@ -4852,7 +4852,7 @@
       "targets": [
         {
           "key": "sepolia-fork",
-          "text": "10월 6일 세폴리아 글램스터담 업그레이드. 전 클라이언트 동의로 확정",
+          "text": "10월 6일 세폴리아 글램스테르담 업그레이드. 전 클라이언트 동의로 확정",
           "timestamp": "00:10:26"
         },
         {
@@ -5971,12 +5971,12 @@
       "headline": "EIP-8253\n헤고타로 연기",
       "lead": "블록 접근 목록의 예외 계정 수정이 다음 포크로 밀렸다",
       "intro": "실행 계층(EL)과 합의 계층(CL) 클라이언트의 테스트 담당자들이 격주로 모이는 테스팅 콜(ACDT)이다.",
-      "summary": "논스 0인데 저장소가 남아 있는 28개 옛 계정을 손보는 EIP-8253은 글램스터담(Glamsterdam)에 넣기엔 너무 늦었다는 대략적 합의가 나와 다음 포크인 헤고타(Hegota)로 미뤄졌고, 최종 확정은 목요일 ACD 콜로 넘겼다.",
-      "whyItMatters": "블록 접근 목록(BAL)은 트랜잭션 재실행 없이 블록 상태를 적용하게 하는 글램스터담의 핵심 구조인데, 옛 계정 28개 때문에 사양에 구멍이 있다는 사실이 확인됐다. 수정을 미루면서 글램스터담 출시 일정은 지키는 대신 클라이언트들은 헤고타에서 이 예외를 처리해야 한다.",
+      "summary": "논스 0인데 저장소가 남아 있는 28개 옛 계정을 손보는 EIP-8253은 글램스테르담(Glamsterdam)에 넣기엔 너무 늦었다는 대략적 합의가 나와 다음 포크인 헤고타(Hegota)로 미뤄졌고, 최종 확정은 목요일 ACD 콜로 넘겼다.",
+      "whyItMatters": "블록 접근 목록(BAL)은 트랜잭션 재실행 없이 블록 상태를 적용하게 하는 글램스테르담의 핵심 구조인데, 옛 계정 28개 때문에 사양에 구멍이 있다는 사실이 확인됐다. 수정을 미루면서 글램스테르담 출시 일정은 지키는 대신 클라이언트들은 헤고타에서 이 예외를 처리해야 한다.",
       "decisions": [
         {
           "label": "EIP-8253 연기",
-          "text": "EIP-8253은 글램스터담에 넣기엔 너무 늦었다는 대략적 합의로 헤고타로 미뤄졌다. 논스 0 저장소 계정 수정이 이번 포크에는 들어가지 않는다는 뜻이다.",
+          "text": "EIP-8253은 글램스테르담에 넣기엔 너무 늦었다는 대략적 합의로 헤고타로 미뤄졌다. 논스 0 저장소 계정 수정이 이번 포크에는 들어가지 않는다는 뜻이다.",
           "original": "EIP-8253 deferred to Hegota; rough consensus it is too late for Glamsterdam",
           "eips": [
             8253
@@ -6006,7 +6006,7 @@
       "targets": [
         {
           "key": "glamsterdam-devnet-11",
-          "text": "글램스터담 데브넷 11을 이번 주 중반에서 주말 사이 출시. Prysm alpha.14 머지를 기다리는 조건부 제안 일정이다.",
+          "text": "글램스테르담 데브넷 11을 이번 주 중반에서 주말 사이 출시. Prysm alpha.14 머지를 기다리는 조건부 제안 일정이다.",
           "timestamp": "00:27:14"
         }
       ],
@@ -6018,23 +6018,23 @@
         },
         {
           "owner": "모든 EL 팀",
-          "text": "EIP-8253의 글램스터담 대 헤고타 결정은 목요일 ACDE로 미뤘고, 클라이언트 팀들은 그 전에 비동기로 검토한다.",
+          "text": "EIP-8253의 글램스테르담 대 헤고타 결정은 목요일 ACDE로 미뤘고, 클라이언트 팀들은 그 전에 비동기로 검토한다.",
           "timestamp": "00:43:30"
         }
       ],
       "agenda": [
         {
           "timestamp": "00:05:42",
-          "heading": "글램스터담 데브넷 8: 플라토베르게트(Platåberget) 공격 영향",
+          "heading": "글램스테르담 데브넷 8: 플라토베르게트(Platåberget) 공격 영향",
           "discussion": true
         },
         {
           "timestamp": "00:17:43",
-          "heading": "글램스터담 데브넷 9: 계획에 없던 비최종성(non-finality)"
+          "heading": "글램스테르담 데브넷 9: 계획에 없던 비최종성(non-finality)"
         },
         {
           "timestamp": "00:24:15",
-          "heading": "글램스터담 데브넷 11 출시 준비 상황"
+          "heading": "글램스테르담 데브넷 11 출시 준비 상황"
         },
         {
           "timestamp": "00:29:07",
@@ -6067,13 +6067,13 @@
       ],
       "topics": [
         {
-          "title": "EIP-8253을 글램스터담에 넣을 것인가",
-          "intro": "글램스터담의 블록 접근 목록(BAL) 사양이 논스 0인데 저장소가 남아 있는 28개 옛 계정과 충돌한다는 사실이 막판에 제기돼, 이번 포크에 넣을지 헤고타로 미룰지가 논의됐다.",
+          "title": "EIP-8253을 글램스테르담에 넣을 것인가",
+          "intro": "글램스테르담의 블록 접근 목록(BAL) 사양이 논스 0인데 저장소가 남아 있는 28개 옛 계정과 충돌한다는 사실이 막판에 제기돼, 이번 포크에 넣을지 헤고타로 미룰지가 논의됐다.",
           "decision": "보류 결정 00:42:15",
           "positions": [
             {
               "speaker": "jochem-brouwer",
-              "text": "옐로페이퍼는 컨트랙트를 생성하면 저장소 트리가 비어 있다고 가정하는데, BAL로 재실행 없이 상태 디프만 적용하면 기존 저장소 키를 지우지 못해 상태 루트가 어긋난다고 설명했다. 늦었지만 지금 글램스터담에서 처리하는 것이 가장 깔끔하다고 제안했다.",
+              "text": "옐로페이퍼는 컨트랙트를 생성하면 저장소 트리가 비어 있다고 가정하는데, BAL로 재실행 없이 상태 디프만 적용하면 기존 저장소 키를 지우지 못해 상태 루트가 어긋난다고 설명했다. 늦었지만 지금 글램스테르담에서 처리하는 것이 가장 깔끔하다고 제안했다.",
               "timestamp": "00:29:11",
               "original": "Yes, okay, so I've prepared this text with… people can read. Okay, so this, might first sound like, okay, why are you proposing, like, this EIP, like, now, in the final part of the, of this, this fork? The thing is that the block access list is not compatible currently with the current specification, what we have. And then I'm referring to the yellow paper, and then we have Formula 99 in the yellow paper. Which, says that if you create an account, so if you create a contract account, then you start with an empty tree. And without Block Access Lists, this is fine, because we can just assume that… well, not assume, we just clear the tree, and we assume it is empty, and we can all, all is fine. The problem is that with the block access lists, we now create this, this extra execution mode, or, well, state applying mode. Where you do not execute your transactions, you just apply the state div. And this is problematic, because if we have a tree which is not empty, then if we assume it is empty, that this implicity means we are deleting all the storage keys which are in the original tree. The thing is that EIP8253, what we do with these accounts which are affected, these are only 28 accounts, these are the accounts of the type, they have no code. They have not zero. But they have non-empty storage. And by the contact collision test, I believe it is EIP684, we only check for the nonce, which should be 0, and that it should have, empty code. But we do not check the storage there. So……",
               "translation": "네, 그러면 사람들이 읽을 수 있도록 이 텍스트를 준비했습니다. 이게 처음에는 왜 지금, 이 포크의 마지막 단계에서 이 EIP를 제안하는 것인지 의아하게 들릴 수 있습니다. 문제는 블록 접근 목록(block access list)이 현재 우리가 가진 사양(specification)과 호환되지 않는다는 것입니다. 여기서 옐로우 페이퍼(yellow paper)를 언급하는데, 옐로우 페이퍼에는 수식 99(Formula 99)가 있습니다. 이 수식은 계정을 생성할 때, 즉 컨트랙트 계정을 생성할 때 빈 트리에서 시작한다고 명시하고 있습니다. 블록 접근 목록이 없다면 이것은 문제가 없습니다. 왜냐하면 우리는 그냥 트리를 지우고 그것이 비어 있다고 가정하면 되고, 그러면 모두 괜찮기 때문입니다. 문제는 블록 접근 목록으로 인해 이제 트랜잭션을 실행하지 않고 상태 diff만 적용하는 추가적인 실행 모드, 즉 상태 적용 모드가 생긴다는 것입니다. 이것이 문제가 되는 이유는, 비어 있지 않은 트리가 있는데 이를 비어 있다고 가정하면 원래 트리에 있던 모든 스토리지 키를 암묵적으로 삭제하는 셈이 되기 때문입니다. 요점은, EIP8253에서 영향을 받는 계정들, 이들은 단 28개의 계정인데, 이 유형의 계정은 코드가 없습니다. 논스(nonce)는 0이 아니지만 스토리지는 비어 있지 않습니다. 그리고 컨트랙트 충돌 테스트(contract collision test), EIP684로 알고 있는데, 여기서는 논스가 0이어야 한다는 것과 코드가 비어 있어야 한다는 것만 확인하고 스토리지는 확인하지 않습니다. 그래서……"
@@ -6087,14 +6087,14 @@
             },
             {
               "speaker": "FLCL (Nethermind)",
-              "text": "남은 포크 전환 횟수로는 제대로 테스트할 수 없어 글램스터담엔 너무 늦었고 최소 헤고타로 가야 한다고 했다.",
+              "text": "남은 포크 전환 횟수로는 제대로 테스트할 수 없어 글램스테르담엔 너무 늦었고 최소 헤고타로 가야 한다고 했다.",
               "timestamp": "00:37:52",
               "original": "Pinto… Sorry, it seems kind of late. We will not have enough transitions to test it. Hopefully. Feels like… and it's a typical change, like, one time, it seems, It requires, it will require more testing to be confident. Well, that it happens properly. And we have no time for that. Seems like maybe other people from another mind will have other opinions, but… It… it's for sure, I think, to include the, you know, Hegota. At least.",
               "translation": "Pinto, 죄송합니다, 좀 늦은 것 같습니다. 이것을 테스트할 충분한 전환(transition)이 없을 것 같습니다. 아마도요. 이건 전형적인 일회성 변경처럼 느껴지고, 제대로 이루어졌다는 확신을 가지려면 더 많은 테스트가 필요할 것입니다. 그런데 우리에게는 그럴 시간이 없습니다. 다른 분들은 다른 의견을 가질 수도 있을 것 같습니다만, 그래도 적어도 Hegota에는 포함시켜야 한다고 확신합니다."
             },
             {
               "speaker": "Marius Van Der Wijden (M)",
-              "text": "글램스터담과 헤고타의 BAL 메커니즘이 둘로 갈리는 기술 부채만 남지 않는다면 헤고타로 미루는 데 찬성한다고 했다.",
+              "text": "글램스테르담과 헤고타의 BAL 메커니즘이 둘로 갈리는 기술 부채만 남지 않는다면 헤고타로 미루는 데 찬성한다고 했다.",
               "timestamp": "00:38:33",
               "original": "Yes, that's from… I'm, I'm not super pumped. I'm not super familiar with this, because Gary has been handling this edge case, for us. My… Gut feeling is that… If we add a lot of, like, code complexity. Or, like, that code that we have to change in Hegota now, because of this. then I think it would make sense to include it, to, like, to get this out of the way. If there's… basically note that. no tech debt that we are… we are leaving behind, then I think it should be… probably be bumped to Hegota. The… Like, what I don't want is to… To have to touch the ball mechanism in Hegota again, and to have, like, two different ball mechanisms between Lambda and Hegota because of this. I think that is what I mean with, like, tick the, So, I'm not sure if that can actually happen, but…",
               "translation": "네, 그건, 저는 그다지 확신이 서지는 않습니다. 이 부분에 대해 잘 알지 못하는데, Gary가 이 엣지 케이스를 저희를 위해 처리해 왔기 때문입니다. 제 직감으로는, 만약 이것 때문에 지금 코드 복잡성이 많이 추가되거나 Hegota에서 변경해야 하는 코드가 많다면, 이를 포함시켜서 해결하고 넘어가는 것이 합리적이라고 생각합니다. 기본적으로 우리가 남겨두는 기술 부채(tech debt)가 없다면, 아마 Hegota로 미뤄야 할 것 같습니다. 제가 원하지 않는 것은, Hegota에서 볼 메커니즘을 다시 건드려야 하거나, 이것 때문에 Lambda와 Hegota 사이에 서로 다른 두 개의 볼 메커니즘이 생기는 것입니다. 제가 말하고자 하는 것이 바로 그것인데, 실제로 그런 일이 일어날 수 있는지는 잘 모르겠습니다만……"
@@ -6108,7 +6108,7 @@
             },
             {
               "speaker": "milen | Erigon",
-              "text": "이 문제를 다시 꺼내지 않도록 글램스터담에서 끝내는 쪽을 약간 선호하지만 어느 쪽이든 좋다고 했다.",
+              "text": "이 문제를 다시 꺼내지 않도록 글램스테르담에서 끝내는 쪽을 약간 선호하지만 어느 쪽이든 좋다고 했다.",
               "timestamp": "00:47:58",
               "viaChat": true
             }
@@ -6376,7 +6376,7 @@
       "glossary": [
         {
           "term": "BAL(블록 접근 목록)",
-          "def": "블록이 건드리는 계정과 상태 변경을 나열해 재실행 없이 블록을 적용하게 하는 글램스터담의 구조"
+          "def": "블록이 건드리는 계정과 상태 변경을 나열해 재실행 없이 블록을 적용하게 하는 글램스테르담의 구조"
         },
         {
           "term": "DFI",
@@ -6428,14 +6428,14 @@
       "kind": "full",
       "durationMin": 32,
       "headline": "세폴리아 포크\n10월 6일 확정",
-      "lead": "글램스터담 업그레이드가 첫 공개 테스트넷 날짜를 받았다",
+      "lead": "글램스테르담 업그레이드가 첫 공개 테스트넷 날짜를 받았다",
       "intro": "합의 계층(CL) 클라이언트 개발자들이 격주로 모이는 콜이다.",
-      "summary": "세폴리아 테스트넷의 글램스터담(Glamsterdam) 포크 날짜가 2026년 10월 6일로 정해졌고, 후디(Hoodi) 날짜는 다음 콜로 미뤄졌다. 상태 가스 EIP-8037의 버그 수정도 모든 실행 계층 클라이언트의 동의로 확정됐다.",
-      "whyItMatters": "글램스터담 하드포크가 개발자 전용 네트워크를 넘어 공개 테스트넷 단계로 넘어간다는 신호다. 다만 1,000노드 데브넷(DevNet)이 아직 안정되지 않아, 클라이언트 문제가 이어지면 날짜가 다시 조정될 수 있다.",
+      "summary": "세폴리아 테스트넷의 글램스테르담(Glamsterdam) 포크 날짜가 2026년 10월 6일로 정해졌고, 후디(Hoodi) 날짜는 다음 콜로 미뤄졌다. 상태 가스 EIP-8037의 버그 수정도 모든 실행 계층 클라이언트의 동의로 확정됐다.",
+      "whyItMatters": "글램스테르담 하드포크가 개발자 전용 네트워크를 넘어 공개 테스트넷 단계로 넘어간다는 신호다. 다만 1,000노드 데브넷(DevNet)이 아직 안정되지 않아, 클라이언트 문제가 이어지면 날짜가 다시 조정될 수 있다.",
       "decisions": [
         {
           "label": "EIP-8037 수정",
-          "text": "글램스터담에 들어갈 EIP-8037의 크로스 프레임 상태 가스 버그 수정이 승인됐고 모든 EL 클라이언트가 구현해 DevNet 8에 배포한다. 이미 포함된 기능의 결함을 포크 전에 고친다는 뜻이다.",
+          "text": "글램스테르담에 들어갈 EIP-8037의 크로스 프레임 상태 가스 버그 수정이 승인됐고 모든 EL 클라이언트가 구현해 DevNet 8에 배포한다. 이미 포함된 기능의 결함을 포크 전에 고친다는 뜻이다.",
           "original": "EIP-8037 cross-frame state gas fix approved for Glamsterdam; all EL clients to implement and deploy on DevNet 8",
           "eips": [
             8037
@@ -6453,7 +6453,7 @@
         },
         {
           "label": "세폴리아 10월 6일",
-          "text": "세폴리아의 글램스터담 포크 날짜가 2026년 10월 6일로 정해졌고 후디 날짜는 추후 결정하기로 했다. 공개 테스트넷에서 업그레이드를 처음 가동하는 날이 잡힌 것이다.",
+          "text": "세폴리아의 글램스테르담 포크 날짜가 2026년 10월 6일로 정해졌고 후디 날짜는 추후 결정하기로 했다. 공개 테스트넷에서 업그레이드를 처음 가동하는 날이 잡힌 것이다.",
           "original": "Sepolia Glamsterdam fork date set to October 6, 2026; Hoodi date to be decided later",
           "eips": [],
           "status": "일정",
@@ -6469,7 +6469,7 @@
         },
         {
           "key": "sepolia-fork",
-          "text": "세폴리아 글램스터담 포크, 2026년 10월 6일. 확정",
+          "text": "세폴리아 글램스테르담 포크, 2026년 10월 6일. 확정",
           "timestamp": "00:29:41"
         },
         {
@@ -6526,7 +6526,7 @@
         },
         {
           "timestamp": "00:23:05",
-          "heading": "세폴리아 글램스터담 포크 날짜",
+          "heading": "세폴리아 글램스테르담 포크 날짜",
           "discussion": true,
           "decision": true
         },
@@ -6579,7 +6579,7 @@
         },
         {
           "title": "EIP-8037 상태 가스 버그, 포크 전에 고치기로",
-          "intro": "글램스터담에 이미 포함된 상태 가스 EIP-8037에서 발견된 크로스 프레임 버그를 포크 전에 수정할지, 콜에서 최종 승인을 확인하는 자리였다.",
+          "intro": "글램스테르담에 이미 포함된 상태 가스 EIP-8037에서 발견된 크로스 프레임 버그를 포크 전에 수정할지, 콜에서 최종 승인을 확인하는 자리였다.",
           "decision": "확정 결정 00:14:05",
           "positions": [
             {
@@ -6619,7 +6619,7 @@
         },
         {
           "title": "세폴리아 포크, 9월 28일이냐 10월 6일이냐",
-          "intro": "글램스터담을 공개 테스트넷에 처음 올릴 날짜를 정하는 논의로, 비파이널리티 데브넷 문제가 남은 상황에서 날짜를 지금 박을지가 쟁점이었다.",
+          "intro": "글램스테르담을 공개 테스트넷에 처음 올릴 날짜를 정하는 논의로, 비파이널리티 데브넷 문제가 남은 상황에서 날짜를 지금 박을지가 쟁점이었다.",
           "decision": "일정 결정 00:29:41",
           "positions": [
             {
@@ -6886,7 +6886,7 @@
           "def": "블록이 되돌릴 수 없게 최종 확정되는 것. 비파이널리티 테스트는 이를 잃은 극한 상황을 실험한다"
         },
         {
-          "term": "글램스터담(Glamsterdam)과 헤고타(Hegota)",
+          "term": "글램스테르담(Glamsterdam)과 헤고타(Hegota)",
           "def": "각각 다음 이더리움 하드포크와 그다음 하드포크의 이름"
         },
         {
@@ -6912,15 +6912,15 @@
       "issueUrl": "https://github.com/ethereum/pm/issues/2204",
       "kind": "full",
       "durationMin": 73,
-      "headline": "EIP-8037 환급\n글램스터담 제외",
+      "headline": "EIP-8037 환급\n글램스테르담 제외",
       "lead": "셀프디스트럭트 가스 환급을 되살리지 않기로 했다",
       "intro": "이더리움 하드포크의 데브넷과 테스트 일정을 조율하는 코어 개발자 테스팅(ACDT) 콜이다.",
-      "summary": "임시 생성 후 셀프디스트럭트(self-destruct) 패턴에 상태 가스(state gas) 환급을 되살리자는 EIP-8037 변경을 글램스터담(Glamsterdam)에서 제외하기로 했다. 더 큰 쟁점인 프레임(frame) 간 가스 세탁 버그의 수정 여부는 9월 4일 ACDC로 미뤘다.",
-      "whyItMatters": "입금 주소 스위핑처럼 계약을 만들었다 바로 없애는 패턴을 쓰는 서비스는 글램스터담에서 상태 가스를 돌려받지 못해 비용이 늘어난다. 프레임 간 버그 수정을 채택하면 세폴리아 포크가 9월 말에서 10월 말로 밀려 12월 메인넷 목표가 흔들릴 수 있다.",
+      "summary": "임시 생성 후 셀프디스트럭트(self-destruct) 패턴에 상태 가스(state gas) 환급을 되살리자는 EIP-8037 변경을 글램스테르담(Glamsterdam)에서 제외하기로 했다. 더 큰 쟁점인 프레임(frame) 간 가스 세탁 버그의 수정 여부는 9월 4일 ACDC로 미뤘다.",
+      "whyItMatters": "입금 주소 스위핑처럼 계약을 만들었다 바로 없애는 패턴을 쓰는 서비스는 글램스테르담에서 상태 가스를 돌려받지 못해 비용이 늘어난다. 프레임 간 버그 수정을 채택하면 세폴리아 포크가 9월 말에서 10월 말로 밀려 12월 메인넷 목표가 흔들릴 수 있다.",
       "decisions": [
         {
           "label": "8037 환급 제외",
-          "text": "임시 생성과 셀프디스트럭트를 한 트랜잭션에서 수행할 때 상태 가스를 환급하는 변경(EIPs PR #12249)을 글램스터담에 넣지 않기로 했다. 구현 복잡도와 셀프디스트럭트 폐기 방향이 이유이며, 이 패턴 사용자는 상태를 늘리지 않아도 상태 가스를 내게 된다.",
+          "text": "임시 생성과 셀프디스트럭트를 한 트랜잭션에서 수행할 때 상태 가스를 환급하는 변경(EIPs PR #12249)을 글램스테르담에 넣지 않기로 했다. 구현 복잡도와 셀프디스트럭트 폐기 방향이 이유이며, 이 패턴 사용자는 상태를 늘리지 않아도 상태 가스를 내게 된다.",
           "original": "EIP-8037 state-gas refund for ephemeral create+self-destruct (EIPs PR #12249) rejected for Glamsterdam; complexity and self-destruct deprecation trajectory cited.",
           "eips": [
             8037
@@ -6940,7 +6940,7 @@
       "targets": [
         {
           "key": "devnet-9",
-          "text": "글램스터담 데브넷 9(논파이널리티 네트워크)가 2026년 9월 1일 유럽 시간 아침 출범 확정. 약 1,000노드로 며칠만 운영",
+          "text": "글램스테르담 데브넷 9(논파이널리티 네트워크)가 2026년 9월 1일 유럽 시간 아침 출범 확정. 약 1,000노드로 며칠만 운영",
           "timestamp": "00:08:05"
         },
         {
@@ -6969,7 +6969,7 @@
       "agenda": [
         {
           "timestamp": "00:06:01",
-          "heading": "글램스터담 데브넷 8 현황"
+          "heading": "글램스테르담 데브넷 8 현황"
         },
         {
           "timestamp": "00:07:45",
@@ -7014,7 +7014,7 @@
         {
           "title": "셀프디스트럭트 상태 가스 환급을 되살릴 것인가",
           "intro": "한 트랜잭션에서 계약을 만들고 바로 없애는 패턴이 EIP-8037에서 환급 없이 상태 가스만 물게 되자, 4월에 지운 환급을 되살리자는 제안이 다시 올라왔다.",
-          "decision": "글램스터담 제외 01:01:26",
+          "decision": "글램스테르담 제외 01:01:26",
           "positions": [
             {
               "speaker": "Paweł Bylica",
@@ -7039,10 +7039,10 @@
             },
             {
               "speaker": "draganrakita",
-              "text": "글램스터담에 넣기엔 너무 늦었고 임시 계정을 만드는 다른 메커니즘과 함께 헤고타에서 재평가하자고 했다.",
+              "text": "글램스테르담에 넣기엔 너무 늦었고 임시 계정을 만드는 다른 메커니즘과 함께 헤고타에서 재평가하자고 했다.",
               "timestamp": "00:45:44",
               "original": "In my opinion, it's too late to change this. I feel this, like, minor thing. I do feel that's going to be… Painful for some things. I would not change for Glamsterdam. I would re-evaluate… basically re-evaluate it for the Higata or some other… Some other mechanisms that basically allows creation of the temporary accounts.",
-              "translation": "제 생각에는 이것을 바꾸기에는 너무 늦었습니다. 이건 사소한 문제라고 느껴지긴 하지만, 어떤 부분들에는 고통스러울 것 같습니다. 저는 글램스터담(Glamsterdam)에서는 바꾸지 않을 것입니다. 히가타(Higata) 또는 임시 계정(temporary account) 생성을 가능하게 하는 다른 메커니즘을 위해 기본적으로 재평가하겠습니다."
+              "translation": "제 생각에는 이것을 바꾸기에는 너무 늦었습니다. 이건 사소한 문제라고 느껴지긴 하지만, 어떤 부분들에는 고통스러울 것 같습니다. 저는 글램스테르담(Glamsterdam)에서는 바꾸지 않을 것입니다. 히가타(Higata) 또는 임시 계정(temporary account) 생성을 가능하게 하는 다른 메커니즘을 위해 기본적으로 재평가하겠습니다."
             },
             {
               "speaker": "milen | Erigon",
@@ -7382,7 +7382,7 @@
         },
         {
           "speaker": "draganrakita",
-          "text": "내 생각에는 글램스터담을 출시하고 그 리스크를 줄이는 것이 더 중요하다.",
+          "text": "내 생각에는 글램스테르담을 출시하고 그 리스크를 줄이는 것이 더 중요하다.",
           "timestamp": "00:58:11"
         }
       ],
@@ -7440,11 +7440,11 @@
       "lead": "계정 추상화 뼈대가 다음 포크에 확정, 스펙은 계속 바뀔 수 있다",
       "intro": "실행 계층(EL) 클라이언트 개발자들이 격주로 모이는 콜이다.",
       "summary": "계정 추상화(account abstraction, AA)의 뼈대인 EIP-8141 프레임(Frames)이 클라이언트 팀들의 요구로 헤고타(Hegota) 포함 확정(SFI)으로 올라갔다. L2 진영의 EIP-8130과 수렴 작업이 이어지는 만큼 스펙은 크게 바뀔 수 있고, SFI 지위가 그 변경을 막는 논거가 되어서는 안 된다는 단서가 붙었다.",
-      "whyItMatters": "클라이언트 팀과 L2가 같은 계정 모델을 전제로 개발 계획을 세울 수 있게 됐고, 지갑과 툴링이 L1과 L2에서 서로 다른 트랜잭션 타입을 따로 지원해야 하는 분열을 피할 기회가 열렸다. 글램스터담(Glamsterdam) 쪽에서는 세폴리아(Sepolia) 9월 28일, 후디(Hoodi) 10월 26일 포크안이 나와 12월 초 메인넷 목표가 구체화됐다.",
+      "whyItMatters": "클라이언트 팀과 L2가 같은 계정 모델을 전제로 개발 계획을 세울 수 있게 됐고, 지갑과 툴링이 L1과 L2에서 서로 다른 트랜잭션 타입을 따로 지원해야 하는 분열을 피할 기회가 열렸다. 글램스테르담(Glamsterdam) 쪽에서는 세폴리아(Sepolia) 9월 28일, 후디(Hoodi) 10월 26일 포크안이 나와 12월 초 메인넷 목표가 구체화됐다.",
       "decisions": [
         {
           "label": "8037 가스 환급 보류",
-          "text": "EIP-8037에서 빠진 SELFDESTRUCT 가스 환급(gas refill)을 되살리자는 요청은 글램스터담에 반영하지 않고, 제대로 된 EIP를 갖춰 헤고타에서 다루기로 했다. 지금 포크 스펙을 바꾸기에는 너무 늦었다는 뜻이다.",
+          "text": "EIP-8037에서 빠진 SELFDESTRUCT 가스 환급(gas refill)을 되살리자는 요청은 글램스테르담에 반영하지 않고, 제대로 된 EIP를 갖춰 헤고타에서 다루기로 했다. 지금 포크 스펙을 바꾸기에는 너무 늦었다는 뜻이다.",
           "original": "EIP-8037 SELFDESTRUCT gas refill not added to Glamsterdam; deferred to Hegota with proper EIP",
           "eips": [
             8037
@@ -7497,17 +7497,17 @@
       "targets": [
         {
           "key": "devnet-9",
-          "text": "글램스터담 devnet-9(비최종성 non-finality 시험용)는 모든 클라이언트가 trunk 브랜치를 준비하는 대로 띄우고 약 4일간 돌린다. 날짜는 클라이언트 준비 상황에 달려 있어 미정이다.",
+          "text": "글램스테르담 devnet-9(비최종성 non-finality 시험용)는 모든 클라이언트가 trunk 브랜치를 준비하는 대로 띄우고 약 4일간 돌린다. 날짜는 클라이언트 준비 상황에 달려 있어 미정이다.",
           "timestamp": "00:12:22"
         },
         {
           "key": "sepolia-fork",
-          "text": "세폴리아 글램스터담 포크 2026년 9월 28일. 지난 ACDC에서 나온 제안이며 다음 ACDC에서 확인해야 확정된다.",
+          "text": "세폴리아 글램스테르담 포크 2026년 9월 28일. 지난 ACDC에서 나온 제안이며 다음 ACDC에서 확인해야 확정된다.",
           "timestamp": "00:15:59"
         },
         {
           "key": "hoodi-fork",
-          "text": "후디 글램스터담 포크 2026년 10월 26일. ACDC 확인을 기다리는 제안 단계다.",
+          "text": "후디 글램스테르담 포크 2026년 10월 26일. ACDC 확인을 기다리는 제안 단계다.",
           "timestamp": "00:15:59"
         },
         {
@@ -7536,12 +7536,12 @@
       "agenda": [
         {
           "timestamp": "00:10:15",
-          "heading": "글램스터담 Devnet 8과 Devnet 9 계획",
+          "heading": "글램스테르담 Devnet 8과 Devnet 9 계획",
           "discussion": true
         },
         {
           "timestamp": "00:15:28",
-          "heading": "글램스터담 테스트넷과 메인넷 일정"
+          "heading": "글램스테르담 테스트넷과 메인넷 일정"
         },
         {
           "timestamp": "00:17:02",
@@ -7581,7 +7581,7 @@
       "topics": [
         {
           "title": "devnet-9에서 공격 시험과 비최종성을 함께 돌릴 것인가",
-          "intro": "글램스터담 devnet-8이 안정적으로 돌자 다음 단계로 비최종성 devnet-9를 띄우기로 했는데, 공격 시험을 같은 devnet에서 할지 별도 devnet이 필요한지 의견이 갈렸다.",
+          "intro": "글램스테르담 devnet-8이 안정적으로 돌자 다음 단계로 비최종성 devnet-9를 띄우기로 했는데, 공격 시험을 같은 devnet에서 할지 별도 devnet이 필요한지 의견이 갈렸다.",
           "positions": [
             {
               "speaker": "Toni Wahrstätter",
@@ -7675,7 +7675,7 @@
           }
         },
         {
-          "title": "SELFDESTRUCT 가스 환급을 글램스터담에 되살릴 것인가",
+          "title": "SELFDESTRUCT 가스 환급을 글램스테르담에 되살릴 것인가",
           "intro": "EIP-8037 상태 가스 재조정 과정에서 SELFDESTRUCT 가스 환급이 빠지자, 한 트랜잭션 안에서 만들고 없애는 임시 컨트랙트에 의존하는 인텐트와 브리징 프로토콜의 비용이 크게 뛴다는 이의가 포크 확정 직전에 들어왔다.",
           "decision": "보류 결정 00:32:07",
           "positions": [
@@ -8043,7 +8043,7 @@
       "lead": "포크 전 마지막 혼돈 테스트용 네트워크를 곧 띄운다는 뜻이다",
       "intro": "이더리움 업그레이드 테스트를 조율하는 개발자들이 매주 모이는 콜이다.",
       "summary": "목요일(ACDE)까지 모든 CL 클라이언트가 트렁크 브랜치(trunk branch)를 준비하고, 다음주 초 데브넷9(devnet-9)를 출시하기로 했다. 데브넷9는 체인 확정이 멈추는 비최종성(non-finality) 상황을 일부러 만들어 보는 네트워크가 된다.",
-      "whyItMatters": "글램스터담(Glamsterdam) 포크가 극한 상황 테스트 단계에 들어간다는 신호다. 가스 재조정 이후 dApp 개발자들이 의존할 eth_estimateGas의 클라이언트 간 불일치도 드러나, 포크 전 정비 과제가 분명해졌다.",
+      "whyItMatters": "글램스테르담(Glamsterdam) 포크가 극한 상황 테스트 단계에 들어간다는 신호다. 가스 재조정 이후 dApp 개발자들이 의존할 eth_estimateGas의 클라이언트 간 불일치도 드러나, 포크 전 정비 과제가 분명해졌다.",
       "decisions": [
         {
           "label": "데브넷9 목요일 마감",
@@ -8063,7 +8063,7 @@
         },
         {
           "label": "HiveChain 유지",
-          "text": "테스트 체인 생성기 하이브체인(HiveChain)의 GoEthereum 의존성을 글램스터담 전에는 교체하지 않고, EELS의 RPC 지원을 다음 포크를 위해 우선순위에 올리기로 했다. 당장은 기존 도구를 고쳐 쓴다는 뜻이다.",
+          "text": "테스트 체인 생성기 하이브체인(HiveChain)의 GoEthereum 의존성을 글램스테르담 전에는 교체하지 않고, EELS의 RPC 지원을 다음 포크를 위해 우선순위에 올리기로 했다. 당장은 기존 도구를 고쳐 쓴다는 뜻이다.",
           "original": "HiveChain GoEthereum dependency will not be replaced before Glamsterdam; EELS RPC support to be prioritized for future forks",
           "eips": [],
           "status": "확정",
@@ -8080,7 +8080,7 @@
       "actions": [
         {
           "owner": "lightclient",
-          "text": "하이브체인 글램스터담 PR(#1589, #1585)을 리뷰해 RPC 호환성 테스트 작성을 막는 블로커를 푼다.",
+          "text": "하이브체인 글램스테르담 PR(#1589, #1585)을 리뷰해 RPC 호환성 테스트 작성을 막는 블로커를 푼다.",
           "timestamp": "00:21:42"
         },
         {
@@ -8092,7 +8092,7 @@
       "agenda": [
         {
           "timestamp": "00:05:03",
-          "heading": "글램스터담 데브넷8 현황"
+          "heading": "글램스테르담 데브넷8 현황"
         },
         {
           "timestamp": "00:07:53",
@@ -8101,7 +8101,7 @@
         },
         {
           "timestamp": "00:10:40",
-          "heading": "글램스터담 메타 EIP 리뷰 상태"
+          "heading": "글램스테르담 메타 EIP 리뷰 상태"
         },
         {
           "timestamp": "00:11:03",
@@ -8190,7 +8190,7 @@
         },
         {
           "title": "하이브체인 블로커와 GoEthereum 의존성",
-          "intro": "RPC 호환성 테스트를 만드는 하이브체인이 글램스터담을 지원하지 않아 execution-apis PR 여러 건이 한꺼번에 막혔고, 담당자 Felix까지 부재라 해법을 논의했다.",
+          "intro": "RPC 호환성 테스트를 만드는 하이브체인이 글램스테르담을 지원하지 않아 execution-apis PR 여러 건이 한꺼번에 막혔고, 담당자 Felix까지 부재라 해법을 논의했다.",
           "decision": "확정 결정 00:41:04",
           "positions": [
             {
@@ -8237,7 +8237,7 @@
             }
           ],
           "quote": {
-            "text": "RPC 호환성 테스터는 하이브체인이라 부르는 특별히 생성된 체인을 돌리는데, 하이브체인은 GoEthereum으로 생성된다. 하이브체인 자체가 글램스터담 PR들을 지원하도록 업데이트돼야 하는데 아직 안 됐다. 그게 블로커다.",
+            "text": "RPC 호환성 테스터는 하이브체인이라 부르는 특별히 생성된 체인을 돌리는데, 하이브체인은 GoEthereum으로 생성된다. 하이브체인 자체가 글램스테르담 PR들을 지원하도록 업데이트돼야 하는데 아직 안 됐다. 그게 블로커다.",
             "original": "The RPC compat tester runs a specifically generated chain we call HiveChain, and HiveChain is generated through GoEthereum. And HiveChain itself needs to be updated to support all the Glamsterdam PRs, and it is not. That's the blocker.",
             "speaker": "Chase Wright",
             "timestamp": "00:27:08"
@@ -8245,7 +8245,7 @@
         },
         {
           "title": "퍼징으로 드러난 버그와 병렬 실행 안전성",
-          "intro": "글램스터담 사양을 퍼징(fuzzing)해 블록 접근 목록과 가스 재조정에서 클라이언트 버그가 나왔고, 병렬 실행이 위험한 것 아니냐는 우려로 번졌다.",
+          "intro": "글램스테르담 사양을 퍼징(fuzzing)해 블록 접근 목록과 가스 재조정에서 클라이언트 버그가 나왔고, 병렬 실행이 위험한 것 아니냐는 우려로 번졌다.",
           "positions": [
             {
               "speaker": "Paweł Bylica",
@@ -8481,7 +8481,7 @@
         },
         {
           "term": "BAL(블록 접근 목록)",
-          "def": "Block Access List. 블록이 건드리는 상태를 미리 알려 병렬 실행을 돕는 글램스터담 기능"
+          "def": "Block Access List. 블록이 건드리는 상태를 미리 알려 병렬 실행을 돕는 글램스테르담 기능"
         },
         {
           "term": "퍼징(fuzzing)",
@@ -8506,15 +8506,15 @@
       "issueUrl": "https://github.com/ethereum/pm/issues/2187",
       "kind": "full",
       "durationMin": 53,
-      "headline": "EIP-7610\n글램스터담 제외",
+      "headline": "EIP-7610\n글램스테르담 제외",
       "lead": "성능 부담만 주던 EIP를 빼고 EIP-8253이 대신 푼다",
       "intro": "이더리움 합의 계층(CL) 클라이언트 개발자들이 격주로 모이는 콜(ACDC)이다.",
-      "summary": "EIP-7610이 글램스터담(Glamsterdam)에서 공식 취소됐고, 이를 대체하는 EIP-8253을 포함해 4개 EIP가 다음 포크 헤고타(Hegota)의 후보로 접수됐다. 세폴리아 9월 28일, 후디 10월 26일이라는 테스트넷 포크 날짜도 처음 제안됐다.",
-      "whyItMatters": "테스트넷 포크 날짜가 제안되면서 글램스터담의 메인넷 배포가 가시권에 들어왔다. 댑 중심 테스트넷인 세폴리아가 먼저 포크되면 애플리케이션 개발자들이 가스 재산정(repricing) 변경을 미리 시험할 수 있다.",
+      "summary": "EIP-7610이 글램스테르담(Glamsterdam)에서 공식 취소됐고, 이를 대체하는 EIP-8253을 포함해 4개 EIP가 다음 포크 헤고타(Hegota)의 후보로 접수됐다. 세폴리아 9월 28일, 후디 10월 26일이라는 테스트넷 포크 날짜도 처음 제안됐다.",
+      "whyItMatters": "테스트넷 포크 날짜가 제안되면서 글램스테르담의 메인넷 배포가 가시권에 들어왔다. 댑 중심 테스트넷인 세폴리아가 먼저 포크되면 애플리케이션 개발자들이 가스 재산정(repricing) 변경을 미리 시험할 수 있다.",
       "decisions": [
         {
           "label": "EIP-7610 제외",
-          "text": "EIP-7610을 글램스터담에서 연기가 아니라 완전히 취소했다. 헤고타의 EIP-8253이 근본 원인을 없애 이 규칙 자체가 필요 없어지기 때문이다.",
+          "text": "EIP-7610을 글램스테르담에서 연기가 아니라 완전히 취소했다. 헤고타의 EIP-8253이 근본 원인을 없애 이 규칙 자체가 필요 없어지기 때문이다.",
           "original": "EIP-7610 cancelled from Glamsterdam; not postponed — superseded by EIP-8253 targeting Hegota",
           "eips": [
             7610
@@ -8579,12 +8579,12 @@
       "targets": [
         {
           "key": "sepolia-fork",
-          "text": "세폴리아 글램스터담 포크를 2026년 9월 28일(에포크 351232)로 제안했다. 확정은 다음 ACDC로 미뤘다.",
+          "text": "세폴리아 글램스테르담 포크를 2026년 9월 28일(에포크 351232)로 제안했다. 확정은 다음 ACDC로 미뤘다.",
           "timestamp": "00:27:50"
         },
         {
           "key": "hoodi-fork",
-          "text": "후디 글램스터담 포크를 2026년 10월 26일(에포크 132352)로 제안했다. 데브넷 안정화가 전제 조건이다.",
+          "text": "후디 글램스테르담 포크를 2026년 10월 26일(에포크 132352)로 제안했다. 데브넷 안정화가 전제 조건이다.",
           "timestamp": "00:28:57"
         },
         {
@@ -8601,7 +8601,7 @@
       "actions": [
         {
           "owner": "Parithosh Jayanthi (EIP 오피서)",
-          "text": "EIP-7610 제거 PR을 병합하기 전에, 글램스터담 메타 EIP를 초안에서 리뷰 상태로 옮기는 PR을 검토하고 승인한다.",
+          "text": "EIP-7610 제거 PR을 병합하기 전에, 글램스테르담 메타 EIP를 초안에서 리뷰 상태로 옮기는 PR을 검토하고 승인한다.",
           "timestamp": "00:32:01"
         },
         {
@@ -8628,7 +8628,7 @@
         },
         {
           "timestamp": "00:26:01",
-          "heading": "원격 서명 API 글램스터담 변경 사항"
+          "heading": "원격 서명 API 글램스테르담 변경 사항"
         },
         {
           "timestamp": "00:27:01",
@@ -8636,7 +8636,7 @@
         },
         {
           "timestamp": "00:30:12",
-          "heading": "EIP-7610 글램스터담 제외",
+          "heading": "EIP-7610 글램스테르담 제외",
           "decision": true
         },
         {
@@ -8736,7 +8736,7 @@
         },
         {
           "title": "CL 블록 보존 기간을 줄일 필요가 있는가",
-          "intro": "글램스터담의 EIP-8061 도입으로 보존 기간의 근거 상수를 절반으로 줄여야 한다는 제안(EIP-8383)이 나왔지만, 애초에 왜 바꿔야 하는지부터 의견이 갈렸다.",
+          "intro": "글램스테르담의 EIP-8061 도입으로 보존 기간의 근거 상수를 절반으로 줄여야 한다는 제안(EIP-8383)이 나왔지만, 애초에 왜 바꿔야 하는지부터 의견이 갈렸다.",
           "decision": "PFI 결정 00:54:23",
           "positions": [
             {
@@ -8755,7 +8755,7 @@
             },
             {
               "speaker": "Toni Wahrstätter",
-              "text": "서로 다른 상수가 섞이고 있다고 정리했다. 글램스터담 이후 약한 주관성 기간은 약 6일이고 safety decay 기반 상수는 36일로, 4~5개월짜리 보존 기간과는 별개라는 것이다.",
+              "text": "서로 다른 상수가 섞이고 있다고 정리했다. 글램스테르담 이후 약한 주관성 기간은 약 6일이고 safety decay 기반 상수는 36일로, 4~5개월짜리 보존 기간과는 별개라는 것이다.",
               "timestamp": "00:48:28",
               "original": "It will be halved. So I think we're talking about very different constants here. The week's subjectivity period is, as of Glamsterdam, 6 days or something, and… the constant we use with the safety decay is 36 days. So this would be on the EL side, this would be the time that we would want ELs to be able to re-og back in case there is no finality. And it feels like we should do something similar on the EL side, so probably my feeling is, like, we should use this safety decay number there.",
               "translation": "절반으로 줄어들 것입니다. 저희가 지금 서로 매우 다른 상수에 대해 이야기하고 있는 것 같습니다. 약한 주관성 기간(weak subjectivity period)은 Glamsterdam 기준으로 6일 정도이고, 안전성 감쇠(safety decay)에서 사용하는 상수는 36일입니다. 이것은 EL 측에 해당하는 것으로, 파이널리티가 없을 경우 EL이 다시 리오그(reorg)할 수 있기를 원하는 시간입니다. 그래서 EL 측에서도 비슷한 것을 해야 할 것 같고, 제 생각에는 이 안전성 감쇠 수치를 거기에도 사용해야 할 것 같습니다."
@@ -9006,15 +9006,15 @@
       "issueUrl": "https://github.com/ethereum/pm/issues/2186",
       "kind": "full",
       "durationMin": 23,
-      "headline": "EIP-7610\n글램스터담 제외",
+      "headline": "EIP-7610\n글램스테르담 제외",
       "lead": "현실에서 일어날 수 없는 공격을 막던 규칙을 뺀다",
       "intro": "이더리움 코어 개발자들이 포크 테스트 진행 상황을 점검하는 테스팅 콜(ACDT)이다.",
-      "summary": "EIP-7610을 글램스터담(Glamsterdam) 포크에서 제외하기로 합의했다. Geth와 Reth가 이미 관련 테스트를 건너뛰고 있어 실제 동작은 아무것도 바뀌지 않으며, 대신 문제의 근원을 없애는 EIP-8253을 다음 포크 헤고타(Hegota)의 목표로 올렸다.",
+      "summary": "EIP-7610을 글램스테르담(Glamsterdam) 포크에서 제외하기로 합의했다. Geth와 Reth가 이미 관련 테스트를 건너뛰고 있어 실제 동작은 아무것도 바뀌지 않으며, 대신 문제의 근원을 없애는 EIP-8253을 다음 포크 헤고타(Hegota)의 목표로 올렸다.",
       "whyItMatters": "클라이언트 팀들이 테스트를 건너뛰지 않고도 표준 테스트 스위트를 통과할 수 있게 되어, 감사자와 연구자가 반복 제기하던 혼선이 사라진다. 사용자 입장에서는 동작이 전혀 바뀌지 않는 규격 정리다.",
       "decisions": [
         {
           "label": "EIP-7610 제외",
-          "text": "EIP-7610을 글램스터담에서 제거하기로 ACDT가 합의했다. Geth와 Reth가 이미 해당 테스트를 건너뛰고 있어 동작 변화가 없다는 뜻이다.",
+          "text": "EIP-7610을 글램스테르담에서 제거하기로 ACDT가 합의했다. Geth와 Reth가 이미 해당 테스트를 건너뛰고 있어 동작 변화가 없다는 뜻이다.",
           "original": "ACDT consensus: remove EIP-7610 from Glamsterdam; no behavior change since Geth and Reth already skip the affected tests",
           "eips": [
             7610
@@ -9037,14 +9037,14 @@
       "targets": [
         {
           "key": "devnet-8",
-          "text": "약 2일 17시간 뒤 글램스터담 devnet-8이 글로아스(Gloas) 포크로 전환한다. 확정된 일정이며, 전환이 끝나면 devnet-7은 종료된다.",
+          "text": "약 2일 17시간 뒤 글램스테르담 devnet-8이 글로아스(Gloas) 포크로 전환한다. 확정된 일정이며, 전환이 끝나면 devnet-7은 종료된다.",
           "timestamp": "00:05:38"
         }
       ],
       "actions": [
         {
           "owner": "jochem-brouwer",
-          "text": "EIP-7610의 글램스터담 제외를 다음 ACDE에서 공식 결정 안건으로 올린다",
+          "text": "EIP-7610의 글램스테르담 제외를 다음 ACDE에서 공식 결정 안건으로 올린다",
           "timestamp": "00:20:43"
         },
         {
@@ -9056,7 +9056,7 @@
       "agenda": [
         {
           "timestamp": "00:04:28",
-          "heading": "글램스터담 데브넷 8 상태"
+          "heading": "글램스테르담 데브넷 8 상태"
         },
         {
           "timestamp": "00:08:04",
@@ -9064,14 +9064,14 @@
         },
         {
           "timestamp": "00:10:46",
-          "heading": "글램스터담에서 EIP-7610 제거",
+          "heading": "글램스테르담에서 EIP-7610 제거",
           "discussion": true,
           "decision": true
         }
       ],
       "topics": [
         {
-          "title": "EIP-7610 글램스터담 제외",
+          "title": "EIP-7610 글램스테르담 제외",
           "intro": "컨트랙트 배포 전에 계정의 스토리지가 비었는지 검사하게 하는 EIP-7610이 포함 확정(SFI) 상태였지만, 막으려는 공격 자체가 해시 충돌(hash collision) 없이는 불가능하다는 지적이 커지면서 제외 여부가 논의됐다.",
           "decision": "제외 합의 00:20:43",
           "positions": [
@@ -9097,7 +9097,7 @@
             },
             {
               "speaker": "jochem-brouwer",
-              "text": "Gary와 Dragan의 의견에 동의했다. 규격대로면 디스크까지 가서 스토리지 루트를 확인하는 비싼 검사가 필요하고, 주소를 하드코딩하면 테스트와 어긋나므로 글램스터담에서 이 EIP를 제거하는 쪽으로 기울었다고 밝혔다.",
+              "text": "Gary와 Dragan의 의견에 동의했다. 규격대로면 디스크까지 가서 스토리지 루트를 확인하는 비싼 검사가 필요하고, 주소를 하드코딩하면 테스트와 어긋나므로 글램스테르담에서 이 EIP를 제거하는 쪽으로 기울었다고 밝혔다.",
               "timestamp": "00:14:36",
               "original": "Yeah, thanks a lot. Yeah, I know that this is very annoying. Okay, so… Yeah, I also, because I'm also convinced that, because of this testing surface, because EIP 7610, like, the testing surface, or the specification. EXPIC says that you have to check the storage route, that, you need an empty storage root. In order to deploy a contract here. So this also implies that you have this check in your client, which could, of course, be a very expensive check if you go to the disk and check the storage route. The other alternative is to do this hard-coded. It also works, but then you have a problem with the tests. Because EIP 7610 specifies that you have to check the Emptiness of the storage. So, yeah, that would mean either changing this EIP or, or indeed skipping the tests. So what I would actually propose that's also in line with Gary, and that would also solve Dragon's problem with the, with skipping these tests, is that we, either remove this EIP, or that dragan skips this, this test, and then it includes EIP 8253, For Hegota. I would personally lean somewhat more to actually removing this EIP from Glamsterdam. I also PFITIS, I believe. So yeah, I don't know. Does anyone else have any thoughts on this? Yeah, to add on this, EIP 8253 does not have this problem with the tests, because it explicitly states that it only applies to these 28 accounts, and not in the general sense. So, if you have another non-mainer chain, then this change would specify these accounts themselves.…",
               "translation": "네, 정말 감사합니다. 네, 이게 매우 성가신 일이라는 걸 알고 있습니다. 좋습니다, 그러니까... 네, 저도 역시, 왜냐하면 저도 확신하게 되었기 때문인데, 이 테스트 서페이스(testing surface) 때문에, EIP 7610 때문에, 그러니까 테스트 서페이스, 즉 명세(specification) 말입니다. EIP는 컨트랙트를 배포하려면 스토리지 루트(storage root)를 확인해야 하고, 스토리지 루트가 비어 있어야 한다고 명시하고 있습니다. 이는 곧 클라이언트에서 이 확인 절차를 수행해야 한다는 것을 의미하는데, 만약 디스크에 접근해서 스토리지 루트를 확인한다면 물론 매우 비용이 큰 확인 작업이 될 수 있습니다. 다른 대안은 이를 하드코딩하는 것입니다. 그것도 작동은 하지만, 그러면 테스트에 문제가 생깁니다. EIP 7610은 스토리지가 비어 있는지 확인해야 한다고 명시하고 있기 때문입니다. 그러니까, 네, 이는 결국 이 EIP를 변경하거나, 아니면 실제로 테스트를 건너뛰어야 한다는 것을 의미합니다. 그래서 제가 실제로 제안하고 싶은 것은, Gary의 의견과도 일치하고, Dragan이 이 테스트들을 건너뛰는 문제도 해결할 수 있는 것인데, 저희가 이 EIP를 제거하거나, 아니면 dragan이 이 테스트를 건너뛰고 EIP 8253을 Hegota에 포함시키는 것입니다. 개인적으로 저는 이 EIP를 Glamsterdam에서 아예 제거하는 쪽으로 좀 더 기울어 있습니다. 저도 그쪽을 선호하는 것 같습니다. 그러니까, 네, 잘 모르겠습니다. 이에 대해 다른 의견 있으신 분 계신가요? 네, 여기에 덧붙이자면, EIP 8253은 테스트와 관련해서 이런 문제가 없는데, 왜냐하면 이 EIP는 이 28개 계정에만 명시적으로 적용된다고 밝히고 있고, 일반적인 의미로 적용되지는 않기 때문입니다. 그래서 만약 다른 비메인넷(non-mainnet) 체인이 있다면, 이 변경 사항은 해당 체인 자체의 계정들을 별도로 명시하게 될 것입니다."
@@ -9145,13 +9145,13 @@
             },
             {
               "speaker": "Kevaundray Wedderburn",
-              "text": "헤고타에서 논스를 올리는 것이 타당하다고 보고, 글램스터담에서 하지 않는 이유가 단지 CFI가 되지 않았기 때문인지 확인했다.",
+              "text": "헤고타에서 논스를 올리는 것이 타당하다고 보고, 글램스테르담에서 하지 않는 이유가 단지 CFI가 되지 않았기 때문인지 확인했다.",
               "timestamp": "00:18:46",
               "viaChat": true
             },
             {
               "speaker": "draganrakita",
-              "text": "Kevaundray의 질문에 동의 표시를 하면서 글램스터담을 최대한 빨리 출시하는 것이 우선이라는 입장을 밝혔다.",
+              "text": "Kevaundray의 질문에 동의 표시를 하면서 글램스테르담을 최대한 빨리 출시하는 것이 우선이라는 입장을 밝혔다.",
               "timestamp": "00:19:33",
               "viaChat": true,
               "original": "Want to see Glamsterdam shipped as fast as possible! 00:19:40\tIván | ethrex:\tReacted to \"Want to see Glamster...\" with ☝️ 00:19:42\tIván | ethrex:\tReacted to \"Want to see Glamster...\" with 🚢 00:19:47\tYassine Ferhane:\tReacted to \"Want to see Glamsterdam shipped as fast as possible!\" with 🚢 00:20:00\tdraganrakita:\tReacted to \"I think bumping the nonce in H* makes sense, just checking, we are not bumping in G* because it wasn’t CFId in G*?\" with 💯 00:20:07\tFLCL (Nethermind):\tReacted to \"I think bumping the nonce in H* makes sense, just checking, we are not bumping in G* because it wasn’t CFId in G*?\" with 👍 00:21:46\tIván | ethrex:\tReacted to \"I think bumping the ...\" with 👍 00:21:59\tspencer:\tCan we raise in ACDC this week? Would be good if we can take these actions in under a week generally imo 00:23:01\tnixo:\tvery short acdt! 00:23:10\tdanceratopz:\tgoodbye! 00:23:13\tspencer:\tciao ciao! 00:23:14\tAntoine James:\tgoodbye",
@@ -9267,7 +9267,7 @@
         },
         {
           "speaker": "Kevaundray Wedderburn",
-          "text": "헤고타에서 논스를 올리는 건 타당해 보인다. 글램스터담에서 안 올리는 건 단지 CFI가 안 됐기 때문인지 확인차 묻는다",
+          "text": "헤고타에서 논스를 올리는 건 타당해 보인다. 글램스테르담에서 안 올리는 건 단지 CFI가 안 됐기 때문인지 확인차 묻는다",
           "timestamp": "00:18:46"
         },
         {
@@ -9327,15 +9327,15 @@
       "issueUrl": "https://github.com/ethereum/pm/issues/2178",
       "kind": "full",
       "durationMin": 95,
-      "headline": "글램스터담 200M\n가스한도 확정",
+      "headline": "글램스테르담 200M\n가스한도 확정",
       "lead": "가스 한도를 3배 넘는 200M로 올려도 안전하다는 뜻이다",
       "intro": "실행 계층(EL) 클라이언트 개발자들이 격주로 모이는 콜이다.",
-      "summary": "가스 재조정(EIP-2780, 8037, 8038) 수치가 최종 확정되어 글램스터담(Glamsterdam)에서 200M 가스 한도가 안전하다고 결론 났다. 다음 포크 헤고타(Hegota)의 후보 EIP 12건이 접수됐고, 네이티브 AA 구현 방식 결정은 8월 25일 브레이크아웃으로 미뤄졌다.",
+      "summary": "가스 재조정(EIP-2780, 8037, 8038) 수치가 최종 확정되어 글램스테르담(Glamsterdam)에서 200M 가스 한도가 안전하다고 결론 났다. 다음 포크 헤고타(Hegota)의 후보 EIP 12건이 접수됐고, 네이티브 AA 구현 방식 결정은 8월 25일 브레이크아웃으로 미뤄졌다.",
       "whyItMatters": "블록당 처리 용량이 지금의 3배 이상으로 커질 길이 열려 수수료와 처리량에 직접 영향을 준다. 네이티브 AA를 프레임(Frames, EIP-8141)으로 갈지 EIP-8130으로 갈지에 따라 지갑과 L2가 따라야 할 계정 표준이 갈린다.",
       "decisions": [
         {
           "label": "가스 재조정 확정",
-          "text": "가스 재조정 수치가 최종 확정됐고 스펙 변경이 필요 없으며 글램스터담의 200M 가스 한도가 확인됐다. 클라이언트가 코드를 바꾸지 않아도 된다는 뜻이다.",
+          "text": "가스 재조정 수치가 최종 확정됐고 스펙 변경이 필요 없으며 글램스테르담의 200M 가스 한도가 확인됐다. 클라이언트가 코드를 바꾸지 않아도 된다는 뜻이다.",
           "original": "Gas repricing numbers final; no spec changes needed; 200M gas limit confirmed for Glamsterdam",
           "eips": [
             2780,
@@ -9457,7 +9457,7 @@
         },
         {
           "label": "EIP-8372 상태가스",
-          "text": "EIP-8372 정규화 상태 가스 한도가 헤고타 후보로 접수됐다. 글램스터담 이후 상태 생성 수요에 맞춰 포크 시점에 한 번 가격을 보정하자는 제안이다.",
+          "text": "EIP-8372 정규화 상태 가스 한도가 헤고타 후보로 접수됐다. 글램스테르담 이후 상태 생성 수요에 맞춰 포크 시점에 한 번 가격을 보정하자는 제안이다.",
           "original": "EIP-8372 (Normalized State Gas Limit) PFI'd for Hegota",
           "eips": [
             8372
@@ -9526,7 +9526,7 @@
       "targets": [
         {
           "key": "glamsterdam-devnet-8",
-          "text": "글램스터담 데브넷 8(Platåberget)이 8월 13일 가동에 들어갔고, Gloas 포크는 다음 주 목요일 약 7:50 UTC에 활성화된다. 확정",
+          "text": "글램스테르담 데브넷 8(Platåberget)이 8월 13일 가동에 들어갔고, Gloas 포크는 다음 주 목요일 약 7:50 UTC에 활성화된다. 확정",
           "timestamp": "00:09:04"
         },
         {
@@ -9725,7 +9725,7 @@
             },
             {
               "speaker": "Danno Ferrin",
-              "text": "리버트를 넘나드는 액세스 목록 처리는 역사적으로 가장 까다롭고 불안정한 테스트 영역이었다며, 글램스터담과 헤고타 두 포크 동작을 한 바이너리에서 지원할 때 보기보다 큰 작업이 될 수 있다고 경고했다.",
+              "text": "리버트를 넘나드는 액세스 목록 처리는 역사적으로 가장 까다롭고 불안정한 테스트 영역이었다며, 글램스테르담과 헤고타 두 포크 동작을 한 바이너리에서 지원할 때 보기보다 큰 작업이 될 수 있다고 경고했다.",
               "timestamp": "00:45:13",
               "original": "Do you have any, actual implementations for 8374? I just remember from back when I was doing EVM stuff that those were some of the, most finicky and flaky tests, and it was being written because of the way reverts work when you're trying to do anything clever. I just want to know if you have any scoping on how Card is going to be to support both modes across multiple forks. But, I mean, that's great if you only have to support post-Hegata, but when you need to have a VM that does Glamster Dann and Hagita in the same binary, it can be… problematic, I don't know, I mean… I don't want to block it, but I just want to raise a concern that this might be bigger than it looks. Right, but when you're trying to do clever optimization things, those… become very fragile. I'm just, you know, I'm not gonna… I just want to put in people's mind that this is bigger than it looks, and to probably start it early.",
               "translation": "8374에 대한 실제 구현체가 있으신가요? 제가 EVM 작업을 하던 시절을 떠올려보면, 그런 것들이 가장 까다롭고 불안정한(flaky) 테스트 중 일부였고, 뭔가 영리한 걸 시도할 때 리버트가 작동하는 방식 때문에 작성되었던 걸로 기억합니다. 저는 그저 여러 포크에 걸쳐 두 모드를 모두 지원하는 것이 Card에게 얼마나 범위가 클지에 대한 스코핑이 있는지 알고 싶습니다. 하지만, 제 말은, Hegota 이후만 지원하면 된다면 좋겠지만, 같은 바이너리 안에서 Glamsterdam과 Hegota를 모두 수행하는 VM이 필요할 때는, 문제가 될 수 있습니다. 잘 모르겠습니다만... 이걸 막고 싶은 건 아니지만, 이게 보이는 것보다 더 클 수 있다는 우려를 제기하고 싶습니다. 맞습니다, 하지만 영리한 최적화 작업을 시도할 때, 그런 것들은... 매우 취약해집니다. 저는 그냥, 아시다시피, 저는... 저는 그저 사람들 머릿속에, 이게 보이는 것보다 크다는 것, 그리고 아마 일찍 시작해야 한다는 것을 심어두고 싶을 뿐입니다."
@@ -10094,7 +10094,7 @@
       "headline": "가스비 확정까지\n데브넷8 연기",
       "lead": "리프라이싱 숫자가 최종 확정된 뒤에야 공개 테스트넷을 띄운다",
       "intro": "이더리움 코어 개발자들이 업그레이드 테스트를 점검하는 격주 테스팅 콜(ACDT)이다.",
-      "summary": "글램스터담(Glamsterdam)의 가스 리프라이싱(repricing) 숫자를 아직 최종 확정할 수 없다는 보고에 따라, 공개 테스트넷 역할을 하는 데브넷 8 출시를 이번 주 ACDE에서 숫자가 확정될 때까지 미루기로 했다. EIP-8070은 반대 없이 데브넷 8 의무 사항이 됐다.",
+      "summary": "글램스테르담(Glamsterdam)의 가스 리프라이싱(repricing) 숫자를 아직 최종 확정할 수 없다는 보고에 따라, 공개 테스트넷 역할을 하는 데브넷 8 출시를 이번 주 ACDE에서 숫자가 확정될 때까지 미루기로 했다. EIP-8070은 반대 없이 데브넷 8 의무 사항이 됐다.",
       "whyItMatters": "데브넷 8은 곧 공개 테스트넷이어서, 여기서 가스비가 확정돼야 앱 개발자들이 실제 비용으로 컨트랙트를 미리 검증할 수 있다. 함께 논의된 200M 가스 한도 상향은 포크 이후 네트워크 처리량과 기존 트랜잭션의 생존 여부에 직결된다.",
       "decisions": [
         {
@@ -10127,7 +10127,7 @@
       "targets": [
         {
           "key": "glamsterdam-repricing",
-          "text": "이번 주 ACDE에서 글램스터담 리프라이싱 숫자를 확정하거나 수정한다. 확정된 일정이다.",
+          "text": "이번 주 ACDE에서 글램스테르담 리프라이싱 숫자를 확정하거나 수정한다. 확정된 일정이다.",
           "timestamp": "00:25:03"
         }
       ],
@@ -10139,14 +10139,14 @@
         },
         {
           "owner": "lightclient (EIP 편집자)",
-          "text": "글램스터담용 EIP-8282 업데이트를 막고 있는 EIPs 저장소 PR 12021을 승인한다.",
+          "text": "글램스테르담용 EIP-8282 업데이트를 막고 있는 EIPs 저장소 PR 12021을 승인한다.",
           "timestamp": "01:03:29"
         }
       ],
       "agenda": [
         {
           "timestamp": "00:08:10",
-          "heading": "글램스터담 데브넷 7 상태"
+          "heading": "글램스테르담 데브넷 7 상태"
         },
         {
           "timestamp": "00:09:33",
@@ -10305,7 +10305,7 @@
           "positions": [
             {
               "speaker": "Barnabas",
-              "text": "글로아스(Gloas)부터 EL이 가스 한도를 주도하므로 글램스터담 릴리스에 200M 기본값을 넣어 포크 경계에서 자동으로 오르게 하자고 제안했고, 12월 말 포크라면 연말에 노드를 업그레이드할 운영자가 적을 것이라고 경고했다.",
+              "text": "글로아스(Gloas)부터 EL이 가스 한도를 주도하므로 글램스테르담 릴리스에 200M 기본값을 넣어 포크 경계에서 자동으로 오르게 하자고 제안했고, 12월 말 포크라면 연말에 노드를 업그레이드할 운영자가 적을 것이라고 경고했다.",
               "timestamp": "00:42:39",
               "original": "Yeah, so the idea is that at the, glass fork, we're gonna be bumping the default gas limit on the EL side. And because now the EL is the one that's driving the gas limit, everybody at the fork boundary would basically default to the new gas limit that we have agreed on. So this… would basically allow us to basically take advantage of the new repricing values, and yeah, because state now becomes a lot more expensive, we can make sure that, No new transactions will… or new… no old transaction will, fail, even after the fork, just because the gas limit is too low. Because I think there's gonna be a few cases of, Where… a transaction that we would have submitted now. with Fulu, it would have failed, just because a single transaction would be over 60 million gas. So we want to make sure that, That won't happen to anyone. Realistically within the first day. It would still take about 5 hours to… Go up to 200 million, I think. No, we can't, because the CL clients… only start communicating this over the Engine API at default boundary. So… Yeah, it's a new feature in Gloas. But, like, right now, the ELs don't drive the gas limit, right? It would be on the EL. But would you want to increase the gas limit pre-fork? Would it be safe? Would it be safe, though?",
               "translation": "네, 그러니까 아이디어는, Gloas 포크 시점에 EL 측의 기본 가스 리밋(default gas limit)을 올리겠다는 것입니다. 그리고 이제는 EL이 가스 리밋을 주도하는 주체이므로, 포크 경계 시점에 모두가 기본적으로 저희가 합의한 새로운 가스 리밋 값을 따르게 될 것입니다. 그러면 이는 기본적으로 새로운 리프라이싱 값을 활용할 수 있게 해주는데, 왜냐하면 이제 state가 훨씬 더 비싸지기 때문에, 가스 리밋이 너무 낮다는 이유만으로 어떤 새로운 트랜잭션도, 혹은 기존 트랜잭션도 포크 이후에 실패하지 않도록 보장할 수 있습니다. 왜냐하면 지금 제출했을 트랜잭션이 Fulu에서는 단일 트랜잭션이 6천만 가스를 넘는다는 이유만으로 실패했을 몇몇 사례가 있을 것으로 생각되기 때문입니다. 그래서 저희는 그런 일이 누구에게도 일어나지 않도록 보장하고 싶습니다. 현실적으로는 첫날 안에요. 2억까지 올라가는 데는 여전히 약 5시간 정도 걸릴 것 같습니다. 아니요, 안 됩니다. 왜냐하면 CL 클라이언트들은 기본 경계(default boundary) 시점에만 엔진 API(Engine API)를 통해 이를 전달하기 시작하기 때문입니다. 네, 이것은 Gloas의 새로운 기능입니다. 하지만 지금 당장은 EL이 가스 리밋을 주도하지 않는 것 아닌가요? 그건 EL 쪽에 있게 될 것입니다. 그런데 포크 이전에 가스 리밋을 올리고 싶으신 겁니까? 그것이 안전할까요? 그게 안전할까요?"
@@ -10326,7 +10326,7 @@
             },
             {
               "speaker": "draganrakita",
-              "text": "가스 한도 변경은 하드포크가 필요 없으니 글램스터담 이후 릴리스에서 기본값을 올려 검증자 업데이트에 따라 점진적으로 올라가게 하자고 제안했다.",
+              "text": "가스 한도 변경은 하드포크가 필요 없으니 글램스테르담 이후 릴리스에서 기본값을 올려 검증자 업데이트에 따라 점진적으로 올라가게 하자고 제안했다.",
               "timestamp": "00:45:21",
               "original": "Because the gas limit doesn't require hard fork, can we do the bumps after the Glamsterdam? It doesn't need to be hit on the same block. It can be done in the literacy, that yellow SLA, too. why it's complicated? I don't… I don't understand it. Basically, we need to have current-present gas limit until glamsterdam. That means the… releases the client made, basic, they don't need to touch gas limit, but releases after glamsterdam, where Glamsterdam is… basically, it can be day after Glamsterdam, we can bump gas limit for everybody. That means that it'd be gradually increased, depending on the amount of the clients very… Clients that had gas limit above. Circle. I don't understand that. My proposal is basically… do it gradually after, and… The machinery that we currently have.",
               "translation": "가스 리밋은 하드포크가 필요하지 않으니, Glamsterdam 이후에 이 값 상향을 할 수 있지 않습니까? 같은 블록에서 이루어질 필요는 없습니다. 이것은 나중에, 여유 있게, 그 부분에서도 할 수 있습니다. 왜 이것이 복잡한 겁니까? 저는... 저는 이해가 되지 않습니다. 기본적으로 저희는 Glamsterdam까지는 현재의 가스 리밋을 유지해야 합니다. 즉, 클라이언트들이 만든 릴리스는, 기본적으로 가스 리밋을 건드릴 필요가 없지만, Glamsterdam 이후의 릴리스에서는, Glamsterdam이 지나고 나면, 기본적으로 Glamsterdam 다음 날에라도 모두를 위해 가스 리밋을 올릴 수 있습니다. 즉, 이는 가스 리밋이 이미 높게 설정되어 있던 클라이언트의 비율에 따라 점진적으로 증가하게 될 것입니다. 서클(circle). 저는 그 부분이 이해가 안 됩니다. 제 제안은 기본적으로, 이후에 점진적으로 하자는 것이고, 저희가 현재 가지고 있는 메커니즘을 이용하자는 것입니다."
@@ -10580,7 +10580,7 @@
         },
         {
           "term": "리프라이싱(repricing)",
-          "def": "글램스터담에서 옵코드별 가스 비용을 실측 기반으로 재조정하는 작업"
+          "def": "글램스테르담에서 옵코드별 가스 비용을 실측 기반으로 재조정하는 작업"
         },
         {
           "term": "PFI",
@@ -11149,7 +11149,7 @@
         },
         {
           "term": "헤고타(Hegota)",
-          "def": "글램스터담 다음으로 논의되는 이더리움 하드포크"
+          "def": "글램스테르담 다음으로 논의되는 이더리움 하드포크"
         },
         {
           "term": "FOCIL",
@@ -12323,7 +12323,7 @@
       "headline": "블롭풀 엔진API\n데브넷8 포함",
       "lead": "스파스 블롭풀 엔진 API가 데브넷8에 들어간다",
       "intro": "실행 계층(EL)과 합의 계층(CL) 클라이언트의 테스트 담당자들이 격주로 모이는 테스팅 콜(ACDT)이다.",
-      "summary": "글램스터담(Glamsterdam) 데브넷8에 스파스 블롭풀(sparse blob pool, EIP-8070)의 엔진 API(Engine API) 부분만 넣기로 합의했고, 실제 셀 단위 데이터 가용성 샘플링(cell-level DAS)은 뒤로 미뤘다. 리프라이싱 최종 수치가 아직 안 나와 데브넷8 출시일은 다음 콜로 넘겼다.",
+      "summary": "글램스테르담(Glamsterdam) 데브넷8에 스파스 블롭풀(sparse blob pool, EIP-8070)의 엔진 API(Engine API) 부분만 넣기로 합의했고, 실제 셀 단위 데이터 가용성 샘플링(cell-level DAS)은 뒤로 미뤘다. 리프라이싱 최종 수치가 아직 안 나와 데브넷8 출시일은 다음 콜로 넘겼다.",
       "whyItMatters": "스파스 블롭풀 엔진 API가 표준으로 들어가면 클라이언트가 상황에 맞춰 GetBlobsV3와 V4를 골라 쓰며 블롭 처리 지연을 줄일 수 있게 된다. 다만 커스터디 컬럼(custody_columns)을 FCU에 끼워 넣는 방식에 이견이 남아, 구현 과정에서 추가 조율이 필요하다.",
       "decisions": [
         {
@@ -12383,7 +12383,7 @@
         },
         {
           "key": "devnet-8",
-          "text": "글램스터담 데브넷8 출시: 8월 초(정확한 날짜는 다음 ACDT에서 확정, 제안 상태)",
+          "text": "글램스테르담 데브넷8 출시: 8월 초(정확한 날짜는 다음 ACDT에서 확정, 제안 상태)",
           "timestamp": "00:21:50"
         }
       ],
@@ -12407,7 +12407,7 @@
       "agenda": [
         {
           "timestamp": "00:06:50",
-          "heading": "글램스터담 데브넷7 현황"
+          "heading": "글램스테르담 데브넷7 현황"
         },
         {
           "timestamp": "00:13:01",
@@ -12513,7 +12513,7 @@
             },
             {
               "speaker": "milen | Erigon",
-              "text": "글램스터담 우선순위로 보진 않지만 엔진 API 변경만이라면 괜찮다고 했다.",
+              "text": "글램스테르담 우선순위로 보진 않지만 엔진 API 변경만이라면 괜찮다고 했다.",
               "timestamp": "00:32:45",
               "original": "Yeah, I personally don't really see this as a priority for… Amsterdam, but if it's just the Engine API changes, then that's fine.",
               "translation": "저는 개인적으로 이것이 Amsterdam을 위한 우선순위라고는 생각하지 않지만, 엔진 API 변경뿐이라면 괜찮습니다."
@@ -12589,7 +12589,7 @@
         },
         {
           "title": "EIP-7997 포크 경계의 팩토리 컨트랙트",
-          "intro": "글램스터담 활성화 시점에 팩토리 컨트랙트가 아직 배포되지 않은 체인에서 그 주소를 블록 접근 목록(BAL)에 넣어야 하는지가 쟁점이었다.",
+          "intro": "글램스테르담 활성화 시점에 팩토리 컨트랙트가 아직 배포되지 않은 체인에서 그 주소를 블록 접근 목록(BAL)에 넣어야 하는지가 쟁점이었다.",
           "decision": "확정 01:00:12",
           "positions": [
             {
@@ -14520,8 +14520,8 @@
       "headline": "EIP-7928 반영\n데브넷7 확정",
       "lead": "토니의 블록접근목록 변경을 데브넷7에 포함한다",
       "intro": "합의 계층(CL) 클라이언트 개발자들이 격주로 모이는 콜이다.",
-      "summary": "글램스터담(Glamsterdam) 데브넷7에 토니의 블록 접근 목록(block-access-list) 변경과 프로그레시브 컨테이너(progressive containers)를 넣어 다음 주 초 출시하기로 했다. ePBS 관련 API와 서킷 브레이커 설계가 함께 구체화됐다.",
-      "whyItMatters": "데브넷7이 다음 주 초로 확정되면서 글램스터담의 주요 실행 계층 변경이 실제 네트워크에서 검증되기 시작한다. 리프라이싱 등 변화를 앱과 스테이킹 사업자가 미리 시험할 공개 데브넷을 8월 초 목표로 예고해 생태계 준비 시간을 벌려는 것이다.",
+      "summary": "글램스테르담(Glamsterdam) 데브넷7에 토니의 블록 접근 목록(block-access-list) 변경과 프로그레시브 컨테이너(progressive containers)를 넣어 다음 주 초 출시하기로 했다. ePBS 관련 API와 서킷 브레이커 설계가 함께 구체화됐다.",
+      "whyItMatters": "데브넷7이 다음 주 초로 확정되면서 글램스테르담의 주요 실행 계층 변경이 실제 네트워크에서 검증되기 시작한다. 리프라이싱 등 변화를 앱과 스테이킹 사업자가 미리 시험할 공개 데브넷을 8월 초 목표로 예고해 생태계 준비 시간을 벌려는 것이다.",
       "decisions": [
         {
           "label": "블록접근목록 반영",
@@ -14561,7 +14561,7 @@
       "targets": [
         {
           "key": "devnet-7-launch",
-          "text": "글램스터담(Glamsterdam) 데브넷7 출시 — 다음 주 초(2026년 7월 14일 주) 목표",
+          "text": "글램스테르담(Glamsterdam) 데브넷7 출시 — 다음 주 초(2026년 7월 14일 주) 목표",
           "timestamp": "00:23:52"
         },
         {
@@ -14986,7 +14986,7 @@
         },
         {
           "term": "글로아스(Gloas)",
-          "def": "ePBS를 포함한 글램스터담의 합의 계층 명칭"
+          "def": "ePBS를 포함한 글램스테르담의 합의 계층 명칭"
         }
       ],
       "eips": [
@@ -15899,7 +15899,7 @@
       "headline": "스테이킹 50% 상한\n오히려 보수적",
       "lead": "저스틴 드레이크는 예치 비중이 계속 오른다며 상한제를 옹호했다",
       "intro": "이더리움 재단 프로토콜 클러스터가 레딧 r/ethereum에서 연 공개 질의응답이다.",
-      "summary": "가장 많은 표를 받은 발행량 곡선 질문부터 zkEVM 실시간 증명과 RISC-V, 글램스터담의 ePBS와 6초 슬롯, 재단 조직 운영까지 폭넓게 다뤄졌다. 재단 쪽은 현 곡선이면 스테이킹 비중이 계속 오른다고 인정했고, 프루버 분리는 검열 저항을 해치지 않으며, L1은 초저지연 경쟁에 뛰어들지 않는다고 답했다.",
+      "summary": "가장 많은 표를 받은 발행량 곡선 질문부터 zkEVM 실시간 증명과 RISC-V, 글램스테르담의 ePBS와 6초 슬롯, 재단 조직 운영까지 폭넓게 다뤄졌다. 재단 쪽은 현 곡선이면 스테이킹 비중이 계속 오른다고 인정했고, 프루버 분리는 검열 저항을 해치지 않으며, L1은 초저지연 경쟁에 뛰어들지 않는다고 답했다.",
       "whyItMatters": "발행량 축소와 스테이킹 상한은 ETH 보유자의 수익률과 LST 시장 구조를 직접 바꾸는 사안인데, 연구진은 3SF 전환 시점을 손볼 기회로 보고 있다. 저스틴 드레이크의 구상대로 2027년경 zkEVM 증명이 필수가 되면 검증자 하드웨어 요건은 낮아지는 대신 프루버라는 새 역할이 생긴다. 버클 트리 중단과 6초 슬롯 보류는 다음 몇 차례 업그레이드의 범위를 사실상 정한다.",
       "highlights": [
         "저스틴 드레이크는 현 곡선이면 스테이킹 비용이 수익을 밑돌아 예치 비중이 계속 오른다고 보고, 50% 상한은 낙담 공격을 막기에 충분해 오히려 보수적이라고 답했다.",
@@ -15991,7 +15991,7 @@
           ]
         },
         {
-          "title": "글램스터담: ePBS, 6초 슬롯, 헤드라이너 선정",
+          "title": "글램스테르담: ePBS, 6초 슬롯, 헤드라이너 선정",
           "intro": "ePBS(EIP-7732)가 빌더의 고의 슬롯 누락을 부추기는지, 6초 슬롯(EIP-7782)이 왜 빠졌는지, 개발 진척이 앞선 제안이 사실상 헤드라이너로 정해지는 과정이 적절한지 질문이 이어졌다. 재단 쪽은 완화책이 있다고 답하면서도 기능 선정과 해법 선정을 분리하는 절차 개선이 필요하다고 인정했다.",
           "positions": [
             {
@@ -16031,7 +16031,7 @@
             },
             {
               "speaker": "s1na_eth",
-              "text": "s1na_eth는 푸사카가 블롭을 늘리고 L1 가스 한도 상향의 안전장치를 넣으며, 글램스터담은 ePBS로 실행을 증명자의 핫패스에서 빼고 블록 수준 접근 목록으로 병렬 처리를 연다고 정리했다.",
+              "text": "s1na_eth는 푸사카가 블롭을 늘리고 L1 가스 한도 상향의 안전장치를 넣으며, 글램스테르담은 ePBS로 실행을 증명자의 핫패스에서 빼고 블록 수준 접근 목록으로 병렬 처리를 연다고 정리했다.",
               "original": "I will give a summary answer here: - Fusaka: * It will allow more blobs -> L2 scaling * It also removes blockers from L1 scaling by putting in safeguards in various parts of the protocol to make it suitable for higher gas limits - Glamsterdam: it's all about L1 scaling * epbs will remove execution from the \"hot path\" for attesters. It will give more time to EL clients to execute the block, unlocking higher gas limits. * block-level access lists reduce IO requirements for the validators and unlocks parallel transaction processing But that's not all. There is a big joint effort between ethPandaOps and clients to stand up devnets meant to push client software to their limits in terms of performance and state size. They are providing insights into bottlenecks that must be solved at code level."
             }
           ]
@@ -16047,7 +16047,7 @@
             },
             {
               "speaker": "raulk_11",
-              "text": "라울 크리팔라니는 푸사카가 펙트라 대비 8배, 목표 48개와 최대 72개 블롭을 겨냥하되 PeerDAS v1과 사전 예약된 BPO 포크로 단계적으로 올린다고 했다. 글램스터담은 128~192 범위를 노려볼 만하지만 확정은 아니며, 그 너머는 PeerDAS를 넘어선 구조가 필요하다고 봤다.",
+              "text": "라울 크리팔라니는 푸사카가 펙트라 대비 8배, 목표 48개와 최대 72개 블롭을 겨냥하되 PeerDAS v1과 사전 예약된 BPO 포크로 단계적으로 올린다고 했다. 글램스테르담은 128~192 범위를 노려볼 만하지만 확정은 아니며, 그 너머는 PeerDAS를 넘어선 구조가 필요하다고 봤다.",
               "original": "Fusaka's endgame is scaling 8x on top of Pectra; that is, target 48 and (ideally) max 72. (*) In my view, Glamsterdam could reasonably shoot for the 128-192 range, potentially slightly higher, but it's too early to tell, so don't quote me on that ;-) Constructions like the sparse EL blobpool (draft EIP incoming as a non-headliner) and p2p optimizations aim to save bandwidth that we can reallocate to higher blob capacity without downgrading security. This iteration is what I call PeerDAS v2. Beyond that, we'd seriously start breaching EIP-7870 bandwidth limits (especially for local block builders) and we'd need to evolve architecture beyond PeerDAS, towards asynchronous approaches, alternative distribution mechanisms, and opening up the design space further. --- (*) But not all at once. Fusaka ships with PeerDAS v1, followed by a series of preprogrammed BPO forks to gradually raise limits. Rationale: PeerDAS introduces unprecedented p2p network workloads that are impossible to simulate with perfect realism in devnets and testnets. BPOs give us an opportunity to monitor and react to any bottlenecks. We've already anticipated some, and are testing cell-level deltas via gossipsub as an"
             },
             {
@@ -16315,7 +16315,7 @@
         },
         {
           "term": "ePBS(EIP-7732)",
-          "def": "블록 제안과 제작의 분리를 릴레이 없이 프로토콜 안에 넣는 제안. 글램스터담 헤드라이너"
+          "def": "블록 제안과 제작의 분리를 릴레이 없이 프로토콜 안에 넣는 제안. 글램스테르담 헤드라이너"
         }
       ],
       "eips": [
@@ -16340,7 +16340,7 @@
   ],
   "status": {
     "currentFork": {
-      "name": "글램스터담",
+      "name": "글램스테르담",
       "stage": "테스트넷 단계",
       "line": "세폴리아 10월 6일 포크 · 후디 10월 26일 17:42 UTC 확정"
     },

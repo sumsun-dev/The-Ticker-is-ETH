@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { briefBlocks, fitOneMessage, formatBrief, inWindow, keepKnownSources, splitMessages, weekLabel, weekWindow, type Brief } from '../lib/weekly-brief';
 
 const brief: Brief = {
-  headline: '글램스터담이 세폴리아에서 활성화됐습니다.',
+  headline: '글램스테르담이 세폴리아에서 활성화됐습니다.',
   sections: [
     {
       heading: '프로토콜 · 코어 개발',
@@ -20,7 +20,7 @@ const brief: Brief = {
     },
     { heading: '업계 동향', items: [] },
   ],
-  upcoming: ['10.26 후디 테스트넷 글램스터담 포크'],
+  upcoming: ['10.26 후디 테스트넷 글램스테르담 포크'],
 };
 
 describe('weekWindow', () => {
@@ -68,7 +68,7 @@ describe('formatBrief', () => {
 
   it('should skip empty sections and keep the schedule block', () => {
     expect(text).not.toContain('[업계 동향]');
-    expect(text).toContain('· 10.26 후디 테스트넷 글램스터담 포크');
+    expect(text).toContain('· 10.26 후디 테스트넷 글램스테르담 포크');
   });
 
   it('should not contain an inquiry block, dashes or emoji', () => {
