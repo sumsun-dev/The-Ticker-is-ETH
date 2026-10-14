@@ -8,6 +8,12 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { z } from 'zod';
 
+/** 오너가 정한 표기 (2026-10-14: 글램스테르담으로 통일). 생성 결과 전체에 적용한다 */
+const TERMS: Array<[RegExp, string]> = [[/글램스터담/g, '글램스테르담']];
+
+/** JSON으로 직렬화되는 값 전체에서 표기를 고친다 (윤문을 꺼도 적용) */
+export const normalizeTerms = <T,>(value: T): T => JSON.parse(TERMS.reduce((s, [re, to]) => s.replace(re, to), JSON.stringify(value))) as T;
+
 const RULES = path.resolve(process.cwd(), 'scripts/assets/humanize-quick-rules.md');
 
 /** im-not-ai 과윤문 가드와 같은 기준: 길이가 원문 대비 50% 넘게 바뀌면 그 문장은 원문을 쓴다 */

@@ -12,7 +12,7 @@
  * env: DIGEST_MODEL(기본 fable) · DIGEST_BRIEF_MODEL(기본 fable) · DIGEST_DRY_RUN=1(브리핑만 만들어 출력하고 저장하지 않음)
  */
 import { runClaude } from './lib/claude';
-import { humanizeTexts } from './lib/humanize';
+import { humanizeTexts, normalizeTerms } from './lib/humanize';
 import { z } from 'zod';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -286,7 +286,7 @@ async function main() {
   console.log(`Generating digest for ${today} from ${candidates.length} items (${DIGEST_MODEL})...`);
   const result = runClaude(prompt, DIGEST_MODEL);
 
-  const parsed = humanizeDigest(DigestSchema.parse(extractJson(result)));
+  const parsed = normalizeTerms(humanizeDigest(DigestSchema.parse(extractJson(result))));
   const digest: Digest = { date: today, ...parsed };
   // 한 항목이 여러 사람을 인용하면 url은 하나뿐이라 나머지 발언이 논쟁 추출기에 도달하지 못한다.
   // 자동으로 쪼개지 않고 경고만 남겨, 프롬프트 규칙이 지켜지는지 로그로 본다

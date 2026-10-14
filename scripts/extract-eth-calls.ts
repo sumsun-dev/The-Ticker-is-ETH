@@ -12,7 +12,7 @@ import * as dotenv from 'dotenv';
 import { forkcastArtifactBase, parseForkcastFeed, type ForkcastCall } from './lib/eth-news';
 import { extractJson } from './lib/eth-debates';
 import { runClaude } from './lib/claude';
-import { humanizeTexts } from './lib/humanize';
+import { humanizeTexts, normalizeTerms } from './lib/humanize';
 import {
   CallDraftSchema,
   type CallDraft,
@@ -77,14 +77,14 @@ const PROMPT = `당신은 ECK(Ethereum Collective Korea)의 리서치 에디터�
 - 자막에 없는 발언을 만들지 않는다. quote.original은 자막 문장을 그대로 옮기되 말버릇(um, like, 반복)만 정리한다.
 - chat은 논의에 실질적 정보나 입장을 더한 채팅 2~3개. glossary는 이 콜을 읽는 데 필요한 약어와 용어 4~8개 (이 콜에 쓰인 SFI·CFI·PFI·DFI 포함).
 - EIP 번호, 포크 이름, 상태, 날짜, 숫자는 원문 그대로. 기록에 없는 사실을 만들지 않는다. 사람의 소속은 적지 않는다 (사이트가 명단으로 붙인다). 자막에서 철자가 흔들리는 이름은 역할로 대신한다(예: EIP-8360 제안자).
-- 전문 용어는 처음 나올 때 통용 한국어에 원어를 병기한다. 예: 히스토리 만료(history expiry), 프레임(Frames), 챔피언(champion, 제안을 책임지고 밀어붙이는 담당자). 포크 이름은 글램스터담(Glamsterdam), 헤고타(Hegota)처럼 한국어 표기 뒤에 원어 병기, 두 번째부터는 한국어만.
+- 전문 용어는 처음 나올 때 통용 한국어에 원어를 병기한다. 예: 히스토리 만료(history expiry), 프레임(Frames), 챔피언(champion, 제안을 책임지고 밀어붙이는 담당자). 포크 이름은 글램스테르담(Glamsterdam), 헤고타(Hegota)처럼 한국어 표기 뒤에 원어 병기, 두 번째부터는 한국어만.
 - 문체는 '~했다', '~된다'의 서술체(경어 아님). 대시(—)와 이모지, 마크다운 기호 금지. 해석은 summary, whyItMatters, topics[].intro에만 넣고 나머지는 기록에 있는 사실만 쓴다.`;
 
 const TRANSLATE_PROMPT = `아래는 이더리움 코어 개발자 콜 자막에서 발췌한 발언 원문(영어)입니다. 각 항목을 한국어로 충실히 번역하세요. 의역하지 말고 문장 구조를 유지하되 말버릇(um, like, you know)과 반복은 정리합니다. EIP 번호, 고유명사, 숫자는 그대로 두고, 전문 용어는 처음 한 번 통용 한국어에 원어를 병기합니다. 어조는 회의 발언답게 존댓말("~합니다")로 옮깁니다. 대시(—)와 이모지는 쓰지 않습니다.
 출력은 JSON 하나만: {"translations": [{"n": 번호, "text": "번역"}]}`;
 
 const STATUS_PROMPT = `아래는 이더리움 코어 개발자 콜들의 최근 결정과 일정입니다(최신 콜이 먼저). 콜 아카이브 상단에 보여줄 "지금 어디쯤인지" 두 칸을 JSON으로 쓰세요.
-{"currentFork": {"name": "진행 중인 포크 이름 (예: 글램스터담)", "stage": "단계 (예: 테스트넷 단계)", "line": "핵심 상태 한 줄 45자 이내 (예: 세폴리아 10월 6일 확정 · 후디 미정 · 메인넷 12월 초 목표)"}, "nextFork": {"name": "다음 포크 이름", "stage": "예: 범위 정하는 중", "line": "예: SFI 1건(EIP-8141) · PFI 후보 20건 이상 · 11월 3일 데브콘까지 범위 확정"}}
+{"currentFork": {"name": "진행 중인 포크 이름 (예: 글램스테르담)", "stage": "단계 (예: 테스트넷 단계)", "line": "핵심 상태 한 줄 45자 이내 (예: 세폴리아 10월 6일 확정 · 후디 미정 · 메인넷 12월 초 목표)"}, "nextFork": {"name": "다음 포크 이름", "stage": "예: 범위 정하는 중", "line": "예: SFI 1건(EIP-8141) · PFI 후보 20건 이상 · 11월 3일 데브콘까지 범위 확정"}}
 규칙: 기록에 있는 사실만 쓰고, 최근 콜의 결정이 이전 콜의 일정을 덮어쓴다. 날짜와 숫자는 원문 그대로. 대시(—)와 이모지 금지. 출력은 JSON 하나만.`;
 
 function readJson<T>(file: string, fallback: T): T {
@@ -190,7 +190,7 @@ async function processCall(
     return recordOnly(meta);
   }
   console.log(`  ${id}: drafting with ${MODEL} (${prompt.length} chars, ${cues.length} cues)...`);
-  const draft = humanizeDraft(draftWithRetry(prompt));
+  const draft = normalizeTerms(humanizeDraft(draftWithRetry(prompt)));
   let record = buildRecord({ meta, draft, decisions, tldr, notes, config, cues, chat, ...ctx });
 
   // 발언 원문 번역 (한 콜의 발언을 한 번에)

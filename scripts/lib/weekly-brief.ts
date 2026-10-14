@@ -26,7 +26,7 @@ export const BriefSchema = z.object({
       ),
     }),
   ),
-  /** 다음 주 일정, "10.26 후디 테스트넷 글램스터담 포크" 형태 */
+  /** 다음 주 일정, "10.26 후디 테스트넷 글램스테르담 포크" 형태 */
   upcoming: z.array(z.string()),
 });
 export type Brief = z.infer<typeof BriefSchema>;

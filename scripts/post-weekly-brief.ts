@@ -11,7 +11,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as dotenv from 'dotenv';
 import { runClaude } from './lib/claude';
-import { humanizeTexts } from './lib/humanize';
+import { humanizeTexts, normalizeTerms } from './lib/humanize';
 import {
   BriefSchema,
   SITE,
@@ -163,7 +163,7 @@ async function main() {
   const { brief: draft, dropped } = keepKnownSources(BriefSchema.parse(extractJson(raw)), urls);
   for (const url of dropped) console.warn(`[WARN] 입력에 없는 출처 링크를 뺐습니다: ${url}`);
 
-  const { brief, dropped: cut } = fitOneMessage(humanize(draft), w);
+  const { brief, dropped: cut } = fitOneMessage(normalizeTerms(humanize(draft)), w);
   for (const title of cut) console.warn(`[WARN] 한 메시지에 맞추려고 뺀 항목: ${title}`);
   // fitOneMessage로 대개 한 개. 일정·핵심만으로도 넘치는 드문 경우를 위한 안전장치
   const messages = splitMessages(briefBlocks(brief, w));
