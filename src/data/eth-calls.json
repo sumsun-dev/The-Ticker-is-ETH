@@ -1,6 +1,604 @@
 {
-  "updatedAt": "2026-10-13T00:49:05.297Z",
+  "updatedAt": "2026-10-16T00:50:33.465Z",
   "calls": [
+    {
+      "id": "acdc-189",
+      "series": "acdc",
+      "number": 189,
+      "date": "2026-10-15",
+      "title": "AllCoreDevs - Consensus #189",
+      "forkcastUrl": "https://forkcast.org/calls/acdc/189/",
+      "videoUrl": "https://youtube.com/watch?v=6vu9F_j4rNk",
+      "issueUrl": "https://github.com/ethereum/pm/issues/2247",
+      "kind": "full",
+      "durationMin": 104,
+      "headline": "실행증명 8025\n헤고타 제외",
+      "lead": "실행을 ZK 증명으로 검증하는 실험은 포크 밖에서 계속된다",
+      "intro": "합의 계층(CL) 클라이언트 개발자들이 격주로 모이는 콜이다.",
+      "summary": "CL 팀들의 지지 부족으로 선택적 실행 증명(EIP-8025)을 비롯한 4개 제안이 헤고타(Hegota) 후보에서 제외됐고 리도가 요청한 글램스테르담(Glamsterdam) 빌더 온보딩 수정은 거부됐으며 EIP-8205는 다음 콜로 보류됐다.",
+      "whyItMatters": "zkEVM 실행 증명은 당분간 공식 포크 일정 밖의 실험 브랜치에서 진행되므로 스테이트리스 검증으로 가는 속도는 스펙 프로세스 개선에 달리게 됐다. 위임 스테이킹 프로토콜들은 포크 경계의 예치 경쟁 위험과 프런트러닝 위험을 당분간 애플리케이션 계층의 자체 보호 장치로 막아야 한다.",
+      "decisions": [
+        {
+          "label": "빌더 수정 거부",
+          "text": "글램스테르담의 빌더 온보딩 경쟁 조건 수정 요청이 거부됐고 후디(Hoodi)와 메인넷 사양은 그대로 간다. 스테이킹 프로토콜들이 애플리케이션 계층에서 스스로 대응해야 한다는 뜻이다.",
+          "original": "Builder onboarding race-condition fix rejected for Glamsterdam; no change to Hoodi or mainnet; app-layer workarounds expected",
+          "eips": [],
+          "status": "확정",
+          "fork": "Glamsterdam",
+          "timestamp": "00:37:55"
+        },
+        {
+          "label": "EIP-8025 제외",
+          "text": "선택적 실행 증명 EIP-8025가 헤고타 후보에서 제외됐다. CL 팀들의 지지가 CFI 기준에 못 미쳐 실험은 별도 브랜치에서 계속된다는 뜻이다.",
+          "original": "DFI for Hegota: EIP-8025 (optional execution proofs) — insufficient CL team support for CFI",
+          "eips": [
+            8025
+          ],
+          "status": "DFI",
+          "fork": "Hegota",
+          "timestamp": "01:15:42"
+        },
+        {
+          "label": "RowDAS 제외",
+          "text": "RowDAS가 헤고타 후보에서 제외됐다. 클라이언트 지지가 낮고 현재 블롭(blob) 수요가 적어 급하지 않다고 본 것이다.",
+          "original": "DFI for Hegota: RowDAS — low client support, insufficient blob demand",
+          "eips": [
+            8371
+          ],
+          "status": "DFI",
+          "fork": "Hegota",
+          "timestamp": "01:23:00"
+        },
+        {
+          "label": "EIP-8359 제외",
+          "text": "비컨블록에 클라이언트 다양성 보고 필드를 넣는 EIP-8359가 헤고타 후보에서 제외됐다. 클라이언트 팀들의 평가가 높지 않았다.",
+          "original": "DFI for Hegota: EIP-8359 (BeaconBlock client-diversity reporting field)",
+          "eips": [
+            8359
+          ],
+          "status": "DFI",
+          "fork": "Hegota",
+          "timestamp": "01:26:23"
+        },
+        {
+          "label": "EIP-7716 제외",
+          "text": "동시 다운타임에 페널티를 가중하는 EIP-7716이 헤고타 후보에서 제외됐다. 지지가 무관심 수준이었고 비컨 상태를 건드리는 데 대한 우려가 있었다.",
+          "original": "DFI for Hegota: EIP-7716 (anti-correlation attestation penalties) — indifferent support, beacon state concerns",
+          "eips": [
+            7716
+          ],
+          "status": "DFI",
+          "fork": "Hegota",
+          "timestamp": "01:37:06"
+        },
+        {
+          "label": "EIP-8205 보류",
+          "text": "출금 자격증명 사전 등록 EIP-8205의 결정이 다음 콜로 미뤄졌다. 다음 콜 스코핑 세션을 이 안건으로 열고 5분 타임박스로 재논의한다.",
+          "original": "EIP-8205 (withdrawal credentials pre-registration) decision deferred to next call; will open next call's scoping session",
+          "eips": [
+            8205
+          ],
+          "status": "보류",
+          "timestamp": "01:57:33"
+        }
+      ],
+      "targets": [
+        {
+          "key": "hoodi-fork",
+          "text": "후디 글램스테르담 포크가 2026년 10월 26일 UTC로 확정됐다",
+          "timestamp": "00:18:07"
+        },
+        {
+          "key": "hoodi-client-releases",
+          "text": "후디 블로그 게시를 위한 클라이언트 릴리스 마감이 2026년 10월 16일로 확정됐다",
+          "timestamp": "00:18:48"
+        }
+      ],
+      "actions": [
+        {
+          "owner": "stokes / EF",
+          "text": "클라이언트 릴리스가 정족수에 이르는 대로 후디 안내 EF 블로그 글을 게시한다",
+          "timestamp": "00:18:20"
+        },
+        {
+          "owner": "CL 클라이언트 팀",
+          "text": "EIP-8365 수정안(가드를 process_deposit_request로 이동, 포크 전 0x00 예치는 기존 규칙 적용)을 검토하고 1~2회 뒤 콜에서 재논의한다",
+          "timestamp": "00:41:22"
+        },
+        {
+          "owner": "EL 스펙 / EELS 팀",
+          "text": "CFI 없이도 장기 실험 기능을 지원할 수 있도록 EL 스펙 브랜치 프로세스 개선을 검토한다",
+          "timestamp": "01:15:52"
+        }
+      ],
+      "agenda": [
+        {
+          "timestamp": "00:17:05",
+          "heading": "세폴리아 포크 회고"
+        },
+        {
+          "timestamp": "00:18:11",
+          "heading": "후디 테스트넷 포크 준비"
+        },
+        {
+          "timestamp": "00:21:53",
+          "heading": "빌더 온보딩 예치 경쟁 문제",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "00:39:01",
+          "heading": "EIP-8365: 신규 0x00 검증자 비활성화"
+        },
+        {
+          "timestamp": "00:46:10",
+          "heading": "EIP-8025: 선택적 실행 증명",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "01:18:37",
+          "heading": "RowDAS",
+          "decision": true
+        },
+        {
+          "timestamp": "01:23:19",
+          "heading": "EIP-8359: 비컨블록 보고 필드",
+          "decision": true
+        },
+        {
+          "timestamp": "01:26:34",
+          "heading": "EIP-7716: 반상관 어테스테이션 페널티",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "01:37:28",
+          "heading": "EIP-8205: 출금 자격증명 사전 등록",
+          "discussion": true,
+          "decision": true
+        }
+      ],
+      "topics": [
+        {
+          "title": "빌더 온보딩 예치 경쟁 조건 수정 요청",
+          "intro": "글램스테르담 포크 경계에서 빌더 예치가 검증자 예치금을 가로챌 수 있다는 문제를 리도가 제기했으나 배포 막바지라 수정이 거부됐다.",
+          "decision": "수정 거부 결정 00:37:55",
+          "positions": [
+            {
+              "speaker": "Dima Gusakov | Lido",
+              "text": "포크 시점 대기 예치 큐에 빌더(0xB0) 예치가 검증자 예치보다 앞서 있으면 검증자 예치가 빌더의 톱업이 되어 검증자가 아예 생기지 않는 제3의 결과가 발생하고 기존 앱 계층 보호 장치가 이를 감당하지 못한다며 간단한 스펙 수정을 요청했다.",
+              "timestamp": "00:21:27",
+              "original": "I'm here, yeah, yeah, and happy to start. Yeah, so the issue is pretty simple, and it has already been pre… preliminary, let's call it this way, discussed, in Ethereum R&D Discord. However, I still want to have a broader discussion here and get to some sort of a consensus about this issue. So, the core of the issue is the following. We have a pretty vulnerable, valid… initial validator deposit process that we're gonna talk about in a second when, scoping EIPs. But you all know that, the rule for the validator data to be set is that the first deposit wins. So, whatever deposit is the first in the in the queue of the pending deposits, sets the validator data, namely withdrawal credentials and stuff like that, once and for all. It cannot be changed later, and any further deposits Within this deposit, everything but the validator public key and the deposit amount is ignored, so all of the other deposits are considered so-called top-ups. And for some reason, well, maybe it was even sensible at the moment, the decision was made that this specific one-time builder onboarding would work in a similar way, though the outcome here is a little bit different. By similar way, I mean that if you have a single deposit in the deposit queue at the time of Glamsterdam Hard Fork. with withdrawal credentials with the prefix of 0xB0, which probably stands for builder, then any other deposits that are also in the deposit queue at the time of the hard fork will be considered top-ups, but top-ups…",
+              "translation": "저는 참석했습니다. 네, 시작하겠습니다. 이 이슈는 꽤 단순하며, 이미 Ethereum R&D Discord에서 예비적으로 논의된 바 있습니다. 하지만 여기서 더 넓은 논의를 하고 이 이슈에 대한 어떤 형태의 합의에 도달하고 싶습니다. 이슈의 핵심은 다음과 같습니다. EIP 범위를 논의할 때 다룰, 꽤 취약한 초기 검증자 예치(validator deposit) 프로세스가 있습니다. 다만 아시다시피, 검증자 데이터가 설정되는 규칙은 첫 번째 예치가 우선한다는 것입니다. 즉, 대기 중인 예치(pending deposits) 대기열에서 가장 먼저 들어온 예치가 인출 자격증명(withdrawal credentials) 등 검증자 데이터를 한 번에 영구적으로 설정합니다. 이는 이후에 변경할 수 없으며, 이 예치 이후의 추가 예치에서는 검증자 공개키와 예치 금액을 제외한 모든 항목이 무시되므로, 나머지 모든 예치는 이른바 탑업(top-up)으로 취급됩니다. 그리고 어떤 이유에서인지, 당시에는 합리적이었을 수도 있지만, 이 특정한 일회성 빌더 온보딩도 비슷한 방식으로 동작하도록 결정되었습니다. 다만 그 결과는 조금 다릅니다. 비슷한 방식이라는 것은, Glamsterdam 하드포크 시점에 예치 대기열에 접두사 0xB0, 아마도 빌더(builder)를 의미하는 인출 자격증명을 가진 단일 예치가 있을 경우, 하드포크 시점에 예치 대기열에 있는 다른 모든 예치들도 탑업으로 취급된다는 뜻입니다. 하지만 탑업은…"
+            },
+            {
+              "speaker": "Barnabas",
+              "text": "실제 문제라면 5~6개월 전에 제기했어야 했고 이미 세폴리아에 배포됐으며 후디도 일정이 잡혔다며 반대했다. 메인넷에만 적용될 수정을 라이브 프로덕션에 넣을 수는 없다고 했다.",
+              "timestamp": "00:30:20",
+              "original": "I'm a kind of. But if this is a actual issue, it should have been raised like. Five, six months ago. And then we could have actually included this, much, much earlier, but we already shipped this fork into Sepolia. We are about to schedule Hoodi, well, we have scheduled Hoodi already, so… You're basically asking us to make a fix? in live production that is going to only apply on mainnet, which is just not going to happen.",
+              "translation": "저는 다소... 그런데 이것이 실제 이슈라면, 5, 6개월 전에는 제기되었어야 합니다. 그랬다면 훨씬 더 일찍 포함시킬 수 있었겠지만, 우리는 이미 이 포크를 Sepolia에 배포했습니다. Hoodi를 곧 스케줄링하려는 참이고, 사실 이미 Hoodi를 스케줄링했습니다. 그러니... 지금 요청하시는 것은 결국, 메인넷에만 적용될 수정을 실제 운영 중인 환경에 적용해 달라는 것인데, 그건 일어나지 않을 것입니다."
+            },
+            {
+              "speaker": "Pavel | MixBytes",
+              "text": "여러 프로토콜의 우회책을 감사해 봤는데 전부 지나치게 복잡하고 로직이 많아 모니터링과 다중 감사가 필요하다며 보안 관점에서는 베이스 계층 수정이 더 쉽다고 디마를 지지했다.",
+              "timestamp": "00:32:28",
+              "original": "Also, let me add from the security perspective of this issue, because we audited multiple approaches to solving this issue, like a pre-deposit guarantee contract. We reviewed multiple approaches from different protocols. Who wants to… solves that issue to work around it somehow. And everything looks too complicated and too logic loaded. And everyone has to Like, monitor it, how it goes to audit multiple off-chain services, like, signature-based, when you check the deposit root. And, you have to… Just, adapt to… Like, any changes in ConsensusLayer, so… It looks like, Workaround, which can be easier solved. In my opinion.",
+              "translation": "또한 이 이슈의 보안 관점에서 덧붙이고 싶습니다. 저희는 사전예치 보증 계약(pre-deposit guarantee contract)과 같이 이 이슈를 해결하기 위한 여러 접근법을 검토했습니다. 다양한 프로토콜의 여러 접근법을 검토했는데, 이 문제를 어떻게든 우회해서 해결하고자 하는 쪽들이었습니다. 그런데 모든 접근법이 지나치게 복잡하고 로직이 과도하게 들어가 있어 보입니다. 그리고 누구나 이를 모니터링해야 하고, 서명 기반(signature-based)으로 예치 루트(deposit root)를 확인하는 식의 여러 오프체인 서비스를 감사해야 합니다. 또한 ConsensusLayer의 모든 변경 사항에 계속 맞춰 적응해야 합니다. 그래서 이것은 워크어라운드(workaround)처럼 보이는데, 제 생각에는 더 쉽게 해결될 수 있는 문제입니다."
+            },
+            {
+              "speaker": "Matthew Keil",
+              "text": "결정을 미뤄도 마음이 바뀔 사람은 많지 않고 모든 팀이 이미 후디 릴리스를 잘랐다며 지금 경로를 바꾸기는 어렵다고 반대했다.",
+              "timestamp": "00:34:25",
+              "original": "I tend to think that waiting or trying to make a decision later is not gonna change many minds. And while I do appreciate that there is complexities on somebody's plate, the truth is that, you know, we've already cut releases for Hoodi, and so have all the rest of the teams. And it feels like it would be… Just difficult in order to try to change course now.",
+              "translation": "저는 기다리거나 결정을 나중으로 미루는 것이 많은 사람의 생각을 바꾸지는 않을 것이라고 생각합니다. 누군가에게 복잡한 사정이 있다는 점은 이해하지만, 사실 우리는 이미 Hoodi용 릴리스를 컷했고, 다른 모든 팀들도 마찬가지입니다. 그래서 지금 방향을 바꾸려 하는 것은 그저 어려울 것 같습니다."
+            },
+            {
+              "speaker": "Cambridge",
+              "text": "일부 클라이언트만 이 변경을 적용하면 체인이 분기되므로 합의 파괴적 변경이라고 지적했다.",
+              "timestamp": "00:33:37",
+              "viaChat": true,
+              "original": "Depending on the pending deposits at the fork, it could result in a different state. Right? What was a builder would be a validator. 00:33:03\tNico Flaig:\tif we want this change I suggest we move hoodi back a few weeks, we already cut our 1.50 hoodi release and operators already running it",
+              "translation": "포크 시점의 대기 중인 예치에 따라 서로 다른 상태로 귀결될 수 있습니다. 그렇죠? 빌더였던 것이 검증자가 되어버리는 것입니다. 00:33:03 Nico Flaig: 이 변경을 원한다면 Hoodi를 몇 주 뒤로 미루자고 제안합니다. 우리는 이미 1.50 Hoodi 릴리스를 컷했고 운영자들이 이미 그것을 가동하고 있습니다."
+            },
+            {
+              "speaker": "Nico Flaig",
+              "text": "EIP-8282가 포크 이후에는 이 문제를 해결한다고 알렸다.",
+              "timestamp": "00:35:22",
+              "viaChat": true
+            }
+          ],
+          "quote": {
+            "text": "당신은 지금 메인넷에만 적용될 수정을 라이브 프로덕션에 넣어 달라고 요구하는 것인데, 그런 일은 일어나지 않을 것이다.",
+            "original": "You're basically asking us to make a fix in live production that is going to only apply on mainnet, which is just not going to happen.",
+            "speaker": "Barnabas",
+            "timestamp": "00:30:20"
+          }
+        },
+        {
+          "title": "EIP-8025 선택적 실행 증명의 CFI 여부",
+          "intro": "선택 기능인 실행 증명을 스펙 본류에 올리려면 CFI가 필요한데, 그 자격이 있는지를 두고 EL과 CL 개발자들이 맞섰다.",
+          "decision": "DFI 결정 01:15:42",
+          "positions": [
+            {
+              "speaker": "ignacio",
+              "text": "EELS 팀 규칙상 메인 브랜치 업스트림에는 CFI가 필요하고 업스트림하면 1년째 이어 온 리베이스 부담과 PBT 등 다른 기능과의 조율 비용이 사라진다며 CFI를 요청했다. 16K 라인 PR 중 상태 전이 함수를 건드리는 것은 65줄뿐이라고 했다.",
+              "timestamp": "00:58:26",
+              "original": "Yeah, I just want to say that the main interest from our side is to upstream this into the specs. The EELS team has a pretty reasonable rule of requiring changes to be CFI to be really upstream. And we try to simply honor on this rule, because This rule is there for a reason for them, because if not, a lot of people will be upstreaming really experimental changes. So we are trying to follow the process rules and honor the way they work. That's kind of our take. on why we need to CFI this big instead of simply keep working in parallel.",
+              "translation": "저희 쪽의 주된 관심사는 이것을 스펙에 업스트림하는 것이라는 점만 말씀드리고 싶습니다. EELS 팀은 변경 사항이 실제로 업스트림되기 위해서는 포함 고려(Considered for Inclusion, CFI) 상태여야 한다는 꽤 합리적인 규칙을 두고 있습니다. 저희는 단순히 이 규칙을 지키려고 합니다. 이 규칙이 그들에게 존재하는 데에는 이유가 있는데, 그렇지 않으면 많은 사람들이 정말 실험적인 변경 사항들을 업스트림하게 될 것이기 때문입니다. 그래서 저희는 프로세스 규칙을 따르고 그들이 일하는 방식을 존중하려 하고 있습니다. 이것이 저희가 단순히 병행 작업을 계속하는 대신 이것을 CFI해야 하는 이유에 대한 저희의 입장입니다."
+            },
+            {
+              "speaker": "lightclient",
+              "text": "브랜치 관리가 어렵다는 것은 코어 EIP를 거버넌스에 통과시킬 이유가 못 된다며 이그나시오에 반박했다. 이더리움의 다른 대형 기능들도 수년간 같은 과정을 견뎠다고 했다.",
+              "timestamp": "01:03:06",
+              "original": "Yeah, I mean, I've kind of said in the comments, I don't really… Support CFI in this, I think. All of these other large projects in ethereum have gone through the same process of. waiting until they're actually getting CFI to be included. It's a feature of ethereum. And have had to work in parallel or on their own branches for many years. I don't think that we should. I'll be changing this just to support. To optionalists, or an optional feature. I'll understand this point that any operator should be able to opt into this regardless of their client. That, to me, feels like a much broader scope than what Even Ignacio was proposing. Like, this is an optional feature that we are trying to test out to see if it is feasible on Mainnet. I definitely don't think that any operator should be able to. Who's that? That is just not a good reason to make a EIP. A core EIP passed. Governance. Because the branches are difficult to manage. doesn't mean it's… still doesn't mean it's a good reason to push an EIP through the process. Every other large feature of ethereum has had to deal with this for years on end. Did we have a bit different process? Like, maybe. But I don't think that this is… Good reason to do this. I mean, of course you disagree. You're the one who has to rebase it. It's never been easier to rebase features. Like, 2 years ago, maybe it was a different argument, but, like, now, just ask Claude to rebase the feature. 10 minutes later, it's rebased. Okay, now that's different.…",
+              "translation": "네, 댓글에서도 말씀드렸듯이, 저는 이 EIP의 CFI를 그다지 지지하지 않는다고 생각합니다. 이더리움의 다른 대형 프로젝트들도 모두 실제로 CFI를 받아 포함되기까지 기다리는 동일한 과정을 거쳤습니다. 이것은 이더리움의 한 특징입니다. 그리고 수년간 병행 작업을 하거나 자체 브랜치에서 작업해야 했습니다. 저는 단순히 선택적 지지자(optionalist), 즉 선택적 기능을 지원한다는 이유만으로 이것을 바꿔야 한다고는 생각하지 않습니다. 어떤 운영자든 자신의 클라이언트와 무관하게 이 기능에 옵트인할 수 있어야 한다는 지적은 이해합니다. 하지만 저에게는 그것이 Ignacio가 제안했던 것보다 훨씬 더 넓은 범위로 느껴집니다. 이것은 메인넷에서 실현 가능한지 테스트해 보려는 선택적 기능입니다. 저는 어떤 운영자든 그럴 수 있어야 한다는 데는 분명 동의하지 않습니다. 누가 그렇다는 겁니까? 그것은 EIP를 만들 좋은 이유가 아닙니다. 핵심 EIP가 거버넌스를 통과하는 것이요. 브랜치를 관리하기 어렵다는 이유가, 여전히 EIP를 프로세스를 통해 밀어붙일 좋은 이유가 되지는 않습니다. 이더리움의 다른 모든 대형 기능들도 수년에 걸쳐 이 문제를 겪어야 했습니다. 우리가 조금 다른 프로세스를 가졌었나요? 그럴 수도 있습니다. 하지만 저는 이것이 그렇게 할 좋은 이유라고는 생각하지 않습니다. 물론 당신은 동의하지 않겠죠. 리베이스를 해야 하는 사람은 당신이니까요. 기능을 리베이스하는 것이 이보다 더 쉬웠던 적이 없습니다. 2년 전이었다면 다른 논거가 되었을 수도 있지만, 지금은 그냥 Claude에게 그 기능을 리베이스해 달라고 하면 10분 후에 리베이스가 끝납니다. 좋습니다, 그럼 이제는 다르군요…"
+            },
+            {
+              "speaker": "Iván | ethrex",
+              "text": "zkEVM 로드맵에 상당한 통합·테스트 작업이 필요해 클라이언트 팀들의 조기 약속이 있어야 한다며 CFI를 지지했다. 기능은 운영자에게 선택이지만 지원은 모든 클라이언트의 기본 기대치가 돼야 한다고 했다.",
+              "timestamp": "01:03:45",
+              "original": "Thanks. Yeah, on the EPIC side, we support moving EIP-8025 to CFI for Hegota. The zkEVM roadmap requires substantial integration and testing work, and we need early commitments from client teams. To give that work enough time. this was already told by Ignacio, but thinking that this could be an optional EIP because it's an optional feature is kind of a misinterpretation of its purpose. The feature should be optional for node operators and improvers. But its support should be an expectation for all clients. Operators should be able to opt in, regardless of their client choice. That requires team to commit to implementing, testing, and maintaining this. I was going to talk about the support this EIP already has in the code that Ignacio already shared. I will share the dashboard Again, the Hive tests that are running this. On the EL side, almost every client supports this, and almost everyone is passing all the tests. I think that the more groundwork we lay now through EIP-8025, the more we can focus our efforts on the unknown unknowns for mandatory proofs. And yeah, we've been supporting this feature from the very beginning. and we… we want to see it CFI, even though this is a… CL team client decision, it would be great to also maybe include execution client decisions on this.",
+              "translation": "감사합니다. 네, EPIC 쪽에서는 EIP-8025를 Hegota를 위해 CFI로 옮기는 것을 지지합니다. zkEVM 로드맵은 상당한 통합 및 테스트 작업을 요구하며, 그 작업에 충분한 시간을 주기 위해 클라이언트 팀들의 조기 커밋이 필요합니다. 이미 Ignacio가 말했던 내용이지만, 이것이 선택적 기능이기 때문에 선택적 EIP일 것이라고 생각하는 것은 그 취지를 오해하는 것입니다. 이 기능은 노드 운영자와 개선자들에게는 선택적이어야 하지만, 그 지원은 모든 클라이언트에게 기대되는 사항이어야 합니다. 운영자는 자신의 클라이언트 선택과 무관하게 옵트인할 수 있어야 합니다. 그것은 팀이 이를 구현하고, 테스트하고, 유지보수하는 데 커밋해야 함을 요구합니다. Ignacio가 이미 공유한 코드에서 이 EIP가 이미 받고 있는 지지에 대해 말하려고 했습니다. 이를 실행하고 있는 Hive 테스트 대시보드를 다시 공유하겠습니다. EL 쪽에서는 거의 모든 클라이언트가 이를 지원하며, 거의 모두가 모든 테스트를 통과하고 있습니다. 저는 지금 EIP-8025를 통해 기반 작업을 더 많이 다져놓을수록, 의무적 증명(mandatory proofs)에 관한 미지의 미지수(unknown unknowns)에 더 집중할 수 있다고 생각합니다. 그리고 저희는 처음부터 이 기능을 지지해 왔습니다. 저희는 이것이 CFI되는 것을 보고 싶습니다. 이것이 CL 팀 클라이언트의 결정이긴 하지만, 실행 클라이언트(execution client)의 결정도 여기에 포함시키면 좋을 것 같습니다."
+            },
+            {
+              "speaker": "Manu",
+              "text": "CFI 여부가 프리즘의 작업량을 바꾸지는 않지만 몇몇 팀이 이 EIP에 진지하다는 신호가 되므로 CFI에 약하게 찬성한다고 했다. 라이트하우스가 이미 unstable 브랜치에 머지한 것도 암묵적 지지라고 봤다.",
+              "timestamp": "01:09:40",
+              "original": "Yeah, Manu from Prysm. So actually, in our ranking, we… said, we… We did not write a big priority for this, because this EIP, yes, does not require a hard fork. Yes, that was the main reason. However, NITAS and Prysm are actively working on this EIP. Yes, Lighthouse has merbly CIP in unstable and Prysm has a branch. And so… CFIing or not, this EIP would not make a big difference about the… the effort we deploy to work on this EIP. Because that's… it's optional. So in my opinion, we could CFI it. And so it will kind of show that. So, yes, at least a few clients team are keen on working on this EIP. I mean, I don't know if it's time to enter too much technical details here, but no, it's not true. I mean, if a node, should opt in, with this EIP, it just exposes an EPROOF field in its node record, ENR, and that's it. And, you know, other PR wanted to… to use as proof, just have to to to look for peers in the network with this, with this e proofs field, and then The peer will know that other peers will subscribe to the. Execution proofs. So yeah. Yes, exactly, exactly, yeah. I mean, I don't know if there is some Lighthouse people here, but Lighthouse already merged into the unstable branch EIP-8025, so it's… For me, it's an implicit support to it. And why would we want to merge in, in your unstable branch if you don't support the EIP. It does not make sense. Yes, said otherwise, who is against it? Yes, as Ignacio asked in the chat.",
+              "translation": "네, Prysm의 Manu입니다. 사실 저희 순위에서는 이 EIP에 큰 우선순위를 두지 않았습니다. 왜냐하면 이 EIP는 하드포크를 요구하지 않기 때문입니다. 네, 그것이 주된 이유였습니다. 하지만 NITAS와 Prysm은 이 EIP에 대해 실제로 작업하고 있습니다. 네, Lighthouse는 unstable에 이미 병합했고 Prysm은 브랜치를 가지고 있습니다. 그래서... CFI 여부가 이 EIP 작업에 쏟는 노력에 큰 차이를 만들지는 않을 것입니다. 왜냐하면 이것은... 선택적이기 때문입니다. 그래서 제 생각에는 이것을 CFI해도 될 것 같습니다. 그러면 적어도 몇몇 클라이언트 팀이 이 EIP 작업에 적극적이라는 것을 어느 정도 보여줄 수 있을 것입니다. 여기서 기술적인 세부사항까지 들어갈 시점인지는 모르겠지만, 아닙니다, 그건 사실이 아닙니다. 노드가 이 EIP에 옵트인하려면, 그냥 자신의 노드 레코드(node record, ENR)에 EPROOF 필드를 노출하면 그것으로 끝입니다. 그리고 증명을 사용하고자 하는 다른 PR은 그냥 네트워크에서 이 e proofs 필드를 가진 피어들을 찾기만 하면 되고, 그러면 그 피어는 다른 피어들이 실행 증명(execution proofs)을 구독한다는 것을 알게 됩니다. 네, 맞습니다, 정확히 그렇습니다. 여기 Lighthouse 쪽 분이 계신지는 모르겠지만, Lighthouse는 이미 EIP-8025를 unstable 브랜치에 병합했으니, 저에게는 그것이 암묵적인 지지입니다. 그리고 그 EIP를 지지하지 않는다면 왜 unstable 브랜치에 병합하려 하겠습니까? 그건 말이 안 됩니다. 네, 다시 말해, 누가 반대합니까? 네, Ignacio가 채팅에서 물었던 대로입니다."
+            },
+            {
+              "speaker": "Potuz",
+              "text": "헤제(Heze) 메인 포크 브랜치 머지에 강하게 반대했다. 선택 기능이 더 이상 선택이 아니게 되고 이후 모든 포크의 모든 EIP 작성자가 이 변경과 호환돼야 하기 때문이라고 했다.",
+              "timestamp": "01:13:24",
+              "original": "Oh, Enrico was up for earlier. I am against this, if this means merging into Heze. I'm sure that Manu's Manu's branch can be merged and will be merged into Prysm's trunk branch. This will be a feature that we will maintain I am against merging this into the main fork branch. Because then it means that this goes away from being optional, and it would affect every single fork and every single work that we do. And then we are actually forced to… not this maintainer, this branch maintainer is forced to rebase into what our forks are, but every single EIP writer for the CL spec needs to be compatible with whatever this branch does. And this affects every single, every next fork. I think this… this should not be happening for optional features.",
+              "translation": "아, Enrico가 먼저 말씀하셨죠. 저는 이것이 Heze에 병합되는 것을 의미한다면 반대합니다. Manu의 브랜치는 병합될 수 있고 Prysm의 트렁크 브랜치에 병합될 것이라고 확신합니다. 이것은 저희가 유지보수할 기능이 될 것입니다. 저는 이것이 메인 포크 브랜치에 병합되는 것에는 반대합니다. 왜냐하면 그렇게 되면 이것이 선택적인 상태를 벗어나게 되고, 우리가 하는 모든 포크와 모든 작업에 영향을 미치게 되기 때문입니다. 그리고 그러면 우리는 실제로 강제됩니다. 이 브랜치 유지보수자만 우리 포크에 맞춰 리베이스하도록 강제되는 것이 아니라, CL 스펙을 작성하는 모든 EIP 작성자가 이 브랜치가 하는 것과 호환되어야 합니다. 그리고 이것은 다음에 오는 모든 포크 하나하나에 영향을 미칩니다. 저는 이것이... 선택적 기능에 대해서는 일어나서는 안 되는 일이라고 생각합니다."
+            },
+            {
+              "speaker": "Mario Vega",
+              "text": "EL 스펙에서도 똑같은 문제라며 포투즈에 동의했다. 메인 브랜치에 머지하면 나머지 EIP 전부가 그것에 맞춰야 하므로 개발자들이 찬성하지 않는 한 사실상의 고착을 원치 않는다고 했다.",
+              "timestamp": "01:16:10",
+              "original": "Yeah, sorry, yeah, basically just want to echo the exact same problem that Potuz is having with merging into main is exactly the same that we're having today on the EL specs. Basically, when you merge something onto the main branch, you're asking the rest of the EIPs to adhere to the… to what's already merged, in this case, zk EVM proofs. So that's what I wanted to get from today, the signal that this is important, we have to, accommodate for it, right? And that's my concern of merging, just merging into the main development branch. I don't want this to be, like, enshrined if the EL Devs or the CL Devs are not in favor of it. So, yeah, that's my concern, right? Basically. Thank you.",
+              "translation": "네, 죄송합니다, 기본적으로 Potuz가 main에 병합하는 것에 대해 겪고 있는 것과 정확히 같은 문제를 저희가 오늘 EL 스펙에서 겪고 있다는 점을 다시 한 번 말씀드리고 싶습니다. 기본적으로, 무언가를 메인 브랜치에 병합하면, 나머지 EIP들에게 이미 병합된 것, 이 경우에는 zkEVM proofs에 따르라고 요구하게 되는 것입니다. 그래서 오늘 제가 얻고자 했던 것은, 이것이 중요하고 우리가 이를 수용해야 한다는 신호였습니다, 그렇죠? 그리고 그것이 메인 개발 브랜치에 그냥 병합하는 것에 대한 저의 우려입니다. EL 개발자들이나 CL 개발자들이 찬성하지 않는데도 이것이 고정되어 버리는 것을 원하지 않습니다. 네, 기본적으로 그것이 저의 우려입니다. 감사합니다."
+            }
+          ],
+          "quote": {
+            "text": "나는 이것을 메인 포크 브랜치에 머지하는 데 반대한다. 그 순간 선택 기능이 아니게 되고 우리가 하는 모든 포크와 모든 작업에 영향을 주기 때문이다.",
+            "original": "I am against merging this into the main fork branch. Because then it means that this goes away from being optional, and it would affect every single fork and every single work that we do.",
+            "speaker": "Potuz",
+            "timestamp": "01:13:24"
+          }
+        },
+        {
+          "title": "EIP-7716 반상관 어테스테이션 페널티",
+          "intro": "다수 검증자가 동시에 다운될수록 페널티를 키워 클라이언트와 인프라 다양성을 유도하자는 제안이 헤고타 포함 여부로 논의됐다.",
+          "decision": "DFI 결정 01:37:06",
+          "positions": [
+            {
+              "speaker": "Oisin Kyne",
+              "text": "지난 5년 중 최악의 클라이언트 중앙화 상태로 3개 클라이언트 각각이 단독 장애만으로 라이브니스 문제를 일으킬 수 있다며 비활성 페널티를 최대 256배까지 가중해 분산을 유도하자고 했다.",
+              "timestamp": "01:26:49",
+              "original": "Yeah, I'm champing and would share a screen if we had permission, but I think I was declined. This EIP is a proposal to add, an increase to inactivity penalties the more people are offline. We already have this with slashing, it's meant to kind of disincentivize centralization, but we've never seen a correlated slashing penalty live on mainnet. this EIP is… Relatively mild in terms of what it, does, it increases the inactivity penalty by a max of 256, and there's a rolling average that means it's kind of bounded in terms of how long it can stay increased for. I'll drop a link in the chat to a calculator so people can kind of give it a feel and see the FAQs and stuff. The, you know, main arguments in opposition to it, for the most part, has been either, like, let's just do PQ, I want to DFI everything that's not post-quantum, or Teku expressed a little bit of hesitance to touch beacon state. It is just adding one extra integer there, but they were like, beacon state is, you know, not super fun to touch. But generally speaking, I think people are warm to the idea of encouraging decentralization, but it's more of a question of, like, getting beyond B tier or something of the sort. So, my hope and ask for people today is that they say, like, yeah, I get that we're not jumping at the bit to kind of, you know, put in an SFI, but let's, you know, leave it as CFI for the coming weeks and see how we get along through the fork and say, okay, yeah, this is probably worth it. The EF are…",
+              "translation": "네, 제가 이 EIP의 챔피언(champion)이고, 권한이 있었다면 화면을 공유했겠지만, 거부된 것 같습니다. 이 EIP는 오프라인 상태인 사람이 많아질수록 비활성 페널티(inactivity penalty)를 증가시키자는 제안입니다. 이미 슬래싱(slashing)으로 이와 비슷한 것을 가지고 있는데, 이는 중앙화를 억제하기 위한 것이지만, 우리는 아직 메인넷에서 상관된 슬래싱 페널티가 실제로 발생하는 것을 본 적이 없습니다. 이 EIP는 하는 일에 비해 상대적으로 완만합니다. 비활성 페널티를 최대 256까지 증가시키고, 롤링 평균(rolling average)이 있어서 그 증가 상태가 얼마나 오래 지속될 수 있는지가 어느 정도 제한됩니다. 사람들이 느낌을 가질 수 있도록 계산기 링크를 채팅에 올리겠습니다. FAQ 같은 것도 볼 수 있습니다. 이에 반대하는 주요 논거는 대부분, 그냥 PQ(post-quantum)를 하자, 포스트 양자가 아닌 것은 전부 DFI하고 싶다는 것이거나, 혹은 Teku가 비콘 상태(beacon state)를 건드리는 데 약간의 주저함을 표했다는 것입니다. 정수 하나를 추가하는 것뿐이지만, 그들은 비콘 상태를 건드리는 게 그다지 즐겁지 않다고 했습니다. 하지만 전반적으로, 사람들이 탈중앙화를 장려한다는 아이디어에는 호의적이라고 생각하지만, 문제는 오히려 B티어를 넘어서는 것, 그런 종류의 것에 가깝습니다. 그래서 오늘 제가 사람들에게 바라고 요청하는 것은, 네, 우리가 당장 SFI를 넣으려고 서두르지는 않는다는 것은 이해하지만, 앞으로 몇 주간은 CFI 상태로 남겨두고 포크를 거치면서 어떻게 진행되는지 지켜본 뒤, 좋다, 이것은 그만한 가치가 있다고 말할 수 있게 하자는 것입니다. EF는…"
+            },
+            {
+              "speaker": "Matthew Keil",
+              "text": "제안 자체는 마음에 들지만 포크에 포함된 EIP 수가 걱정이라며 당장 확정하기보다 남겨 뒀다가 시간이 나면 막판에 넣자고 했다.",
+              "timestamp": "01:33:49",
+              "original": "Yeah, we do tend to like it. I don't think we necessarily want to see it DFI'd, but we're also kind of concerned about the amount of inclusion included EIPs in the fork. So it's something we'd love to see stick around, but maybe not be, obviously, SFI'd, you know, quickly. But we could, we could try to see it. You know, towards the end, if there's some more time.",
+              "translation": "네, 저희는 대체로 이것을 좋아합니다. 이것이 DFI되는 것을 꼭 보고 싶지는 않지만, 포크에 포함된 EIP의 양에 대해서도 어느 정도 우려하고 있습니다. 그래서 이것이 계속 남아 있기를 바라지만, 바로 SFI되는 것은 아닐 수도 있습니다. 하지만 시간이 좀 더 있다면 마지막에 다시 검토해 볼 수 있을 것 같습니다."
+            },
+            {
+              "speaker": "Łukasz Rozmej",
+              "text": "큰 장애가 오기 전까지는 아무도 이 페널티를 체감하지 못해 행동이 바뀌지 않을 수 있다고 우려했다.",
+              "timestamp": "01:34:58",
+              "original": "My big concern is that no one would even notice the CAP until a big outage comes, which… but maybe that's enough.",
+              "translation": "저의 큰 우려는, 큰 장애(outage)가 발생하기 전까지는 아무도 이 CAP를 눈치채지도 못할 것이라는 점입니다. 하지만 그것만으로도 충분할 수도 있겠습니다."
+            },
+            {
+              "speaker": "Ben Adams",
+              "text": "이미 DFI된 발행량 변경을 만약 하게 된다면 이 페널티와 MEV 번 같은 것들을 함께 묶어 가져와야 한다고 했다.",
+              "timestamp": "01:32:20",
+              "original": "Yeah, this is, just another comment, Related to, like, there was the discussion of changing emissions, which, we've DFI'd. But I do think if we are… if we do do something like change emissions, then we should bring in these other things, like, The… this penalty, and MEV burn, and all that sort of stuff.",
+              "translation": "네, 이건 그냥 또 다른 의견인데, 발행량(emissions) 변경에 관한 논의와 관련이 있습니다. 저희는 그것을 DFI했습니다. 하지만 만약 발행량 변경과 같은 것을 한다면, 이 페널티나 MEV 번(MEV burn) 같은 다른 것들도 함께 도입해야 한다고 생각합니다."
+            },
+            {
+              "speaker": "stokes",
+              "text": "CFI의 기준은 강한 지지여야 하며 무관심은 CFI 사유가 아니라고 했다. 강한 지지가 들리지 않아 DFI로 정리했다.",
+              "timestamp": "01:36:10",
+              "original": "Yeah, just the amount of these. But yeah, that'll be inside. I do feel like the bar should be… we need strong support to CFI, not… you there's not… yeah, basically indifference, I think, should not be CFI. And I'm not hearing enough strong support, I think, to CFI this today. So… then I would… say, again, going off client team rankings and general opinions here, this is the DFI for today. Any ECL teams want to chime in? In favor of CFI in this? Then we'll DFI. Thank you, everyone. Let's see… I guess we'll just keep going here, although, yeah, we are… Getting towards time, so let's just be mindful of that. Next here on the list, 8205, withdrawal credentials pre-registration. Yeah, again, kind of mixed support here from the client teams. I believe this is… okay, yeah, George or Greg, are one of you on the call here today? I. Let's… let's see how it goes. Oh, you're right. I need to stop sharing then.",
+              "translation": "네, 그냥 그 양의 문제입니다. 하지만 그건 그 안에 포함될 것입니다. 기준은, CFI를 하려면 강한 지지가 필요하다는 것이어야 한다고 생각합니다. 그냥 무관심한 정도로는... 기본적으로 무관심 정도로는 CFI되어서는 안 된다고 생각합니다. 그리고 오늘은 이것을 CFI할 만큼 충분히 강한 지지가 들리지 않습니다. 그러면... 다시 클라이언트 팀 순위와 여기서의 전반적인 의견에 따라, 오늘은 이것을 DFI하겠습니다. 어느 CL팀이든 의견을 더 내고 싶으신가요? 이것의 CFI에 찬성하시나요? 그렇다면 DFI하겠습니다. 모두 감사합니다. 자... 시간이 다가오고 있으니 그 점을 유의하면서 계속 진행하겠습니다. 다음 목록은 8205, 인출 자격증명 사전등록(withdrawal credentials pre-registration)입니다. 네, 여기도 클라이언트 팀들 사이에서 의견이 다소 엇갈립니다. 이것은... 좋습니다, George나 Greg, 오늘 콜에 두 분 중 한 분 계신가요? 어떻게 되는지 지켜보겠습니다. 아, 맞네요, 그럼 화면 공유를 멈춰야겠습니다."
+            }
+          ],
+          "quote": {
+            "text": "CFI에는 강한 지지가 필요하다고 본다. 사실상의 무관심은 CFI가 되어서는 안 된다.",
+            "original": "I do feel like the bar should be, we need strong support to CFI; basically indifference, I think, should not be CFI.",
+            "speaker": "stokes",
+            "timestamp": "01:36:10"
+          }
+        },
+        {
+          "title": "EIP-8205 출금 자격증명 사전 등록",
+          "intro": "위임 스테이킹 예치를 노드 운영자가 프런트러닝으로 가로채는 오래된 취약점을 프로토콜 차원에서 막을지 논의됐다.",
+          "decision": "다음 콜로 보류 01:57:33",
+          "positions": [
+            {
+              "speaker": "Dima Gusakov | Lido",
+              "text": "이더리움 스테이크의 대다수가 위임 스테이킹이고 비컨체인 출범 때부터 있던 문제라며 공개키와 출금 자격증명을 묶는 약속을 7002류 시스템 컨트랙트로 제출하고 4788로 증명하는 단순한 해법을 헤고타에 넣자고 했다. 스펙과 테스트, 컨트랙트 코드가 준비됐고 감사 비용은 리도가 대겠다고 했다.",
+              "timestamp": "01:38:07",
+              "original": "Yes, please, if it's possible. Perfect. Okay… Okay, okay… Let's go. I was not preparing for 7 minutes, but I'll try to do my best. So, withdrawal credentials, pre-registration, EIP-8205. what's the problem we're solving here? The problem is simple, known for anyone, for anyone involved in Ethereum, has been with us since the inception of Beacon Chain. Within delegated staking, if you have a node operator and a delegator, node operator can basically rug the delegator by front-running the deposit made by delegator with the data provided by node operator. by simply putting one ETH deposit in front of the delegator deposit, but with. its own withdrawal credentials. It's… it has been 32 ETH back in the day, now it can be even more if we are talking about 0x02 validators. But… Let's assume for clarity that it's 32 ETH. Okay, the problem is clear. What's the scale of the problem? And here, for those of you specific lovers of saying that Ethereum is staked by the same person, like you own Ethereum and your own validator key, well, I have bad news for you guys. The majority of Ethereum is staked via delegated systems, and these are the numbers that are From the confirmed protocols that are using some sorts of declared protection measures against this vulnerability. And I take my word, the real number is, like, 70 or maybe 80% of all Ethereum stake. It's just participants like Coinbase, Binance, Bitmine, they are not declaring the ways how they protect from this vulnerability, but…",
+              "translation": "네, 가능하다면 부탁드립니다. 완벽합니다. 좋습니다... 좋아요, 좋아요... 시작하겠습니다. 7분을 준비하지는 못했지만 최선을 다해 보겠습니다. 인출 자격증명 사전등록, EIP-8205입니다. 여기서 우리가 해결하려는 문제는 무엇일까요? 문제는 단순하며, 이더리움에 관여하는 누구에게나 알려져 있고, Beacon Chain의 시작 때부터 우리와 함께해 왔습니다. 위임 스테이킹(delegated staking) 안에서, 노드 운영자(node operator)와 위임자(delegator)가 있다면, 노드 운영자는 위임자가 한 예치를 노드 운영자가 제공한 데이터로 프론트러닝(front-running)함으로써 위임자를 기본적으로 먹튀(rug)할 수 있습니다. 단순히 위임자의 예치 앞에 1 ETH 예치를 자신의 인출 자격증명으로 넣기만 하면 됩니다. 과거에는 그것이 32 ETH였고, 지금은 0x02 검증자를 이야기한다면 그보다 더 커질 수 있습니다. 하지만 명확히 하기 위해 32 ETH라고 가정하겠습니다. 좋습니다, 문제는 명확합니다. 그러면 이 문제의 규모는 어느 정도일까요? 그리고 여기서, 이더리움이 동일한 사람에 의해 스테이킹된다고, 즉 자신이 이더리움도 소유하고 자신의 검증자 키도 소유한다고 주장하고 싶어하는 특정 애호가들에게는, 안타깝지만 나쁜 소식이 있습니다. 이더리움의 대다수는 위임 시스템을 통해 스테이킹되며, 이 숫자들은 이 취약점에 대해 어떤 형태로든 선언된 보호 조치를 사용하고 있다고 확인된 프로토콜들로부터 나온 것입니다. 그리고 제 말을 믿으셔도 되는데, 실제 수치는 전체 이더리움 스테이크의 70, 많으면 80%에 달합니다. 다만 Coinbase, Binance, Bitmine 같은 참여자들은 이 취약점으로부터 어떻게 보호하는지 그 방법을 선언하지 않고 있을 뿐입니다. 그런데…"
+            },
+            {
+              "speaker": "meditationduck",
+              "text": "ACK3는 위임 스테이킹 예치를 강화하므로 지지한다고 했다. 모든 위임 스테이킹 프로토콜이 이 EIP를 채택해야 한다는 점이 유일한 우려라고 했다.",
+              "timestamp": "01:47:34",
+              "original": "Yeah, we, we are from ACK3, we support this because its strength dedicated staking deposit. One concern is that. Like, all protocol, all dedicated staking protocol need to. See the… Need to… adopt this protocol, adopt this EIP, but that's the only concern.",
+              "translation": "네, 저희는 ACK3 소속이고, 이것이 전용(dedicated) 스테이킹 예치를 강화하기 때문에 지지합니다. 한 가지 우려는, 모든 프로토콜, 모든 전용 스테이킹 프로토콜이 이 프로토콜, 즉 이 EIP를 채택해야 한다는 것입니다. 하지만 그것이 유일한 우려입니다."
+            },
+            {
+              "speaker": "Tomer Ganor",
+              "text": "0x02 전환은 문제를 풀지 못한다며 디마를 지지했다. 자금이 인출되고 다시 예치되면 결국 새 검증자를 배포해야 하므로 보안 관점에서 이 EIP가 많은 가정과 우회책을 단순화한다고 했다.",
+              "timestamp": "01:48:12",
+              "original": "Yes, I'll make it shortly, I know we're tight on time. I just want to say that from security perspective, in my opinion, it's very, as Dima said, it's very simple, and… simplify, I mean, it simplifies a lot the security of Lido and other liquid staking protocols in this… in this context. For what, been said in the chat about 0x2 solve this problem, or just migrate to 0x2, I just want to say, even if you migrate to 0x2, great, so now you have less validators, but you still want to withdraw it from your validators. for example, in Lido, if you want to exit, you need to withdraw the ETH from the validator, it exits, now you want to add new money, new ETH to Lido's validators, you run out of place, you need to deploy new validators. So this doesn't solve the problem. It maybe narrows the use case of entering new validators, narrows the usage, but it doesn't solve it. So, from security perspective, I think it simplifies a lot, a lot of the assumptions, the workarounds needs to be done, and a lot of liquid staking protocols to deal with this. Honestly, the first time I learned about this behavior, I thought this is, like, insane, like, the fact that you can do this, race of who deposits first. And I was surely… I was confident that this will be resolved already, so I'm happy this is proposed to be resolved now, but really, it simplifies a lot of things, and Lido, I think, offers And the solution they offer is very, very simple, and I think we should do it before the post-quantum…",
+              "translation": "네, 짧게 말씀드리겠습니다, 시간이 빠듯하다는 것을 알고 있습니다. 보안 관점에서, 제 생각에는 Dima가 말한 대로 이것은 매우 단순하고, 이 맥락에서 Lido와 다른 리퀴드 스테이킹(liquid staking) 프로토콜들의 보안을 크게 단순화한다는 점만 말씀드리고 싶습니다. 채팅에서 0x2가 이 문제를 해결한다거나 그냥 0x2로 마이그레이션하면 된다는 이야기가 있었는데, 설령 0x2로 마이그레이션한다 해도, 좋습니다, 그러면 검증자 수가 줄어들긴 하지만 여전히 검증자에서 인출을 하고 싶을 것입니다. 예를 들어 Lido에서 exit하려면 검증자에서 ETH를 인출해야 하고, 그러면 그 검증자는 exit합니다. 이제 Lido의 검증자에 새로운 돈, 새로운 ETH를 추가하고 싶은데 자리가 부족하면 새 검증자를 배치해야 합니다. 그러므로 이것은 문제를 해결하지 못합니다. 새 검증자를 진입시키는 사용 사례, 그 사용 범위를 좁힐 수는 있어도 문제를 해결하지는 못합니다. 그래서 보안 관점에서, 이것이 가정들과 해야 하는 워크어라운드들, 그리고 많은 리퀴드 스테이킹 프로토콜들이 이 문제를 다뤄야 하는 부담을 크게 단순화한다고 생각합니다. 솔직히 말하면, 저는 이 행동을 처음 알게 되었을 때 이것이 말도 안 된다고 생각했습니다. 누가 먼저 예치하느냐의 경쟁이라는 사실이요. 그리고 저는 분명히... 이것이 이미 해결되었을 거라고 확신했었습니다. 그래서 이제 이것이 해결하자고 제안된 것이 기쁘지만, 정말로 이것은 많은 것을 단순화합니다. 그리고 Lido가 제시하는 해결책은 매우, 매우 단순하다고 생각하며, 저는 포스트 양자(post-quantum) 이전에 이것을 해야 한다고 생각합니다…"
+            },
+            {
+              "speaker": "Matthew Keil",
+              "text": "앱 계층 해법이 이미 존재하고 특정 이해관계자 집단을 위해 코어 프로토콜을 바꾸는 선례가 걱정된다며 반대했다. 다음 포크에서 PQ 키를 다루게 되니 PQ 예치 컨트랙트 재설계에서 한 번에 푸는 편이 낫다고 했다.",
+              "timestamp": "01:50:03",
+              "original": "I don't understand why the importance of doing this when there's already existing app layer solutions and It's gonna take a lot of effort from a lot of teams to get it implemented when it's already solved. Like, the problem is already resolved at the app layer. Same with the protocol layer, like, that's… that… I mean, we've already talked about, you know, granted in different contexts where different EIPs have to play in with new EIPs, and every single time you… implement something at the protocol layer, it forces a rethought of that same EIP as other things are integrated with the same touching the same, parts of state, or the same part of the protocol, and I don't see this as being different than that. And to be honest, and really my only concern, it's not even so much the complexity of the implementation, because it's not… we did look at it, it's not… it's not a huge burden, it's probably, like Justin Traglia said, it's probably a medium effort, but there are gonna be downstream effects, and it only, affects a portion of the network, and it feels Partially from a precedent perspective of. When there's so much stuff that needs to be included in the core protocol. to be programming around specific use cases or specific, stakeholders, which I… not to discredit how important you guys are, because, like, I do want to say that out loud, is, like, we do appreciate the importance of you guys on the network and the good work you guys do. The problem comes in, though, is that…",
+              "translation": "이미 기존의 앱 레이어 해결책이 있는데도 왜 이것을 하는 것이 중요한지 이해가 되지 않습니다. 이미 해결된 문제를 구현하는 데 많은 팀들의 많은 노력이 들어갈 것입니다. 즉, 그 문제는 이미 앱 레이어에서 해결되어 있습니다. 프로토콜 레이어에서도 마찬가지인데, 이것은... 저희는 이미 다른 맥락에서, 서로 다른 EIP들이 새로운 EIP들과 함께 작동해야 하는 상황에 대해 이야기했습니다. 그리고 프로토콜 레이어에서 무언가를 구현할 때마다, 다른 것들이 상태(state)의 같은 부분, 또는 프로토콜의 같은 부분을 건드리며 통합되면서 그 동일한 EIP를 다시 생각하게 만듭니다. 그리고 저는 이것이 그와 다르지 않다고 봅니다. 그리고 솔직히 말해, 정말로 저의 유일한 우려는, 구현의 복잡성에 관한 것조차 아닙니다. 왜냐하면 저희가 실제로 살펴봤는데, 그것은 큰 부담이 아니고, Justin Traglia가 말했듯이 아마 중간 정도의 노력일 것이기 때문입니다. 하지만 하류 영향(downstream effects)이 생길 것이고, 이것은 네트워크의 일부에만 영향을 미치며, 특정 사용 사례나 특정 이해관계자를 위해 프로그래밍하기 위해 핵심 프로토콜에 포함되어야 할 것들이 이렇게 많을 때 나타나는 선례(precedent)의 관점에서 부분적으로 그렇게 느껴집니다. 여러분이 얼마나 중요한지를 깎아내리려는 것은 아니며, 이 말은 분명히 하고 싶습니다. 저희는 여러분이 네트워크에서 갖는 중요성과 여러분이 하는 좋은 작업을 정말 감사하게 여기고 있습니다. 하지만 문제는…"
+            },
+            {
+              "speaker": "Greg K | Lido",
+              "text": "7분 발표로는 논의가 부족했고 지금 분위기가 DFI로 들리지도 않는다며 최종 결정을 다음 콜로 미루자고 요청했고 그대로 받아들여졌다.",
+              "timestamp": "01:56:52",
+              "original": "Yeah, so, because now I think we're running out of time, and also, yeah, there are still some open points. Could we just… Yeah, leave it, like, the final decision for next call, because I don't think there is enough information now to just say that, like, at least this discussion that happened now, it doesn't sound like a DFI to me. So, because, yeah, we were running out of time, it was just 7 minutes, we took some more time, but I think, yeah, it deserves a bit more discussion. Like, most of the EIPs discussed much more than this, so we can start next call from this one, right?",
+              "translation": "네, 이제 시간이 다 되어가고 있고, 아직 미해결된 사항들도 있습니다. 그냥... 최종 결정은 다음 콜로 남겨둘 수 있을까요? 지금으로서는 충분한 정보가 있다고 말하기는 어렵다고 생각하기 때문입니다. 적어도 지금까지 있었던 이 논의를 보면, 저에게는 DFI처럼 들리지는 않습니다. 그래서, 네, 시간이 부족했고, 겨우 7분이었는데 조금 더 시간을 들였지만, 그래도 조금 더 논의가 필요하다고 생각합니다. 대부분의 EIP들이 이보다 훨씬 더 많이 논의되었으니, 다음 콜을 이 안건부터 시작할 수 있겠죠?"
+            }
+          ],
+          "quote": {
+            "text": "요점은 합의 계층이 곧 스테이킹이라는 것이고, 이더리움 스테이크의 대다수는 위임 방식으로 스테이킹돼 있다는 것이다.",
+            "original": "The thing is that ConsensusLayer is about staking, and the majority of all Ethereum staked is staked in a delegated way.",
+            "speaker": "Dima Gusakov | Lido",
+            "timestamp": "01:52:59"
+          }
+        }
+      ],
+      "speakers": [
+        {
+          "label": "stokes",
+          "name": "stokes",
+          "share": 0.373
+        },
+        {
+          "label": "Dima Gusakov | Lido",
+          "name": "Dima Gusakov",
+          "org": "Lido",
+          "share": 0.129
+        },
+        {
+          "label": "ignacio",
+          "name": "ignacio",
+          "share": 0.122
+        },
+        {
+          "label": "Oisin Kyne",
+          "name": "Oisin Kyne",
+          "share": 0.051
+        },
+        {
+          "label": "Barnabas",
+          "name": "Barnabas Busa",
+          "org": "EF DevOps",
+          "handle": "BarnabasBusa",
+          "avatar": "https://pbs.twimg.com/profile_images/534855342300352514/m-C5ReWq_400x400.jpeg",
+          "share": 0.046
+        },
+        {
+          "label": "Matthew Keil",
+          "name": "Matthew Keil",
+          "org": "ChainSafe",
+          "role": "Lodestar",
+          "handle": "matthewkeil",
+          "avatar": "https://pbs.twimg.com/profile_images/1455695649899438083/nWUpW5EK_400x400.jpg",
+          "share": 0.04
+        },
+        {
+          "label": "lightclient",
+          "name": "lightclient (Matt Garnett)",
+          "org": "EF",
+          "role": "geth",
+          "handle": "lightclients",
+          "avatar": "https://pbs.twimg.com/profile_images/1554130973935030274/wHWuxuTT_400x400.jpg",
+          "share": 0.04
+        },
+        {
+          "label": "Csaba",
+          "name": "Csaba",
+          "share": 0.031
+        },
+        {
+          "label": "NC",
+          "name": "NC",
+          "share": 0.026
+        },
+        {
+          "label": "Manu",
+          "name": "Manu",
+          "share": 0.025
+        },
+        {
+          "label": "Tomer Ganor",
+          "name": "Tomer Ganor",
+          "share": 0.017
+        },
+        {
+          "label": "Luca | Vero",
+          "name": "Luca",
+          "org": "Vero",
+          "share": 0.017
+        },
+        {
+          "label": "Pavel | MixBytes",
+          "name": "Pavel",
+          "org": "MixBytes",
+          "share": 0.011
+        },
+        {
+          "label": "Iván | ethrex",
+          "name": "Iván Litteri",
+          "org": "LambdaClass",
+          "role": "ethrex 테크 리드",
+          "handle": "ivanlitteri",
+          "avatar": "https://pbs.twimg.com/profile_images/1801577809728462848/UPASaIEt_400x400.jpg",
+          "share": 0.011
+        },
+        {
+          "label": "Enrico Del Fante",
+          "name": "Enrico Del Fante",
+          "org": "Consensys",
+          "role": "Teku",
+          "handle": "tbenr",
+          "avatar": "https://pbs.twimg.com/profile_images/1425021438269050892/3IRr4G_z_400x400.jpg",
+          "share": 0.01
+        },
+        {
+          "label": "Francesco Risitano (Tau)",
+          "name": "Francesco Risitano",
+          "share": 0.01
+        },
+        {
+          "label": "Łukasz Rozmej",
+          "name": "Łukasz Rozmej",
+          "org": "Nethermind",
+          "role": "EIP-8037 공동 저자",
+          "share": 0.009
+        },
+        {
+          "label": "Potuz",
+          "name": "Potuz",
+          "org": "Offchain Labs",
+          "role": "Prysm",
+          "handle": "potuz_eth",
+          "avatar": "https://pbs.twimg.com/profile_images/1494001194427158539/bfrZyMsG_400x400.jpg",
+          "share": 0.007
+        },
+        {
+          "label": "saulius",
+          "name": "Saulius Grigaitis",
+          "org": "Grandine",
+          "share": 0.005
+        },
+        {
+          "label": "Ben Adams",
+          "name": "Ben Adams",
+          "org": "Nethermind",
+          "handle": "ben_a_adams",
+          "avatar": "https://pbs.twimg.com/profile_images/1282411238602006529/l4lHaQHE_400x400.jpg",
+          "share": 0.005
+        },
+        {
+          "label": "Mario Vega",
+          "name": "Mario Vega",
+          "org": "EF",
+          "role": "테스팅, ACDT 진행",
+          "handle": "elbuenmayini",
+          "avatar": "https://pbs.twimg.com/profile_images/1616232824415342592/Wly-1ddA_400x400.jpg",
+          "share": 0.004
+        },
+        {
+          "label": "meditationduck",
+          "name": "meditationduck",
+          "share": 0.004
+        },
+        {
+          "label": "Greg K | Lido",
+          "name": "Greg K",
+          "org": "Lido",
+          "share": 0.004
+        },
+        {
+          "label": "Cambridge",
+          "name": "Cambridge",
+          "share": 0
+        },
+        {
+          "label": "Nico Flaig",
+          "name": "Nico Flaig",
+          "org": "ChainSafe",
+          "role": "Lodestar",
+          "handle": "nicoflaig",
+          "avatar": "https://pbs.twimg.com/profile_images/1618325595397447689/9kzomyhR_400x400.jpg",
+          "share": 0
+        }
+      ],
+      "chat": [
+        {
+          "speaker": "Cambridge",
+          "text": "클라이언트의 50%만 이 변경을 적용하면 체인이 분기된다. 따라서 이것은 합의 파괴적 변경이다.",
+          "timestamp": "00:33:37"
+        },
+        {
+          "speaker": "Nico Flaig",
+          "text": "EIP-8282가 포크 이후에는 이 문제를 해결했다.",
+          "timestamp": "00:35:22"
+        },
+        {
+          "speaker": "lightclient",
+          "text": "PQ가 걱정돼 사람들에게 벙커 모드를 말할 정도라면, 중요하지 않은 비PQ 주제에 시간을 쓰면 안 된다. 쉬워 보여도 예상보다 많은 시간을 뺏는다.",
+          "timestamp": "00:54:25"
+        }
+      ],
+      "glossary": [
+        {
+          "term": "SFI",
+          "def": "Scheduled for Inclusion, 포크 포함이 확정된 상태"
+        },
+        {
+          "term": "CFI",
+          "def": "Considered for Inclusion, 포함을 전제로 검토 중인 상태"
+        },
+        {
+          "term": "PFI",
+          "def": "Proposed for Inclusion, 포함이 제안되어 후보로 접수된 상태"
+        },
+        {
+          "term": "DFI",
+          "def": "Declined for Inclusion, 이번 포크 후보에서 제외된 상태"
+        },
+        {
+          "term": "챔피언(champion)",
+          "def": "제안을 책임지고 밀어붙이는 담당자"
+        },
+        {
+          "term": "EELS",
+          "def": "이더리움 실행 계층(EL)의 파이썬 레퍼런스 사양 저장소"
+        },
+        {
+          "term": "출금 자격증명(withdrawal credentials)",
+          "def": "검증자의 보상과 원금이 출금될 곳을 지정하는 데이터. 0x00은 구식 BLS 키 방식"
+        },
+        {
+          "term": "PQ(post-quantum)",
+          "def": "양자컴퓨터에도 안전한 암호로의 전환 작업"
+        }
+      ],
+      "eips": [
+        7716,
+        8025,
+        8205,
+        8359,
+        8365,
+        8371
+      ],
+      "relatedDebates": [
+        "rowdas-hegota-inclusion"
+      ],
+      "telegramMessageId": 1669
+    },
     {
       "id": "acdt-100",
       "series": "acdt",
@@ -16347,8 +16945,8 @@
     "nextFork": {
       "name": "헤고타",
       "stage": "범위 정하는 중",
-      "line": "CFI 20건 누적 · bogota 데브넷 10월 15일, heze 10월 28일"
+      "line": "CFI 10건 · 헤제·보고타 데브넷 가동 · 다음 콜 스코핑 세션 시작"
     },
-    "basis": "acdt-100"
+    "basis": "acdc-189"
   }
 }
