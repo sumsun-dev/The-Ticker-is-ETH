@@ -104,7 +104,7 @@ const Home: React.FC = () => {
                             className="flex flex-col sm:flex-row gap-3 justify-center items-center"
                         >
                             <Link
-                                to="/contributors"
+                                to="/team"
                                 className="group inline-flex items-center gap-2 px-7 py-3 rounded-full bg-gradient-to-r from-brand-primary to-brand-accent text-white font-medium text-sm hover:shadow-lg hover:shadow-brand-primary/20 transition-all"
                             >
                                 {t('cta.contributor')}

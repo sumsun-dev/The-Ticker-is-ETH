@@ -125,7 +125,6 @@ const staticRoutes: SitemapEntry[] = [
     { loc: '/debates', changefreq: 'weekly', priority: '0.7' },
     { loc: '/calls', changefreq: 'weekly', priority: '0.7' },
     { loc: '/team', changefreq: 'monthly', priority: '0.7' },
-    { loc: '/contributors', changefreq: 'weekly', priority: '0.7' },
     { loc: '/ecosystem', changefreq: 'monthly', priority: '0.7' },
     { loc: '/events', changefreq: 'weekly', priority: '0.7' },
     { loc: '/events/ek1-genesis', changefreq: 'monthly', priority: '0.6' },
@@ -372,7 +371,7 @@ const ECK_FAQ = [
     },
     {
         q: '누가 운영하나요?',
-        a: '코어팀과 다수의 커뮤니티 기여자가 함께 운영합니다. 멤버는 /team 과 /contributors 에서 확인할 수 있습니다.',
+        a: '코어팀과 다수의 커뮤니티 기여자가 함께 운영합니다. 멤버는 /team 에서 확인할 수 있습니다.',
     },
 ];
 
@@ -393,7 +392,7 @@ const staticPages: StaticPage[] = [
         bodyHtml:
             `<h1>Ethereum Collective Korea (ECK)</h1>` +
             `<p>한국 이더리움 생태계를 위한 공공재를 만드는 비영리 콜렉티브입니다. 리서치, 뉴스, 주간 리포트, 커뮤니티 이니셔티브를 한국어로 제공합니다.</p>` +
-            `<nav><a href="/about">About</a> · <a href="/contents">Contents</a> · <a href="/team">Core Team</a> · <a href="/contributors">Contributors</a> · <a href="/ecosystem">Ecosystem</a> · <a href="/events">Events</a></nav>` +
+            `<nav><a href="/about">About</a> · <a href="/contents">Contents</a> · <a href="/team">Team</a> · <a href="/ecosystem">Ecosystem</a> · <a href="/events">Events</a></nav>` +
             `<h2>최근 콘텐츠</h2>${recentLinks}<p><a href="/contents">모든 콘텐츠 보기 →</a></p>`,
         jsonLd: [],
     },
@@ -481,29 +480,18 @@ const staticPages: StaticPage[] = [
     },
     {
         path: 'team',
-        title: 'Core Team',
-        description: 'Ethereum Collective Korea 코어팀 멤버 소개.',
-        bodyHtml: `<h1>Core Team</h1><p>ECK 코어팀 멤버입니다.</p>${coreLinks}`,
+        title: 'Team',
+        description: 'Ethereum Collective Korea 코어팀과 커뮤니티 기여자 소개.',
+        bodyHtml: `<h1>Team</h1><h2>Core Team</h2>${coreLinks}<h2>Contributors</h2>${contribLinks}`,
         jsonLd: [
             collectionPageLd({
-                name: 'Core Team',
+                name: 'Team',
                 url: '/team',
-                description: 'ECK 코어팀',
-                items: mockMembers.map((m) => ({ name: m.name, url: `/team/${m.id}` })),
-            }),
-        ],
-    },
-    {
-        path: 'contributors',
-        title: 'Contributors',
-        description: 'Ethereum Collective Korea 커뮤니티 기여자 목록.',
-        bodyHtml: `<h1>Contributors</h1><p>ECK 커뮤니티에 기여하는 분들입니다.</p>${contribLinks}`,
-        jsonLd: [
-            collectionPageLd({
-                name: 'Contributors',
-                url: '/contributors',
-                description: 'ECK 기여자',
-                items: mockContributors.slice(0, 100).map((m) => ({ name: m.name, url: `/contributors/${m.id}` })),
+                description: 'ECK 코어팀과 기여자',
+                items: [
+                    ...mockMembers.map((m) => ({ name: m.name, url: `/team/${m.id}` })),
+                    ...mockContributors.slice(0, 100).map((m) => ({ name: m.name, url: `/contributors/${m.id}` })),
+                ],
             }),
         ],
     },
@@ -562,8 +550,7 @@ const llms =
     `- [Contents](${SITE_URL}/contents): 리서치·뉴스·주간 리포트 (${contents.length}건)\n` +
     `- [Ethereum News](${SITE_URL}/news): 이더리움 최신 소식 데일리 피드 (${ethNews.items.length}건)\n` +
     `- [Ethereum Debates](${SITE_URL}/debates): 코어 개발자·리서처가 갈린 쟁점 (${debates.length}건)\n` +
-    `- [Core Team](${SITE_URL}/team): 코어팀 멤버\n` +
-    `- [Contributors](${SITE_URL}/contributors): 기여자\n` +
+    `- [Team](${SITE_URL}/team): 코어팀과 기여자\n` +
     `- [Ecosystem](${SITE_URL}/ecosystem): 이더리움 생태계\n` +
     `- [Events](${SITE_URL}/events): 이벤트\n\n` +
     `## Recent Contents\n` +

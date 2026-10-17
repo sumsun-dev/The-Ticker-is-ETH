@@ -17,35 +17,43 @@
       "category": "official"
     },
     {
-      "id": "etherealize-io",
-      "name": "Etherealize",
-      "handle": "@Etherealize_io",
-      "descriptionKey": "ecosystem.twitter.etherealizeIo",
-      "url": "https://x.com/Etherealize_io",
-      "category": "official"
-    },
-    {
-      "id": "vitalik",
-      "name": "Vitalik Buterin",
-      "handle": "@VitalikButerin",
-      "descriptionKey": "ecosystem.twitter.vitalik",
-      "url": "https://x.com/VitalikButerin",
-      "category": "person"
-    },
-    {
-      "id": "hwwonx",
-      "name": "Hsiao-Wei Wang (hww.eth)",
-      "handle": "@hwwonx",
-      "descriptionKey": "ecosystem.twitter.hwwonx",
-      "url": "https://x.com/hwwonx",
-      "category": "person"
-    },
-    {
       "id": "ethdotorg",
       "name": "ethereum.org Community",
       "handle": "@ethdotorg",
       "descriptionKey": "ecosystem.twitter.ethdotorg",
       "url": "https://x.com/ethdotorg",
+      "category": "official"
+    },
+    {
+      "id": "protocol-guild",
+      "name": "Protocol Guild",
+      "handle": "@ProtocolGuild",
+      "descriptionKey": "ecosystem.twitter.protocolGuild",
+      "url": "https://x.com/ProtocolGuild",
+      "category": "official"
+    },
+    {
+      "id": "ethpandaops",
+      "name": "ethPandaOps",
+      "handle": "@ethpandaops",
+      "descriptionKey": "ecosystem.twitter.ethpandaops",
+      "url": "https://x.com/ethpandaops",
+      "category": "official"
+    },
+    {
+      "id": "l2beat",
+      "name": "L2BEAT",
+      "handle": "@l2beat",
+      "descriptionKey": "ecosystem.twitter.l2beat",
+      "url": "https://x.com/l2beat",
+      "category": "official"
+    },
+    {
+      "id": "etherealize-io",
+      "name": "Etherealize",
+      "handle": "@Etherealize_io",
+      "descriptionKey": "ecosystem.twitter.etherealizeIo",
+      "url": "https://x.com/Etherealize_io",
       "category": "official"
     },
     {
@@ -57,12 +65,44 @@
       "category": "official"
     },
     {
+      "id": "vitalik",
+      "name": "Vitalik Buterin",
+      "handle": "@VitalikButerin",
+      "descriptionKey": "ecosystem.twitter.vitalik",
+      "url": "https://x.com/VitalikButerin",
+      "category": "person"
+    },
+    {
+      "id": "timbeiko",
+      "name": "Tim Beiko",
+      "handle": "@TimBeiko",
+      "descriptionKey": "ecosystem.twitter.timbeiko",
+      "url": "https://x.com/TimBeiko",
+      "category": "person"
+    },
+    {
+      "id": "drakefjustin",
+      "name": "Justin Drake",
+      "handle": "@drakefjustin",
+      "descriptionKey": "ecosystem.twitter.drakefjustin",
+      "url": "https://x.com/drakefjustin",
+      "category": "person"
+    },
+    {
+      "id": "hwwonx",
+      "name": "Hsiao-Wei Wang (hww.eth)",
+      "handle": "@hwwonx",
+      "descriptionKey": "ecosystem.twitter.hwwonx",
+      "url": "https://x.com/hwwonx",
+      "category": "person"
+    },
+    {
       "id": "eth-daily",
       "name": "ETH Daily",
       "handle": "@ETH_Daily",
       "descriptionKey": "ecosystem.twitter.ethDaily",
       "url": "https://x.com/ETH_Daily",
-      "category": "official"
+      "category": "person"
     },
     {
       "id": "ryanberckmans",
@@ -74,36 +114,133 @@
     }
   ],
   "categories": [
-    { "id": "explorer", "labelKey": "ecosystem.categories.explorer", "icon": "Search" },
-    { "id": "defi", "labelKey": "ecosystem.categories.defi", "icon": "Landmark" },
-    { "id": "dex", "labelKey": "ecosystem.categories.dex", "icon": "ArrowLeftRight" },
-    { "id": "wallet", "labelKey": "ecosystem.categories.wallet", "icon": "Wallet" },
-    { "id": "bridge", "labelKey": "ecosystem.categories.bridge", "icon": "Cable" },
-    { "id": "analytics", "labelKey": "ecosystem.categories.analytics", "icon": "BarChart3" },
-    { "id": "dev-tools", "labelKey": "ecosystem.categories.devTools", "icon": "Code" },
-    { "id": "nft", "labelKey": "ecosystem.categories.nft", "icon": "Image" }
+    {
+      "id": "l2",
+      "labelKey": "ecosystem.categories.l2",
+      "icon": "Layers2"
+    },
+    {
+      "id": "defi",
+      "labelKey": "ecosystem.categories.defi",
+      "icon": "Landmark"
+    },
+    {
+      "id": "dex",
+      "labelKey": "ecosystem.categories.dex",
+      "icon": "ArrowLeftRight"
+    },
+    {
+      "id": "staking",
+      "labelKey": "ecosystem.categories.staking",
+      "icon": "Coins"
+    },
+    {
+      "id": "stablecoin",
+      "labelKey": "ecosystem.categories.stablecoin",
+      "icon": "CircleDollarSign"
+    },
+    {
+      "id": "wallet",
+      "labelKey": "ecosystem.categories.wallet",
+      "icon": "Wallet"
+    },
+    {
+      "id": "bridge",
+      "labelKey": "ecosystem.categories.bridge",
+      "icon": "Cable"
+    },
+    {
+      "id": "privacy",
+      "labelKey": "ecosystem.categories.privacy",
+      "icon": "Shield"
+    },
+    {
+      "id": "explorer",
+      "labelKey": "ecosystem.categories.explorer",
+      "icon": "Search"
+    },
+    {
+      "id": "analytics",
+      "labelKey": "ecosystem.categories.analytics",
+      "icon": "BarChart3"
+    },
+    {
+      "id": "infra",
+      "labelKey": "ecosystem.categories.infra",
+      "icon": "Server"
+    },
+    {
+      "id": "research",
+      "labelKey": "ecosystem.categories.research",
+      "icon": "BookOpen"
+    },
+    {
+      "id": "dev-tools",
+      "labelKey": "ecosystem.categories.devTools",
+      "icon": "Code"
+    },
+    {
+      "id": "nft",
+      "labelKey": "ecosystem.categories.nft",
+      "icon": "Image"
+    }
   ],
   "tools": [
     {
-      "id": "etherscan",
-      "name": "Etherscan",
-      "descriptionKey": "ecosystem.tools.etherscan",
-      "url": "https://etherscan.io",
-      "category": "explorer"
+      "id": "arbitrum",
+      "name": "Arbitrum",
+      "descriptionKey": "ecosystem.tools.arbitrum",
+      "url": "https://arbitrum.io",
+      "category": "l2"
     },
     {
-      "id": "beaconcha-in",
-      "name": "beaconcha.in",
-      "descriptionKey": "ecosystem.tools.beaconchain",
-      "url": "https://beaconcha.in",
-      "category": "explorer"
+      "id": "optimism",
+      "name": "Optimism",
+      "descriptionKey": "ecosystem.tools.optimism",
+      "url": "https://www.optimism.io",
+      "category": "l2"
     },
     {
-      "id": "blockscout",
-      "name": "Blockscout",
-      "descriptionKey": "ecosystem.tools.blockscout",
-      "url": "https://www.blockscout.com",
-      "category": "explorer"
+      "id": "base",
+      "name": "Base",
+      "descriptionKey": "ecosystem.tools.base",
+      "url": "https://www.base.org",
+      "category": "l2"
+    },
+    {
+      "id": "zksync",
+      "name": "ZKsync",
+      "descriptionKey": "ecosystem.tools.zksync",
+      "url": "https://www.zksync.io",
+      "category": "l2"
+    },
+    {
+      "id": "starknet",
+      "name": "Starknet",
+      "descriptionKey": "ecosystem.tools.starknet",
+      "url": "https://www.starknet.io",
+      "category": "l2"
+    },
+    {
+      "id": "scroll",
+      "name": "Scroll",
+      "descriptionKey": "ecosystem.tools.scroll",
+      "url": "https://scroll.io",
+      "category": "l2"
+    },
+    {
+      "id": "linea",
+      "name": "Linea",
+      "descriptionKey": "ecosystem.tools.linea",
+      "url": "https://linea.build",
+      "category": "l2"
+    },
+    {
+      "id": "unichain",
+      "name": "Unichain",
+      "descriptionKey": "ecosystem.tools.unichain",
+      "url": "https://www.unichain.org",
+      "category": "l2"
     },
     {
       "id": "aave",
@@ -113,24 +250,24 @@
       "category": "defi"
     },
     {
-      "id": "lido",
-      "name": "Lido",
-      "descriptionKey": "ecosystem.tools.lido",
-      "url": "https://lido.fi",
+      "id": "morpho",
+      "name": "Morpho",
+      "descriptionKey": "ecosystem.tools.morpho",
+      "url": "https://morpho.org",
       "category": "defi"
     },
     {
-      "id": "eigenlayer",
-      "name": "EigenLayer",
-      "descriptionKey": "ecosystem.tools.eigenlayer",
-      "url": "https://www.eigenlayer.xyz",
+      "id": "pendle",
+      "name": "Pendle",
+      "descriptionKey": "ecosystem.tools.pendle",
+      "url": "https://www.pendle.finance",
       "category": "defi"
     },
     {
-      "id": "maker",
-      "name": "Sky (Maker)",
-      "descriptionKey": "ecosystem.tools.maker",
-      "url": "https://sky.money",
+      "id": "spark",
+      "name": "Spark",
+      "descriptionKey": "ecosystem.tools.spark",
+      "url": "https://spark.fi",
       "category": "defi"
     },
     {
@@ -162,10 +299,87 @@
       "category": "dex"
     },
     {
+      "id": "lido",
+      "name": "Lido",
+      "descriptionKey": "ecosystem.tools.lido",
+      "url": "https://lido.fi",
+      "category": "staking"
+    },
+    {
+      "id": "rocketpool",
+      "name": "Rocket Pool",
+      "descriptionKey": "ecosystem.tools.rocketpool",
+      "url": "https://rocketpool.net",
+      "category": "staking"
+    },
+    {
+      "id": "etherfi",
+      "name": "ether.fi",
+      "descriptionKey": "ecosystem.tools.etherfi",
+      "url": "https://www.ether.fi",
+      "category": "staking"
+    },
+    {
+      "id": "eigenlayer",
+      "name": "EigenLayer",
+      "descriptionKey": "ecosystem.tools.eigenlayer",
+      "url": "https://www.eigenlayer.xyz",
+      "category": "staking"
+    },
+    {
+      "id": "obol",
+      "name": "Obol",
+      "descriptionKey": "ecosystem.tools.obol",
+      "url": "https://obol.org",
+      "category": "staking"
+    },
+    {
+      "id": "ssv",
+      "name": "SSV Network",
+      "descriptionKey": "ecosystem.tools.ssv",
+      "url": "https://ssv.network",
+      "category": "staking"
+    },
+    {
+      "id": "maker",
+      "name": "Sky (Maker)",
+      "descriptionKey": "ecosystem.tools.maker",
+      "url": "https://sky.money",
+      "category": "stablecoin"
+    },
+    {
+      "id": "circle",
+      "name": "Circle (USDC)",
+      "descriptionKey": "ecosystem.tools.circle",
+      "url": "https://www.circle.com/usdc",
+      "category": "stablecoin"
+    },
+    {
+      "id": "ondo",
+      "name": "Ondo Finance",
+      "descriptionKey": "ecosystem.tools.ondo",
+      "url": "https://ondo.finance",
+      "category": "stablecoin"
+    },
+    {
+      "id": "rwaxyz",
+      "name": "rwa.xyz",
+      "descriptionKey": "ecosystem.tools.rwaxyz",
+      "url": "https://app.rwa.xyz",
+      "category": "stablecoin"
+    },
+    {
       "id": "metamask",
       "name": "MetaMask",
       "descriptionKey": "ecosystem.tools.metamask",
       "url": "https://metamask.io",
+      "category": "wallet"
+    },
+    {
+      "id": "rabby",
+      "name": "Rabby",
+      "descriptionKey": "ecosystem.tools.rabby",
+      "url": "https://rabby.io",
       "category": "wallet"
     },
     {
@@ -180,13 +394,6 @@
       "name": "Safe",
       "descriptionKey": "ecosystem.tools.safe",
       "url": "https://safe.global",
-      "category": "wallet"
-    },
-    {
-      "id": "rabby",
-      "name": "Rabby",
-      "descriptionKey": "ecosystem.tools.rabby",
-      "url": "https://rabby.io",
       "category": "wallet"
     },
     {
@@ -218,6 +425,48 @@
       "category": "bridge"
     },
     {
+      "id": "railgun",
+      "name": "Railgun",
+      "descriptionKey": "ecosystem.tools.railgun",
+      "url": "https://railgun.org",
+      "category": "privacy"
+    },
+    {
+      "id": "privacy-pools",
+      "name": "Privacy Pools",
+      "descriptionKey": "ecosystem.tools.privacyPools",
+      "url": "https://privacypools.com",
+      "category": "privacy"
+    },
+    {
+      "id": "aztec",
+      "name": "Aztec",
+      "descriptionKey": "ecosystem.tools.aztec",
+      "url": "https://aztec.network",
+      "category": "privacy"
+    },
+    {
+      "id": "etherscan",
+      "name": "Etherscan",
+      "descriptionKey": "ecosystem.tools.etherscan",
+      "url": "https://etherscan.io",
+      "category": "explorer"
+    },
+    {
+      "id": "beaconcha-in",
+      "name": "beaconcha.in",
+      "descriptionKey": "ecosystem.tools.beaconchain",
+      "url": "https://beaconcha.in",
+      "category": "explorer"
+    },
+    {
+      "id": "blockscout",
+      "name": "Blockscout",
+      "descriptionKey": "ecosystem.tools.blockscout",
+      "url": "https://www.blockscout.com",
+      "category": "explorer"
+    },
+    {
       "id": "dune",
       "name": "Dune",
       "descriptionKey": "ecosystem.tools.dune",
@@ -239,6 +488,13 @@
       "category": "analytics"
     },
     {
+      "id": "growthepie",
+      "name": "growthepie",
+      "descriptionKey": "ecosystem.tools.growthepie",
+      "url": "https://www.growthepie.com",
+      "category": "analytics"
+    },
+    {
       "id": "ultrasound",
       "name": "ultrasound.money",
       "descriptionKey": "ecosystem.tools.ultrasound",
@@ -254,17 +510,167 @@
       "highlight": true
     },
     {
-      "id": "hardhat",
-      "name": "Hardhat",
-      "descriptionKey": "ecosystem.tools.hardhat",
-      "url": "https://hardhat.org",
-      "category": "dev-tools"
+      "id": "geth",
+      "name": "Geth",
+      "descriptionKey": "ecosystem.tools.geth",
+      "url": "https://geth.ethereum.org",
+      "category": "infra"
+    },
+    {
+      "id": "nethermind",
+      "name": "Nethermind",
+      "descriptionKey": "ecosystem.tools.nethermind",
+      "url": "https://www.nethermind.io/nethermind-client",
+      "category": "infra"
+    },
+    {
+      "id": "besu",
+      "name": "Besu",
+      "descriptionKey": "ecosystem.tools.besu",
+      "url": "https://besu.hyperledger.org",
+      "category": "infra"
+    },
+    {
+      "id": "erigon",
+      "name": "Erigon",
+      "descriptionKey": "ecosystem.tools.erigon",
+      "url": "https://erigon.tech",
+      "category": "infra"
+    },
+    {
+      "id": "reth",
+      "name": "Reth",
+      "descriptionKey": "ecosystem.tools.reth",
+      "url": "https://reth.rs",
+      "category": "infra"
+    },
+    {
+      "id": "lighthouse",
+      "name": "Lighthouse",
+      "descriptionKey": "ecosystem.tools.lighthouse",
+      "url": "https://lighthouse.sigmaprime.io",
+      "category": "infra"
+    },
+    {
+      "id": "prysm",
+      "name": "Prysm",
+      "descriptionKey": "ecosystem.tools.prysm",
+      "url": "https://prysm.offchainlabs.com",
+      "category": "infra"
+    },
+    {
+      "id": "teku",
+      "name": "Teku",
+      "descriptionKey": "ecosystem.tools.teku",
+      "url": "https://consensys.io/teku",
+      "category": "infra"
+    },
+    {
+      "id": "nimbus",
+      "name": "Nimbus",
+      "descriptionKey": "ecosystem.tools.nimbus",
+      "url": "https://nimbus.team",
+      "category": "infra"
+    },
+    {
+      "id": "lodestar",
+      "name": "Lodestar",
+      "descriptionKey": "ecosystem.tools.lodestar",
+      "url": "https://lodestar.chainsafe.io",
+      "category": "infra"
+    },
+    {
+      "id": "client-diversity",
+      "name": "Client Diversity",
+      "descriptionKey": "ecosystem.tools.clientDiversity",
+      "url": "https://clientdiversity.org",
+      "category": "infra"
+    },
+    {
+      "id": "ethpandaops",
+      "name": "ethPandaOps",
+      "descriptionKey": "ecosystem.tools.ethpandaops",
+      "url": "https://ethpandaops.io",
+      "category": "infra"
+    },
+    {
+      "id": "flashbots",
+      "name": "Flashbots",
+      "descriptionKey": "ecosystem.tools.flashbots",
+      "url": "https://www.flashbots.net",
+      "category": "infra"
+    },
+    {
+      "id": "ethereum-magicians",
+      "name": "Ethereum Magicians",
+      "descriptionKey": "ecosystem.tools.ethereumMagicians",
+      "url": "https://ethereum-magicians.org/",
+      "category": "research",
+      "highlight": true
+    },
+    {
+      "id": "ethresearch",
+      "name": "ethresear.ch",
+      "descriptionKey": "ecosystem.tools.ethresearch",
+      "url": "https://ethresear.ch",
+      "category": "research"
+    },
+    {
+      "id": "ethereum-pm",
+      "name": "Ethereum PM",
+      "descriptionKey": "ecosystem.tools.ethereumPm",
+      "url": "https://github.com/ethereum/pm/issues",
+      "category": "research",
+      "highlight": true
+    },
+    {
+      "id": "forkcast",
+      "name": "Forkcast",
+      "descriptionKey": "ecosystem.tools.forkcast",
+      "url": "https://forkcast.org",
+      "category": "research"
+    },
+    {
+      "id": "eips",
+      "name": "EIPs",
+      "descriptionKey": "ecosystem.tools.eips",
+      "url": "https://eips.ethereum.org",
+      "category": "research"
+    },
+    {
+      "id": "ethereum-roadmap",
+      "name": "ethereum.org 로드맵",
+      "descriptionKey": "ecosystem.tools.ethereumRoadmap",
+      "url": "https://ethereum.org/roadmap/",
+      "category": "research"
+    },
+    {
+      "id": "protocol-guild",
+      "name": "Protocol Guild",
+      "descriptionKey": "ecosystem.tools.protocolGuild",
+      "url": "https://www.protocolguild.org",
+      "category": "research"
+    },
+    {
+      "id": "etherealize",
+      "name": "Etherealize",
+      "descriptionKey": "ecosystem.tools.etherealize",
+      "url": "https://www.etherealize.com/",
+      "category": "research",
+      "highlight": true
     },
     {
       "id": "foundry",
       "name": "Foundry",
       "descriptionKey": "ecosystem.tools.foundry",
-      "url": "https://book.getfoundry.sh",
+      "url": "https://getfoundry.sh",
+      "category": "dev-tools"
+    },
+    {
+      "id": "hardhat",
+      "name": "Hardhat",
+      "descriptionKey": "ecosystem.tools.hardhat",
+      "url": "https://hardhat.org",
       "category": "dev-tools"
     },
     {
@@ -275,6 +681,27 @@
       "category": "dev-tools"
     },
     {
+      "id": "viem",
+      "name": "viem",
+      "descriptionKey": "ecosystem.tools.viem",
+      "url": "https://viem.sh",
+      "category": "dev-tools"
+    },
+    {
+      "id": "openzeppelin",
+      "name": "OpenZeppelin",
+      "descriptionKey": "ecosystem.tools.openzeppelin",
+      "url": "https://www.openzeppelin.com/solidity-contracts",
+      "category": "dev-tools"
+    },
+    {
+      "id": "scaffold-eth",
+      "name": "Scaffold-ETH 2",
+      "descriptionKey": "ecosystem.tools.scaffoldEth",
+      "url": "https://scaffoldeth.io",
+      "category": "dev-tools"
+    },
+    {
       "id": "tenderly",
       "name": "Tenderly",
       "descriptionKey": "ecosystem.tools.tenderly",
@@ -282,41 +709,17 @@
       "category": "dev-tools"
     },
     {
-      "id": "ethereum-magicians",
-      "name": "Ethereum Magicians",
-      "descriptionKey": "ecosystem.tools.ethereumMagicians",
-      "url": "https://ethereum-magicians.org/",
-      "category": "dev-tools",
-      "highlight": true
-    },
-    {
-      "id": "etherealize",
-      "name": "Etherealize",
-      "descriptionKey": "ecosystem.tools.etherealize",
-      "url": "https://www.etherealize.com/",
-      "category": "dev-tools",
-      "highlight": true
-    },
-    {
-      "id": "ethereum-pm",
-      "name": "Ethereum PM",
-      "descriptionKey": "ecosystem.tools.ethereumPm",
-      "url": "https://github.com/ethereum/pm/issues",
-      "category": "dev-tools",
-      "highlight": true
+      "id": "ens",
+      "name": "ENS",
+      "descriptionKey": "ecosystem.tools.ens",
+      "url": "https://ens.domains",
+      "category": "nft"
     },
     {
       "id": "opensea",
       "name": "OpenSea",
       "descriptionKey": "ecosystem.tools.opensea",
       "url": "https://opensea.io",
-      "category": "nft"
-    },
-    {
-      "id": "ens",
-      "name": "ENS",
-      "descriptionKey": "ecosystem.tools.ens",
-      "url": "https://ens.domains",
       "category": "nft"
     },
     {

@@ -4,49 +4,74 @@ import AnimatedNumber from '../components/common/AnimatedNumber';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Users, ChevronDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { mockMembers } from '../data/mockData';
+import { mockMembers, mockContributors } from '../data/mockData';
 import { sortMembers, getTotalContributions } from '../utils/members';
 import usePageMeta from '../hooks/usePageMeta';
+import type { TeamMember } from '../types/team';
 
 type SortOption = 'contributions' | 'seniority';
+
+// 코어팀과 이름이 겹치는 기여자는 코어팀 카드만 남긴다 (Home과 같은 기준)
+const coreNames = new Set(mockMembers.map(m => m.name.toLowerCase()));
+const contributors = mockContributors.filter(c => !coreNames.has(c.name.toLowerCase()));
+const everyone = [...mockMembers, ...contributors];
+
+const MemberGrid: React.FC<{ members: TeamMember[]; dim?: boolean }> = ({ members, dim }) => (
+    <motion.div layout className={`grid md:grid-cols-2 lg:grid-cols-3 gap-6 ${dim ? 'opacity-60 hover:opacity-100 transition-opacity' : ''}`}>
+        <AnimatePresence mode="popLayout">
+            {members.map((m) => (
+                <MemberCard key={m.id} member={m} />
+            ))}
+        </AnimatePresence>
+    </motion.div>
+);
+
+const SectionTitle: React.FC<{ title: string; count: number; dot: string }> = ({ title, count, dot }) => (
+    <div className="flex items-center gap-3 mb-8">
+        <div className={`w-2.5 h-2.5 rounded-full ${dot}`} />
+        <h2 className="text-2xl font-bold text-theme-text">
+            {title} <span className="text-theme-text-muted font-normal text-base ml-1">{count}</span>
+        </h2>
+        <div className="h-px flex-grow bg-gradient-to-r from-theme-border to-transparent" />
+    </div>
+);
 
 const Team: React.FC = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [sortBy, setSortBy] = useState<SortOption>('contributions');
+    const [filter, setFilter] = useState<string>('all');
     const { t } = useTranslation('team');
-    usePageMeta({ title: 'Core Team', description: 'ECK(Ethereum Collective Korea) 코어팀 멤버' });
-
-    const currentMembers = useMemo(() => {
-        const filtered = mockMembers.filter(member =>
-            member.isCurrent && (
-                member.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                member.role.toLowerCase().includes(searchQuery.toLowerCase())
-            )
-        );
-        return sortMembers(filtered, sortBy);
-    }, [searchQuery, sortBy]);
+    usePageMeta({ title: 'Team', description: 'ECK(Ethereum Collective Korea) 코어팀과 기여자' });
 
     const [now] = useState(() => Date.now());
     const stats = useMemo(() => {
-        const memberCount = mockMembers.length;
-        const totalContributions = mockMembers.reduce((sum, m) => sum + getTotalContributions(m.contributions), 0);
-        const earliest = mockMembers.reduce((min, m) => {
+        const totalContributions = everyone.reduce((sum, m) => sum + getTotalContributions(m.contributions), 0);
+        const earliest = everyone.reduce((min, m) => {
             const start = new Date(m.period.split(' - ')[0].replace(/\./g, '-')).getTime();
             return start < min ? start : min;
         }, Infinity);
-        const days = Math.floor((now - earliest) / 86400000);
-        return { memberCount, totalContributions, days };
+        return { memberCount: everyone.length, totalContributions, days: Math.floor((now - earliest) / 86400000) };
     }, [now]);
 
-    const alumniMembers = useMemo(() => {
-        const filtered = mockMembers.filter(member =>
-            !member.isCurrent && (
-                member.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                member.role.toLowerCase().includes(searchQuery.toLowerCase())
-            )
+    const categories = useMemo(() => ['all', ...Array.from(new Set(contributors.map(c => c.category)))], []);
+
+    const { core, alumni, active, inactive } = useMemo(() => {
+        const q = searchQuery.toLowerCase();
+        const matches = (m: TeamMember) => m.name.toLowerCase().includes(q) || m.role.toLowerCase().includes(q);
+        const sortedCore = sortMembers(mockMembers.filter(matches), sortBy);
+        const sortedContrib = sortMembers(
+            contributors.filter(c => matches(c) && (filter === 'all' || c.category === filter)),
+            sortBy,
         );
-        return sortMembers(filtered, sortBy);
-    }, [searchQuery, sortBy]);
+        return {
+            core: sortedCore.filter(m => m.isCurrent),
+            alumni: sortedCore.filter(m => !m.isCurrent),
+            active: sortedContrib.filter(c => c.isCurrent),
+            inactive: sortedContrib.filter(c => !c.isCurrent),
+        };
+    }, [searchQuery, sortBy, filter]);
+
+    const nothing = core.length + alumni.length + active.length + inactive.length === 0;
 
     return (
         <div className="min-h-screen pt-28 pb-20 px-6 container mx-auto text-theme-text">
@@ -118,47 +143,48 @@ const Team: React.FC = () => {
             </div>
 
             <div className="space-y-24">
-                {/* Current Team Section */}
-                <section>
-                    <div className="flex items-center gap-4 mb-10">
-                        <h2 className="text-2xl font-bold text-theme-text">{t('sections.current')}</h2>
-                        <div className="h-px flex-grow bg-gradient-to-r from-theme-border to-transparent" />
-                    </div>
+                {core.length > 0 && (
+                    <section>
+                        <SectionTitle title={t('sections.core')} count={core.length} dot="bg-brand-accent" />
+                        <MemberGrid members={core} />
+                    </section>
+                )}
 
-                    {currentMembers.length > 0 ? (
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <AnimatePresence mode="popLayout">
-                                {currentMembers.map((member) => (
-                                    <MemberCard key={member.id} member={member} />
-                                ))}
-                            </AnimatePresence>
-                        </div>
+                <section>
+                    <SectionTitle title={t('sections.contributors')} count={active.length} dot="bg-green-500" />
+                    {/* Category Filter (기여자에만 적용) */}
+                    <div className="flex flex-wrap gap-3 mb-10">
+                        {categories.map((cat) => (
+                            <button
+                                key={cat}
+                                onClick={() => setFilter(cat)}
+                                aria-pressed={filter === cat}
+                                className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${filter === cat
+                                    ? 'bg-brand-primary text-theme-text shadow-lg shadow-brand-primary/25'
+                                    : 'bg-theme-surface text-theme-text-muted hover:text-theme-text hover:bg-theme-surface-hover'
+                                    }`}
+                            >
+                                {cat.charAt(0).toUpperCase() + cat.slice(1)}
+                            </button>
+                        ))}
+                    </div>
+                    {active.length > 0 ? (
+                        <MemberGrid members={active} />
                     ) : (
                         <div className="text-center py-10 bg-theme-surface rounded-3xl border border-dashed border-theme-border">
-                            <p className="text-theme-text-muted italic">{t('sections.noActive')}</p>
+                            <p className="text-theme-text-muted italic">{t('contributorNoResults')}</p>
                         </div>
                     )}
                 </section>
 
-                {/* Alumni Section */}
-                {alumniMembers.length > 0 && (
+                {alumni.length + inactive.length > 0 && (
                     <section>
-                        <div className="flex items-center gap-4 mb-10">
-                            <h2 className="text-2xl font-bold text-white/60">{t('sections.alumni')}</h2>
-                            <div className="h-px flex-grow bg-gradient-to-r from-theme-border-secondary to-transparent" />
-                        </div>
-
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 opacity-80 hover:opacity-100 transition-opacity">
-                            <AnimatePresence mode="popLayout">
-                                {alumniMembers.map((member) => (
-                                    <MemberCard key={member.id} member={member} />
-                                ))}
-                            </AnimatePresence>
-                        </div>
+                        <SectionTitle title={t('sections.alumni')} count={alumni.length + inactive.length} dot="bg-gray-500" />
+                        <MemberGrid members={[...alumni, ...inactive]} dim />
                     </section>
                 )}
 
-                {currentMembers.length === 0 && alumniMembers.length === 0 && (
+                {nothing && (
                     <div className="text-center py-20">
                         <Users className="mx-auto text-gray-700 mb-4" size={48} />
                         <p className="text-theme-text-muted text-lg italic tracking-tight font-light">

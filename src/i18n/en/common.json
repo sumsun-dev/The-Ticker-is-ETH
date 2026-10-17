@@ -1,8 +1,7 @@
 {
   "nav": {
     "about": "About",
-    "coreTeam": "Core Team",
-    "contributors": "Contributors",
+    "team": "Team",
     "contents": "Contents",
     "news": "News",
     "debates": "Debates",
@@ -40,7 +39,6 @@
   "recentActivity": "Recent Activity",
   "contributions": "contributions",
   "backToTeam": "Back to Team",
-  "backToContributors": "Back to Contributors",
   "memberNotFound": "Member not found",
   "highlights": "Highlight Contributions",
   "membership": "Membership",

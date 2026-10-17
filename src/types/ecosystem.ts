@@ -1,10 +1,16 @@
 export type EcosystemCategory =
-  | 'explorer'
+  | 'l2'
   | 'defi'
   | 'dex'
+  | 'staking'
+  | 'stablecoin'
   | 'wallet'
   | 'bridge'
+  | 'privacy'
+  | 'explorer'
   | 'analytics'
+  | 'infra'
+  | 'research'
   | 'dev-tools'
   | 'nft';
 

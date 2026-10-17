@@ -2,6 +2,7 @@
  * 이더리움 논쟁 아카이브의 순수 로직 — 스키마, 상태 계산, 병합, 답글 파싱.
  * I/O(claude 호출, X API, 파일 읽기·쓰기)는 scripts/extract-eth-debates.ts가 담당한다.
  */
+import { humanizeTexts, normalizeTerms } from './humanize';
 import { z } from 'zod';
 
 export const CATEGORIES = ['프로토콜 설계', '확장성 · L2', '토큰화 · 기관', '규제', '거버넌스 · 커뮤니티'] as const;
@@ -75,6 +76,33 @@ export type Holder = z.infer<typeof HolderSchema>;
 export type Position = z.infer<typeof PositionSchema>;
 export type TimelineEntry = z.infer<typeof TimelineEntrySchema>;
 export type DebateDraft = z.infer<typeof DebateDraftSchema>;
+
+/**
+ * im-not-ai 룰북으로 설명 문장(요약·핵심·배경·의미·논거)만 윤문한다. 제목·라벨·인용 번역(quote)·인물은 건드리지 않는다.
+ * 윤문 결과가 스키마를 벗어나면 원래 초안을 쓴다
+ */
+export function humanizeDebateDraft(draft: DebateDraft, run: (prompt: string) => string): DebateDraft {
+  const texts = [
+    draft.summary,
+    draft.background ?? '',
+    draft.whyItMatters ?? '',
+    ...draft.keyPoints,
+    ...draft.positions.flatMap((p) => p.points),
+  ];
+  const out = humanizeTexts(texts, '이더리움 커뮤니티 논쟁 정리("~다" 평서체)', run);
+  let k = 3;
+  const next = {
+    ...draft,
+    summary: out[0],
+    ...(draft.background ? { background: out[1] } : {}),
+    ...(draft.whyItMatters ? { whyItMatters: out[2] } : {}),
+    keyPoints: draft.keyPoints.map(() => out[k++]),
+    positions: draft.positions.map((p) => ({ ...p, points: p.points.map(() => out[k++]) })),
+  };
+  const checked = DebateDraftSchema.safeParse(next);
+  if (!checked.success) console.warn(`[WARN] humanize ${draft.id}: 결과가 스키마를 벗어나 원래 초안을 씁니다`);
+  return normalizeTerms(checked.success ? checked.data : draft);
+}
 export type DebateStatus = 'active' | 'cooling' | 'archived' | 'resolved';
 
 export interface Engagement {
@@ -137,6 +165,33 @@ export function unnotified(debates: ReadonlyArray<Debate>, notified: ReadonlyArr
 export function parseDecision(data: string | undefined): { id: string; publish: boolean } | null {
   const parsed = /^([ph]):(.+)$/.exec(data ?? '');
   return parsed ? { id: parsed[2], publish: parsed[1] === 'p' } : null;
+}
+
+/** 추적 계정 후보: 논쟁 minDebates건 이상에 X 핸들로 등장했지만 워치리스트에 없는 인물. 이미 제안한 핸들(skip)은 뺀다. 많이 등장한 순 */
+export function watchCandidates(
+  debates: ReadonlyArray<Debate>,
+  watchlist: ReadonlySet<string>,
+  skip: ReadonlySet<string>,
+  minDebates = 2,
+): Array<{ handle: string; titles: string[] }> {
+  const seen = new Map<string, { handle: string; titles: string[] }>();
+  for (const d of debates) {
+    const handles = new Set(d.positions.flatMap((p) => p.holders.flatMap((h) => (h.handle ? [h.handle] : []))));
+    for (const handle of handles) {
+      const key = handle.toLowerCase();
+      if (watchlist.has(key) || skip.has(key)) continue;
+      const entry = seen.get(key) ?? { handle, titles: [] };
+      entry.titles.push(d.title);
+      seen.set(key, entry);
+    }
+  }
+  return [...seen.values()].filter((c) => c.titles.length >= minDebates).sort((a, b) => b.titles.length - a.titles.length);
+}
+
+/** 추적 계정 DM 버튼: 'wa:<handle>'면 추가, 'wr:<handle>'면 건너뜀 */
+export function parseWatchDecision(data: string | undefined): { handle: string; add: boolean } | null {
+  const parsed = /^w([ar]):(\w{1,15})$/.exec(data ?? '');
+  return parsed ? { handle: parsed[2], add: parsed[1] === 'a' } : null;
 }
 
 /** 버튼 결정 반영 */
