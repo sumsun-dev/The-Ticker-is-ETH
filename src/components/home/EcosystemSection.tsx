@@ -1,31 +1,20 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Search,
-  Landmark,
-  ArrowLeftRight,
-  Wallet,
-  Cable,
-  BarChart3,
-  Code,
-  Image,
   ExternalLink,
   Layers,
+  ArrowRight,
 } from 'lucide-react';
 import { useTranslation, Trans } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import type { EcosystemCategory, EcosystemCategoryInfo, EcosystemTool } from '../../types/ecosystem';
 import ecosystemData from '../../data/ecosystem-tools.json';
+import { ecosystemIconMap } from '../../data/ecosystemIcons';
 
-const iconMap: Record<string, React.ReactNode> = {
-  Search: <Search size={16} />,
-  Landmark: <Landmark size={16} />,
-  ArrowLeftRight: <ArrowLeftRight size={16} />,
-  Wallet: <Wallet size={16} />,
-  Cable: <Cable size={16} />,
-  BarChart3: <BarChart3 size={16} />,
-  Code: <Code size={16} />,
-  Image: <Image size={16} />,
-};
+
+// ponytail: 홈은 미리보기라 분야마다 HOME_LIMIT개만. 전체 목록은 /ecosystem
+const HOME_LIMIT = 8;
+const FEATURED_ON_HOME = new Set(['arbitrum', 'base', 'aave', 'uniswap', 'lido', 'etherscan', 'l2beat']);
 
 const categories = ecosystemData.categories as EcosystemCategoryInfo[];
 const tools = ecosystemData.tools as EcosystemTool[];
@@ -50,9 +39,10 @@ const EcosystemSection: React.FC = () => {
 
   const filteredTools = useMemo(
     () =>
-      activeCategory === 'all'
-        ? tools
-        : tools.filter((tool) => tool.category === activeCategory),
+      (activeCategory === 'all'
+        ? tools.filter((tool) => tool.highlight || FEATURED_ON_HOME.has(tool.id))
+        : tools.filter((tool) => tool.category === activeCategory)
+      ).slice(0, HOME_LIMIT),
     [activeCategory],
   );
 
@@ -123,8 +113,8 @@ const EcosystemSection: React.FC = () => {
                   : 'bg-theme-surface text-theme-text-muted border border-theme-border-secondary hover:border-theme-border hover:text-theme-text'
               }`}
             >
-              {iconMap[cat.icon]}
-              {t(cat.labelKey)}
+              {ecosystemIconMap[cat.icon]}
+              {t(cat.labelKey, { ns: 'ecosystem' })}
             </button>
           ))}
         </motion.div>
@@ -138,7 +128,7 @@ const EcosystemSection: React.FC = () => {
                 href={tool.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`${tool.name} — ${t(tool.descriptionKey)}`}
+                aria-label={`${tool.name} — ${t(tool.descriptionKey, { ns: 'ecosystem' })}`}
                 layout
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -168,11 +158,21 @@ const EcosystemSection: React.FC = () => {
                   {tool.name}
                 </h3>
                 <p className="text-theme-text-muted text-xs md:text-sm leading-relaxed line-clamp-2 font-light">
-                  {t(tool.descriptionKey)}
+                  {t(tool.descriptionKey, { ns: 'ecosystem' })}
                 </p>
               </motion.a>
             ))}
           </AnimatePresence>
+        </div>
+
+        <div className="text-center mt-12">
+          <Link
+            to="/ecosystem"
+            className="group inline-flex items-center gap-2 px-7 py-3 rounded-full border border-theme-border text-theme-text-secondary font-medium text-sm hover:border-brand-primary/40 hover:text-theme-text transition-all"
+          >
+            {t('ecosystem.viewAll')}
+            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+          </Link>
         </div>
       </div>
 

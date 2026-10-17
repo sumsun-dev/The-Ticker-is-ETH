@@ -1,14 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Search,
-  Landmark,
-  ArrowLeftRight,
-  Wallet,
-  Cable,
-  BarChart3,
-  Code,
-  Image,
   ExternalLink,
   Layers,
   Star,
@@ -20,17 +12,9 @@ import { useTranslation, Trans } from 'react-i18next';
 import usePageMeta from '../hooks/usePageMeta';
 import type { EcosystemCategory, EcosystemCategoryInfo, EcosystemTool, EcosystemTwitterAccount, TwitterCategory } from '../types/ecosystem';
 import ecosystemData from '../data/ecosystem-tools.json';
+import { ecosystemIconMap } from '../data/ecosystemIcons';
 
-const iconMap: Record<string, React.ReactNode> = {
-  Search: <Search size={16} />,
-  Landmark: <Landmark size={16} />,
-  ArrowLeftRight: <ArrowLeftRight size={16} />,
-  Wallet: <Wallet size={16} />,
-  Cable: <Cable size={16} />,
-  BarChart3: <BarChart3 size={16} />,
-  Code: <Code size={16} />,
-  Image: <Image size={16} />,
-};
+
 
 const categories = ecosystemData.categories as EcosystemCategoryInfo[];
 const tools = ecosystemData.tools as EcosystemTool[];
@@ -287,7 +271,7 @@ const Ecosystem: React.FC = () => {
                   : 'bg-white/[0.03] text-theme-text-secondary border border-theme-border-secondary hover:border-white/20 hover:text-theme-text'
               }`}
             >
-              {iconMap[cat.icon]}
+              {ecosystemIconMap[cat.icon]}
               {t(cat.labelKey)}
             </button>
           ))}
