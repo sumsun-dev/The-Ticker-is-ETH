@@ -118,7 +118,12 @@
       "drakefjustin": "Ethereum Foundation researcher, long-term roadmap",
       "hwwonx": "Co-Executive Director of the Ethereum Foundation",
       "ethDaily": "Daily Ethereum news and ecosystem curation",
-      "ryanberckmans": "Ethereum community member and ETH investor"
+      "ryanberckmans": "Ethereum community member and ETH investor",
+      "donnoh": "Head of research at L2BEAT, rollup security and native rollups",
+      "barnabemonnot": "Ethereum Foundation researcher, protocol economics and incentive design",
+      "lightclients": "Geth core developer, execution layer EIPs such as EIP-7702",
+      "gakonst": "CTO at Paradigm, building Reth and Foundry",
+      "trentVanepps": "Organizer at Protocol Guild, funding core developers"
     }
   }
 }

@@ -102,7 +102,7 @@
       "handle": "@ETH_Daily",
       "descriptionKey": "ecosystem.twitter.ethDaily",
       "url": "https://x.com/ETH_Daily",
-      "category": "person"
+      "category": "official"
     },
     {
       "id": "ryanberckmans",
@@ -110,6 +110,46 @@
       "handle": "@ryanberckmans",
       "descriptionKey": "ecosystem.twitter.ryanberckmans",
       "url": "https://x.com/ryanberckmans",
+      "category": "person"
+    },
+    {
+      "id": "donnoh-eth",
+      "name": "Luca Donno (donnoh)",
+      "handle": "@donnoh_eth",
+      "descriptionKey": "ecosystem.twitter.donnoh",
+      "url": "https://x.com/donnoh_eth",
+      "category": "person"
+    },
+    {
+      "id": "barnabemonnot",
+      "name": "Barnabé Monnot",
+      "handle": "@barnabemonnot",
+      "descriptionKey": "ecosystem.twitter.barnabemonnot",
+      "url": "https://x.com/barnabemonnot",
+      "category": "person"
+    },
+    {
+      "id": "lightclients",
+      "name": "Matt Garnett (lightclient)",
+      "handle": "@lightclients",
+      "descriptionKey": "ecosystem.twitter.lightclients",
+      "url": "https://x.com/lightclients",
+      "category": "person"
+    },
+    {
+      "id": "gakonst",
+      "name": "Georgios Konstantopoulos",
+      "handle": "@gakonst",
+      "descriptionKey": "ecosystem.twitter.gakonst",
+      "url": "https://x.com/gakonst",
+      "category": "person"
+    },
+    {
+      "id": "trent-vanepps",
+      "name": "Trent Van Epps",
+      "handle": "@trent_vanepps",
+      "descriptionKey": "ecosystem.twitter.trentVanepps",
+      "url": "https://x.com/trent_vanepps",
       "category": "person"
     }
   ],
