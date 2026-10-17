@@ -57,8 +57,8 @@ const MemberDetail: React.FC = () => {
                       breadcrumbLd([
                           { name: 'Home', url: '/' },
                           {
-                              name: member.memberType === 'core' ? 'Core Team' : 'Contributors',
-                              url: memberBase,
+                              name: 'Team',
+                              url: '/team',
                           },
                           { name: member.name, url: `${memberBase}/${member.id}` },
                       ]),
@@ -87,8 +87,6 @@ const MemberDetail: React.FC = () => {
         }
     };
 
-    const backLink = member.memberType === 'core' ? '/team' : '/contributors';
-    const backLabel = member.memberType === 'core' ? t('backToTeam') : t('backToContributors');
     const totalMessages = member.recentActivity.length;
     const bioKey = `team:bios.${member.name.toLowerCase()}`;
 
@@ -103,8 +101,8 @@ const MemberDetail: React.FC = () => {
     return (
         <div className="min-h-screen pt-28 pb-20 px-6 container mx-auto">
             {structuredData && <JsonLd data={structuredData} id="member-detail" />}
-            <Link to={backLink} className="inline-flex items-center text-theme-text-muted hover:text-theme-text mb-8 transition-colors group">
-                <ArrowLeft size={20} className="mr-2 group-hover:-translate-x-1 transition-transform" /> {backLabel}
+            <Link to="/team" className="inline-flex items-center text-theme-text-muted hover:text-theme-text mb-8 transition-colors group">
+                <ArrowLeft size={20} className="mr-2 group-hover:-translate-x-1 transition-transform" /> {t('backToTeam')}
             </Link>
 
             <div className="grid lg:grid-cols-3 gap-12">

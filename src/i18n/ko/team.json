@@ -1,22 +1,17 @@
 {
-  "badge": "The Guardians",
-  "title": "Core Team",
-  "description": "Infinite Garden의 정신으로, 이더리움을 한국에 더 가까이 가져오기 위해 헌신하는 사람들을 만나보세요.",
+  "badge": "Team",
+  "title": "Team",
+  "description": "Infinite Garden의 정신으로 이더리움을 한국에 더 가까이 가져오는 사람들입니다. 코어팀과 리서치부터 번역까지 기여하는 커뮤니티를 함께 만나보세요.",
   "stats": {
     "members": "Members",
     "contributions": "Contributions",
     "days": "Days"
   },
   "sections": {
-    "current": "Current Members",
-    "alumni": "Alumni Members",
-    "noActive": "활성 멤버가 없습니다.",
-    "active": "Active",
-    "inactive": "Inactive"
+    "core": "Core Team",
+    "contributors": "Contributors",
+    "alumni": "Alumni · Inactive"
   },
-  "contributorBadge": "Community",
-  "contributorTitle": "Contributors",
-  "contributorDescription": "리서치부터 번역까지, 모든 기여가 정원을 성장시킵니다. 우리 생태계의 심장입니다.",
   "contributorNoResults": "조건에 맞는 기여자를 찾을 수 없습니다.",
   "bios": {
     "sose": "AI Vibe Coder | Web3 Native | DigitalAsset Analyst Team Lead - DeSpread | Core Team - The Ticker is ETH. 기술의 발전을 통한 세상의 긍정적인 발전을 기대합니다. Public goods, AI에 관심이 많습니다.",

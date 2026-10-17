@@ -4,7 +4,7 @@ import usePageMeta from '../hooks/usePageMeta';
 
 const quickLinks = [
   { key: 'nav.about', path: '/about' },
-  { key: 'nav.coreTeam', path: '/team' },
+  { key: 'nav.team', path: '/team' },
   { key: 'nav.contents', path: '/contents' },
   { key: 'nav.events', path: '/events' },
   { key: 'nav.ecosystem', path: '/ecosystem' },

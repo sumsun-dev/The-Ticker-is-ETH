@@ -8,7 +8,6 @@ const Home = React.lazy(() => import('./pages/Home'));
 const About = React.lazy(() => import('./pages/About'));
 const Team = React.lazy(() => import('./pages/Team'));
 const MemberDetail = React.lazy(() => import('./pages/MemberDetail'));
-const Contributors = React.lazy(() => import('./pages/Contributors'));
 const Events = React.lazy(() => import('./pages/Events'));
 const EventGenesis = React.lazy(() => import('./pages/EventGenesis'));
 const Contents = React.lazy(() => import('./pages/Contents'));
@@ -47,7 +46,7 @@ const AppRoutes: React.FC = () => {
           <Route path="/about" element={<About />} />
           <Route path="/team" element={<Team />} />
           <Route path="/team/:id" element={<MemberDetail />} />
-          <Route path="/contributors" element={<Contributors />} />
+          <Route path="/contributors" element={<Navigate to="/team" replace />} />
           <Route path="/contributors/:id" element={<MemberDetail />} />
           <Route path="/ecosystem" element={<Ecosystem />} />
           <Route path="/events" element={<Events />} />

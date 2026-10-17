@@ -1,8 +1,7 @@
 {
   "nav": {
     "about": "About",
-    "coreTeam": "Core Team",
-    "contributors": "Contributors",
+    "team": "Team",
     "contents": "Contents",
     "news": "News",
     "debates": "Debates",
@@ -40,7 +39,6 @@
   "recentActivity": "최근 활동",
   "contributions": "contributions",
   "backToTeam": "팀으로 돌아가기",
-  "backToContributors": "기여자로 돌아가기",
   "memberNotFound": "멤버를 찾을 수 없습니다.",
   "highlights": "하이라이트 기여",
   "membership": "멤버십",

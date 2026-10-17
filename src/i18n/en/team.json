@@ -1,22 +1,17 @@
 {
-  "badge": "The Guardians",
-  "title": "Core Team",
-  "description": "Meet the dedicated individuals working to bring Ethereum closer to Korea with the spirit of the Infinite Garden.",
+  "badge": "Team",
+  "title": "Team",
+  "description": "The people bringing Ethereum closer to Korea in the spirit of the Infinite Garden. Meet the core team and the community contributing everything from research to translation.",
   "stats": {
     "members": "Members",
     "contributions": "Contributions",
     "days": "Days"
   },
   "sections": {
-    "current": "Current Members",
-    "alumni": "Alumni Members",
-    "noActive": "No active members found.",
-    "active": "Active",
-    "inactive": "Inactive"
+    "core": "Core Team",
+    "contributors": "Contributors",
+    "alumni": "Alumni · Inactive"
   },
-  "contributorBadge": "Community",
-  "contributorTitle": "Contributors",
-  "contributorDescription": "The heart of our ecosystem. Every contribution from research to translation helps the garden grow.",
   "contributorNoResults": "No contributors found matching your criteria.",
   "bios": {
     "sose": "AI Vibe Coder | Web3 Native | DigitalAsset Analyst Team Lead - DeSpread | Core Team - The Ticker is ETH. Expects positive change through technological advancement. Deeply interested in public goods and AI.",
