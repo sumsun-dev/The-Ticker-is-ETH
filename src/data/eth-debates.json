@@ -527,7 +527,8 @@
         "quotes": 2,
         "replies": 1,
         "views": 2415
-      }
+      },
+      "publish": true
     },
     {
       "id": "create2-factory-eip7997-worth",
@@ -686,7 +687,8 @@
         "quotes": 0,
         "replies": 3,
         "views": 796
-      }
+      },
+      "publish": true
     },
     {
       "id": "balaji-farcaster-acquisition",
@@ -908,7 +910,8 @@
         "quotes": 4,
         "replies": 17,
         "views": 4541
-      }
+      },
+      "publish": true
     },
     {
       "id": "eth-value-accrual-broken",
