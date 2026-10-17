@@ -31,6 +31,7 @@ import {
   DraftEnvelopeSchema,
   extractJson,
   handleMatchesName,
+  humanizeDebateDraft,
   mergeDebates,
   parseThreadReplies,
   personLines,
@@ -63,6 +64,7 @@ const CONTEXT_CACHE = path.resolve(process.cwd(), '.cache/eth-context.json');
 const MAX_DIGESTS = Number(process.env.DEBATES_MAX_DIGESTS ?? 14);
 /** 추출·교정에 쓰는 모델. VPS CLI가 fable을 받는지 확인되면 기본값을 fable로 올린다. */
 const DEBATES_MODEL = process.env.DEBATES_MODEL ?? 'opus';
+const runDebateModel = (prompt: string) => runClaude(prompt, DEBATES_MODEL);
 
 interface DigestItem { title: string; summary: string; why?: string; url: string; source: string; date: string }
 interface Digest { date: string; sections: Array<{ heading: string; items: DigestItem[] }> }
@@ -314,7 +316,7 @@ async function refineDebates(file: DebatesFile, ids: string[], context: string) 
     console.log(`Refining ${id} (${d.timeline.length} quotes, ${originals.length} chars of originals)...`);
     let draft: DebateDraft;
     try {
-      draft = DebateDraftSchema.parse(extractJson(runClaude(prompt, DEBATES_MODEL)));
+      draft = humanizeDebateDraft(DebateDraftSchema.parse(extractJson(runClaude(prompt, DEBATES_MODEL))), runDebateModel);
     } catch (error) {
       console.warn(`[WARN] refine ${id} failed:`, error instanceof Error ? error.message : error);
       continue;
@@ -619,7 +621,7 @@ async function main() {
   }
 
   console.log(`Extracting debates from ${items.length} items across ${pending.length} digest(s) (headless claude)...`);
-  const { debates: drafts } = DraftEnvelopeSchema.parse(extractJson(runClaude(prompt, DEBATES_MODEL)));
+  const drafts = DraftEnvelopeSchema.parse(extractJson(runClaude(prompt, DEBATES_MODEL))).debates.map((d) => humanizeDebateDraft(d, runDebateModel));
 
   let merged = mergeDebates(file.debates, drafts, today);
 

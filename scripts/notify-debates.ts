@@ -5,6 +5,9 @@
  *       → 5분 크론이 getUpdates로 받아 eth-debates.json의 publish에 기록하고 커밋·푸시 → 10분 내 배포.
  * 참여 10명 이상은 그대로 자동 노출이고, 버튼은 그 판단을 뒤집는 용도다 (2026-09-16 오너 결정).
  *
+ * 추적 계정 승인 (2026-10-17 오너 요청): 논쟁 2건 이상에 등장했지만 워치리스트에 없는 X 계정을 DM으로 제안하고,
+ * [추적 추가]를 누르면 scripts/config/twitter-accounts.json에 넣는다. 다음 수집부터 반영된다. 한 번 제안한 계정은 다시 묻지 않는다.
+ *
  * 실행: npx tsx scripts/notify-debates.ts [--commit] [--test]
  *   --commit: 변경이 있으면 커밋·푸시까지 (VPS 크론용)
  *   --test:   상태와 무관하게 최신 논쟁 1건을 발송
@@ -17,12 +20,26 @@ import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
 import * as dotenv from 'dotenv';
-import { MIN_PARTICIPANTS, holderCount, isShown, parseDecision, setPublish, unnotified, type Debate, type DebatesFile } from './lib/eth-debates';
+import {
+  MIN_PARTICIPANTS,
+  holderCount,
+  isShown,
+  parseDecision,
+  parseWatchDecision,
+  setPublish,
+  unnotified,
+  watchCandidates,
+  type Debate,
+  type DebatesFile,
+  type XProfile,
+} from './lib/eth-debates';
 
 dotenv.config({ path: path.resolve(process.cwd(), '.env.local') });
 dotenv.config({ path: path.resolve(process.cwd(), '.env') });
 
 const FILE = path.resolve(process.cwd(), 'src/data/eth-debates.json');
+const ACCOUNTS = path.resolve(process.cwd(), 'scripts/config/twitter-accounts.json');
+const PROFILES = path.resolve(process.cwd(), 'src/data/x-profiles.json');
 const STATE_FILE = process.env.DEBATES_ALERT_STATE ?? path.join(os.homedir(), '.eck-debate-alerts.json');
 const SITE = 'https://ethcollective.xyz';
 /** 한 번에 보낼 최대 건수. 밀린 논쟁이 많아도 DM이 쏟아지지 않게 */
@@ -33,6 +50,12 @@ interface State {
   notified: string[];
   /** getUpdates 오프셋 — 처리한 업데이트 재수신 방지 */
   offset: number;
+  /** 이미 DM으로 제안한 추적 계정 후보 (소문자 핸들, 승인·거절 모두) */
+  proposed: string[];
+}
+
+interface AccountsFile {
+  accounts: Array<{ screenname: string; name?: string; why?: string }>;
 }
 
 interface CallbackQuery {
@@ -44,7 +67,7 @@ interface CallbackQuery {
 function readState(): State | null {
   if (!fs.existsSync(STATE_FILE)) return null;
   const raw = JSON.parse(fs.readFileSync(STATE_FILE, 'utf-8')) as Partial<State>;
-  return { notified: raw.notified ?? [], offset: raw.offset ?? 0 };
+  return { notified: raw.notified ?? [], offset: raw.offset ?? 0, proposed: raw.proposed ?? [] };
 }
 
 const writeState = (state: State) => fs.writeFileSync(STATE_FILE, JSON.stringify(state, null, 2), 'utf-8');
@@ -100,6 +123,34 @@ const keyboardOf = (debate: Debate) => ({
   ]],
 });
 
+function watchMessageOf(c: { handle: string; titles: string[] }, profile?: XProfile): string {
+  const lines = [
+    '<b>추적 계정 후보</b>',
+    `<b>@${esc(c.handle)}</b>${profile ? ` ${esc(profile.name)} · 팔로워 ${(profile.followers ?? 0).toLocaleString('en-US')}` : ''}`,
+  ];
+  if (profile?.bio) lines.push(esc(profile.bio));
+  lines.push('', `논쟁 ${c.titles.length}건에 등장:`, ...c.titles.slice(0, 5).map((t) => `· ${esc(t)}`), '', `https://x.com/${c.handle}`);
+  return lines.join('\n');
+}
+
+const watchKeyboardOf = (handle: string) => ({
+  inline_keyboard: [[
+    { text: '추적 추가', callback_data: `wa:${handle}` },
+    { text: '건너뛰기', callback_data: `wr:${handle}` },
+  ]],
+});
+
+/** 추적 추가 승인을 워치리스트에 넣는다. 이미 있으면 그대로 */
+function addToWatchlist(handle: string, titles: string[]): boolean {
+  const file = JSON.parse(fs.readFileSync(ACCOUNTS, 'utf-8')) as AccountsFile;
+  if (file.accounts.some((a) => a.screenname.toLowerCase() === handle.toLowerCase())) return false;
+  const profiles = fs.existsSync(PROFILES) ? (JSON.parse(fs.readFileSync(PROFILES, 'utf-8')) as Record<string, XProfile>) : {};
+  const name = profiles[handle.toLowerCase()]?.name ?? handle;
+  const why = `논쟁 참여자 (오너 승인 ${new Date().toISOString().slice(0, 10)}) · ${titles.slice(0, 2).join(' / ')}`;
+  fs.writeFileSync(ACCOUNTS, JSON.stringify({ ...file, accounts: [...file.accounts, { screenname: handle, name, why }] }, null, 2) + '\n', 'utf-8');
+  return true;
+}
+
 /** 버튼 응답을 모아 publish에 반영. 바뀐 논쟁 목록을 주고, 응답이 없으면 null */
 async function applyCallbacks(token: string, state: State, debates: Debate[]): Promise<Debate[] | null> {
   const updates = await tg<Array<{ update_id: number; callback_query?: CallbackQuery }>>(token, 'getUpdates', {
@@ -111,6 +162,19 @@ async function applyCallbacks(token: string, state: State, debates: Debate[]): P
   for (const update of updates) {
     state.offset = update.update_id + 1;
     const cb = update.callback_query;
+    const watch = parseWatchDecision(cb?.data);
+    if (cb && watch) {
+      const added = watch.add && addToWatchlist(watch.handle, watchCandidates(next ?? debates, new Set(), new Set(), 1).find((c) => c.handle.toLowerCase() === watch.handle.toLowerCase())?.titles ?? []);
+      await tgQuiet(token, 'answerCallbackQuery', {
+        callback_query_id: cb.id,
+        text: watch.add ? (added ? '추적 계정에 추가했습니다' : '이미 추적 중입니다') : '건너뜁니다',
+      });
+      if (cb.message) {
+        await tgQuiet(token, 'editMessageReplyMarkup', { chat_id: cb.message.chat.id, message_id: cb.message.message_id, reply_markup: { inline_keyboard: [] } });
+      }
+      console.log(`  @${watch.handle} → ${watch.add ? (added ? '추적 추가' : '이미 추적 중') : '건너뜀'}`);
+      continue;
+    }
     const decision = parseDecision(cb?.data);
     if (!cb || !decision) continue;
     const { id, publish } = decision;
@@ -138,9 +202,9 @@ async function applyCallbacks(token: string, state: State, debates: Debate[]): P
 
 function commitAndPush(): void {
   const git = (...args: string[]) => execFileSync('git', args, { encoding: 'utf-8' });
-  git('add', 'src/data/eth-debates.json');
+  git('add', 'src/data/eth-debates.json', 'scripts/config/twitter-accounts.json');
   if (!git('diff', '--cached', '--name-only').trim()) return;
-  git('commit', '-m', 'chore: 논쟁 사이트 노출 승인 반영 [automated]');
+  git('commit', '-m', 'chore: 논쟁 노출·추적 계정 승인 반영 [automated]');
   // fetch + rebase로 올린다. `git pull --rebase origin main`은 FETCH_HEAD에 브랜치가 여러 개 남아 있으면
   // "Cannot rebase onto multiple branches"로 죽는다 (2026-09-17 실측: 버튼 결과가 VPS에만 남고 푸시가 안 됨)
   git('fetch', 'origin');
@@ -159,7 +223,7 @@ async function main() {
   const state = readState();
 
   if (!state) {
-    writeState({ notified: file.debates.map((d) => d.id), offset: 0 });
+    writeState({ notified: file.debates.map((d) => d.id), offset: 0, proposed: [] });
     console.log(`[INIT] ${file.debates.length}건을 발송 없이 기록했습니다 (${STATE_FILE})`);
     return;
   }
@@ -167,10 +231,9 @@ async function main() {
   const updated = await applyCallbacks(token, state, file.debates);
   // 발송 단계에서 실패해도 처리한 업데이트를 다시 받지 않도록 offset을 먼저 저장한다
   writeState(state);
-  if (updated) {
-    fs.writeFileSync(FILE, JSON.stringify({ ...file, debates: updated }, null, 2), 'utf-8');
-    if (process.argv.includes('--commit')) commitAndPush();
-  }
+  if (updated) fs.writeFileSync(FILE, JSON.stringify({ ...file, debates: updated }, null, 2), 'utf-8');
+  // 추적 추가 승인은 twitter-accounts.json만 바꾸므로, 스테이징할 게 있는지는 commitAndPush가 본다
+  if (process.argv.includes('--commit')) commitAndPush();
 
   const debates = updated ?? file.debates;
   const targets = test ? debates.slice(0, 1) : unnotified(debates, state.notified).slice(0, MAX_PER_RUN);
@@ -187,6 +250,23 @@ async function main() {
   }
   writeState(state);
   if (!targets.length) console.log('[SKIP] 새로 알릴 논쟁 없음');
+
+  // 추적 계정 후보 제안
+  const watchlist = new Set((JSON.parse(fs.readFileSync(ACCOUNTS, 'utf-8')) as AccountsFile).accounts.map((a) => a.screenname.toLowerCase()));
+  const profiles = fs.existsSync(PROFILES) ? (JSON.parse(fs.readFileSync(PROFILES, 'utf-8')) as Record<string, XProfile>) : {};
+  const candidates = watchCandidates(debates, watchlist, new Set(state.proposed)).slice(0, MAX_PER_RUN);
+  for (const c of candidates) {
+    await tg(token, 'sendMessage', {
+      chat_id: chatId,
+      text: watchMessageOf(c, profiles[c.handle.toLowerCase()]),
+      parse_mode: 'HTML',
+      disable_web_page_preview: true,
+      reply_markup: watchKeyboardOf(c.handle),
+    });
+    state.proposed.push(c.handle.toLowerCase());
+    writeState(state);
+    console.log(`  추적 후보 DM: @${c.handle}`);
+  }
 }
 
 main().catch((error) => {

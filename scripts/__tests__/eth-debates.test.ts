@@ -19,6 +19,9 @@ import {
   setPublish,
   parseDecision,
   DraftEnvelopeSchema,
+  humanizeDebateDraft,
+  watchCandidates,
+  parseWatchDecision,
   type Debate,
   type DebateDraft,
 } from '../lib/eth-debates';
@@ -257,5 +260,53 @@ describe('DM 버튼 해석', () => {
     expect(parseDecision('pub:abc')).toBeNull();
     expect(parseDecision('p:')).toBeNull();
     expect(parseDecision(undefined)).toBeNull();
+  });
+});
+
+describe('humanizeDebateDraft', () => {
+  it('should rewrite only prose fields and keep title, labels and quotes', () => {
+    const run = () => JSON.stringify({ texts: ['수익이 ETH로 돌아오는지를 두고 갈렸다.', '', '', '수익이 ETH 수요로 이어지는가', 'ETH 수요를 키웠다', '0.007%만 돌아온다'] });
+    const out = humanizeDebateDraft(draft(), run);
+    expect(out.summary).toBe('수익이 ETH로 돌아오는지를 두고 갈렸다.');
+    expect(out.positions[0].points).toEqual(['ETH 수요를 키웠다']);
+    expect(out.title).toBe(draft().title);
+    expect(out.positions[0].label).toBe('호재다');
+    expect(out.timeline[0].quote).toBe('답은 단호한 예스');
+    expect(out.background).toBeUndefined();
+  });
+
+  it('should keep the original draft when the model call fails', () => {
+    const run = () => {
+      throw new Error('boom');
+    };
+    expect(humanizeDebateDraft(draft(), run)).toEqual(draft());
+  });
+});
+
+describe('watchCandidates', () => {
+  const debate = (id: string, handles: string[]) =>
+    ({ ...draft({ id, title: id, positions: [{ stance: 'pro', label: 'a', holders: handles.map((handle) => ({ handle, name: handle })), points: ['x'] }, { stance: 'con', label: 'b', holders: [{ name: '이름만' }], points: ['y'] }] }) }) as unknown as Debate;
+
+  it('should propose handles seen in two or more debates outside the watchlist', () => {
+    const debates = [debate('d1', ['Alice', 'bob', 'known']), debate('d2', ['alice', 'known']), debate('d3', ['bob', 'alice'])];
+    expect(watchCandidates(debates, new Set(['known']), new Set())).toEqual([
+      { handle: 'Alice', titles: ['d1', 'd2', 'd3'] },
+      { handle: 'bob', titles: ['d1', 'd3'] },
+    ]);
+  });
+
+  it('should skip handles already proposed and count a debate once', () => {
+    const debates = [debate('d1', ['bob', 'bob']), debate('d2', ['bob', 'carol'])];
+    expect(watchCandidates(debates, new Set(), new Set(['carol']))).toEqual([{ handle: 'bob', titles: ['d1', 'd2'] }]);
+    expect(watchCandidates(debates, new Set(), new Set(['bob']))).toEqual([]);
+  });
+});
+
+describe('parseWatchDecision', () => {
+  it('should parse add and skip buttons and ignore publish buttons', () => {
+    expect(parseWatchDecision('wa:drjasper_eth')).toEqual({ handle: 'drjasper_eth', add: true });
+    expect(parseWatchDecision('wr:oisinkyne')).toEqual({ handle: 'oisinkyne', add: false });
+    expect(parseWatchDecision('p:some-debate')).toBeNull();
+    expect(parseWatchDecision('wa:not a handle')).toBeNull();
   });
 });
