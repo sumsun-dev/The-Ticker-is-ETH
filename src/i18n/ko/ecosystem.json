@@ -118,7 +118,12 @@
       "drakefjustin": "이더리움 재단 리서처, Lean Ethereum 등 장기 로드맵",
       "hwwonx": "이더리움 재단 공동 이사, Bulbasaur Study 운영",
       "ethDaily": "이더리움 일일 뉴스와 생태계 업데이트 큐레이션",
-      "ryanberckmans": "이더리움 커뮤니티 멤버이자 ETH 투자자"
+      "ryanberckmans": "이더리움 커뮤니티 멤버이자 ETH 투자자",
+      "donnoh": "L2BEAT 리서치 총괄, 롤업 보안과 네이티브 롤업 연구",
+      "barnabemonnot": "이더리움 재단 리서처, 프로토콜 경제와 인센티브 설계",
+      "lightclients": "Geth 코어 개발자, 계정 추상화(EIP-7702) 등 실행 계층 EIP",
+      "gakonst": "Paradigm CTO, Reth와 Foundry 개발",
+      "trentVanepps": "Protocol Guild 운영, 코어 개발자 자금 지원"
     }
   }
 }
