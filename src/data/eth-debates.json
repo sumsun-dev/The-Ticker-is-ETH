@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-14T00:58:31.008Z",
+  "updatedAt": "2026-10-17T01:17:00.411Z",
   "processedDigests": [
     "2026-08-24",
     "2026-08-25",
@@ -26,9 +26,890 @@
     "2026-10-05",
     "2026-10-08",
     "2026-10-11",
-    "2026-10-14"
+    "2026-10-14",
+    "2026-10-17"
   ],
   "debates": [
+    {
+      "id": "stake-state-provision-role",
+      "title": "스테이크는 ZK 시대에도 상태 제공 백본을 겸해야 하나, 검증과 분리해야 하나?",
+      "category": "프로토콜 설계",
+      "summary": "EF의 Barnabé Monnot은 어테스터(attester)가 무상태가 아니라 상태 크기의 제곱근(sqrt) 수준을 보유·서빙해 상태 백본 네트워크를 보장해야 하며 이는 zk 진영보다 보수적인 입장이라고 밝혔고, L2BEAT의 donnoh는 원하든 원치 않든 어테스터는 결국 무상태가 될 것이라며 Portal 부활에 희망을 걸었다. CPerezz19는 BALs가 이미 부분 상태 노드를 가능케 하는 지금, 상태 보관·서빙 인센티브가 zkEVM의 선결 과제라고 경고했다.",
+      "keyPoints": [
+        "zkEVM·무상태 시대에 어테스터는 무상태가 되어야 하나, 상태의 일부(예: 상태 크기의 제곱근)를 보유·서빙해야 하나",
+        "빌더만 상태를 가지는 세계는 검열 리스크이자 서빙 유인 부재 문제를 낳는가",
+        "상태 보관·서빙 인센티브(Portal·부분 상태 노드)는 zkEVM 로드맵의 선결 과제인가"
+      ],
+      "background": "실행 증명과 BAL(Block Access List, EIP-7928/8146)은 CL 노드가 재실행 없이 블록을 검증하도록 해 어테스터가 상태(state)를 들고 있을 필요를 줄인다. 그러나 상태를 들고 서빙하는 시더(seeder)가 줄면 새 노드 부트스트랩과 지갑의 트랜잭션 생성용 데이터 조회가 어려워진다. Portal Network는 상태·히스토리를 분산 저장·서빙하려는 시도이나 아직 본격화되지 않았다. VOPS 상태는 멤풀 트랜잭션 검증에는 충분하나 사용자에게 트랜잭션 생성에 필요한 데이터를 제공하지는 못한다.",
+      "whyItMatters": "8025 기각 논쟁의 기저에 있던 미해결 문제, 즉 상태 보관·서빙 인센티브가 zkEVM 로드맵의 선결 과제임이 공론화됐다. 어테스터의 상태 보유 수준을 어떻게 정할지, Portal 같은 기본 상태 분산을 언제 도입할지가 무상태 전환 이후의 탈중앙성과 검열저항(censorship resistance)을 좌우한다.",
+      "sources": [
+        {
+          "title": "EIP-8146: Block Access List Sidecars",
+          "url": "https://eips.ethereum.org/EIPS/eip-8146"
+        },
+        {
+          "title": "EIP-8025: Optional Execution Proofs",
+          "url": "https://eips.ethereum.org/EIPS/eip-8025"
+        }
+      ],
+      "keywords": [
+        "stateless attesters",
+        "Portal Network",
+        "VOPS state",
+        "state provision"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "스테이크는 상태 백본을 겸해야 한다",
+          "holders": [
+            {
+              "handle": "barnabemonnot",
+              "name": "Barnabé Monnot | barnabé.eth",
+              "role": "EF 리서처, 인센티브·이슈언스",
+              "avatar": "https://pbs.twimg.com/profile_images/2069104465202814976/alWWQ8SG_400x400.jpg"
+            }
+          ],
+          "points": [
+            "어테스터는 무상태가 아니라 상태 크기의 제곱근 정도를 보유·서빙해 상태 백본 네트워크를 보장해야 하며, 이는 어테스터가 상태를 더 적게가 아니라 더 많이 들기를 바라는 점에서 zk 진영보다 보수적이다.",
+            "블록 타임의 임계 경로(critical path)에서 상태가 필요한 유일한 주체는 빌더(builder)뿐이지만, 빌더만 상태를 가지고 그 수가 적으면 그 자체가 검열 리스크이고 그들은 서빙할 유인이 0이다.",
+            "포함자(includer)는 VOPS 상태를 가져야 하고, 시더가 거의 없으면 모든 지갑이 트랜잭션 생성 데이터를 구할 곳이 사라지므로 Portal식 기본 상태 분산을 시작해야 한다."
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "역할은 분리되며 어테스터는 결국 무상태가 된다",
+          "holders": [
+            {
+              "handle": "donnoh_eth",
+              "name": "donnoh.gwei 💗",
+              "role": "L2BEAT 리서치 책임자",
+              "avatar": "https://pbs.twimg.com/profile_images/1906978600311521280/aSbKSjtX_400x400.jpg"
+            }
+          ],
+          "points": [
+            "원하든 원치 않든 어테스터는 결국 무상태가 될 것이며, 어테스터에게서 기대·유도할 수 있는 서비스 품질에서 Barnabé와 견해가 갈린다.",
+            "Portal을 부활시켜 비검증 노드가 블롭(blob)·히스토리·상태·이벤트를 서빙하게 해야 하며, 덜 탈중앙화됐더라도 곧 나올 첫걸음이 있다."
+          ]
+        },
+        {
+          "stance": "neutral",
+          "label": "문을 닫지 말고 상태 문제에 매달려야 한다",
+          "holders": [
+            {
+              "handle": "CPerezz19",
+              "name": "CPerezz.eth ⟠ 🦀",
+              "role": "EF 리서처·EIP-8037 공동 저자",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/1254074532417200128/M2uQcW5K_400x400.jpg"
+            }
+          ],
+          "points": [
+            "BALs는 zkEVM을 기다릴 필요도 없이 이미 부분 상태 노드를 가능케 하는 거대한 동력이다.",
+            "zkEVM이 현실이 되면 누가 상태를 보관·서빙할지, 노드 진입장벽을 어떻게 낮출지 답이 없으며, 문을 닫기보다 이 문제에 매달려 좋은 결과를 내려 해야 한다."
+          ]
+        },
+        {
+          "stance": "other",
+          "label": "비검증 풀노드 운영자가 이제 얼마 남지 않았다는 자조",
+          "holders": [
+            {
+              "handle": "CPerezz19",
+              "name": "CPerezz.eth ⟠ 🦀",
+              "role": "EF 리서처",
+              "avatar": "https://pbs.twimg.com/profile_images/1254074532417200128/M2uQcW5K_400x400.jpg"
+            }
+          ],
+          "points": [
+            "비검증 풀노드를 돌리는 운영자는 이제 정말 얼마 남지 않았다(이에 donnoh는 그것이 오해라고 응수)."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-10-09",
+          "by": "barnabemonnot",
+          "stance": "pro",
+          "quote": "2027년까지 얼마나 많은 이더리움 스테이크가 EL을 돌리지 않고 ZK 증명에 의존해 페이로드 유효성을 어테스트해야 하는가?",
+          "url": "https://x.com/barnabemonnot/status/2108532863151010290",
+          "digest": "2026-10-11",
+          "relation": "none",
+          "original": "How much Ethereum stake should be relying on ZK proofs to attest to payload validity by 2027? (running without an EL)",
+          "translation": "2027년까지 얼마나 많은 이더리움 스테이크(stake)가 페이로드 유효성(payload validity)을 증명하기 위해 ZK 증명(ZK proof)에 의존해야 할까? (EL(실행 레이어, Execution Layer) 없이 운영되는 경우)"
+        },
+        {
+          "date": "2026-10-09",
+          "by": "barnabemonnot",
+          "stance": "pro",
+          "quote": "스테이크가 ZK 증명으로 돌아가길 바라지만, 특별히 EL을 돌리지 않는 쪽을 선호하지는 않는다. 멤풀에 참여하고 상태도 제공하길 바란다. 그래서 0%를 택했다.",
+          "url": "https://x.com/barnabemonnot/status/2108549586587643940",
+          "digest": "2026-10-11",
+          "replyTo": "dapplion",
+          "relation": "reply",
+          "original": "@dapplion I’d like Ethereum stake to run on ZK proofs but I’d not prefer them specifically to not run an EL, I’d like them to participate in the mempool and serve state too. So I chose 0%",
+          "translation": "이더리움 스테이크가 ZK 증명을 기반으로 운영되길 원하지만, 그것들이 굳이 EL을 실행하지 않는 쪽을 특별히 선호하는 것은 아니다. 나는 그것들이 멤풀(mempool)에도 참여하고 상태(state)도 제공하길 원한다. 그래서 0%를 선택했다."
+        },
+        {
+          "date": "2026-10-09",
+          "by": "donnoh_eth",
+          "stance": "con",
+          "quote": "상태를 제공하는 것과 검증자가 되는 것은 다른 역할 아닌가? 나는 검증자가 아니어도 기꺼이 상태와 히스토리를 제공하고 멤풀에 참여할 것이다.",
+          "url": "https://x.com/barnabemonnot/status/2108556306621563083",
+          "digest": "2026-10-11",
+          "replyTo": "barnabemonnot",
+          "relation": "reply",
+          "original": "@barnabemonnot @dapplion serving the state and being a validator are two different roles? i’d happily serve the state, history and participate in the mempool without being a validator",
+          "translation": "상태를 제공하는 것과 검증자(validator)가 되는 것은 서로 다른 역할이 아닌가? 나는 검증자가 되지 않고도 기꺼이 상태와 히스토리(history)를 제공하고 멤풀에 참여하고 싶다."
+        },
+        {
+          "date": "2026-10-09",
+          "by": "barnabemonnot",
+          "stance": "pro",
+          "quote": "맞다, 다만 너는 역의 함의를 말하고 있다. 나는 스테이크된 주체가 상태·히스토리를 제공하고 멤풀에 참여하기를 바라는 것이다.",
+          "url": "https://x.com/barnabemonnot/status/2108556902653444411",
+          "digest": "2026-10-11",
+          "replyTo": "donnoh_eth",
+          "relation": "reply",
+          "original": "@donnoh_eth @dapplion Sure, but you're talking about the reverse implication. I want staked parties to serve state, history and participate in the mempool",
+          "translation": "그렇다, 하지만 그건 역방향의 함의를 이야기하는 것이다. 나는 스테이킹한 당사자들이 상태와 히스토리를 제공하고 멤풀에 참여하길 원한다."
+        },
+        {
+          "date": "2026-10-09",
+          "by": "donnoh_eth",
+          "stance": "con",
+          "quote": "동의하지 않는다. 비검증 풀노드가 궁극적으로 이타적인 네트워크의 백본으로 더 나은 후보라고 본다. 검증자들은 특히 LST 때문에 어차피 비용 절감 경쟁으로 치닫는 게 분명하다.",
+          "url": "https://x.com/barnabemonnot/status/2108562139203920321",
+          "digest": "2026-10-11",
+          "replyTo": "barnabemonnot",
+          "relation": "reply",
+          "original": "@barnabemonnot @dapplion i disagree! i'd argue that non-validator full nodes are better candidates at being at the backbone of an ultimately altruistic network. i definitely see validators racing to the bottom to cut costs anyway, especially with LSTs",
+          "translation": "나는 동의하지 않는다! 궁극적으로 이타적인 네트워크의 중추가 되기에는 검증자가 아닌 풀 노드(full node)가 더 나은 후보라고 주장하고 싶다. 어차피 검증자들이, 특히 LST(유동성 스테이킹 토큰, Liquid Staking Token)와 함께 비용을 줄이기 위해 바닥을 향한 경쟁을 벌이는 것을 분명히 보게 될 것이다."
+        },
+        {
+          "date": "2026-10-09",
+          "by": "barnabemonnot",
+          "stance": "pro",
+          "quote": "그 비용은 예컨대 블롭을 가용하게 만드는 비용에 비하면 작다. 각 노드가 많은 데이터를 갖지 않는 넓은 네트워크가, 각 노드가 더 많은 데이터를 제공하도록 기대되는 좁은 네트워크보다 서비스 품질이 나을지 확신하지 못한다.",
+          "url": "https://x.com/barnabemonnot/status/2108564457693847773",
+          "digest": "2026-10-11",
+          "replyTo": "donnoh_eth",
+          "relation": "reply",
+          "original": "@donnoh_eth @dapplion The cost is small, compared to the cost of making blobs available for instance. I am not convinced the quality of service of a wide network with each node having not much data, would be better than a smaller network with each node being expected to serve more data.",
+          "translation": "예를 들어 블롭(blob)을 사용 가능하게 만드는 비용에 비하면 그 비용은 작다. 각 노드가 많지 않은 데이터를 가진 넓은 네트워크의 서비스 품질이, 각 노드가 더 많은 데이터를 제공하도록 요구되는 더 작은 네트워크보다 더 나을 것이라는 확신은 들지 않는다."
+        },
+        {
+          "date": "2026-10-09",
+          "by": "CPerezz",
+          "stance": "other",
+          "quote": "우리 같은 사람은 이제 정말 얼마 남지 않았다.",
+          "url": "https://x.com/donnoh_eth/status/2108568641427956050",
+          "digest": "2026-10-11",
+          "replyTo": "donnoh_eth",
+          "relation": "reply",
+          "original": "@donnoh_eth @barnabemonnot @dapplion There are very few of us left :(",
+          "translation": "우리 같은 사람은 이제 거의 남지 않았다 :("
+        },
+        {
+          "date": "2026-10-09",
+          "by": "donnoh_eth",
+          "stance": "con",
+          "quote": "아니, 그건 오해라고 본다.",
+          "url": "https://x.com/donnoh_eth/status/2108569220921627097",
+          "digest": "2026-10-11",
+          "replyTo": "CPerezz19",
+          "relation": "reply",
+          "original": "@CPerezz19 @barnabemonnot @dapplion nahhh i think this is a misconception",
+          "translation": "아니, 나는 이게 오해라고 생각한다."
+        },
+        {
+          "date": "2026-10-16",
+          "by": "CPerezz19",
+          "stance": "neutral",
+          "quote": "ZKEVM이 현실이 되면 누가 상태를 보관하는가? zkEVM을 기다릴 필요도 없을지 모른다. BALs가 이미 부분 상태 노드의 거대한 동력이다.",
+          "url": "https://x.com/CPerezz19/status/2110972144700293611",
+          "digest": "2026-10-17",
+          "replyTo": "CPerezz19",
+          "relation": "quote",
+          "original": "&gt; Who is gonna keep the state when ZKEVM becomes real?\n\nYeah, we might not even have to wait for ZKEVM. BALs are already a huge enabler for partial stateful nodes.",
+          "translation": "ZKEVM이 실제로 도래하면 누가 상태(state)를 유지하게 될까? 사실 ZKEVM을 기다릴 필요조차 없을지도 모른다. BAL(Block Access List)은 이미 부분 상태 노드(partial stateful node)를 가능하게 하는 커다란 요인이 되고 있다."
+        },
+        {
+          "date": "2026-10-16",
+          "by": "barnabemonnot",
+          "stance": "pro",
+          "quote": "최악의 경우는 빌더만 상태를 가지고 그 수가 적은 것인데, 그 자체가 검열 리스크다. 부분 상태 노드를 돌리려면 빌더에게 원하는 상태를 요청해야 하는데 그들은 서빙할 유인이 0이다.",
+          "url": "https://x.com/barnabemonnot/status/2110992837194236402",
+          "digest": "2026-10-17",
+          "replyTo": "barnabemonnot",
+          "relation": "reply",
+          "original": "The worst case is that builders are the only stateful ones, and that there aren't many of them, which in itself is a censorship risk.\n\nThat is, if I want to run a partial stateful node, I have to ask the builders for the state I care about, and they have 0 incentives to serve them.\n\nAnd how can includers properly function without VOPS state?",
+          "translation": "최악의 경우는 빌더(builder)들만이 상태를 보유하게 되고, 그 빌더의 수도 많지 않아서 그 자체로 검열(censorship) 위험이 되는 상황이다. 다시 말해 내가 부분 상태 노드를 운영하고 싶다면 내가 관심 있는 상태를 빌더들에게 요청해야 하는데, 그들에게는 그 상태를 제공할 인센티브가 전혀 없다. 그리고 인클루더(includer)들은 VOPS 상태 없이 어떻게 제대로 작동할 수 있을까?"
+        },
+        {
+          "date": "2026-10-16",
+          "by": "barnabemonnot",
+          "stance": "pro",
+          "quote": "포함자는 VOPS 상태를 가져야 하고, 내 견해로 어테스터는 무상태가 아니라 상태의 일부(상태 크기의 제곱근 정도)를 보유·서빙해 상태 백본 네트워크를 보장해야 한다.",
+          "url": "https://x.com/barnabemonnot/status/2110995256523079968",
+          "digest": "2026-10-17",
+          "replyTo": "weiihannng",
+          "relation": "reply",
+          "original": "@weiihannng @CPerezz19 Includers should have VOPS-state, and in my view attesters should not be stateless but be expected to hold and serve a portion of the state, maybe in the order of sqrt(state size) or whatever is required to ensure there is a backbone network of state",
+          "translation": "@weiihannng @CPerezz19 인클루더는 VOPS 상태를 보유해야 하고, 내 생각으로는 어테스터(attester)도 무상태(stateless)여서는 안 되며 상태의 일부를 보유하고 제공할 것으로 기대되어야 한다. 그 규모는 대략 상태 크기의 제곱근(sqrt) 정도이거나, 상태를 지탱하는 백본 네트워크(backbone network)가 존재하도록 보장하는 데 필요한 수준이면 될 것이다."
+        },
+        {
+          "date": "2026-10-16",
+          "by": "barnabemonnot",
+          "stance": "pro",
+          "quote": "나는 빌더만 상태를 가져야 한다고 말한 적 없다. 블록 타임의 임계 경로에서 무상태일 필요가 없는 유일한 주체가 빌더라고 했을 뿐이다. 오히려 나는 어테스터가 상태를 더 많이 들기를 바라는 점에서 zk 진영보다 보수적이다.",
+          "url": "https://x.com/barnabemonnot/status/2111030047788146694",
+          "digest": "2026-10-17",
+          "replyTo": "CPerezz19",
+          "relation": "reply",
+          "original": "@CPerezz19 @weiihannng I never said only builders should have state! I only said they’re the only parties that need to be stateful *on the critical path of block times*\n\nIf anything i’m more conservative than the zk crowd by wanting attesters to hold more state than less",
+          "translation": "@CPerezz19 @weiihannng 나는 빌더만 상태를 가져야 한다고 말한 적이 없다! 내가 말한 것은 그들이 블록 타임(block time)의 critical path(임계 경로) 상에서 상태를 가져야 하는 유일한 당사자라는 것뿐이다. 오히려 나는 어테스터가 상태를 더 적게 갖기보다는 더 많이 갖기를 원한다는 점에서 zk 진영보다도 더 보수적인 입장이다."
+        },
+        {
+          "date": "2026-10-16",
+          "by": "donnoh_eth",
+          "stance": "con",
+          "quote": "portal 부활!! 체인을 서빙할 준비가 됐다. 블롭, 히스토리, 상태, 이벤트 뭐든 서빙할 수 있다.",
+          "url": "https://x.com/donnoh_eth/status/2111015583076798836",
+          "digest": "2026-10-17",
+          "replyTo": "CPerezz19",
+          "relation": "reply",
+          "original": "@CPerezz19 @weiihannng portal !! im ready to serve the chain ser. i can serve blobs, history, state, events, anything 🙏",
+          "translation": "@CPerezz19 @weiihannng Portal! 나는 체인을 서빙(serve)할 준비가 되어 있다. 블롭(blob), 히스토리, 상태, 이벤트 등 무엇이든 서빙할 수 있다."
+        },
+        {
+          "date": "2026-10-16",
+          "by": "barnabemonnot",
+          "stance": "pro",
+          "quote": "원하지 않아도 어테스터는 어차피 무상태가 될 거라고 본다.",
+          "url": "https://x.com/barnabemonnot/status/2111045975414276506",
+          "digest": "2026-10-17",
+          "replyTo": "CPerezz19",
+          "relation": "reply",
+          "original": "@CPerezz19 @barnabemonnot @weiihannng i bet attesters will be stateless anyway even if you dont want them to be",
+          "translation": "@CPerezz19 @barnabemonnot @weiihannng 당신이 원하지 않더라도 어차피 어테스터는 결국 무상태가 될 거라고 확신한다."
+        }
+      ],
+      "firstSeen": "2026-10-09",
+      "lastActivity": "2026-10-16",
+      "status": "active",
+      "rootUrl": "https://x.com/barnabemonnot/status/2108532863151010290",
+      "engagement": {
+        "likes": 6,
+        "retweets": 0,
+        "quotes": 0,
+        "replies": 2,
+        "views": 3899
+      }
+    },
+    {
+      "id": "eip-8025-optional-proofs-dfi",
+      "title": "옵트인 실행 증명 EIP-8025 기각은 옳았나?",
+      "category": "프로토콜 설계",
+      "summary": "ACDC #189에서 EIP-8025(옵트인 실행 증명)가 헤고타(Hegota) 편입에서 기각되자, CPerezz19와 kevaundray, ethrex의 ivanlitteri, donnoh는 합의에 영향 없는 리스크 없는 준비된 작업을 버린 잘못된 결정이라 비판했고, nero_eth와 lightclients는 스펙 의존성이 생기고 숙려를 우회한다며 기각을 옹호했다.",
+      "keyPoints": [
+        "합의를 구동하지 않는 옵트인 EIP를 하드포크(hard fork) 스케줄에 편입할 가치가 있나, 아니면 Informational EIP로 충분한가",
+        "8025가 EELS 실행 스펙에 병합되면 헤고타·I* 계열 제안들이 이에 맞춰야 하는 의존성이 생기나",
+        "하드포크 편입이 갖는 정당화 효과가 운영자의 자발적 채택 가능성과 별개로 필요한가"
+      ],
+      "background": "EIP-8025는 Kevaundray Wedderburn, Justin Drake 등이 제안한 Draft 단계의 옵트인 실행 증명(execution proof) 표준이다. 합의 레이어(CL) 노드가 실행 페이로드를 재실행하지 않고 증명 검증만으로 무상태(stateless) 검증을 수행하도록 해, 검증 비용을 가스 리밋(gas limit)과 상태 크기에서 분리한다. 합의 유효성 규칙을 바꾸지 않는 완전 옵트인 방식이라 검증을 강제하지 않으며, 성숙하면 별도의 미래 EIP가 의무화를 제안할 수 있다. L1-zkEVM Breakout #9에서 헤고타 CFI를 목표했으나 ACDC #189에서 CL 팀의 지지 부족으로 DFI(기각)됐다.",
+      "whyItMatters": "zkEVM 로드맵의 첫 스펙 편입 시도가 기술이 아니라 편입 시점과 의존성 관리, 숙려 절차라는 거버넌스 기준에서 막혔다. 기각돼도 운영자는 여전히 실행 증명을 켤 수 있어 '스케줄 편입이 갖는 정당화 효과'와 '실제 구현·운영 가능성'이 별개임이 드러났고, 다음 콜에서 옵트인 기능을 어떻게 다룰지가 선례가 된다.",
+      "sources": [
+        {
+          "title": "EIP-8025: Optional Execution Proofs",
+          "url": "https://eips.ethereum.org/EIPS/eip-8025"
+        },
+        {
+          "title": "ACDC #189 (Forkcast)",
+          "url": "https://forkcast.org/calls/acdc/189/"
+        },
+        {
+          "title": "L1-zkEVM Breakout #9 (Forkcast)",
+          "url": "https://forkcast.org/calls/zkevm/009/"
+        }
+      ],
+      "keywords": [
+        "EIP-8025",
+        "optional execution proofs",
+        "DFI Hegota",
+        "zkEVM roadmap"
+      ],
+      "resolution": "ACDC #189(2026-10-15)에서 EIP-8025는 CL 팀의 CFI 지지가 부족해 헤고타 편입에서 DFI(기각)됐다.",
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "준비된 작업을 버린 잘못된 결정이다",
+          "holders": [
+            {
+              "handle": "CPerezz19",
+              "name": "CPerezz.eth ⟠ 🦀",
+              "role": "EF 리서처·EIP-8037 공동 저자",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/1254074532417200128/M2uQcW5K_400x400.jpg"
+            },
+            {
+              "handle": "kevaundray",
+              "name": "Kev",
+              "role": "EF 응용 리서처·EIP-8025 공동 저자",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/1658523090467315712/a3xJ6ySn_400x400.jpg"
+            },
+            {
+              "handle": "ivanlitteri",
+              "name": "Ivan",
+              "role": "LambdaClass · ethrex 테크 리드",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/1801577809728462848/UPASaIEt_400x400.jpg"
+            },
+            {
+              "handle": "donnoh_eth",
+              "name": "donnoh.gwei 💗",
+              "role": "L2BEAT 리서치 책임",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/1906978600311521280/aSbKSjtX_400x400.jpg"
+            }
+          ],
+          "points": [
+            "8025는 합의를 구동하지 않아 리스크가 전혀 없고 복잡도는 프로토콜 밖에 있으며, 완전히 준비되고 테스트까지 끝나 클라이언트에 반영된 작업을 버려서는 안 된다(CPerezz19).",
+            "이더리움이 점점 SNARK/zkVM 중심이 되는 만큼 8025는 이 개념을 하중을 지지 않는(non-load bearing) 방식으로 스펙과 코어 개발자에게 도입하는 길이며, 논의는 증명 의무화가 아니었다(kevaundray).",
+            "합의 변경이 없는 옵트인이라 건너뛸 숙려가 없고, 증명 비용·대역폭·실부하에서의 한계는 실제로 돌려봐야만 보인다; 가십 토픽·증명 포맷·req/resp 프로토콜은 모든 클라이언트가 동일하게 구현해야 작동하므로 Informational EIP로는 부족하다(ivanlitteri).",
+            "옵션성(optionality)은 증명을 켤지 선택하는 운영자를 위한 것이지 작업 진행 여부를 결정하는 사람들을 위한 것이 아니었고, 기각은 이더리움의 장기 이익에 반하는 잘못된 판단이다(donnoh_eth)."
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "스펙 의존성이 생기고 숙려를 우회한다",
+          "holders": [
+            {
+              "handle": "nero_eth",
+              "name": "Toni Wahrstätter ⟠",
+              "role": "EF 리서처",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/1858347774129094657/xUc7IS2K_400x400.jpg"
+            },
+            {
+              "handle": "lightclients",
+              "name": "ً",
+              "role": "go-ethereum·프로토콜 개발자",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/1554130973935030274/wHWuxuTT_400x400.jpg"
+            }
+          ],
+          "points": [
+            "8025가 EELS 스펙에 병합되면 헤고타·I* 제안 전부가 이에 맞춰야 하고 실제로 자신의 EIP-8146 스펙이 바뀌었으며, 불필요한 복잡성·의존성을 이렇게 일찍 더하는 것은 잘못됐다(nero_eth).",
+            "상태를 버리는 노드가 늘수록 새 노드 부트스트랩이 어려워지므로 동기화·멤풀(mempool) 해법이 먼저이고, 가치 자체를 부정한 적은 없으나 미래 항목이 현재를 너무 오래 제약해선 안 된다(nero_eth).",
+            "원하는 운영자는 ACD 결정과 무관하게 지금도 실행 증명을 켤 수 있고, 조기 수용은 숙려 기간을 우회하며 편입 장벽을 침식한다(lightclients).",
+            "합의 변경 없는 옵트인은 하드포크에 스케줄할 코어 EIP가 아니라 Informational EIP가 적합하며(비컨체인도 그렇게 출시됐다), 다음엔 optional로 제안하지 말고 ACD가 어떻게 소화하는지 보자(lightclients)."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-10-15",
+          "by": "CPerezz19",
+          "stance": "pro",
+          "quote": "옵셔널 프루프가 어떻게 DFI됐는지 이해할 수 없다. 이 EIP는 합의를 구동하지 않아 리스크가 전혀 없고 복잡하지도 않으며, 완전히 준비되고 테스트까지 끝나 클라이언트에 반영된 작업을 쓰레기통에 버리는 일을 멈춰야 한다.",
+          "url": "https://x.com/CPerezz19/status/2110830082486882469",
+          "digest": "2026-10-17",
+          "replyTo": "forkcast_eth",
+          "relation": "quote",
+          "original": "I can't understand how Optional Proofs got DFI'd.\n\nUsually, ACD wheights urgency, risk/complexity & upsides.\n\nFor this EIP, there's no risk at all (doesn't drive consensus), it's not complex (as per protocol, the complexity is outside), and the upside is fostering the research path further and acknowledging is worth to keep porsuing with the expectations of giving productive fruits in a couple years.\n\nAs someone working on state-related topics, this is ofc an EIP that makes me consider hard questions, many for which I don't yet have answers. Makes me unconfortable sort to say:\n\n- Who is gonna keep the state when ZKEVM becomes real?\n- How do we incentivize holding & serving state?\n- How do we lower the entry-barrier to nodes participating in the network and being seeders?\n- How do we make holding state long-term viable?\n- Can we marry state <-> zkemv somehow?\n- Can we keep the network decentralized enough?\n\nI don't have answers. But it's IMHO better to work on this, and try to get to good results, improvements etc.. Than simply closing the door onto it and moving to the next thing.\n\nWe have to stop throwing fucking work to the bin. Work that was fully prepared, tested and ready in clients. Specially when the work isn't changing almost anything now, but potentially a lot in the future if it's good. And if not, there's gonna be plenty of time to kill it in the future (as happened today).",
+          "translation": "Optional Proofs가 어떻게 DFI(포함 보류, Declined For Inclusion) 판정을 받았는지 이해할 수가 없다. 보통 ACD는 긴급성, 위험도/복잡성, 그리고 이점을 저울질한다. 이 EIP의 경우 위험은 전혀 없고(합의(consensus)를 좌우하지 않는다), 복잡하지도 않으며(프로토콜 기준으로 복잡성은 외부에 있다), 이점은 연구 경로를 더 발전시키고 몇 년 안에 생산적인 결실을 맺을 것이라는 기대와 함께 계속 추진할 가치가 있음을 인정하는 것이다. 상태(state) 관련 주제를 다루는 사람으로서, 이 EIP는 당연히 내게 아직 답을 갖고 있지 않은 어려운 질문들을 많이 생각하게 만든다. 솔직히 불편하게 느껴지는 질문들이다. ZKEVM이 실현되면 누가 상태를 유지할 것인가? 상태를 보유하고 제공하는 것에 어떻게 인센티브를 줄 것인가? 네트워크에 참여하고 시더(seeder) 역할을 하는 노드들의 진입 장벽을 어떻게 낮출 것인가? 상태를 장기적으로 유지 가능하게(viable) 만들려면 어떻게 해야 하는가? 상태와 zkEVM을 어떻게든 결합할 수 있을까? 네트워크를 충분히 탈중앙화된 상태로 유지할 수 있을까? 나는 답을 갖고 있지 않다. 하지만 내 생각으로는 그냥 문을 닫고 다음 일로 넘어가기보다는 이 문제를 계속 연구하면서 좋은 결과와 개선을 얻으려 노력하는 쪽이 낫다. 우리는 이미 완전히 준비되고 테스트되어 클라이언트에 적용될 준비가 된 작업을 그냥 쓰레기통에 처박는 짓을 멈춰야 한다. 특히 지금은 거의 아무것도 바꾸지 않지만, 만약 좋은 결과로 이어진다면 미래에는 많은 것을 바꿀 수도 있는 작업일 때는 더욱 그렇다. 만약 좋지 않다면, 오늘 일어난 일처럼 나중에 폐기할 시간은 충분히 있을 것이다."
+        },
+        {
+          "date": "2026-10-16",
+          "by": "nero_eth",
+          "stance": "con",
+          "quote": "그것은 스펙을 바꾸고 모든 헤고타·I* 제안이 이에 맞추도록 강제한다. zkVM이 미래라는 데 동의하지만, 불필요한 복잡성과 의존성을 이렇게 일찍 더하는 건 잘못된 것 같다.",
+          "url": "https://x.com/nero_eth/status/2110955329139757262",
+          "digest": "2026-10-17",
+          "replyTo": "CPerezz19",
+          "relation": "reply",
+          "original": "It changes specs and forces all hegota + I* proposals to comply. Don't get me wrong, zkVMs are the future and new proposals should comply, but adding unnecessary complexities/dependencies early feels wrong.\nThe more nodes that drop state, the more difficult to bootstrap new nodes, and the bigger dtate grows the earlier we'll see nodes dropping data, no matter if named optional or not.",
+          "translation": "그것은 스펙을 바꾸고 모든 Hegotá 및 I* 제안들이 이를 따르도록 강제한다. 오해는 하지 말아 달라, zkVM은 미래이고 새로운 제안들은 이를 따라야 하지만, 이렇게 일찍 불필요한 복잡성과 의존성을 추가하는 것은 잘못된 느낌이다. 상태를 버리는 노드가 많아질수록 새 노드를 부트스트랩(bootstrap)하기가 더 어려워지고, 상태가 커질수록 더 일찍 노드들이 데이터를 버리는 모습을 보게 될 것이다, 그것이 옵셔널이라는 이름을 달고 있든 아니든 상관없이."
+        },
+        {
+          "date": "2026-10-16",
+          "by": "nero_eth",
+          "stance": "con",
+          "quote": "8025가 EELS에 병합되기 때문에, 예컨대 내 8146 스펙이 바뀌었다.",
+          "url": "https://x.com/nero_eth/status/2111028985878429889",
+          "digest": "2026-10-17",
+          "replyTo": "CPerezz19",
+          "relation": "reply",
+          "original": "@CPerezz19 @ignaciohagopian Because it will be merged into EELS, so, e.g. my 8146 specs changed.",
+          "translation": "@CPerezz19 @ignaciohagopian 왜냐하면 그것이 EELS에 병합될 것이기 때문이다. 그래서 예를 들어 내가 작업한 8146 스펙도 바뀌었다."
+        },
+        {
+          "date": "2026-10-16",
+          "by": "kevaundray",
+          "stance": "pro",
+          "quote": "이더리움은 점점 더 SNARK/zkVM 중심이 되고 있고, 8025는 이 개념을 하중을 지지 않는 방식으로 스펙과 코어 개발자에게 도입하는 길이다.",
+          "url": "https://x.com/kevaundray/status/2111030167774666871",
+          "digest": "2026-10-17",
+          "replyTo": "nero_eth",
+          "relation": "reply",
+          "original": "@nero_eth @CPerezz19 How this is related with 8025? We weren't discussing enabling mandatory proofs.",
+          "translation": "@nero_eth @CPerezz19 이게 8025와 무슨 관련이 있나? 우리는 필수 증명(mandatory proof)을 활성화하는 것에 대해 논의한 적이 없다."
+        },
+        {
+          "date": "2026-10-16",
+          "by": "ivanlitteri",
+          "stance": "pro",
+          "quote": "이건 합의 변경이 없는 옵트인 EIP라 건너뛸 숙려가 없다. 증명이 실제로 얼마나 비용이 드는지, 대역폭을 얼마나 먹는지, 실부하에서 어디가 깨지는지는 실제로 돌려봐야만 보인다.",
+          "url": "https://x.com/ivanlitteri/status/2111122831773667537",
+          "digest": "2026-10-17",
+          "replyTo": "lightclients",
+          "relation": "reply",
+          "original": "This is an opt-in EIP with no consensus changes, so I don't see what reflection gets skipped. The consequences that matter, what proving actually costs, how much bandwidth it consumes, and where it breaks under real load, only become visible by running it for real. And the barrier stays where it is, since mandatory proofs would need their own EIP and ACD process either way",
+          "translation": "이것은 합의(consensus) 변경이 없는 옵트인(opt-in) EIP이기 때문에, 어떤 숙고가 생략되는지 모르겠다. 정말 중요한 결과들, 즉 증명(proving)에 실제로 드는 비용, 그것이 얼마나 많은 대역폭을 소비하는지, 실제 부하 상황에서 어디서 깨지는지는 실제로 돌려봐야만 드러난다. 그리고 그 경계선은 그대로 남아 있다, 왜냐하면 필수 증명은 어느 쪽이든 그 자체의 EIP와 ACD 절차가 필요할 것이기 때문이다."
+        },
+        {
+          "date": "2026-10-16",
+          "by": "lightclients",
+          "stance": "con",
+          "quote": "합의 변경이 없는 옵트인 EIP라고? 그건 훌륭한 Informational EIP처럼 들리지, 코어 EIP도 아니고 하드포크에 '스케줄'되는 것도 아니다.",
+          "url": "https://x.com/lightclients/status/2111127402005070150",
+          "digest": "2026-10-17",
+          "replyTo": "ivanlitteri",
+          "relation": "reply",
+          "original": "@ivanlitteri @donnoh_eth @ethrex_client &gt; this is an opt-in EIP with no consensus changes\n\nsounds like a great information EIP, not a core EIP, and not one \"scheduled\" in a hardfork",
+          "translation": "@ivanlitteri @donnoh_eth @ethrex_client > 이것은 합의 변경이 없는 옵트인 EIP라는 말은 핵심(core) EIP가 아니라 훌륭한 정보성(informational) EIP처럼 들리고, 하드포크에 '예정된' 것도 아닌 것처럼 들린다."
+        },
+        {
+          "date": "2026-10-16",
+          "by": "lightclients",
+          "stance": "con",
+          "quote": "비컨체인도 Informational EIP로 출시됐으니 실행 증명에도 완벽히 맞는다고 본다. 다음엔 optional로 제안하지 말고 ACD가 어떻게 소화하는지 보자.",
+          "url": "https://x.com/lightclients/status/2111133617049260112",
+          "digest": "2026-10-17",
+          "replyTo": "ivanlitteri",
+          "relation": "reply",
+          "original": "@ivanlitteri @donnoh_eth @ethrex_client The beacon chain launched with an Informational EIP, so I think it is a perfectly fine fit for execution proofs.\n\nNext time don't propose it as optional and we'll see how ACD digests it!",
+          "translation": "@ivanlitteri @donnoh_eth @ethrex_client 비콘체인(beacon chain)도 정보성 EIP로 출범했으니, 실행 증명(execution proof)에도 완전히 적합한 형식이라고 생각한다. 다음에는 그것을 옵셔널로 제안하지 말고, ACD가 그것을 어떻게 받아들이는지 한번 보자!"
+        },
+        {
+          "date": "2026-10-16",
+          "by": "donnoh_eth",
+          "stance": "pro",
+          "quote": "우리가 보기에 어제 ACDC의 EIP-8025 결정은 이더리움의 장기 이익에 반하는 잘못된 판단이었다. 8025는 옵셔널 실행 증명을 제안하는 zkEVM 로드맵의 첫걸음인데 클라이언트 팀들이 이를 커밋하지 않았다.",
+          "url": "https://x.com/donnoh_eth/status/2111088631393800511",
+          "digest": "2026-10-17",
+          "replyTo": "forkcast_eth",
+          "relation": "quote",
+          "original": "From our point of view, yesterday's ACDC decision on EIP-8025 was the wrong call for Ethereum's long-term interests.\n\nEIP-8025 proposes optional execution proofs, a first step toward the zkEVM roadmap, and the client teams declined to commit to it.\n\nFraming the proposal as an \"optional feature\" may have worked against it. Calling something optional makes it easy to dismiss as low priority. To be clear, it was a proposal, and proposals can be accepted or rejected; nothing obligated anyone to approve it. And it is true that this feature does not inherently require a hard fork. But that is precisely what makes the question of commitment unavoidable: with nothing at the protocol level forcing the work to happen, progress depends entirely on whether people are actually assigned to it. Execution proofs only become real if client developers implement them, if testing teams build the coverage they need, and if DevOps keeps the infrastructure running. Declining to prioritize the proposal means the work simply does not happen. The optionality was meant for operators, those choosing whether to enable execution proofs, not for the people deciding whether the work happens at all. Operators should be able to opt in regardless of which client they run, and a decision taken without all teams present cannot credibly settle a question that depends on all teams delivering.\n\nOptional proofs are the foundation of Ethereum's zkEVM roadmap. That roadmap is complex, and it demands extensive integration and testing across teams. Getting there requires a shared, sustained commitment.\n\nWe need to test under realistic conditions and investigate failures before consensus depends on proofs, and that work should proceed alongside research into mandatory proofs. Every integration bug we uncover now is one we won't be discovering after consensus depends on it. The more groundwork we lay today, the more bandwidth we have later for the challenges specific to mandatory proofs, including the ones we haven't found yet.",
+          "translation": "우리 입장에서 보면, 어제 EIP-8025에 대한 ACDC의 결정은 이더리움의 장기적 이익에 부합하지 않는 잘못된 판단이었다. EIP-8025는 zkEVM 로드맵으로 가는 첫걸음으로서 옵셔널 실행 증명(optional execution proof)을 제안했는데, 클라이언트 팀들은 그것을 커밋하기를 거부했다. 이 제안을 '옵셔널 기능'으로 프레이밍한 것이 오히려 불리하게 작용했을 수 있다. 무언가를 옵셔널이라고 부르면 낮은 우선순위로 치부하기가 쉬워진다. 분명히 말하자면 이것은 하나의 제안이었고, 제안은 수락되거나 거부될 수 있는 것이며, 누구도 그것을 승인해야 할 의무는 없었다. 그리고 이 기능이 본질적으로 하드포크를 요구하지 않는다는 것도 사실이다. 하지만 바로 그 점 때문에 커밋의 문제를 피할 수 없게 된다. 프로토콜 차원에서 그 작업을 강제하는 것이 아무것도 없다면, 진전은 전적으로 실제로 사람이 배정되는지에 달려 있기 때문이다. 실행 증명은 클라이언트 개발자들이 그것을 구현하고, 테스트 팀이 필요한 커버리지를 구축하고, 데브옵스(DevOps)가 인프라를 계속 운영할 때에만 현실이 된다. 이 제안을 우선순위에서 제외한다는 것은 그 작업이 그냥 일어나지 않는다는 뜻이다. 옵셔널리티(optionality)는 실행 증명을 활성화할지 선택하는 운영자(operator)들을 위한 것이었지, 그 작업 자체가 일어날지를 결정하는 사람들을 위한 것이 아니었다. 운영자는 어떤 클라이언트를 쓰든 상관없이 옵트인할 수 있어야 하며, 모든 팀이 참여하지 않은 상태에서 내린 결정은 모든 팀의 이행에 달려 있는 문제를 신뢰성 있게 해결할 수 없다. 옵셔널 증명은 이더리움 zkEVM 로드맵의 기반이다. 그 로드맵은 복잡하고, 여러 팀에 걸친 광범위한 통합과 테스트를 요구한다. 거기에 도달하려면 공유되고 지속적인 커밋이 필요하다. 우리는 합의가 증명에 의존하게 되기 전에 현실적인 조건에서 테스트하고 실패 사례를 조사해야 하며, 그 작업은 필수 증명(mandatory proof)에 대한 연구와 병행해서 진행되어야 한다. 지금 발견하는 통합 버그 하나하나는 합의가 그것에 의존하게 된 이후에는 발견하지 않아도 될 버그다. 오늘 더 많은 기초 작업을 해둘수록, 아직 발견하지 못한 것들을 포함해 필수 증명 특유의 과제들에 쓸 여유(bandwidth)가 나중에 더 많이 생긴다."
+        },
+        {
+          "date": "2026-10-16",
+          "by": "donnoh_eth",
+          "stance": "pro",
+          "quote": "이건 이미 사람들이 쓸 수 있는 것이다. 내 두려움은 LST들에 걸친 시장 유인이 우리가 대처법을 알기도 전에 어테스터들을 무상태로 밀어붙이는 것이다.",
+          "url": "https://x.com/donnoh_eth/status/2111119068879331352",
+          "digest": "2026-10-17",
+          "replyTo": "lightclients",
+          "relation": "reply",
+          "original": "@lightclients @ethrex_client but as you said, this is already something that people can use. kind of like mev-boost. my fear is that market incentives across LSTs will push attesters towards statelessness before we know how to deal with it. i’m probably overthinking though.",
+          "translation": "@lightclients @ethrex_client 하지만 당신이 말한 것처럼, 이것은 이미 사람들이 쓸 수 있는 것이다. mev-boost와 비슷한 셈이다. 내가 두려운 것은 LST(유동성 스테이킹 토큰, Liquid Staking Token) 전반의 시장 인센티브가 우리가 그것을 어떻게 다뤄야 할지 알기도 전에 어테스터들을 무상태 쪽으로 밀어붙일 것이라는 점이다. 아마 내가 너무 깊게 생각하는 것일 수도 있지만."
+        }
+      ],
+      "firstSeen": "2026-10-15",
+      "lastActivity": "2026-10-16",
+      "status": "active",
+      "rootUrl": "https://x.com/CPerezz19/status/2110830082486882469",
+      "engagement": {
+        "likes": 16,
+        "retweets": 2,
+        "quotes": 2,
+        "replies": 1,
+        "views": 2415
+      }
+    },
+    {
+      "id": "create2-factory-eip7997-worth",
+      "title": "최소 CREATE2 팩토리 EIP-7997은 포크에 넣을 가치가 있나?",
+      "category": "프로토콜 설계",
+      "summary": "보안 연구자이자 CreateX 저자인 pcaversaccio가 EIP-7997(최소 CREATE2 배포 팩토리)은 앱 레이어에서 오래전 해결된 문제라 프로덕트 마켓 핏이 없다고 회의론을 펴자, nero_eth와 lightclients는 메인넷에선 코드 0줄짜리 noop이되 데브넷·신규 체인에 스펙이 보장하는 배포자를 제공하고 EOA 의존·가스 가격 가정이라는 앤티패턴을 없앤다며 옹호했다.",
+      "keyPoints": [
+        "이미 200여 체인에 배포된 CreateX·Arachnid 컨트랙트가 있는데 최소 팩토리를 프로토콜에 넣을 가치가 있나",
+        "기존 CreateX를 그대로 안착(enshrine)하지 않고 더 최소한의 배포자를 새로 넣은 이유는 무엇인가",
+        "시스템 컨트랙트는 소유하지 않은 유저 컨트랙트와 섞이면 안 되고 최소 기능만 가져야 한다는 설계 원칙이 타당한가"
+      ],
+      "background": "EIP-7997(Deterministic Factory Contract, 저자 Francisco Giordano·Toni Wahrstätter·Nick Johnson·Jochem Brouwer, Last Call)은 0x4e59...956C의 CREATE2 팩토리를 모든 EVM 체인에 존재하도록 공식 요구해 체인 간 동일 주소 결정적 배포를 보장한다. 기존에는 Nick's method 같은 키리스(keyless) 트랜잭션으로 배포했으나 고정 가스 가격·리밋 때문에 가스 스케줄이 바뀐 체인이나 데브넷에서 배포가 불가능해지는 문제가 있었다. CreateX는 Pascal Caversaccio가 만든 더 기능이 풍부한 팩토리로 200여 체인에 이미 배포돼 있다. EIP-7997은 CreateX를 안착하는 대신 그 위에 CreateX를 올릴 수 있는 최소 배포자를 지향한다.",
+      "whyItMatters": "사소해 보이는 EIP 하나를 계기로 시스템 컨트랙트의 설계 원칙(최소 기능만, 소유하지 않은 컨트랙트와 비혼합, EOA·가스 가격 비의존)이 공개적으로 명문화됐다. 이 원칙은 앞으로 어떤 유저 컨트랙트를 프로토콜에 안착할지 판단하는 선례가 된다.",
+      "sources": [
+        {
+          "title": "EIP-7997: Deterministic Factory Contract",
+          "url": "https://eips.ethereum.org/EIPS/eip-7997"
+        }
+      ],
+      "keywords": [
+        "EIP-7997",
+        "CreateX",
+        "CREATE2 factory",
+        "system contracts"
+      ],
+      "positions": [
+        {
+          "stance": "con",
+          "label": "이미 해결된 문제라 무의미하다",
+          "holders": [
+            {
+              "handle": "pcaversaccio",
+              "name": "sudo rm -rf --no-preserve-root /",
+              "role": "스마트컨트랙트 보안 리서처·CreateX 저자",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/1734666604049289216/7ezXxfGv_400x400.jpg"
+            },
+            {
+              "handle": "chfast",
+              "name": "Paweł Bylica",
+              "role": "EF · evmone 저자",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/849982543982145536/mRbvphSB_400x400.jpg"
+            }
+          ],
+          "points": [
+            "CreateX는 200여 EVM 체인에 정확한 바이트코드로 배포돼 있고 수많은 프로토콜이 견고하게 쓰고 있으며 가스 리밋별 사전서명 배포 트랜잭션 3종으로 확장성도 더 낫다(pcaversaccio).",
+            "이는 이미 해결된 문제이고 클라이언트 코드에 부담만 더하며, 7997은 CreateX의 기능이 없어 자신은 계속 CreateX를 쓸 것이다(pcaversaccio).",
+            "7997이 메인넷에서 noop이라면, 이 EIP를 포크에서 빼는 것 역시 noop이다(chfast)."
+          ]
+        },
+        {
+          "stance": "pro",
+          "label": "스펙이 보장하는 배포자로 넣을 가치가 있다",
+          "holders": [
+            {
+              "handle": "nero_eth",
+              "name": "Toni Wahrstätter ⟠",
+              "role": "EF 리서처",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/1858347774129094657/xUc7IS2K_400x400.jpg"
+            },
+            {
+              "handle": "lightclients",
+              "name": "ً",
+              "role": "go-ethereum·프로토콜 개발자",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/1554130973935030274/wHWuxuTT_400x400.jpg"
+            }
+          ],
+          "points": [
+            "가장 많이 쓰인 방식은 Nick's method + Arachnid 컨트랙트이고 스펙은 배포자 코드가 설치돼야 한다고만 정할 뿐 '어떻게'는 강제하지 않는다; 메인넷에선 이미 컨트랙트가 존재해 코드 0줄짜리 noop이었고 데브넷·섀도 포크·신규 체인에 의미가 있다(nero_eth).",
+            "CreateX를 직접 안착하지 않는 이유는 최소 필요 이상의 기능은 프로토콜 설계자에게 부채이고, 소유하지 않은 유저 컨트랙트를 시스템 컨트랙트와 섞을 수 없기 때문이다(lightclients).",
+            "7997을 넣는 본래 이유는 CreateX가 EOA의 정밀한 가스 리밋·가격 결정에 의존하는데, 시스템 컨트랙트에서 EOA 의존과 가스 가격 일관성 가정이라는 두 앤티패턴을 없애려는 것이며, 원하면 7997 위에 CreateX를 올려 계속 쓸 수 있다(lightclients)."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-10-15",
+          "by": "pcaversaccio",
+          "stance": "con",
+          "quote": "글램스테르담 EIP들을 따라잡는 중인데 EIP-7997이 왜 편입 예정인지 모르겠다. 내 CreateX 팩토리는 200여 EVM 체인에 정확한 바이트코드로 배포돼 있고 수많은 프로토콜이 견고하게 쓰고 있다. 이건 이미 해결된 문제라 클라이언트 코드에 부담을 더할 필요가 없다.",
+          "url": "https://x.com/pcaversaccio/status/2110754372397514809",
+          "digest": "2026-10-17",
+          "relation": "none",
+          "original": "i'm trying to catch up today with all Glamsterdam EIPs and i don't understand why EIP-7997 (https://t.co/74Bde80mA0) is planned for inclusion. my CreateX factory (https://t.co/Lh6ARzDqYo) is deployed on over 200 EVM chains (verifiable to have the exact init & runtime bytecode), myriads of protocols use it in a _robust_ way to deploy their protocols, and its deployment (yes, there are tradeoffs here) scales way better (there are literally 3 different  - wrt gaslimit - presigned deployment txs available) than what is proposed here (good luck waiting for eg Filecoin to upgrade). i haven't been really involved in the convo, so if i missed anything important, tell me, but this is actually a _solved_ problem and we don't need to add additional burden on client codes.",
+          "translation": "오늘 Glamsterdam의 모든 EIP를 따라잡으려 하고 있는데, 왜 EIP-7997 (https://t.co/74Bde80mA0)이 포함될 예정인지 이해가 안 된다. 내가 만든 CreateX 팩토리 (https://t.co/Lh6ARzDqYo)는 200개가 넘는 EVM 체인에 배포되어 있고(정확히 동일한 초기화 및 런타임 바이트코드를 갖고 있다는 것을 검증할 수 있다), 수많은 프로토콜들이 그것을 견고하게(robust) 사용해 자신들의 프로토콜을 배포하고 있으며, 그 배포 방식은(물론 여기에는 트레이드오프가 있다) 여기서 제안된 방식보다 훨씬 더 잘 확장된다(가스리밋(gas limit) 기준으로 서로 다른 프리사인(presigned) 배포 트랜잭션이 실제로 3가지나 존재한다). 반면 이 제안대로라면 예를 들어 Filecoin이 업그레이드하기를 기다려야 할 텐데, 그건 행운을 빌어야 할 일이다. 나는 그 논의에 실제로 참여하지 않았으니 혹시 내가 중요한 것을 놓쳤다면 알려주길 바라지만, 이것은 사실 이미 해결된 문제이고 우리가 클라이언트 코드에 추가적인 부담을 더할 필요는 없다."
+        },
+        {
+          "date": "2026-10-15",
+          "by": "nero_eth",
+          "stance": "pro",
+          "quote": "핵심 논거는 Nick's method와 Arachnid 컨트랙트가 가장 많이 채택된 방식이고 시스템 컨트랙트나 테스트용 컨트랙트조차 이걸로 배포된다는 것이다. 스펙은 배포자 코드가 설치돼야 한다고만 정하지 '어떻게'는 정하지 않는다.",
+          "url": "https://x.com/nero_eth/status/2110787397151568355",
+          "digest": "2026-10-17",
+          "replyTo": "pcaversaccio",
+          "relation": "reply",
+          "original": "The main argument was that nick's method + the arachnid contract was the most used method with the greatest adoption, even system contracts or contracts for testing are deployed using it.\nThe specs only says the code for the deployer must be installed but not \"how\".\nChains can put it into the genesis file, that's what ethereum does, or deploy it, or add it doing a irregular state transition. For most chains it's a noop anyway (which was a big plus point as it's not worth much complexity). And if chains want to go crazy with their gas schedule while not putting it into their genesis file or add it at a fork, then it's on that chain.\nNow that it's soon shipped in the ethereum's genesis file, devs have certainty that every chain following ethereum's specs has the contract in place.",
+          "translation": "주된 논거는 Nick의 방식(Nick's method)과 Arachnid 컨트랙트가 가장 많이 쓰이고 가장 널리 채택된 방법이라는 것이었다. 시스템 컨트랙트나 테스트용 컨트랙트조차 이 방식으로 배포된다. 스펙에는 디플로이어(deployer)의 코드가 설치되어야 한다고만 적혀 있을 뿐, '어떻게' 설치해야 하는지는 적혀 있지 않다. 체인들은 그것을 제네시스 파일(genesis file)에 넣을 수도 있고(이더리움이 하는 방식이다), 배포할 수도 있고, 비정규 상태 전이(irregular state transition)를 통해 추가할 수도 있다. 대부분의 체인에게는 어차피 노옵(noop, 아무 일도 하지 않음)이나 마찬가지이고(이것이 복잡성을 크게 들이지 않아도 된다는 점에서 큰 장점이었다), 만약 어떤 체인이 그것을 제네시스 파일에 넣지도 않고 포크 때 추가하지도 않은 채 자신들의 가스 스케줄(gas schedule)을 마음대로 바꾸고 싶다면, 그것은 그 체인의 책임이다. 이제 곧 이더리움의 제네시스 파일에 이것이 실려 배포될 것이므로, 개발자들은 이더리움 스펙을 따르는 모든 체인에 이 컨트랙트가 자리잡고 있을 것이라는 확신을 가질 수 있게 된다."
+        },
+        {
+          "date": "2026-10-15",
+          "by": "lightclients",
+          "stance": "pro",
+          "quote": "CreateX를 안착하지 않는 이유는 두 가지다. (i) 최소 필요 이상을 하는데 프로토콜 설계자에게 모든 추가 기능은 부채이고 (ii) CreateX는 우리 것이 아니어서 유저 컨트랙트와 시스템 컨트랙트를 섞고 싶지 않다.",
+          "url": "https://x.com/lightclients/status/2110853972865298912",
+          "digest": "2026-10-17",
+          "relation": "none",
+          "original": "@Zodomo @pcaversaccio the reason to not enshrine CreateX is 2 points i) it does more than we minimally need, which as protocol designers every extra functionality is a liability and ii) we don't own CreateX so we don't want to go mixing up user and system contracts.",
+          "translation": "@Zodomo @pcaversaccio CreateX를 엔셔린(enshrine, 프로토콜에 내재화)하지 않는 이유는 두 가지다. 첫째, 그것은 우리가 최소한으로 필요한 것보다 더 많은 기능을 하는데, 프로토콜 설계자 입장에서는 추가되는 모든 기능이 부채(liability)가 된다. 둘째, 우리는 CreateX를 소유하고 있지 않으므로 사용자 컨트랙트와 시스템 컨트랙트를 섞어버리고 싶지 않다."
+        },
+        {
+          "date": "2026-10-15",
+          "by": "lightclients",
+          "stance": "pro",
+          "quote": "7997이 애초에 포함된 이유는, CreateX가 EOA의 정밀한 가스 리밋·가격 결정을 요구하는데 우리는 시스템 컨트랙트에서 더는 EOA에 의존하고 싶지 않고 가스 가격이 일관되게 유지된다는 가정에도 의존하고 싶지 않기 때문이다. 두 앤티패턴이다.",
+          "url": "https://x.com/lightclients/status/2110860885099262044",
+          "digest": "2026-10-17",
+          "relation": "none",
+          "original": "@Zodomo @pcaversaccio original argument, why is 7997 included in the first place: it requires precise gas limit and price decisions form an EOA and we don't want to rely on EOAs anymore for system contracts nor do we want to rely on gas pricing stay consistent. two anti patterns",
+          "translation": "@Zodomo @pcaversaccio 원래의 논거, 즉 왜 7997이 애초에 포함되었는가 하면, 그것은 EOA(외부 소유 계정, Externally Owned Account)로부터 정확한 가스 리밋과 가스 가격 결정을 요구하는데, 우리는 더 이상 시스템 컨트랙트를 위해 EOA에 의존하고 싶지 않고, 가스 가격이 일관되게 유지된다는 것에도 의존하고 싶지 않다. 두 가지 안티패턴(anti-pattern)인 것이다."
+        },
+        {
+          "date": "2026-10-16",
+          "by": "nero_eth",
+          "stance": "pro",
+          "quote": "데브넷·섀도 포크에서 테스트하는 모두에게 유용하고, 새 체인이 생기면 앱 개발자가 Arachnid 배포를 가능케 하는 가스 스케줄을 이더리움 스펙을 들어 요구할 수 있다. 무엇보다 메인넷에선 noop이었다.",
+          "url": "https://x.com/nero_eth/status/2110951956839592235",
+          "digest": "2026-10-17",
+          "replyTo": "Mudit__Gupta",
+          "relation": "reply",
+          "original": "It's useful for everyone testing things on devnets, shadow forks, etc. And if there's a new chain popping up, app devs can point to the ethereum specs demanding a gas schedule that enables deploying arachnid.\nMost importantly, it was a noop for mainnet - otherwise it wouldn't have made the cut.",
+          "translation": "그것은 devnet이나 섀도우 포크(shadow fork) 등에서 뭔가를 테스트하는 모든 사람에게 유용하다. 그리고 새로운 체인이 등장할 경우, 앱 개발자들은 Arachnid를 배포할 수 있게 하는 가스 스케줄을 요구하는 이더리움 스펙을 가리킬 수 있다. 가장 중요한 점은, 메인넷에서는 그것이 노옵이었다는 것이다. 그렇지 않았다면 애초에 채택되지 못했을 것이다."
+        },
+        {
+          "date": "2026-10-16",
+          "by": "chfast",
+          "stance": "con",
+          "quote": "그렇다면 이 EIP를 포크에서 제거하는 것 역시 noop이다.",
+          "url": "https://x.com/chfast/status/2111035900088000929",
+          "digest": "2026-10-17",
+          "replyTo": "nero_eth",
+          "relation": "reply",
+          "original": "@nero_eth @pcaversaccio Therefore, it is also noop to remove this EIP from the fork.",
+          "translation": "@nero_eth @pcaversaccio 그러니 이 EIP를 포크에서 제거하는 것도 마찬가지로 노옵이다."
+        }
+      ],
+      "firstSeen": "2026-10-15",
+      "lastActivity": "2026-10-16",
+      "status": "active",
+      "rootUrl": "https://x.com/nero_eth/status/2110787397151568355",
+      "engagement": {
+        "likes": 6,
+        "retweets": 0,
+        "quotes": 0,
+        "replies": 3,
+        "views": 796
+      }
+    },
+    {
+      "id": "balaji-farcaster-acquisition",
+      "title": "Balaji의 Farcaster 인수는 탈중앙 소셜의 다음 챕터인가, 변질인가?",
+      "category": "거버넌스 · 커뮤니티",
+      "summary": "EF의 Jason Chaskin이 Balaji Srinivasan의 Farcaster 인수를 탈중앙 소셜의 다음 챕터로 반기며 '중앙화 앱이지만 탈중앙 프로토콜 위에 있어 팔로잉을 유지한 채 다른 규칙의 앱을 만들 수 있는지가 핵심'이라고 주장하자, donnoh와 다수 사용자는 '다음 챕터는 테크노 파시즘'이며 출시 첫날부터 사람들을 밴하는 것은 탈중앙과 거리가 멀다고 반발했다.",
+      "keyPoints": [
+        "중앙화 앱이 탈중앙 프로토콜 위에 있다는 사실이 사용자를 실제로 보호하는가(팔로잉을 유지한 채 다른 규칙의 앱으로 이탈 가능한가)",
+        "출시 첫날의 사용자 밴·로열티 서약은 '탈중앙 소셜'이라는 서사와 양립하는가",
+        "Balaji와 Network State의 정치적 성향이 Farcaster의 방향을 변질시키는가"
+      ],
+      "background": "Farcaster는 탈중앙 소셜 프로토콜로, 사용자가 특정 클라이언트 앱에 종속되지 않고 소셜 그래프(팔로잉)를 유지한 채 여러 클라이언트를 오갈 수 있게 설계됐다. Balaji Srinivasan은 Network State 개념을 제창한 인물로, 그의 인수 후 일부 사용자가 클라이언트에서 밴됐다는 불만과 로열티 서약 논란이 제기됐다. 같은 시기 gakonst는 tempo 팀을 '전 Farcaster 팀'으로 소개해 기존 팀의 이동을 시사했다.",
+      "whyItMatters": "이더리움 생태계가 키워 온 대표 탈중앙 소셜 실험의 소유권이 이동하면서, '프로토콜과 앱의 분리'가 실제로 사용자를 보호하는지가 시험대에 올랐다. 인수 주체의 정치적 성향과 클라이언트 수준의 모더레이션이 프로토콜의 탈중앙성과 어떻게 충돌하는지가 관전 포인트다.",
+      "keywords": [
+        "Farcaster Balaji",
+        "decentralized social",
+        "Network State"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "탈중앙 소셜의 다음 챕터가 기대된다",
+          "holders": [
+            {
+              "handle": "jchaskin22",
+              "name": "chaskin.eth",
+              "role": "EF 리서처·생태계 팀",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/2016950149633691648/Kht-necI_400x400.jpg"
+            },
+            {
+              "handle": "gami_vc",
+              "name": "Gami 💹 StockRip.com",
+              "watchlist": false,
+              "avatar": "https://pbs.twimg.com/profile_images/2110351616817893376/et-YoqZl_400x400.png"
+            }
+          ],
+          "points": [
+            "세계는 그 어느 때보다 탈중앙 소셜이 필요하며 사람들이 월드 가든과 중독을 노린 알고리즘의 해악을 깨닫고 있다(jchaskin22).",
+            "Farcaster는 원래부터 탈중앙 프로토콜 위의 중앙화 앱이었고, 핵심은 다른 규칙의 앱을 쓰거나 만들면서 팔로잉을 유지할 수 있느냐이며 Balaji가 이를 중시하기에 인수했다(jchaskin22).",
+            "해볼 가치가 있는 실험이며 Farcaster가 무의미하게 잊히는 것을 걱정했다(gami_vc)."
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "탈중앙이 아니라 변질이다",
+          "holders": [
+            {
+              "handle": "donnoh_eth",
+              "name": "donnoh.gwei 💗",
+              "role": "L2BEAT 리서치 책임",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/1906978600311521280/aSbKSjtX_400x400.jpg"
+            },
+            {
+              "handle": "trishprattle",
+              "name": "Trish 🫧",
+              "watchlist": false,
+              "avatar": "https://pbs.twimg.com/profile_images/2025795500499513344/vggSexBp_400x400.jpg"
+            },
+            {
+              "handle": "cryptobruh117",
+              "name": "S117.eth",
+              "watchlist": false,
+              "avatar": "https://pbs.twimg.com/profile_images/2080007305152569344/TE67ZeeN_400x400.jpg"
+            },
+            {
+              "handle": "thefaketomato",
+              "name": "tomato",
+              "watchlist": false,
+              "avatar": "https://pbs.twimg.com/profile_images/1684406265722675200/3p-eZw_S_400x400.jpg"
+            },
+            {
+              "handle": "makemake_kbo",
+              "name": "makemake",
+              "watchlist": false,
+              "avatar": "https://pbs.twimg.com/profile_images/1929653978104516608/iOzi82CS_400x400.jpg"
+            }
+          ],
+          "points": [
+            "이것이 탈중앙이냐, Farcaster의 다음 챕터는 테크노 파시즘인데 왜 설레느냐(donnoh_eth).",
+            "여러 가지일 수 있어도 탈중앙만은 아니다(trishprattle).",
+            "출시 첫날부터 사람들을 무더기로 밴하는 것은 탈중앙 소셜과 거리가 멀다(cryptobruh117).",
+            "탈중앙 소셜 네트워크에 남으려고 로열티 서약에 서명하는 것은 모순이며, 이는 파시스트·네오리액셔너리에게 굽신대는 것이다(thefaketomato, makemake_kbo)."
+          ]
+        },
+        {
+          "stance": "neutral",
+          "label": "응원하고 싶지만 첫날 밴이 아쉽다",
+          "holders": [
+            {
+              "handle": "pastelETH",
+              "name": "leopastel.eth ꓽꓽ)",
+              "watchlist": false,
+              "avatar": "https://pbs.twimg.com/profile_images/1885120400515895296/HRWNwL2c_400x400.jpg"
+            }
+          ],
+          "points": [
+            "전적으로 응원하고 싶지만, 정말 멋진 사람들이 출시 첫날 클라이언트에서 밴당한 것을 보니 슬프다."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-10-15",
+          "by": "jchaskin22",
+          "stance": "pro",
+          "quote": "세계는 그 어느 때보다 탈중앙 소셜이 필요하다. 사람들은 소셜 미디어가 끼치는 해악을 본다. 그것을 월드 가든과 우리를 중독시키도록 설계된 알고리즘에 연결짓는 이는 더 적다. Farcaster의 이 다음 챕터가 정말 기대된다.",
+          "url": "https://x.com/jchaskin22/status/2110834539677553142",
+          "digest": "2026-10-17",
+          "relation": "none",
+          "original": "The world needs decentralized social now more than ever\n\nPeople see the harm social media causes. Fewer connect it to walled gardens and algorithms designed to keep us addicted\n\nReally excited for this next chapter of Farcaster. See you there",
+          "translation": "분산형 소셜(decentralized social)은 지금 그 어느 때보다 필요하다. 사람들은 소셜 미디어가 초래하는 해악을 보고 있다. 하지만 그것을 walled garden(가둬진 플랫폼)과 우리를 중독시키도록 설계된 알고리즘과 연결 짓는 사람은 더 적다. Farcaster의 다음 장(chapter)에 대해 정말 기대가 크다. 거기서 보자."
+        },
+        {
+          "date": "2026-10-15",
+          "by": "jchaskin22",
+          "stance": "pro",
+          "quote": "중요한 건 다른 규칙의 앱을 쓰거나 만들면서 팔로잉을 유지할 수 있느냐다. Balaji는 이를 중시한다. 그렇지 않았다면 Farcaster를 사지 않고 그냥 Network State 웹사이트에 포럼을 열었을 것이다.",
+          "url": "https://x.com/jchaskin22/status/2110851823741603994",
+          "digest": "2026-10-17",
+          "replyTo": "depressivehacks",
+          "relation": "reply",
+          "original": "@depressivehacks What matters is whether you can use or build another app with different rules and keep your following\n\nBalaji cares about this - If he didn't he wouldn't have bought Farcaster and just spun up a forum on the NS website",
+          "translation": "@depressivehacks 중요한 것은 다른 규칙을 가진 다른 앱을 사용하거나 만들 수 있으면서도 자신의 팔로잉(following)을 유지할 수 있는지 여부다. Balaji는 이것을 중요하게 여긴다. 그렇지 않았다면 그가 Farcaster를 인수해서 그냥 NS 웹사이트에 포럼 하나를 띄우는 것으로 끝냈을 것이다."
+        },
+        {
+          "date": "2026-10-15",
+          "by": "gami_vc",
+          "stance": "pro",
+          "quote": "나도 찬성에 투표했다. 충분히 해볼 가치가 있는 실험이다. Farcaster가 무의미하게 잊힐까 걱정했었다.",
+          "url": "https://x.com/gami_vc/status/2110859218907729989",
+          "digest": "2026-10-17",
+          "replyTo": "jchaskin22",
+          "relation": "reply",
+          "original": "@jchaskin22 Voted FOR as well. Very much a worthwhile experiment. Was worried Farcaster would fade into obscurity. The uninteresting kind.",
+          "translation": "@jchaskin22 나도 찬성(FOR)에 투표했다. 정말 해볼 만한 실험이다. Farcaster가 그저 흥미롭지도 않은 방식으로 잊혀질까 걱정했었다."
+        },
+        {
+          "date": "2026-10-15",
+          "by": "trishprattle",
+          "stance": "con",
+          "quote": "여러 가지이긴 한데 탈중앙만은 아니다ㅋㅋ 진심일 리 없다.",
+          "url": "https://x.com/trishprattle/status/2110866510520746219",
+          "digest": "2026-10-17",
+          "replyTo": "jchaskin22",
+          "relation": "reply",
+          "original": "@jchaskin22 It’s a lot of things but decentralized isn’t one of them lol omg you cannot be serious",
+          "translation": "@jchaskin22 그것은 여러 가지이긴 하지만 탈중앙화된 것은 아니다, 하하, 세상에, 진심일 리가 없다."
+        },
+        {
+          "date": "2026-10-15",
+          "by": "pastelETH",
+          "stance": "neutral",
+          "quote": "전적으로 응원하고 싶지만, 정말 멋진 사람들이 첫날 클라이언트에서 밴당한 걸 보니 슬프다.",
+          "url": "https://x.com/pastelETH/status/2110855511872532499",
+          "digest": "2026-10-17",
+          "replyTo": "jchaskin22",
+          "relation": "reply",
+          "original": "@jchaskin22 i’d like to be fully supportive, but also sad to see some really cool ppl banned from the client on day uno",
+          "translation": "@jchaskin22 전적으로 지지하고 싶지만, 정말 멋진 사람들 몇 명이 첫날부터 클라이언트에서 밴(ban)당한 것을 보니 슬프기도 하다."
+        },
+        {
+          "date": "2026-10-16",
+          "by": "donnoh_eth",
+          "stance": "con",
+          "quote": "이거 농담인가? 탈중앙이라고? Farcaster의 다음 챕터는 테크노 파시즘인데 왜 그게 설레나?",
+          "url": "https://x.com/donnoh_eth/status/2111035247399674357",
+          "digest": "2026-10-17",
+          "replyTo": "jchaskin22",
+          "relation": "reply",
+          "original": "@jchaskin22 Is this a joke? Decentralized?  The next chapter for Farcaster is techno-fascism, why would that excite you?",
+          "translation": "@jchaskin22 이게 농담인가? 탈중앙화라고? Farcaster의 다음 장은 테크노 파시즘(techno-fascism)인데, 그게 왜 기대될 일인가?"
+        },
+        {
+          "date": "2026-10-16",
+          "by": "cryptobruh117",
+          "stance": "con",
+          "quote": "사람들을 무더기로 밴하는 게 정말 도움이 되겠다ㅋ Hive나 Steem을 써라. Farcaster는 농담이다.",
+          "url": "https://x.com/cryptobruh117/status/2111096341434691893",
+          "digest": "2026-10-17",
+          "replyTo": "jchaskin22",
+          "relation": "reply",
+          "original": "@jchaskin22 Banning a bunch of people really helps lmfao\n\nUse Hive or Steem instead\n\nFarcaster is a joke\n\nAsk AI to explain if you need more info",
+          "translation": "@jchaskin22 사람들을 한 무더기 밴하는 게 정말 도움이 되네, 웃기다. 차라리 Hive나 Steem을 써라. Farcaster는 농담거리다. 더 자세한 설명이 필요하면 AI에게 물어봐라."
+        },
+        {
+          "date": "2026-10-16",
+          "by": "thefaketomato",
+          "stance": "con",
+          "quote": "탈중앙 소셜 네트워크에 남으려고 로열티 서약에 서명하는 기분은 어떤가?",
+          "url": "https://x.com/thefaketomato/status/2110894463094554951",
+          "digest": "2026-10-17",
+          "replyTo": "jchaskin22",
+          "relation": "reply",
+          "original": "@jchaskin22 How does it feel to sign a loyalty pledge to stay on the decentralized social network?",
+          "translation": "@jchaskin22 탈중앙화 소셜 네트워크에 남아 있기 위해 충성 서약서(loyalty pledge)에 서명하는 기분이 어떤가?"
+        },
+        {
+          "date": "2026-10-16",
+          "by": "makemake_kbo",
+          "stance": "con",
+          "quote": "당신은 파시스트와 네오리액셔너리에게 굽신대고 있다.",
+          "url": "https://x.com/makemake_kbo/status/2111054384180191362",
+          "digest": "2026-10-17",
+          "replyTo": "jchaskin22",
+          "relation": "reply",
+          "original": "@jchaskin22 you are bending over for fascist and neoreactionaries",
+          "translation": "@jchaskin22 당신은 파시스트와 신반동주의자(neoreactionary)들에게 굴복하고 있다."
+        }
+      ],
+      "firstSeen": "2026-10-15",
+      "lastActivity": "2026-10-16",
+      "status": "active",
+      "rootUrl": "https://x.com/jchaskin22/status/2110834539677553142",
+      "engagement": {
+        "likes": 55,
+        "retweets": 3,
+        "quotes": 4,
+        "replies": 17,
+        "views": 4541
+      }
+    },
     {
       "id": "eth-value-accrual-broken",
       "title": "ETH의 가치 귀속은 깨졌고 L1은 증명 게시 레이어로 수렴하는가?",
@@ -565,7 +1446,7 @@
       ],
       "firstSeen": "2026-10-02",
       "lastActivity": "2026-10-09",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/tayvano_/status/2106055842206531682",
       "engagement": {
         "likes": 289,
@@ -944,7 +1825,7 @@
       ],
       "firstSeen": "2026-09-07",
       "lastActivity": "2026-10-09",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/lex_node/status/2108549202426909146",
       "engagement": {
         "likes": 380,
@@ -952,186 +1833,6 @@
         "quotes": 2,
         "replies": 39,
         "views": 17305
-      }
-    },
-    {
-      "id": "stake-state-provision-role",
-      "title": "스테이크는 ZK 시대에도 상태 제공 백본을 겸해야 하나, 검증과 분리해야 하나?",
-      "category": "프로토콜 설계",
-      "summary": "EF의 Barnabé Monnot은 2027년까지 실행 레이어(EL) 없이 ZK 증명(ZK proof)에만 의존해 어테스트하는 스테이크 비율은 0%가 바람직하다며 스테이커가 상태(state)·히스토리·멤풀(mempool) 제공 백본을 겸해야 한다고 주장했고, L2BEAT의 donnoh는 상태 제공과 검증은 분리 가능한 역할이며 LST 때문에 비용 경쟁으로 치닫는 검증자(validator)보다 비검증 풀노드가 더 나은 백본이라고 반박했다.",
-      "keyPoints": [
-        "ZK 증명으로 검증을 대체하더라도 스테이커가 상태·히스토리·멤풀 제공을 겸해야 하는가?",
-        "상태 제공과 검증은 분리 가능한 별개 역할인가?",
-        "비검증 풀노드와 스테이커 중 누가 이타적 상태 제공 네트워크의 더 나은 백본인가?"
-      ],
-      "background": "이더리움은 ZK 증명으로 블록 유효성을 검증하는 방향(스테이트리스·싱크 증명, 예: EIP-8440 계열)으로 나아가고 있으며, 그 경우 검증자가 실행 레이어(EL)를 직접 돌리지 않고도 페이로드 유효성을 어테스트할 수 있게 된다. 문제는 그때 누가 상태, 히스토리, 멤풀을 제공하느냐다. Barnabé Monnot은 스테이크된 주체가 이 백본 역할을 겸해야 하며 그 비용은 블롭(blob) 가용성 비용에 비하면 작다고 보고, donnoh는 두 역할이 분리 가능하며 리퀴드 스테이킹 토큰(LST)으로 비용 경쟁에 내몰리는 검증자보다 비검증 풀노드가 더 적합하다고 본다.",
-      "whyItMatters": "싱크 증명이 현실화될수록 '검증은 ZK가 맡는데 상태는 누가 무슨 인센티브로 제공하느냐'가 ZK 시대 노드 아키텍처의 핵심 공백이 된다. 상태 제공을 스테이킹에 묶을지 분리할지에 따라 풀노드 생태계와 멤풀의 지속성이 갈릴 수 있다.",
-      "sources": [],
-      "keywords": [
-        "ZK proofs",
-        "EIP-8440",
-        "validator serve state",
-        "stateless Ethereum"
-      ],
-      "positions": [
-        {
-          "stance": "pro",
-          "label": "스테이크는 ZK 증명을 쓰더라도 상태·히스토리·멤풀 백본으로 남아야 한다",
-          "holders": [
-            {
-              "handle": "barnabemonnot",
-              "name": "Barnabé Monnot | barnabé.eth",
-              "role": "EF 리서처, 인센티브·이슈언스",
-              "avatar": "https://pbs.twimg.com/profile_images/2069104465202814976/alWWQ8SG_400x400.jpg"
-            }
-          ],
-          "points": [
-            "2027년까지 스테이크가 EL 없이 ZK 증명에만 의존해 페이로드 유효성을 어테스트하는 비율은 0%가 바람직하다.",
-            "스테이크된 주체가 상태와 히스토리를 제공하고 멤풀에 참여하기를 바란다.",
-            "그 비용은 블롭을 가용하게 만드는 비용에 비하면 작으며, 각 노드가 데이터를 적게 가진 넓은 네트워크가 각 노드에 더 많은 제공을 기대하는 좁은 네트워크보다 서비스 품질이 낫다고 확신하지 못한다.",
-            "상태·히스토리 제공의 백본이 될 더 나은 노드는 네트워크에 달리 없다."
-          ]
-        },
-        {
-          "stance": "con",
-          "label": "상태 제공과 검증은 분리 가능한 역할이며 비검증 풀노드가 더 나은 백본이다",
-          "holders": [
-            {
-              "handle": "donnoh_eth",
-              "name": "donnoh.gwei 💗",
-              "role": "L2BEAT 리서치 책임자",
-              "avatar": "https://pbs.twimg.com/profile_images/1906978600311521280/aSbKSjtX_400x400.jpg"
-            }
-          ],
-          "points": [
-            "상태를 제공하는 것과 검증자가 되는 것은 별개의 역할이며, 검증자가 아니어도 기꺼이 상태·히스토리를 제공하고 멤풀에 참여할 수 있다.",
-            "역할을 나눌 수 있다면 굳이 스테이커에게 묶을 이유가 없다.",
-            "검증자는 특히 LST 때문에 비용 절감 경쟁으로 치닫기 때문에, 비검증 풀노드가 궁극적으로 이타적인 네트워크의 백본으로 더 적합하다."
-          ]
-        },
-        {
-          "stance": "other",
-          "label": "비검증 풀노드 운영자가 이제 얼마 남지 않았다는 자조",
-          "holders": [
-            {
-              "handle": "CPerezz19",
-              "name": "CPerezz.eth ⟠ 🦀",
-              "role": "EF 리서처",
-              "avatar": "https://pbs.twimg.com/profile_images/1254074532417200128/M2uQcW5K_400x400.jpg"
-            }
-          ],
-          "points": [
-            "비검증 풀노드를 돌리는 운영자는 이제 정말 얼마 남지 않았다(이에 donnoh는 그것이 오해라고 응수)."
-          ]
-        }
-      ],
-      "timeline": [
-        {
-          "date": "2026-10-09",
-          "by": "barnabemonnot",
-          "stance": "pro",
-          "quote": "2027년까지 얼마나 많은 이더리움 스테이크가 EL을 돌리지 않고 ZK 증명에 의존해 페이로드 유효성을 어테스트해야 하는가?",
-          "url": "https://x.com/barnabemonnot/status/2108532863151010290",
-          "digest": "2026-10-11",
-          "relation": "none",
-          "original": "How much Ethereum stake should be relying on ZK proofs to attest to payload validity by 2027? (running without an EL)",
-          "translation": "2027년까지 얼마나 많은 이더리움 스테이크(stake)가 페이로드 유효성(payload validity)을 증명하기 위해 ZK 증명(ZK proof)에 의존해야 할까? (EL(실행 레이어, Execution Layer) 없이 운영되는 경우)"
-        },
-        {
-          "date": "2026-10-09",
-          "by": "barnabemonnot",
-          "stance": "pro",
-          "quote": "스테이크가 ZK 증명으로 돌아가길 바라지만, 특별히 EL을 돌리지 않는 쪽을 선호하지는 않는다. 멤풀에 참여하고 상태도 제공하길 바란다. 그래서 0%를 택했다.",
-          "url": "https://x.com/barnabemonnot/status/2108549586587643940",
-          "digest": "2026-10-11",
-          "replyTo": "dapplion",
-          "relation": "reply",
-          "original": "@dapplion I’d like Ethereum stake to run on ZK proofs but I’d not prefer them specifically to not run an EL, I’d like them to participate in the mempool and serve state too. So I chose 0%",
-          "translation": "이더리움 스테이크가 ZK 증명을 기반으로 운영되길 원하지만, 그것들이 굳이 EL을 실행하지 않는 쪽을 특별히 선호하는 것은 아니다. 나는 그것들이 멤풀(mempool)에도 참여하고 상태(state)도 제공하길 원한다. 그래서 0%를 선택했다."
-        },
-        {
-          "date": "2026-10-09",
-          "by": "donnoh_eth",
-          "stance": "con",
-          "quote": "상태를 제공하는 것과 검증자가 되는 것은 다른 역할 아닌가? 나는 검증자가 아니어도 기꺼이 상태와 히스토리를 제공하고 멤풀에 참여할 것이다.",
-          "url": "https://x.com/barnabemonnot/status/2108556306621563083",
-          "digest": "2026-10-11",
-          "replyTo": "barnabemonnot",
-          "relation": "reply",
-          "original": "@barnabemonnot @dapplion serving the state and being a validator are two different roles? i’d happily serve the state, history and participate in the mempool without being a validator",
-          "translation": "상태를 제공하는 것과 검증자(validator)가 되는 것은 서로 다른 역할이 아닌가? 나는 검증자가 되지 않고도 기꺼이 상태와 히스토리(history)를 제공하고 멤풀에 참여하고 싶다."
-        },
-        {
-          "date": "2026-10-09",
-          "by": "barnabemonnot",
-          "stance": "pro",
-          "quote": "맞다, 다만 너는 역의 함의를 말하고 있다. 나는 스테이크된 주체가 상태·히스토리를 제공하고 멤풀에 참여하기를 바라는 것이다.",
-          "url": "https://x.com/barnabemonnot/status/2108556902653444411",
-          "digest": "2026-10-11",
-          "replyTo": "donnoh_eth",
-          "relation": "reply",
-          "original": "@donnoh_eth @dapplion Sure, but you're talking about the reverse implication. I want staked parties to serve state, history and participate in the mempool",
-          "translation": "그렇다, 하지만 그건 역방향의 함의를 이야기하는 것이다. 나는 스테이킹한 당사자들이 상태와 히스토리를 제공하고 멤풀에 참여하길 원한다."
-        },
-        {
-          "date": "2026-10-09",
-          "by": "donnoh_eth",
-          "stance": "con",
-          "quote": "동의하지 않는다. 비검증 풀노드가 궁극적으로 이타적인 네트워크의 백본으로 더 나은 후보라고 본다. 검증자들은 특히 LST 때문에 어차피 비용 절감 경쟁으로 치닫는 게 분명하다.",
-          "url": "https://x.com/barnabemonnot/status/2108562139203920321",
-          "digest": "2026-10-11",
-          "replyTo": "barnabemonnot",
-          "relation": "reply",
-          "original": "@barnabemonnot @dapplion i disagree! i'd argue that non-validator full nodes are better candidates at being at the backbone of an ultimately altruistic network. i definitely see validators racing to the bottom to cut costs anyway, especially with LSTs",
-          "translation": "나는 동의하지 않는다! 궁극적으로 이타적인 네트워크의 중추가 되기에는 검증자가 아닌 풀 노드(full node)가 더 나은 후보라고 주장하고 싶다. 어차피 검증자들이, 특히 LST(유동성 스테이킹 토큰, Liquid Staking Token)와 함께 비용을 줄이기 위해 바닥을 향한 경쟁을 벌이는 것을 분명히 보게 될 것이다."
-        },
-        {
-          "date": "2026-10-09",
-          "by": "barnabemonnot",
-          "stance": "pro",
-          "quote": "그 비용은 예컨대 블롭을 가용하게 만드는 비용에 비하면 작다. 각 노드가 많은 데이터를 갖지 않는 넓은 네트워크가, 각 노드가 더 많은 데이터를 제공하도록 기대되는 좁은 네트워크보다 서비스 품질이 나을지 확신하지 못한다.",
-          "url": "https://x.com/barnabemonnot/status/2108564457693847773",
-          "digest": "2026-10-11",
-          "replyTo": "donnoh_eth",
-          "relation": "reply",
-          "original": "@donnoh_eth @dapplion The cost is small, compared to the cost of making blobs available for instance. I am not convinced the quality of service of a wide network with each node having not much data, would be better than a smaller network with each node being expected to serve more data.",
-          "translation": "예를 들어 블롭(blob)을 사용 가능하게 만드는 비용에 비하면 그 비용은 작다. 각 노드가 많지 않은 데이터를 가진 넓은 네트워크의 서비스 품질이, 각 노드가 더 많은 데이터를 제공하도록 요구되는 더 작은 네트워크보다 더 나을 것이라는 확신은 들지 않는다."
-        },
-        {
-          "date": "2026-10-09",
-          "by": "CPerezz",
-          "stance": "other",
-          "quote": "우리 같은 사람은 이제 정말 얼마 남지 않았다.",
-          "url": "https://x.com/donnoh_eth/status/2108568641427956050",
-          "digest": "2026-10-11",
-          "replyTo": "donnoh_eth",
-          "relation": "reply",
-          "original": "@donnoh_eth @barnabemonnot @dapplion There are very few of us left :(",
-          "translation": "우리 같은 사람은 이제 거의 남지 않았다 :("
-        },
-        {
-          "date": "2026-10-09",
-          "by": "donnoh_eth",
-          "stance": "con",
-          "quote": "아니, 그건 오해라고 본다.",
-          "url": "https://x.com/donnoh_eth/status/2108569220921627097",
-          "digest": "2026-10-11",
-          "replyTo": "CPerezz19",
-          "relation": "reply",
-          "original": "@CPerezz19 @barnabemonnot @dapplion nahhh i think this is a misconception",
-          "translation": "아니, 나는 이게 오해라고 생각한다."
-        }
-      ],
-      "firstSeen": "2026-10-09",
-      "lastActivity": "2026-10-09",
-      "status": "active",
-      "rootUrl": "https://x.com/barnabemonnot/status/2108532863151010290",
-      "engagement": {
-        "likes": 6,
-        "retweets": 0,
-        "quotes": 0,
-        "replies": 2,
-        "views": 3899
       }
     },
     {
@@ -3819,7 +4520,7 @@
       ],
       "firstSeen": "2026-09-16",
       "lastActivity": "2026-09-17",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/chfast/status/2100488518392815842",
       "engagement": {
         "likes": 2,
@@ -3985,7 +4686,7 @@
       ],
       "firstSeen": "2026-09-15",
       "lastActivity": "2026-09-16",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/laurashin/status/2099970946161410528",
       "engagement": {
         "likes": 301,
@@ -4647,7 +5348,7 @@
       ],
       "firstSeen": "2026-08-24",
       "lastActivity": "2026-09-15",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/VitalikButerin/status/2096378061377900881",
       "engagement": {
         "likes": 1370,
