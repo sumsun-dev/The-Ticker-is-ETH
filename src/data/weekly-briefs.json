@@ -1,3 +1,129 @@
 {
-  "briefs": []
+  "briefs": [
+    {
+      "start": "2026-10-12",
+      "end": "2026-10-18",
+      "sentAt": "2026-10-18T10:03:39.294Z",
+      "messageIds": [
+        7
+      ],
+      "brief": {
+        "headline": "이더리움재단(EF)이 10월 16일 차기 업그레이드 글램스테르담의 Hoodi 테스트넷 적용일을 10월 26일로 확정해 공지했습니다. 앞서 10월 15일 코어 개발자 회의에서는 거래 실행을 증명으로 검증하는 EIP-8025가 다음 업그레이드 후보에서 제외됐습니다.",
+        "sections": [
+          {
+            "heading": "프로토콜 · 코어 개발",
+            "items": [
+              {
+                "title": "글램스테르담 업그레이드, Hoodi 테스트넷 적용 10월 26일 확정",
+                "date": "10.16",
+                "summary": "이더리움재단(EF)이 10월 16일 공식 블로그에서 글램스테르담 업그레이드의 Hoodi 테스트넷(실제 적용 전 시험용 네트워크) 적용일을 10월 26일로 공지했습니다. 이 업그레이드는 10월 6일 세폴리아 테스트넷에 먼저 적용돼 사고 없이 운영 중이며 메인넷 적용 날짜는 별도로 발표됩니다.",
+                "sources": [
+                  {
+                    "label": "ECK",
+                    "url": "https://ethcollective.xyz/news?date=2026-10-17"
+                  },
+                  {
+                    "label": "EF 블로그",
+                    "url": "https://blog.ethereum.org/en/2026/10/16/glamsterdam-hoodi-announcement"
+                  }
+                ]
+              },
+              {
+                "title": "개발자 회의, 선택적 실행 증명 EIP-8025를 차기 업그레이드 후보에서 제외",
+                "date": "10.15",
+                "summary": "10월 15일 열린 합의 클라이언트 개발자 회의(ACDC #189)에서 거래 실행 결과를 수학적 증명으로 검증하는 선택 기능 EIP-8025가 클라이언트 팀들의 지지 부족으로 다음 업그레이드 헤고타 후보에서 제외됐습니다. 클라이언트 개발팀 ethrex는 잘못된 결정이라는 공개 성명을 냈고 찬반 공방이 X에서 이어졌습니다.",
+                "sources": [
+                  {
+                    "label": "ECK 콜 요약",
+                    "url": "https://ethcollective.xyz/calls/acdc-189"
+                  },
+                  {
+                    "label": "Forkcast 회의록",
+                    "url": "https://forkcast.org/calls/acdc/189/"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "heading": "업계 동향",
+            "items": [
+              {
+                "title": "Optimism, 업비트 GIWA 테스트넷 1억 건 등 한국 기관 채택 현황 발표",
+                "date": "10.16",
+                "summary": "Optimism이 10월 16일 업비트의 GIWA가 테스트넷에서 트랜잭션 1억 건을 넘겼고 Toss가 원화 스테이블코인을 검토 중이라고 발표했습니다. DB증권의 실물자산(RWA) 토큰화와 KB증권의 기관투자자 대상 토큰화 펀드 양해각서 진행도 함께 공개했습니다.",
+                "sources": [
+                  {
+                    "label": "ECK",
+                    "url": "https://ethcollective.xyz/news?date=2026-10-17"
+                  },
+                  {
+                    "label": "@Optimism",
+                    "url": "https://x.com/Optimism/status/2111069143793562016"
+                  }
+                ]
+              },
+              {
+                "title": "Ledger 공급망 공격 피해 7,000만에서 1억 달러 추산",
+                "date": "10.16",
+                "summary": "리셀러 CryptoBilis가 판매한 Ledger 하드웨어 지갑(오프라인 보관용 지갑 기기)에 LTE 통신 칩이 심어져 복구 문구가 유출된 사건의 피해가 7,000만에서 1억 달러로 추산된다는 분석이 10월 16일 Unchained 방송으로 공개됐습니다. 변조 기기는 Ledger의 정품 확인을 통과했고 Ledger는 점검한 독일 매장 재고에서 변조 흔적이 없다고 밝혔습니다.",
+                "sources": [
+                  {
+                    "label": "ECK",
+                    "url": "https://ethcollective.xyz/news?date=2026-10-17"
+                  },
+                  {
+                    "label": "@laurashin",
+                    "url": "https://x.com/laurashin/status/2111106695535497399"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "heading": "커뮤니티 논쟁",
+            "items": [
+              {
+                "title": "Balaji Srinivasan의 Farcaster 인수 소식에 찬반 논쟁",
+                "date": "10.15",
+                "summary": "Balaji Srinivasan이 탈중앙 소셜 서비스 Farcaster를 인수했다는 소식(공식 발표는 미확인)을 두고 10월 15일 X에서 논쟁이 벌어졌습니다. 이더리움재단(EF)의 Jason Chaskin은 팔로잉을 유지한 채 다른 앱으로 옮길 수 있다는 점에서 기대를 밝혔고 L2BEAT의 donnoh 등은 출시 첫날부터 이용자를 차단했다며 반발했습니다.",
+                "sources": [
+                  {
+                    "label": "ECK 논쟁 정리",
+                    "url": "https://ethcollective.xyz/debates/balaji-farcaster-acquisition"
+                  },
+                  {
+                    "label": "@jchaskin22",
+                    "url": "https://x.com/jchaskin22/status/2110834539677553142"
+                  }
+                ]
+              },
+              {
+                "title": "ARK Invest의 '이더리움 L1 가치 귀속 붕괴' 주장에 반론",
+                "date": "10.12",
+                "summary": "ARK Invest의 Lorenzo Valente가 10월 12일 공개된 Unchained 인터뷰에서 Robinhood가 하루 수백만 달러를 벌 때 이더리움 기본 체인(L1)은 100달러를 가져갔다며 가치 귀속이 깨졌다고 주장했습니다. William Mougayar 등은 수수료는 애초에 ETH의 평가 기준이 아니라고 반박했습니다.",
+                "sources": [
+                  {
+                    "label": "ECK",
+                    "url": "https://ethcollective.xyz/news?date=2026-10-14"
+                  },
+                  {
+                    "label": "@laurashin",
+                    "url": "https://x.com/laurashin/status/2109783276277924181"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "upcoming": [
+          "10.19 코어 개발자 테스팅 콜 ACDT #101",
+          "10.26 글램스테르담 Hoodi 테스트넷 적용",
+          "10.28 heze-devnet-2 데브넷 가동 기한",
+          "11.12 Circle 유럽 법인, 유럽은행감독청(EBA) 직접 감독 개시",
+          "11.12 NFT 마켓플레이스 Blur 웹 프론트엔드 종료"
+        ]
+      }
+    }
+  ]
 }
