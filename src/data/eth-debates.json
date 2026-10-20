@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-17T01:17:00.411Z",
+  "updatedAt": "2026-10-20T01:21:11.783Z",
   "processedDigests": [
     "2026-08-24",
     "2026-08-25",
@@ -27,9 +27,411 @@
     "2026-10-08",
     "2026-10-11",
     "2026-10-14",
-    "2026-10-17"
+    "2026-10-17",
+    "2026-10-20"
   ],
   "debates": [
+    {
+      "id": "karpeles-ledger-implant-role",
+      "title": "Ledger 임플란트 사태에서 Mark Karpelès의 과거를 문제 삼아야 하나, 블레임을 멈추고 협력해야 하나?",
+      "category": "거버넌스 · 커뮤니티",
+      "summary": "Ledger 하드웨어 임플란트를 직접 발견·분석해 온 Mark Karpelès를 두고 ryanberckmans는 Mt. Gox 전 CEO가 백기사일 수 없다며 공개 비판했고, Taylor Monahan은 누구 잘못인지 가리는 블레임 게임은 피해자에게만 해롭다며 전원 협력을 요구했다.",
+      "keyPoints": [
+        "과거 전력(Mt. Gox 거래소 붕괴)이 현재의 공개 분석 기여에 대한 신뢰를 무효화하는가.",
+        "수천만 달러 피해가 진행 중인 사건에서 책임 소재를 가리는 것이 우선인가, 협력이 우선인가.",
+        "Mark와 Ledger가 반드시 함께 일해야 하는가."
+      ],
+      "background": "Ledger 하드웨어 지갑을 겨냥한 공급망·임플란트(implant) 공격으로 수천만 달러 규모 피해가 진행 중인 상황에서, Mt. Gox 거래소 붕괴 당시 CEO였던 Mark Karpelès(@MagicalTux)가 임플란트를 직접 발견하고 공개 분석을 이어갔다. Ledger 측 인사(@_pgauthier)와 Karpelès 사이에 공개 설전이 벌어지자 온체인 탈취 추적 수사관 Taylor Monahan이 개입했다. 과거 전력과 현재 기여를 어떻게 저울질할지가 쟁점이 됐다.",
+      "whyItMatters": "공급망 공격 대응은 제조사, 독립 연구자, 보안 커뮤니티의 협력에 달려 있는데 그 협력의 신뢰 기반 자체가 시험대에 올랐다. 과거 전력과 현재 기여를 어떻게 저울질하느냐가 향후 사고 대응의 선례가 된다.",
+      "keywords": [
+        "Ledger implant",
+        "Mark Karpeles",
+        "MagicalTux",
+        "Ledger hack"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "Mt. Gox 전 CEO는 백기사가 아니다",
+          "holders": [
+            {
+              "handle": "ryanberckmans",
+              "name": "⟠",
+              "role": "이더리움 커뮤니티 멤버·ETH 투자자",
+              "avatar": "https://pbs.twimg.com/profile_images/1517698378259480577/OyjdGW3D_400x400.jpg"
+            }
+          ],
+          "points": [
+            "Mt. Gox 붕괴 당시 CEO였던 인물이 임플란트 사태의 백기사를 자처하는 것은 받아들이기 어려우니 현실을 직시해야 한다."
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "블레임 게임을 멈추고 협력하라",
+          "holders": [
+            {
+              "handle": "tayvano_",
+              "name": "Tay 💖",
+              "role": "온체인 탈취 추적 보안 연구자",
+              "avatar": "https://pbs.twimg.com/profile_images/1581795350087667713/iMrb6XX__400x400.jpg"
+            }
+          ],
+          "points": [
+            "자존심 싸움을 피해자와 손실보다 앞세우지 말고, 정보와 인텔을 공유해 함께 이 작전을 무너뜨려야 한다.",
+            "이걸 블레임 게임으로 만들면 원고·피고 양측에 청구서를 쌓는 변호사들만 유일한 승자가 된다.",
+            "그렇다고 Mark가 반드시 Ledger와 함께 일해야 하는 것은 아니다."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-10-17",
+          "by": "ryanberckmans",
+          "stance": "pro",
+          "quote": "Mt. Gox CEO 입에서 나온 말이라니... 작작해라. 당신은 백기사가 아니다. 현실을 직시해라.",
+          "url": "https://x.com/ryanberckmans/status/2111460751449694354",
+          "digest": "2026-10-20",
+          "replyTo": "MagicalTux",
+          "relation": "reply",
+          "original": "@MagicalTux @Ledger Coming from Mt Gox CEO... Come on man. You are no white knight. Get real...",
+          "translation": "@MagicalTux @Ledger Mt Gox CEO가 할 말은 아니죠... 이봐요. 당신은 백기사(white knight)가 아니에요. 정신 차리세요..."
+        },
+        {
+          "date": "2026-10-17",
+          "by": "tayvano_",
+          "stance": "con",
+          "quote": "둘 다 앉아서 입 다물고 함께 일해라. 멍청한 자존심 싸움을 피해자와 손실 앞에 두는 꼴은 용납하지 않겠다. 정보와 인텔을 공유해 이 작전 전체를 무너뜨려라.",
+          "url": "https://x.com/tayvano_/status/2111491173558972676",
+          "digest": "2026-10-20",
+          "replyTo": "MagicalTux",
+          "relation": "reply",
+          "original": "Both of you need to sit down and shut up and work together. I will not tolerate either of your stupid boy egos being put ahead of victims and losses. End of fucking conversation.\n\nDelete it, kiss and make up, share info and intel to help victims, take down this entire operation, and ensure it never happens again.",
+          "translation": "둘 다 앉아서 입 다물고 같이 일해야 합니다. 당신들의 유치한 자존심 싸움이 피해자들과 손실보다 앞서는 걸 용납하지 않겠습니다. 이걸로 대화 끝입니다. 그 글 지우고, 화해하고, 피해자들을 돕기 위해 정보와 인텔을 공유하고, 이 작업 전체를 무너뜨리고, 다시는 이런 일이 일어나지 않도록 하세요."
+        },
+        {
+          "date": "2026-10-18",
+          "by": "tayvano_",
+          "stance": "con",
+          "quote": "피해자에게 최선의 결과를 원한다면 모두가 협력해야 한다. 분명히 말하는데, 이걸 블레임 게임으로 결정하는 순간 유일한 승자는 원고와 피고 양쪽에 청구서를 쌓는 사기꾼 같은 변호사들뿐이다.",
+          "url": "https://x.com/tayvano_/status/2111630549379117096",
+          "digest": "2026-10-20",
+          "replyTo": "0xInitialAce",
+          "relation": "reply",
+          "original": "If you want the best outcomes for victims, everyone needs to work together.\n\nBecause, let’s just be really fucking clear, if you decide this is a blame game then THE ONLY FUCKING WINNERS will be some fuckhead scammy fucking lawyers who rack up bills for both plaintiffs and defense for a case no one can win and victims get ~nothing in 3-5 years.\n\nThe legal liability case here is rough af. Liability against Ledger is really really not clear. Half the people are saying they knew about what’s essentially a product defect (retards) and the other half are saying it’s cryptobilis (also retards.)\n\nBankrupt CryptoBilis, sure, doesn’t matter they don’t have money. Retards.\n\nYour best bet at this point is to arrest and seize all the assets from all the criminals. This has major IRL aspects dating back an unknown amount of time. It’s def possible this happens.\n\nBut.\n\nThe only way that happens is if people work the fuck together, share info, AND PUT VICTIMS FIRST.\n\nThe second you silo it up and make it a competition it’s game over. And when I say game over I mean it’s game over for the only people who matter: THE FUCKING VICTIMS WHO DID NOTHING WRONG AND GOT FUCKED ANYWAYS.",
+          "translation": "피해자들에게 최선의 결과를 원한다면 모두가 함께 일해야 합니다. 왜냐하면, 정말 분명히 말하자면, 이걸 책임 전가 게임으로 만들기로 결정하면 유일하게 이기는 건 아무도 이길 수 없는 사건에서 원고 측과 피고 측 양쪽에 청구서를 쌓아올리는 사기꾼 같은 변호사 새끼들뿐이고, 피해자들은 3~5년 후에 거의 아무것도 얻지 못할 겁니다. 여기서 법적 책임 문제는 정말 험난합니다. Ledger에 대한 책임은 정말 정말 불분명합니다. 사람들 절반은 그들이 본질적으로 제품 결함인 걸 알고 있었다고 말하고 (멍청이들) 나머지 절반은 이게 cryptobilis라고 말합니다 (이들도 멍청이들). CryptoBilis를 파산시키는 거요, 그래요, 그래도 그들한텐 돈이 없으니 상관없습니다. 멍청이들. 지금 시점에서 최선의 방법은 모든 범죄자들로부터 자산을 전부 체포하고 압류하는 것입니다. 이건 얼마나 오래됐는지 알 수 없는 중대한 현실 세계(IRL) 측면들을 갖고 있습니다. 분명 이게 일어날 가능성은 있습니다. 하지만. 그게 일어나는 유일한 방법은 사람들이 진짜로 함께 일하고, 정보를 공유하고, 피해자를 최우선에 두는 것뿐입니다. 이걸 각자 틀어박혀서 경쟁으로 만드는 순간 게임은 끝입니다. 그리고 게임 끝이라고 할 때, 그건 유일하게 중요한 사람들, 즉 아무 잘못도 하지 않았는데 결국 당해버린 그 피해자들에게 게임이 끝난다는 뜻입니다."
+        },
+        {
+          "date": "2026-10-18",
+          "by": "tayvano_",
+          "stance": "con",
+          "quote": "Mark가 Ledger와 함께 일할 필요는 없다.",
+          "url": "https://x.com/tayvano_/status/2111626730737631459",
+          "digest": "2026-10-20",
+          "replyTo": "tayvano_",
+          "relation": "reply",
+          "original": "@tayvano_ @MagicalTux @_pgauthier @Ledger Mark doesn’t need to work with Ledger.",
+          "translation": "@tayvano_ @MagicalTux @_pgauthier @Ledger Mark은 Ledger와 함께 일할 필요가 없습니다."
+        }
+      ],
+      "firstSeen": "2026-10-17",
+      "lastActivity": "2026-10-18",
+      "status": "active",
+      "rootUrl": "https://x.com/tayvano_/status/2111491173558972676",
+      "engagement": {
+        "likes": 55,
+        "retweets": 2,
+        "quotes": 0,
+        "replies": 4,
+        "views": 2836
+      }
+    },
+    {
+      "id": "decentralization-still-the-priority",
+      "title": "2026년에도 탈중앙화는 크립토와 이더리움이 팔아야 할 핵심 가치인가?",
+      "category": "거버넌스 · 커뮤니티",
+      "summary": "lex_node는 탈중앙화 담론이 대부분의 크립토 서클에서 금기가 됐지만 이더리움에서는 여전히 우선순위이며 탈중앙화 외에 크립토의 다른 킬러 기능은 없다고 주장했고, naruto11eth는 블록체인을 쓰려는 기관과 웹2 기업 사이에서는 그 우선순위를 본 적이 없다고 반문했다. donnoh_eth는 naruto가 잘못된 버블에 있다며 lex 쪽에 섰다.",
+      "keyPoints": [
+        "탈중앙화는 2026년 크립토 담론에서 왜 금기가 됐고, 이더리움에서는 왜 여전히 우선순위인가.",
+        "기관·웹2 채택자들이 탈중앙화를 중시하지 않는다는 사실이 그 가치가 무의미하다는 뜻인가.",
+        "탈중앙화 외에 크립토가 내세울 다른 킬러 기능이 있는가."
+      ],
+      "background": "토큰화와 기관 유입이 가속되며 많은 파운더가 '탈중앙화는 더 이상 중요하지 않다'고 말하는 가운데, 이더리움 진영은 탈중앙화를 핵심 차별점으로 유지해 왔다. lex_node는 이 담론이 스캐머·그리프터·핀테크 기회주의자에게 불리해 대부분의 크립토 서클에서 금기가 됐다고 본다. 이 논쟁은 무엇을 차별점으로 팔 것인가라는 이더리움 포지셔닝 담론의 축소판이다.",
+      "whyItMatters": "토큰화와 기관 유입 시기에 이더리움이 무엇을 차별점으로 팔 것인가라는 포지셔닝 논쟁의 축소판이다. 탈중앙화의 TAM/PMF가 작다고 판명되면 이더리움의 시장 서사 전체가 흔들린다.",
+      "keywords": [
+        "decentralization",
+        "Ethereum",
+        "tokenization",
+        "web2 adoption"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "탈중앙화는 여전히 이더리움의 우선순위이자 팔아야 할 가치다",
+          "holders": [
+            {
+              "handle": "lex_node",
+              "name": "_gabrielShapir0",
+              "role": "MetaLeX Labs 변호사·크립토 법률 논객",
+              "avatar": "https://pbs.twimg.com/profile_images/2058233189882032128/pRSMN_6C_400x400.jpg"
+            },
+            {
+              "handle": "donnoh_eth",
+              "name": "donnoh.gwei 💗",
+              "role": "L2BEAT 리서치 책임자",
+              "avatar": "https://pbs.twimg.com/profile_images/1906978600311521280/aSbKSjtX_400x400.jpg"
+            }
+          ],
+          "points": [
+            "탈중앙화를 이야기하는 것은 스캐머·그리프터·핀테크 기회주의자에게 도움이 안 되기 때문에 대부분의 크립토 서클에서 금기가 됐지만, 이더리움 서클에서는 여전히 우선순위다.",
+            "탈중앙화 너머에 크립토의 다른 끝내주는 기능 같은 건 없으므로 그 이점을 팔아 PMF/TAM을 최대한 크게 만들어야 한다.",
+            "탈중앙화가 우선순위가 아닌 곳만 보고 있다면 잘못된 버블에 있는 것이다."
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "기관·웹2에서는 탈중앙화가 우선순위가 아니다",
+          "holders": [
+            {
+              "handle": "naruto11eth",
+              "name": "Naruto11.eth",
+              "avatar": "https://pbs.twimg.com/profile_images/2060081224605995012/a8uOrxKf_400x400.jpg"
+            }
+          ],
+          "points": [
+            "블록체인을 쓰려는 기관과 웹2 기업 사이에서 탈중앙화가 우선순위로 남아 있는 것을 별로 본 적이 없다.",
+            "'탈중앙화는 더 이상 중요하지 않다'는 비슷한 말을 해온 파운더가 많다."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-10-18",
+          "by": "lex_node",
+          "stance": "pro",
+          "quote": "2026년에 아무도 탈중앙화를 이야기하지 않는 게 재미있다 :))",
+          "url": "https://x.com/lex_node/status/2111681385572229467",
+          "digest": "2026-10-20",
+          "relation": "none",
+          "original": "funny how no one talks about decentralization in 2026 :))",
+          "translation": "2026년에 아무도 탈중앙화(decentralization)에 대해 이야기하지 않는다는 게 재밌네요 :))"
+        },
+        {
+          "date": "2026-10-18",
+          "by": "lex_node",
+          "stance": "pro",
+          "quote": "탈중앙화를 이야기하는 것은 스캐머, 그리프터, 핀테크 기회주의자에게 별로 도움이 안 되기 때문에 대부분의 크립토 서클에서 금기가 됐다. 하지만 이더리움 서클에서는 여전히 우선순위다.",
+          "url": "https://x.com/lex_node/status/2111843080974262621",
+          "digest": "2026-10-20",
+          "replyTo": "naruto11eth",
+          "relation": "reply",
+          "original": "@naruto11eth talking about decentralization is not very helpful for scammers, grifters, and fintech opportunists, thus making the topic taboo in most crypto circles\n\nbut in Ethereum circles it remains the priority\n\nhttps://www.youtube.com/watch?v=SMEOKDVXlUo",
+          "translation": "@naruto11eth 탈중앙화에 대해 이야기하는 건 사기꾼, 사기성 인간들, 그리고 핀테크 기회주의자들에게 별로 도움이 되지 않기 때문에 대부분의 크립토 커뮤니티에서는 이 주제가 금기가 되지만 이더리움 커뮤니티에서는 여전히 최우선 과제로 남아 있습니다 https://www.youtube.com/watch?v=SMEOKDVXlUo"
+        },
+        {
+          "date": "2026-10-18",
+          "by": "naruto11eth",
+          "stance": "con",
+          "quote": "블록체인을 쓰려는 기관과 웹2 기업 사이에서도 그것이 우선순위로 남아 있나? 나는 별로 본 적이 없다. 많은 파운더가 '탈중앙화는 더 이상 중요하지 않다'는 비슷한 말을 해왔다.",
+          "url": "https://x.com/lex_node/status/2111844417472512373",
+          "digest": "2026-10-20",
+          "replyTo": "lex_node",
+          "relation": "reply",
+          "original": "does it also remain a priority among institutions and web2 companies who are looking to use blockchain? i havent seen much.\n\na lot of founders have said similar things that \"decentralization doesnt matter anymore\"\n\nofc, it does get talked in eth circles because there are still a lot of cypherpunks",
+          "translation": "블록체인을 사용하려는 기관들과 web2 기업들 사이에서도 그게 여전히 우선 과제로 남아 있나요? 저는 별로 본 적이 없습니다. 많은 창업자들이 \"탈중앙화는 더 이상 중요하지 않다\"는 비슷한 말을 했습니다. 물론, 이더리움 커뮤니티에서는 여전히 사이퍼펑크(cypherpunk)들이 많기 때문에 이 얘기가 나오긴 합니다."
+        },
+        {
+          "date": "2026-10-18",
+          "by": "lex_node",
+          "stance": "pro",
+          "quote": "그들의 우선순위가 아닌 건 맞다. 내 입장은 그게 중요하지 않다는 것이다. 탈중앙화 너머에 크립토의 다른 끝내주는 기능 같은 건 없다. 우리는 그 이점을 팔아 PMF/TAM을 최대한 크게 만들어야 한다.",
+          "url": "https://x.com/lex_node/status/2111845517713924121",
+          "digest": "2026-10-20",
+          "replyTo": "naruto11eth",
+          "relation": "reply",
+          "original": "no it's not their priority\n\nmy position is this doesn't matter\n\nthere isn't some \"other\" kickass feature of \"crypto\" beyond decentralization\n\nwe need to sell that benefit and make the pmf/TAM as big as possible\n\nif decentralization turns out to be a small TAM/pmf limited to modest use cases like hard money, it is what it is\n\nvery clear nothing else is a \"feature\" of crypto--for example in the past people said \"oh 24/7 trading\"--well Nasdaq has non-crypto 24/7 trading now, none of these \"composability\" things etc. are features of \"crypto\" as such...it's not a technology it's a form of politics...",
+          "translation": "아니요, 그건 그들의 우선 과제가 아닙니다. 제 입장은 이게 중요하지 않다는 겁니다. 탈중앙화를 넘어서는 어떤 \"다른\" 멋진 크립토(crypto)의 기능이란 건 없습니다. 우리는 그 이점을 팔아야 하고 제품시장적합성(PMF)/전체주소가능시장(TAM)을 최대한 크게 만들어야 합니다. 만약 탈중앙화가 하드 머니 같은 소박한 사용 사례에 한정된 작은 TAM/PMF로 끝난다면, 뭐 그런 거죠. 크립토의 \"기능\"이라고 할 만한 게 그 외에는 없다는 게 아주 분명합니다. 예를 들어 과거에 사람들은 \"오, 24시간 거래\"라고 말했지만, 지금 나스닥에는 크립토가 아닌 24시간 거래가 있습니다. 이런 \"컴포저빌리티(composability)\" 같은 것들도 그 자체로 크립토의 기능은 아닙니다... 이건 기술이 아니라 정치의 한 형태입니다..."
+        },
+        {
+          "date": "2026-10-18",
+          "by": "donnoh_eth",
+          "stance": "pro",
+          "quote": "당신은 잘못된 버블에 있다.",
+          "url": "https://x.com/donnoh_eth/status/2111937800698478912",
+          "digest": "2026-10-20",
+          "replyTo": "naruto11eth",
+          "relation": "reply",
+          "original": "@naruto11eth you’re in the wrong bubble",
+          "translation": "@naruto11eth 잘못된 버블(bubble)에 있으시네요"
+        }
+      ],
+      "firstSeen": "2026-10-18",
+      "lastActivity": "2026-10-18",
+      "status": "active",
+      "rootUrl": "https://x.com/lex_node/status/2111843080974262621",
+      "engagement": {
+        "likes": 12,
+        "retweets": 0,
+        "quotes": 0,
+        "replies": 2,
+        "views": 974
+      }
+    },
+    {
+      "id": "gloas-execution-proof-deadline",
+      "title": "Gloas에서 실행 증명(execution proof)은 언제까지 도착해야 보상을 잃지 않는가?",
+      "category": "프로토콜 설계",
+      "summary": "nero_eth와 dapplion이 Gloas 아키텍처에서 실행 증명의 도착 시한을 두고 갈렸다. nero_eth는 보상을 잃지 않으려면 증명이 늦어도 다음 슬롯까지 도착해야 하고 제안자는 매 슬롯 최신 헤드를 완전 검증할 수 있다는 확실성이 필요하다고 봤고, dapplion은 Gloas에서는 증명이 12+3초에 도착해도 보상을 전부 받는다고 반박했다.",
+      "keyPoints": [
+        "p99 프루버(prover) 시간이 슬롯 안쪽이라는 실측에서, 증명이 어테스테이션 마감 전에 도착하지 못하면 헤드 보트가 무가치해지는가.",
+        "Gloas에서 ptc(payload timeliness committee)가 증명의 유효성(validity) 판단이 필요한가, 아니면 페이로드 가용성만 투표하는가.",
+        "제안 빈도가 낮다는 사실이 '매 슬롯 완전 검증 확실성 필요'라는 요구를 완화하는가."
+      ],
+      "background": "실행 증명은 합의 노드가 실행 페이로드를 재실행 없이 무상태로 검증하게 해주는 zkEVM 로드맵의 핵심 구성요소다(EIP-8025). 검증자가 EL 대신 ZK 검증기를 돌리면 CPU·디스크·대역폭을 아끼지만, 증명이 제때 도착해야 헤드 보트와 보상을 지킬 수 있다. Gloas는 블록 제안과 페이로드 공개를 분리하고 ptc가 페이로드 적시성을 투표하는 아키텍처로, 증명 도착 시한이 검증자 보상과 프루버 하드웨어 요구 사양을 좌우한다. 논쟁의 출발점은 p99 프루버 시간이 이미 슬롯 안쪽이라는 실측이었다.",
+      "whyItMatters": "증명 도착 시한은 프루버 하드웨어의 요구 사양과 스테이트리스 검증자의 보상 구조를 정하는 zkEVM 전환의 핵심 파라미터다. 시한이 느슨하면 더 많은 검증자가 저사양으로 참여할 수 있고, 빡빡하면 프루버 집중과 중앙화 압력이 커진다.",
+      "sources": [
+        {
+          "title": "EIP-8025: Optional Execution Proofs",
+          "url": "https://eips.ethereum.org/EIPS/eip-8025"
+        }
+      ],
+      "keywords": [
+        "EIP-8025",
+        "execution proofs",
+        "Gloas",
+        "payload timeliness committee"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "늦어도 다음 슬롯까지는 도착해야 한다",
+          "holders": [
+            {
+              "handle": "nero_eth",
+              "name": "Toni Wahrstätter ⟠",
+              "role": "EF 리서처",
+              "avatar": "https://pbs.twimg.com/profile_images/1858347774129094657/xUc7IS2K_400x400.jpg"
+            }
+          ],
+          "points": [
+            "p99 프루버 시간이 슬롯 안쪽이라 공격이 없으면 헤드 보트 정확도는 유지되지만, 어테스테이션 마감 안에 투표하는 것과 슬롯 종료 시점까지 투표하는 것은 다르며 슬롯 끝의 헤드 보트는 무가치하다.",
+            "보상을 잃지 않으려면 Fusaka 슬롯 구조에서 p99가 3초 미만, Gloas에서는 2초 안팎이어야 한다(두 경우 모두 전파 시간을 남겨두고).",
+            "제안은 드물지만 제안자는 매 슬롯 최신 헤드를 완전히 실행·검증해 제안자 포크초이스를 할 수 있다는 확실성이 필요하므로, 다음 제안자가 빈 블록 위에 지을지 꽉 찬 블록 위에 지을지 알려면 증명은 늦어도 다음 슬롯까지 도착해야 한다."
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "12+3초에 도착해도 보상은 전부 받는다",
+          "holders": [
+            {
+              "name": "dapplion",
+              "watchlist": false
+            }
+          ],
+          "points": [
+            "Gloas에서는 증명이 12+3초에 도착해도 보상을 전부 받는다.",
+            "증명의 유효성(validity) 판단은 ptc에 필요하지 않고 제안 빈도도 매우 낮다.",
+            "제안자가 되어 증명이 12초를 넘기는 경우를 다루는 최적화가 이미 있다."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-10-17",
+          "by": "nero_eth",
+          "stance": "pro",
+          "quote": "p99 프루버 시간은 슬롯 안쪽이라, 공격이 없는 한 헤드 보트 정확도는 유지될 것이다.",
+          "url": "https://x.com/nero_eth/status/2111352069005439442",
+          "digest": "2026-10-20",
+          "replyTo": "OisinKyne",
+          "relation": "reply",
+          "original": "@OisinKyne p99 prover times are under a slot, so unless there's an attack head vote accuracy will remain ok",
+          "translation": "@OisinKyne p99 증명자(prover) 시간이 슬롯(slot) 이내이기 때문에, 공격이 없는 한 헤드 투표(head vote) 정확도는 괜찮게 유지될 겁니다"
+        },
+        {
+          "date": "2026-10-17",
+          "by": "nero_eth",
+          "stance": "pro",
+          "quote": "어테스테이션 마감 안에 투표하는 것과 슬롯 종료 시점까지 투표하는 것은 다르다. 슬롯 끝의 헤드 보트는 무가치하다.",
+          "url": "https://x.com/nero_eth/status/2111356108086337826",
+          "digest": "2026-10-20",
+          "replyTo": "dapplion",
+          "relation": "reply",
+          "original": "@dapplion @OisinKyne Attesting within the attestation deadline is different from attesting until end of slot. End of slot head votes are worthless.",
+          "translation": "@dapplion @OisinKyne 증명(attestation) 마감 시한 내에 증명하는 것과 슬롯이 끝날 때까지 증명하는 것은 다릅니다. 슬롯 종료 시점의 헤드 투표는 가치가 없습니다."
+        },
+        {
+          "date": "2026-10-17",
+          "by": "nero_eth",
+          "stance": "pro",
+          "quote": "보상을 잃지 않으려면 Fusaka 슬롯 구조에서 p99가 3초 미만이어야 한다. Gloas는 확실치 않지만 아마 2초 안팎일 것이다(두 경우 모두 전파 시간을 남겨두고).",
+          "url": "https://x.com/nero_eth/status/2111389232984162800",
+          "digest": "2026-10-20",
+          "replyTo": "nero_eth",
+          "relation": "reply",
+          "original": "@nero_eth @dapplion Agreed. To not lose rewards I’d say we need p99 under 3s on the fusaka slot architecture. Not sure about gloas, maybe ~2s? (Leaving time for propagation in both cases).",
+          "translation": "@nero_eth @dapplion 동의합니다. 보상(rewards)을 잃지 않으려면 fusaka 슬롯 구조에서는 p99가 3초 이내여야 한다고 봅니다. gloas는 잘 모르겠는데, 대략 2초 정도일까요? (양쪽 경우 모두 전파(propagation)에 걸리는 시간을 남겨두는 거죠.)"
+        },
+        {
+          "date": "2026-10-17",
+          "by": "dapplion",
+          "stance": "con",
+          "quote": "그렇지 않다. Gloas에서는 증명이 12+3초에 도착해도 보상을 전부 받는다.",
+          "url": "https://x.com/nero_eth/status/2111416506198446350",
+          "digest": "2026-10-20",
+          "replyTo": "nero_eth",
+          "relation": "reply",
+          "original": "@nero_eth @OisinKyne @OisinKyne @nero_eth not true. In gloas the proof can arrive at 12+3 and you will get all the rewards",
+          "translation": "@nero_eth @OisinKyne @OisinKyne @nero_eth 그건 사실이 아닙니다. gloas에서는 증명(proof)이 12+3 시점에 도착해도 모든 보상을 받을 수 있습니다"
+        },
+        {
+          "date": "2026-10-17",
+          "by": "nero_eth",
+          "stance": "pro",
+          "quote": "그렇게 생각하지 않는다. 늦어도 다음 슬롯까지는 필요하다. 다음 제안자가 빈 블록 위에 지을지 꽉 찬 블록 위에 지을지 알려면 그것이 필요하다.",
+          "url": "https://x.com/nero_eth/status/2111421916716110037",
+          "digest": "2026-10-20",
+          "replyTo": "dapplion",
+          "relation": "reply",
+          "original": "@dapplion @OisinKyne I don't think so. At the latest at the next slot. Maybe needed by the ptc, but likely not.\nThe next proposer needs it to know if to build on empty or full.",
+          "translation": "@dapplion @OisinKyne 저는 그렇게 생각하지 않습니다. 늦어도 다음 슬롯까지는요. ptc에 필요할 수도 있지만, 아마 그렇지 않을 겁니다. 다음 제안자(proposer)는 빈 블록 위에 지을지 꽉 찬 블록 위에 지을지 알기 위해 그게 필요합니다."
+        },
+        {
+          "date": "2026-10-17",
+          "by": "dapplion",
+          "stance": "con",
+          "quote": "유효성 판단은 ptc에 필요하지 않다. 제안은 매우 드물게 하며, 제안자가 되어 증명이 12초를 넘기는 경우를 다루는 최적화를 나는 갖고 있다.",
+          "url": "https://x.com/nero_eth/status/2111427899261903154",
+          "digest": "2026-10-20",
+          "replyTo": "nero_eth",
+          "relation": "reply",
+          "original": "@nero_eth @OisinKyne Validity is not needed by the ptc. You propose very rarely, and I have an optimization to deal with the case of you being proposer and proofs taking longer than 12 sec",
+          "translation": "@nero_eth @OisinKyne 유효성(validity)은 ptc에 필요하지 않습니다. 제안은 아주 드물게 하는 거고, 당신이 제안자이면서 증명이 12초보다 오래 걸리는 경우를 처리할 최적화 방안이 저한테 있습니다"
+        },
+        {
+          "date": "2026-10-17",
+          "by": "nero_eth",
+          "stance": "pro",
+          "quote": "제안은 드물게 하지만, 제안자로서 최신 헤드를 완전히 실행·검증해 제안자 포크초이스를 할 수 있다는 확실성이 매 슬롯 필요하다.",
+          "url": "https://x.com/nero_eth/status/2111437146758291705",
+          "digest": "2026-10-20",
+          "replyTo": "dapplion",
+          "relation": "reply",
+          "original": "You propose rarely but you still need certainty in every slot that as the proposer you could have fully executed/validated the most recent head to do proposer fork choice. While most of the network won't be proposer and only need it a few s later, we cannot assume that as proposer and attesters are all from the same set of validators.",
+          "translation": "제안은 드물게 하지만, 제안자로서 제안자 포크 초이스(proposer fork choice)를 하기 위해 가장 최근의 헤드를 완전히 실행/검증할 수 있었다는 확실성이 매번 슬롯마다 필요합니다. 네트워크 대부분은 제안자가 아니라서 몇 초 뒤에나 그게 필요하겠지만, 제안자와 증명자(attester)가 모두 같은 검증자(validator) 집합에서 나오기 때문에 그렇게 가정할 수는 없습니다."
+        }
+      ],
+      "firstSeen": "2026-10-17",
+      "lastActivity": "2026-10-17",
+      "status": "active",
+      "rootUrl": "https://x.com/nero_eth/status/2111352069005439442",
+      "engagement": {
+        "likes": 0,
+        "retweets": 0,
+        "quotes": 0,
+        "replies": 1,
+        "views": 139
+      }
+    },
     {
       "id": "stake-state-provision-role",
       "title": "스테이크는 ZK 시대에도 상태 제공 백본을 겸해야 하나, 검증과 분리해야 하나?",
@@ -310,35 +712,35 @@
       "id": "eip-8025-optional-proofs-dfi",
       "title": "옵트인 실행 증명 EIP-8025 기각은 옳았나?",
       "category": "프로토콜 설계",
-      "summary": "ACDC #189에서 EIP-8025(옵트인 실행 증명)가 헤고타(Hegota) 편입에서 기각되자, CPerezz19와 kevaundray, ethrex의 ivanlitteri, donnoh는 합의에 영향이 없고 리스크도 없는 준비된 작업을 버린 잘못된 결정이라 비판했고 nero_eth와 lightclients는 스펙 의존성이 생기고 숙려를 우회한다며 기각을 옹호했다.",
+      "summary": "ACDC #189에서 EIP-8025(옵트인 실행 증명)의 헤고타(Hegota) 편입이 기각된 다음날, 이를 어느 거버넌스 트랙에 태울지를 두고 2라운드 논쟁이 벌어졌다. donnoh_eth와 ivanlitteri는 합의 변경이 없어 리스크가 없는 준비된 작업을 버린 잘못된 결정이라 비판했고, lightclients는 조기 채택이 숙려를 우회하고 포함 장벽을 침식하며 8025는 하드포크에 스케줄링할 코어 EIP가 아니라 informational EIP에 어울린다고 맞섰다.",
       "keyPoints": [
-        "합의를 구동하지 않는 옵트인 EIP를 하드포크(hard fork) 스케줄에 편입할 가치가 있나, 아니면 Informational EIP로 충분한가",
-        "8025가 EELS 실행 스펙에 병합되면 헤고타·I* 계열 제안들이 이에 맞춰야 하는 의존성이 생기나",
-        "하드포크 편입이 갖는 정당화 효과가 운영자의 자발적 채택 가능성과 별개로 필요한가"
+        "합의 규칙을 바꾸지 않는 옵트인 기능을 하드포크 일정에 올려야 하는가, 아니면 informational EIP로 충분한가.",
+        "증명 비용·대역폭·한계 같은 결과를 EIP 채택 전에 숙고해야 하는가, 실제 테스트넷에서 돌려봐야만 보이는가.",
+        "8025를 공식 일정에 올리는 것이 LST 시장 인센티브를 통해 어테스터를 스테이트리스로 전환시키는가."
       ],
-      "background": "EIP-8025는 Kevaundray Wedderburn, Justin Drake 등이 제안한 Draft 단계의 옵트인 실행 증명(execution proof) 표준이다. 합의 레이어(CL) 노드가 실행 페이로드를 재실행하지 않고 증명 검증만으로 무상태(stateless) 검증을 수행하도록 해, 검증 비용을 가스 리밋(gas limit)과 상태 크기에서 분리한다. 합의 유효성 규칙을 바꾸지 않는 완전 옵트인 방식이라 검증을 강제하지 않으며 성숙하면 별도의 미래 EIP가 의무화를 제안할 수 있다. L1-zkEVM Breakout #9에서 헤고타 CFI를 목표했으나 ACDC #189에서 CL 팀의 지지 부족으로 DFI(기각)됐다.",
-      "whyItMatters": "zkEVM 로드맵의 첫 스펙 편입 시도가 기술이 아니라 편입 시점과 의존성 관리, 숙려 절차라는 거버넌스 기준에서 막혔다. 기각돼도 운영자는 여전히 실행 증명을 켤 수 있어 '스케줄 편입이 갖는 정당화 효과'와 '실제 구현·운영 가능성'이 별개임이 드러났고 다음 콜에서 옵트인 기능을 어떻게 다룰지가 선례가 된다.",
+      "background": "EIP-8025(Optional Execution Proofs)는 Kevaundray Wedderburn, Justin Drake 등이 제안한 Draft 단계 코어 EIP로, 합의 레이어(CL) 노드가 실행 페이로드를 재실행 없이 무상태로 검증하도록 이타적 프루버(prover)가 생성한 실행 증명을 p2p로 전파하는 방식이다. 합의 유효성 규칙을 바꾸지 않는 완전 옵트인 설계이며 zkEVM 로드맵의 첫걸음으로 여겨진다. ACDC #189(2026-10-15)에서 CL 팀 지지가 부족하다는 이유로 CFI 승격에 실패하고 헤고타에서 DFI(기각) 처리됐다. 논쟁은 합의 변경이 없는 이 기능을 하드포크 일정에 올릴 코어 EIP로 볼지, 프로토콜 동작을 정의하지 않는 informational EIP로 볼지를 두고 벌어진다.",
+      "whyItMatters": "합의 변경이 없는 기능을 어느 거버넌스 트랙에 태울지가 정해지면 앞으로 zkEVM 전환기의 모든 옵트인 기능이 같은 경로를 따르게 된다. 동시에 LST 등 시장 인센티브가 대응책 마련 전에 어테스터를 스테이트리스로 몰 수 있다는 우려가 거버넌스 결정과 얽혀 있어, 실행 증명 성숙 속도와 검증자 다양성에 영향을 준다.",
       "sources": [
         {
           "title": "EIP-8025: Optional Execution Proofs",
           "url": "https://eips.ethereum.org/EIPS/eip-8025"
         },
         {
-          "title": "ACDC #189 (Forkcast)",
+          "title": "ACDC #189 (2026-10-15)",
           "url": "https://forkcast.org/calls/acdc/189/"
         },
         {
-          "title": "L1-zkEVM Breakout #9 (Forkcast)",
+          "title": "L1-zkEVM Breakout #9 (2026-10-14)",
           "url": "https://forkcast.org/calls/zkevm/009/"
         }
       ],
       "keywords": [
         "EIP-8025",
         "optional execution proofs",
-        "DFI Hegota",
-        "zkEVM roadmap"
+        "informational EIP",
+        "stateless attesting"
       ],
-      "resolution": "ACDC #189(2026-10-15)에서 EIP-8025는 CL 팀의 CFI 지지가 부족해 헤고타 편입에서 DFI(기각)됐다.",
+      "resolution": "ACDC #189(2026-10-15)에서 EIP-8025는 CL 팀 지지 부족으로 CFI 승격에 실패하고 헤고타에서 DFI(기각) 처리됐으나, 다음날 트랙 분류를 둘러싸고 논쟁이 이어졌다.",
       "positions": [
         {
           "stance": "pro",
@@ -374,10 +776,9 @@
             }
           ],
           "points": [
-            "8025는 합의를 구동하지 않아 리스크가 전혀 없고 복잡도는 프로토콜 밖에 있으며 완전히 준비되고 테스트까지 끝나 클라이언트에 반영된 작업을 버려서는 안 된다(CPerezz19).",
-            "이더리움이 점점 SNARK/zkVM 중심이 되는 만큼 8025는 이 개념을 하중을 지지 않는(non-load bearing) 방식으로 스펙과 코어 개발자에게 도입하는 길이며 논의는 증명 의무화가 아니었다(kevaundray).",
-            "합의 변경이 없는 옵트인이라 건너뛸 숙려가 없고 증명 비용·대역폭·실부하에서의 한계는 실제로 돌려봐야만 보인다; 가십 토픽·증명 포맷·req/resp 프로토콜은 모든 클라이언트가 동일하게 구현해야 작동하므로 Informational EIP로는 부족하다(ivanlitteri).",
-            "옵션성(optionality)은 증명을 켤지 선택하는 운영자를 위한 것이지 작업 진행 여부를 결정하는 사람들을 위한 것이 아니었고 기각은 이더리움의 장기 이익에 반하는 잘못된 판단이다(donnoh_eth)."
+            "옵트인(opt-in) 실행 증명은 합의 규칙을 바꾸지 않아 네트워크에 리스크가 없는데도 클라이언트 팀들이 채택을 약속하지 않은 것은 zkEVM 로드맵의 첫걸음을 버린 잘못된 결정이다.",
+            "증명 비용, 대역폭 소모, 실제 부하에서 어디가 깨지는지 같은 정작 중요한 결과는 실제로 돌려봐야만 보이므로, 숙려를 이유로 기각할 게 아니라 테스트넷에서 실행해 봐야 한다.",
+            "8025는 지침만 기술하는 informational EIP와 달리 모든 클라이언트가 동일하게 구현해야 작동하는 gossip topic, proof format, req/resp 프로토콜을 정의하므로 하드포크 일정에 올려야 한다."
           ]
         },
         {
@@ -400,10 +801,9 @@
             }
           ],
           "points": [
-            "8025가 EELS 스펙에 병합되면 헤고타·I* 제안 전부가 이에 맞춰야 하고 실제로 자신의 EIP-8146 스펙이 바뀌었으며 불필요한 복잡성·의존성을 이렇게 일찍 더하는 것은 잘못됐다(nero_eth).",
-            "상태를 버리는 노드가 늘수록 새 노드 부트스트랩이 어려워지므로 동기화·멤풀(mempool) 해법이 먼저이고 가치 자체를 부정한 적은 없으나 미래 항목이 현재를 너무 오래 제약해선 안 된다(nero_eth).",
-            "원하는 운영자는 ACD 결정과 무관하게 지금도 실행 증명을 켤 수 있고 조기 수용은 숙려 기간을 우회하며 편입 장벽을 침식한다(lightclients).",
-            "합의 변경 없는 옵트인은 하드포크에 스케줄할 코어 EIP가 아니라 Informational EIP가 적합하며(비컨체인도 그렇게 출시됐다) 다음엔 optional로 제안하지 말고 ACD가 어떻게 소화하는지 보자(lightclients)."
+            "EIP를 채택하기 전에 그 결과를 먼저 숙고해야 하며, 조급한 채택은 그 숙려 기간을 건너뛰고 무언가를 포함시키는 장벽을 침식한다.",
+            "합의 변경이 없는 옵트인 기능은 프로토콜 동작을 정의하지 않는 informational EIP에 어울리며, 비콘체인도 informational EIP로 출범했으므로 하드포크에 스케줄링할 코어 EIP가 아니다.",
+            "오히려 8025를 하드포크 일정에 올리는 것이 LST 등 시장 참여자를 우리가 대처법을 알기도 전에 스테이트리스 어테스팅으로 전환하도록 부추긴다."
           ]
         }
       ],
@@ -515,6 +915,42 @@
           "relation": "reply",
           "original": "@lightclients @ethrex_client but as you said, this is already something that people can use. kind of like mev-boost. my fear is that market incentives across LSTs will push attesters towards statelessness before we know how to deal with it. i’m probably overthinking though.",
           "translation": "@lightclients @ethrex_client 하지만 당신이 말한 것처럼, 이것은 이미 사람들이 쓸 수 있는 것이다. mev-boost와 비슷한 셈이다. 내가 두려운 것은 LST(유동성 스테이킹 토큰, Liquid Staking Token) 전반의 시장 인센티브가 우리가 그것을 어떻게 다뤄야 할지 알기도 전에 어테스터들을 무상태 쪽으로 밀어붙일 것이라는 점이다. 아마 내가 너무 깊게 생각하는 것일 수도 있지만."
+        },
+        {
+          "date": "2026-10-16",
+          "by": "lightclients",
+          "stance": "con",
+          "quote": "EIP를 채택하기 전에 그 결과를 먼저 숙고해야 한다. 조급하게 채택하면 그 숙려 기간을 건너뛰게 되고 무언가를 포함시키는 장벽을 침식한다.",
+          "url": "https://x.com/lightclients/status/2111112939369566330",
+          "digest": "2026-10-20",
+          "replyTo": "donnoh_eth",
+          "relation": "reply",
+          "original": "@donnoh_eth @ethrex_client we should think about the consequences before accepting the EIP. accepting it prematurely circumvents that period of reflection and erodes the barrier to include something",
+          "translation": "@donnoh_eth @ethrex_client EIP를 수락하기 전에 그 결과를 생각해봐야 합니다. 너무 일찍 수락하면 그 성찰의 기간을 건너뛰게 되고 무언가를 포함시키는 데 필요한 장벽을 낮추게 됩니다"
+        },
+        {
+          "date": "2026-10-16",
+          "by": "ivanlitteri",
+          "stance": "pro",
+          "quote": "Informational EIP는 지침을 기술할 뿐 프로토콜 동작을 정의하지 않는다. 8025는 모든 클라이언트가 동일하게 구현해야만 작동하는 gossip topic, proof format, req/resp 프로토콜을 규정하므로 옵트인 기능이라도 일정에 올라가야 한다.",
+          "url": "https://x.com/lightclients/status/2111130024078201026",
+          "digest": "2026-10-20",
+          "replyTo": "lightclients",
+          "relation": "reply",
+          "original": "Informational EIPs describe guidelines, they don't define protocol behavior. 8025 specifies a gossip topic, a proof format, and req/resp protocols that only work if every client implements them identically. As for why an opt-in feature still belongs on the schedule, that's the argument of the post, so I'll point there rather than repeat it",
+          "translation": "정보성(informational) EIP는 가이드라인을 기술하는 것이고 프로토콜 동작을 정의하지 않습니다. 8025는 가십 토픽(gossip topic), 증명 형식(proof format), 그리고 모든 클라이언트가 동일하게 구현해야만 작동하는 요청/응답(req/resp) 프로토콜을 명시합니다. 옵트인(opt-in) 기능이 왜 여전히 일정에 포함되어야 하는지에 대해서는, 그게 그 글의 주장이니 반복하기보다는 거기를 가리키겠습니다"
+        },
+        {
+          "date": "2026-10-16",
+          "by": "lightclients",
+          "stance": "con",
+          "quote": "오히려 8025를 '스케줄링'하는 것이 LST 등이 스테이트리스 어테스팅으로 전환할 가능성을 높인다.",
+          "url": "https://x.com/lightclients/status/2111128221144236096",
+          "digest": "2026-10-20",
+          "replyTo": "donnoh_eth",
+          "relation": "reply",
+          "original": "@donnoh_eth @ethrex_client if anything, \"scheduling\" 8025 increases the likelihood that LST or others switch to stateless attesting.\n\ni still feel like the risk is generally small in either case though and if people choose to go stateless, there isn't much we can do.",
+          "translation": "@donnoh_eth @ethrex_client 오히려 8025를 \"일정에 넣는\" 것은 LST나 다른 주체들이 상태 비저장(stateless) 증명으로 전환할 가능성을 높입니다. 그래도 어느 쪽이든 리스크는 전반적으로 작다고 생각하고, 사람들이 상태 비저장 방식을 선택한다면 우리가 할 수 있는 건 별로 없습니다."
         }
       ],
       "firstSeen": "2026-10-15",
@@ -1072,7 +1508,7 @@
       ],
       "firstSeen": "2026-10-12",
       "lastActivity": "2026-10-13",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/laurashin/status/2109783276277924181",
       "engagement": {
         "likes": 22,
@@ -1227,7 +1663,7 @@
       ],
       "firstSeen": "2026-10-10",
       "lastActivity": "2026-10-11",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/TrustlessState/status/2108947848607756290",
       "engagement": {
         "likes": 176,
@@ -3848,7 +4284,7 @@
       ],
       "firstSeen": "2026-09-19",
       "lastActivity": "2026-09-20",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/potuz_eth/status/2101310896920314088",
       "engagement": {
         "likes": 24,
@@ -4074,7 +4510,7 @@
       ],
       "firstSeen": "2026-09-19",
       "lastActivity": "2026-09-20",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/gakonst/status/2101382182799552834",
       "engagement": {
         "likes": 322,
@@ -4190,7 +4626,7 @@
       ],
       "firstSeen": "2026-09-18",
       "lastActivity": "2026-09-18",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/Justin_Bons/status/2100926003715420363",
       "engagement": {
         "likes": 40,
@@ -4321,7 +4757,7 @@
       ],
       "firstSeen": "2026-09-18",
       "lastActivity": "2026-09-18",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/pcaversaccio/status/2100898145903477166",
       "engagement": {
         "likes": 7,
@@ -4412,7 +4848,7 @@
       ],
       "firstSeen": "2026-09-16",
       "lastActivity": "2026-09-18",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/VitalikButerin/status/2100337594722890145",
       "engagement": {
         "likes": 3193,
