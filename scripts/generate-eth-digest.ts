@@ -127,7 +127,7 @@ const EDITOR_PROMPT = `당신은 ECK(Ethereum Collective Korea)의 시니어 리
 - 클러스터가 없어도, 서로 다른 인물들이 같은 쟁점(특정 EIP, 업그레이드, 프로토콜 설계, 사건)에 대해
   각자 트윗으로 입장을 낸 경우를 주제 단위로 묶으세요. 직접 대화가 없어도 담론입니다.
 - 위 두 경우가 있으면 "이번 호 논쟁 · 담론" 섹션을 만들고(프로토콜 섹션 다음 배치), 항목마다:
-  - title: 쟁점을 담은 헤드라인
+  - title: 누가 무엇을 두고 갈렸는지 드러나는 사실형 헤드라인
   - summary: 참여자별 입장을 압축 정리 (누가 어떤 논거로 어떤 입장인지, 전개 순서대로)
   - why: 이 논쟁이 생태계에 갖는 함의
   - url: 가장 대표적인 트윗/스레드 링크
@@ -136,7 +136,7 @@ const EDITOR_PROMPT = `당신은 ECK(Ethereum Collective Korea)의 시니어 리
 인사이트 도출 (이 다이제스트의 존재 이유):
 - 첫 섹션은 반드시 "이번 호 인사이트" — 개별 소식이 아니라 **여러 소식과 최근 흐름을 연결해
   도출한 해석** 2~3개를 담습니다. 각 인사이트:
-  - title: 해석을 담은 한 줄 명제 (뉴스 제목이 아니라 주장)
+  - title: 여러 소식에서 읽히는 변화를 주어와 서술어가 분명한 평이한 문장 하나로 (예: "가스리밋은 단계적으로 꾸준히 올리는 방식으로 자리 잡았다")
   - summary: 그 해석의 근거와 논리 3~5문장 — 어떤 소식들이 어떻게 연결되는지, 무엇이 달라지는지,
     앞으로 무엇을 지켜봐야 하는지
   - why: 이 해석이 틀렸다면/맞았다면 무엇이 걸려 있는지 한 문장
@@ -145,9 +145,17 @@ const EDITOR_PROMPT = `당신은 ECK(Ethereum Collective Korea)의 시니어 리
   이번 호에서 어떻게 이어지고 있는지 추적하세요.
 - 항목 요약도 마찬가지: "무엇이 일어났나"에서 멈추지 말고 "그래서 무엇이 달라지나"까지 씁니다.
 
+제목 문체 (title·shortTitle·subTitle과 모든 항목 title에 적용):
+- 사실을 평이하게 씁니다. 누가 무엇을 했는지, 무엇이 바뀌었는지가 바로 읽혀야 합니다.
+- 은유·의인화를 쓰지 않습니다 (예: "달리는", "전진하는", "궤도에 오른", "재점화된", "승격되다", "공방").
+- 번역투를 피합니다. 사물 주어 + "더 이상 ~않는다" 구조, "~발(發)" 같은 신문 약어를 쓰지 않습니다.
+- "A가 아니라 B", "A와 B 사이", "~인가?" 수사 질문, 쉼표로 두 토막을 이어 붙인 제목을 쓰지 않습니다.
+- 약어는 처음 나올 때 풀어 씁니다 (예: CFI는 "포함 검토", DFI는 "포함 제외").
+- 끝맺음을 섹션 안에서 통일합니다. 항목 title은 명사형 또는 "~다" 중 하나로 맞추고, "~들어오다" 같은 사전형 어미는 쓰지 않습니다.
+
 구성:
 - title: 그날의 핵심 의미를 담은 한국어 헤드라인 (한 문장, 낚시성 금지)
-- shortTitle: 커버 이미지용 초압축 헤드라인 — 공백 포함 16자 이내, 한 줄, 핵심 키워드 중심
+- shortTitle: 커버 이미지용 짧은 헤드라인, 공백 포함 16자 이내, 한 줄, 핵심 사실을 평이하게 (예: "실행 증명 개발은 계속된다")
 - subTitle: 커버용 한 줄 부제 — 타이틀을 보완하는 30자 이내 문장 (그날의 의미를 담담하게)
 - intro: 3~5문장 — 그날의 소식들을 관통하는 흐름과 의미를 세우는 에디터 칼럼
 - sections는 독자가 구분별로 골라 보는 탭입니다. 아래 순서·이름을 그대로 쓰고, 해당 항목이 없으면 생략:
@@ -178,17 +186,19 @@ function todayKst(): string {
 
 
 /** 헤드리스 응답에서 JSON만 추출 (혹시 붙은 코드펜스 제거) */
-/** im-not-ai 룰북으로 문장만 윤문한다. url·출처·날짜·섹션 구조는 그대로 (shortTitle은 커버용 짧은 문구라 제외) */
+/** im-not-ai 룰북으로 문장만 윤문한다. url·출처·날짜·섹션 구조는 그대로. shortTitle은 커버 한도(16자)를 넘으면 원문을 쓴다 */
+const SHORT_TITLE_MAX = 16;
 function humanizeDigest(d: z.infer<typeof DigestSchema>): z.infer<typeof DigestSchema> {
   const items = d.sections.flatMap((s) => s.items);
-  const texts = [d.title, d.subTitle, d.intro, ...items.flatMap((i) => [i.title, i.summary, i.why])];
+  const texts = [d.title, d.subTitle, d.intro, d.shortTitle, ...items.flatMap((i) => [i.title, i.summary, i.why])];
   const out = humanizeTexts(texts, '이더리움 뉴스 다이제스트(에디터 칼럼과 항목 요약)', (p) => runClaude(p, DIGEST_MODEL));
-  let k = 3;
+  let k = 4;
   return {
     ...d,
     title: out[0],
     subTitle: out[1],
     intro: out[2],
+    shortTitle: out[3].length <= SHORT_TITLE_MAX ? out[3] : d.shortTitle,
     sections: d.sections.map((s) => ({ ...s, items: s.items.map((i) => ({ ...i, title: out[k++], summary: out[k++], why: out[k++] })) })),
   };
 }
