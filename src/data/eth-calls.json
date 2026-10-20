@@ -1,6 +1,504 @@
 {
-  "updatedAt": "2026-10-16T00:50:33.465Z",
+  "updatedAt": "2026-10-20T01:31:23.794Z",
   "calls": [
+    {
+      "id": "acdt-101",
+      "series": "acdt",
+      "number": 101,
+      "date": "2026-10-19",
+      "title": "AllCoreDevs - Testing #101",
+      "forkcastUrl": "https://forkcast.org/calls/acdt/101/",
+      "videoUrl": "https://www.youtube.com/watch?v=OIai2s05-3A",
+      "issueUrl": "https://github.com/ethereum/pm/issues/2271",
+      "kind": "full",
+      "durationMin": 63,
+      "headline": "빌더 예치 수정 제외\n후디 포크 예정대로",
+      "lead": "막판 합의 변경 대신 테스트넷과 메인넷 일정을 지키기로 했다",
+      "intro": "이더리움 클라이언트 테스트를 조율하는 코어 개발자들의 주간 콜(ACDT)이다.",
+      "summary": "빌더와 밸리데이터의 예치(deposit) 분리 수정을 글램스테르담(Glamsterdam)에 넣지 않고 후디(Hoodi) 테스트넷을 10월 26일 예정대로 포크하기로 했다. EL의 BAL 보존 기간도 14,299 에포크로 확정돼 CL 클라이언트가 블라인딩(blinding)을 진행할 수 있게 됐다.",
+      "whyItMatters": "글램스테르담 메인넷 업그레이드가 연내 일정대로 갈 가능성이 높아졌다. 다만 리도(Lido) 같은 스테이킹 서비스는 예치 공격 리스크를 당분간 자체 우회책으로 관리해야 한다.",
+      "decisions": [
+        {
+          "label": "빌더 예치 수정 제외",
+          "text": "빌더와 밸리데이터 예치를 분리하는 수정을 글램스테르담에 포함하지 않기로 했다. 가설적 공격이라 후디 포크를 늦출 만한 사안이 아니라는 판단이다.",
+          "original": "Builder/validator deposit separation fix not included in Glamsterdam; not worth delaying Hoodi",
+          "eips": [],
+          "status": "확정",
+          "timestamp": "00:22:53"
+        },
+        {
+          "label": "BAL 보존 14,299",
+          "text": "BAL 보존 기간을 14,299 에포크로 올리는 PR(EIPs#12347)을 머지하고 CL 클라이언트는 블라인딩을 진행한다. 8,192 에포크로 줄이는 논의는 헤고타(Hegota)로 미뤘다.",
+          "original": "BAL retention PR (EIPs#12347) to be merged at 14,299 epochs; CL clients proceed; reduction to 8,192 deferred to Hegota",
+          "eips": [],
+          "status": "확정",
+          "timestamp": "00:37:23"
+        },
+        {
+          "label": "devnet-2 퀵슬롯 제외",
+          "text": "heze-devnet-2에는 퀵 슬롯(quick slots)을 넣지 않고 Beta-4에 머지된 EIP만 포함한다. 짧은 슬롯 실험은 일단 보류됐다는 뜻이다.",
+          "original": "heze-devnet-2 will not include quick slots; only Beta-4 EIPs",
+          "eips": [],
+          "status": "확정",
+          "timestamp": "00:55:56"
+        }
+      ],
+      "targets": [
+        {
+          "key": "hoodi-fork",
+          "text": "후디 글램스테르담 포크: 10월 26일 월요일 17:42 UTC, 에포크 132352, 가스 리밋 2억. 확정.",
+          "timestamp": "00:23:19"
+        },
+        {
+          "key": "hegota-devnet-1",
+          "text": "hegota-devnet-1의 EL 범위를 다음 주 월요일 콜에서 확정하기로 제안됐다.",
+          "timestamp": "01:03:39"
+        }
+      ],
+      "actions": [
+        {
+          "owner": "EL 팀 전체",
+          "text": "heze-devnet-2의 블롭 파라미터가 execution-specs PR #3703과 일치하는지 확인한다.",
+          "timestamp": "00:45:22"
+        },
+        {
+          "owner": "Erigon, ethrex, Nethermind, Reth",
+          "text": "EELS 사전 빌드 Hive 이미지용 클라이언트 CI PR을 머지 전에 리뷰한다.",
+          "timestamp": "01:01:21"
+        }
+      ],
+      "agenda": [
+        {
+          "timestamp": "00:05:25",
+          "heading": "글램스테르담 네트워크 현황"
+        },
+        {
+          "timestamp": "00:07:58",
+          "heading": "BPO 테스트 포크 이름 변경"
+        },
+        {
+          "timestamp": "00:11:53",
+          "heading": "빌더와 밸리데이터 예치 분리",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "00:23:08",
+          "heading": "후디 준비 상태와 클라이언트 릴리스"
+        },
+        {
+          "timestamp": "00:27:05",
+          "heading": "BAL 보존 기간",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "00:38:01",
+          "heading": "헤고타 스코핑 프로세스 변경"
+        },
+        {
+          "timestamp": "00:38:44",
+          "heading": "heze-devnet-2와 헤고타 데브넷 계획",
+          "discussion": true
+        },
+        {
+          "timestamp": "00:41:21",
+          "heading": "CFI 대 SFI와 컨센서스 스펙 머지 정책",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "00:57:34",
+          "heading": "EL 클라이언트의 discv5 기본값"
+        },
+        {
+          "timestamp": "01:01:01",
+          "heading": "EELS Hive 시뮬레이터 사전 빌드 도커 이미지"
+        }
+      ],
+      "topics": [
+        {
+          "title": "빌더·밸리데이터 예치 분리 수정을 후디 전에 넣을 것인가",
+          "intro": "현재 빌더 온보딩 로직에서는 공격자가 밸리데이터 예치를 자신이 통제하는 빌더로 돌릴 수 있다는 지적이 나와 포크 일주일 전에 스펙을 고칠지가 쟁점이 됐다.",
+          "decision": "후디 미포함 결정 00:22:53",
+          "positions": [
+            {
+              "speaker": "Justin Traglia",
+              "text": "리도 등 분산 밸리데이터 시스템이 지적한 문제를 CL 쪽에서 고치는 게 낫다고 입장을 바꿨다. 메인넷을 늦추지 않고 후디 이후 단기 데브넷에서 테스트하자고 제안했다.",
+              "timestamp": "00:12:02",
+              "original": "Yeah, hi there. Yeah, I'd like to revisit a topic from ACDC last week. Lido and other distributed Validator systems notice that the builder onboarding logic complicates things for them. In the current logic, a bad actor could redirect validator deposits to a builder which the attacker controls. And their smart contracts wouldn't really be able to detect this. So, all of the distributed Validator systems would need to do one of the following, update their contracts to handle this situation, which is complex. Disable deposits during the, like, 20 days leading up to the upgrade, however long the pending deposit queue is then. Or monitor pending deposits and pause them if they detect an attack. My opinions on this matter has changed a bit, and I believe it would be easier for us, the consensus layer. To, change this. I don't believe that this should delay the mainnet upgrade. It's fairly simple, and We'd make this after Hoodi upgrades. And we would test it with a short-lived devnet, like we did with devnet 12. like… Yeah, I'm curious to hear what other… still clients think, and I'm wondering if I could change your opinion on it. I was against it previously. Dustin, you're saying we should replay the Pectra disaster. What is that exactly? I forget. Okay. Potuz, have you looked at the change? Like, it's fairly simple, and really, this came apart… sorry, this happened because of EIP8282. I mean, it was just the logic we had for 8282, and we didn't update it for 8282. I mean, are…",
+              "translation": "안녕하세요. 지난주 ACDC에서 다뤘던 주제를 다시 꺼내고 싶습니다. Lido를 비롯한 분산 밸리데이터(distributed Validator) 시스템들은 빌더 온보딩(builder onboarding) 로직이 자신들에게 문제를 복잡하게 만든다는 점을 지적했습니다. 현재 로직에서는 악의적 행위자가 밸리데이터 예치금(deposit)을 자신이 통제하는 빌더(builder)로 리다이렉트할 수 있습니다. 그리고 그들의 스마트 컨트랙트는 이를 실제로 감지할 수 없습니다. 따라서 모든 분산 밸리데이터 시스템은 다음 중 하나를 해야 합니다. 이 상황을 처리하도록 컨트랙트를 업데이트하는 것인데, 이는 복잡합니다. 업그레이드 전 약 20일 동안, 즉 대기 중인 예치 큐(pending deposit queue)의 길이만큼 예치를 비활성화하는 것. 또는 대기 중인 예치를 모니터링하다가 공격을 감지하면 일시중지하는 것. 이 문제에 대한 제 의견이 조금 바뀌었는데, 저희 합의 계층(consensus layer)에서 이를 변경하는 편이 더 쉬울 것이라고 생각합니다. 이것이 메인넷 업그레이드를 지연시켜야 한다고는 생각하지 않습니다. 꽤 간단하고, Hoodi 업그레이드 이후에 이를 적용하면 됩니다. 그리고 devnet 12에서 했던 것처럼 단기 데브넷(devnet)으로 테스트하면 됩니다. 다른 분들, 특히 클라이언트 쪽에서는 어떻게 생각하시는지 궁금하고, 제가 여러분의 의견을 바꿀 수 있을지 궁금합니다. 저는 이전에는 반대했었습니다. Dustin, Pectra 재앙을 재현하자는 말씀이신가요? 그게 정확히 무엇이었는지 잊어버렸습니다. 좋습니다. Potuz, 이 변경 사항을 살펴보셨나요? 꽤 간단한데, 사실 이 문제는 EIP8282 때문에 발생했습니다. 그러니까 8282에 대한 로직이었는데, 8282에 맞춰 업데이트하지 않았던 것입니다. 그러니까…"
+            },
+            {
+              "speaker": "Dustin",
+              "text": "이런 막판 변경이 바로 과거 사고들의 원인이었다며 반대했다.",
+              "timestamp": "00:13:39",
+              "original": "I'm… I… what I'm saying is that these kind of late-breaking changes are precise… the specific method is different, because, sure, we're talking about some different protocol ones than a couple years ago. But, let's, let's, let's, you know, let's have our vanity system, contract process. Great. Oops. Like, no.",
+              "translation": "제가 말씀드리는 것은 이런 식의 막판 변경(late-breaking change)은 정확히... 구체적인 방법은 다릅니다. 왜냐하면 물론 몇 년 전과는 다른 프로토콜을 다루고 있기 때문입니다. 하지만, 저희의 배니티 시스템(vanity system), 컨트랙트 프로세스를 가져갑시다. 좋습니다. 아, 아닙니다."
+            },
+            {
+              "speaker": "Potuz",
+              "text": "강하게 반대했다. 단순해 보이는 합의 변경이 번번이 위험한 버그를 낳아왔다며 고치려면 후디와 메인넷을 모두 미루고 충분히 검토해야 하고 일정을 지킬 거라면 고치지 말아야 한다고 했다.",
+              "timestamp": "00:14:10",
+              "original": "That went well. I am against this. I'm strongly against this. I think… I wouldn't personally mind if we do implement this. that we delay Hoodi, and we delay mainnet, and we spend time studying this fix. There's no simple fix, and no one will ever convince me that there is a simple Consensus-breaking fix. All of these changes that we're seeing, all of them, like, absolutely all of the bugs that we're seeing, that they keep appearing, very dangerous bugs on the spec, and we keep making consensus-breaking changes As we are already forged one of the chestnuts. they all are downstream from one of the changes that we said. It was an easy change and would come in the late stages of making ePBS. We removed the builders from the Validator set. And everything else, everything that came, came from handling of deposits because of this. I just don't trust The fact that most people have not looked into this attack, and most people have not, have not, studied what are the possible implications for the changes in the fork. I would feel much, much better if either we don't implement this, and we let Lido or whomever is affected, handle this with their mitigation strategy, or if we do accept that we're gonna make this Consensus-breaking change, we cancel Hoodi right now, and we agree on delaying everything until we are sure that this is safe. I strongly believe this, and I believe that many are… agree with me and just are not voicing it. I did look at the change, and I also have looked at…",
+              "translation": "잘 됐네요. 저는 이것에 반대합니다. 강하게 반대합니다. 저는 만약 우리가 이것을 구현한다면, 개인적으로는 Hoodi를 지연시키고 메인넷도 지연시켜서 이 수정안을 연구하는 데 시간을 쓰는 것에 개의치 않습니다. 간단한 수정은 없으며, 합의를 깨는(consensus-breaking) 간단한 수정이 있다고 저를 설득할 사람은 아무도 없을 것입니다. 우리가 보고 있는 이 모든 변경 사항들, 스펙 상에서 계속 나타나는 매우 위험한 버그들, 그리고 우리가 계속 만들어내고 있는 합의를 깨는 변경들은, 이미 밤 하나를 구워버린 것처럼, 모두 우리가 했던 한 변경 사항에서 비롯된 것입니다. 그것은 쉬운 변경이었고 ePBS를 만드는 과정의 후반 단계에 들어온 것이었습니다. 우리는 빌더를 밸리데이터 세트(validator set)에서 제거했습니다. 그리고 그 외의 모든 것, 이후에 나온 모든 것은 이로 인한 예치금 처리에서 비롯되었습니다. 저는 대부분의 사람들이 이 공격을 들여다보지 않았고, 이번 포크에서의 변경 사항이 어떤 영향을 미칠 수 있는지 연구하지 않았다는 사실을 신뢰할 수 없습니다. 저는 우리가 이것을 구현하지 않고 Lido나 영향을 받는 쪽이 자신들의 완화 전략(mitigation strategy)으로 대응하게 하거나, 혹은 우리가 이 합의를 깨는 변경을 만들기로 받아들인다면 지금 당장 Hoodi를 취소하고 이것이 안전하다고 확신할 때까지 모든 것을 지연하기로 합의하는 편이 훨씬 더 낫다고 느낄 것입니다. 저는 이것을 강하게 믿으며, 많은 분들이 저에게 동의하지만 목소리를 내지 않고 있을 뿐이라고 생각합니다. 저는 이 변경 사항을 실제로 살펴보았고, 또한…"
+            },
+            {
+              "speaker": "Dima Gusakov | Lido",
+              "text": "포크 때 딱 한 번 호출되는 함수의 변경이라 데브넷 하나로 2~4일이면 테스트할 수 있다며 Potuz에게 반박했다.",
+              "timestamp": "00:18:03",
+              "original": "Give me a second, Matthew. Like, we are talking about, like, function that will be called exactly one time. During the hard fork, meaning that testing it basically means that unless we want to run multiple devnets, which I'm not convinced we should. like, a single devnet would require us to have, like, I don't know, 3, 4 days for this devnet maximum, provided that we let it start, then we add, some pending deposits. Like, with all of the I don't know, safety intervals added. It's, like, one devnet, I don't know, 2, 3, 4 days maximum. And that is it, because we really need to change… to check one thing that will be used exactly once on the hard fork, so if hard fork passes, network finalizes. And we ensure that before the hard fork, we had enough pending deposits with, like, different types, conditions, and stuff like that within the queue, then we see that the queue has been processed correctly by all of the clients, and that is it. That's the testing. Yeah, but Juu B. I… I understand that Potuz, but, like, have you actually looked at the fix? Like, again, it's literally a change to a one-time call function. That's what I'm trying to understand. Like, I understand that in general, you are absolutely right, no questions asked. Like, this particular change is about a pretty unique thing, which is a one-time call function. And this is what concerns me, like, when you are saying that it requires a shit ton of work. I mean, I came from the QA background on testing, like,…",
+              "translation": "잠시만요, Matthew. 저희가 이야기하고 있는 것은 하드포크(hard fork) 동안 정확히 한 번만 호출될 함수입니다. 즉 이것을 테스트한다는 것은, 저희가 여러 데브넷을 돌리고 싶은 게 아니라면, 그리고 저는 그래야 한다고 확신하지 않습니다만, 단일 데브넷 하나로 충분하다는 의미입니다. 데브넷을 시작하게 해 두고, 거기에 대기 중인 예치를 좀 추가한다고 하면, 최대 3, 4일 정도면 될 것 같습니다. 온갖 안전 간격(safety interval)을 다 더해도 말입니다. 데브넷 하나로, 최대 2, 3, 4일이면 됩니다. 그게 전부입니다. 왜냐하면 저희가 정말로 확인해야 할 것은 하드포크에서 딱 한 번 사용될 한 가지뿐이기 때문입니다. 하드포크가 통과되면 네트워크가 파이널라이즈(finalize)됩니다. 그리고 하드포크 이전에 큐 안에 서로 다른 유형, 조건 등을 가진 충분한 대기 예치가 있었는지 확인하고, 그 큐가 모든 클라이언트에 의해 올바르게 처리되었는지 확인하면 그걸로 끝입니다. 그게 테스트입니다. 네, 그런데 Juu B. 저는 Potuz의 말을 이해합니다만, 실제로 이 수정안을 살펴보셨나요? 다시 말씀드리지만, 이것은 말 그대로 일회성 호출 함수에 대한 변경일 뿐입니다. 그게 제가 이해하고자 하는 바입니다. 일반적으로는 당신이 전적으로 옳다는 것을, 두말할 것도 없이 이해합니다. 하지만 이 특정 변경은 꽤 독특한 것, 즉 일회성 호출 함수에 관한 것입니다. 그리고 그것이 제가 우려하는 부분입니다. 엄청난 양의 작업이 필요하다고 말씀하실 때 말이죠. 저는 테스트 쪽 QA 배경 출신인데…"
+            },
+            {
+              "speaker": "Matthew Keil",
+              "text": "기술 검토보다 일정이 문제라고 했다. 데브콘과 연말 휴가 때문에 후디가 며칠만 밀려도 메인넷이 해를 넘긴다며 지연에 반대했다.",
+              "timestamp": "00:20:23",
+              "original": "You know, and I tend to… I don't even think the… what Potuz is saying, while I don't discount it, is really even the part that… I think I take an exception to, it's that Devcon, like, the Devcon schedule, the holiday schedule, and a lot of the other logistical pieces are the parts that I think are the biggest concern. And really, that's the part, like, if we cancel Hoodi. and do some kind of, you know, at least some kind of testing on it, even if it only takes 3 or 4 days. Just the fact that Devcon is in the mix there, it pushes the Hoodi schedule out. And then, because of the holidays, that pushes dev… like, the mainnet out, and it's literally just a… to me, it's just a scheduling issue that becomes very, very, very difficult to handle without pushing out mainnet because of the holidays. Probably a couple of weeks or a month. And I… you know, even if we only delay a couple of days now, just because of its… you know, it's like a knee-jerk, like, turn, because we have our release out that already schedules Hoodi. Do you know what I'm saying? So, like, that is… like, we'd have to re-release unscheduling Hoodi, and I think there's risk there that, you know, that some clients might fork. I mean, it's just… it's nuanced. But I do appreciate the fact that it's… it is kind of a tough situation.",
+              "translation": "저는 Potuz가 말씀하신 부분을 폄하하지는 않습니다만, 제가 정말로 이의를 제기하고 싶은 부분은 그게 아닙니다. Devcon 일정, 휴일 일정, 그리고 여러 다른 물류적인 부분들이 제가 가장 우려하는 지점이라고 생각합니다. 정말로 그 부분입니다. 만약 저희가 Hoodi를 취소하고 어떤 형태로든, 설령 3, 4일밖에 걸리지 않더라도 테스트를 한다면, Devcon이 끼어 있다는 사실만으로도 Hoodi 일정이 뒤로 밀립니다. 그리고 휴일 때문에 메인넷도 뒤로 밀리게 되는데, 저에게는 이것이 그야말로 휴일 때문에 메인넷을 미루지 않고서는 처리하기 매우, 매우, 매우 어려워지는 일정 문제일 뿐입니다. 아마 몇 주나 한 달 정도일 것입니다. 지금 단 며칠만 지연하더라도, 이미 Hoodi 일정을 잡아둔 릴리스가 나가 있는 상태이기 때문에 일종의 반사적인 전환이 되어버립니다. 무슨 말씀인지 아시겠죠? 그러니까 저희는 Hoodi 일정을 취소하는 재릴리스를 해야 할 것이고, 일부 클라이언트가 포크를 할 수도 있다는 위험이 있다고 생각합니다. 그러니까 이것은 미묘한 문제입니다. 하지만 이것이 꽤 어려운 상황이라는 점은 인정합니다."
+            },
+            {
+              "speaker": "Eitan Seri-Levi",
+              "text": "우회책이 있으니 지연할 가치가 없다며 고치려면 지연이 불가피하다는 점에 동의했다.",
+              "timestamp": "00:15:09",
+              "viaChat": true,
+              "original": "yeah agreed that we have to delay if we’re gunna do this. and since it sounds like there’s a workaround I don’t think it’s worth the delay 00:15:32\tDustin:\tI explictly don't care, it's too late 00:15:35\tDima Gusakov | Lido:\tSepolia was not a sample because there were no pending builders 00:15:44\tDima Gusakov | Lido:\tSo it does not matter 00:15:58\tjames:\t1 week sounds bad, you don’t want hoodi during devcon 00:15:58\tDustin:\tit's too bad, I agree in principle that Lido has pointed out a real problem 00:16:06\tDustin:\tbut it's still too late 00:16:39\tNico Flaig:\tit was problem before 8282, but we could have fixed it as part of 8282 00:16:48\tDustin:\tYeah 8282 didn't really cause it 00:16:56\tDustin:\tit was a missed opportunity though 00:17:01\tNico Flaig:\tReacted to \"it was a missed oppo...\" with 👍 00:17:12\tcayman:\tReacted to \"it was a missed oppo...\" with 👍 00:17:17\tDustin:\tthen I am strongly against fixing it 00:17:57\tBarnabas:\tYeah its either this or that. We can’t make the change and keep the schedule. So either we want to fix this bug or keep the schedule. 00:18:04\tDustin:\t\"just one thing\" 00:18:07\tDustin:\tno no  no 00:18:08\tDustin:\tjuts o 00:18:33\tJustin Florentine (Besu):\twhy is moving the deadline \"not great\"?",
+              "translation": "네, 만약 이것을 진행한다면 지연이 필요하다는 데 동의합니다. 그리고 우회 방법(workaround)이 있는 것 같으니, 지연할 가치는 없다고 생각합니다.\n00:15:32 Dustin: 저는 신경 쓰지 않는다고 분명히 말씀드립니다, 이미 너무 늦었습니다.\n00:15:35 Dima Gusakov | Lido: Sepolia는 대기 중인 빌더가 없었기 때문에 적절한 표본이 아니었습니다.\n00:15:44 Dima Gusakov | Lido: 그러니 상관없습니다.\n00:15:58 james: 1주일은 좋지 않게 들립니다. Devcon 기간 중에 Hoodi를 하고 싶지는 않을 것입니다.\n00:15:58 Dustin: 안타깝지만, Lido가 실제 문제를 지적했다는 점에는 원칙적으로 동의합니다.\n00:16:06 Dustin: 하지만 여전히 너무 늦었습니다.\n00:16:39 Nico Flaig: 8282 이전부터 있던 문제였지만, 8282의 일부로 고칠 수도 있었습니다.\n00:16:48 Dustin: 네, 8282가 실제로 이 문제를 일으킨 것은 아닙니다.\n00:16:56 Dustin: 다만 놓친 기회이기는 했습니다.\n00:17:01 Nico Flaig: \"놓친 기회였습니다\"라는 메시지에 공감 표시를 남겼습니다.\n00:17:12 cayman: \"놓친 기회였습니다\"라는 메시지에 공감 표시를 남겼습니다.\n00:17:17 Dustin: 그렇다면 저는 이것을 고치는 데 강하게 반대합니다.\n00:17:57 Barnabas: 네, 이것 아니면 저것입니다. 변경 사항을 만들면서 일정을 유지할 수는 없습니다. 그러니 이 버그를 고칠 것인지, 아니면 일정을 유지할 것인지 둘 중 하나를 택해야 합니다.\n00:18:04 Dustin: \"그냥 한 가지만요\"\n00:18:07 Dustin: 아니요, 아니요, 아니요.\n00:18:08 Dustin: 그냥 안 됩니다.\n00:18:33 Justin Florentine (Besu): 마감일을 옮기는 것이 왜 \"별로 좋지 않다\"는 건가요?"
+            }
+          ],
+          "quote": {
+            "text": "무엇도 늦출 가치는 없다고 본다. 이것은 가설적인 공격이다.",
+            "original": "It's not worth delaying anything, in my opinion. It is a hypothetical attack.",
+            "speaker": "Justin Traglia",
+            "timestamp": "00:22:17"
+          }
+        },
+        {
+          "title": "BAL 보존 기간을 얼마로 잡을 것인가",
+          "intro": "CL이 BAL을 블라인딩한 뒤에도 과거 페이로드 요청에 응답하려면 EL이 BAL을 얼마나 오래 보관해야 하는지를 정하는 논의다.",
+          "decision": "PR 머지 결정 00:37:23",
+          "positions": [
+            {
+              "speaker": "Toni Wahrstätter",
+              "text": "보존 기간을 3,533에서 14,299 에포크로 올리는 PR을 머지하겠다고 했고 14,299 에포크 동안 비최종성(non-finality)이면 네트워크는 이미 죽은 상태라 충분히 보수적인 값이라고 했다.",
+              "timestamp": "00:27:32",
+              "original": "Perfect. Yeah, this is a PR from Nico. It's a few weeks old now, and by the time we discussed increasing the BAL retention window from 3,533 epochs. to the value provided by the CL, which was, 14K, I think 14… 1,299 or something? And… Nico's PR implements that, and I saw that most of the clients are already on that, some have already merged their PRs, others have, prepared PRs that are still open. And, yeah, I would… after the call, I would merge this in. And I would then ask clients to also comply. Yeah, it would be… actually, it would be helpful to… to, check with the clients if everyone, has is ready for that, because Geth doesn't need anything. I think Besu, in the meantime, created a PR and merged it already. Is someone from Besu here that can double, confirm that? Okay. What about the other clients? Nethermind, Reth, Erigon, Nimbus EL? Yeah. Perfect. Yeah, and if, I would love if Nethermind could, double-check if they have a PR ready for that, same for ethrex and Reth in this case. For Erigon, I think there was a PR, I'm not sure, if the other clients had a PR for that already. Yeah, Nico is saying he opened an issue at all the clients in the chat, and I think this is then finally resolving the topic of blinding the BAL on the CL side, so CLs can proceed with blinding BALs, and will still be able to fulfill requests that are… ForK old plugs. Yeah, to me, it feels like, Potuz, it's almost like if what you guys are doing on the EL is already fine, and it would actually…",
+              "translation": "좋습니다. 이것은 Nico가 올린 PR입니다. 이제 몇 주 된 것인데, 저희가 BAL 보존 기간(retention window)을 3,533 에포크(epoch)에서 CL(합의 계층, consensus layer)이 제공하는 값, 그러니까 14K, 아마 14… 1,299 정도였던 것 같은데, 그 값으로 늘리는 것을 논의했을 때였습니다. 그리고 Nico의 PR이 그것을 구현하고 있고, 대부분의 클라이언트가 이미 그 값을 사용하고 있는 것을 확인했습니다. 일부는 이미 PR을 머지했고, 다른 쪽은 아직 열려 있는 PR을 준비해 두었습니다. 그래서 이 콜이 끝난 후에 이것을 머지하려고 합니다. 그리고 클라이언트들에게도 이를 따르도록 요청하겠습니다. 네, 사실 모두가 준비되었는지 클라이언트들과 확인해 보면 도움이 될 것 같습니다. Geth는 따로 필요한 것이 없기 때문입니다. Besu는 그동안 PR을 만들어서 이미 머지한 것으로 알고 있습니다. 여기 Besu에서 오신 분이 계셔서 이를 다시 확인해 주실 수 있을까요? 좋습니다. 다른 클라이언트들은 어떤가요? Nethermind, Reth, Erigon, Nimbus EL? 네. 좋습니다. 그리고 Nethermind가 이에 대한 PR이 준비되었는지 다시 확인해 주시면 좋겠습니다. 이번 경우에는 ethrex와 Reth도 마찬가지입니다. Erigon의 경우에는 PR이 있었던 것 같은데, 다른 클라이언트들이 이미 PR을 가지고 있었는지는 확실하지 않습니다. 네, Nico가 채팅에서 모든 클라이언트에 이슈를 열었다고 말하고 있고, 이것으로 CL 쪽에서 BAL을 블라인딩(blinding)하는 주제가 마침내 해결되어서, CL들이 BAL 블라인딩을 진행하면서도 오래된 포크의 요청들을 여전히 처리할 수 있을 것이라고 생각합니다. 저로서는, Potuz, 여러분이 EL(실행 계층, execution layer) 쪽에서 하고 있는 일이 이미 괜찮은 것 같고, 그것이 실제로…"
+            },
+            {
+              "speaker": "Nico Flaig",
+              "text": "보존을 더 줄이면 비최종성 구간에서 EL이 데이터를 프루닝(pruning)해 CL이 P2P로 페이로드를 제공하지 못할 수 있다고 우려했다. 다만 지금 당장 큰 문제는 아니라고 했다.",
+              "timestamp": "00:31:27",
+              "original": "Just to Toni's comment, so there was one left over, I guess, which is during non-finality. So right now, the period is long enough that it's really unreachable, but if we reduce the retention further. then it could become an issue if CL clients dedupe unfinaled data, because it could be that the EL prunes their side of the data, and the payloads become no longer servable over P2P. But I don't think it's a big concern right now, and for example, Lodestar doesn't dedupe non-finalized data, so for us, it's not a big deal. I'm not sure about other clients.",
+              "translation": "Toni의 코멘트에 덧붙이자면, 남아 있는 문제가 하나 있는 것 같은데, 그것은 비최종성(non-finality) 구간 중의 문제입니다. 지금 당장은 그 기간이 충분히 길어서 사실상 도달할 수 없지만, 만약 보존 기간을 더 줄인다면, CL 클라이언트들이 파이널라이즈되지 않은 데이터를 중복 제거(dedupe)할 경우 문제가 될 수 있습니다. 왜냐하면 EL이 자신 쪽 데이터를 가지치기(prune)해서 페이로드(payload)가 더 이상 P2P로 서빙될 수 없게 될 수도 있기 때문입니다. 하지만 지금 당장은 크게 우려할 사항은 아니라고 생각합니다. 예를 들어 Lodestar는 파이널라이즈되지 않은 데이터를 중복 제거하지 않으므로, 저희 입장에서는 큰 문제가 아닙니다. 다른 클라이언트들은 어떤지 잘 모르겠습니다."
+            },
+            {
+              "speaker": "Potuz",
+              "text": "Prysm은 데이터를 받자마자 블라인딩해 최종성까지 기다리는 변경이 쉽지 않다고 했고 비활성 누수로 비최종성 지속 시간의 상한을 계산해 EL 보존이 그 상한보다 길면 된다고 제안했다.",
+              "timestamp": "00:32:21",
+              "original": "Yeah, so what Nico's saying is true, it's just that I'm not really sure if it's easy for us. We… we… we blind everything as soon as we put on GP. It's not clear to me how easy it would be to To wait until we are finalizing. We do migrate to code on finalization, so in principle it's doable, but… but I don't think it's an easy change.",
+              "translation": "네, Nico가 말한 것은 맞지만, 저희 입장에서 그것이 쉬울지는 잘 모르겠습니다. 저희는 GP에 올리는 즉시 모든 것을 블라인딩합니다. 파이널라이즈될 때까지 기다리는 것이 얼마나 쉬울지 저로서는 분명하지 않습니다. 파이널라이제이션(finalization) 시점에 코드로 마이그레이션을 하기는 하므로 원칙적으로는 가능하지만, 쉬운 변경은 아니라고 생각합니다."
+            }
+          ],
+          "quote": {
+            "text": "14K 에포크 동안 비최종성이라면 네트워크는 죽어 있을 것이다. 이미 매우 보수적이고, 14K면 충분히 보수적이라고 생각한다.",
+            "original": "With 14K, the network would be dead if we ever have non-finality for 14K epochs. This is already very conservative, and I think 14K is conservative enough.",
+            "speaker": "Toni Wahrstätter",
+            "timestamp": "00:34:34"
+          }
+        },
+        {
+          "title": "SFI 전의 EIP를 스펙 메인 브랜치에 머지해도 되는가",
+          "intro": "포함 확정(SFI) 전인 퀵 슬롯 코드가 컨센서스 스펙의 Heze 포크 브랜치에 들어가는 것을 두고 매몰 비용이 암묵적 포함 확정으로 이어진다는 거버넌스 논쟁이 벌어졌다.",
+          "positions": [
+            {
+              "speaker": "Potuz",
+              "text": "무엇을 포크 브랜치에 머지할지는 ACD 콜에서 정해야지 스펙 관리자의 2차 판단에 맡겨서는 안 된다고 했다. CFI는 포크에 싣는다는 뜻이 아니며 SFI 전에는 피처 브랜치에 둬야 한다고 주장했다.",
+              "timestamp": "00:41:20",
+              "original": "Yeah, it's… It's tangential to this, but it's related to these things that were merging on the Heze fork. I am very unhappy with the double moderations that we're seeing on governance. it's… in this particular case of quick slots, it was already a call by Alex on ACD to decide that there was rough consensus that the EIP should be CFI'd. And then there's a second layer of moderation, also happens with the criteria. I mean, Justin or whoever has access to write in the CL spec, they also need to decide that there is rough consensus to actually merge in the actual fork. I think we should… this decision of merging something in the actual fork branch for the spec should be done at ACD and should not have another layer of moderation. We should agree that… what goes into the fork at ACD, and only then we should be merging onto the main fork. The Consensus spec already has the capability to keep test vectors to keep everything we need to test on feature branches. We typically would keep major changes on feature branches until they are SFI, and only then merge. If we agree that we're going to be merging things into the main fork, only being CFI instead of being scheduled, which is already weird, because it puts the onus on really on moving out, an EIP from there, if it's not, SFI, then I think we should agree on this on ACD and not here, and not by… by a second layer of moderation.",
+              "translation": "네, 이것은 다소 부차적인 이야기이지만, Heze 포크에서 머지되고 있는 것들과 관련이 있습니다. 저는 거버넌스(governance)에서 보이는 이중 조정(double moderation)에 대해 매우 불만스럽습니다. 이번 quick slots의 경우를 보면, 이미 ACD에서 Alex가 해당 EIP가 CFI(Considered For Inclusion)되어야 한다는 데 대략적 합의(rough consensus)가 있었다고 판단을 내린 상태입니다. 그런데 거기에 더해 기준에 따른 두 번째 단계의 조정이 또 일어납니다. 즉, Justin이든 CL 스펙에 쓸 권한이 있는 누구든, 실제 포크에 머지하기 위해서는 대략적 합의가 있는지를 또다시 판단해야 합니다. 저는 스펙의 실제 포크 브랜치에 무언가를 머지하는 결정은 ACD에서 이루어져야 하고, 또 다른 조정 단계가 있어서는 안 된다고 생각합니다. 포크에 무엇이 들어갈지는 ACD에서 합의하고, 그런 다음에만 메인 포크에 머지해야 합니다. 합의 스펙(Consensus spec)은 이미 피처 브랜치(feature branch)에서 테스트에 필요한 모든 것, 즉 테스트 벡터(test vector)를 유지할 수 있는 기능을 갖추고 있습니다. 저희는 보통 주요 변경 사항을 SFI(Scheduled For Inclusion)가 될 때까지 피처 브랜치에 유지했다가 그때 비로소 머지합니다. 만약 저희가 일정에 올라가는 것이 아니라 CFI되는 것만으로 메인 포크에 머지하기로 합의한다면, 이는 이미 이상한 일입니다. 왜냐하면 SFI가 아닌 경우 거기서 EIP를 빼내는 책임을 지우게 되기 때문입니다. 그래서 저는 이것을 ACD에서 합의해야지, 여기서, 그리고 두 번째 단계의 조정을 통해서 할 일이 아니라고 생각합니다."
+            },
+            {
+              "speaker": "lightclient",
+              "text": "Potuz에 전적으로 동의했다. 포크 브랜치에 올리면 구현이 그에 의존하게 되고 매몰 비용 때문에 암묵적으로 수용된다며 메인 브랜치는 SFI된 것만 담아야 한다고 했다.",
+              "timestamp": "00:48:17",
+              "original": "Yeah, I absolutely agree. I think this has been the problem with shipping the things to the devnets, kind of just implicitly, is that then we just implicitly accept them. And that's not the process that we should be following. We should have the discussion, do we want to SFI it or not, and then merge it to the main branch? I fully agree. But I think that, like, once you put it on the fork branch. you know, even if it's not SFI, then you start to kind of, like, have your implementation depending on it. then, you know, you kind of have the sunk cost already, so why would you say, yeah, we implemented it, it's, you know, now dependent on, in our fork main fork branch, you know, let's just go ahead and just rip it out. Like, most of these EIPs are not necessarily bad ideas, or have, like, bad specs. But I think that… we shouldn't just kind of, like, default, yes, add everything that's CFI to the fork. I think that we need to have more… You know, be more thoughtful about what is actually changing about the protocol, rather than just saying, well, we implemented it, so we might as well just ship it. Are we gonna do something about the… Hegota EIPs, though, that, like, we're already putting in devnets. That haven't been SFI, or is this something we just want to deal with in the future? But do you also want to do it with the quick slots, which sound like it has more contention than maybe some of the other CFI deals? Yeah. I'm just…",
+              "translation": "네, 전적으로 동의합니다. 데브넷에 무언가를 암묵적으로 올리는 것이 바로 문제였다고 생각합니다. 그렇게 하면 저희는 그것들을 암묵적으로 받아들이게 됩니다. 그리고 그것은 저희가 따라야 할 프로세스가 아닙니다. SFI를 할 것인지 말 것인지 논의를 거친 다음에 메인 브랜치에 머지해야 합니다. 전적으로 동의합니다. 하지만 일단 포크 브랜치에 올려두면, SFI가 아니더라도 구현이 거기에 의존하기 시작합니다. 그러면 이미 매몰 비용(sunk cost)이 생겨서, 저희가 이미 구현했고 지금 저희 포크 메인 포크 브랜치에 의존하고 있는데 그냥 빼버리자고 말하기가 어려워집니다. 이 EIP들 대부분이 반드시 나쁜 아이디어이거나 스펙이 나쁜 것은 아닙니다. 하지만 저희는 CFI된 모든 것을 기본값으로 포크에 추가해서는 안 된다고 생각합니다. 저희는 이미 구현했으니 그냥 내보내자고 말하기보다, 프로토콜에서 실제로 무엇이 바뀌는지에 대해 더 신중하게 생각할 필요가 있습니다. 그런데 이미 데브넷에 올려놓은 Hegota EIP들에 대해서는 뭔가 조치를 취할 것인가요? SFI되지 않은 것들 말입니다. 아니면 이것은 나중에 다루고 싶은 문제인가요? 그런데 quick slots에 대해서도 그렇게 하고 싶으신가요? 다른 CFI 건들보다 더 논쟁이 있는 것 같은데요. 네, 저는 그냥…"
+            },
+            {
+              "speaker": "Matthew Keil",
+              "text": "퀵 슬롯은 특히 광범위한 합의가 없고 향후 슬롯 작업과 양자내성(PQ) 조율에 파급 효과가 있는데 메인 브랜치에 머지하는 것은 골키퍼 몰래 넣는 것 같다고 비판했다.",
+              "timestamp": "00:48:37",
+              "original": "And particularly with short slots, this is one that was not an easy… like, this is… there is not broad consensus that this should be included. And that, to me, is also the part that I think rubs even harder about this particular one. Like, forget the fact that ETH1 data, or it's… we're not talking about closing the OXOOs, like, that's something that literally everybody agrees upon. It's much less contentious, but this is something that… It feels like it… you're sneaking it past the goalie, and it… it… it doesn't feel right.",
+              "translation": "특히 short slots의 경우, 이것은 쉽지 않은 건이었습니다. 이것을 포함시켜야 한다는 데 대한 폭넓은 합의(broad consensus)가 없습니다. 그리고 그 점이 저에게는 이 특정 건에서 더욱 거슬리는 부분입니다. ETH1 데이터는 논외로 하고, 저희는 OXOOs를 닫는 이야기를 하는 게 아닙니다. 그것은 말 그대로 모두가 동의하는 사안입니다. 훨씬 덜 논쟁적입니다. 하지만 이것은 마치 골키퍼 몰래 슬쩍 집어넣는 것 같은 느낌이고, 옳다고 느껴지지 않습니다."
+            },
+            {
+              "speaker": "Justin Traglia",
+              "text": "타당한 지적이라며 대체로 동의했다.",
+              "timestamp": "00:49:14",
+              "original": "Yeah, I mean, that's really fair. I sort of agree as well.",
+              "translation": "네, 그건 정말 타당한 말씀입니다. 저도 어느 정도 동의합니다."
+            },
+            {
+              "speaker": "Maria Silva",
+              "text": "퀵 슬롯은 슬롯 시간을 12초로 되돌리기만 하면 되는, 되돌리기 쉬운 변경이라는 점에서 다른 프로토콜 변경과 다르다고 지적했다.",
+              "timestamp": "00:54:06",
+              "original": "Yeah. Sorry, I just wanted to say, so for quick slots, it seems like this is a slightly different one in the context that if we added in the specs, and we didn't want to implement it. The only thing we needed to do is to set the slot time to 12 seconds, right? So, this seems one of those EIPs that is pretty easy to just undo. I mean, you already do some cleanups on the code side, but nothing in the protocol changes. But yeah, but I see, like. In principle for other changes, it's a bit harder to understand.",
+              "translation": "네, 죄송합니다, 그냥 한 말씀 드리고 싶었습니다. quick slots의 경우, 만약 스펙에 추가했다가 구현하고 싶지 않아진다면, 해야 할 일은 슬롯 시간(slot time)을 12초로 설정하는 것뿐이라는 점에서 조금 다른 사안인 것 같습니다. 그렇죠? 그러니 이것은 되돌리기가 꽤 쉬운 EIP 중 하나로 보입니다. 물론 코드 쪽에서는 이미 어느 정도 정리 작업을 하게 되지만, 프로토콜상으로는 바뀌는 것이 없습니다. 하지만 원칙적으로 다른 변경 사항들에 대해서는 이해하기가 좀 더 어렵다고 봅니다."
+            }
+          ],
+          "quote": {
+            "text": "골키퍼 몰래 공을 넣는 것 같은 느낌이고, 옳다고 느껴지지 않는다.",
+            "original": "It feels like you're sneaking it past the goalie, and it doesn't feel right.",
+            "speaker": "Matthew Keil",
+            "timestamp": "00:48:37"
+          }
+        },
+        {
+          "title": "heze-devnet-2에 10초 슬롯을 넣을 것인가",
+          "intro": "짧은 슬롯을 구현한 CL 클라이언트가 합의된 기준인 3개에 도달하면서 다음 데브넷에서 슬롯 시간을 줄일지와 EL 블롭 파라미터 정렬이 논의됐다.",
+          "decision": "퀵 슬롯 제외 결정 00:55:56",
+          "positions": [
+            {
+              "speaker": "Barnabas",
+              "text": "지난주 합의한 3개 클라이언트 기준이 충족됐다며 heze-devnet-2를 10초 슬롯으로 하자고 제안했다. 다만 버그 수정 PR 5743이 먼저 머지되고 스펙 릴리스가 나오는 게 낫다고 했다.",
+              "timestamp": "00:45:59",
+              "original": "So we said, last week that if we have 3 clients that have implemented shorter slots, then we would just, shorten the slot time in the following devnet, and we have seemed to reach, 3 clients that have working already, so I would actually propose for the next, devnet 2 for the, To 10 seconds slot time, so we can begin testing everything else. With the shorter slots. Yeah, this is… But, no. I, I think, client teams would… prefer to merge in, 5743, For this, or… like… In previous cases, we almost always had a spec release Before we had the devnet Hub. And, now Potuz is saying that he wants to keep the PR open, and just do the devnet. I'm not sure how… We would be doing that. I think the point of the consensus spec main branch is to make sure all the CFI EIPs are there. Yep.",
+              "translation": "지난주에 저희는 더 짧은 슬롯(shorter slot)을 구현한 클라이언트가 3개가 되면, 다음 데브넷에서 슬롯 시간을 단축하기로 말씀드렸는데, 이미 작동하는 클라이언트가 3개에 도달한 것 같습니다. 그래서 저는 다음 devnet 2에서 슬롯 시간을 10초로 할 것을 제안하고 싶습니다. 그래야 더 짧은 슬롯으로 나머지 것들에 대한 테스트를 시작할 수 있습니다. 네, 이것은… 그런데 아닙니다. 클라이언트 팀들은 이를 위해 5743을 머지하는 것을 선호할 것 같습니다. 이전 사례들에서는 데브넷 허브(devnet hub)가 있기 전에 거의 항상 스펙 릴리스(spec release)가 있었습니다. 그런데 지금 Potuz는 PR을 열어둔 채로 그냥 데브넷을 진행하고 싶다고 말하고 있습니다. 저는 그것을 어떻게 할 수 있을지 잘 모르겠습니다. 합의 스펙 메인 브랜치의 취지는 모든 CFI된 EIP가 거기에 있도록 하는 것이라고 생각합니다. 네."
+            },
+            {
+              "speaker": "Justin Traglia",
+              "text": "수정 PR을 이번 주에 머지할 수 있느냐는 질문에, 퀵 슬롯을 이끄는 원 PR 작성자가 리뷰하길 원한다고 답했다.",
+              "timestamp": "00:41:07",
+              "original": "Potentially. I would like for Jihoon to review it, though, since he'll be leading it.",
+              "translation": "아마도 그럴 것 같습니다. 다만 Jihoon이 이것을 이끌게 될 것이므로 그가 검토해 주었으면 합니다."
+            },
+            {
+              "speaker": "felipe",
+              "text": "EL이 쓸 블롭 파라미터가 정해지지 않은 상태라며 ethrex만 스펙 PR 3703에 맞춰 구현했으니 모두 같은 값으로 정렬하자고 요청했다. 아니면 테스트를 옮기고 새 릴리스를 내야 한다고 했다.",
+              "timestamp": "00:44:30",
+              "original": "Yeah, yeah, I put my comment in the… in the chat here. I don't really have, like, a strong opinion on this, but it seemed like it was a bit up in the air what blob params the EL side would use. Ethrex was the only client that had implemented this, and they aligned with the spec. I, I think, Barnabas, you had a question about… Changing the blob params and such, so, Yeah, I just wanted to align and make sure everybody's using the same values, otherwise we'll need to move the tests a little bit and cut a new release, so if anyone has any strong opinions otherwise, we could just keep the current. The current values. Just want to make sure we have alignment on it.",
+              "translation": "네, 제가 여기 채팅에 코멘트를 남겼습니다. 이것에 대해 강한 의견이 있는 것은 아니지만, EL 쪽에서 어떤 블롭 파라미터(blob param)를 사용할지가 다소 불확실한 상태인 것 같았습니다. ethrex가 이것을 구현한 유일한 클라이언트였고, 스펙과 일치시켰습니다. Barnabas, 블롭 파라미터 변경 등에 대해 질문이 있으셨던 것 같은데요. 네, 저는 그저 모두가 같은 값을 사용하도록 맞춰 두고 싶었습니다. 그렇지 않으면 테스트를 조금 옮기고 새 릴리스를 내야 하기 때문입니다. 혹시 다른 강한 의견이 있는 분이 없다면, 현재 값을 그대로 유지하면 될 것 같습니다. 그냥 이 부분에 대해 저희가 정렬되어 있는지 확인하고 싶었을 뿐입니다."
+            },
+            {
+              "speaker": "spencer",
+              "text": "뭄바이(Mumbai) 전에 hegota-devnet-0을 띄울 계획이 유지되는지 물었고 hegota-devnet-1의 EL 범위는 다음 월요일 콜에서 확정하자고 했다.",
+              "timestamp": "00:55:27",
+              "original": "Hey, you know, this is… sounds like a bad time to… I guess talk about this, but yeah, I guess first question, Is that… is it still the plan to launch a hegota-devnet-0 before Mumbai? The assumption on my side is that we merge bogota-devnet-1 and heze to devnet 2. So, potentially, on the assumption of scoping heze-devnet-2. And then, I guess on the hegota-devnet-1 side, it's mostly an EL scope. Question, so, maybe we can defer that to the EL breakout.",
+              "translation": "저, 이 이야기를 꺼내기에 좋지 않은 타이밍인 것 같긴 한데, 첫 번째 질문은, Mumbai 이전에 hegota-devnet-0을 출시한다는 계획이 여전히 유효한지입니다. 제 쪽에서의 가정은 bogota-devnet-1과 heze를 devnet 2로 머지한다는 것입니다. 그러니 아마도 heze-devnet-2의 범위를 정한다는 가정하에서요. 그리고 hegota-devnet-1 쪽은 대부분 EL 범위의 질문인 것 같으니, 이는 EL 브레이크아웃(breakout) 세션으로 넘겨도 될 것 같습니다."
+            }
+          ],
+          "quote": {
+            "text": "지난주에 짧은 슬롯을 구현한 클라이언트가 3개가 되면 다음 데브넷에서 슬롯 시간을 줄이기로 했고, 3개에 도달한 것으로 보이니 devnet 2는 10초 슬롯을 제안한다.",
+            "original": "We said last week that if we have 3 clients that have implemented shorter slots, then we would just shorten the slot time in the following devnet, and we have seemed to reach 3 clients, so I would actually propose for the next devnet 2 to 10 seconds slot time.",
+            "speaker": "Barnabas",
+            "timestamp": "00:45:59"
+          }
+        }
+      ],
+      "speakers": [
+        {
+          "label": "danceratopz",
+          "name": "danceratopz",
+          "org": "EF",
+          "role": "테스팅",
+          "handle": "danceratopz",
+          "avatar": "https://pbs.twimg.com/profile_images/1478357444132839427/sxWspbwH_400x400.jpg",
+          "share": 0.437
+        },
+        {
+          "label": "Barnabas",
+          "name": "Barnabas Busa",
+          "org": "EF DevOps",
+          "handle": "BarnabasBusa",
+          "avatar": "https://pbs.twimg.com/profile_images/534855342300352514/m-C5ReWq_400x400.jpeg",
+          "share": 0.107
+        },
+        {
+          "label": "Potuz",
+          "name": "Potuz",
+          "org": "Offchain Labs",
+          "role": "Prysm",
+          "handle": "potuz_eth",
+          "avatar": "https://pbs.twimg.com/profile_images/1494001194427158539/bfrZyMsG_400x400.jpg",
+          "share": 0.095
+        },
+        {
+          "label": "Justin Traglia",
+          "name": "Justin Traglia",
+          "org": "EF",
+          "role": "보안",
+          "handle": "JustinTraglia",
+          "avatar": "https://pbs.twimg.com/profile_images/1648459994256543744/fn_SnKW5_400x400.jpg",
+          "share": 0.067
+        },
+        {
+          "label": "Toni Wahrstätter",
+          "name": "Toni Wahrstätter",
+          "org": "EF",
+          "role": "리서처",
+          "handle": "nero_eth",
+          "avatar": "https://pbs.twimg.com/profile_images/1858347774129094657/xUc7IS2K_400x400.jpg",
+          "share": 0.055
+        },
+        {
+          "label": "Matthew Keil",
+          "name": "Matthew Keil",
+          "org": "ChainSafe",
+          "role": "Lodestar",
+          "handle": "matthewkeil",
+          "avatar": "https://pbs.twimg.com/profile_images/1455695649899438083/nWUpW5EK_400x400.jpg",
+          "share": 0.042
+        },
+        {
+          "label": "lightclient",
+          "name": "lightclient (Matt Garnett)",
+          "org": "EF",
+          "role": "geth",
+          "handle": "lightclients",
+          "avatar": "https://pbs.twimg.com/profile_images/1554130973935030274/wHWuxuTT_400x400.jpg",
+          "share": 0.031
+        },
+        {
+          "label": "Dima Gusakov | Lido",
+          "name": "Dima Gusakov",
+          "org": "Lido",
+          "share": 0.027
+        },
+        {
+          "label": "Csaba",
+          "name": "Csaba",
+          "share": 0.027
+        },
+        {
+          "label": "spencer",
+          "name": "Spencer Taylor-Brown",
+          "org": "EF",
+          "role": "테스팅",
+          "share": 0.022
+        },
+        {
+          "label": "felipe",
+          "name": "felipe",
+          "share": 0.015
+        },
+        {
+          "label": "Dustin",
+          "name": "Dustin Brody",
+          "org": "Nimbus",
+          "share": 0.013
+        },
+        {
+          "label": "nixo",
+          "name": "Nixo",
+          "org": "EF Protocol Support",
+          "role": "ACDE 진행",
+          "handle": "nixorokish",
+          "avatar": "https://pbs.twimg.com/profile_images/2086847437277478912/F-w_Sq0y_400x400.jpg",
+          "share": 0.011
+        },
+        {
+          "label": "Nico Flaig",
+          "name": "Nico Flaig",
+          "org": "ChainSafe",
+          "role": "Lodestar",
+          "handle": "nicoflaig",
+          "avatar": "https://pbs.twimg.com/profile_images/1618325595397447689/9kzomyhR_400x400.jpg",
+          "share": 0.011
+        },
+        {
+          "label": "Maria Silva",
+          "name": "Maria Silva",
+          "role": "EIP-8037 제1저자",
+          "handle": "misilva73",
+          "avatar": "https://pbs.twimg.com/profile_images/1551690804594458624/elGlKFpy_400x400.jpg",
+          "share": 0.011
+        },
+        {
+          "label": "Iván | ethrex",
+          "name": "Iván Litteri",
+          "org": "LambdaClass",
+          "role": "ethrex 테크 리드",
+          "handle": "ivanlitteri",
+          "avatar": "https://pbs.twimg.com/profile_images/1801577809728462848/UPASaIEt_400x400.jpg",
+          "share": 0.007
+        },
+        {
+          "label": "Łukasz Rozmej",
+          "name": "Łukasz Rozmej",
+          "org": "Nethermind",
+          "role": "EIP-8037 공동 저자",
+          "share": 0.007
+        },
+        {
+          "label": "Ahmad Wilson",
+          "name": "Ahmad Wilson",
+          "share": 0.005
+        },
+        {
+          "label": "Eitan Seri-Levi",
+          "name": "Eitan Seri-Levi",
+          "org": "Sigma Prime",
+          "role": "Lighthouse",
+          "share": 0
+        }
+      ],
+      "chat": [
+        {
+          "speaker": "Justin Traglia",
+          "text": "후디 일정을 취소하는 일은 절대, 100% 없어야 한다. 이 요청은 그럴 가치가 없다.",
+          "timestamp": "00:21:54"
+        },
+        {
+          "speaker": "Potuz",
+          "text": "완전히 맞는 말은 아니다. 빌더가 밸리데이터였을 때는 문제가 아니었고, 나쁜 밸리데이터를 알려줄 오라클이 비컨 상태에 없는 지금에야 문제가 된 것이다.",
+          "timestamp": "00:26:39"
+        },
+        {
+          "speaker": "Justin Traglia",
+          "text": "니코 말이 맞다. 이건 8282 이전에도 여전히 문제였을 것이다.",
+          "timestamp": "00:31:00"
+        }
+      ],
+      "glossary": [
+        {
+          "term": "SFI",
+          "def": "Scheduled for Inclusion, 포크 포함이 확정된 단계"
+        },
+        {
+          "term": "CFI",
+          "def": "Considered for Inclusion, 포크 포함을 검토 중인 단계"
+        },
+        {
+          "term": "PFI",
+          "def": "Proposed for Inclusion, 포크 포함이 제안된 단계"
+        },
+        {
+          "term": "DFI",
+          "def": "Declined for Inclusion, 포함 후보에서 제외된 상태"
+        },
+        {
+          "term": "BAL",
+          "def": "블록 접근 목록(Block Access List), 블록이 건드린 상태 데이터의 목록으로 클라이언트가 일정 기간 보관한다"
+        },
+        {
+          "term": "블라인딩",
+          "def": "blinding, 데이터 본문을 떼어내고 참조만 남겨 저장 공간을 줄이는 것"
+        },
+        {
+          "term": "BPO",
+          "def": "Blob Parameter Only 포크, 블롭 용량 파라미터만 바꾸는 소규모 포크"
+        },
+        {
+          "term": "퀵 슬롯",
+          "def": "quick slots, 블록 생성 주기인 슬롯 시간을 12초보다 짧게 줄이는 제안"
+        }
+      ],
+      "eips": [
+        8252
+      ],
+      "relatedDebates": []
+    },
     {
       "id": "acdc-189",
       "series": "acdc",
@@ -16940,13 +17438,13 @@
     "currentFork": {
       "name": "글램스테르담",
       "stage": "테스트넷 단계",
-      "line": "세폴리아 10월 6일 포크 · 후디 10월 26일 17:42 UTC 확정"
+      "line": "세폴리아 10월 6일 완료 · 후디 10월 26일 17:42 UTC 확정"
     },
     "nextFork": {
       "name": "헤고타",
       "stage": "범위 정하는 중",
-      "line": "CFI 10건 · 헤제·보고타 데브넷 가동 · 다음 콜 스코핑 세션 시작"
+      "line": "CFI 10건 · PFI 1건 · 데브넷1 EL 범위 다음 콜 확정 제안"
     },
-    "basis": "acdc-189"
+    "basis": "acdt-101"
   }
 }
