@@ -24,6 +24,7 @@ import {
 // 노출 판정은 사이트와 같은 함수를 써야 SEO와 화면이 어긋나지 않는다
 import { isPublishable, participantCount } from '../src/utils/debates';
 import type { Debate } from '../src/data/ethDebatesData';
+import { watchUrl, type VideoItem } from '../src/data/videoData';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -74,6 +75,7 @@ const newsFeed = readJson<{ items: Array<Record<string, string>> }>(join(DATA, '
 const ethNews = readJson<{ fetchedAt: string; items: Array<{ title: string; url: string; summary?: string }> }>(
     join(DATA, 'eth-news-inbox.json'),
 );
+const videos = readJson<VideoItem[]>(join(DATA, 'videos.json'));
 const ethDigests = readJson<{
     digests: Array<{
         date: string;
@@ -415,7 +417,9 @@ const staticPages: StaticPage[] = [
         bodyHtml:
             `<h1>Contents</h1>` +
             `<p>이더리움 리서치, 단신, 주간 리포트, 뉴스 등 총 ${contents.length}건의 콘텐츠를 제공합니다.</p>` +
-            `<h2>최근 콘텐츠</h2>${recentLinks}`,
+            `<h2>최근 콘텐츠</h2>${recentLinks}` +
+            `<h2>영상: Ethereum Korea One Genesis 세션</h2>` +
+            `<ul>${videos.map((v) => `<li><a href="${watchUrl(v.id)}">Day ${v.day} · ${esc(v.title)}</a></li>`).join('')}</ul>`,
         jsonLd: [
             collectionPageLd({
                 name: 'Contents',

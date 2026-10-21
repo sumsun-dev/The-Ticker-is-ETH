@@ -1,0 +1,258 @@
+[
+  {
+    "id": "i6jbGYiQVEo",
+    "title": "개회사",
+    "event": "ek1-genesis",
+    "day": 1,
+    "date": "2026-09-28",
+    "duration": "7:00"
+  },
+  {
+    "id": "H6BVBXwCFsM",
+    "title": "타이틀 스폰서 오프닝 키노트",
+    "event": "ek1-genesis",
+    "day": 1,
+    "date": "2026-09-28",
+    "duration": "7:30"
+  },
+  {
+    "id": "YpTjndgcq7E",
+    "title": "자산 배분으로서의 이더리움: 확신, AI, 그리고 시장 구조",
+    "event": "ek1-genesis",
+    "day": 1,
+    "date": "2026-09-28",
+    "duration": "20:45"
+  },
+  {
+    "id": "GGH1vpkw7h4",
+    "title": "이더리움과 기관의 미래: 비전, 트레이드오프, 그리고 실행",
+    "event": "ek1-genesis",
+    "day": 1,
+    "date": "2026-09-28",
+    "duration": "15:58"
+  },
+  {
+    "id": "gcG2WpVktZY",
+    "title": "왜 모든 것은 이더리움에서 정산되는가",
+    "event": "ek1-genesis",
+    "day": 1,
+    "date": "2026-09-28",
+    "duration": "11:23"
+  },
+  {
+    "id": "A-S5zGctwDM",
+    "title": "리얼타임 이더리움",
+    "event": "ek1-genesis",
+    "day": 1,
+    "date": "2026-09-28",
+    "duration": "9:28"
+  },
+  {
+    "id": "YIqEi0dudSY",
+    "title": "개별 구축인가, 통합 설계인가",
+    "event": "ek1-genesis",
+    "day": 1,
+    "date": "2026-09-28",
+    "duration": "12:21"
+  },
+  {
+    "id": "hOtqvR5XO1Y",
+    "title": "이더리움 확장 1부, Optimism: 레이어2가 기관에 여는 가능성",
+    "event": "ek1-genesis",
+    "day": 1,
+    "date": "2026-09-28",
+    "duration": "12:39"
+  },
+  {
+    "id": "J8lYAW9kggA",
+    "title": "이더리움 확장 2부, Arbitrum: 레이어2가 기관에 여는 가능성",
+    "event": "ek1-genesis",
+    "day": 1,
+    "date": "2026-09-28",
+    "duration": "12:32"
+  },
+  {
+    "id": "e8svQjdq1vU",
+    "title": "스테이킹 인프라: ETH의 수탁, 수익, 컴플라이언스",
+    "event": "ek1-genesis",
+    "day": 1,
+    "date": "2026-09-28",
+    "duration": "18:56"
+  },
+  {
+    "id": "bO_o85kpPbk",
+    "title": "RWA 인프라: 이더리움 위의 발행, 유통, 데이터",
+    "event": "ek1-genesis",
+    "day": 1,
+    "date": "2026-09-28",
+    "duration": "17:33"
+  },
+  {
+    "id": "qxY2HE9XVAU",
+    "title": "글로벌 기관 온체인: 세계 최대 자산운용사들은 이더리움을 어떻게 쓰는가",
+    "event": "ek1-genesis",
+    "day": 1,
+    "date": "2026-09-28",
+    "duration": "17:34"
+  },
+  {
+    "id": "985-EuhrXK4",
+    "title": "한국 기관 온체인, 스테이블코인: 현황과 다음 단계",
+    "event": "ek1-genesis",
+    "day": 1,
+    "date": "2026-09-28",
+    "duration": "20:01"
+  },
+  {
+    "id": "5cAUvfrww2g",
+    "title": "한국 기관 온체인, RWA: 현황과 다음 단계",
+    "event": "ek1-genesis",
+    "day": 1,
+    "date": "2026-09-28",
+    "duration": "19:49"
+  },
+  {
+    "id": "uvZoHPAjCH0",
+    "title": "DB증권 오프닝",
+    "event": "ek1-genesis",
+    "day": 2,
+    "date": "2026-09-29",
+    "duration": "9:31",
+    "sessionId": "2f-01"
+  },
+  {
+    "id": "EDymIdYhRYc",
+    "title": "이더리움 코리아 원 소개",
+    "event": "ek1-genesis",
+    "day": 2,
+    "date": "2026-09-29",
+    "duration": "14:01",
+    "sessionId": "2f-02"
+  },
+  {
+    "id": "wr6JU4-7M7A",
+    "title": "글램스터담 업그레이드에 담긴 것",
+    "event": "ek1-genesis",
+    "day": 2,
+    "date": "2026-09-29",
+    "duration": "28:14",
+    "sessionId": "2f-03"
+  },
+  {
+    "id": "Gi17_ibDTyo",
+    "title": "이더리움의 북극성: 로드맵과 CROPS",
+    "event": "ek1-genesis",
+    "day": 2,
+    "date": "2026-09-29",
+    "duration": "55:39",
+    "sessionId": "2f-04"
+  },
+  {
+    "id": "x6rsjy5uImU",
+    "title": "실행 레이어의 포스트 양자 이더리움",
+    "event": "ek1-genesis",
+    "day": 2,
+    "date": "2026-09-29",
+    "duration": "31:55",
+    "sessionId": "2f-05"
+  },
+  {
+    "id": "XWtt0h8uy9A",
+    "title": "밸리데이터의 다음 시대",
+    "event": "ek1-genesis",
+    "day": 2,
+    "date": "2026-09-29",
+    "duration": "43:04",
+    "sessionId": "2f-06"
+  },
+  {
+    "id": "ziGnWZ7d3OM",
+    "title": "이더리움 위의 프라이버시",
+    "event": "ek1-genesis",
+    "day": 2,
+    "date": "2026-09-29",
+    "duration": "31:58",
+    "sessionId": "2f-07"
+  },
+  {
+    "id": "zE9Sr21vc4c",
+    "title": "다음 ZK 혁신은 어디서 오는가",
+    "event": "ek1-genesis",
+    "day": 2,
+    "date": "2026-09-29",
+    "duration": "1:03:03",
+    "sessionId": "2f-08"
+  },
+  {
+    "id": "1SdjzEzkgX4",
+    "title": "지속 가능한 DeFi를 만드는 법",
+    "event": "ek1-genesis",
+    "day": 2,
+    "date": "2026-09-29",
+    "duration": "29:20",
+    "sessionId": "3f-02"
+  },
+  {
+    "id": "QSRqL91R5iA",
+    "title": "이더리움 클라이언트: 다음은 무엇인가?",
+    "event": "ek1-genesis",
+    "day": 2,
+    "date": "2026-09-29",
+    "duration": "32:44",
+    "sessionId": "3f-03"
+  },
+  {
+    "id": "SZ9zaB6NfoQ",
+    "title": "플래시 보이스인가, 슈퍼 예측가인가? 예측 시장 사용자층 들여다보기",
+    "event": "ek1-genesis",
+    "day": 2,
+    "date": "2026-09-29",
+    "duration": "24:38",
+    "sessionId": "3f-04"
+  },
+  {
+    "id": "JE_iIxvNrG4",
+    "title": "재단 너머의 이더리움",
+    "event": "ek1-genesis",
+    "day": 2,
+    "date": "2026-09-29",
+    "duration": "35:37",
+    "sessionId": "3f-05"
+  },
+  {
+    "id": "4ERZ3v1e22U",
+    "title": "이더리움 발행량 전쟁",
+    "event": "ek1-genesis",
+    "day": 2,
+    "date": "2026-09-29",
+    "duration": "36:21",
+    "sessionId": "3f-06"
+  },
+  {
+    "id": "GIMJwVErQU8",
+    "title": "계정 추상화의 미래",
+    "event": "ek1-genesis",
+    "day": 2,
+    "date": "2026-09-29",
+    "duration": "30:09",
+    "sessionId": "3f-07"
+  },
+  {
+    "id": "tSZxP59ZffU",
+    "title": "L2는 여전히 이더리움을 확장하고 있는가?",
+    "event": "ek1-genesis",
+    "day": 2,
+    "date": "2026-09-29",
+    "duration": "38:27",
+    "sessionId": "3f-08"
+  },
+  {
+    "id": "mCZnsrNJ1RU",
+    "title": "온체인 에이전트: 자율 AI를 위한 경제 만들기",
+    "event": "ek1-genesis",
+    "day": 2,
+    "date": "2026-09-29",
+    "duration": "41:39",
+    "sessionId": "3f-09"
+  }
+]

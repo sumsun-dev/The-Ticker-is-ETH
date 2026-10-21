@@ -8,7 +8,17 @@
     "Short": "Short",
     "Forwarded": "Forwarded",
     "Research": "Research",
-    "Weekly Report": "Weekly Report"
+    "Weekly Report": "Weekly Report",
+    "Video": "Video"
+  },
+  "video": {
+    "day1": "Day 1 · Institutional Day",
+    "day1Meta": "EK1 Genesis · 2026.09.28 Conrad Seoul · {{count}} videos",
+    "day2": "Day 2 · Builder Day",
+    "day2Meta": "EK1 Genesis · 2026.09.29 Seongsu Seoul Forest · {{count}} videos",
+    "watchOnYoutube": "Watch on YouTube",
+    "close": "Close",
+    "channel": "Ethereum Korea YouTube channel"
   },
   "forwardedFromUnknown": "Undisclosed",
   "authorFilter": "Author",

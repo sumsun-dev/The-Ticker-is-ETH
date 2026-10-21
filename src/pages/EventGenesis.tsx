@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, ExternalLink } from 'lucide-react';
+import { ArrowLeft, ExternalLink, PlayCircle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import usePageMeta from '../hooks/usePageMeta';
 import SessionPhotos from '../components/events/SessionPhotos';
@@ -159,6 +159,12 @@ const EventGenesis: React.FC = () => {
                     >
                         <ExternalLink size={14} /> {t('genesis.officialSite')}
                     </a>
+                    <Link
+                        to="/contents?category=Video"
+                        className="inline-flex items-center gap-1.5 rounded-full border border-theme-border px-5 py-2.5 text-sm font-semibold text-theme-text hover:bg-white/5"
+                    >
+                        <PlayCircle size={14} /> {t('genesis.watchVideos')}
+                    </Link>
                     <Link to="/events" className="inline-flex items-center rounded-full border border-theme-border px-5 py-2.5 text-sm font-semibold text-theme-text hover:bg-white/5">
                         {t('genesis.otherEvents')}
                     </Link>
