@@ -8,7 +8,17 @@
     "Short": "단문",
     "Forwarded": "포워딩",
     "Research": "리서치",
-    "Weekly Report": "주간 리포트"
+    "Weekly Report": "주간 리포트",
+    "Video": "영상"
+  },
+  "video": {
+    "day1": "Day 1 · 기관 초청 행사",
+    "day1Meta": "EK1 Genesis · 2026.09.28 콘래드 서울 · 영상 {{count}}개",
+    "day2": "Day 2 · 빌더 데이",
+    "day2Meta": "EK1 Genesis · 2026.09.29 성수 서울숲 · 영상 {{count}}개",
+    "watchOnYoutube": "YouTube에서 보기",
+    "close": "닫기",
+    "channel": "Ethereum Korea YouTube 채널"
   },
   "forwardedFromUnknown": "미공개",
   "authorFilter": "저자",

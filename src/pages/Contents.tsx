@@ -1,15 +1,19 @@
 import React, { useState, useMemo, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, BookOpen, Clock, ArrowRight, PenSquare, ChevronDown } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { loadContentsIndex, type ResearchIndexItem } from '../data/researchData';
 import { getAvatarFallbackUrl } from '../utils/members';
 import EthThumbnail from '../components/shared/EthThumbnail';
+import VideoSection from '../components/contents/VideoSection';
+import { VIDEOS, filterVideos } from '../data/videoData';
 import usePageMeta from '../hooks/usePageMeta';
 
 const PAGE_SIZE = 12;
 const DEBOUNCE_MS = 300;
+const CATEGORIES = ['all', 'Short', 'Forwarded', 'Research', 'Weekly Report', 'Video'];
+const VIDEO_CATEGORY = 'Video';
 
 function getSessionList<T>(key: string): T[] {
     try {
@@ -23,7 +27,10 @@ function getSessionList<T>(key: string): T[] {
 const Contents: React.FC = () => {
     const [searchInput, setSearchInput] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
-    const [activeCategory, setActiveCategory] = useState<string>('all');
+    const [searchParams, setSearchParams] = useSearchParams();
+    const categoryParam = searchParams.get('category') ?? '';
+    const activeCategory = CATEGORIES.includes(categoryParam) ? categoryParam : 'all';
+    const isVideoTab = activeCategory === VIDEO_CATEGORY;
     const [activeAuthor, setActiveAuthor] = useState<string>('all');
     const [isAdmin] = useState(() => localStorage.getItem('isAdmin') === 'true');
     const [contentsItems, setContentsItems] = useState<ResearchIndexItem[]>([]);
@@ -53,7 +60,17 @@ const Contents: React.FC = () => {
         });
     }, []);
 
-    const categories = ['all', 'Short', 'Forwarded', 'Research', 'Weekly Report'];
+    const handleCategory = useCallback((cat: string) => {
+        setSearchParams((prev) => {
+            const next = new URLSearchParams(prev);
+            if (cat === 'all') next.delete('category');
+            else next.set('category', cat);
+            return next;
+        }, { replace: true });
+        setVisibleCount(PAGE_SIZE);
+    }, [setSearchParams]);
+
+    const filteredVideos = useMemo(() => filterVideos(VIDEOS, searchQuery), [searchQuery]);
 
     const authors = useMemo(() => {
         const authorSet = new Set(contentsItems.map(item => item.author));
@@ -128,10 +145,12 @@ const Contents: React.FC = () => {
             <div className="space-y-8 mb-16">
                 {/* Category Filter */}
                 <div className="flex flex-wrap gap-3">
-                    {categories.map((cat) => (
+                    {CATEGORIES.map((cat) => (
                         <button
                             key={cat}
-                            onClick={() => { setActiveCategory(cat); setVisibleCount(PAGE_SIZE); }}
+                            type="button"
+                            aria-pressed={activeCategory === cat}
+                            onClick={() => handleCategory(cat)}
                             className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${activeCategory === cat
                                 ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/25'
                                 : 'bg-theme-surface text-theme-text-muted hover:text-theme-text hover:bg-theme-surface-hover'
@@ -143,7 +162,7 @@ const Contents: React.FC = () => {
                 </div>
 
                 {/* Author Filter */}
-                {authors.length > 1 && (
+                {!isVideoTab && authors.length > 1 && (
                     <div className="flex flex-wrap gap-2 items-center">
                         <span className="text-sm text-theme-text-muted mr-1">{t('authorFilter')}:</span>
                         <button
@@ -186,10 +205,12 @@ const Contents: React.FC = () => {
             </div>
 
             <div aria-live="polite" className="sr-only">
-                {!isLoading && `${filteredContents.length} results`}
+                {!isLoading && `${isVideoTab ? filteredVideos.length : filteredContents.length} results`}
             </div>
 
-            {isLoading ? (
+            {isVideoTab ? (
+                <VideoSection videos={filteredVideos} />
+            ) : isLoading ? (
                 <div className="flex justify-center py-32">
                     <div className="w-8 h-8 border-2 border-brand-primary border-t-transparent rounded-full animate-spin" />
                 </div>
@@ -276,7 +297,7 @@ const Contents: React.FC = () => {
             </div>
             )}
 
-            {!isLoading && hasMore && (
+            {!isVideoTab && !isLoading && hasMore && (
                 <div className="flex justify-center mt-12">
                     <button
                         onClick={handleLoadMore}
@@ -288,7 +309,7 @@ const Contents: React.FC = () => {
                 </div>
             )}
 
-            {!isLoading && filteredContents.length === 0 && (
+            {(isVideoTab ? filteredVideos.length === 0 : !isLoading && filteredContents.length === 0) && (
                 <div className="text-center py-32 rounded-[3rem] bg-theme-surface/50 border border-dashed border-theme-border">
                     <BookOpen className="mx-auto text-gray-700 mb-6" size={64} />
                     <p className="text-theme-text-muted text-xl font-light italic">
