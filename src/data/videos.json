@@ -1,240 +1,416 @@
 [
   {
     "id": "i6jbGYiQVEo",
-    "title": "개회사",
     "event": "ek1-genesis",
     "day": 1,
     "date": "2026-09-28",
     "duration": "7:00",
     "uploadDate": "2026-10-16T00:54:35-07:00",
     "seconds": 420,
-    "summary": "An opening conversation that kicks off Ethereum Korea One: Genesis. Youbin Kang of Nonce Classic and Adrian Li, founder of Arcas Bridge, look at how blockchain discussions among Korean institutions have changed over the past year.",
-    "speakers": [
-      "Adrian Li, Ethereum Foundation Alumni & Founder of Arcas Bridge",
-      "Youbin Kang, CEO, Nonce Classic"
-    ],
-    "lang": "en"
+    "spokenLang": "en",
+    "text": {
+      "ko": {
+        "title": "개회사",
+        "summary": "Ethereum Korea One: Genesis의 문을 여는 오프닝 대담입니다. 논스클래식 강유빈 대표와 Arcas Bridge 창업자 Adrian Li가 지난 1년간 한국 기관의 블록체인 논의가 어떻게 달라졌는지 짚습니다.",
+        "speakers": [
+          "Adrian Li, Ethereum Foundation Alumni & Founder of Arcas Bridge",
+          "Youbin Kang, CEO, Nonce Classic"
+        ]
+      },
+      "en": {
+        "title": "Opening Remarks",
+        "summary": "An opening conversation that kicks off Ethereum Korea One: Genesis. Youbin Kang of Nonce Classic and Adrian Li, founder of Arcas Bridge, look at how blockchain discussions among Korean institutions have changed over the past year.",
+        "speakers": [
+          "Adrian Li, Ethereum Foundation Alumni & Founder of Arcas Bridge",
+          "Youbin Kang, CEO, Nonce Classic"
+        ]
+      }
+    }
   },
   {
     "id": "H6BVBXwCFsM",
-    "title": "타이틀 스폰서 오프닝 키노트",
     "event": "ek1-genesis",
     "day": 1,
     "date": "2026-09-28",
     "duration": "7:30",
     "uploadDate": "2026-10-16T08:41:35-07:00",
     "seconds": 449,
-    "summary": "Ethereum Korea One: Genesis 타이틀 스폰서 DB증권 곽봉석 대표의 오프닝 키노트입니다. 전통금융과 이더리움 생태계를 잇기 위한 DB증권의 실행 계획을 소개합니다.",
-    "speakers": [
-      "Bongseok Kwak, CEO, DB Securities"
-    ],
-    "lang": "ko"
+    "spokenLang": "ko",
+    "text": {
+      "ko": {
+        "title": "타이틀 스폰서 오프닝 키노트",
+        "summary": "Ethereum Korea One: Genesis 타이틀 스폰서 DB증권 곽봉석 대표의 오프닝 키노트입니다. 전통금융과 이더리움 생태계를 잇기 위한 DB증권의 실행 계획을 소개합니다.",
+        "speakers": [
+          "Bongseok Kwak, CEO, DB Securities"
+        ]
+      },
+      "en": {
+        "title": "Title Sponsor Opening Keynote",
+        "summary": "The opening keynote from Bongseok Kwak, CEO of DB Securities, title sponsor of Ethereum Korea One: Genesis. Kwak presents DB Securities' execution plan for connecting traditional finance with the Ethereum ecosystem.",
+        "speakers": [
+          "Bongseok Kwak, CEO, DB Securities"
+        ]
+      }
+    }
   },
   {
     "id": "YpTjndgcq7E",
-    "title": "자산 배분으로서의 이더리움: 확신, AI, 그리고 시장 구조",
     "event": "ek1-genesis",
     "day": 1,
     "date": "2026-09-28",
     "duration": "20:45",
     "uploadDate": "2026-10-16T08:46:53-07:00",
     "seconds": 1244,
-    "summary": "In a fireside chat at Ethereum Korea One: Genesis, BitMine Chairman Tom Lee explains the case for betting on Ethereum, and what tokenization and AI agents mean for it.",
-    "speakers": [
-      "Tom Lee, Chairman, BitMine",
-      "Moderator: Youbin Kang, CEO, Nonce Classic"
-    ],
-    "lang": "en"
+    "spokenLang": "en",
+    "text": {
+      "ko": {
+        "title": "자산 배분으로서의 이더리움: 확신, AI, 그리고 시장 구조",
+        "summary": "Ethereum Korea One: Genesis 파이어사이드 챗에서 BitMine 의장 Tom Lee가 왜 이더리움에 베팅하는지, 토큰화와 AI 에이전트가 이더리움에 어떤 의미인지 이야기합니다.",
+        "speakers": [
+          "Tom Lee, Chairman, BitMine",
+          "모더레이터: Youbin Kang, CEO, Nonce Classic"
+        ]
+      },
+      "en": {
+        "title": "Ethereum as an Allocation: Conviction, AI, and Market Structure",
+        "summary": "In a fireside chat at Ethereum Korea One: Genesis, BitMine Chairman Tom Lee explains the case for betting on Ethereum, and what tokenization and AI agents mean for it.",
+        "speakers": [
+          "Tom Lee, Chairman, BitMine",
+          "Moderator: Youbin Kang, CEO, Nonce Classic"
+        ]
+      }
+    }
   },
   {
     "id": "GGH1vpkw7h4",
-    "title": "이더리움과 기관의 미래: 비전, 트레이드오프, 그리고 실행",
     "event": "ek1-genesis",
     "day": 1,
     "date": "2026-09-28",
     "duration": "15:58",
     "uploadDate": "2026-10-16T08:55:25-07:00",
     "seconds": 957,
-    "summary": "In a fireside chat at Ethereum Korea One: Genesis, Ethereum co-founder and MetaMask Chairman and CEO Joe Lubin discusses the vision for Ethereum's institutional era and the work needed to get there.",
-    "speakers": [
-      "Joe Lubin, Chairman and CEO, MetaMask",
-      "Moderator: Youbin Kang, CEO, Nonce Classic"
-    ],
-    "lang": "en"
+    "spokenLang": "en",
+    "text": {
+      "ko": {
+        "title": "이더리움과 기관의 미래: 비전, 트레이드오프, 그리고 실행",
+        "summary": "Ethereum Korea One: Genesis 파이어사이드 챗에서 이더리움 공동 창업자이자 MetaMask 의장 겸 CEO인 Joe Lubin이 이더리움의 기관 시대를 위한 비전과 실행 과제를 이야기합니다.",
+        "speakers": [
+          "Joe Lubin, Chairman and CEO, MetaMask",
+          "모더레이터: Youbin Kang, CEO, Nonce Classic"
+        ]
+      },
+      "en": {
+        "title": "Ethereum's Institutional Future: Vision, Trade-offs, and Execution",
+        "summary": "In a fireside chat at Ethereum Korea One: Genesis, Ethereum co-founder and MetaMask Chairman and CEO Joe Lubin discusses the vision for Ethereum's institutional era and the work needed to get there.",
+        "speakers": [
+          "Joe Lubin, Chairman and CEO, MetaMask",
+          "Moderator: Youbin Kang, CEO, Nonce Classic"
+        ]
+      }
+    }
   },
   {
     "id": "gcG2WpVktZY",
-    "title": "왜 모든 것은 이더리움에서 정산되는가",
     "event": "ek1-genesis",
     "day": 1,
     "date": "2026-09-28",
     "duration": "11:23",
     "uploadDate": "2026-10-16T08:58:14-07:00",
     "seconds": 683,
-    "summary": "When AI agents send and receive money, who will own the settlement rails? At Ethereum Korea One: Genesis, SharpLink CEO Joseph Chalom discusses the agentic economy and Ethereum's role in it.",
-    "speakers": [
-      "Joseph Chalom, CEO, SharpLink"
-    ],
-    "lang": "en"
+    "spokenLang": "en",
+    "text": {
+      "ko": {
+        "title": "왜 모든 것은 이더리움에서 정산되는가",
+        "summary": "AI 에이전트가 돈을 주고받는 시대, 그 결제 레일은 누가 차지하게 될까요? Ethereum Korea One: Genesis에서 SharpLink CEO Joseph Chalom이 에이전틱 경제와 이더리움의 역할을 이야기합니다.",
+        "speakers": [
+          "Joseph Chalom, CEO, SharpLink"
+        ]
+      },
+      "en": {
+        "title": "Why Everything Settles on Ethereum",
+        "summary": "When AI agents send and receive money, who will own the settlement rails? At Ethereum Korea One: Genesis, SharpLink CEO Joseph Chalom discusses the agentic economy and Ethereum's role in it.",
+        "speakers": [
+          "Joseph Chalom, CEO, SharpLink"
+        ]
+      }
+    }
   },
   {
     "id": "A-S5zGctwDM",
-    "title": "리얼타임 이더리움",
     "event": "ek1-genesis",
     "day": 1,
     "date": "2026-09-28",
     "duration": "9:28",
     "uploadDate": "2026-10-16T09:00:35-07:00",
     "seconds": 567,
-    "summary": "What changes if Ethereum's 12-second blocks become a real-time network measured in milliseconds? At Ethereum Korea One: Genesis, ETHGas CEO Kevin Lepsoe explains what real-time execution could bring to Ethereum.",
-    "speakers": [
-      "Kevin Lepsoe, CEO, ETHGas"
-    ],
-    "lang": "en"
+    "spokenLang": "en",
+    "text": {
+      "ko": {
+        "title": "리얼타임 이더리움",
+        "summary": "12초 블록의 이더리움이 밀리초 단위의 실시간 네트워크가 된다면 무엇이 달라질까요? Ethereum Korea One: Genesis에서 ETHGas CEO Kevin Lepsoe가 실시간 실행이 이더리움에 가져올 변화를 설명합니다.",
+        "speakers": [
+          "Kevin Lepsoe, CEO, ETHGas"
+        ]
+      },
+      "en": {
+        "title": "Realtime Ethereum",
+        "summary": "What changes if Ethereum's 12-second blocks become a real-time network measured in milliseconds? At Ethereum Korea One: Genesis, ETHGas CEO Kevin Lepsoe explains what real-time execution could bring to Ethereum.",
+        "speakers": [
+          "Kevin Lepsoe, CEO, ETHGas"
+        ]
+      }
+    }
   },
   {
     "id": "YIqEi0dudSY",
-    "title": "개별 구축인가, 통합 설계인가",
     "event": "ek1-genesis",
     "day": 1,
     "date": "2026-09-28",
     "duration": "12:21",
     "uploadDate": "2026-10-16T09:03:07-07:00",
     "seconds": 740,
-    "summary": "체인 하나, 유즈케이스 하나씩 시스템을 쌓아 가는 방식은 언제까지 유효할까요? Ethereum Korea One: Genesis에서 Altus CEO 이형연(Hyung Yeon Lee)이 금융기관 관점의 \"통합 설계\"를 제안합니다.",
-    "speakers": [
-      "Hyung Yeon Lee, CEO, Altus"
-    ],
-    "lang": "ko"
+    "spokenLang": "ko",
+    "text": {
+      "ko": {
+        "title": "개별 구축인가, 통합 설계인가",
+        "summary": "체인 하나, 유즈케이스 하나씩 시스템을 쌓아 가는 방식은 언제까지 유효할까요? Ethereum Korea One: Genesis에서 Altus CEO 이형연(Hyung Yeon Lee)이 금융기관 관점의 \"통합 설계\"를 제안합니다.",
+        "speakers": [
+          "Hyung Yeon Lee, CEO, Altus"
+        ]
+      },
+      "en": {
+        "title": "One Is a Build. Many Is an Architecture Problem.",
+        "summary": "How long can building systems one chain and one use case at a time keep working? At Ethereum Korea One: Genesis, Hyung Yeon Lee, CEO of Altus, proposes \"integrated design\" from a financial institution's perspective.",
+        "speakers": [
+          "Hyung Yeon Lee, CEO, Altus"
+        ]
+      }
+    }
   },
   {
     "id": "hOtqvR5XO1Y",
-    "title": "이더리움 확장 1부, Optimism: 레이어2가 기관에 여는 가능성",
     "event": "ek1-genesis",
     "day": 1,
     "date": "2026-09-28",
     "duration": "12:39",
     "uploadDate": "2026-10-16T09:05:13-07:00",
     "seconds": 759,
-    "summary": "What can Layer 2 unlock for institutional asset tokenization? At Ethereum Korea One: Genesis, Optimism, KB Securities, and Payward (Kraken) discuss the tokenization value chain, from issuance to distribution to onchain infrastructure.",
-    "speakers": [
-      "Kyle Jenke, COO, Optimism",
-      "Jaeman Park, Head of AI•Digital Center, KB Securities",
-      "Anthony Xie, Senior Director of Product II, Payward",
-      "Moderator: Kido Kim, Co-Founder, Nonce Classic"
-    ],
-    "lang": "en"
+    "spokenLang": "en",
+    "text": {
+      "ko": {
+        "title": "이더리움 확장 1부, Optimism: 레이어2가 기관에 여는 가능성",
+        "summary": "레이어2는 기관의 자산 토큰화에 무엇을 열어 줄까요? Ethereum Korea One: Genesis에서 Optimism, KB증권, Payward(Kraken)가 발행부터 유통, 온체인 인프라까지 토큰화 밸류체인을 함께 이야기합니다.",
+        "speakers": [
+          "Kyle Jenke, COO, Optimism",
+          "Jaeman Park, Head of AI•Digital Center, KB Securities",
+          "Anthony Xie, Senior Director of Product II, Payward",
+          "모더레이터: Kido Kim, Co-Founder, Nonce Classic"
+        ]
+      },
+      "en": {
+        "title": "Scaling Ethereum, Part 1: Optimism",
+        "summary": "What can Layer 2 unlock for institutional asset tokenization? At Ethereum Korea One: Genesis, Optimism, KB Securities, and Payward (Kraken) discuss the tokenization value chain, from issuance to distribution to onchain infrastructure.",
+        "speakers": [
+          "Kyle Jenke, COO, Optimism",
+          "Jaeman Park, Head of AI•Digital Center, KB Securities",
+          "Anthony Xie, Senior Director of Product II, Payward",
+          "Moderator: Kido Kim, Co-Founder, Nonce Classic"
+        ]
+      }
+    }
   },
   {
     "id": "J8lYAW9kggA",
-    "title": "이더리움 확장 2부, Arbitrum: 레이어2가 기관에 여는 가능성",
     "event": "ek1-genesis",
     "day": 1,
     "date": "2026-09-28",
     "duration": "12:32",
     "uploadDate": "2026-10-16T09:08:13-07:00",
     "seconds": 752,
-    "summary": "Why, and how, are large non-financial companies moving onchain? At Ethereum Korea One: Genesis, Ed Felten of Offchain Labs and Byungsun Park of LG Electronics discuss the collaboration between Arbitrum and LG Electronics.",
-    "speakers": [
-      "Ed Felten, Chief Scientist, Co-Founder, Offchain Labs",
-      "Byungsun Park, Blockchain Lead, LG Electronics",
-      "Moderator: Jay Jang, Head of Business, Sunnyside Labs"
-    ],
-    "lang": "en"
+    "spokenLang": "en",
+    "text": {
+      "ko": {
+        "title": "이더리움 확장 2부, Arbitrum: 레이어2가 기관에 여는 가능성",
+        "summary": "비금융 대기업은 왜, 그리고 어떻게 온체인으로 들어오고 있을까요? Ethereum Korea One: Genesis에서 Offchain Labs의 Ed Felten과 LG전자 박병선 실장이 Arbitrum과 LG전자의 협업 사례를 이야기합니다.",
+        "speakers": [
+          "Ed Felten, Chief Scientist, Co-Founder, Offchain Labs",
+          "Byungsun Park, Blockchain Lead, LG Electronics",
+          "모더레이터: Jay Jang, Head of Business, Sunnyside Labs"
+        ]
+      },
+      "en": {
+        "title": "Scaling Ethereum, Part 2: Arbitrum",
+        "summary": "Why, and how, are large non-financial companies moving onchain? At Ethereum Korea One: Genesis, Ed Felten of Offchain Labs and Byungsun Park of LG Electronics discuss the collaboration between Arbitrum and LG Electronics.",
+        "speakers": [
+          "Ed Felten, Chief Scientist, Co-Founder, Offchain Labs",
+          "Byungsun Park, Blockchain Lead, LG Electronics",
+          "Moderator: Jay Jang, Head of Business, Sunnyside Labs"
+        ]
+      }
+    }
   },
   {
     "id": "e8svQjdq1vU",
-    "title": "스테이킹 인프라: ETH의 수탁, 수익, 컴플라이언스",
     "event": "ek1-genesis",
     "day": 1,
     "date": "2026-09-28",
     "duration": "18:56",
     "uploadDate": "2026-10-16T09:10:44-07:00",
     "seconds": 1136,
-    "summary": "What needs to be in place for institutions to stake ETH? In the staking infrastructure panel at Ethereum Korea One: Genesis, DSRV, Optimum, and Lido examine Ethereum staking through custody, compliance, yield, and the Korean market.",
-    "speakers": [
-      "Byeongyun Seo, Co-CEO, DSRV",
-      "Kent Lin, COO, Co-Founder, Optimum",
-      "Samuel Chong, Institutional Lead, APAC & MENA, Lido",
-      "Moderator: Youngseok Yang, CEO, Nodeinfra"
-    ],
-    "lang": "en"
+    "spokenLang": "en",
+    "text": {
+      "ko": {
+        "title": "스테이킹 인프라: ETH의 수탁, 수익, 컴플라이언스",
+        "summary": "기관이 ETH를 스테이킹하려면 무엇이 준비되어야 할까요? Ethereum Korea One: Genesis의 스테이킹 인프라 패널에서 DSRV, Optimum, Lido가 커스터디, 컴플라이언스, 수익, 그리고 한국 시장의 관점에서 이더리움 스테이킹을 짚었습니다.",
+        "speakers": [
+          "Byeongyun Seo, Co-CEO, DSRV",
+          "Kent Lin, COO, Co-Founder, Optimum",
+          "Samuel Chong, Institutional Lead, APAC & MENA, Lido",
+          "모더레이터: Youngseok Yang, CEO, Nodeinfra"
+        ]
+      },
+      "en": {
+        "title": "Staking Infrastructure: Custody, Yield, and Compliance for ETH",
+        "summary": "What needs to be in place for institutions to stake ETH? In the staking infrastructure panel at Ethereum Korea One: Genesis, DSRV, Optimum, and Lido examine Ethereum staking through custody, compliance, yield, and the Korean market.",
+        "speakers": [
+          "Byeongyun Seo, Co-CEO, DSRV",
+          "Kent Lin, COO, Co-Founder, Optimum",
+          "Samuel Chong, Institutional Lead, APAC & MENA, Lido",
+          "Moderator: Youngseok Yang, CEO, Nodeinfra"
+        ]
+      }
+    }
   },
   {
     "id": "bO_o85kpPbk",
-    "title": "RWA 인프라: 이더리움 위의 발행, 유통, 데이터",
     "event": "ek1-genesis",
     "day": 1,
     "date": "2026-09-28",
     "duration": "17:33",
     "uploadDate": "2026-10-16T09:12:41-07:00",
     "seconds": 1052,
-    "summary": "How are tokenized real-world assets (RWAs) issued, distributed, and priced? In the RWA infrastructure panel at Ethereum Korea One: Genesis, Securitize, Ondo Finance, and RedStone answer from hands-on operating experience.",
-    "speakers": [
-      "0xGabe, DeFi Growth Lead, Securitize",
-      "Armand Khatri, Head of Ecosystem, Ondo Finance",
-      "Marcin Kaźmierczak, BD Director, Co-Founder, RedStone",
-      "Moderator: Chloe Han, APAC BD, Flow Traders"
-    ],
-    "lang": "en"
+    "spokenLang": "en",
+    "text": {
+      "ko": {
+        "title": "RWA 인프라: 이더리움 위의 발행, 유통, 데이터",
+        "summary": "토큰화된 실물자산(RWA)은 어떻게 발행되고, 유통되고, 가격이 매겨질까요? Ethereum Korea One: Genesis의 RWA 인프라 패널에서 Securitize, Ondo Finance, RedStone이 실제 운영 경험을 바탕으로 답했습니다.",
+        "speakers": [
+          "0xGabe, DeFi Growth Lead, Securitize",
+          "Armand Khatri, Head of Ecosystem, Ondo Finance",
+          "Marcin Kaźmierczak, BD Director, Co-Founder, RedStone",
+          "모더레이터: Chloe Han, APAC BD, Flow Traders"
+        ]
+      },
+      "en": {
+        "title": "RWA Infrastructure: Issuance, Distribution, and Data on Ethereum",
+        "summary": "How are tokenized real-world assets (RWAs) issued, distributed, and priced? In the RWA infrastructure panel at Ethereum Korea One: Genesis, Securitize, Ondo Finance, and RedStone answer from hands-on operating experience.",
+        "speakers": [
+          "0xGabe, DeFi Growth Lead, Securitize",
+          "Armand Khatri, Head of Ecosystem, Ondo Finance",
+          "Marcin Kaźmierczak, BD Director, Co-Founder, RedStone",
+          "Moderator: Chloe Han, APAC BD, Flow Traders"
+        ]
+      }
+    }
   },
   {
     "id": "qxY2HE9XVAU",
-    "title": "글로벌 기관 온체인: 세계 최대 자산운용사들은 이더리움을 어떻게 쓰는가",
     "event": "ek1-genesis",
     "day": 1,
     "date": "2026-09-28",
     "duration": "17:34",
     "uploadDate": "2026-10-16T09:16:31-07:00",
     "seconds": 1054,
-    "summary": "How are the world's largest asset managers actually using Ethereum? At Ethereum Korea One: Genesis, Franklin Templeton, BlackRock, and Ethereum Institutional discuss the state of institutional adoption beyond the headlines.",
-    "speakers": [
-      "Chetan Karkhanis, Senior Vice President, Franklin Templeton",
-      "Matthew Dawson, Co-Founder, Ethereum Institutional",
-      "Andy Ng, Head of iShares Equity Product Strategy, BlackRock",
-      "Moderator: Jaehyun Park, Passive Sales Dept. 1, Equity Derivatives Trader (Market Maker), KB Securities"
-    ],
-    "lang": "en"
+    "spokenLang": "en",
+    "text": {
+      "ko": {
+        "title": "글로벌 기관 온체인: 세계 최대 자산운용사들은 이더리움을 어떻게 쓰는가",
+        "summary": "세계 최대 자산운용사들은 이더리움을 실제로 어떻게 쓰고 있을까요? Ethereum Korea One: Genesis에서 Franklin Templeton, BlackRock, Ethereum Institutional이 헤드라인 너머의 기관 도입 현황을 이야기했습니다.",
+        "speakers": [
+          "Chetan Karkhanis, Senior Vice President, Franklin Templeton",
+          "Matthew Dawson, Co-Founder, Ethereum Institutional",
+          "Andy Ng, Head of iShares Equity Product Strategy, BlackRock",
+          "모더레이터: Jaehyun Park, Passive Sales Dept. 1, Equity Derivatives Trader (Market Maker), KB Securities"
+        ]
+      },
+      "en": {
+        "title": "How the World's Largest Asset Managers Use Ethereum",
+        "summary": "How are the world's largest asset managers actually using Ethereum? At Ethereum Korea One: Genesis, Franklin Templeton, BlackRock, and Ethereum Institutional discuss the state of institutional adoption beyond the headlines.",
+        "speakers": [
+          "Chetan Karkhanis, Senior Vice President, Franklin Templeton",
+          "Matthew Dawson, Co-Founder, Ethereum Institutional",
+          "Andy Ng, Head of iShares Equity Product Strategy, BlackRock",
+          "Moderator: Jaehyun Park, Passive Sales Dept. 1, Equity Derivatives Trader (Market Maker), KB Securities"
+        ]
+      }
+    }
   },
   {
     "id": "985-EuhrXK4",
-    "title": "한국 기관 온체인, 스테이블코인: 현황과 다음 단계",
     "event": "ek1-genesis",
     "day": 1,
     "date": "2026-09-28",
     "duration": "20:01",
     "uploadDate": "2026-10-16T09:18:28-07:00",
     "seconds": 1201,
-    "summary": "원화 스테이블코인 논의는 왜 조용해졌고, 법제화 이후 무엇이 성공을 가를까요? Ethereum Korea One: Genesis에서 Toss, Lambda256, Base의 실무자들이 한국어로 진행한 원화 스테이블코인 패널입니다.",
-    "speakers": [
-      "Wonyoung Her, Corporate Development Team Leader, Viva Republica (Toss)",
-      "Michael Cho, CBO, Lambda256",
-      "David Park, APAC Ecosystem Lead, Base",
-      "모더레이터: Jinsol Bok, Head of Research, Co-Founder, Four Pillars"
-    ],
-    "lang": "ko"
+    "spokenLang": "ko",
+    "text": {
+      "ko": {
+        "title": "한국 기관 온체인, 스테이블코인: 현황과 다음 단계",
+        "summary": "원화 스테이블코인 논의는 왜 조용해졌고, 법제화 이후 무엇이 성공을 가를까요? Ethereum Korea One: Genesis에서 Toss, Lambda256, Base의 실무자들이 한국어로 진행한 원화 스테이블코인 패널입니다.",
+        "speakers": [
+          "Wonyoung Her, Corporate Development Team Leader, Viva Republica (Toss)",
+          "Michael Cho, CBO, Lambda256",
+          "David Park, APAC Ecosystem Lead, Base",
+          "모더레이터: Jinsol Bok, Head of Research, Co-Founder, Four Pillars"
+        ]
+      },
+      "en": {
+        "title": "Korean Institutions Onchain: Stablecoins",
+        "summary": "Why has the KRW stablecoin conversation gone quiet, and what will separate success from failure once legislation passes? At Ethereum Korea One: Genesis, practitioners from Toss, Lambda256, and Base joined a KRW stablecoin panel held in Korean.",
+        "speakers": [
+          "Wonyoung Her, Corporate Development Team Leader, Viva Republica (Toss)",
+          "Michael Cho, CBO, Lambda256",
+          "David Park, APAC Ecosystem Lead, Base",
+          "Moderator: Jinsol Bok, Head of Research, Co-Founder, Four Pillars"
+        ]
+      }
+    }
   },
   {
     "id": "5cAUvfrww2g",
-    "title": "한국 기관 온체인, RWA: 현황과 다음 단계",
     "event": "ek1-genesis",
     "day": 1,
     "date": "2026-09-28",
     "duration": "19:49",
     "uploadDate": "2026-10-16T09:20:55-07:00",
     "seconds": 1188,
-    "summary": "한국 토큰증권 시장을 이끄는 증권사들은 지금 무엇을 실행하고 있고, 어떤 과제를 마주하고 있을까요? Ethereum Korea One: Genesis의 마지막 세션으로, DB증권, 한화투자증권, 교보증권의 디지털자산 책임자들이 RWA 현장의 이야기를 나눴습니다.",
-    "speakers": [
-      "Joosik Lee, Head of Digital Asset Business Team, DB Securities",
-      "Yoonyoung Choy, Head of Digital Asset Research Team, Hanwha Investment & Securities",
-      "Ryan Jang, Head of Digital Asset Biz, Kyobo Securities",
-      "모더레이터: Peter Chung, Head of Business Dept., Wavebridge"
-    ],
-    "lang": "ko"
+    "spokenLang": "ko",
+    "text": {
+      "ko": {
+        "title": "한국 기관 온체인, RWA: 현황과 다음 단계",
+        "summary": "한국 토큰증권 시장을 이끄는 증권사들은 지금 무엇을 실행하고 있고, 어떤 과제를 마주하고 있을까요? Ethereum Korea One: Genesis의 마지막 세션으로, DB증권, 한화투자증권, 교보증권의 디지털자산 책임자들이 RWA 현장의 이야기를 나눴습니다.",
+        "speakers": [
+          "Joosik Lee, Head of Digital Asset Business Team, DB Securities",
+          "Yoonyoung Choy, Head of Digital Asset Research Team, Hanwha Investment & Securities",
+          "Ryan Jang, Head of Digital Asset Biz, Kyobo Securities",
+          "모더레이터: Peter Chung, Head of Business Dept., Wavebridge"
+        ]
+      },
+      "en": {
+        "title": "Korean Institutions Onchain: RWA",
+        "summary": "What are the securities firms leading Korea's security token market executing right now, and what challenges do they face? In the final session of Ethereum Korea One: Genesis, digital asset heads from DB Securities, Hanwha Investment & Securities, and Kyobo Securities share stories from the front lines of RWA.",
+        "speakers": [
+          "Joosik Lee, Head of Digital Asset Business Team, DB Securities",
+          "Yoonyoung Choy, Head of Digital Asset Research Team, Hanwha Investment & Securities",
+          "Ryan Jang, Head of Digital Asset Biz, Kyobo Securities",
+          "Moderator: Peter Chung, Head of Business Dept., Wavebridge"
+        ]
+      }
+    }
   },
   {
     "id": "uvZoHPAjCH0",
-    "title": "DB증권 오프닝",
     "event": "ek1-genesis",
     "day": 2,
     "date": "2026-09-29",
@@ -242,15 +418,26 @@
     "sessionId": "2f-01",
     "uploadDate": "2026-10-20T02:28:59-07:00",
     "seconds": 571,
-    "summary": "금융은 빌더에게 무엇을 기대할까요? Ethereum Korea One: Genesis 빌더 데이의 문을 연 DB증권 장현일 CFO의 개회사입니다.",
-    "speakers": [
-      "Hyunil Jang, CFO, DB Securities"
-    ],
-    "lang": "ko"
+    "spokenLang": "ko",
+    "text": {
+      "ko": {
+        "title": "DB증권 오프닝",
+        "summary": "금융은 빌더에게 무엇을 기대할까요? Ethereum Korea One: Genesis 빌더 데이의 문을 연 DB증권 장현일 CFO의 개회사입니다.",
+        "speakers": [
+          "Hyunil Jang, CFO, DB Securities"
+        ]
+      },
+      "en": {
+        "title": "Opening by DB Securities",
+        "summary": "What does finance expect from builders? Hyunil Jang, CFO of DB Securities, opens Builder Day at Ethereum Korea One: Genesis.",
+        "speakers": [
+          "Hyunil Jang, CFO, DB Securities"
+        ]
+      }
+    }
   },
   {
     "id": "EDymIdYhRYc",
-    "title": "이더리움 코리아 원 소개",
     "event": "ek1-genesis",
     "day": 2,
     "date": "2026-09-29",
@@ -258,16 +445,28 @@
     "sessionId": "2f-02",
     "uploadDate": "2026-10-20T02:31:24-07:00",
     "seconds": 841,
-    "summary": "작년 KBW에는 이더리움 행사가 하나도 없었습니다. Ethereum Korea One: Genesis를 함께 만든 Nonce Classic Youbin Kang 대표와 ECK Sose가 이더리움 코리아 컨소시엄이 왜, 어떻게 시작됐는지 이야기합니다.",
-    "speakers": [
-      "Youbin Kang, Founder & CEO, Nonce Classic",
-      "Sose, Co-Founder, ECK"
-    ],
-    "lang": "ko"
+    "spokenLang": "ko",
+    "text": {
+      "ko": {
+        "title": "이더리움 코리아 원 소개",
+        "summary": "작년 KBW에는 이더리움 행사가 하나도 없었습니다. Ethereum Korea One: Genesis를 함께 만든 Nonce Classic Youbin Kang 대표와 ECK Sose가 이더리움 코리아 컨소시엄이 왜, 어떻게 시작됐는지 이야기합니다.",
+        "speakers": [
+          "Youbin Kang, Founder & CEO, Nonce Classic",
+          "Sose, Co-Founder, ECK"
+        ]
+      },
+      "en": {
+        "title": "Introduction of Ethereum Korea One",
+        "summary": "Last year's KBW did not have a single Ethereum event. Youbin Kang of Nonce Classic and Sose of ECK, who built Ethereum Korea One: Genesis together, talk about why and how the Ethereum Korea Consortium got started.",
+        "speakers": [
+          "Youbin Kang, Founder & CEO, Nonce Classic",
+          "Sose, Co-Founder, ECK"
+        ]
+      }
+    }
   },
   {
     "id": "wr6JU4-7M7A",
-    "title": "글램스터담 업그레이드에 담긴 것",
     "event": "ek1-genesis",
     "day": 2,
     "date": "2026-09-29",
@@ -275,15 +474,26 @@
     "sessionId": "2f-03",
     "uploadDate": "2026-10-20T02:33:38-07:00",
     "seconds": 1694,
-    "summary": "글램스테르담이 적용돼도 당장 바뀌는 것은 거의 없습니다. 그런데 왜 중요할까요? Ethereum Korea One: Genesis에서 Four Pillars의 Hudson Jang이 다음 이더리움 업그레이드를 쉽게 풀어 설명합니다.",
-    "speakers": [
-      "Hudson Jang, SRE & Tech Researcher, Four Pillars"
-    ],
-    "lang": "ko"
+    "spokenLang": "ko",
+    "text": {
+      "ko": {
+        "title": "글램스터담 업그레이드에 담긴 것",
+        "summary": "글램스테르담이 적용돼도 당장 바뀌는 것은 거의 없습니다. 그런데 왜 중요할까요? Ethereum Korea One: Genesis에서 Four Pillars의 Hudson Jang이 다음 이더리움 업그레이드를 쉽게 풀어 설명합니다.",
+        "speakers": [
+          "Hudson Jang, SRE & Tech Researcher, Four Pillars"
+        ]
+      },
+      "en": {
+        "title": "What's in the Glamsterdam Upgrade",
+        "summary": "Almost nothing changes right away when Glamsterdam goes live. So why does it matter? At Ethereum Korea One: Genesis, Hudson Jang of Four Pillars explains Ethereum's next upgrade in plain terms.",
+        "speakers": [
+          "Hudson Jang, SRE & Tech Researcher, Four Pillars"
+        ]
+      }
+    }
   },
   {
     "id": "Gi17_ibDTyo",
-    "title": "이더리움의 북극성: 로드맵과 CROPS",
     "event": "ek1-genesis",
     "day": 2,
     "date": "2026-09-29",
@@ -291,19 +501,34 @@
     "sessionId": "2f-04",
     "uploadDate": "2026-10-20T02:44:03-07:00",
     "seconds": 3339,
-    "summary": "이더리움의 방향은 누가, 어떻게 정할까요? Ethereum Korea One: Genesis에서 이더리움 재단 Geth 엔지니어 Bosul Mun의 진행으로 네 명의 패널이 이더리움의 북극성, 스트로맵, 그리고 CROPS를 이야기합니다.",
-    "speakers": [
-      "Sose, Co-Founder, ECK",
-      "Lucia Kim, Head of Research, Nonce Classic",
-      "Hudson Jang, SRE & Tech Researcher, Four Pillars",
-      "Christopher Choi, Korea Community & Culture Lead, Remilia Korea",
-      "모더레이터: Bosul Mun, Geth Core Engineer, Ethereum Foundation"
-    ],
-    "lang": "ko"
+    "spokenLang": "ko",
+    "text": {
+      "ko": {
+        "title": "이더리움의 북극성: 로드맵과 CROPS",
+        "summary": "이더리움의 방향은 누가, 어떻게 정할까요? Ethereum Korea One: Genesis에서 이더리움 재단 Geth 엔지니어 Bosul Mun의 진행으로 네 명의 패널이 이더리움의 북극성, 스트로맵, 그리고 CROPS를 이야기합니다.",
+        "speakers": [
+          "Sose, Co-Founder, ECK",
+          "Lucia Kim, Head of Research, Nonce Classic",
+          "Hudson Jang, SRE & Tech Researcher, Four Pillars",
+          "Christopher Choi, Korea Community & Culture Lead, Remilia Korea",
+          "모더레이터: Bosul Mun, Geth Core Engineer, Ethereum Foundation"
+        ]
+      },
+      "en": {
+        "title": "Ethereum's North Star: Roadmap & CROPS",
+        "summary": "Who sets Ethereum's direction, and how? At Ethereum Korea One: Genesis, four panelists moderated by Bosul Mun, a Geth engineer at the Ethereum Foundation, discuss Ethereum's North Star, the Strawmap and CROPS.",
+        "speakers": [
+          "Sose, Co-Founder, ECK",
+          "Lucia Kim, Head of Research, Nonce Classic",
+          "Hudson Jang, SRE & Tech Researcher, Four Pillars",
+          "Christopher Choi, Korea Community & Culture Lead, Remilia Korea",
+          "Moderator: Bosul Mun, Geth Core Engineer, Ethereum Foundation"
+        ]
+      }
+    }
   },
   {
     "id": "x6rsjy5uImU",
-    "title": "실행 레이어의 포스트 양자 이더리움",
     "event": "ek1-genesis",
     "day": 2,
     "date": "2026-09-29",
@@ -311,15 +536,26 @@
     "sessionId": "2f-05",
     "uploadDate": "2026-10-20T03:04:13-07:00",
     "seconds": 1914,
-    "summary": "양자 컴퓨터 시대에 이더리움 지갑의 서명은 어떻게 바뀌어야 할까요? Ethereum Korea One: Genesis에서 연세대학교 CNL의 이윤형 연구원이 실행 레이어의 포스트 양자 전환 경로를 짚었습니다.",
-    "speakers": [
-      "Yoonhyung Lee, CNL Researcher, Yonsei University"
-    ],
-    "lang": "ko"
+    "spokenLang": "ko",
+    "text": {
+      "ko": {
+        "title": "실행 레이어의 포스트 양자 이더리움",
+        "summary": "양자 컴퓨터 시대에 이더리움 지갑의 서명은 어떻게 바뀌어야 할까요? Ethereum Korea One: Genesis에서 연세대학교 CNL의 이윤형 연구원이 실행 레이어의 포스트 양자 전환 경로를 짚었습니다.",
+        "speakers": [
+          "Yoonhyung Lee, CNL Researcher, Yonsei University"
+        ]
+      },
+      "en": {
+        "title": "Post-Quantum Ethereum on the Execution Layer",
+        "summary": "How should Ethereum wallet signatures change in the age of quantum computers? At Ethereum Korea One: Genesis, Yoonhyung Lee of Yonsei University CNL walks through the path to a post-quantum execution layer.",
+        "speakers": [
+          "Yoonhyung Lee, CNL Researcher, Yonsei University"
+        ]
+      }
+    }
   },
   {
     "id": "XWtt0h8uy9A",
-    "title": "밸리데이터의 다음 시대",
     "event": "ek1-genesis",
     "day": 2,
     "date": "2026-09-29",
@@ -327,18 +563,32 @@
     "sessionId": "2f-06",
     "uploadDate": "2026-10-20T03:07:15-07:00",
     "seconds": 2584,
-    "summary": "기술 장벽은 무너졌는데, 왜 작은 밸리데이터는 사라지고 있을까요? Ethereum Korea One: Genesis에서 한국을 대표하는 인프라 기업 Altus, Nodeinfra, DSRV의 리더들이 밸리데이터 사업의 현재와 다음 시대를 솔직하게 이야기했습니다.",
-    "speakers": [
-      "Hyung Yeon Lee, CEO, Altus",
-      "Youngseok Yang, CEO, Nodeinfra",
-      "Joonkyo Kim, CTO, DSRV",
-      "모더레이터: Hudson Jang, SRE & Tech Researcher, Four Pillars"
-    ],
-    "lang": "ko"
+    "spokenLang": "ko",
+    "text": {
+      "ko": {
+        "title": "밸리데이터의 다음 시대",
+        "summary": "기술 장벽은 무너졌는데, 왜 작은 밸리데이터는 사라지고 있을까요? Ethereum Korea One: Genesis에서 한국을 대표하는 인프라 기업 Altus, Nodeinfra, DSRV의 리더들이 밸리데이터 사업의 현재와 다음 시대를 솔직하게 이야기했습니다.",
+        "speakers": [
+          "Hyung Yeon Lee, CEO, Altus",
+          "Youngseok Yang, CEO, Nodeinfra",
+          "Joonkyo Kim, CTO, DSRV",
+          "모더레이터: Hudson Jang, SRE & Tech Researcher, Four Pillars"
+        ]
+      },
+      "en": {
+        "title": "The Next Era of Validators",
+        "summary": "Technical barriers have fallen, so why are small validators disappearing? At Ethereum Korea One: Genesis, leaders of Korean infrastructure firms Altus, Nodeinfra, and DSRV speak candidly about the validator business today and in the era ahead.",
+        "speakers": [
+          "Hyung Yeon Lee, CEO, Altus",
+          "Youngseok Yang, CEO, Nodeinfra",
+          "Joonkyo Kim, CTO, DSRV",
+          "Moderator: Hudson Jang, SRE & Tech Researcher, Four Pillars"
+        ]
+      }
+    }
   },
   {
     "id": "ziGnWZ7d3OM",
-    "title": "이더리움 위의 프라이버시",
     "event": "ek1-genesis",
     "day": 2,
     "date": "2026-09-29",
@@ -346,15 +596,26 @@
     "sessionId": "2f-07",
     "uploadDate": "2026-10-20T03:11:23-07:00",
     "seconds": 1918,
-    "summary": "주소 하나로 내 금융 생활 전체가 드러난다면 온체인 금융은 대중화될 수 있을까요? Ethereum Korea One: Genesis에서 Sunnyside Labs의 Seungmin Jeon이 셀프 커스터디를 지키면서도 빠른 온체인 프라이버시를 만든 과정을 공유했습니다.",
-    "speakers": [
-      "Seungmin Jeon, Core Engineer, Sunnyside Labs"
-    ],
-    "lang": "ko"
+    "spokenLang": "ko",
+    "text": {
+      "ko": {
+        "title": "이더리움 위의 프라이버시",
+        "summary": "주소 하나로 내 금융 생활 전체가 드러난다면 온체인 금융은 대중화될 수 있을까요? Ethereum Korea One: Genesis에서 Sunnyside Labs의 Seungmin Jeon이 셀프 커스터디를 지키면서도 빠른 온체인 프라이버시를 만든 과정을 공유했습니다.",
+        "speakers": [
+          "Seungmin Jeon, Core Engineer, Sunnyside Labs"
+        ]
+      },
+      "en": {
+        "title": "Privacy on Ethereum",
+        "summary": "Can onchain finance go mainstream if a single address reveals your entire financial life? At Ethereum Korea One: Genesis, Seungmin Jeon of Sunnyside Labs shares how his team built fast onchain privacy that keeps self-custody intact.",
+        "speakers": [
+          "Seungmin Jeon, Core Engineer, Sunnyside Labs"
+        ]
+      }
+    }
   },
   {
     "id": "zE9Sr21vc4c",
-    "title": "다음 ZK 혁신은 어디서 오는가",
     "event": "ek1-genesis",
     "day": 2,
     "date": "2026-09-29",
@@ -362,18 +623,32 @@
     "sessionId": "2f-08",
     "uploadDate": "2026-10-20T03:14:27-07:00",
     "seconds": 3783,
-    "summary": "ZK 기술은 빠르게 발전했는데, 왜 도입은 예상보다 느릴까요? Ethereum Korea One: Genesis에서 Succinct, Fractalyze, zkSecurity의 엔지니어와 연구자들이 ZK의 다음 돌파구가 어디서 올지 이야기했습니다.",
-    "speakers": [
-      "Taehoon Kim, Engineer, Succinct",
-      "Ryan Kim, CTO · Co-Founder, Fractalyze",
-      "Jason Park, Security Researcher, zkSecurity",
-      "모더레이터: Wonjae Choi, Researcher, SNU VMO Lab"
-    ],
-    "lang": "ko"
+    "spokenLang": "ko",
+    "text": {
+      "ko": {
+        "title": "다음 ZK 혁신은 어디서 오는가",
+        "summary": "ZK 기술은 빠르게 발전했는데, 왜 도입은 예상보다 느릴까요? Ethereum Korea One: Genesis에서 Succinct, Fractalyze, zkSecurity의 엔지니어와 연구자들이 ZK의 다음 돌파구가 어디서 올지 이야기했습니다.",
+        "speakers": [
+          "Taehoon Kim, Engineer, Succinct",
+          "Ryan Kim, CTO · Co-Founder, Fractalyze",
+          "Jason Park, Security Researcher, zkSecurity",
+          "모더레이터: Wonjae Choi, Researcher, SNU VMO Lab"
+        ]
+      },
+      "en": {
+        "title": "Where the Next ZK Breakthrough Comes From",
+        "summary": "ZK technology has advanced quickly, so why is adoption slower than expected? At Ethereum Korea One: Genesis, engineers and researchers from Succinct, Fractalyze, and zkSecurity discuss where the next ZK breakthrough will come from.",
+        "speakers": [
+          "Taehoon Kim, Engineer, Succinct",
+          "Ryan Kim, CTO · Co-Founder, Fractalyze",
+          "Jason Park, Security Researcher, zkSecurity",
+          "Moderator: Wonjae Choi, Researcher, SNU VMO Lab"
+        ]
+      }
+    }
   },
   {
     "id": "1SdjzEzkgX4",
-    "title": "지속 가능한 DeFi를 만드는 법",
     "event": "ek1-genesis",
     "day": 2,
     "date": "2026-09-29",
@@ -381,19 +656,34 @@
     "sessionId": "3f-02",
     "uploadDate": "2026-10-20T03:16:46-07:00",
     "seconds": 1759,
-    "summary": "What keeps users around once the incentives run out? At Ethereum Korea One: Genesis, builders from Compound, EtherFi, Uniswap Labs, and Radius discuss how to build DeFi that lasts.",
-    "speakers": [
-      "Christopher Donovan, COO, Compound Foundation",
-      "Mike Silagadze, CEO, EtherFi",
-      "Derek Walkush, Growth Manager, Uniswap Labs",
-      "Heejin Kim, Protocol Strategist, Radius",
-      "Moderator: Guzus, Product Engineer, Axis"
-    ],
-    "lang": "en"
+    "spokenLang": "en",
+    "text": {
+      "ko": {
+        "title": "지속 가능한 DeFi를 만드는 법",
+        "summary": "인센티브가 끝난 뒤에도 사용자를 붙잡는 힘은 어디서 나올까요? Ethereum Korea One: Genesis에서 Compound, EtherFi, Uniswap Labs, Radius의 빌더들이 오래 가는 DeFi를 만드는 법을 이야기했습니다.",
+        "speakers": [
+          "Christopher Donovan, COO, Compound Foundation",
+          "Mike Silagadze, CEO, EtherFi",
+          "Derek Walkush, Growth Manager, Uniswap Labs",
+          "Heejin Kim, Protocol Strategist, Radius",
+          "모더레이터: Guzus, Product Engineer, Axis"
+        ]
+      },
+      "en": {
+        "title": "How to Build Sustainable DeFi",
+        "summary": "What keeps users around once the incentives run out? At Ethereum Korea One: Genesis, builders from Compound, EtherFi, Uniswap Labs, and Radius discuss how to build DeFi that lasts.",
+        "speakers": [
+          "Christopher Donovan, COO, Compound Foundation",
+          "Mike Silagadze, CEO, EtherFi",
+          "Derek Walkush, Growth Manager, Uniswap Labs",
+          "Heejin Kim, Protocol Strategist, Radius",
+          "Moderator: Guzus, Product Engineer, Axis"
+        ]
+      }
+    }
   },
   {
     "id": "QSRqL91R5iA",
-    "title": "이더리움 클라이언트: 다음은 무엇인가?",
     "event": "ek1-genesis",
     "day": 2,
     "date": "2026-09-29",
@@ -401,18 +691,32 @@
     "sessionId": "3f-03",
     "uploadDate": "2026-10-20T04:13:01-07:00",
     "seconds": 1963,
-    "summary": "What comes after Glamsterdam for the software that runs Ethereum? At Ethereum Korea One: Genesis, client developers and a consensus researcher discuss ePBS, L1 scaling, ZK proving, and what Ethereum clients may look like in five to ten years.",
-    "speakers": [
-      "Jun Song, Core Engineer, Offchain (Prysm)",
-      "Felix Lange, Geth Lead, Ethereum Foundation",
-      "Luca Zanolini, Researcher, Alumni of EF",
-      "Moderator: Youngseok Yang, CEO, Nodeinfra"
-    ],
-    "lang": "en"
+    "spokenLang": "en",
+    "text": {
+      "ko": {
+        "title": "이더리움 클라이언트: 다음은 무엇인가?",
+        "summary": "Glamsterdam 이후, 이더리움을 돌리는 소프트웨어는 어디로 향할까요? Ethereum Korea One: Genesis에서 클라이언트 개발자들과 합의 연구자가 ePBS, L1 확장, ZK 증명, 그리고 5~10년 뒤 이더리움 클라이언트의 모습을 이야기했습니다.",
+        "speakers": [
+          "Jun Song, Core Engineer, Offchain (Prysm)",
+          "Felix Lange, Geth Lead, Ethereum Foundation",
+          "Luca Zanolini, Researcher, Alumni of EF",
+          "모더레이터: Youngseok Yang, CEO, Nodeinfra"
+        ]
+      },
+      "en": {
+        "title": "Ethereum Clients: What Comes Next?",
+        "summary": "What comes after Glamsterdam for the software that runs Ethereum? At Ethereum Korea One: Genesis, client developers and a consensus researcher discuss ePBS, L1 scaling, ZK proving, and what Ethereum clients may look like in five to ten years.",
+        "speakers": [
+          "Jun Song, Core Engineer, Offchain (Prysm)",
+          "Felix Lange, Geth Lead, Ethereum Foundation",
+          "Luca Zanolini, Researcher, Alumni of EF",
+          "Moderator: Youngseok Yang, CEO, Nodeinfra"
+        ]
+      }
+    }
   },
   {
     "id": "SZ9zaB6NfoQ",
-    "title": "플래시 보이스인가, 슈퍼 예측가인가? 예측 시장 사용자층 들여다보기",
     "event": "ek1-genesis",
     "day": 2,
     "date": "2026-09-29",
@@ -420,15 +724,26 @@
     "sessionId": "3f-04",
     "uploadDate": "2026-10-20T04:16:23-07:00",
     "seconds": 1477,
-    "summary": "Who is really driving prediction market volume: skilled forecasters, retail bettors, or bots? At Ethereum Korea One: Genesis, Pantera Capital's Danning Sui breaks down the data behind Polymarket and Kalshi.",
-    "speakers": [
-      "Danning Sui, Research Director, Pantera Capital"
-    ],
-    "lang": "en"
+    "spokenLang": "en",
+    "text": {
+      "ko": {
+        "title": "플래시 보이스인가, 슈퍼 예측가인가? 예측 시장 사용자층 들여다보기",
+        "summary": "예측 시장의 거래량을 실제로 움직이는 건 누구일까요? 뛰어난 예측가, 리테일, 아니면 봇일까요? Ethereum Korea One: Genesis에서 Pantera Capital의 Danning Sui가 Polymarket과 Kalshi 데이터를 파헤쳤습니다.",
+        "speakers": [
+          "Danning Sui, Research Director, Pantera Capital"
+        ]
+      },
+      "en": {
+        "title": "Flash Boys or Superforecasters? Prediction Market User Base",
+        "summary": "Who is really driving prediction market volume: skilled forecasters, retail bettors, or bots? At Ethereum Korea One: Genesis, Pantera Capital's Danning Sui breaks down the data behind Polymarket and Kalshi.",
+        "speakers": [
+          "Danning Sui, Research Director, Pantera Capital"
+        ]
+      }
+    }
   },
   {
     "id": "JE_iIxvNrG4",
-    "title": "재단 너머의 이더리움",
     "event": "ek1-genesis",
     "day": 2,
     "date": "2026-09-29",
@@ -436,18 +751,32 @@
     "sessionId": "3f-05",
     "uploadDate": "2026-10-20T04:18:08-07:00",
     "seconds": 2136,
-    "summary": "As the Ethereum Foundation slims down, who keeps the ecosystem growing? At Ethereum Korea One: Genesis, the people behind EthCC, Octant, and ETHGlobal discuss the work happening beyond the Foundation.",
-    "speakers": [
-      "Jerome de Tychey, Founder, EthCoordinate",
-      "Mashal Waqar, CMO, Octant",
-      "Kartik Talwar, Co-Founder, ETHGlobal",
-      "Moderator: Jay Jang, Head of Business, Sunnyside Labs"
-    ],
-    "lang": "en"
+    "spokenLang": "en",
+    "text": {
+      "ko": {
+        "title": "재단 너머의 이더리움",
+        "summary": "이더리움 재단이 몸집을 줄여가는 지금, 생태계의 성장은 누가 이어갈까요? Ethereum Korea One: Genesis에서 EthCC, Octant, ETHGlobal을 이끄는 사람들이 재단 바깥에서 이뤄지는 일들을 이야기했습니다.",
+        "speakers": [
+          "Jerome de Tychey, Founder, EthCoordinate",
+          "Mashal Waqar, CMO, Octant",
+          "Kartik Talwar, Co-Founder, ETHGlobal",
+          "모더레이터: Jay Jang, Head of Business, Sunnyside Labs"
+        ]
+      },
+      "en": {
+        "title": "Ethereum Beyond the Foundation",
+        "summary": "As the Ethereum Foundation slims down, who keeps the ecosystem growing? At Ethereum Korea One: Genesis, the people behind EthCC, Octant, and ETHGlobal discuss the work happening beyond the Foundation.",
+        "speakers": [
+          "Jerome de Tychey, Founder, EthCoordinate",
+          "Mashal Waqar, CMO, Octant",
+          "Kartik Talwar, Co-Founder, ETHGlobal",
+          "Moderator: Jay Jang, Head of Business, Sunnyside Labs"
+        ]
+      }
+    }
   },
   {
     "id": "4ERZ3v1e22U",
-    "title": "이더리움 발행량 전쟁",
     "event": "ek1-genesis",
     "day": 2,
     "date": "2026-09-29",
@@ -455,17 +784,30 @@
     "sessionId": "3f-06",
     "uploadDate": "2026-10-20T04:19:52-07:00",
     "seconds": 2181,
-    "summary": "How much should Ethereum pay for its security, and who gets to decide? At Ethereum Korea One: Genesis, a co-author of EIP-8363 and Lido's Chief of Staking debate the future of ETH issuance.",
-    "speakers": [
-      "Jerome de Tychey, Founder, EthCoordinate",
-      "Isidoros Passadis, Chief of Staking, Lido",
-      "Moderator: Hyung-Kyu Choi, Co-Founder, DSRV"
-    ],
-    "lang": "en"
+    "spokenLang": "en",
+    "text": {
+      "ko": {
+        "title": "이더리움 발행량 전쟁",
+        "summary": "이더리움은 보안을 위해 얼마를 지불해야 하고, 그 결정은 누가 내려야 할까요? Ethereum Korea One: Genesis에서 EIP-8363 공동 저자와 Lido의 스테이킹 총괄이 ETH 발행량의 미래를 두고 맞붙었습니다.",
+        "speakers": [
+          "Jerome de Tychey, Founder, EthCoordinate",
+          "Isidoros Passadis, Chief of Staking, Lido",
+          "모더레이터: Hyung-Kyu Choi, Co-Founder, DSRV"
+        ]
+      },
+      "en": {
+        "title": "Ethereum's Issuance Wars",
+        "summary": "How much should Ethereum pay for its security, and who gets to decide? At Ethereum Korea One: Genesis, a co-author of EIP-8363 and Lido's Chief of Staking debate the future of ETH issuance.",
+        "speakers": [
+          "Jerome de Tychey, Founder, EthCoordinate",
+          "Isidoros Passadis, Chief of Staking, Lido",
+          "Moderator: Hyung-Kyu Choi, Co-Founder, DSRV"
+        ]
+      }
+    }
   },
   {
     "id": "GIMJwVErQU8",
-    "title": "계정 추상화의 미래",
     "event": "ek1-genesis",
     "day": 2,
     "date": "2026-09-29",
@@ -473,17 +815,30 @@
     "sessionId": "3f-07",
     "uploadDate": "2026-10-20T04:24:36-07:00",
     "seconds": 1809,
-    "summary": "With ERC-4337 live for over three years and EIP-7702 for over a year, why is native account abstraction back on the table? At Ethereum Korea One: Genesis, the Geth lead and ZeroDev's tech lead compare the L1 and L2 paths.",
-    "speakers": [
-      "Felix Lange, Geth Lead, Ethereum Foundation",
-      "Taek Lee, Tech Lead, ZeroDev",
-      "Moderator: Seungmin Jeon, Core Engineer, Sunnyside Labs"
-    ],
-    "lang": "en"
+    "spokenLang": "en",
+    "text": {
+      "ko": {
+        "title": "계정 추상화의 미래",
+        "summary": "ERC-4337이 3년 넘게, EIP-7702가 1년 넘게 운영되고 있는데 왜 지금 다시 네이티브 계정 추상화일까요? Ethereum Korea One: Genesis에서 Geth 리드와 ZeroDev 테크 리드가 L1과 L2의 서로 다른 길을 비교했습니다.",
+        "speakers": [
+          "Felix Lange, Geth Lead, Ethereum Foundation",
+          "Taek Lee, Tech Lead, ZeroDev",
+          "모더레이터: Seungmin Jeon, Core Engineer, Sunnyside Labs"
+        ]
+      },
+      "en": {
+        "title": "Future of Account Abstraction",
+        "summary": "With ERC-4337 live for over three years and EIP-7702 for over a year, why is native account abstraction back on the table? At Ethereum Korea One: Genesis, the Geth lead and ZeroDev's tech lead compare the L1 and L2 paths.",
+        "speakers": [
+          "Felix Lange, Geth Lead, Ethereum Foundation",
+          "Taek Lee, Tech Lead, ZeroDev",
+          "Moderator: Seungmin Jeon, Core Engineer, Sunnyside Labs"
+        ]
+      }
+    }
   },
   {
     "id": "tSZxP59ZffU",
-    "title": "L2는 여전히 이더리움을 확장하고 있는가?",
     "event": "ek1-genesis",
     "day": 2,
     "date": "2026-09-29",
@@ -491,18 +846,32 @@
     "sessionId": "3f-08",
     "uploadDate": "2026-10-20T04:26:35-07:00",
     "seconds": 2306,
-    "summary": "If L1 is scaling faster than expected, what are L2s for? At Ethereum Korea One: Genesis, leaders from Offchain Labs, Optimism, and StarkWare debate whether L2s are still scaling Ethereum.",
-    "speakers": [
-      "Ed Felten, Co-Founder & Chief Scientist, Offchain Labs",
-      "Chris Andreola, Senior Director, Commercial Strategy, Optimism",
-      "Ilia Volokh, Core Team Lead, StarkWare",
-      "Moderator: Seungmin Jeon, Core Engineer, Sunnyside Labs"
-    ],
-    "lang": "en"
+    "spokenLang": "en",
+    "text": {
+      "ko": {
+        "title": "L2는 여전히 이더리움을 확장하고 있는가?",
+        "summary": "L1이 예상보다 빠르게 확장되고 있다면 L2는 무엇을 위해 존재할까요? Ethereum Korea One: Genesis에서 Offchain Labs, Optimism, StarkWare의 리더들이 L2가 여전히 이더리움을 확장하고 있는지 토론했습니다.",
+        "speakers": [
+          "Ed Felten, Co-Founder & Chief Scientist, Offchain Labs",
+          "Chris Andreola, Senior Director, Commercial Strategy, Optimism",
+          "Ilia Volokh, Core Team Lead, StarkWare",
+          "모더레이터: Seungmin Jeon, Core Engineer, Sunnyside Labs"
+        ]
+      },
+      "en": {
+        "title": "Are L2s Still Scaling Ethereum?",
+        "summary": "If L1 is scaling faster than expected, what are L2s for? At Ethereum Korea One: Genesis, leaders from Offchain Labs, Optimism, and StarkWare debate whether L2s are still scaling Ethereum.",
+        "speakers": [
+          "Ed Felten, Co-Founder & Chief Scientist, Offchain Labs",
+          "Chris Andreola, Senior Director, Commercial Strategy, Optimism",
+          "Ilia Volokh, Core Team Lead, StarkWare",
+          "Moderator: Seungmin Jeon, Core Engineer, Sunnyside Labs"
+        ]
+      }
+    }
   },
   {
     "id": "mCZnsrNJ1RU",
-    "title": "온체인 에이전트: 자율 AI를 위한 경제 만들기",
     "event": "ek1-genesis",
     "day": 2,
     "date": "2026-09-29",
@@ -510,13 +879,28 @@
     "sessionId": "3f-09",
     "uploadDate": "2026-10-20T04:31:21-07:00",
     "seconds": 2498,
-    "summary": "What will it take for people to trust AI agents with real money? At Ethereum Korea One: Genesis, Virtuals, Base, and MetaMask discuss building an onchain economy for autonomous AI agents.",
-    "speakers": [
-      "Jansen Teng, Co-Founder, Virtuals",
-      "David Park, APAC Ecosystem Lead, Base",
-      "Francesco Andreoli, Director of DevRel, MetaMask",
-      "Moderator: Junhyeok Yoo, Researcher, Four Pillars"
-    ],
-    "lang": "en"
+    "spokenLang": "en",
+    "text": {
+      "ko": {
+        "title": "온체인 에이전트: 자율 AI를 위한 경제 만들기",
+        "summary": "사람들이 AI 에이전트에게 실제 돈을 맡기려면 무엇이 필요할까요? Ethereum Korea One: Genesis에서 Virtuals, Base, MetaMask가 자율 AI 에이전트를 위한 온체인 경제 만들기를 이야기했습니다.",
+        "speakers": [
+          "Jansen Teng, Co-Founder, Virtuals",
+          "David Park, APAC Ecosystem Lead, Base",
+          "Francesco Andreoli, Director of DevRel, MetaMask",
+          "모더레이터: Junhyeok Yoo, Researcher, Four Pillars"
+        ]
+      },
+      "en": {
+        "title": "Onchain Agents: Building an Economy for Autonomous AI",
+        "summary": "What will it take for people to trust AI agents with real money? At Ethereum Korea One: Genesis, Virtuals, Base, and MetaMask discuss building an onchain economy for autonomous AI agents.",
+        "speakers": [
+          "Jansen Teng, Co-Founder, Virtuals",
+          "David Park, APAC Ecosystem Lead, Base",
+          "Francesco Andreoli, Director of DevRel, MetaMask",
+          "Moderator: Junhyeok Yoo, Researcher, Four Pillars"
+        ]
+      }
+    }
   }
 ]

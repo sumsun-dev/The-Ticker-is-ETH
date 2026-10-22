@@ -2,16 +2,20 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Play } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { thumbUrl, videoPagePath, watchUrl, type VideoItem } from '../../data/videoData';
+import { localizeVideo, thumbUrl, videoPagePath, watchUrl, type VideoItem } from '../../data/videoData';
+import useVideoLang from '../../hooks/useVideoLang';
 import { parseSpeaker } from '../../utils/youtubeDescription';
+import SpokenLangBadge from './SpokenLangBadge';
 
 interface VideoCardProps {
     video: VideoItem;
 }
 
-/** 썸네일·제목은 YouTube로 바로 보내고, 아래 링크는 사이트의 세션 요약 페이지로 보낸다 */
-const VideoCard: React.FC<VideoCardProps> = ({ video }) => {
+/** 썸네일·제목은 YouTube로 바로 보내고, 아래 링크는 사이트의 세션 요약 페이지로 보낸다. 텍스트는 사이트 언어를 따른다 */
+const VideoCard: React.FC<VideoCardProps> = ({ video: item }) => {
     const { t } = useTranslation('contents');
+    const lang = useVideoLang();
+    const video = localizeVideo(item, lang);
     const names = video.speakers.map((s) => parseSpeaker(s).name).join(' · ');
 
     return (
@@ -44,6 +48,7 @@ const VideoCard: React.FC<VideoCardProps> = ({ video }) => {
             </a>
             <div className="mt-auto flex flex-col gap-3 px-5 pb-5 pt-2">
                 <p className="line-clamp-1 text-[13px] text-theme-text-muted">{names}</p>
+                <SpokenLangBadge lang={video.spokenLang} className="self-start" />
                 <Link
                     to={videoPagePath(video.id)}
                     aria-label={`${video.title} ${t('video.summaryLink')}`}

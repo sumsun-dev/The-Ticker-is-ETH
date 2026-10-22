@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { parseSpeaker, parseYoutubeDescription, toSeconds } from '../youtubeDescription';
+import { parseSpeaker, parseYoutubeDescription, toSeconds, stripSeriesSuffix, isSeriesTitle } from '../youtubeDescription';
 
 const KO = `글램스테르담이 적용돼도 당장 바뀌는 것은 거의 없습니다. 그런데 왜 중요할까요?
 
@@ -97,5 +97,18 @@ describe('parseYoutubeDescription', () => {
         expect(d.takeaways).toEqual([]);
         expect(d.chapters).toEqual([]);
         expect(d.speakers).toEqual([]);
+    });
+});
+
+describe('stripSeriesSuffix', () => {
+    it('should drop the Korean and English series suffix', () => {
+        expect(stripSeriesSuffix('개회사 | 이더리움 코리아 원 : 제네시스')).toBe('개회사');
+        expect(stripSeriesSuffix('Opening Remarks | Ethereum Korea One: Genesis')).toBe('Opening Remarks');
+        expect(stripSeriesSuffix('No suffix')).toBe('No suffix');
+    });
+
+    it('should tell series titles apart', () => {
+        expect(isSeriesTitle("What's in the Glamsterdam Upgrade | Ethereum Korea One: Genesis")).toBe(true);
+        expect(isSeriesTitle('Other channel video')).toBe(false);
     });
 });
