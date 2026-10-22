@@ -41,6 +41,14 @@ const HEADER_RE = /^■\s*(.+?)\s*$/;
 const CHAPTER_RE = /^((?:\d+:)?\d{1,2}:\d{2})\s+(.+)$/;
 const MODERATOR_RE = /^(?:Moderator|모더레이터|좌장)\s*:\s*/i;
 
+const SERIES_SUFFIX_RE = /\s*\|\s*(?:이더리움 코리아 원\s*:\s*제네시스|Ethereum Korea One\s*:\s*Genesis)\s*$/;
+
+/** "개회사 | 이더리움 코리아 원 : 제네시스" → "개회사" (영어 제목도 같은 규칙) */
+export const stripSeriesSuffix = (title: string) => title.replace(SERIES_SUFFIX_RE, '').trim();
+
+/** 시리즈 영상인지 (제목 끝에 행사명이 붙어 있다) */
+export const isSeriesTitle = (title: string) => SERIES_SUFFIX_RE.test(title);
+
 /** "1:03:03" → 3783 */
 export const toSeconds = (stamp: string): number => stamp.split(':').reduce((acc, part) => acc * 60 + Number(part), 0);
 

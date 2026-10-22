@@ -10,7 +10,8 @@ const video = {
     seconds: 1694,
     summary: '한 줄 요약',
     speakers: ['Hudson Jang, SRE & Tech Researcher, Four Pillars'],
-    lang: 'ko' as const,
+    spokenLang: 'ko' as const,
+    alternateName: "What's in the Glamsterdam Upgrade",
 };
 
 const detail = {
@@ -44,8 +45,15 @@ describe('videoObjectLd', () => {
         expect(ld.isPartOf).toEqual({ '@type': 'Event', '@id': 'https://ethcollective.xyz/events/ek1-genesis#event' });
         expect(ld.thumbnailUrl).toContain('https://i.ytimg.com/vi/abc123/hqdefault.jpg');
         expect(ld.inLanguage).toBe('ko-KR');
+        expect(ld.alternateName).toBe("What's in the Glamsterdam Upgrade");
         expect(ld.actor).toEqual([{ '@type': 'Person', name: 'Hudson Jang', jobTitle: 'SRE & Tech Researcher, Four Pillars' }]);
         expect(ld.mainEntityOfPage).toEqual({ '@type': 'WebPage', '@id': 'https://ethcollective.xyz/contents/videos/abc123' });
+    });
+
+    it('should mark English-spoken videos as English and skip a missing alternate name', () => {
+        const ld = videoObjectLd({ ...video, spokenLang: 'en', alternateName: undefined });
+        expect(ld.inLanguage).toBe('en');
+        expect(ld).not.toHaveProperty('alternateName');
     });
 
     it('should expose chapters as Clips ending at the next chapter or video end', () => {

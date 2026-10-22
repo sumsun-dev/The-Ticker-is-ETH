@@ -188,7 +188,10 @@ export interface MinimalVideo {
     seconds: number;
     summary: string;
     speakers: string[];
-    lang: 'ko' | 'en';
+    /** 영상 음성(진행) 언어 */
+    spokenLang: 'ko' | 'en';
+    /** 다른 언어 제목 (페이지는 한국어, 영어 제목을 별칭으로) */
+    alternateName?: string;
 }
 
 export interface MinimalVideoDetail {
@@ -230,6 +233,7 @@ export function videoObjectLd(video: MinimalVideo, detail?: MinimalVideoDetail) 
         '@type': 'VideoObject',
         '@id': videoNodeId(video.id),
         name: video.title,
+        ...(video.alternateName && video.alternateName !== video.title ? { alternateName: video.alternateName } : {}),
         description: video.summary,
         ...(detail?.about ? { abstract: detail.about } : {}),
         thumbnailUrl: [`https://i.ytimg.com/vi/${video.id}/maxresdefault.jpg`, `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`],
@@ -238,7 +242,7 @@ export function videoObjectLd(video: MinimalVideo, detail?: MinimalVideoDetail) 
         embedUrl: `https://www.youtube-nocookie.com/embed/${video.id}`,
         url: pageUrl,
         sameAs: `https://www.youtube.com/watch?v=${video.id}`,
-        inLanguage: video.lang === 'ko' ? 'ko-KR' : 'en',
+        inLanguage: video.spokenLang === 'ko' ? 'ko-KR' : 'en',
         actor: video.speakers.map(parseSpeaker).map((sp) => ({
             '@type': 'Person',
             name: sp.name,
