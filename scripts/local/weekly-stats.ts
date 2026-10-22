@@ -90,7 +90,7 @@ async function send(text: string) {
   const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({ chat_id: chat, text, disable_web_page_preview: true }),
+    body: JSON.stringify({ chat_id: chat, text, parse_mode: 'HTML', disable_web_page_preview: true }),
   });
   if (!res.ok) throw new Error(`sendMessage ${res.status}: ${await res.text()}`);
 }

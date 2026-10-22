@@ -219,9 +219,24 @@ export function parseLinkedIn(followersText: string, updatesText: string): LiSta
 export interface Snapshot { week: string; subscribers?: number; followers?: number }
 
 const n = (x: number) => x.toLocaleString('en-US');
-const delta = (cur: number, prev: number | undefined) => (prev === undefined ? '' : ` (전주 대비 ${cur - prev >= 0 ? '+' : ''}${n(cur - prev)})`);
-const short = (s: string, len = 40) => (s.length > len ? `${s.slice(0, len)}…` : s);
+const short = (s: string, len = 40) => (s.length > len ? `${s.slice(0, len).trim()}…` : s);
 const md = (d: string) => d.slice(5).replace('-', '.');
+const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const link = (url: string, text: string) => `<a href="${esc(url).replace(/"/g, '&quot;')}">${esc(text)}</a>`;
+/** 전주 대비 "▲12" / "▼3" / "변동 없음". 비교값이 없으면 빈 문자열 */
+const delta = (cur: number, prev: number | undefined) =>
+  prev === undefined ? '' : ` (전주 ${cur > prev ? `▲${n(cur - prev)}` : cur < prev ? `▼${n(prev - cur)}` : '변동 없음'})`;
+/** 고정폭 글꼴에서 한글은 두 칸이다 */
+const width = (s: string) => [...s].reduce((w, c) => w + (/[\u1100-\u11ff\u3130-\u318f\uac00-\ud7a3]/.test(c) ? 2 : 1), 0);
+const padEnd = (s: string, w: number) => s + ' '.repeat(Math.max(0, w - width(s)));
+/** <pre> 막대그래프. 가장 큰 값이 max칸 */
+export function bars(rows: Array<[string, number]>, opts: { max?: number; suffix?: (v: number) => string } = {}): string {
+  const max = opts.max ?? 12;
+  const top = Math.max(1, ...rows.map(([, v]) => v));
+  const lw = Math.max(...rows.map(([l]) => width(l)));
+  const lines = rows.map(([l, v]) => `${padEnd(l, lw)} ${padEnd('█'.repeat(Math.round((v / top) * max)) || (v ? '▏' : ''), max)} ${n(v)}${opts.suffix?.(v) ?? ''}`);
+  return `<pre>${esc(lines.join('\n'))}</pre>`;
+}
 
 export interface Report {
   w: Window;
@@ -234,51 +249,88 @@ export interface Report {
   titles?: Record<string, string>;
 }
 
+/** 텔레그램 HTML(parse_mode: HTML) 메시지 */
 export function formatReport(r: Report): string {
-  const out = [`ECK 주간 성과 (${md(r.w.start)} ~ ${md(r.w.end)})`];
-  const fail = (e: Error) => `수집 실패: ${e.message.split('\n')[0]}`;
+  const SITE = 'https://ethcollective.xyz';
+  const fail = (e: Error) => `수집 실패: ${esc(e.message.split('\n')[0])}`;
+  const ok = <T,>(x: T | Error | undefined): x is T => x !== undefined && !(x instanceof Error);
+  const tgTotal = ok(r.tg) ? r.tg.posts.reduce((sum, p) => sum + p.views, 0) : 0;
+  const wk = ok(r.li) ? liWeek(r.li.posts, r.w) : undefined;
+  const out = [`<b>ECK 주간 성과</b>\n${md(r.w.start)} (월) ~ ${md(r.w.end)} (일)`];
 
-  out.push('', '[홈페이지]');
-  if (r.site instanceof Error) out.push(fail(r.site));
+  const glance = [
+    ok(r.site) && `홈페이지 방문자 <b>${n(r.site.cur.visitors)}</b>명${delta(r.site.cur.visitors, r.site.prev?.visitors)}`,
+    ok(r.tg) && `텔레그램 조회 <b>${n(tgTotal)}</b>회, 구독자 ${n(r.tg.subscribers)}명${delta(r.tg.subscribers, r.prev?.subscribers)}`,
+    ok(r.li) && wk && `링크드인 노출 <b>${n(wk.impressions)}</b>회, 팔로워 ${n(r.li.followers)}명${delta(r.li.followers, r.prev?.followers)}`,
+  ].filter(Boolean);
+  if (glance.length) out.push(`<b>한눈에 보기</b>\n${glance.join('\n')}`);
+
+  // 홈페이지
+  if (r.site instanceof Error) out.push(`<b>홈페이지</b>\n${fail(r.site)}`);
   else if (r.site) {
     const { cur, prev } = r.site;
-    const pct = (a: number, b: number) => (b ? Math.round((100 * a) / b) : 0);
+    const pct = (v: number) => ` (${cur.pageLoads ? Math.round((100 * v) / cur.pageLoads) : 0}%)`;
     const dow = ['월', '화', '수', '목', '금', '토', '일'];
-    out.push(`방문자 ${n(cur.visitors)}명${delta(cur.visitors, prev?.visitors)}, 첫 진입 ${n(cur.pageLoads)}회${delta(cur.pageLoads, prev?.pageLoads)}`);
-    out.push(`신규 ${n(cur.newVisitors)}명 · 재방문 ${n(cur.visitors - cur.newVisitors)}명, 모바일 ${cur.mobilePct}%`);
-    out.push(`요일별 방문자: ${cur.daily.map(([, c], i) => `${dow[i]} ${c}`).join(' · ')}`);
-    if (cur.peakHour !== null) out.push(`가장 붐빈 시간: ${cur.peakHour}시대`);
-    if (cur.sections.length) out.push(`분야별 첫 진입: ${cur.sections.map(([s, c]) => `${s} ${c}`).join(' · ')}`);
-    if (cur.topPages.length) {
-      out.push('많이 들어온 페이지:');
-      out.push(...cur.topPages.map(([p, c], i) => `${i + 1}. ${r.titles?.[p] ? `${short(r.titles[p], 30)} (${p})` : p} ${c}회`));
+    out.push(
+      [
+        '<b>홈페이지</b>',
+        `방문자 <b>${n(cur.visitors)}</b>명${delta(cur.visitors, prev?.visitors)}, 첫 진입 ${n(cur.pageLoads)}회`,
+        `신규 ${n(cur.newVisitors)}명, 재방문 ${n(cur.visitors - cur.newVisitors)}명, 모바일 ${cur.mobilePct}%${cur.peakHour !== null ? `, 가장 붐빈 시간 ${cur.peakHour}시` : ''}`,
+      ].join('\n'),
+    );
+    out.push(`<b>요일별 방문자</b>\n${bars(cur.daily.map(([, c], i) => [dow[i], c]))}`);
+    if (cur.sources.length) {
+      const hosts = cur.refHosts.length ? `\n외부 사이트: ${cur.refHosts.map(([h, c]) => `${esc(h)} ${c}`).join(', ')}` : '';
+      out.push(`<b>유입 경로</b>\n${bars(cur.sources, { suffix: pct })}${hosts}`);
     }
-    if (cur.sources.length) out.push(`유입 경로: ${cur.sources.map(([s, c]) => `${s} ${c}(${pct(c, cur.pageLoads)}%)`).join(' · ')}`);
-    if (cur.refHosts.length) out.push(`외부 유입 사이트: ${cur.refHosts.map(([h, c]) => `${h} ${c}`).join(' · ')}`);
-    out.push(`크롤러 요청: 검색엔진 ${n(cur.bots.search)}회${cur.bots.ai.length ? `, AI ${cur.bots.ai.map(([b, c]) => `${b} ${n(c)}`).join(' · ')}` : ''}`);
-    if (cur.notFound.length) out.push(`없는 페이지(404): ${cur.notFound.map(([p, c]) => `${p} ${c}`).join(', ')}`);
+    if (cur.sections.length) out.push(`<b>분야별 첫 진입</b>\n${bars(cur.sections.slice(0, 8))}`);
+    if (cur.topPages.length) {
+      const label = (p: string) => (r.titles?.[p] ? short(r.titles[p], 32) : p === '/' ? '홈' : p);
+      out.push(`<b>많이 들어온 페이지</b>\n${cur.topPages.map(([p, c], i) => `${i + 1}. ${link(SITE + p, label(p))} <b>${c}</b>`).join('\n')}`);
+    }
+    const ai = cur.bots.ai.reduce((sum, [, c]) => sum + c, 0);
+    out.push(
+      [
+        '<b>크롤러</b>',
+        `검색엔진 ${n(cur.bots.search)}회, AI ${n(ai)}회`,
+        ...(cur.bots.ai.length ? [`AI 내역: ${cur.bots.ai.map(([b, c]) => `${esc(b)} ${n(c)}`).join(', ')}`] : []),
+        ...(cur.notFound.length ? [`방문자가 겪은 404: ${cur.notFound.map(([p, c]) => `${esc(p)} ${c}`).join(', ')}`] : []),
+      ].join('\n'),
+    );
   }
 
-  out.push('', `[텔레그램${r.tg && !(r.tg instanceof Error) ? ` @${r.tg.channel}` : ''}]`);
-  if (r.tg instanceof Error) out.push(fail(r.tg));
+  // 텔레그램
+  if (r.tg instanceof Error) out.push(`<b>텔레그램</b>\n${fail(r.tg)}`);
   else if (r.tg) {
     const { subscribers, posts, channel } = r.tg;
-    const total = posts.reduce((s, p) => s + p.views, 0);
-    out.push(`구독자 ${n(subscribers)}명${delta(subscribers, r.prev?.subscribers)}`);
-    out.push(`이번 주 글 ${posts.length}개, 조회 합계 ${n(total)}, 글당 평균 ${posts.length ? n(Math.round(total / posts.length)) : 0}`);
     const top = [...posts].sort((a, b) => b.views - a.views).slice(0, 3);
-    if (top.length) out.push('많이 본 글:', ...top.map((p) => `· ${n(p.views)}회 ${short(p.text) || '(미디어)'} t.me/${channel}/${p.id}`));
+    out.push(
+      [
+        `<b>텔레그램</b> @${esc(channel)}`,
+        `구독자 <b>${n(subscribers)}</b>명${delta(subscribers, r.prev?.subscribers)}`,
+        `글 ${posts.length}개, 조회 ${n(tgTotal)}회, 글당 평균 ${posts.length ? n(Math.round(tgTotal / posts.length)) : 0}회`,
+        ...(top.length ? ['', '<b>많이 본 글</b>', ...top.map((p, i) => `${i + 1}. ${link(`https://t.me/${channel}/${p.id}`, short(p.text, 32) || '미디어 글')} <b>${n(p.views)}</b>`)] : []),
+      ].join('\n'),
+    );
   }
 
-  out.push('', '[링크드인 ECK 페이지]');
-  if (r.li instanceof Error) out.push(fail(r.li));
-  else if (r.li) {
+  // 링크드인
+  if (r.li instanceof Error) out.push(`<b>링크드인</b>\n${fail(r.li)}`);
+  else if (r.li && wk) {
     const li = r.li;
-    out.push(`팔로워 ${n(li.followers)}명${delta(li.followers, r.prev?.followers)}`);
-    const wk = liWeek(li.posts, r.w);
-    out.push(`이번 주 글 ${wk.count}개, 노출 합계 ${n(wk.impressions)}, 글당 평균 ${wk.count ? n(Math.round(wk.impressions / wk.count)) : 0}, 반응 ${n(wk.reactions)}, 댓글 ${n(wk.comments)} (자체 링크 댓글 제외)`);
-    if (wk.top.length) out.push('노출 많은 글:', ...wk.top.map((p) => `· ${n(p.impressions)}회 (반응 ${p.reactions}, 댓글 ${p.comments}) ${short(p.title)} linkedin.com/feed/update/${p.urn}`));
-    out.push(`최근 30일: 노출 ${n(li.impressions30)}, 반응 ${n(li.reactions30)}, 새 팔로워 ${n(li.newFollowers30)}`);
+    out.push(
+      [
+        '<b>링크드인</b> ECK 페이지',
+        `팔로워 <b>${n(li.followers)}</b>명${delta(li.followers, r.prev?.followers)}`,
+        `글 ${wk.count}개, 노출 ${n(wk.impressions)}회, 글당 평균 ${wk.count ? n(Math.round(wk.impressions / wk.count)) : 0}회, 반응 ${n(wk.reactions)}, 댓글 ${n(wk.comments)}`,
+        ...(wk.top.length
+          ? ['', '<b>노출 많은 글</b>', ...wk.top.map((p, i) => `${i + 1}. ${link(`https://www.linkedin.com/feed/update/${p.urn}/`, short(p.title, 32))} <b>${n(p.impressions)}</b> (반응 ${p.reactions}, 댓글 ${p.comments})`)]
+          : []),
+        '',
+        `최근 30일: 노출 ${n(li.impressions30)}회, 반응 ${n(li.reactions30)}, 새 팔로워 ${n(li.newFollowers30)}명`,
+        '<i>댓글은 자동 게시가 다는 링크 댓글을 뺀 수</i>',
+      ].join('\n'),
+    );
   }
-  return out.join('\n');
+  return out.join('\n\n');
 }

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { formatReport, lastWeek, liWeek, parseCount, parseLinkedIn, parseLogLine, parseTgPosts, refererSource, siteStats, type LogLine } from '../lib/weekly-stats';
+import { bars, formatReport, lastWeek, liWeek, parseCount, parseLinkedIn, parseLogLine, parseTgPosts, refererSource, siteStats, type LogLine } from '../lib/weekly-stats';
 
 const line = (ip: string, when: string, path: string, ref = '-', ua = 'Mozilla/5.0 (Macintosh) Chrome/130') =>
   `${ip} - - [${when} +0000] "GET ${path} HTTP/2.0" 200 100 "${ref}" "${ua}" ethcollective.xyz`;
@@ -101,13 +101,17 @@ describe('weekly-stats', () => {
       li: { followers: 70, newFollowers30: 9, impressions30: 2880, reactions30: 31, posts: [{ title: '글', urn: 'urn:li:activity:1', date: '2026-10-13', impressions: 40, reactions: 2, comments: 2 }] },
       prev: { week: '2026-10-05', subscribers: 1500, followers: 72 },
     });
-    expect(text).toContain('ECK 주간 성과 (10.12 ~ 10.18)');
+    expect(text).toContain('<b>ECK 주간 성과</b>\n10.12 (월) ~ 10.18 (일)');
     expect(text).toContain('수집 실패: ssh 실패');
     expect(text).not.toContain('상세');
-    expect(text).toContain('구독자 1,510명 (전주 대비 +10)');
-    expect(text).toContain('팔로워 70명 (전주 대비 -2)');
-    expect(text).toContain('이번 주 글 1개, 노출 합계 40');
-    expect(text).toContain('40회 (반응 2, 댓글 1) 글');
+    expect(text).toContain('구독자 <b>1,510</b>명 (전주 ▲10)');
+    expect(text).toContain('팔로워 <b>70</b>명 (전주 ▼2)');
+    expect(text).toContain('글 1개, 노출 40회');
+    expect(text).toContain('<a href="https://www.linkedin.com/feed/update/urn:li:activity:1/">글</a> <b>40</b> (반응 2, 댓글 1)');
     expect(text).not.toMatch(/—/);
+  });
+
+  it('bars: 한글 폭을 맞추고 최대값이 max칸, HTML 이스케이프', () => {
+    expect(bars([['직접', 10], ['X', 5], ['<a>', 0]], { max: 4 })).toBe('<pre>직접 ████ 10\nX    ██   5\n&lt;a&gt;       0</pre>');
   });
 });
