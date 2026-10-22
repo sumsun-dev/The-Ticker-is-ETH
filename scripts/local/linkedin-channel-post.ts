@@ -41,6 +41,7 @@ const SEEN_FILE = join(HOME_DIR, 'linkedin-channel-seen.json');
 const arg = (n: string) => process.argv.find((a) => a.startsWith(`--${n}=`))?.split('=')[1];
 const LOGIN = process.argv.includes('--login');
 const CHECK = process.argv.includes('--check');
+const ANALYTICS = process.argv.includes('--analytics');
 const DRY = process.argv.includes('--dry');
 const SEED = process.argv.includes('--seed');
 const COMMENT_ONLY = process.argv.includes('--comment-only');
@@ -285,6 +286,23 @@ async function checkMode() {
   }
 }
 
+/** 페이지 분석 화면의 본문 텍스트를 JSON으로 출력한다 (weekly-stats가 읽는다) */
+async function analyticsMode() {
+  const ctx = await launch(HEADLESS);
+  try {
+    const page = ctx.pages()[0] ?? (await ctx.newPage());
+    const out: Record<string, string> = {};
+    for (const tab of ['followers', 'updates']) {
+      await page.goto(`https://www.linkedin.com/company/${ORG}/admin/analytics/${tab}/`, { waitUntil: 'domcontentloaded', timeout: 60_000 });
+      await page.waitForTimeout(8000);
+      out[tab] = `${page.url()}\n${await page.evaluate(() => (document.querySelector('main') ?? document.body).innerText)}`;
+    }
+    process.stdout.write(`${JSON.stringify(out)}\n`);
+  } finally {
+    await ctx.close();
+  }
+}
+
 function loginMode() {
   mkdirSync(PROFILE_DIR, { recursive: true });
   // 자동화 플래그가 붙은 창은 로그인 단계에서 막힐 수 있어, 로그인만은 일반 크롬 창을 전용 프로필로 띄운다
@@ -314,6 +332,7 @@ function acquireLock(): boolean {
 async function main() {
   if (LOGIN) return loginMode();
   if (CHECK) return checkMode();
+  if (ANALYTICS) return analyticsMode();
   if (SEED) {
     const posts = await fetchChannel();
     recordSeen(posts.map((p) => p.id));

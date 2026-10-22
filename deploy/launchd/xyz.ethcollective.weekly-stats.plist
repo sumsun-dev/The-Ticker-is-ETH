@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  ECK 주간 성과(홈페이지·텔레그램·LinkedIn)를 오너 텔레그램 DM으로 보낸다 (macOS launchd, 월요일 09:00 로컬 시각).
+  LinkedIn은 linkedin-digest와 같은 전용 크롬 프로필을 쓰므로 그 작업(10:30·18:30)과 시간을 겹치지 않는다.
+
+  Install:
+    cp deploy/launchd/xyz.ethcollective.weekly-stats.plist ~/Library/LaunchAgents/
+    launchctl load ~/Library/LaunchAgents/xyz.ethcollective.weekly-stats.plist
+  Uninstall:
+    launchctl unload ~/Library/LaunchAgents/xyz.ethcollective.weekly-stats.plist
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>xyz.ethcollective.weekly-stats</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>-lc</string>
+    <string>cd /Users/jiyepark/ECK &amp;&amp; exec npx tsx scripts/local/weekly-stats.ts</string>
+  </array>
+  <key>StartCalendarInterval</key>
+  <dict><key>Weekday</key><integer>1</integer><key>Hour</key><integer>9</integer><key>Minute</key><integer>0</integer></dict>
+  <key>StandardOutPath</key>
+  <string>/Users/jiyepark/.eck/weekly-stats.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/jiyepark/.eck/weekly-stats.log</string>
+</dict>
+</plist>
