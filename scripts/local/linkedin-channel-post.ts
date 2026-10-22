@@ -286,17 +286,48 @@ async function checkMode() {
   }
 }
 
-/** 페이지 분석 화면의 본문 텍스트를 JSON으로 출력한다 (weekly-stats가 읽는다) */
+/**
+ * 페이지 분석 화면을 JSON으로 출력한다 (weekly-stats가 읽는다): 팔로워·하이라이트 화면 텍스트, 게시물별 표(--since=YYYY-MM-DD 이후 글까지 페이지를 넘긴다).
+ * 표 열 순서(2026-10-22 실측): 제목, 형식, 타깃층, 노출수, 조회수, 클릭수, CTR, 반응, 댓글, 퍼감, 팔로워, 참여율
+ */
 async function analyticsMode() {
+  const since = arg('since') ?? '';
   const ctx = await launch(HEADLESS);
   try {
     const page = ctx.pages()[0] ?? (await ctx.newPage());
-    const out: Record<string, string> = {};
+    const out: Record<string, unknown> = {};
     for (const tab of ['followers', 'updates']) {
       await page.goto(`https://www.linkedin.com/company/${ORG}/admin/analytics/${tab}/`, { waitUntil: 'domcontentloaded', timeout: 60_000 });
       await page.waitForTimeout(8000);
       out[tab] = `${page.url()}\n${await page.evaluate(() => (document.querySelector('main') ?? document.body).innerText)}`;
     }
+    const posts: Array<{ title: string; urn: string; date: string; impressions: number; reactions: number; comments: number }> = [];
+    for (let i = 0; i < 8; i++) {
+      const rows = await page.evaluate(() =>
+        [...document.querySelectorAll('table.org-analytics__table tbody tr')].map((tr) => {
+          const cells = [...tr.querySelectorAll('td')].map((td) => (td as HTMLElement).innerText.trim());
+          // tsx가 이름 붙은 함수에 __name을 끼워 넣어 브라우저에서 깨지므로 헬퍼 함수 없이 쓴다
+          const [imp, rea, com] = [3, 7, 8].map((k) => Number((cells[k] ?? '').replace(/[^\d]/g, '')) || 0);
+          const link = tr.querySelector('a[href*="post-analytics"]');
+          const [y, m, d] = (tr.querySelector('.org-update-engagement-table__date')?.textContent ?? '').match(/\d+/g) ?? [];
+          return {
+            title: (link?.textContent ?? '').trim().replace(/\s+/g, ' '),
+            urn: /urn:li:activity:\d+/.exec(link?.getAttribute('href') ?? '')?.[0] ?? '',
+            date: y ? `${y}-${m.padStart(2, '0')}-${d.padStart(2, '0')}` : '',
+            impressions: imp,
+            reactions: rea,
+            comments: com,
+          };
+        }),
+      );
+      posts.push(...rows);
+      if (!rows.length || rows.some((r) => r.date && r.date < since)) break;
+      const next = page.getByRole('button', { name: /^(다음|Next)$/ });
+      if (!(await next.isEnabled().catch(() => false))) break;
+      await next.click();
+      await page.waitForTimeout(3000);
+    }
+    out.posts = posts;
     process.stdout.write(`${JSON.stringify(out)}\n`);
   } finally {
     await ctx.close();

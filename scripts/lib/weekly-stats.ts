@@ -64,23 +64,86 @@ export function refererSource(referer: string, site = 'ethcollective.xyz'): stri
   return '기타';
 }
 
-export interface SiteStats { visitors: number; pageLoads: number; topPages: Array<[string, number]>; sources: Array<[string, number]> }
+export interface SiteStats {
+  visitors: number;
+  /** 로그 보관 기간(14일) 안에서 이번 주에 처음 본 방문자 */
+  newVisitors: number;
+  pageLoads: number;
+  /** 모바일 UA 방문자 비율(%) */
+  mobilePct: number;
+  daily: Array<[string, number]>;
+  /** 첫 진입이 가장 많은 KST 시간대 */
+  peakHour: number | null;
+  sections: Array<[string, number]>;
+  topPages: Array<[string, number]>;
+  sources: Array<[string, number]>;
+  refHosts: Array<[string, number]>;
+  bots: { search: number; ai: Array<[string, number]> };
+  notFound: Array<[string, number]>;
+}
+
+const MOBILE_UA = /Mobile|Android|iPhone|iPad/;
+const SEARCH_BOTS = /Googlebot|bingbot|Yeti|DuckDuckBot|Applebot|Daum|YandexBot|Baiduspider/i;
+const AI_BOTS: Array<[string, RegExp]> = [
+  ['OpenAI', /GPTBot|OAI-SearchBot|ChatGPT-User/i],
+  ['Anthropic', /ClaudeBot|Claude-User|Claude-SearchBot|anthropic-ai/i],
+  ['Perplexity', /PerplexityBot|Perplexity-User/i],
+  ['Google AI', /Google-Extended|GoogleOther|Google-CloudVertexBot/i],
+  ['Meta', /meta-externalagent|FacebookBot/i],
+  ['ByteDance', /Bytespider/i],
+  ['Amazon', /Amazonbot/i],
+  ['Common Crawl', /CCBot/i],
+];
+const SECTIONS: Record<string, string> = { '': '홈', news: '뉴스', contents: '콘텐츠', debates: '논쟁', events: '이벤트', team: '팀', contributors: '팀', ecosystem: '생태계', research: '리서치', calls: '코어 콜', about: '소개' };
+
+const kstDate = (t: Date) => new Date(t.getTime() + KST).toISOString().slice(0, 10);
+const count = (xs: string[]) => [...xs.reduce((m, x) => m.set(x, (m.get(x) ?? 0) + 1), new Map<string, number>())].sort((a, b) => b[1] - a[1]);
+const hostOf = (referer: string) => {
+  try {
+    return new URL(referer).hostname.replace(/^www\./, '');
+  } catch {
+    return '';
+  }
+};
 
 /**
- * SPA라 서버에는 첫 진입만 남는다. 앱 JS(/assets/*.js)를 받아 간 IP+UA만 사람 방문자로 센다 (HTML만 긁는 스크래퍼 제외).
+ * SPA라 서버에는 첫 진입만 남는다(사이트 안 이동은 안 잡힌다). 앱 JS(/assets/*.js)를 받아 간 IP+UA만 사람 방문자로 센다 (HTML만 긁는 스크래퍼 제외).
+ * lines는 보관된 로그 전체를 받는다. 구간 이전 기록으로 신규 방문자를 가린다.
  * ponytail: IP+UA 기준 추정치. 정확도가 필요하면 Umami 같은 분석 도구를 붙인다
  */
 export function siteStats(lines: LogLine[], w: Window): SiteStats {
-  const inW = lines.filter((l) => l.method === 'GET' && l.status < 400 && !BOT_UA.test(l.ua) && inWindowKst(l.time, w));
   const key = (l: LogLine) => `${l.ip}|${l.ua}`;
-  const humans = new Set(inW.filter((l) => isAsset(l.path)).map(key));
-  const pages = inW.filter((l) => humans.has(key(l)) && isPage(l.path));
-  const count = (xs: string[]) => [...xs.reduce((m, x) => m.set(x, (m.get(x) ?? 0) + 1), new Map<string, number>())].sort((a, b) => b[1] - a[1]);
+  const get = lines.filter((l) => l.method === 'GET');
+  const inW = get.filter((l) => inWindowKst(l.time, w));
+  const people = inW.filter((l) => !BOT_UA.test(l.ua));
+  const ok = people.filter((l) => l.status < 400);
+  const humans = new Set(ok.filter((l) => isAsset(l.path)).map(key));
+  const seenBefore = new Set(get.filter((l) => kstDate(l.time) < w.start && isAsset(l.path) && l.status < 400).map(key));
+  const pages = ok.filter((l) => humans.has(key(l)) && isPage(l.path));
+  const firstSeen = new Map<string, string>();
+  for (const l of ok) if (humans.has(key(l)) && isAsset(l.path) && !firstSeen.has(key(l))) firstSeen.set(key(l), kstDate(l.time));
+  const days = Array.from({ length: 7 }, (_, i) => new Date(Date.parse(w.start) + i * DAY).toISOString().slice(0, 10));
+  const dailyCount = count([...firstSeen.values()]);
+  const hours = count(pages.map((l) => String(new Date(l.time.getTime() + KST).getUTCHours())));
+  const site = (h: string) => h === 'ethcollective.xyz';
+  const external = pages.map((l) => hostOf(l.referer)).filter((h) => h && !site(h));
   return {
     visitors: humans.size,
+    newVisitors: [...humans].filter((k) => !seenBefore.has(k)).length,
     pageLoads: pages.length,
-    topPages: count(pages.map((l) => l.path.split('?')[0])).slice(0, 5),
+    mobilePct: humans.size ? Math.round((100 * [...humans].filter((k) => MOBILE_UA.test(k)).length) / humans.size) : 0,
+    daily: days.map((d) => [d, dailyCount.find(([x]) => x === d)?.[1] ?? 0]),
+    peakHour: hours.length ? Number(hours[0][0]) : null,
+    sections: count(pages.map((l) => SECTIONS[l.path.split('?')[0].split('/')[1] ?? ''] ?? '기타')),
+    topPages: count(pages.map((l) => l.path.split('?')[0])).slice(0, 10),
     sources: count(pages.map((l) => refererSource(l.referer))),
+    refHosts: count(external).slice(0, 5),
+    bots: {
+      search: inW.filter((l) => SEARCH_BOTS.test(l.ua)).length,
+      ai: count(inW.flatMap((l) => AI_BOTS.filter(([, re]) => re.test(l.ua)).map(([name]) => name))),
+    },
+    // 취약점 스캐너(.env·.git 탐색)는 앱 JS를 받지 않으니, 실제 방문자가 겪은 깨진 링크만 남는다
+    notFound: count(people.filter((l) => l.status === 404 && humans.has(key(l)) && isPage(l.path)).map((l) => l.path.split('?')[0])).slice(0, 3),
   };
 }
 
@@ -116,7 +179,26 @@ export function parseTgPosts(html: string, channel: string): TgPost[] {
 
 /* ── LinkedIn 페이지 분석 화면 텍스트 ──────────────────────────────── */
 
-export interface LiStats { followers: number; newFollowers30: number; impressions30: number; reactions30: number; comments30: number }
+export interface LiStats { followers: number; newFollowers30: number; impressions30: number; reactions30: number }
+
+export interface LiPost { title: string; urn: string; date: string; impressions: number; reactions: number; comments: number }
+
+/**
+ * 구간 안 게시물 합계와 노출 Top 3. 댓글은 자동 게시가 글마다 다는 첫 댓글(링크) 1개를 빼고 센다.
+ * ponytail: 사람이 직접 올려 첫 댓글이 없는 글도 1을 뺀다. 그런 글이 늘면 게시물 화면에서 작성자로 거른다
+ */
+export function liWeek(posts: LiPost[], w: Window) {
+  const seen = new Set<string>();
+  const week = posts.filter((p) => p.date >= w.start && p.date <= w.end && !seen.has(p.urn) && seen.add(p.urn));
+  const external = (p: LiPost) => Math.max(0, p.comments - 1);
+  return {
+    count: week.length,
+    impressions: week.reduce((s, p) => s + p.impressions, 0),
+    reactions: week.reduce((s, p) => s + p.reactions, 0),
+    comments: week.reduce((s, p) => s + external(p), 0),
+    top: [...week].sort((a, b) => b.impressions - a.impressions).slice(0, 3).map((p) => ({ ...p, comments: external(p) })),
+  };
+}
 
 const num = (s: string | undefined) => (s ? Number(s.replace(/,/g, '')) : NaN);
 const before = (text: string, label: string) => num(new RegExp(`([\\d,]+)\\s*\\n\\s*${label}`).exec(text)?.[1]);
@@ -127,7 +209,6 @@ export function parseLinkedIn(followersText: string, updatesText: string): LiSta
     newFollowers30: before(followersText, '최근 30일의 새 팔로워'),
     impressions30: before(updatesText, '노출'),
     reactions30: before(updatesText, '반응'),
-    comments30: before(updatesText, '댓글'),
   };
   if (Number.isNaN(s.followers)) throw new Error('LinkedIn 분석 화면에서 팔로워 수를 찾지 못했습니다 (로그인 또는 화면 구조 확인)');
   return s;
@@ -147,8 +228,10 @@ export interface Report {
   /** prev는 로그 보관 기간(14일)이 전주를 다 덮을 때만 */
   site?: { cur: SiteStats; prev?: SiteStats } | Error;
   tg?: { channel: string; subscribers: number; posts: TgPost[] } | Error;
-  li?: LiStats | Error;
+  li?: (LiStats & { posts: LiPost[] }) | Error;
   prev?: Snapshot;
+  /** 많이 들어온 페이지의 제목 (path → title) */
+  titles?: Record<string, string>;
 }
 
 export function formatReport(r: Report): string {
@@ -159,9 +242,21 @@ export function formatReport(r: Report): string {
   if (r.site instanceof Error) out.push(fail(r.site));
   else if (r.site) {
     const { cur, prev } = r.site;
-    out.push(`방문자 ${n(cur.visitors)}명${delta(cur.visitors, prev?.visitors)}, 첫 진입 ${n(cur.pageLoads)}회`);
-    if (cur.topPages.length) out.push(`많이 들어온 페이지: ${cur.topPages.map(([p, c]) => `${p} ${c}`).join(', ')}`);
-    if (cur.sources.length) out.push(`유입: ${cur.sources.map(([s, c]) => `${s} ${c}`).join(' · ')}`);
+    const pct = (a: number, b: number) => (b ? Math.round((100 * a) / b) : 0);
+    const dow = ['월', '화', '수', '목', '금', '토', '일'];
+    out.push(`방문자 ${n(cur.visitors)}명${delta(cur.visitors, prev?.visitors)}, 첫 진입 ${n(cur.pageLoads)}회${delta(cur.pageLoads, prev?.pageLoads)}`);
+    out.push(`신규 ${n(cur.newVisitors)}명 · 재방문 ${n(cur.visitors - cur.newVisitors)}명, 모바일 ${cur.mobilePct}%`);
+    out.push(`요일별 방문자: ${cur.daily.map(([, c], i) => `${dow[i]} ${c}`).join(' · ')}`);
+    if (cur.peakHour !== null) out.push(`가장 붐빈 시간: ${cur.peakHour}시대`);
+    if (cur.sections.length) out.push(`분야별 첫 진입: ${cur.sections.map(([s, c]) => `${s} ${c}`).join(' · ')}`);
+    if (cur.topPages.length) {
+      out.push('많이 들어온 페이지:');
+      out.push(...cur.topPages.map(([p, c], i) => `${i + 1}. ${r.titles?.[p] ? `${short(r.titles[p], 30)} (${p})` : p} ${c}회`));
+    }
+    if (cur.sources.length) out.push(`유입 경로: ${cur.sources.map(([s, c]) => `${s} ${c}(${pct(c, cur.pageLoads)}%)`).join(' · ')}`);
+    if (cur.refHosts.length) out.push(`외부 유입 사이트: ${cur.refHosts.map(([h, c]) => `${h} ${c}`).join(' · ')}`);
+    out.push(`크롤러 요청: 검색엔진 ${n(cur.bots.search)}회${cur.bots.ai.length ? `, AI ${cur.bots.ai.map(([b, c]) => `${b} ${n(c)}`).join(' · ')}` : ''}`);
+    if (cur.notFound.length) out.push(`없는 페이지(404): ${cur.notFound.map(([p, c]) => `${p} ${c}`).join(', ')}`);
   }
 
   out.push('', `[텔레그램${r.tg && !(r.tg instanceof Error) ? ` @${r.tg.channel}` : ''}]`);
@@ -180,7 +275,10 @@ export function formatReport(r: Report): string {
   else if (r.li) {
     const li = r.li;
     out.push(`팔로워 ${n(li.followers)}명${delta(li.followers, r.prev?.followers)}`);
-    out.push(`최근 30일: 노출 ${n(li.impressions30)}, 반응 ${n(li.reactions30)}, 댓글 ${n(li.comments30)}, 새 팔로워 ${n(li.newFollowers30)}`);
+    const wk = liWeek(li.posts, r.w);
+    out.push(`이번 주 글 ${wk.count}개, 노출 합계 ${n(wk.impressions)}, 글당 평균 ${wk.count ? n(Math.round(wk.impressions / wk.count)) : 0}, 반응 ${n(wk.reactions)}, 댓글 ${n(wk.comments)} (자체 링크 댓글 제외)`);
+    if (wk.top.length) out.push('노출 많은 글:', ...wk.top.map((p) => `· ${n(p.impressions)}회 (반응 ${p.reactions}, 댓글 ${p.comments}) ${short(p.title)} linkedin.com/feed/update/${p.urn}`));
+    out.push(`최근 30일: 노출 ${n(li.impressions30)}, 반응 ${n(li.reactions30)}, 새 팔로워 ${n(li.newFollowers30)}`);
   }
   return out.join('\n');
 }

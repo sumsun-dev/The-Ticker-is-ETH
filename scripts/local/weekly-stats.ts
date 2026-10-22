@@ -13,7 +13,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { join } from 'node:path';
 import * as dotenv from 'dotenv';
-import { formatReport, lastWeek, parseLinkedIn, parseLogLine, parseTgPosts, prevWeek, siteStats, inWindowKst, type LogLine, type Report, type Snapshot, type TgPost, type Window } from '../lib/weekly-stats';
+import { formatReport, lastWeek, parseLinkedIn, parseLogLine, parseTgPosts, prevWeek, siteStats, inWindowKst, type LiPost, type LogLine, type Report, type Snapshot, type TgPost, type Window } from '../lib/weekly-stats';
 
 dotenv.config({ path: join(process.cwd(), '.env.local') });
 dotenv.config({ path: join(process.cwd(), '.env') });
@@ -63,13 +63,24 @@ async function telegram(w: Window): Promise<Report['tg']> {
   return { channel: CHANNEL, subscribers: res.result, posts: week };
 }
 
-function linkedin(): Report['li'] {
+function linkedin(w: Window): Report['li'] {
   // ponytail: 게시 작업(10:30·18:30)과 시간을 나눠 잠금 없이 돈다. 겹치게 옮기면 잠금을 공유해야 한다
-  const out = execFileSync('npx', ['tsx', 'scripts/local/linkedin-channel-post.ts', '--analytics'], { encoding: 'utf-8', timeout: 180_000, maxBuffer: 32 * 1024 * 1024 });
+  const out = execFileSync('npx', ['tsx', 'scripts/local/linkedin-channel-post.ts', '--analytics', `--since=${w.start}`], { encoding: 'utf-8', timeout: 180_000, maxBuffer: 32 * 1024 * 1024 });
   const json = out.split('\n').find((l) => l.startsWith('{'));
   if (!json) throw new Error('분석 화면 출력 없음');
-  const { followers, updates } = JSON.parse(json) as { followers: string; updates: string };
-  return parseLinkedIn(followers, updates);
+  const { followers, updates, posts } = JSON.parse(json) as { followers: string; updates: string; posts: LiPost[] };
+  return { ...parseLinkedIn(followers, updates), posts };
+}
+
+/** 많이 들어온 페이지의 제목. 정적 셸(콘텐츠·논쟁·멤버)에만 고유 제목이 있고, 나머지는 사이트 기본 제목이라 버린다 */
+async function pageTitles(paths: string[]): Promise<Record<string, string>> {
+  const titleOf = async (p: string) => {
+    const html = await (await fetch(`https://ethcollective.xyz${p}`, { signal: AbortSignal.timeout(10_000) })).text();
+    return (/<title>([^<]*)<\/title>/.exec(html)?.[1] ?? '').replace(/\s*\|\s*ECK.*$/, '').replace(/&amp;/g, '&').trim();
+  };
+  const home = await titleOf('/').catch(() => '');
+  const entries = await Promise.all(paths.map(async (p) => [p, await titleOf(p).catch(() => '')] as const));
+  return Object.fromEntries(entries.filter(([p, t]) => p !== '/' && t && t !== home));
 }
 
 async function send(text: string) {
@@ -89,8 +100,9 @@ async function main() {
   const prev = existsSync(SNAP) ? (JSON.parse(readFileSync(SNAP, 'utf-8')) as Snapshot) : undefined;
   const report: Report = { w, prev: prev && prev.week < w.start ? prev : undefined };
   try { report.site = site(w); } catch (e) { report.site = asError(e); }
+  if (report.site && !(report.site instanceof Error)) report.titles = await pageTitles(report.site.cur.topPages.map(([p]) => p));
   try { report.tg = await telegram(w); } catch (e) { report.tg = asError(e); }
-  try { report.li = linkedin(); } catch (e) { report.li = asError(e); }
+  try { report.li = linkedin(w); } catch (e) { report.li = asError(e); }
   const text = formatReport(report);
   process.stdout.write(`${text}\n`);
   if (DRY) return;
