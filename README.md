@@ -86,7 +86,7 @@ npm run dev
 | `npm run fetch:telegram` | Telegram 채널 데이터 수집 (로컬) |
 | `npm run preprocess:telegram` | Telegram 데이터 전처리 (team-enrichment + research-index + 개별 article .md 생성) |
 | `npm run fetch:news` | RSS 뉴스 피드 수집 (eth.rejamong.com) |
-| `npm run fetch:videos` | EthereumKorea YouTube 영상 메타데이터 갱신 (`src/data/videos.json`, `video-details.json`). 새 영상은 `sessionId` 직접 확인 |
+| `npm run fetch:videos` | EthereumKorea YouTube 영상 메타데이터 갱신 (`src/data/videos.json`, `video-details.json`, 한국어·영어 제목·설명 모두). 새 영상은 `sessionId` 직접 확인 |
 
 ## Deployment
 

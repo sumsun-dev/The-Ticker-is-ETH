@@ -27,7 +27,9 @@
     "chapters": "Chapters",
     "notFound": "Video not found",
     "backToVideos": "Back to videos",
-    "eventPage": "EK1 Genesis event record"
+    "eventPage": "EK1 Genesis event record",
+    "spokenKo": "In Korean",
+    "spokenEn": "In English"
   },
   "forwardedFromUnknown": "Undisclosed",
   "authorFilter": "Author",

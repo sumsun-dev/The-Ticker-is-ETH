@@ -26,7 +26,17 @@ import {
 // 노출 판정은 사이트와 같은 함수를 써야 SEO와 화면이 어긋나지 않는다
 import { isPublishable, participantCount } from '../src/utils/debates';
 import type { Debate } from '../src/data/ethDebatesData';
-import { embedUrl, maxThumbUrl, videoPagePath, watchUrl, type VideoDetail, type VideoItem } from '../src/data/videoData';
+import {
+    VIDEO_LANGS,
+    embedUrl,
+    localizeVideo,
+    maxThumbUrl,
+    videoLdInput,
+    videoPagePath,
+    watchUrl,
+    type VideoDetails,
+    type VideoItem,
+} from '../src/data/videoData';
 import { parseSpeaker } from '../src/utils/youtubeDescription';
 import { GENESIS_SESSIONS } from '../src/data/ek1GenesisData';
 
@@ -86,8 +96,12 @@ const newsFeed = readJson<{ items: Array<Record<string, string>> }>(join(DATA, '
 const ethNews = readJson<{ fetchedAt: string; items: Array<{ title: string; url: string; summary?: string }> }>(
     join(DATA, 'eth-news-inbox.json'),
 );
-const videos = readJson<VideoItem[]>(join(DATA, 'videos.json'));
-const videoDetails = readJson<Record<string, VideoDetail>>(join(DATA, 'video-details.json'));
+const videoItems = readJson<VideoItem[]>(join(DATA, 'videos.json'));
+const videoDetails = readJson<VideoDetails>(join(DATA, 'video-details.json'));
+/** shell·JSON-LD는 사이트 기본 언어(한국어)로 쓰고, 영어 제목은 alternateName으로 붙인다 */
+const videos = videoItems.map(videoLdInput);
+type ShellVideo = (typeof videos)[number];
+const SPOKEN_LABEL = { ko: '한국어 진행', en: '영어 진행' } as const;
 const ethDigests = readJson<{
     digests: Array<{
         date: string;
@@ -411,7 +425,7 @@ interface StaticPage {
     jsonLd: object[];
 }
 
-function videoListHtml(list: VideoItem[]): string {
+function videoListHtml(list: ShellVideo[]): string {
     return (
         `<ul>` +
         list
@@ -426,7 +440,7 @@ function videoListHtml(list: VideoItem[]): string {
     );
 }
 
-function videoItemListLd(list: VideoItem[]) {
+function videoItemListLd(list: ShellVideo[]) {
     return {
         '@context': 'https://schema.org',
         '@type': 'ItemList',
@@ -609,13 +623,13 @@ for (const sp of staticPages) {
 // 영상 요약 페이지 (/contents/videos/:id)
 let videoPages = 0;
 for (const v of videos) {
-    const detail = videoDetails[v.id];
+    const detail = videoDetails[v.id]?.ko;
     const path = videoPagePath(v.id);
     const speakers = v.speakers.map(parseSpeaker);
     const bodyHtml =
         `<article>` +
         `<h1>${esc(v.title)}</h1>` +
-        `<p>Ethereum Korea One: Genesis · Day ${v.day} · ${esc(v.date)} · ${esc(v.duration)}</p>` +
+        `<p>Ethereum Korea One: Genesis · Day ${v.day} · ${esc(v.date)} · ${esc(v.duration)} · ${SPOKEN_LABEL[v.spokenLang]}</p>` +
         `<iframe title="${escAttr(v.title)}" src="${escAttr(embedUrl(v.id))}" width="1280" height="720" loading="lazy" allowfullscreen></iframe>` +
         `<p>${esc(v.summary)}</p>` +
         `<p><a href="${escAttr(watchUrl(v.id))}">YouTube에서 보기</a></p>` +
@@ -662,7 +676,7 @@ const llms =
     `## Sections\n` +
     `- [About](${SITE_URL}/about): 미션과 비전\n` +
     `- [Contents](${SITE_URL}/contents): 리서치·뉴스·주간 리포트 (${contents.length}건)\n` +
-    `- [Videos](${SITE_URL}/contents): Ethereum Korea One Genesis 세션 영상 (${videos.length}개, Contents의 영상 탭)\n` +
+    `- [Videos](${SITE_URL}/contents): Ethereum Korea One Genesis 세션 영상 (${videos.length}개, Contents의 영상 탭, 한국어·영어 요약)\n` +
     `- [Ethereum News](${SITE_URL}/news): 이더리움 최신 소식 데일리 피드 (${ethNews.items.length}건)\n` +
     `- [Ethereum Debates](${SITE_URL}/debates): 코어 개발자·리서처가 갈린 쟁점 (${debates.length}건)\n` +
     `- [Team](${SITE_URL}/team): 코어팀과 기여자\n` +
@@ -670,7 +684,11 @@ const llms =
     `- [Events](${SITE_URL}/events): 이벤트\n\n` +
     `## Videos: Ethereum Korea One Genesis (2026.09.28–29, Seoul)\n` +
     videos
-        .map((v) => `- [${v.title}](${SITE_URL}${videoPagePath(v.id)}): Day ${v.day}. ${head(oneLine(v.summary), 160)} (YouTube: ${watchUrl(v.id)})`)
+        .map(
+            (v) =>
+                `- [${v.title} / ${v.alternateName}](${SITE_URL}${videoPagePath(v.id)}): Day ${v.day}, ${v.spokenLang === 'ko' ? 'Korean' : 'English'}. ` +
+                `${head(oneLine(v.summary), 160)} (YouTube: ${watchUrl(v.id)})`,
+        )
         .join('\n') +
     '\n\n' +
     `## Recent Contents\n` +
@@ -691,18 +709,28 @@ const llmsFull =
                 `## ${c.title}\n${SITE_URL}/contents/${c.id}\n${c.author} · ${c.date} · ${c.category}\n${(c.summary || '').slice(0, 300)}\n`,
         )
         .join('\n');
+const LLMS_LABELS = {
+    ko: { speakers: '연사', uploaded: '업로드', spoken: '진행 언어', spokenName: { ko: '한국어', en: '영어' } },
+    en: { speakers: 'Speakers', uploaded: 'Uploaded', spoken: 'Spoken in', spokenName: { ko: 'Korean', en: 'English' } },
+} as const;
 const llmsVideos =
-    `\n# 영상: Ethereum Korea One Genesis 세션 (${videos.length}개)\n\n` +
-    videos
-        .map((v) => {
-            const d = videoDetails[v.id];
-            return (
-                `## ${v.title}\n${SITE_URL}${videoPagePath(v.id)}\nYouTube: ${watchUrl(v.id)}\n` +
-                `Ethereum Korea One: Genesis Day ${v.day} · ${v.date} · ${v.duration} · 업로드 ${v.uploadDate.slice(0, 10)}\n` +
-                `연사: ${v.speakers.join(' / ')}\n${v.summary}\n` +
-                (d ? `${d.about}\n${d.takeaways.map((x) => `- ${x}`).join('\n')}\n` : '')
-            );
-        })
+    `\n# 영상 / Videos: Ethereum Korea One Genesis 세션 (${videoItems.length}개)\n\n` +
+    `> 영상마다 한국어와 영어 요약을 함께 싣는다. Each video has a Korean and an English summary.\n\n` +
+    videoItems
+        .map((item) =>
+            VIDEO_LANGS.map((lang) => {
+                const v = localizeVideo(item, lang);
+                const d = videoDetails[v.id]?.[lang];
+                const l = LLMS_LABELS[lang];
+                return (
+                    `## ${v.title} (${lang})\n${SITE_URL}${videoPagePath(v.id)}\nYouTube: ${watchUrl(v.id)}\n` +
+                    `Ethereum Korea One: Genesis Day ${v.day} · ${v.date} · ${v.duration} · ${l.uploaded} ${v.uploadDate.slice(0, 10)} · ` +
+                    `${l.spoken}: ${l.spokenName[v.spokenLang]}\n` +
+                    `${l.speakers}: ${v.speakers.join(' / ')}\n${v.summary}\n` +
+                    (d ? `${d.about}\n${d.takeaways.map((x) => `- ${x}`).join('\n')}\n` : '')
+                );
+            }).join('\n'),
+        )
         .join('\n');
 writeFileSync(join(DIST, 'llms-full.txt'), llmsFull + llmsVideos);
 

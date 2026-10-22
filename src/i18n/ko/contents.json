@@ -27,7 +27,9 @@
     "chapters": "챕터",
     "notFound": "영상을 찾을 수 없습니다",
     "backToVideos": "영상 목록으로",
-    "eventPage": "EK1 Genesis 행사 기록 보기"
+    "eventPage": "EK1 Genesis 행사 기록 보기",
+    "spokenKo": "한국어 진행",
+    "spokenEn": "영어 진행"
   },
   "forwardedFromUnknown": "미공개",
   "authorFilter": "저자",
