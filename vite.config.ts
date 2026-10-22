@@ -19,6 +19,8 @@ export default defineConfig(async () => {
 
   return {
     plugins,
+    // 로컬 개발: /api는 server/index.ts(기본 3001)로 넘긴다
+    server: { proxy: { '/api': 'http://127.0.0.1:3001' } },
     build: {
       rollupOptions: {
         output: {

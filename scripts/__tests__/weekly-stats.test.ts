@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { bars, formatReport, lastWeek, liWeek, parseCount, parseLinkedIn, parseLogLine, parseTgPosts, refererSource, siteStats, type LogLine } from '../lib/weekly-stats';
+import { bars, emptyHistory, formatReport, lastWeek, liWeek, mergeHistory, parseCount, parseLinkedIn, parseLogLine, parseTgPosts, refererSource, siteStats, type LogLine } from '../lib/weekly-stats';
 
 const line = (ip: string, when: string, path: string, ref = '-', ua = 'Mozilla/5.0 (Macintosh) Chrome/130') =>
   `${ip} - - [${when} +0000] "GET ${path} HTTP/2.0" 200 100 "${ref}" "${ua}" ethcollective.xyz`;
@@ -113,5 +113,20 @@ describe('weekly-stats', () => {
 
   it('bars: 한글 폭을 맞추고 최대값이 max칸, HTML 이스케이프', () => {
     expect(bars([['직접', 10], ['X', 5], ['<a>', 0]], { max: 4 })).toBe('<pre>직접 ████ 10\nX    ██   5\n&lt;a&gt;       0</pre>');
+  });
+
+  it('mergeHistory: 키별로 덮어쓰고, 링크드인 자체 댓글 1개를 빼고, 같은 주 재실행 때 실패한 채널 값은 남긴다', () => {
+    const now = new Date('2026-10-26T00:00:00Z');
+    const first = mergeHistory(emptyHistory('ch'), {
+      weeks: [{ week: '2026-10-12', tg: { subscribers: 100 }, li: { followers: 7, impressions30: 1, reactions30: 1, newFollowers30: 1 } }],
+      siteDaily: [{ date: '2026-10-12', visitors: 1, pageLoads: 1 }],
+      tgPosts: [{ id: 2, date: 'd', views: 10, text: 'x' }, { id: 1, date: 'd', views: 5, text: 'y' }],
+      liPosts: [{ title: 't', urn: 'u', date: '2026-10-12', impressions: 3, reactions: 0, comments: 1 }, { title: 'no', urn: '', date: '', impressions: 0, reactions: 0, comments: 0 }],
+    }, now);
+    const second = mergeHistory(first, { weeks: [{ week: '2026-10-12', tg: { subscribers: 101 } }], tgPosts: [{ id: 1, date: 'd', views: 9, text: 'y' }] }, now);
+    expect(second.weeks).toEqual([{ week: '2026-10-12', tg: { subscribers: 101 }, li: { followers: 7, impressions30: 1, reactions30: 1, newFollowers30: 1 } }]);
+    expect(second.tgPosts.map((p) => [p.id, p.views])).toEqual([[1, 9], [2, 10]]);
+    expect(second.liPosts).toEqual([{ title: 't', urn: 'u', date: '2026-10-12', impressions: 3, reactions: 0, comments: 0 }]);
+    expect(second.updatedAt).toBe('2026-10-26T00:00:00.000Z');
   });
 });

@@ -302,7 +302,7 @@ async function analyticsMode() {
       out[tab] = `${page.url()}\n${await page.evaluate(() => (document.querySelector('main') ?? document.body).innerText)}`;
     }
     const posts: Array<{ title: string; urn: string; date: string; impressions: number; reactions: number; comments: number }> = [];
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 40; i++) {
       const rows = await page.evaluate(() =>
         [...document.querySelectorAll('table.org-analytics__table tbody tr')].map((tr) => {
           const cells = [...tr.querySelectorAll('td')].map((td) => (td as HTMLElement).innerText.trim());

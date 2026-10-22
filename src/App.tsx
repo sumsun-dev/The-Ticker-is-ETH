@@ -20,6 +20,7 @@ const DebateDetail = React.lazy(() => import('./pages/DebateDetail'));
 const Calls = React.lazy(() => import('./pages/Calls'));
 const CallDetail = React.lazy(() => import('./pages/CallDetail'));
 const AdminLogin = React.lazy(() => import('./pages/AdminLogin'));
+const AdminStats = React.lazy(() => import('./pages/AdminStats'));
 const Profile = React.lazy(() => import('./pages/Profile'));
 // Privy SDK (~630 KB gz) mounts only on the routes that actually use login.
 const PrivyWrapper = React.lazy(() => import('./providers/PrivyWrapper'));
@@ -56,6 +57,7 @@ const AppRoutes: React.FC = () => {
           <Route path="/contents/write" element={<WriteResearch />} />
           <Route path="/profile" element={<PrivyWrapper><Profile /></PrivyWrapper>} />
           <Route path="/admin" element={<AdminLogin />} />
+          <Route path="/admin/stats" element={<AdminStats />} />
           {/* Backward-compatible redirects */}
           <Route path="/research" element={<Navigate to="/contents" replace />} />
           <Route path="/research/write" element={<Navigate to="/contents/write" replace />} />
