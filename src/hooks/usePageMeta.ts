@@ -7,7 +7,7 @@ interface PageMeta {
     image?: string;
     /** canonical/og:url. 절대 URL 또는 경로(/contents/x). 생략 시 현재 location 사용 */
     canonical?: string;
-    type?: 'website' | 'article' | 'profile';
+    type?: 'website' | 'article' | 'profile' | 'video.other';
     /** article 전용. "2026.05.31" 또는 ISO 문자열 허용 */
     publishedTime?: string;
     author?: string;

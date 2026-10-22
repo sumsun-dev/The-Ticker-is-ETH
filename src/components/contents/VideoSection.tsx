@@ -1,8 +1,7 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import { ExternalLink } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import VideoCard from './VideoCard';
-import VideoPlayerModal from './VideoPlayerModal';
 import { VIDEO_CHANNEL_URL, VIDEO_DAYS, videosByDay, type VideoItem } from '../../data/videoData';
 
 interface VideoSectionProps {
@@ -12,8 +11,6 @@ interface VideoSectionProps {
 /** Contents의 영상 탭. EK1 Genesis 세션 영상을 Day별로 묶어 보여준다 */
 const VideoSection: React.FC<VideoSectionProps> = ({ videos }) => {
     const { t } = useTranslation('contents');
-    const [playing, setPlaying] = useState<VideoItem | null>(null);
-    const closePlayer = useCallback(() => setPlaying(null), []);
 
     return (
         <div className="space-y-14">
@@ -31,7 +28,7 @@ const VideoSection: React.FC<VideoSectionProps> = ({ videos }) => {
                         </div>
                         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                             {list.map((v) => (
-                                <VideoCard key={v.id} video={v} onPlay={setPlaying} />
+                                <VideoCard key={v.id} video={v} />
                             ))}
                         </div>
                     </section>
@@ -46,8 +43,6 @@ const VideoSection: React.FC<VideoSectionProps> = ({ videos }) => {
             >
                 <ExternalLink size={14} /> {t('video.channel')}
             </a>
-
-            {playing && <VideoPlayerModal video={playing} onClose={closePlayer} />}
         </div>
     );
 };
