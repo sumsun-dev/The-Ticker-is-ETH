@@ -3,6 +3,8 @@
  * 수집(ssh·fetch·브라우저)과 송출은 scripts/local/weekly-stats.ts가 맡는다.
  */
 
+import type { LiPostRecord, SiteWeek, StatsHistory, TgPostRecord, WeekRecord } from '../../src/types/adminStats';
+
 const DAY = 24 * 60 * 60 * 1000;
 const KST = 9 * 60 * 60 * 1000;
 
@@ -64,23 +66,7 @@ export function refererSource(referer: string, site = 'ethcollective.xyz'): stri
   return '기타';
 }
 
-export interface SiteStats {
-  visitors: number;
-  /** 로그 보관 기간(14일) 안에서 이번 주에 처음 본 방문자 */
-  newVisitors: number;
-  pageLoads: number;
-  /** 모바일 UA 방문자 비율(%) */
-  mobilePct: number;
-  daily: Array<[string, number]>;
-  /** 첫 진입이 가장 많은 KST 시간대 */
-  peakHour: number | null;
-  sections: Array<[string, number]>;
-  topPages: Array<[string, number]>;
-  sources: Array<[string, number]>;
-  refHosts: Array<[string, number]>;
-  bots: { search: number; ai: Array<[string, number]> };
-  notFound: Array<[string, number]>;
-}
+export type SiteStats = SiteWeek;
 
 const MOBILE_UA = /Mobile|Android|iPhone|iPad/;
 const SEARCH_BOTS = /Googlebot|bingbot|Yeti|DuckDuckBot|Applebot|Daum|YandexBot|Baiduspider/i;
@@ -149,7 +135,7 @@ export function siteStats(lines: LogLine[], w: Window): SiteStats {
 
 /* ── 텔레그램 채널 웹 뷰 (t.me/s/<channel>) ────────────────────────── */
 
-export interface TgPost { id: number; date: string; views: number; text: string }
+export type TgPost = TgPostRecord;
 
 /** "1.2K" → 1200 */
 export const parseCount = (s: string): number => {
@@ -181,7 +167,7 @@ export function parseTgPosts(html: string, channel: string): TgPost[] {
 
 export interface LiStats { followers: number; newFollowers30: number; impressions30: number; reactions30: number }
 
-export interface LiPost { title: string; urn: string; date: string; impressions: number; reactions: number; comments: number }
+export type LiPost = LiPostRecord;
 
 /**
  * 구간 안 게시물 합계와 노출 Top 3. 댓글은 자동 게시가 글마다 다는 첫 댓글(링크) 1개를 빼고 센다.
@@ -333,4 +319,41 @@ export function formatReport(r: Report): string {
     );
   }
   return out.join('\n\n');
+}
+
+/* ── 대시보드 누적 기록 ─────────────────────────────────────────── */
+
+export const emptyHistory = (channel: string): StatsHistory => ({ updatedAt: '', channel, weeks: [], siteDaily: [], tgPosts: [], liPosts: [] });
+
+/** 키가 같으면 새 값으로 바꾸고 정렬한다 */
+function upsert<T>(old: T[], next: T[], key: (x: T) => string | number, order: (a: T, b: T) => number): T[] {
+  const m = new Map(old.map((x) => [key(x), x]));
+  for (const x of next) m.set(key(x), x);
+  return [...m.values()].sort(order);
+}
+
+export interface HistoryUpdate {
+  weeks?: WeekRecord[];
+  siteDaily?: StatsHistory['siteDaily'];
+  tgPosts?: TgPostRecord[];
+  /** 분석 표 원본(자동 첫 댓글 포함). 저장할 때 1을 뺀다 */
+  liPosts?: LiPostRecord[];
+}
+
+export function mergeHistory(h: StatsHistory, u: HistoryUpdate, now: Date): StatsHistory {
+  // 주 기록은 채널별로 합친다. 이번 수집에서 실패한 채널이 지난 값(같은 주 재실행)을 지우지 않게
+  const weeks = upsert(
+    h.weeks,
+    (u.weeks ?? []).map((w) => ({ ...h.weeks.find((x) => x.week === w.week), ...Object.fromEntries(Object.entries(w).filter(([, v]) => v !== undefined)) }) as WeekRecord),
+    (w) => w.week,
+    (a, b) => a.week.localeCompare(b.week),
+  );
+  return {
+    ...h,
+    updatedAt: now.toISOString(),
+    weeks,
+    siteDaily: upsert(h.siteDaily, u.siteDaily ?? [], (d) => d.date, (a, b) => a.date.localeCompare(b.date)),
+    tgPosts: upsert(h.tgPosts, (u.tgPosts ?? []).map((p) => ({ ...p, text: p.text.slice(0, 120) })), (p) => p.id, (a, b) => a.id - b.id),
+    liPosts: upsert(h.liPosts, (u.liPosts ?? []).filter((p) => p.urn).map((p) => ({ ...p, title: p.title.slice(0, 120), comments: Math.max(0, p.comments - 1) })), (p) => p.urn, (a, b) => a.date.localeCompare(b.date)),
+  };
 }

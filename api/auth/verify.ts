@@ -1,12 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { timingSafeEqual } from 'crypto';
-
-function safeCompare(a: string, b: string): boolean {
-  const bufA = Buffer.from(a, 'utf-8');
-  const bufB = Buffer.from(b, 'utf-8');
-  if (bufA.length !== bufB.length) return false;
-  return timingSafeEqual(bufA, bufB);
-}
+import { checkAdmin } from '../_lib/auth.js';
 
 export default function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
@@ -19,12 +12,11 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(400).json({ error: 'Password is required' });
   }
 
-  const publishPassword = process.env.PUBLISH_PASSWORD;
-  if (!publishPassword) {
+  const result = checkAdmin(password);
+  if (result === 'misconfigured') {
     return res.status(500).json({ error: 'Server misconfigured' });
   }
-
-  if (safeCompare(password, publishPassword)) {
+  if (result === 'ok') {
     return res.status(200).json({ success: true });
   }
 
