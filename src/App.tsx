@@ -12,6 +12,7 @@ const Events = React.lazy(() => import('./pages/Events'));
 const EventGenesis = React.lazy(() => import('./pages/EventGenesis'));
 const Contents = React.lazy(() => import('./pages/Contents'));
 const ContentsDetail = React.lazy(() => import('./pages/ContentsDetail'));
+const VideoDetail = React.lazy(() => import('./pages/VideoDetail'));
 const WriteResearch = React.lazy(() => import('./pages/WriteResearch'));
 const Ecosystem = React.lazy(() => import('./pages/Ecosystem'));
 const News = React.lazy(() => import('./pages/News'));
@@ -53,6 +54,8 @@ const AppRoutes: React.FC = () => {
           <Route path="/events/ek1-genesis" element={<EventGenesis />} />
           <Route path="/contents" element={<Contents />} />
           <Route path="/contents/:id" element={<ContentsDetail />} />
+          <Route path="/contents/videos" element={<Navigate to="/contents?category=Video" replace />} />
+          <Route path="/contents/videos/:videoId" element={<VideoDetail />} />
           <Route path="/contents/write" element={<WriteResearch />} />
           <Route path="/profile" element={<PrivyWrapper><Profile /></PrivyWrapper>} />
           <Route path="/admin" element={<AdminLogin />} />

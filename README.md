@@ -28,6 +28,7 @@ ECK(Ethereum Collective Korea) 공식 홈페이지. 한국 이더리움 생태�
 - Research 블로그 (작성/열람, 패스프레이즈 인증, Telegram 카테고리, 동적 로딩 + Load More 페이지네이션)
 - News 페이지 (이더리움 주간 리서치 리포트 by @r2jamong, RSS 기반)
 - Events 페이지
+- 영상: Contents의 영상 탭(EK1 Genesis 세션 영상, 카드 클릭 시 YouTube) + 세션 요약 페이지 `/contents/videos/:id` (임베드 플레이어, 챕터, VideoObject/Clip JSON-LD)
 - 다국어 지원 (한국어 기본, 영어 전환 — KO/EN 토글)
 - 이더리움 다이아몬드 커스텀 커서 + Trail 효과 (데스크탑)
 - Telegram 채널 메시지 기반 기여도 분석
@@ -85,6 +86,7 @@ npm run dev
 | `npm run fetch:telegram` | Telegram 채널 데이터 수집 (로컬) |
 | `npm run preprocess:telegram` | Telegram 데이터 전처리 (team-enrichment + research-index + 개별 article .md 생성) |
 | `npm run fetch:news` | RSS 뉴스 피드 수집 (eth.rejamong.com) |
+| `npm run fetch:videos` | EthereumKorea YouTube 영상 메타데이터 갱신 (`src/data/videos.json`, `video-details.json`). 새 영상은 `sessionId` 직접 확인 |
 
 ## Deployment
 

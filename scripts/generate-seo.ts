@@ -19,12 +19,16 @@ import {
     breadcrumbLd,
     faqLd,
     collectionPageLd,
+    videoObjectLd,
+    ek1GenesisEventLd,
     SITE_URL,
 } from '../src/utils/structuredData';
 // 노출 판정은 사이트와 같은 함수를 써야 SEO와 화면이 어긋나지 않는다
 import { isPublishable, participantCount } from '../src/utils/debates';
 import type { Debate } from '../src/data/ethDebatesData';
-import { watchUrl, type VideoItem } from '../src/data/videoData';
+import { embedUrl, maxThumbUrl, videoPagePath, watchUrl, type VideoDetail, type VideoItem } from '../src/data/videoData';
+import { parseSpeaker } from '../src/utils/youtubeDescription';
+import { GENESIS_SESSIONS } from '../src/data/ek1GenesisData';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -38,6 +42,13 @@ const BODY_MAX = 20000;
 // ── helpers ────────────────────────────────────────────────
 const esc = (s = '') => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const escAttr = (s = '') => esc(s).replace(/"/g, '&quot;');
+/** <script> 안에 넣는 JSON. 외부(YouTube 설명란 등) 문자열의 </script> 탈출을 막는다 */
+const toJsonLd = (data: unknown) =>
+    JSON.stringify(data).replace(/</g, '\\u003c').replace(/\u2028/g, '\\u2028').replace(/\u2029/g, '\\u2029');
+/** 메타·llms 한 줄용: 개행을 공백으로 */
+const oneLine = (s = '') => s.replace(/\s+/g, ' ').trim();
+/** 서로게이트 쌍을 자르지 않는 앞부분 */
+const head = (s: string, n: number) => Array.from(s).slice(0, n).join('');
 
 function readJson<T>(p: string): T {
     return JSON.parse(readFileSync(p, 'utf8')) as T;
@@ -76,6 +87,7 @@ const ethNews = readJson<{ fetchedAt: string; items: Array<{ title: string; url:
     join(DATA, 'eth-news-inbox.json'),
 );
 const videos = readJson<VideoItem[]>(join(DATA, 'videos.json'));
+const videoDetails = readJson<Record<string, VideoDetail>>(join(DATA, 'video-details.json'));
 const ethDigests = readJson<{
     digests: Array<{
         date: string;
@@ -152,7 +164,14 @@ const debateEntries: SitemapEntry[] = debates.map((d) => ({
     priority: '0.6',
 }));
 
-const allEntries = [...staticRoutes, ...contentEntries, ...memberEntries, ...debateEntries];
+const videoEntries: SitemapEntry[] = videos.map((v) => ({
+    loc: videoPagePath(v.id),
+    lastmod: new Date(v.uploadDate).toISOString().slice(0, 10),
+    changefreq: 'monthly',
+    priority: '0.6',
+}));
+
+const allEntries = [...staticRoutes, ...contentEntries, ...videoEntries, ...memberEntries, ...debateEntries];
 
 const sitemapXml =
     '<?xml version="1.0" encoding="UTF-8"?>\n' +
@@ -185,7 +204,9 @@ interface ShellOptions {
     description: string;
     url: string;
     image: string;
-    type: 'article' | 'profile' | 'website';
+    type: 'article' | 'profile' | 'website' | 'video.other';
+    /** og:video (임베드 URL) */
+    video?: string;
     publishedTime?: string;
     author?: string;
     jsonLd: object[];
@@ -210,7 +231,12 @@ function buildShell(o: ShellOptions): string {
     const extra: string[] = [];
     if (o.publishedTime) extra.push(`<meta property="article:published_time" content="${escAttr(o.publishedTime)}" />`);
     if (o.author) extra.push(`<meta property="article:author" content="${escAttr(o.author)}" />`);
-    extra.push(`<script type="application/ld+json">${JSON.stringify(o.jsonLd)}</script>`);
+    if (o.video) {
+        extra.push(`<meta property="og:video" content="${escAttr(o.video)}" />`);
+        extra.push(`<meta property="og:video:secure_url" content="${escAttr(o.video)}" />`);
+        extra.push(`<meta property="og:video:type" content="text/html" />`);
+    }
+    extra.push(`<script type="application/ld+json">${toJsonLd(o.jsonLd)}</script>`);
     html = html.replace('</head>', () => `    ${extra.join('\n    ')}\n  </head>`);
 
     html = html.replace('<div id="root"></div>', () => `<div id="root">${o.bodyHtml}</div>`);
@@ -385,6 +411,36 @@ interface StaticPage {
     jsonLd: object[];
 }
 
+function videoListHtml(list: VideoItem[]): string {
+    return (
+        `<ul>` +
+        list
+            .map(
+                (v) =>
+                    `<li><a href="${escAttr(videoPagePath(v.id))}">Day ${v.day} · ${esc(v.title)}</a> — ` +
+                    `${esc(v.speakers.map((sp) => parseSpeaker(sp).name).join(', '))} ` +
+                    `(<a href="${escAttr(watchUrl(v.id))}">YouTube</a>)</li>`,
+            )
+            .join('') +
+        `</ul>`
+    );
+}
+
+function videoItemListLd(list: VideoItem[]) {
+    return {
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        name: 'Ethereum Korea One Genesis 세션 영상',
+        numberOfItems: list.length,
+        itemListElement: list.map((v, i) => ({
+            '@type': 'ListItem',
+            position: i + 1,
+            url: `${SITE_URL}${videoPagePath(v.id)}`,
+            name: v.title,
+        })),
+    };
+}
+
 const staticPages: StaticPage[] = [
     {
         path: '',
@@ -418,8 +474,8 @@ const staticPages: StaticPage[] = [
             `<h1>Contents</h1>` +
             `<p>이더리움 리서치, 단신, 주간 리포트, 뉴스 등 총 ${contents.length}건의 콘텐츠를 제공합니다.</p>` +
             `<h2>최근 콘텐츠</h2>${recentLinks}` +
-            `<h2>영상: Ethereum Korea One Genesis 세션</h2>` +
-            `<ul>${videos.map((v) => `<li><a href="${watchUrl(v.id)}">Day ${v.day} · ${esc(v.title)}</a></li>`).join('')}</ul>`,
+            `<h2>영상: Ethereum Korea One Genesis 세션 ${videos.length}개</h2>` +
+            videoListHtml(videos),
         jsonLd: [
             collectionPageLd({
                 name: 'Contents',
@@ -427,6 +483,7 @@ const staticPages: StaticPage[] = [
                 description: '이더리움 리서치·뉴스·주간 리포트',
                 items: sortedContents.slice(0, 50).map((c) => ({ name: c.title, url: `/contents/${c.id}` })),
             }),
+            videoItemListLd(videos),
         ],
     },
     {
@@ -516,9 +573,19 @@ const staticPages: StaticPage[] = [
     {
         path: 'events/ek1-genesis',
         title: 'Ethereum Korea One · Genesis',
-        description: 'Ethereum Korea One Genesis 빌더 데이(2026.09.29, Build Beyond the Narrative) 기록. 세션 요약과 현장 사진.',
-        bodyHtml: `<h1>Ethereum Korea One · Genesis</h1><p>2026.09.29 성수. 빌더 데이 Build Beyond the Narrative의 세션 기록입니다.</p>`,
-        jsonLd: [],
+        description: `Ethereum Korea One Genesis(2026.09.28–29) 기록. 빌더 데이 세션 요약, 현장 사진, 세션 영상 ${videos.length}개.`,
+        bodyHtml:
+            `<h1>Ethereum Korea One · Genesis</h1>` +
+            `<p>이더리움 코리아 컨소시엄이 연 이틀간의 행사입니다. Day 1(2026.09.28 콘래드 서울)은 금융기관 초청 행사, Day 2(2026.09.29 성수)는 빌더 데이 Build Beyond the Narrative였습니다.</p>` +
+            `<h2>Day 2 세션</h2><ul>` +
+            GENESIS_SESSIONS.map((s) => {
+                const v = videos.find((x) => x.sessionId === s.id);
+                const title = v ? `<a href="${escAttr(videoPagePath(v.id))}">${esc(s.title)}</a>` : esc(s.title);
+                return `<li>${esc(s.time)} ${esc(s.format)} · ${title} — ${esc(s.speakers)}${s.summary ? `<p>${esc(s.summary)}</p>` : ''}</li>`;
+            }).join('') +
+            `</ul>` +
+            `<h2>세션 영상</h2>${videoListHtml(videos)}`,
+        jsonLd: [ek1GenesisEventLd(videos)],
     },
 ];
 
@@ -539,6 +606,49 @@ for (const sp of staticPages) {
     staticPagesCount++;
 }
 
+// 영상 요약 페이지 (/contents/videos/:id)
+let videoPages = 0;
+for (const v of videos) {
+    const detail = videoDetails[v.id];
+    const path = videoPagePath(v.id);
+    const speakers = v.speakers.map(parseSpeaker);
+    const bodyHtml =
+        `<article>` +
+        `<h1>${esc(v.title)}</h1>` +
+        `<p>Ethereum Korea One: Genesis · Day ${v.day} · ${esc(v.date)} · ${esc(v.duration)}</p>` +
+        `<iframe title="${escAttr(v.title)}" src="${escAttr(embedUrl(v.id))}" width="1280" height="720" loading="lazy" allowfullscreen></iframe>` +
+        `<p>${esc(v.summary)}</p>` +
+        `<p><a href="${escAttr(watchUrl(v.id))}">YouTube에서 보기</a></p>` +
+        `<h2>연사</h2><ul>${speakers.map((sp) => `<li>${esc(sp.name)}${sp.title ? `, ${esc(sp.title)}` : ''}${sp.moderator ? ' (모더레이터)' : ''}</li>`).join('')}</ul>` +
+        (detail
+            ? `<h2>세션 소개</h2><p>${esc(detail.about)}</p>` +
+              `<h2>핵심 요약</h2><ul>${detail.takeaways.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>` +
+              `<h2>챕터</h2><ol>${detail.chapters.map((c) => `<li><a href="${escAttr(`${path}?t=${c.start}`)}">${esc(c.label)}</a></li>`).join('')}</ol>`
+            : '') +
+        `<p><a href="/contents?category=Video">← 영상 목록</a> · <a href="/events/ek1-genesis">EK1 Genesis 행사 기록</a></p>` +
+        `</article>`;
+
+    const html = buildShell({
+        title: v.title,
+        description: oneLine(v.summary),
+        url: `${SITE_URL}${path}`,
+        image: maxThumbUrl(v.id),
+        type: 'video.other',
+        video: embedUrl(v.id),
+        jsonLd: [
+            videoObjectLd(v, detail),
+            breadcrumbLd([
+                { name: 'Home', url: '/' },
+                { name: 'Contents', url: '/contents' },
+                { name: v.title, url: path },
+            ]),
+        ],
+        bodyHtml,
+    });
+    writePage(path.slice(1), html);
+    videoPages++;
+}
+
 // ── 3) llms.txt ────────────────────────────────────────────
 const recent = [...contents]
     .sort((a, b) => (b.date || '').localeCompare(a.date || ''))
@@ -552,11 +662,17 @@ const llms =
     `## Sections\n` +
     `- [About](${SITE_URL}/about): 미션과 비전\n` +
     `- [Contents](${SITE_URL}/contents): 리서치·뉴스·주간 리포트 (${contents.length}건)\n` +
+    `- [Videos](${SITE_URL}/contents): Ethereum Korea One Genesis 세션 영상 (${videos.length}개, Contents의 영상 탭)\n` +
     `- [Ethereum News](${SITE_URL}/news): 이더리움 최신 소식 데일리 피드 (${ethNews.items.length}건)\n` +
     `- [Ethereum Debates](${SITE_URL}/debates): 코어 개발자·리서처가 갈린 쟁점 (${debates.length}건)\n` +
     `- [Team](${SITE_URL}/team): 코어팀과 기여자\n` +
     `- [Ecosystem](${SITE_URL}/ecosystem): 이더리움 생태계\n` +
     `- [Events](${SITE_URL}/events): 이벤트\n\n` +
+    `## Videos: Ethereum Korea One Genesis (2026.09.28–29, Seoul)\n` +
+    videos
+        .map((v) => `- [${v.title}](${SITE_URL}${videoPagePath(v.id)}): Day ${v.day}. ${head(oneLine(v.summary), 160)} (YouTube: ${watchUrl(v.id)})`)
+        .join('\n') +
+    '\n\n' +
     `## Recent Contents\n` +
     recent
         .map((c) => `- [${c.title}](${SITE_URL}/contents/${c.id})${c.summary ? `: ${c.summary.slice(0, 120)}` : ''}`)
@@ -575,7 +691,20 @@ const llmsFull =
                 `## ${c.title}\n${SITE_URL}/contents/${c.id}\n${c.author} · ${c.date} · ${c.category}\n${(c.summary || '').slice(0, 300)}\n`,
         )
         .join('\n');
-writeFileSync(join(DIST, 'llms-full.txt'), llmsFull);
+const llmsVideos =
+    `\n# 영상: Ethereum Korea One Genesis 세션 (${videos.length}개)\n\n` +
+    videos
+        .map((v) => {
+            const d = videoDetails[v.id];
+            return (
+                `## ${v.title}\n${SITE_URL}${videoPagePath(v.id)}\nYouTube: ${watchUrl(v.id)}\n` +
+                `Ethereum Korea One: Genesis Day ${v.day} · ${v.date} · ${v.duration} · 업로드 ${v.uploadDate.slice(0, 10)}\n` +
+                `연사: ${v.speakers.join(' / ')}\n${v.summary}\n` +
+                (d ? `${d.about}\n${d.takeaways.map((x) => `- ${x}`).join('\n')}\n` : '')
+            );
+        })
+        .join('\n');
+writeFileSync(join(DIST, 'llms-full.txt'), llmsFull + llmsVideos);
 
 // ── 4) RSS 2.0 (dist/feed.xml) ─────────────────────────────
 function toRfc822(date: string): string {
@@ -618,5 +747,5 @@ writeFileSync(join(DIST, 'feed.xml'), rss);
 
 // ── 요약 출력 ───────────────────────────────────────────────
 console.log(
-    `[generate-seo] sitemap: ${allEntries.length} urls · static: ${staticPagesCount} · content shells: ${contentPages} · debate shells: ${debatePages} · member shells: ${memberPages} · llms.txt: ${recent.length} · llms-full: ${sortedContents.length} · rss: ${feedItems.length}`,
+    `[generate-seo] sitemap: ${allEntries.length} urls · static: ${staticPagesCount} · content shells: ${contentPages} · debate shells: ${debatePages} · member shells: ${memberPages} · video shells: ${videoPages} · llms.txt: ${recent.length} · llms-full: ${sortedContents.length} · rss: ${feedItems.length}`,
 );

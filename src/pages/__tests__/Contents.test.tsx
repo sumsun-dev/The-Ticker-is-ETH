@@ -40,21 +40,18 @@ describe('Contents', () => {
         expect(screen.queryByText('리서치 글 하나')).not.toBeInTheDocument();
         const day1 = screen.getByRole('region', { name: /Day 1/ });
         const day2 = screen.getByRole('region', { name: /Day 2/ });
-        expect(within(day1).getAllByRole('button')).toHaveLength(14);
-        expect(within(day2).getAllByRole('button')).toHaveLength(16);
+        expect(within(day1).getAllByRole('link', { name: /세션 요약/ })).toHaveLength(14);
+        expect(within(day2).getAllByRole('link', { name: /세션 요약/ })).toHaveLength(16);
     });
 
-    it('should open the player when a video is clicked', async () => {
+    it('should send video cards to YouTube', async () => {
         renderWithProviders(<Contents />);
         await waitFor(() => expect(screen.getByText('리서치 글 하나')).toBeInTheDocument());
         fireEvent.click(screen.getByRole('button', { name: '영상' }));
-        fireEvent.click(screen.getByRole('button', { name: /글램스터담 업그레이드에 담긴 것/ }));
 
-        const dialog = screen.getByRole('dialog');
-        expect(within(dialog).getByTitle('글램스터담 업그레이드에 담긴 것')).toHaveAttribute(
-            'src',
-            'https://www.youtube-nocookie.com/embed/wr6JU4-7M7A?autoplay=1&rel=0',
-        );
+        const card = screen.getByRole('link', { name: /글램스터담 업그레이드에 담긴 것\s*\(YouTube/ });
+        expect(card).toHaveAttribute('href', 'https://www.youtube.com/watch?v=wr6JU4-7M7A');
+        expect(card).toHaveAttribute('target', '_blank');
     });
 
     it('should open the video tab from ?category=Video', async () => {

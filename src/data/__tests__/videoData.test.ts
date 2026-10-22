@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { VIDEOS, videosByDay, thumbUrl, watchUrl, embedUrl, filterVideos } from '../videoData';
+import { VIDEOS, videosByDay, thumbUrl, watchUrl, embedUrl, filterVideos, loadVideoDetails, playerUrl, VIDEO_ID_RE } from '../videoData';
 import { GENESIS_SESSIONS } from '../ek1GenesisData';
 
 describe('videoData', () => {
@@ -7,6 +7,10 @@ describe('videoData', () => {
         expect(VIDEOS).toHaveLength(30);
         expect(videosByDay(1)).toHaveLength(14);
         expect(videosByDay(2)).toHaveLength(16);
+    });
+
+    it('should only hold valid YouTube ids', () => {
+        expect(VIDEOS.every((v) => VIDEO_ID_RE.test(v.id))).toBe(true);
     });
 
     it('should not repeat a video id', () => {
@@ -28,10 +32,32 @@ describe('videoData', () => {
         expect(VIDEOS.every((v) => !v.title.includes('|'))).toBe(true);
     });
 
+    it('should carry upload date, length and speakers for every video', () => {
+        for (const v of VIDEOS) {
+            expect(v.uploadDate).toMatch(/^2026-\d{2}-\d{2}T/);
+            expect(v.seconds).toBeGreaterThan(0);
+            expect(v.speakers.length).toBeGreaterThan(0);
+            expect(v.summary.length).toBeGreaterThan(0);
+        }
+    });
+
+    it('should have session details for every video', async () => {
+        const details = await loadVideoDetails();
+        for (const v of VIDEOS) {
+            const d = details[v.id];
+            expect(d, v.id).toBeDefined();
+            expect(d.takeaways.length).toBeGreaterThan(0);
+            expect(d.chapters[0].start).toBe(0);
+            expect(d.chapters.at(-1)!.start).toBeLessThan(v.seconds);
+        }
+    });
+
     it('should build YouTube urls', () => {
         expect(thumbUrl('abc')).toBe('https://i.ytimg.com/vi/abc/hqdefault.jpg');
         expect(watchUrl('abc')).toBe('https://www.youtube.com/watch?v=abc');
-        expect(embedUrl('abc')).toBe('https://www.youtube-nocookie.com/embed/abc?autoplay=1&rel=0');
+        expect(embedUrl('abc')).toBe('https://www.youtube-nocookie.com/embed/abc');
+        expect(playerUrl('abc', 76)).toBe('https://www.youtube-nocookie.com/embed/abc?start=76&autoplay=1');
+        expect(playerUrl('abc')).toBe('https://www.youtube-nocookie.com/embed/abc');
     });
 
     it('should filter by title case-insensitively', () => {

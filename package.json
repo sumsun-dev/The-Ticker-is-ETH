@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build && npm run generate:seo",
     "generate:seo": "npx tsx scripts/generate-seo.ts",
+    "fetch:videos": "npx tsx scripts/fetch-youtube-videos.ts",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest",

@@ -1,0 +1,1444 @@
+{
+  "i6jbGYiQVEo": {
+    "about": "A look back at the past 12 months of the Ethereum Korea Consortium (EKC), and at how the Korean market looks from abroad. The session also covers why institutions choose Ethereum and what challenges remain for adopting public blockchains. Adrian Li spoke in a personal capacity.",
+    "takeaways": [
+      "EKC launched with an Ethereum Foundation grant and now has about 13 member companies, co-run by Nonce Classic and ECK. Over the past year it held two closed-door policy roundtables, on July 21 and September 8, and published a Korean edition of the Ethereum guide for governments and institutions.",
+      "Adrian Li explained that rather than building relationships with every party in Asia one by one, the Ethereum Foundation looks for local individuals and organizations who share its values and helps them run programs and drive public blockchain adoption.",
+      "A year ago, conversations were still trying to figure out \"what is the blockchain for.\" Now they have moved to how to map existing systems onto the new technology and where to find concrete use cases. Adrian Li, who has 10 years in the industry, said a definite qualitative change has been visible in Korea over the past 12 months.",
+      "Reasons institutions choose Ethereum: it is the longest-lasting smart contract chain, it is decentralized and robust, and choosing a competing technology can bring vendor lock-in and uncertainty.",
+      "Youbin Kang noted that KRW stablecoins, STO and RWA, CBDC and deposit tokens, and digital identity are each discussed under different bills and ministries, yet technically all of them require a trusted settlement and verification layer. The question has shifted from \"whether to use it\" to \"how to use it.\"",
+      "Remaining obstacles include regulation that differs by jurisdiction and entity, and the maturity of privacy technology."
+    ],
+    "chapters": [
+      {
+        "start": 0,
+        "label": "Opening: introducing the Ethereum Korea Consortium"
+      },
+      {
+        "start": 37,
+        "label": "The Ethereum Foundation's approach to Asia"
+      },
+      {
+        "start": 106,
+        "label": "The consortium's past 12 months"
+      },
+      {
+        "start": 142,
+        "label": "A year in Korea, seen from abroad"
+      },
+      {
+        "start": 224,
+        "label": "Why institutions choose Ethereum"
+      },
+      {
+        "start": 271,
+        "label": "Four policy agendas and the settlement and verification layer"
+      },
+      {
+        "start": 332,
+        "label": "Remaining challenges: regulation and privacy"
+      },
+      {
+        "start": 401,
+        "label": "Wrap-up"
+      }
+    ]
+  },
+  "H6BVBXwCFsM": {
+    "about": "곽봉석 대표는 이더리움을 전통금융과 별개로 작동하는 기술이 아니라, 금융기관과 시장을 신뢰 가능한 방식으로 연결하는 공통 인프라로 바라봅니다. 국내에서는 부산 토큰증권 프로젝트로, 글로벌에서는 이더리움 생태계와의 협력으로 어떻게 실행해 나갈지 설명합니다.",
+    "takeaways": [
+      "타이틀 스폰서 참여는 단순 후원이 아니라, 한국 전통금융기관이 디지털 자산 전환의 구심점이 되어야 한다는 판단과 책임 있는 실행으로 먼저 보여주겠다는 의지라고 밝혔습니다.",
+      "이더리움 위에서 자산의 발행, 이전, 정산 방식을 새롭게 설계할 수 있지만 \"기술 그 자체가 금융의 답은 아니다\"라며, 전통금융의 책임과 블록체인의 개방성이 함께 작동해야 시장의 신뢰를 얻는다고 강조했습니다.",
+      "DB증권 디지털자산사업팀은 2025년 11월 태스크포스로 출발해 2026년 5월 정규 조직으로 전환했으며, 토큰증권 발행과 구조화, 플랫폼 구축, 정부 및 글로벌 협력의 세 축으로 사업을 추진합니다.",
+      "첫 사례는 과학기술정보통신부와 한국인터넷진흥원(KISA) 지원 아래 부산에서 추진 중인 탄소감축 STO 플랫폼 개발 및 사업화 프로젝트입니다. 부산 스타트업 MarinaChain과 컨소시엄을 구성해 DB증권이 STO 구조 설계와 금융구조화를 맡고 있으며, 목표는 기술 시연이 아니라 토큰증권이 실물 경제의 자금 조달 수단으로 안착할 수 있는지 검증하는 것입니다.",
+      "지난 7월 Optimism Foundation과 맺은 파트너십을 글로벌 확장의 첫걸음으로 소개하며, 규제와 투자자 보호의 울타리 안에서 글로벌 생태계의 유연성을 더하는 구조를 설계하겠다고 밝혔습니다.",
+      "글로벌 기관에는 한국 시장이 높은 디지털 금융 이용도, 탄탄한 자본시장 인프라, 분명한 투자자 보호 기준을 갖춘 전환점에 있다고 소개하고, \"성급한 홍보보다 신뢰할 수 있는 실행\"에 집중하겠다고 말했습니다."
+    ],
+    "chapters": [
+      {
+        "start": 0,
+        "label": "인사와 타이틀 스폰서 참여 이유"
+      },
+      {
+        "start": 71,
+        "label": "공통 인프라로서의 이더리움"
+      },
+      {
+        "start": 129,
+        "label": "실행 중심 전략과 디지털자산사업팀"
+      },
+      {
+        "start": 174,
+        "label": "부산 탄소감축 STO 프로젝트"
+      },
+      {
+        "start": 238,
+        "label": "Optimism Foundation 파트너십과 글로벌 확장"
+      },
+      {
+        "start": 316,
+        "label": "글로벌 기관과 파트너에게 전하는 메시지"
+      },
+      {
+        "start": 393,
+        "label": "맺음말"
+      }
+    ]
+  },
+  "YpTjndgcq7E": {
+    "about": "A 20-minute conversation between Tom Lee, co-founder of Fundstrat and Chairman of BitMine, and Youbin Kang of Nonce Classic. Topics include Ethereum's role as distinct from Bitcoin, the link between the AI agent economy and blockchain, how the market misunderstands blockchain value capture, and how Lee views Korea's permissioned security token framework. The speaker's remarks are personal views and not investment advice.",
+    "takeaways": [
+      "Tom Lee described a career spent having \"always thought in generation cycles.\" Lee sees the entire banking industry upgrading to a 21st-century architecture over the next 10 to 20 years, and with AI innovation added, the settlement rails for finance and AI sitting on crypto. Lee said a DAT for Hyperliquid, Zcash, or Solana could have been launched, but Ethereum was chosen as the bet for the next generation.",
+      "Bitcoin is solidifying as a store of value, but that does not make it the best platform to be the settlement rail of the future. As money becomes software, and stocks, bonds, real estate, reputation, and airline points all become forms of money, Lee sees tokenization as a major pillar for Ethereum.",
+      "The second pillar is AI and agentic systems. Citing early days as a telecom analyst, when the first report covered 34 million mobile phones and the number is now 9 billion, Lee said that viewing AI agents as a simple extension of what we do today is \"under-imagining what's going to happen.\"",
+      "Lee said blockchain may be the only way to enforce, in the middle of a transaction, that an AI does what it was asked to do, and to make it stop working or go unpaid if it does not. Because of trust issues and micropayments, AI agents are expected to use crypto wallets instead of traditional bank accounts or cards.",
+      "Viewing gas fees as cash flow is a big misunderstanding of blockchain value capture, Lee said. The biggest driver of the stock market is not earnings (E) but the store-of-value element of the P/E multiple. Asset tokenization and 24/7 trading are only the beginning, and new structures, such as prediction markets, could blur the line between debt and equity. Lee compared Ethereum to \"the land or the office building\" where all of this takes place.",
+      "On Korea's security token framework, which keeps securities ledgers permissioned, Lee said it is understandable given public policy considerations such as government sovereignty, taxation, and protection of critical industries. But it is not the approach the rest of the world will take, and it will not limit global tokenization. Lee's advice to Korean institutions: in every technology wave, many companies had to disrupt themselves to survive."
+    ],
+    "chapters": [
+      {
+        "start": 0,
+        "label": "Introducing Tom Lee"
+      },
+      {
+        "start": 63,
+        "label": "Why BitMine chose Ethereum"
+      },
+      {
+        "start": 183,
+        "label": "Ethereum's role compared with Bitcoin"
+      },
+      {
+        "start": 316,
+        "label": "The second pillar: AI and agentic systems"
+      },
+      {
+        "start": 364,
+        "label": "Connecting AI agents and Ethereum"
+      },
+      {
+        "start": 612,
+        "label": "Blockchain value capture the market is missing"
+      },
+      {
+        "start": 848,
+        "label": "Korea's security token framework and other paths"
+      },
+      {
+        "start": 1011,
+        "label": "Advice for Korean institutions"
+      },
+      {
+        "start": 1109,
+        "label": "A question from Korean shareholders and wrap-up"
+      }
+    ]
+  },
+  "GGH1vpkw7h4": {
+    "about": "The session covers the restructuring of the Ethereum Foundation (EF) and the three new organizations it spawned, bottlenecks to institutional adoption, the direction of US regulation, and how public and private chains relate. Hear Joe Lubin's view on which institutional transactions should settle on public Ethereum and which belong on permissioned chains.",
+    "takeaways": [
+      "Joe Lubin recalled that after the global financial crisis, the system felt like it carried too much debt. Bitcoin invented decentralized trust, but the technology was narrow and made it hard to build anything meaningful on top. Lubin met Vitalik Buterin in early 2014, felt that decentralized trust \"should be applied to everything,\" and joined Ethereum. Consensys was founded by Lubin about six months before the network launched.",
+      "The EF took a minimalist approach for a while, but as the world grew more complex with AI, geopolitical complications, and rising debt, it narrowed its focus to cypherpunk principles and CROPS (censorship resistance, open source, privacy, security). In response, ecosystem contributors including BitMine, SharpLink, and Joe Lubin pooled funding for ETH Labs, Ethereum Institutional, and EthSystems, which Lubin called \"the summer of Ethereum love.\"",
+      "ETH Labs focuses on broader institutional and retail adoption. Ethereum Institutional acts as a neutral front door and help desk that guides institutions to the right providers in the ecosystem. EthSystems focuses on privacy in institutional development. Joe Lubin said these three represent the decentralization of how the Ethereum ecosystem is run.",
+      "Lubin named institutional readiness, regulatory certainty, and the availability and maturity of the technology as the bottlenecks to institutional adoption, and judged that all of them are now arriving at the right level and time. Lubin added that many countries are moving carefully so as not to get ahead of the US.",
+      "Lubin said the failure of the CLARITY Act in the US Congress was welcome because it was \"a political construct.\" The SEC and CFTC, which have built a framework through no-action letters and other tools, are expected to produce rulemaking on AMMs, stablecoins, and fundraising that the ecosystem will welcome. Codification in legislation is hoped for, but Lubin believes that once capital floods in, it will be hard to reverse, as with Uber.",
+      "Whether a transaction goes on a public or private chain is the institution's choice, according to Lubin. Synchronous composability, pioneered by Consensys and others (using real-time proving and aggregated zero-knowledge proofs), can execute transactions across Ethereum L1, Linea, and private permissioned chains built on Besu simultaneously in one atomic context, without third-party bridges. About 35 private permissioned networks are built on Besu, though Lubin added that valuable tokens are better issued on Ethereum L1."
+    ],
+    "chapters": [
+      {
+        "start": 0,
+        "label": "Opening"
+      },
+      {
+        "start": 34,
+        "label": "Co-founding Ethereum and starting Consensys"
+      },
+      {
+        "start": 168,
+        "label": "The EF restructuring and the three new organizations"
+      },
+      {
+        "start": 438,
+        "label": "The biggest bottleneck to institutional adoption"
+      },
+      {
+        "start": 559,
+        "label": "US regulation and the CLARITY Act"
+      },
+      {
+        "start": 673,
+        "label": "Public vs. private: the institution's choice"
+      },
+      {
+        "start": 738,
+        "label": "How synchronous composability works"
+      },
+      {
+        "start": 939,
+        "label": "Wrap-up"
+      }
+    ]
+  },
+  "gcG2WpVktZY": {
+    "about": "A keynote by Joseph Chalom, who spent 20 years at BlackRock (the last 8 leading its digital assets business), on why the future of financial settlement is converging on Ethereum. Chalom covers the failed experiments with permissioned chains, the US regulatory environment, and how AI agents will shake up existing payment networks, and asks what Ethereum means in the race for the rails of next-generation money.",
+    "takeaways": [
+      "More than 50% of stablecoins are on Ethereum, and for tokenized assets no chain comes close. Chalom stressed that the Ethereum ecosystem, including L2s, is ahead on the \"scoreboard.\"",
+      "BlackRock spent most of 2018 to 2020 trying to make permissioned chains work, and failed. It launched its actual regulated products on Ethereum mainnet. Chalom recalled that BUIDL in 2024 was also built to send a message to US financial institutions that \"we tried private chains, it didn't work.\"",
+      "Because the Clarity Act did not pass, the industry missed the clarity the BRCA provision could have provided (the standard that DeFi developers who do not control custody are not regulated entities). Chalom noted this is a point of difference from earlier speakers.",
+      "The US ACH network, launched in 1975, cannot work for AI agents. Agents need instant movement of funds and settlement.",
+      "Chalom said about $15 trillion in the US sits in low-yield checking and savings accounts, costing consumers about $180 billion a year, and expects agents to enrich financial literacy and attention. The talk also presented a forecast that by 2035, a quarter of financial services fees, about $1.4 trillion, will be disrupted, with $350 billion of that flowing back to consumers.",
+      "Citing Coinbase's x402 and ERC-8004, which enables trustless payments between agents, Chalom said \"a war has begun, a battle to own the next rails,\" and that the number of agents using Ethereum could be \"measured in the tens if not hundreds of billions.\""
+    ],
+    "chapters": [
+      {
+        "start": 0,
+        "label": "Opening and speaker introduction"
+      },
+      {
+        "start": 56,
+        "label": "The scoreboard: stablecoins and tokenized assets"
+      },
+      {
+        "start": 96,
+        "label": "BlackRock's permissioned chain failure and BUIDL"
+      },
+      {
+        "start": 154,
+        "label": "The Clarity Act and DeFi regulation"
+      },
+      {
+        "start": 203,
+        "label": "AI agents and instant settlement"
+      },
+      {
+        "start": 263,
+        "label": "The path of technology revolutions and the agentic revolution"
+      },
+      {
+        "start": 388,
+        "label": "Stablecoins and fee compression"
+      },
+      {
+        "start": 491,
+        "label": "x402, ERC-8004, and the war over rails"
+      },
+      {
+        "start": 527,
+        "label": "Regulators' concerns and the future of money"
+      },
+      {
+        "start": 619,
+        "label": "Hundreds of billions of agents and Ethereum's role"
+      }
+    ]
+  },
+  "A-S5zGctwDM": {
+    "about": "A keynote focused less on \"why Ethereum\" and more on \"how we get there.\" Likening blockspace, Ethereum's core asset, to a commodity, it covers what changes for traders, protocols, validators, and institutions when blocks are sequenced in real time, and who will gain access to settlement infrastructure.",
+    "takeaways": [
+      "Lepsoe argued that Ethereum's one real asset is blockspace, sold block by block, and that if global finance runs on Ethereum, blockspace needs a commodities market like those for precious metals, agricultural products, and energy.",
+      "ETHGas has found a way to effectively cut Ethereum's 12-second blocks to 50 to 100 milliseconds. The CEO explained that when the network behaves like a continuous-time network, MEV such as frontrunning and sandwich attacks starts to disappear.",
+      "Lepsoe estimated that once multiple transactions can be processed between blocks, validator revenue could grow 20 to 30 times, from about $300 million a year today to roughly $5 billion to $6 billion.",
+      "Agents cannot wait 12 seconds, or two slots (24 seconds), to settle. \"Agents need machine speed,\" and real-time execution was presented as a precondition for the agent economy.",
+      "For institutions, the company is building a \"separate lane of blockspace\" with sanctions compliance, no MEV, first-come first-served processing, and identity-verified validators, and is forming consortia in Japan, Korea, and the US.",
+      "Lepsoe expects fragmented liquidity to return to L1 within a few years, and said that through local access, such as Korean validators holding 2 to 3% of staked ETH, ETH could become a strategic reserve asset."
+    ],
+    "chapters": [
+      {
+        "start": 0,
+        "label": "Opening: \"how,\" not \"why\""
+      },
+      {
+        "start": 26,
+        "label": "Ethereum's one asset: blockspace"
+      },
+      {
+        "start": 67,
+        "label": "An analogy of validators and block refining"
+      },
+      {
+        "start": 126,
+        "label": "From 12-second blocks to 50 to 100 milliseconds"
+      },
+      {
+        "start": 199,
+        "label": "Who benefits from real-time Ethereum"
+      },
+      {
+        "start": 239,
+        "label": "Forecast of 20 to 30x validator revenue"
+      },
+      {
+        "start": 267,
+        "label": "Agents and real-time execution"
+      },
+      {
+        "start": 300,
+        "label": "A separate blockspace lane for institutions"
+      },
+      {
+        "start": 395,
+        "label": "Liquidity returning to L1"
+      },
+      {
+        "start": 504,
+        "label": "Local validators and sovereignty over settlement infrastructure"
+      }
+    ]
+  },
+  "YIqEi0dudSY": {
+    "about": "퍼블릭 인프라 중심의 논의가 이어진 하루 속에서, 금융기관이 퍼블릭·프라이빗 블록체인 인프라를 어떻게 바라봐야 하는지를 다룬 키노트입니다. \"개별 구축인가, 통합 설계인가\"라는 질문을 축으로, 디지털 자산 환경의 다변화가 왜 개별 기관이 고를 수 있는 선택이 아닌지, 그리고 내부 통제를 어떻게 하나로 묶을 것인지를 묻습니다.",
+    "takeaways": [
+      "많은 금융기관이 Avalanche, Ethereum, Solana 등 하나의 환경에서 하나의 유즈케이스를 커버하는 \"개별 구축\"으로 가고 있으며, 그 반대편에 있는 \"통합 설계\"를 지금 고민해야 한다고 강조했습니다.",
+      "CBDC, 예금토큰, 스테이블코인, STO, RWA로 자산군이 늘고 발행 주체, 유통 경로, 기술, 국가별 규제도 다변화되고 있어, 넷플릭스가 콘텐츠의 국경을 허문 것처럼 블록체인도 금융의 국경을 허무는 방향으로 간다고 봤습니다.",
+      "신규 사업이 생길 때마다 애드온으로 시스템을 붙이면 내부 시스템이 파편화되고, 규제가 매년 바뀌는 만큼 규제 변화 때 모듈만 수정해 유지할 수 있는 설계가 필요하다고 짚었습니다.",
+      "Altus가 자문 중인 영국 기반 금융사는 지사마다 Fireblocks, Copper, BitGo 등 서로 다른 월렛과 내부 통제 정책을 써서 본사가 리스크를 총괄 관리하지 못하고 있으며, 국내 기관에는 아직 통합을 전제로 설계할 \"골든타임\"이 남아 있다고 말했습니다.",
+      "사업별로 예산을 배정하면 모든 사업에 걸친 통합 시스템은 어디에도 배정되지 못한다며, 리더십이 실무진에게 통합 시스템을 위한 기회와 예산을 줘야 한다고 제언했습니다. 이는 BCG, McKinsey, Deloitte, BIS, IMF 등이 공통으로 지목하는 보틀넥이라고 덧붙였습니다.",
+      "해법으로 디지털 자산 통합 내부 통제 프레임워크 Foundry를 소개했습니다. 개별 사업은 애플리케이션으로 보고, 권한 기준의 경계, 실질 통제의 확보, 절차와 권한의 분리라는 원칙 아래 내부 통제를 별도의 하위 레이어로 구축하는 방식입니다."
+    ],
+    "chapters": [
+      {
+        "start": 0,
+        "label": "오프닝: 키워드는 \"통합 설계\""
+      },
+      {
+        "start": 60,
+        "label": "개별 구축인가, 통합 설계인가"
+      },
+      {
+        "start": 120,
+        "label": "디지털 자산 다양성의 확대"
+      },
+      {
+        "start": 186,
+        "label": "넷플릭스와 국경 없는 금융"
+      },
+      {
+        "start": 299,
+        "label": "애드온, 파편화, 매년 바뀌는 규제"
+      },
+      {
+        "start": 406,
+        "label": "영국 금융사 사례: 지사마다 다른 월렛"
+      },
+      {
+        "start": 490,
+        "label": "예산 배정의 사각지대"
+      },
+      {
+        "start": 580,
+        "label": "글로벌 기관이 지목한 보틀넥"
+      },
+      {
+        "start": 644,
+        "label": "Altus Foundry 소개"
+      },
+      {
+        "start": 701,
+        "label": "발표 정리"
+      }
+    ]
+  },
+  "hOtqvR5XO1Y": {
+    "about": "Starting from the MOU among Optimism, Securitize, and KB Securities announced five days before the event, this panel explores what L2s open up for institutions. It covers why firms are moving before regulation is finalized, what criteria institutions use to choose a chain, what role Kraken's own L2, Ink, plays in tokenized assets, and why RWAs are accelerating now.",
+    "takeaways": [
+      "Kyle Jenke said strong momentum has been visible in Korea over the past six months, and that among firms waiting for regulatory clarity and firms investing early to be ready, KB Securities is in the latter group.",
+      "Jaeman Park (KB Securities) said the MOU aims not only at cooperation in the US market but also at improving and advancing Korea's securities ecosystem. Just as same-day delivery changed daily habits, Park expects that once security tokens start delivering \"same-day cash,\" the user experience across the whole market will change.",
+      "Anthony Xie introduced Ink, built on the OP Stack, as a sandbox for experimenting with tokenized stocks. Xie said the team is expanding from large caps to small caps, commodities, and private market assets, and building integrated experiences such as Tydro, a lending protocol where users can deposit stocks as collateral and borrow against them.",
+      "Xie added that, because xStocks supports multiple chains, Ink also wants to serve as a gateway that supplies liquidity to newly launched OP chains and others.",
+      "On what institutions look for when choosing a chain, Kyle Jenke named three things: trust and track record (OP ranks second only to Ethereum in uptime), a mature partner ecosystem and global distribution, and control over privacy and compliance. For Korea, Jenke noted that local talent and engineers also matter.",
+      "For why RWAs are accelerating, the panel cited governance (the 2022 boom bore no fruit because the rules were not in place, but legal and institutional support is now underway) and productivity (AI-driven AX lets securities operations handle work that would otherwise require 10 to 20 times the productivity). In the near term, KB Securities said it will focus on tokenizing structured securities such as bonds, equities, and funds."
+    ],
+    "chapters": [
+      {
+        "start": 0,
+        "label": "Opening and panel introductions"
+      },
+      {
+        "start": 82,
+        "label": "The Optimism, Securitize, and KB Securities MOU"
+      },
+      {
+        "start": 152,
+        "label": "Why KB Securities is focused on tokenization"
+      },
+      {
+        "start": 208,
+        "label": "Same-day delivery and \"same-day cash\""
+      },
+      {
+        "start": 312,
+        "label": "Kraken's Ink strategy"
+      },
+      {
+        "start": 488,
+        "label": "What institutions look for in the OP Stack"
+      },
+      {
+        "start": 572,
+        "label": "Why RWAs are accelerating now"
+      },
+      {
+        "start": 713,
+        "label": "Closing"
+      }
+    ]
+  },
+  "J8lYAW9kggA": {
+    "about": "This panel covers the partnership between Arbitrum and LG Electronics, a notable early example of a large non-financial company building onchain. It looks at how the collaboration began, the digital advertising problems LG Electronics set out to solve with blockchain and the results so far, the limits of blockchain, the questions enterprises ask most when choosing an L2, and Arbitrum's technical roadmap.",
+    "takeaways": [
+      "Ed Felten said that through long conversations with LG, the team focused on understanding what LG wanted and shaping the technology to fit those needs, and that enterprise collaborations take time to come together.",
+      "Byungsun Park said LG focused on the transparency and trust problems in the digital advertising market. A general-purpose mainnet has limits in solving industry problems, and when considering a purpose-built blockchain, the Arbitrum case stood out. The developer ecosystem and the team's proactiveness were also reasons for choosing it.",
+      "In a pilot with a major Japanese advertising company, they validated to a degree the receptiveness of advertisers and audiences and the potential of zero-party data. Park said that company turned this into a Web3 advertising product, launched in June this year, with LG Electronics technology powering it.",
+      "Implementing the advertising value chain with smart contracts showed that blockchain has limits in areas advertisers want to handle with precision, such as targeting and bid pricing. Park noted that designing around both strengths and limits is what a technical team is there to do.",
+      "Ed Felten said the defining feature of enterprise questions is control, naming governance, customization, and compliance as the three key areas. Because enterprises think long term, they value the sustainability of the technology and the systems around it, along with trustworthy partners.",
+      "For the technical roadmap, Felten pointed to scalability demand, seen in the faster-than-expected adoption of Robinhood Chain, cross-chain interoperability, and practical privacy technology that is compatible with compliance and transparency."
+    ],
+    "chapters": [
+      {
+        "start": 0,
+        "label": "Opening and panel introductions"
+      },
+      {
+        "start": 64,
+        "label": "How the Arbitrum and LG Electronics partnership began"
+      },
+      {
+        "start": 129,
+        "label": "The problem LG Electronics wants to solve with blockchain"
+      },
+      {
+        "start": 223,
+        "label": "Arbitrum strengths that helped LG Electronics"
+      },
+      {
+        "start": 304,
+        "label": "The Japanese advertising company pilot and results"
+      },
+      {
+        "start": 387,
+        "label": "Blockchain's limits and LG Electronics' roadmap"
+      },
+      {
+        "start": 483,
+        "label": "The questions enterprises ask most"
+      },
+      {
+        "start": 553,
+        "label": "Arbitrum's technical roadmap"
+      },
+      {
+        "start": 632,
+        "label": "Closing message"
+      }
+    ]
+  },
+  "e8svQjdq1vU": {
+    "about": "Moderated by Youngseok Yang, CEO of Nodeinfra, this panel covers the prerequisites for institutional staking, the tension between permissionless validation and compliance, and the thought experiment \"What if staking yield goes to zero?\" You will hear the panelists' differing views on whether staking is infrastructure or a financial product, and whether Korea should have sovereign staking infrastructure.",
+    "takeaways": [
+      "Byeongyun Seo (DSRV) said institutions feel staking is \"taking on one more layer of risk\" beyond custody. Seo named three core issues: who is accountable if a validator is slashed, whether it triggers any regulatory problem, and how to recognize rewards that arrive by the second in accounting and audit reports. Seo also noted that Korea has not yet defined such standards.",
+      "Samuel Chong (Lido) cited two recurring points of friction in conversations with APAC institutions: whether they can interact with smart contracts, and whether they can use a permissionless validator set. The former requires gradual engagement and education with regulators. The latter can be addressed through native staking with a dedicated node operator, or through Lido's institutional product, stVaults, which lets institutions choose their node operators, custodians, OFAC sanctions compliance, and stETH issuance volume.",
+      "Kent Lin (Optimum) described Ethereum staking as \"infrastructure with a financial product as a wrapper.\" Even if yield went to zero, explorers, trading houses, and solo stakers would keep running nodes, but Lin felt that alone would not be enough to sustain Ethereum.",
+      "Samuel Chong said, in a personal view, that staking is less a financial product than \"akin to working for a salary\" for participating in consensus and settling transactions. Yield will not drop to zero overnight and will find balance as stakers enter and exit. Chong expects institutions with roughly $300 billion of assets settled on Ethereum (stablecoins at $160 to $170 billion, DeFi at $100 billion, RWAs at $20 to $25 billion) to want a voice in the validation process even without yield.",
+      "Optimum is a data acceleration network launched on Ethereum mainnet about 12 weeks ago, and roughly $3 billion of staked ETH is already connected, speeding up block and attestation propagation. Lido is the largest Ethereum liquid staking protocol, with TVL of about $26 billion.",
+      "Byeongyun Seo stressed that public blockchains have become a global network like the internet, so rather than building a separate network, Korea has many areas to capture value on top of them, such as RPC nodes (All That Node), stablecoins, and tokenized assets. Seo's position is that sovereign blockchains are not essential."
+    ],
+    "chapters": [
+      {
+        "start": 0,
+        "label": "Opening and panel introductions"
+      },
+      {
+        "start": 65,
+        "label": "Panelist introductions: DSRV, Optimum, Lido"
+      },
+      {
+        "start": 293,
+        "label": "Prerequisites for institutional staking: accountability, regulation, accounting"
+      },
+      {
+        "start": 445,
+        "label": "Permissionless validation vs. compliance"
+      },
+      {
+        "start": 606,
+        "label": "If yield goes to zero: infrastructure or financial product?"
+      },
+      {
+        "start": 942,
+        "label": "Does Korea need sovereign staking infrastructure?"
+      },
+      {
+        "start": 1116,
+        "label": "Closing"
+      }
+    ]
+  },
+  "bO_o85kpPbk": {
+    "about": "Ahead of Korea's security token offering (STO) framework taking effect in February 2027, Chloe Han of Flow Traders guides the discussion through three practical layers: regulatory infrastructure (Securitize), product design (Ondo Finance), and risk data (RedStone). Topics include who has the authority to correct records when the token is the security, how to deliver 24-hour subscriptions and redemptions, and what is needed beyond NAV to use tokenized funds as collateral.",
+    "takeaways": [
+      "0xGabe (Securitize) explained that Securitize follows a \"native tokenization\" approach in which the onchain token itself is the security, and issuers retain the same control as in traditional finance. For BUIDL, BlackRock acts as issuer and manager of US short-term Treasuries, while Securitize, as transfer agent and tokenization platform, can burn an investor's existing holding and reissue it to a new wallet if the private key is lost.",
+      "Securitize said its onchain assets under management are close to $5 billion, and that it recently announced a new fund with ARK Invest.",
+      "Armand Khatri (Ondo Finance) said Ondo adopted an RFQ (request for quote) model instead of an AMM so that products priced offchain can be subscribed to onchain at the same price. It is paired with compliance tooling that automatically freezes tokens that move to sanctioned wallets and similar. Noting that \"AI cannot KYC to use your product,\" Khatri stressed the need for products that agents can buy and sell at real trading prices.",
+      "Marcin Kaźmierczak (RedStone) said that with $38 billion of tokenized RWAs onchain versus roughly $117 trillion held by DTCC, \"it's just a drop.\" Kaźmierczak cited inaccurate pricing and a lack of onchain liquidity as the causes. The TSSO (Trusted Single Source Oracle), co-designed with Securitize, verifies data signed by the fund administrator onchain.",
+      "RedStone said that through Credora it assigns risk ratings from A to D to RWAs such as private credit and MMFs (\"the yield itself doesn't tell you the whole story\"), and that through Settle it is building a structure in which, when a liquidation threshold is reached, liquidity providers such as market makers and banks take over the assets immediately via an RFQ auction.",
+      "For the one decision a Korean financial institution preparing a tokenized MMF for February 2027 should make within 90 days, 0xGabe named \"where does the demand come from,\" Armand Khatri named the reason for going onchain (the north star), such as distribution, access to new investors, and agentic finance, and Marcin Kaźmierczak named instant swaps between tokenized products to improve capital efficiency with no gap in yield."
+    ],
+    "chapters": [
+      {
+        "start": 0,
+        "label": "Opening: Korea's STO framework and session format"
+      },
+      {
+        "start": 53,
+        "label": "Panelist introductions"
+      },
+      {
+        "start": 154,
+        "label": "Securitize: native tokenization and authority to correct records"
+      },
+      {
+        "start": 402,
+        "label": "Ondo Finance: 24-hour subscription and redemption and the RFQ model"
+      },
+      {
+        "start": 598,
+        "label": "RedStone: the TSSO oracle and risk data"
+      },
+      {
+        "start": 799,
+        "label": "The bottleneck in RWA collateral markets: onchain liquidity"
+      },
+      {
+        "start": 888,
+        "label": "One decision to make within 90 days"
+      },
+      {
+        "start": 1023,
+        "label": "Closing"
+      }
+    ]
+  },
+  "qxY2HE9XVAU": {
+    "about": "Moderated by Jaehyun Park of KB Securities, this panel covers what institutional adoption really means, how blockchains are chosen, what tokenization makes possible beyond operational efficiency, and what barriers remain. You will hear practical perspectives from global institutions that run tokenized MMFs and Ethereum ETFs.",
+    "takeaways": [
+      "Drawing on Franklin Templeton's 2019 launch of BENJI, the first tokenized MMF in the US, Chetan Karkhanis (Franklin Templeton) explained that for the same product, retail users value lower costs, while corporate treasuries, high-frequency traders, and hedge funds value intraday yield, collateral use, and 24/7 fund movement.",
+      "Franklin Templeton is connected to 11 chains, and Karkhanis said chain selection ultimately depends on the use case and on \"where the client wants to own the asset.\" The breakdown: Solana for speed, Stellar (its base chain) for cost efficiency, and Ethereum for institutional adoption that requires security and governance.",
+      "Andy Ng (BlackRock) said BlackRock is bridging TradFi and DeFi in both directions through BUIDL and ETHA, its Ethereum ETF. Sovereign wealth funds and pension funds reach Ethereum through the ETF with institutional-grade custody, and in Asia Pacific, hedge funds and others use it for arbitrage between the ETF and the underlying coin.",
+      "Matthew Dawson (Ethereum Institutional) defined institutional adoption as \"credibility, seriousness,\" pointing to the collaboration between BlackRock and Securitize and about 14 new funds with BNY and JPMorgan, all on Ethereum, as evidence that the partners themselves have become institutional grade.",
+      "The panel agreed that tokenization is more than lower transfer agent costs. Chetan Karkhanis cited cutting the BENJI transaction unit to around $20 (versus typical fund minimums of $1,000 to $5,000), fund movement possible even on Sundays, movement between stablecoins and tokenized products, and programmable daily interest payments. Andy Ng expects wider access for investors in emerging markets such as India and Brazil.",
+      "Matthew Dawson noted that if regulation is largely resolved, the next barriers are legacy system integration and workflows, and that privacy is also a key challenge. Asked about three years out, Chetan Karkhanis named full onchain tokenization of underlying securities \"a game changer,\" and Matthew Dawson said that as adoption grows, the guarantees Ethereum and L2s provide will become clearer."
+    ],
+    "chapters": [
+      {
+        "start": 0,
+        "label": "Opening and panel introductions"
+      },
+      {
+        "start": 56,
+        "label": "What is institutional adoption? Franklin Templeton"
+      },
+      {
+        "start": 200,
+        "label": "BlackRock: ETFs bridging TradFi and DeFi"
+      },
+      {
+        "start": 313,
+        "label": "Ethereum Institutional: credibility and seriousness"
+      },
+      {
+        "start": 365,
+        "label": "Chain selection: where the client wants to own the asset"
+      },
+      {
+        "start": 493,
+        "label": "Is tokenization a distribution innovation or a fundamental shift?"
+      },
+      {
+        "start": 654,
+        "label": "Opportunities beyond operational efficiency"
+      },
+      {
+        "start": 824,
+        "label": "Remaining challenges: legacy integration and privacy"
+      },
+      {
+        "start": 913,
+        "label": "Underrated use cases three years from now"
+      },
+      {
+        "start": 1015,
+        "label": "Closing"
+      }
+    ]
+  },
+  "985-EuhrXK4": {
+    "about": "Four Pillars 복진솔 리서치 총괄의 진행으로, 원화 스테이블코인을 준비하는 핀테크, 인프라, 글로벌 L2 관점이 한자리에 모였습니다. 각사가 현재 진행 중인 이니셔티브, 작년에 비해 관심이 식은 것처럼 보이는 이유가 규제 때문인지 사업성 때문인지, 그리고 디지털자산기본법 통과 이후 스테이블코인 사업이 성공하려면 무엇이 필요한지를 다룹니다.",
+    "takeaways": [
+      "Toss는 원화 스테이블코인을 기존 금융 인프라를 대체하거나 공존할 \"새로운 금융 인프라 레일\"로 보고, 기본 레일 기능을 내재화할 기술 역량을 쌓으며 파트너사와 PoC로 기존 금융 인프라와의 접목을 검증하고 있습니다.",
+      "Lambda256은 기관 대상 노드 운영과 데이터 제공, 온체인 트랜잭션을 기존 AML 시스템에서 분석할 수 있게 하는 연결, 발행·유통·오프램프·FX 플레이어를 묶는 오케스트레이션의 세 축으로 사업을 진행 중입니다.",
+      "Base는 규제를 준수하는 스테이블코인 채택을 기본 방향으로 삼아 USDC의 주요 유통 파트너 역할을 하고 있으며, PYUSD 등 약 20개의 규제 준수 스테이블코인이 Base에서 유통되고 있다고 소개했습니다. 한국에서는 USDC 기반 파일럿과 테스트넷 페이퍼 테스팅을 진행하고 있습니다.",
+      "관심이 식었다기보다 \"꿈꾸던 시기\"에서 실제 사업을 설계하는 단계로 넘어갔다는 데 패널이 공감했습니다. 대부분의 금융기관이 이미 한두 차례 PoC를 마쳤고, 에이전트 페이먼트까지 깊이 테스트하고 있지만 법안 없이는 다음 단계로 가기 어렵다는 진단입니다.",
+      "국내 카드 결제망이 이미 잘 갖춰져 있어 결제만으로는 매출 성장이 쉽지 않으며, 준비금 운용, 준비금 수익의 유통사 분배, 기존 카드망을 활용한 데빗 카드형 모델 등 해외 비즈니스 모델에 대한 법안의 불명확성이 사업성 판단을 어렵게 한다는 지적이 나왔습니다.",
+      "성공 조건으로 원화 스테이블코인을 목적이 아닌 수단으로 보고 블록체인을 AI 시대의 \"외부에 오픈된 원장\"으로 활용하자는 제안(Lambda256), 결제에 국한되지 않고 퍼블릭 블록체인의 금융 스택으로 확장할 수 있는 제도 설계(Base), 저렴한 인프라 접근·유저에게 선택받는 서비스·디스트리뷰션 역량이라는 세 가지 필요조건(Toss)이 제시됐습니다."
+    ],
+    "chapters": [
+      {
+        "start": 0,
+        "label": "오프닝 및 패널 소개"
+      },
+      {
+        "start": 108,
+        "label": "세션 주제: 원화 스테이블코인"
+      },
+      {
+        "start": 142,
+        "label": "각사의 원화 스테이블코인 이니셔티브"
+      },
+      {
+        "start": 372,
+        "label": "관심이 식었나? 사업이 더딘 이유"
+      },
+      {
+        "start": 744,
+        "label": "디지털자산기본법 이후 성공 조건"
+      },
+      {
+        "start": 802,
+        "label": "Lambda256: 수단으로서의 원화 스테이블코인"
+      },
+      {
+        "start": 910,
+        "label": "Base: 프로그래머블 머니와 퍼블릭 블록체인"
+      },
+      {
+        "start": 1087,
+        "label": "Toss: 성공을 위한 세 가지 필요조건"
+      },
+      {
+        "start": 1184,
+        "label": "마무리"
+      }
+    ]
+  },
+  "5cAUvfrww2g": {
+    "about": "Wavebridge Peter Chung 부서장의 진행으로, 세 증권사가 각자의 토큰증권·RWA 실행 전략을 소개합니다. 국내외 투트랙 전략, 토큰화 국채와 MMF가 먼저 성장한 이유, 스테이블코인을 활용한 해외 투자자의 한국 주식 투자 PoC, 그리고 예탁결제원 표준 요건인 \"하나의 증권은 하나의 원장\"과 프라이빗 체인 전제가 출발점인지 제약인지를 다룹니다.",
+    "takeaways": [
+      "DB증권은 국내에서 부산시와 함께 탄소 저감장치에서 발생하는 금융리스 채권을 토큰화하는 사업을, 해외에서는 Optimism 재단과의 사업을 검토하고 있습니다. 작년 11월 TF로 시작해 단기간에 정규팀으로 격상됐으며, 대형사가 아니어도 적은 인력으로 지자체와 실체 있는 사업을 할 수 있음을 보여줬다고 밝혔습니다.",
+      "이주식 팀장은 \"리스크를 아예 안 지려고 처음부터 전략을 짜기 시작하면 아무것도 할 수가 없다\"며, 한 단계를 밟을 때마다 다음 단계가 보였다고 설명했습니다.",
+      "한화투자증권 최윤영 팀장은 토큰화 국채가 먼저 주목받은 이유로 비교적 단순한 상품 구조와 담보 활용, 결제 측면의 추가 효용을 꼽았습니다. 국내 1단계에서는 MMF를 활용한 자금 관리와 담보 이동부터 시작해 장기적으로 스테이블코인 기반 온체인 결제로 나아가는 모델이 좋은 출발점이 될 수 있다고 봤습니다.",
+      "슈퍼앱 경쟁이 가속화되면 증권과 가상자산의 경계가 흐려질 수 있으며, 증권사는 토큰화 플랫폼을 넘어 거래 이후 단계 관리, 전통 금융 인프라와 온체인의 연결 등 \"기존 자본시장의 신뢰체계를 온체인으로 확장\"하는 역할을 맡을 수 있다는 전망이 나왔습니다.",
+      "교보증권 Ryan Jang 부서장은 Wavebridge, SBI, Ripple과 논의해 진행한 스테이블코인 기반 한국 주식 투자 PoC가 \"토큰화 프로젝트가 아니었다\"며, 해외 투자자의 계좌 개설·환전·이체 마찰을 줄이려는 시도였다고 설명했습니다. 상용화를 위해 스테이블코인의 법적 성격, 취급 가능 기관 범위, 외국환 신고, 자금세탁 방지, 수탁 규제, 사고 시 책임 주체 정리가 필요하다고 짚었습니다.",
+      "\"하나의 증권, 하나의 원장\"과 프라이빗 체인 전제에 대해 세 패널 모두 1단계의 안정적 출발점으로서 의미는 인정하면서도, 원장 간 사일로화와 해외 유동성 단절을 경계하고 데이터 기준과 API 표준화, 책임 소재 정리를 통해 장기적으로 퍼블릭 블록체인 활용을 단계적으로 열어야 한다는 데 의견을 모았습니다."
+    ],
+    "chapters": [
+      {
+        "start": 0,
+        "label": "오프닝 및 패널 소개"
+      },
+      {
+        "start": 209,
+        "label": "DB증권: 국내외 투트랙 전략"
+      },
+      {
+        "start": 358,
+        "label": "한화투자증권: 토큰화 국채와 MMF가 먼저 성장한 이유"
+      },
+      {
+        "start": 497,
+        "label": "슈퍼앱 경쟁과 증권사의 역할"
+      },
+      {
+        "start": 606,
+        "label": "교보증권: 스테이블코인 기반 한국 주식 투자 PoC"
+      },
+      {
+        "start": 780,
+        "label": "공통 질문: 하나의 증권, 하나의 원장"
+      },
+      {
+        "start": 994,
+        "label": "단일 원장을 넘어 상호 운영성으로"
+      },
+      {
+        "start": 1172,
+        "label": "마무리"
+      }
+    ]
+  },
+  "uvZoHPAjCH0": {
+    "about": "타이틀 스폰서 DB증권의 장현일 CFO가 빌더 데이 개회사를 맡았습니다. 전통 금융의 신뢰·책임·규율과 블록체인의 개방성·조합 가능성이 만나야 하는 이유, DB증권이 디지털 자산 사업에서 실제로 하고 있는 일, 그리고 빌더들에게 드리는 세 가지 제안을 담았습니다.",
+    "takeaways": [
+      "금융은 자본과 신뢰를, 빌더는 가능성과 실행을 만든다며, 두 세계가 연결되면 자산을 발행·관리·청산하는 비용과 시간을 크게 낮추고 더 많은 참여자에게 기회를 줄 수 있다고 말했습니다.",
+      "누가 권리를 보장하는지, 자산 가치는 어떻게 확인하는지, 개인정보는 어떻게 보호되는지, 장애가 나면 누구 책임인지 같은 투자자의 질문은 혁신을 늦추는 것이 아니라 기술이 시장에 오래 남게 하는 질문이라고 강조했습니다.",
+      "DB증권은 규제, 보안, 사용자 경험을 개발의 마지막이 아니라 제품 설계의 첫 단계로 두는 팀을 찾고 있으며, 코드가 있다고 금융의 책임이 사라지지는 않는다고 짚었습니다.",
+      "부산에서 MarinaChain, Anam145, Waterline Partners 등과 함께 해운 분야 탄소 감축 설비와 금융 리스의 현금흐름을 기반으로 하는 탄소 감축 STO 플랫폼 개발·사업화 프로젝트를 진행하고 있다고 소개했습니다.",
+      "옵티미즘 재단(Optimism Foundation)과의 전략적 협력을 바탕으로 이더리움 기반 기술이 STO와 RWA 사업에서 할 역할을 검토 중이며, 최종 네트워크와 아키텍처는 보안·규제·사업성 검토를 거쳐 결정된다고 밝혔습니다.",
+      "빌더들에게 문제를 가까이서 볼 것, 보여주기식 데모가 아니라 실제 사업으로 이어질 작은 실증부터 함께 만들 것, 이용자 보호까지 포함한 장기 협력 기준을 세울 것을 제안했습니다."
+    ],
+    "chapters": [
+      {
+        "start": 0,
+        "label": "오프닝과 연사 소개"
+      },
+      {
+        "start": 91,
+        "label": "금융과 빌더가 만나야 하는 이유"
+      },
+      {
+        "start": 191,
+        "label": "투자자가 던지는 질문들"
+      },
+      {
+        "start": 258,
+        "label": "DB증권 디지털 자산 사업과 역할 분담"
+      },
+      {
+        "start": 318,
+        "label": "부산 탄소 감축 STO와 옵티미즘 협력"
+      },
+      {
+        "start": 440,
+        "label": "빌더에게 드리는 세 가지 제안"
+      },
+      {
+        "start": 531,
+        "label": "마무리"
+      }
+    ]
+  },
+  "EDymIdYhRYc": {
+    "about": "ECK의 Sose가 묻고 Nonce Classic의 Youbin Kang 대표가 답하는 대담 형식의 세션입니다. 컨소시엄의 출범 배경과 세 가지 목표, 증권사와 정책 담당자를 설득해 온 방식, 13개 멤버사 구성, 그리고 해외 이더리움 커뮤니티와의 협업 계획을 다룹니다.",
+    "takeaways": [
+      "Youbin Kang 대표는 작년 KBW에 이더리움 관련 행사가 열리지 않은 것이 큰 충격이었다며, 당시 이더리움 재단 디렉터였던 Tomasz에게 이더리움 코리아 컨소시엄을 제안하고 국내 최대 이더리움 빌더 커뮤니티인 ECK와 손잡게 된 과정을 소개했습니다.",
+      "컨소시엄의 목표는 세 가지입니다. 국내 이더리움 대표 행사를 일회성이 아닌 매년 여는 것, 멤버사 출연금의 절반 정도를 그랜트 풀로 빌더를 지원하는 것, 그리고 국내 기관·정책 담당자와 해외 재단·프로젝트를 잇는 연결자가 되는 것입니다.",
+      "스마트 컨트랙트나 영지식 같은 용어로는 대화가 잘 시작되지 않았고, BlackRock의 국채 토큰화 펀드 BUIDL과 홍콩 사례, RWA의 절반 이상이 이더리움 생태계에서 이뤄진다는 통계가 기관 설득에 더 효과적이었다고 말했습니다.",
+      "정책 담당자에게는 미국 SEC가 왜 퍼블릭 블록체인 위 토큰화 증권을 허용하게 됐는지 그 배경부터 설명했고, 디지털자산기본법을 발의한 민병덕 의원으로부터 규제 담당자와 이더리움 재단을 더 많이 연결해 달라는 요청을 받고 있다고 전했습니다.",
+      "컨소시엄은 13개 멤버사로 구성됩니다. 공동 리드 ECK와 Nonce Classic, 커뮤니티 Kryptoplanet, 리서치·콘텐츠 Four Pillars와 Undefined Labs, 기관 협업 DSRV와 Wavebridge, 인프라 Altus, Lambda256, Optimum, Sunnyside Labs, Radius, Nodeinfra이며, DB증권이 정책 자문을 지원하고 있습니다.",
+      "AI로 관심이 옮겨가며 탈중앙화와 검증 가능성을 논의할 자리가 줄고 있다는 Sose의 우려에, Kang 대표는 이더리움도 Bitcoin Magazine 커뮤니티에서 시작됐다며 꾸준히 모이는 자리가 먼저라고 답했습니다. 아시아에서는 ETH Japan, ETHTaipei, ETH Hong Kong 등과의 공동 행사를, 서구에서는 EthCC, ETHGlobal과의 접점 확대를 검토하고 있습니다."
+    ],
+    "chapters": [
+      {
+        "start": 0,
+        "label": "오프닝과 연사 소개"
+      },
+      {
+        "start": 51,
+        "label": "컨소시엄의 출발: 이더리움 없는 KBW"
+      },
+      {
+        "start": 136,
+        "label": "컨소시엄의 세 가지 목표"
+      },
+      {
+        "start": 244,
+        "label": "기관과 정책 담당자를 설득하는 법"
+      },
+      {
+        "start": 385,
+        "label": "탈중앙화 논의의 장을 지키려면"
+      },
+      {
+        "start": 531,
+        "label": "13개 멤버사 소개"
+      },
+      {
+        "start": 625,
+        "label": "글로벌 이더리움 커뮤니티와의 협업"
+      },
+      {
+        "start": 760,
+        "label": "오픈소스와 한국 기여자 사례"
+      }
+    ]
+  },
+  "wr6JU4-7M7A": {
+    "about": "리서처이자 밸리데이터 엔지니어인 Hudson Jang이 글램스테르담(Glamsterdam) 업그레이드에 담긴 내용을 소개하는 발표입니다. 스트로맵과 CROPS라는 큰 그림에서 출발해, L1 확장이 왜 다시 벽에 부딪혔는지, 두 헤드라이너 ePBS와 BAL이 무엇을 바꾸는지, 그리고 빌더가 꼭 확인해야 할 가스 리프라이싱까지 짚습니다.",
+    "takeaways": [
+      "직전 업그레이드 푸사카(Fusaka, 2025년 12월 3일)가 PeerDAS(EIP-7594)로 L2 데이터 공간을 늘린 L2 중심 업그레이드였다면, 글램스테르담은 L1 확장의 기반이 되는 18개 제안을 담습니다. 이름은 합의 레이어의 Gloas와 실행 레이어의 Amsterdam을 합친 것입니다.",
+      "올해 2월 공개된 스트로맵은 2029년까지 Fast L1(슬롯 12초에서 6·4·2초로, 약 16분인 최종성을 초 단위로), Gigagas L1, Teragas L2, 양자 저항성, Private L1이라는 다섯 북극성을 제시합니다. 로드맵은 바뀔 수 있지만 CROPS(검열 저항성, 오픈소스, 프라이버시, 보안)는 바뀌지 말아야 할 가치라고 설명했습니다.",
+      "블록당 가스 리밋은 지난 1년간 30M에서 60M으로 두 배가 됐고 200M이 다음 목표지만, 블록 전파 시간과 순차 실행 구조가 벽이 되고 있습니다. 그래서 글램스테르담은 당장 블록 시간을 줄이거나 가스 리밋을 올리는 업그레이드가 아니라 더 확장하기 위한 구조 개선이라고 강조했습니다.",
+      "ePBS(EIP-7732)는 현재 4~5개 빌더가 95% 이상의 블록을 만드는 외부 블록 빌딩 과정을 프로토콜 안으로 가져옵니다. 택배 상자 대신 송장만 먼저 돌려 합의하는 방식이라 블록이 커져도 합의 부담이 늘지 않습니다. BAL(EIP-7928)은 트랜잭션이 건드리는 상태의 지도를 블록에 첨부해 병렬 실행과 빠른 상태 루트 계산, 노드 동기화를 가능하게 합니다.",
+      "빌더에게 가장 직접적인 변화는 가스 리프라이싱(EIP-2780, 8037, 8038 등 7~8개 제안)입니다. 가스 값을 하드코딩한 컨트랙트나 툴은 포크 이후 깨질 수 있으니 10월 6일 세폴리아 적용 이후 점검을 권했습니다. 원래 2026년 상반기 예정이었지만 PoS 전환 이후 최대 구조 변화인 ePBS가 테스트넷에서 문제를 겪으며 밀렸고, 세폴리아, 호디(Hoodi)를 거쳐 12월 초 메인넷이 목표입니다.",
+      "FOCIL(EIP-7805)과 슬롯 단축은 다음 포크 헤고타(Hegotá)로 밀렸고, 계정 추상화를 프로토콜로 가져오는 프레임 트랜잭션(EIP-8141)이 헤고타의 헤드라이너가 된 것은 서명 알고리즘 교체를 쉽게 해 양자 저항 전환을 준비하기 위해서라는 개인적 해석을 밝혔습니다. Q&A에서는 이더리움이 HFT용은 아니지만, 한 번 전송에 200~300달러가 드는 시절로 돌아가지는 않을 것이라고 답했습니다."
+    ],
+    "chapters": [
+      {
+        "start": 0,
+        "label": "오프닝과 연사 소개"
+      },
+      {
+        "start": 76,
+        "label": "푸사카에서 글램스테르담으로"
+      },
+      {
+        "start": 174,
+        "label": "스트로맵, 다섯 가지 북극성과 CROPS"
+      },
+      {
+        "start": 377,
+        "label": "왜 다시 L1 확장인가"
+      },
+      {
+        "start": 533,
+        "label": "테스트넷과 메인넷 일정"
+      },
+      {
+        "start": 632,
+        "label": "18개 제안과 헤드라이너 ePBS"
+      },
+      {
+        "start": 945,
+        "label": "BAL과 병렬 실행"
+      },
+      {
+        "start": 1164,
+        "label": "가스 리프라이싱과 개발자 편의 EIP"
+      },
+      {
+        "start": 1336,
+        "label": "헤고타로 넘어간 것들: FOCIL, 슬롯 단축, 프레임 트랜잭션"
+      },
+      {
+        "start": 1584,
+        "label": "Q&A: 금융사와 가스비"
+      }
+    ]
+  },
+  "Gi17_ibDTyo": {
+    "about": "지금 이더리움의 북극성은 무엇이어야 하는지, 지난 1~2년의 로드맵 변화와 이더리움 재단(EF) 조직 개편을 어떻게 보는지, 스트로맵 과제 중 무엇을 먼저 해야 하는지, 먼 미래에 방향을 잘 잡았다고 말할 장면은 무엇인지, 네 가지 질문으로 진행된 패널입니다. 후반부에는 거버넌스, AI, 양자 저항성을 둘러싼 청중 질문이 이어졌습니다.",
+    "takeaways": [
+      "Lucia Kim(Nonce Classic)은 셀프 소버린티가 보장되면서 자생 가능한 경제권을 갖춘 체인을 북극성으로 꼽고, BlackRock, Franklin Templeton을 넘어 더 많은 기관과 정부가 채택하길 기대했습니다. EF 개편에서 기관이 들어와도 CROPS가 지켜지도록 돕는 레이어를 둔 것은 긍정적이지만, 기관 채택을 촉진하던 엔터프라이즈 팀이 사라진 점은 아쉽다고 했습니다.",
+      "Sose(ECK)는 누구나 자기 기기로 검증할 수 있고 유효한 트랜잭션이 검열되지 않는 월드 컴퓨터를 위해 예측 가능성이 중요하다고 봤습니다. 사람에게 막대한 인센티브를 줘도 채택이 일어나지 않았던 만큼 AI 에이전트가 블록체인의 주 사용자가 될 것이라며, 권한을 나눠 줄 수 있는 프레임 트랜잭션을 단기 우선순위로 꼽았습니다. EF가 영향력을 줄이는 방향은 맞지만 커뮤니케이션은 서툴다고 지적했습니다.",
+      "Hudson Jang(Four Pillars)은 생존이 먼저라며 양자 저항성을 우선순위에 두고, 커뮤니티의 관심을 끌어내려면 EF가 PQ 관련 노력을 더 알려야 한다고 말했습니다. 또 EF가 규모를 줄일수록 새 조직의 자금이 비슷한 영리 기업에서 나오는데, 이에 대한 견제 수단이 보이지 않는다는 우려도 밝혔습니다.",
+      "Christopher Choi(Remilia Korea)는 비탈릭 부테린이 이틀 전 공개한 글 \"The cryptographic world computer\"가 자신의 생각을 그대로 옮긴 것 같았다고 했습니다. 이 글은 2030년의 이더리움을 사토시의 블록체인과 50년간 성숙한 암호학의 결합으로 보고, 쓰기·읽기·네트워킹 전반에 프라이버시를 기본으로 담습니다. 모임 비용을 온체인으로 냈다가 완전히 공개된 원장 탓에 잔고가 노출됐던 일화, 익명 투표로 결정하고 결과만 공개한 팀 실험을 들며, 기업이 온체인으로 올라오는 미래를 기대한다고 했습니다. 다른 패널은 프라이버시 거래의 기반으로 keyed nonces와 멤풀 연구를 꼽고, 특정 프라이버시 풀을 프로토콜에 고정하는 결정은 서두르지 말자고 했습니다.",
+      "Bosul Mun은 이더리움의 방향은 재단이나 한 사람이 정하는 것이 아니라 서로의 관점을 나누고 확인하는 과정에서 정해지며, 어떤 EIP를 넣을지는 누구나 참여할 수 있는 ACD에서 논의된다고 설명했습니다. 의사결정이 느려지는 것은 트레이드오프이고, AI는 주로 콜과 결정 사항 요약에 쓰인다고 했습니다. Sose는 Base와 Tempo가 새 AA 관련 EIP를 제안하며 벌어진 공개 논쟁을 사례로 들었습니다.",
+      "금융기관 소속 청중은 고객 자산이 이더리움에 올라갈 시대에는 AI보다 양자 저항성이 먼저라고 주장했습니다. Hudson Jang은 양자 저항성은 기술보다 합의가 어렵다며 사토시 지갑 처리 문제를 예로 들었고, 스트로맵 목표로 이미 준비 중인 만큼 우선순위의 문제라는 반론도 나왔습니다. Jang은 소수 LLM에 의존하는 밸리데이터 인프라가 새로운 단일 장애점(SPOF)이 될 수 있다고 경고했습니다."
+    ],
+    "chapters": [
+      {
+        "start": 0,
+        "label": "오프닝과 패널 소개"
+      },
+      {
+        "start": 92,
+        "label": "이더리움의 북극성은 무엇인가"
+      },
+      {
+        "start": 409,
+        "label": "로드맵 변화와 EF 조직 개편 평가"
+      },
+      {
+        "start": 909,
+        "label": "스트로맵 과제의 우선순위"
+      },
+      {
+        "start": 1479,
+        "label": "방향을 잘 잡았다고 말할 미래의 장면"
+      },
+      {
+        "start": 1894,
+        "label": "청중 Q&A: 방향은 누가 정하는가"
+      },
+      {
+        "start": 2275,
+        "label": "발행량 논쟁과 코어 개발자의 권한"
+      },
+      {
+        "start": 2434,
+        "label": "AI와 거버넌스"
+      },
+      {
+        "start": 2872,
+        "label": "양자 저항성인가, AI인가"
+      }
+    ]
+  },
+  "x6rsjy5uImU": {
+    "about": "EIP-7885의 공동 저자인 Yoonhyung Lee가 해시 기반 서명의 구조에서 출발해 NTT 프리컴파일, Ephemeral Keys, 그리고 멤풀 증명 어그리게이션으로 이어지는 실행 레이어 포스트 양자(PQ) 해법의 변화를 설명합니다. 표준 서명을 그대로 유지하면서 증명 비용만 낮출 수 있는지에 대한 본인의 연구 방향도 소개합니다.",
+    "takeaways": [
+      "PQ 전환은 알고리즘 하나를 고르는 문제가 아니라 시스템 설계의 문제라고 강조했습니다. 서명자는 키 생성과 백업, 네트워크는 공개키와 서명 크기에 따른 가십 전파와 대역폭, 검증자는 계산량과 가스 비용을 함께 봐야 합니다. Lattice 기반 Falcon의 서명은 666바이트, 해시 기반 SLH-DSA는 약 7.8KB입니다.",
+      "XMSS 같은 stateful 서명은 백업 복원이나 여러 기기의 동시 서명으로 상태가 되돌아가면 같은 원타임 키(예: 42번 키)가 서로 다른 메시지에 쓰여 WOTS의 보안이 깨지고 서명 위조가 가능해집니다. 그래서 한 기기에서 계속 서명하는 컨센서스 레이어에는 XMSS가 적합하지만, 사용자 지갑이 있는 실행 레이어는 다른 방법이 필요하다고 설명했습니다.",
+      "이더리움 로드맵(Strawmap)의 실행 레이어 해법은 NTT 프리컴파일에서 Ephemeral Keys로, 다시 leanSPHINCS와 증명 어그리게이션으로 바뀌어 왔습니다. 본인이 공동 저자로 참여한 EIP-7885는 여러 Lattice 스킴이 공유할 수 있는 NTT 연산을 제공하며, 커스텀 OP Stack 테스트넷에서 Falcon 검증 가스를 1.8M에서 479K로 약 73% 줄이고 ML-DSA는 약 7.8M에서 5.7M 가스로 낮췄습니다.",
+      "Ephemeral Keys는 계정 주소를 유지한 채 서명 키를 매번 교체하는 방식입니다. ECDSA는 트랜잭션이 멤풀에서 대기하는 동안 공개키가 양자 공격에 노출되어 few-time 서명인 FORS로 전환했지만, 서명자 커밋먼트를 계속 로테이션해야 하는 상태 부담과 FORS가 표준이 아니라는 한계가 남았습니다.",
+      "현재 방향은 Hegotá 포함이 확정된 Frame Transaction(EIP-8141) 위에서 동작하는 EIP-8288(인멤풀 서명 및 증명 어그리게이션)입니다. 검증 프레임이 스킴, 데이터, 검증 키를 디펜던시로 선언하면 멤풀에서 증명을 재귀적으로 묶고, 빌더가 블록 전체를 포괄하는 어그리게이트 프루프를 만들어 노드는 서명 하나하나 대신 이 증명 하나만 검증합니다.",
+      "해시 기반을 택하는 이유로 기본 계층이 의존하는 암호 프리미티브를 최소화하자는 Vitalik의 답변을 인용했습니다. 바이너리 필드 증명의 발전으로 SHA, BLAKE 같은 표준 해시의 증명 비용이 크게 낮아졌고(Flock은 논문상 Binius64보다 약 9배 빠르고, 골핑 챌린지에서는 논문보다 3~4배 더 개선), 다음 연구로 서명 크기가 가장 작은 SLH-DSA 파라미터셋을 수정 없이 배치 증명해 증명 시간, 메모리, 검증 시간, 증명 크기를 측정할 계획이라고 밝혔습니다."
+    ],
+    "chapters": [
+      {
+        "start": 0,
+        "label": "오프닝과 발표 소개"
+      },
+      {
+        "start": 36,
+        "label": "PQ 전환은 시스템 설계의 문제"
+      },
+      {
+        "start": 101,
+        "label": "NIST 표준: Lattice 기반과 해시 기반 서명"
+      },
+      {
+        "start": 233,
+        "label": "해시 기반 서명의 구조와 상태 롤백 위험"
+      },
+      {
+        "start": 448,
+        "label": "Stateless 서명 SLH-DSA"
+      },
+      {
+        "start": 567,
+        "label": "로드맵의 변화와 NTT 프리컴파일(EIP-7885)"
+      },
+      {
+        "start": 789,
+        "label": "Ephemeral Keys와 FORS"
+      },
+      {
+        "start": 928,
+        "label": "Frame Transaction과 EIP-8288 멤풀 어그리게이션"
+      },
+      {
+        "start": 1166,
+        "label": "왜 해시 기반인가: 표준 유지와 증명 기술의 발전"
+      },
+      {
+        "start": 1782,
+        "label": "연구 방향: 표준 SLH-DSA를 그대로 증명하기"
+      }
+    ]
+  },
+  "XWtt0h8uy9A": {
+    "about": "Four Pillars의 Hudson Jang이 진행한 이번 패널은 밸리데이터 업의 진입장벽과 시장 재편, 발행량 축소 제안 EIP-8363, 한국 밸리데이터가 글로벌 탑에 오르지 못한 이유, 밸리데이터의 역할, 그리고 AI를 활용한 운영 효율화까지 다뤘습니다. 실제로 이 사업으로 수익을 내 온 운영자들의 시각을 들어볼 수 있습니다.",
+    "takeaways": [
+      "Hyung Yeon Lee(Altus, 구 B-Harvest)는 기술 장벽이 이미 5년 전쯤 무너졌다고 봤습니다. 밸리데이터 대회 1위, 버그 발견, 툴 개발 같은 기술 기여가 위임으로 이어지지 않았고, 위임 주체가 리테일에서 VC와 기관으로 옮겨가면서 진입장벽은 결국 VC, 기관과의 관계, 즉 네트워킹이 됐다고 말했습니다. Youngseok Yang(Nodeinfra)은 이제 네트워킹만으로 풀 수 없는 기관 장벽이 생겼고 새 체인도 예전만큼 나오지 않는다고 덧붙였습니다.",
+      "Joonkyo Kim(DSRV)은 해자를 신뢰에서 찾았습니다. 위임은 사고 위험을 지고 남에게 돈을 맡기는 일이라 업력과 팀의 평판이 가장 쉬운 판단 기준이 된다는 것입니다. 이더리움에서는 기관 진입으로 위임 기반 밸리데이터의 보상이 크게 줄고 AI 수요로 서버비가 올랐습니다. 국내에서는 일정 매출 이상이면 ISMS 인증이 필요하고, SOC 인증을 요구받기도 하며, 커스터디 분야는 SOC 2가 아닌 SOC 1을, VASP 라이선스는 전담 인력 약 3명을 요구해 이런 비용이 소규모 밸리데이터의 진입을 막고 있다고 짚었습니다.",
+      "EIP-8363에 대해 Yang은 약 1년 반에 걸친 선형 축소로 이해하며, 도입 시 매출이 당장 절반으로 줄 것이라고 했습니다. 장기적으로는 고민해야 할 방향이지만 지금은 이르며, 가장 밑단인 밸리데이터의 인센티브를 바꾸면 솔로·소규모 밸리데이터가 먼저 밀려나 오히려 중앙화가 심해질 수 있다고 우려했습니다. Kim은 보상 축소가 숫자로 바로 보여 평가하기 쉬운 선택지일 뿐이라며, 인플레이션을 보안 투자로 보고 다른 대안들과 함께 검토하자고 제안했습니다.",
+      "Lee는 기관 입장에서는 100을 위임하든 200을 위임하든 밸리데이터 비용이 같은데 수수료를 두 배 낼 이유가 없다며, 수요와 공급이 위임량 비례 수수료보다는 화이트라벨 밸리데이터, 노드 서비스 같은 비용 기반 계약으로 재편될 것이라고 전망했습니다.",
+      "한국 인프라 기업이 Figment나 P2P.org 같은 글로벌 리더가 되지 못한 이유로 Lee는 다시 VC를 꼽았습니다. 위임처를 왜 정했는지 물으면 \"전임자가 정했다\", \"그냥 친했다\"는 답이 많았고, 초기부터 서구 VC와 연결된 Figment, Chorus One이 성공한 반면 한국 기업은 피봇을 잘해서 살아남았다고 진단했습니다. 패널들은 PoS 초기 APAC 지역 분산 수요의 수혜, 시차의 고통, 한국의 얕은 유동성, 미국과 유럽에서 성장한 커스터디 기업들과의 관계도 언급했습니다.",
+      "AI 활용에 대해 Lee는 생산성보다 보안에서 효과를 크게 느낀다며 Cantina 등 AI 오디터 약 3곳과 모델 피드백을 주고받으며 버그 탐색에 협업하고 있다고 소개했습니다. 약 700개의 RPC 인스턴스를 운영하는 패널은 업그레이드 공지를 자동으로 티켓화하고 IaC 코드 작성까지 자동화하는 작업을 진행 중이라고 밝혔습니다."
+    ],
+    "chapters": [
+      {
+        "start": 0,
+        "label": "오프닝 및 패널 소개"
+      },
+      {
+        "start": 140,
+        "label": "진입장벽은 어디에 있나: 기술에서 네트워킹과 신뢰로"
+      },
+      {
+        "start": 536,
+        "label": "EIP-8363과 발행량 축소 논쟁"
+      },
+      {
+        "start": 993,
+        "label": "한국 밸리데이터의 강점과 글로벌 탑과의 격차"
+      },
+      {
+        "start": 1467,
+        "label": "밸리데이터의 역할은 어디까지인가"
+      },
+      {
+        "start": 1800,
+        "label": "AI를 활용한 운영 효율화"
+      },
+      {
+        "start": 2243,
+        "label": "청중 Q&A: 밸리데이터가 줄어들면 PoS 보안은?"
+      }
+    ]
+  },
+  "ziGnWZ7d3OM": {
+    "about": "Sunnyside Labs의 온체인 프라이버시 솔루션 Privacy Boost를 만들며 마주한 문제와 기술적 트레이드오프를 다룬 발표입니다. 기존 솔루션의 한계, ZK와 TEE를 결합한 이유, Groth16 선택, 서버가 사라져도 출금할 수 있는 설계, 그리고 V2 기능과 Q&A까지 담았습니다.",
+    "takeaways": [
+      "급여 수령, 카페 결제, 월세, Aave 같은 디파이 운용을 한 지갑으로 하면 주소 하나로 그 사람의 금융 생활이 모두 드러나고, 기업이 온체인으로 급여를 지급하면 직원끼리 서로의 월급을 알게 됩니다. Jeon은 개인적으로 온체인 프라이버시가 매스 어답션에 중요하다고 봤습니다.",
+      "2025년 11월 개발을 논의하며 세운 요구사항은 세 가지였습니다. 첫째 속도(Railgun은 기기 성능에 따라 ZK 증명에 수 초에서 10초 이상, 잔고 조회를 위한 체인 스캔에 몇 분이 걸리기도 함), 둘째 EOA, Safe, MPC 같은 기존 지갑과 이더리움 유동성을 그대로 쓸 것, 셋째 서버가 사라져도 사용자가 직접 출금할 수 있을 것입니다.",
+      "클라이언트 ZK(Railgun, Privacy Pools)는 속도, Aztec 같은 프라이버시 체인은 유저와 유동성 부트스트래핑, FHE는 ZK보다 약 100배 느린 연산이 문제였습니다. Privacy Boost는 사용자 기기 대신 TEE 서버 안에서 ZK 증명을 생성해 1초 이내에 증명을 만들고 체인 스캔 없이 잔고와 전송 내역 API를 제공합니다. 상태 전환의 올바름은 ZK와 컨트랙트가 정하므로 TEE가 해킹되어도 자금을 마음대로 가져갈 수 없습니다.",
+      "증명 시스템은 오래된 Groth16을 택했습니다. 회로가 주로 머클 증명과 ZK 친화적 해시를 다루는 만큼 zkVM의 STARK 래핑이나 수백 KB 증명 압축 오버헤드를 감수할 이유가 없었고, Halo2는 구현이 복잡했으며 올해 초 검토한 Noir는 온체인 검증 비용이 약 2M 가스였습니다. 대가는 회로를 바꿀 때마다 trusted setup을 다시 해야 한다는 점입니다.",
+      "L2의 escape hatch처럼, 전송마다 상대방과 금액을 사용자의 뷰잉 키로 암호화해 온체인에 올려두고 TEE 서버가 사라지면 사용자가 직접 복호화하고 ZK 증명을 생성해 강제 출금할 수 있습니다. 노트의 소유자 값도 지출 키 대신 계정 ID로 바꾸고 Auth Registry로 EOA, 스마트 어카운트, Safe, MPC 지갑과 연결해, 프루빙 비용이 소폭 늘어나는 대신 키 교체와 기존 지갑 호환이 쉬워졌습니다.",
+      "3월 첫 출시 후 8월경 V2에서 Safe·MPC 지원, EIP-7702로 자동 쉴딩 코드를 위임한 EOA를 거래소처럼 쓰는 입금 주소, Morpho와 Uniswap 같은 외부 디파이와 상호작용하는 Gateway가 추가됐고 Base와 OP Mainnet에 라이브되어 있습니다. 전송당 500ms 이하 레이턴시를 지향하며, Q&A에서는 라이브니스가 TEE 서버에 의존하지만 HA와 멀티 리전으로 단일 장애점을 줄이고 있고, 슬리피지로 Gateway 거래가 실패하면 원금을 다시 쉴딩한다고 답했습니다. 완벽한 프라이버시 솔루션은 없으며 서버를 신뢰하기 싫다면 Railgun 같은 클라이언트 증명 방식이 맞다는 것이 그의 결론입니다."
+    ],
+    "chapters": [
+      {
+        "start": 0,
+        "label": "인트로: 온체인 프라이버시가 필요한 이유"
+      },
+      {
+        "start": 121,
+        "label": "세 가지 설계 요구사항"
+      },
+      {
+        "start": 311,
+        "label": "기존 솔루션의 한계: Railgun, Aztec, FHE"
+      },
+      {
+        "start": 397,
+        "label": "Privacy Boost와 풀 기반 프라이버시"
+      },
+      {
+        "start": 661,
+        "label": "기술 선택: 왜 Groth16인가"
+      },
+      {
+        "start": 860,
+        "label": "서버가 사라져도 출금: escape hatch"
+      },
+      {
+        "start": 928,
+        "label": "노트와 계정의 분리: Auth Registry"
+      },
+      {
+        "start": 1086,
+        "label": "V2: Safe·MPC 지원, 입금 주소, Gateway"
+      },
+      {
+        "start": 1422,
+        "label": "정리: 지향점과 트레이드오프"
+      },
+      {
+        "start": 1522,
+        "label": "Q&A"
+      }
+    ]
+  },
+  "zE9Sr21vc4c": {
+    "about": "SNU VMO Lab의 Wonjae Choi가 진행한 이번 패널은 ZK의 가장 큰 병목, 개발자가 ZK를 몰라도 되는 추상화의 방향, 잘못된 계산을 완벽하게 증명해 버리는 문제와 포멀 베리피케이션, 그리고 이더리움의 zkEVM 이후 ZK의 쓰임새를 다뤘습니다. zkVM 개발, 컴파일러, 보안 감사라는 서로 다른 자리에서 본 ZK의 현실을 들어볼 수 있습니다.",
+    "takeaways": [
+      "Taehoon Kim(Succinct)은 산업 전체의 병목을 수요로 꼽았습니다. 도입이 예상보다 늦어지고 있고, 그 밑에는 여전히 비용과 성능이 있다는 진단입니다. TLS가 암호화 비용이 무시할 수준이 되면서 표준이 됐듯 ZK도 그 단계를 넘어야 하며, 기관이 모든 트랜잭션 처리를 증명하려면 GPU가 100대는 필요할 것이라고 말했습니다. 6개월 안에 10배 성능을 내야 한다면 AI를 활용한 프루버 최적화에 올인하겠다며, 한 공개 프루버 대회에서 암호학 지식이 없는 참가자가 AI 프롬프팅만으로 3주 만에 2~3배, Lighter의 대회에서는 약 3주 만에 약 10배의 성능 향상이 나온 사례를 들었습니다.",
+      "Ryan Kim(Fractalyze)은 검증 방법을 챌린지 게임, TEE, ZK로 나누고, 비용 때문에 대부분의 머신러닝 에이전트 검증은 샌드박스나 컨피덴셜 컴퓨팅 같은 TEE로 갈 것이라고 봤습니다. 다만 UCP, x402 같은 에이전트 결제에서 API 제공자가 올바른 결과를 보냈는지 증명하는 일은 ZK가 맞는데, TEE는 하드웨어를 쥔 운영자를 믿어야 하기 때문이라고 설명했습니다.",
+      "Jason Park(zkSecurity)은 재귀처럼 병목을 줄이는 기법이 실제로 버그를 많이 유발해 왔다며 성능만 좇는 것을 경계했습니다. 기업이 TEE라는 대안을 택하는 상황에서, 민감한 개인정보를 TEE로 처리하지 못하게 하는 규제가 생긴다면 ZK 수요가 살아날 수 있다는 의견도 냈습니다. zkSecurity는 Lean 4 기반 회로 DSL인 Clean으로 soundness와 completeness를 증명한 뒤 다른 증명 백엔드로 내보내는 방식을 소개했습니다.",
+      "추상화에 대해 Taehoon Kim은 AI가 회로를 빠르게 짜고 버그와 테스트까지 챙기는 지금, 단순한 상태 전이라면 zkVM보다 가벼운 커스텀 스택이 나을 수 있다고 인정했습니다. Succinct는 AI로 프리컴파일 회로를 최적화하고 있고, 최신 버전 Hypercube부터 Nethermind 포멀 베리피케이션 팀과 RISC-V 명세 검증을 진행하며, 내년 1분기까지 차세대 프루버를 프로덕션 수준으로 만드는 것이 목표라고 밝혔습니다.",
+      "남는 신뢰 가정도 짚었습니다. Ryan Kim은 Lean 4, 컴파일, 하드웨어에 버그가 없다는 가정을 최소한으로 깔아야 한다고 했고, Park은 스펙 자체의 오류, GPU 위트니스 생성, Rust와 CUDA 프루버 코드를 Lean으로 옮기는 도구의 부재를 꼽았습니다. Taehoon Kim은 최대 약 7,000달러를 보냈다는 증명이 수신자가 바뀐 채로도 통과할 수 있다며 손실 모델링, 비상 중단, E2E 테스트를 강조했고, Park은 zkVM 버그는 모든 사용자에게 번지므로 CVE 같은 공개와 대피 절차가 필요하다고 말했습니다.",
+      "zkEVM 이후에 대해 Taehoon Kim은 구체적인 유스케이스가 없다는 것이 팀의 가장 큰 고민이라고 털어놨습니다. 프라이버시에 ZK 비용을 쓰는 것은 ROI가 나오지 않지만 롤업 파이널리티 단축처럼 숫자로 보이는 확장성에는 수요가 있고, ZK 로그인은 패스키로 대체될 수도 있다고 했습니다. Ryan Kim은 이더리움이 해시 기반 서명 집계, 대역폭 병목 완화를 통한 파이널리티 단축, 검증 비용 절감을 통한 발행량 축소 때문에 ZK로 간다고 정리했고, Park은 학습 증명은 아직 멀지만 신분 정보의 선택적 공개 같은 아이덴티티 분야에 가능성이 있다고 봤습니다."
+    ],
+    "chapters": [
+      {
+        "start": 0,
+        "label": "오프닝 및 패널 소개"
+      },
+      {
+        "start": 124,
+        "label": "ZK의 가장 큰 병목: 수요와 비용"
+      },
+      {
+        "start": 360,
+        "label": "속도의 병목과 AI 기반 프루버 최적화"
+      },
+      {
+        "start": 482,
+        "label": "검증 방법론: 챌린지, TEE, ZK"
+      },
+      {
+        "start": 605,
+        "label": "보안 관점: 성능 기법의 버그와 규제"
+      },
+      {
+        "start": 973,
+        "label": "개발자는 ZK를 몰라도 될까: 추상화의 방향"
+      },
+      {
+        "start": 1524,
+        "label": "SP1 로드맵과 차세대 zkVM"
+      },
+      {
+        "start": 1922,
+        "label": "잘못된 계산의 증명과 포멀 베리피케이션"
+      },
+      {
+        "start": 2411,
+        "label": "손실 모델링과 신뢰 가정, 버그 공개 절차"
+      },
+      {
+        "start": 2925,
+        "label": "zkEVM 이후 ZK의 미래와 유스케이스"
+      }
+    ]
+  },
+  "1SdjzEzkgX4": {
+    "about": "Moderated by Guzus of Axis, this panel works through five topics: incentives, fees, execution, how to respond when things break, and institutions. The panelists share what they learned from DeFi Summer, the Uniswap fee switch, solver execution risk, and the KelpDAO rsETH incident, and close with one line each on what builders should build next.",
+    "takeaways": [
+      "Christopher Donovan (Compound) said incentives helped create decentralized lending as a category in DeFi Summer 2020, but if they are the only reason users engage, retention suffers when they run out. He added that Compound lost its competitive edge because the protocol was not iterated for years, and is now building Compound V4 for what it calls an \"institutional credit network.\"",
+      "Mike Silagadze (EtherFi) said EtherFi recently turned off restaking and is evolving into a crypto neobank with external revenue: merchants pay about 3% on card spend, plus fees on DeFi strategy vaults and lending products. Part of that revenue funds cashback, budgeted as a customer acquisition cost (for example, $100 per customer), so EtherFi no longer goes \"into debt by promising a token.\"",
+      "Derek Walkush (Uniswap Labs) said protocol fees went live on V2 and V3 last December and on V4 in July, while interface fees were turned off and the API was made free. 99% of liquidity (dollar-adjusted) stayed. The StablePair hook, a dynamic fee hook that raises fees when a pool drifts off peg, has lifted LP returns by about 20 to 40% versus benchmarks in early data, and Uniswap's share of EVM stable-stable swaps grew from about 30% to about 65% this year.",
+      "Heejin Kim (Radius) explained that with dynamic fees in V4 hooks, fees can change from block to block, so routes must be recalculated and CPU and latency limit how much can be searched. As a solver on CoW Protocol and UniswapX, the hardest part is the uncertainty between quote and execution, such as gas spikes and cross-chain reorgs: good execution is \"delivering what you promised to the user.\"",
+      "On April's KelpDAO rsETH incident, Silagadze described how a roughly $300 million bridge hack encumbered about $1.5 billion of rsETH, which in turn locked up about $30 billion in Aave, before Aave, EtherFi, Compound and others stepped in with capital as DeFi United. Donovan pointed to isolated markets and careful collateral curation, and Kim argued that \"responsibility should follow control.\"",
+      "On what to build: Kim pointed to hooks like StablePair, Silagadze said \"Stop building casinos\" and build apps with external revenue, Donovan urged use cases you can only do onchain, and Walkush highlighted better interfaces for tokenized stocks (about $20 billion on Robinhood Chain and $2 billion on X Layer)."
+    ],
+    "chapters": [
+      {
+        "start": 0,
+        "label": "Opening and panel introductions"
+      },
+      {
+        "start": 139,
+        "label": "Incentives: lessons from DeFi Summer"
+      },
+      {
+        "start": 302,
+        "label": "EtherFi: from points to cashback"
+      },
+      {
+        "start": 481,
+        "label": "Where value accrues: apps vs. lending protocols"
+      },
+      {
+        "start": 570,
+        "label": "Fees: Uniswap's fee switch"
+      },
+      {
+        "start": 741,
+        "label": "How fee changes affect arbitrage"
+      },
+      {
+        "start": 902,
+        "label": "Execution risk for solvers"
+      },
+      {
+        "start": 1097,
+        "label": "Uniswap's StablePair hook"
+      },
+      {
+        "start": 1197,
+        "label": "When things break: the KelpDAO rsETH incident"
+      },
+      {
+        "start": 1587,
+        "label": "What builders should build"
+      }
+    ]
+  },
+  "QSRqL91R5iA": {
+    "about": "Moderated by Youngseok Yang, CEO of Nodeinfra, this panel brings together Jun Song (Prysm), Felix Lange (Geth), and Luca Zanolini, formerly of the Ethereum Foundation's protocol consensus team. They cover what ePBS changes for consensus clients and the builder market, the shift toward scaling L1, whether ZK and PeerDAS really resolve the trilemma, and the long-term future of clients and nodes.",
+    "takeaways": [
+      "Jun Song said ePBS (EIP-7732) adds complexity: validators take on a new duty in the Payload Timeliness Committee (PTC), and fork choice must now handle three cases per slot instead of two (a missed slot, a block with its payload, and a block without it).",
+      "Song said that with today's attestation deadline four seconds into a slot, there are only a couple of seconds to execute and validate a block, and ePBS expands that window by up to five times. The target is to raise the gas limit from 60 million to 200 million, which he called conservative since the team wanted to ship 300 million at first. Auctions that happen opaquely in relays today move into the protocol, making the bid floor visible and letting even solo stakers bid.",
+      "Luca Zanolini said that bringing builders into the protocol makes it possible to prove which properties hold under which assumptions, for example that the protocol can force a builder to pay the proposer even if it withholds the payload. The trade-off is more in-protocol participants and more assumptions to sort out.",
+      "On L1 vs. L2, Song called the rollup-centric roadmap a success and expects L2s to shift toward specialized blockspace for institutions, since gas on L1 is now cheap enough for most apps. Felix Lange said \"we always wanted to scale L1\" and does not see it as exclusive with the L2-centric roadmap. Zanolini advised builders to follow Ethereum's principles (maximize trustlessness and decentralization for a neutral settlement layer) rather than specific roadmap entries.",
+      "On the trilemma, Zanolini said ZK and PeerDAS move assumptions rather than remove them (enough custodians hold data, at least one live prover exists), so proving must stay cheap to avoid prover centralization. Lange was disappointed that zkVMs rely on special system calls for operations like SHA-3, calling it \"a bit like cheating.\" Song supports Optional Execution Proofs (EIP-8025) but noted PeerDAS still relies on supernodes, while Lange described PeerDAS as a stepping stone toward full DAS.",
+      "Looking ahead, Song expects at least five hard forks by 2030, with post-quantum (he prefers an Offchain Labs approach that reuses BLS) and formal verification in Lean as big agenda items. Lange said nodes will remain as long as someone needs Ethereum state, with a next version of Geth's Snap sync built on block access lists (BALs, EIP-7928). Zanolini sees clients moving from \"re-execute everything\" toward \"verify everything.\""
+    ],
+    "chapters": [
+      {
+        "start": 0,
+        "label": "Opening and panel introductions"
+      },
+      {
+        "start": 145,
+        "label": "What ePBS brings: complexity and scalability"
+      },
+      {
+        "start": 433,
+        "label": "ePBS from a researcher's view: provable guarantees"
+      },
+      {
+        "start": 570,
+        "label": "L1 scaling and the role of L2s"
+      },
+      {
+        "start": 901,
+        "label": "ZK, PeerDAS, and the trilemma"
+      },
+      {
+        "start": 1105,
+        "label": "zkVM proving and the limits of PeerDAS"
+      },
+      {
+        "start": 1383,
+        "label": "Clients in five to ten years: post-quantum and formal verification"
+      },
+      {
+        "start": 1679,
+        "label": "The future of nodes: from re-execution to verification"
+      },
+      {
+        "start": 1935,
+        "label": "Closing"
+      }
+    ]
+  },
+  "SZ9zaB6NfoQ": {
+    "about": "Danning Sui, Research Director at Pantera Capital, previously at Flashbots looking at DEX trading data and MEV, presents an analysis of prediction market data from the first half of this year covering Kalshi, Polymarket International, and Polymarket US. The talk covers the metrics that matter, how incentives shape volume, who wins and loses among users, and an MEV strategy found in short-term crypto markets.",
+    "takeaways": [
+      "A CFTC DCM license lets a platform define outcomes as binary contracts and operate across US states at the federal level, unlike state-by-state sports betting. Polymarket International matches orders offchain but settles on Polygon, which allows wallet-level analysis, while US regulated platforms are fully offchain, making wash trading harder to detect.",
+      "Sui recommended looking at single-side taker volume, open interest, and turnover (volume divided by open interest) together, since notional volume is calculated differently on every platform. In July, Kalshi led with about $13 billion in monthly volume and about $1 billion in open interest, while Polymarket International and US combined did about $5 billion. In September, Polymarket US (about $2 billion in taker volume) flipped International (about $1.99 billion).",
+      "Polymarket US is almost entirely sports, which gives it the highest turnover. At Polymarket International, 98% of fees come from crypto and sports, while geopolitics markets are intentionally kept at zero fees. Kalshi's crypto markets have little open interest but show six times daily turnover.",
+      "Critics recently pointed to Kalshi's CFTC filings suggesting it rebates makers the same amount it charges in fees, effectively allowing zero-cost volume (Kalshi denied this, and the filing concerned its perp volume). Polymarket's crypto volume also fell after its maker rebate program changed. Sui's conclusion: incentivized volume is \"not sticky.\"",
+      "Wallets trading more than 100 times a day or in over 1,000 markets were classed as bots, and those putting $50,000 or more into one category as informed traders. Of about 2 million wallets active in the first half on Polymarket International, 89% behaved like retail but generated only about 20% of volume, while bots and pros (about 10% of wallets) generated about 77% of taker volume. Bots earned about $100 million a year as a group, yet the median bot wallet lost $70, which Sui linked to experimental AI agent bots built on the Polymarket API. Retail lost the most, and 146 wallets were profitable every month.",
+      "In 5 and 15 minute BTC markets, 80% of bots trade against other bots. Near market close, Binance BTC volume can spike 12 times while the price briefly jumps and then reverts, suggesting position holders push the Chainlink-based closing price. BTC moves about 5bp on average over 5 minutes versus about 40bp over 4 hours, and 81% of 5 minute markets close within ±0.05% of the starting price, so short markets are cheap to manipulate, and Polymarket has moved toward a TWAP benchmark."
+    ],
+    "chapters": [
+      {
+        "start": 0,
+        "label": "Introduction and agenda"
+      },
+      {
+        "start": 72,
+        "label": "The prediction market landscape and regulation"
+      },
+      {
+        "start": 191,
+        "label": "Polymarket US vs. International: data access and volume"
+      },
+      {
+        "start": 321,
+        "label": "Metrics that matter: taker volume, open interest, turnover"
+      },
+      {
+        "start": 418,
+        "label": "Market categories and fee capture"
+      },
+      {
+        "start": 564,
+        "label": "Kalshi's crypto growth and the incentive debate"
+      },
+      {
+        "start": 745,
+        "label": "User cohorts: retail, pros, and bots"
+      },
+      {
+        "start": 1001,
+        "label": "PnL: who wins and who loses"
+      },
+      {
+        "start": 1117,
+        "label": "MEV in short-term crypto markets"
+      },
+      {
+        "start": 1428,
+        "label": "Key takeaways"
+      }
+    ]
+  },
+  "JE_iIxvNrG4": {
+    "about": "Moderated by Jay Jang of Sunnyside Labs, this panel brings together organizations that have supported Ethereum outside the EF through conferences, grants, and hackathons. The panelists share candid views on the EF, debate whether it should be smaller or bigger in five years, reflect on how events and funding have changed, and offer advice to the Korean Ethereum community.",
+    "takeaways": [
+      "Jerome de Tychey (EthCoordinate, EthCC) said Ethereum is \"number one on everything but market cap,\" which makes the EF hard to judge fairly, and that no single foundation can understand every market. EthCC, run as a nonprofit by Ethereum France, tries to anchor a hub by meeting in the same place at the same time each year.",
+      "Mashal Waqar (Octant) said that in conversations with college students, Ethereum is often not the first thing they mention, ahead of Ripple, Solana, and Bitcoin. Octant has run 14 funding rounds and given out over 4,000 ETH to over 200 teams, made possible by staking yield from the Golem Foundation's 100,000 ETH treasury, and in 2021 also built an accelerator to reduce grant dependence, which has graduated 20 projects.",
+      "On the EF in five years, de Tychey hopes it will be bigger in funding, which requires the ETH price to keep rising to fund clients and research such as post-quantum and privacy. Another view was that the EF is cutting back under a subtractive philosophy, with teams formerly at the EF carrying the mission forward. Kartik Talwar (ETHGlobal) expects the EF to be \"as big as it's ever been,\" noting that the Linux Foundation has only grown.",
+      "De Tychey said EthCC held on to its cypherpunk, open source values, expecting that to keep institutions away, but the opposite happened: Société Générale came on as a sponsor last year. Because EthCC, nearing its tenth year, belongs to a French nonprofit, he expects it to be around for the next 10 years.",
+      "Talwar said ETHGlobal hackathons moved from protocol developers building proofs of concept such as the beacon chain, to app builders, and now to institutions sending their blockchain teams. Over nine years, ETHGlobal has held over 350 events in 130 cities, bringing more than 200,000 people together in person. It launched Pragma for non-developer audiences three years ago, is preparing ETHConf in New York for financial institutions, and now averages two events a week, bringing in about 1,000 newcomers each week.",
+      "Octant moved from generic rounds to themed rounds (its current one focuses on privacy), excludes teams with VC funding or a token, and looks at past work, due diligence, references, and realistic timelines, with a community vote. For Korea, Talwar urged ignoring vanity metrics (ETHGlobal's first event in 2017 had 400 people), de Tychey suggested a monthly meetup on a fixed date like \"the first Wednesday of the month,\" and Waqar advised event organizers to understand sponsors' goals."
+    ],
+    "chapters": [
+      {
+        "start": 0,
+        "label": "Opening and panelist introductions"
+      },
+      {
+        "start": 142,
+        "label": "What the EF does, and why it is hard to judge"
+      },
+      {
+        "start": 343,
+        "label": "Octant: funding and support beyond grants"
+      },
+      {
+        "start": 575,
+        "label": "Why ETHGlobal started"
+      },
+      {
+        "start": 654,
+        "label": "Should the EF be smaller or bigger in five years?"
+      },
+      {
+        "start": 966,
+        "label": "EthCC's ten-year journey"
+      },
+      {
+        "start": 1259,
+        "label": "Hackathons and institutional demand"
+      },
+      {
+        "start": 1588,
+        "label": "How Octant selects grantees"
+      },
+      {
+        "start": 1798,
+        "label": "Advice for the Korean Ethereum community"
+      }
+    ]
+  },
+  "4ERZ3v1e22U": {
+    "about": "Moderated by Hyung-Kyu Choi, Co-Founder of DSRV, this panel revisits EIP-8363 (Tapered Issuance Burn), a proposal that would burn part of validator rewards as the staking ratio rises. It set off one of the most intense debates in the Ethereum community two months earlier, and it did not make it into the Hegotá hard fork. Jerome de Tychey, a co-author of the EIP and the organizer of EthCC, and Isidoros Passadis of Lido take opposite sides on how stakers are paid, whether a rising staking ratio is a problem, and what lower issuance would mean for MEV and solo stakers.",
+    "takeaways": [
+      "Jerome de Tychey explained that validators currently earn about 2.5% while new issuance dilutes holders by about 0.85% a year, a figure he expects to near 1% within 12 to 24 months. Annual issuance is 166 times the square root of the ETH staked, so it keeps growing with stake, and if all ETH were staked, yield and dilution would both be about 1.5%, for a real return of zero.",
+      "De Tychey's core concern is that the staking ratio should not cross 50%. EIP-8363 would pay less as staking approaches that level, and he noted that Ethereum has changed its issuance seven times, always downward. Once dilution passes a psychological threshold, he warned, \"you just want to stake,\" pulling ETH out of active circulation.",
+      "Isidoros Passadis said Lido pools stake from users with less than 32 ETH up to SharpLink, which recently allocated $200 million through Lido, and distributes it across more than 700 node operators, with 34 professional operators running about 90% of the stake. Roughly 22% of staked ETH runs through Lido.",
+      "Passadis argued that stakers are not necessarily net sellers of ETH, since stETH holders can borrow stablecoins against it to hedge or cover costs without selling. He sees ETH's yield, which Bitcoin lacks, as a competitive edge for ETFs and DATs like SharpLink and BitMine, and said the net effect of cutting issuance is understudied.",
+      "Passadis does not see today's staking ratio as a problem: about 85% of new stake over the last year and a half was pent-up institutional ETH, growth should flatten, and other proof-of-stake systems settle between 50 and 70%. Both agreed that, all else equal, a lower ratio is better, but Passadis said who runs the stake matters more, noting that Coinbase, Kraken, and Binance were the biggest winners of stake growth and Coinbase custodies 8 of the 9 US Ethereum ETFs.",
+      "On the objection that lower issuance makes MEV a bigger share of rewards and pushes out solo stakers, de Tychey replied that the current curve already squeezes solo stakers, especially after tax on yield. For 2027, he hopes for at least a mechanism that sharply lowers yield above a certain staking level, while Passadis urged people to stop conflating issuance with inflation and find a way back to when the EIP-1559 burn worked well."
+    ],
+    "chapters": [
+      {
+        "start": 0,
+        "label": "Opening: the issuance war and EIP-8363"
+      },
+      {
+        "start": 181,
+        "label": "Panelist introductions"
+      },
+      {
+        "start": 312,
+        "label": "Why Ethereum pays stakers and how it works"
+      },
+      {
+        "start": 746,
+        "label": "Lido's role and liquid staking"
+      },
+      {
+        "start": 1114,
+        "label": "Staking ratio or node operators?"
+      },
+      {
+        "start": 1466,
+        "label": "Is the staking ratio a problem?"
+      },
+      {
+        "start": 1643,
+        "label": "MEV and solo stakers"
+      },
+      {
+        "start": 1941,
+        "label": "What they hope changes by next year"
+      }
+    ]
+  },
+  "GIMJwVErQU8": {
+    "about": "Moderated by Seungmin Jeon of Sunnyside Labs, this panel compares frame transactions (EIP-8141), the general mechanism being prepared for Ethereum L1, with EIP-8130, proposed by Base and supported by several L2s, after talks to merge the two standards collapsed two weeks before the event. Felix Lange of the Ethereum Foundation and Taek Lee of ZeroDev (now part of Offchain Labs) discuss why L1 and L2 need native account abstraction for different reasons, what changes when both standards coexist, and what comes next for wallets.",
+    "takeaways": [
+      "Felix Lange said ERC-4337 was a testbed for smart accounts, but at the protocol level transactions can still only originate from a key. EIP-7701, which would bring the 4337 environment to mainnet, was judged too prescriptive of one transaction flow and \"not really in the spirit of Ethereum,\" so the team moved to the more general frame transactions. Vitalik pushed the initial idea, and Lange's colleague Matt Garnett now leads the work.",
+      "Taek Lee said L2s need native AA for two reasons: post-quantum migration, which \"we cannot actually delay anymore,\" and user experience, which L2s prioritize more than L1. Despite embedded accounts and session keys, most users have still not migrated off their EOAs, and 7702 is used for little more than batching.",
+      "Lange noted that EIP-7702 lets an account deploy code, but the original key can still send ETH, so \"it's not like a real smart account.\" The protocol should provide general primitives and leave implementations to companies like ZeroDev, while compressing requests such as native batching and transaction assertions into a minimal change that can ship in a fork.",
+      "Lange described frame transactions as \"a superset of 8130,\" able to do \"pretty much everything 8130 can do and more.\" Much of the work has gone into builder-sponsored gas flows and aggregating post-quantum signatures, since every transaction cannot carry about 4 KB of signature data.",
+      "Lee said L2s back EIP-8130 because time to market is critical and they did not want more fragmentation. He was once worried about wallets needing per-chain routing, but now expects little overlap: 8141 for full asset management and privacy, 8130 for embedded account UX. Lange added that an 8130-style key registry could exist on L1, but since L1 has no operator, it should not require a hard fork for every new signature type.",
+      "Native AA can ship on mainnet at the H-star fork at the earliest, about a year out, so Lange saw Base shipping its own standard as understandable. He is most excited about leanVM and hash-based signatures (\"we're going to be good forever\"), while Lee is betting hard on the next generation of wallets built on frame transactions."
+    ],
+    "chapters": [
+      {
+        "start": 0,
+        "label": "Opening and panelist introductions"
+      },
+      {
+        "start": 117,
+        "label": "Why native AA again: the L1 view"
+      },
+      {
+        "start": 309,
+        "label": "The L2 view: post-quantum migration and UX"
+      },
+      {
+        "start": 447,
+        "label": "Smart accounts as first-class citizens"
+      },
+      {
+        "start": 757,
+        "label": "EIP-8141 vs. EIP-8130"
+      },
+      {
+        "start": 1204,
+        "label": "Wallet development with two standards"
+      },
+      {
+        "start": 1394,
+        "label": "Key registries and shipping timelines"
+      },
+      {
+        "start": 1633,
+        "label": "What excites them most"
+      }
+    ]
+  },
+  "tSZxP59ZffU": {
+    "about": "Moderated by Seungmin Jeon of Sunnyside Labs, this panel starts from Vitalik Buterin's argument in February 2026 that the picture of L2s as Ethereum's \"branded shards\" is not working in reality. Ed Felten, Chris Andreola, and Ilia Volokh discuss how to measure L2s' contribution, whether Stage 2 is still the right yardstick, what Ethereum gets from successful L2s, and why Circle and Stripe are launching their own L1s, Arc and Tempo.",
+    "takeaways": [
+      "Ed Felten said that by gas or transaction count, L2s collectively handle far more traffic than Ethereum L1, and warned against the trap of \"comparing the current state of one thing against the hoped-for future state of another thing.\" Layering, he argued, is why the internet succeeded and part of why Ethereum is succeeding.",
+      "On Stage 2, Felten noted that it requires the protocol to block governance-driven changes faster than 30 days, a standard even Ethereum L1 would not meet. What matters is accountable governance with no centralized point of control. Ilia Volokh called the idea of distilling any group's governance into code \"just a fantasy,\" while Chris Andreola, who expects L2s to move past Stage 2 within one to two years, said some partners pursue Stage 2 so they have a defensible position if a government asks them to act onchain.",
+      "On the criticism that L2s pay Ethereum little in blob fees, Volokh said the gap is by design, since blobs were meant to cut L2 costs, and suggested buyback mechanisms like Hyperliquid's or linking staking across layers. Felten said Ethereum once underpriced data availability but is now closer to a fair price, and that Arbitrum stack chains hold over a million ETH in escrow, close to 1% of supply.",
+      "Felten called using ETH as the native and gas token the most important thing L2s have done for ETH demand. Andreola added that the distribution of companies like Coinbase and Robinhood brings holders and users who end up aligned with Ethereum.",
+      "Looking back from five years out, Volokh said \"users care about products\" and that chains are almost inconsequential. Starknet shipped native account abstraction early, but it did not bring a flood of Face ID users because \"products were missing.\" Felten expects user experience to drive design deep into the stack, as L2s did by cutting latency.",
+      "Asked why Circle and Stripe chose their own L1s, Felten said large stake-based consensus is expensive, so it makes sense to pay for it once on Ethereum; building separate L1s reflects a desire for control, and he believes the open, standards-based approach wins in the long run. On adoption, all three stressed partners' distribution: \"We thought if we build it, they'll come, but they don't, so we need to bring them.\""
+    ],
+    "chapters": [
+      {
+        "start": 0,
+        "label": "Opening and panelist introductions"
+      },
+      {
+        "start": 62,
+        "label": "Vitalik's critique: are L2s still scaling Ethereum?"
+      },
+      {
+        "start": 267,
+        "label": "Is Stage 2 still the goal?"
+      },
+      {
+        "start": 488,
+        "label": "Rethinking the stage framework and governance sovereignty"
+      },
+      {
+        "start": 667,
+        "label": "Blob fees and what Ethereum gets from L2s"
+      },
+      {
+        "start": 1030,
+        "label": "What will look wrong five years from now"
+      },
+      {
+        "start": 1357,
+        "label": "What each L2 uniquely offers"
+      },
+      {
+        "start": 1584,
+        "label": "Q&A: corporate L1s and privacy"
+      },
+      {
+        "start": 2046,
+        "label": "Q&A: adoption strategies"
+      }
+    ]
+  },
+  "mCZnsrNJ1RU": {
+    "about": "Moderated by Junhyeok Yoo, Researcher at Four Pillars, this panel looks at what blockchains can offer AI agents that other technologies cannot. Jansen Teng, David Park, and Francesco Andreoli cover agent wallets, trading as the first product-market fit, the guardrails needed before people hand agents their funds, and how the agent ecosystem is expanding in APAC.",
+    "takeaways": [
+      "Jansen Teng (Virtuals) separated payments from commerce. Getting agents to transact over crypto rails is simple enough, but a real business transaction requires knowing the goods were delivered, which is where smart contracts come in. David Park (Base) added that permissionless financial infrastructure lets agents manage funds under a user's policy, and that agents can abstract away hurdles like signing transactions or reading BaseScan and Etherscan.",
+      "Francesco Andreoli (MetaMask) introduced the MetaMask agent wallet, released in early access in June: a CLI for perpetuals and spot trading that plugs into Hermes or Grok bots or any custom orchestrator and applies the same malicious address and token checks as the mobile app and extension. Most current users are advanced traders running strategies from DCA to sentiment analysis and arbitrage between stablecoins.",
+      "Andreoli also described the MetaMask Money account, which earns on idle funds and switches easily with a trading account, and shared how one builder used the agent wallet with x402 to book flights through the agent booking APIs launched by Skyscanner and lastminute.",
+      "Teng said Virtuals has shifted from building infrastructure to adoption, because perfect infrastructure is useless if nobody uses it. Its example is chat-native agents that act on ticker mentions in group chats or selected Twitter accounts. His advice to builders: start with trading, where a 1% fee on trades can sustain a team.",
+      "On trust, Teng said the starting point is getting people comfortable trusting an agent with $1,000 to $10,000, possibly with protection like Binance's SAFU fund. Park called for paper trading and emergency controls consolidated into one service such as CDP. Andreoli cited trading CLIs hacked through prompt engineering and noted that x402 and ERC-8004 are guidelines, not enforced, so enforcement may need to come from those with distribution, like Google; otherwise agents stay stuck at \"a hundred bucks, a virtual card.\"",
+      "Park said Base focuses on three pillars: trading, financing, and payments. A month before the event, Coinbase tokenized stocks (CB Stocks) launched, and Base announced a partnership with Aave to use them as collateral. In APAC, where Japan and Indonesia are moving on stablecoins and Korea is preparing its Digital Asset Basic Act, financial institutions and tech companies are focused on agentic payments, and Base is testing use cases with credit card companies and IT platforms. Teng's next goal is getting 10,000 users to each put $1,000 with an agent next quarter."
+    ],
+    "chapters": [
+      {
+        "start": 0,
+        "label": "Opening and panelist introductions"
+      },
+      {
+        "start": 79,
+        "label": "What blockchains offer AI agents: payments vs. commerce"
+      },
+      {
+        "start": 376,
+        "label": "The MetaMask agent wallet"
+      },
+      {
+        "start": 701,
+        "label": "MetaMask Money and agentic flight booking"
+      },
+      {
+        "start": 898,
+        "label": "Virtuals: from infrastructure to adoption"
+      },
+      {
+        "start": 1299,
+        "label": "Building trust and guardrails"
+      },
+      {
+        "start": 1744,
+        "label": "Base and the agent ecosystem in APAC"
+      },
+      {
+        "start": 2020,
+        "label": "Audience Q&A"
+      }
+    ]
+  }
+}
