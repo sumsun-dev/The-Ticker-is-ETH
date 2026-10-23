@@ -1,6 +1,318 @@
 {
   "digests": [
     {
+      "date": "2026-10-23",
+      "title": "글램스테르담 포크가 가스 리프라이싱 보안 이슈로 무기한 연기됐다",
+      "shortTitle": "글램스테르담 무기한 연기",
+      "subTitle": "메인넷은 2027년 전망, 다음 포크 준비는 계속된다",
+      "intro": "글램스테르담의 Hoodi 테스트넷 활성화를 나흘 앞두고 포크가 무기한 연기됐다. ChainSecurity가 EIP-8037과 8038의 가스 리프라이싱이 이미 배포된 컨트랙트를 공격 가능하게 만든다는 사실을 발견했고 12월 메인넷 포크는 사실상 무산되어 2027년이 유력해졌다. 그러나 같은 날 I* 포크의 헤드라이너 후보인 디커플드 합의와 양자내성 키 레지스트리 드래프트가 공개되고 차기 상태 트리 마이그레이션이 데브넷에서 실증되는 등 병렬화된 포크 파이프라인은 멈추지 않았다. 프로토콜 바깥에서는 PHP 대형 취약점과 Railway 침해가 중앙화 인프라의 단일 실패점을 드러내며 탈중앙화 담론에 실물 근거를 보탰다. 연기는 뼈아프지만 메인넷 전에 잡아냈다는 것은 테스트넷 프로세스가 작동했다는 뜻이기도 하다.",
+      "sections": [
+        {
+          "heading": "이번 호 인사이트",
+          "items": [
+            {
+              "title": "가스 리프라이싱의 하위호환 리스크가 경고 단계를 지나 실제 포크 연기 사유가 됐다",
+              "summary": "8월 글램스테르담 리프라이싱 경고에서 시작된 논의가 이번 호에서 결정적 국면을 맞았다. ChainSecurity는 EIP-8037과 8038의 가스 비용 변경으로 종전에는 무효였던 트랜잭션이 기존 컨트랙트를 공격할 수 있음을 발견했고 주요 DeFi 프로젝트 13곳에서 취약 가능성이 확인됐다. 호출 중 gasleft()가 증가할 수 있게 되는 등 배포된 컨트랙트들이 전제해 온 가스 가정 자체가 깨지는 문제라서 '배포된 코드는 바꿀 수 없다'는 리스크가 타임락이나 서명만이 아니라 리프라이싱에도 그대로 적용된다는 사실이 입증된 셈이다. 조사가 전수조사가 아니었다는 점에서, 다음 주 ACDT에서 나올 전체 영향 분석과 세 가지 대응 시나리오(제때 완화, 동일 스펙 연기, 스펙 변경) 중 어느 쪽으로 가는지가 관전 포인트다.",
+              "why": "앞으로 모든 리프라이싱성 변경은 기존 배포 컨트랙트에 대한 영향 분석이라는 고정 비용을 전제하게 되며 이 비용이 포크 속도를 좌우한다.",
+              "url": "https://forkcast.org/calls/acde/248/",
+              "source": "Forkcast",
+              "date": "2026-10-22"
+            },
+            {
+              "title": "포크 파이프라인 병렬화가 글램스테르담 연기의 로드맵 충격을 줄이고 있다",
+              "summary": "Hoodi 포크가 취소된 바로 그 시기에 I* 포크(2027/28 후보)의 헤드라이너 후보인 EIP-8453 디커플드 합의와 EIP-8450 양자내성 키 레지스트리 드래프트가 24시간 안에 잇따라 공개됐다. 같은 날 glamsterdam-devnet-8에서는 차기 상태 트리인 Partitioned Binary Tree로 가는 첫 자가 마이그레이션이 성공했고 Hegotá용 bogota-devnet-2는 다음 주 런칭이 확정됐다. 지난 호에서 짚은 '직렬에서 병렬로' 전환된 포크 파이프라인이 실제 위기 상황에서 처음 작동하는 모습으로, Barnabé Monnot은 이 정도의 멀티포크 계획과 파이프라이닝은 본 적 없다고 평가했다. 다만 글램스테르담의 밀림이 Hegotá 이후 일정까지 연쇄 지연으로 번지는지는 영향 분석 결과에 달려 있다.",
+              "why": "병렬 파이프라인이 실제로 작동한다면 포크 하나의 연기가 로드맵 전체의 연기를 뜻하지 않게 된다.",
+              "url": "https://x.com/barnabemonnot/status/2113193383288029628",
+              "source": "@barnabemonnot",
+              "date": "2026-10-22"
+            },
+            {
+              "title": "중앙화 인프라의 연쇄 사고로 탈중앙화가 다시 보안 논거로 쓰이고 있다",
+              "summary": "인터넷 절반이 쓰는 PHP의 무인증 원격 장악 취약점, 배포 플랫폼 Railway의 시크릿 탈취와 19개 체인 드레인, CoinDCX의 추가 유출 정황, 인도 인증기관 eMudhra의 사실상 한 자리 수 난수 키까지, 이번 기간의 보안 사고는 모두 소수 운영 주체와 단일 신뢰점의 실패였다. 지난 호의 '2026년엔 아무도 탈중앙화를 말하지 않는가'라는 자조와 달리, 이번에는 Optimism의 binji가 수십만 밸리데이터의 분산 구조를 대조점으로 제시하고 TrustlessState가 Justin Drake의 벙커 모드 경고를 재평가하는 등 탈중앙화를 보안 기능으로 말하는 발화가 돌아왔다. 양자와 AI 암호 위협론까지 겹치며 신뢰 최소화가 마케팅 문구가 아니라 리스크 관리 언어로 재진입하고 있다.",
+              "why": "기관 자금이 온체인으로 올라오는 시기에 탈중앙화가 비용이 아니라 보안 기능으로 재평가되는지에 L1 설계 우선순위가 걸려 있다.",
+              "url": "https://x.com/binji_x/status/2113203507482263788",
+              "source": "@binji_x",
+              "date": "2026-10-22"
+            }
+          ]
+        },
+        {
+          "heading": "코어 개발자 콜",
+          "items": [
+            {
+              "title": "ACDE #248, 10월 22일",
+              "summary": "Hoodi의 글램스테르담 하드포크를 무기한 취소하고(새 날짜 미정) 메인넷 포크 날짜 결정도 전체 영향 분석 완료까지 보류했다. 사유는 ChainSecurity가 발견한 EIP-8037·8038 가스 리프라이싱 보안 이슈로, 종전에는 무효였던 트랜잭션이 revert 후 가스 환불 회수를 통해 ETH 전송 없이 잔액을 갱신하는 식의 공격이 가능해지고 gasleft()가 호출 중 증가할 수 있게 되는 등 기존 컨트랙트의 가정이 깨진다. 주요 DeFi 프로젝트 13곳의 취약 가능성이 확인돼 책임 공시가 진행 중이며 대응은 제때 완화 시 일정 유지, 동일 스펙 연기, 스펙 변경의 세 시나리오로 정리됐고 콜 기록상 12월 메인넷 포크는 매우 어려워져 2027년이 예상된다. 이 밖에 bogota-devnet-2(EIP-8253, 4758, 8298, 8151 범위)가 Nethermind, Geth, ethrex와 함께 다음 주 런칭되고 첫 EL+CL 통합 데브넷 hegota-devnet-0은 Devcon 이후를 목표로 하며 ACDT는 90분으로 연장되고 Nixo의 CFI 우선순위 목록이 구속력 없는 작업 문서 V1으로 채택됐다.",
+              "why": "테스트넷 활성화 나흘 전의 보안 발견이 메인넷 일정 전체를 바꿨고 동시에 다음 포크 준비는 분리되어 계속 굴러간다는 점에서 병렬 파이프라인의 첫 실전 사례다.",
+              "url": "https://forkcast.org/calls/acde/248/",
+              "source": "Forkcast",
+              "date": "2026-10-22"
+            }
+          ]
+        },
+        {
+          "heading": "프로토콜 업데이트",
+          "items": [
+            {
+              "title": "EF의 Hoodi 연기 공지와 노드 운영자 롤백 안내",
+              "summary": "10월 26일 예정이던 Hoodi의 글램스테르담 활성화 취소가 EF 블로그로 즉시 공지됐다. 직전까지 전 클라이언트가 Hoodi용 릴리스를 배포하며 업그레이드를 독려하던 상황이 하루 만에 뒤집혀, 운영자들은 다운그레이드하거나 포크 타임스탬프를 제거한 새 릴리스를 설치해야 하며 CL과 EL 모두 해당된다(메인넷 밸리데이터는 영향 없음). EthPandaOps와 클라이언트 팀이 Hoodi 스테이크의 약 73%를 차지하고 있어 롤백이 가능하다고 판단됐고 글램스테르담 이전 클라이언트 버전 목록이 게시되어 롤백 릴리스가 나오는 대로 갱신된다.",
+              "why": "테스트넷이라도 활성화 직전의 포크 해제는 드문 일로, 클라이언트 배포와 롤백이 얼마나 빠르게 조율되는지 확인할 수 있는 사례다.",
+              "url": "https://blog.ethereum.org/en/2026/10/22/glamsterdam-hoodi-delay",
+              "source": "EF Blog",
+              "date": "2026-10-22"
+            },
+            {
+              "title": "geth, MPT에서 Partitioned Binary Tree로 첫 자가 마이그레이션 성공",
+              "summary": "glamsterdam-devnet-8에서 go-ethereum, Nethermind, Besu, Erigon이 차기 상태 트리인 Partitioned Binary Tree(PBT)로 첫 트리·DB 전환을 진행 중이라고 CPerezz19가 발표했다. geth 구현은 2TB 디스크와 16GB RAM 환경에서 3시간 만에 MPT에서 PBT로 자가 전환을 마쳤고 페이로드 누락 없이 루트가 일치했다. 마이그레이션은 완전 로컬 자가 전환 모드와 PBT 변환 스냅샷을 받아 검증 후 수용하는 빠른 임포트 모드 두 가지로 제공된다. 상태 트리 전환은 zkEVM과 포스트퀀텀 로드맵의 전제 조건으로, I* 포크를 겨냥한 작업이다.",
+              "why": "수년간 설계 단계였던 상태 트리 교체가 일반 사양 하드웨어에서 수 시간 안에 끝나는 실측 결과로 내려왔다.",
+              "url": "https://x.com/CPerezz19/status/2113197011675558010",
+              "source": "@CPerezz19",
+              "date": "2026-10-22"
+            }
+          ]
+        },
+        {
+          "heading": "포럼 제안",
+          "items": [
+            {
+              "title": "EIP-8453 드래프트, 헤드 투표와 파이널리티 증명을 분리하는 디커플드 합의",
+              "summary": "체인 헤드 투표와 파이널리티 증명을 분리해, 전체 밸리데이터가 독립적인 스케줄의 파이널리티 라운드에 참여하고 3분의 2 이상 스테이크의 증명이 블록에 포함되는 즉시 justify와 finalize가 일어나는 합의 구조가 정식 EIP로 배정됐다. 파이널리티 가젯이 제공하는 frame이 가용 체인의 빌드와 투표 대상을 제약하며 CL 하드포크가 필요하고 목표는 약 4배 빠른 파이널리티다. 커미티 선정, 타이밍, 슬래싱 등 다수 파라미터는 미정으로, 9월에 다뤘던 디커플드 합의 4배 완결성 PoC가 I* 포크(2027/28 후보) 헤드라이너 후보 스펙으로 올라온 것이다.",
+              "why": "패스트 파이널리티 연구가 PoC를 지나 포크 후보 스펙 단계로 들어섰다.",
+              "url": "https://ethereum-magicians.org/t/eip-8453-decoupled-consensus/30045",
+              "source": "Ethereum Magicians",
+              "date": "2026-10-22"
+            },
+            {
+              "title": "EIP-8450 드래프트, 비컨 스테이트에 양자내성 밸리데이터 키 레지스트리",
+              "summary": "비컨 스테이트에 밸리데이터당 1개의 leanXMSS 공개키(2계층 해시 트리, 2의 32승 리프, Keccak-256 해싱)를 등록하는 양자내성 키 레지스트리 드래프트가 공개됐다. 등록은 기존 BLS 서명키 또는 출금 주소로 인가한다. 양자내성 L1을 2029년 말까지 달성한다는 기존 목표 아래, 밸리데이터 서명의 포스트퀀텀 전환을 I* 포크에서 시작하려는 준비 작업이다.",
+              "why": "포스트퀀텀 전환이 연구 로드맵에서 구체적인 비컨 스테이트 스키마 변경으로 내려왔다.",
+              "url": "https://ethereum-magicians.org/t/eip-8450-post-quantum-validator-key-registry/30046",
+              "source": "Ethereum Magicians",
+              "date": "2026-10-22"
+            },
+            {
+              "title": "SEACAST, 실행 가능한 스펙과 형식 모델을 갖춘 브로드캐스트 프로토콜 제안",
+              "summary": "cskiraly가 가스 상향과 BAL로 커지는 페이로드, DA 데이터, 실행 증명, 포스트퀀텀 서명 등 커지는 브로드캐스트 대상과 quick slots로 짧아지는 타임라인에 대응하는 SEACAST를 제안했다. 세그먼트 즉시 전달, Reed-Solomon 소거 부호화, 가용성 샘플링을 결합하고 노드의 관심과 의무, 푸시 대상을 분리한 설계로, 500노드 시뮬레이션에서 1MiB 페이로드의 99% 도달이 약 0.64초로 gossipsub(4.5초)과 ECBroadcast RS 모드(0.97초)보다 빨랐다. 실행 가능한 의사코드 스펙과 Quint/TLA+ 형식 모델을 갖췄고 형식 모델이 복수의 liveness 결함을 발견해 수정했다. 9월의 Fast Payload Broadcast 논의를 잇는 네트워킹 레이어 연구다.",
+              "why": "패스트 파이널리티와 가스 확장의 공통 병목으로 지목돼 온 네트워킹에서, 형식검증을 갖춘 구체 대안이 나왔다.",
+              "url": "https://ethresear.ch/t/seacast-fast-lean-broadcast-for-ethereum-with-an-executable-spec-and-a-formal-model/26167",
+              "source": "ethresear.ch",
+              "date": "2026-10-21"
+            },
+            {
+              "title": "암호화 멤풀에서 송신자의 공개 선택권 가치를 정량화한 연구",
+              "summary": "arianaraghi가 암호화 멤풀에서 송신자가 공개 여부와 시점을 고를 수 있는 무료 옵션의 가치를 정량화하고 제거 방안을 제시했다(Lean 4 형식화 포함). ETH 변동성과 약 8초 결정 윈도 기준 옵션 가치는 약 1bp 수준이지만 LUCID나 EIP-8184식 수수료는 다중 조건부 커밋 전략에서 실패할 수 있고(단일 커밋 약 0.8bp 대비 억지에는 약 25bp 필요), 타임락 강제공개는 공격자의 하드웨어 가속이 2배 미만일 때만 유효하다. 대안으로 해시체인 타임락 마스킹 기반의 포스트퀀텀 Blind Simultaneous Release를 제안하며 에스크로 마감 전 옵션 가치가 0임을 증명했다.",
+              "why": "Encrypt The Mempool 트랙의 설계들이 전제해 온 수수료 기반 억지가 어디서 깨지는지를 수치로 보여준다.",
+              "url": "https://ethresear.ch/t/reveal-optionality-in-encrypted-mempools-how-big-is-the-sender-s-free-option-and-a-post-quantum-way-to-remove-it/26169",
+              "source": "ethresear.ch",
+              "date": "2026-10-22"
+            },
+            {
+              "title": "EIP-8288 집계에 복수 증명 크기를 허용하는 이기종 재귀 제안",
+              "summary": "ignotusnemo가 EIP-8288의 재귀 집계에 워크로드 크기별로 승인된 복수 증명 크기를 쓰는 이기종 재귀(heterogeneous recursion)를 제안하고 퍼블릭 메인넷에서 이미 가동 중인 Parano1d 구현을 소개했다. 인증된 verifier class bank와 클래스별 어큐뮬레이터 lane으로 이연 검증 클레임을 추적하며 지원 클래스 수에 비례한 오버헤드가 비용이다. EIP-8288식 merge로 확장하려면 merge invariant 등 추가 규칙이 필요하다고 결론지었다.",
+              "why": "실행 증명 집계 설계가 단일 증명 체계 전제를 벗어나 실구현 사례와 함께 논의되기 시작했다.",
+              "url": "https://ethresear.ch/t/paranoid-eip-8288-heterogeneous-recursion-with-an-authenticated-class-bank/26170",
+              "source": "ethresear.ch",
+              "date": "2026-10-22"
+            },
+            {
+              "title": "EVM 점프·콜 테이블 제안과 신규 드래프트 단신",
+              "summary": "gcolvin이 EVM에 점프와 콜 테이블을 도입하는 EIP-8452 토론을 열었다. 이 밖에 ERC-7943 허가형 토큰과 외부 정책 컨트랙트를 잇는 uRWA Policy Interface, ERC-8004 평판 레지스트리로 에이전트 지갑의 x402 수입을 공개하는 Agent Income Statements, 집중 유동성 반대편을 대출자가 공급하는 Credit-Matched Liquidity, 런치패드 공시 타입을 정의하는 Launch Declarations(ERC-8376 확장), ERC-8454 AIFi Unit Framework, BLS 공개키 난독화 연구가 같은 기간 올라왔다.",
+              "why": "EOF 철회 이후에도 EVM 제어 흐름 개선 제안이 계속 이어지고 있다.",
+              "url": "https://ethereum-magicians.org/t/eip-8452-jump-and-call-tables-for-the-evm/30044",
+              "source": "Ethereum Magicians",
+              "date": "2026-10-22"
+            }
+          ]
+        },
+        {
+          "heading": "트위터 논쟁",
+          "items": [
+            {
+              "title": "글램스테르담 비판의 시점을 둘러싼 pcaversaccio와 EF 리서처들의 설전",
+              "summary": "독립 보안 연구자 pcaversaccio가 Hoodi 활성화 일주일 전에 글램스테르담의 컨트랙트 크기 상향, ETH 전송 로그 등 변경과 하위호환성 문제를 비판하자, EF의 trent_vanepps가 최종 공개 테스트넷 직전에 와서 전부 틀렸다고 말하는 것이 어떻게 보이는지 아느냐며 시점을 문제 삼았다. pcaversaccio는 비판에 허락이 필요하냐며 타이밍은 전혀 신경 쓰지 않는다고 받아쳤고 보안 우려를 다음 날 ACDE 안건으로 직접 올렸다. EF 리서처 fradamt는 리소스 프라이싱을 오래 작업한 담당자와 대화도 없이 부정확한 주장을 하고 있다며 EF 직원에게는 더 높은 기준이 적용된다고 비판했고 trent는 하위호환성은 매우 중요하지만 유지가 불가능하거나 불합리한 뉘앙스 케이스도 있다는 입장을 밝혔다. 다음 날 ACDE에서 포크가 실제로 보안 사유로 무기한 취소되면서 설전 당사자가 보안 안건의 발제자이기도 했다는 맥락이 더해졌다.",
+              "why": "포크 직전의 외부 비판을 공동체가 어떻게 수용하는지, 그리고 그 비판이 실제 안건과 결정으로 이어진 드문 사례다.",
+              "url": "https://x.com/trent_vanepps/status/2112925186143957056",
+              "source": "@trent_vanepps",
+              "date": "2026-10-21"
+            },
+            {
+              "title": "Gloas 빌더 입찰을 최고가로 고르는 클라이언트 옵션을 둘러싼 논쟁",
+              "summary": "Gloas에서 클라이언트들이 슬롯당 빌더 입찰을 최신(latest) 대신 최고가(highest)로 선택하는 옵션 추가를 검토하자, Blockspace Forum 측이 옵션을 제공하지 말 것을 강하게 주장하는 성명을 냈다(수집 오류로 일부 발화자는 추정). EF의 Toni Wahrstätter는 최고가 선택이 경제적으로 합리적이고 어떤 입찰을 봤는지 증명할 수 없어 어차피 강제 불가능하며 비합리적 기본값은 전문 운영자부터 이탈해 결국 솔로 스테이커만 손해 보는 균형으로 간다고 옵션 제공을 옹호했다. 반론 측은 최고가 잠금이 예측 가능한 기본값이 되면 빌더가 입찰을 늦추거나 깎아 대응해 장외 거래가 불가능한 롱테일 제안자가 특히 손해를 본다고 반박했다. Barnabé Monnot은 최신 입찰이 더 나은 시장을 유도하며 클라이언트 코드는 프로토콜이 관측할 수 없는 규범을 집행하는 최선의 근사물이라며 latest를 지지했고 mikeneuder도 과거 최고가 선택으로 포크한 밸리데이터들이 오히려 낮은 보상을 관찰했다는 사례를 들어 latest 규칙이 실제로 집행 가능했다고 동조했다.",
+              "why": "ePBS 이후 입찰 시장의 균형이 클라이언트 기본값 설계로 결정되는 구도로, 솔로 스테이커와 대형 운영자 간 격차 문제와 직결된다.",
+              "url": "https://x.com/nero_eth/status/2113083480221356207",
+              "source": "@nero_eth",
+              "date": "2026-10-22"
+            }
+          ]
+        },
+        {
+          "heading": "주요 발언",
+          "items": [
+            {
+              "title": "Barnabé Monnot, '이보다 강한 멀티포크 계획과 파이프라이닝은 본 적 없다'",
+              "summary": "EF RIG의 Barnabé Monnot이 I* 핵심 EIP 2건(새 합의 메커니즘, 밸리데이터 서명의 포스트퀀텀 전환)이 24시간 안에 공개됐고 Hegotá 스코핑과 초기 데브넷도 순항 중이며 J*의 완전 양자내성 합의 연구는 일정을 더 앞당기는 방안까지 검토 중이라고 밝혔다.",
+              "why": "글램스테르담 연기와 같은 시기에 나온 발언으로, 포크 파이프라인 병렬화의 현재 상태를 보여준다.",
+              "url": "https://x.com/barnabemonnot/status/2113193383288029628",
+              "source": "@barnabemonnot",
+              "date": "2026-10-22"
+            },
+            {
+              "title": "potuz, '지금의 이더리움 ACD는 MicahZoltu의 내가 말했잖아 순간이다'",
+              "summary": "Prysm의 potuz가 Hoodi 취소와 메인넷 연기를 두고 리프라이싱이 기존 컨트랙트에 미칠 영향을 오래 경고해 온 MicahZoltu를 소환했다. 포크가 일부 컨트랙트를 취약하게 만들 수 있어 상황 평가가 필요하다고 부연했다.",
+              "why": "리프라이싱 하위호환 경고가 소수 의견이 아니라 선견이었다는 평가가 클라이언트 개발자에게서 나왔다.",
+              "url": "https://x.com/potuz_eth/status/2113283874075897900",
+              "source": "@potuz_eth",
+              "date": "2026-10-22"
+            },
+            {
+              "title": "EthCoordinate, '테스트넷은 바로 이럴 때를 위해 존재한다'",
+              "summary": "코어 개발자들이 자세히 들여다볼 가치가 있는 것을 발견했고 메인넷 전에 잡아낸 것은 프로세스가 의도대로 작동한 것이라는 논평을 냈다.",
+              "why": "연기를 실패가 아니라 테스트넷 프로세스의 성공 사례로 읽는 프레임을 제공한다.",
+              "url": "https://x.com/EthCoordinate/status/2113329391186891210",
+              "source": "@EthCoordinate",
+              "date": "2026-10-22"
+            }
+          ]
+        },
+        {
+          "heading": "생태계 · 보안",
+          "items": [
+            {
+              "title": "PHP 무인증 원격 장악 취약점으로 전 세계 긴급 패치, 탈중앙 인프라 담론 확산",
+              "summary": "인터넷의 절반 이상이 쓰는 PHP에서 인증 없이 요청 하나로 서버를 장악할 수 있는 대형 취약점이 공개되어 전 세계 사이트가 긴급 패치와 다운타임에 들어갔고 Censys의 실시간 대시보드상 패치율은 더디다. 크립토 진영에서는 수십만 밸리데이터로 존재하는 이더리움과 소수 운영 주체가 떠받치는 중앙화 인프라를 대비시키는 논평이 이어졌으며 Optimism의 binji는 시스템을 고칠 수 있는 권한이 공격자가 시스템을 침해하는 수단도 된다며 화이트햇 자동 패치의 딜레마를 짚었다. Bankless는 관련 긴급 방송을 예고했다.",
+              "why": "Web2의 단일 실패점 사고가 이더리움 보안 모델의 가치를 보여주는 실물 대조 사례가 됐다.",
+              "url": "https://x.com/binji_x/status/2112951984676299116",
+              "source": "@binji_x",
+              "date": "2026-10-21"
+            },
+            {
+              "title": "배포 플랫폼 Railway 침해, 탈취된 프라이빗 키로 19개 체인에서 약 37만 달러 드레인",
+              "summary": "배포 플랫폼 Railway(프라이버시 프로토콜 Railgun과 무관)에서 약 24시간에 걸친 보안 사고로 저장된 시크릿(LLM API 키, Stripe 키, 크립토 프라이빗 키 등)이 탈취됐다. 공격자 주소로 약 37만 1,000달러가 500건 이상의 트랜잭션, 200개 이상의 주소, 19개 이상의 EVM 체인에 걸쳐 빠져나갔고 tayvano_가 공개한 타임라인에 따르면 Railway의 공지는 첫 탈취 트랜잭션(10월 21일 19:36 UTC)보다 한참 늦었다.",
+              "why": "배포 플랫폼에 보관된 시크릿이 그대로 멀티체인 드레인으로 번지는 공급망 리스크가 또 한 번 실증됐다.",
+              "url": "https://x.com/tayvano_/status/2113081753036636427",
+              "source": "@tayvano_",
+              "date": "2026-10-22"
+            },
+            {
+              "title": "CoinDCX, 침해된 지갑을 16개월간 쓰다 추가 1,500만 달러 유출 지적",
+              "summary": "tayvano_가 인도 거래소 CoinDCX에서 추가로 1,500만 달러가 유출됐으며 2025년 7월 해킹 때 침해된 지갑과 인프라를 16개월간 계속 사용한 정황이 있다고 지적했다. 공시도 외부에서 문제를 제기할 때까지 20시간 이상 지연됐다는 주장이다.",
+              "why": "침해 후 인프라 교체라는 기본 수칙이 지켜지지 않을 때 피해가 반복된다는 사례로, 거래소 커스터디 신뢰 문제를 다시 제기한다.",
+              "url": "https://x.com/tayvano_/status/2113200977734246878",
+              "source": "@tayvano_",
+              "date": "2026-10-22"
+            },
+            {
+              "title": "양자 공격 2030년설과 AI가 이미 깬 포스트퀀텀 후보들",
+              "summary": "Unchained 인터뷰에서 Project Eleven의 Alex Pruden은 양자 공격이 현실화되는 가장 이른 시점으로 2030년을 제시했고 Conor Deegan은 AI로 인한 암호 붕괴 시점인 'A-Day'는 이미 왔을 수 있다며 둘 다 질서 있는 조기 마이그레이션을 권고했다. Deegan에 따르면 포스트퀀텀 후보인 Hawk와 McEliece는 이미 AI 공격에 깨졌으며(둘 다 프로덕션 미사용), Pruden은 양자 랩들이 일부 결과를 비공개 중이라고 전했다. 별도로 공개 멀티플레이어 암호 공격 리서치 Yukon에서는 ECDSA 공격 챌린지가 시작됐고 39라운드 축소 SHA256에 대한 신규 공격이 발견됐다. EIP-8450 키 레지스트리 등 이더리움의 포스트퀀텀 전환 가속과 맞물리는 배경이다.",
+              "why": "포스트퀀텀 후보조차 깨지는 상황에서 전환 대상 알고리즘의 보수적 선택과 조기 착수의 근거가 쌓이고 있다.",
+              "url": "https://x.com/laurashin/status/2113382386088231298",
+              "source": "@laurashin",
+              "date": "2026-10-22"
+            },
+            {
+              "title": "Uniswap v4, 외부 유동성을 훅으로 감싸는 Aggregator Hooks 출시",
+              "summary": "Uniswap Labs가 외부 유동성 소스를 v4 훅으로 감싸 Uniswap 풀로 만드는 Aggregator Hooks를 출시했다. Ethereum, Base, Robinhood Chain의 Uniswap 웹앱과 API에서 가동되며 출시 시점에 7개 소스로 해당 체인 DEX 활동의 90% 이상을 커버한다. Hayden Adams에 따르면 네이티브 유동성에는 마진이 붙지 않고 외부 소스 라우팅에만 수 bp의 UNI 프로토콜 수수료가 붙어 UNI 소각 구조가 유지된다. 지난 호의 MAG7 인덱스 토큰에 이어 v4 훅이 구조화 상품을 넘어 애그리게이션까지 흡수하는 사례다.",
+              "why": "DEX와 애그리게이터의 경계가 프로토콜 수수료 구조 안으로 들어오면서 v4 훅이 유동성 레이어의 범용 래퍼가 되고 있다.",
+              "url": "https://x.com/Uniswap/status/2113269114017857808",
+              "source": "@Uniswap",
+              "date": "2026-10-22"
+            },
+            {
+              "title": "Aave, Base에서 토큰화 주식 담보 대출과 V4 첫 외부 큐레이션 마켓 가동",
+              "summary": "Aave가 Base, Coinbase와 함께 토큰화 주식(Coinbase Tokenized Stocks, 미국 외 적격 지역 한정)을 담보로 한 대출과 차입을 온체인화한다고 발표했다. Stani Kulechov는 150조 달러 이상의 시장이 Aave 레일에서 돌 준비가 됐다고 표현했다. 같은 날 Aave V4 최초의 외부 큐레이션 마켓이 Sentora 전략으로 이더리움에 가동되어 RLUSD, PYUSD, OUSD를 담보로 쓰는 3개 마켓이 열렸고 전날에는 보안 강화 중심의 V3.8도 공개됐다. 지난 호에서 Base가 예고한 토큰화 주식의 대차·레버리지 단계가 실제 제품으로 나온 것이다.",
+              "why": "토큰화 주식이 거래 가능 단계를 지나 담보와 신용의 단계로 들어서며 온체인 금융 스택이 한 층 더 쌓였다.",
+              "url": "https://x.com/StaniKulechov/status/2113332255565160526",
+              "source": "@StaniKulechov",
+              "date": "2026-10-22"
+            },
+            {
+              "title": "Aerodrome과 Velodrome의 합병 거래소 Aero, 이더리움 L1 포함 7개 네트워크 동시 출시",
+              "summary": "Aerodrome과 Velodrome이 합병한 온체인 거래소 Aero가 이더리움 L1, Base, Optimism, Arbitrum, Robinhood Chain 등 7개 네트워크에 동시 출시됐다. 출시 시점 거래소 수익 전액이 스테이킹된 AERO 보유자에게 배분되며 EF 리서처들은 온체인 기능을 활용해 의존성을 제거하는 설계 방향을 긍정적으로 평가했다.",
+              "why": "L2 전용으로 성장한 대형 DEX가 메인넷 유동성으로 확장하는 사례로, L1 활동 회복 흐름과 맞물린다.",
+              "url": "https://x.com/laurashin/status/2113058503338471794",
+              "source": "@laurashin",
+              "date": "2026-10-22"
+            }
+          ]
+        },
+        {
+          "heading": "시장 브리핑",
+          "items": [
+            {
+              "title": "메리츠증권, OP 스택 기반 한국 증권 토큰화 검토",
+              "summary": "Optimism이 한국 대형 금융그룹 계열 메리츠증권과 OP 스택 상에서 한국 증권의 토큰화 발행과 유통을 공동 검토한다고 발표했다. 지난 호에서 짚은 한국 기관들의 온체인 진출이 Optimism 스택으로 수렴하는 흐름에 증권사가 추가된 것으로, 거래소·은행에 이어 전통 증권 발행 레일까지 검토 대상이 넓어졌다.",
+              "why": "한국 자본시장 인프라가 이더리움 L2 스택 위에서 구축될 가능성이 기관 단위로 구체화되고 있다.",
+              "url": "https://x.com/Optimism/status/2112924319638831208",
+              "source": "@Optimism",
+              "date": "2026-10-21"
+            },
+            {
+              "title": "OCC의 GENIUS Act 최종 규칙, 발행사 이자 지급 금지 유지",
+              "summary": "OCC가 GENIUS Act 최종 규칙에서 스테이블코인 발행사의 이자 지급 금지를 유지했다. Coinbase의 USDC 3.75% 같은 거래소 리워드는 금지되지 않았지만 세이프하버도 주어지지 않아, 2억 9,200만 달러 규모가 걸린 리워드 구조가 규제 회색지대에 남았다.",
+              "why": "이더리움 위 스테이블코인의 수익 분배 경쟁이 발행사가 아니라 유통 채널 단에서 벌어지는 구도가 당분간 이어진다.",
+              "url": "https://x.com/laurashin/status/2113359758925406586",
+              "source": "@laurashin",
+              "date": "2026-10-22"
+            }
+          ]
+        },
+        {
+          "heading": "그 밖의 소식",
+          "items": [
+            {
+              "title": "StarkWare, 독립 Starknet L1 전환 연구 착수",
+              "summary": "StarkWare와 Starknet 재단의 워킹그룹이 독립 Starknet L1 전환 연구에 착수했고 Eli Ben-Sasson은 어떤 전환이든 커뮤니티 투표를 거친다고 밝혔다.",
+              "why": "주요 zk 롤업이 이더리움을 떠나는 경로를 공식 검토하는 사례로, L2 가치 귀속 논쟁의 연장선이다.",
+              "url": "https://x.com/laurashin/status/2113311671523647668",
+              "source": "@laurashin",
+              "date": "2026-10-22"
+            },
+            {
+              "title": "ZKsync, 기관용 제품 Commander 발표",
+              "summary": "Matter Labs의 gluk64가 은행 등 금융기관이 단계적으로 디지털 자산을 도입하는 진입점인 Commander를 발표하고 이후 Prividium Ledger로 업그레이드하는 경로를 제시했다. 기관 연결이 ZK 토큰의 이코노믹스를 포함해 ZKsync 자체를 바꿀 것이라고 예고했다.",
+              "why": "L2의 기관 전략이 토큰 이코노믹스 재설계로 이어질 수 있음을 공식화했다.",
+              "url": "https://x.com/gluk64/status/2113345967546355767",
+              "source": "@gluk64",
+              "date": "2026-10-22"
+            },
+            {
+              "title": "Blast L2, 10월 26일 종료 예정",
+              "summary": "Blast L2가 10월 26일 종료를 앞두고 자금 인출 안내가 공유되고 있다.",
+              "why": "L2 난립기의 정리가 실제 네트워크 종료로 이어지는 사례다.",
+              "url": "https://www.reddit.com/r/ethereum/comments/1xbwf1m/blast_l2_is_shutting_down_october_26_withdraw/",
+              "source": "reddit",
+              "date": "2026-10-21"
+            },
+            {
+              "title": "인도 인증기관 eMudhra, 사실상 한 자리 수 난수로 키 생성 지적",
+              "summary": "인도 인증기관 eMudhra가 극도로 약한 난수로 키를 생성했다는 사건이 Unchained에서 다뤄졌다. 이더리움이었다면 이미 누군가 확인해 즉시 스윕되었을 수준의 키라는 지적이 나왔다.",
+              "why": "퍼블릭 체인의 상시 공격 압력이 역설적으로 약한 키를 즉시 드러내는 검증 장치로 작동한다는 방증이다.",
+              "url": "https://x.com/tayvano_/status/2112997171947851968",
+              "source": "@tayvano_",
+              "date": "2026-10-21"
+            },
+            {
+              "title": "JSON-RPC 로드밸런서 Dshackle v0.18, Rust로 재작성",
+              "summary": "이더리움 JSON-RPC 로드밸런서 Dshackle이 Kotlin/JVM에서 Rust로 재작성된 v0.18을 공개했다.",
+              "why": "노드 인프라 툴링의 성능 개선은 RPC 레이어의 운영 비용을 낮춘다.",
+              "url": "https://www.reddit.com/r/ethereum/comments/1xck2m3/dshackle_load_balancer_v018/",
+              "source": "reddit",
+              "date": "2026-10-22"
+            },
+            {
+              "title": "EIPIP Meeting #131 개최",
+              "summary": "EIP 편집자 안건과 Devcon 8 대비 eiphub 업데이트를 다루는 EIPIP Meeting #131이 10월 21일 열렸다.",
+              "why": "EIP 프로세스 자체의 정비가 Devcon을 앞두고 이어지고 있다.",
+              "url": "https://x.com/ECHInstitute/status/2112937529205051677",
+              "source": "@ECHInstitute",
+              "date": "2026-10-21"
+            }
+          ]
+        }
+      ],
+      "coverImage": "/assets/digests/2026-10-23.png?v=142b4d24",
+      "telegramMessageId": 1695
+    },
+    {
       "date": "2026-10-20",
       "title": "기각된 EIP는 멈추지 않는다, 하드포크 거버넌스 바깥에서 전진하는 실행 증명과 궤도에 오른 가스리밋",
       "shortTitle": "기각돼도 달리는 실행 증명",

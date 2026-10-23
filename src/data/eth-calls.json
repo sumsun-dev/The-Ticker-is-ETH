@@ -1,6 +1,577 @@
 {
-  "updatedAt": "2026-10-20T01:31:23.794Z",
+  "updatedAt": "2026-10-23T01:30:25.027Z",
   "calls": [
+    {
+      "id": "acde-248",
+      "series": "acde",
+      "number": 248,
+      "date": "2026-10-22",
+      "title": "AllCoreDevs - Execution #248",
+      "forkcastUrl": "https://forkcast.org/calls/acde/248/",
+      "videoUrl": "https://youtube.com/watch?v=UFfPtJuRsI0",
+      "issueUrl": "https://github.com/ethereum/pm/issues/2267",
+      "kind": "full",
+      "durationMin": 98,
+      "headline": "후디 포크 무기한 취소\n메인넷 연기 불가피",
+      "lead": "가스 재가격이 기존 컨트랙트를 깨뜨릴 수 있다는 경고에 포크를 멈췄다",
+      "intro": "실행 계층(EL) 클라이언트 개발자들이 격주로 모이는 올코어데브 실행 계층(ACDE) 콜이다.",
+      "summary": "체인시큐리티가 글램스테르담(Glamsterdam) 가스 재가격(repricing) EIP로 기존에 실패하던 악성 트랜잭션이 성공하게 된다는 취약점을 공개하자, 10월 26일 예정이던 후디(Hoodi) 테스트넷 포크가 무기한 취소되고 메인넷 날짜 결정도 영향 분석이 끝날 때까지 미뤄졌다.",
+      "whyItMatters": "가스비 구조를 바꿔 확장을 노린 글램스테르담이 이미 배포된 디파이 컨트랙트를 공격 가능하게 만들 수 있고 13개 프로젝트가 영향권으로 확인됐다. 12월로 보던 메인넷 업그레이드는 2027년으로 밀릴 가능성이 커졌고 보안 분석 결과에 따라 스펙 자체가 바뀔 수도 있다.",
+      "decisions": [
+        {
+          "label": "후디 포크 취소",
+          "text": "10월 26일 예정이던 후디 글램스테르담 하드포크가 무기한 취소됐고 새 날짜는 정하지 않았다. 스펙이 바뀔 경우에 대비해 포크 이전 스펙의 테스트넷을 하나 남겨두는 결정이다.",
+          "original": "Hoodi Glamsterdam hard fork canceled indefinitely; no new date set",
+          "eips": [],
+          "status": "일정",
+          "timestamp": "00:49:52"
+        },
+        {
+          "label": "메인넷 일정 보류",
+          "text": "메인넷 글램스테르담 포크 날짜 결정은 전체 영향 분석이 끝날 때까지 미뤄졌다. 2026년 12월 포크는 매우 어려워졌고 2027년이 유력하다.",
+          "original": "Mainnet Glamsterdam fork date decision deferred until full impact analysis complete",
+          "eips": [],
+          "status": "일정",
+          "fork": "Glamsterdam",
+          "timestamp": "00:47:12"
+        },
+        {
+          "label": "ACDT 90분 연장",
+          "text": "ACDT 콜이 60분에서 90분으로 늘어난다. 매번 시간이 모자라던 테스트 콜에 여유를 주는 변경이다.",
+          "original": "ACDT extended from 60 to 90 minutes going forward",
+          "eips": [],
+          "status": "확정",
+          "timestamp": "01:13:17"
+        },
+        {
+          "label": "보고타 devnet-2",
+          "text": "bogota-devnet-2 범위를 EIP-8253, EIP-4758, EIP-8298, EIP-8151 네 개로 확정하고 다음 주 Nethermind, Geth, ethrex 세 클라이언트로 출시한다. 헤고타(Hegota) 후보 EIP를 실제 네트워크에서 돌려보는 실험망이다.",
+          "original": "bogota-devnet-2 scoped to EIP-8253, EIP-4758, EIP-8298, EIP-8151; launching next week with Nethermind, Geth, ethrex",
+          "eips": [
+            8253,
+            4758,
+            8298,
+            8151
+          ],
+          "status": "확정",
+          "timestamp": "01:36:58"
+        },
+        {
+          "label": "통합 데브넷 시점",
+          "text": "첫 EL+CL 통합 데브넷(hegota-devnet-0)은 데브콘 이후로 잡고 FOCIL과 프레임(Frames)의 상호작용 논의는 데브콘 현장에서 시작한다. 두 기능이 서로 영향을 주기 때문에 설계를 먼저 맞추려는 것이다.",
+          "original": "First merged EL+CL devnet (hegota-devnet-0) targets post-Devcon; FOCIL/frames interaction discussions to begin at Devcon",
+          "eips": [],
+          "status": "일정",
+          "timestamp": "01:37:30"
+        },
+        {
+          "label": "데브콘 주 ACDE 취소",
+          "text": "2주 뒤 데브콘 주간의 ACDE는 취소되고 다음 ACDE는 4주 뒤에 열린다. 데브콘에 모이는 개발자들이 현장에서 논의를 이어간다.",
+          "original": "ACDE canceled in 2 weeks (Devcon week); next ACDE in 4 weeks",
+          "eips": [],
+          "status": "일정",
+          "timestamp": "01:46:10"
+        }
+      ],
+      "targets": [
+        {
+          "key": "bogota-devnet-2",
+          "text": "2026년 10월 26일 주에 bogota-devnet-2 출시, 확정",
+          "timestamp": "01:36:58"
+        },
+        {
+          "key": "acde-next",
+          "text": "다음 ACDE는 4주 뒤인 2026년 11월 19일경, 확정",
+          "timestamp": "01:46:10"
+        }
+      ],
+      "actions": [
+        {
+          "owner": "EF와 클라이언트 팀",
+          "text": "후디 포크 취소를 알리는 블로그 글을 즉시 발행하고, 롤백할 클라이언트 버전 목록을 싣고 새 릴리스가 나올 때마다 갱신한다",
+          "timestamp": "00:58:28"
+        },
+        {
+          "owner": "모든 EL·CL 클라이언트 팀",
+          "text": "후디 포크 일정을 제거한 새 릴리스를 낸다",
+          "timestamp": "01:00:12"
+        },
+        {
+          "owner": "Fredrik, Francesco, Toni와 보안 연구자들",
+          "text": "다음 주 ACDT에서 영향 분석 결과와 분석 일정표를 발표한다",
+          "timestamp": "01:00:50"
+        }
+      ],
+      "agenda": [
+        {
+          "timestamp": "00:11:21",
+          "heading": "글램스테르담 가스 재가격 보안 우려",
+          "discussion": true
+        },
+        {
+          "timestamp": "00:27:21",
+          "heading": "영향 분석과 메인넷 일정"
+        },
+        {
+          "timestamp": "00:31:05",
+          "heading": "후디 포크 취소",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "01:13:22",
+          "heading": "ACDT 콜 시간 연장"
+        },
+        {
+          "timestamp": "01:14:20",
+          "heading": "짧은 슬롯을 위한 동적 기본 수수료 계산"
+        },
+        {
+          "timestamp": "01:16:27",
+          "heading": "헤고타 CFI 우선순위 정렬"
+        },
+        {
+          "timestamp": "01:18:20",
+          "heading": "CFI 대 SFI 의미와 스코핑 절차",
+          "discussion": true
+        },
+        {
+          "timestamp": "01:28:53",
+          "heading": "다음 데브넷: 보고타 devnet 2 범위",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "01:46:24",
+          "heading": "데브콘 주 ACD 취소"
+        }
+      ],
+      "topics": [
+        {
+          "title": "글램스테르담이 배포된 컨트랙트를 깨도 되는가",
+          "intro": "체인시큐리티가 가스 재가격 EIP-8037/8038 아래에서 기존에 실패하던 악성 트랜잭션이 성공하게 되는 취약점을 공개하면서 프로토콜 변경이 사용자 컨트랙트를 깨도 되는지가 쟁점이 됐다.",
+          "decision": "연기 결정 00:47:12",
+          "positions": [
+            {
+              "speaker": "Hubert (ChainSecurity)",
+              "text": "셀프디스트럭트 강제 전송과 상태 가스 환급이 결합하면 ETH를 보내지 않고도 잔액이 갱신되는 예시를 제시했다. 13개 디파이 프로젝트에 책임 공개(responsible disclosure)를 진행 중이며 조사는 전수 조사가 아니라고 밝혔다.",
+              "timestamp": "00:13:56",
+              "original": "Yeah, sorry for the… for the technical issues. Yes, so we were, or I was asked to say a few words here. In order to hopefully make this more understandable, I have prepared a few slides. I don't want to keep too much time, but I thought it might be more understandable with the slides. Feel free to interrupt me at any time if something is not clear. So… This is, joint work by the whole chain security team, especially Toni, who unfortunately cannot be here today. So, what we want to talk about is potential security issues with smart contracts that are introduced due to the changes in Glamsterdam. So, we are aware that Ethereum Foundation and others have quite extensively looked for transactions, good, I call them honest transactions, that worked before Glamsterdam. and are no longer working. After Glamsterdam, a lot of work has gone into that. That's not what I want to talk about at all. What I want to talk about is transactions that… evil transactions, that did not work before Glamsterdam, but are working now after Glamsterdam. So that's what I want to talk about, and that's what we are concerned about. And to… to explain, I will present a somewhat contrived example, so you can afterwards all say, okay, but no one writes that type of code. But I didn't want to present an example that is too close to reality, because we're currently going through a responsible disclosure with multiple DeFi projects, and I kind of didn't want to. violate the rules of discon… Responsible……",
+              "translation": "네, 기술적인 문제로 인해 죄송합니다. 네, 저희는, 아니 저는 여기서 몇 마디 해달라는 요청을 받았습니다. 좀 더 이해하기 쉽게 만들고자 슬라이드를 몇 장 준비했습니다. 시간을 너무 많이 끌고 싶지는 않지만, 슬라이드가 있으면 더 이해하기 쉬울 것 같았습니다. 명확하지 않은 부분이 있으면 언제든 끼어들어 질문해 주셔도 됩니다. 이것은 체인 시큐리티(chain security) 팀 전체의 공동 작업이며, 특히 오늘 안타깝게도 참석하지 못한 토니(Toni)의 작업입니다. 저희가 이야기하고자 하는 것은 글램스테르담의 변경사항으로 인해 발생하는 스마트 컨트랙트의 잠재적 보안 문제입니다. 이더리움 재단과 다른 분들이, 글램스테르담 이전에는 작동했지만 이제는 더 이상 작동하지 않는 트랜잭션들, 즉 제가 정상적인(honest) 트랜잭션이라 부르는 것들을 꽤 광범위하게 조사해왔다는 것을 저희도 알고 있습니다. 글램스테르담 이후 그 작업에 많은 노력이 들어갔습니다. 그것은 제가 이야기하고자 하는 바가 전혀 아닙니다. 제가 이야기하고자 하는 것은, 글램스테르담 이전에는 작동하지 않았지만 이제 글램스테르담 이후에는 작동하게 된 악의적인(evil) 트랜잭션들입니다. 그것이 바로 저희가 이야기하고자 하는 것이고, 저희가 우려하는 부분입니다. 설명을 위해, 다소 인위적으로 만든 예시를 하나 제시하겠습니다. 그래서 나중에 모두 '그런 코드는 아무도 작성하지 않는다'고 말씀하실 수도 있습니다. 하지만 저는 실제 상황과 너무 가까운 예시를 제시하고 싶지 않았습니다. 왜냐하면 저희가 현재 여러 디파이(DeFi) 프로젝트들과 책임 있는 공개(responsible disclosure) 절차를 진행 중이기 때문이고, 그 규칙을 위반하고 싶지 않았기 때문입니다. 책임 있는……"
+            },
+            {
+              "speaker": "Maria Silva",
+              "text": "충분히 큰 업그레이드 불가 컨트랙트가 영향을 받는지가 스펙 변경 여부를 가르는 질문이라고 짚었고 Hubert의 답을 듣고 그런 컨트랙트의 존재가 아직 불확실하니 스펙 변경 가능성이 남아 있다고 결론냈다.",
+              "timestamp": "00:39:18",
+              "original": "Yeah, I think, to me, we really need to figure out this question on the spec changes. Yeah, as Toni was saying, I think in some cases, it's not even… Like, I don't even know how we would maintain the old, invariant, so I think it's really important for us to just clarify If we are even in a world where we want to do this. And for that, I feel like, To me, it seems like the analysis would be if we find, like, a non-upgradable contract that is large enough That would warrant, this change. And so, I don't know, Hubert, if you can talk a bit to that, Have… you said that your analysis was not comprehensive, but was it comprehensive at least on the… be contracts. Or… and if not, like, how much time Would we need to have a more comprehensive analysis, at least on those high-risk ones, so that we know that we won't need to have any spec changes, and it's just a matter of delaying the fork if the apps need more time?",
+              "translation": "네, 저는 스펙(spec) 변경에 관한 이 질문을 정말 명확히 해야 한다고 생각합니다. 네, 토니가 말했듯이, 어떤 경우에는, 심지어… 저는 기존의 불변성(invariant)을 어떻게 유지할 수 있을지조차 모르겠습니다. 그래서 저희가 이것을 하고자 하는 세계에 있는 것인지부터 명확히 하는 것이 정말 중요하다고 생각합니다. 그리고 그것을 위해서는, 제가 보기에 분석이란, 충분히 규모가 큰, 업그레이드 불가능한 컨트랙트를 발견한다면 그것이 이 변경을 정당화할 것이라는 것입니다. 그래서, 휴버트(Hubert), 혹시 그 부분에 대해 조금 이야기해 주실 수 있을까요. 분석이 포괄적이지 않았다고 말씀하셨는데, 적어도… 비(be) 컨트랙트들에 대해서는 포괄적이었나요? 아니면, 그렇지 않다면, 적어도 그 고위험(high-risk) 컨트랙트들에 대해서라도 더 포괄적인 분석을 하려면 시간이 얼마나 필요할까요? 그래서 스펙 변경이 필요 없다는 것을 알 수 있고, 앱들이 시간이 더 필요하다면 단지 포크를 지연시키는 문제로 끝날 수 있도록 말입니다."
+            },
+            {
+              "speaker": "Potuz",
+              "text": "보안이 포크의 시의성보다 100% 우선한다고 썼다.",
+              "timestamp": "00:42:25",
+              "viaChat": true,
+              "original": "Just the possibility of it, if it is any meaningful change, I think we should not risk Hoodi, redeploying such a testnet will be a pain",
+              "translation": "그 가능성만으로도, 만약 의미 있는 변경이라면, 저는 후디(Hoodi)를 위험에 빠뜨려서는 안 된다고 생각합니다. 그런 테스트넷(testnet)을 재배포하는 것은 매우 고통스러운 일이 될 것입니다."
+            },
+            {
+              "speaker": "lightclient",
+              "text": "개발자 과실로 책임을 돌리는 접근은 잘못됐고 충분한 자금과 사용자가 기대는 기능이라면 프로토콜이 사용자 공간을 깨서는 안 된다고 주장했다. 앱 개발자에게 업그레이드를 강제하는 일은 극도로 지저분해진다고 덧붙였다.",
+              "timestamp": "01:02:54",
+              "original": "Well, thanks for the intro to the discussion. I mean, I sent a message in the chat a little bit earlier. That sort of expresses some of my views, but… I feel like I'm getting the sense from the way the conversation's unfolding a bit, is that… We are trying to almost prove that some of these, like, you know, initial findings that we're having, we're trying to, like, prove that this is somehow an invariant that we told developers could break. And it's now breaking, and so therefore, we're, like, trying to maybe assign fault towards those developers. And, to me, that feels a bit of a wrong way to approach this. Like, I think that we have done a fair bit of education around you know, gas prices will change, or gas costs will change, don't hard code your gas costs. But I think, like, the examples we're seeing are… A lot more complicated than someone who's hard-coded the gas cost into the call opcode. And I think that, at the end of the day, if a sufficient number of users, or a sufficient amount of funds on mainnet are making use of a functionality. That we can't just… Say we have to, you know, Break that functionality. Obviously, there's… nuance to these arguments always, but if we find that there's a lot of contracts who are using this, and we find there's a lot of funds that are locked into this. I mean, I personally don't think we should break the user space, for those reasons. If we do decide to break the user space, you know, some of these things are upgradable, then we…",
+              "translation": "네, 토론 소개 잘해주셔서 감사합니다. 사실 조금 전에 채팅에 메시지를 하나 보냈는데, 그것이 제 견해를 어느 정도 표현하고 있습니다만… 대화가 전개되는 방식을 보면서 느끼는 바는, 저희가 지금 가지고 있는 초기 발견들 중 일부를, 거의, 저희가 개발자들에게 깨질 수 있다고 말했던 불변성이라는 것을 증명하려 하고 있다는 느낌입니다. 그리고 그것이 이제 깨지고 있으니, 그래서 저희가 그 개발자들에게 책임을 돌리려 하는 것 같다는 느낌입니다. 저에게는 그것이 이 문제에 접근하는 다소 잘못된 방식으로 느껴집니다. 저희가 가스 가격(gas price)이나 가스 비용(gas cost)이 변할 것이니 가스 비용을 하드코딩(hard code)하지 말라는 교육을 꽤 많이 해온 것은 맞다고 생각합니다. 하지만 저희가 보고 있는 예시들은 콜 오피코드(call opcode)에 가스 비용을 하드코딩한 사람보다 훨씬 더 복잡한 것들이라고 생각합니다. 그리고 결국, 충분히 많은 수의 사용자들, 혹은 메인넷상에서 충분히 많은 자금이 어떤 기능을 사용하고 있다면, 저희가 그냥 그 기능을 깨뜨려야 한다고 말할 수는 없다고 생각합니다. 물론 이런 주장에는 항상 미묘한 차이가 있지만, 만약 이것을 사용하는 컨트랙트가 많고, 여기에 잠겨 있는 자금이 많다는 것을 발견한다면, 저는 개인적으로 그런 이유로 유저 스페이스(user space)를 깨서는 안 된다고 생각합니다. 만약 유저 스페이스를 깨기로 결정한다면, 그중 일부는 업그레이드 가능하니, 그럼 저희는…"
+            },
+            {
+              "speaker": "Toni Wahrstätter",
+              "text": "큰 컨트랙트가 깨진다면 당연히 스펙을 바꾸고 포크를 미루겠지만 지금은 실제 영향을 몰라 추측이 이르다고 했다. 깨진 불변식을 복원하려 들면 EIP가 주는 이득 자체가 사라질 수 있다고도 경고했다.",
+              "timestamp": "01:07:02",
+              "original": "Yeah, I said the same in the chat, I think… Of course, like, if very fundamental functionalities or, big contracts, big user… big contracts with, big, a lot of users would break or anything similar to that. We would, of course, change the spec and avoid that, and delay the hard fork. But at this point, it's just too early, because we don't really know what is the actual impact on those users. We already know that Some invariants will be broken, and we have to check, like, how fundamental are those invariants, which is something we don't yet understand very well. And… Then we can discuss, how to… how to approach it in case we actually find out we want to change the specs. Because it's not so clear that We can even just add those invariants into the protocol again without undoing, like, big parts of what made those EIPs worth it? So, yeah, I think it's too early to speculate about potential things that we know better next week or in two weeks.",
+              "translation": "네, 저도 채팅에 같은 내용을 적었습니다. 당연히, 매우 근본적인 기능들이나 큰 컨트랙트, 많은 사용자를 가진 큰 컨트랙트가 깨지거나 그와 비슷한 일이 생긴다면, 저희는 당연히 스펙을 변경하고 그것을 피하며 하드포크를 지연시킬 것입니다. 하지만 지금 이 시점에서는 너무 이릅니다. 왜냐하면 그 사용자들에게 실제로 어떤 영향이 있을지 저희가 아직 정확히 모르기 때문입니다. 일부 불변성이 깨질 것이라는 사실은 이미 알고 있고, 그 불변성들이 얼마나 근본적인지 확인해야 하는데, 이는 저희가 아직 잘 이해하지 못하고 있는 부분입니다. 그런 다음에야, 실제로 스펙을 변경하고자 한다는 결론이 나올 경우 어떻게 접근할지 논의할 수 있습니다. 왜냐하면 그 EIP들을 가치 있게 만든 부분의 많은 부분을 되돌리지 않고 그 불변성들을 프로토콜에 다시 추가할 수 있을지조차 분명하지 않기 때문입니다. 그래서, 네, 다음 주나 2주 후면 더 잘 알게 될 것들에 대해 지금 추측하는 것은 너무 이르다고 생각합니다."
+            }
+          ],
+          "quote": {
+            "text": "내가 말하려는 것은 글램스테르담 전에는 통하지 않았지만 글램스테르담 후에는 통하게 된 악성 트랜잭션이다.",
+            "original": "What I want to talk about is evil transactions, that did not work before Glamsterdam, but are working now after Glamsterdam.",
+            "speaker": "Hubert (ChainSecurity)",
+            "timestamp": "00:13:56"
+          }
+        },
+        {
+          "title": "후디 포크를 멈출 것인가",
+          "intro": "10월 26일로 나흘 앞까지 다가온 후디 테스트넷 포크를 강행할지, 보안 분석이 끝날 때까지 취소할지를 콜 안에서 결정해야 했다.",
+          "decision": "취소 결정 00:49:52",
+          "positions": [
+            {
+              "speaker": "Justin Florentine",
+              "text": "이미 포크한 세폴리아(Sepolia)와 비교할 대조군이 필요하다며 후디를 포크 이전 스펙에 남겨두자고 했다.",
+              "timestamp": "00:31:38",
+              "original": "I think we should probably talk about Hoodi, since that's coming real fast. It's potentially gonna be something we're gonna need if we need a control to compare tests of these types of, issues versus what's already been deployed to Sepolia. How many places do we have test networks that we can, hold on, I'm being attacked by a robot vacuum. How many places do we have test networks that we can actually craft these types of transactions and send them to DeFi projects? that have not been updated to Glamsterdam to compare to. That's what I mean by a control. Like, if we have this issue, we're gonna try and reproduce it on Sepolia. Great. Where's the control that's not mainnet? That's right. Because the only other alternative would be get, like, heavy DeFi project participation on a synthetic devnet.",
+              "translation": "저희가 후디(Hoodi)에 대해 이야기해야 할 것 같습니다. 왜냐하면 그게 정말 빠르게 다가오고 있기 때문입니다. 이런 종류의 문제들에 대한 테스트를 세포리아(Sepolia)에 이미 배포된 것과 비교할 대조군(control)이 필요하다면, 그게 저희에게 필요한 것이 될 수 있습니다. 저희가 실제로 이런 종류의 트랜잭션을 만들어 디파이 프로젝트들에 보내볼 수 있는 테스트넷이 몇 군데나 있을까요, 잠시만요, 로봇 청소기의 공격을 받고 있습니다. 글램스테르담으로 업데이트되지 않아 비교 대상이 될 수 있는 테스트넷이 몇 군데나 있을까요? 그게 제가 말하는 대조군입니다. 예를 들어, 이 문제가 있다면, 저희는 그것을 세포리아에서 재현해보려 할 것입니다. 좋습니다. 그런데 메인넷이 아닌 대조군은 어디에 있을까요? 맞습니다. 왜냐하면 유일한 다른 대안은 합성 데브넷(devnet)에서 디파이 프로젝트들의 대규모 참여를 얻는 것일 테니까요."
+            },
+            {
+              "speaker": "Daniel Lehrner",
+              "text": "스펙을 바꿔야 하면 세폴리아는 버려야 하고 후디까지 포크하면 바뀐 스펙을 테스트할 곳이 아예 없어진다고 지적했다.",
+              "timestamp": "00:33:32",
+              "original": "Yeah, yeah, just, just, I, I just wanted to say, if we have to change the specs. We have to throw away Sepolia for sure, because it's on specs that are not on mainnet anymore. And if we do the Hoodi hard fork on Monday as well, we have no testnet, because where would we test the hard fork? Because both would be incompatible. So it's not… Do we need spec changes or not? It's if we need them, where would we even test them? If both of… if both Hoodi and Sepolia are on the wrong specs?",
+              "translation": "네, 네, 그냥, 그냥 제가 말씀드리고 싶은 것은, 만약 스펙을 변경해야 한다면, 세포리아는 반드시 버려야 한다는 것입니다. 왜냐하면 그것은 더 이상 메인넷에 있지 않은 스펙 위에 있기 때문입니다. 그리고 만약 월요일에 후디 하드포크(hard fork)도 진행한다면, 저희는 테스트넷이 없게 됩니다. 왜냐하면 그 하드포크를 어디서 테스트하겠습니까? 둘 다 호환되지 않을 테니까요. 그러니 문제는 스펙 변경이 필요한가 아닌가가 아닙니다. 만약 필요하다면, 대체 어디서 테스트할 것인가가 문제입니다. 후디와 세포리아 둘 다 잘못된 스펙 위에 있다면 말입니다."
+            },
+            {
+              "speaker": "Potuz",
+              "text": "Daniel의 말에 동의하며 분산된 검증자가 많은 후디를 다시 배포하는 것은 큰 고통이므로 후디 연기로 기울었다.",
+              "timestamp": "00:34:21",
+              "original": "Yeah, I want to second what Daniel said, and I want to stress that if we… we are going to be able… we're going to be forced to ditch testnets that are on the wrong fork if we actually change the spec. And ditching Sepolia is not so bad, but ditching Hoodi is bad. It affects a lot of parties that it's much more decentralized, we have, like, a lot of validators that are going to have to be deployed again, so losing Hoodi would be a problem. Sepolia wouldn't be so much of a problem. So I would lean towards delaying Hoodi, just in case that, we might… Changes back because of this. Otherwise, if we change the spec. We can just say that… No releases party. We can just say to drop back to the previous… to the previous clients.",
+              "translation": "네, 다니엘(Daniel)이 말한 것에 동의하고 싶고, 강조하고 싶은 것은 만약 저희가 실제로 스펙을 변경한다면, 잘못된 포크 위에 있는 테스트넷들을 버리도록 강제될 것이라는 점입니다. 세포리아를 버리는 것은 그렇게 나쁘지 않지만, 후디를 버리는 것은 나쁩니다. 그것은 훨씬 더 분산화되어 있어서 많은 당사자들에게 영향을 미치고, 다시 배포해야 할 검증자(validator)가 많습니다. 그래서 후디를 잃는 것은 문제가 될 것입니다. 세포리아는 그렇게 큰 문제가 되지 않을 것입니다. 그래서 저는 후디를 지연시키는 쪽으로 기울고 싶습니다. 혹시 이것 때문에 다시 변경이 생길 경우를 대비해서 말입니다. 그렇지 않고 스펙을 변경한다면, 그냥 릴리스 파티는 없다고, 이전 클라이언트로 되돌리라고 말하면 됩니다."
+            },
+            {
+              "speaker": "Parithosh Jayanthi",
+              "text": "릴리스가 이미 나가 커뮤니티 전체가 새 버전으로 갈아타야 하므로 포크 실패 위험이 있다고 반론했으나, 이전 버전으로 롤백하면 된다는 Potuz의 지적을 수긍했다.",
+              "timestamp": "00:35:29",
+              "original": "I… my main counter-argument is that now that releases are out, we would need everyone to have newer releases, and make sure that all of the community has updated the newer releases, which is a non-zero risk of just a failing fork. And if we have a failed fork, then we have to spend a bunch of time actually recovering that, versus, Hoodi as you… True. Yeah.",
+              "translation": "저… 제 주된 반론은, 이미 릴리스가 나온 이상, 모두가 더 새로운 릴리스를 가지고 있어야 하고 커뮤니티 전체가 그 새로운 릴리스로 업데이트했는지 확인해야 하는데, 이는 포크가 실패할 적지 않은 위험이 있다는 것입니다. 그리고 포크가 실패하면, 그것을 실제로 복구하는 데 많은 시간을 써야 합니다. 후디와 비교하면… 맞습니다. 그렇습니다."
+            },
+            {
+              "speaker": "Dima Gusakov | Lido",
+              "text": "리도는 어제 이미 업그레이드를 마쳤지만 온체인 롤백은 가능하다며, 후디에 230만 스테이크를 가진 30여 운영자에게 롤백을 요청하겠으나 100% 이행은 보장 못 한다고 했다.",
+              "timestamp": "00:53:19",
+              "original": "Yeah, I definitely can. So, it depends on what things you are about to change in the specs. So, first of all, we have already upgraded the protocol, like, 2 hours… not 2 hours ago, but yesterday. If the expected change is only within repricings. Except for the fact that you will make prices even higher, and then it will blow up something on our side, we are good. If we are talking other changes. Then I need to know what… what changes we're talking about, and then we will need to figure out, like, how to roll back some stuff. In general, the upgrade for Lido was mostly off-chain. Like, I believe most of the on-chain parts can be rolled back if needed. So, in general, I don't see, like, at the moment, a significant concern regarding delaying hard fork, other than the fact that we already have the date set within the contracts, like, for all of the contracts that are interacting with Consensus layer, we have this… Jesus Christ, pivot slot, for the hard fork, but again, it's doable, we can roll those contracts back, no big issue. So, it heavily depends on what you guys are planning to change in the spec. For how long? For an unknown period of time. Okay, well, yeah, I guess we can live with it. We will need to do a rollback of all of the changes we made, but not the end of the world. Definitely doable tomorrow. Yeah, that's a good question. Well, I wish we were a single operator, and I could tell you that, okay, I'll ask DevOps to roll out clients. The thing is that the setup…",
+              "translation": "네, 물론 할 수 있습니다. 이는 스펙에서 어떤 것을 변경하려 하는지에 따라 다릅니다. 먼저, 저희는 이미 프로토콜을 업그레이드했습니다. 2시간… 아니 2시간 전이 아니라 어제였습니다. 예상되는 변경이 리프라이싱(repricing)에 한정된다면, 가격을 더 높게 만들어서 저희 쪽에서 뭔가 터지는 경우를 제외하면, 저희는 괜찮습니다. 다른 변경사항에 대해 이야기하는 것이라면, 어떤… 어떤 변경사항인지 알아야 하고, 그러면 어떻게 일부를 롤백(rollback)할지 알아내야 할 것입니다. 일반적으로 리도(Lido)의 업그레이드는 대부분 오프체인(off-chain)에서 이루어졌습니다. 필요하다면 온체인(on-chain) 부분 대부분도 롤백할 수 있다고 생각합니다. 그래서 전반적으로, 현재로서는 하드포크 지연에 관해 큰 우려는 없습니다. 다만 저희가 이미 컨트랙트 안에 날짜를 설정해두었다는 점은 예외입니다. 즉, 컨센서스 레이어(Consensus layer)와 상호작용하는 모든 컨트랙트에, 하드포크를 위한 그… 세상에, 피벗 슬롯(pivot slot)이 있는데, 그래도 이것은 가능한 일이고, 그 컨트랙트들을 롤백할 수 있으니 큰 문제는 없습니다. 그러니 이는 여러분이 스펙에서 무엇을 변경할 계획인지에 크게 좌우됩니다. 얼마나 오랫동안이요? 기간을 알 수 없는 상태로요. 알겠습니다, 네, 그 정도는 감당할 수 있을 것 같습니다. 저희가 만든 변경사항을 모두 롤백해야 하겠지만, 세상이 끝나는 일은 아닙니다. 내일 중에 확실히 가능합니다. 네, 좋은 질문입니다. 저희가 단일 운영자였으면 좋겠습니다. 그러면 알겠다고, 데브옵스(DevOps)에 클라이언트를 배포하라고 요청하겠다고 말씀드릴 수 있을 텐데요. 문제는 설정이…"
+            }
+          ],
+          "quote": {
+            "text": "후디는 미뤄야 할 것 같다. 답해야 할 질문이 남아 있는데 포크를 강행할 좋은 이유를 못 들었고, 후디를 잃는 것은 좋지 않다.",
+            "original": "Sounds like we should delay Hoodi. I don't really hear a good argument to go forward with the fork when there are questions that we need to answer, and losing Hoodi is not good.",
+            "speaker": "lightclient",
+            "timestamp": "00:35:13"
+          }
+        },
+        {
+          "title": "CFI는 기본 포함인가",
+          "intro": "헤고타에 CFI 상태 EIP가 19개 가까이 쌓인 가운데, CFI를 사실상 포함 확정처럼 취급하는 관행을 바로잡자는 문제 제기가 나왔다.",
+          "positions": [
+            {
+              "speaker": "lightclient",
+              "text": "CFI를 기본 포함으로 보는 사람과 기본 제외로 보는 사람이 섞여 있어 '이더리움이 이걸 해야 하나'라는 논의 없이 EIP가 미끄러져 들어간다고 지적했다. 모든 프로토콜 변경은 리스크이므로 필요 최소한만 바꿔야 하고 CFI가 기본 포함이라면 PFI에서 CFI로 가는 문턱을 훨씬 높여야 한다고 했다.",
+              "timestamp": "01:18:10",
+              "original": "I think it would be good to talk more about how we would want to approach the next scoping. Because I feel like a similar related issue with this is that I think Right now, when we go… when we have an EIP, which is PFI, the default is kind of to reject. But once the EIP is CFI, It feels like some people believe the default is to ship it in the fork. And I think that if the default is to ship in the fork and that's something that we want to agree on as ACD, then I would say we should be approaching the PFI to CFI discussion a bit differently. Because I think sometimes people will make the argument in the PFI discussion when it's contentious and say, well, it's contentious, let's just continue considering it by moving it to CFI. But then there's this implicit assumption that CFI is kind of something we're just gonna ship. So, we should really, like, discuss, like, what the difference between those, you know, two assumptions are. Like, I'm okay with saying that CFI is default ship. But if it is, then let's… let's, you know, explicitly say it, and then in the discussions for going from PFI to CFI, let's discuss it with that assumption that this is something we want Ethereum to do, and we're going to have to prove that it's not really feasible in that fork once we get to CFI, if we're not… if we end up not wanting to do it.",
+              "translation": "다음 스코핑(scoping)에 어떻게 접근하고 싶은지에 대해 더 이야기하면 좋을 것 같습니다. 왜냐하면 이것과 비슷하게 관련된 문제가 있다고 느끼기 때문입니다. 지금, EIP가 PFI 상태일 때는 기본값이 거부 쪽에 가깝습니다. 하지만 EIP가 CFI가 되고 나면, 일부 사람들은 기본값이 그 포크에 포함시키는 것이라고 믿는 것 같습니다. 만약 기본값이 포크에 포함시키는 것이고 그것이 ACD로서 저희가 합의하고자 하는 바라면, 저는 PFI에서 CFI로 가는 논의에 조금 다르게 접근해야 한다고 말하고 싶습니다. 왜냐하면 때때로 사람들은 PFI 논의에서 그것이 논쟁적일 때, '논쟁적이니 CFI로 옮겨서 계속 검토해보자'는 주장을 하기 때문입니다. 하지만 그렇게 되면 CFI가 그냥 포함시킬 것이라는 암묵적인 가정이 생깁니다. 그러니 저희는 이 두 가정 사이의 차이가 무엇인지 정말 논의해야 합니다. 저는 CFI가 기본적으로 포함이라고 말하는 것도 괜찮습니다. 하지만 만약 그렇다면, 그것을 명시적으로 말합시다. 그리고 PFI에서 CFI로 넘어가는 논의에서는, 이것이 이더리움이 하고자 하는 것이라는 가정을 가지고 논의하고, 만약 저희가 결국 그것을 하지 않기로 한다면, CFI에 도달한 후 그 포크에서 실제로 실현 가능하지 않다는 것을 증명해야 한다는 것으로 논의합시다."
+            },
+            {
+              "speaker": "Justin Florentine",
+              "text": "lightclient에 격하게 동의하면서도 CFI에서 SFI로 가는 단계가 작업량을 평가하는 자리이므로 CFI를 기본 포함으로 만들어 그 단계를 잃어서는 안 된다고 했다.",
+              "timestamp": "01:20:03",
+              "original": "Yeah, so I'm gonna agree with lightclient here, possibly violently, and I don't think that we should actually make any of the changes, to, to default CFI into shipping it, because the whole point of CFI is saying that, yes, we are considering it, but moving it from CFI to SFI is where we do our labor assessment. Like, that's where we say, like, yes, we want to ship it, but we can't this fork, sorry. So, like, we can't lose that step in the process. So, I disagree with the premise that CFI is a default ship, because we're not doing any actual, like. labor assessment, we're just saying that we like it. So, wow, that's a lot of hands. I'm gonna step down. Thank you for, letting me come to your TED Talk.",
+              "translation": "네, 저는 여기서 라이트클라이언트(lightclient)의 말에 동의하겠습니다. 아마 격렬히 동의한다고 할 수 있겠네요. 저는 CFI를 기본적으로 포함시키도록 변경해서는 안 된다고 생각합니다. 왜냐하면 CFI의 핵심은, 네, 저희가 그것을 검토하고 있다는 뜻이지만, CFI에서 SFI로 옮기는 단계가 바로 저희가 작업량 평가(labor assessment)를 하는 곳이기 때문입니다. 즉, 거기서 저희가 '네, 이것을 포함시키고 싶지만 이번 포크에서는 못합니다, 죄송합니다'라고 말하는 것입니다. 그러니 그 과정의 단계를 잃어서는 안 됩니다. 그래서 저는 CFI가 기본적으로 포함이라는 전제에 동의하지 않습니다. 왜냐하면 저희는 실제 작업량 평가를 하는 것이 아니라 그냥 그것을 좋아한다고 말하는 것뿐이기 때문입니다. 와, 손이 정말 많이 올라왔네요. 저는 이제 내려가겠습니다. 제 TED 강연을 들어주셔서 감사합니다."
+            },
+            {
+              "speaker": "Łukasz Rozmej",
+              "text": "이번 스코핑에서도 조건이 붙은 CFI가 많았고 조건이 충족되지 않으면 DFI가 기본이라며, CFI를 기본 포함으로 봐서는 안 된다고 했다.",
+              "timestamp": "01:20:58",
+              "original": "Yeah, I agree that CFI is not, cheap, definitely, because we are… we, even during this scoping, had some EIPs that we CFI'd, but a lot of people had some kind of, asterisks there that we can consider this shipping if, and there were some, some, conditionals. So, if those conditionals can't be met, for example, because they are impractical, or just can't be done in some way, we default to DFI there. So, yeah, CFI, this is definitely that we will put an effort to into exploring this. And we'll see where it gets us. I don't think it should be considered the default ship. No, sorry, I will have it.",
+              "translation": "네, CFI가 확실히 가볍지 않다는 것에는 동의합니다. 왜냐하면 저희는, 심지어 이번 스코핑에서도 CFI로 표시한 EIP가 몇 개 있었지만, 많은 사람들이 '이것을 포함시키는 것을 고려할 수 있다, 만약' 같은 일종의 조건 표시를 달았고, 몇 가지 조건들이 있었습니다. 그래서 그 조건들이 충족되지 않는다면, 예를 들어 비현실적이거나 어떤 방식으로도 할 수 없는 경우라면, 저희는 거기서 DFI로 기본값을 돌립니다. 그러니, 네, CFI는 분명히 저희가 그것을 탐구하는 데 노력을 기울일 대상입니다. 그리고 그것이 저희를 어디로 이끄는지 지켜볼 것입니다. 그것이 기본 포함으로 간주되어야 한다고는 생각하지 않습니다. 아니, 죄송합니다, 제가 가지고 있겠습니다."
+            },
+            {
+              "speaker": "Mario Vega",
+              "text": "CFI에 시간을 쏟는 순간 매몰 비용 오류가 생겨 거절이 정치적으로 어려워진다며, CFI 자체가 큰 결정임을 인지하고 앞으로 더 신중해야 한다고 했다.",
+              "timestamp": "01:21:51",
+              "original": "Yeah, I think it's… it's a little bit naive that to think that CFI in something does not affect our perception of it. Because, I mean, we are putting work on it. The specs didn't put work on it, the testing, all that involves just putting something into CFI. It's already, like, the… we're getting into the fallacy of, like, we are… we are sinking time into it, we are going to try to ship it, so I think it's naive to think that it doesn't affect our perception. So, I would… I would… I'm not suggesting that CFI should be SFI at, like, immediately, but we should be more cautious about CFI for the future. I think CFI is a big decision still. So we should always consider that, before, before just accepting anything into the fork, in my opinion.",
+              "translation": "네, 저는 어떤 것을 CFI로 만드는 것이 그것에 대한 저희의 인식에 영향을 미치지 않는다고 생각하는 것은 다소 순진하다고 생각합니다. 왜냐하면, 저희는 그것에 작업을 들이고 있습니다. 스펙 작성, 테스트 등, CFI로 무언가를 넣는 데 관련된 모든 것에 말입니다. 이는 이미, 저희가 거기에 시간을 쏟고 있으니 그것을 포함시키려 할 것이라는 오류에 빠지는 것입니다. 그러니 그것이 저희의 인식에 영향을 미치지 않는다고 생각하는 것은 순진하다고 생각합니다. 그래서 저는, CFI가 즉시 SFI가 되어야 한다고 말하는 것은 아니지만, 앞으로 CFI에 대해 더 신중해야 한다고 생각합니다. CFI는 여전히 큰 결정이라고 생각합니다. 그러니 포크에 무언가를 받아들이기 전에 항상 그것을 고려해야 한다고, 제 생각은 그렇습니다."
+            },
+            {
+              "speaker": "Potuz",
+              "text": "CFI는 애초에 모든 클라이언트가 구현을 강제받지 않은 채 테스트하려고 만든 것이라며 기본 포함 해석에 강하게 반대했다.",
+              "timestamp": "01:22:54",
+              "original": "Yeah, so, probably I brought this discussion a little bit before on R&D. I agree with everything that, that, Justin and Matt said, but I want to stress something, that even if we were… in a world in which CFI meant, by default, SFI, or by default inclusion, which I consider silly. The reason why we had CFI was to be able to test something that we aren't sure if it's going to be there, so it's not by default to include. But anyways, even if we move to such a system, we would be forced to have an extra layer to attend for those EIPs that we want to make a decision, that we want to test. We will always be in a situation in which we want to test things before making any kind of decision, not only for inclusion, but even to just have a prototype. So we always will have EIPs that we want to be… some clients working, because they want those EIPs in, or because they know someone that is involved with that EIP, but clients are not forced to implement. So there are EIPs that are in that situation, most EIPs are in that situation, in which I am not forced to code it. So my complaint is not about the governance process itself, my complaint is really about the spec. Which is, we should not be including things that Clients are not forced to be coding that EIP writers are not forced to be adjusting to in the main specs, either in the consensus or the execution specs.",
+              "translation": "네, 아마 제가 이 논의를 R&D에서 조금 전에 꺼냈던 것 같습니다. 저는 저스틴(Justin)과 매트(Matt)가 말한 모든 것에 동의하지만, 한 가지 강조하고 싶은 것이 있습니다. 설령 저희가 CFI가 기본적으로 SFI를 의미하거나 기본적으로 포함을 의미하는 세계에 있다고 해도, 저는 그것이 바보 같다고 생각합니다. 저희가 CFI를 둔 이유는 그것이 포함될지 확신이 서지 않는 무언가를 테스트할 수 있도록 하기 위함이었습니다. 그러니 기본값이 포함인 것은 아닙니다. 하지만 어쨌든, 그런 시스템으로 옮긴다 해도, 저희가 결정을 내리고 싶고 테스트하고 싶은 EIP들을 위한 별도의 층을 두어야 할 수밖에 없을 것입니다. 저희는 항상 어떤 결정을 내리기 전에, 포함을 위해서뿐만 아니라 그냥 프로토타입을 만들기 위해서라도 무언가를 테스트하고 싶은 상황에 있을 것입니다. 그래서 저희는 항상 일부 클라이언트가 작동하기를 원하는 EIP들을 가지게 될 것입니다. 왜냐하면 그들이 그 EIP가 포함되기를 원하거나, 그 EIP에 관련된 누군가를 알기 때문이지만, 클라이언트가 구현하도록 강제되지는 않습니다. 그래서 그런 상황에 있는 EIP들이 있고, 대부분의 EIP가 그런 상황에 있습니다. 즉, 제가 그것을 코딩하도록 강제되지 않는 상황입니다. 그러니 제 불만은 거버넌스 절차 자체에 대한 것이 아니라, 정말로 스펙에 대한 것입니다. 즉, 클라이언트가 코딩하도록 강제되지 않고 EIP 작성자가 맞추도록 강제되지 않는 것들을, 컨센서스든 실행(execution) 스펙이든, 메인 스펙에 포함시켜서는 안 된다는 것입니다."
+            }
+          ],
+          "quote": {
+            "text": "이더리움에 가하는 모든 변경은 리스크다. 8037과 8038에서 지금 보고 있는 그대로다. 그래서 우리는 절대적으로 최소한의 변경만 해야 한다.",
+            "original": "I think every change to Ethereum is risk, which is basically what we're seeing with 8037 and 8038. And so we should do the absolute minimal number of changes.",
+            "speaker": "lightclient",
+            "timestamp": "01:25:40"
+          }
+        },
+        {
+          "title": "다음 데브넷, EL 단독인가 통합인가",
+          "intro": "데브콘 전에 EL 단독 데브넷(bogota-devnet-2)을 하나 더 띄울지, 바로 EL+CL 통합 데브넷(hegota-devnet-0)으로 갈지와 그 범위를 정해야 했다.",
+          "decision": "스코프 확정 01:36:58",
+          "positions": [
+            {
+              "speaker": "Mario Vega",
+              "text": "FOCIL과 프레임은 실제 상호작용이 있어 합치는 가치가 있지만 보고타가 준비됐다면 그것만으로도 테스트 가치가 있으니 먼저 내보내자고 했다.",
+              "timestamp": "01:30:10",
+              "original": "Yeah, what I can say, I mean, I'm not opposed to, like, merging right now. The only reason why I see merging as valuable is that FOCIL and frames do have interaction, so that's… the reason that I would suggest, like, getting them together as soon as possible, and they are both SFI, so I guess it makes sense. just from a testing perspective. If there's a cost in having them joined from the beginning, maybe that's worth discussing, but the value is real in terms of testing, yeah.",
+              "translation": "네, 제가 말할 수 있는 것은, 지금 당장 병합(merging)하는 것에 반대하지는 않는다는 것입니다. 병합이 가치 있다고 보는 유일한 이유는 FOCIL과 프레임즈가 실제로 상호작용을 한다는 것입니다. 그래서 그것이 가능한 한 빨리 함께 두어야 한다고 제안하는 이유이고, 둘 다 SFI이니 그것이 타당하다고 생각합니다. 테스트 관점에서만 보면 말입니다. 처음부터 함께 두는 데 비용이 있다면, 그것은 논의할 가치가 있을 수 있지만, 테스트 측면에서의 가치는 실재합니다, 네."
+            },
+            {
+              "speaker": "Jihoon",
+              "text": "FOCIL과 프레임의 상호작용 설계가 아직 준비되지 않아 다음 주 통합 데브넷은 이르고 FOCIL 단독이라면 가능하다고 했다.",
+              "timestamp": "01:30:51",
+              "original": "Yeah, I just wanna share that. The interaction between FOCIL and frames are not ready yet. So if you want to target devnet 0 sometime in next week, I think it's too early to test FOCIL and Frames, but if you want to launch it without the interaction between FOCIL and Frames, then just FOCIL I think it's doable. So… Yeah.",
+              "translation": "네, 그냥 공유하고 싶은 것이 있습니다. FOCIL과 프레임즈 사이의 상호작용은 아직 준비되지 않았습니다. 그래서 다음 주 중에 데브넷 0을 목표로 한다면, FOCIL과 프레임즈를 함께 테스트하는 것은 너무 이르다고 생각합니다. 하지만 FOCIL과 프레임즈 사이의 상호작용 없이 출시하고자 한다면, FOCIL만으로는 가능하다고 생각합니다. 그러니… 네."
+            },
+            {
+              "speaker": "lightclient",
+              "text": "EL 단독이면 다음 주 출시에 자신이 있다고 했고 이번 주에 아무것도 못 띄우면 데브콘 이동 때문에 몇 주 밀릴 것을 걱정했다.",
+              "timestamp": "01:32:49",
+              "original": "Yeah, that was kind of my working assumption. I feel like the changes… there's… There's about 3 main changes I'm imagining for the Bogota devnet 2. One of which we haven't merged yet and are kind of discussing a little, but I would like to merge, and we generally felt on the breakout room that, optimistically, we should merge it unless… On this call, people felt it was… Not a good idea. But I think, yeah, I feel pretty confident we'll have 2 ready, which we could ship next week. And I'm just thinking people will start traveling for Devcon, so… If we are not shipping a devnet this week, it feels like we might slip a couple weeks. Due to Devcon-related trouble. So… But, like, I agree with Mario, like, it would be nice in Devcon to start talking more about the interactions, and so maybe that's a better outcome, even if we don't have the… Even if we miss a devnet deadline later next week. people have spent time thinking about the interaction. Like, honestly, I can see the benefit of both. I would rather do the previous devnets go, personally. But… We could do it all, I guess. I don't know, I'm pretty ambivalent on this. I think others should weigh in. I can go either way. Yeah, I guess maybe, Mario, from your perspective? But what would it look like to have them merged? release. Yep. One point that's kind of related to the Bogota devnet 2. We talked on the frames breakout, people said they would review this PR a bit more. we were kind of optimistically looking at including in…",
+              "translation": "네, 그것이 제 작업 가정이었습니다. 보고타 데브넷 2를 위해 제가 구상하고 있는 주요 변경사항이 약 3가지 있는 것 같습니다. 그중 하나는 아직 병합하지 않았고 조금 논의 중인데, 저는 병합하고 싶고, 브레이크아웃 룸(breakout room)에서는 전반적으로 낙관적으로 병합해야 한다고 느꼈습니다. 다만… 이 콜에서는 사람들이 그것이 좋은 생각이 아니라고 느꼈습니다. 하지만, 네, 저는 2를 다음 주에 출시할 수 있을 만큼 준비될 것이라고 꽤 확신합니다. 그리고 사람들이 데브콘을 위해 여행을 시작할 것이라는 생각이 드는데… 이번 주에 데브넷을 출시하지 않으면, 데브콘 관련 문제로 몇 주 정도 밀릴 수도 있을 것 같습니다. 하지만, 마리오(Mario)의 말에 동의하는데, 데브콘에서 상호작용에 대해 더 이야기를 시작하는 것도 좋을 것 같습니다. 그러니 다음 주 후반에 데브넷 마감을 놓치더라도, 그것이 더 나은 결과일 수도 있습니다. 사람들이 상호작용에 대해 생각할 시간을 가졌을 테니까요. 솔직히 저는 양쪽 모두의 장점을 알 수 있습니다. 개인적으로는 이전 데브넷들을 그대로 진행하는 쪽을 택하고 싶습니다. 하지만… 다 할 수도 있을 것 같습니다. 모르겠습니다, 저는 이 부분에 대해 꽤 양가적입니다. 다른 분들이 의견을 주셔야 할 것 같습니다. 저는 어느 쪽이든 괜찮습니다. 네, 마리오, 당신의 관점에서는 어떨까요? 그런데 그것들을 병합하면 어떤 모습이 될까요? 릴리스요. 네. 보고타 데브넷 2와 관련된 한 가지 포인트가 있습니다. 프레임즈 브레이크아웃에서 이야기했는데, 사람들이 이 PR을 조금 더 리뷰하겠다고 했습니다. 저희는 낙관적으로 포함시키는 것을 고려하고 있었습니다…"
+            },
+            {
+              "speaker": "Justin Florentine",
+              "text": "FOCIL과 프레임 상호작용을 보려는 것이라면 EIP를 세 개나 더 얹지 말자고 했고 다만 SETCODEFROM은 넣겠다고 했다. 자기 팀은 네 개 시한을 못 맞추지만 3개 클라이언트로 출시하는 것에 반대하지 않았다.",
+              "timestamp": "01:40:39",
+              "original": "I just want to bring up that I think if the intent here is to, you know, study interaction between FOCIL and frames, we probably shouldn't add 3 more EIPs to it. I mean, basically, we'd consider that too much, because we're ahead on FOCIL and behind on frames, so this makes our job a lot harder. I'd kick them all out. Thank you. I would bring in SETCODEFROM, though. Yeah, that's correct, yeah. I mean, if the low watermark is 3 clients, and you've got 3 clients, then I wouldn't try to make a case that you should wait for us.",
+              "translation": "저는 여기서 의도가 FOCIL과 프레임즈 사이의 상호작용을 연구하는 것이라면, 여기에 EIP 3개를 더 추가해서는 안 될 것 같다는 점을 말씀드리고 싶습니다. 기본적으로 그것은 너무 많다고 생각합니다. 왜냐하면 저희는 FOCIL에서는 앞서 있고 프레임즈에서는 뒤처져 있어서, 이것이 저희의 작업을 훨씬 더 어렵게 만들기 때문입니다. 저라면 그것들을 모두 빼겠습니다. 감사합니다. 다만 SETCODEFROM은 포함시키겠습니다. 네, 맞습니다. 즉, 최소 기준(low watermark)이 클라이언트 3개이고 여러분이 클라이언트 3개를 확보했다면, 저는 여러분이 저희를 기다려야 한다고 주장하지는 않을 것입니다."
+            },
+            {
+              "speaker": "Łukasz Rozmej",
+              "text": "네더마인드는 모든 EIP에서 앞서 있다며 네 개 전부 포함하길 원한다고 했다.",
+              "timestamp": "01:43:01",
+              "original": "So, Nethermind is, quite ahead on everything, so, according to my, kind of. Call to… to speed up, we would like to include all of them.",
+              "translation": "네더마인드(Nethermind)는 모든 면에서 꽤 앞서 있습니다. 그래서 저의, 말하자면, 속도를 높이자는 판단에 따르면, 저희는 그것들을 모두 포함시키고 싶습니다."
+            },
+            {
+              "speaker": "Barnabas",
+              "text": "출시에는 클라이언트 3개면 충분하므로 준비된 팀만으로 네트워크를 띄우면 된다고 했다.",
+              "timestamp": "01:43:33",
+              "original": "We just need clients for the launch, though. So if you can get 3 clients, then we should be able to do… network.",
+              "translation": "다만 저희는 출시를 위해 클라이언트가 필요할 뿐입니다. 그러니 클라이언트 3개를 확보할 수 있다면, 저희는… 네트워크를 할 수 있을 것입니다."
+            }
+          ],
+          "quote": {
+            "text": "출시에는 클라이언트만 있으면 된다. 3개 클라이언트를 모을 수 있으면 네트워크를 띄울 수 있을 것이다.",
+            "original": "We just need clients for the launch, though. So if you can get 3 clients, then we should be able to do network.",
+            "speaker": "Barnabas",
+            "timestamp": "01:43:33"
+          }
+        }
+      ],
+      "speakers": [
+        {
+          "label": "Ansgar Dietrichs",
+          "name": "Ansgar Dietrichs",
+          "org": "EF",
+          "role": "리서처",
+          "handle": "adietrichs",
+          "avatar": "https://pbs.twimg.com/profile_images/1575685906786402304/P5UbjDt6_400x400.jpg",
+          "share": 0.404
+        },
+        {
+          "label": "Hubert (ChainSecurity)",
+          "name": "Hubert",
+          "share": 0.141
+        },
+        {
+          "label": "lightclient",
+          "name": "lightclient (Matt Garnett)",
+          "org": "EF",
+          "role": "geth",
+          "handle": "lightclients",
+          "avatar": "https://pbs.twimg.com/profile_images/1554130973935030274/wHWuxuTT_400x400.jpg",
+          "share": 0.121
+        },
+        {
+          "label": "Barnabas",
+          "name": "Barnabas Busa",
+          "org": "EF DevOps",
+          "handle": "BarnabasBusa",
+          "avatar": "https://pbs.twimg.com/profile_images/534855342300352514/m-C5ReWq_400x400.jpeg",
+          "share": 0.044
+        },
+        {
+          "label": "Toni Wahrstätter",
+          "name": "Toni Wahrstätter",
+          "org": "EF",
+          "role": "리서처",
+          "handle": "nero_eth",
+          "avatar": "https://pbs.twimg.com/profile_images/1858347774129094657/xUc7IS2K_400x400.jpg",
+          "share": 0.036
+        },
+        {
+          "label": "Dima Gusakov | Lido",
+          "name": "Dima Gusakov",
+          "org": "Lido",
+          "share": 0.035
+        },
+        {
+          "label": "Potuz",
+          "name": "Potuz",
+          "org": "Offchain Labs",
+          "role": "Prysm",
+          "handle": "potuz_eth",
+          "avatar": "https://pbs.twimg.com/profile_images/1494001194427158539/bfrZyMsG_400x400.jpg",
+          "share": 0.032
+        },
+        {
+          "label": "Justin Florentine",
+          "name": "Justin Florentine",
+          "org": "Besu",
+          "share": 0.024
+        },
+        {
+          "label": "Maria Silva",
+          "name": "Maria Silva",
+          "role": "EIP-8037 제1저자",
+          "handle": "misilva73",
+          "avatar": "https://pbs.twimg.com/profile_images/1551690804594458624/elGlKFpy_400x400.jpg",
+          "share": 0.02
+        },
+        {
+          "label": "Mario Vega",
+          "name": "Mario Vega",
+          "org": "EF",
+          "role": "테스팅, ACDT 진행",
+          "handle": "elbuenmayini",
+          "avatar": "https://pbs.twimg.com/profile_images/1616232824415342592/Wly-1ddA_400x400.jpg",
+          "share": 0.018
+        },
+        {
+          "label": "Łukasz Rozmej",
+          "name": "Łukasz Rozmej",
+          "org": "Nethermind",
+          "role": "EIP-8037 공동 저자",
+          "share": 0.015
+        },
+        {
+          "label": "Fredrik",
+          "name": "Fredrik",
+          "share": 0.015
+        },
+        {
+          "label": "spencer",
+          "name": "Spencer Taylor-Brown",
+          "org": "EF",
+          "role": "테스팅",
+          "share": 0.015
+        },
+        {
+          "label": "Dustin",
+          "name": "Dustin Brody",
+          "org": "Nimbus",
+          "share": 0.012
+        },
+        {
+          "label": "Parithosh Jayanthi",
+          "name": "Parithosh Jayanthi",
+          "org": "EF DevOps",
+          "handle": "parithosh_j",
+          "avatar": "https://pbs.twimg.com/profile_images/1257719305459904512/x5MkzrAf_400x400.jpg",
+          "share": 0.011
+        },
+        {
+          "label": "Daniel Lehrner",
+          "name": "Daniel Lehrner",
+          "share": 0.009
+        },
+        {
+          "label": "saulius",
+          "name": "Saulius Grigaitis",
+          "org": "Grandine",
+          "share": 0.009
+        },
+        {
+          "label": "Kevaundray Wedderburn",
+          "name": "Kevaundray Wedderburn",
+          "org": "EF",
+          "role": "응용 리서치",
+          "handle": "kevaundray",
+          "avatar": "https://pbs.twimg.com/profile_images/1658523090467315712/a3xJ6ySn_400x400.jpg",
+          "share": 0.008
+        },
+        {
+          "label": "Jihoon",
+          "name": "Jihoon",
+          "share": 0.008
+        },
+        {
+          "label": "Oisin Kyne",
+          "name": "Oisin Kyne",
+          "share": 0.006
+        },
+        {
+          "label": "Csaba",
+          "name": "Csaba",
+          "share": 0.006
+        },
+        {
+          "label": "marc | wolovim",
+          "name": "marc",
+          "org": "wolovim",
+          "share": 0.006
+        },
+        {
+          "label": "Iván | ethrex",
+          "name": "Iván Litteri",
+          "org": "LambdaClass",
+          "role": "ethrex 테크 리드",
+          "handle": "ivanlitteri",
+          "avatar": "https://pbs.twimg.com/profile_images/1801577809728462848/UPASaIEt_400x400.jpg",
+          "share": 0.003
+        }
+      ],
+      "chat": [
+        {
+          "speaker": "Toni Wahrstätter",
+          "text": "진짜 문제는 가스 고갈(OOG) 감지다. 호출 전후로 가스를 재도 실제 비용을 알 수 없게 됐다. 리저부아가 새 상태 비용을 내는데 gasleft()에는 보이지 않고, gasleft()가 호출 중에 올라갈 수도 있다.",
+          "timestamp": "00:25:49"
+        },
+        {
+          "speaker": "lightclient",
+          "text": "내 생각엔 CALL 가스를 하드코딩한 경우가 아니라면 프로덕션 컨트랙트를 깨서는 안 된다.",
+          "timestamp": "00:29:57"
+        },
+        {
+          "speaker": "Parithosh Jayanthi",
+          "text": "판다옵스만으로도 후디 네트워크의 40% 정도다.",
+          "timestamp": "00:37:40"
+        }
+      ],
+      "glossary": [
+        {
+          "term": "SFI",
+          "def": "Scheduled for Inclusion, 포크 포함이 확정된 EIP 상태"
+        },
+        {
+          "term": "CFI",
+          "def": "Considered for Inclusion, 포함을 검토하며 데브넷에서 테스트하는 단계"
+        },
+        {
+          "term": "PFI",
+          "def": "Proposed for Inclusion, 포함이 제안돼 후보로 접수된 단계"
+        },
+        {
+          "term": "DFI",
+          "def": "Declined for Inclusion, 포크 후보에서 제외된 상태"
+        },
+        {
+          "term": "가스 재가격(repricing)",
+          "def": "연산별 가스 비용을 다시 책정하는 프로토콜 변경"
+        },
+        {
+          "term": "데브넷(devnet)",
+          "def": "클라이언트 팀들이 새 기능을 시험하는 임시 개발용 네트워크"
+        },
+        {
+          "term": "FOCIL",
+          "def": "검열 저항을 위해 블록에 트랜잭션 포함 목록을 강제하는 제안"
+        },
+        {
+          "term": "프레임(Frames)",
+          "def": "트랜잭션 구조를 바꾸는 EIP-8141의 새 포맷"
+        }
+      ],
+      "eips": [
+        4758,
+        8037,
+        8151,
+        8253,
+        8298
+      ],
+      "relatedDebates": [
+        "create2-factory-eip7997-worth"
+      ]
+    },
     {
       "id": "acdt-101",
       "series": "acdt",
@@ -17439,13 +18010,13 @@
     "currentFork": {
       "name": "글램스테르담",
       "stage": "테스트넷 단계",
-      "line": "세폴리아 10월 6일 완료 · 후디 10월 26일 17:42 UTC 확정"
+      "line": "세폴리아 10월 6일 완료 · 후디 무기한 취소 · 메인넷 결정 보류"
     },
     "nextFork": {
       "name": "헤고타",
       "stage": "범위 정하는 중",
-      "line": "CFI 10건 · PFI 1건 · 데브넷1 EL 범위 다음 콜 확정 제안"
+      "line": "CFI 8건 · DFI 7건 · bogota-devnet-2 10월 26일 주 출시"
     },
-    "basis": "acdt-101"
+    "basis": "acde-248"
   }
 }
