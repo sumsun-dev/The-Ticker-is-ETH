@@ -31,6 +31,20 @@ export interface WeekRecord {
 export interface TgPostRecord { id: number; date: string; views: number; text: string }
 export interface LiPostRecord { title: string; urn: string; date: string; impressions: number; reactions: number; comments: number }
 
+/** 주간 수집 때 claude가 쓴 기간 분석 (scripts/lib/stats-insights.ts) */
+export interface AiInsight {
+  /** 기간 키: 주는 월요일(YYYY-MM-DD), 월은 YYYY-MM */
+  key: string;
+  mode: 'week' | 'month';
+  generatedAt: string;
+  model: string;
+  headline: string;
+  summary: string;
+  highlights: Array<{ channel: 'site' | 'telegram' | 'linkedin' | 'overall'; title: string; detail: string; tone: 'up' | 'down' | 'neutral' }>;
+  actions: string[];
+  caveats: string[];
+}
+
 export interface StatsHistory {
   updatedAt: string;
   channel: string;
@@ -41,4 +55,6 @@ export interface StatsHistory {
   tgPosts: TgPostRecord[];
   /** 링크드인 글. comments는 자동 첫 댓글을 뺀 수 */
   liPosts: LiPostRecord[];
+  /** 기간별 AI 분석. 없으면 대시보드는 규칙 기반 인사이트만 보여 준다 */
+  aiInsights?: AiInsight[];
 }

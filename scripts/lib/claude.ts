@@ -44,17 +44,25 @@ function resultOf(stdout: string | undefined): string {
  * (2026-09-15 다이제스트가 이 한계로 실패해 그날 호와 논쟁 추출이 통째로 빠졌다).
  * 파일 도구를 막는 이유: 안 막으면 모델이 결과를 리포에 파일로 쓴다 (2026-09-10 opus가 acdt-090.json을 리포 루트에 남김).
  */
-export function cliArgs(model: string, fallback?: string): string[] {
-  const args = ['-p', '--output-format', 'json', '--model', model, '--disallowed-tools', 'Write', 'Edit', 'NotebookEdit', 'Bash'];
+/** 입력을 읽고 텍스트만 돌려주면 되는 호출용: 파일 읽기·검색·웹·하위 에이전트까지 막아, 입력에 섞인 지시가 도구로 이어지지 않게 한다 */
+export const NO_TOOLS = ['Read', 'Glob', 'Grep', 'WebFetch', 'WebSearch', 'Task'];
+
+export interface ClaudeOptions {
+  /** 모든 도구를 막는다 (외부 글이 섞인 입력을 분석할 때) */
+  noTools?: boolean;
+}
+
+export function cliArgs(model: string, fallback?: string, opts: ClaudeOptions = {}): string[] {
+  const args = ['-p', '--output-format', 'json', '--model', model, '--disallowed-tools', 'Write', 'Edit', 'NotebookEdit', 'Bash', ...(opts.noTools ? NO_TOOLS : [])];
   // CLI 자체 대체는 과부하·모델 미제공만 다룬다. 한도 소진은 아래 runClaude가 직접 잡는다
   if (fallback) args.push('--fallback-model', fallback);
   return args;
 }
 
-function callOnce(prompt: string, model: string, timeoutMs: number, fallback?: string): string {
+function callOnce(prompt: string, model: string, timeoutMs: number, fallback?: string, opts: ClaudeOptions = {}): string {
   let raw: string;
   try {
-    raw = execFileSync('claude', cliArgs(model, fallback), {
+    raw = execFileSync('claude', cliArgs(model, fallback, opts), {
       input: prompt,
       encoding: 'utf-8',
       maxBuffer: 32 * 1024 * 1024,
@@ -71,13 +79,13 @@ function callOnce(prompt: string, model: string, timeoutMs: number, fallback?: s
   return envelope.result;
 }
 
-export function runClaude(prompt: string, model: string, timeoutMs = 15 * 60 * 1000): string {
+export function runClaude(prompt: string, model: string, timeoutMs = 15 * 60 * 1000, opts: ClaudeOptions = {}): string {
   const fallback = fallbackOf(model);
   try {
-    return callOnce(prompt, model, timeoutMs, fallback);
+    return callOnce(prompt, model, timeoutMs, fallback, opts);
   } catch (error) {
     if (!fallback || !(error instanceof ClaudeError) || !error.blocked) throw error;
     console.warn(`[WARN] ${model} 사용 불가 → ${fallback}로 대체합니다: ${error.message}`);
-    return callOnce(prompt, fallback, timeoutMs);
+    return callOnce(prompt, fallback, timeoutMs, undefined, opts);
   }
 }
