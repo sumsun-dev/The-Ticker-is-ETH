@@ -36,6 +36,12 @@ describe('프롬프트 전달 방식', () => {
     expect(args.every((a) => a.length < 40)).toBe(true);
   });
 
+  it('should block every tool when noTools is set', () => {
+    const args = cliArgs('fable', undefined, { noTools: true });
+    for (const tool of ['Bash', 'Read', 'WebFetch', 'WebSearch', 'Grep', 'Glob', 'Task']) expect(args).toContain(tool);
+    expect(cliArgs('fable')).not.toContain('WebFetch');
+  });
+
   it('should keep the file tools blocked and omit the fallback flag when there is none', () => {
     const args = cliArgs('opus');
     expect(args).toContain('--disallowed-tools');
