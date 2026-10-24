@@ -10,6 +10,15 @@ const iso = (t: number) => new Date(t).toISOString().slice(0, 10);
 export const kstDate = (s: string) => iso(Date.parse(s) + 9 * 3600e3);
 const inP = (d: string, p: Period) => d >= p.start && d <= p.end;
 
+/**
+ * 텔레그램 조회는 올린 뒤 며칠 동안 쌓인다. 이 기간이 지난 글만 평균·비교에 쓴다.
+ * 수집이 월요일 09:00이라 7일로 잡으면 "지난주" 글이 거의 다 빠진다. 조회 대부분이 붙는 3일로 둔다
+ */
+export const MATURE_DAYS = 3;
+/** 평균을 낼 최소 글 수. 이보다 적으면 한두 글에 좌우되니 null */
+export const MIN_MATURE_POSTS = 3;
+export const isMature = (date: string, now: string) => Date.parse(now) - Date.parse(date) >= MATURE_DAYS * DAY;
+
 /** 데이터가 있는 가장 이른 날부터. 주는 지난주까지, 월은 진행 중인 이번 달까지. 최신이 앞 */
 export function periods(h: StatsHistory, mode: Mode, today: string, limit = mode === 'week' ? 26 : 24): Period[] {
   const firsts = [h.siteDaily[0]?.date, h.tgPosts[0] && kstDate(h.tgPosts[0].date), h.liPosts[0]?.date, h.weeks[0]?.week].filter(Boolean) as string[];
@@ -57,12 +66,18 @@ export interface Summary {
   titles: Record<string, string>;
   tgPosts: number;
   tgViews: number;
+  /** 조회가 다 쌓인(MATURE_DAYS 지난) 글의 글당 평균 조회. 그런 글이 MIN_MATURE_POSTS개보다 적으면 null */
+  tgAvgViews: number | null;
+  /** 아직 조회가 쌓이는 중이라 평균에서 뺀 글 수 */
+  tgFresh: number;
   subscribers: number | null;
   liPosts: number;
   /** 링크드인 기록이 시작되기 전이거나 기간 일부만 덮으면 null */
   liImpressions: number | null;
   liReactions: number;
   liComments: number;
+  /** (반응+댓글) ÷ 노출, % (소수 첫째 자리). 노출이 없거나 링크드인 기록이 기간을 다 덮지 못하면 null */
+  liEngagement: number | null;
   followers: number | null;
   topTg: TgPostRecord[];
   topLi: LiPostRecord[];
@@ -81,6 +96,8 @@ export function summarize(h: StatsHistory, p: Period): Summary {
   const liCovered = !!liStart && (weekMode ? liStart <= p.start : liStart <= p.end);
   const last = <T,>(xs: Array<T | undefined>) => xs.filter((x): x is T => x !== undefined).at(-1) ?? null;
   const sum = (xs: number[]) => xs.reduce((a, b) => a + b, 0);
+  const mature = tg.filter((x) => isMature(x.date, h.updatedAt));
+  const liImp = sum(li.map((x) => x.impressions));
   return {
     visitors: exactWeek ? exactWeek.visitors : days.length && !(weekMode && days.length < 7) ? sum(days.map((d) => d.visitors)) : null,
     pageLoads: exactWeek ? exactWeek.pageLoads : days.length && !(weekMode && days.length < 7) ? sum(days.map((d) => d.pageLoads)) : null,
@@ -98,11 +115,14 @@ export function summarize(h: StatsHistory, p: Period): Summary {
     titles: Object.assign({}, ...weeks.map((w) => w.site?.titles ?? {})),
     tgPosts: tg.length,
     tgViews: sum(tg.map((x) => x.views)),
+    tgAvgViews: mature.length >= MIN_MATURE_POSTS ? Math.round(sum(mature.map((x) => x.views)) / mature.length) : null,
+    tgFresh: tg.length - mature.length,
     subscribers: last(weeks.map((w) => w.tg?.subscribers)),
     liPosts: li.length,
     liImpressions: liCovered ? sum(li.map((x) => x.impressions)) : null,
     liReactions: sum(li.map((x) => x.reactions)),
     liComments: sum(li.map((x) => x.comments)),
+    liEngagement: liCovered && liImp ? Math.round((sum(li.map((x) => x.reactions + x.comments)) / liImp) * 1000) / 10 : null,
     followers: last(weeks.map((w) => w.li?.followers)),
     topTg: [...tg].sort((a, b) => b.views - a.views).slice(0, 5),
     topLi: [...li].sort((a, b) => b.impressions - a.impressions).slice(0, 5),

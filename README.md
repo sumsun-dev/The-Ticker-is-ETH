@@ -29,6 +29,7 @@ ECK(Ethereum Collective Korea) 공식 홈페이지. 한국 이더리움 생태�
 - News 페이지 (이더리움 주간 리서치 리포트 by @r2jamong, RSS 기반)
 - Events 페이지
 - 영상: Contents의 영상 탭(EK1 Genesis 세션 영상, 카드 클릭 시 YouTube) + 세션 요약 페이지 `/contents/videos/:id` (임베드 플레이어, 챕터, VideoObject/Clip JSON-LD)
+- 관리자 성과 대시보드 `/admin/stats`: 홈페이지·텔레그램·링크드인 KPI, AI 분석(주간 수집 때 `weekly-stats.ts`가 claude로 생성, `--insights`로 재생성), 규칙 기반 인사이트, 콘텐츠 유형·시간대 분석, 썸네일 붙은 인기 글
 - 다국어 지원 (한국어 기본, 영어 전환 — KO/EN 토글)
 - 이더리움 다이아몬드 커스텀 커서 + Trail 효과 (데스크탑)
 - Telegram 채널 메시지 기반 기여도 분석
