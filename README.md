@@ -91,7 +91,13 @@ npm run dev
 
 ## Deployment
 
-Vercel을 통한 자동 배포 (main 브랜치 push 시).
+VPS(nginx + Node API)에서 서빙합니다. Vercel 배포는 2026-09-09에 폐기했습니다.
+
+- **자동 배포**: VPS cron이 10분마다 [`deploy/deploy.sh`](./deploy/deploy.sh)를 실행합니다. `origin/main`에 새 커밋이 있을 때만 `npm ci` → `npm run build` → `dist/`를 `/var/www/ethcollective`로 rsync → API 번들 재시작. main에 머지되면 최대 10분 안에 반영됩니다.
+- **수동 강제 배포**: VPS에서 `/opt/ethcollective/deploy.sh --force`
+- **API**: `api/` 핸들러를 [`server/index.ts`](./server/index.ts)가 하나의 node:http 서버로 묶어 서빙합니다 (esbuild 번들 → systemd `ethcollective-api`, 포트 3001). nginx가 `/api/`를 프록시합니다 ([`deploy/nginx-ethcollective.conf`](./deploy/nginx-ethcollective.conf)).
+- **서버 환경변수**: `/etc/ethcollective/api.env` (systemd `EnvironmentFile`)
+- **주간 성과 수집**: 운영자 맥의 launchd(`deploy/launchd/`)가 매주 월요일 `scripts/local/weekly-stats.ts`를 실행해 VPS의 `stats-history.json`을 갱신합니다 (`/admin/stats`가 읽음).
 
 ## Telegram Data Sync
 
@@ -118,7 +124,7 @@ GitHub Actions cron이 매일 KST 09:00에 Telegram 채널 데이터를 수집 �
   - 완료 후 SVG → `public/assets/badges/`, PNG → thirdweb 토큰 mint 시 업로드
 - [ ] **Ethereum Mainnet ERC-1155 컨트랙트 배포** — thirdweb Edition Drop
 - [ ] **환경변수 전환** — `VITE_BADGE_CONTRACT_ADDRESS` → `_BASE` / `_ETH` 분리 적용
-- [ ] **Vercel 환경변수 동기화**
+- [ ] **VPS 환경변수 동기화** — 배지 컨트랙트 주소 등 `VITE_*` 값을 VPS 빌드 환경에 반영
 
 ## Contributing
 
