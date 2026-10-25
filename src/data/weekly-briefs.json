@@ -1,6 +1,115 @@
 {
   "briefs": [
     {
+      "start": "2026-10-19",
+      "end": "2026-10-25",
+      "sentAt": "2026-10-25T10:02:42.867Z",
+      "messageIds": [
+        14
+      ],
+      "brief": {
+        "headline": "이더리움 코어 개발자들이 10월 22일 회의에서 차기 업그레이드 글램스테르담의 Hoodi 테스트넷(실험용 네트워크) 적용을 무기한 취소하고 메인넷 일정 결정도 보류했습니다. 보안업체 ChainSecurity가 가스 비용 변경안 EIP-8037과 8038로 기존에는 실패하던 트랜잭션이 이미 배포된 컨트랙트를 공격할 수 있게 되는 문제를 발견한 데 따른 조치입니다.",
+        "sections": [
+          {
+            "heading": "프로토콜 · 코어 개발",
+            "items": [
+              {
+                "title": "글램스테르담 업그레이드, 가스 비용 변경 보안 문제로 무기한 연기",
+                "date": "10.22",
+                "summary": "코어 개발자 회의 ACDE #248이 10월 26일 예정이던 Hoodi 테스트넷 포크를 취소하고 메인넷 날짜 결정을 전체 영향 분석 완료 뒤로 미뤘습니다. 주요 탈중앙 금융(DeFi) 프로젝트 13곳의 취약 가능성이 확인됐고 회의 기록상 2026년 12월 메인넷 적용은 매우 어려워져 2027년이 예상됩니다.",
+                "sources": [
+                  {
+                    "label": "ECK",
+                    "url": "https://ethcollective.xyz/calls/acde-248"
+                  },
+                  {
+                    "label": "Forkcast 회의록",
+                    "url": "https://forkcast.org/calls/acde/248/"
+                  }
+                ]
+              },
+              {
+                "title": "확정 대기 시간을 4배 줄이는 합의 구조 EIP-8453 초안 공개",
+                "date": "10.22",
+                "summary": "블록이 되돌릴 수 없게 확정되기까지의 대기 시간을 약 4배 줄이는 것을 목표로, 체인 헤드 투표와 확정 투표를 분리하는 EIP-8453 초안이 10월 22일 공개됐습니다. 2027~28년 적용 후보인 I* 포크의 핵심 제안이며 커미티 선정과 타이밍 등 세부 사항은 미정입니다.",
+                "sources": [
+                  {
+                    "label": "ECK",
+                    "url": "https://ethcollective.xyz/contents/tg-1696"
+                  },
+                  {
+                    "label": "Ethereum Magicians",
+                    "url": "https://ethereum-magicians.org/t/eip-8453-decoupled-consensus/30045"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "heading": "업계 동향",
+            "items": [
+              {
+                "title": "Optimism과 메리츠증권, 한국 증권 토큰화 공동 검토",
+                "date": "10.21",
+                "summary": "Optimism이 10월 21일 한국 메리츠증권과 OP 스택 위에서 한국 증권의 토큰화 발행과 유통을 공동 검토한다고 발표했습니다. 한국 기관의 블록체인 도입 검토 대상이 거래소와 은행에 이어 증권사로 넓어졌습니다.",
+                "sources": [
+                  {
+                    "label": "ECK",
+                    "url": "https://ethcollective.xyz/news?date=2026-10-23"
+                  },
+                  {
+                    "label": "@Optimism",
+                    "url": "https://x.com/Optimism/status/2112924319638831208"
+                  }
+                ]
+              },
+              {
+                "title": "Ledger 하드웨어 지갑 공급망 공격으로 1억 달러 탈취 확인",
+                "date": "10.17",
+                "summary": "공인 리셀러 유통망의 Ledger 기기에 심어진 변조 장치가 24단어 복구 문구를 읽어 외부로 전송하는 수법으로 총 1억 달러가 탈취된 사실이 10월 17일 팟캐스트 Unchained에서 공개됐습니다. 보안 대응 조직 SEAL 911이 자금 이동을 포착해 Tether가 1,000만 달러를 동결했습니다.",
+                "sources": [
+                  {
+                    "label": "ECK",
+                    "url": "https://ethcollective.xyz/news?date=2026-10-20"
+                  },
+                  {
+                    "label": "@laurashin",
+                    "url": "https://x.com/laurashin/status/2111534537612140695"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "heading": "커뮤니티 논쟁",
+            "items": [
+              {
+                "title": "포크 직전 보안 비판의 시점을 둘러싼 연구자와 EF의 설전",
+                "date": "10.21",
+                "summary": "독립 보안 연구자 pcaversaccio가 Hoodi 포크 일주일 전 글램스테르담의 하위호환성 문제를 비판하자 이더리움재단(EF)의 trent_vanepps 등이 비판 시점을 문제 삼았습니다. pcaversaccio는 이 우려를 다음 날 개발자 회의 안건으로 올렸고 10월 22일 포크가 실제로 보안 사유로 취소됐습니다.",
+                "sources": [
+                  {
+                    "label": "ECK",
+                    "url": "https://ethcollective.xyz/news?date=2026-10-23"
+                  },
+                  {
+                    "label": "@trent_vanepps",
+                    "url": "https://x.com/trent_vanepps/status/2112925186143957056"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "upcoming": [
+          "10.26 Blast L2 종료 예정, 자금 인출 안내 진행 중",
+          "10.26 주간 차기 업그레이드 후보 EIP 실험망 bogota-devnet-2 출시",
+          "11.03 데브콘에서 비탈릭 부테린과 Nico의 프라이버시 지갑 도구 Kohaku 라이브 데모",
+          "11.19경 다음 코어 개발자 회의 ACDE"
+        ]
+      }
+    },
+    {
       "start": "2026-10-12",
       "end": "2026-10-18",
       "sentAt": "2026-10-18T10:03:39.294Z",
