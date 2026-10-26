@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-23T01:19:56.181Z",
+  "updatedAt": "2026-10-26T01:20:48.465Z",
   "processedDigests": [
     "2026-08-24",
     "2026-08-25",
@@ -29,9 +29,653 @@
     "2026-10-14",
     "2026-10-17",
     "2026-10-20",
-    "2026-10-23"
+    "2026-10-23",
+    "2026-10-26"
   ],
   "debates": [
+    {
+      "id": "state-gas-repricing-growth",
+      "title": "상태 가스 리프라이싱(EIP-8037·8038)은 상태 성장 문제를 해결하는가?",
+      "category": "프로토콜 설계",
+      "summary": "Geth의 lightclients는 EIP-8037·8038이 가스 리밋을 올릴 수 있게 해줄 뿐 끝없이 성장하는 상태(state)라는 근본 문제를 풀지 못하며 배포된 컨트랙트를 깨는 것은 최후 수단이어야 한다고 공개 리트로를 올렸고 EF의 dankrad는 상태를 더 정확하게 가격 매기는 것 자체가 개선이라고 반박했다. 상태 만료(state expiry)와 프로세스 개편을 요구하는 개발자들이 lightclients 쪽에 보탰다.",
+      "keyPoints": [
+        "리프라이싱(repricing)이 상태 성장을 '묶는' 것인가, 가스 리밋 인상만 가능하게 하는 것인가",
+        "더 정확한 상태 가격 책정은 그 자체로 성장 문제의 개선인가",
+        "완전한 상태 만료의 UX 비용을 감수할 것인가, 상태가 10배 커지는 쪽을 견딜 것인가"
+      ],
+      "background": "EIP-8037과 EIP-8038은 상태 접근·생성에 드는 가스 비용을 다시 매기는(리프라이싱) 제안으로 Glamsterdam 포크 대상으로 스케줄됐다. 가스 리밋을 올리려면 상태 접근 비용이 노드의 실제 자원 소모를 반영해야 한다는 문제의식에서 나왔다. 2020년 EIP-2929는 같은 DoS 우려로 SLOAD·CALL 비용을 약 3배 올렸고 EIP-2930은 그로 인해 깨질 수 있는 컨트랙트를 위해 선택적 접근 목록(access list)으로 우회로를 제공했다. lightclients는 이번 EIP들이 그때처럼 가스 리밋을 올리는 효과만 있을 뿐 상태 성장 자체를 묶지 못한다고 본다. 대안으로 거론되는 상태 만료(state expiry)와 EIP-8304(trustless log index)는 성장하는 상태를 다른 각도에서 다루려 한다.",
+      "whyItMatters": "이 논쟁의 결론이 배포된 컨트랙트를 깨뜨리는 가스 스케줄 변경을 어디까지 허용할지, 그리고 상태 만료 로드맵에 다시 힘을 실을지를 가른다. Glamsterdam의 8037·8038 메인넷 영향 분석 결과와 연기 여부를 지켜봐야 한다.",
+      "sources": [
+        {
+          "title": "EIP-2929: Gas cost increases for state access opcodes",
+          "url": "https://eips.ethereum.org/EIPS/eip-2929"
+        },
+        {
+          "title": "EIP-2930: Optional access lists",
+          "url": "https://eips.ethereum.org/EIPS/eip-2930"
+        },
+        {
+          "title": "EIP-8304: Trustless log and transaction index",
+          "url": "https://eips.ethereum.org/EIPS/eip-8304"
+        }
+      ],
+      "keywords": [
+        "EIP-8037",
+        "EIP-8038",
+        "state expiry",
+        "state growth"
+      ],
+      "positions": [
+        {
+          "stance": "con",
+          "label": "상태 성장을 풀지 못하는 미봉책이다",
+          "holders": [
+            {
+              "handle": "lightclients",
+              "name": "ً",
+              "role": "Geth·프로토콜 개발자",
+              "avatar": "https://pbs.twimg.com/profile_images/1554130973935030274/wHWuxuTT_400x400.jpg"
+            },
+            {
+              "handle": "shemnon",
+              "name": "Danno Ferrin",
+              "role": "Sei Labs 엔지니어, 전 Besu",
+              "avatar": "https://pbs.twimg.com/profile_images/2037631420873789440/Ik2HuQiv_400x400.jpg"
+            },
+            {
+              "handle": "donnoh_eth",
+              "name": "donnoh.gwei 💗",
+              "role": "L2BEAT 리서치 책임",
+              "avatar": "https://pbs.twimg.com/profile_images/1906978600311521280/aSbKSjtX_400x400.jpg"
+            },
+            {
+              "handle": "KushalBabel",
+              "name": "Kushal Babel",
+              "avatar": "https://pbs.twimg.com/profile_images/1810325694154432512/lIOE3SsM_400x400.jpg"
+            },
+            {
+              "handle": "perperp_er",
+              "name": "perper",
+              "avatar": "https://pbs.twimg.com/profile_images/2103156241434570752/i75Dsx49_400x400.jpg"
+            },
+            {
+              "handle": "ChainNative",
+              "name": "chain native",
+              "avatar": "https://pbs.twimg.com/profile_images/1993739283560108032/AaGxmgIS_400x400.jpg"
+            }
+          ],
+          "points": [
+            "EIP-8037·8038은 끝없이 성장하는 상태라는 근본 문제를 풀지 않고 가스 리밋을 올릴 수 있게 해줄 뿐이다",
+            "메인넷 컨트랙트에 미치는 영향 분석을 6개월 전에 했어야 했고 배포된 코드를 깨는 것은 최후 수단이어야 한다",
+            "프로토콜 내 완전한 상태 만료 대신 콜드 상태 접근 비용을 훨씬 높게 매기고 클라이언트의 DB 최적화에 맡기는 편이 현실적이다",
+            "상호작용을 스스로 이해하지 못하는 변경이라면 아무도 안전함을 입증하지 못했다는 중대한 경고 신호다(donnoh)"
+          ]
+        },
+        {
+          "stance": "pro",
+          "label": "더 정확한 가격 책정은 개선이다",
+          "holders": [
+            {
+              "handle": "dankrad",
+              "name": "Dankrad Feist",
+              "role": "EF 리서처, 데이터 가용성·확장성",
+              "avatar": "https://pbs.twimg.com/profile_images/1115816977061351424/HdvT_PLp_400x400.png"
+            }
+          ],
+          "points": [
+            "상태의 더 정확한 가격 책정을 가능하게 하는데, 이는 상태 가스가 작동하는 방식을 바꾸지 않고는 거의 불가능한 일이다",
+            "상태가 덜 자라도록 튜닝할 수 있다는 의미에서 개선이지만 성장을 어떤 식으로든 묶어두지는 못한다는 점은 인정한다",
+            "완전한 상태 만료에 필요한 업그레이드의 UX 영향을 감수하느니 상태가 10배 커지는 쪽을 견디는 게 더 쉽다"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-10-23",
+          "by": "lightclients",
+          "stance": "con",
+          "quote": "8037과 8038 EIP가 정말 마음에 들지 않는다. 이들은 끝없이 성장하는 상태라는 근본 문제를 풀지 않고 가스 리밋을 올릴 수 있게 해줄 뿐이다.",
+          "url": "https://x.com/lightclients/status/2113606207252611307",
+          "digest": "2026-10-26",
+          "relation": "none",
+          "original": "In light of the issues with 8037 and 8038, I realized I don't post my opinion publicly as much as maybe I should 😅 so personal retro:\n\ntldr; I really don't like these EIPs. They only allow us to increase gas limit without solving the fundamental problem of ever an growing state.",
+          "translation": "8037과 8038의 문제들을 보면서, 제가 공개적으로 의견을 밝히는 일이 생각보다 적었다는 걸 깨달았습니다. 그래서 개인적인 회고를 해봅니다. 요약하자면, 저는 이 EIP들이 정말 마음에 들지 않습니다. 이들은 끝없이 증가하는 상태(state)라는 근본적인 문제를 해결하지 않고 가스 한도(gas limit)만 늘릴 수 있게 해줄 뿐입니다."
+        },
+        {
+          "date": "2026-10-23",
+          "by": "lightclients",
+          "stance": "con",
+          "quote": "메인넷 컨트랙트에 미치는 진짜 영향을 이제야 파악하고 있다. 6개월 전에 했어야 했지만, 다행히 포크 뒤 실제로 깨진 다음이 아니라 지금 하고 있다.",
+          "url": "https://x.com/lightclients/status/2113606216761110983",
+          "digest": "2026-10-26",
+          "relation": "none",
+          "original": "Currently we are trying to understand the true impact of the EIPs on mainnet contracts. We should have done this 6 months ago, but fortunately it is happening now and not after the fork when things are actually broken.",
+          "translation": "현재 저희는 이 EIP들이 메인넷 컨트랙트들에 실제로 어떤 영향을 미치는지 파악하려 하고 있습니다. 이 작업은 6개월 전에 했어야 했지만, 다행히도 포크 이후 실제로 문제가 터진 뒤가 아니라 지금 이루어지고 있습니다."
+        },
+        {
+          "date": "2026-10-23",
+          "by": "lightclients",
+          "stance": "con",
+          "quote": "애초에 이 EIP들을 스케줄링하지 않았으면 했지만, 많은 작업이 들어갔으니 블래스트 반경이 예상보다 훨씬 크거나 수정이 어렵거나 불가능하지 않은 한 (연기된 채) 배포될 것이라 본다.",
+          "url": "https://x.com/lightclients/status/2113606218136867157",
+          "digest": "2026-10-26",
+          "relation": "none",
+          "original": "I don't know what the outcome will be. I wish we hadn't scheduled these EIPs in the first place, but a lot of work has been put into them and so unless the blast radius is much larger than we understand or the fixes are difficult / impossible, I think it will ship (delayed).",
+          "translation": "결과가 어떻게 될지는 모르겠습니다. 처음부터 이 EIP들을 일정에 올리지 않았으면 좋았겠다고 생각하지만, 이미 많은 작업이 투입되었기 때문에 우리가 이해하는 것보다 파급 범위(blast radius)가 훨씬 크거나 수정이 어렵거나 불가능하지 않은 이상, 결국에는(지연되더라도) 배포될 것이라고 생각합니다."
+        },
+        {
+          "date": "2026-10-23",
+          "by": "dankrad",
+          "stance": "pro",
+          "quote": "나는 이들이 상태 성장 문제를 개선한다고 본다. 상태 가스가 작동하는 방식을 바꾸지 않고는 거의 불가능한, 상태의 더 정확한 가격 책정을 가능하게 한다.",
+          "url": "https://x.com/dankrad/status/2113625918006833418",
+          "digest": "2026-10-26",
+          "replyTo": "lightclients",
+          "relation": "reply",
+          "original": "@lightclients I think they do improve the ever growing state problem? They allow more accurate pricing of state, which is virtually impossible without changing the way that state gas works.",
+          "translation": "@lightclients 저는 이 EIP들이 끝없이 증가하는 상태 문제를 개선하는 게 맞지 않나요? 상태(state)에 대해 더 정확한 가격을 매길 수 있게 해주는데, 이는 상태 가스(state gas)가 작동하는 방식을 바꾸지 않으면 거의 불가능한 일입니다."
+        },
+        {
+          "date": "2026-10-23",
+          "by": "dankrad",
+          "stance": "pro",
+          "quote": "상태가 덜 자라도록 튜닝할 수 있다는 의미에서 개선하는 것이다. 다만 상태의 성장을 어떤 식으로든 묶어두지는 않는다.",
+          "url": "https://x.com/dankrad/status/2113626802539364863",
+          "digest": "2026-10-26",
+          "replyTo": "dankrad",
+          "relation": "reply",
+          "original": "@dankrad Well they improve it in the sense that you can tune it to grow the state less. But they don't bound the growth of state in some way.",
+          "translation": "@dankrad 음, 상태가 덜 늘어나도록 조정할 수 있다는 의미에서는 개선되는 게 맞습니다. 하지만 어떤 식으로든 상태의 증가 자체를 제한하지는 않습니다."
+        },
+        {
+          "date": "2026-10-23",
+          "by": "lightclients",
+          "stance": "con",
+          "quote": "프로토콜 내 상태 만료는 너무 논쟁적이고 유저 공간에 영향이 너무 크다. 더 현실적인 접근은 콜드 상태 접근 비용을 훨씬 높게 매기고 클라이언트가 콜드 데이터를 옮기는 식의 DB 최적화를 하게 두는 것이다.",
+          "url": "https://x.com/lightclients/status/2113634076045537426",
+          "digest": "2026-10-26",
+          "replyTo": "lightclients",
+          "relation": "reply",
+          "original": "tbh realistically in-protocol state expiry is wayyy too controversial and it affects the user space wayyyy too much.\n\nimo a more realistic approach is simply price cold state access much much higher and let clients do fancy db optimizations such as moving cold data out of the main db. See the following:\n\nhttps://t.co/jxB4Mi98K5\nhttps://t.co/0EBmFJzCOV\nhttps://t.co/PlOuoxzruS",
+          "translation": "솔직히 현실적으로 프로토콜 내(in-protocol) 상태 만료(state expiry)는 논쟁이 너무 심하고 사용자 공간(user space)에 미치는 영향이 너무 큽니다. 제 생각에는 콜드 상태(cold state) 접근에 훨씬 더 높은 가격을 매기고, 클라이언트들이 콜드 데이터를 메인 데이터베이스 밖으로 옮기는 것과 같은 고급 db 최적화를 하도록 맡기는 것이 더 현실적인 접근이라고 봅니다. 다음을 참고하세요."
+        },
+        {
+          "date": "2026-10-23",
+          "by": "dankrad",
+          "stance": "pro",
+          "quote": "지금까지 내 결론은, 완전한 상태 만료에 필요한 업그레이드의 UX 영향을 감수하느니 상태가 10배 커지는 쪽을 견디는 게 더 쉽다는 것이다.",
+          "url": "https://x.com/dankrad/status/2113660641236136014",
+          "digest": "2026-10-26",
+          "replyTo": "lightclients",
+          "relation": "reply",
+          "original": "@lightclients My conclusion on it has so far been that it's easier to tolerate even 10x more state than to swallow the UX implications of the upgrades necessary for full state expiry.",
+          "translation": "@lightclients 지금까지 제가 내린 결론은, 완전한 상태 만료를 위해 필요한 업그레이드가 가져올 사용자 경험(UX) 상의 영향을 감내하는 것보다는, 상태가 10배 더 늘어나는 것을 참는 쪽이 더 쉽다는 것입니다."
+        },
+        {
+          "date": "2026-10-23",
+          "by": "shemnon",
+          "stance": "con",
+          "quote": "그냥 불평하는 것처럼 보일까 봐 막지 않으면, 아무도 필요 없는 설익은 EIP 30여 개가 담긴 포크가 나오고, 이미 있는 상태 성장 대응 EIP에 쓸 대역폭이 남지 않는다.",
+          "url": "https://x.com/shemnon/status/2113727420490793186",
+          "digest": "2026-10-26",
+          "replyTo": "URozmej",
+          "relation": "reply",
+          "original": "@URozmej @lightclients If you guys don't block things for fear of looking like you're \"just complaining\", we end up with forks that have 30+ half-baked eips nobody needs, and there's no bandwidth left for the already existing eips that address state growth.",
+          "translation": "@URozmej @lightclients 여러분이 '그냥 불평하는 것처럼 보일까' 두려워서 제동을 걸지 않는다면, 결국 아무도 필요로 하지 않는 덜 다듬어진(half-baked) EIP가 30개 넘게 들어간 포크가 나오게 되고, 이미 존재하는 상태 증가 관련 EIP들을 처리할 여력(bandwidth)은 남지 않게 됩니다."
+        },
+        {
+          "date": "2026-10-23",
+          "by": "KushalBabel",
+          "stance": "con",
+          "quote": "이 가스 관련 EIP들은 미봉책이다. 상태 만료 그리고/또는 완전한 다차원 가스로 끝까지 가는 편이 낫다.",
+          "url": "https://x.com/KushalBabel/status/2113688307217441216",
+          "digest": "2026-10-26",
+          "replyTo": "lightclients",
+          "relation": "quote",
+          "original": "These gas-related EIPs are half measures. Better to go all the way through state expiry and / or full multi-dimensional gas.\nWe wrote up our ideas on a simple Separate Storage Charge (SSC) here, which we believe is a principled approach: category-labs.github.io/category-resea…",
+          "translation": "이 가스 관련 EIP들은 절반의 조치일 뿐입니다. 상태 만료나 완전한 다차원 가스(multi-dimensional gas)까지 끝까지 밀고 나가는 편이 더 낫습니다. 저희는 단순한 분리 저장 과금(Separate Storage Charge, SSC)에 대한 아이디어를 여기에 정리해두었는데, 이것이 원칙에 기반한 접근이라고 믿습니다. category-labs.github.io/category-resea…"
+        },
+        {
+          "date": "2026-10-24",
+          "by": "perperp_er",
+          "stance": "con",
+          "quote": "상태가 계속 자라는데 가스 리밋만 올리는 것은, 5년 뒤 노드를 돌리는 사람에게 청구서를 떠넘기는 것일 뿐이다.",
+          "url": "https://x.com/perperp_er/status/2113920393153306925",
+          "digest": "2026-10-26",
+          "replyTo": "lightclients",
+          "relation": "reply",
+          "original": "@lightclients raising the gas limit while state keeps growing just moves the bill to whoever runs a node in five years",
+          "translation": "@lightclients 상태가 계속 늘어나는 상황에서 가스 한도를 올리는 것은 5년 뒤에 노드를 운영하는 사람에게 그 비용을 떠넘기는 것일 뿐입니다."
+        },
+        {
+          "date": "2026-10-25",
+          "by": "donnoh_eth",
+          "stance": "con",
+          "quote": "내 요점이 바로 그것이다. 당신이 그 상호작용을 이해하기엔 너무 멍청하다면, 그것이야말로 중대한 경고 신호다. 아무도 당신에게 안전하다고 납득시키지 못했다는 뜻이고, 그러면 다른 모두가 당신과 같은 처지이거나 더 나쁜 처지라는 뜻이다.",
+          "url": "https://x.com/donnoh_eth/status/2114426356972814729",
+          "digest": "2026-10-26",
+          "replyTo": "URozmej",
+          "relation": "reply",
+          "original": "@URozmej @lightclients My point exactly: if _you_ are too stupid to understand the interactions, then it should be a major red flag: it means no one else has managed to convince you that it's safe, which means everyone else is in the same situation as you, or worse.",
+          "translation": "@URozmej @lightclients 바로 그게 제 요점입니다. 만약 당신조차 그 상호작용들을 이해하기에 너무 부족하다면, 이는 중대한 경고 신호(red flag)여야 합니다. 그것은 다른 누구도 당신에게 이것이 안전하다고 납득시키지 못했다는 뜻이고, 결국 다른 모든 사람도 당신과 같은 상황이거나 더 나쁜 상황에 있다는 뜻입니다."
+        }
+      ],
+      "firstSeen": "2026-10-23",
+      "lastActivity": "2026-10-25",
+      "status": "active",
+      "rootUrl": "https://x.com/lightclients/status/2113606207252611307",
+      "engagement": {
+        "likes": 139,
+        "retweets": 10,
+        "quotes": 6,
+        "replies": 17,
+        "views": 11249
+      }
+    },
+    {
+      "id": "protocol-designers-dont-use-eth",
+      "title": "이더리움 프로토콜 설계자들이 정작 이더리움을 쓰지 않는 것이 근본 문제인가?",
+      "category": "거버넌스 · 커뮤니티",
+      "summary": "보안 연구자 pcaversaccio는 프로토콜을 설계하는 사람 다수가 이더리움을 직접 쓰지 않아 고칠 것을 제대로 고르지 못한다며 스킨 인 더 게임(skin in the game) 부족을 지적했고, Patrick McCorry는 합의나 snark 개선처럼 사용자가 아니어도 되는 문제가 많다며 그 관점이 지나치게 이분법적이라고 되받았다. 이 비판은 EIP 편입 경로를 후원제로 게이트하자는 ACD 프로세스 개편론으로 이어졌다.",
+      "keyPoints": [
+        "설계자가 이더리움을 직접 쓰지 않는 것이 우선순위 오류의 근본 원인인가, 사용자가 아니어도 풀 수 있는 문제가 많은가",
+        "유저 공간과 기존 컨트랙트를 얼마나 존중해야 하는가",
+        "EIP 편입 경로를 현직 코어 개발자·EF 리서치 후원제로 게이트해야 하는가"
+      ],
+      "background": "이더리움 코어 개발은 All Core Devs(ACD) 콜에서 EIP를 논의하고 CFI·SFI·DFI 등으로 포크 편입 여부를 결정하며, 이 콜은 전통적으로 누구나 참여해 EIP를 제안할 수 있는 개방형이다. Glamsterdam 테스트넷 일정(Hoodi 연기 등)과 상태 가스 리프라이싱(EIP-8037·8038) 논란을 배경으로, 설계자들이 정작 이더리움을 쓰지 않아 우선순위를 잘못 잡는다는 비판과 EIP 편입 경로를 후원제로 게이트하자는 프로세스 개편안이 나왔다.",
+      "whyItMatters": "Hoodi 연기가 개별 EIP 문제를 넘어 EIP가 포크에 들어가는 경로 자체를 재설계하자는 논의로 번졌다. 후원제 게이트가 실제 ACD 규범으로 채택되는지, 파워 유저 피드백 채널 같은 보완책이 생기는지가 관전 포인트다.",
+      "keywords": [
+        "skin in the game ethereum",
+        "ACD process",
+        "pcaversaccio ethereum",
+        "EIP sponsorship"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "스킨 인 더 게임 부족이 근본 문제다",
+          "holders": [
+            {
+              "handle": "pcaversaccio",
+              "name": "sudo rm -rf --no-preserve-root /",
+              "role": "스마트컨트랙트 보안 리서처",
+              "avatar": "https://pbs.twimg.com/profile_images/1734666604049289216/7ezXxfGv_400x400.jpg"
+            },
+            {
+              "handle": "0x_Abdul",
+              "name": "Abdul",
+              "avatar": "https://pbs.twimg.com/profile_images/2110697172480208897/QbFMpCWs_400x400.jpg"
+            },
+            {
+              "handle": "antonttc",
+              "name": "Anton Cheng",
+              "avatar": "https://pbs.twimg.com/profile_images/1982831947207356416/eFSqUB_G_400x400.jpg"
+            },
+            {
+              "handle": "CloutedMind",
+              "name": "Clouted",
+              "avatar": "https://pbs.twimg.com/profile_images/2094043814939828224/P8BWaZPT_400x400.jpg"
+            }
+          ],
+          "points": [
+            "프로토콜을 설계하는 사람 대부분이 이더리움을 직접 쓰지 않아 자기 제품을 쓰지 않는 셈이고, 그래서 고쳐야 할 것을 제대로 고르지 못한다",
+            "유저 공간과 기존 컨트랙트를 더 존중하는 것이 해법이며, '컨트랙트는 그냥 업그레이드하면 된다'는 사고방식을 버려야 한다",
+            "OpenAI나 Anthropic 엔지니어가 자사 AI 제품을 쓰지 않는다면 바로 해고될 것이듯, 자기 제품을 쓰지 않는 것은 치명적이다(0x_Abdul)"
+          ]
+        },
+        {
+          "stance": "neutral",
+          "label": "지나치게 이분법적이다",
+          "holders": [
+            {
+              "handle": "stonecoldpat0",
+              "name": "Patrick McCorry 🐋",
+              "avatar": "https://pbs.twimg.com/profile_images/2049760336077893632/h7KsxJBq_400x400.jpg"
+            }
+          ],
+          "points": [
+            "합의나 snark 개선처럼 시스템 사용자가 아니어도 풀 수 있는 코어 컴퓨터과학 문제가 많으므로 관점이 지나치게 이분법적이다",
+            "다만 오늘날엔 플랫폼 자체가 유발한 UX 문제가 주를 이루고, 코어 개발자가 이더리움을 쓰거나 그 위에 빌드하지 않으면 우선순위를 제대로 잡을 수 없다",
+            "코어 개발자·EF 모두가 이더리움 네트워크를 이념 구동 기계가 아니라 하나의 제품으로 다뤄야 한다"
+          ]
+        },
+        {
+          "stance": "other",
+          "label": "EIP 편입 경로를 후원제로 게이트하자",
+          "holders": [
+            {
+              "handle": "shemnon",
+              "name": "Danno Ferrin",
+              "role": "Sei Labs 엔지니어, 전 Besu",
+              "avatar": "https://pbs.twimg.com/profile_images/2037631420873789440/Ik2HuQiv_400x400.jpg"
+            },
+            {
+              "handle": "gballet",
+              "name": "Guillaume Ballet",
+              "avatar": "https://pbs.twimg.com/profile_images/1016220024535699456/-1LUYnWJ_400x400.jpg"
+            },
+            {
+              "handle": "binji_x",
+              "name": "binji",
+              "role": "EthLabs, 이더리움 커뮤니케이션·커뮤니티",
+              "avatar": "https://pbs.twimg.com/profile_images/2057797822666473472/Ns8EleJw_400x400.jpg"
+            }
+          ],
+          "points": [
+            "전원 개방형 ACD를 끝내고, EIP는 현직 코어 개발자나 EF 리서치의 후원을 받아야 하며 후원이 없으면 논의 대상에서 제외하자(shemnon)",
+            "기본 답을 '아니오'로 두고, 각 클라이언트 팀에서 구현·테스트할 만큼 확신하는 사람과 유용성 증명이 있을 때만 '아마도'로 넘기자(gballet)",
+            "파워 유저를 찾아 개발자·리서처와 함께하는 포커스 그룹을 열고 결과를 자주 공개해 공개 비판을 허용하자(binji_x)"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-10-23",
+          "by": "pcaversaccio",
+          "stance": "pro",
+          "quote": "이더리움 프로토콜 설계의 근본 문제는 프로토콜을 설계하는 사람 대부분이 정작 이더리움을 직접 쓰지 않는다는 것이다. 자기 제품을 쓰지 않으면 고쳐야 할 것을 제대로 고를 수 없다.",
+          "url": "https://x.com/pcaversaccio/status/2113612790212808867",
+          "digest": "2026-10-26",
+          "relation": "none",
+          "original": "look the foundational problem with ethereum protocol design is that most of the people designing the protocol don't actually use ethereum themselves. you can't fix the right things if you don't use your own fucking product. you don't have enough skin in the game if you don't personally depend on the system you're designing & stand to lose money when it breaks. i understand, everything looks great from an ivory tower lol. things look very different when you're actually on the ground dealing with the consequences. if you don't use ethereum yourself but still think you're qualified to design its protocol, you're playing god with a system you don't have to live with and whose consequences you don't have to suffer.",
+          "translation": "이더리움 프로토콜 설계의 근본적인 문제는, 프로토콜을 설계하는 사람들 대부분이 실제로는 이더리움을 직접 쓰지 않는다는 데 있습니다. 자기가 쓰는 그 빌어먹을 제품을 직접 사용하지 않으면 제대로 고쳐야 할 것을 고칠 수 없습니다. 자신이 설계하는 시스템에 직접 의존하지 않고, 그 시스템이 망가졌을 때 자기 돈을 잃을 처지가 아니라면, 충분한 이해관계(skin in the game)를 갖고 있지 않은 것입니다. 이해합니다, 상아탑에서 보면 모든 게 다 멋져 보이죠 ㅋㅋ. 실제로 현장에서 그 결과를 직접 감당해야 할 때는 상황이 전혀 다르게 보입니다. 만약 당신이 이더리움을 직접 쓰지 않으면서도 여전히 그 프로토콜을 설계할 자격이 있다고 생각한다면, 당신은 자신이 직접 살아야 할 필요도 없고 그 결과를 직접 감당할 필요도 없는 시스템을 가지고 신 노릇을 하고 있는 것입니다."
+        },
+        {
+          "date": "2026-10-23",
+          "by": "pcaversaccio",
+          "stance": "pro",
+          "quote": "해법은 유저 공간과 기존 컨트랙트를 더 존중하는 것이다. '컨트랙트는 그냥 업그레이드하면 된다'거나 '어차피 나중에 더 크게 깨뜨릴 것'이라는 최근의 사고방식이 정말 싫다.",
+          "url": "https://x.com/pcaversaccio/status/2113618427889992183",
+          "digest": "2026-10-26",
+          "replyTo": "pcaversaccio",
+          "relation": "reply",
+          "original": "@pcaversaccio imo the solution is to respect the user space and exisiting contracts more. i really dislike the recent lines of thinking that \"contracts just need to upgrade\" or \"well we're gonna break stuff worse in the future\"",
+          "translation": "@pcaversaccio 제 생각에 해법은 사용자 공간과 기존 컨트랙트들을 더 존중하는 것입니다. 저는 '컨트랙트들은 그냥 업그레이드하면 된다'거나 '어차피 나중에 더 심하게 망가뜨릴 거다' 같은 최근의 사고방식이 정말 마음에 들지 않습니다."
+        },
+        {
+          "date": "2026-10-23",
+          "by": "pcaversaccio",
+          "stance": "pro",
+          "quote": "우리는 더 나란히 일해야 하는데 점점 더 갈라지는 느낌이다. 커널 공간과 유저 공간을 다시 정렬하려 최선을 다하겠지만 여기 모두의 도움이 필요하다.",
+          "url": "https://x.com/pcaversaccio/status/2113618982154727874",
+          "digest": "2026-10-26",
+          "replyTo": "lightclients",
+          "relation": "reply",
+          "original": "@lightclients yup, we need to work more side-by-side, but i feel like it's diverging more and more. i'll try my best to align \"kernel\" and \"user\" space again, but i need help from everyone here tbh",
+          "translation": "@lightclients 맞습니다, 더 나란히 함께 일해야 하는데, 점점 더 멀어지고 있다는 느낌이 듭니다. '커널(kernel)' 공간과 '사용자(user)' 공간을 다시 맞추기 위해 최선을 다하겠지만, 솔직히 여기 있는 모두의 도움이 필요합니다."
+        },
+        {
+          "date": "2026-10-23",
+          "by": "shemnon",
+          "stance": "other",
+          "quote": "ACD의 전원 개방형 가부키 춤을 끝내자. EIP는 현직 코어 개발자나 EF 리서치의 후원을 받아야 한다. 후원이 없으면 논의도 없다. 코어 개발자가 아닌 챔피언은 괜찮지만, 클라이언트 팀 없이는 아무것도 진전되지 않는다.",
+          "url": "https://x.com/shemnon/status/2113761304720929036",
+          "digest": "2026-10-26",
+          "replyTo": "gballet",
+          "relation": "reply",
+          "original": "@gballet @URozmej @lightclients End the ACD open-to-all Kabuki dance.\n\nEIPs need to be sponsored by a current core dev or EF research (and even then ... a core dev should be able to endorse it).\n\nNo endorsement, no consideration.\n\nNon core dev championing is fine, but nothing is advanced without a client team.",
+          "translation": "@gballet @URozmej @lightclients ACD(All Core Devs)를 누구나 참여할 수 있게 열어두는 가부키 쇼(Kabuki dance) 같은 관행은 끝내야 합니다. EIP는 현직 코어 개발자나 EF 리서치(research)의 후원(sponsor)을 받아야 하고, 그렇다 해도 코어 개발자가 이를 승인(endorse)할 수 있어야 합니다. 승인이 없으면 고려 대상에도 오르지 못합니다. 코어 개발자가 아닌 사람이 주도(championing)하는 것은 괜찮지만, 클라이언트 팀 없이는 아무것도 진전되지 않습니다."
+        },
+        {
+          "date": "2026-10-23",
+          "by": "binji_x",
+          "stance": "other",
+          "quote": "쓸 만한 아이디어: 파워 유저를 찾고, 그들과 모든 개발자·리서처가 함께하는 포커스 그룹을 열고, 결과를 자주 공개해 공개 비판을 허용하는 것이다. X가 그러기에 가장 좋은 곳일 것이고, 이 내용을 번역하는 노력도 하자.",
+          "url": "https://x.com/binji_x/status/2113625529643393444",
+          "digest": "2026-10-26",
+          "replyTo": "pcaversaccio",
+          "relation": "reply",
+          "original": "Quick ideas that maybe useful:\n\n> find power users\n> focus groups with power users and all devs/researchers\n> post findings frequently and allow for public criticism, for better or worse, @X is likely the best place to do it, and also make an effort to TRANSLATE this shit, legit can run a prompt to create analogies to help people understand concepts, LLMs are made to pattern match like this and we should leverage that to summarize it so users actually know what the fuck people are talking about\n> adventurous:  protocol level hackathons with prizes that allow anyone to enter, I literally say @aerugoettinea chadding it up on a @yukonresearch contest with Astra support the other day lol, a hackathon could bring new interest in general, decentralization is only as powerful as the next generation that inherit it and wishes to maintain it so it’s good to open the doors for that generation\n> more casual social hangouts imo, antagonism is mostly eroded by shared understanding, there’s a human layer here that may help\n\nanyway, I don’t know shit, not a protocol guy, I’m not even a dev really, but I do tend to believe, however foolishly it may be, that we cab bridge things and get a stronger protocol by literally communicating in and outside of our circles.",
+          "translation": "혹시 도움이 될 만한 빠른 아이디어들입니다. • 파워 유저(power user)들을 찾아라 • 파워 유저들과 모든 개발자/리서처가 함께하는 포커스 그룹(focus group)을 운영하라 • 발견한 내용을 자주 공개하고 공개적인 비판을 허용하라. 좋든 싫든 @X(트위터)가 그걸 하기에 가장 좋은 곳일 것이고, 또한 이 내용을 '번역'하려는 노력도 기울여야 한다. 사람들이 개념을 이해하도록 돕는 비유를 만들어내는 프롬프트를 실제로 돌릴 수 있고, LLM은 바로 이런 식의 패턴 매칭을 하도록 만들어져 있으니, 사용자들이 사람들이 대체 무슨 이야기를 하는 건지 실제로 알 수 있도록 이를 요약하는 데 그 능력을 활용해야 한다 • 과감한 제안으로는, 누구나 참가할 수 있는 상금이 걸린 프로토콜 레벨 해커톤(hackathon)을 열어라. 얼마 전에 @aerugoettinea가 Astra의 지원을 받은 @yukonresearch 콘테스트에서 실력을 뽐내는 모습을 봤는데 ㅋㅋ, 해커톤은 전반적으로 새로운 관심을 불러올 수 있다. 탈중앙화(decentralization)는 그것을 물려받아 지켜나가고 싶어하는 다음 세대의 힘만큼만 강력하므로, 그 세대를 위해 문을 열어두는 것이 좋다 • 좀 더 느슨한 사교 모임도 있으면 좋겠다고 생각한다. 제 생각에 적대감은 서로에 대한 이해를 공유함으로써 대부분 사라지는데, 여기에는 도움이 될 수 있는 인간적인 층위(human layer)가 있다. 저는 아무것도 모른다, 프로토콜 쪽 사람이 아니고 사실 개발자도 아니지만, 어리석게 들릴지 몰라도 우리가 우리 커뮤니티 안팎에서 직접 소통함으로써 서로를 이어주고 더 강한 프로토콜을 만들 수 있다고 믿는 편이다."
+        },
+        {
+          "date": "2026-10-24",
+          "by": "stonecoldpat0",
+          "stance": "neutral",
+          "quote": "이 관점은 좀 지나치게 이분법적이다. 합의나 snark 개선처럼 시스템 사용자가 아니어도 되는 문제가 많다. 다만 오늘날 주된 문제는 플랫폼 자체가 유발한 UX 문제이고, 코어 개발자들은 이더리움 네트워크를 이념 구동 기계가 아니라 제품으로 다뤄야 한다.",
+          "url": "https://x.com/stonecoldpat0/status/2113887042371457387",
+          "digest": "2026-10-26",
+          "replyTo": "pcaversaccio",
+          "relation": "quote",
+          "original": "This view is a bit too binary.\n\nThere are many problems that don’t require one to be a user of the system — like consensus or improving snarks. That’s OK since they are core comp sci problems.\n\nHowever, the main issue today, is that many problems facing Ethereum are user experience issues caused by the platform itself.\n\nIf the core developers are not using the platform — from an actual usage or building on top of perspective — then they cant properly prioritise the issues that need to be fixed.\n\nThis is why there was so misplaced hype around long term strawman proposals vs fixing low hanging fruit (like sponsored transactions or increasing gas limits) that would immediately help users.\n\nCore Developers, EF, everyone involved needs to treat Ethereum the network as a product and not an ideological-driven machine.",
+          "translation": "이 시각은 다소 지나치게 이분법적입니다. 합의(consensus)나 스나크(snark) 개선처럼, 시스템의 사용자가 될 필요가 없는 문제들도 많습니다. 이런 것들은 핵심적인 컴퓨터 과학 문제들이기 때문에 괜찮습니다. 하지만 오늘날의 주된 문제는, 이더리움이 직면한 여러 문제들이 바로 그 플랫폼 자체가 만들어낸 사용자 경험(UX) 문제라는 점입니다. 코어 개발자들이 실제 사용이나 그 위에 무언가를 구축하는 관점에서 그 플랫폼을 사용하지 않는다면, 그들은 고쳐야 할 문제들의 우선순위를 제대로 정할 수 없습니다. 이것이 바로 후원 트랜잭션(sponsored transaction)이나 가스 한도 상향처럼 사용자들에게 즉각적으로 도움이 될 손쉬운 개선 과제(low hanging fruit)를 해결하는 대신, 장기적이고 허수아비식(strawman)인 제안들에 그토록 엉뚱한 과대광고(hype)가 쏠렸던 이유입니다. 코어 개발자들, EF, 그리고 관련된 모든 사람들은 이더리움이라는 네트워크를 이념에 따라 움직이는 기계가 아니라 하나의 제품(product)으로 취급해야 합니다."
+        },
+        {
+          "date": "2026-10-24",
+          "by": "0x_Abdul",
+          "stance": "pro",
+          "quote": "이것은 오랫동안 크립토를 가로막아 온 가장 큰 문제 중 하나다. OpenAI나 Anthropic 엔지니어가 자사 AI 제품을 직접 쓰지 않는다고 상상해보라. 아마 다음날 해고될 것이다.",
+          "url": "https://x.com/0x_Abdul/status/2114050049772868004",
+          "digest": "2026-10-26",
+          "replyTo": "pcaversaccio",
+          "relation": "quote",
+          "original": "this is one of the biggest problems that has held back crypto for a long time\n\nimagine if openai or anthropic engineers didnt use AI products themselves .. they would probably get fired the next day",
+          "translation": "이것이 바로 크립토가 오랫동안 발전하지 못하게 발목을 잡아온 가장 큰 문제들 중 하나입니다. OpenAI나 Anthropic의 엔지니어들이 직접 AI 제품을 쓰지 않는다고 상상해 보세요. 그들은 아마 다음 날 바로 해고될 것입니다."
+        },
+        {
+          "date": "2026-10-24",
+          "by": "CloutedMind",
+          "stance": "pro",
+          "quote": "극도로 based하다. 그들은 이더리움을 쓰지 않을 뿐 아니라, 결정적으로 금융도 돈도 이해하지 못하고 ETH를 돈으로 보지도 않는다.",
+          "url": "https://x.com/CloutedMind/status/2114127257879113988",
+          "digest": "2026-10-26",
+          "replyTo": "pcaversaccio",
+          "relation": "reply",
+          "original": "@pcaversaccio extremely based\n\nnot only do they not use ethereum , crucially they do not understand finance, nor money, nor even look at ETH as money\n\nwatch out though, suspect youll lose your EF job with these takes",
+          "translation": "@pcaversaccio 정말 제대로 짚었습니다. 그들은 이더리움을 쓰지 않을 뿐만 아니라, 더 중요하게는 금융도, 화폐도 이해하지 못하고, ETH를 화폐로조차 보지 않습니다. 다만 조심하세요, 이런 발언들 때문에 EF 일자리를 잃을 수도 있을 것 같습니다."
+        },
+        {
+          "date": "2026-10-25",
+          "by": "antonttc",
+          "stance": "pro",
+          "quote": "정말 그만큼 단순하다. 스킨 인 더 게임이 필요하다.",
+          "url": "https://x.com/antonttc/status/2114198488099799353",
+          "digest": "2026-10-26",
+          "replyTo": "pcaversaccio",
+          "relation": "quote",
+          "original": "It’s really that simple.\nWe need skin in the game",
+          "translation": "정말 그만큼 단순한 문제입니다. 우리에게는 이해관계(skin in the game)가 필요합니다."
+        },
+        {
+          "date": "2026-10-25",
+          "by": "gballet",
+          "stance": "other",
+          "quote": "나는 더 엄격하겠다. 기본 답은 '아니오'다. 각 클라이언트 팀(적어도 절반)에서 구현·테스트할 만큼 확신하는 사람을 찾고, 그것이 작동하며 누군가에게 유용함을 함께 증명하면 그때 '아마도'가 된다.",
+          "url": "https://x.com/gballet/status/2114425327430570478",
+          "digest": "2026-10-26",
+          "replyTo": "shemnon",
+          "relation": "reply",
+          "original": "@shemnon @URozmej @lightclients I'd be even stricter: no is the default answer. If you can find someone in each (or at least half of) client teams, who is convinced enough to implement and test the thing, and together they proove that this thing works _and that it is useful to someone_ then it's a 'maybe'.",
+          "translation": "@shemnon @URozmej @lightclients 저는 더 엄격하게 가고 싶습니다. 기본 답은 '안 된다(no)'여야 합니다. 각 클라이언트 팀(또는 적어도 절반의 클라이언트 팀)에서 그것을 구현하고 테스트할 만큼 확신을 가진 사람을 찾을 수 있고, 그들이 함께 그것이 실제로 동작하며 누군가에게 유용하다는 것을 증명해 보인다면, 그때야 비로소 '될 수도 있다(maybe)'가 됩니다."
+        }
+      ],
+      "firstSeen": "2026-10-23",
+      "lastActivity": "2026-10-25",
+      "status": "active",
+      "rootUrl": "https://x.com/pcaversaccio/status/2113612790212808867",
+      "engagement": {
+        "likes": 1541,
+        "retweets": 119,
+        "quotes": 48,
+        "replies": 133,
+        "views": 131568
+      }
+    },
+    {
+      "id": "eth-weekly-issuance-absorption-fud",
+      "title": "매주 새로 발행되는 ETH를 누가 흡수하느냐는 질문은 정당한 문제 제기인가, 반복되는 FUD인가?",
+      "category": "거버넌스 · 커뮤니티",
+      "summary": "Unchained의 로라 신이 Bitmine의 매수 중단으로 매주 약 2만 ETH의 신규 발행을 누가 흡수하느냐는 기사를 소개하자, 변호사이자 논객인 lex_node는 이를 끊임없는 FUD로 규정하고 생태계의 성과를 조명하라고 요구했다. 로라 신은 자신이 기획한 기사가 아니며 누구나 떠올릴 수 있는 정당한 질문이라고 반박했고, William Mougayar는 수치상 가격 요인이 아니라고 봤다.",
+      "keyPoints": [
+        "신규 ETH 발행 흡수를 묻는 보도는 정당한 저널리즘인가, 생태계를 깎아내리는 FUD인가",
+        "주당 약 0.85% 발행이 거래량 대비 가격에 유의미한 요인인가",
+        "수수료 소각(fee burn)을 실질 공급 흡수원으로 셈해야 하는가"
+      ],
+      "background": "Unchained(로라 신)의 B+B Premium 기사는 ETH ETF가 2026년 최악의 달을 보내는 가운데, 2025년 6월부터 매주 ETH를 사들이던 기업 Bitmine이 공급량 5% 한도에 근접해 매수를 멈출 예정이라고 보도했다. 네트워크는 매주 신규 ETH를 발행하는데(로라 신 기준 연 약 0.85%, 수수료 소각으로 일부 상쇄되며 솔라나 약 3.6%·NEAR 약 2.5%보다 낮다), 이 발행분을 누가 흡수하느냐가 기사의 핵심 질문이었다.",
+      "whyItMatters": "이더리움 커뮤니티가 비판적 외부 보도를 FUD로 규정할지 정당한 질문으로 수용할지, 발행 흡수 서사가 ETH 가격 담론에 어떻게 자리잡는지가 드러난다. 다른 체인의 더 높은 발행률과 비교할 때 ETH만 겨냥되는 비대칭을 지적하는 목소리도 함께 지켜봐야 한다.",
+      "keywords": [
+        "ETH issuance",
+        "Bitmine ETH",
+        "ETH supply absorption"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "정당한 질문이다",
+          "holders": [
+            {
+              "handle": "laurashin",
+              "name": "Laura Shin",
+              "role": "Unchained 창업자·기자",
+              "avatar": "https://pbs.twimg.com/profile_images/1539462748173746176/hxR80FYT_400x400.png"
+            }
+          ],
+          "points": [
+            "Bitmine이 매수를 멈추면 매주 네트워크가 더하는 약 2만 ETH를 누가 흡수하느냐는 핵심 질문은 머리가 있는 누구나 떠올릴 수 있는 정당한 질문이다",
+            "계정에 올라오는 모든 글이 자신이 혼자 기획한 기사는 아니며, 기자가 에디터에게 제안한 이 기사는 자신의 아이디어가 아니었다",
+            "같은 질문을 솔라나(연 약 3.6%)나 NEAR(약 2.5%)에도 물어야 하며 주당 2만 ETH는 연 약 0.85%에 불과하다"
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "반복되는 FUD·둠포스팅이다",
+          "holders": [
+            {
+              "handle": "lex_node",
+              "name": "_gabrielShapir0",
+              "role": "크립토 법률·규제 논객, MetaLeX Labs",
+              "avatar": "https://pbs.twimg.com/profile_images/2058233189882032128/pRSMN_6C_400x400.jpg"
+            },
+            {
+              "handle": "CryptoNerd_2017",
+              "name": "Crypto Nerd",
+              "avatar": "https://pbs.twimg.com/profile_images/1666256664872505344/wx-rBBr3_400x400.jpg"
+            }
+          ],
+          "points": [
+            "끊임없는 FUD와 둠 슬롭 대신 Base, Aave, Uniswap, Morpho, USDC, Robinhood Chain, BlackRock 등 이더리움 생태계의 성공을 조명하라(lex_node)",
+            "ETH 발행량을 문제 삼는다면 발행률이 훨씬 높은 나머지 쉿코인들을 봐야 하며, 이는 지속적인 둠포스팅이다(CryptoNerd_2017)"
+          ]
+        },
+        {
+          "stance": "neutral",
+          "label": "수급 영향은 가격에 미미하다",
+          "holders": [
+            {
+              "handle": "wmougayar",
+              "name": "William Mougayar",
+              "avatar": "https://pbs.twimg.com/profile_images/1639261787328598020/wLYIZiuO_400x400.jpg"
+            }
+          ],
+          "points": [
+            "주당 2만이 아니라 약 1만8천 ETH에 가깝고, 수수료 소각을 빼면 실효 발행량은 더 적다",
+            "하루 약 600만 달러 대 약 230억 달러 거래량으로, 양동이의 물 한 방울일 뿐 가격 요인이 아니다"
+          ]
+        },
+        {
+          "stance": "other",
+          "label": "수수료 소각은 실질 흡수원이 아니다",
+          "holders": [
+            {
+              "handle": "hedgefunder01",
+              "name": "UnHΞdged",
+              "avatar": "https://pbs.twimg.com/profile_images/1847391446225272832/uvHwwHDq_400x400.jpg"
+            }
+          ],
+          "points": [
+            "2026년에는 솔직해지자며 수수료 소각을 유의미한 공급 흡수원으로 셈해서는 안 된다고 보아 발행 우려에 무게를 싣는다"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-10-23",
+          "by": "laurashin",
+          "stance": "pro",
+          "quote": "핵심 질문은 네트워크가 매주 더하는 약 2만 ETH를 누가 흡수하느냐다.",
+          "url": "https://x.com/laurashin/status/2113711033235935660",
+          "digest": "2026-10-26",
+          "relation": "none",
+          "original": "3/ The big question is who soaks up the roughly 20,000 new ETH the network adds every week.",
+          "translation": "3/ 큰 질문은 네트워크가 매주 새로 발행하는(issuance) 약 20,000 ETH를 누가 흡수하는가입니다."
+        },
+        {
+          "date": "2026-10-23",
+          "by": "lex_node",
+          "stance": "con",
+          "quote": "로라, 끊임없는 FUD와 둠 슬롭을 던지는 대신 이제 네 몫을 하기 시작하라. Base, Aave, Uniswap, Morpho, USDC, Robinhood Chain, BlackRock·JPMorgan·Fidelity 등 이더리움과 그 거대한 생태계의 엄청난 성공을 축하하라.",
+          "url": "https://x.com/lex_node/status/2113748044613308571",
+          "digest": "2026-10-26",
+          "replyTo": "laurashin",
+          "relation": "reply",
+          "original": "@laurashin Maybe start doing your part Laura\n\nInstead of the nonstop FUD, doomer slopslinging, start celebrating the incredible wins and successes of Ethereum &amp; its vast ecosystem… Base, Aave, Uniswap, Morpho, USDC, Robinhood Chain, BlackRock+JPMorgan+Fidelity &amp; so much more\n\nBe the joy!",
+          "translation": "@laurashin Laura, 당신도 당신 역할을 좀 해보는 게 어떨까요. 끝없는 FUD(공포·불확실성·의심 조장)와 비관론적인 슬롭(doomer slopslinging)을 쏟아내는 대신, 이더리움과 그 거대한 생태계가 거둔 놀라운 성과와 성공들을 축하하기 시작하세요. Base, Aave, Uniswap, Morpho, USDC, Robinhood Chain, BlackRock+JPMorgan+Fidelity 등등 정말 많습니다. 기쁨이 되어 주세요!"
+        },
+        {
+          "date": "2026-10-23",
+          "by": "laurashin",
+          "stance": "pro",
+          "quote": "핵심 질문은 솔라나가 매주 더하는 약 44만 SOL(연 약 3.6%)이나 약 63만 NEAR(약 2.5%)를 누가 흡수하느냐이기도 하다. 참고로 주당 2만 ETH는 연 약 0.85%다. 같은 '핵심 질문'을 전방위로 물을 수 있나?",
+          "url": "https://x.com/laurashin/status/2113781092918727110",
+          "digest": "2026-10-26",
+          "replyTo": "laurashin",
+          "relation": "reply",
+          "original": "@laurashin the big question is who soaks up the roughly 440,000 new SOL the network adds every week (~3.6% annual issuance)\n\nor the roughly 630,000 new NEAR (~2.5%)\n\nfor context, 20,000 ETH/week is ~0.85% annually\n\ncan we ask the same “big question” across the board?",
+          "translation": "@laurashin 큰 질문이라면, 네트워크가 매주 새로 발행하는 약 440,000 SOL(연간 발행률 약 3.6%)이나 약 630,000 NEAR(약 2.5%)는 누가 흡수하는지도 물어야 하지 않을까요? 참고로 ETH는 주당 20,000개면 연간 약 0.85%입니다. 이 '큰 질문'을 모든 체인에 똑같이 던질 수 있을까요?"
+        },
+        {
+          "date": "2026-10-23",
+          "by": "laurashin",
+          "stance": "pro",
+          "quote": "내 계정에 올라오는 모든 글이 내가 혼자 구상한 기사나 아이디어라고 생각하나? 여기엔 자기 아이디어를 가진 다른 사람들과, 내가 관여하지 않아도 그것을 편집하는 에디터들이 있다.",
+          "url": "https://x.com/laurashin/status/2113781801965559835",
+          "digest": "2026-10-26",
+          "replyTo": "lex_node",
+          "relation": "reply",
+          "original": "@lex_node Do you think every single thing posted on my account is an article or idea I conceived single-handed by myself? There are other people who work here who have their own ideas and editors who edit them without me being involved in the process.",
+          "translation": "@lex_node 제 계정에 올라오는 글 하나하나가 모두 제가 혼자 구상한 기사나 아이디어라고 생각하시나요? 여기서 함께 일하는 다른 사람들도 자기 아이디어를 갖고 있고, 제가 그 과정에 전혀 관여하지 않은 채 그걸 편집하는 에디터들도 있습니다."
+        },
+        {
+          "date": "2026-10-24",
+          "by": "wmougayar",
+          "stance": "neutral",
+          "quote": "수치와 설정이 틀렸다. 주당 2만이 아니라 1만8천 ETH에 가깝고, 수수료 소각을 빼면 실효 발행량은 더 적다. 그래 봐야 하루 약 600만 달러 대 약 230억 달러 거래량으로, 양동이의 물 한 방울이고 가격 요인이 아니다.",
+          "url": "https://x.com/wmougayar/status/2113827424697774291",
+          "digest": "2026-10-26",
+          "replyTo": "laurashin",
+          "relation": "reply",
+          "original": "@laurashin Your math and setup are flawed.\n1/ it’s closer to 18,000 ETH/ week, not 20K.\n2/ that doesn’t exclude fee burns which is a variable, so effective issuance is less.\n2/ even at that, it’s abt $6M/day vs ~$23B trading volume; that’s a drop in the bucket &amp; not a price factor.\n/fin",
+          "translation": "@laurashin 당신의 계산과 전제는 틀렸습니다. 1/ 20K가 아니라 주당 18,000 ETH에 더 가깝습니다. 2/ 그 수치는 변수인 수수료 소각(fee burn)을 제외하지 않았으므로, 실질 발행량은 그보다 적습니다. 2/ 그렇다 해도, 하루에 약 600만 달러 수준인데 하루 거래량(trading volume)이 약 230억 달러이니, 이는 그야말로 새 발의 피(a drop in the bucket)에 불과하고 가격에 영향을 주는 요인이 아닙니다. /끝"
+        },
+        {
+          "date": "2026-10-24",
+          "by": "CryptoNerd_2017",
+          "stance": "con",
+          "quote": "그는 끊임없이 ETH를 두고 둠포스팅한다. ETH 발행량이 나쁘다고 생각한다면 나머지 쉿코인들을 봐야 한다.",
+          "url": "https://x.com/CryptoNerd_2017/status/2113801552771395928",
+          "digest": "2026-10-26",
+          "replyTo": "craiglashmet",
+          "relation": "reply",
+          "original": "@craiglashmet @laurashin She’s constantly doom-posting about ETH. If she thinks ETH’s issuance is bad, she should take a look at the rest of the shitcoins.",
+          "translation": "@craiglashmet @laurashin 그녀는 계속 ETH에 대해 비관적인 글(doom-posting)을 올립니다. ETH의 발행량이 나쁘다고 생각한다면, 나머지 잡코인(shitcoin)들이나 한번 살펴봐야 할 것입니다."
+        },
+        {
+          "date": "2026-10-24",
+          "by": "hedgefunder01",
+          "stance": "other",
+          "quote": "2026년인데 솔직해지자. 수수료 소각이 유의미한 공급 흡수원인 척하지 말자.",
+          "url": "https://x.com/hedgefunder01/status/2113888136606687689",
+          "digest": "2026-10-26",
+          "replyTo": "wmougayar",
+          "relation": "reply",
+          "original": "@wmougayar @laurashin Come on it’s 2026 let’s be honest and not pretend fee burns are a relevant supply sink 😂",
+          "translation": "@wmougayar @laurashin 이제 2026년인데, 솔직해지자고요. 수수료 소각이 유의미한 공급 흡수 장치(supply sink)인 척하지 맙시다."
+        }
+      ],
+      "firstSeen": "2026-10-23",
+      "lastActivity": "2026-10-24",
+      "status": "active"
+    },
     {
       "id": "gloas-highest-vs-latest-bid",
       "title": "Gloas에서 클라이언트는 빌더 입찰을 최신(latest) 대신 최고가(highest)로 고르는 옵션을 제공해야 하나?",
@@ -779,7 +1423,7 @@
       ],
       "firstSeen": "2026-10-17",
       "lastActivity": "2026-10-18",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/tayvano_/status/2111491173558972676",
       "engagement": {
         "likes": 55,
@@ -910,7 +1554,7 @@
       ],
       "firstSeen": "2026-10-18",
       "lastActivity": "2026-10-18",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/lex_node/status/2111843080974262621",
       "engagement": {
         "likes": 12,
@@ -1066,7 +1710,7 @@
       ],
       "firstSeen": "2026-10-17",
       "lastActivity": "2026-10-17",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/nero_eth/status/2111352069005439442",
       "engagement": {
         "likes": 0,
@@ -4281,7 +4925,7 @@
       ],
       "firstSeen": "2026-09-25",
       "lastActivity": "2026-09-26",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/lex_node/status/2103567124719653285",
       "engagement": {
         "likes": 454,
@@ -4482,7 +5126,7 @@
       ],
       "firstSeen": "2026-09-24",
       "lastActivity": "2026-09-24",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/StaniKulechov/status/2103117429605880069",
       "engagement": {
         "likes": 258,
