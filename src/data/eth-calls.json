@@ -1,6 +1,504 @@
 {
-  "updatedAt": "2026-10-23T01:30:25.027Z",
+  "updatedAt": "2026-10-27T00:52:22.428Z",
   "calls": [
+    {
+      "id": "acdt-102",
+      "series": "acdt",
+      "number": 102,
+      "date": "2026-10-26",
+      "title": "AllCoreDevs - Testing #102",
+      "forkcastUrl": "https://forkcast.org/calls/acdt/102/",
+      "videoUrl": "https://www.youtube.com/watch?v=eeVKkgnOAjs",
+      "issueUrl": "https://github.com/ethereum/pm/issues/2281",
+      "kind": "full",
+      "durationMin": 56,
+      "headline": "후디 포크 연기\n감사 뒤 재논의",
+      "lead": "보안 감사가 끝날 때까지 테스트넷 포크를 최소 2주 미룬다",
+      "intro": "메인넷 포크를 앞두고 데브넷과 테스트 진행을 점검하기 위해 코어 개발자들이 모이는 테스팅 콜(ACDT)이다.",
+      "summary": "가스 리프라이싱 EIP인 8037과 8038이 배포된 컨트랙트와 예상 못 한 방식으로 상호작용한다는 보안 보고 때문에 후디(Hoodi) 테스트넷 포크가 최소 2주 연기됐다. 외부 감사 결과를 본 뒤 일정을 다시 잡고 스펙 변경은 최후 수단으로만 남겨 둔다.",
+      "whyItMatters": "이미 배포된 컨트랙트가 깨질 수 있다는 보고가 나오면서 글램스테르담(Glamsterdam) 테스트넷 일정 전체가 감사 결과에 묶였다. 8037을 포크에서 빼면 가스 한도를 안전하게 올릴 수 없어 BAL 같은 최적화가 무의미해진다는 지적이 나올 만큼 사용자와 L2 모두에 파급이 큰 사안이다.",
+      "decisions": [
+        {
+          "label": "후디 포크 연기",
+          "text": "후디 포크 일정을 최소 2주 미루고 감사 완료 후 재논의하기로 했다. EIP-8037/8038의 피해 범위 분석이 끝날 때까지 테스트넷 업그레이드는 멈춘다.",
+          "original": "Hoodi fork scheduling delayed minimum 2 weeks; revisit after audits complete",
+          "eips": [],
+          "status": "일정",
+          "timestamp": "00:24:42"
+        },
+        {
+          "label": "빌더 온보딩 수정",
+          "text": "빌더 온보딩 수정안(consensus-specs PR #5736)이 승인돼 이번 주에 병합된다. 포크 시점에 0x0B 접두사가 명시된 예치만 빌더로 처리한다. 예치하면 반드시 검증자가 생긴다는 스테이킹 프로토콜의 불변식을 지킨다는 뜻이다.",
+          "original": "Builder onboarding fix (consensus-specs PR #5736) approved and will be merged this week",
+          "eips": [],
+          "status": "확정",
+          "timestamp": "00:32:01"
+        },
+        {
+          "label": "getPayload 즉시 응답",
+          "text": "GetPayload 타임아웃 정의가 제거됐다(execution-apis PR #958 병합 완료). 실행 계층(EL)은 더 좋은 블록을 기다리지 말고 요청이 오면 즉시 응답해야 한다는 뜻이다.",
+          "original": "GetPayload timeout definition removed (execution-apis PR #958 already merged); EL must respond immediately",
+          "eips": [],
+          "status": "확정",
+          "timestamp": "00:36:39"
+        },
+        {
+          "label": "쇼터 슬롯 보류",
+          "text": "쇼터 슬롯(shorter slots)은 피처 브랜치로 남기고 과반 클라이언트가 동의하기 전에는 헤제(Heze) 본 스펙에 병합하지 않기로 했다. 슬롯 단축 제안은 아직 정식 스펙에 들어가지 않는다.",
+          "original": "Shorter slots remain a feature branch; not merged into Heze spec until majority client agreement",
+          "eips": [],
+          "status": "확정",
+          "timestamp": "01:04:15"
+        }
+      ],
+      "targets": [
+        {
+          "key": "acdt-103",
+          "text": "ACDT #103은 11월 9일에 열린다. 데브콘(Devcon) 때문에 11월 2일 콜은 건너뛴다. 확정.",
+          "timestamp": "00:38:07"
+        },
+        {
+          "key": "eip-8037-audit",
+          "text": "EIP-8037/8038 피해 범위 감사 보고서는 10월 26일부터 약 2주 뒤 나올 예정이다. 확정 일정이 아닌 예상치(ETA)다.",
+          "timestamp": "00:15:47"
+        }
+      ],
+      "actions": [
+        {
+          "owner": "Sam",
+          "text": "백필 중에는 엔벌로프 서명을 검증할 수 없다는 점을 명시하는 consensus-specs PR을 연다.",
+          "timestamp": "00:47:36"
+        },
+        {
+          "owner": "Nico Flaig",
+          "text": "MIN_TRANSACTION_GAS 상수를 사용한 GetPayload 트랜잭션 수 고시프 체크 consensus-specs PR을 연다.",
+          "timestamp": "00:54:50"
+        },
+        {
+          "owner": "전체 팀",
+          "text": "향후 비슷한 보안 돌발을 줄이기 위한 프로세스 개선안인 PM PR #2284를 검토한다.",
+          "timestamp": "00:16:25"
+        }
+      ],
+      "agenda": [
+        {
+          "timestamp": "00:10:30",
+          "heading": "네트워크 상태 업데이트"
+        },
+        {
+          "timestamp": "00:13:01",
+          "heading": "EIP-8037/EIP-8038 상호작용 이슈",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "00:25:22",
+          "heading": "빌더 온보딩 로직 변경",
+          "decision": true
+        },
+        {
+          "timestamp": "00:32:17",
+          "heading": "getPayload 타임아웃 제거",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "00:38:00",
+          "heading": "데브콘으로 인한 11월 2일 ACDT 건너뛰기"
+        },
+        {
+          "timestamp": "00:39:24",
+          "heading": "퇴장한 빌더의 백필 엔벌로프 검증"
+        },
+        {
+          "timestamp": "00:48:03",
+          "heading": "페이로드 트랜잭션 가스 한도 고시프 체크",
+          "discussion": true
+        },
+        {
+          "timestamp": "00:55:54",
+          "heading": "쇼터 슬롯 스펙 병합 전략",
+          "discussion": true,
+          "decision": true
+        }
+      ],
+      "topics": [
+        {
+          "title": "EIP-8037/8038 보안 이슈와 후디 연기",
+          "intro": "가스 리프라이싱 EIP 두 개가 배포된 컨트랙트와 예상 못 한 방식으로 상호작용한다는 보안사 보고가 나와 후디 포크를 미룰지와 스펙을 고칠지가 논의됐다.",
+          "decision": "일정 결정 00:24:42",
+          "positions": [
+            {
+              "speaker": "Toni Wahrstätter",
+              "text": "하드코딩된 가스, 갑자기 늘어나는 gasLeft, 리펀드가 막혀 있던 실행 경로를 여는 문제 등 네 가지 이슈를 정리했다. 피해 범위는 꽤 파악됐지만 후디 일정은 최소 1주 미루고 논의를 이어가자고 했다.",
+              "timestamp": "00:13:01",
+              "original": "Yeah, I'm happy to do so. So, last week, ChainSecurity provided this, bug report that 8037 and 8038 interact with some opcodes in a way that we weren't anticipating or weren't looking into, I guess. And… So, just to get everyone onto the same page, there are basically four issues. One of them was always known, that if you reprice opcodes, that, if you hard-code gas within contracts, that that can break. And this is not the new part about this one. But then there is also an interaction with gas left, which is used in some of the contracts, and based on what Jayani reported, gas left could suddenly increase, and this was something new. And similar applies to, gas left, Similar applies to refunds that suddenly could fund execution of a path that Before that, couldn't execute. So this is just a quick TLDR of the issues, and right now, it felt like over the weekend, people… analyzed the situation more carefully. So a bunch of people used AI to dig deep into that issue, and my personal feeling here is That we have a quite good overview over the… the blast radius of this… of this bug, of this vulnerability, and now it's about reaching out to the affected parties and make sure To discuss next steps with them. And… People already started discussing spec changes and so on, but right now, it feels like we don't have certainty to… to do so, so I don't think we are ready to… to schedule Hoodi, so my feeling is we should delay that by at least a week. And then, keep discussing the topic.",
+              "translation": "네, 제가 설명하겠습니다. 지난주에 ChainSecurity가 8037과 8038이 우리가 예상하지 못했거나 검토하지 않았던 방식으로 일부 옵코드(opcode)와 상호작용한다는 버그 리포트를 제공했습니다. 모두가 같은 상황을 이해할 수 있도록 말씀드리면, 기본적으로 네 가지 문제가 있습니다. 그중 하나는 항상 알려져 있던 것으로, 옵코드 가스 비용을 재조정하면 컨트랙트 내에 가스를 하드코딩한 경우 깨질 수 있다는 것입니다. 이 부분은 새로운 내용이 아닙니다. 하지만 일부 컨트랙트에서 사용되는 gas left와의 상호작용도 있는데, Jayani가 보고한 바에 따르면 gas left가 갑자기 증가할 수 있으며, 이는 새로운 내용이었습니다. 그리고 리펀드(refund)에도 비슷하게 적용되는데, 리펀드가 갑자기 이전에는 실행할 수 없었던 경로의 실행 자금을 조달할 수 있습니다. 이것이 문제에 대한 간단한 요약입니다. 지금은 주말 동안 사람들이 상황을 더 자세히 분석한 것으로 보입니다. 많은 사람들이 AI를 사용해 이 문제를 깊이 파헤쳤고, 개인적인 느낌으로는 이 버그, 이 취약점의 파급 범위(blast radius)에 대해 꽤 좋은 개요를 갖게 되었다고 생각합니다. 이제는 영향을 받는 당사자들에게 연락해서 다음 단계를 논의하는 것이 중요합니다. 사람들은 이미 스펙 변경 등에 대해 논의하기 시작했지만, 지금은 그렇게 할 확신이 없다고 느껴지므로, Hoodi 일정을 잡을 준비가 되지 않았다고 생각합니다. 그래서 적어도 일주일은 연기해야 한다고 느낍니다. 그 이후에 이 주제에 대한 논의를 계속해야 합니다."
+            },
+            {
+              "speaker": "Fredrik",
+              "text": "ChainSecurity와 Dedaub에 종합 감사를 의뢰했고 보고서까지 약 2주가 걸린다며 확신이 설 때까지 기다리자고 권고했다.",
+              "timestamp": "00:15:02",
+              "original": "Yeah, we also engaged with ChainSecurity and Dedaub to do a more comprehensive analysis, and they're… ETA is… Two weeks to provide a report. So my recommendation would be to wait. Well, at least until we feel more confident, but that could be at the end of this. review process that's… ChainSecurity and Dedaub is also doing, on top of the internal stuff that's Toni has been discussing now? Most likely today. I… I don't… I'm not foolish, or… I mean, we reached out to them, At that point. But kind of came to an agreement on Friday, I guess. So I would probably count it from today.",
+              "translation": "네, 우리는 더 포괄적인 분석을 위해 ChainSecurity와 Dedaub에도 의뢰했으며, 그들의 예상 소요 시간은 리포트를 제공하는 데 2주입니다. 그래서 제 제안은 기다리는 것입니다. 적어도 우리가 더 확신을 가질 때까지는요. 하지만 그것은 이 검토 과정의 끝 무렵이 될 수도 있습니다. ChainSecurity와 Dedaub도 수행하고 있는, Toni가 지금 논의하고 있는 내부 작업에 더해서요. 아마 오늘일 것 같습니다. 저는 어리석게 생각하지는 않습니다만, 그 당시에 그들에게 연락했습니다. 하지만 금요일에 합의에 도달한 것 같습니다. 그래서 저는 아마 오늘부터 기간을 계산할 것 같습니다."
+            },
+            {
+              "speaker": "Maria Silva",
+              "text": "영향받는 컨트랙트를 찾아 팀에 연락해 자체 수정을 기본 경로로 삼되, 고칠 수 없고 피해 범위가 클 때만 최소한의 표적화된 스펙 변경을 고려하자고 했다. 스펙 변경은 비용이 크고 다른 컨트랙트를 또 깨뜨릴 수 있다는 이유다.",
+              "timestamp": "00:16:15",
+              "original": "Yeah, I… I would also add that, besides the, analysis that we've been doing internally, and that, Fredrik has talked about, the… with the, security researchers, I think there's then the outreach work as well. As Toni was saying, like, the key thing will be First, we understand the affected contracts, then we reach out to the teams, and the first… The default will be To understand if they can fix it. And if they can, then that should be our default. and only if… they can't fix it, and the blast radius is big enough, would we then consider spec changes? And the reason for this is mostly because Spec changes are expensive. In many cases, it's not even possible to fix it without undoing the entire EIP, which would mean not raising the gas limit. In some cases, and so I think we need to look at, first spec changes should be targeted, so they shouldn't be… just we do everything. We should try to, if we find an issue. cannot be fixed, has a big blast radius, then we work towards fixing that issue in specific. So, and change it As least as possible. And so… so this is to say that we should try as much as possible to not change the specs, and then only change it Doing, like, the least changes as possible. And also because this is kind of spaghetti, right? Like, if we change some things, then we might break other contracts that we are not expecting. So we would need to redo the entire analysis again. So yeah, so I think this is how we are currently looking at it, so we are rushing to…",
+              "translation": "네, 저도 덧붙이자면, 우리가 내부적으로 진행하고 있는 분석과 Fredrik이 말한 보안 연구자들과의 작업 외에도, 아웃리치(outreach) 작업도 있다고 생각합니다. Toni가 말한 것처럼, 핵심은 먼저 영향을 받는 컨트랙트를 파악한 다음, 해당 팀들에게 연락하는 것입니다. 그리고 기본 방침은 그들이 문제를 고칠 수 있는지 파악하는 것입니다. 만약 고칠 수 있다면, 그것이 우리의 기본 방침이 되어야 합니다. 오직 그들이 고칠 수 없고 파급 범위가 충분히 크다면, 그때 스펙 변경을 고려하게 될 것입니다. 그 이유는 주로 스펙 변경이 비용이 많이 들기 때문입니다. 많은 경우, EIP 전체를 되돌리지 않고는 고칠 수조차 없는데, 이는 가스 한도를 올리지 않는다는 의미가 될 것입니다. 어떤 경우에는, 그래서 저는 우리가 살펴봐야 할 것은, 먼저 스펙 변경은 목표가 명확해야 한다는 것이라고 생각합니다. 모든 것을 다 하는 식이 되어서는 안 됩니다. 만약 어떤 문제를 발견했는데 고칠 수 없고 파급 범위가 크다면, 그 특정 문제를 고치는 방향으로 작업해야 합니다. 그래서 변경은 최소한으로 해야 합니다. 그러니까, 우리는 가능한 한 스펙을 변경하지 않으려고 노력해야 하며, 변경하더라도 최소한의 변경만 해야 한다는 뜻입니다. 또한 이것이 일종의 스파게티 같은 구조이기 때문이기도 합니다. 일부를 변경하면 우리가 예상하지 못한 다른 컨트랙트를 깨뜨릴 수 있습니다. 그러면 전체 분석을 다시 해야 할 것입니다. 그래서 네, 저는 이것이 현재 우리가 바라보는 방식이라고 생각하며, 그래서 우리는 서두르고 있습니다."
+            },
+            {
+              "speaker": "Łukasz Rozmej",
+              "text": "어느 길이 맞을지 모르니 스펙 변경과 비변경 두 경로를 병행 탐색해 두자고 했다. 자신의 스펙 변경 PR은 여러 AI 모델이 서로의 허점을 찾게 하며 12시간 이상 다듬은 결과라고 설명했고 Maria Silva가 이를 불변식별 표적 수정으로 쪼개는 데 동의했다.",
+              "timestamp": "00:20:04",
+              "original": "So in my opinion, because we don't know what would be the correct path yet, we shouldn't box ourselves into one of those two alternatives, and we should keep exploring both alternatives, that is, spec changes and not spec changes in parallel. So, if we get the feedback that we do have to do spec change, then we would be further on that path than not. So, this is kind of how I arrived to this, to this solution, so, yeah, sure. So this wasn't, like, one-shotted in any way or anything, this was, I don't know, at least 12 hours working with, cross models from, Opus, Fable, Matos, and Astra, and reviewing each other and trying to To find holes in this, so that's why it… The end result might be too big, I agree, but it might be trimmed, but that was kind of how this was growing, because… Each other found holes in the previous work, so to patch all. Yes. Might be true.",
+              "translation": "그래서 제 생각에는, 아직 어떤 길이 올바른지 모르기 때문에, 우리는 이 두 가지 대안 중 하나에 스스로를 가두어서는 안 되며, 두 가지 대안 모두를 병행해서 계속 탐색해야 한다고 봅니다. 즉, 스펙 변경과 스펙 변경을 하지 않는 경우를 둘 다요. 그래서 만약 스펙 변경을 반드시 해야 한다는 피드백을 받는다면, 그렇지 않은 경우보다 그 경로에서 더 앞서 있게 될 것입니다. 그래서 이것이 제가 이 해결책에 도달하게 된 과정입니다. 네, 그렇습니다. 이것은 어떤 식으로든 한 번에 만들어진 것이 아니라, 적어도 12시간 동안 Opus, Fable, Matos, Astra의 여러 모델을 교차로 활용하며 서로의 결과를 검토하고 그 안의 구멍을 찾아내려고 노력한 작업이었습니다. 그래서 최종 결과물이 너무 커졌을 수도 있다는 점은 동의하지만, 다듬어질 수도 있습니다. 하지만 그것이 이것이 커져간 방식이었습니다. 서로가 이전 작업의 구멍을 찾아내서 그것을 모두 보완했기 때문입니다. 네. 그럴 수도 있습니다."
+            },
+            {
+              "speaker": "Francesco D'Amato",
+              "text": "Sourcify에 검증된 모든 컨트랙트를 스캔하는 등 종합 분석을 했는데 알려진 이슈를 빠르게 찾은 뒤 이틀간 의미 있는 발견이 없었다며 스펙 변경 가능성은 매우 낮다고 봤다.",
+              "timestamp": "00:22:20",
+              "viaChat": true
+            }
+          ],
+          "quote": {
+            "text": "다시 강조하면, 지금으로서는 스펙 변경이 필요해 보이지 않는다.",
+            "original": "Right now, just to stress that again, it doesn't look like we will need spec changes.",
+            "speaker": "Toni Wahrstätter",
+            "timestamp": "00:23:49"
+          }
+        },
+        {
+          "title": "getPayload 타임아웃 제거",
+          "intro": "데브넷에서 일부 EL 클라이언트가 더 비싼 블록을 만들려고 getPayload 응답을 미루다 타임아웃이 반복되자, 타임아웃 정의 자체를 없애고 즉시 응답을 요구하는 변경을 두고 논의했다.",
+          "decision": "확정 00:36:39",
+          "positions": [
+            {
+              "speaker": "Daniel Lehrner",
+              "text": "더 가치 있는 블록을 만들려고 일부러 기다린 것은 맞지만 이번 논의로 그게 의도된 동작이 아님이 분명해졌다며 이제 스펙이 명확해졌다고 했다.",
+              "timestamp": "00:33:15",
+              "original": "Yeah, so it's definitely doable. As I explained on Discord, you know, we were waiting on purpose to build a more valuable block. But now, through the discussion, it seems like that's actually not what we're supposed to do. So now the spec for me is clear what should happen.",
+              "translation": "네, 그래서 그것은 확실히 가능합니다. 디스코드에서 설명했듯이, 우리는 더 가치 있는 블록을 만들기 위해 의도적으로 기다리고 있었습니다. 하지만 지금 논의를 통해 보니, 그것이 실제로 우리가 해야 할 일은 아닌 것 같습니다. 그래서 이제 저에게는 무엇이 일어나야 하는지에 대한 스펙이 명확해졌습니다."
+            },
+            {
+              "speaker": "Fabio - Besu",
+              "text": "FOCIL이 들어오면 빈 블록은 인클루전 리스트를 만족하지 못해 무가치하므로, 첫 응답에 최소한 인클루전 리스트 트랜잭션은 담아야 해 약간의 지연이 생길 수 있다고 지적했다.",
+              "timestamp": "00:33:39",
+              "original": "Yeah, I want to add a possible interaction with FOCIL. When, we are… Ask it to include? A list of, transaction. It is worthless to create an empty block at the beginning, since it will not satisfy the inclusion list. So, with FOCIL, it's possible that the first There will be a bit of delay, because we tried to build the block with at least only the inclusion list transaction. So it's not the empty block like it is now. But it will be a minimal block. with… Only the inclusion list transaction, because otherwise it… it is worthless to return something. Just wanted to… Raise this, because… With FOCIL, there could be some more delays in GetPayload.",
+              "translation": "네, FOCIL과의 가능한 상호작용을 하나 추가하고 싶습니다. 포함 리스트(inclusion list)에 트랜잭션 목록을 포함하도록 요청할 때, 처음에 빈 블록을 만드는 것은 의미가 없는데, 그것이 포함 리스트를 만족시키지 못하기 때문입니다. 그래서 FOCIL을 사용하면, 적어도 포함 리스트 트랜잭션만이라도 포함한 블록을 만들려고 하기 때문에 처음에 약간의 지연이 발생할 수 있습니다. 그러니 지금처럼 빈 블록이 아니라, 포함 리스트 트랜잭션만 들어 있는 최소한의 블록이 될 것입니다. 그렇지 않으면 무언가를 반환하는 것 자체가 의미가 없기 때문입니다. 그냥 이 점을 제기하고 싶었습니다. FOCIL을 사용하면 GetPayload에서 좀 더 지연이 발생할 수 있기 때문입니다."
+            },
+            {
+              "speaker": "Nico Flaig",
+              "text": "빌더가 설정돼 있으면 CL이 getHeader 응답 이후에 getPayload를 불러 EL에 최대한의 빌드 시간을 줄 수도 있다며 EL의 기대 동작이 스펙에서 충분히 명확한지 물었다.",
+              "timestamp": "00:34:52",
+              "original": "Yeah, I'm mostly, questioning, like, how the CL should call GetPayload then. Because if we have builders configured, we can do this call when the GetHeader respond is returned, right? To give the EL the max time to produce a better local payload. But that highly depends on, like, how ELs behave, like… And I'm not sure that's clear from the spec, if, like… should be an instant response, right? But also, Dustin is saying, like, there are payload timeouts, so…",
+              "translation": "네, 저는 주로 CL이 그 경우 GetPayload를 어떻게 호출해야 하는지에 대해 의문을 갖고 있습니다. 왜냐하면 빌더(builder)가 구성되어 있다면, GetHeader 응답이 반환될 때 이 호출을 할 수 있지 않습니까? EL에게 더 나은 로컬 페이로드(payload)를 생성할 최대 시간을 주기 위해서요. 하지만 그것은 EL이 어떻게 동작하는지에 크게 의존합니다. 그리고 그것이 즉각적인 응답이어야 하는지, 스펙상 명확한지 잘 모르겠습니다. 하지만 또한 Dustin이 말하길 페이로드 타임아웃이 있다고 하니…"
+            },
+            {
+              "speaker": "Dustin",
+              "text": "데브넷에서 Reth의 일관된 getPayload 타임아웃을 봤는데 버그인지 스펙이 허용하는 동작인지 구분할 수 없었다며 어느 쪽이든 의도를 명확히 하는 이 변경이 유용하다고 했다.",
+              "timestamp": "00:35:42",
+              "original": "Yeah, I actually think this is useful because it clarifies the intent, and, Because this is what… when we were seeing this, when Nimbus CL was seeing this, specifically on the devnets from Reth as it happens, we didn't see it from Besu for whatever reason. We would see these consistent timeouts on GetPayload, and the problem was, it was like, okay, we actually could say, okay, something was going wrong with timing out, fine. But was the fact that it was getting even vaguely within an order of magnitude close to timing out also a problem, or was that just, like, doing a spec thing? And so I think it's kind of useful to clarify… for the spec to clarify that one way or another here.",
+              "translation": "네, 저는 이것이 의도를 명확하게 해주기 때문에 실제로 유용하다고 생각합니다. 왜냐하면 이것이 바로 우리가 이 문제를 봤을 때, Nimbus CL이 이것을 봤을 때, 특히 Reth의 데브넷(devnet)에서 발생했던 상황이기 때문입니다. 어떤 이유에서인지 Besu에서는 보지 못했습니다. 우리는 GetPayload에서 지속적인 타임아웃을 보곤 했는데, 문제는, 좋습니다, 타임아웃이 발생하면서 뭔가 잘못되고 있다고는 말할 수 있었습니다. 하지만 타임아웃에 어렴풋이나마 자릿수 단위로 가까워지고 있다는 사실 자체도 문제였는지, 아니면 그것이 그냥 스펙상의 동작이었는지는 알 수 없었습니다. 그래서 저는 스펙이 이 부분을 어느 쪽이든 명확히 해주는 것이 꽤 유용하다고 생각합니다."
+            },
+            {
+              "speaker": "Potuz",
+              "text": "이 변경이 Prysm의 FCU 타이밍을 깨뜨릴 수 있다고 우려했고 FOCIL과 쇼터 슬롯이 이 상호작용과 함께 더 깊이 검토되길 바란다고 했다.",
+              "timestamp": "00:34:36",
+              "viaChat": true
+            }
+          ],
+          "quote": {
+            "text": "우리는 더 가치 있는 블록을 만들려고 일부러 기다렸지만, 논의를 거치고 보니 그게 우리가 해야 할 일이 아니었던 것 같다.",
+            "original": "We were waiting on purpose to build a more valuable block. But now, through the discussion, it seems like that's actually not what we're supposed to do.",
+            "speaker": "Daniel Lehrner",
+            "timestamp": "00:33:15"
+          }
+        },
+        {
+          "title": "페이로드 가스 한도 고시프 체크",
+          "intro": "ePBS에서는 무효 페이로드를 퍼뜨리기 쉬워지기 때문에, 합의 계층(CL)이 고시프 단계에서 트랜잭션 수를 가스 한도 기준으로 미리 걸러내자는 제안이 나왔다.",
+          "positions": [
+            {
+              "speaker": "Nico Flaig",
+              "text": "비드의 가스 한도를 최소 트랜잭션 가스로 나눠 페이로드의 최대 트랜잭션 수를 제한하고 고시프와 역직렬화 단계에서 일찍 거부하자고 제안했다. P2P 계층을 단단하게 만드는 방법이라고 했다.",
+              "timestamp": "00:48:27",
+              "original": "Yeah, so maybe I can quickly share the check in the chat. So basically, when we receive a payload, so in class. And, we already know the bid. We can, like, limit the max amount of transactions by simply checking the gas limit that the bid specified against, like. Some minimum transaction gas that we specify. Like, that number needs to be well-defined, I guess, but you could add a lot of wiggle room, so we don't underspecify it. And we could basically reject payloads based on that limit. And, I guess you could, enforce this really early in the gossip check. And probably even during deserialization, so… It's just a way to harden, like, the P2P gossip, yeah. Yeah, just to add to that, right, so it's, on gossip, we don't validate the payload, in that sense. We don't wait for the EL to tell us that it was valid, we just forward it anyway. And if one client has this check and another doesn't, it means that one client forwards these payloads, and another would have to ignore them, but as Justin said, like, if we have this in the spec, then we can reject the message and, like, downscore peers that send us this. Yeah, like, you have a seen cache, right? That prevents it But when you receive that payload, you don't know whether it's valid or not.",
+              "translation": "네, 그럼 제가 채팅에 그 검사를 빠르게 공유하겠습니다. 기본적으로, 우리가 페이로드를 받을 때, 클래스(class) 안에서요. 그리고 우리는 이미 비드(bid)를 알고 있습니다. 우리는 비드가 지정한 가스 한도를 우리가 지정한 일종의 최소 트랜잭션 가스와 비교하는 식으로 트랜잭션의 최대 개수를 제한할 수 있습니다. 그 숫자는 제대로 정의되어야 할 것 같은데, 다만 여유 공간을 충분히 둘 수 있어서 과소 지정하지 않을 수 있습니다. 그리고 우리는 기본적으로 그 한도를 기준으로 페이로드를 거부할 수 있습니다. 그리고 이것은 가십(gossip) 검사 단계에서 아주 초기에 강제할 수 있을 것 같고, 아마 역직렬화(deserialization) 중에도 할 수 있을 것입니다. 그래서 이것은 그저 P2P 가십을 강화하는 한 방법입니다. 네, 덧붙이자면, 가십 단계에서는 그런 의미에서 페이로드를 검증하지 않습니다. EL이 유효하다고 알려줄 때까지 기다리지 않고 그냥 전달합니다. 만약 한 클라이언트는 이 검사를 가지고 있고 다른 클라이언트는 없다면, 한 클라이언트는 이 페이로드들을 전달하고 다른 클라이언트는 그것을 무시해야 한다는 의미가 됩니다. 하지만 Justin이 말한 것처럼, 이것이 스펙에 있다면, 우리는 그 메시지를 거부하고 이를 보낸 피어(peer)의 점수를 낮출 수 있습니다. 네, 우리에게는 이미 본 캐시(seen cache)가 있어서 그것을 막아주지만, 그 페이로드를 받았을 때는 그것이 유효한지 아닌지 알 수 없습니다."
+            },
+            {
+              "speaker": "Justin Traglia",
+              "text": "체크 자체는 아주 기본적인 것이라 지지하지만 CL에 최소 트랜잭션 가스를 정의해야 하는 점이 유일한 불만이라고 했다. 스펙에 넣어야 거부(reject)와 피어 다운스코어링이 가능하다고도 덧붙였다.",
+              "timestamp": "00:51:33",
+              "original": "I'm supportive of this check. I mean, it feels so basic. I just don't like having to define min transaction gas in the CL. That's my only complaint. maybe a dumb question, but what is the minimum transaction gas? I think I heard that it was 12,000? Is that… So accurate. Yeah, you're not wrong. Sorry, there was a southern house. Dustin says he's not really against it. And jochem says that the minimum gas limit is 20… 21,000 before Glamsterdam and 12,000 after Glamsterdam. Nico and others, how would he feel about just leaving this as optional for clients and just ignoring the messages? Like, is that sufficient and still useful? Yeah. Potuz? Nico, do you have a PR for this? Okay. I'm thinking you should make one, Then we can discuss it a bit more, and then maybe merge it today or tomorrow, or sorry, maybe tomorrow. Yeah. Potuz's idea also sort of makes sense, though I'd rather just… I feel like I'd rather just keep the… Or sorry, use the minimum transaction gas for that specific fork. Because it would… Just be more effective. But, not a strong opinion. I'd have to think about it more. Okay, I think we should move on to another topic. Barnabas, somewhere you mentioned… Can we discuss the final form of Consensus specs? Can we expect shorter slots to be merged in this week? It's a great question. I don't know. Jaehoon, are you here? I guess not. client teams, Potuz, I mean… I don't know what to say. And we should… we merged, shorter slots into… the Heze spec. Potuz is saying, fine…",
+              "translation": "저는 이 검사를 지지합니다. 정말 기본적인 내용이라고 느껴지거든요. 다만 CL에서 최소 트랜잭션 가스를 정의해야 한다는 점이 마음에 들지 않습니다. 그것이 제 유일한 불만입니다. 어리석은 질문일 수도 있지만, 최소 트랜잭션 가스가 무엇입니까? 12,000이라고 들은 것 같은데, 맞습니까? 정확합니다. 네, 틀리지 않았습니다. 죄송합니다, 잡음이 있었네요. Dustin은 특별히 반대하지 않는다고 말합니다. 그리고 jochem은 최소 가스 한도가 글램스테르담 이전에는 21,000이고 글램스테르담 이후에는 12,000이라고 말합니다. Nico와 다른 분들은, 이것을 그냥 클라이언트에게 선택적으로 남겨두고 메시지를 무시하도록 하는 것에 대해 어떻게 생각하십니까? 그것으로 충분하고 여전히 유용할까요? 네. Potuz? Nico, 이것에 대한 PR이 있습니까? 좋습니다. 당신이 하나 만드셔야 할 것 같습니다. 그러면 좀 더 논의한 후, 오늘이나 내일, 아니 죄송합니다, 내일쯔음 머지할 수 있을 것 같습니다. 네. Potuz의 아이디어도 어느 정도 타당하지만, 저는 차라리 그… 아니 죄송합니다, 해당 특정 포크(fork)에 대한 최소 트랜잭션 가스를 그대로 사용하고 싶습니다. 그것이 더 효과적일 것이기 때문입니다. 하지만 강한 의견은 아닙니다. 좀 더 생각해봐야 할 것 같습니다. 좋습니다, 다른 주제로 넘어가야 할 것 같습니다. Barnabas, 어딘가에서 언급하셨는데, 합의 스펙의 최종 형태에 대해 논의할 수 있을까요? 이번 주에 shorter slots가 머지될 것으로 기대할 수 있습니까? 좋은 질문입니다. 저는 모르겠습니다. Jaehoon, 계신가요? 안 계신 것 같네요. 클라이언트 팀들, Potuz, 저는 뭐라고 말해야 할지 모르겠습니다. 그리고 우리는 shorter slots를 Heze 스펙에 머지했어야 했습니다. Potuz가 말하길, 좋습니다…"
+            },
+            {
+              "speaker": "Toni Wahrstätter",
+              "text": "최소 트랜잭션 가스는 포크마다 바뀌고(글램스테르담 이전 21,000, 이후 12,000) 프레임 트랜잭션으로 또 바뀔 텐데, CL이 EL 상수를 알아야 하는 결합은 근본적으로 잘못됐다며 반대했다.",
+              "timestamp": "00:52:12",
+              "original": "This is something that changes all the time. For example, it will probably change again with Frame Transaction. So to me, just fundamentally, it feels wrong to, like, connect the EL with the CL in a way where the CL suddenly needs to know, like, minimum Transaction gas values. that sometimes even depend on the gas limit. For example, the state cap.",
+              "translation": "이것은 항상 변하는 것입니다. 예를 들어, 프레임 트랜잭션(Frame Transaction)으로 인해 다시 바뀔 가능성이 큽니다. 그래서 저에게는, 근본적으로, CL이 갑자기 최소 트랜잭션 가스 값을 알아야 하는 식으로 EL과 CL을 연결하는 것이 잘못되었다고 느껴집니다. 그 값은 때로는 가스 한도에 따라 달라지기도 합니다. 예를 들면, 스테이트 캡(state cap) 같은 것이죠."
+            },
+            {
+              "speaker": "Potuz",
+              "text": "Toni의 우려에 대한 절충으로, EL과 일치할 필요 없는 아주 낮은 보수적 하한(예: 1,000 미만)을 쓰면 자주 고칠 필요 없이 최악의 DoS는 막을 수 있다고 제안했다.",
+              "timestamp": "00:54:09",
+              "original": "I think it's fine to have a CL flag, it doesn't need to agree with EL in any way, it should be a lower bound. We can just put a ridiculous value, which is very, very low, and still will save all of the DoS that we see from these deserializations. So even if we put, like, something like min gas to be less than 1,000, It'll be absolutely fine, and we can envision a time where it would take several years for the EL to reach such a gas limit.",
+              "translation": "저는 CL 플래그(flag)를 두는 것은 괜찮다고 생각합니다. 그것은 EL과 어떤 식으로든 일치해야 할 필요가 없고, 하한값(lower bound) 역할만 하면 됩니다. 우리는 그냥 아주, 아주 낮은, 터무니없는 값을 넣을 수 있고, 그래도 우리가 이러한 역직렬화에서 보는 모든 DoS를 막을 수 있을 것입니다. 그래서 최소 가스를 1,000 미만으로 설정한다 해도, 전적으로 괜찮을 것이며, EL이 그런 가스 한도에 도달하는 데 몇 년이 걸릴 시점을 상상해볼 수 있습니다."
+            }
+          ],
+          "quote": {
+            "text": "CL이 갑자기 최소 트랜잭션 가스 값을 알아야 하는 식으로 EL과 CL을 결합하는 것은 내게는 근본적으로 잘못됐다고 느껴진다.",
+            "original": "To me, just fundamentally, it feels wrong to connect the EL with the CL in a way where the CL suddenly needs to know minimum transaction gas values.",
+            "speaker": "Toni Wahrstätter",
+            "timestamp": "00:52:12"
+          }
+        },
+        {
+          "title": "쇼터 슬롯 스펙 병합 전략",
+          "intro": "쇼터 슬롯 구현이 PR 3개에 흩어져 어떤 커밋을 테스트 타깃으로 삼을지 혼란스러워지자, 헤제 본 스펙에 병합할지를 두고 공방이 벌어졌다.",
+          "decision": "확정 01:04:15",
+          "positions": [
+            {
+              "speaker": "Barnabas",
+              "text": "퀵 슬롯 구현 PR이 3개나 열려 있어 테스트 타깃이 혼란스럽다며 다음 데브넷이 겨냥할 스펙을 병합해 두는 쪽을 선호했다. 안정된 스펙 버전 없이 SFI가 먼저 나오는 것은 비현실적이라고 봤고 나중에는 슬롯 시간을 6/12초 그대로 두고 병합하면 아무것도 깨지지 않는다고 제안했다.",
+              "timestamp": "00:57:49",
+              "original": "Nope. So the idea was that, By the time we figure out how we want the spec repo to look like, we should actually have some testing happening as well. Yeah, I'm still not quite sure how we want the… Consensus-spec repo, to look like, but we already have another top for a week. That's perfect, so… I feel like if we just have, like. the specs in some open PR, and at this point, I think we have, like, 3 different PRs for the quick slots implementation, so this is also quite confusing. I would personally much prefer if we, merge in… the spec that we want to target for the following devnets, instead of having open PRs. And I just don't think it's realistic to have an SFI state before a stable spec version. And the only way we can have a stable version is if we also run it on the iPad. So you're happy with, basically, 3 separate PRs and unsure which commit hash to target for your test? Can we do 12 seconds for mainnet spec and 5 seconds for minimal spec? So it'd be. How do you plan to test, shorter slots? If you leave the original numbers.",
+              "translation": "아닙니다. 아이디어는, 스펙 저장소가 어떤 모습이어야 하는지 파악할 때쯔음에는, 실제로 테스트도 함께 진행되고 있어야 한다는 것이었습니다. 네, 저는 여전히 합의 스펙 저장소가 어떤 모습이어야 하는지 잘 모르겠습니다만, 우리는 이미 일주일 동안 다른 주제를 다루고 있습니다. 그것이 완벽하네요. 그래서 저는, 만약 우리가 그냥 스펙을 어떤 열린 PR 안에 두는 식으로 한다면, 그리고 지금 시점에서, quick slots 구현을 위한 PR이 3개나 있는 것 같은데, 이것도 상당히 혼란스럽습니다. 저는 개인적으로 열린 PR들을 두는 대신, 다음 데브넷들을 위해 목표로 하는 스펙을 머지하는 것을 훨씬 선호합니다. 그리고 저는 안정적인 스펙 버전이 나오기 전에 SFI 상태가 되는 것이 현실적이지 않다고 생각합니다. 그리고 안정적인 버전을 가질 수 있는 유일한 방법은 그것을 iPad에서도 실행하는 것입니다. 그러니 당신은 기본적으로 3개의 별도 PR을 가지고 있고 테스트에 어떤 커밋 해시를 목표로 해야 할지 확신하지 못하는 상태에 만족하십니까? 메인넷 스펙은 12초로, 미니멀 스펙은 5초로 할 수 있을까요? 그렇게 되겠네요. 원래 숫자들을 그대로 두면 shorter slots를 어떻게 테스트할 계획입니까?"
+            },
+            {
+              "speaker": "Potuz",
+              "text": "포함이 확정되지 않은 피처는 메인 스펙 밖에 둬야 하고 테스트에 병합이 필요한 것도 아니라며 Barnabas에 반대했다. 피처 작성자가 데브넷용 태그를 제공하면 되고 그 태그가 메인 브랜치에서 나올 필요는 없다고 했다. 미니멀 스펙 시간을 바꾸면 Prysm 테스트가 깨진다고도 지적했다.",
+              "timestamp": "00:59:04",
+              "original": "It's… It's going to be circular, but I disagree with that segment. Again, I want to keep things out of the main spec if they are not scheduled for inclusion, and I don't think that we need to have them merged to be able to test them. I… I am not sure what is the best solution to this, and I acknowledge that it is more work for the spec maintainers, and for the feature writers for these features. If they want to have them tested. But I think that it should be on the people that are writing these features and the people that are maintaining these features to have the tag that would give us the test vector so that we can actually test. So I would want to have a tag for the devnet. And that tag does not need to come from the main branch. That would… that would break our testing. If you change the minimal spec, it would break our testing, so we would not be able… we would be forced to have Shorter slots on the… our trunk branch. Or skip the tests. Which, again, this is… this is my problem. the way. It shouldn't be complicated branching. It should be just one branch. You should… we keep… we keep… so we have a master branch that has Heze, has each directory, and we just keep one branch, which is our develop for the Consensus spec, and that branch is targeting whatever we're going to be testing. There's one branch that needs to be happening that is Testing Branch. It shouldn't be even a branch. It shouldn't be even a branch. It should be just always the rebase of these features on…",
+              "translation": "이건 순환 논리가 되겠지만, 저는 그 부분에 동의하지 않습니다. 다시 말하지만, 저는 포함이 예정되지 않은 것들은 메인 스펙 밖에 두고 싶고, 테스트를 하기 위해 그것들이 머지되어 있어야 한다고 생각하지 않습니다. 저는 이것에 대한 최선의 해결책이 무엇인지 확신하지 못하며, 이것이 스펙 관리자들과 이러한 기능들을 작성하는 사람들에게 더 많은 작업이 된다는 것을 인정합니다. 만약 그들이 테스트되기를 원한다면요. 하지만 저는 이러한 기능을 작성하는 사람들과 이러한 기능을 관리하는 사람들이 우리가 실제로 테스트할 수 있도록 테스트 벡터(test vector)를 제공하는 태그(tag)를 가지는 것이 맞다고 생각합니다. 그래서 저는 데브넷을 위한 태그를 원합니다. 그리고 그 태그는 메인 브랜치에서 나올 필요가 없습니다. 그렇게 하면 우리의 테스트가 깨질 것입니다. 미니멀 스펙을 바꾸면 우리의 테스트가 깨질 것이고, 그러면 우리는 트렁크(trunk) 브랜치에 shorter slots를 두도록 강제될 것입니다. 아니면 테스트를 건너뛰어야 합니다. 그런데 다시 말하지만, 이것이 제 문제입니다. 복잡한 브랜칭(branching)이어서는 안 됩니다. 그냥 하나의 브랜치여야 합니다. 우리는, 우리는, 그러니까 우리는 Heze를 가지고 있는, 각 디렉터리를 가지고 있는 마스터 브랜치를 유지하고, 합의 스펙을 위한 develop 브랜치 하나만 유지하며, 그 브랜치는 우리가 테스트하려는 것을 목표로 합니다. 발생해야 하는 브랜치는 하나뿐인데 그것이 테스팅 브랜치입니다. 그것은 브랜치조차 아니어야 합니다. 브랜치조차 아니어야 합니다. 그것은 그저 항상 이러한 기능들을 리베이스(rebase)하는 것이어야 합니다…"
+            },
+            {
+              "speaker": "Matthew Keil",
+              "text": "쟁점은 기계장치 자체가 아니라 슬롯 시간을 바꾼 채 병합하는 것이라며 메인넷 12초와 미니멀 6초를 그대로 두면 반대가 크게 줄어든다고 했다. 미니멀 시간 변경이 테스트를 깨뜨린다는 Potuz의 지적에는 동의했다.",
+              "timestamp": "01:00:46",
+              "original": "I think the only contention, at least from my side, is merging with 10 seconds. like, if we merge the machinery and have the option available so that we can test with it, I think it… meets at least a lot of the opposition that I've heard, to… to getting it merged. The biggest issue is forcing the issue of shortening the slot times. I mean, that to me feels reasonable. as long as the mainnet time doesn't change, so that we don't back ourselves into a corner, and we can still do the testing, which I do think is a really good, a really good feature set. I think I'm full-throated, in agreement. I apologize. I agree with Potuz, like, as long as the time stay… because I forgot, it's not 5, it's 6, I believe, on minimal. As long as the times remain the same with what they are today. I don't see a big issue.",
+              "translation": "적어도 제 입장에서, 유일한 쟁점은 10초로 머지하는 것이라고 생각합니다. 만약 우리가 그 메커니즘을 머지하고 그것으로 테스트할 수 있는 옵션을 제공한다면, 그것이 제가 들었던 반대 의견들 중 적어도 많은 부분을 해소한다고 생각합니다. 머지하는 것에 대해서요. 가장 큰 문제는 슬롯 시간을 단축하는 문제를 강제하는 것입니다. 그것은 저에게는 합리적이라고 느껴집니다. 메인넷 시간이 바뀌지 않는 한에서요. 그래야 우리가 스스로를 궁지로 몰아넣지 않고, 여전히 테스트를 할 수 있는데, 저는 그것이 정말 좋은, 정말 좋은 기능 묶음이라고 생각합니다. 저는 전적으로 동의합니다. 죄송합니다. 저는 Potuz에 동의합니다. 시간이 그대로 유지되는 한에서요. 왜냐하면 제가 잊고 있었는데, 미니멀에서는 5가 아니라 6인 것 같습니다. 오늘날과 같은 시간이 그대로 유지되는 한, 저는 큰 문제를 느끼지 않습니다."
+            },
+            {
+              "speaker": "Justin Traglia",
+              "text": "과반 클라이언트가 헤제 스펙 병합에 동의할 때까지 피처로 남겨야 하며 SFI가 병합의 전제는 아니지만 폭넓은 클라이언트 지지가 필요하다고 정리했다. 결정은 디스코드와 ACDC로 넘겼다.",
+              "timestamp": "01:00:18",
+              "original": "Until clients… I would say until a majority of clients agree to merge it into the Heze spec, it should remain a feature. But I don't think that we need to wait for it to be SFI, for it to be merged. But, yeah, so when a majority of clients want this, I'll merge it, or will merge it. I don't want to do, like, some complicated branching strategy, like we discussed on Discord. There you go. Not sure. What do you mean? Like, we currently just have a singular master branch. we don'. That was a complete idea. And you shouldn't be a… I think we have to keep it as a feature for now, for Barnabas. And then maybe we can discuss it more at ACDC next week or later, but I don't think there's support for merging it into Heze right now. I don't know. I mean, we could keep the same times, or the same slot durations, and merge it, but… I don't think that really… I'm not sure that really… fixes Potuz's core concern. And others. Alright, let's discuss this more on Discord and at ACDC, maybe, or just… Sometime more in the future. Are there any other topics, we'd like to discuss? Alright, well, thank you everyone for joining. I will see you guys at ACDC on Thursday. Bye, everyone.",
+              "translation": "클라이언트들이… 저는 다수의 클라이언트가 Heze 스펙에 머지하는 데 동의할 때까지는 이것이 기능(feature)으로 남아 있어야 한다고 말하고 싶습니다. 하지만 머지되기 위해 SFI가 될 때까지 기다려야 한다고는 생각하지 않습니다. 하지만, 네, 그래서 다수의 클라이언트가 이것을 원할 때, 저는 그것을 머지할 것입니다, 또는 머지될 것입니다. 저는 디스코드에서 논의했던 것 같은 복잡한 브랜칭 전략을 하고 싶지 않습니다. 그렇죠. 확실하지 않습니다. 무슨 뜻입니까? 그러니까, 우리는 현재 단 하나의 마스터 브랜치만 가지고 있습니다. 우리는… 그것은 완전한 아이디어였습니다. 그리고 당신은… 저는 지금은 Barnabas를 위해 이것을 기능으로 유지해야 한다고 생각합니다. 그리고 다음 주나 그 이후의 ACDC에서 더 논의할 수 있겠지만, 지금 당장 Heze에 머지하는 것에 대한 지지는 없다고 생각합니다. 모르겠습니다. 그러니까, 우리는 같은 시간, 즉 같은 슬롯 길이를 유지하면서 머지할 수도 있겠지만, 그것이 정말로 Potuz의 핵심 우려와 다른 분들의 우려를 해결하는지는 확신이 들지 않습니다. 좋습니다, 이것에 대해서는 디스코드와 ACDC에서, 아니면 그냥 앞으로 좀 더 시간을 두고 논의하도록 하겠습니다. 다른 논의하고 싶은 주제가 있습니까? 좋습니다, 참석해주신 모든 분께 감사드립니다. 목요일 ACDC에서 뵙겠습니다. 모두 안녕히 가세요."
+            }
+          ],
+          "quote": {
+            "text": "포함이 예정되지 않은 것들은 메인 스펙 밖에 두고 싶고, 테스트하기 위해 병합이 필요하다고 생각하지 않는다.",
+            "original": "I want to keep things out of the main spec if they are not scheduled for inclusion, and I don't think that we need to have them merged to be able to test them.",
+            "speaker": "Potuz",
+            "timestamp": "00:59:04"
+          }
+        }
+      ],
+      "speakers": [
+        {
+          "label": "Justin Traglia",
+          "name": "Justin Traglia",
+          "org": "EF",
+          "role": "보안",
+          "handle": "JustinTraglia",
+          "avatar": "https://pbs.twimg.com/profile_images/1648459994256543744/fn_SnKW5_400x400.jpg",
+          "share": 0.339
+        },
+        {
+          "label": "Barnabas",
+          "name": "Barnabas Busa",
+          "org": "EF DevOps",
+          "handle": "BarnabasBusa",
+          "avatar": "https://pbs.twimg.com/profile_images/534855342300352514/m-C5ReWq_400x400.jpeg",
+          "share": 0.076
+        },
+        {
+          "label": "Toni Wahrstätter",
+          "name": "Toni Wahrstätter",
+          "org": "EF",
+          "role": "리서처",
+          "handle": "nero_eth",
+          "avatar": "https://pbs.twimg.com/profile_images/1858347774129094657/xUc7IS2K_400x400.jpg",
+          "share": 0.076
+        },
+        {
+          "label": "Fredrik",
+          "name": "Fredrik",
+          "share": 0.076
+        },
+        {
+          "label": "Potuz",
+          "name": "Potuz",
+          "org": "Offchain Labs",
+          "role": "Prysm",
+          "handle": "potuz_eth",
+          "avatar": "https://pbs.twimg.com/profile_images/1494001194427158539/bfrZyMsG_400x400.jpg",
+          "share": 0.065
+        },
+        {
+          "label": "Nico Flaig",
+          "name": "Nico Flaig",
+          "org": "ChainSafe",
+          "role": "Lodestar",
+          "handle": "nicoflaig",
+          "avatar": "https://pbs.twimg.com/profile_images/1618325595397447689/9kzomyhR_400x400.jpg",
+          "share": 0.06
+        },
+        {
+          "label": "Maria Silva",
+          "name": "Maria Silva",
+          "role": "EIP-8037 제1저자",
+          "handle": "misilva73",
+          "avatar": "https://pbs.twimg.com/profile_images/1551690804594458624/elGlKFpy_400x400.jpg",
+          "share": 0.058
+        },
+        {
+          "label": "Dustin",
+          "name": "Dustin Brody",
+          "org": "Nimbus",
+          "share": 0.058
+        },
+        {
+          "label": "Dima Gusakov | Lido",
+          "name": "Dima Gusakov",
+          "org": "Lido",
+          "share": 0.056
+        },
+        {
+          "label": "Sam | Nimbus",
+          "name": "Sam",
+          "org": "Nimbus",
+          "share": 0.031
+        },
+        {
+          "label": "Fabio - Besu",
+          "name": "Fabio",
+          "share": 0.025
+        },
+        {
+          "label": "Matthew Keil",
+          "name": "Matthew Keil",
+          "org": "ChainSafe",
+          "role": "Lodestar",
+          "handle": "matthewkeil",
+          "avatar": "https://pbs.twimg.com/profile_images/1455695649899438083/nWUpW5EK_400x400.jpg",
+          "share": 0.022
+        },
+        {
+          "label": "Łukasz Rozmej",
+          "name": "Łukasz Rozmej",
+          "org": "Nethermind",
+          "role": "EIP-8037 공동 저자",
+          "share": 0.02
+        },
+        {
+          "label": "Stefan Starflinger",
+          "name": "Stefan Starflinger",
+          "org": "EF DevOps",
+          "share": 0.011
+        },
+        {
+          "label": "Pawan Dhananjay",
+          "name": "Pawan Dhananjay",
+          "share": 0.009
+        },
+        {
+          "label": "Daniel Lehrner",
+          "name": "Daniel Lehrner",
+          "share": 0.004
+        },
+        {
+          "label": "Mario Vega",
+          "name": "Mario Vega",
+          "org": "EF",
+          "role": "테스팅, ACDT 진행",
+          "handle": "elbuenmayini",
+          "avatar": "https://pbs.twimg.com/profile_images/1616232824415342592/Wly-1ddA_400x400.jpg",
+          "share": 0.004
+        },
+        {
+          "label": "jochem-brouwer",
+          "name": "Jochem Brouwer",
+          "org": "EF",
+          "role": "EthereumJS · EIP-8037 공동 저자",
+          "share": 0.004
+        },
+        {
+          "label": "Francesco D'Amato",
+          "name": "Francesco D'Amato",
+          "org": "EF",
+          "role": "리서처",
+          "handle": "fradamt",
+          "avatar": "https://pbs.twimg.com/profile_images/1459852719783657484/8S8aKURW_400x400.jpg",
+          "share": 0
+        }
+      ],
+      "chat": [
+        {
+          "speaker": "lightclient",
+          "text": "이미 브레이크를 밟았고 감사자도 고용했으니, 감사가 끝까지 돌게 두는 편이 낫다",
+          "timestamp": "00:26:49"
+        },
+        {
+          "speaker": "Fredrik",
+          "text": "핵심 질문은 메인넷의 업그레이드 불가능한 컨트랙트에서 사람들이 이탈할 시간을 얼마나 주느냐이며, 후디 업그레이드 날짜는 거기에 큰 차이를 만들지 않을 것 같다",
+          "timestamp": "00:26:39"
+        },
+        {
+          "speaker": "gary",
+          "text": "Geth는 getPayload 요청이 오면 항상 현재 페이로드를 즉시 반환하고, 완전한 블록이 아직 안 만들어졌으면 빈 블록으로 폴백한다",
+          "timestamp": "00:39:05"
+        }
+      ],
+      "glossary": [
+        {
+          "term": "SFI",
+          "def": "Scheduled for Inclusion. 다음 포크 포함이 확정된 상태"
+        },
+        {
+          "term": "ePBS",
+          "def": "프로토콜에 내장된 제안자-빌더 분리. 블록 제안과 블록 제작을 프로토콜 차원에서 나누는 설계"
+        },
+        {
+          "term": "FOCIL",
+          "def": "포크초이스 강제 인클루전 리스트. 지정된 트랜잭션을 블록에 반드시 포함하도록 강제하는 장치"
+        },
+        {
+          "term": "getPayload",
+          "def": "합의 계층(CL)이 실행 계층(EL)에 블록 본문(페이로드)을 요청하는 엔진 API 호출"
+        },
+        {
+          "term": "백필(backfill)",
+          "def": "체크포인트에서 동기화를 시작한 노드가 과거 블록을 거꾸로 채워 넣는 과정"
+        },
+        {
+          "term": "고시프(gossip)",
+          "def": "노드들이 블록과 메시지를 서로 전파하는 P2P 계층"
+        },
+        {
+          "term": "후디(Hoodi)",
+          "def": "이더리움 공개 테스트넷 중 하나로, 메인넷 포크 전 업그레이드를 검증하는 데 쓰인다"
+        },
+        {
+          "term": "헤제(Heze)",
+          "def": "글램스테르담 다음으로 논의 중인 이더리움 업그레이드 이름"
+        }
+      ],
+      "eips": [
+        8037,
+        8038
+      ],
+      "relatedDebates": [
+        "state-gas-repricing-growth",
+        "create2-factory-eip7997-worth"
+      ],
+      "telegramMessageId": 1703
+    },
     {
       "id": "acde-248",
       "series": "acde",
@@ -18011,13 +18509,13 @@
     "currentFork": {
       "name": "글램스테르담",
       "stage": "테스트넷 단계",
-      "line": "세폴리아 10월 6일 완료 · 후디 무기한 취소 · 메인넷 결정 보류"
+      "line": "후디 최소 2주 연기 · 감사 후 재논의 · 메인넷 날짜 보류"
     },
     "nextFork": {
       "name": "헤고타",
       "stage": "범위 정하는 중",
-      "line": "CFI 8건 · DFI 7건 · bogota-devnet-2 10월 26일 주 출시"
+      "line": "CFI 8건 · 보고타 devnet-2 출시 · 통합 devnet 데브콘 후"
     },
-    "basis": "acde-248"
+    "basis": "acdt-102"
   }
 }
