@@ -261,7 +261,8 @@
         "quotes": 0,
         "replies": 5,
         "views": 3448
-      }
+      },
+      "publish": true
     },
     {
       "id": "eth-sov-internal-faction",
@@ -403,7 +404,8 @@
         "quotes": 0,
         "replies": 30,
         "views": 11780
-      }
+      },
+      "publish": true
     },
     {
       "id": "decentralization-as-business-model",
@@ -516,7 +518,8 @@
         "quotes": 1,
         "replies": 9,
         "views": 3882
-      }
+      },
+      "publish": true
     },
     {
       "id": "l1-repricing-breaks-deployed-contracts",
@@ -629,7 +632,8 @@
         "quotes": 1,
         "replies": 3,
         "views": 875
-      }
+      },
+      "publish": true
     },
     {
       "id": "state-gas-repricing-growth",
