@@ -1,6 +1,406 @@
 {
   "digests": [
     {
+      "date": "2026-10-29",
+      "title": "가스 리프라이싱 수습 경로가 정해지는 사이 코어 개발 자금 조달 논쟁이 전면화됐다",
+      "shortTitle": "개발 자금 논쟁이 시작됐다",
+      "subTitle": "감사를 기다리는 사이 개발 자금의 미래가 쟁점이 됐다",
+      "intro": "ACDT #102에서 Hoodi 포크 연기가 최소 2주로 공식화됐고, EIP-8037 수습의 기본 경로는 영향받는 컨트랙트가 스스로 고치는 쪽으로 정리되고 있다. 지난 호까지 배포된 코드에 대한 약속 논쟁이던 것이 이제 감사 결과를 기다리는 실무 절차로 바뀐 셈이다. 같은 기간 트위터에서는 프로토콜 내장 개발자 펀딩, 이른바 dev tax를 둘러싼 설전이 lightclients와 lex_node 사이에서 시작돼 Protocol Guild의 trent_vanepps, EF의 Barnabé Monnot와 Tim Beiko까지 번졌다. EF의 예산 감축이 현실이 된 상황에서 누가 어떤 구조로 코어 개발비를 대는가라는 질문이 ETH의 자산 정체성 논쟁과 한 덩어리로 묶인 것이다. 그 사이 토큰화 주식은 담보 대출과 페어 유동성이라는 2차 금융 구조로 조용히 들어섰다.",
+      "sections": [
+        {
+          "heading": "이번 호 인사이트",
+          "items": [
+            {
+              "title": "가스 리프라이싱 수습의 기본 경로가 영향받는 컨트랙트의 자체 수정으로 잡혔다",
+              "summary": "ACDT #102는 Hoodi 연기를 최소 2주로 공식화하면서 수습의 방향도 보여줬다. EF 리서처 Francesco는 Sourcify 컨트랙트 스캔을 포함한 종합 분석에서 의미 있는 발견이 없었다며 스펙 변경 가능성을 매우 낮게 봤고, 콜에서 확인된 기본 경로는 영향받는 컨트랙트가 스스로 수정하고 스펙 변경은 최후 수단으로 남기는 것이다. 지난 호에서 다룬 Ethlabs의 에이전트 스웜 분석이 주말 내내 돌아갔고, nero_eth는 앱 개발자와 감사자에게 직접 점검과 제보를 요청했다. 결론은 ChainSecurity와 Dedaub의 감사 결과(약 2주 뒤)와 Łukasz의 스펙 변경 PR 리뷰가 좌우하며, Maria는 일괄 번들 대신 invariant별 타깃 수정으로 분해 작업 중이다. 배포된 코드에 대한 약속 논쟁이 추상적 원칙 싸움에서 감사와 PR 리뷰라는 구체적 절차로 내려온 것이 이번 호의 변화다.",
+              "why": "이 경로가 유지되면 L1 가스 시맨틱은 불변 보장이 아니라는 선례가 남고, 뒤집히면 앞으로의 모든 리프라이싱이 지금보다 훨씬 어려워진다.",
+              "url": "https://forkcast.org/calls/acdt/102/",
+              "source": "Forkcast",
+              "date": "2026-10-26"
+            },
+            {
+              "title": "EF 자금 축소를 배경으로 프로토콜 내장 개발자 펀딩 논쟁이 전면화됐다",
+              "summary": "lex_node가 dev tax 없음을 이더리움의 강점으로 마케팅하자고 제안한 데서 시작된 설전이 사흘간 세 갈래로 번졌다. lightclients는 프리마인도 dev tax의 다른 형태이며 연 수천만 달러 규모의 이타적 자금 없이 네트워크가 유지되는지 본 적이 없다고 맞섰고, trent_vanepps는 추가 자금 요구 전에 먼저 결과물을 내놓으라며 Protocol Guild 중위 멤버 수령액이 연 약 3만 달러 수준이라는 수치까지 공개했다. Tim Beiko는 ETH가 메인넷이 보장하는 가장 중요한 것이라며 ETH의 투자 자산화를 바라지 않는 입장은 일관되지 않다고 반박했고, 과거 이 아이디어에 호의적이었던 EF RIG의 Barnabé Monnot까지 공개적으로 dev tax 반대를 선언했다. 배경에는 EF의 2025년 트레저리 정책과 2026년 6월 감축이 있으며, 지난 호의 'ETH는 이더리움의 가장 중요한 애플리케이션' 담론과 9월의 형식검증 자금 지속성 논의가 모두 이 지점으로 수렴하고 있다.",
+              "why": "코어 개발 자금 구조에 대한 합의 실패는 기술 로드맵이 아니라 개발 조직의 지속성 자체를 이더리움의 리스크로 만든다.",
+              "url": "https://x.com/lightclients/status/2114734388319510566",
+              "source": "@lightclients",
+              "date": "2026-10-27"
+            },
+            {
+              "title": "토큰화 주식이 발행 단계를 지나 담보와 유동성의 금융 구조로 들어갔다",
+              "summary": "이번 호의 토큰화 주식 소식은 모두 발행이 아니라 2차 금융화에 관한 것이다. Base의 Aave v4에는 Coinbase 발행 토큰화 주식이 1,000만 달러 넘게 담보로 예치됐고(30일간 514.5% 증가), Uniswap의 StablePair Hook은 스테이블코인 밖 첫 적용처로 Robinhood Chain에서 Robinhood와 Ondo의 동일 주식 토큰을 1:1 페그 페어로 묶었다. Aave V4 활성 대출은 두 달 새 두 배가 넘는 5억 달러를 돌파했고 Arbitrum의 토큰화 펀드 시가총액은 11억 달러에 이른다. 지난 호까지의 흐름(장외 시간 거래 62%, MAG7 인덱스, 발행사 22곳의 제3자 차단)과 합치면, 경쟁의 축이 누가 발행하느냐에서 어디서 담보로 쓰이고 유동성이 고이느냐로 옮겨가고 있다.",
+              "why": "금융 구조가 규제 정리보다 먼저 자리 잡으면, 토큰화 주식의 규제 리스크가 이더리움 디파이 전반의 리스크로 전이될 수 있다.",
+              "url": "https://x.com/haydenzadams/status/2115123909511233625",
+              "source": "@haydenzadams",
+              "date": "2026-10-27"
+            }
+          ]
+        },
+        {
+          "heading": "코어 개발자 콜",
+          "items": [
+            {
+              "title": "ACDT #102, 10월 26일",
+              "summary": "Hoodi 포크 스케줄링을 최소 2주 연기하고 ChainSecurity와 Dedaub의 감사(예상 약 2주) 완료 후 재논의하기로 했다. 빌더 온보딩 수정(consensus-specs PR #5736)이 승인돼 포크 시점에 0x0B 프리픽스 예치금만 빌더에 크레딧함으로써 스테이킹 프로토콜의 예치 invariant를 보존하며, GetPayload 타임아웃 정의는 제거돼(execution-apis PR #958) EL이 즉시 응답해야 한다. 슬롯 단축은 다수 클라이언트 동의 전까지 Heze 스펙에 머지하지 않는 피처 브랜치로 유지하고 최종 판단은 ACDC로 넘겼다. EIP-8037/8038 관련해서는 하드코딩된 가스, gasleft 증가, 리펀드 경로 해제, 리프라이싱 상호작용이라는 네 가지 브레이킹 패턴이 식별됐고, 기본 수습 경로는 영향받는 컨트랙트의 자체 수정, 스펙 변경은 최후 수단으로 정리됐다. 다음 콜은 Devcon으로 11월 9일로 이동한다.",
+              "why": "Glamsterdam 연기 폭을 결정할 스펙 변경 여부의 판단 틀과 시한이 이 콜에서 정해졌다.",
+              "url": "https://forkcast.org/calls/acdt/102/",
+              "source": "Forkcast",
+              "date": "2026-10-26"
+            },
+            {
+              "title": "FOCIL Breakout #45, 10월 27일",
+              "summary": "프로포저가 시간 내 도착한 인클루전 리스트(IL)만 고려해 입찰을 고르도록 하는 PR #5741을 #5740보다 선호하기로 해 어테스터 관점과 정렬하고 늦은 IL을 이용한 괴롭힘 공격을 차단했다. 빌더가 IL 데드라인 전에 높은 입찰을 조기 브로드캐스트해 호환 입찰을 밀어내는 두 번째 공격 벡터는 데드라인 전 입찰을 무시하는 P2P 가십 규칙으로 수정하며, IL을 충족하지 않는 페이로드가 head가 될 수 있는 스펙 버그(PR #5769)도 수정을 논의 중이다. Jihoon이 제안한 새 FOCIL-frame engine API(consensus-specs #5772, execution-apis #960)는 CL이 중복 제거 없이 raw IL을 EL에 넘기는 방식으로, 20M 가스 리밋 기준 대역폭 오버헤드는 최대 약 4.4%다. FOCIL과 프레임의 상호작용 설계는 hegota-devnet-0 타깃 전에 확정돼야 하며, 다음 브레이크아웃은 Devcon으로 11월 17일로 연기됐다.",
+              "why": "Hegotá의 핵심 검열저항 기능인 FOCIL이 빌더 시장, 프레임 트랜잭션 포맷과 맞물리는 설계 접합부가 지금 결정되고 있다.",
+              "url": "https://forkcast.org/calls/focil/045/",
+              "source": "Forkcast",
+              "date": "2026-10-27"
+            }
+          ]
+        },
+        {
+          "heading": "프로토콜 업데이트",
+          "items": [
+            {
+              "title": "Sepolia에서 EIP-8025 실행 증명 프루버 가동, 블록당 6~7초 증명",
+              "summary": "EIP-8025 실행 증명(execution proof) 프루버가 Sepolia에서 가동 중이라는 운영 보고가 공개됐다. 16장의 RTX 5090에서 OpenVM으로 블록당 약 6~7초에 증명을 생성하며, ethrex와 reth 두 개의 게스트 프로그램이 각각 8 GPU를 쓰고 누적 증명은 3만 6천 건을 넘었다. 블록당 달러 비용 질문에는 계측 도구를 통합 중이라 아직 이르다고 답했다. EIP-8025의 코어 EIP 여부 논쟁과 별개로 실증 인프라는 공개 테스트넷에서 계속 축적되고 있다.",
+              "why": "실행 증명이 연구 단계를 지나 소비자급에 가까운 하드웨어로 공개 테스트넷 블록을 실시간 증명하는 단계에 들어섰다.",
+              "url": "https://x.com/ryanberckmans/status/2114664954871832711",
+              "source": "@TauLepton_",
+              "date": "2026-10-26"
+            },
+            {
+              "title": "EIP-7002 인출 요청 컨트랙트의 핵심 속성 Lean 4 기계 증명",
+              "summary": "skbaek이 Prague 이후 밸리데이터 종료와 부분 인출 요청을 처리하는 504바이트 프리디플로이 컨트랙트에 대해 Lean 4로 두 속성을 증명했다. 시스템 콜이 스토리지 내용과 무관하게 항상 성공하고 가스 210,000 이내에 끝난다는 것(EIP-7002상 이 콜이 실패하면 블록이 무효이므로 합의 크리티컬), 그리고 제출된 요청이 유실, 중복, 재정렬 없이 FIFO로 처리된다는 것이다. 동시에 바이트코드의 수수료 계산이 256비트 오버플로우로 EIP 스펙과 달라질 수 있음을 기계검증 반례로 보였다. 지난주 공개된 형식검증 속성 레지스트리 흐름의 연장선에서, 실제 합의 크리티컬 컨트랙트가 검증 대상이 된 사례다.",
+              "why": "형식검증이 스펙 문서와 배포 바이트코드 사이의 실제 불일치를 찾아내는 수준까지 왔음을 보여준다.",
+              "url": "https://ethresear.ch/t/lean-verification-of-eip-7002-system-call-success-and-fifo-requests/26180",
+              "source": "ethresear.ch",
+              "date": "2026-10-26"
+            },
+            {
+              "title": "nero_eth의 EIP-8037 점검 요청, 가스가 트랜잭션 중간에 되돌아오는 세 가지 문제",
+              "summary": "EF 리서처 nero_eth가 EIP-8037의 핵심 문제를 '이미 쓴 가스가 트랜잭션 중간에 돌아와 gasleft()가 증가할 수 있다'로 요약하고 세 가지 양상을 정리했다. before/after 가스 카운터의 언더플로우 revert, 실패한 서브콜이 가스를 돌려줘 도달 불가능해야 할 경로가 실행되는 문제, GAS 측정 시 상태 가스 리저버가 보이지 않아 생기는 과소 측정이다. 그는 Hoodi 연기가 시간을 벌었을 뿐 문제를 해결한 것은 아니라며 앱 개발자와 감사자에게 자기 컨트랙트 점검과 제보를 요청했다.",
+              "why": "수습의 기본 경로가 컨트랙트 자체 수정인 만큼, 영향 범위 파악이 코어 팀만의 일이 아니라 앱 생태계 전체의 과제가 됐다.",
+              "url": "https://x.com/nero_eth/status/2114631334526161274",
+              "source": "@nero_eth",
+              "date": "2026-10-26"
+            },
+            {
+              "title": "EF App Enablement, 앱 레이어 팀의 로드맵 의견 수렴과 CROPS 설계 연구",
+              "summary": "EF App Enablement 팀이 ACD 콜에 덜 참여하는 프로토콜 팀들의 의견을 수렴하고 있으며, Ethereum Magicians에는 스테이킹과 오라클 팀 인터뷰를 바탕으로 한 CROPS(검열저항, 오픈소스, 프라이버시, 보안) 원칙 중심의 설계 연구가 게시됐다. 각 팀에 비즈니스 제약 없이 다시 설계한다면 무엇을 바꿀지, 그 설계를 막는 것은 무엇인지, 가장 도움이 될 단일 변화는 무엇인지를 물었다. 설계자들이 이더리움을 쓰지 않는다는 지난 호의 비판에 대해 EF가 제도화된 수렴 채널로 답하는 모양새다.",
+              "why": "ACD 의사결정 구조 비판에 대한 EF의 대응이 프로세스 개편이 아니라 입력 채널 확충 쪽에서 먼저 나오고 있다.",
+              "url": "https://ethereum-magicians.org/t/app-layer-input-on-eips-and-the-roadmap-staking-and-oracles/30104",
+              "source": "Ethereum Magicians",
+              "date": "2026-10-27"
+            }
+          ]
+        },
+        {
+          "heading": "포럼 제안",
+          "items": [
+            {
+              "title": "합의 레이어 P2P의 양자내성 마이그레이션 인벤토리",
+              "summary": "adust09(Nyx Foundation)가 밸리데이터 BLS 서명을 leanXMSS로 바꿔도 ENR, Discovery v5, libp2p Peer ID, QUIC/TLS 등 네트워킹 신원과 핸드셰이크는 그대로 남는다는 점을 지적하고, 디스커버리, 키 교환, 연결 인증이라는 세 가지 연결된 마이그레이션 타깃을 정리했다. ENR 300바이트와 Discovery v5 패킷 1,280바이트 제한 때문에 ML-DSA 같은 양자내성 서명의 직접 대체는 불가능해 디스커버리는 재설계가 필요하며, 하이브리드 X25519+ML-KEM은 '지금 기록해 나중에 복호화' 공격에는 대응하지만 양자내성 인증 문제는 해결하지 못한다. 현재 이더리움 CL 네트워킹의 양자내성 프로파일은 존재하지 않는다. 지난 호들의 양자내성 키 레지스트리(EIP-8450), 2029년 말 L1 목표 논의가 서명에 집중됐다면 이 글은 그 사각지대를 드러낸다.",
+              "why": "밸리데이터 서명만 바꿔서는 양자내성 이더리움이 완성되지 않으며, P2P 레이어가 로드맵의 빠진 조각임을 보여준다.",
+              "url": "https://ethresear.ch/t/inventory-of-pq-p2p-migrations-in-the-consensus-layer/26183",
+              "source": "ethresear.ch",
+              "date": "2026-10-27"
+            },
+            {
+              "title": "블라인드 서명 공격을 막는 트랜잭션 검증 표준 STVA 드래프트",
+              "summary": "Obaresearch가 2025년 Bybit Safe 사건 같은 서명 플로우와 공급망 공격에 대응하는 ERC 드래프트 STVA를 제안했다. 검증 페이로드, 독립 시뮬레이션 인터페이스, 범위가 한정된 권한(scoped capabilities)을 표준화해 '보이는 대로 서명한다'를 희망사항이 아니라 강제 가능한 속성으로 만들겠다는 것이다. 멀티시그 UI를 속이는 공격이 반복되는 상황에서 검증 자체를 표준 레이어로 끌어올리는 시도다.",
+              "why": "하드웨어 월렛과 멀티시그를 노린 공격이 계속되는 가운데 서명 검증을 지갑 구현이 아닌 표준의 문제로 재정의한다.",
+              "url": "https://ethereum-magicians.org/t/erc-draft-secure-transaction-verification-and-authorization-stva-stopping-blind-signing-multisig-ui-attacks/30106",
+              "source": "Ethereum Magicians",
+              "date": "2026-10-27"
+            },
+            {
+              "title": "EIP-4844 포인트 평가를 묶어 검증하는 배치 KZG 기법 제안",
+              "summary": "n회의 EIP-4844 포인트 평가 프리컴파일 호출을 EIP-2537의 BLS12-381 G1 MSM 2회와 페어링 체크 1회로 대체하는 컨트랙트 레벨 기법이 새 EIP로 제안됐다. 손익분기 배치 크기는 약 5~6개 오프닝이고 대형 배치에서는 가스를 약 50~70% 절감한다. 블롭을 많이 쓰는 롤업과 DA 검증 컨트랙트에 직접적인 비용 절감 경로가 된다.",
+              "why": "프리컴파일 추가 없이 기존 EIP-2537만으로 블롭 검증 비용을 크게 낮출 수 있음을 보여주는 조합형 최적화다.",
+              "url": "https://x.com/ethresearchbot/status/2114673663353995388",
+              "source": "ethresear.ch",
+              "date": "2026-10-26"
+            },
+            {
+              "title": "EIP-8297 바이너리 트리 상태의 물리 스토리지 설계 비교",
+              "summary": "cocoyoon이 hexary MPT를 partitioned binary tree로 대체할 때의 물리 스토리지 설계를 Ethereum Magicians에 공유했다. 메인넷 기준으로 storage leaf 위에 45~48개, account leaf 위에 32개의 브랜치 레코드가 생기며, 메인넷 2주치를 리플레이해 8가지 디스크 레이아웃을 비교했다. geth의 자가 마이그레이션, Besu의 데브넷 루트 동기화에 이어 PBT 전환의 디스크 레벨 설계까지 논의가 내려온 것이다.",
+              "why": "상태 트리 전환이 스펙 논의를 지나 클라이언트별 디스크 레이아웃이라는 구현 최종 단계에 진입했음을 보여준다.",
+              "url": "https://ethereum-magicians.org/t/physical-storage-for-eip-8297-pbt-state/30092",
+              "source": "Ethereum Magicians",
+              "date": "2026-10-27"
+            },
+            {
+              "title": "전자여권 기반 1인 1표 암호화 투표 설계 Proof of One",
+              "summary": "NemoUnus가 ICAO 9303 전자여권 NFC, ZK 증명, 엔클레이브 얼굴 매칭, Baby Jubjub ElGamal과 Groth16을 조합한 1인 1표 암호화 투표 설계와 참조 코드를 공개하고 비판적 리뷰를 요청했다. 설계와 코드 대부분을 AI 에이전트 팀이 작성했음을 AGENTS.md로 공개했고, 여권 발급기관이 허위 신원을 만들 수 있다는 한계도 명시했다. 1~2문장 요약이 어려울 만큼 스택이 넓지만, 신원 증명과 AI 에이전트 작성 코드의 공개 리뷰라는 두 흐름이 겹치는 지점이다.",
+              "why": "온체인 신원과 투표 설계에서 AI가 작성한 코드의 투명한 공개와 커뮤니티 검증이라는 새 관행이 실험되고 있다.",
+              "url": "https://ethresear.ch/t/proof-of-one-one-person-one-identity-polling-with-encrypted-ballots-design-and-reference-code-requesting-critical-review/26184",
+              "source": "ethresear.ch",
+              "date": "2026-10-27"
+            },
+            {
+              "title": "CALLSTATUS 옵코드 번호 이동",
+              "summary": "지난 호에서 다룬 EIP-8456 CALLSTATUS 명령이 옵코드 0x4D에서 0xA5로 이동했다. 0x4D가 다른 PR에서 제안돼 충돌을 피한 조정이다.",
+              "why": "옵코드 공간 경합이 생길 만큼 EVM 명령 추가 제안이 활발하다는 신호다.",
+              "url": "https://ethereum-magicians.org/t/eip-8456-callstatus-instruction/30085",
+              "source": "Ethereum Magicians",
+              "date": "2026-10-26"
+            },
+            {
+              "title": "이번 주 ERC 드래프트 5건",
+              "summary": "크로스체인 클라이언트 게이트웨이(ERC-8446), 스웜 AI 프레임워크(ERC-8447), 에이전트 서비스 주문 수정(ERC-8448), 잠금 가능 토큰의 영구 잠금(ERC-8451), AIFi 유닛 프레임워크(ERC-8454)가 드래프트로 올라왔다. 에이전트 관련 표준이 이번에도 절반 이상을 차지한다.",
+              "why": "ERC 신규 제안의 무게중심이 에이전트 경제 쪽으로 계속 쏠리고 있다.",
+              "url": "https://x.com/EtherealnewsHQ/status/2115189456114536765",
+              "source": "@EtherealnewsHQ",
+              "date": "2026-10-27"
+            }
+          ]
+        },
+        {
+          "heading": "트위터 논쟁",
+          "items": [
+            {
+              "title": "프로토콜 내장 개발자 펀딩을 두고 lightclients와 lex_node가 갈렸다",
+              "summary": "lex_node가 dev tax 없음이 이더리움의 큰 강점이며 이를 ETH 자산 가치의 마케팅 패키지로 삼자고 하자, lightclients는 프리마인도 dev tax의 다른 형태이고 원래 dev tax의 잔재 없이 돌아가는 이더리움을 본 적이 없으므로 강점이라 단정할 수 없다고 반박했다. lex_node는 후원(패트로니지)으로 충분하며 이더리움에 dev tax가 필요하다면 ETH는 투자 자산으로서 죽은 것이라는 입장을 고수했고, lightclients는 후원에는 보이지 않는 조건이 붙어 코어 작업이 가격에 종속될 수 있으며 연 수천만 달러의 이타적 자금을 어떻게 지속할지 답이 먼저라고 맞섰다. owocki가 Tom Lee, dev tax, EF 중 무엇이 가장 포획 위험이 큰지 물었고 lex_node는 '모두'가 스폰서인 dev tax가 책임 추궁이 가장 어렵다며 DAO 사례를 들었다. Solana의 toly까지 끼어들어 lex_node가 ETH를 팔면 어디로 가느냐는 농담이 오가는 등 체인 경계를 넘는 관심을 모았다.",
+              "why": "EF 자금 축소 국면에서 코어 개발 펀딩의 제도 설계가 ETH의 자산 서사와 직결되는 쟁점으로 공론화됐다.",
+              "url": "https://x.com/lightclients/status/2114734388319510566",
+              "source": "@lightclients",
+              "date": "2026-10-26"
+            },
+            {
+              "title": "코어 개발 추가 자금의 긴급성을 두고 lightclients와 trent_vanepps가 갈렸다",
+              "summary": "lightclients가 인접 도메인(Zcash 등) 사례를 들어 이더리움도 비슷한 수준의 익스플로잇을 겪어야 사람들이 프로토콜 펀딩을 진지하게 볼 것이라고 하자, Protocol Guild의 trent_vanepps는 EF와 Ethlabs의 자금으로 로드맵을 끝내지 못하느냐고 되물으며 '추가 자금을 요구하기 전에 먼저 내놓으라'고 반박했다. 그는 코어 개발자 보상이 Protocol Guild로 이미 적정 수준 이상이라면서도, EF가 2025년 트레저리 정책과 2026년 6월 감축으로 명시적인 축소를 밝힌 만큼 전환을 미리 고민해야 한다는 뉘앙스도 덧붙였고, Protocol Guild 중위 멤버 수령액이 전후 12개월 기준 약 3만 달러라는 수치로 과장된 인식을 정정했다. lex_node는 이더리움 조직들이 이미 보유한 ETH의 가치를 키우는 마케팅이 우선이라고 가세했다.",
+              "why": "펀딩 논쟁이 추상론이 아니라 Protocol Guild 실수령액과 EF 감축 일정이라는 구체적 수치 위에서 진행되기 시작했다.",
+              "url": "https://x.com/lightclients/status/2115104431494799656",
+              "source": "@lightclients",
+              "date": "2026-10-27"
+            },
+            {
+              "title": "ETH가 가치저장 자산이어야 하는지를 두고 lex_node와 Tim Beiko가 갈렸다",
+              "summary": "lex_node가 이더리움 내부에 ETH의 투자 자산화를 적극적으로 원하지 않는 영향력 있는 인사들이 있으며 이는 일관된 견해지만 ETH 투자 논거가 이기려면 이들을 꺾어야 한다고 주장하자, EF의 Tim Beiko는 이더리움의 세계에 대한 영향력을 중시한다면 그것은 일관된 견해가 아니라고 반박했다. 메인넷 없이는 모든 것이 시간이 지나며 이더리움에서 멀어지고, ETH는 메인넷이 실제로 보장하는 가장 중요한 것이라는 논리다. lex_node는 ETH가 인플레이션을 이기기를 바라지 않는 것 자체가 이해되지 않는다고 재반박했다.",
+              "why": "ACD 코디네이터가 ETH의 자산 가치를 메인넷 보안의 핵심으로 공개 인정한 것은 EF 내부 담론의 변화를 보여주는 지표다.",
+              "url": "https://x.com/lex_node/status/2114785376279683476",
+              "source": "@lex_node",
+              "date": "2026-10-26"
+            },
+            {
+              "title": "리프라이싱이 OP 스택을 다시 깨뜨린 책임을 두고 donnoh_eth와 nero_eth가 갈렸다",
+              "summary": "L2BEAT의 donnoh_eth가 대부분의 OP 스택 체인이 EIP-8037로 또 깨진다며, Fusaka 때도 트랜잭션 가스 리밋이 사기 증명 시스템과 충돌했는데 L1이 계속 자기 스택을 깨뜨리면 개발자나 불변 컨트랙트 옹호자 입장에서는 좌절스러울 것이라고 비판했다. nero_eth는 깨뜨리는 것을 받아들이자는 주장이 아니라며, 미래 수요에 맞춰 리프라이싱할 유연성과 기반이 바뀌지 않는다는 확실성 사이의 트레이드오프에서 적정점을 찾는 문제라고 답했다. 지난 호의 '배포된 컨트랙트에 대한 약속' 논쟁이 L2 스택이라는 구체적 피해 사례를 얻은 셈이다.",
+              "why": "L1 리프라이싱의 비용을 가장 먼저 치르는 것이 L2 스택이라는 점이 반복 확인되면서 L1과 L2의 이해관계 조정이 쟁점이 되고 있다.",
+              "url": "https://x.com/nero_eth/status/2114639333063889295",
+              "source": "@donnoh_eth",
+              "date": "2026-10-26"
+            },
+            {
+              "title": "탈중앙화가 비즈니스 모델이 될 수 있는지를 두고 binji_x와 lex_node가 갈렸다",
+              "summary": "Optimism의 binji_x가 VC들이 크립토라는 이름만 붙으면 돈을 던지던 시절이 탈중앙화를 추구할 여유를 줬으며 탈중앙화는 그것을 물려받는 다음 세대만큼만 강하다고 쓰자, lex_node는 탈중앙화는 훌륭한 사명이지만 그 자체가 비즈니스 모델이 될 수는 없다고 반박했다. binji_x는 모든 것에 비즈니스 모델이 필요한 것은 아니라고 맞섰다. dev tax 설전과 같은 날 벌어진 이 논쟁은 사실상 같은 질문, 즉 공공재 성격의 작업을 누가 지속 가능하게 만드는가를 다른 각도에서 다룬다.",
+              "why": "펀딩 논쟁의 기저에 있는 가치 대 사업성의 긴장이 L2 진영에서도 같은 구도로 반복되고 있다.",
+              "url": "https://x.com/binji_x/status/2115055698979479718",
+              "source": "@binji_x",
+              "date": "2026-10-27"
+            }
+          ]
+        },
+        {
+          "heading": "주요 발언",
+          "items": [
+            {
+              "title": "Barnabé Monnot, '예산 제약을 풀어주는 것은 어려운 선택을 돕지 않는다'",
+              "summary": "EF RIG의 Barnabé Monnot가 과거에는 dev tax 아이디어에 더 호의적이었음을 인정하면서도 공개적으로 반대를 선언했다. EF를 포함한 모든 공공 이더리움 조직은 높은 책임성을 가져야 하며, AI 역량이 날마다 커지고 ETH가 세계 최고의 프로그래머블 가치저장 수단이 될 기회가 있는 지금, 비용이 크고 경로를 바꾸는 보험에 가입하기 전에 미래를 지켜보자는 논리다.",
+              "why": "EF 리서치 내부 인사가 dev tax 반대를 명시한 것으로, 논쟁의 무게중심이 반대쪽으로 기울었음을 보여준다.",
+              "url": "https://x.com/barnabemonnot/status/2115153960726040974",
+              "source": "@barnabemonnot",
+              "date": "2026-10-27"
+            },
+            {
+              "title": "Vitalik Buterin, '유스케이스 차별이 사용자 차별보다 훨씬 덜 나쁘다'",
+              "summary": "Vitalik Buterin이 Kimi 3.1이 고급 공격용 사이버 능력을 학습 데이터에서 의도적으로 제외한 결정을 지지했다. 세계는 매우 강력한 사이버 공격이 본격화되기 전에 구 코드를 점검하고 새 코드를 제대로 형식검증할 시간이 필요하며, 유스케이스를 차별하는 것이 사용자를 차별하는 것(KYC나 국적 기반 모델 접근 계층화)보다 훨씬 낫다는 논리다. 지난 호 fradamt의 'AI 보안 필터가 정당한 작업을 막는다'는 불만과 맞닿은, AI 안전과 보안 작업의 긴장에 대한 발언이다.",
+              "why": "AI발 사이버 위협 대비가 이더리움의 형식검증, 코드 점검 로드맵과 같은 시간표 위에 있다는 인식을 보여준다.",
+              "url": "https://x.com/VitalikButerin/status/2114534202788225513",
+              "source": "@VitalikButerin",
+              "date": "2026-10-26"
+            },
+            {
+              "title": "dankrad, '이론적 복잡도 결과보다 AI가 찾는 실제 보안 취약점이 걱정이다'",
+              "summary": "EF의 dankrad가 지수 시간 가설이 깨지는 것 같은 이론적 성과보다 AI가 실제로 찾아내는 구체적 보안 침해가 더 걱정이라고 밝혔다. 실무 암호체계는 이론적 가정이 아니라 알려진 최선의 공격에 기대고 있으며, P=NP라도 환원 지수가 1000배 커지면 암호학은 여전히 실용적이라는 설명이다.",
+              "why": "양자와 AI 위협 담론에서 코어 리서처의 우선순위가 이론이 아니라 실전 공격 표면에 있음을 보여준다.",
+              "url": "https://x.com/dankrad/status/2115026803244859587",
+              "source": "@dankrad",
+              "date": "2026-10-27"
+            },
+            {
+              "title": "chfast, '새 옵코드는 안 쓰이고 2019년에 해결된 패턴은 186만 번 돌았다'",
+              "summary": "EVM 구현팀 ipsilon의 chfast가 임의의 1000블록 구간에서 신규 옵코드 CLZ는 2000회 미만 실행된 반면, 2의 거듭제곱 상수로 나누는 DIV는 186만 회 실행됐고 이는 2019년부터 가능했던 SHR로 대체할 수 있었다는 데이터를 공개했다. 상수 제수의 절반 이상은 코드 크기를 아끼려 EXP나 SHL로 런타임에 계산된 뒤 나눗셈에 쓰였다. 컴파일러가 수년 전 옵코드조차 활용하지 못하는 현실은 신규 옵코드 추가 논쟁에 중요한 반례다.",
+              "why": "옵코드를 추가해도 컴파일러가 쓰지 않으면 효과가 없다는 점에서 EVM 개선의 병목이 스펙이 아니라 툴체인임을 시사한다.",
+              "url": "https://x.com/chfast/status/2115017635977220262",
+              "source": "@chfast",
+              "date": "2026-10-27"
+            },
+            {
+              "title": "Julian Ma, 'TVL 상위 10개 프로토콜의 60~70%가 형식검증돼 있다'",
+              "summary": "EF의 Julian Ma(_julianma)가 이더리움 TVL 상위 10개 프로토콜 중 60~70%가 형식검증돼 있다는 사실을 공유했다. 형식검증이 코어 스펙 인프라로 들어오는 흐름과 별개로, 앱 레이어에서는 이미 대형 프로토콜의 표준 관행이 됐음을 보여주는 수치다.",
+              "why": "형식검증 자금 지속성 논의에서 수요 측 근거가 되는 구체적 채택률 데이터다.",
+              "url": "https://x.com/_julianma/status/2114761260902351007",
+              "source": "@_julianma",
+              "date": "2026-10-26"
+            },
+            {
+              "title": "Stani Kulechov, '큐레이터는 자기 마켓의 경제권을 소유해야 한다'",
+              "summary": "Aave 창업자 Stani Kulechov가 Morpho의 수수료 구조를 비판했다. Morpho는 마켓 레벨에서 수수료를 부과할 수 있어 리스크 관리 비용은 지지 않으면서 큐레이터가 만든 경제적 가치를 흡수할 수 있으며, 큐레이터는 대출과 차입 양쪽에서 수수료를 가져가는 자기 마켓 경제권을 소유해야 한다는 주장이다. 상대측(Morpho)의 원 발언은 확인되지 않아 한쪽 입장만 수집된 상태다.",
+              "why": "대출 프로토콜 경쟁의 축이 TVL에서 큐레이터 생태계의 경제권 설계로 옮겨가고 있음을 보여준다.",
+              "url": "https://x.com/StaniKulechov/status/2114742853402304694",
+              "source": "@StaniKulechov",
+              "date": "2026-10-26"
+            }
+          ]
+        },
+        {
+          "heading": "생태계 · 보안",
+          "items": [
+            {
+              "title": "Ledger 구매자 정보를 쥔 피싱 이메일과 개조 기기 제보 요청",
+              "summary": "tayvano_(MyCrypto)가 Ledger 관련 두 갈래 경보를 냈다. 유통 중인 개조 기기(implanted Ledgers) 사례를 SEAL 911로 계속 제보해달라는 요청과 함께, 공식 메일러를 통해 발송되고 스팸함도 우회하는 정교한 피싱 이메일이 구매자의 배송주소, 구매내역, 이름, 이메일 같은 PII를 보유하고 있다고 경고했다. 피싱 도메인으로 foundation[.]support와 foundationwallet[.]xyz가 공유됐다. 지난 호들의 임플란트 양산형 등장에 이어 공급망과 데이터 유출이 결합된 공격이 이어지는 모양새다.",
+              "why": "하드웨어 월렛의 위협 모델이 기기 자체에서 구매 데이터와 유통망 전체로 확장됐음을 보여준다.",
+              "url": "https://x.com/tayvano_/status/2114939475021431016",
+              "source": "@tayvano_",
+              "date": "2026-10-27"
+            },
+            {
+              "title": "AI 에이전트 지갑 실험, 10개 모델 중 5개가 사칭 이메일에 송금",
+              "summary": "연구자들이 이메일로 사용자를 사칭해 10개 AI 모델 중 5개가 최소 1회 Circle 에이전트 지갑에서 0.02 USDC를 전송하게 만들었다. Circle은 문서에 경고를 추가했으나 승인 플로우 자체는 바뀌지 않았다. 에이전트 결제 표준(x402 등)이 확산되는 가운데 사회공학 내성이 지갑 설계의 전제조건임을 보여준 실험이다.",
+              "why": "에이전트 결제 인프라가 이더리움에서 빠르게 자라는 지금, 승인 플로우의 보안 설계가 표준화 의제로 올라와야 함을 보여준다.",
+              "url": "https://x.com/laurashin/status/2115203480348741760",
+              "source": "@laurashin",
+              "date": "2026-10-27"
+            },
+            {
+              "title": "ENSv2 이더리움 메인넷 출시",
+              "summary": "ENSv2가 이더리움 메인넷에 출시됐다. 네임 등록과 프로토콜 탐색이 새 버전에서 가능해졌으며, Aave와 Arbitrum 등 주요 프로젝트들이 축하 메시지를 남겼다. 수년간 진행된 ENS의 프로토콜 재설계가 L1에 도착한 것이다.",
+              "why": "이더리움 네이밍 인프라의 세대 교체로, 생태계 전반의 신원과 주소 체계가 기대는 기반이 갱신됐다.",
+              "url": "https://x.com/arbitrum/status/2115082389169004777",
+              "source": "@ensdomains",
+              "date": "2026-10-27"
+            },
+            {
+              "title": "Uniswap StablePair Hook, 스테이블코인 밖 첫 적용처로 토큰화 주식 페어",
+              "summary": "Hayden Adams가 Uniswap의 StablePair Hook이 Robinhood Chain에서 Robinhood와 Ondo의 토큰화 주식 페어 생성에 쓰이고 있다고 밝혔다. 두 토큰은 동일한 주식을 나타내므로 USDC/USDT처럼 1:1 페그로 거래되며 11개 풀이 만들어졌다. 스테이블코인용으로 설계된 훅이 스테이블코인 밖에서 쓰인 첫 사례로, 동일 자산의 발행사가 달라 파편화되는 토큰화 주식 유동성 문제에 대한 해법이기도 하다.",
+              "why": "토큰화 주식의 발행사 파편화를 AMM 레이어에서 흡수하는 패턴이 등장해 유동성 통합의 경로가 생겼다.",
+              "url": "https://x.com/haydenzadams/status/2115123909511233625",
+              "source": "@haydenzadams",
+              "date": "2026-10-27"
+            }
+          ]
+        },
+        {
+          "heading": "시장 브리핑",
+          "items": [
+            {
+              "title": "Base의 Aave v4에 Coinbase 토큰화 주식 1,000만 달러 이상 예치",
+              "summary": "Coinbase가 발행한 토큰화 주식이 Base의 Aave v4에 1,000만 달러 넘게 예치됐으며 최근 30일간 514.5% 증가했다. 구성은 GOOGLc 380만 달러, NVDAc 300만 달러, METAc 180만 달러 순이다. 토큰화 주식이 거래 대상을 넘어 담보 자산으로 쓰이기 시작한 구체적 수치다.",
+              "why": "토큰화 주식의 다음 단계인 담보화가 실제 자금 규모로 확인되기 시작했다.",
+              "url": "https://x.com/base/status/2114448809791279197",
+              "source": "@base",
+              "date": "2026-10-25"
+            },
+            {
+              "title": "Aave V4 활성 대출 5억 달러 돌파",
+              "summary": "Aave V4의 활성 대출이 5억 달러를 넘어 최근 두 달 새 두 배 이상이 됐다. Citi 리포트는 Aave가 온체인 자산 전반의 파이낸싱 레이어가 될 수 있다고 분석했다. 지난 호의 토큰화 주식 담보 대출, 외부 큐레이션 마켓 가동과 이어지는 성장세다.",
+              "why": "전통 금융 기관이 이더리움 대출 프로토콜을 자산 토큰화의 금융 인프라로 분석하기 시작했다.",
+              "url": "https://x.com/aave/status/2115124599180636495",
+              "source": "@aave",
+              "date": "2026-10-27"
+            },
+            {
+              "title": "Arbitrum 토큰화 펀드 시가총액 11억 달러",
+              "summary": "Arbitrum에서 Spiko, Franklin Templeton(BENJI), Securitize 등의 토큰화 펀드 시가총액이 11억 달러에 이르렀다. 토큰화 주식과 별개로 펀드 상품의 온체인 발행이 L2에서 규모를 갖추고 있다.",
+              "why": "RWA의 무게중심이 개별 주식만이 아니라 펀드 단위 상품으로 넓어지고 있다.",
+              "url": "https://x.com/arbitrum/status/2115128808613281915",
+              "source": "@arbitrum",
+              "date": "2026-10-27"
+            },
+            {
+              "title": "Mizuho, AI 에이전트의 USDC 회피를 근거로 시장가치 타격 모델링",
+              "summary": "Mizuho가 AI 에이전트들에게 여유 현금 운용을 물었더니 대부분 USDC를 건너뛰었고, 이를 근거로 USDC 시장가치에 40억에서 90억 달러의 타격 가능성을 모델링했다. 에이전트가 자금 배분의 실질 주체가 되는 시나리오에서 스테이블코인 수요가 어떻게 달라지는지를 다룬 첫 기관 분석 중 하나다.",
+              "why": "AI 에이전트의 선호가 이더리움 위 스테이블코인 수요 구조를 바꿀 변수로 기관 분석에 등장했다.",
+              "url": "https://x.com/laurashin/status/2115247930588442677",
+              "source": "@laurashin",
+              "date": "2026-10-28"
+            }
+          ]
+        },
+        {
+          "heading": "그 밖의 소식",
+          "items": [
+            {
+              "title": "Devcon 8 커뮤니티 허브와 오픈 하드웨어 존 추가",
+              "summary": "Devcon 8(뭄바이, 11월 3~6일)에 표준, P2P 네트워킹, 거버넌스, AI 에이전트, 예측시장(Polymarket, Seer, Augur, Pred 참여) 커뮤니티 허브와 Makers Asylum의 Open Hardware Zone이 추가됐다. Nethermind 창업자 tkstanczak은 이더리움 기반 오픈소스 로보틱스를 발표하며, ACDT와 FOCIL 등 코어 콜 일정도 행사에 맞춰 조정됐다.",
+              "why": "프라이버시 도구 Kohaku 등 주요 공개가 예고된 행사라 다음 호 소식의 상당수가 여기서 나올 것이다.",
+              "url": "https://x.com/EFDevcon/status/2114970601081172157",
+              "source": "@EFDevcon",
+              "date": "2026-10-27"
+            },
+            {
+              "title": "binji_x, 프라이버시 지갑 도구 Kohaku 주목 권고",
+              "summary": "Optimism의 binji_x가 Kohaku에 주목하라며 Devcon 8에서 업그레이드 관련 공개가 있을 것임을 시사했다. EF도 같은 기간 프라이버시가 기본값일 때 온체인 이력 악용 걱정이 줄어든다며 프라이버시와 보안이 분리된 목표가 아니라는 메시지를 냈다.",
+              "why": "프라이버시 기본값 담론이 Devcon을 계기로 구체적 제품 공개로 이어질 가능성이 커졌다.",
+              "url": "https://x.com/binji_x/status/2115065191134068990",
+              "source": "@binji_x",
+              "date": "2026-10-27"
+            },
+            {
+              "title": "Zcash의 Crosslink 전환 갈등, 펀딩 논쟁의 참조 사례로 인용",
+              "summary": "Justin_Bons가 Zcash의 PoS 전환안 Crosslink를 둘러싼 커뮤니티 갈등을 정리하며 전환을 촉구했다. 이 상황은 이번 호 dev tax 논쟁에서 lex_node가 프로토콜 내장 펀딩과 어설픈 거버넌스의 반면교사로 직접 인용한 사례다.",
+              "why": "이더리움 펀딩 논쟁이 추상론이 아니라 타 체인의 실패 사례를 근거로 전개되고 있다.",
+              "url": "https://x.com/Justin_Bons/status/2115189865138803167",
+              "source": "@Justin_Bons",
+              "date": "2026-10-27"
+            },
+            {
+              "title": "AI 랜섬웨어 확장 경고와 민간 핵백 정책 논의",
+              "summary": "Unchained에서 TRM Labs의 Ari Redbord가 2025년 약 7,500건이던 사람 개입형 랜섬웨어가 2026년에는 사람이 빠진 종단간 공격으로 최대 수백만 건까지 늘 수 있다고 경고했고, 전 CFTC 의장 Chris Giancarlo는 민간 해킹 반격 프로그램이 모든 작전에 DOJ와 DHS 승인을 요구하며 Lazarus 같은 국가 행위자는 정부만 타격하도록 제한된다고 설명했다. 크립토를 노리는 공격과 대응 정책의 틀이 함께 바뀌고 있다.",
+              "why": "Lazarus류 국가 행위자 대응 체계의 변화는 이더리움 생태계 해킹 피해 구제의 조건을 바꾼다.",
+              "url": "https://x.com/laurashin/status/2115194246214898021",
+              "source": "@laurashin",
+              "date": "2026-10-27"
+            },
+            {
+              "title": "CFTC, 예측시장 관련 유타주까지 10번째 주 법적 조치",
+              "summary": "CFTC가 예측시장 관할을 두고 유타주까지 10번째 주에 법적 조치를 냈다. Selig 의장은 의회가 이 시장들의 감독 책임을 CFTC에 단독으로 부여했다는 입장이다. Polymarket 등 이더리움 생태계 예측시장의 규제 관할 정리가 주 단위 충돌을 거치며 진행 중이다.",
+              "why": "연방과 주의 관할 정리는 온체인 예측시장의 미국 내 합법 운영 범위를 결정한다.",
+              "url": "https://x.com/laurashin/status/2115224777002737944",
+              "source": "@laurashin",
+              "date": "2026-10-27"
+            },
+            {
+              "title": "Coinbase, 유럽 제한 스테이블코인 14종으로 확대",
+              "summary": "Coinbase의 유럽 내 제한 스테이블코인이 2024년 12월 6종에서 14종으로 늘었다. 10월 30일까지 출금하지 않은 잔액은 전환되며 마감 후 입금은 크레딧되지 않는다.",
+              "why": "MiCA 체제에서 비준수 스테이블코인의 유럽 퇴출이 단계적으로 넓어지고 있다.",
+              "url": "https://x.com/laurashin/status/2115209443894018150",
+              "source": "@laurashin",
+              "date": "2026-10-27"
+            },
+            {
+              "title": "ethdebug, 2026년 이더리움 디버깅 현황 업데이트",
+              "summary": "ethdebug 프로젝트가 이더리움 디버깅 표준화 작업의 2026년 진행 상황을 공유했다.",
+              "why": "디버깅 포맷 표준화는 툴체인 파편화를 줄이는 기반 작업이다.",
+              "url": "https://www.reddit.com/r/ethereum/comments/1xgwz48/ethdebug_update_ethereum_debugging_in_2026/",
+              "source": "r/ethereum",
+              "date": "2026-10-27"
+            },
+            {
+              "title": "EIPIP #132 안건에 EIP 코디네이터 선임 건, 의견 수렴 11월 4일 마감",
+              "summary": "11월 18일 예정인 EIPIP Meeting #132 안건에 Pooja Ranjan을 EIP 코디네이터로 추가하는 건이 올라왔으며 Call for Input이 11월 4일 마감된다. EIP Editing Office Hour #118도 10월 27일 열렸다.",
+              "why": "EIP 프로세스의 전담 코디네이터 신설은 에디터 병목 완화 시도로 이어질 수 있다.",
+              "url": "https://ethereum-magicians.org/t/eipip-meeting-132-nov-18-2026/30084",
+              "source": "Ethereum Magicians",
+              "date": "2026-10-27"
+            }
+          ]
+        }
+      ],
+      "coverImage": "/assets/digests/2026-10-29.png?v=92880dac",
+      "telegramMessageId": 1706
+    },
+    {
       "date": "2026-10-26",
       "title": "연기된 글램스테르담을 두고 상태 가스 설계 철학과 ACD 프로세스 논쟁이 벌어졌다",
       "shortTitle": "가스 리프라이싱 논쟁 확대",
@@ -7221,106 +7621,6 @@
         }
       ],
       "coverImage": "/assets/digests/2026-08-25.png?v=663083c8"
-    },
-    {
-      "date": "2026-08-24",
-      "title": "싱크 커미티 제거 제안, 그리고 ETF 자금의 귀환",
-      "intro": "이번 주 이더리움은 합의 레이어의 큰 구조 변화 제안과 함께 시작합니다. 싱크 커미티를 통째로 걷어내자는 EIP-8390이 올라와 라이트 클라이언트 로드맵의 방향 전환을 예고했고, 비탈릭은 난독화 연구 시리즈를 완결했습니다. 시장에서는 BTC·ETH ETF가 10개월 만에 최대 주간 순유입을 기록하며 자금이 돌아오는 모습입니다.",
-      "sections": [
-        {
-          "heading": "프로토콜 · 리서치",
-          "items": [
-            {
-              "title": "EIP-8390 — 싱크 커미티를 제거하자는 제안 등장",
-              "summary": "합의 레이어에서 싱크 커미티와 그 집계·서브넷·보상 체계, 그리고 그 위에 구축된 Altair 라이트 클라이언트 프로토콜까지 제거하자는 제안이 Ethereum Magicians에 올라왔습니다. 싱크 보상 가중치는 재분배 없이 삭제하는 안이라, 통과되면 라이트 클라이언트 검증 방식의 세대교체를 의미합니다.",
-              "url": "https://ethereum-magicians.org/t/eip-8390-remove-the-sync-committee/29486",
-              "source": "Eth Magicians",
-              "date": "2026-08-23"
-            },
-            {
-              "title": "비탈릭, 난독화 시리즈 완결 — 'Local Mixing'",
-              "summary": "비탈릭 부테린이 구분불가능 난독화(iO) 연구를 다루는 3부작 시리즈의 마지막 글을 공개했습니다. 이번 편은 로컬 믹싱 접근을 다루며, 암호학의 '성배'로 불리는 iO가 실용화될 경우 온체인 프라이버시와 키 관리에 갖는 함의를 짚습니다.",
-              "url": "https://vitalik.ca/general/2026/08/21/obfuscation_part_iii_local_mixing.html",
-              "source": "Vitalik",
-              "date": "2026-08-21"
-            },
-            {
-              "title": "PoS 블록 제안 타이밍 게임의 경제학 분석",
-              "summary": "제안자가 블록 공개 시점을 전략적으로 늦춰 MEV를 더 챙기는 '타이밍 게임'을 경제학 관점에서 분석한 글이 ethresear.ch에 올라왔습니다. 헤드 투표 타이밍과 인센티브 구조를 함께 다루고 있어, 최근 이어지는 타이밍 게임 대응 논의의 연장선에 있습니다.",
-              "url": "https://ethresear.ch/t/timing-the-head-in-ethereum-pos/25766",
-              "source": "ethresear.ch",
-              "date": "2026-08-20"
-            },
-            {
-              "title": "EF, 해시 기반 SNARK 보안을 공개 리더보드로 검증하는 better.codes 공개",
-              "summary": "이더리움 재단이 Proximity Prize 리서치의 핵심 문제를 Lean으로 형식화하고, 누구나 soundness 경계 개선에 도전할 수 있는 공개 리더보드 better.codes를 공개했습니다. AI 에이전트와의 협업으로 기계 검증된 보안 벤치마크를 끌어올리는 실험이라는 점이 눈에 띕니다.",
-              "url": "https://blog.ethereum.org/en/2026/08/20/better-codes-challenge",
-              "source": "EF Blog",
-              "date": "2026-08-20"
-            },
-            {
-              "title": "토큰화 자산을 위한 ERC 제안 잇따라",
-              "summary": "온체인에서 24/7 거래되는 토큰화 주식과 주 32.5시간만 열리는 기초 시장 사이의 간극을 다루는 ERC-8392(자산 상태 인터페이스)를 비롯해, ERC-4626 볼트용 동의 검증 확장, 탄소 크레딧 토큰화(ERC-8393) 등 실물자산 관련 표준 제안이 한 주에 몰렸습니다.",
-              "url": "https://ethereum-magicians.org/t/erc-8392-asset-status-interface-for-tokenized-assets/29489",
-              "source": "Eth Magicians",
-              "date": "2026-08-24"
-            }
-          ]
-        },
-        {
-          "heading": "생태계 · 보안",
-          "items": [
-            {
-              "title": "Ledger 이더리움 앱 서명 치환 취약점 제보",
-              "summary": "이더리움 앱을 구동하는 Ledger 기기가 서명 치환 공격에 취약하다는 제보가 r/ethereum에 올라와 논의가 이어지고 있습니다. 하드웨어 지갑 사용자라면 서명 전 기기 화면에서 트랜잭션 내용을 직접 확인하는 습관이 더 중요해졌습니다.",
-              "url": "https://www.reddit.com/r/ethereum/comments/1vwc8sj/every_ledger_running_the_ethereum_app_is/",
-              "source": "r/ethereum",
-              "date": "2026-08-23"
-            },
-            {
-              "title": "Base, 10팀에 총 $1M — 액셀러레이터 Batches 004 모집",
-              "summary": "Base가 10개 팀에 총 100만 달러를 지원하는 액셀러레이터 Base Batches 004와 신생 빌더 대상 그랜트 프로그램을 발표했습니다. L2 생태계의 빌더 유치 경쟁이 계속 달아오르는 모습입니다.",
-              "url": "https://x.com/base/status/2090115624764629058",
-              "source": "@base",
-              "date": "2026-08-19"
-            },
-            {
-              "title": "EF, Asiacrypt 2026 프라이버시 워크숍 발표 모집",
-              "summary": "이더리움 재단이 오는 12월 홍콩에서 열리는 Asiacrypt 2026의 부속 워크숍으로 제1회 프라이버시 보존 기술 워크숍(WPPT 2026)을 후원하며 발표를 모집합니다. 프라이버시 연구를 학계 무대로 끌어올리려는 행보입니다.",
-              "url": "https://x.com/ethereumfndn/status/2091757898955214976",
-              "source": "@ethereumfndn",
-              "date": "2026-08-24"
-            }
-          ]
-        },
-        {
-          "heading": "시장 브리핑",
-          "items": [
-            {
-              "title": "BTC·ETH ETF 주간 순유입 $2.6B — 10개월 만의 최대",
-              "summary": "비트코인·이더 ETF가 한 주에 26억 달러를 끌어모으며 2025년 10월 이후 최고 기록을 세웠습니다. 블랙록 IBIT는 하루에만 5억 달러 넘게 유입됐습니다. (Unchained 집계)",
-              "url": "https://x.com/laurashin/status/2091846985821335621",
-              "source": "@laurashin",
-              "date": "2026-08-24"
-            },
-            {
-              "title": "아서 헤이즈 \"ETH는 우리의 비트코인 외 최대 포지션\"",
-              "summary": "아서 헤이즈가 Unchained 인터뷰에서 ETH가 여전히 Maelstrom의 비트코인 외 최대 보유 자산이라며, $3,000 돌파 시 반사적 매수세가 빠르게 붙을 것으로 본다고 말했습니다.",
-              "url": "https://x.com/laurashin/status/2091243828439392515",
-              "source": "@laurashin",
-              "date": "2026-08-22"
-            },
-            {
-              "title": "Aave 예치금 $30B 회복",
-              "summary": "Aave 창업자 스타니 쿨레초프가 프로토콜 예치금이 300억 달러에 도달했다고 밝혔습니다. DeFi 렌딩으로 유동성이 돌아오고 있다는 신호로 읽힙니다.",
-              "url": "https://x.com/StaniKulechov/status/2091110327286964266",
-              "source": "@StaniKulechov",
-              "date": "2026-08-22"
-            }
-          ]
-        }
-      ],
-      "coverImage": "/assets/digests/2026-08-24.png?v=6c6f34eb"
     }
   ]
 }

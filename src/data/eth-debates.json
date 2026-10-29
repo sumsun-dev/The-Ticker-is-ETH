@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-26T01:20:48.465Z",
+  "updatedAt": "2026-10-29T01:32:03.249Z",
   "processedDigests": [
     "2026-08-24",
     "2026-08-25",
@@ -30,9 +30,607 @@
     "2026-10-17",
     "2026-10-20",
     "2026-10-23",
-    "2026-10-26"
+    "2026-10-26",
+    "2026-10-29"
   ],
   "debates": [
+    {
+      "id": "core-dev-funding-dev-tax",
+      "title": "이더리움은 'dev tax 없음'을 강점으로 삼아 후원과 ETH 자산 마케팅만으로 코어 개발을 지탱할 수 있나?",
+      "category": "거버넌스 · 커뮤니티",
+      "summary": "lex_node는 프로토콜 차원의 개발자 세금(dev tax)이 없다는 점이 이더리움의 거대한 강점이며 후원(patronage)과 ETH 자산 마케팅으로 코어 개발을 지탱할 수 있다고 주장했고, Geth의 lightclients는 원래 dev tax의 잔재 없이 돌아가는 이더리움을 본 적이 없어 그것을 강점이라 단정할 수 없으며 연 수천만 달러 자금의 지속 방안이 먼저라고 반박했다. Protocol Guild의 trent_vanepps는 기존 보상은 이미 충분하니 추가 자금을 요구하기 전에 결과를 내라면서도 EF 축소에 대비한 전환을 미리 고민해야 한다고 덧붙였다.",
+      "keyPoints": [
+        "이더리움 코어 개발은 프로토콜 발행(dev tax) 없이 후원과 ETH 자산 마케팅만으로 지속 가능한가?",
+        "dev tax, EF, 소수 후원자 중 어느 펀딩 구조가 포획(capture) 위험이 가장 큰가?",
+        "추가 자금이 지금 필요한가, 아니면 기존 자금으로 먼저 결과를 내야 하는가?"
+      ],
+      "background": "이더리움 코어 개발은 그동안 이더리움 재단(EF) 보조금과 Protocol Guild 같은 독립 펀딩 조직, 클라이언트 팀 자체 자금으로 유지돼 왔다. 2025년 트레저리 정책 발표와 2026년 6월 인력·예산 감축으로 EF가 명시적으로 지원을 줄이는 국면에 들어서면서, 비트코인식 '개발자 세금 없음' 모델을 강점으로 볼지, 지캐시(Zcash)처럼 프로토콜 발행(issuance)의 일부를 개발에 배정하는 dev tax가 필요한지가 쟁점으로 떠올랐다. 지캐시는 현재 형태의 dev tax에 더해 창립자 배정 포스트마인도 있었다는 점이 비교 대상으로 거론됐다. Protocol Guild는 코어 개발자에게 베스팅 방식으로 자금을 분배하는 조직으로, 이 논쟁에서 중위 멤버 실수령액 같은 구체적 수치가 근거로 쓰였다.",
+      "whyItMatters": "EF 자금 축소 국면에서 코어 개발 펀딩의 제도 설계가 ETH의 자산 서사와 직결되는 쟁점으로 공론화됐다. dev tax 도입 여부는 이더리움의 신뢰할 수 있는 중립성(credible neutrality)과 ACD 거버넌스의 포획 위험, 그리고 수천만 달러 규모 자금의 지속 가능성을 동시에 건드리므로, Protocol Guild 유입 자금과 EF의 감축 일정, Lean Ethereum 로드맵의 진척을 함께 지켜봐야 한다.",
+      "sources": [],
+      "keywords": [
+        "dev tax",
+        "Protocol Guild",
+        "ETH as investable asset",
+        "Lean Ethereum"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "dev tax 없음이 강점이고 후원·ETH 마케팅으로 충분하다",
+          "holders": [
+            {
+              "handle": "lex_node",
+              "name": "_gabrielShapir0",
+              "role": "MetaLeX Labs 변호사, 크립토 법률·규제 논객",
+              "avatar": "https://pbs.twimg.com/profile_images/2058233189882032128/pRSMN_6C_400x400.jpg"
+            }
+          ],
+          "points": [
+            "프로토콜 차원의 dev tax가 없다는 점은 이더리움의 거대한 강점이며, 이를 ETH라는 자산 가치에 관한 응집된 마케팅 패키지로 삼아야 한다.",
+            "코어 개발을 Tom Lee, dev tax, EF 중 무엇으로 펀딩할 때 가장 포획(capture) 위험이 큰가라고 물으면 dev tax다. '모두'가 스폰서인 구조는 책임성과 감독을 만들 역량이 가장 낮기 때문이며 DAO에서 반복 확인됐다.",
+            "dev tax는 이더리움의 신뢰할 수 있는 중립성을 망가뜨리고 ACD 그룹에 예측하지 못할 방식으로 영향을 줄 수 있다.",
+            "후원으로 충분하며 우선순위는 이미 많은 이더리움 조직이 보유한 ETH의 가치를 키우는 자산 마케팅이다. 이더리움이 dev tax를 '필요'로 한다면 ETH는 투자 자산으로서 죽은 것이다."
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "강점이라 단정할 수 없고 지속 자금 문제가 먼저다",
+          "holders": [
+            {
+              "handle": "lightclients",
+              "name": "ً",
+              "role": "Geth·프로토콜 개발자",
+              "avatar": "https://pbs.twimg.com/profile_images/1554130973935030274/wHWuxuTT_400x400.jpg"
+            }
+          ],
+          "points": [
+            "프리마인(premine)도 dev tax의 다른 형태이며, 원래 dev tax의 잔재 없이 이더리움이 돌아가는 것을 실제로 본 적이 없으므로 'dev tax 없음'을 강점이라 단정할 수 없다.",
+            "dev tax에 반대하는 것은 괜찮지만, 네트워크 유지에 필요한 연 수천만 달러 규모의 이타적 자금을 어떻게 조달할지가 먼저 답해져야 한다.",
+            "후원에는 늘 보이지 않는 조건이 붙어, 코어 작업이 가치를 지키기보다 가격을 올리는 데 종속될 수 있다.",
+            "사람들이 프로토콜 펀딩을 진지하게 보기 전에 이더리움에서도 비슷한 수준의 익스플로잇이 터져야 할 수 있다. 다만 자산 마케팅과 펀딩 중 하나만 고를 이유는 없다."
+          ]
+        },
+        {
+          "stance": "neutral",
+          "label": "기존 보상은 이미 충분하나 EF 축소 전환은 미리 대비하라",
+          "holders": [
+            {
+              "handle": "trent_vanepps",
+              "name": "trent.eth",
+              "role": "Protocol Guild 오거나이저",
+              "avatar": "https://pbs.twimg.com/profile_images/1695072606045515777/97BhkqE6_400x400.jpg"
+            }
+          ],
+          "points": [
+            "EF와 Ethlabs를 합치면 로드맵(strawmap)을 끝낼 자금은 이미 있으니, 추가 자금을 요구하기 전에 먼저 결과를 내야 한다.",
+            "Protocol Guild를 통한 코어 개발자 보상은 이미 충분하거나 높은 수준이다. 다만 중위 멤버 실수령액은 전후 12개월 기준 약 3만 달러로, 스왑 슬리피지와 세금 이전 금액이다.",
+            "EF가 2025년 트레저리 정책과 2026년 6월 감축으로 명시적 축소를 알린 만큼, 이 전환을 지금 미리 고민해야 한다."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-10-26",
+          "by": "lightclients",
+          "stance": "con",
+          "quote": "그렇다면 '원래 dev tax의 잔재' 없이 이더리움이 돌아가는 것을 실제로 본 적이 없으므로, dev tax 없이 이더리움에 '강점'이 있다고 말하기는 어렵다.",
+          "url": "https://x.com/lightclients/status/2114755867778421165",
+          "digest": "2026-10-29",
+          "replyTo": "lex_node",
+          "relation": "reply",
+          "original": "@lex_node @wmougayar right, but in that case it is difficult to say ethereum has \"an edge\" without the \"dev tax\" because we actually haven't seen ethereum operating without the remnants of the original dev tax",
+          "translation": "@lex_node @wmougayar 맞는 말이지만, 그렇다면 '개발자 세금(dev tax)' 없이 이더리움이 '우위'를 갖는다고 말하기는 어렵습니다. 왜냐하면 우리는 실제로 원래의 개발자 세금 잔재 없이 운영되는 이더리움을 본 적이 없기 때문입니다."
+        },
+        {
+          "date": "2026-10-26",
+          "by": "lightclients",
+          "stance": "con",
+          "quote": "dev tax에 반대하는 것은 괜찮다. 다만 네트워크를 유지하는 데 필요한 연 수천만 달러의 이타적 자금을 어떻게 조달할지 이해하는 것도 유용하다. 그게 없으면 구현 디테일보다 이상적 결과에만 치우친다.",
+          "url": "https://x.com/lightclients/status/2114771750445883601",
+          "digest": "2026-10-29",
+          "replyTo": "lex_node",
+          "relation": "reply",
+          "original": "@lex_node @BlockEnthusiast @wmougayar i think it's fine to be against a dev tax, i just think it would also be useful to understand how to support the $XXm of annual altruistic funding needed to maintain the network.\n\nwithout the later, it's too focused on ideal outcomes rather than implementation details",
+          "translation": "@lex_node @BlockEnthusiast @wmougayar 개발자 세금에 반대하는 것은 괜찮다고 생각합니다. 다만 네트워크를 유지하는 데 필요한 연간 XX백만 달러 규모의 이타적 자금(altruistic funding)을 어떻게 지원할지 이해하는 것도 유용할 것이라고 생각합니다. 후자가 없다면 구현의 세부사항보다는 이상적인 결과에만 지나치게 집중하게 됩니다."
+        },
+        {
+          "date": "2026-10-26",
+          "by": "lightclients",
+          "stance": "con",
+          "quote": "후원(patronage)에 대한 내 두려움은 늘 보이지 않는 조건이 붙는다는 것이다. 코어 작업이 특정 가치를 지키기보다 가격을 올리는 데 더 집중하게 될 수 있다.",
+          "url": "https://x.com/lightclients/status/2114773174185554121",
+          "digest": "2026-10-29",
+          "replyTo": "lex_node",
+          "relation": "reply",
+          "original": "@lex_node @BlockEnthusiast @wmougayar i guess my fear with patronage is that there are always invisible strings attached and core work begins being more focused on increasing price than ensuring certain values are upheld",
+          "translation": "@lex_node @BlockEnthusiast @wmougayar 후원(patronage)에 대해 제가 우려하는 점은, 항상 보이지 않는 조건이 뒤따르고 핵심 작업(core work)이 특정 가치를 지켜내는 것보다 가격을 올리는 데 더 집중하게 된다는 것입니다."
+        },
+        {
+          "date": "2026-10-26",
+          "by": "lex_node",
+          "stance": "pro",
+          "quote": "dev tax가 가장 포획 위험이 크다. '모두'가 스폰서인 구조는 좋은 책임성과 감독을 만들 가능성과 역량이 가장 낮기 때문이다. DAO에서 그런 일을 수없이 봐왔다.",
+          "url": "https://x.com/lex_node/status/2114775180962668838",
+          "digest": "2026-10-29",
+          "replyTo": "owocki",
+          "relation": "reply",
+          "original": "@owocki @lightclients @BlockEnthusiast @wmougayar dev tax for sure imo, because \"everyone\" is the sponsor least likely and capable to create good accountability and oversight , we've seen it time and time again with DAOs etc.",
+          "translation": "@owocki @lightclients @BlockEnthusiast @wmougayar 제 생각엔 개발자 세금이 확실히 맞습니다. '모두'가 후원자가 되는 경우는 좋은 책임성(accountability)과 감시 체계를 만들어낼 가능성과 능력이 가장 낮은 경우이기 때문입니다. 우리는 DAO 등에서 이런 일을 거듭해서 봐왔습니다."
+        },
+        {
+          "date": "2026-10-26",
+          "by": "lex_node",
+          "stance": "pro",
+          "quote": "dev tax는 이더리움의 신뢰할 수 있는 중립성을 망가뜨리고 ACD 그룹에 예측하지 못할 방식으로 영향을 줄 수 있다.",
+          "url": "https://x.com/lex_node/status/2114781369889112073",
+          "digest": "2026-10-29",
+          "replyTo": "lex_node",
+          "relation": "reply",
+          "original": "I think there are capture vectors in all 2 directions. Imo to measure them we have to map them.\n\nThe EF one is well known - we are living in that world already\nThe dev tax one would ruin the credible neutrality of Ethereum and possibly influence the ACD group in unforeseen ways (some good some bad)\nTom Lee path might be benign if tom is benevolent dictator - but if he starts asserting his agenda, they could change in ways we can foresee(wall st captures parts of network ) and not foresee .\n\nMy 002 Wei. I haven’t decided which one I care about most yet.",
+          "translation": "두 방향 모두에 포획 경로(capture vector)가 있다고 생각합니다. 제 생각에는 이를 측정하려면 먼저 지도화해야 합니다. EF 쪽의 포획 경로는 잘 알려져 있고, 우리는 이미 그 세계 속에서 살고 있습니다. 개발자 세금 쪽의 포획 경로는 이더리움의 신뢰할 수 있는 중립성(credible neutrality)을 훼손하고, 예기치 못한 방식으로 ACD 그룹에 영향을 미칠 수 있습니다(좋은 영향도 있고 나쁜 영향도 있을 것입니다). 톰 리(Tom Lee) 경로는 만약 톰이 선의의 독재자라면 무해할 수도 있습니다. 하지만 그가 자신의 의제를 밀어붙이기 시작하면, 우리가 예상할 수 있는 방식(월가가 네트워크의 일부를 포획하는 것)과 예상하지 못하는 방식으로 상황이 바뀔 수 있습니다. 제 미미한 의견입니다(My 002 Wei). 아직 어느 쪽을 가장 신경 써야 할지 결정하지 못했습니다."
+        },
+        {
+          "date": "2026-10-27",
+          "by": "lightclients",
+          "stance": "con",
+          "quote": "사람들이 프로토콜 펀딩을 진지하게 받아들이기 전에, 아마 이더리움에서도 비슷한 수준의 익스플로잇이 한 번 터져야 할 것이다.",
+          "url": "https://x.com/lightclients/status/2115104431494799656",
+          "digest": "2026-10-29",
+          "replyTo": "matthew_d_green",
+          "relation": "quote",
+          "original": "Probably will need a similar severity of exploit on Ethereum before people take funding the protocol seriously.\n\nIt would be nice to learn from adjacent domains, but things are never so simple 😅",
+          "translation": "사람들이 프로토콜 자금 지원을 진지하게 받아들이기 전에, 이더리움에서도 비슷한 심각도의 익스플로잇(exploit)이 한 번 발생해야 할 것 같습니다. 인접 분야에서 배울 수 있다면 좋겠지만, 그런 일은 결코 그렇게 간단하지 않습니다."
+        },
+        {
+          "date": "2026-10-27",
+          "by": "lightclients",
+          "stance": "neutral",
+          "quote": "그것도 좋다. 왜 둘 중 하나만 골라야 하나?",
+          "url": "https://x.com/lightclients/status/2115133778276565106",
+          "digest": "2026-10-29",
+          "replyTo": "lex_node",
+          "relation": "reply",
+          "original": "@lex_node that sounds great too. why do we have to pick?",
+          "translation": "@lex_node 그것도 좋은 생각 같습니다. 왜 꼭 하나를 골라야 하나요?"
+        },
+        {
+          "date": "2026-10-27",
+          "by": "trent_vanepps",
+          "stance": "neutral",
+          "quote": "EF와 Ethlabs를 합쳐도 strawmap(로드맵)을 끝낼 자금이 부족하다는 말인가?",
+          "url": "https://x.com/trent_vanepps/status/2115106848466436424",
+          "digest": "2026-10-29",
+          "replyTo": "lightclients",
+          "relation": "reply",
+          "original": "@lightclients you're saying the EF and Ethlabs combined don't have enough funding to finish the strawmap?",
+          "translation": "@lightclients EF와 Ethlabs를 합쳐도 스트로맵(strawmap)을 완성할 자금이 충분하지 않다는 말씀이신가요?"
+        },
+        {
+          "date": "2026-10-27",
+          "by": "trent_vanepps",
+          "stance": "neutral",
+          "quote": "추가 자금을 요구하기 전에 먼저 결과를 내놓으라. Protocol Guild를 통한 코어 개발자 보상은 이미 충분하거나 높은 수준이다. AI로 개발이 빨라진 것 같지도 않다.",
+          "url": "https://x.com/trent_vanepps/status/2115112613675692223",
+          "digest": "2026-10-29",
+          "replyTo": "lightclients",
+          "relation": "reply",
+          "original": "@lightclients id say deliver before asking for more money. core dev comp with protocol guild is already adequate/high. also doesn't feel like development has sped up with AI",
+          "translation": "@lightclients 더 많은 돈을 요구하기 전에 먼저 결과물을 내놓아야 한다고 생각합니다. 프로토콜 길드(Protocol Guild)를 통한 핵심 개발자(core dev) 보상은 이미 충분하거나 높은 수준입니다. 또한 AI 덕분에 개발 속도가 빨라졌다는 느낌도 들지 않습니다."
+        },
+        {
+          "date": "2026-10-27",
+          "by": "trent_vanepps",
+          "stance": "neutral",
+          "quote": "분명히 더 복잡한 문제다. EF는 명시적으로 한 발 물러서고 있음을 알리고 있고(2025년 트레저리 글, 2026년 6월 감축) 실질적 예산 제약이 있다. 이 전환을 지금 미리 고민해야 한다.",
+          "url": "https://x.com/trent_vanepps/status/2115116941333414032",
+          "digest": "2026-10-29",
+          "replyTo": "apriori0x",
+          "relation": "reply",
+          "original": "it's obviously more nuanced than that. the EF is explicitly communicating a step back (the treasury post in 2025, the cuts in june 2026), practical budget constraints - we need to think now about this transition in advance\n\nand worth reminding, there are many orgs working on core development outside of the EF/ethlabs - they also need funding",
+          "translation": "분명히 그보다는 더 미묘한 문제입니다. EF는 한 발 물러나겠다는 뜻을 명확히 전달하고 있습니다(2025년 트레저리 게시물, 2026년 6월의 삭감). 실질적인 예산 제약이 있기 때문에, 우리는 지금부터 미리 이 전환을 생각해봐야 합니다. 그리고 상기할 필요가 있는 점은, EF/Ethlabs 밖에서도 핵심 개발(core development) 작업을 하는 조직이 많다는 것이고, 이들 역시 자금이 필요하다는 것입니다."
+        },
+        {
+          "date": "2026-10-27",
+          "by": "lex_node",
+          "stance": "pro",
+          "quote": "인센티브가 중요하기 때문이다. 크립토에는 어설픈 '거버넌스' 메커니즘에 기댄 슬러시 펀드 남용이 끝없이 이어져 왔다. 지금 지캐시에서 벌어지는 일만 봐도 그렇다.",
+          "url": "https://x.com/lex_node/status/2115138766390366407",
+          "digest": "2026-10-29",
+          "replyTo": "lightclients",
+          "relation": "reply",
+          "original": "@lightclients because incentives matter and crypto has a never-ending litany of abuses of slush funds relying on half-baked \"governance\" mechanisms. just look at what's happening in zcash right now.",
+          "translation": "@lightclients 인센티브가 중요하기 때문입니다. 그리고 크립토 업계에는 엉성한 '거버넌스' 메커니즘에 의존하는 비자금(slush fund) 남용 사례가 끝없이 이어져 왔습니다. 지금 지캐시(Zcash)에서 벌어지고 있는 일을 보면 됩니다."
+        },
+        {
+          "date": "2026-10-27",
+          "by": "trent_vanepps",
+          "stance": "neutral",
+          "quote": "그 수치는 오래됐다. 중위 멤버는 직전·직후 12개월 기준 약 3만 달러를 받을 뿐이고, 이는 스왑 슬리피지와 세금 이전 금액이다.",
+          "url": "https://x.com/trent_vanepps/status/2115162962159599583",
+          "digest": "2026-10-29",
+          "relation": "none"
+        }
+      ],
+      "firstSeen": "2026-10-26",
+      "lastActivity": "2026-10-27",
+      "status": "active",
+      "rootUrl": "https://x.com/lightclients/status/2115104431494799656",
+      "engagement": {
+        "likes": 52,
+        "retweets": 3,
+        "quotes": 0,
+        "replies": 5,
+        "views": 3448
+      }
+    },
+    {
+      "id": "eth-sov-internal-faction",
+      "title": "ETH는 가치저장(SoV) 자산이 되어야 하나, 그리고 그것을 원치 않는 '세력'을 꺾어야 하나?",
+      "category": "거버넌스 · 커뮤니티",
+      "summary": "lex_node는 이더리움 내부에 ETH가 투자 자산이 되지 않기를 적극적으로 바라는 영향력 있는 사람들이 있으며 이는 일관된 견해지만 ETH 투자 테제가 이기려면 이들을 꺾어야 한다고 주장했고, EF의 Tim Beiko는 이더리움이 세계에 미치는 영향력을 중시한다면 그것은 일관된 견해가 아니라며 메인넷 없이는 모든 것이 이더리움에서 멀어지고 ETH는 메인넷이 보장하는 가장 중요한 것이라고 반박했다.",
+      "keyPoints": [
+        "ETH가 가치저장 자산이 되지 않기를 바라는 것은 '일관된 견해'인가, 아닌가?",
+        "ETH의 자산 가치와 이더리움의 공공재적 영향력은 상충하는가, 메인넷 보안으로 수렴하는가?",
+        "이를 '꺾어야 할 분파'로 보는 프레임이 적절한가, 아니면 구매력 보존 능력에 대한 회의일 뿐인가?"
+      ],
+      "background": "ETH가 '가치저장 자산(SoV)'인지, 즉 수수료 소각(burn)과 발행(issuance) 메커니즘을 통해 장기적으로 구매력을 보존하거나 인플레이션을 이기는 자산인지는 오랜 논쟁이다. 일부 이더리움 기여자는 ETH의 투자 자산화보다 메인넷의 공공재적 가치를 우선하는데, lex_node는 이를 ETH 투자 테제를 가로막는 '분파'로 규정했다. 이 논쟁은 EF 자금 축소와 dev tax 논쟁이 벌어진 같은 주에 맞물려 진행됐다.",
+      "whyItMatters": "ACD 콜을 주재하는 Tim Beiko가 'ETH는 메인넷이 실제로 보장하는 가장 중요한 것'이라며 자산 가치를 메인넷 보안의 핵심으로 공개 인정한 것은, EF 내부에서 ETH-as-asset 담론이 금기에서 벗어나고 있다는 지표다. 발행·소각 정책과 펀딩 논쟁이 모두 'ETH가 무엇을 위한 자산인가'라는 질문으로 수렴하는지 지켜봐야 한다.",
+      "sources": [],
+      "keywords": [
+        "ETH store of value",
+        "ETH SoV",
+        "monetary premium",
+        "lex_node Tim Beiko"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "ETH는 SoV여야 하고 반대 세력을 인식·극복해야 한다",
+          "holders": [
+            {
+              "handle": "lex_node",
+              "name": "_gabrielShapir0",
+              "role": "MetaLeX Labs 변호사, 크립토 법률·규제 논객",
+              "avatar": "https://pbs.twimg.com/profile_images/2058233189882032128/pRSMN_6C_400x400.jpg"
+            }
+          ],
+          "points": [
+            "이더리움 안에는 ETH가 가치저장·투자 자산이 되지 않기를 적극적으로 바라는 영향력 있는 사람들이 있으며, ETH가 투자 가능해지길 원한다면 이들이 뒤에서 영향을 미치고 있고 테제가 이기려면 이들을 꺾어야 함을 이해해야 한다.",
+            "ETH가 그렇게 될 수 있을지 의심할 수는 있어도, 인플레이션을 이기지 못하기를 바란다는 것 자체가 이해되지 않는다."
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "자산 가치를 거부하는 것은 일관된 견해가 아니다",
+          "holders": [
+            {
+              "handle": "TimBeiko",
+              "name": "timbeiko.eth",
+              "role": "EF, AllCoreDevs 콜 주재자",
+              "avatar": "https://pbs.twimg.com/profile_images/1082093593840349184/P2B7Qiyn_400x400.jpg"
+            }
+          ],
+          "points": [
+            "이더리움이 세계에 미치는 영향, 즉 가치 같은 '소프트 영향력'까지 중시한다면 ETH의 자산 가치를 거부하는 것은 일관된 견해가 아니다.",
+            "메인넷 없이는 다른 모든 것이 시간이 지나며 '이더리움'에서 멀어지고, ETH는 메인넷이 실제로 보장하는 가장 중요한 것이므로 이더리움의 가치와 ETH의 자산 가치는 분리되지 않는다."
+          ]
+        },
+        {
+          "stance": "neutral",
+          "label": "반대라기보다 구매력 보존 능력에 대한 회의다",
+          "holders": [
+            {
+              "handle": "itsbac0201",
+              "name": "Enzo",
+              "avatar": "https://pbs.twimg.com/profile_images/2112599436891410433/5gd45XNX_400x400.jpg"
+            }
+          ],
+          "points": [
+            "사람들이 ETH가 인플레이션을 이기는 것에 반대한다고 보지 않는다. 다만 ETH가 변동성과 수요 변화, 서로 다른 시간 지평을 거쳐 구매력을 안정적으로 보존할 수 있을지 회의할 뿐이다.",
+            "이를 '분파를 꺾는' 문제보다 신뢰할 만한 대안적 견해에도 불구하고 ETH의 화폐 프리미엄이 발현되는 문제로 봐야 하며, 테제가 내부 투쟁의 승리에 달려 있다면 그 정치적 리스크도 투자 논거에 포함돼야 한다."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-10-26",
+          "by": "lex_node",
+          "stance": "pro",
+          "quote": "이더리움 안에는 ETH가 가치저장·투자 자산이 되지 않기를 적극적으로 바라는 영향력 있는 사람들이 있다. 이건 일관된 견해지만, ETH가 투자 가능해지길 원한다면 이들이 존재하고 뒤에서 영향을 미치고 있으며 당신의 테제가 이기려면 이들을 꺾어야 한다는 걸 이해해야 한다.",
+          "url": "https://x.com/lex_node/status/2114785376279683476",
+          "digest": "2026-10-29",
+          "replyTo": "natesuits",
+          "relation": "quote",
+          "original": "it's important to keep in mind that there are influential people in Ethereum who actively want ETH to not be an SoV/investment\n\nthis is a coherent view, but ultimately if you want ETH to be investable you must understand these people exist, are influencing things behind the scenes, and need to be defeated for your thesis to win",
+          "translation": "이더리움 안에는 ETH가 가치저장수단(SoV, store of value)이나 투자 대상이 되지 않기를 적극적으로 바라는 영향력 있는 사람들이 있다는 점을 기억하는 것이 중요합니다. 이는 일관된(coherent) 관점이지만, 결국 ETH가 투자 가능한 자산이 되길 원한다면 이런 사람들이 실제로 존재하고, 보이지 않는 곳에서 상황에 영향을 미치고 있으며, 당신의 논제(thesis)가 승리하기 위해서는 이들이 패배해야 한다는 사실을 이해해야 합니다."
+        },
+        {
+          "date": "2026-10-27",
+          "by": "TimBeiko",
+          "stance": "con",
+          "quote": "이더리움이 세계에 미치는 영향, 가치 같은 '소프트 영향력'까지 중시한다면 그것은 일관된 견해가 아니다. 메인넷이 없으면 다른 모든 것이 시간이 지나며 '이더리움'에서 멀어진다. ETH는 메인넷이 실제로 보장하는 가장 중요한 것이다.",
+          "url": "https://x.com/TimBeiko/status/2114902425199091811",
+          "digest": "2026-10-29",
+          "replyTo": "lex_node",
+          "relation": "reply",
+          "original": "It's not a coherent view if you care about Ethereum's impact -- including \"soft influence\" such as values, etc. -- on the world.\n\nWithout mainnet, everything else will move away from \"Ethereum\" over time. $ETH is the most critical thing mainnet actually secures.\n\nAlmost nothing else requires economic security at $B magnitude.",
+          "translation": "이더리움이 세상에 미치는 영향, 즉 가치관 같은 '소프트한 영향력(soft influence)'까지 포함해서 신경 쓴다면, 그것은 일관된 관점이 아닙니다. 메인넷이 없다면 다른 모든 것은 시간이 지나면서 '이더리움'으로부터 멀어질 것입니다. $ETH는 메인넷이 실제로 보호하는 가장 핵심적인 요소입니다. 수십억 달러 규모의 경제적 보안(economic security)이 필요한 것은 그 외에는 거의 없습니다."
+        },
+        {
+          "date": "2026-10-27",
+          "by": "itsbac0201",
+          "stance": "neutral",
+          "quote": "사람들이 ETH가 인플레이션을 이기는 데 반대한다고 생각하지 않는다. 다만 ETH가 구매력을 안정적으로 보존할 수 있을지 회의할 뿐이다. 'SoV'는 공급 메커니즘이 아니라 시간에 걸친 실질 수익의 문제다.",
+          "url": "https://x.com/itsbac0201/status/2115148915528061062",
+          "digest": "2026-10-29",
+          "replyTo": "Ceazor7",
+          "relation": "reply",
+          "original": "@Ceazor7 @lex_node I don’t think people oppose ETH beating inflation; they’re skeptical it can reliably preserve purchasing power. “SoV” is about real returns over time, not just supply mechanics.",
+          "translation": "@Ceazor7 @lex_node 사람들이 ETH가 인플레이션을 이기는 것 자체에 반대한다고 생각하지는 않습니다. 다만 ETH가 구매력(purchasing power)을 안정적으로 보존할 수 있는지에 대해 회의적인 것입니다. '가치저장수단(SoV)'이라는 것은 단순한 공급 메커니즘이 아니라 시간에 걸친 실질 수익률(real returns)에 관한 문제입니다."
+        },
+        {
+          "date": "2026-10-27",
+          "by": "itsbac0201",
+          "stance": "neutral",
+          "quote": "나는 이것을 '분파를 꺾는' 문제보다 신뢰할 만한 대안적 견해에도 불구하고 ETH의 화폐 프리미엄이 발현되는 문제로 본다. 테제가 내부 투쟁의 승리에 달려 있다면 그 정치적 리스크도 투자 논거에 포함돼야 한다.",
+          "url": "https://x.com/itsbac0201/status/2115129975234089243",
+          "digest": "2026-10-29",
+          "replyTo": "lex_node",
+          "relation": "reply",
+          "original": "@lex_node I’d frame it less as defeating a faction and more as ETH’s monetary premium emerging despite a credible alternative view. If the thesis depends on winning an internal struggle, that political risk belongs in the investment case too.",
+          "translation": "@lex_node 저는 이것을 어느 파벌을 패배시키는 문제라기보다는, 신뢰할 수 있는 대안적 관점이 존재함에도 ETH의 통화적 프리미엄(monetary premium)이 형성되는 문제로 바라보고 싶습니다. 만약 그 논제(thesis)가 내부 투쟁에서 승리하는 것에 좌우된다면, 그 정치적 리스크 역시 투자 논거(investment case)에 포함되어야 합니다."
+        },
+        {
+          "date": "2026-10-27",
+          "by": "lex_node",
+          "stance": "pro",
+          "quote": "왜 누군가는 ETH가 SoV가 되는 결과를 원치 않는가? 그렇게 될 수 있을지 의심할 수는 있어도, 인플레이션을 이기지 못하기를 바란다는 건 이해가 안 된다.",
+          "url": "https://x.com/lex_node/status/2115141759303139601",
+          "digest": "2026-10-29",
+          "replyTo": "itsbac0201",
+          "relation": "reply",
+          "original": "@itsbac0201 @lex_node Why would anyone not want the outcome that ETH is a SoV\n\nI know people might doubt that is can become so, but to desire it to not beat inflation baffles me",
+          "translation": "@itsbac0201 @lex_node ETH가 가치저장수단(SoV)이 되는 결과를 누군가가 원하지 않을 이유가 있을까요. ETH가 그렇게 될 수 있을지 의심하는 사람들이 있다는 것은 이해하지만, ETH가 인플레이션을 이기지 않기를 바란다는 것은 저로서는 이해가 가지 않습니다."
+        }
+      ],
+      "firstSeen": "2026-10-26",
+      "lastActivity": "2026-10-27",
+      "status": "active",
+      "rootUrl": "https://x.com/lex_node/status/2114785376279683476",
+      "engagement": {
+        "likes": 168,
+        "retweets": 8,
+        "quotes": 0,
+        "replies": 30,
+        "views": 11780
+      }
+    },
+    {
+      "id": "decentralization-as-business-model",
+      "title": "탈중앙화는 그 자체로 비즈니스 모델이 될 수 있나, 아니면 사명일 뿐인가?",
+      "category": "거버넌스 · 커뮤니티",
+      "summary": "Optimism·EthLabs의 binji_x는 VC들이 '크립토'라는 이름에 돈을 던지던 시절이 지속 가능한 사업을 걱정하지 않고 탈중앙화를 추구할 여유를 줬고 모든 것에 비즈니스 모델이 필요한 것은 아니라고 썼고 lex_node는 탈중앙화는 훌륭한 사명이지만 그 자체가 비즈니스 모델이 될 수는 없으며 크립토가 '비즈니스'로서 말이 되는지도 의문이라고 반박했다.",
+      "keyPoints": [
+        "탈중앙화를 좇을 수 있었던 여유는 VC 자금이 만든 사치였나, 애초에 사업과 무관한 사명이었나?",
+        "크립토 프로젝트는 지속을 위해 비즈니스 모델·수익이 필요한가?",
+        "BTC처럼 비즈니스 모델 없이도 성립하는 것은 화폐 자산 특유의 예외인가, 탈중앙화 전반의 속성인가?"
+      ],
+      "whyItMatters": "펀딩 논쟁과 같은 날 벌어진 이 논쟁은 공공재적 작업을 누가 지속 가능하게 만드는가라는 같은 질문을 사업성 관점에서 다룬다. EF 자금 축소 국면에서 탈중앙화 프로젝트의 수익 모델 부재가 생태계 전반의 지속 가능성 문제로 떠오르는지 지켜봐야 한다.",
+      "sources": [],
+      "keywords": [
+        "decentralization business model",
+        "crypto sustainability",
+        "binji lex_node"
+      ],
+      "positions": [
+        {
+          "stance": "other",
+          "label": "모든 것에 비즈니스 모델이 필요한 건 아니다",
+          "holders": [
+            {
+              "handle": "binji_x",
+              "name": "binji",
+              "role": "EthLabs, 이더리움 커뮤니케이션",
+              "avatar": "https://pbs.twimg.com/profile_images/2057797822666473472/Ns8EleJw_400x400.jpg"
+            }
+          ],
+          "points": [
+            "크립토가 그렇게 실험적이었던 이유는 VC들이 이름에 '크립토'만 붙으면 돈을 던졌고 그 덕에 지속 가능한 사업을 크게 걱정하지 않고 탈중앙화를 좇는 사치를 누렸기 때문이다.",
+            "BTC는 지속 가능한 비즈니스 모델이 없지만 한 세대가 상상 못 할 높이로 끌어올리도록 영감을 줬고 탈중앙화는 그것을 물려받는 다음 세대만큼만 강하다."
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "탈중앙화는 사명이지 비즈니스 모델이 될 수 없다",
+          "holders": [
+            {
+              "handle": "lex_node",
+              "name": "_gabrielShapir0",
+              "role": "MetaLeX Labs 변호사, 크립토 법률·규제 논객",
+              "avatar": "https://pbs.twimg.com/profile_images/2058233189882032128/pRSMN_6C_400x400.jpg"
+            }
+          ],
+          "points": [
+            "BTC는 유료 고객이 필요한 플랫폼이나 서비스라기보다 디지털 금 같은 희소한 화폐 자산에 가까워 다르다. 나머지 크립토에서 탈중앙화는 훌륭한 사명이긴 해도 그 자체가 비즈니스 모델이 될 수는 없다.",
+            "모든 것에 '비즈니스 모델'이 필요한 것은 아니며 크립토가 '비즈니스'로서 말이 된다고 생각하지 않는다."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-10-27",
+          "by": "binji_x",
+          "stance": "other",
+          "quote": "우리는 크립토가 애초에 왜 그렇게 실험적이었는지 잊고 있다! VC들이 이름에 '크립토'만 붙으면 아무거나 돈을 던졌고, 그 덕에 지속 가능한 사업을 크게 걱정하지 않고 탈중앙화를 좇고 아이디어를 실험하는 사치를 누렸다.",
+          "url": "https://x.com/binji_x/status/2115055698979479718",
+          "digest": "2026-10-29",
+          "replyTo": "binji_x",
+          "relation": "quote",
+          "original": "I think we’re forgetting why crypto was so experimental in the first place!\n\nVCs were throwing money at anything with “crypto” in its name and that gave us the luxury of chasing decentralization and experimenting with ideas without worrying too much about sustainable business models.\n\nBut the industry has matured, the easy money has dried up, and now people actually have to PAY for what we build.\n\nInstitutions aren’t here because they suddenly fell in love with decentralization. They’re here because they see practical value and business opportunities.\n\nSo I don’t think crypto has lost its magic because we’re lacking young people with big dreams.\n\nIt’s just that the industry can no longer afford to fund dreams without a business model.\n\nAnd honestly, I don’t think that’s necessarily a bad thing!",
+          "translation": "저는 우리가 애초에 크립토가 왜 그렇게 실험적이었는지를 잊고 있다고 생각합니다. VC들은 이름에 '크립토'가 들어가기만 하면 아무 데나 돈을 쏟아부었고, 그 덕분에 우리는 지속 가능한 사업 모델을 크게 걱정하지 않으면서 탈중앙화(decentralization)를 추구하고 아이디어를 실험할 수 있는 여유를 누렸습니다. 하지만 업계는 성숙해졌고, 손쉬운 돈은 말라버렸으며, 이제는 사람들이 우리가 만드는 것에 대해 실제로 돈을 지불해야 합니다. 기관들이 여기 있는 이유는 갑자기 탈중앙화와 사랑에 빠졌기 때문이 아닙니다. 실질적인 가치와 사업 기회를 보기 때문에 여기 있는 것입니다. 그래서 저는 크립토가 매력을 잃은 이유가 큰 꿈을 가진 젊은 사람들이 부족해서라고는 생각하지 않습니다. 단지 업계가 더 이상 사업 모델 없이 꿈에 자금을 대줄 여력이 없어진 것뿐입니다. 그리고 솔직히 말하면, 저는 그것이 반드시 나쁜 일이라고는 생각하지 않습니다."
+        },
+        {
+          "date": "2026-10-27",
+          "by": "binji_x",
+          "stance": "other",
+          "quote": "BTC는 지속 가능한 비즈니스 모델이 없지만 한 세대가 그것을 상상 못 할 높이로 끌어올리도록 영감을 줬다. 탈중앙화는 그것을 물려받는 다음 세대만큼만 강하다.",
+          "url": "https://x.com/binji_x/status/2115057757145706936",
+          "digest": "2026-10-29",
+          "replyTo": "ShannaDaphne",
+          "relation": "reply",
+          "original": "@ShannaDaphne BTC doesn’t have a sustainable business model, yet inspired a generation to take it to unimaginable heights. The blockchain industry is one side of crypto, and I agree with you on the VC thing.\n\nBut decentralization is only as strong as the next generation that inherits it.",
+          "translation": "@ShannaDaphne BTC는 지속 가능한 사업 모델이 없지만, 그럼에도 한 세대에게 영감을 주어 상상할 수 없는 수준까지 끌어올려졌습니다. 블록체인 산업은 크립토의 한쪽 측면일 뿐이고, VC에 관한 당신의 말에는 동의합니다. 하지만 탈중앙화는 그것을 물려받을 다음 세대만큼만 견고할 수 있습니다."
+        },
+        {
+          "date": "2026-10-27",
+          "by": "lex_node",
+          "stance": "con",
+          "quote": "BTC는 좀 다르다. 유료 고객이 필요한 플랫폼이나 서비스라기보다 디지털 금 같은 희소한 화폐 자산에 가깝다. 하지만 나머지 크립토에서 탈중앙화는 훌륭한 사명이긴 해도 그 자체가 비즈니스 모델이 될 수는 없다.",
+          "url": "https://x.com/lex_node/status/2115060680910917857",
+          "digest": "2026-10-29",
+          "replyTo": "binji_x",
+          "relation": "reply",
+          "original": "@binji_x I think BTC is a bit different here. It’s more of a scarce monetary asset, like digital gold, than a platform or service that needs paying customers.\n\nFor the rest of crypto tho, decentralization is a great mission but it cant be the business model itself.",
+          "translation": "@binji_x BTC는 이 점에서 조금 다르다고 생각합니다. BTC는 유료 고객이 필요한 플랫폼이나 서비스보다는, 디지털 금(digital gold) 같은 희소한 통화 자산(scarce monetary asset)에 더 가깝습니다. 하지만 크립토의 나머지 부분에서는, 탈중앙화가 훌륭한 사명(mission)이긴 하지만 그 자체가 사업 모델이 될 수는 없습니다."
+        },
+        {
+          "date": "2026-10-27",
+          "by": "lex_node",
+          "stance": "con",
+          "quote": "그래도 모든 것에 '비즈니스 모델'이 필요한 건 아니다. 크립토가 '비즈니스'로서 말이 된다고 생각하지 않는다.",
+          "url": "https://x.com/lex_node/status/2115110930639966494",
+          "digest": "2026-10-29",
+          "replyTo": "ShannaDaphne",
+          "relation": "reply",
+          "original": "@ShannaDaphne @binji_x not everything needs a \"business model\" though, I don't think crypto really makes sense as a \"business\" although all the factors you mentioned in your OP made people temporarily view it the same as venture-backed businesses; never made much sense imo. . .",
+          "translation": "@ShannaDaphne @binji_x 하지만 모든 것이 '사업 모델'을 필요로 하는 것은 아닙니다. 저는 크립토가 정말로 '사업'으로서 성립한다고는 생각하지 않습니다. 당신이 원래 게시물에서 언급한 모든 요인들이 사람들로 하여금 일시적으로 크립토를 벤처 투자를 받는 사업체와 같은 방식으로 바라보게 만들었지만, 제 생각엔 그것은 애초에 그다지 말이 되지 않았습니다..."
+        }
+      ],
+      "firstSeen": "2026-10-27",
+      "lastActivity": "2026-10-27",
+      "status": "active",
+      "rootUrl": "https://x.com/binji_x/status/2115055698979479718",
+      "engagement": {
+        "likes": 65,
+        "retweets": 3,
+        "quotes": 1,
+        "replies": 9,
+        "views": 3882
+      }
+    },
+    {
+      "id": "l1-repricing-breaks-deployed-contracts",
+      "title": "L1의 가스 리프라이싱이 L2 스택과 불변 컨트랙트를 거듭 깨뜨리는 것을 받아들여야 하나?",
+      "category": "프로토콜 설계",
+      "summary": "L2BEAT의 donnoh_eth는 EIP-8037 리프라이싱(repricing)이 대부분의 OP 스택 체인을 또 깨뜨린다며 L1이 계속 자기 위의 스택을 깨는 것에 좌절감을 표했고, EF의 nero_eth는 깨뜨림을 받아들이자는 게 아니라 미래 수요에 맞춰 리프라이싱할 유연성과 기반이 바뀌지 않는다는 확실성 사이에서 적정점을 찾는 트레이드오프의 문제라고 답했다.",
+      "keyPoints": [
+        "L1이 배포된 컨트랙트와 L2 스택을 깨뜨리는 비용은 누가 감당해야 하나?",
+        "미래 수요에 대응할 리프라이싱 유연성과 기반이 바뀌지 않는다는 보장 사이의 적정점은 어디인가?",
+        "Fusaka 때의 tx 가스 리밋 충돌에 이어 반복되는 L2 사기 증명 시스템 파손을 어떻게 막을 것인가?"
+      ],
+      "background": "EIP-8037(상태 생성 가스 비용 인상)과 EIP-8038(상태 접근 가스 비용 갱신)은 Maria Silva 등이 제안한 Glamsterdam 코어 EIP로, 상태(state) 성장을 억제하기 위해 SSTORE, 계정 생성, 코드 배포 등의 가스 비용을 재산정한다. 이 리프라이싱은 이미 쓴 가스가 트랜잭션 도중 되돌아와 gasleft()가 증가할 수 있게 만들어, 전달 가스를 하드코딩하거나 호출 전후 가스 차이로 소비량을 측정하는 기존 컨트랙트의 불변식(invariant)을 깨뜨린다. ChainSecurity와 Dedaub의 감사에서 OP 스택을 포함한 다수 컨트랙트가 영향받는 것으로 드러났고, 코어 개발자들은 Hoodi 테스트넷 포크를 연기하며 영향 범위를 분석하고 있다. EIP-8037·8038은 모두 Last Call 단계다.",
+      "whyItMatters": "L1 리프라이싱의 비용을 L2 스택이 가장 먼저 치른다는 점이 Fusaka에 이어 반복 확인되면서, L1과 L2의 이해관계 조정이 쟁점이 되고 있다. 유연성과 확실성 사이의 적정점을 어디에 두느냐는 결정은 '배포된 코드에 대한 약속'을 지키는 수준과 향후 상태 성장 억제 정책의 공격성을 동시에 좌우한다.",
+      "sources": [
+        {
+          "title": "EIP-8037: State Creation Gas Cost Increase",
+          "url": "https://eips.ethereum.org/EIPS/eip-8037"
+        },
+        {
+          "title": "EIP-8038: State-Access Gas Cost Update",
+          "url": "https://eips.ethereum.org/EIPS/eip-8038"
+        }
+      ],
+      "keywords": [
+        "EIP-8037",
+        "EIP-8038",
+        "OP stack repricing",
+        "gasleft"
+      ],
+      "resolution": "ACDE #248(2026-10-22)에서 Hoodi Glamsterdam 하드포크가 무기한 취소됐고, ACDT #102(2026-10-26)에서 ChainSecurity·Dedaub 감사 결과를 기다리며 Hoodi 포크를 최소 2주 연기하기로 했으며 기본 경로는 영향받는 컨트랙트가 스스로 고치고 스펙 변경은 최후 수단으로 두기로 했다.",
+      "positions": [
+        {
+          "stance": "con",
+          "label": "L1이 계속 자기 스택을 깨는 것은 문제다",
+          "holders": [
+            {
+              "handle": "donnoh_eth",
+              "name": "donnoh.gwei 💗",
+              "role": "L2BEAT 리서치 책임",
+              "avatar": "https://pbs.twimg.com/profile_images/1906978600311521280/aSbKSjtX_400x400.jpg"
+            }
+          ],
+          "points": [
+            "대부분의 OP 스택 체인이 EIP-8037로 또 깨진다. 이미 Fusaka 때 트랜잭션 가스 리밋이 사기 증명 시스템과 충돌해 한 번 깨졌다.",
+            "L1이 계속 당신의 것을 깨뜨리는데, 개발자이거나 불변 컨트랙트를 옹호하는 입장이라면 좌절스러울 수밖에 없다."
+          ]
+        },
+        {
+          "stance": "neutral",
+          "label": "깨뜨림을 받아들이자는 게 아니라 트레이드오프다",
+          "holders": [
+            {
+              "handle": "nero_eth",
+              "name": "Toni Wahrstätter ⟠",
+              "role": "EF 리서처",
+              "avatar": "https://pbs.twimg.com/profile_images/1858347774129094657/xUc7IS2K_400x400.jpg"
+            }
+          ],
+          "points": [
+            "깨뜨리는 것을 받아들이자고 주장하는 게 아니다. 이것은 트레이드오프이며, 적정점은 미래 수요에 적응할 만큼(예: 리프라이싱) 유연한 것과 기반이 발밑에서 바뀌지 않는다는 확실성을 제공하는 것 사이 어딘가에 있다.",
+            "EIP-8037은 이미 쓴 가스가 tx 도중 되돌아와 gasleft()가 증가할 수 있게 해, 가스 카운터가 언더플로해 리버트되거나 도달 불가능해야 할 경로가 실행돼 tx가 성공한 것처럼 보이게 하는 등 기존 컨트랙트의 가정을 깨뜨린다."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-10-26",
+          "by": "nero_eth",
+          "stance": "neutral",
+          "quote": "지난주 코어 개발자들은 EIP-8037이 일부 컨트랙트와 상호작용하는 방식의 문제를 드러낸 ChainSecurity 보고서를 연구하려고 Hoodi 테스트넷의 Glamsterdam 포크를 연기했다. 이미 쓴 가스가 tx 도중 되돌아올 수 있어 gasleft()가 증가할 수 있고, 이 때문에 가스 카운터가 언더플로해 리버트되거나 도달 불가능해야 할 경로가 실행돼 tx가 성공한 것처럼 보일 수 있다.",
+          "url": "https://x.com/nero_eth/status/2114631334526161274",
+          "digest": "2026-10-29",
+          "replyTo": "chain_security",
+          "relation": "quote",
+          "original": "Last week, core devs had to delay forking the Hoodi testnet to Glamsterdam to study a report by @chain_security which revealed some problems with how EIP-8037 interacts with a few contracts.\nOver the weekend, ppl tried to get a better picture of the impact and by now it's quite well understood. So here's what you need to know:\n\nWhat's been known is that contracts which hardcode forwarded gas are affected by repricings, e.g. making state writes (SSTORE) more expensive.\n\nWhat's new is that some coding patterns rely on specific invariant which were broken with EIP-8037.\n\nGas already spent can come back mid-tx, so gasleft() can go up. This causes two problems:\n(1) a before / after gas counter underflows and reverts\n(2) a failed sub-call hands gas back, so a path that should've been unreachable runs, and the tx looks like it succeeded\n\nRelated but different: (3) measuring the gas usage of a call using GAS - before and after the call - might undercount because the state gas reservoir is not visible during execution (e.g. gas_left).\n\nIt's now about deciding how to proceed. Delaying hoodi bought time but won't resolve the issue. This week, we have to dig deep into contracts and make sure nothing is missed. Eventually, this might just need some coordination among the involved parties (dapps, core devs, auditors, people running nodes, etc.), or worst-case, spec changes.\n\nIf you're an app dev or auditor, check your contracts for issues with EIP-8037/EIP-8038, and report them.\nAlso, share this with your favorite app dev to spread awareness.",
+          "translation": "지난주, 핵심 개발자(core dev)들은 @chain_security의 보고서를 검토하기 위해 Hoodi 테스트넷의 글램스테르담(Glamsterdam) 포크를 연기해야 했습니다. 이 보고서는 EIP-8037이 일부 컨트랙트와 상호작용하는 방식에 몇 가지 문제가 있다는 것을 밝혀냈습니다. 주말 동안 사람들은 그 영향을 더 정확히 파악하려 노력했고, 지금은 상당히 잘 이해된 상태입니다. 그래서 알아야 할 내용을 정리하면 다음과 같습니다. 이미 알려져 있던 것은, 전달되는 가스(forwarded gas)를 하드코딩하는 컨트랙트가 리프라이싱(repricing, 예를 들어 상태 쓰기(SSTORE)를 더 비싸게 만드는 것)의 영향을 받는다는 점입니다. 새롭게 밝혀진 것은, 일부 코딩 패턴이 EIP-8037로 인해 깨진 특정 불변조건(invariant)에 의존하고 있다는 점입니다. 이미 소모된 가스가 트랜잭션 중간에 되돌아올 수 있어서, gasleft()의 값이 올라갈 수 있습니다. 이로 인해 두 가지 문제가 발생합니다. (1) 전/후 가스 카운터가 언더플로(underflow)를 일으켜 되돌려지는(revert) 경우, (2) 실패한 서브콜(sub-call)이 가스를 되돌려주어서, 원래 도달할 수 없었어야 할 경로가 실행되고 트랜잭션이 성공한 것처럼 보이는 경우입니다. 관련은 있지만 다른 문제로, (3) 호출 전후의 GAS 값을 측정해 호출의 가스 사용량을 측정하는 방식이 실행 중에는 상태 가스 저장분(state gas reservoir, 예를 들어 gas_left)이 보이지 않기 때문에 실제보다 적게 집계될 수 있습니다. 지금은 어떻게 진행할지를 결정하는 단계입니다. Hoodi를 연기한 것은 시간을 벌어주었을 뿐 문제를 해결해주지는 않습니다. 이번 주에는 컨트랙트들을 깊이 파고들어 빠진 것이 없는지 확인해야 합니다. 결국에는 관련된 당사자들(dapp, 핵심 개발자, 감사자(auditor), 노드 운영자 등) 간의 조율이 필요할 수도 있고, 최악의 경우에는 스펙(spec) 변경이 필요할 수도 있습니다. 만약 당신이 앱 개발자나 감사자라면, 자신의 컨트랙트에 EIP-8037/EIP-8038 관련 문제가 있는지 확인하고 이를 보고해 주시기 바랍니다. 그리고 이 내용을 좋아하는 앱 개발자에게 공유해서 널리 알려주시기 바랍니다."
+        },
+        {
+          "date": "2026-10-26",
+          "by": "donnoh_eth",
+          "stance": "con",
+          "quote": "대부분의 OP 스택 체인이 또 깨진다. 이미 Fusaka 때 tx 가스 리밋이 사기 증명 시스템과 충돌해 한 번 깨졌다. L1이 계속 당신의 것을 깨뜨리는데 개발자이거나 불변 컨트랙트를 옹호하는 입장이라면 좌절스러울 것이다.",
+          "url": "https://x.com/nero_eth/status/2114639333063889295",
+          "digest": "2026-10-29",
+          "replyTo": "nero_eth",
+          "relation": "reply",
+          "original": "@nero_eth @chain_security most op stack chains break, again. they already broke once with fusaka because of the tx gas limit interfering with the fraud proof system. must be frustrating being a dev when l1 keeps breaking your stuff, or being someone advocating for immutable contracts.",
+          "translation": "@nero_eth @chain_security 대부분의 OP 스택 체인들이 또다시 망가집니다. 이들은 이미 fusaka 때 트랜잭션 가스 한도(tx gas limit)가 부정 증명 시스템(fraud proof system)을 방해하면서 한 번 망가진 적이 있습니다. L1이 계속해서 자신이 만든 것을 망가뜨리는 상황에서 개발자로 지내거나, 불변 컨트랙트(immutable contract)를 지지하는 사람으로 지내는 것은 분명 답답한 일일 것입니다."
+        },
+        {
+          "date": "2026-10-26",
+          "by": "nero_eth",
+          "stance": "neutral",
+          "quote": "전적으로 동의한다. 나는 깨뜨리는 걸 받아들이자고 주장하는 게 아니다. 이건 트레이드오프이고, 적정점은 미래 수요에 적응할 만큼 유연한 것과 기반이 발밑에서 바뀌지 않는다는 확실성을 제공하는 것 사이 어딘가에 있다.",
+          "url": "https://x.com/nero_eth/status/2114640792329297935",
+          "digest": "2026-10-29",
+          "replyTo": "donnoh_eth",
+          "relation": "reply",
+          "original": "Yeah totally, I'm not advocating for accepting to break things.\nIt's a trade-off and the sweet spot is somewhere between staying flexible enough to adapt to future needs (e.g. reprice) and providing certainty that the foundation won't change underneath and is ready for immutability.",
+          "translation": "맞습니다, 정말로 그렇습니다. 저는 문제가 생기는 것을 받아들이자고 주장하는 것이 아닙니다. 이것은 하나의 트레이드오프이며, 적정선은 미래의 필요(예를 들어 리프라이싱)에 적응할 수 있을 만큼 유연성을 유지하는 것과, 기반이 아래에서 바뀌지 않을 것이라는 확실성을 제공하고 불변성(immutability)에 대비되어 있는 것 사이의 어딘가에 있습니다."
+        }
+      ],
+      "firstSeen": "2026-10-26",
+      "lastActivity": "2026-10-26",
+      "status": "active",
+      "rootUrl": "https://x.com/nero_eth/status/2114639333063889295",
+      "engagement": {
+        "likes": 12,
+        "retweets": 1,
+        "quotes": 1,
+        "replies": 3,
+        "views": 875
+      }
+    },
     {
       "id": "state-gas-repricing-growth",
       "title": "상태 가스 리프라이싱(EIP-8037·8038)은 상태 성장 문제를 해결하는가?",
@@ -875,7 +1473,7 @@
       ],
       "firstSeen": "2026-10-22",
       "lastActivity": "2026-10-22",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/nero_eth/status/2113083480221356207",
       "engagement": {
         "likes": 19,
@@ -1166,7 +1764,7 @@
       ],
       "firstSeen": "2026-10-15",
       "lastActivity": "2026-10-21",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/nero_eth/status/2110787397151568355",
       "engagement": {
         "likes": 6,
@@ -1312,7 +1910,7 @@
       ],
       "firstSeen": "2026-10-21",
       "lastActivity": "2026-10-21",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/trent_vanepps/status/2112925186143957056",
       "engagement": {
         "likes": 2,
@@ -4245,7 +4843,7 @@
       ],
       "firstSeen": "2026-09-29",
       "lastActivity": "2026-09-29",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/donnoh_eth/status/2105005910028329265",
       "engagement": {
         "likes": 1,
@@ -4433,7 +5031,7 @@
       ],
       "firstSeen": "2026-09-26",
       "lastActivity": "2026-09-28",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/pcaversaccio/status/2103785672373104828",
       "engagement": {
         "likes": 472,
@@ -4582,7 +5180,7 @@
       ],
       "firstSeen": "2026-09-26",
       "lastActivity": "2026-09-27",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/TrustlessState/status/2103818463261098197",
       "engagement": {
         "likes": 89,
@@ -4793,7 +5391,7 @@
       ],
       "firstSeen": "2026-09-26",
       "lastActivity": "2026-09-27",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/gakonst/status/2103641301371724207",
       "engagement": {
         "likes": 1214,
