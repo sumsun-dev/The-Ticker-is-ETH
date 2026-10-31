@@ -1,4 +1,4 @@
-/** 콘텐츠 썸네일: 올린 이미지를 16:9(1280x720)로 가운데 잘라 webp로 줄인다. 발행 요청이 nginx 1MB 한도 안에 들어가야 한다 */
+/** 콘텐츠 썸네일: 올린 이미지를 16:9(1280x720)로 가운데 잘라 webp(안 되면 jpeg)로 줄인다 */
 
 export const THUMB_W = 1280;
 export const THUMB_H = 720;
@@ -40,8 +40,14 @@ export async function prepareThumbnail(source: Blob): Promise<PreparedImage> {
   const { sx, sy, sw, sh } = coverCrop(bitmap.width, bitmap.height);
   ctx.drawImage(bitmap, sx, sy, sw, sh, 0, 0, THUMB_W, THUMB_H);
   bitmap.close();
+  // Safari는 webp 요청에 품질을 무시한 png를 돌려준다. 그러면 jpeg로 다시 시도한다
+  let type = 'image/webp';
   for (const quality of [0.85, 0.7, 0.55, 0.4]) {
-    const blob = await new Promise<Blob | null>((r) => canvas.toBlob(r, 'image/webp', quality));
+    let blob = await new Promise<Blob | null>((r) => canvas.toBlob(r, type, quality));
+    if (blob && blob.type !== type) {
+      type = 'image/jpeg';
+      blob = await new Promise<Blob | null>((r) => canvas.toBlob(r, type, quality));
+    }
     if (!blob) break;
     if (blob.size <= TARGET_BYTES) {
       const dataUrl = await toDataUrl(blob);

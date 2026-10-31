@@ -10,6 +10,13 @@ describe('썸네일 HTML', () => {
     expect(out).toMatch(/^<meta http-equiv="Content-Security-Policy" content="default-src 'none'/);
   });
 
+  it('CSP가 못 막는 페이지 이동(meta refresh·base·iframe·file: 주소)을 지운다', () => {
+    const out = extractHtml('<html><head><meta http-equiv="refresh" content="0;url=file:/proc/self/environ"><base href="file:/etc/"></head><body><iframe src="file:/etc/passwd"></iframe><div style="color:red">x</div></body></html>');
+    expect(out.match(/<meta/g)).toHaveLength(1);
+    expect(out).not.toMatch(/refresh|<base|<iframe|file:/i);
+    expect(out).toContain('color:red');
+  });
+
   it('HTML이 아니면 실패한다', () => {
     expect(() => extractHtml('죄송합니다')).toThrow();
   });

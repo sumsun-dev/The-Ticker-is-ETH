@@ -45,6 +45,9 @@ export function extractHtml(output: string): string {
     .replace(/<script[^>]*>/gi, '')
     .replace(/\son\w+\s*=\s*("[^"]*"|'[^']*')/gi, '')
     .replace(/(https?:)?\/\/[^\s"')]+/gi, '')
+    // CSP는 페이지 이동을 막지 못한다: meta refresh·base·link·frame 태그와 file: 같은 비 data: 주소를 지운다
+    .replace(/<\/?(meta|base|link|i?frame|frameset|object|embed|portal)\b[^>]*>/gi, '')
+    .replace(/\b(file|https?|ftp|blob|filesystem|about|chrome|view-source|javascript)\s*:/gi, '')
     .replace(SYMBOL_SLOT, SYMBOL)
     .replace(/^/, CSP);
 }
@@ -54,10 +57,19 @@ const CSP = `<meta http-equiv="Content-Security-Policy" content="default-src 'no
 
 const run = (cmd: string, args: string[], opts: { input?: string; env?: NodeJS.ProcessEnv; timeout: number }) =>
   new Promise<string>((resolve, reject) => {
-    const child = execFile(cmd, args, { env: opts.env, timeout: opts.timeout, maxBuffer: 16 * 1024 * 1024 }, (err, stdout, stderr) => {
+    // detached로 프로세스 그룹을 만들어, 시간 초과 시 렌더러 같은 자식까지 함께 죽인다 (execFile timeout은 본 프로세스만 죽인다)
+    const child = execFile(cmd, args, { env: opts.env, detached: true, maxBuffer: 16 * 1024 * 1024 }, (err, stdout, stderr) => {
+      clearTimeout(timer);
       if (err) reject(new Error(`${cmd} 실패: ${String(stderr || stdout || err.message).slice(0, 300)}`));
       else resolve(stdout);
     });
+    const timer = setTimeout(() => {
+      try {
+        if (child.pid) process.kill(-child.pid, 'SIGKILL');
+      } catch {
+        /* 이미 끝난 프로세스 */
+      }
+    }, opts.timeout);
     if (opts.input !== undefined) child.stdin?.end(opts.input);
   });
 
@@ -96,7 +108,8 @@ export async function renderPng(html: string): Promise<Buffer> {
         `--screenshot=${join(dir, 'out.png')}`,
         `file://${join(dir, 'in.html')}`,
       ],
-      { timeout: 30_000 },
+      // 서버 env(토큰·비밀번호)를 렌더러에 물려주지 않는다
+      { env: { PATH: process.env.PATH, HOME: dir }, timeout: 30_000 },
     );
     return await readFile(join(dir, 'out.png'));
   } finally {

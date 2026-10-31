@@ -16,7 +16,7 @@ interface PublishBody {
 }
 
 const IMAGE_EXT: Record<string, string> = { 'image/webp': 'webp', 'image/jpeg': 'jpg', 'image/png': 'png' };
-/** nginx 기본 요청 한도(1MB) 안에 본문과 함께 들어가야 한다 */
+/** base64로 약 940KB. nginx /api/ 한도(3MB)와 Express 한도(2MB) 안에 본문과 함께 들어간다 */
 const MAX_IMAGE_BYTES = 700 * 1024;
 
 function safeCompare(a: string, b: string): boolean {
