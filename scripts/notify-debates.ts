@@ -158,6 +158,8 @@ async function applyCallbacks(token: string, state: State, debates: Debate[]): P
     timeout: 0,
     allowed_updates: ['callback_query'],
   });
+  // 크론 로그만 보고 응답이 언제 몇 건 들어왔는지 알 수 있게 한다 (2026-10-29: 노출 클릭이 8시간 밀린 원인을 못 잡음)
+  console.log(`[${new Date().toISOString()}] getUpdates offset=${state.offset} 받은 응답 ${updates.length}건`);
   let next: Debate[] | null = null;
   for (const update of updates) {
     state.offset = update.update_id + 1;

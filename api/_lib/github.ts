@@ -36,14 +36,15 @@ export async function getFileContent(path: string): Promise<GitHubFileResponse> 
   return res.json() as Promise<GitHubFileResponse>;
 }
 
+/** content가 Buffer면 그대로(이미지 같은 바이너리), 문자열이면 UTF-8로 올린다 */
 export async function createFile(
   path: string,
-  content: string,
+  content: string | Buffer,
   message: string,
 ): Promise<void> {
   const body = JSON.stringify({
     message,
-    content: Buffer.from(content, 'utf-8').toString('base64'),
+    content: (typeof content === 'string' ? Buffer.from(content, 'utf-8') : content).toString('base64'),
     branch: 'main',
   });
   const res = await fetch(repoUrl(path), {

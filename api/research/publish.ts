@@ -11,7 +11,13 @@ interface PublishBody {
   summary: string;
   content: string;
   thumbnailUrl: string;
+  /** 직접 올린 썸네일 (브라우저에서 1280x720으로 줄여 base64로 보낸다) */
+  thumbnailImage?: { type: string; data: string };
 }
+
+const IMAGE_EXT: Record<string, string> = { 'image/webp': 'webp', 'image/jpeg': 'jpg', 'image/png': 'png' };
+/** base64로 약 940KB. nginx /api/ 한도(3MB)와 Express 한도(2MB) 안에 본문과 함께 들어간다 */
+const MAX_IMAGE_BYTES = 700 * 1024;
 
 function safeCompare(a: string, b: string): boolean {
   const bufA = Buffer.from(a, 'utf-8');
@@ -49,14 +55,28 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(401).json({ error: 'Invalid password' });
   }
 
+  const image = body.thumbnailImage;
+  const ext = image ? IMAGE_EXT[image.type] : undefined;
+  const imageBytes = image && ext ? Buffer.from(image.data, 'base64') : null;
+  if (image && (!ext || !imageBytes?.length)) return res.status(400).json({ error: 'Unsupported thumbnail image' });
+  if (imageBytes && imageBytes.length > MAX_IMAGE_BYTES) return res.status(413).json({ error: 'Thumbnail image too large' });
+
   const id = generateId();
   const articlePath = `src/data/articles/${id}.md`;
   const indexPath = 'src/data/research-index.json';
+  const imagePath = ext ? `public/assets/research/${id}.${ext}` : null;
   let articleCreated = false;
+  let imageCreated = false;
 
   try {
     const now = new Date();
     const dateStr = `${now.getFullYear()}.${String(now.getMonth() + 1).padStart(2, '0')}.${String(now.getDate()).padStart(2, '0')}`;
+
+    // 0. 직접 올린 썸네일은 public에 커밋하고, 배포 뒤 /assets/research/... 로 보인다
+    if (imagePath && imageBytes) {
+      await createFile(imagePath, imageBytes, `docs(research): thumbnail for "${body.title}"`);
+      imageCreated = true;
+    }
 
     // 1. Create article markdown file
     await createFile(
@@ -80,7 +100,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       category: body.category || 'Research',
       summary: body.summary,
       content: '',
-      thumbnailUrl: body.thumbnailUrl || '',
+      thumbnailUrl: imagePath ? imagePath.replace(/^public/, '') : body.thumbnailUrl || '',
       readTime: estimateReadTime(body.content),
       authorAvatar: body.authorAvatar,
     };
@@ -97,6 +117,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(200).json({ id, ...newEntry });
   } catch (error) {
     console.error('[PUBLISH ERROR]', error);
+
+    if (imageCreated && imagePath) {
+      try {
+        const orphan = await getFileContent(imagePath);
+        await deleteFile(imagePath, orphan.sha, `revert(research): rollback orphaned thumbnail ${id}`);
+      } catch (rollbackErr) {
+        console.error('[PUBLISH ROLLBACK FAILED]', rollbackErr);
+      }
+    }
 
     // Rollback: orphaned article md (created but index update failed)
     if (articleCreated) {

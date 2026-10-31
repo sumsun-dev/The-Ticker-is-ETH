@@ -4,7 +4,7 @@
  */
 import React, { useId } from 'react';
 import type { Ranked } from '../../types/adminStats';
-import { DAY_LABELS, HOUR_BLOCKS, blockLabel, type Heat, type MonthRow } from '../../utils/adminInsights';
+import { DAY_LABELS, HOUR_BLOCKS, blockLabel, type Heat } from '../../utils/adminInsights';
 
 const n = (x: number) => x.toLocaleString('en-US');
 
@@ -33,7 +33,7 @@ export const Sparkline: React.FC<{ values: Array<number | null>; color: string; 
   const h = 36;
   const known = values.filter((v): v is number => v !== null);
   // 점 두 개로는 추이라 하기 어렵다
-  if (known.length < 3) return <div className="h-9" aria-hidden="true" />;
+  if (known.length < 3) return <div className="h-7" aria-hidden="true" />;
   const max = Math.max(1, ...known);
   const line = linePath(values, w, h, max);
   const firstIdx = values.findIndex((v) => v !== null);
@@ -41,7 +41,7 @@ export const Sparkline: React.FC<{ values: Array<number | null>; color: string; 
   const step = (w - 4) / (values.length - 1);
   const area = `${line}L${(2 + lastIdx * step).toFixed(1)},${h}L${(2 + firstIdx * step).toFixed(1)},${h}Z`;
   return (
-    <svg viewBox={`0 0 ${w} ${h}`} className="h-9 w-full" preserveAspectRatio="none" role="img" aria-label={label}>
+    <svg viewBox={`0 0 ${w} ${h}`} className="h-7 w-full" preserveAspectRatio="none" role="img" aria-label={label}>
       <defs>
         <linearGradient id={id} x1="0" x2="0" y1="0" y2="1">
           <stop offset="0%" stopColor={color} stopOpacity="0.35" />
@@ -107,81 +107,202 @@ export const AreaChart: React.FC<{
   );
 };
 
-/** 텔레그램 월별: 막대 = 글 수, 선 = 글당 평균 조회 */
-export const ComboChart: React.FC<{ rows: MonthRow[]; barColor: string; lineColor: string; selected?: string }> = ({ rows, barColor, lineColor, selected }) => {
-  const w = 600;
-  const h = 180;
+export interface TrendRow {
+  key: string;
+  label: string;
+  bar: number | null;
+  line: number | null;
+  /** 진행 중이라 아직 다 차지 않은 기간 */
+  partial?: boolean;
+}
+
+const tick = (count: number, every: number) => (i: number) => i === 0 || i === count - 1 || i % every === 0;
+
+/** 기간별 추이: 막대(양, 왼쪽 축)와 선(질, 오른쪽 축). 선택한 기간을 진하게 */
+export const TrendChart: React.FC<{ rows: TrendRow[]; color: string; barLabel: string; lineLabel: string; lineUnit?: string; selected?: string }> = ({
+  rows,
+  color,
+  barLabel,
+  lineLabel,
+  lineUnit = '',
+  selected,
+}) => {
   if (!rows.length) return null;
-  const maxPosts = Math.max(1, ...rows.map((r) => r.posts));
-  const maxAvg = Math.max(1, ...rows.map((r) => r.avgViews));
-  const slot = (w - 4) / rows.length;
-  const bw = slot * 0.6;
-  const cx = (i: number) => 2 + slot * i + slot / 2;
-  const line = rows.map((r, i) => `${i ? 'L' : 'M'}${cx(i).toFixed(1)},${(h - 4 - (r.avgViews / maxAvg) * (h - 16)).toFixed(1)}`).join('');
+  const w = 600;
+  const h = 190;
+  const top = 10;
+  const bottom = h - 2;
+  const maxBar = Math.max(1, ...rows.map((r) => r.bar ?? 0));
+  const maxLine = Math.max(1, ...rows.map((r) => r.line ?? 0));
+  const slot = w / rows.length;
+  const bw = Math.min(28, slot * 0.6);
+  const cx = (i: number) => slot * i + slot / 2;
+  const ly = (v: number) => bottom - (v / maxLine) * (bottom - top);
+  let d = '';
+  let pen = false;
+  rows.forEach((r, i) => {
+    if (r.line === null) {
+      pen = false;
+      return;
+    }
+    d += `${pen ? 'L' : 'M'}${cx(i).toFixed(1)},${ly(r.line).toFixed(1)}`;
+    pen = true;
+  });
+  const show = tick(rows.length, Math.ceil(rows.length / 6));
   return (
     <div>
-      <svg viewBox={`0 0 ${w} ${h}`} className="h-44 w-full" preserveAspectRatio="none" role="img" aria-label="월별 텔레그램 글 수와 글당 평균 조회">
+      <div className="mb-1 flex justify-between text-[11px] text-theme-text-muted">
+        <span>
+          {barLabel} 최고 {n(maxBar)}
+        </span>
+        <span>
+          {lineLabel} 최고 {n(maxLine)}
+          {lineUnit}
+        </span>
+      </div>
+      <svg viewBox={`0 0 ${w} ${h}`} className="h-48 w-full" preserveAspectRatio="none" role="img" aria-label={`기간별 ${barLabel}와 ${lineLabel}`}>
+        {[0.25, 0.5, 0.75].map((f) => (
+          <line key={f} x1="0" x2={w} y1={top + (bottom - top) * f} y2={top + (bottom - top) * f} stroke="var(--border-primary)" vectorEffect="non-scaling-stroke" />
+        ))}
+        <line x1="0" x2={w} y1={bottom} y2={bottom} stroke="var(--text-muted)" strokeOpacity="0.4" vectorEffect="non-scaling-stroke" />
         {rows.map((r, i) => {
-          const bh = (r.posts / maxPosts) * (h * 0.55);
+          const bh = ((r.bar ?? 0) / maxBar) * (bottom - top) * 0.7;
+          const on = selected === r.key;
           return (
-            <rect key={r.month} x={cx(i) - bw / 2} y={h - bh} width={bw} height={bh} rx="2" fill={barColor} opacity={selected === r.month ? 0.9 : r.partial ? 0.25 : 0.45}>
-              <title>{`${r.month}: 글 ${r.posts}개 · 글당 ${n(r.avgViews)}회${r.partial ? ' (조회 쌓이는 중)' : ''}`}</title>
-            </rect>
+            <g key={r.key}>
+              <rect x={cx(i) - bw / 2} y={bottom - bh} width={bw} height={bh} rx="1.5" fill={color} opacity={on ? 0.55 : r.partial ? 0.12 : 0.22} />
+              <rect x={slot * i} y="0" width={slot} height={h} fill="transparent">
+                <title>{`${r.label}: ${barLabel} ${r.bar === null ? '–' : n(r.bar)} · ${lineLabel} ${r.line === null ? '–' : `${n(r.line)}${lineUnit}`}${r.partial ? ' (진행 중)' : ''}`}</title>
+              </rect>
+            </g>
           );
         })}
-        <path d={line} fill="none" stroke={lineColor} strokeWidth="2.5" strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
-        {rows.map((r, i) => (
-          <circle key={`p-${r.month}`} cx={cx(i)} cy={h - 4 - (r.avgViews / maxAvg) * (h - 16)} r={selected === r.month ? 4 : 2.5} fill={lineColor} opacity={r.partial ? 0.5 : 1}>
-            <title>{`${r.month}: 글당 평균 ${n(r.avgViews)}회`}</title>
-          </circle>
-        ))}
+        <path d={d} fill="none" stroke={color} strokeWidth="2" strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
       </svg>
-      <div className="mt-2 flex items-center justify-between text-[11px] text-theme-text-muted">
-        <span>{rows[0].month.replace('-', '.')}</span>
-        <span className="flex items-center gap-3">
-          <span className="flex items-center gap-1">
-            <span className="h-2 w-2 rounded-sm" style={{ background: barColor, opacity: 0.6 }} />글 수
-          </span>
-          <span className="flex items-center gap-1">
-            <span className="h-0.5 w-3 rounded" style={{ background: lineColor }} />글당 평균 조회
-          </span>
+      <div className="relative mt-1 h-4 text-[11px] text-theme-text-muted">
+        {rows.map((r, i) =>
+          show(i) ? (
+            <span key={r.key} className={`absolute -translate-x-1/2 whitespace-nowrap ${selected === r.key ? 'font-semibold text-theme-text' : ''}`} style={{ left: `${(cx(i) / w) * 100}%` }}>
+              {r.label}
+            </span>
+          ) : null,
+        )}
+      </div>
+      <div className="mt-2 flex gap-4 text-[11px] text-theme-text-muted">
+        <span className="flex items-center gap-1.5">
+          <span className="h-2.5 w-2.5 rounded-sm" style={{ background: color, opacity: 0.3 }} />
+          {barLabel}
         </span>
-        <span>{rows.at(-1)!.month.replace('-', '.')}</span>
+        <span className="flex items-center gap-1.5">
+          <span className="h-0.5 w-3.5 rounded" style={{ background: color }} />
+          {lineLabel}
+        </span>
       </div>
     </div>
   );
 };
 
-/** 비중 도넛과 범례 */
-export const Donut: React.FC<{ rows: Ranked; colors: string[]; centerLabel: string }> = ({ rows, colors, centerLabel }) => {
-  const total = rows.reduce((a, [, v]) => a + v, 0);
-  if (!total) return null;
-  const r = 40;
-  const c = 2 * Math.PI * r;
-  // 조각마다 시작 위치를 미리 계산한다 (렌더 중에 변수를 바꾸지 않게)
-  const arcs = rows.map(([label, v], i) => {
-    const before = rows.slice(0, i).reduce((a, [, x]) => a + x, 0);
-    return { label, v, len: (v / total) * c, start: (before / total) * c };
-  });
+export interface ScatterPoint {
+  key: string;
+  date: string;
+  value: number;
+  color: string;
+  title: string;
+}
+
+/** 글 하나 = 점 하나. x는 날짜, y는 성과. 가운데 점선은 중앙값 */
+export const Scatter: React.FC<{ points: ScatterPoint[]; unit: string; legend?: Array<[string, string]>; wide?: boolean }> = ({ points, unit, legend, wide }) => {
+  if (points.length < 2) return <p className="text-sm text-theme-text-muted">점이 너무 적습니다</p>;
+  // 넓은 자리는 가로로 길게 그려 높이가 과하게 커지지 않게 한다
+  const w = wide ? 1200 : 600;
+  const h = 240;
+  const pad = 8;
+  const ts = points.map((p) => Date.parse(p.date));
+  const [t0, t1] = [Math.min(...ts), Math.max(...ts)];
+  const vs = points.map((p) => p.value).sort((a, b) => a - b);
+  const max = Math.max(2, vs.at(-1)!);
+  // 갓 올라온 글(조회 몇 회)이 축을 끌어내리지 않게 아래 5%는 바닥에 붙인다
+  const min = Math.max(1, vs[Math.floor(vs.length * 0.05)]);
+  const median = vs[Math.floor(vs.length / 2)];
+  // 한두 글이 크게 튀므로 로그 축으로 나머지 글의 차이도 보이게 한다
+  const span = Math.log(max) - Math.log(min) || 1;
+  const y = (v: number) => h - pad - ((Math.log(Math.max(v, min)) - Math.log(min)) / span) * (h - pad * 2);
+  const x = (t: number) => pad + ((t - t0) / Math.max(1, t1 - t0)) * (w - pad * 2);
+  const day = (t: number) => new Date(t + 9 * 3600e3).toISOString().slice(5, 10).replace('-', '.');
   return (
-    <div className="flex items-center gap-5">
-      <svg viewBox="0 0 100 100" className="h-28 w-28 shrink-0 -rotate-90" role="img" aria-label={centerLabel}>
-        <circle cx="50" cy="50" r={r} fill="none" stroke="currentColor" className="text-theme-border" strokeWidth="12" opacity="0.4" />
-        {arcs.map(({ label, v, len, start }, i) => (
-          <circle key={label} cx="50" cy="50" r={r} fill="none" stroke={colors[i % colors.length]} strokeWidth="12" strokeDasharray={`${len} ${c - len}`} strokeDashoffset={-start}>
-            <title>{`${label}: ${n(v)} (${Math.round((v / total) * 100)}%)`}</title>
+    <div>
+      <svg viewBox={`0 0 ${w} ${h}`} className="w-full" role="img" aria-label={`글별 ${unit} 분포, 중앙값 ${n(median)}`}>
+        <line x1="0" x2={w} y1={y(median)} y2={y(median)} stroke="var(--text-muted)" strokeDasharray="4 4" />
+        <text x={2} y={y(median) - 5} fontSize="11" fill="var(--text-muted)">
+          중앙값 {n(median)}
+        </text>
+        <text x={2} y={14} fontSize="11" fill="var(--text-muted)">
+          {n(max)}
+        </text>
+        <text x={2} y={h - 4} fontSize="11" fill="var(--text-muted)">
+          {n(min)}
+        </text>
+        {points.map((p, i) => (
+          <circle key={p.key} cx={x(ts[i])} cy={y(p.value)} r="4" fill={p.color} fillOpacity="0.7" stroke="#fff" strokeWidth="1">
+            <title>{`${p.title} · ${n(p.value)}${unit}`}</title>
           </circle>
         ))}
       </svg>
-      <ul className="min-w-0 flex-1 space-y-1.5 text-sm">
-        {rows.map(([label, v], i) => (
-          <li key={label} className="flex items-center gap-2">
-            <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: colors[i % colors.length] }} />
-            <span className="truncate text-theme-text">{label}</span>
-            <span className="ml-auto tabular-nums text-theme-text-muted">{Math.round((v / total) * 100)}%</span>
-          </li>
+      <div className="mt-1 flex justify-between text-[11px] text-theme-text-muted">
+        <span>{day(t0)}</span>
+        <span>{day(t1)}</span>
+      </div>
+      {legend && (
+        <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-theme-text-secondary">
+          {legend.map(([label, c]) => (
+            <span key={label} className="flex items-center gap-1.5">
+              <span className="h-2 w-2 rounded-full" style={{ background: c }} />
+              {label}
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+/** 누적 막대: 기간마다 항목별 몫 */
+export const StackedBars: React.FC<{ rows: Array<{ key: string; label: string; parts: Ranked }>; colors: Record<string, string>; unit: string; selected?: string }> = ({ rows, colors, unit, selected }) => {
+  const max = Math.max(1, ...rows.map((r) => r.parts.reduce((a, [, v]) => a + v, 0)));
+  const names = Object.keys(colors);
+  const show = tick(rows.length, Math.ceil(rows.length / 6));
+  return (
+    <div>
+      <div className="flex h-44 items-end gap-1 border-b border-theme-border">
+        {rows.map((r) => {
+          const total = r.parts.reduce((a, [, v]) => a + v, 0);
+          return (
+            <div key={r.key} className="flex h-full flex-1 flex-col justify-end" title={`${r.label}: ${r.parts.map(([k, v]) => `${k} ${v}`).join(', ') || '없음'} (합 ${total}${unit})`}>
+              <div className={`flex flex-col-reverse overflow-hidden rounded-t-sm ${selected === r.key ? '' : 'opacity-75'}`} style={{ height: `${(total / max) * 100}%` }}>
+                {names.map((name) => {
+                  const v = r.parts.find(([k]) => k === name)?.[1] ?? 0;
+                  return v ? <div key={name} style={{ height: `${(v / total) * 100}%`, background: colors[name] }} /> : null;
+                })}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      <div className="mt-1 flex gap-1 text-[11px] text-theme-text-muted">
+        {rows.map((r, i) => (
+          <span key={r.key} className={`flex-1 whitespace-nowrap text-center ${selected === r.key ? 'font-semibold text-theme-text' : ''}`}>
+            {show(i) ? r.label : ''}
+          </span>
         ))}
-      </ul>
+      </div>
+      <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-theme-text-secondary">
+        {names.map((name) => (
+          <span key={name} className="flex items-center gap-1.5">
+            <span className="h-2 w-2 rounded-sm" style={{ background: colors[name] }} />
+            {name}
+          </span>
+        ))}
+      </div>
     </div>
   );
 };
@@ -217,7 +338,7 @@ export const Heatmap: React.FC<{ heat: Heat; color: string; best?: { day: number
   const max = Math.max(1, ...heat.flat().map((c) => (c.posts >= HEAT_MIN_POSTS ? (c.medianViews ?? 0) : 0)));
   return (
     <div className="overflow-x-auto">
-      <table className="w-full min-w-[22rem] border-separate border-spacing-1 text-[11px]" aria-describedby={describedBy}>
+      <table className="w-full min-w-[18rem] border-separate border-spacing-1 text-[11px]" aria-describedby={describedBy}>
         <caption className="sr-only">요일·시간대별 텔레그램 조회 중앙값 (글 {HEAT_MIN_POSTS}개 이상인 칸만 표시)</caption>
         <thead>
           <tr>
@@ -243,7 +364,7 @@ export const Heatmap: React.FC<{ heat: Heat; color: string; best?: { day: number
                   <td
                     key={b}
                     title={`${DAY_LABELS[d]} ${blockLabel(b)}: ${c.medianViews === null ? '글 없음' : `보통 ${n(c.medianViews)}회 (글 ${c.posts}개)`}`}
-                    className={`h-8 rounded-md text-center tabular-nums ${isBest ? 'ring-2' : ''} ${strength > 55 ? 'text-white' : 'text-theme-text-secondary'}`}
+                    className={`h-9 rounded-md text-center tabular-nums ${isBest ? 'ring-2' : ''} ${strength > 55 ? 'text-white' : 'text-theme-text-secondary'}`}
                     style={{
                       background: shown ? `color-mix(in srgb, ${color} ${strength}%, transparent)` : c.posts ? 'color-mix(in srgb, var(--border-primary) 40%, transparent)' : 'transparent',
                       outline: c.medianViews === null ? '1px dashed var(--border-primary)' : undefined,

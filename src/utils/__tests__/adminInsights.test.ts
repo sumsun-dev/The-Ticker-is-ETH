@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
+  telegramFacts, siteFacts, linkedinFacts, memberFacts,
+  memberBreakdown,
   tgType,
   isMature,
   typeBreakdown,
@@ -9,7 +11,7 @@ import {
   ruleInsights,
   findAiInsight,
 } from '../adminInsights';
-import { summarize, type Period } from '../adminStats';
+import { summarize, type Period, type Summary } from '../adminStats';
 import type { StatsHistory, TgPostRecord } from '../../types/adminStats';
 
 const NOW = '2026-10-26T00:00:00Z';
@@ -146,5 +148,51 @@ describe('findAiInsight', () => {
     expect(findAiInsight({ ...h, aiInsights: [ai] }, '2026-10-12')).toBe(ai);
     expect(findAiInsight({ ...h, aiInsights: [ai] }, '2026-10-19')).toBeNull();
     expect(findAiInsight(h, '2026-10-12')).toBeNull();
+  });
+});
+
+describe('memberBreakdown', () => {
+  const now = '2026-10-20T00:00:00Z';
+  const post = (id: number, date: string, views: number) => ({ id, date, views, text: `글 ${id}` });
+  const authors: Record<number, { name: string; avatar: string }> = { 1: { name: 'Jay', avatar: '/j.jpg' }, 2: { name: 'Jay', avatar: '/j.jpg' }, 3: { name: 'sose', avatar: '' } };
+
+  it('작성자별로 글 수·조회 합·대표 글을 묶고, 평균은 조회가 쌓인 글만 쓴다', () => {
+    const rows = memberBreakdown([post(1, '2026-10-10T00:00:00Z', 300), post(2, '2026-10-19T00:00:00Z', 50), post(3, '2026-10-11T00:00:00Z', 200), post(4, '2026-10-11T00:00:00Z', 999)], (id) => authors[id], now);
+    expect(rows.map((r) => [r.name, r.posts, r.views, r.avgViews, r.top.id])).toEqual([
+      ['Jay', 2, 350, 300, 1],
+      ['sose', 1, 200, 200, 3],
+    ]);
+  });
+
+  it('조회가 쌓인 글이 없으면 평균은 null', () => {
+    expect(memberBreakdown([post(2, '2026-10-19T00:00:00Z', 50)], (id) => authors[id], now)[0].avgViews).toBeNull();
+  });
+});
+
+describe('channel facts', () => {
+  const base = { visitors: 240, pageLoads: 325, siteDays: 7, titles: {}, tgPosts: 17, tgViews: 5132, tgAvgViews: 302, tgFresh: 0, subscribers: 1510, liPosts: 2, liImpressions: 40, liReactions: 1, liComments: 0, liEngagement: 2.5, followers: 70, topTg: [{ id: 3, date: '2026-10-13T00:00:00Z', views: 1600, text: '보고서' }], topLi: [] } as unknown as Summary;
+  const facts = (xs: Array<{ label: string; value: string; detail: string }>) => Object.fromEntries(xs.map((f) => [f.label, `${f.value} | ${f.detail}`]));
+
+  it('텔레그램: 도달률·최고 글 비중·지난 기간 대비', () => {
+    const f = facts(telegramFacts(base, { ...base, tgAvgViews: 315 } as Summary, [], null));
+    expect(f['글당 평균 조회']).toBe('302회 | 지난 기간 -4%');
+    expect(f['구독자 도달률']).toMatch(/^20% \|/);
+    expect(f['최고 조회 글']).toBe('1,600회 | 이 기간 조회의 31% · 평균의 5.3배');
+  });
+
+  it('링크드인: 글당 노출과 반응 없는 글', () => {
+    const f = facts(linkedinFacts(base, null, [{ impressions: 30, reactions: 1, comments: 0 }, { impressions: 10, reactions: 0, comments: 0 }]));
+    expect(f['글당 노출']).toBe('20회 | 글 2개 · 지난 기간 비교 없음');
+    expect(f['반응 없는 글']).toBe('1/2 | 반응·댓글이 하나도 없는 글');
+    expect(f['최고 노출 글']).toBe('30회 | 글당 평균의 1.5배');
+  });
+
+  it('홈페이지: 하루 평균과 가장 많은 날', () => {
+    const f = facts(siteFacts(base, null, [{ date: '2026-10-12', visitors: 20 }, { date: '2026-10-13', visitors: 40 }]));
+    expect(f['하루 평균 방문자']).toBe('30명 | 가장 많은 날 10.13 40명');
+  });
+
+  it('기여자: 비어 있으면 빈 목록', () => {
+    expect(memberFacts([], 5)).toEqual([]);
   });
 });

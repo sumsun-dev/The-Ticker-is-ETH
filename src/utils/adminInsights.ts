@@ -164,3 +164,134 @@ export function ruleInsights({ cur, prev, types, slot }: RuleInput): Insight[] {
 }
 
 export const findAiInsight = (h: StatsHistory, key: string): AiInsight | null => h.aiInsights?.find((x) => x.key === key) ?? null;
+
+export interface Author { name: string; avatar: string }
+export interface MemberRow extends Author {
+  posts: number;
+  views: number;
+  /** 조회가 다 쌓인 글만의 글당 평균. 그런 글이 없으면 null */
+  avgViews: number | null;
+  top: TgPostRecord;
+}
+
+/** 기간 안 텔레그램 글을 작성자별로 묶는다. 작성자를 모르는 글(사이트 인덱스에 아직 없는 글)은 빠진다. 조회 합 높은 순 */
+export function memberBreakdown(posts: TgPostRecord[], authorOf: (id: number) => Author | undefined, now: string): MemberRow[] {
+  const groups = new Map<string, { author: Author; posts: TgPostRecord[] }>();
+  for (const p of posts) {
+    const a = authorOf(p.id);
+    if (!a) continue;
+    const g = groups.get(a.name) ?? { author: a, posts: [] };
+    g.posts.push(p);
+    groups.set(a.name, g);
+  }
+  return [...groups.values()]
+    .map(({ author, posts: ps }) => {
+      const mature = ps.filter((p) => isMature(p.date, now)).map((p) => p.views);
+      return {
+        ...author,
+        posts: ps.length,
+        views: ps.reduce((a, p) => a + p.views, 0),
+        avgViews: mature.length ? avg(mature) : null,
+        top: ps.reduce((a, b) => (b.views > a.views ? b : a)),
+      };
+    })
+    .sort((a, b) => b.views - a.views);
+}
+
+/* ── 채널별 수치 인사이트 (탭 맨 위 숫자 칸) ─────────────────────── */
+
+export interface Fact {
+  label: string;
+  value: string;
+  detail: string;
+  tone?: 'up' | 'down';
+}
+
+const share = (part: number, whole: number) => Math.round((part / whole) * 100);
+const times = (a: number, b: number) => (a / b).toFixed(1);
+const vsPrev = (cur: number | null, prev: number | null | undefined, suffix = '%'): { text: string; tone?: Fact['tone'] } => {
+  if (cur === null || prev === null || prev === undefined || prev === 0) return { text: '지난 기간 비교 없음' };
+  const p = suffix === '%p' ? Math.round((cur - prev) * 10) / 10 : pct(cur, prev);
+  const t = toneOf(suffix === '%p' ? p * 10 : p);
+  return { text: `지난 기간 ${p > 0 ? '+' : ''}${p}${suffix}`, tone: t === 'up' || t === 'down' ? t : undefined };
+};
+
+export function telegramFacts(cur: Summary, prev: Summary | null, types: TypeRow[], slot: Slot | null): Fact[] {
+  const out: Fact[] = [];
+  if (cur.tgAvgViews !== null) {
+    const d = vsPrev(cur.tgAvgViews, prev?.tgAvgViews);
+    out.push({ label: '글당 평균 조회', value: `${fmt(cur.tgAvgViews)}회`, detail: d.text, tone: d.tone });
+    if (cur.subscribers) out.push({ label: '구독자 도달률', value: `${share(cur.tgAvgViews, cur.subscribers)}%`, detail: `글 하나를 구독자 ${fmt(cur.subscribers)}명 중 몇 %가 보는지` });
+  }
+  const top = cur.topTg[0];
+  if (top && cur.tgViews) out.push({ label: '최고 조회 글', value: `${fmt(top.views)}회`, detail: `이 기간 조회의 ${share(top.views, cur.tgViews)}%${cur.tgAvgViews ? ` · 평균의 ${times(top.views, cur.tgAvgViews)}배` : ''}` });
+  const comparable = types.filter((t) => t.posts >= MIN_TYPE_POSTS);
+  if (comparable.length >= 2) {
+    const [best, worst] = [comparable[0], comparable.at(-1)!];
+    out.push({ label: '잘 읽히는 유형', value: best.type, detail: `글당 ${fmt(best.avgViews)}회, ${worst.type}의 ${times(best.avgViews, worst.avgViews)}배 (최근 90일)` });
+  }
+  if (slot) out.push({ label: '올리기 좋은 시간', value: `${DAY_LABELS[slot.day]} ${blockLabel(slot.block)}`, detail: `조회 중앙값 ${fmt(slot.medianViews)}회 (최근 6개월, 글 ${slot.posts}개)` });
+  return out;
+}
+
+export function siteFacts(cur: Summary, prev: Summary | null, days: Array<{ date: string; visitors: number }>): Fact[] {
+  const out: Fact[] = [];
+  if (days.length) {
+    const avgDay = Math.round(days.reduce((a, d) => a + d.visitors, 0) / days.length);
+    const peak = days.reduce((a, b) => (b.visitors > a.visitors ? b : a));
+    out.push({ label: '하루 평균 방문자', value: `${fmt(avgDay)}명`, detail: `가장 많은 날 ${peak.date.slice(5).replace('-', '.')} ${fmt(peak.visitors)}명` });
+  }
+  const s = cur.site;
+  if (s?.newVisitors !== undefined && cur.visitors) out.push({ label: '신규 방문자 비중', value: `${share(s.newVisitors, cur.visitors)}%`, detail: `재방문 ${fmt(cur.visitors - s.newVisitors)}명` });
+  if (cur.visitors !== null && cur.pageLoads !== null && cur.visitors) out.push({ label: '방문자당 첫 진입', value: `${(cur.pageLoads / cur.visitors).toFixed(2)}회`, detail: vsPrev(cur.pageLoads, prev?.pageLoads).text.replace('지난 기간', '첫 진입 지난 기간') });
+  const total = s ? s.sources.reduce((a, [, v]) => a + v, 0) : 0;
+  if (s && total) {
+    const search = s.sources.find(([k]) => k === '검색')?.[1] ?? 0;
+    const ext = s.refHosts[0];
+    out.push({ label: '검색 유입', value: `${share(search, total)}%`, detail: `직접 ${share(s.sources.find(([k]) => k === '직접')?.[1] ?? 0, total)}%${ext ? ` · 외부 1위 ${ext[0]}` : ''}`, tone: search / total < 0.15 ? 'down' : undefined });
+  }
+  if (s?.sections.length) {
+    const secTotal = s.sections.reduce((a, [, v]) => a + v, 0);
+    out.push({ label: '가장 많이 본 분야', value: s.sections[0][0], detail: `첫 진입의 ${share(s.sections[0][1], secTotal)}%` });
+  }
+  const aiTotal = s ? s.bots.ai.reduce((a, [, v]) => a + v, 0) : 0;
+  if (s && aiTotal) out.push({ label: 'AI 크롤러', value: `${fmt(aiTotal)}회`, detail: `${cur.visitors ? `방문자의 ${times(aiTotal, cur.visitors)}배 · ` : ''}${s.bots.ai[0][0]} 최다` });
+  return out;
+}
+
+export function linkedinFacts(cur: Summary, prev: Summary | null, posts: Array<{ impressions: number; reactions: number; comments: number }>): Fact[] {
+  const out: Fact[] = [];
+  if (cur.liImpressions !== null && posts.length) {
+    const per = Math.round(cur.liImpressions / posts.length);
+    const prevPer = prev?.liImpressions != null && prev.liPosts ? Math.round(prev.liImpressions / prev.liPosts) : null;
+    const d = vsPrev(per, prevPer);
+    out.push({ label: '글당 노출', value: `${fmt(per)}회`, detail: `글 ${posts.length}개 · ${d.text}`, tone: d.tone });
+    if (cur.followers) out.push({ label: '팔로워 대비 노출', value: `${share(per, cur.followers)}%`, detail: `글당 노출 ÷ 팔로워 ${fmt(cur.followers)}명` });
+  }
+  if (cur.liEngagement !== null) {
+    const d = vsPrev(cur.liEngagement, prev?.liEngagement, '%p');
+    out.push({ label: '참여율', value: `${cur.liEngagement}%`, detail: `반응 ${fmt(cur.liReactions)} · 댓글 ${fmt(cur.liComments)} · ${d.text}`, tone: d.tone });
+  }
+  if (posts.length) {
+    const silent = posts.filter((p) => p.reactions + p.comments === 0).length;
+    out.push({ label: '반응 없는 글', value: `${silent}/${posts.length}`, detail: '반응·댓글이 하나도 없는 글', tone: silent / posts.length > 0.5 ? 'down' : undefined });
+    const best = posts.reduce((a, b) => (b.impressions > a.impressions ? b : a));
+    const avg = cur.liImpressions ? cur.liImpressions / posts.length : 0;
+    if (avg) out.push({ label: '최고 노출 글', value: `${fmt(best.impressions)}회`, detail: `글당 평균의 ${times(best.impressions, avg)}배` });
+  }
+  return out;
+}
+
+export function memberFacts(members: MemberRow[], periodPosts: number): Fact[] {
+  if (!members.length) return [];
+  const known = members.reduce((a, m) => a + m.posts, 0);
+  const most = members.reduce((a, b) => (b.posts > a.posts ? b : a));
+  const out: Fact[] = [
+    { label: '참여 기여자', value: `${members.length}명`, detail: `작성자 확인된 글 ${known}/${periodPosts}개` },
+    { label: '가장 많이 쓴 기여자', value: most.name, detail: `글 ${most.posts}개, 전체의 ${share(most.posts, known)}%` },
+    { label: '조회 합 1위', value: members[0].name, detail: `${fmt(members[0].views)}회, 전체의 ${share(members[0].views, members.reduce((a, m) => a + m.views, 0))}%` },
+  ];
+  const avgRank = members.filter((m) => m.avgViews !== null && m.posts >= 2).sort((a, b) => (b.avgViews as number) - (a.avgViews as number));
+  if (avgRank.length) out.push({ label: '글당 평균 1위', value: avgRank[0].name, detail: `${fmt(avgRank[0].avgViews as number)}회 (글 2개 이상)` });
+  return out;
+}

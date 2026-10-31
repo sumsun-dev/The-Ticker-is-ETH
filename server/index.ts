@@ -7,6 +7,7 @@ import verifyHandler from '../api/auth/verify.js';
 import publishHandler from '../api/research/publish.js';
 import deleteHandler from '../api/research/delete.js';
 import statsHandler from '../api/admin/stats.js';
+import thumbnailHandler from '../api/research/thumbnail.js';
 
 const PORT = Number(process.env.PORT) || 3001;
 const MAX_BODY_BYTES = 2 * 1024 * 1024; // publish content 최대 200k자 + JSON 오버헤드 여유
@@ -18,6 +19,7 @@ const routes: Record<string, Handler> = {
   '/api/research/publish': publishHandler as Handler,
   '/api/research/delete': deleteHandler as Handler,
   '/api/admin/stats': statsHandler as Handler,
+  '/api/research/thumbnail': thumbnailHandler as Handler,
 };
 
 function readBody(req: IncomingMessage): Promise<unknown> {

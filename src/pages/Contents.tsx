@@ -132,7 +132,7 @@ const Contents: React.FC = () => {
                 >
                     {isAdmin && (
                         <Link
-                            to="/contents/write"
+                            to="/admin/write"
                             className="flex items-center gap-2 bg-brand-primary hover:bg-brand-primary/80 text-white px-6 py-3 rounded-2xl font-bold transition-all shadow-lg shadow-brand-primary/20"
                         >
                             <PenSquare size={20} />

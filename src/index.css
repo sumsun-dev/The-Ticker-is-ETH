@@ -18,6 +18,25 @@
     --scrollbar-thumb-hover: #555;
   }
 
+  /* 관리자 화면(성과 대시보드)은 밝은 업무용 화면. 테마 변수만 바꿔 공용 컴포넌트가 그대로 따라오게 한다 */
+  .admin-light {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f7f7f8;
+    --bg-surface: #ffffff;
+    --bg-surface-hover: #f4f4f5;
+    --text-primary: #18181b;
+    --text-secondary: #52525b;
+    --text-muted: #8e8e96;
+    --border-primary: #e8e8eb;
+    --border-secondary: #f0f0f2;
+    --scrollbar-track: #ffffff;
+    --scrollbar-thumb: #d4d4d8;
+    --scrollbar-thumb-hover: #a1a1aa;
+    color-scheme: light;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+  }
+
   body {
     @apply font-sans antialiased;
     /* 한국어를 글자가 아닌 어절 단위로 줄바꿈한다. 공백 없는 긴 영문·URL만 예외로 끊는다 */

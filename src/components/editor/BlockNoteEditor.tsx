@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react';
 import { useCreateBlockNote } from '@blocknote/react';
+import { ko } from '@blocknote/core/locales';
 import { BlockNoteView } from '@blocknote/mantine';
 import '@blocknote/core/fonts/inter.css';
 import '@blocknote/mantine/style.css';
@@ -8,12 +9,14 @@ import './block-note-dark.css';
 interface BlockNoteEditorProps {
     initialMarkdown?: string;
     onChange: (md: string) => void;
+    /** 관리자 화면은 밝은 배경 */
+    theme?: 'dark' | 'light';
 }
 
 const DEBOUNCE_MS = 300;
 
-const BlockNoteEditor: React.FC<BlockNoteEditorProps> = ({ initialMarkdown, onChange }) => {
-    const editor = useCreateBlockNote({});
+const BlockNoteEditor: React.FC<BlockNoteEditorProps> = ({ initialMarkdown, onChange, theme = 'dark' }) => {
+    const editor = useCreateBlockNote({ dictionary: ko });
     const initialized = useRef(false);
     const debounceTimer = useRef<ReturnType<typeof setTimeout>>(null);
 
@@ -52,11 +55,11 @@ const BlockNoteEditor: React.FC<BlockNoteEditorProps> = ({ initialMarkdown, onCh
     }, [editor, onChange]);
 
     return (
-        <div className="bn-container">
+        <div className={`bn-container${theme === 'light' ? ' bn-light' : ''}`}>
             <BlockNoteView
                 editor={editor}
                 onChange={handleChange}
-                theme="dark"
+                theme={theme}
             />
         </div>
     );
