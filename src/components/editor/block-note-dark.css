@@ -9,6 +9,10 @@
     line-height: 1.75;
 }
 
+.bn-container.bn-light .bn-editor {
+    color: #18181b;
+}
+
 .bn-container [data-theme="dark"] {
     --bn-colors-editor-background: transparent;
     --bn-colors-editor-text: #f3f4f6;

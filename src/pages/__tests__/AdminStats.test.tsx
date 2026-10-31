@@ -5,7 +5,7 @@ import { renderWithProviders } from '../../test/helpers/render';
 import type { StatsHistory } from '../../types/adminStats';
 
 vi.mock('../../data/researchData', () => ({
-    loadResearchIndex: vi.fn().mockResolvedValue([{ id: 'tg-3', thumbnailUrl: 'https://r2.dev/telegram/tg-3.jpg' }]),
+    loadResearchIndex: vi.fn().mockResolvedValue([{ id: 'tg-3', thumbnailUrl: 'https://r2.dev/telegram/tg-3.jpg', author: 'sose', authorAvatar: '' }]),
 }));
 
 const site = {
@@ -64,27 +64,33 @@ describe('AdminStats', () => {
         mockFetch(data(true));
         renderWithProviders(<AdminStats />);
         expect(await screen.findByRole('heading', { name: '기관 컨퍼런스 보고서가 평균을 끌어올렸다' })).toBeInTheDocument();
-        expect(screen.getByText('AI 분석')).toBeInTheDocument();
+        expect(screen.getByText(/AI 분석 ·/)).toBeInTheDocument();
         expect(screen.getByText('행사 후속물을 화요일 낮에 올린다')).toBeInTheDocument();
         expect(screen.getByText('평균 조회 +37%')).toBeInTheDocument();
     });
 
-    it('AI 분석이 없으면 규칙 인사이트를 보여 준다', async () => {
+    it('AI 분석이 없으면 요약 상자 없이 탭마다 수치 인사이트를 보여 준다', async () => {
         mockFetch(data(false));
         renderWithProviders(<AdminStats />);
-        expect(await screen.findByText('자동 인사이트')).toBeInTheDocument();
-        const panel = screen.getByRole('region', { name: '인사이트' });
-        expect(within(panel).getByText(/AI 크롤러가 227회/)).toBeInTheDocument();
+        expect(await screen.findByText('구독자 도달률')).toBeInTheDocument();
+        expect(screen.queryByRole('region', { name: '인사이트' })).not.toBeInTheDocument();
+        fireEvent.click(screen.getByRole('tab', { name: '홈페이지' }));
+        expect(screen.getByText('AI 크롤러', { selector: 'dt' })).toBeInTheDocument();
+        expect(screen.getByText('Google AI 최다', { exact: false })).toBeInTheDocument();
     });
 
     it('KPI와 썸네일 붙은 인기 글을 보여 준다', async () => {
         mockFetch(data(false));
         renderWithProviders(<AdminStats />);
-        expect(await screen.findByText('텔레그램 글당 조회')).toBeInTheDocument();
-        expect(screen.getByText('홈페이지 방문자')).toBeInTheDocument();
-        const top = await screen.findByRole('link', { name: /기관 컨퍼런스 보고서\] 9월 28일/ });
+        const tg = await screen.findByRole('region', { name: '텔레그램 주요 성과' });
+        expect(within(tg).getAllByText(/^(구독자|평균 조회수|올린 글)$/).map((e) => e.textContent)).toEqual(['구독자', '평균 조회수', '올린 글']);
+        expect(within(screen.getByRole('region', { name: '홈페이지 주요 성과' })).getAllByText(/^(방문자|AI 크롤러|검색 유입)$/).map((e) => e.textContent)).toEqual(['방문자', 'AI 크롤러', '검색 유입']);
+        expect(within(screen.getByRole('region', { name: '링크드인 주요 성과' })).getAllByText(/^(팔로워|노출|글당 노출)$/).map((e) => e.textContent)).toEqual(['팔로워', '노출', '글당 노출']);
+        expect(screen.getByRole('region', { name: '링크드인 주요 성과' })).toBeInTheDocument();
+        const top = await within(screen.getByRole('tabpanel')).findByRole('link', { name: /기관 컨퍼런스 보고서\] 9월 28일/ });
         expect(top).toHaveAttribute('href', 'https://t.me/thetickeriseth/3');
         await waitFor(() => expect(top.querySelector('img')).toHaveAttribute('src', 'https://r2.dev/telegram/tg-3.jpg'));
+        fireEvent.click(screen.getByRole('tab', { name: '홈페이지' }));
         expect(screen.getByText('Ethereum Korea One · Genesis').closest('a')?.querySelector('img')).toHaveAttribute('src', '/assets/events/ek1-genesis/main-banner.jpg');
     });
 
@@ -94,5 +100,15 @@ describe('AdminStats', () => {
         fireEvent.click(await screen.findByRole('tab', { name: '월별' }));
         expect(screen.getByRole('tab', { name: '월별' })).toHaveAttribute('aria-selected', 'true');
         expect((screen.getByRole('combobox', { name: '기간 선택' }) as HTMLSelectElement).value).toMatch(/^\d{4}-\d{2}$/);
+    });
+
+    it('성과와 채널 상세 사이에 기여자 기여를 보여 준다', async () => {
+        mockFetch(data(false));
+        renderWithProviders(<AdminStats />);
+        const section = await screen.findByRole('region', { name: '기여자' });
+        expect(screen.queryByRole('tab', { name: '기여자' })).not.toBeInTheDocument();
+        const table = await within(section).findByRole('table');
+        expect(within(table).getByText('sose')).toBeInTheDocument();
+        expect(screen.getByText('가장 많이 쓴 기여자')).toBeInTheDocument();
     });
 });

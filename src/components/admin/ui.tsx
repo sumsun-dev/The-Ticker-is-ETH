@@ -1,43 +1,27 @@
-/** 성과 대시보드 공용 카드·지표·목록 */
+/** 성과 대시보드 공용 블록·지표·목록. 밝은 업무용 화면: 카드 대신 여백과 가는 선으로 나눈다 */
 import React, { useState } from 'react';
-import { ArrowDownRight, ArrowUpRight, Minus } from 'lucide-react';
 import { Sparkline } from './charts';
 import { CHANNEL, n, type ChannelKey } from './theme';
+import type { Fact, MemberRow } from '../../utils/adminInsights';
 
-export const Card: React.FC<{
-  title: string;
-  subtitle?: string;
-  icon?: React.ReactNode;
-  accent?: string;
-  className?: string;
-  children: React.ReactNode;
-}> = ({ title, subtitle, icon, accent, className = '', children }) => (
-  <section className={`relative min-w-0 overflow-hidden rounded-3xl border border-theme-border bg-theme-surface p-5 md:p-6 ${className}`}>
-    {accent && <div className="pointer-events-none absolute inset-x-0 top-0 h-px" style={{ background: `linear-gradient(90deg, transparent, ${accent}, transparent)` }} />}
-    <header className="mb-5 flex items-start gap-3">
-      {icon && (
-        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl" style={{ background: accent ? `color-mix(in srgb, ${accent} 16%, transparent)` : undefined, color: accent }}>
-          {icon}
-        </span>
-      )}
-      <div className="min-w-0">
-        <h2 className="text-base font-bold text-theme-text">{title}</h2>
-        {subtitle && <p className="mt-0.5 text-xs text-theme-text-muted">{subtitle}</p>}
-      </div>
+/** 탭 안의 차트·목록 하나. 테두리 없이 제목 줄만 */
+export const Panel: React.FC<{ title: string; hint?: string; className?: string; children: React.ReactNode }> = ({ title, hint, className = '', children }) => (
+  <section className={`min-w-0 ${className}`}>
+    <header className="mb-3 flex items-baseline justify-between gap-3">
+      <h3 className="text-[13.5px] font-semibold text-theme-text">{title}</h3>
+      {hint && <span className="truncate text-xs text-theme-text-muted">{hint}</span>}
     </header>
     {children}
   </section>
 );
 
-/** 이전 기간 대비 증감 알약. 비교할 수 없으면 이유를 보여 준다 */
+/** 이전 기간 대비 증감. 비교할 수 없으면 이유를 흐리게 */
 export const Delta: React.FC<{ cur: number | null; prev: number | null; reason?: string; suffix?: string }> = ({ cur, prev, reason = '비교 데이터 없음', suffix = '%' }) => {
-  if (cur === null || prev === null || prev === 0) return <span className="text-[11px] text-theme-text-muted">{reason}</span>;
+  if (cur === null || prev === null || prev === 0) return <span className="text-theme-text-muted">{reason}</span>;
   const p = suffix === '%p' ? Math.round((cur - prev) * 10) / 10 : Math.round(((cur - prev) / prev) * 100);
-  const Icon = p > 0 ? ArrowUpRight : p < 0 ? ArrowDownRight : Minus;
-  const cls = p > 0 ? 'bg-emerald-500/15 text-emerald-400' : p < 0 ? 'bg-rose-500/15 text-rose-400' : 'bg-theme-border/40 text-theme-text-muted';
+  const cls = p > 0 ? 'text-green-700' : p < 0 ? 'text-orange-700' : 'text-theme-text-muted';
   return (
-    <span className={`inline-flex items-center gap-0.5 rounded-full px-2 py-0.5 text-[11px] font-semibold tabular-nums ${cls}`}>
-      <Icon size={12} aria-hidden="true" />
+    <span className={`font-medium tabular-nums ${cls}`}>
       {p > 0 ? '+' : ''}
       {p}
       {suffix}
@@ -46,53 +30,59 @@ export const Delta: React.FC<{ cur: number | null; prev: number | null; reason?:
   );
 };
 
-export const KpiCard: React.FC<{
+export interface Metric {
   label: string;
   value: number | null;
   prev: number | null;
-  channel: ChannelKey;
-  icon: React.ReactNode;
   unit?: string;
-  note?: string;
   trend: Array<number | null>;
   deltaSuffix?: string;
   emptyReason?: string;
-}> = ({ label, value, prev, channel, icon, unit = '', note, trend, deltaSuffix, emptyReason }) => {
-  const { color } = CHANNEL[channel];
+  note?: string;
+  /** 누적 지표(글 수·방문자 등)는 진행 중인 기간을 다 끝난 기간과 비교하지 않는다 */
+  cumulative?: boolean;
+}
+
+/** 채널 하나의 핵심 지표 묶음: 채널 이름 줄 아래에 지표 칸들 */
+export const ChannelKpis: React.FC<{ channel: ChannelKey; metrics: Metric[]; ongoing?: boolean }> = ({ channel, metrics, ongoing }) => {
+  const { color, label } = CHANNEL[channel];
   return (
-    <div className="relative min-w-0 overflow-hidden rounded-3xl border border-theme-border bg-theme-surface p-5">
-      <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full blur-2xl" style={{ background: color, opacity: 0.18 }} />
-      <div className="flex items-center gap-2 text-xs font-medium text-theme-text-muted">
-        <span style={{ color }}>{icon}</span>
+    <section className="min-w-0 rounded-lg border border-theme-border" aria-label={`${label} 주요 성과`}>
+      <h2 className="flex items-center gap-2 border-b border-theme-border px-[18px] py-2.5 text-[13px] font-semibold text-theme-text">
+        <span className="h-2 w-2 rounded-sm" style={{ background: color }} aria-hidden="true" />
         {label}
+      </h2>
+      <div className="grid divide-x divide-theme-border" style={{ gridTemplateColumns: `repeat(${metrics.length}, minmax(0, 1fr))` }}>
+        {metrics.map((m) => (
+          <div key={m.label} className="min-w-0 px-[18px] py-3.5" title={m.note}>
+            <div className="truncate text-xs text-theme-text-secondary">{m.label}</div>
+            <div className="mt-1 flex items-baseline gap-0.5">
+              <span className="text-[22px] font-semibold tracking-tight tabular-nums text-theme-text">{m.value === null ? '–' : n(m.value)}</span>
+              {m.value !== null && m.unit && <span className="text-xs text-theme-text-muted">{m.unit}</span>}
+            </div>
+            <div className="mt-0.5 truncate text-xs">
+              {ongoing && m.cumulative && m.value !== null ? (
+                <span className="text-theme-text-muted">진행 중</span>
+              ) : (
+                <Delta cur={m.value} prev={m.prev} suffix={m.deltaSuffix} reason={m.value === null ? (m.emptyReason ?? '데이터 없음') : '지난 기간 없음'} />
+              )}
+            </div>
+            <div className="mt-2">
+              <Sparkline values={m.trend} color={color} label={`${label} ${m.label} 최근 추이`} />
+            </div>
+          </div>
+        ))}
       </div>
-      <div className="mt-3 flex items-baseline gap-1">
-        <span className="text-3xl font-bold tabular-nums text-theme-text">{value === null ? '–' : n(value)}</span>
-        {value !== null && unit && <span className="text-sm text-theme-text-muted">{unit}</span>}
-      </div>
-      <div className="mt-1.5 min-h-[1.25rem]">
-        <Delta cur={value} prev={prev} suffix={deltaSuffix} reason={value === null ? (emptyReason ?? '이 기간 데이터 없음') : '이전 기간 데이터 없음'} />
-      </div>
-      <div className="mt-3">
-        <Sparkline values={trend} color={color} label={`${label} 최근 추이`} />
-      </div>
-      {note && <p className="mt-2 text-[11px] leading-snug text-theme-text-muted">{note}</p>}
-    </div>
+    </section>
   );
 };
 
-/** 썸네일. 이미지가 없거나 깨지면 채널 색 그라데이션 위에 아이콘 */
-export const Thumb: React.FC<{ src: string | null; color: string; icon: React.ReactNode; className?: string }> = ({ src, color, icon, className = '' }) => {
+/** 작은 썸네일. 이미지가 없거나 깨지면 옅은 회색 칸 */
+export const Thumb: React.FC<{ src: string | null; className?: string }> = ({ src, className = '' }) => {
   const [broken, setBroken] = useState(false);
   return (
-    <div className={`relative shrink-0 overflow-hidden rounded-xl bg-theme-bg ${className}`}>
-      {src && !broken ? (
-        <img src={src} alt="" loading="lazy" decoding="async" onError={() => setBroken(true)} className="h-full w-full object-cover" />
-      ) : (
-        <div className="grid h-full w-full place-items-center text-white/90" style={{ background: `linear-gradient(135deg, ${color}, color-mix(in srgb, ${color} 35%, #050508))` }}>
-          {icon}
-        </div>
-      )}
+    <div className={`shrink-0 overflow-hidden rounded bg-theme-bg-secondary ${className}`}>
+      {src && !broken && <img src={src} alt="" loading="lazy" decoding="async" onError={() => setBroken(true)} className="h-full w-full object-cover" />}
     </div>
   );
 };
@@ -105,70 +95,150 @@ export interface MediaItem {
   value: string;
   valueLabel: string;
   meta?: string;
-  badge?: string;
 }
 
-/** 썸네일이 붙은 순위 목록. 1위는 크게 */
-export const MediaList: React.FC<{ items: MediaItem[]; color: string; icon: React.ReactNode; empty: string }> = ({ items, color, icon, empty }) => {
+/** 썸네일 붙은 순위 목록: 한 줄 제목, 아래 메타, 오른쪽 값 */
+export const MediaList: React.FC<{ items: MediaItem[]; empty: string }> = ({ items, empty }) => {
   if (!items.length) return <p className="text-sm text-theme-text-muted">{empty}</p>;
-  const [first, ...rest] = items;
   return (
-    <div className="space-y-4">
-      <a href={first.href} target="_blank" rel="noreferrer" className="group block overflow-hidden rounded-2xl border border-theme-border bg-theme-bg/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent">
-        {first.image ? (
-          <Thumb key={first.key} src={first.image} color={color} icon={icon} className="aspect-[16/9] w-full rounded-none" />
-        ) : (
-          // 이미지 없는 글은 본문 첫머리를 표지처럼 보여 준다
-          <div className="relative flex aspect-[16/9] w-full flex-col justify-between overflow-hidden p-6" style={{ background: `linear-gradient(135deg, color-mix(in srgb, ${color} 55%, #050508), #0a0a12 70%)` }}>
-            <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full blur-3xl" style={{ background: color, opacity: 0.35 }} />
-            <span className="relative text-white/80">{icon}</span>
-            <p aria-hidden="true" className="relative line-clamp-4 text-lg font-bold leading-snug text-white md:text-xl">
-              {first.title}
-            </p>
-          </div>
-        )}
-        <div className="flex items-start gap-3 p-4">
-          <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full text-xs font-bold text-white" style={{ background: color }}>
-            1
-          </span>
-          <div className="min-w-0 flex-1">
-            {/* 표지 카드에 이미 제목이 크게 있으면 다시 쓰지 않는다 (스크린리더용으로만 남김) */}
-            <p className={first.image ? 'line-clamp-2 text-sm font-semibold leading-snug text-theme-text group-hover:text-brand-accent' : 'sr-only'}>{first.title}</p>
-            {(first.meta || first.badge) && (
-              <p className="mt-1 flex flex-wrap items-center gap-2 text-[11px] text-theme-text-muted">
-                {first.badge && <span className="rounded-full border border-theme-border px-1.5 py-px">{first.badge}</span>}
-                {first.meta}
-              </p>
-            )}
-          </div>
-          <div className="text-right">
-            <div className="text-lg font-bold tabular-nums text-theme-text">{first.value}</div>
-            <div className="text-[10px] text-theme-text-muted">{first.valueLabel}</div>
-          </div>
-        </div>
-      </a>
-      {rest.length > 0 && (
-        <ol className="space-y-2.5">
-          {rest.map((it, i) => (
-            <li key={it.key}>
-              <a href={it.href} target="_blank" rel="noreferrer" className="group flex items-center gap-3 rounded-xl p-1 hover:bg-theme-surface-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent">
-                <span className="w-4 text-center text-xs tabular-nums text-theme-text-muted">{i + 2}</span>
-                <Thumb src={it.image} color={color} icon={icon} className="h-11 w-16" />
-                <div className="min-w-0 flex-1">
-                  <p className="truncate text-sm text-theme-text group-hover:text-brand-accent">{it.title}</p>
-                  {(it.meta || it.badge) && (
-                    <p className="truncate text-[11px] text-theme-text-muted">
-                      {it.badge && <span className="mr-1.5">{it.badge}</span>}
-                      {it.meta}
-                    </p>
-                  )}
-                </div>
-                <span className="text-sm font-semibold tabular-nums text-theme-text">{it.value}</span>
-              </a>
-            </li>
+    <ol className="border-t border-theme-border">
+      {items.map((it) => (
+        <li key={it.key} className="border-b border-theme-border">
+          <a href={it.href} target="_blank" rel="noreferrer" className="group flex items-center gap-3 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary">
+            <Thumb src={it.image} className="h-[30px] w-11" />
+            <div className="min-w-0 flex-1">
+              <p className="truncate text-[13.5px] text-theme-text group-hover:underline">{it.title}</p>
+              {it.meta && <p className="truncate text-xs text-theme-text-muted">{it.meta}</p>}
+            </div>
+            <span className="text-[13.5px] tabular-nums text-theme-text">
+              {it.value}
+              <span className="sr-only"> {it.valueLabel}</span>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ol>
+  );
+};
+
+/** 기여자별 기여 표: 아바타, 글 수, 조회 합(막대), 글당 평균, 가장 많이 본 글 */
+export const MemberTable: React.FC<{ rows: MemberRow[]; color: string; topHref: (id: number) => string }> = ({ rows, color, topHref }) => {
+  if (!rows.length) return <p className="text-sm text-theme-text-muted">이 기간에 작성자가 확인된 글이 없습니다</p>;
+  const max = Math.max(1, ...rows.map((r) => r.views));
+  return (
+    <div className="overflow-x-auto">
+      <table className="w-full min-w-[40rem] text-[13.5px]">
+        <thead>
+          <tr className="border-b border-theme-border text-left text-xs text-theme-text-muted">
+            <th scope="col" className="pb-2 font-medium">기여자</th>
+            <th scope="col" className="pb-2 text-right font-medium">글</th>
+            <th scope="col" className="w-[30%] pb-2 pl-8 font-medium">조회 합</th>
+            <th scope="col" className="pb-2 text-right font-medium">글당 평균</th>
+            <th scope="col" className="pb-2 pl-8 font-medium">가장 많이 본 글</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr key={r.name} className="border-b border-theme-border">
+              <td className="whitespace-nowrap py-2.5">
+                <span className="flex items-center gap-2">
+                  <Avatar name={r.name} src={r.avatar} />
+                  <span className="text-theme-text">{r.name}</span>
+                </span>
+              </td>
+              <td className="py-2.5 text-right tabular-nums text-theme-text">{r.posts}</td>
+              <td className="py-2.5 pl-8">
+                <span className="flex items-center gap-2.5">
+                  <span className="h-1.5 flex-1 overflow-hidden rounded-full bg-theme-bg-secondary" aria-hidden="true">
+                    <span className="block h-full rounded-full" style={{ width: `${(r.views / max) * 100}%`, background: color }} />
+                  </span>
+                  <span className="w-12 text-right tabular-nums text-theme-text">{n(r.views)}</span>
+                </span>
+              </td>
+              <td className="py-2.5 text-right tabular-nums text-theme-text">{r.avgViews === null ? '–' : n(r.avgViews)}</td>
+              <td className="max-w-0 py-2.5 pl-8">
+                <a href={topHref(r.top.id)} target="_blank" rel="noreferrer" className="block truncate text-theme-text-secondary hover:underline" title={r.top.text}>
+                  {r.top.text.split('\n')[0] || '미디어 글'}
+                </a>
+              </td>
+            </tr>
           ))}
-        </ol>
-      )}
+        </tbody>
+      </table>
     </div>
   );
 };
+
+const Avatar: React.FC<{ name: string; src: string }> = ({ name, src }) => {
+  const [broken, setBroken] = useState(false);
+  return src && !broken ? (
+    <img src={src} alt="" onError={() => setBroken(true)} className="h-6 w-6 shrink-0 rounded-full object-cover" />
+  ) : (
+    <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-theme-bg-secondary text-[11px] font-semibold text-theme-text-secondary" aria-hidden="true">
+      {name.slice(0, 1).toUpperCase()}
+    </span>
+  );
+};
+
+/** 탭 맨 위 수치 인사이트 칸들 */
+export const FactGrid: React.FC<{ facts: Fact[] }> = ({ facts }) =>
+  facts.length ? (
+    <dl
+      className="grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-theme-border bg-theme-border xl:[grid-template-columns:repeat(var(--cols),minmax(0,1fr))] [&>*:last-child:nth-child(odd)]:col-span-2 xl:[&>*:last-child:nth-child(odd)]:col-span-1"
+      style={{ ['--cols' as string]: facts.length }}
+    >
+      {facts.map((f) => (
+        <div key={f.label} className="min-w-0 bg-theme-bg px-4 py-3">
+          <dt className="truncate text-xs text-theme-text-muted">{f.label}</dt>
+          <dd className={`mt-0.5 truncate text-lg font-semibold tabular-nums ${f.tone === 'up' ? 'text-green-700' : f.tone === 'down' ? 'text-orange-700' : 'text-theme-text'}`}>{f.value}</dd>
+          <dd className="mt-0.5 text-xs leading-snug text-theme-text-secondary">{f.detail}</dd>
+        </div>
+      ))}
+    </dl>
+  ) : null;
+
+export interface Column<T> {
+  label: string;
+  get: (row: T) => number | null;
+  format?: (v: number) => string;
+}
+
+/** 기간별 비교 표: 행 = 기간(최신이 위), 열 = 지표. 칸 뒤에 열 최댓값 대비 옅은 막대 */
+export function PeriodTable<T>({ rows, columns, color, selected }: { rows: Array<{ key: string; label: string; partial?: boolean; data: T }>; columns: Array<Column<T>>; color: string; selected?: string }) {
+  const max = columns.map((c) => Math.max(1, ...rows.map((r) => c.get(r.data) ?? 0)));
+  return (
+    <div className="overflow-x-auto">
+      <table className="w-full min-w-[36rem] text-[13px]">
+        <thead>
+          <tr className="border-b border-theme-border text-xs text-theme-text-muted">
+            <th scope="col" className="pb-2 text-left font-medium">기간</th>
+            {columns.map((c) => (
+              <th key={c.label} scope="col" className="pb-2 pl-4 text-right font-medium">
+                {c.label}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr key={r.key} className={`border-b border-theme-border ${r.key === selected ? 'bg-theme-bg-secondary font-semibold' : ''}`}>
+              <th scope="row" className="whitespace-nowrap py-1.5 text-left font-normal text-theme-text-secondary">
+                {r.label}
+                {r.partial && <span className="ml-1 text-[11px] text-theme-text-muted">진행 중</span>}
+              </th>
+              {columns.map((c, i) => {
+                const v = c.get(r.data);
+                return (
+                  <td key={c.label} className="relative py-1.5 pl-4 text-right tabular-nums text-theme-text">
+                    {v !== null && <span className="absolute inset-y-1 right-0 rounded-sm" style={{ width: `${(v / max[i]) * 70}%`, background: color, opacity: 0.1 }} aria-hidden="true" />}
+                    <span className="relative">{v === null ? '–' : (c.format ?? n)(v)}</span>
+                  </td>
+                );
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}

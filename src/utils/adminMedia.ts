@@ -40,3 +40,8 @@ export function liThumb(title: string, tgPosts: ReadonlyArray<TgPostRecord>, idx
   }
   return null;
 }
+
+/** 텔레그램 글 번호 → 작성자. 사이트 인덱스(tg-{id})에 붙은 작성자를 쓴다 */
+export type AuthorIndex = Map<number, { name: string; avatar: string }>;
+export const authorIndex = (items: ReadonlyArray<{ id: string; author?: string; authorAvatar?: string }>): AuthorIndex =>
+  new Map(items.filter((x) => x.author && /^tg-\d+$/.test(x.id)).map((x) => [Number(x.id.slice(3)), { name: x.author as string, avatar: x.authorAvatar ?? '' }]));
