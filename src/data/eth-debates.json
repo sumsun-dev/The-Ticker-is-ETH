@@ -234,7 +234,8 @@
         "quotes": 3,
         "replies": 38,
         "views": 20764
-      }
+      },
+      "publish": false
     },
     {
       "id": "eip7702-binance-hack-blame",
@@ -430,7 +431,8 @@
         "quotes": 21,
         "replies": 31,
         "views": 55560
-      }
+      },
+      "publish": true
     },
     {
       "id": "core-dev-funding-dev-tax",
