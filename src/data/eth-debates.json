@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-29T01:32:03.249Z",
+  "updatedAt": "2026-11-01T01:19:32.135Z",
   "processedDigests": [
     "2026-08-24",
     "2026-08-25",
@@ -31,9 +31,407 @@
     "2026-10-20",
     "2026-10-23",
     "2026-10-26",
-    "2026-10-29"
+    "2026-10-29",
+    "2026-11-01"
   ],
   "debates": [
+    {
+      "id": "dprk-hackback-coinbase-liquidity",
+      "title": "북한의 암호화폐 탈취에 맞서 민간이 직접 역해킹에 나서야 하나, 아니면 그 자금 통로를 대는 거래소부터 책임져야 하나?",
+      "category": "규제",
+      "summary": "북한 연계로 지목된 바이낸스 해킹 국면에서 Coinbase의 Viktor Bunin으로 추정되는 '북한을 역해킹하자'는 트윗이 발단이 됐다. Laura Shin은 민간 해커가 국가를 상대할 수 없다고 선을 그었고, 0xngmi와 Taylor Monahan은 역해킹을 외치는 Coinbase가 정작 북한 자금이 지나가는 Thorchain 유동성(liquidity)의 사실상 독점 공급자라며 자기모순을 지적했다.",
+      "keyPoints": [
+        "민간 행위자가 국가(북한)를 상대로 역해킹에 나서는 것이 법적으로·현실적으로 가능한가.",
+        "북한 탈취 자금이 지나가는 크로스체인 유동성의 공급 책임은 누구에게 있는가.",
+        "토네이도캐시(Tornado Cash)식 전면 차단과 탈중앙·안전한 부분만 남기는 선별 차단 중 무엇이 옳은가."
+      ],
+      "background": "북한 연계 해커 조직은 거래소와 지갑 탈취로 대규모 암호화폐를 빼내 왔고, 최근 바이낸스 해킹에도 북한 배후설이 제기됐다. 탈취 자금은 Thorchain 같은 크로스체인 스왑 프로토콜을 거쳐 세탁되는데, 이런 스왑은 각 체인의 유동성 풀에 자금이 미리 예치돼 있어야 작동한다. Laura Shin이 언급한 백악관 메모는 사이버 위협 대응 권한을, perkinscr97이 든 미국 헌법 제1조 8절은 의회의 사략 허가(letters of marque) 권한을 가리킨다. 과거 미 당국은 믹서 토네이도캐시를 제재·차단한 바 있어 Thorchain에 같은 조치를 할지가 쟁점으로 떠올랐다.",
+      "whyItMatters": "해킹 피해 수습 논의가 역해킹, 제재, 유동성 공급 책임으로 번지면서 역해킹을 주장하는 주체가 정작 세탁 통로를 제공한다는 자기모순이 드러났다. Coinbase가 Thorchain 유동성 공급을 유지할지, 당국이 Thorchain에 토네이도캐시식 조치를 취할지가 지켜볼 지점이다.",
+      "sources": [],
+      "keywords": [
+        "THORChain",
+        "North Korea DPRK",
+        "Coinbase liquidity",
+        "Lazarus laundering"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "북한에 맞서 직접 역해킹·추적에 나서야 한다",
+          "holders": [
+            {
+              "handle": "ViktorBunin",
+              "name": "Viktor Bunin 🛡️🇺🇸",
+              "role": "Coinbase",
+              "avatar": "https://pbs.twimg.com/profile_images/1644327398358368257/ZRAFaGPY_400x400.jpg"
+            },
+            {
+              "handle": "perkinscr97",
+              "name": "Christopher Perkins 🦅🌎⚓️NYC",
+              "avatar": "https://pbs.twimg.com/profile_images/1658232551691935746/EMXdoDEK_400x400.jpg"
+            },
+            {
+              "handle": "aaronjmars",
+              "name": "@aaronjmars",
+              "avatar": "https://pbs.twimg.com/profile_images/1884870548179591168/ZYfauOVW_400x400.jpg"
+            }
+          ],
+          "points": [
+            "북한이 암호화폐를 계속 탈취하도록 방치하지 말고 훔친 것 이상으로 되갚아 해킹해야 한다.",
+            "미국 헌법 제1조 8절(사략 허가, letters of marque)을 근거로 들며 민간의 대북 역해킹에 법적 토대가 있을 수 있다고 시사했다.",
+            "북한의 세탁 스택(지갑·스왑·믹서)을 공개적으로 지도화하고 그 도구의 오픈소스 코드 취약점을 24시간 감사하는 대응을 이미 가동하고 있다."
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "민간의 북한 역해킹은 비현실적이다",
+          "holders": [
+            {
+              "handle": "laurashin",
+              "name": "Laura Shin",
+              "role": "Unchained, 미디어·심층 취재",
+              "avatar": "https://pbs.twimg.com/profile_images/1539462748173746176/hxR80FYT_400x400.png"
+            },
+            {
+              "handle": "Mawuko",
+              "name": "Emmanuel 🇬🇭🦉(PropAMM dealer)",
+              "avatar": "https://pbs.twimg.com/profile_images/2051172426562654208/CBLf9PKL_400x400.jpg"
+            }
+          ],
+          "points": [
+            "백악관이 관련 메모에 서명했더라도 민간 해커(privateers)는 국가가 아니라 범죄 조직만 상대할 수 있다.",
+            "북한이 해킹할 만한 가치 있는 사업체를 둔 적이 없어 역해킹 대상 자체가 마땅치 않다."
+          ]
+        },
+        {
+          "stance": "other",
+          "label": "역해킹을 외치기 전에 북한 자금 통로를 대는 거래소부터 책임져야 한다",
+          "holders": [
+            {
+              "handle": "0xngmi",
+              "name": "0xngmi",
+              "role": "DefiLlama, DeFi 데이터",
+              "avatar": "https://pbs.twimg.com/profile_images/1653148127623249924/E5-smZYA_400x400.jpg"
+            },
+            {
+              "handle": "tayvano_",
+              "name": "Tay 💖",
+              "role": "온체인 해킹·탈취 추적 보안 연구자",
+              "avatar": "https://pbs.twimg.com/profile_images/1581795350087667713/iMrb6XX__400x400.jpg"
+            }
+          ],
+          "points": [
+            "역해킹을 주장하는 Coinbase가 정작 지금 Thorchain에 유동성을 독점 공급하는 주체다.",
+            "크로스체인 자금 이동은 어느 체인에도 돈이 쌓이지 않은 채 유동성 풀을 통해 일어나므로, 유동성 공급자가 북한 자금 이동의 핵심 길목이다.",
+            "토네이도캐시처럼 Thorchain을 통째로 차단하자는 게 아니라 실제로 탈중앙화·안전한 부분은 남기고 그렇지 않은 통로만 끊자는 것이다."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-10-30",
+          "by": "Viktor Bunin (추정)",
+          "stance": "pro",
+          "quote": "미국이 북한이 모두를 계속 해킹하도록 내버려 두는 것은 솔직히 꽤 한심하다. 우리는 그들이 훔친 전부를, 그리고 거기에 더 얹어서 되갚아 해킹해야 한다.",
+          "url": "https://x.com/laurashin/status/2116169183692013948",
+          "digest": "2026-11-01",
+          "relation": "none",
+          "original": "Honestly it's pretty low T of the US to let North Korea keep hacking everyone. We should hack them back for everything they stole and then some!",
+          "translation": "솔직히 말해서 미국이 북한이 계속 모두를 해킹하도록 내버려두는 것은 꽤나 기개 없는(low T) 처사다. 우리는 그들이 훔쳐간 모든 것에 대해, 그리고 그 이상으로 되갚아 해킹해야 한다!"
+        },
+        {
+          "date": "2026-10-30",
+          "by": "laurashin",
+          "stance": "con",
+          "quote": "월요일 방송에서 이 얘기를 했다. 백악관이 이에 관한 메모에 서명했더라도, 민간 해커는 국가를 상대로 해킹할 수 없다. 오직 범죄 조직만 대상이 된다.",
+          "url": "https://x.com/laurashin/status/2116201831063830655",
+          "digest": "2026-11-01",
+          "replyTo": "ViktorBunin",
+          "relation": "reply",
+          "original": "@ViktorBunin We talked about this on Monday’s show. Even though the WH signed a memo about this, the privateers can’t hack nation states. Only criminal enterprises https://x.com/laurashin/status/2115194246214898021?a=6AgE4NEYvZvXDxcCOOo&s=46",
+          "translation": "@ViktorBunin 우리는 월요일 방송에서 이 얘기를 했다. 백악관(WH)이 이에 관한 메모에 서명하긴 했지만, 민간 해커(privateers)는 국가를 해킹할 수 없다. 오직 범죄 조직만 그렇게 할 수 있다. https://x.com/laurashin/status/2115194246214898021?a=6AgE4NEYvZvXDxcCOOo&s=46"
+        },
+        {
+          "date": "2026-10-30",
+          "by": "0xngmi",
+          "stance": "other",
+          "quote": "참고로 Coinbase는 지금 사실상 Thorchain에 유동성을 독점 공급하는 주체다. 그래, 정말 한심하네.",
+          "url": "https://x.com/0xngmi/status/2116205630033932382",
+          "digest": "2026-11-01",
+          "replyTo": "ViktorBunin",
+          "relation": "reply",
+          "original": "@ViktorBunin FYI Coinbase is basically the exclusive provider of liquidity to thorchain right now.\n\nYeah, it’s pretty fucking low t bro lmao.",
+          "translation": "@ViktorBunin 참고로 코인베이스(Coinbase)는 지금 거의 소르체인(thorchain)에 유동성(liquidity)을 독점적으로 공급하는 곳이다. 그래, 이거 진짜 존나 기개 없다 친구 ㅋㅋㅋ."
+        },
+        {
+          "date": "2026-10-30",
+          "by": "tayvano_",
+          "stance": "other",
+          "quote": "어느 쪽 체인에도 돈이 무더기로 쌓여 있지 않은데 자금이 어떻게 한 체인에서 다른 체인으로 옮겨간다고 생각하나?",
+          "url": "https://x.com/tayvano_/status/2116234077934440857",
+          "digest": "2026-11-01",
+          "replyTo": "0xngmi",
+          "relation": "reply",
+          "original": "@0xngmi @ViktorBunin How do you think funds move from one chain to the other without any money sitting in a pile on either chain??",
+          "translation": "@0xngmi @ViktorBunin 그럼 어느 체인에도 돈이 한 뭉치로 쌓여있지 않은 상태에서 자금이 한 체인에서 다른 체인으로 어떻게 이동한다고 생각하는가??"
+        },
+        {
+          "date": "2026-10-30",
+          "by": "tayvano_",
+          "stance": "other",
+          "quote": "당연히 아니다. 실제로 탈중앙화된 부분은 얼마든지 남겨둬도 되고, 실제로 안전한 부분도 남겨둬도 된다.",
+          "url": "https://x.com/tayvano_/status/2116286449263992841",
+          "digest": "2026-11-01",
+          "replyTo": "anonbuilderok",
+          "relation": "reply",
+          "original": "@anonbuilderok @ViktorBunin Ofc not. They can keep any of the actually decentralized bits. Also any of the actually secure bits. 😘",
+          "translation": "@anonbuilderok @ViktorBunin 당연히 아니다. 그들은 실제로 탈중앙화된(decentralized) 부분은 얼마든지 유지해도 된다. 그리고 실제로 안전한(secure) 부분도 마찬가지다."
+        },
+        {
+          "date": "2026-10-30",
+          "by": "perkinscr97",
+          "stance": "pro",
+          "quote": "빅터, 나눌 얘기가 정말 많다. 미국 헌법 제1조 8절을 보라.",
+          "url": "https://x.com/perkinscr97/status/2116304921670865178",
+          "digest": "2026-11-01",
+          "replyTo": "ViktorBunin",
+          "relation": "reply",
+          "original": "@ViktorBunin Viktor, I have so much to share. See Article I, Section 8.",
+          "translation": "@ViktorBunin 빅터, 나누고 싶은 이야기가 정말 많다. 미국 헌법 제1조 제8절(Article I, Section 8)을 참고하라."
+        },
+        {
+          "date": "2026-10-30",
+          "by": "aaronjmars",
+          "stance": "pro",
+          "quote": "북한의 세탁 스택은 블랙박스여서는 안 된다. 그들이 쓰는 지갑·스왑·믹서를 지도화하는 dprk-fightback을 만들었고, 그 도구들의 오픈소스 코드 취약점을 24시간 감사하는 AI 에이전트도 돌리고 있다.",
+          "url": "https://x.com/aaronjmars/status/2116265122318487984",
+          "digest": "2026-11-01",
+          "replyTo": "ViktorBunin",
+          "relation": "quote",
+          "original": "north korea laundering stack shouldn't be a black box.\n\nbuilt dprk-fightback to map the wallets, swaps &amp; mixers they use (github.com/aaronjmars/dpr…)\n\nalso running an @aeonframework agent working 24/7 to audit open-source code behind those tools for weaknesses.",
+          "translation": "북한의 자금세탁(laundering) 스택은 블랙박스로 남아있어서는 안 된다. 그래서 그들이 사용하는 지갑(wallet), 스왑(swap), 믹서(mixer)를 지도화하기 위해 dprk-fightback을 만들었다(github.com/aaronjmars/dpr…). 또한 그런 도구들 뒤에 있는 오픈소스(open-source) 코드의 취약점을 감사(audit)하기 위해 @aeonframework 에이전트(agent)를 24시간 내내 가동하고 있다."
+        },
+        {
+          "date": "2026-10-30",
+          "by": "Mawuko",
+          "stance": "con",
+          "quote": "어디를 해킹하라는 건가? 미국이 해킹할 만한 가치 있는 사업체를 북한이 가지도록 허용받은 적이 있나?",
+          "url": "https://x.com/Mawuko/status/2116305658140143898",
+          "digest": "2026-11-01",
+          "replyTo": "ViktorBunin",
+          "relation": "reply",
+          "original": "@ViktorBunin Hack them where? What valuable businesses have North Korea been allowed to have that that are worthy hacking targets for the US?",
+          "translation": "@ViktorBunin 어디를 해킹한다는 건가? 북한이 미국이 해킹할 만한 가치가 있는 표적으로 삼을 만한 귀중한 사업체를 대체 어디에 갖고 있다는 건가?"
+        }
+      ],
+      "firstSeen": "2026-10-30",
+      "lastActivity": "2026-10-30",
+      "status": "active",
+      "rootUrl": "https://x.com/laurashin/status/2116169183692013948",
+      "engagement": {
+        "likes": 300,
+        "retweets": 13,
+        "quotes": 3,
+        "replies": 38,
+        "views": 20764
+      }
+    },
+    {
+      "id": "eip7702-binance-hack-blame",
+      "title": "바이낸스 해킹에서 EIP-7702는 피해를 키운 책임이 있나, 아니면 열쇠 유출이 문제인 중립적 도구일 뿐인가?",
+      "category": "프로토콜 설계",
+      "summary": "계정 추상화(account abstraction) 기여자 decentrek은 EIP-7702 자체는 깨지지 않았지만 배치(batching) 기능이 해커가 ETH·USDT 등 64종 토큰을 한 트랜잭션에 빼내 피해를 키우도록 도운 것은 사실이라며 운영 관행 개선과 EIP-8141 프레임 트랜잭션(frame transaction) 같은 엔드게임 계정 추상화로 전환할 것을 촉구했다. 반면 FigoETH·AzianMike·ETH_MAXER 등은 7702는 안전하고 중립적인 UX 도구이며 문제는 개인키 유출과 바이낸스의 허술함이라고 반박했다.",
+      "keyPoints": [
+        "EIP-7702의 배치 기능이 해킹 피해를 구조적으로 키우는가, 아니면 피해 크기는 개인키 유출이라는 근본 원인에서 비롯되는가.",
+        "지갑·거래소가 7702 authorization이나 원시 메시지 서명 엔드포인트를 노출하지 말아야 한다는 운영 수칙으로 충분한가.",
+        "EIP-8141 프레임 트랜잭션의 포스트 컨디션(post-condition) 같은 엔드게임 계정 추상화가 근본 해법인가."
+      ],
+      "background": "EIP-7702(Set Code for EOAs)는 비탈릭 부테린, Sam Wilson, Ansgar Dietrichs, lightclient이 제안해 Final 상태가 된 EIP로, 외부 소유 계정(EOA)이 '7702 authorization'이라는 특수 서명으로 스마트 컨트랙트 코드를 자기 계정에 위임해 승인(approve)과 전송(transfer)을 한 트랜잭션에 묶는 배치를 가능하게 한다. 바이낸스 해킹에서 해커는 이 기능으로 ETH, USDT를 포함한 64종 토큰을 단일 트랜잭션에 빼냈고, 7702가 없었다면 토큰마다 별도 트랜잭션이 필요해 정상 출금 트랜잭션과 논스(nonce)를 두고 경쟁하다 상당수가 실패했을 것이다. decentrek이 엔드게임으로 지목한 EIP-8141(Frame Transaction, Draft)은 계정을 멀티시그 컨트랙트로만 구성하고 전송 함수에 '추가 서명 없이는 1000 ETH 초과 전송 불가' 같은 포스트 컨디션을 걸 수 있게 하는 계정 추상화 제안이다. EIP-8141은 현재 bogota-devnet-1에서 테스트되고 있다.",
+      "whyItMatters": "전환기 계정 추상화의 부작용을 프로토콜 설계로 고칠지 운영 관행으로 막을지가 계정 추상화 로드맵의 우선순위와 속도를 좌우한다. 지갑·거래소가 7702 서명 엔드포인트를 노출하지 않는 수칙이 표준으로 자리 잡는지, EIP-8141의 포스트 컨디션이 devnet에서 진전되는지가 지켜볼 지점이다.",
+      "sources": [
+        {
+          "title": "EIP-7702: Set Code for EOAs",
+          "url": "https://eips.ethereum.org/EIPS/eip-7702"
+        },
+        {
+          "title": "EIP-8141: Frame Transaction",
+          "url": "https://eips.ethereum.org/EIPS/eip-8141"
+        }
+      ],
+      "keywords": [
+        "EIP-7702",
+        "7702 authorization",
+        "EIP-8141",
+        "Binance hack"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "7702가 피해를 키웠으니 보완과 주의가 필요하다",
+          "holders": [
+            {
+              "handle": "decentrek",
+              "name": "Derek Chiang | Ethlabs",
+              "role": "Ethlabs, 계정 추상화·트랜잭션 설계 해설",
+              "avatar": "https://pbs.twimg.com/profile_images/1174814321211133953/EeiJXp6L_400x400.jpg"
+            },
+            {
+              "handle": "LibertySwapFi",
+              "name": "Liberty Swap | C.R.O.P.S. on PulseChain 🗽",
+              "avatar": "https://pbs.twimg.com/profile_images/2078250394871054337/9Y_hPCiD_400x400.jpg"
+            },
+            {
+              "handle": "liszechung",
+              "name": "louisli.eth |💊| BIP-360",
+              "avatar": "https://pbs.twimg.com/profile_images/2050235889536946176/36Z3GUte_400x400.jpg"
+            }
+          ],
+          "points": [
+            "7702 자체는 깨지지 않았지만, 배치 기능이 해커가 ETH·USDT 등 64종을 한 트랜잭션에 빼내 최대한 많이·빠르게 탈취하도록 도왔다.",
+            "지갑 개발자와 핫월렛을 운영하는 거래소는 내부용이라도 7702 authorization이나 원시 메시지 서명 엔드포인트를 절대 노출해선 안 된다.",
+            "7702는 과도기 EIP일 뿐이며, EIP-8141 프레임 트랜잭션이라면 바이낸스가 지갑을 멀티시그로만 구성하고 '추가 서명 없이 1000 ETH 초과 전송 불가' 같은 포스트 컨디션을 걸어 열쇠가 털려도 피해를 막을 수 있었다.",
+            "8개 체인에 걸친 7702 authorization 계정의 40% 이상이 해커 컨트랙트를 사용했을 만큼, UX 개선으로 홍보된 기능이 실제로는 심각하게 악용되고 있다.",
+            "메타마스크가 7702를 기본값으로 켜 두므로 사용자가 직접 꺼야 하며, 당분간 쓰지 않는 편이 낫다."
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "7702는 안전한 중립 도구이고 문제는 열쇠 유출이다",
+          "holders": [
+            {
+              "handle": "FigoETH",
+              "name": "figo.eth",
+              "avatar": "https://pbs.twimg.com/profile_images/1705499335176200192/zV-9Hj5p_400x400.jpg"
+            },
+            {
+              "handle": "AzianMike",
+              "name": "Michael Luo",
+              "avatar": "https://pbs.twimg.com/profile_images/1639289943112712192/siQIsPMq_400x400.jpg"
+            },
+            {
+              "handle": "ETH_MAXER",
+              "name": "언성재",
+              "avatar": "https://pbs.twimg.com/profile_images/2090220708098088960/VjjslL2F_400x400.jpg"
+            }
+          ],
+          "points": [
+            "7702는 안전하며(safu) 문제는 바이낸스다. 해커가 7702를 쓰려면 개인키를 갖고 있었거나 바이낸스를 속여 서명을 받아냈어야 한다.",
+            "7702는 해커의 이동 속도를 높였을 뿐 근본 원인은 개인키·권한 유출이며, 7702는 더 나은 UX를 위한 순수하게 중립적인 도구다.",
+            "결국 올인원 지갑의 개인키가 털린 것이 문제이지 지갑이나 7702가 문제인 것은 아니다."
+          ]
+        },
+        {
+          "stance": "neutral",
+          "label": "근본 원인은 열쇠가 아니라 서명 인프라일 수 있다",
+          "holders": [
+            {
+              "handle": "odysseas_eth",
+              "name": "Odysseus | phylax.systems",
+              "role": "Phylax Systems",
+              "avatar": "https://pbs.twimg.com/profile_images/1562860407374618624/coT3OV0L_400x400.jpg"
+            }
+          ],
+          "points": [
+            "반드시 개인키 자체가 아니라 서명 인프라가 뚫린 것일 수 있다."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-10-30",
+          "by": "decentrek",
+          "stance": "pro",
+          "quote": "먼저 분명히 하자. 7702 자체는 깨지지 않았다. 하지만 같은 기능이 해커가 당신의 모든 토큰을 단 한 트랜잭션에 옮기게도 해준다. 바이낸스 해킹에서 해커는 ETH, USDT와 다른 62종을 한 트랜잭션에 옮겼고, 7702가 없었다면 토큰마다 따로 보내야 했을 것이다. AA 기여자로서 이런 해킹에 부분적으로 책임감을 느낀다.",
+          "url": "https://x.com/decentrek/status/2115960332032299192",
+          "digest": "2026-11-01",
+          "relation": "none",
+          "original": "Quick notes on 7702 to dispel fud and keep your funds safe.\n\nFirst thing first -- 7702 itself isn't broken.  Don't panic if you are using a wallet that supports 7702 (MetaMask, Uniswap, Ambire, etc.).\n\nTo recap, 7702 is an account abstraction EIP that allows an EOA to sign a special message, called a \"7702 authorization,\" that would insert a smart contract into the account, which enables the account to do powerful things like transaction batching, e.g. doing \"approve\" and \"transfer\" in one transaction so you can swap on Uniswap with one click.\n\nBut unfortunately the same feature also allows a hacker to efficiently move all your tokens in one single transaction.  In the Binance hack, the hacker moved ETH, USDT, and 62 other tokens in one transaction, whereas without 7702 they'd have had to send one transaction per token.  In this particular case, many of those transactions would've failed because Binance was still using the hacked wallet for withdrawals, so all transactions sent by the hacker would've had to compete with the legit transactions for nonces.  So using 7702 did help the hacker steal as much funds as possible, as quickly as possible.  Ouch!\n\nHowever, in order for the hacker to use 7702, they must have either 1) had access to the private key, or 2) tricked Binance into signing a 7702 authorization.  The latter is very unlikely, as it's hard to imagine Binance being so incompetent as to expose an endpoint for signing 7702 authorizations or (even worse) for signing raw messages which the hacker could've repurposed for 7702 authorizations.  But I can't rule that out until the official postmortem.\n\nWhat does all this mean for you?\n\n- If you are a wallet developer, do NOT, under any circumstances, expose a way for third parties to request 7702 authorizations.  This is just handing your users a giant footgun to shoot themselves with.  No wallets I know of do this, so don't worry if you are a user.\n\n- If you are a user, use a well-known wallet.  7702 does let wallet developers screw up in more ways than before, so use only well-known wallets whose developers' competence you can trust.\n\n- If you are a company (e.g. an exchange) operating hot wallets, do NOT, under any circumstances, expose an endpoint (even if it's an internal endpoint) for signing 7702 authorizations or raw messages.\n\nAs a contributor to AA, I feel partially responsible for hacks like this, since by increasing the power of accounts, we've indeed also empowered hackers (not unlike how any new technology empowers both the good guys and the bad guys).  That said, it's important to note that 7702 was only a transitional EIP, and \"endgame AA\" such as Frame Transactions (EIP-8141) would allow wallet owners to set up their wallets much more securely.  For example, if Frame Transactions were available today, Binance could've:\n\n- Set up their wallets as multisig contracts only (not EOAs).\n\n- Set up \"post conditions\" for their `transfer()` functions, so that even if the multisig got hacked, the contract itself would perform sanity checks such as \"no transfers of more than 1000 ETH without additional signers.\"\n\nIn short, the endgame of Ethereum UX is one with both optimal security and optimal UX, and users never have to trade off between the two.  But we still have a long way to go until we get there.  Back to work!",
+          "translation": "공포심 조장(fud)을 해소하고 여러분의 자금을 안전하게 지키기 위해 7702에 관해 간단히 적어본다. 먼저 가장 중요한 것부터, 7702 자체는 고장 난 것이 아니다. 7702를 지원하는 지갑(메타마스크(MetaMask), 유니스왑(Uniswap), 앰비어(Ambire) 등)을 쓰고 있다고 해서 패닉에 빠지지 말라. 요약하면, 7702는 계정 추상화(account abstraction) EIP로, EOA(외부 소유 계정)가 “7702 승인(authorization)”이라 불리는 특수한 메시지에 서명하여 해당 계정에 스마트 컨트랙트(smart contract)를 삽입할 수 있게 해주며, 이를 통해 계정은 트랜잭션 일괄처리(transaction batching) 같은 강력한 작업을 할 수 있게 된다. 예를 들어 “승인(approve)”과 “전송(transfer)”을 하나의 트랜잭션으로 처리해서 유니스왑에서 클릭 한 번으로 스왑할 수 있게 해준다. 하지만 불행히도 같은 기능이 해커로 하여금 여러분의 모든 토큰(token)을 단 하나의 트랜잭션으로 효율적으로 옮길 수 있게도 해준다. 바이낸스(Binance) 해킹에서 해커는 ETH, USDT 그리고 다른 62종의 토큰을 하나의 트랜잭션으로 옮겼는데, 7702가 없었다면 토큰마다 하나씩 트랜잭션을 보내야 했을 것이다. 이번 특정 사례에서는 바이낸스가 해킹된 지갑을 계속 출금용으로 사용하고 있었기 때문에 그 트랜잭션들 중 상당수가 실패했을 것이다. 따라서 해커가 보낸 모든 트랜잭션은 넌스(nonce)를 두고 정상적인 트랜잭션들과 경쟁해야 했을 것이다. 그러므로 7702를 사용한 것은 해커가 가능한 한 많은 자금을 가능한 한 빠르게 훔치는 데 실제로 도움이 되었다. 아야! 하지만 해커가 7702를 사용하기 위해서는 1) 개인키(private key)에 접근할 수 있었거나, 2) 바이낸스를 속여 7702 승인에 서명하게 만들었어야 한다. 후자는 가능성이 매우 낮은데, 바이낸스가 7702 승인에 서명하는 엔드포인트(endpoint)를, 혹은 더 나쁘게는 해커가 7702 승인용으로 재활용할 수 있는 원시 메시지(raw message) 서명용 엔드포인트를 노출할 정도로 무능했으리라고는 상상하기 어렵기 때문이다. 하지만 공식적인 사후분석(postmortem)이 나오기 전까지는 그 가능성을 배제할 수 없다. 이 모든 것이 여러분에게 어떤 의미가 있을까? 지갑 개발자라면, 어떤 상황에서도 제3자가 7702 승인을 요청할 수 있는 수단을 노출해서는 안 된다. 이는 사용자들에게 스스로를 쏠 수 있는 거대한 자충수(footgun)를 건네주는 것과 다름없다. 내가 아는 어떤 지갑도 이렇게 하지 않으므로, 사용자라면 걱정하지 않아도 된다. 사용자라면, 잘 알려진 지갑을 사용하라. 7702는 지갑 개발자가 이전보다 더 다양한 방식으로 실수를 저지를 수 있게 만들기 때문에, 개발자의 역량을 신뢰할 수 있는 잘 알려진 지갑만 사용하라. 핫월렛(hot wallet)을 운영하는 회사(예를 들어 거래소)라면, 어떤 상황에서도 7702 승인이나 원시 메시지 서명용 엔드포인트를, 그것이 내부용 엔드포인트라 할지라도 노출해서는 안 된다. 계정 추상화(AA)의 기여자로서, 나는 이런 종류의 해킹에 어느 정도 책임을 느낀다. 계정의 권한을 강화함으로써 우리는 실제로 해커들에게도 힘을 실어준 셈이기 때문이다. 이는 모든 새로운 기술이 선한 사람과 악한 사람 모두에게 힘을 실어주는 것과 다르지 않다. 그렇다 해도, 7702는 어디까지나 과도기적인(transitional) EIP였을 뿐이며, 프레임 트랜잭션(Frame Transactions, EIP-8141)과 같은 “최종 단계의 계정 추상화(endgame AA)”가 도입되면 지갑 소유자가 지갑을 훨씬 더 안전하게 설정할 수 있게 된다는 점에 주목할 필요가 있다. 예를 들어, 만약 프레임 트랜잭션이 지금 사용 가능했다면 바이낸스는 다음과 같이 할 수 있었을 것이다. 지갑을 EOA가 아니라 오직 다중서명(multisig) 컨트랙트로만 설정한다. `transfer()` 함수에 “사후 조건(post conditions)”을 설정해서, 다중서명이 해킹당하더라도 컨트랙트 자체가 “추가 서명자 없이는 1000 ETH 넘는 전송 불가” 같은 타당성 검사(sanity check)를 수행하도록 한다. 요컨대, 이더리움 사용자 경험(UX)의 최종 목표는 최적의 보안과 최적의 UX를 모두 갖춘 상태이며, 사용자가 이 둘 사이에서 맞교환(trade-off)을 하지 않아도 되는 것이다. 하지만 거기에 도달하기까지는 아직 갈 길이 멀다. 다시 일하러 가야겠다!"
+        },
+        {
+          "date": "2026-10-30",
+          "by": "ETH_MAXER",
+          "stance": "con",
+          "quote": "7702 자체는 고장 난 게 아니다. 문제는 해커도 이 기능으로 지갑을 한 번에 싹 비울 수 있다는 점이다. 결론은, 올인원 지갑의 개인키가 털려서 문제인 것이지 지갑이 문제인 것은 아니다.",
+          "url": "https://x.com/ETH_MAXER/status/2115966296886317312",
+          "digest": "2026-11-01",
+          "replyTo": "decentrek",
+          "relation": "quote",
+          "original": "금번 바이낸스 해킹, EIP-7702 지갑 관련 정리\n\n1. 7702 자체는 고장 난 게 아님. 메타마스크나 유니스왑처럼 7702를 지원하는 지갑을 써도 겁먹을 필요 없음.\n\n2. 7702는 일반 지갑에 스마트 기능을 붙여서 승인과 전송을 한 번에 처리하게 해주는 기능임. 덕분에 스왑을 클릭 한 번으로 할 수 있음.\n\n3. 문제는 해커도 이 기능으로 지갑을 한 번에 싹 비울 수 있다는 점임. 이번 바이낸스 건에서 해커는 ETH, USDT 등 64종을 거래 한 번에 빼냄. 7702가 없었다면 코인마다 따로 보내야 했음.\n\n4. 게다가 바이낸스가 털린 지갑으로 출금을 계속 하고 있어서, 해커가 따로따로 보냈으면 거래 순서가 꼬여 상당수가 실패했을 것임. 7702 덕에 최대한 많이, 최대한 빨리 털어간 셈임.\n\n5. 하지만 7702를 쓰려면 해커가 개인키를 이미 갖고 있었거나, 바이낸스를 속여 7702 서명을 받아냈어야 함. 후자는 바이낸스가 엄청 허술했어야 가능한 일이라 가능성이 낮긴한데 요즘 돌아가는 꼬라지 보면 가능성이 0이라 하긴 아려운듯.\n\n6. 지갑 개발자는 외부에서 7702 서명을 요청할 수 있는 통로를 절대 만들면 안 됨. 거래소처럼 핫월렛을 운영하는 회사도 내부용이라도 그런 통로를 만들면 안 됨. 일반 사용자는 유명한 지갑만 쓰면 됨.\n\n7. 7702는 과도기용 기능이고, 최종 목표인 EIP-8141(Frame Transactions)이 나오면 지갑을 훨씬 안전하게 설정할 수 있음. 예를 들어 \"1000 ETH 넘는 전송은 추가 서명 필수\" 같은 안전장치를 지갑 자체에 걸 수 있음.\n\n8. 결국 보안과 편의를 둘 다 챙기는 게 이더리움 UX의 최종 목표지만, 아직 갈 길이 멀긴함. 지금은 과도기 상태의 문제에 가까움.\n\n결론: 올인원 지갑 개인키가 털려서 문제인거지 지갑이 문제인건 아님.",
+          "translation": "금번 바이낸스 해킹, EIP-7702 지갑 관련 정리. 1. 7702 자체는 고장 난 게 아님. 메타마스크나 유니스왑처럼 7702를 지원하는 지갑을 써도 겁먹을 필요 없음. 2. 7702는 일반 지갑에 스마트 기능을 붙여서 승인과 전송을 한 번에 처리하게 해주는 기능임. 덕분에 스왑을 클릭 한 번으로 할 수 있음. 3. 문제는 해커도 이 기능으로 지갑을 한 번에 싹 비울 수 있다는 점임. 이번 바이낸스 건에서 해커는 ETH, USDT 등 64종을 거래 한 번에 빼냄. 7702가 없었다면 코인마다 따로 보내야 했음. 4. 게다가 바이낸스가 털린 지갑으로 출금을 계속 하고 있어서, 해커가 따로따로 보냈으면 거래 순서가 꼬여 상당수가 실패했을 것임. 7702 덕에 최대한 많이, 최대한 빨리 털어간 셈임. 5. 하지만 7702를 쓰려면 해커가 개인키를 이미 갖고 있었거나, 바이낸스를 속여 7702 서명을 받아냈어야 함. 후자는 바이낸스가 엄청 허술했어야 가능한 일이라 가능성이 낮긴한데 요즘 돌아가는 꼬라지 보면 가능성이 0이라 하긴 어려운듯. 6. 지갑 개발자는 외부에서 7702 서명을 요청할 수 있는 통로를 절대 만들면 안 됨. 거래소처럼 핫월렛을 운영하는 회사도 내부용이라도 그런 통로를 만들면 안 됨. 일반 사용자는 유명한 지갑만 쓰면 됨. 7. 7702는 과도기용 기능이고, 최종 목표인 EIP-8141(Frame Transactions)이 나오면 지갑을 훨씬 안전하게 설정할 수 있음. 예를 들어 “1000 ETH 넘는 전송은 추가 서명 필수” 같은 안전장치를 지갑 자체에 걸 수 있음. 8. 결국 보안과 편의를 둘 다 챙기는 게 이더리움 UX의 최종 목표지만, 아직 갈 길이 멀긴함. 지금은 과도기 상태의 문제에 가까움. 결론: 올인원 지갑 개인키가 털려서 문제인거지 지갑이 문제인건 아님."
+        },
+        {
+          "date": "2026-10-30",
+          "by": "LibertySwapFi",
+          "stance": "pro",
+          "quote": "또 하나의 추한 사실: EIP-7702는 지갑보다 도둑들이 더 많이 쓴다. 8개 체인에 걸친 7702 authorization 계정의 40% 이상이 해커 컨트랙트를 사용했다. UX 개선이라고 홍보된 것치고 심각한 악용 문제다.",
+          "url": "https://x.com/LibertySwapFi/status/2116020485985341847",
+          "digest": "2026-11-01",
+          "relation": "none",
+          "original": "@decentrek Another ugly fact: EIP-7702 is adopted mostly by thieves than wallet. More than 40% of EIP-7702-authorized accounts across 8 chains used hacker contracts.\n\nIt’s a fucking serious abuse problem for something promoted as a UX upgrade.",
+          "translation": "@decentrek 또 하나의 불편한 사실은, EIP-7702가 지갑보다는 도둑들에게 더 많이 채택되고 있다는 점이다. 8개 체인에 걸쳐 EIP-7702로 승인된 계정 중 40% 이상이 해커 컨트랙트를 사용했다. UX 업그레이드로 홍보된 것치고는 존나 심각한 악용(abuse) 문제다."
+        },
+        {
+          "date": "2026-10-30",
+          "by": "AzianMike",
+          "stance": "con",
+          "quote": "7702는 그저 그들이 더 빠르게 움직이도록 도왔을 뿐이고 근본 원인은 개인키·권한이 뚫린 것 아닌가? 7702는 더 나은 UX를 위한 순수하게 중립적인 도구로 보인다.",
+          "url": "https://x.com/AzianMike/status/2116027477596557389",
+          "digest": "2026-11-01",
+          "replyTo": "decentrek",
+          "relation": "reply",
+          "original": "@decentrek It sounds like 7702 just helped them move faster but the “root” cause is something related to a private key/permissions being compromised right?\n\nIt feels like 7702 is purely a neutral tool for better UX (so net positive). But let me know if I’m understanding wrong",
+          "translation": "@decentrek 들어보니 7702는 그들이 더 빠르게 움직이도록 도와준 것뿐이고, “근본” 원인은 개인키 혹은 권한(permissions)이 탈취된 것과 관련이 있는 것 같다. 맞나? 7702는 더 나은 UX를 위한 순전히 중립적인 도구일 뿐이라서 전체적으로는 긍정적(net positive)인 것처럼 느껴진다. 하지만 내가 잘못 이해하고 있다면 알려달라."
+        },
+        {
+          "date": "2026-10-30",
+          "by": "FigoETH",
+          "stance": "con",
+          "quote": "요약하면 7702는 안전하고(safu) 바이낸스가 안전하지 않다. 해커가 7702를 쓰려면 개인키를 갖고 있었거나 바이낸스를 속여 7702 서명을 받아냈어야 한다.",
+          "url": "https://x.com/FigoETH/status/2116223615091814764",
+          "digest": "2026-11-01",
+          "replyTo": "decentrek",
+          "relation": "quote",
+          "original": "tldr; 7702 is safu. Binance is not.\n\n\"However, in order for the hacker to use 7702, they must have either 1) had access to the private key, or 2) tricked Binance into signing a 7702 authorization.\"",
+          "translation": "요약하면, 7702는 안전하다(safu). 바이낸스가 안전하지 않은 것이다. “하지만 해커가 7702를 사용하기 위해서는 1) 개인키에 접근할 수 있었거나, 2) 바이낸스를 속여 7702 승인에 서명하게 만들었어야 한다.”"
+        },
+        {
+          "date": "2026-10-30",
+          "by": "odysseas_eth",
+          "stance": "neutral",
+          "quote": "반드시 열쇠가 아니라 서명 인프라가 뚫린 것일 수 있다.",
+          "url": "https://x.com/odysseas_eth/status/2116193697050304956",
+          "digest": "2026-11-01",
+          "replyTo": "ThogardPvP",
+          "relation": "reply",
+          "original": "@ThogardPvP @decentrek @0xRajeev The signing infra not the key necessarily",
+          "translation": "@ThogardPvP @decentrek @0xRajeev 반드시 키 자체라기보다는 서명 인프라(signing infra) 쪽일 수 있다."
+        },
+        {
+          "date": "2026-10-30",
+          "by": "liszechung",
+          "stance": "pro",
+          "quote": "내 조언은 역시 쓰지 않는 게 낫다는 것이다. 나쁜 소식은 메타마스크가 기본값으로 7702를 켜 둬서 직접 꺼야만 사용을 피할 수 있다는 점이다.",
+          "url": "https://x.com/liszechung/status/2115987283589619957",
+          "digest": "2026-11-01",
+          "replyTo": "decentrek",
+          "relation": "quote",
+          "original": "我的建議還是不用為妙\n但bad news是metamask default都是7702\n你要主動去關掉才可以避免使用",
+          "translation": "내 제안은 그래도 쓰지 않는 게 낫다는 것이다. 다만 안 좋은 소식은 메타마스크(metamask)가 기본값(default)으로 7702를 켜놓는다는 점이다. 직접 꺼야만 사용을 피할 수 있다."
+        }
+      ],
+      "firstSeen": "2026-10-30",
+      "lastActivity": "2026-10-30",
+      "status": "active",
+      "rootUrl": "https://x.com/decentrek/status/2115960332032299192",
+      "engagement": {
+        "likes": 393,
+        "retweets": 89,
+        "quotes": 21,
+        "replies": 31,
+        "views": 55560
+      }
+    },
     {
       "id": "core-dev-funding-dev-tax",
       "title": "이더리움은 'dev tax 없음'을 강점으로 삼아 후원과 ETH 자산 마케팅만으로 코어 개발을 지탱할 수 있나?",
@@ -864,7 +1262,7 @@
       ],
       "firstSeen": "2026-10-23",
       "lastActivity": "2026-10-25",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/lightclients/status/2113606207252611307",
       "engagement": {
         "likes": 139,
@@ -1094,7 +1492,7 @@
       ],
       "firstSeen": "2026-10-23",
       "lastActivity": "2026-10-25",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/pcaversaccio/status/2113612790212808867",
       "engagement": {
         "likes": 1541,
@@ -1278,7 +1676,7 @@
       ],
       "firstSeen": "2026-10-23",
       "lastActivity": "2026-10-24",
-      "status": "active",
+      "status": "cooling",
       "publish": false
     },
     {
