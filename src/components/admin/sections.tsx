@@ -260,6 +260,8 @@ export const SitePane: React.FC<{ data: StatsHistory; cur: Summary; prev: Summar
               { label: '첫 진입', get: (s: Summary) => s.pageLoads },
               { label: '로그 일수', get: (s: Summary) => s.siteDays },
               { label: 'AI 크롤러', get: (s: Summary) => (s.site ? s.site.bots.ai.reduce((a, [, v]) => a + v, 0) : null) },
+              // 용도 구분은 AEO 기록(2026년 11월 수집)부터. 그 전 기간은 '–'
+              ...(['학습 수집', '검색 색인', '실시간 답변'] as const).map((k) => ({ label: `AI ${k}`, get: (s: Summary) => (s.site?.aeo ? (s.site.aeo.kinds.find(([x]) => x === k)?.[1] ?? 0) : null) })),
               { label: '검색엔진', get: (s: Summary) => s.site?.bots.search ?? null },
             ]}
           />
