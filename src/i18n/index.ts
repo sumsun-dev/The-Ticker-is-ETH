@@ -12,6 +12,7 @@ import koEcosystem from './ko/ecosystem.json';
 import koNews from './ko/news.json';
 import koDebates from './ko/debates.json';
 import koCalls from './ko/calls.json';
+import koEips from './ko/eips.json';
 
 import enCommon from './en/common.json';
 import enHome from './en/home.json';
@@ -23,6 +24,7 @@ import enEcosystem from './en/ecosystem.json';
 import enNews from './en/news.json';
 import enDebates from './en/debates.json';
 import enCalls from './en/calls.json';
+import enEips from './en/eips.json';
 
 i18n
   .use(LanguageDetector)
@@ -40,6 +42,7 @@ i18n
         news: koNews,
         debates: koDebates,
         calls: koCalls,
+        eips: koEips,
       },
       en: {
         common: enCommon,
@@ -52,6 +55,7 @@ i18n
         news: enNews,
         debates: enDebates,
         calls: enCalls,
+        eips: enEips,
       },
     },
     fallbackLng: 'ko',

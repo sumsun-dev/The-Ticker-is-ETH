@@ -25,6 +25,9 @@ import {
 } from '../src/utils/structuredData';
 // 노출 판정은 사이트와 같은 함수를 써야 SEO와 화면이 어긋나지 않는다
 import { isPublishable, participantCount } from '../src/utils/debates';
+import { inclusionLabel, inclusionOf } from '../src/utils/eips';
+import type { EipsFile } from '../src/data/eipsData';
+import type { CallRecord } from '../src/data/ethCallsData';
 import type { Debate } from '../src/data/ethDebatesData';
 import {
     VIDEO_LANGS,
@@ -127,6 +130,10 @@ const debates = allDebates
     .filter(isPublishable)
     .sort((a, b) => (b.lastActivity || '').localeCompare(a.lastActivity || ''));
 
+// EIP 해설 (scripts/extract-eips.ts). 상태 배지는 화면처럼 콜 기록에서 계산한다
+const eips = readJson<EipsFile>(join(DATA, 'eips.json')).eips.sort((a, b) => b.number - a.number);
+const ethCalls = readJson<{ calls: CallRecord[] }>(join(DATA, 'eth-calls.json')).calls;
+
 const contents: ContentItem[] = [...research, ...newsItems];
 
 const members = [...mockMembers, ...mockContributors];
@@ -152,6 +159,7 @@ const staticRoutes: SitemapEntry[] = [
     { loc: '/news', changefreq: 'daily', priority: '0.8' },
     { loc: '/debates', changefreq: 'weekly', priority: '0.7' },
     { loc: '/calls', changefreq: 'weekly', priority: '0.7' },
+    { loc: '/eips', changefreq: 'weekly', priority: '0.7' },
     { loc: '/team', changefreq: 'monthly', priority: '0.7' },
     { loc: '/ecosystem', changefreq: 'monthly', priority: '0.7' },
     { loc: '/events', changefreq: 'weekly', priority: '0.7' },
@@ -185,7 +193,14 @@ const videoEntries: SitemapEntry[] = videos.map((v) => ({
     priority: '0.6',
 }));
 
-const allEntries = [...staticRoutes, ...contentEntries, ...videoEntries, ...memberEntries, ...debateEntries];
+const eipEntries: SitemapEntry[] = eips.map((e) => ({
+    loc: `/eips/${e.number}`,
+    lastmod: toIso(e.generatedAt),
+    changefreq: 'weekly',
+    priority: '0.6',
+}));
+
+const allEntries = [...staticRoutes, ...contentEntries, ...videoEntries, ...memberEntries, ...debateEntries, ...eipEntries];
 
 const sitemapXml =
     '<?xml version="1.0" encoding="UTF-8"?>\n' +
@@ -356,6 +371,44 @@ for (const d of debates) {
     });
     writePage(`debates/${d.id}`, html);
     debatePages++;
+}
+
+// EIP 해설 상세
+let eipPages = 0;
+for (const e of eips) {
+    const path = `/eips/${e.number}`;
+    const inc = inclusionOf(ethCalls, e.number);
+    const bodyHtml =
+        `<article>` +
+        `<h1>EIP-${e.number} ${esc(e.titleKo)} (${esc(e.meta.title)})</h1>` +
+        `<p>${esc(inclusionLabel(inc, e.meta.status))} · ${esc(e.topic)} · 원문 상태 ${esc(e.meta.status)} · ${esc(e.meta.created)} 작성</p>` +
+        `<p>${esc(e.summary)}</p>` +
+        `<h2>왜 필요한가</h2><p>${esc(e.why)}</p>` +
+        `<h2>무엇이 바뀌나</h2><h3>지금</h3><ul>${e.before.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>` +
+        `<h3>EIP-${e.number} 이후</h3><ul>${e.after.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>` +
+        `<h2>누구에게 영향이 있나</h2><ul>${e.impact.map((x) => `<li>${esc(x.who)}: ${esc(x.text)}</li>`).join('')}</ul>` +
+        `<h2>심층 설명</h2>${e.deep.map((d) => `<h3>${esc(d.title)}</h3><p>${esc(d.body)}</p>`).join('')}` +
+        `<p><a href="https://eips.ethereum.org/EIPS/eip-${e.number}">EIP 원문</a> · <a href="/eips">← EIPs</a></p>` +
+        `</article>`;
+    const html = buildShell({
+        title: `EIP-${e.number} ${e.titleKo}`,
+        description: e.summary,
+        url: `${SITE_URL}${path}`,
+        image: DEFAULT_IMAGE,
+        type: 'article',
+        publishedTime: toIso(e.generatedAt),
+        jsonLd: [
+            faqLd([{ q: `EIP-${e.number}(${e.meta.title})는 무엇인가?`, a: e.summary }, { q: `EIP-${e.number}는 왜 필요한가?`, a: e.why }]),
+            breadcrumbLd([
+                { name: 'Home', url: '/' },
+                { name: 'EIPs', url: '/eips' },
+                { name: `EIP-${e.number}`, url: path },
+            ]),
+        ],
+        bodyHtml,
+    });
+    writePage(`eips/${e.number}`, html);
+    eipPages++;
 }
 
 // 멤버 상세
@@ -554,6 +607,25 @@ const staticPages: StaticPage[] = [
         ],
     },
     {
+        path: 'eips',
+        title: 'EIPs',
+        description: `이더리움 코어 개발자 콜에 나온 EIP ${eips.length}개를 원문과 콜 기록을 바탕으로 쉽게, 그리고 깊게 풀어 둔 한국어 해설.`,
+        bodyHtml:
+            `<h1>이더리움은 EIP로 바뀝니다</h1>` +
+            `<p>EIP(Ethereum Improvement Proposal)는 이더리움을 이렇게 바꾸자는 공개 제안서입니다. 코어 개발자 콜에서 논의를 거쳐 하드포크에 들어가야 실제 네트워크가 바뀝니다.</p>` +
+            `<h2>코어 개발자 콜에 나온 EIP</h2><ul>` +
+            eips.map((e) => `<li><a href="/eips/${e.number}">EIP-${e.number} ${esc(e.titleKo)}</a> (${esc(e.meta.title)}) — ${esc(e.summary)}</li>`).join('') +
+            `</ul>`,
+        jsonLd: [
+            collectionPageLd({
+                name: 'EIPs',
+                url: '/eips',
+                description: '이더리움 EIP 한국어 해설',
+                items: eips.map((e) => ({ name: `EIP-${e.number} ${e.titleKo}`, url: `/eips/${e.number}` })),
+            }),
+        ],
+    },
+    {
         path: 'team',
         title: 'Team',
         description: 'Ethereum Collective Korea 코어팀과 커뮤니티 기여자 소개.',
@@ -679,6 +751,7 @@ const llms =
     `- [Videos](${SITE_URL}/contents): Ethereum Korea One Genesis 세션 영상 (${videos.length}개, Contents의 영상 탭, 한국어·영어 요약)\n` +
     `- [Ethereum News](${SITE_URL}/news): 이더리움 최신 소식 데일리 피드 (${ethNews.items.length}건)\n` +
     `- [Ethereum Debates](${SITE_URL}/debates): 코어 개발자·리서처가 갈린 쟁점 (${debates.length}건)\n` +
+    `- [EIPs](${SITE_URL}/eips): 코어 개발자 콜에 나온 EIP 한국어 해설, 쉬운 설명과 심층 설명 (${eips.length}개)\n` +
     `- [Team](${SITE_URL}/team): 코어팀과 기여자\n` +
     `- [Ecosystem](${SITE_URL}/ecosystem): 이더리움 생태계\n` +
     `- [Events](${SITE_URL}/events): 이벤트\n\n` +
@@ -775,5 +848,5 @@ writeFileSync(join(DIST, 'feed.xml'), rss);
 
 // ── 요약 출력 ───────────────────────────────────────────────
 console.log(
-    `[generate-seo] sitemap: ${allEntries.length} urls · static: ${staticPagesCount} · content shells: ${contentPages} · debate shells: ${debatePages} · member shells: ${memberPages} · video shells: ${videoPages} · llms.txt: ${recent.length} · llms-full: ${sortedContents.length} · rss: ${feedItems.length}`,
+    `[generate-seo] sitemap: ${allEntries.length} urls · static: ${staticPagesCount} · content shells: ${contentPages} · debate shells: ${debatePages} · eip shells: ${eipPages} · member shells: ${memberPages} · video shells: ${videoPages} · llms.txt: ${recent.length} · llms-full: ${sortedContents.length} · rss: ${feedItems.length}`,
 );

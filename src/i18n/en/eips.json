@@ -1,0 +1,72 @@
+{
+  "badge": "EIP Guide",
+  "title": "Ethereum changes through EIPs",
+  "description": "An EIP (Ethereum Improvement Proposal) is a public proposal to change Ethereum. Anyone can write one, but the network only changes once it is discussed on the core dev calls and shipped in a hard fork. We explain the EIPs that come up on the calls, simply and in depth, from the spec and the call records. Explanations are written in Korean.",
+  "flow": {
+    "title": "How an EIP reaches mainnet",
+    "intro": "Refining the proposal and deciding which fork it goes into are two separate tracks.",
+    "steps": [
+      { "title": "Proposal", "code": "Draft", "body": "Anyone opens a draft in the EIPs repository with the problem, the solution and a spec." },
+      { "title": "Refinement", "code": "Review", "body": "Researchers and client developers review and revise it on the forum and in the repo." },
+      { "title": "Proposed", "code": "PFI", "body": "It is proposed for the next hard fork on a core dev call." },
+      { "title": "Considered", "code": "CFI", "body": "The call agrees to seriously consider it. Not final yet." },
+      { "title": "Scheduled", "code": "SFI", "body": "It is scheduled for the fork. Clients start implementing it." },
+      { "title": "On mainnet", "code": "Final", "body": "After testnets, it activates on every node on fork day." }
+    ],
+    "dfi": "An EIP dropped from the candidates becomes DFI (declined). It can be proposed again for a later fork."
+  },
+  "terms": {
+    "title": "Common terms",
+    "items": [
+      { "term": "Hard fork", "def": "An upgrade that activates a bundle of EIPs on one day, named like Pectra, Glamsterdam or Hegota." },
+      { "term": "Headliner", "def": "The flagship feature of a fork. The fork schedule follows its readiness." },
+      { "term": "All Core Devs (ACD)", "def": "Public calls where client teams decide fork scope and timing. ACDE covers execution, ACDC consensus, ACDT testing." },
+      { "term": "Devnet", "def": "A temporary test network where developers check their implementations against each other." },
+      { "term": "Execution · Consensus layer", "def": "The side that processes transactions (EL) and the side that finalizes blocks (CL). Which one an EIP changes decides which teams own it." },
+      { "term": "Standards Track · Core", "def": "EIPs that change rules every node must follow. They need a hard fork." }
+    ]
+  },
+  "list": {
+    "title": "EIPs on the core dev calls",
+    "count": "{{count}} explainers · most recently discussed first",
+    "search": "Search EIPs",
+    "searchPlaceholder": "Number or name (e.g. 8141)",
+    "all": "All",
+    "topic": "Topic",
+    "fork": "Fork",
+    "last": "Last discussed {{date}} {{call}}",
+    "noCall": "No call decision yet",
+    "empty": "No EIPs match.",
+    "none": "No explainers yet."
+  },
+  "detail": {
+    "backToList": "All EIPs",
+    "notFound": "We couldn't find that EIP explainer.",
+    "original": "Read the original EIP (eips.ethereum.org)",
+    "headliner": "{{fork}} headliner",
+    "why": "Why it is needed",
+    "change": "What changes",
+    "before": "Today",
+    "after": "After EIP-{{n}}",
+    "impact": "Who it affects",
+    "deep": "Deep dive",
+    "deepTag": "For developers · researchers",
+    "deepIntro": "The spec of the original EIP ({{status}}, created {{created}}) explained item by item. Tap an item to expand it.",
+    "journey": "Journey through the core dev calls",
+    "journeyIntro": "Collected automatically from {{count}} ECK call records",
+    "discussed": "Discussed on this call.",
+    "debates": "Debates around this EIP",
+    "facts": "Details",
+    "type": "Type",
+    "status": "Spec status",
+    "created": "Created",
+    "fork": "Fork",
+    "authors": "Authors",
+    "authorsMore": "{{names}} and {{count}} more",
+    "requires": "Requires",
+    "discussion": "Discussion thread",
+    "related": "Related EIPs",
+    "glossary": "Terms on this page",
+    "disclaimer": "This explainer was written by AI from the original EIP and ECK's core dev call records and published automatically. Check the original for the exact spec. Last updated {{date}}"
+  }
+}
