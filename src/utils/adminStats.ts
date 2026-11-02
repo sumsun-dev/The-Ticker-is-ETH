@@ -1,5 +1,5 @@
 /** 관리자 성과 대시보드 집계: 누적 기록(StatsHistory)을 주·월 단위로 묶는다 */
-import type { LiPostRecord, Ranked, SiteWeek, StatsHistory, TgPostRecord } from '../types/adminStats';
+import type { AeoPage, AeoWeek, LiPostRecord, Ranked, SiteWeek, StatsHistory, TgPostRecord } from '../types/adminStats';
 
 export type Mode = 'week' | 'month';
 export interface Period { key: string; label: string; start: string; end: string }
@@ -57,12 +57,28 @@ function mergeRanked(lists: Ranked[], top = 10): Ranked {
   return [...m].sort((a, b) => b[1] - a[1]).slice(0, top);
 }
 
+/** 여러 주의 AEO 기록을 합친다. 기록이 있는 주가 없으면 undefined */
+export function mergeAeo(list: AeoWeek[]): AeoWeek | undefined {
+  if (!list.length) return undefined;
+  const pages = new Map<string, AeoPage>();
+  for (const [p, ai, human] of list.flatMap((a) => a.pages)) {
+    const prev = pages.get(p);
+    pages.set(p, [p, ai + (prev?.[1] ?? 0), human + (prev?.[2] ?? 0)]);
+  }
+  return {
+    referrals: mergeRanked(list.map((a) => a.referrals)),
+    kinds: mergeRanked(list.map((a) => a.kinds)),
+    pages: [...pages.values()].sort((a, b) => b[1] - a[1]).slice(0, 10),
+    errors: mergeRanked(list.map((a) => a.errors), 5),
+  };
+}
+
 export interface Summary {
   /** 주는 주간 고유 방문자, 월은 일별 방문자 합 (로그가 있는 날만). 주인데 로그가 7일을 다 덮지 못하면 null (부분 주와 비교하면 증감이 왜곡된다) */
   visitors: number | null;
   pageLoads: number | null;
   siteDays: number;
-  site?: Pick<SiteWeek, 'sources' | 'sections' | 'topPages' | 'refHosts'> & { bots: SiteWeek['bots']; newVisitors?: number; mobilePct?: number; daily?: Ranked };
+  site?: Pick<SiteWeek, 'sources' | 'sections' | 'topPages' | 'refHosts'> & { bots: SiteWeek['bots']; aeo?: AeoWeek; newVisitors?: number; mobilePct?: number; daily?: Ranked };
   titles: Record<string, string>;
   tgPosts: number;
   tgViews: number;
@@ -109,6 +125,7 @@ export function summarize(h: StatsHistory, p: Period): Summary {
           topPages: mergeRanked(siteWeeks.map((s) => s.topPages)),
           refHosts: mergeRanked(siteWeeks.map((s) => s.refHosts), 5),
           bots: { search: sum(siteWeeks.map((s) => s.bots.search)), ai: mergeRanked(siteWeeks.map((s) => s.bots.ai)) },
+          aeo: mergeAeo(siteWeeks.flatMap((s) => (s.aeo ? [s.aeo] : []))),
           ...(exactWeek ? { newVisitors: exactWeek.newVisitors, mobilePct: exactWeek.mobilePct, daily: exactWeek.daily } : {}),
         }
       : undefined,

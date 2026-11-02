@@ -1,6 +1,6 @@
 /** 성과 대시보드 탭 내용: 텔레그램, 기여자, 홈페이지, 링크드인. 위에서부터 수치 인사이트, 추이, 분포, 순위, 기간별 표 */
 import React, { useId } from 'react';
-import type { StatsHistory } from '../../types/adminStats';
+import type { AeoWeek, StatsHistory } from '../../types/adminStats';
 import type { Period, Summary } from '../../utils/adminStats';
 import { kstDate } from '../../utils/adminStats';
 import {
@@ -247,6 +247,7 @@ export const SitePane: React.FC<{ data: StatsHistory; cur: Summary; prev: Summar
       ) : (
         <Empty>이 기간의 홈페이지 상세 기록이 없습니다.</Empty>
       )}
+      {site && <AeoSection aeo={site.aeo} titles={cur.titles} />}
       {logged.length > 0 && (
         <Panel title="기간별 비교" hint="로그가 있는 기간만">
           <PeriodTable
@@ -255,6 +256,7 @@ export const SitePane: React.FC<{ data: StatsHistory; cur: Summary; prev: Summar
             selected={period.key}
             columns={[
               { label: '방문자', get: (s: Summary) => s.visitors },
+              { label: 'AI 답변 유입', get: (s: Summary) => (s.site?.aeo ? s.site.aeo.referrals.reduce((a, [, v]) => a + v, 0) : null) },
               { label: '첫 진입', get: (s: Summary) => s.pageLoads },
               { label: '로그 일수', get: (s: Summary) => s.siteDays },
               { label: 'AI 크롤러', get: (s: Summary) => (s.site ? s.site.bots.ai.reduce((a, [, v]) => a + v, 0) : null) },
@@ -264,6 +266,68 @@ export const SitePane: React.FC<{ data: StatsHistory; cur: Summary; prev: Summar
         </Panel>
       )}
     </div>
+  );
+};
+
+/** AI 답변 엔진 노출(AEO): AI에서 온 사람, AI 봇 용도, AI가 읽은 페이지와 사람 첫 진입 비교, AI 봇 오류 */
+const AeoSection: React.FC<{ aeo: AeoWeek | undefined; titles: Record<string, string> }> = ({ aeo, titles }) => {
+  const color = CHANNEL.overall.color;
+  return (
+    <section className="space-y-6" aria-label="AI 노출">
+      <div>
+        <h3 className="text-sm font-bold text-theme-text">AI 노출 (AEO)</h3>
+        <p className="mt-1 text-xs text-theme-text-muted">AI 답변 엔진이 사이트를 읽고, 답변 속 링크로 사람이 들어온 흐름 · 봇 구분은 공개된 User-Agent 이름 기준</p>
+      </div>
+      {!aeo ? (
+        <Empty>이 기간에는 AI 노출 상세 기록이 없습니다 (2026년 11월 수집부터)</Empty>
+      ) : (
+        <>
+          <Row cols="lg:grid-cols-2">
+            <Panel title="AI 답변에서 온 방문" hint="첫 진입 · referer·utm_source로 확인된 것만">
+              {aeo.referrals.length ? <HBars rows={aeo.referrals} color={color} labelWidth="5.5rem" /> : <Empty>아직 없음</Empty>}
+            </Panel>
+            <Panel title="AI 봇 용도" hint="실시간 답변 = 누군가의 질문에 답하려고 읽은 요청">
+              {aeo.kinds.length ? <HBars rows={aeo.kinds} color={color} labelWidth="5.5rem" /> : <Empty>AI 봇 요청 없음</Empty>}
+            </Panel>
+          </Row>
+          <Panel title="AI 답변이 읽은 페이지" hint="검색 색인·실시간 답변 봇 요청 (학습 수집 제외) · 사람 첫 진입과 비교">
+            {aeo.pages.length ? (
+              <div className="overflow-x-auto">
+                <table className="w-full min-w-[30rem] text-[13px]">
+                  <thead>
+                    <tr className="border-b border-theme-border text-xs text-theme-text-muted">
+                      <th scope="col" className="pb-2 text-left font-medium">페이지</th>
+                      <th scope="col" className="pb-2 pl-4 text-right font-medium">AI 답변·색인</th>
+                      <th scope="col" className="pb-2 pl-4 text-right font-medium">사람 첫 진입</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {aeo.pages.map(([p, ai, human]) => (
+                      <tr key={p} className="border-b border-theme-border">
+                        <td className="max-w-0 py-1.5">
+                          <a href={siteUrl(p)} target="_blank" rel="noreferrer" className="block truncate text-theme-text hover:underline" title={p}>
+                            {titles[p] ?? (p === '/' ? '홈' : p)}
+                          </a>
+                        </td>
+                        <td className="py-1.5 pl-4 text-right tabular-nums text-theme-text">{n(ai)}</td>
+                        <td className={`py-1.5 pl-4 text-right tabular-nums ${human ? 'text-theme-text' : 'text-theme-text-muted'}`}>{human ? n(human) : 'AI만'}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <Empty>답변·색인 봇이 읽은 페이지 없음</Empty>
+            )}
+          </Panel>
+          {aeo.errors.length > 0 && (
+            <Panel title="AI 봇이 받은 오류" hint="고치면 그 페이지가 다시 수집된다">
+              <HBars rows={aeo.errors} color={color} labelWidth="14rem" />
+            </Panel>
+          )}
+        </>
+      )}
+    </section>
   );
 };
 

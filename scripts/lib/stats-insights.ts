@@ -45,6 +45,14 @@ const metrics = (s: Summary) => ({
     topPages: (s.site?.topPages ?? []).slice(0, 6).map(([p, c]) => [s.titles[p] ?? p, c]),
     searchBots: s.site?.bots.search ?? null,
     aiBots: s.site?.bots.ai ?? [],
+    aeo: s.site?.aeo
+      ? {
+          aiAnswerReferrals: s.site.aeo.referrals,
+          aiBotKinds: s.site.aeo.kinds,
+          aiAnswerTopPages: s.site.aeo.pages.map(([p, ai, human]) => ({ page: s.titles[p] ?? p, path: p, aiAnswerRequests: ai, humanEntries: human })),
+          aiErrors: s.site.aeo.errors,
+        }
+      : null,
   },
   telegram: {
     posts: s.tgPosts,
@@ -88,6 +96,8 @@ export function buildInsightInput(h: StatsHistory, p: Period, mode: Mode, today:
       `텔레그램 조회는 수집 시점 누적값이라 올린 지 ${MATURE_DAYS}일이 안 된 글은 낮게 잡힌다. avgViewsMature는 ${MATURE_DAYS}일 지난 글(3개 이상)만의 평균이고, 부족하면 null`,
       ...(isPartial ? [`이 기간은 아직 진행 중이다(${elapsedDays}일 경과). 글 수·노출·방문자 같은 합계 지표를 끝난 이전 기간과 직접 비교해 감소라고 말하지 않는다`] : []),
       '링크드인 comments는 자동 게시가 다는 링크 첫 댓글을 뺀 수',
+      'site.aeo는 AI 답변 엔진 노출 기록으로 2026년 11월 수집부터 있다. aiBotKinds의 실시간 답변은 사용자 질문에 답하려고 AI가 그 순간 읽은 요청이고, 학습 수집은 모델 학습용이다. aiAnswerTopPages는 학습 수집을 뺀 검색 색인·실시간 답변 요청 기준이다. aiAnswerReferrals는 referer나 utm_source로 AI 서비스가 확인된 방문만 세서 실제보다 적다. 봇 구분은 User-Agent 이름 기준이라 이름을 속인 봇은 못 거른다',
+      '2026년 11월 수집부터 AI 크롤러 수에서 AI 봇 이름을 사칭한 스캐너를 빼고, 유입 경로에 AI 답변(ChatGPT·Perplexity·Gemini 등)을 따로 뗐다. 그 전 기간과 AI 크롤러·검색·기타 수치가 달라진 것은 집계 방식 변화이지 실제 증감이 아니다',
     ],
   };
 }
@@ -111,6 +121,7 @@ export function buildInsightPrompt(input: InsightInput): string {
 - highlights: 3~5개. 각 항목은 채널(site|telegram|linkedin|overall), 짧은 제목(숫자 포함), 근거를 담은 설명, tone(up|down|neutral).
 - actions: 2~4개. 이번 데이터에서 나온 구체적인 다음 행동 (예: 어떤 유형의 글을 언제, 어느 채널에 더/덜). 막연한 조언 금지.
 - caveats: 0~3개. 해석할 때 주의할 데이터 한계.
+- current.site.aeo가 있으면 AI 답변 엔진 노출(AEO)을 highlights 한 항목(channel: site)으로 다룬다. AI가 많이 읽지만 사람 첫 진입이 적은 페이지, AI 답변 유입, AI 봇 오류가 있으면 짚는다.
 
 출력은 아래 형태의 JSON 객체 하나만. 다른 말은 쓰지 않는다.
 {"headline": "...", "summary": "...", "highlights": [{"channel": "telegram", "title": "...", "detail": "...", "tone": "up"}], "actions": ["..."], "caveats": ["..."]}

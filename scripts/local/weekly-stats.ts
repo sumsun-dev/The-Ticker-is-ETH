@@ -183,7 +183,7 @@ async function main() {
     const lines = siteLogs();
     const siteNow = site(lines, w);
     report.site = siteNow;
-    report.titles = await pageTitles(siteNow.cur.topPages.map(([p]) => p));
+    report.titles = await pageTitles([...new Set([...siteNow.cur.topPages.map(([p]) => p), ...(siteNow.cur.aeo?.pages.map(([p]) => p) ?? [])])]);
     const days = fullDays(lines, now);
     update.siteDaily = days.map((d) => {
       const s = siteStats(lines, { start: d, end: d });

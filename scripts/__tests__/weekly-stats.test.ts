@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { bars, emptyHistory, formatReport, lastWeek, liWeek, mergeHistory, parseCount, parseLinkedIn, parseLogLine, parseTgPosts, refererSource, siteStats, type LogLine } from '../lib/weekly-stats';
+import { aiReferral, isProbe, bars, emptyHistory, formatReport, lastWeek, liWeek, mergeHistory, parseCount, parseLinkedIn, parseLogLine, parseTgPosts, refererSource, siteStats, type LogLine } from '../lib/weekly-stats';
 
 const line = (ip: string, when: string, path: string, ref = '-', ua = 'Mozilla/5.0 (Macintosh) Chrome/130') =>
   `${ip} - - [${when} +0000] "GET ${path} HTTP/2.0" 200 100 "${ref}" "${ua}" ethcollective.xyz`;
@@ -65,6 +65,55 @@ describe('weekly-stats', () => {
     expect(s.visitors).toBe(1);
     expect(s.newVisitors).toBe(0);
     expect(s.bots.ai).toEqual([['OpenAI', 1], ['Anthropic', 1]]);
+  });
+
+  it('aiReferral: referer 호스트나 utm_source로 AI 답변 서비스를 알아본다', () => {
+    expect(aiReferral({ referer: 'https://chatgpt.com/', path: '/' })).toBe('ChatGPT');
+    expect(aiReferral({ referer: '-', path: '/debates/x?utm_source=chatgpt.com' })).toBe('ChatGPT');
+    expect(aiReferral({ referer: 'https://www.perplexity.ai/search/abc', path: '/' })).toBe('Perplexity');
+    expect(aiReferral({ referer: 'https://gemini.google.com/', path: '/' })).toBe('Gemini');
+    expect(aiReferral({ referer: 'https://www.google.com/', path: '/?utm_source=%E0%A4' })).toBeNull();
+    expect(aiReferral({ referer: '-', path: '/' })).toBeNull();
+    expect(aiReferral({ referer: 'https://myclaude.ai.evil.io/', path: '/' })).toBeNull();
+    expect(aiReferral({ referer: 'https://perplexity-clone.net/', path: '/' })).toBeNull();
+  });
+
+  it('isProbe: 설정·비밀 파일 탐색 경로, 공개 파일은 제외', () => {
+    expect(['/.env', '/dist/.env', '/.aws/credentials', '/key.pem', '/serverless.yml', '/wp-login.php', '/serviceAccountKey.json'].every(isProbe)).toBe(true);
+    expect(['/', '/news', '/calls/acde-244', '/robots.txt', '/llms.txt', '/llms-full.txt', '/sitemap.xml', '/assets/index-abc.js'].some(isProbe)).toBe(false);
+  });
+
+  it('siteStats: AEO 집계 (AI 답변 유입, 봇 용도, AI가 읽은 페이지, AI 봇 오류)', () => {
+    const lines = parse([
+      // ChatGPT 답변 링크로 들어온 사람
+      line('1.1.1.1', '13/Oct/2026:01:00:00', '/calls/acde-244?utm_source=chatgpt.com'),
+      line('1.1.1.1', '13/Oct/2026:01:00:01', '/assets/index-abc.js'),
+      // 검색으로 들어온 사람
+      line('2.2.2.2', '13/Oct/2026:02:00:00', '/news', 'https://www.google.com/'),
+      line('2.2.2.2', '13/Oct/2026:02:00:01', '/assets/index-abc.js'),
+      // AI 봇: 실시간 답변 2, 학습 1, 검색 색인 1(404)
+      line('9.9.9.9', '13/Oct/2026:03:00:00', '/calls/acde-244', '-', 'Mozilla/5.0 (compatible; ChatGPT-User/1.0; +https://openai.com/bot)'),
+      line('9.9.9.9', '13/Oct/2026:03:00:01', '/debates/x?ref=1', '-', 'Mozilla/5.0 (compatible; Claude-User/1.0)'),
+      line('9.9.9.9', '13/Oct/2026:03:00:02', '/calls/acde-244', '-', 'Mozilla/5.0 (compatible; GPTBot/1.2)'),
+      `9.9.9.9 - - [13/Oct/2026:03:00:03 +0000] "GET /old HTTP/2.0" 404 100 "-" "PerplexityBot/1.0" ethcollective.xyz`,
+      // AI 봇 이름을 사칭한 스캐너는 AI 집계에서 뺀다
+      line('7.7.7.7', '13/Oct/2026:03:30:00', '/.aws/credentials', '-', 'Mozilla/5.0 (compatible; ChatGPT-User/1.0; +https://openai.com/bot)'),
+      line('7.7.7.7', '13/Oct/2026:03:30:01', '/dist/.env', '-', 'Mozilla/5.0 (compatible; Claude-SearchBot/1.0)'),
+      // 확장자 없는 탐색 경로는 SPA 대체로 200이지만 사이트 경로가 아니라 페이지 순위에서 빠진다
+      line('7.7.7.7', '13/Oct/2026:03:30:02', '/actuator/env', '-', 'Mozilla/5.0 (compatible; ChatGPT-User/1.0)'),
+      // JS를 받아도 AI 봇은 사람으로 세지 않는다
+      line('8.8.8.8', '13/Oct/2026:04:00:00', '/', '-', 'Mozilla/5.0 (compatible; Claude-User/1.0)'),
+      line('8.8.8.8', '13/Oct/2026:04:00:01', '/assets/index-abc.js', '-', 'Mozilla/5.0 (compatible; Claude-User/1.0)'),
+    ]);
+    const s = siteStats(lines, { start: '2026-10-12', end: '2026-10-18' });
+    expect(s.visitors).toBe(2);
+    expect(s.sources).toEqual([['AI 답변', 1], ['검색', 1]]);
+    expect(s.bots.ai).toEqual([['OpenAI', 3], ['Anthropic', 3], ['Perplexity', 1]]);
+    expect(s.aeo?.referrals).toEqual([['ChatGPT', 1]]);
+    expect(s.aeo?.kinds).toEqual([['실시간 답변', 5], ['학습 수집', 1], ['검색 색인', 1]]);
+    // GPTBot(학습 수집)은 페이지 순위에서 빠진다
+    expect(s.aeo?.pages).toEqual([['/calls/acde-244', 1, 1], ['/debates/x', 1, 0], ['/', 1, 0]]);
+    expect(s.aeo?.errors).toEqual([['404 /old', 1]]);
   });
 
   it('liWeek: 구간 글만, 자체 첫 댓글 1개 제외, 노출 순', () => {
