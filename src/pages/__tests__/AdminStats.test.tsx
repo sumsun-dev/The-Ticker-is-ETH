@@ -129,6 +129,12 @@ describe('AdminStats', () => {
         expect(within(section).getByRole('link', { name: 'Ethereum Korea One · Genesis' })).toHaveAttribute('href', 'https://ethcollective.xyz/events/ek1-genesis');
         expect(within(section).getByText('AI만')).toBeInTheDocument();
         expect(within(section).getByText('404 /old')).toBeInTheDocument();
+        const header = screen.getByRole('columnheader', { name: 'AI 학습 수집' });
+        expect(header).toBeInTheDocument();
+        expect(screen.getByRole('columnheader', { name: 'AI 검색 색인' })).toBeInTheDocument();
+        expect(screen.getByRole('columnheader', { name: 'AI 실시간 답변' })).toBeInTheDocument();
+        const row = header.closest('table')!.querySelector('tbody tr')!;
+        expect(within(row as HTMLElement).getByText('40')).toBeInTheDocument();
     });
 
     it('AEO 기록 전 기간은 안내만 보여 준다', async () => {
