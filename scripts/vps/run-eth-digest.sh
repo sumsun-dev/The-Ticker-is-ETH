@@ -11,6 +11,8 @@
 #              0 10 * * 0 /home/gv/projects/the-ticker-is-eth/scripts/vps/run-eth-digest.sh weekly >> ~/logs/eth-digest.log 2>&1
 #      두 번째 줄은 저녁(18:00 KST) 콜 브리프 게시. 다이제스트가 올라간 날 아침엔 콜을 미뤄 두 글이 겹치지 않게 한다.
 #      세 번째 줄은 일요일 19:00 KST 기자 그룹방 주간 브리프 (.env에 WEEKLY_CHAT 필요).
+#              0 14 * * * cd /home/gv/projects/the-ticker-is-eth && git pull -q --rebase --autostash origin main && scripts/vps/run-eth-digest.sh standards >> ~/logs/eth-digest.log 2>&1
+#      네 번째 줄은 23:00 KST EIP·ERC 해설 채우기. 크론 줄에서 먼저 pull해 standards 모드가 없는 옛 러너가 다이제스트를 돌리지 않게 한다.
 set -euo pipefail
 
 # 본문을 함수로 감싼다: bash는 함수 정의를 끝까지 파싱한 뒤 실행하므로, 아래 git pull이 이 파일을 바꿔도
@@ -25,6 +27,27 @@ main() {
   if [ "${1:-}" = calls ]; then
     CALLS_CHAT=@thetickeriseth npx tsx scripts/post-calls-telegram.ts || true
     commit_and_push "chore: publish call briefs [automated]"
+    return
+  fi
+
+  # 밤 실행: EIP·ERC 해설을 하루 STANDARDS_PER_DAY(기본 30)개씩 채운다 (오너 2026-11-03 「하루에 각각 30개씩, 다 완료될때까지」)
+  # 종류마다 작업자 2개(샤드)라 4개가 동시에 돈다. 해설 하나에 약 12분이라 3시간 남짓, 아침 다이제스트 전에 끝나게 5시간으로 끊는다.
+  # 다 채우면 대상이 없어 바로 끝나고, 이후엔 원문이 바뀐 것만 다시 쓴다
+  if [ "${1:-}" = standards ]; then
+    local half=$(( (${STANDARDS_PER_DAY:-30} + 1) / 2 )) i
+    mkdir -p "$HOME/logs"
+    for i in 1 2; do
+      EIPS_SCOPE=all EIPS_SHARD=$i/2 EIPS_LIMIT=$half timeout 5h npx tsx scripts/extract-eips.ts > "$HOME/logs/eips-$i.log" 2>&1 &
+      ERCS_SHARD=$i/2 ERCS_LIMIT=$half timeout 5h npx tsx scripts/extract-ercs.ts > "$HOME/logs/ercs-$i.log" 2>&1 &
+    done
+    wait
+    tail -n 3 "$HOME"/logs/eips-?.log "$HOME"/logs/ercs-?.log
+    # 사용량 한도에 걸리면 다이제스트·브리프도 같은 계정이라 멈출 수 있어 오너에게 알린다
+    if grep -qiE "hit your .*limit" "$HOME"/logs/eips-?.log "$HOME"/logs/ercs-?.log; then
+      notify_owner "[EIP·ERC 해설] 사용량 한도에 걸렸습니다. STANDARDS_PER_DAY를 줄이거나 크론을 잠시 멈춰 주세요.
+$(grep -hiE -m2 "hit your .*limit" "$HOME"/logs/eips-?.log "$HOME"/logs/ercs-?.log)"
+    fi
+    commit_and_push "chore: publish eip/erc explainers [automated]"
     return
   fi
 
@@ -83,7 +106,7 @@ notify_owner() {
 }
 
 commit_and_push() {
-  git add src/data/eth-digests.json src/data/eth-debates.json src/data/eth-calls.json src/data/x-profiles.json src/data/weekly-briefs.json src/data/eips.json public/assets/digests/
+  git add src/data/eth-digests.json src/data/eth-debates.json src/data/eth-calls.json src/data/x-profiles.json src/data/weekly-briefs.json src/data/eips.json src/data/ercs.json src/data/erc-index.json public/assets/digests/
   git diff --cached --quiet || (
     git commit -m "$1" &&
     git pull --rebase --autostash origin main &&
