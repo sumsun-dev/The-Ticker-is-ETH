@@ -13,6 +13,7 @@ import koNews from './ko/news.json';
 import koDebates from './ko/debates.json';
 import koCalls from './ko/calls.json';
 import koEips from './ko/eips.json';
+import koErcs from './ko/ercs.json';
 
 import enCommon from './en/common.json';
 import enHome from './en/home.json';
@@ -25,6 +26,7 @@ import enNews from './en/news.json';
 import enDebates from './en/debates.json';
 import enCalls from './en/calls.json';
 import enEips from './en/eips.json';
+import enErcs from './en/ercs.json';
 
 i18n
   .use(LanguageDetector)
@@ -43,6 +45,7 @@ i18n
         debates: koDebates,
         calls: koCalls,
         eips: koEips,
+        ercs: koErcs,
       },
       en: {
         common: enCommon,
@@ -56,6 +59,7 @@ i18n
         debates: enDebates,
         calls: enCalls,
         eips: enEips,
+        ercs: enErcs,
       },
     },
     fallbackLng: 'ko',

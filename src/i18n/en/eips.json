@@ -27,8 +27,8 @@
     ]
   },
   "list": {
-    "title": "EIPs on the core dev calls",
-    "count": "{{count}} explainers · most recently discussed first",
+    "title": "EIP explainers",
+    "count": "{{count}} explainers · recently discussed on calls first",
     "search": "Search EIPs",
     "searchPlaceholder": "Number or name (e.g. 8141)",
     "all": "All",

@@ -106,7 +106,7 @@ export const REWRITE_AFTER_DAYS = 14;
  */
 export function pickTargets(
   candidates: number[],
-  existing: EipRecord[],
+  existing: Array<Pick<EipRecord, 'number' | 'sourceHash' | 'generatedAt'>>,
   sources: Map<number, string>,
   today: string,
   limit: number,
@@ -123,6 +123,7 @@ export function pickTargets(
 
 /* ── 모델 입출력 ───────────────────────────────────────────────── */
 
+// 근거 표기(ref)는 부차적인 칸이라 넘치면 잘라 쓴다 (EIP-8205가 이걸로 통째로 실패했다)
 const ExampleSchema = z.object({
   title: z.string().min(1).max(120),
   steps: z
@@ -141,7 +142,7 @@ export const EipDraftSchema = z.object({
   after: z.array(z.string().min(1).max(300)).min(1).max(5),
   impact: z.array(z.object({ who: z.string().min(1).max(40), text: z.string().min(1).max(500) })).min(1).max(5),
   example: ExampleSchema.nullable().default(null),
-  deep: z.array(z.object({ title: z.string().min(1).max(100), body: z.string().min(1).max(3000), ref: z.string().max(200).default('') })).min(1).max(10),
+  deep: z.array(z.object({ title: z.string().min(1).max(100), body: z.string().min(1).max(3000), ref: z.string().default('').transform((s) => (s.length > 200 ? `${s.slice(0, 199)}…` : s)) })).min(1).max(10),
   glossary: z.array(z.object({ term: z.string().min(1).max(60), def: z.string().min(1).max(400) })).max(8).default([]),
   related: z.array(z.object({ number: z.number().int().positive(), note: z.string().max(200).default('') })).max(6).default([]),
 });
