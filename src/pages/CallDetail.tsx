@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import usePageMeta from '../hooks/usePageMeta';
 import { loadEthCalls, type CallRecord, type CallSpeaker } from '../data/ethCallsData';
 import { loadEthDebates, type Debate } from '../data/ethDebatesData';
+import { eipUrl, loadEips } from '../data/eipsData';
 import Avatar from '../components/debates/Avatar';
 import RemarkModal from '../components/calls/RemarkModal';
 import { STATUS_DOT as DEBATE_STATUS_DOT, participantCount } from '../utils/debates';
@@ -62,17 +63,33 @@ function useActiveSection(ids: string[]): string | null {
     return active;
 }
 
+/** 해설 페이지가 있는 EIP는 사이트 안 /eips/N으로, 없으면 원문으로 */
+const EipLink: React.FC<{ n: number; explained: Set<number>; className: string; title?: string; children: React.ReactNode }> = ({ n, explained, className, title, children }) =>
+    explained.has(n) ? (
+        <Link to={`/eips/${n}`} title={title} className={className}>
+            {children}
+        </Link>
+    ) : (
+        <a href={eipUrl(n)} target="_blank" rel="noopener noreferrer" title={title} className={className}>
+            {children}
+        </a>
+    );
+
 const CallDetail: React.FC = () => {
     const { id } = useParams();
     const { t } = useTranslation('calls');
     const [calls, setCalls] = useState<CallRecord[] | null>(null);
     const [debates, setDebates] = useState<Debate[]>([]);
+    const [explained, setExplained] = useState<Set<number>>(() => new Set());
     const [modal, setModal] = useState<ModalState | null>(null);
     const [openQuotes, setOpenQuotes] = useState<Set<number>>(new Set());
 
     useEffect(() => {
         loadEthCalls().then((file) => setCalls(file.calls));
         loadEthDebates().then(setDebates);
+        loadEips()
+            .then((f) => setExplained(new Set(f.eips.map((e) => e.number))))
+            .catch(() => undefined);
     }, []);
 
     const call = calls?.find((c) => c.id === id) ?? null;
@@ -193,16 +210,15 @@ const CallDetail: React.FC = () => {
                                         const label = call.decisions.find((d) => d.eips.includes(n))?.label.replace(/^(EIP-)?\d{3,5}\s*/, '');
                                         return (
                                             <li key={n}>
-                                                <a
-                                                    href={`https://eips.ethereum.org/EIPS/eip-${n}`}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
+                                                <EipLink
+                                                    n={n}
+                                                    explained={explained}
                                                     title={[label, status].filter(Boolean).join(' · ') || undefined}
                                                     className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full border border-theme-border font-mono text-[11px] text-theme-text-secondary hover:border-brand-primary/60 hover:text-theme-text transition-colors"
                                                 >
                                                     {status && <span className={`w-1.5 h-1.5 rounded-full ${STATUS_DOT[status as keyof typeof STATUS_DOT]}`} aria-hidden />}
                                                     {n}
-                                                </a>
+                                                </EipLink>
                                             </li>
                                         );
                                     })}
@@ -548,9 +564,9 @@ const CallDetail: React.FC = () => {
                             <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-1.5 text-sm">
                                 {call.eips.map((n) => (
                                     <li key={n} className="flex items-center gap-2">
-                                        <a href={`https://eips.ethereum.org/EIPS/eip-${n}`} target="_blank" rel="noopener noreferrer" className="font-mono text-brand-accent hover:underline">
+                                        <EipLink n={n} explained={explained} className="font-mono text-brand-accent hover:underline">
                                             EIP-{n}
-                                        </a>
+                                        </EipLink>
                                         <span className="text-theme-text-secondary truncate">{call.decisions.find((d) => d.eips.includes(n))?.label.replace(/^(EIP-)?\d{3,5}\s*/, '') ?? ''}</span>
                                         {eipStatus.has(n) && <span className={`${TAG} ml-auto ${STATUS_TEXT[eipStatus.get(n) as keyof typeof STATUS_TEXT]}`}>{eipStatus.get(n)}</span>}
                                     </li>

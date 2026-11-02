@@ -1,0 +1,201 @@
+{
+  "updatedAt": "2026-11-02T09:18:35.899Z",
+  "eips": [
+    {
+      "number": 8141,
+      "titleKo": "프레임 트랜잭션",
+      "topic": "계정 추상화",
+      "summary": "새 트랜잭션 유형(0x06)을 추가해 트랜잭션을 여러 프레임(계약 호출)으로 나누고 검증, 수수료 지불, 실행을 계정 코드가 직접 정하게 합니다. 계정 추상화를 프로토콜에 기본으로 넣는 제안입니다.",
+      "why": "지금 이더리움 트랜잭션은 타원곡선 서명(ECDSA) 한 가지로만 보낸 사람을 확인합니다. 계정이 개인키에 묶여 있어 키를 바꿀 수 없고 양자 컴퓨터에 안전한 서명 방식으로 옮겨 갈 길도 없습니다. 여러 작업을 한 번에 묶거나 다른 계정이 수수료를 대신 내려면 스마트 계정 코드와 외부 중개자(릴레이어)가 따로 필요해 구조가 복잡해지고 그만큼 위험도 커집니다. 이 EIP는 트랜잭션을 여러 개의 프레임(frame)으로 나누고 각 프레임을 계약 호출로 실행해 검증, 수수료 승인, 실행을 계정 코드가 정하게 합니다. 그 결과 키 교체, 양자 내성 서명 전환, 일괄 호출, 대체 수수료 지불을 프로토콜이 기본으로 지원합니다. 원문은 이것이 계정 추상화(account abstraction)의 원래 구상, 즉 계정이 코드를 가진 주소가 되는 것을 실현한다고 설명합니다.",
+      "before": [
+        "보낸 사람 확인은 ECDSA 서명 한 가지뿐이고 계정이 키에 묶여 있어 키 교체를 프로토콜이 지원하지 않습니다",
+        "여러 호출을 한 트랜잭션에 묶으려면 별도의 스마트 계정 코드가 필요합니다",
+        "수수료를 다른 계정이 대신 내려면 외부 중개자(릴레이어)를 거쳐야 합니다",
+        "가스는 숫자 하나로만 적습니다"
+      ],
+      "after": [
+        "서명 방식을 SECP256K1, P256, 임의(ARBITRARY) 중에서 고르고 검증 방식은 계정 코드가 정합니다",
+        "프레임 여러 개를 한 트랜잭션에 넣고 원자적 배치 플래그로 모두 성공하거나 모두 되돌리게 묶습니다",
+        "VERIFY 프레임 안에서 APPROVE 명령으로 수수료를 낼 계정(payer)을 정하므로 중개자 없이 대납이 됩니다",
+        "프레임마다 실행 가스와 상태 가스 한도를 따로 적습니다"
+      ],
+      "impact": [
+        {
+          "who": "사용자",
+          "text": "코드가 없는 계정도 기본 코드로 바로 프레임 트랜잭션을 쓸 수 있습니다. 만료 시각 지정, 여러 작업 일괄 처리, 다른 계정이 수수료를 내는 트랜잭션이 프로토콜 수준에서 가능해집니다."
+        },
+        {
+          "who": "지갑·앱 개발자",
+          "text": "새 트랜잭션 유형의 인코딩, 서명 해시 계산, 프레임별 영수증을 처리해야 합니다. 영수증에 트랜잭션 단위 status가 없어 인터페이스가 직접 도출해야 합니다."
+        },
+        {
+          "who": "클라이언트 팀·노드 운영자",
+          "text": "APPROVE와 인트로스펙션 명령어, 2차원 가스 회계, 새 공개 멤풀 규칙을 구현해야 합니다. 10.12 ACDT #100에서 bogota-devnet-1에 포함하기로 했습니다."
+        },
+        {
+          "who": "L2",
+          "text": "08.27 ACDE #244에서 스펙 변경과 L2 협업은 SFI 지위와 무관하게 계속한다는 조건이 붙었습니다."
+        }
+      ],
+      "example": {
+        "title": "코드가 없는 계정이 프레임 트랜잭션으로 두 번 호출하기",
+        "steps": [
+          {
+            "label": "준비",
+            "title": "정적 검사와 서명 검증",
+            "body": "노드는 프레임 수(1개 이상 64개 이하), 모드, 플래그 같은 정적 제약을 확인하고 tx.nonce가 계정 nonce와 같은지 봅니다. 그다음 signatures 목록의 서명을 프레임 실행 전에 모두 검증합니다. payer는 None, sender_approved는 false로 시작합니다."
+          },
+          {
+            "label": "프레임 0",
+            "title": "VERIFY 모드, 기본 코드가 승인",
+            "body": "target이 비어 있어 resolved_target은 sender입니다. 계정에 코드가 없으므로 기본 코드가 돕니다. flags가 APPROVE_EXECUTION_AND_PAYMENT(0x3)이면 signatures[0]에 sender가 서명한 SECP256K1 서명이 있는지 확인하고 APPROVE(0x3)을 실행합니다. 이때 sender의 nonce가 오르고 payer가 sender로 정해지며 max_cost를 미리 걷습니다. 여기까지가 검증 접두입니다."
+          },
+          {
+            "label": "프레임 1",
+            "title": "SENDER 모드, 첫 번째 호출",
+            "body": "caller는 tx.sender입니다. target 계약을 value와 data로 호출합니다. flags의 비트 2(ATOMIC_BATCH_FLAG = 0x4)를 켜서 다음 프레임과 한 묶음임을 표시합니다. 묶음에 속한 프레임은 승인 범위가 0이어야 합니다."
+          },
+          {
+            "label": "프레임 2",
+            "title": "SENDER 모드, 두 번째 호출",
+            "body": "앞 프레임과 한 묶음입니다. 둘 중 하나라도 실패하면 묶음 시작 직전 상태로 되돌리고 남은 프레임은 영수증 status 0x2(건너뜀)로 기록합니다."
+          },
+          {
+            "label": "정산",
+            "title": "수수료 정산과 환불",
+            "body": "모든 프레임이 끝난 뒤 payer가 정해졌는지 확인합니다. 프레임에 남은 가스와 건너뛴 프레임 예산을 빼고 환불을 적용해 gas_used를 구합니다. base_fee_paid는 소각하고 priority_fee_paid는 코인베이스에 주며 나머지 payer_refund를 payer에게 돌려줍니다."
+          }
+        ]
+      },
+      "deep": [
+        {
+          "title": "트랜잭션 구조와 상수",
+          "body": "타입이 FRAME_TX_TYPE = 0x06인 EIP-2718 트랜잭션입니다. 페이로드는 [chain_id, nonce, sender, frames, signatures, fees, blob_versioned_hashes]의 RLP 직렬화입니다. 각 프레임은 [mode, flags, target, limits, value, data]이고 limits는 [execution, state], fees는 [max_fee, max_priority_fee_per_gas]입니다. 기존 트랜잭션과 달리 sender 주소를 필드에 직접 적고 서명은 signatures 목록으로 분리됩니다. 프레임 수는 1개 이상 MAX_FRAMES = 64개 이하이고 target이 None이면 tx.sender로 해석합니다. value는 SENDER 모드에서만 0이 아닐 수 있습니다. 고정 비용은 FRAME_TX_INTRINSIC_COST = 12000, 프레임당 FRAME_TX_PER_FRAME_COST = 475이며 DEFAULT와 VERIFY 프레임의 호출자로 쓰는 ENTRY_POINT는 address(0xaa)입니다. 고정 비용과 프레임 실행 가스 합은 EIP-7825의 TX_MAX_GAS_LIMIT(16,777,216)을 넘을 수 없습니다.",
+          "ref": "원문: Specification · Constants, Frame Transaction · Payload Encoding, Constraints"
+        },
+        {
+          "title": "프레임 모드와 플래그",
+          "body": "mode는 0 DEFAULT, 1 VERIFY, 2 SENDER 세 값만 허용합니다. DEFAULT와 VERIFY는 caller가 ENTRY_POINT이고 SENDER는 caller가 tx.sender입니다. ORIGIN은 모든 호출 깊이에서 이 caller를 돌려줍니다. SENDER 프레임은 앞서 sender_approved가 true가 되어 있어야 합니다. 아니면 트랜잭션이 무효입니다. VERIFY 프레임은 STATICCALL로 실행되어 상태를 바꿀 수 없고 APPROVE만 승인 문맥을 바꿉니다. VERIFY 프레임이 revert하거나 예외로 멈추면 트랜잭션 전체가 무효입니다. flags는 비트 0~1이 승인 범위, 비트 2가 원자적 배치(ATOMIC_BATCH_FLAG = 0x4)이며 비트 3 이상은 예약이라 flags < 8이어야 합니다. 원자적 배치 플래그는 VERIFY 프레임과 마지막 프레임에 쓸 수 없고 다음 프레임도 VERIFY가 아니어야 합니다. 배치에 속한 프레임은 승인 범위가 0이어야 합니다. APPROVE_EXECUTION 플래그는 target이 None이거나 tx.sender일 때만 허용됩니다.",
+          "ref": "원문: Field Definitions · Mode · Flags, Constraints, Behavior"
+        },
+        {
+          "title": "서명 목록과 서명 해시",
+          "body": "signatures의 각 항목은 [scheme, signer, msg, signature]입니다. scheme은 0x0 ARBITRARY(가스 100), 0x1 SECP256K1(2800), 0x2 P256(6700)이고 0x3 이상은 예약입니다. SECP256K1과 P256의 signer는 20바이트 주소이고 비어 있으면 tx.sender로 봅니다. ARBITRARY의 signer는 반드시 비어 있어야 합니다. msg가 비어 있으면 compute_sig_hash(tx)에 서명한 것이고 32바이트면 그 다이제스트에 서명한 것입니다. 0으로만 된 32바이트는 무효입니다. SECP256K1 서명은 v || r || s 65바이트이며 v는 0 또는 1, s는 low-s여야 합니다. P256은 r || s || qx || qy 128바이트이고 signer는 keccak256(qx || qy)[12:]와 같아야 합니다. 프로토콜이 검증하는 서명은 프레임 실행 전에 모두 통과해야 하며 하나라도 실패하면 트랜잭션이 무효입니다. 서명 해시는 msg가 빈 서명의 signature 바이트를 그 길이(정수)로 바꾼 뒤 keccak(0x06 || rlp(tx))로 계산하므로, 서명자는 서명 전에 모든 빈 msg 서명의 바이트 길이를 알아야 합니다. 프로토콜 검증 서명의 원시 바이트는 장래 집계를 위해 EVM에서 읽을 수 없고 ARBITRARY 서명만 SIGDATACOPY로 읽을 수 있습니다.",
+          "ref": "원문: Transaction Signatures, Signature Hash, Signature Validation"
+        },
+        {
+          "title": "실행 흐름과 APPROVE 명령어(0xaa)",
+          "body": "처리 시작 시 tx.nonce == state[tx.sender].nonce를 확인하고 서명을 모두 검증한 뒤 payer = None, sender_approved = false로 둡니다. 각 프레임은 진입 시 gas_left = limits.execution, state_gas_left = limits.state로 시작하고 resolved_target의 warm/cold 접근 비용(EIP-2929)을 먼저 뺍니다. 대상에 코드가 없으면 기본 코드를, EIP-7702 위임 표시가 있으면 위임 코드를 실행합니다. APPROVE는 스택에서 offset, length, scope를 받아 현재 호출 프레임을 성공으로 끝내면서 승인 문맥을 바꿉니다. scope는 APPROVE_PAYMENT(0x1), APPROVE_EXECUTION(0x2), APPROVE_EXECUTION_AND_PAYMENT(0x3) 중 하나이고 frame.flags가 허용한 범위 안이어야 합니다. ADDRESS != resolved_target이면 revert합니다. APPROVE_EXECUTION은 resolved_target이 tx.sender일 때만 sender_approved를 true로 만듭니다. APPROVE_PAYMENT는 sender_approved가 true이고 payer가 아직 없으며 잔고가 충분할 때 sender의 nonce를 올리고 payer = resolved_target으로 정한 뒤 max_cost를 걷습니다. 이때 tx.sender 계정이 없으면 STATE_BYTES_PER_NEW_ACCOUNT * CPSB 상태 가스를 뺍니다. 프레임 트랜잭션이 아닌 곳에서 APPROVE를 실행하면 예외로 멈춥니다. payer가 정해지는 프레임까지가 검증 접두(validation prefix), 그 뒤가 실행 본문(execution body)입니다. 모든 프레임이 끝난 뒤 payer가 없으면 트랜잭션이 무효입니다.",
+          "ref": "원문: Behavior, Validation prefix and execution body, APPROVE Instruction (0xaa)"
+        },
+        {
+          "title": "원자적 배치와 영수증",
+          "body": "원자적 배치는 프레임 i부터 j까지(j > i) 이어진 구간으로, i부터 j-1까지는 ATOMIC_BATCH_FLAG가 켜져 있고 j는 꺼져 있습니다. 배치 안의 한 프레임이 실패하면 배치 시작 직전 상태로 되돌리고 남은 프레임은 건너뜁니다. 먼저 실행된 프레임의 로그와 상태 변경은 버리되 영수증의 실행 status와 실행 가스 사용량은 남기고 로그는 비우며 상태 가스는 0으로 둡니다. 건너뛴 프레임에 배정한 실행·상태 가스는 트랜잭션 끝에 환불합니다. 배치 안에서는 APPROVE가 불가능해 payer나 sender_approved를 되돌릴 일은 없습니다. 영수증 페이로드는 [cumulative_gas_used, payer, [frame_receipt, ...]]이고 frame_receipt는 [status, gas_used, logs], gas_used는 [execution, state]입니다. status에는 배치 실패로 건너뛴 프레임을 뜻하는 새 코드 0x2가 추가됩니다. 영수증에 트랜잭션 단위 status는 없으므로 하나의 상태를 보여 줘야 하는 인터페이스는 직접 도출해야 합니다. 로그 블룸과 로그 색인은 프레임 영수증의 logs를 프레임 순서로 이은 것입니다. 프레임 사이에서 TSTORE/TLOAD 임시 저장소는 버리고 warm/cold 기록은 프레임을 넘어 공유하되 프레임이 revert하면 함께 되돌립니다.",
+          "ref": "원문: Behavior · atomic batch, Receipt Encoding, Cross-frame interactions"
+        },
+        {
+          "title": "2차원 가스 회계와 수수료 정산",
+          "body": "EIP-8037의 실행 가스와 상태 가스 분리를 따르되, 저수지(reservoir) 모델 대신 프레임마다 limits.execution과 limits.state를 명시합니다. 고정 비용 frame_tx_intrinsic_gas는 FRAME_TX_INTRINSIC_COST + 프레임 수 * FRAME_TX_PER_FRAME_COST + 프레임 데이터 비용 + 서명 데이터 비용 + 서명 검증 비용 + 값 전송 비용(값이 있는 프레임마다 TX_VALUE_COST)입니다. msg가 빈 서명의 바이트는 모두 0이 아닌 것으로 쳐서 길이만으로 비용이 정해집니다. max_gas는 standard_gas_limit과 calldata_floor_gas + 상태 한도 합 중 큰 값입니다. max_fee는 실행·상태·블롭 가스를 모두 덮는 하나의 예산이며 required_max_fee = max_gas * base_fee_per_gas + blob_gas * blob_base_fee보다 작으면 무효입니다. GASPRICE는 base_fee_per_gas + max_priority_fee // max_gas로 모든 프레임에서 같습니다. 상태 가스는 현재 프레임 영수증에 귀속되고 나중 프레임의 리필(refill)이 앞 프레임의 gas_used.state를 줄일 수 있습니다. 정산 때 남은 가스와 건너뛴 예산을 뺀 뒤 EIP-3529 환불(MAX_REFUND_QUOTIENT = 5)과 EIP-7976 콜데이터 하한을 적용해 gas_used를 구합니다. base_fee_paid는 소각하고 priority_fee_paid는 코인베이스에 주며 payer_refund는 payer에게 돌려줍니다. 블록은 EIP-7778에 따라 실행 가스를 환불 전 값으로 세고 두 차원 각각의 남은 용량에 들어갈 때만 트랜잭션을 포함합니다. 블롭은 max_fee 예산에서 blob_base_fee로 내며 싣지 않아도 됩니다.",
+          "ref": "원문: Gas Accounting · Fee budget · Transaction settlement · Block-level gas accounting, Blob handling"
+        },
+        {
+          "title": "만료 검증 프레임과 기본 코드",
+          "body": "target이 EXPIRY_VERIFIER(0x81413f0cF12e9b6a49B1D0439E081c577D57FfFf)인 VERIFY 프레임은 만료 검증 프레임입니다. data는 8바이트 빅엔디안 만료 타임스탬프(EXPIRY_DATA_LENGTH = 8)이고 block.timestamp <= expiry_timestamp가 아니면 revert합니다. flags, value, limits.state가 모두 0이어야 하며 트랜잭션에 하나만 둘 수 있습니다. 이 계약은 프로토콜이 설치하지 않고 보통 계약처럼 배포하며 런타임 바이트코드는 0x60083614600a575f5ffd5b5f3560c01c4211601657005b5f5ffd입니다. 클라이언트는 결과가 같다면 EVM 실행을 생략하고 직접 비교해도 됩니다. 기본 코드(default code)는 코드도 EIP-7702 위임 표시도 없는 계정이 프레임 트랜잭션을 쓰게 해 줍니다. VERIFY 모드에서는 allowed_scope = frame.flags & APPROVE_SCOPE_MASK를 읽어 0이면 revert합니다. APPROVE_EXECUTION이 포함되면 signatures[0], 아니면 signatures[1]에 resolved_target이 서명한 SECP256K1 서명(msg 비어 있음)이 있는지 확인한 뒤 APPROVE(allowed_scope)를 실행합니다. SENDER나 DEFAULT 모드에서는 빈 코드처럼 성공으로 끝납니다. 기본 코드 자체는 실행 가스를 쓰지 않고 진입 시 접근 비용만 듭니다.",
+          "ref": "원문: Expiry Verifier Frame · Deployment, Default code"
+        },
+        {
+          "title": "인트로스펙션 명령어, 멤풀 규칙, 현재 상태",
+          "body": "프레임 트랜잭션 안에서만 쓰는 명령어 여섯 개가 추가됩니다. TXPARAM(0xb0)은 TXPARAM_SENDER, TXPARAM_SIG_HASH, TXPARAM_CURRENT_FRAME_INDEX, TXPARAM_STATE_GAS_LEFT 같은 트랜잭션 정보를, FRAMEPARAM(0xb3)은 resolved_target, mode, flags, status, gas_used 같은 프레임 정보를 돌려주며 둘 다 가스 2입니다. FRAMEDATALOAD(0xb1)와 FRAMEDATACOPY(0xb2)는 CALLDATALOAD, CALLDATACOPY처럼 다른 프레임의 data를 읽습니다. SIGPARAM(0xb4)은 서명 메타데이터를, SIGDATACOPY(0xb5)는 ARBITRARY 서명의 원시 바이트만 복사합니다. 다른 트랜잭션 유형에서 실행하면 예외로 멈춥니다. 공개 멤풀 규칙은 ERC-7562에서 스테이킹과 평판을 뺀 것으로 검증 접두에만 적용되며 MAX_VERIFY_GAS = 100_000, MAX_VERIFY_STATE_GAS = 500_000, MAX_PENDING_TXS_USING_NON_CANONICAL_PAYMASTER = 1을 둡니다. 원문 상태는 Draft라 세부 내용은 바뀔 수 있습니다. 콜 기록에서는 08.13 ACDE #243에서 EIP-8141과 EIP-8130 사이 결정을 미뤘고 08.27 ACDE #244에서 헤고타 포함 확정(SFI)으로 올리되 스펙 변경과 L2 협업은 계속한다는 조건을 달았습니다. 09.10 ACDE #245에서 헤고타의 헤드라이너로 확정했습니다. 09.21 ACDT #97에서 프레임 전용 데브넷을 따로 시작하기로 했으며 10.12 ACDT #100에서 bogota-devnet-1에 포함하기로 했습니다.",
+          "ref": "원문: Introspection, Mempool · Constants · Validation Prefix, 프리앰블 status; 콜 기록"
+        }
+      ],
+      "glossary": [
+        {
+          "term": "프레임(frame)",
+          "def": "프레임 트랜잭션을 이루는 계약 호출 단위입니다. mode에 따라 검증(VERIFY), 기본 실행(DEFAULT), 보낸 사람 자격 실행(SENDER) 역할을 맡습니다."
+        },
+        {
+          "term": "계정 추상화(account abstraction)",
+          "def": "계정의 검증 방식과 수수료 지불 규칙을 고정된 서명 방식이 아니라 계정 코드가 정하게 하는 것입니다."
+        },
+        {
+          "term": "ENTRY_POINT",
+          "def": "address(0xaa)입니다. DEFAULT와 VERIFY 프레임에서 caller로 쓰이는 프로토콜 정의 주소입니다."
+        },
+        {
+          "term": "원자적 배치(atomic batch)",
+          "def": "연속된 프레임 묶음입니다. 하나라도 실패하면 묶음 시작 전 상태로 되돌리고 남은 프레임은 건너뜁니다."
+        },
+        {
+          "term": "상태 가스(state gas)",
+          "def": "EIP-8037이 도입한 두 번째 가스 차원으로 영구 상태 증가를 잽니다. 실행 가스는 연산, 데이터, 계정 접근을 잽니다."
+        },
+        {
+          "term": "검증 접두(validation prefix)",
+          "def": "payer가 정해지는 프레임까지의 구간입니다. 공개 멤풀 규칙은 이 구간에만 적용되고 그 뒤 프레임은 임의로 둘 수 있습니다."
+        }
+      ],
+      "related": [
+        {
+          "number": 7702,
+          "note": "위임 표시가 있는 계정은 EIP-7702의 위임 코드 의미로 프레임을 실행합니다"
+        },
+        {
+          "number": 8037,
+          "note": "실행 가스와 상태 가스 2차원 모델의 출처입니다. 프레임마다 두 한도를 명시합니다"
+        },
+        {
+          "number": 1559,
+          "note": "max_priority_fee_per_gas와 base fee 계산의 기준입니다"
+        },
+        {
+          "number": 4844,
+          "note": "blob_versioned_hashes 처리, GAS_PER_BLOB, 블롭 수수료의 기준입니다"
+        },
+        {
+          "number": 7825,
+          "note": "TX_MAX_GAS_LIMIT(16,777,216)으로 고정 비용과 프레임 실행 가스 합의 상한을 정합니다"
+        }
+      ],
+      "meta": {
+        "title": "Frame Transaction",
+        "description": "Add frame abstraction for transaction validation, execution, and gas payment",
+        "status": "Draft",
+        "type": "Standards Track",
+        "category": "Core",
+        "created": "2026-01-29",
+        "authors": [
+          "Vitalik Buterin",
+          "lightclient",
+          "Felix Lange",
+          "Yoav Weiss",
+          "Alex Forshtat",
+          "Dror Tirosh",
+          "Shahaf Nacson",
+          "Derek Chiang",
+          "Toni Wahrstätter",
+          "Stavros Vlachakis"
+        ],
+        "requires": [
+          1559,
+          2718,
+          2780,
+          3529,
+          3607,
+          4844,
+          7594,
+          7702,
+          7708,
+          7778,
+          7825,
+          7976,
+          8037
+        ],
+        "discussionsTo": "https://ethereum-magicians.org/t/frame-transaction/27617"
+      },
+      "sourceHash": "1c0fe44b0829f587",
+      "model": "fable",
+      "generatedAt": "2026-11-02T09:18:35.898Z"
+    }
+  ]
+}

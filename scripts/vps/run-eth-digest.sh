@@ -61,6 +61,10 @@ $(grep -v dotenv <<<"$out" | tail -15)"
     CALLS_CHAT=@thetickeriseth npx tsx scripts/post-calls-telegram.ts || true
   fi
 
+  # 콜에 나온 EIP 해설(쉬운 설명+심층 설명). EIP당 모델 8분 남짓이라 송출이 다 끝난 뒤에 돌리고 45분으로 끊는다.
+  # EIP마다 저장하므로 끊겨도 쓴 것까지는 남고 다음 실행이 이어 간다. 실패해도 커밋은 진행
+  timeout 45m npx tsx scripts/extract-eips.ts || true
+
   commit_and_push "chore: publish eth digest [automated]"
 }
 
@@ -79,7 +83,7 @@ notify_owner() {
 }
 
 commit_and_push() {
-  git add src/data/eth-digests.json src/data/eth-debates.json src/data/eth-calls.json src/data/x-profiles.json src/data/weekly-briefs.json public/assets/digests/
+  git add src/data/eth-digests.json src/data/eth-debates.json src/data/eth-calls.json src/data/x-profiles.json src/data/weekly-briefs.json src/data/eips.json public/assets/digests/
   git diff --cached --quiet || (
     git commit -m "$1" &&
     git pull --rebase --autostash origin main &&
