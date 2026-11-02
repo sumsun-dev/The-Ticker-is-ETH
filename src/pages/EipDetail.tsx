@@ -3,6 +3,8 @@ import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import usePageMeta from '../hooks/usePageMeta';
 import { eipUrl, loadEips, type EipRecord } from '../data/eipsData';
+import { loadErcIndex, loadErcs } from '../data/ercsData';
+import { standardHref } from '../utils/ercs';
 import { loadEthCalls, type CallRecord } from '../data/ethCallsData';
 import { loadEthDebates, type Debate } from '../data/ethDebatesData';
 import { debatesFor, inclusionLabel, inclusionOf, journeyOf } from '../utils/eips';
@@ -19,11 +21,15 @@ const EipDetail: React.FC = () => {
     const [records, setRecords] = useState<EipRecord[] | null>(null);
     const [calls, setCalls] = useState<CallRecord[]>([]);
     const [debates, setDebates] = useState<Debate[]>([]);
+    const [ercSets, setErcSets] = useState<{ ercs: Set<number>; ercIndex: Set<number> }>(() => ({ ercs: new Set(), ercIndex: new Set() }));
 
     useEffect(() => {
         loadEips().then((f) => setRecords(f.eips));
         loadEthCalls().then((f) => setCalls(f.calls));
         loadEthDebates().then(setDebates);
+        Promise.all([loadErcs(), loadErcIndex()])
+            .then(([r, i]) => setErcSets({ ercs: new Set(r.ercs.map((x) => x.number)), ercIndex: new Set(i.ercs.map((x) => x.number)) }))
+            .catch(() => undefined);
     }, []);
 
     const r = records?.find((x) => x.number === n) ?? null;
@@ -281,15 +287,18 @@ const EipDetail: React.FC = () => {
                                 <ul className="flex flex-col gap-2.5 text-sm">
                                     {relatedEips.map((x) => (
                                         <li key={x.number}>
-                                            {known.has(x.number) ? (
-                                                <Link to={`/eips/${x.number}`} className="font-mono text-brand-accent hover:underline">
-                                                    EIP-{x.number}
-                                                </Link>
-                                            ) : (
-                                                <a href={eipUrl(x.number)} target="_blank" rel="noopener noreferrer" className="font-mono text-brand-accent hover:underline">
-                                                    EIP-{x.number}
-                                                </a>
-                                            )}
+                                            {(() => {
+                                                const link = standardHref(x.number, { eips: known, ...ercSets });
+                                                return link.internal ? (
+                                                    <Link to={link.href} className="font-mono text-brand-accent hover:underline">
+                                                        {link.label}
+                                                    </Link>
+                                                ) : (
+                                                    <a href={link.href} target="_blank" rel="noopener noreferrer" className="font-mono text-brand-accent hover:underline">
+                                                        {link.label}
+                                                    </a>
+                                                );
+                                            })()}
                                             {x.note && <span className="ml-2 text-theme-text-muted">{x.note}</span>}
                                         </li>
                                     ))}

@@ -6,6 +6,7 @@
  * env: EIPS_LIMIT(한 번에 쓸 수, 기본 3) · EIPS(번호 쉼표 목록 — 있는 것도 다시 씀) · EIPS_MODEL(기본 fable)
  *      EIPS_DRY_RUN=1(대상과 프롬프트 앞부분만 출력, 저장 안 함) · HUMANIZE_OFF=1(윤문 끔)
  *      EIPS_SCOPE=all(콜에 나온 것 다음으로 ethereum/EIPs 저장소의 모든 EIP까지 대상. 기본은 콜에 나온 것만. 순서는 lib/eips.ts orderAll)
+ *      EIPS_SHARD=1/2(작업자 여럿이 대상을 나눠 가짐. 저장은 잠금 후 다시 읽어 합치므로 동시에 돌려도 안전)
  *      EIPS_REUSE=1(.cache/eips/<n>.out.txt에 남은 모델 응답을 다시 씀, 모델 호출 없이 검증·윤문만)
  */
 import fs from 'fs';
@@ -13,6 +14,7 @@ import { ZodError } from 'zod';
 import path from 'path';
 import * as dotenv from 'dotenv';
 import { runClaude } from './lib/claude';
+import { inShard, parseShard, updateJsonLocked } from './lib/json-lock';
 import { extractJson } from './lib/eth-debates';
 import { humanizeTexts, normalizeTerms } from './lib/humanize';
 import { callLabel } from './lib/eth-calls';
@@ -33,6 +35,7 @@ const DRY = Boolean(process.env.EIPS_DRY_RUN);
 const ONLY = (process.env.EIPS ?? '').split(',').map(Number).filter((n) => n > 0);
 const CACHE_HOURS = 20;
 const SCOPE_ALL = process.env.EIPS_SCOPE === 'all';
+const SHARD = parseShard(process.env.EIPS_SHARD);
 
 /** ethereum/EIPs 저장소의 EIP 번호 전체 (트리 API 한 번) */
 async function allEipNumbers(): Promise<number[]> {
@@ -130,12 +133,12 @@ async function main() {
     metas.set(n, meta);
   }
   console.log(`[eips] 후보 ${candidates.length}개 중 원문 ${sources.size}개, 해설 ${file.eips.length}개`);
-  file = refreshMeta(file, metas);
+  file = updateJsonLocked<EipsFile>(FILE, (cur) => refreshMeta(cur, metas));
 
   const today = new Date().toISOString().slice(0, 10);
   const hashes = new Map([...sources].map(([n, md]) => [n, hashOf(md)]));
   const order = SCOPE_ALL ? orderAll(callOrder, metas) : candidates;
-  const targets = ONLY.length ? ONLY.filter((n) => sources.has(n)) : pickTargets(order, file.eips, hashes, today, LIMIT);
+  const targets = ONLY.length ? ONLY.filter((n) => sources.has(n)) : pickTargets(inShard(order, SHARD), file.eips, hashes, today, LIMIT);
   console.log(`[eips] 이번에 쓸 EIP: ${targets.length ? targets.map((n) => `EIP-${n}`).join(', ') : '없음'}`);
 
   for (const n of targets) {
@@ -156,15 +159,13 @@ async function main() {
       const record = toRecord(n, metas.get(n) as EipMeta, normalizeTerms(polished), hashes.get(n) as string, MODEL, new Date(), sources.get(n) as string);
       if (leaks(record)) throw new Error('결과에 비밀값이 섞여 버립니다 (프롬프트 주입 의심)');
       // EIP마다 저장한다. 중간에 끊겨도 다음 실행이 이어 간다
-      file = upsertRecords(file, [record], new Date());
-      fs.writeFileSync(FILE, `${JSON.stringify(file, null, 2)}\n`, 'utf-8');
+      file = updateJsonLocked<EipsFile>(FILE, (cur) => upsertRecords(cur, [record], new Date()));
       console.log(`[eips] EIP-${n} ${record.titleKo} 저장 (${Math.round((Date.now() - started) / 1000)}초)`);
     } catch (error) {
       const detail = error instanceof ZodError ? error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join('; ') : error instanceof Error ? error.message.split('\n')[0] : String(error);
       console.warn(`[WARN] EIP-${n} 해설 실패: ${detail}`);
     }
   }
-  if (!DRY) fs.writeFileSync(FILE, `${JSON.stringify(file, null, 2)}\n`, 'utf-8');
 }
 
 main().catch((error) => {

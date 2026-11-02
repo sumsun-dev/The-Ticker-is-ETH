@@ -1,0 +1,76 @@
+{
+  "badge": "ERC Guide",
+  "title": "ERCs: the standards apps and wallets share",
+  "description": "An ERC (Ethereum Request for Comments) is a standard that lets apps on Ethereum, like tokens, NFTs and wallets, speak the same language. Unlike EIPs that change network rules, ERCs need no hard fork. They are in use as soon as wallets and apps adopt them. Explanations are written in Korean.",
+  "tabs": { "eip": "EIP · Protocol changes", "erc": "ERC · App standards", "label": "Standard type" },
+  "diff": {
+    "title": "How EIPs and ERCs differ",
+    "eip": "EIP (Core)",
+    "erc": "ERC",
+    "rows": [
+      { "k": "What changes", "eip": "Network rules every node follows", "erc": "Interfaces apps, wallets and contracts agree on" },
+      { "k": "How it ships", "eip": "All at once on fork day", "erc": "Whenever each app adopts it" },
+      { "k": "Who decides", "eip": "Consensus on the core dev calls", "erc": "Authors and editors review; adoption is up to the market" },
+      { "k": "Examples", "eip": "EIP-1559 fee market, EIP-4844 blobs", "erc": "ERC-20 tokens, ERC-721 NFTs, ERC-4337 account abstraction" }
+    ]
+  },
+  "life": {
+    "title": "How an ERC becomes a standard",
+    "intro": "Current status of all {{count}} ERCs. Once Final, an ERC no longer changes.",
+    "Draft": "Early draft. May change a lot",
+    "Review": "Under review by editors and the community",
+    "Last Call": "Final call for comments. Final soon",
+    "Final": "Finalized standard. No more changes",
+    "Stagnant": "No progress for over six months",
+    "Withdrawn": "Withdrawn by the author"
+  },
+  "base": {
+    "title": "Foundational standards others build on",
+    "intro": "Counted from each ERC's requires field. Know these and the rest reads easily.",
+    "count": "{{count}}"
+  },
+  "list": {
+    "title": "ERC explainers",
+    "count": "{{count}} explainers · Final first, most depended-on first",
+    "search": "Search ERCs",
+    "searchPlaceholder": "Number or name (e.g. 20, permit)",
+    "all": "All",
+    "topic": "Topic",
+    "dependents": "{{count}} ERCs build on this",
+    "requires": "Extends {{list}}",
+    "empty": "No ERCs match.",
+    "none": "No explainers yet."
+  },
+  "detail": {
+    "backToList": "All ERCs",
+    "notFound": "We couldn't find that ERC explainer.",
+    "original": "Read the original ERC (ercs.ethereum.org)",
+    "finalBadge": "Final · finalized standard",
+    "why": "Why it is needed",
+    "change": "What changes",
+    "before": "Without this standard",
+    "after": "With ERC-{{n}}",
+    "impact": "Who it affects",
+    "iface": "What to implement",
+    "ifaceIntro": "Declarations copied verbatim from the spec, with what each one does.",
+    "flow": "One full flow",
+    "deep": "Deep dive",
+    "deepTag": "For developers",
+    "deepIntro": "The spec of the original ({{status}}, created {{created}}) explained item by item. Tap an item to expand it.",
+    "safety": "Things to watch out for",
+    "facts": "Details",
+    "status": "Status",
+    "created": "Created",
+    "authors": "Authors",
+    "authorsMore": "{{names}} and {{count}} more",
+    "topic": "Topic",
+    "family": "Family tree",
+    "requires": "Builds on",
+    "dependents": "{{count}} ERCs build on this",
+    "mentions": "Covered in ECK news",
+    "debates": "Related debates",
+    "glossary": "Terms on this page",
+    "discussion": "Discussion thread",
+    "disclaimer": "This explainer was written by AI from the original ERC and published automatically. Declarations are copied verbatim from the spec. Check the original for the exact spec. Last updated {{date}}"
+  }
+}

@@ -27,8 +27,8 @@
     ]
   },
   "list": {
-    "title": "코어 개발자 콜에 나온 EIP",
-    "count": "해설 {{count}}개 · 최근 논의 순",
+    "title": "EIP 해설",
+    "count": "해설 {{count}}개 · 최근 콜에서 다룬 것 먼저",
     "search": "EIP 검색",
     "searchPlaceholder": "번호나 이름 (예: 8141, 계정 추상화)",
     "all": "전체",

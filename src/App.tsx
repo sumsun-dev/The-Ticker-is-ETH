@@ -21,6 +21,8 @@ const Calls = React.lazy(() => import('./pages/Calls'));
 const CallDetail = React.lazy(() => import('./pages/CallDetail'));
 const Eips = React.lazy(() => import('./pages/Eips'));
 const EipDetail = React.lazy(() => import('./pages/EipDetail'));
+const Ercs = React.lazy(() => import('./pages/Ercs'));
+const ErcDetail = React.lazy(() => import('./pages/ErcDetail'));
 const AdminLogin = React.lazy(() => import('./pages/AdminLogin'));
 const AdminWrite = React.lazy(() => import('./pages/AdminWrite'));
 const AdminStats = React.lazy(() => import('./pages/AdminStats'));
@@ -76,6 +78,8 @@ const AppRoutes: React.FC = () => {
           <Route path="/calls/:id" element={<CallDetail />} />
           <Route path="/eips" element={<Eips />} />
           <Route path="/eips/:number" element={<EipDetail />} />
+          <Route path="/ercs" element={<Ercs />} />
+          <Route path="/ercs/:number" element={<ErcDetail />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

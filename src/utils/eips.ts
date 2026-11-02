@@ -58,7 +58,7 @@ export const lastDiscussed = (calls: ReadonlyArray<CallLike>, n: number): Journe
 
 /** 사이트에 노출되는 논쟁 중 제목·요약에 이 EIP가 나오는 것. 최근 활동 순 */
 export function debatesFor(debates: ReadonlyArray<Debate>, n: number): Debate[] {
-    const re = new RegExp(`EIP-?${n}(?!\\d)`);
+    const re = new RegExp(`(EIP|ERC)-?${n}(?!\\d)`, 'i');
     return debates
         .filter((d) => isPublishable(d) && re.test(`${d.title} ${d.summary}`))
         .sort((a, b) => (b.lastActivity || '').localeCompare(a.lastActivity || ''));

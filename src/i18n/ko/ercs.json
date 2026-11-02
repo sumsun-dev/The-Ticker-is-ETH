@@ -1,0 +1,76 @@
+{
+  "badge": "ERC 가이드",
+  "title": "ERC, 앱과 지갑이 함께 쓰는 약속",
+  "description": "ERC(Ethereum Request for Comments)는 토큰, NFT, 지갑처럼 이더리움 위에서 돌아가는 앱이 같은 방식으로 말하도록 정한 표준입니다. 네트워크 규칙을 바꾸는 EIP와 달리 하드포크가 필요 없습니다. 지갑과 앱이 채택하면 그날부터 쓰입니다.",
+  "tabs": { "eip": "EIP · 프로토콜 변경", "erc": "ERC · 앱 표준", "label": "표준 종류" },
+  "diff": {
+    "title": "EIP와 ERC는 무엇이 다른가",
+    "eip": "EIP (Core)",
+    "erc": "ERC",
+    "rows": [
+      { "k": "무엇을 바꾸나", "eip": "모든 노드가 따르는 네트워크 규칙", "erc": "앱·지갑·컨트랙트가 맞춰 쓰는 인터페이스" },
+      { "k": "어떻게 적용되나", "eip": "하드포크 날 한꺼번에", "erc": "각 앱이 채택하는 순간부터" },
+      { "k": "누가 정하나", "eip": "코어 개발자 콜의 합의", "erc": "저자와 편집자 검토, 실제 채택은 시장이 결정" },
+      { "k": "대표 예", "eip": "EIP-1559 수수료 개편, EIP-4844 블롭", "erc": "ERC-20 토큰, ERC-721 NFT, ERC-4337 계정 추상화" }
+    ]
+  },
+  "life": {
+    "title": "ERC가 표준이 되기까지",
+    "intro": "ERC 저장소 {{count}}개의 지금 상태입니다. Final이 되면 내용이 더는 바뀌지 않습니다.",
+    "Draft": "초안. 내용이 크게 바뀔 수 있습니다",
+    "Review": "편집자와 커뮤니티가 검토 중",
+    "Last Call": "마지막 의견 수렴. 곧 Final",
+    "Final": "확정된 표준. 더는 바뀌지 않습니다",
+    "Stagnant": "6개월 넘게 진행이 멈춘 제안",
+    "Withdrawn": "저자가 철회한 제안"
+  },
+  "base": {
+    "title": "다른 표준이 기대는 기반 표준",
+    "intro": "각 ERC가 원문에서 requires로 적은 표준을 셌습니다. 이 표준들을 알면 나머지가 읽힙니다.",
+    "count": "{{count}}개"
+  },
+  "list": {
+    "title": "ERC 해설",
+    "count": "해설 {{count}}개 · Final 먼저, 많이 기대는 표준 순",
+    "search": "ERC 검색",
+    "searchPlaceholder": "번호나 이름 (예: 20, permit)",
+    "all": "전체",
+    "topic": "분야",
+    "dependents": "이 표준에 기대는 ERC {{count}}개",
+    "requires": "{{list}} 확장",
+    "empty": "조건에 맞는 ERC가 없습니다.",
+    "none": "아직 해설이 없습니다."
+  },
+  "detail": {
+    "backToList": "ERC 목록",
+    "notFound": "그런 ERC 해설을 찾을 수 없습니다.",
+    "original": "ERC 원문 보기 (ercs.ethereum.org)",
+    "finalBadge": "Final · 확정된 표준",
+    "why": "왜 필요한가",
+    "change": "무엇이 바뀌나",
+    "before": "이 표준이 없을 때",
+    "after": "ERC-{{n}}를 지원하면",
+    "impact": "누구에게 영향이 있나",
+    "iface": "구현해야 하는 것",
+    "ifaceIntro": "원문 명세의 선언 그대로입니다. 옆은 각 항목이 하는 일입니다.",
+    "flow": "한 번의 흐름",
+    "deep": "심층 설명",
+    "deepTag": "개발자용",
+    "deepIntro": "원문({{status}}, {{created}} 작성) 명세를 항목별로 풀었습니다. 항목을 누르면 펼쳐집니다.",
+    "safety": "쓸 때 주의할 점",
+    "facts": "기본 정보",
+    "status": "상태",
+    "created": "작성일",
+    "authors": "저자",
+    "authorsMore": "{{names}} 외 {{count}}명",
+    "topic": "분야",
+    "family": "표준의 족보",
+    "requires": "이 표준이 기대는 것",
+    "dependents": "이 표준에 기대는 ERC {{count}}개",
+    "mentions": "ECK 뉴스에서 다룬 글",
+    "debates": "관련 논쟁",
+    "glossary": "이 페이지의 용어",
+    "discussion": "토론 스레드",
+    "disclaimer": "이 해설은 ERC 원문을 바탕으로 AI가 쓰고 자동으로 게시했습니다. 함수 선언은 원문에서 그대로 옮겼습니다. 정확한 명세는 원문을 확인하세요. 마지막 갱신 {{date}}"
+  }
+}

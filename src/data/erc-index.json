@@ -1,0 +1,5801 @@
+{
+  "updatedAt": "2026-11-02T10:47:51.767Z",
+  "ercs": [
+    {
+      "number": 20,
+      "title": "Token Standard",
+      "status": "Final",
+      "created": "2015-11-19",
+      "requires": []
+    },
+    {
+      "number": 55,
+      "title": "Mixed-case checksum address encoding",
+      "status": "Final",
+      "created": "2016-01-14",
+      "requires": []
+    },
+    {
+      "number": 67,
+      "title": "URI Scheme with Metadata, Value and Bytecode",
+      "status": "Withdrawn",
+      "created": "2016-02-17",
+      "requires": []
+    },
+    {
+      "number": 137,
+      "title": "Ethereum Domain Name Service - Specification",
+      "status": "Final",
+      "created": "2016-04-04",
+      "requires": []
+    },
+    {
+      "number": 162,
+      "title": "Initial ENS Hash Registrar",
+      "status": "Final",
+      "created": "2016-10-25",
+      "requires": []
+    },
+    {
+      "number": 165,
+      "title": "Standard Interface Detection",
+      "status": "Final",
+      "created": "2018-01-23",
+      "requires": [
+        214
+      ]
+    },
+    {
+      "number": 173,
+      "title": "Contract Ownership Standard",
+      "status": "Final",
+      "created": "2018-06-07",
+      "requires": []
+    },
+    {
+      "number": 181,
+      "title": "ENS support for reverse resolution of Ethereum addresses",
+      "status": "Final",
+      "created": "2016-12-01",
+      "requires": []
+    },
+    {
+      "number": 190,
+      "title": "Ethereum Smart Contract Packaging Standard",
+      "status": "Final",
+      "created": "2017-01-10",
+      "requires": []
+    },
+    {
+      "number": 191,
+      "title": "Signed Data Standard",
+      "status": "Final",
+      "created": "2016-01-20",
+      "requires": []
+    },
+    {
+      "number": 205,
+      "title": "ENS support for contract ABIs",
+      "status": "Stagnant",
+      "created": "2017-02-06",
+      "requires": [
+        137,
+        181
+      ]
+    },
+    {
+      "number": 223,
+      "title": "Token with transaction handling model",
+      "status": "Final",
+      "created": "2017-05-03",
+      "requires": []
+    },
+    {
+      "number": 600,
+      "title": "Ethereum purpose allocation for Deterministic Wallets",
+      "status": "Final",
+      "created": "2017-04-13",
+      "requires": []
+    },
+    {
+      "number": 601,
+      "title": "Ethereum hierarchy for deterministic wallets",
+      "status": "Final",
+      "created": "2017-04-13",
+      "requires": []
+    },
+    {
+      "number": 634,
+      "title": "Storage of text records in ENS",
+      "status": "Stagnant",
+      "created": "2017-05-17",
+      "requires": [
+        137,
+        165
+      ]
+    },
+    {
+      "number": 681,
+      "title": "URL Format for Transaction Requests",
+      "status": "Final",
+      "created": "2017-08-01",
+      "requires": [
+        20,
+        137
+      ]
+    },
+    {
+      "number": 721,
+      "title": "Non-Fungible Token Standard",
+      "status": "Final",
+      "created": "2018-01-24",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 725,
+      "title": "General data key/value store and execution",
+      "status": "Draft",
+      "created": "2017-10-02",
+      "requires": [
+        165,
+        173
+      ]
+    },
+    {
+      "number": 777,
+      "title": "Token Standard",
+      "status": "Final",
+      "created": "2017-11-20",
+      "requires": [
+        1820
+      ]
+    },
+    {
+      "number": 801,
+      "title": "Canary Standard",
+      "status": "Stagnant",
+      "created": "2017-12-16",
+      "requires": []
+    },
+    {
+      "number": 820,
+      "title": "Pseudo-introspection Registry Contract",
+      "status": "Final",
+      "created": "2018-01-05",
+      "requires": [
+        165,
+        214
+      ]
+    },
+    {
+      "number": 823,
+      "title": "Token Exchange Standard",
+      "status": "Stagnant",
+      "created": "2018-01-06",
+      "requires": [
+        20
+      ]
+    },
+    {
+      "number": 831,
+      "title": "URI Format for Ethereum",
+      "status": "Stagnant",
+      "created": "2018-01-15",
+      "requires": [
+        67,
+        681
+      ]
+    },
+    {
+      "number": 838,
+      "title": "ABI specification for REVERT reason string",
+      "status": "Draft",
+      "created": "2020-08-20",
+      "requires": []
+    },
+    {
+      "number": 875,
+      "title": "Simpler NFT standard with batching and native atomic swaps",
+      "status": "Withdrawn",
+      "created": "2018-02-08",
+      "requires": []
+    },
+    {
+      "number": 884,
+      "title": "DGCL Token",
+      "status": "Stagnant",
+      "created": "2018-02-14",
+      "requires": []
+    },
+    {
+      "number": 897,
+      "title": "DelegateProxy",
+      "status": "Stagnant",
+      "created": "2018-02-21",
+      "requires": []
+    },
+    {
+      "number": 900,
+      "title": "Simple Staking Interface",
+      "status": "Stagnant",
+      "created": "2018-02-22",
+      "requires": []
+    },
+    {
+      "number": 902,
+      "title": "Token Validation",
+      "status": "Stagnant",
+      "created": "2018-02-14",
+      "requires": [
+        1066
+      ]
+    },
+    {
+      "number": 918,
+      "title": "Mineable Token Standard",
+      "status": "Stagnant",
+      "created": "2018-03-07",
+      "requires": []
+    },
+    {
+      "number": 926,
+      "title": "Address metadata registry",
+      "status": "Stagnant",
+      "created": "2018-03-12",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 927,
+      "title": "Generalised authorisations",
+      "status": "Stagnant",
+      "created": "2018-03-12",
+      "requires": [
+        926
+      ]
+    },
+    {
+      "number": 998,
+      "title": "Composable Non-Fungible Token",
+      "status": "Draft",
+      "created": "2018-07-07",
+      "requires": [
+        20,
+        165,
+        721
+      ]
+    },
+    {
+      "number": 1046,
+      "title": "tokenURI Interoperability",
+      "status": "Final",
+      "created": "2018-04-13",
+      "requires": [
+        20,
+        721,
+        1155
+      ]
+    },
+    {
+      "number": 1056,
+      "title": "Ethereum Lightweight Identity",
+      "status": "Stagnant",
+      "created": "2018-05-03",
+      "requires": []
+    },
+    {
+      "number": 1062,
+      "title": "Formalize IPFS hash into ENS(Ethereum Name Service) resolver",
+      "status": "Stagnant",
+      "created": "2018-05-02",
+      "requires": []
+    },
+    {
+      "number": 1066,
+      "title": "Status Codes",
+      "status": "Stagnant",
+      "created": "2018-05-05",
+      "requires": []
+    },
+    {
+      "number": 1077,
+      "title": "Gas relay for contract calls",
+      "status": "Stagnant",
+      "created": "2018-05-04",
+      "requires": [
+        20,
+        191,
+        1271,
+        1344
+      ]
+    },
+    {
+      "number": 1078,
+      "title": "Universal login / signup using ENS subdomains",
+      "status": "Stagnant",
+      "created": "2018-05-04",
+      "requires": [
+        191,
+        681,
+        725,
+        1077
+      ]
+    },
+    {
+      "number": 1080,
+      "title": "Recoverable Token",
+      "status": "Stagnant",
+      "created": "2018-05-02",
+      "requires": []
+    },
+    {
+      "number": 1081,
+      "title": "Standard Bounties",
+      "status": "Stagnant",
+      "created": "2018-05-14",
+      "requires": [
+        20
+      ]
+    },
+    {
+      "number": 1123,
+      "title": "Revised Ethereum Smart Contract Packaging Standard",
+      "status": "Withdrawn",
+      "created": "2018-06-01",
+      "requires": []
+    },
+    {
+      "number": 1129,
+      "title": "Standardised DAPP announcements",
+      "status": "Stagnant",
+      "created": "2018-05-31",
+      "requires": []
+    },
+    {
+      "number": 1132,
+      "title": "Extending ERC20 with token locking capability",
+      "status": "Stagnant",
+      "created": "2018-06-03",
+      "requires": []
+    },
+    {
+      "number": 1154,
+      "title": "Oracle Interface",
+      "status": "Withdrawn",
+      "created": "2018-06-13",
+      "requires": []
+    },
+    {
+      "number": 1155,
+      "title": "Multi Token Standard",
+      "status": "Final",
+      "created": "2018-06-17",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 1167,
+      "title": "Minimal Proxy Contract",
+      "status": "Final",
+      "created": "2018-06-22",
+      "requires": [
+        211
+      ]
+    },
+    {
+      "number": 1175,
+      "title": "Wallet & shop standard for all tokens (erc20)",
+      "status": "Stagnant",
+      "created": "2018-06-21",
+      "requires": [
+        20
+      ]
+    },
+    {
+      "number": 1178,
+      "title": "Multi-class Token Standard",
+      "status": "Stagnant",
+      "created": "2018-06-22",
+      "requires": []
+    },
+    {
+      "number": 1185,
+      "title": "Storage of DNS Records in ENS",
+      "status": "Review",
+      "created": "2018-06-26",
+      "requires": [
+        137
+      ]
+    },
+    {
+      "number": 1191,
+      "title": "Add chain id to mixed-case checksum address encoding",
+      "status": "Last Call",
+      "created": "2018-03-18",
+      "requires": [
+        55,
+        155
+      ]
+    },
+    {
+      "number": 1202,
+      "title": "Voting Interface",
+      "status": "Review",
+      "created": "2018-07-08",
+      "requires": [
+        5269
+      ]
+    },
+    {
+      "number": 1203,
+      "title": "ERC-1203 Multi-Class Token Standard (ERC-20 Extension)",
+      "status": "Stagnant",
+      "created": "2018-07-01",
+      "requires": []
+    },
+    {
+      "number": 1207,
+      "title": "DAuth Access Delegation Standard",
+      "status": "Stagnant",
+      "created": "2018-07-10",
+      "requires": []
+    },
+    {
+      "number": 1261,
+      "title": "Membership Verification Token (MVT)",
+      "status": "Stagnant",
+      "created": "2018-07-14",
+      "requires": [
+        165,
+        173
+      ]
+    },
+    {
+      "number": 1271,
+      "title": "Standard Signature Validation Method for Contracts",
+      "status": "Final",
+      "created": "2018-07-25",
+      "requires": []
+    },
+    {
+      "number": 1319,
+      "title": "Smart Contract Package Registry Interface",
+      "status": "Stagnant",
+      "created": "2018-08-13",
+      "requires": []
+    },
+    {
+      "number": 1328,
+      "title": "WalletConnect URI Format",
+      "status": "Final",
+      "created": "2018-08-15",
+      "requires": []
+    },
+    {
+      "number": 1337,
+      "title": "Subscriptions on the blockchain",
+      "status": "Stagnant",
+      "created": "2018-08-01",
+      "requires": [
+        20,
+        165
+      ]
+    },
+    {
+      "number": 1363,
+      "title": "Payable Token",
+      "status": "Final",
+      "created": "2018-08-30",
+      "requires": [
+        20,
+        165
+      ]
+    },
+    {
+      "number": 1386,
+      "title": "Attestation management contract",
+      "status": "Stagnant",
+      "created": "2018-09-08",
+      "requires": []
+    },
+    {
+      "number": 1387,
+      "title": "Merkle Tree Attestations with Privacy enabled",
+      "status": "Stagnant",
+      "created": "2018-09-08",
+      "requires": []
+    },
+    {
+      "number": 1388,
+      "title": "Attestation Issuers Management List",
+      "status": "Stagnant",
+      "created": "2018-09-08",
+      "requires": []
+    },
+    {
+      "number": 1417,
+      "title": "Poll Standard",
+      "status": "Stagnant",
+      "created": "2018-09-16",
+      "requires": [
+        165,
+        1261
+      ]
+    },
+    {
+      "number": 1438,
+      "title": "dApp Components (avatar) & Universal Wallet",
+      "status": "Stagnant",
+      "created": "2018-09-21",
+      "requires": []
+    },
+    {
+      "number": 1444,
+      "title": "Localized Messaging with Signal-to-Text",
+      "status": "Stagnant",
+      "created": "2018-09-23",
+      "requires": []
+    },
+    {
+      "number": 1450,
+      "title": "RTA-Controlled Security Token",
+      "status": "Final",
+      "created": "2018-09-25",
+      "requires": [
+        20,
+        165,
+        6093
+      ]
+    },
+    {
+      "number": 1462,
+      "title": "Base Security Token",
+      "status": "Stagnant",
+      "created": "2018-10-01",
+      "requires": [
+        20,
+        1066
+      ]
+    },
+    {
+      "number": 1484,
+      "title": "Digital Identity Aggregator",
+      "status": "Stagnant",
+      "created": "2018-10-12",
+      "requires": [
+        191
+      ]
+    },
+    {
+      "number": 1491,
+      "title": "Human Cost Accounting Standard (Like Gas but for humans)",
+      "status": "Stagnant",
+      "created": "2018-10-12",
+      "requires": []
+    },
+    {
+      "number": 1504,
+      "title": "Upgradable Smart Contract",
+      "status": "Stagnant",
+      "created": "2018-10-17",
+      "requires": []
+    },
+    {
+      "number": 1523,
+      "title": "Standard for Insurance Policies as ERC-721 Non Fungible Tokens",
+      "status": "Stagnant",
+      "created": "2018-10-10",
+      "requires": [
+        721
+      ]
+    },
+    {
+      "number": 1538,
+      "title": "Transparent Contract Standard",
+      "status": "Withdrawn",
+      "created": "2018-10-31",
+      "requires": []
+    },
+    {
+      "number": 1577,
+      "title": "contenthash field for ENS",
+      "status": "Stagnant",
+      "created": "2018-11-13",
+      "requires": []
+    },
+    {
+      "number": 1581,
+      "title": "Non-wallet usage of keys derived from BIP-32 trees",
+      "status": "Stagnant",
+      "created": "2018-11-13",
+      "requires": []
+    },
+    {
+      "number": 1592,
+      "title": "Address and ERC20-compliant transfer rules",
+      "status": "Stagnant",
+      "created": "2018-11-09",
+      "requires": []
+    },
+    {
+      "number": 1613,
+      "title": "Gas Stations Network",
+      "status": "Draft",
+      "created": "2018-11-18",
+      "requires": [
+        712,
+        2771
+      ]
+    },
+    {
+      "number": 1616,
+      "title": "Attribute Registry Standard",
+      "status": "Stagnant",
+      "created": "2018-11-23",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 1620,
+      "title": "Money Streaming",
+      "status": "Stagnant",
+      "created": "2018-11-24",
+      "requires": []
+    },
+    {
+      "number": 1633,
+      "title": "Re-Fungible Token Standard (RFT)",
+      "status": "Stagnant",
+      "created": "2018-11-18",
+      "requires": [
+        20,
+        165,
+        721
+      ]
+    },
+    {
+      "number": 1710,
+      "title": "URL Format for Web3 Browsers",
+      "status": "Stagnant",
+      "created": "2019-01-13",
+      "requires": [
+        155
+      ]
+    },
+    {
+      "number": 1753,
+      "title": "Smart Contract Interface for Licences",
+      "status": "Stagnant",
+      "created": "2019-02-06",
+      "requires": []
+    },
+    {
+      "number": 1761,
+      "title": "Scoped Approval Interface",
+      "status": "Stagnant",
+      "created": "2019-02-18",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 1775,
+      "title": "App Keys, application specific wallet accounts",
+      "status": "Stagnant",
+      "created": "2019-02-20",
+      "requires": []
+    },
+    {
+      "number": 1812,
+      "title": "Ethereum Verifiable Claims",
+      "status": "Stagnant",
+      "created": "2019-03-03",
+      "requires": [
+        712
+      ]
+    },
+    {
+      "number": 1820,
+      "title": "Pseudo-introspection Registry Contract",
+      "status": "Final",
+      "created": "2019-03-04",
+      "requires": [
+        165,
+        214
+      ]
+    },
+    {
+      "number": 1822,
+      "title": "Universal Upgradeable Proxy Standard (UUPS)",
+      "status": "Stagnant",
+      "created": "2019-03-04",
+      "requires": []
+    },
+    {
+      "number": 1844,
+      "title": "ENS Interface Discovery",
+      "status": "Stagnant",
+      "created": "2019-03-15",
+      "requires": [
+        137,
+        165
+      ]
+    },
+    {
+      "number": 1900,
+      "title": "dType - Decentralized Type System for EVM",
+      "status": "Stagnant",
+      "created": "2019-03-28",
+      "requires": []
+    },
+    {
+      "number": 1921,
+      "title": "dType Functions Extension",
+      "status": "Stagnant",
+      "created": "2019-04-06",
+      "requires": [
+        1900
+      ]
+    },
+    {
+      "number": 1922,
+      "title": "zk-SNARK Verifier Standard",
+      "status": "Stagnant",
+      "created": "2018-09-14",
+      "requires": [
+        165,
+        196,
+        197
+      ]
+    },
+    {
+      "number": 1923,
+      "title": "zk-SNARK Verifier Registry Standard",
+      "status": "Stagnant",
+      "created": "2018-12-22",
+      "requires": [
+        165,
+        196,
+        197
+      ]
+    },
+    {
+      "number": 1948,
+      "title": "Non-fungible Data Token",
+      "status": "Stagnant",
+      "created": "2019-04-18",
+      "requires": [
+        721
+      ]
+    },
+    {
+      "number": 1967,
+      "title": "Proxy Storage Slots",
+      "status": "Final",
+      "created": "2019-04-24",
+      "requires": []
+    },
+    {
+      "number": 1973,
+      "title": "Scalable Rewards",
+      "status": "Stagnant",
+      "created": "2019-04-01",
+      "requires": []
+    },
+    {
+      "number": 1996,
+      "title": "Holdable Token",
+      "status": "Stagnant",
+      "created": "2019-04-10",
+      "requires": [
+        20
+      ]
+    },
+    {
+      "number": 2009,
+      "title": "Compliance Service",
+      "status": "Stagnant",
+      "created": "2019-05-09",
+      "requires": [
+        1066
+      ]
+    },
+    {
+      "number": 2018,
+      "title": "Clearable Token",
+      "status": "Stagnant",
+      "created": "2019-04-30",
+      "requires": [
+        1996
+      ]
+    },
+    {
+      "number": 2019,
+      "title": "Fundable Token",
+      "status": "Stagnant",
+      "created": "2019-05-10",
+      "requires": [
+        20
+      ]
+    },
+    {
+      "number": 2020,
+      "title": "E-Money Standard Token",
+      "status": "Stagnant",
+      "created": "2019-05-10",
+      "requires": [
+        20,
+        1066,
+        1996,
+        2009,
+        2018,
+        2019,
+        2021
+      ]
+    },
+    {
+      "number": 2021,
+      "title": "Payoutable Token",
+      "status": "Stagnant",
+      "created": "2019-05-10",
+      "requires": [
+        20,
+        1066,
+        1996
+      ]
+    },
+    {
+      "number": 2098,
+      "title": "Compact Signature Representation",
+      "status": "Final",
+      "created": "2019-03-14",
+      "requires": [
+        2
+      ]
+    },
+    {
+      "number": 2135,
+      "title": "Consumable Interface (Tickets, etc)",
+      "status": "Final",
+      "created": "2019-06-23",
+      "requires": [
+        165,
+        721,
+        1155
+      ]
+    },
+    {
+      "number": 2157,
+      "title": "dType Storage Extension - Decentralized Type System for EVM",
+      "status": "Stagnant",
+      "created": "2019-06-28",
+      "requires": [
+        1900
+      ]
+    },
+    {
+      "number": 2193,
+      "title": "dType Alias Extension - Decentralized Type System",
+      "status": "Stagnant",
+      "created": "2019-07-16",
+      "requires": [
+        155,
+        1900,
+        2157
+      ]
+    },
+    {
+      "number": 2266,
+      "title": "Atomic Swap-based American Call Option Contract Standard",
+      "status": "Last Call",
+      "created": "2019-08-17",
+      "requires": []
+    },
+    {
+      "number": 2304,
+      "title": "Multichain address resolution for ENS",
+      "status": "Stagnant",
+      "created": "2019-09-09",
+      "requires": [
+        137
+      ]
+    },
+    {
+      "number": 2309,
+      "title": "ERC-721 Consecutive Transfer Extension",
+      "status": "Final",
+      "created": "2019-10-08",
+      "requires": [
+        721
+      ]
+    },
+    {
+      "number": 2333,
+      "title": "BLS12-381 Key Generation",
+      "status": "Review",
+      "created": "2019-09-30",
+      "requires": []
+    },
+    {
+      "number": 2334,
+      "title": "BLS12-381 Deterministic Account Hierarchy",
+      "status": "Review",
+      "created": "2019-09-30",
+      "requires": [
+        2333
+      ]
+    },
+    {
+      "number": 2335,
+      "title": "BLS12-381 Keystore",
+      "status": "Review",
+      "created": "2019-09-30",
+      "requires": [
+        2333,
+        2334
+      ]
+    },
+    {
+      "number": 2386,
+      "title": "Ethereum 2 Hierarchical Deterministic Walletstore",
+      "status": "Stagnant",
+      "created": "2019-11-21",
+      "requires": [
+        2334,
+        2335
+      ]
+    },
+    {
+      "number": 2390,
+      "title": "Geo-ENS",
+      "status": "Stagnant",
+      "created": "2019-11-15",
+      "requires": [
+        137,
+        165,
+        1062,
+        1185
+      ]
+    },
+    {
+      "number": 2400,
+      "title": "Transaction Receipt URI",
+      "status": "Stagnant",
+      "created": "2019-11-05",
+      "requires": [
+        155,
+        681
+      ]
+    },
+    {
+      "number": 2470,
+      "title": "Singleton Factory",
+      "status": "Stagnant",
+      "created": "2020-01-15",
+      "requires": [
+        1014
+      ]
+    },
+    {
+      "number": 2477,
+      "title": "Token Metadata Integrity",
+      "status": "Stagnant",
+      "created": "2020-01-02",
+      "requires": [
+        165,
+        721,
+        1155
+      ]
+    },
+    {
+      "number": 2494,
+      "title": "Baby Jubjub Elliptic Curve",
+      "status": "Stagnant",
+      "created": "2020-01-29",
+      "requires": []
+    },
+    {
+      "number": 2520,
+      "title": "Multiple contenthash records for ENS",
+      "status": "Stagnant",
+      "created": "2020-02-18",
+      "requires": [
+        1577
+      ]
+    },
+    {
+      "number": 2525,
+      "title": "ENSLogin",
+      "status": "Stagnant",
+      "created": "2020-02-19",
+      "requires": [
+        137,
+        634,
+        1193,
+        2304
+      ]
+    },
+    {
+      "number": 2535,
+      "title": "Diamonds, Multi-Facet Proxy",
+      "status": "Final",
+      "created": "2020-02-22",
+      "requires": []
+    },
+    {
+      "number": 2544,
+      "title": "ENS Wildcard Resolution",
+      "status": "Stagnant",
+      "created": "2020-02-28",
+      "requires": [
+        137
+      ]
+    },
+    {
+      "number": 2569,
+      "title": "Saving and Displaying Image Onchain for Universal Tokens",
+      "status": "Stagnant",
+      "created": "2020-03-28",
+      "requires": []
+    },
+    {
+      "number": 2612,
+      "title": "Permit Extension for EIP-20 Signed Approvals",
+      "status": "Final",
+      "created": "2020-04-13",
+      "requires": [
+        20,
+        712
+      ]
+    },
+    {
+      "number": 2615,
+      "title": "Non-Fungible Token with mortgage and rental functions",
+      "status": "Stagnant",
+      "created": "2020-04-25",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 2645,
+      "title": "Hierarchical Deterministic Wallet for Layer-2",
+      "status": "Stagnant",
+      "created": "2020-05-13",
+      "requires": []
+    },
+    {
+      "number": 2678,
+      "title": "Revised Ethereum Smart Contract Packaging Standard (EthPM v3)",
+      "status": "Final",
+      "created": "2020-05-26",
+      "requires": []
+    },
+    {
+      "number": 2680,
+      "title": "Ethereum 2 wallet layout",
+      "status": "Stagnant",
+      "created": "2020-05-29",
+      "requires": []
+    },
+    {
+      "number": 2746,
+      "title": "Rules Engine Standard",
+      "status": "Stagnant",
+      "created": "2020-06-20",
+      "requires": []
+    },
+    {
+      "number": 2767,
+      "title": "Contract Ownership Governance",
+      "status": "Stagnant",
+      "created": "2020-07-04",
+      "requires": [
+        20,
+        165,
+        173
+      ]
+    },
+    {
+      "number": 2770,
+      "title": "Meta-Transactions Forwarder Contract",
+      "status": "Withdrawn",
+      "created": "2020-07-01",
+      "requires": [
+        712,
+        2771
+      ]
+    },
+    {
+      "number": 2771,
+      "title": "Secure Protocol for Native Meta Transactions",
+      "status": "Final",
+      "created": "2020-07-01",
+      "requires": []
+    },
+    {
+      "number": 2848,
+      "title": "My Own Messages (MOM)",
+      "status": "Stagnant",
+      "created": "2020-08-02",
+      "requires": []
+    },
+    {
+      "number": 2876,
+      "title": "Deposit contract and address standard",
+      "status": "Stagnant",
+      "created": "2020-08-13",
+      "requires": []
+    },
+    {
+      "number": 2917,
+      "title": "Staking Reward Calculation",
+      "status": "Stagnant",
+      "created": "2020-08-28",
+      "requires": []
+    },
+    {
+      "number": 2942,
+      "title": "EthPM URI Specification",
+      "status": "Stagnant",
+      "created": "2020-09-04",
+      "requires": [
+        2678
+      ]
+    },
+    {
+      "number": 2980,
+      "title": "Swiss Compliant Asset Token",
+      "status": "Stagnant",
+      "created": "2020-09-08",
+      "requires": [
+        20
+      ]
+    },
+    {
+      "number": 2981,
+      "title": "NFT Royalty Standard",
+      "status": "Final",
+      "created": "2020-09-15",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 3000,
+      "title": "Optimistic enactment governance standard",
+      "status": "Stagnant",
+      "created": "2020-09-24",
+      "requires": []
+    },
+    {
+      "number": 3005,
+      "title": "Batched meta transactions",
+      "status": "Stagnant",
+      "created": "2020-09-25",
+      "requires": []
+    },
+    {
+      "number": 3009,
+      "title": "Transfer With Authorization",
+      "status": "Draft",
+      "created": "2020-09-28",
+      "requires": [
+        20,
+        712
+      ]
+    },
+    {
+      "number": 3135,
+      "title": "Exclusive Claimable Token",
+      "status": "Stagnant",
+      "created": "2020-08-10",
+      "requires": [
+        20
+      ]
+    },
+    {
+      "number": 3156,
+      "title": "Flash Loans",
+      "status": "Final",
+      "created": "2020-11-15",
+      "requires": []
+    },
+    {
+      "number": 3224,
+      "title": "Described Data",
+      "status": "Stagnant",
+      "created": "2021-01-23",
+      "requires": [
+        191
+      ]
+    },
+    {
+      "number": 3234,
+      "title": "Batch Flash Loans",
+      "status": "Stagnant",
+      "created": "2021-01-31",
+      "requires": []
+    },
+    {
+      "number": 3386,
+      "title": "ERC-721 and ERC-1155 to ERC-20 Wrapper",
+      "status": "Stagnant",
+      "created": "2021-03-12",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 3440,
+      "title": "ERC-721 Editions Standard",
+      "status": "Stagnant",
+      "created": "2021-04-20",
+      "requires": [
+        712,
+        721
+      ]
+    },
+    {
+      "number": 3448,
+      "title": "MetaProxy Standard",
+      "status": "Final",
+      "created": "2021-03-29",
+      "requires": []
+    },
+    {
+      "number": 3450,
+      "title": "Standardized Shamir Secret Sharing Scheme for BIP-39 Mnemonics",
+      "status": "Stagnant",
+      "created": "2021-03-29",
+      "requires": []
+    },
+    {
+      "number": 3475,
+      "title": "Abstract Storage Bonds",
+      "status": "Final",
+      "created": "2021-04-05",
+      "requires": [
+        20,
+        721,
+        1155
+      ]
+    },
+    {
+      "number": 3525,
+      "title": "Semi-Fungible Token",
+      "status": "Final",
+      "created": "2020-12-01",
+      "requires": [
+        20,
+        165,
+        721
+      ]
+    },
+    {
+      "number": 3561,
+      "title": "Trust Minimized Upgradeability Proxy",
+      "status": "Stagnant",
+      "created": "2021-05-09",
+      "requires": []
+    },
+    {
+      "number": 3569,
+      "title": "Sealed NFT Metadata Standard",
+      "status": "Stagnant",
+      "created": "2021-05-07",
+      "requires": []
+    },
+    {
+      "number": 3589,
+      "title": "Assemble assets into NFTs",
+      "status": "Stagnant",
+      "created": "2021-05-24",
+      "requires": [
+        721
+      ]
+    },
+    {
+      "number": 3643,
+      "title": "T-REX - Token for Regulated EXchanges",
+      "status": "Final",
+      "created": "2021-07-09",
+      "requires": [
+        20,
+        173
+      ]
+    },
+    {
+      "number": 3668,
+      "title": "CCIP Read—Secure offchain data retrieval",
+      "status": "Final",
+      "created": "2020-07-19",
+      "requires": []
+    },
+    {
+      "number": 3722,
+      "title": "Poster",
+      "status": "Stagnant",
+      "created": "2021-07-31",
+      "requires": []
+    },
+    {
+      "number": 3754,
+      "title": "A Vanilla Non-Fungible Token Standard",
+      "status": "Stagnant",
+      "created": "2021-08-21",
+      "requires": []
+    },
+    {
+      "number": 3770,
+      "title": "Chain-specific addresses",
+      "status": "Draft",
+      "created": "2021-08-26",
+      "requires": []
+    },
+    {
+      "number": 3772,
+      "title": "Compressed Integers",
+      "status": "Stagnant",
+      "created": "2021-08-27",
+      "requires": []
+    },
+    {
+      "number": 4337,
+      "title": "Account Abstraction Using Alt Mempool",
+      "status": "Final",
+      "created": "2021-09-29",
+      "requires": [
+        712,
+        7702
+      ]
+    },
+    {
+      "number": 4341,
+      "title": "Ordered NFT Batch Standard",
+      "status": "Stagnant",
+      "created": "2021-10-01",
+      "requires": []
+    },
+    {
+      "number": 4353,
+      "title": "Interface for Staked Tokens in NFTs",
+      "status": "Stagnant",
+      "created": "2021-10-08",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 4361,
+      "title": "Sign-In with Ethereum",
+      "status": "Final",
+      "created": "2021-10-11",
+      "requires": [
+        55,
+        137,
+        155,
+        191,
+        1271,
+        1328
+      ]
+    },
+    {
+      "number": 4393,
+      "title": "Micropayments for NFTs and Multi Tokens",
+      "status": "Stagnant",
+      "created": "2021-10-24",
+      "requires": [
+        165,
+        721,
+        1155
+      ]
+    },
+    {
+      "number": 4400,
+      "title": "EIP-721 Consumable Extension",
+      "status": "Final",
+      "created": "2021-10-30",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 4430,
+      "title": "Described Transactions",
+      "status": "Stagnant",
+      "created": "2021-11-07",
+      "requires": []
+    },
+    {
+      "number": 4494,
+      "title": "Permit for ERC-721 NFTs",
+      "status": "Stagnant",
+      "created": "2021-11-25",
+      "requires": [
+        165,
+        712,
+        721
+      ]
+    },
+    {
+      "number": 4519,
+      "title": "Non-Fungible Tokens Tied to Physical Assets",
+      "status": "Final",
+      "created": "2021-12-03",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 4521,
+      "title": "721/20-compatible transfer",
+      "status": "Stagnant",
+      "created": "2021-12-13",
+      "requires": [
+        721
+      ]
+    },
+    {
+      "number": 4524,
+      "title": "Safer ERC-20",
+      "status": "Stagnant",
+      "created": "2021-12-05",
+      "requires": [
+        20,
+        165
+      ]
+    },
+    {
+      "number": 4527,
+      "title": "QR Code transmission protocol for wallets",
+      "status": "Stagnant",
+      "created": "2021-12-07",
+      "requires": []
+    },
+    {
+      "number": 4546,
+      "title": "Wrapped Deposits",
+      "status": "Stagnant",
+      "created": "2021-12-11",
+      "requires": []
+    },
+    {
+      "number": 4626,
+      "title": "Tokenized Vaults",
+      "status": "Final",
+      "created": "2021-12-22",
+      "requires": [
+        20,
+        2612
+      ]
+    },
+    {
+      "number": 4671,
+      "title": "Non-Tradable Tokens Standard",
+      "status": "Stagnant",
+      "created": "2022-01-13",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 4675,
+      "title": "Multi-Fractional Non-Fungible Tokens",
+      "status": "Stagnant",
+      "created": "2022-01-13",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 4799,
+      "title": "Non-Fungible Token Ownership Designation Standard",
+      "status": "Stagnant",
+      "created": "2022-02-13",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 4804,
+      "title": "Web3 URL to EVM Call Message Translation",
+      "status": "Final",
+      "created": "2022-02-14",
+      "requires": [
+        137
+      ]
+    },
+    {
+      "number": 4824,
+      "title": "Common Interfaces for DAOs",
+      "status": "Review",
+      "created": "2022-02-17",
+      "requires": []
+    },
+    {
+      "number": 4834,
+      "title": "Hierarchical Domains",
+      "status": "Final",
+      "created": "2022-02-22",
+      "requires": []
+    },
+    {
+      "number": 4883,
+      "title": "Composable SVG NFT",
+      "status": "Draft",
+      "created": "2022-03-08",
+      "requires": [
+        721
+      ]
+    },
+    {
+      "number": 4885,
+      "title": "Subscription NFTs and Multi Tokens",
+      "status": "Stagnant",
+      "created": "2022-03-08",
+      "requires": [
+        165,
+        721,
+        1155
+      ]
+    },
+    {
+      "number": 4886,
+      "title": "Proxy Ownership Register",
+      "status": "Stagnant",
+      "created": "2022-09-03",
+      "requires": []
+    },
+    {
+      "number": 4906,
+      "title": "EIP-721 Metadata Update Extension",
+      "status": "Final",
+      "created": "2022-03-13",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 4907,
+      "title": "Rental NFT, an Extension of EIP-721",
+      "status": "Final",
+      "created": "2022-03-11",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 4910,
+      "title": "Royalty Bearing NFTs",
+      "status": "Final",
+      "created": "2022-03-14",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 4931,
+      "title": "Generic Token Upgrade Standard",
+      "status": "Stagnant",
+      "created": "2021-11-02",
+      "requires": [
+        20
+      ]
+    },
+    {
+      "number": 4944,
+      "title": "Contract with Exactly One Non-fungible Token",
+      "status": "Stagnant",
+      "created": "2022-03-25",
+      "requires": [
+        721
+      ]
+    },
+    {
+      "number": 4950,
+      "title": "Entangled Tokens",
+      "status": "Stagnant",
+      "created": "2022-03-28",
+      "requires": [
+        20,
+        721,
+        1155
+      ]
+    },
+    {
+      "number": 4955,
+      "title": "Vendor Metadata Extension for NFTs",
+      "status": "Final",
+      "created": "2022-03-29",
+      "requires": [
+        721,
+        1155
+      ]
+    },
+    {
+      "number": 4972,
+      "title": "Name-Owned Account",
+      "status": "Draft",
+      "created": "2022-04-04",
+      "requires": [
+        137
+      ]
+    },
+    {
+      "number": 4973,
+      "title": "Account-bound Tokens",
+      "status": "Review",
+      "created": "2022-04-01",
+      "requires": [
+        165,
+        712,
+        721,
+        1271
+      ]
+    },
+    {
+      "number": 4974,
+      "title": "Ratings",
+      "status": "Stagnant",
+      "created": "2022-04-02",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 4987,
+      "title": "Held token interface",
+      "status": "Stagnant",
+      "created": "2021-09-21",
+      "requires": [
+        20,
+        165,
+        721,
+        1155
+      ]
+    },
+    {
+      "number": 5005,
+      "title": "Zodiac Modular Accounts",
+      "status": "Stagnant",
+      "created": "2022-04-14",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 5006,
+      "title": "Rental NFT, NFT User Extension",
+      "status": "Final",
+      "created": "2022-04-12",
+      "requires": [
+        165,
+        1155
+      ]
+    },
+    {
+      "number": 5007,
+      "title": "Time NFT, ERC-721 Time Extension",
+      "status": "Final",
+      "created": "2022-04-13",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 5008,
+      "title": "ERC-721 Nonce Extension",
+      "status": "Last Call",
+      "created": "2022-04-10",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 5018,
+      "title": "Filesystem-like Interface for Contracts",
+      "status": "Stagnant",
+      "created": "2022-04-18",
+      "requires": []
+    },
+    {
+      "number": 5023,
+      "title": "Shareable Non-Fungible Token",
+      "status": "Final",
+      "created": "2022-01-28",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 5050,
+      "title": "Interactive NFTs with Modular Environments",
+      "status": "Stagnant",
+      "created": "2021-04-18",
+      "requires": [
+        165,
+        173,
+        721,
+        1155,
+        1820,
+        4906
+      ]
+    },
+    {
+      "number": 5058,
+      "title": "Lockable Non-Fungible Tokens",
+      "status": "Stagnant",
+      "created": "2022-04-30",
+      "requires": [
+        20,
+        165,
+        721
+      ]
+    },
+    {
+      "number": 5094,
+      "title": "URL Format for Ethereum Network Switching",
+      "status": "Stagnant",
+      "created": "2022-05-13",
+      "requires": [
+        681,
+        831
+      ]
+    },
+    {
+      "number": 5095,
+      "title": "Principal Token",
+      "status": "Stagnant",
+      "created": "2022-05-01",
+      "requires": [
+        20,
+        2612
+      ]
+    },
+    {
+      "number": 5114,
+      "title": "Soulbound Badge",
+      "status": "Last Call",
+      "created": "2022-05-30",
+      "requires": []
+    },
+    {
+      "number": 5115,
+      "title": "SY Token",
+      "status": "Draft",
+      "created": "2022-05-30",
+      "requires": [
+        20
+      ]
+    },
+    {
+      "number": 5131,
+      "title": "SAFE Authentication For ENS",
+      "status": "Stagnant",
+      "created": "2022-06-03",
+      "requires": [
+        137,
+        181,
+        634
+      ]
+    },
+    {
+      "number": 5139,
+      "title": "Remote Procedure Call Provider Lists",
+      "status": "Stagnant",
+      "created": "2022-06-06",
+      "requires": [
+        155,
+        1577
+      ]
+    },
+    {
+      "number": 5143,
+      "title": "Slippage Protection for Tokenized Vault",
+      "status": "Stagnant",
+      "created": "2022-06-09",
+      "requires": [
+        20,
+        4626
+      ]
+    },
+    {
+      "number": 5164,
+      "title": "Cross-Chain Execution",
+      "status": "Last Call",
+      "created": "2022-06-14",
+      "requires": []
+    },
+    {
+      "number": 5169,
+      "title": "Client Script URI for Token Contracts",
+      "status": "Final",
+      "created": "2022-05-03",
+      "requires": [
+        20,
+        165,
+        721,
+        777,
+        1155
+      ]
+    },
+    {
+      "number": 5173,
+      "title": "NFT Future Rewards (nFR)",
+      "status": "Draft",
+      "created": "2022-05-08",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 5185,
+      "title": "NFT Updatable Metadata Extension",
+      "status": "Stagnant",
+      "created": "2022-06-27",
+      "requires": [
+        721,
+        1155
+      ]
+    },
+    {
+      "number": 5187,
+      "title": "Extend EIP-1155 with rentable usage rights",
+      "status": "Stagnant",
+      "created": "2022-04-17",
+      "requires": [
+        165,
+        1155
+      ]
+    },
+    {
+      "number": 5189,
+      "title": "Account Abstraction via Endorsed Operations",
+      "status": "Draft",
+      "created": "2022-06-29",
+      "requires": []
+    },
+    {
+      "number": 5192,
+      "title": "Minimal Soulbound NFTs",
+      "status": "Final",
+      "created": "2022-07-01",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 5202,
+      "title": "Blueprint contract format",
+      "status": "Final",
+      "created": "2022-06-23",
+      "requires": [
+        170
+      ]
+    },
+    {
+      "number": 5216,
+      "title": "ERC-1155 Allowance Extension",
+      "status": "Last Call",
+      "created": "2022-07-11",
+      "requires": [
+        20,
+        165,
+        1155
+      ]
+    },
+    {
+      "number": 5218,
+      "title": "NFT Rights Management",
+      "status": "Stagnant",
+      "created": "2022-07-11",
+      "requires": [
+        721
+      ]
+    },
+    {
+      "number": 5219,
+      "title": "Contract Resource Requests",
+      "status": "Final",
+      "created": "2022-07-10",
+      "requires": []
+    },
+    {
+      "number": 5247,
+      "title": "Smart Contract Executable Proposal Interface",
+      "status": "Review",
+      "created": "2022-07-13",
+      "requires": []
+    },
+    {
+      "number": 5252,
+      "title": "Account-bound Finance",
+      "status": "Stagnant",
+      "created": "2022-06-29",
+      "requires": [
+        20,
+        721,
+        1155,
+        5114
+      ]
+    },
+    {
+      "number": 5267,
+      "title": "Retrieval of EIP-712 domain",
+      "status": "Final",
+      "created": "2022-07-14",
+      "requires": [
+        155,
+        712,
+        2612
+      ]
+    },
+    {
+      "number": 5269,
+      "title": "ERC Detection and Discovery",
+      "status": "Review",
+      "created": "2022-07-15",
+      "requires": [
+        5750
+      ]
+    },
+    {
+      "number": 5289,
+      "title": "Ethereum Notary Interface",
+      "status": "Review",
+      "created": "2022-07-16",
+      "requires": [
+        165,
+        5568
+      ]
+    },
+    {
+      "number": 5298,
+      "title": "ENS Trust to hold NFTs under ENS name",
+      "status": "Stagnant",
+      "created": "2022-07-12",
+      "requires": [
+        137,
+        721,
+        1155
+      ]
+    },
+    {
+      "number": 5313,
+      "title": "Light Contract Ownership",
+      "status": "Final",
+      "created": "2022-07-22",
+      "requires": [
+        165,
+        173
+      ]
+    },
+    {
+      "number": 5334,
+      "title": "EIP-721 User And Expires And Level Extension",
+      "status": "Stagnant",
+      "created": "2022-07-25",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 5375,
+      "title": "NFT Author Information and Consent",
+      "status": "Final",
+      "created": "2022-07-30",
+      "requires": [
+        55,
+        155,
+        712,
+        721,
+        1155
+      ]
+    },
+    {
+      "number": 5380,
+      "title": "ERC-721 Entitlement Extension",
+      "status": "Final",
+      "created": "2022-03-11",
+      "requires": [
+        165,
+        721,
+        1046
+      ]
+    },
+    {
+      "number": 5409,
+      "title": "EIP-1155 Non-Fungible Token extension",
+      "status": "Stagnant",
+      "created": "2022-07-23",
+      "requires": [
+        165,
+        721,
+        1155
+      ]
+    },
+    {
+      "number": 5437,
+      "title": "Security Contact Interface",
+      "status": "Stagnant",
+      "created": "2022-08-09",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 5453,
+      "title": "Endorsement - Permit for Any Functions",
+      "status": "Last Call",
+      "created": "2022-08-12",
+      "requires": [
+        165,
+        712,
+        1271,
+        5750
+      ]
+    },
+    {
+      "number": 5484,
+      "title": "Consensual Soulbound Tokens",
+      "status": "Final",
+      "created": "2022-08-17",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 5485,
+      "title": "Jurisdiction, Accreditation, and Enforcement",
+      "status": "Review",
+      "created": "2022-08-17",
+      "requires": [
+        5247
+      ]
+    },
+    {
+      "number": 5489,
+      "title": "NFT Hyperlink Extension",
+      "status": "Final",
+      "created": "2022-08-16",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 5496,
+      "title": "Multi-privilege Management NFT Extension",
+      "status": "Last Call",
+      "created": "2022-07-30",
+      "requires": [
+        721
+      ]
+    },
+    {
+      "number": 5501,
+      "title": "Rental & Delegation NFT - EIP-721 Extension",
+      "status": "Stagnant",
+      "created": "2022-08-18",
+      "requires": [
+        165,
+        721,
+        4400,
+        4907
+      ]
+    },
+    {
+      "number": 5505,
+      "title": "EIP-1155 asset backed NFT extension",
+      "status": "Stagnant",
+      "created": "2022-08-18",
+      "requires": [
+        1155
+      ]
+    },
+    {
+      "number": 5507,
+      "title": "Refundable Tokens",
+      "status": "Final",
+      "created": "2022-08-19",
+      "requires": [
+        20,
+        165,
+        721,
+        1155
+      ]
+    },
+    {
+      "number": 5516,
+      "title": "Soulbound Multi-owner Tokens",
+      "status": "Final",
+      "created": "2022-08-19",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 5521,
+      "title": "Referable NFT",
+      "status": "Final",
+      "created": "2022-08-10",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 5528,
+      "title": "Refundable Fungible Token",
+      "status": "Final",
+      "created": "2022-08-16",
+      "requires": [
+        20
+      ]
+    },
+    {
+      "number": 5539,
+      "title": "Revocation List Registry",
+      "status": "Stagnant",
+      "created": "2022-08-26",
+      "requires": [
+        712
+      ]
+    },
+    {
+      "number": 5553,
+      "title": "Representing IP and its Royalty Structure",
+      "status": "Stagnant",
+      "created": "2022-08-17",
+      "requires": [
+        20,
+        721
+      ]
+    },
+    {
+      "number": 5554,
+      "title": "NFT Legal Use, Repurposing, and Remixing",
+      "status": "Stagnant",
+      "created": "2022-07-07",
+      "requires": [
+        5218
+      ]
+    },
+    {
+      "number": 5559,
+      "title": "Cross Chain Write Deferral Protocol",
+      "status": "Stagnant",
+      "created": "2022-06-23",
+      "requires": [
+        712
+      ]
+    },
+    {
+      "number": 5560,
+      "title": "Redeemable NFTs",
+      "status": "Stagnant",
+      "created": "2022-08-30",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 5564,
+      "title": "Stealth Addresses",
+      "status": "Final",
+      "created": "2022-08-13",
+      "requires": []
+    },
+    {
+      "number": 5568,
+      "title": "Well-Known Format for Required Actions",
+      "status": "Review",
+      "created": "2022-08-31",
+      "requires": [
+        140
+      ]
+    },
+    {
+      "number": 5570,
+      "title": "Digital Receipt Non-Fungible Tokens",
+      "status": "Final",
+      "created": "2022-09-01",
+      "requires": [
+        721
+      ]
+    },
+    {
+      "number": 5573,
+      "title": "Sign-In with Ethereum Capabilities, ReCaps",
+      "status": "Draft",
+      "created": "2021-07-20",
+      "requires": [
+        4361
+      ]
+    },
+    {
+      "number": 5585,
+      "title": "ERC-721 NFT Authorization",
+      "status": "Final",
+      "created": "2022-08-15",
+      "requires": [
+        721
+      ]
+    },
+    {
+      "number": 5604,
+      "title": "NFT Lien",
+      "status": "Draft",
+      "created": "2022-09-05",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 5606,
+      "title": "Multiverse NFTs",
+      "status": "Final",
+      "created": "2022-09-06",
+      "requires": [
+        721,
+        1155
+      ]
+    },
+    {
+      "number": 5615,
+      "title": "ERC-1155 Supply Extension",
+      "status": "Final",
+      "created": "2023-05-25",
+      "requires": [
+        1155
+      ]
+    },
+    {
+      "number": 5625,
+      "title": "NFT Metadata JSON Schema dStorage Extension",
+      "status": "Final",
+      "created": "2022-09-08",
+      "requires": [
+        721,
+        1155
+      ]
+    },
+    {
+      "number": 5630,
+      "title": "New approach for encryption / decryption",
+      "status": "Draft",
+      "created": "2022-09-07",
+      "requires": []
+    },
+    {
+      "number": 5633,
+      "title": "Composable Soulbound NFT, EIP-1155 Extension",
+      "status": "Stagnant",
+      "created": "2022-09-09",
+      "requires": [
+        165,
+        1155
+      ]
+    },
+    {
+      "number": 5635,
+      "title": "NFT Licensing Agreements",
+      "status": "Stagnant",
+      "created": "2022-08-10",
+      "requires": [
+        165,
+        721,
+        1155,
+        2981
+      ]
+    },
+    {
+      "number": 5639,
+      "title": "Delegation Registry",
+      "status": "Review",
+      "created": "2022-09-09",
+      "requires": []
+    },
+    {
+      "number": 5643,
+      "title": "Subscription NFTs",
+      "status": "Stagnant",
+      "created": "2022-09-10",
+      "requires": [
+        721
+      ]
+    },
+    {
+      "number": 5646,
+      "title": "Token State Fingerprint",
+      "status": "Final",
+      "created": "2022-09-11",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 5679,
+      "title": "Token Minting and Burning",
+      "status": "Final",
+      "created": "2022-09-17",
+      "requires": [
+        20,
+        165,
+        721,
+        1155
+      ]
+    },
+    {
+      "number": 5700,
+      "title": "Bindable Token Interface",
+      "status": "Draft",
+      "created": "2022-09-22",
+      "requires": [
+        165,
+        721,
+        1155
+      ]
+    },
+    {
+      "number": 5719,
+      "title": "Signature replacement interface",
+      "status": "Stagnant",
+      "created": "2022-09-26",
+      "requires": [
+        1271
+      ]
+    },
+    {
+      "number": 5725,
+      "title": "Transferable Vesting NFT",
+      "status": "Final",
+      "created": "2022-09-08",
+      "requires": [
+        721
+      ]
+    },
+    {
+      "number": 5727,
+      "title": "Semi-Fungible Soulbound Token",
+      "status": "Draft",
+      "created": "2022-09-28",
+      "requires": [
+        165,
+        712,
+        721,
+        3525,
+        4906,
+        5192,
+        5484
+      ]
+    },
+    {
+      "number": 5732,
+      "title": "Commit Interface",
+      "status": "Final",
+      "created": "2022-09-29",
+      "requires": [
+        165,
+        1271
+      ]
+    },
+    {
+      "number": 5744,
+      "title": "Latent Fungible Token",
+      "status": "Stagnant",
+      "created": "2022-09-29",
+      "requires": [
+        20,
+        2612
+      ]
+    },
+    {
+      "number": 5750,
+      "title": "General Extensibility for Method Behaviors",
+      "status": "Final",
+      "created": "2022-10-04",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 5753,
+      "title": "Lockable Extension for EIP-721",
+      "status": "Stagnant",
+      "created": "2022-10-05",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 5773,
+      "title": "Context-Dependent Multi-Asset Tokens",
+      "status": "Final",
+      "created": "2022-10-10",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 5791,
+      "title": "Physical Backed Tokens",
+      "status": "Draft",
+      "created": "2022-10-17",
+      "requires": [
+        191,
+        721
+      ]
+    },
+    {
+      "number": 5805,
+      "title": "Voting with delegation",
+      "status": "Review",
+      "created": "2022-07-04",
+      "requires": [
+        712,
+        6372
+      ]
+    },
+    {
+      "number": 5827,
+      "title": "Auto-renewable allowance extension",
+      "status": "Stagnant",
+      "created": "2022-10-22",
+      "requires": [
+        20,
+        165
+      ]
+    },
+    {
+      "number": 5850,
+      "title": "Complex Numbers stored in `bytes32` types",
+      "status": "Stagnant",
+      "created": "2022-10-29",
+      "requires": []
+    },
+    {
+      "number": 5851,
+      "title": "On-Chain Verifiable Credentials",
+      "status": "Stagnant",
+      "created": "2022-10-18",
+      "requires": [
+        721,
+        1155,
+        1167,
+        1967,
+        3475
+      ]
+    },
+    {
+      "number": 5883,
+      "title": "Token Transfer by Social Recovery",
+      "status": "Stagnant",
+      "created": "2022-07-19",
+      "requires": []
+    },
+    {
+      "number": 5902,
+      "title": "Smart Contract Event Hooks",
+      "status": "Stagnant",
+      "created": "2022-11-09",
+      "requires": [
+        712
+      ]
+    },
+    {
+      "number": 5982,
+      "title": "Role-based Access Control",
+      "status": "Review",
+      "created": "2022-11-15",
+      "requires": [
+        165,
+        5750
+      ]
+    },
+    {
+      "number": 6047,
+      "title": "ERC-721 Balance indexing via Transfer event",
+      "status": "Stagnant",
+      "created": "2022-11-26",
+      "requires": [
+        721
+      ]
+    },
+    {
+      "number": 6059,
+      "title": "Parent-Governed Nestable Non-Fungible Tokens",
+      "status": "Final",
+      "created": "2022-11-15",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 6065,
+      "title": "Real Estate Token",
+      "status": "Review",
+      "created": "2022-11-29",
+      "requires": [
+        721
+      ]
+    },
+    {
+      "number": 6066,
+      "title": "Signature Validation Method for NFTs",
+      "status": "Final",
+      "created": "2022-11-29",
+      "requires": [
+        165,
+        721,
+        1155,
+        1271,
+        5750
+      ]
+    },
+    {
+      "number": 6093,
+      "title": "Custom errors for commonly-used tokens",
+      "status": "Final",
+      "created": "2022-12-06",
+      "requires": [
+        20,
+        721,
+        1155
+      ]
+    },
+    {
+      "number": 6105,
+      "title": "No Intermediary NFT Trading Protocol",
+      "status": "Final",
+      "created": "2022-12-02",
+      "requires": [
+        20,
+        165,
+        721,
+        2981
+      ]
+    },
+    {
+      "number": 6120,
+      "title": "Universal Token Router",
+      "status": "Review",
+      "created": "2022-12-12",
+      "requires": [
+        20,
+        165,
+        721,
+        1014,
+        1155
+      ]
+    },
+    {
+      "number": 6123,
+      "title": "Smart Derivative Contract",
+      "status": "Draft",
+      "created": "2022-12-13",
+      "requires": []
+    },
+    {
+      "number": 6147,
+      "title": "Guard of NFT/SBT, an Extension of ERC-721",
+      "status": "Final",
+      "created": "2022-12-07",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 6150,
+      "title": "Hierarchical NFTs",
+      "status": "Final",
+      "created": "2022-12-15",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 6170,
+      "title": "Cross-Chain Messaging Interface",
+      "status": "Draft",
+      "created": "2022-12-19",
+      "requires": []
+    },
+    {
+      "number": 6220,
+      "title": "Composable NFTs utilizing Equippable Parts",
+      "status": "Final",
+      "created": "2022-12-20",
+      "requires": [
+        165,
+        721,
+        5773,
+        6059
+      ]
+    },
+    {
+      "number": 6224,
+      "title": "Contracts Dependencies Registry",
+      "status": "Last Call",
+      "created": "2022-12-27",
+      "requires": [
+        1967,
+        5750
+      ]
+    },
+    {
+      "number": 6229,
+      "title": "Tokenized Vaults with Lock-in Period",
+      "status": "Draft",
+      "created": "2022-12-21",
+      "requires": [
+        4626
+      ]
+    },
+    {
+      "number": 6239,
+      "title": "Semantic Soulbound Tokens",
+      "status": "Final",
+      "created": "2022-12-30",
+      "requires": [
+        165,
+        721,
+        5192
+      ]
+    },
+    {
+      "number": 6268,
+      "title": "Untransferability Indicator for EIP-1155",
+      "status": "Stagnant",
+      "created": "2022-01-06",
+      "requires": [
+        165,
+        1155
+      ]
+    },
+    {
+      "number": 6315,
+      "title": "ERC-2771 Namespaced Account Abstraction",
+      "status": "Review",
+      "created": "2023-01-11",
+      "requires": [
+        165,
+        2771
+      ]
+    },
+    {
+      "number": 6327,
+      "title": "Elastic Signature",
+      "status": "Draft",
+      "created": "2023-01-13",
+      "requires": []
+    },
+    {
+      "number": 6353,
+      "title": "Charity token",
+      "status": "Stagnant",
+      "created": "2022-05-13",
+      "requires": [
+        20
+      ]
+    },
+    {
+      "number": 6357,
+      "title": "Single-contract Multi-delegatecall",
+      "status": "Last Call",
+      "created": "2023-01-18",
+      "requires": []
+    },
+    {
+      "number": 6358,
+      "title": "Cross-Chain Token States Synchronization",
+      "status": "Review",
+      "created": "2023-01-17",
+      "requires": []
+    },
+    {
+      "number": 6366,
+      "title": "Permission Token",
+      "status": "Review",
+      "created": "2022-01-19",
+      "requires": [
+        6617
+      ]
+    },
+    {
+      "number": 6372,
+      "title": "Contract clock",
+      "status": "Review",
+      "created": "2023-01-25",
+      "requires": []
+    },
+    {
+      "number": 6381,
+      "title": "Public Non-Fungible Token Emote Repository",
+      "status": "Final",
+      "created": "2023-01-22",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 6384,
+      "title": "Human-readable offline signatures",
+      "status": "Stagnant",
+      "created": "2023-01-08",
+      "requires": [
+        712
+      ]
+    },
+    {
+      "number": 6454,
+      "title": "Minimal Transferable NFT detection interface",
+      "status": "Final",
+      "created": "2023-01-31",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 6464,
+      "title": "Multi-operator, per-token ERC-721 approvals.",
+      "status": "Stagnant",
+      "created": "2023-02-02",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 6492,
+      "title": "Signature Validation for Predeploy Contracts",
+      "status": "Final",
+      "created": "2023-02-10",
+      "requires": [
+        1271
+      ]
+    },
+    {
+      "number": 6506,
+      "title": "P2P Escrowed Governance Incentives",
+      "status": "Stagnant",
+      "created": "2023-02-15",
+      "requires": []
+    },
+    {
+      "number": 6538,
+      "title": "Stealth Meta-Address Registry",
+      "status": "Final",
+      "created": "2023-01-24",
+      "requires": [
+        712,
+        1271,
+        5564
+      ]
+    },
+    {
+      "number": 6551,
+      "title": "Non-fungible Token Bound Accounts",
+      "status": "Review",
+      "created": "2023-02-23",
+      "requires": [
+        165,
+        721,
+        1167,
+        1271
+      ]
+    },
+    {
+      "number": 6596,
+      "title": "Cultural and Historical Asset Token",
+      "status": "Review",
+      "created": "2023-02-28",
+      "requires": [
+        721,
+        1155
+      ]
+    },
+    {
+      "number": 6604,
+      "title": "Abstract Token",
+      "status": "Draft",
+      "created": "2023-03-03",
+      "requires": [
+        20,
+        165,
+        721,
+        1155
+      ]
+    },
+    {
+      "number": 6617,
+      "title": "Bit Based Permission",
+      "status": "Review",
+      "created": "2023-02-27",
+      "requires": []
+    },
+    {
+      "number": 6662,
+      "title": "AA Account Metadata For Authentication",
+      "status": "Draft",
+      "created": "2023-03-09",
+      "requires": [
+        4337,
+        4804
+      ]
+    },
+    {
+      "number": 6672,
+      "title": "Multi-redeemable NFTs",
+      "status": "Final",
+      "created": "2023-02-21",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 6682,
+      "title": "NFT Flashloans",
+      "status": "Draft",
+      "created": "2023-03-12",
+      "requires": [
+        20,
+        721,
+        3156
+      ]
+    },
+    {
+      "number": 6734,
+      "title": "L2 Token List",
+      "status": "Review",
+      "created": "2023-03-20",
+      "requires": [
+        155
+      ]
+    },
+    {
+      "number": 6735,
+      "title": "L2 Aliasing of EVM-based Addresses",
+      "status": "Review",
+      "created": "2022-03-20",
+      "requires": [
+        55
+      ]
+    },
+    {
+      "number": 6785,
+      "title": "ERC-721 Utilities Information Extension",
+      "status": "Draft",
+      "created": "2023-03-27",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 6786,
+      "title": "Registry for royalties payment for NFTs",
+      "status": "Draft",
+      "created": "2023-03-27",
+      "requires": [
+        165,
+        2981
+      ]
+    },
+    {
+      "number": 6787,
+      "title": "Order Book DEX with Two Phase Withdrawal",
+      "status": "Draft",
+      "created": "2023-03-27",
+      "requires": []
+    },
+    {
+      "number": 6806,
+      "title": "ERC-721 Holding Time Tracking",
+      "status": "Draft",
+      "created": "2023-03-30",
+      "requires": [
+        721
+      ]
+    },
+    {
+      "number": 6808,
+      "title": "Fungible Key Bound Token",
+      "status": "Final",
+      "created": "2023-03-31",
+      "requires": [
+        20
+      ]
+    },
+    {
+      "number": 6809,
+      "title": "Non-Fungible Key Bound Token",
+      "status": "Final",
+      "created": "2023-03-31",
+      "requires": [
+        721
+      ]
+    },
+    {
+      "number": 6821,
+      "title": "Support ENS Name for Web3 URL",
+      "status": "Draft",
+      "created": "2023-04-02",
+      "requires": [
+        137,
+        634,
+        3770,
+        4804
+      ]
+    },
+    {
+      "number": 6823,
+      "title": "Token Mapping Slot Retrieval Extension",
+      "status": "Draft",
+      "created": "2023-03-29",
+      "requires": [
+        20,
+        721,
+        1155
+      ]
+    },
+    {
+      "number": 6860,
+      "title": "Web3 URL to EVM Call Message Translation",
+      "status": "Draft",
+      "created": "2023-09-29",
+      "requires": [
+        137
+      ]
+    },
+    {
+      "number": 6864,
+      "title": "Upgradable Fungible Token",
+      "status": "Draft",
+      "created": "2023-04-05",
+      "requires": [
+        20
+      ]
+    },
+    {
+      "number": 6865,
+      "title": "On-Chain EIP-712 Visualization",
+      "status": "Draft",
+      "created": "2023-04-10",
+      "requires": [
+        712
+      ]
+    },
+    {
+      "number": 6900,
+      "title": "Modular Smart Contract Accounts",
+      "status": "Draft",
+      "created": "2023-04-18",
+      "requires": [
+        165,
+        1271,
+        4337
+      ]
+    },
+    {
+      "number": 6909,
+      "title": "Minimal Multi-Token Interface",
+      "status": "Final",
+      "created": "2023-04-19",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 6932,
+      "title": "Subscription-Based Token",
+      "status": "Draft",
+      "created": "2023-04-25",
+      "requires": [
+        20
+      ]
+    },
+    {
+      "number": 6944,
+      "title": "ERC-5219 Resolve Mode",
+      "status": "Draft",
+      "created": "2023-04-27",
+      "requires": [
+        4804,
+        5219
+      ]
+    },
+    {
+      "number": 6956,
+      "title": "Asset-bound Non-Fungible Tokens",
+      "status": "Review",
+      "created": "2023-04-29",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 6960,
+      "title": "Dual Layer Token",
+      "status": "Draft",
+      "created": "2023-04-30",
+      "requires": []
+    },
+    {
+      "number": 6981,
+      "title": "Reserved Ownership Accounts",
+      "status": "Draft",
+      "created": "2023-04-25",
+      "requires": [
+        1167,
+        1271,
+        6492
+      ]
+    },
+    {
+      "number": 6982,
+      "title": "Efficient Default Lockable Tokens",
+      "status": "Final",
+      "created": "2023-05-02",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 6997,
+      "title": "ERC-721 with transaction validation step.",
+      "status": "Review",
+      "created": "2023-05-07",
+      "requires": [
+        721
+      ]
+    },
+    {
+      "number": 7007,
+      "title": "Verifiable AI-Generated Content Token",
+      "status": "Final",
+      "created": "2023-05-10",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 7015,
+      "title": "NFT Creator Attribution",
+      "status": "Review",
+      "created": "2023-05-11",
+      "requires": [
+        55,
+        155,
+        712,
+        721,
+        1155
+      ]
+    },
+    {
+      "number": 7053,
+      "title": "Interoperable Digital Media Indexing",
+      "status": "Final",
+      "created": "2023-05-22",
+      "requires": []
+    },
+    {
+      "number": 7066,
+      "title": "Lockable Extension for ERC-721",
+      "status": "Final",
+      "created": "2023-05-25",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 7085,
+      "title": "NFT Relationship Enhancement",
+      "status": "Draft",
+      "created": "2023-05-02",
+      "requires": [
+        721,
+        1155
+      ]
+    },
+    {
+      "number": 7087,
+      "title": "MIME type for Web3 URL in Auto Mode",
+      "status": "Draft",
+      "created": "2023-05-28",
+      "requires": [
+        6860
+      ]
+    },
+    {
+      "number": 7092,
+      "title": "Financial Bonds",
+      "status": "Final",
+      "created": "2023-05-28",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 7093,
+      "title": "Social Recovery Interface",
+      "status": "Draft",
+      "created": "2023-05-29",
+      "requires": [
+        1271
+      ]
+    },
+    {
+      "number": 7144,
+      "title": "ERC-20 with transaction validation step.",
+      "status": "Review",
+      "created": "2023-05-07",
+      "requires": [
+        20
+      ]
+    },
+    {
+      "number": 7160,
+      "title": "ERC-721 Multi-Metadata Extension",
+      "status": "Final",
+      "created": "2023-06-09",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 7196,
+      "title": "Simple token, Simplified ERC-20",
+      "status": "Draft",
+      "created": "2023-06-21",
+      "requires": [
+        20
+      ]
+    },
+    {
+      "number": 7201,
+      "title": "Namespaced Storage Layout",
+      "status": "Final",
+      "created": "2023-06-20",
+      "requires": []
+    },
+    {
+      "number": 7204,
+      "title": "Contract wallet management token",
+      "status": "Draft",
+      "created": "2023-06-21",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 7208,
+      "title": "On-Chain Data Containers",
+      "status": "Final",
+      "created": "2023-06-09",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 7231,
+      "title": "Identity-aggregated NFT",
+      "status": "Final",
+      "created": "2023-06-25",
+      "requires": [
+        165,
+        721,
+        1271
+      ]
+    },
+    {
+      "number": 7246,
+      "title": "Encumber - Splitting Ownership & Guarantees",
+      "status": "Review",
+      "created": "2023-06-27",
+      "requires": [
+        20
+      ]
+    },
+    {
+      "number": 7254,
+      "title": "Token Revenue Sharing",
+      "status": "Draft",
+      "created": "2023-06-29",
+      "requires": []
+    },
+    {
+      "number": 7272,
+      "title": "Ethereum Access Token",
+      "status": "Draft",
+      "created": "2023-07-03",
+      "requires": [
+        712
+      ]
+    },
+    {
+      "number": 7280,
+      "title": "NFT Metadata Extension like JSON-LD",
+      "status": "Draft",
+      "created": "2023-07-04",
+      "requires": [
+        721,
+        1155,
+        3525
+      ]
+    },
+    {
+      "number": 7291,
+      "title": "Purpose bound money",
+      "status": "Final",
+      "created": "2023-06-24",
+      "requires": [
+        165,
+        173,
+        1155
+      ]
+    },
+    {
+      "number": 7303,
+      "title": "Token-Controlled Token Circulation",
+      "status": "Draft",
+      "created": "2023-07-09",
+      "requires": [
+        165,
+        721,
+        1155,
+        5679
+      ]
+    },
+    {
+      "number": 7390,
+      "title": "Vanilla Options for ERC-20 Tokens",
+      "status": "Draft",
+      "created": "2022-09-02",
+      "requires": [
+        20,
+        1155
+      ]
+    },
+    {
+      "number": 7399,
+      "title": "⚡ Flash Loans ⚡",
+      "status": "Review",
+      "created": "2023-07-25",
+      "requires": [
+        20
+      ]
+    },
+    {
+      "number": 7401,
+      "title": "Parent-Governed Non-Fungible Tokens Nesting",
+      "status": "Final",
+      "created": "2023-07-26",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 7405,
+      "title": "Portable Smart Contract Accounts",
+      "status": "Draft",
+      "created": "2023-07-26",
+      "requires": [
+        191,
+        1967
+      ]
+    },
+    {
+      "number": 7406,
+      "title": "Multi-Namespace Onchain Registry",
+      "status": "Draft",
+      "created": "2023-07-23",
+      "requires": [
+        137
+      ]
+    },
+    {
+      "number": 7409,
+      "title": "Public Non-Fungible Tokens Emote Repository",
+      "status": "Final",
+      "created": "2023-07-26",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 7410,
+      "title": "ERC-20 Update Allowance By Spender",
+      "status": "Draft",
+      "created": "2023-07-26",
+      "requires": [
+        20,
+        165
+      ]
+    },
+    {
+      "number": 7412,
+      "title": "On-Demand Off-Chain Data Retrieval",
+      "status": "Draft",
+      "created": "2023-07-26",
+      "requires": []
+    },
+    {
+      "number": 7417,
+      "title": "Token Converter",
+      "status": "Review",
+      "created": "2023-07-27",
+      "requires": [
+        20,
+        165,
+        223
+      ]
+    },
+    {
+      "number": 7425,
+      "title": "Tokenized Reserve",
+      "status": "Draft",
+      "created": "2023-06-30",
+      "requires": [
+        20,
+        4626
+      ]
+    },
+    {
+      "number": 7432,
+      "title": "Non-Fungible Token Roles",
+      "status": "Final",
+      "created": "2023-07-14",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 7439,
+      "title": "Prevent ticket touting",
+      "status": "Final",
+      "created": "2023-07-28",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 7444,
+      "title": "Time Locks Maturity",
+      "status": "Draft",
+      "created": "2023-06-05",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 7484,
+      "title": "Registry Extension for ERC-7579",
+      "status": "Draft",
+      "created": "2023-08-14",
+      "requires": [
+        7579
+      ]
+    },
+    {
+      "number": 7496,
+      "title": "NFT Dynamic Traits",
+      "status": "Draft",
+      "created": "2023-07-28",
+      "requires": [
+        165,
+        721,
+        1155
+      ]
+    },
+    {
+      "number": 7498,
+      "title": "NFT Redeemables",
+      "status": "Draft",
+      "created": "2023-07-28",
+      "requires": [
+        165,
+        712,
+        721,
+        1155,
+        1271
+      ]
+    },
+    {
+      "number": 7506,
+      "title": "Trusted Hint Registry",
+      "status": "Draft",
+      "created": "2023-08-31",
+      "requires": [
+        712
+      ]
+    },
+    {
+      "number": 7507,
+      "title": "Multi-User NFT Extension",
+      "status": "Draft",
+      "created": "2023-08-24",
+      "requires": [
+        721
+      ]
+    },
+    {
+      "number": 7508,
+      "title": "Dynamic On-Chain Token Attributes Repository",
+      "status": "Draft",
+      "created": "2023-08-15",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 7509,
+      "title": "Entity Component System",
+      "status": "Draft",
+      "created": "2023-09-05",
+      "requires": []
+    },
+    {
+      "number": 7510,
+      "title": "Cross-Contract Hierarchical NFT",
+      "status": "Draft",
+      "created": "2023-08-24",
+      "requires": [
+        721
+      ]
+    },
+    {
+      "number": 7511,
+      "title": "Minimal Proxy Contract with PUSH0",
+      "status": "Draft",
+      "created": "2023-09-04",
+      "requires": [
+        7,
+        211,
+        1167,
+        3855
+      ]
+    },
+    {
+      "number": 7512,
+      "title": "Onchain Representation for Audits",
+      "status": "Draft",
+      "created": "2023-09-05",
+      "requires": [
+        712
+      ]
+    },
+    {
+      "number": 7513,
+      "title": "Smart NFT - A Component for Intent-Centric",
+      "status": "Draft",
+      "created": "2023-09-06",
+      "requires": [
+        165,
+        1155
+      ]
+    },
+    {
+      "number": 7517,
+      "title": "Content Consent for AI/ML Data Mining",
+      "status": "Draft",
+      "created": "2023-09-12",
+      "requires": [
+        721,
+        7053
+      ]
+    },
+    {
+      "number": 7518,
+      "title": "Dynamic Compliant Interop Security Token",
+      "status": "Review",
+      "created": "2023-09-14",
+      "requires": [
+        165,
+        712,
+        1155,
+        1271,
+        5267
+      ]
+    },
+    {
+      "number": 7521,
+      "title": "General Intents for Smart Contract Wallets",
+      "status": "Draft",
+      "created": "2023-09-19",
+      "requires": []
+    },
+    {
+      "number": 7522,
+      "title": "OIDC ZK Verifier for AA Account",
+      "status": "Draft",
+      "created": "2023-09-20",
+      "requires": [
+        4337
+      ]
+    },
+    {
+      "number": 7524,
+      "title": "PLUME Signature in Wallets",
+      "status": "Draft",
+      "created": "2023-09-24",
+      "requires": []
+    },
+    {
+      "number": 7527,
+      "title": "Token Bound Function Oracle AMM",
+      "status": "Draft",
+      "created": "2023-09-03",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 7528,
+      "title": "ETH (Native Asset) Address Convention",
+      "status": "Final",
+      "created": "2023-10-03",
+      "requires": [
+        20,
+        55,
+        4626
+      ]
+    },
+    {
+      "number": 7529,
+      "title": "Contract Discovery and eTLD+1 Association",
+      "status": "Draft",
+      "created": "2023-09-30",
+      "requires": [
+        1191
+      ]
+    },
+    {
+      "number": 7531,
+      "title": "Staked ERC-721 Ownership Recognition",
+      "status": "Review",
+      "created": "2023-10-01",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 7533,
+      "title": "Public Cross Port",
+      "status": "Draft",
+      "created": "2023-10-11",
+      "requires": []
+    },
+    {
+      "number": 7535,
+      "title": "Native Asset ERC-4626 Tokenized Vault",
+      "status": "Final",
+      "created": "2023-10-12",
+      "requires": [
+        20,
+        4626,
+        7528
+      ]
+    },
+    {
+      "number": 7538,
+      "title": "Multiplicative Tokens",
+      "status": "Draft",
+      "created": "2023-10-18",
+      "requires": [
+        20,
+        1046,
+        1155
+      ]
+    },
+    {
+      "number": 7540,
+      "title": "Asynchronous ERC-4626 Tokenized Vaults",
+      "status": "Final",
+      "created": "2023-10-18",
+      "requires": [
+        20,
+        165,
+        4626,
+        7575
+      ]
+    },
+    {
+      "number": 7546,
+      "title": "Upgradeable Clone for Scalable Contracts",
+      "status": "Draft",
+      "created": "2023-10-25",
+      "requires": [
+        165,
+        1967,
+        7201
+      ]
+    },
+    {
+      "number": 7548,
+      "title": "Open IP Protocol built on NFTs",
+      "status": "Draft",
+      "created": "2023-10-31",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 7555,
+      "title": "Single Sign-On for Account Discovery",
+      "status": "Draft",
+      "created": "2023-11-10",
+      "requires": [
+        4337
+      ]
+    },
+    {
+      "number": 7561,
+      "title": "Simple NFT, Simplified ERC-721",
+      "status": "Draft",
+      "created": "2023-10-29",
+      "requires": [
+        721
+      ]
+    },
+    {
+      "number": 7562,
+      "title": "Account Abstraction Validation Scope Rules",
+      "status": "Review",
+      "created": "2023-09-01",
+      "requires": []
+    },
+    {
+      "number": 7564,
+      "title": "Contract wallet management NFT",
+      "status": "Draft",
+      "created": "2023-11-21",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 7565,
+      "title": "Perpetual Contract NFTs as Collateral",
+      "status": "Draft",
+      "created": "2023-11-27",
+      "requires": [
+        721,
+        4907
+      ]
+    },
+    {
+      "number": 7566,
+      "title": "Multiplayer Game Communication",
+      "status": "Draft",
+      "created": "2023-11-28",
+      "requires": []
+    },
+    {
+      "number": 7572,
+      "title": "Contract-level metadata via `contractURI()`",
+      "status": "Draft",
+      "created": "2023-12-06",
+      "requires": []
+    },
+    {
+      "number": 7573,
+      "title": "Conditional-upon-Transfer-Decryption for DvP",
+      "status": "Draft",
+      "created": "2023-12-05",
+      "requires": []
+    },
+    {
+      "number": 7574,
+      "title": "Authentication SBT using Credential",
+      "status": "Draft",
+      "created": "2023-11-02",
+      "requires": [
+        165,
+        721,
+        5192
+      ]
+    },
+    {
+      "number": 7575,
+      "title": "Multi-Asset ERC-4626 Vaults",
+      "status": "Final",
+      "created": "2023-12-11",
+      "requires": [
+        20,
+        165,
+        2771,
+        4626
+      ]
+    },
+    {
+      "number": 7578,
+      "title": "Physical Asset Redemption",
+      "status": "Final",
+      "created": "2023-08-01",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 7579,
+      "title": "Minimal Modular Smart Accounts",
+      "status": "Draft",
+      "created": "2023-12-14",
+      "requires": [
+        165,
+        1271,
+        2771,
+        4337
+      ]
+    },
+    {
+      "number": 7580,
+      "title": "Advertisement Tracking Interface",
+      "status": "Draft",
+      "created": "2023-12-13",
+      "requires": []
+    },
+    {
+      "number": 7582,
+      "title": "Modular Accounts with Delegated Validation",
+      "status": "Draft",
+      "created": "2023-12-25",
+      "requires": [
+        4337
+      ]
+    },
+    {
+      "number": 7585,
+      "title": "MixHash and Public Data Storage Proofs",
+      "status": "Draft",
+      "created": "2023-12-27",
+      "requires": [
+        165,
+        721,
+        1155
+      ]
+    },
+    {
+      "number": 7586,
+      "title": "Interest Rate Swaps",
+      "status": "Review",
+      "created": "2023-12-31",
+      "requires": [
+        20,
+        165
+      ]
+    },
+    {
+      "number": 7588,
+      "title": "Blob Transactions Metadata JSON Schema",
+      "status": "Final",
+      "created": "2024-01-01",
+      "requires": [
+        4844
+      ]
+    },
+    {
+      "number": 7589,
+      "title": "Semi-Fungible Token Roles",
+      "status": "Draft",
+      "created": "2023-12-28",
+      "requires": [
+        165,
+        1155
+      ]
+    },
+    {
+      "number": 7590,
+      "title": "ERC-20 Holder Extension for NFTs",
+      "status": "Review",
+      "created": "2024-01-05",
+      "requires": [
+        20,
+        165,
+        721
+      ]
+    },
+    {
+      "number": 7595,
+      "title": "Collateralized NFT",
+      "status": "Draft",
+      "created": "2023-03-13",
+      "requires": [
+        20,
+        721
+      ]
+    },
+    {
+      "number": 7597,
+      "title": "Signature Validation Extension for Permit",
+      "status": "Draft",
+      "created": "2024-01-15",
+      "requires": [
+        1271,
+        2612
+      ]
+    },
+    {
+      "number": 7598,
+      "title": "Use contract signature for signed transfer",
+      "status": "Draft",
+      "created": "2024-01-15",
+      "requires": [
+        1271,
+        3009
+      ]
+    },
+    {
+      "number": 7603,
+      "title": "ERC-1155 Multi-Asset extension",
+      "status": "Draft",
+      "created": "2024-01-25",
+      "requires": [
+        165,
+        1155
+      ]
+    },
+    {
+      "number": 7604,
+      "title": "ERC-1155 Permit Approvals",
+      "status": "Draft",
+      "created": "2024-01-27",
+      "requires": [
+        165,
+        712,
+        1155,
+        1271,
+        2098,
+        5216
+      ]
+    },
+    {
+      "number": 7613,
+      "title": "Puppet Proxy Contract",
+      "status": "Draft",
+      "created": "2024-02-04",
+      "requires": []
+    },
+    {
+      "number": 7615,
+      "title": "Atomic Push-based Data Feed Among Contracts",
+      "status": "Draft",
+      "created": "2024-02-03",
+      "requires": []
+    },
+    {
+      "number": 7617,
+      "title": "Chunk support for ERC-5219 mode in Web3 URL",
+      "status": "Draft",
+      "created": "2024-02-08",
+      "requires": [
+        5219,
+        6944
+      ]
+    },
+    {
+      "number": 7618,
+      "title": "Content encoding in ERC-5219 mode Web3 URL",
+      "status": "Draft",
+      "created": "2024-02-08",
+      "requires": [
+        5219,
+        6944
+      ]
+    },
+    {
+      "number": 7621,
+      "title": "Basket Token",
+      "status": "Draft",
+      "created": "2024-02-11",
+      "requires": [
+        20,
+        165,
+        173
+      ]
+    },
+    {
+      "number": 7627,
+      "title": "Secure Messaging Protocol",
+      "status": "Final",
+      "created": "2024-02-19",
+      "requires": []
+    },
+    {
+      "number": 7628,
+      "title": "ERC-721 Ownership Shares Extension",
+      "status": "Review",
+      "created": "2024-02-20",
+      "requires": [
+        721
+      ]
+    },
+    {
+      "number": 7629,
+      "title": "ERC-20/ERC-721 Unified Token Interface",
+      "status": "Draft",
+      "created": "2024-02-18",
+      "requires": [
+        20,
+        165,
+        721
+      ]
+    },
+    {
+      "number": 7631,
+      "title": "Dual Nature Token Pair",
+      "status": "Final",
+      "created": "2024-02-21",
+      "requires": [
+        20,
+        721
+      ]
+    },
+    {
+      "number": 7632,
+      "title": "Interfaces for Named Token",
+      "status": "Draft",
+      "created": "2024-02-08",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 7634,
+      "title": "Limited Transfer Count NFT",
+      "status": "Final",
+      "created": "2024-02-22",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 7638,
+      "title": "Batch Calls Encoding in SCA",
+      "status": "Draft",
+      "created": "2024-02-26",
+      "requires": []
+    },
+    {
+      "number": 7641,
+      "title": "Intrinsic RevShare Token",
+      "status": "Draft",
+      "created": "2024-02-28",
+      "requires": [
+        20
+      ]
+    },
+    {
+      "number": 7644,
+      "title": "ERC-721 Name Registry Extension",
+      "status": "Draft",
+      "created": "2024-03-01",
+      "requires": [
+        721
+      ]
+    },
+    {
+      "number": 7649,
+      "title": "Bonding curve-embedded liquidity for NFTs",
+      "status": "Draft",
+      "created": "2024-02-28",
+      "requires": [
+        721
+      ]
+    },
+    {
+      "number": 7651,
+      "title": "Fractionally Represented Non-Fungible Token",
+      "status": "Draft",
+      "created": "2024-03-05",
+      "requires": [
+        20,
+        165,
+        721
+      ]
+    },
+    {
+      "number": 7652,
+      "title": "ERC-721 Guarantee Extension",
+      "status": "Draft",
+      "created": "2024-03-10",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 7654,
+      "title": "Request Method Types",
+      "status": "Draft",
+      "created": "2024-03-13",
+      "requires": []
+    },
+    {
+      "number": 7656,
+      "title": "Generalized Contract-Linked Services",
+      "status": "Final",
+      "created": "2024-03-15",
+      "requires": [
+        20,
+        165,
+        721,
+        1155,
+        1167,
+        4337
+      ]
+    },
+    {
+      "number": 7662,
+      "title": "AI Agent NFTs",
+      "status": "Draft",
+      "created": "2024-03-26",
+      "requires": [
+        721
+      ]
+    },
+    {
+      "number": 7673,
+      "title": "Distinguishable base256emoji Addresses",
+      "status": "Review",
+      "created": "2024-04-01",
+      "requires": []
+    },
+    {
+      "number": 7674,
+      "title": "Temporary Approval Extension for ERC-20",
+      "status": "Review",
+      "created": "2024-04-02",
+      "requires": [
+        20,
+        1153
+      ]
+    },
+    {
+      "number": 7677,
+      "title": "Paymaster Web Service Capability",
+      "status": "Review",
+      "created": "2024-04-03",
+      "requires": [
+        4337,
+        5792
+      ]
+    },
+    {
+      "number": 7679,
+      "title": "UserOperation Builder",
+      "status": "Draft",
+      "created": "2024-04-05",
+      "requires": [
+        4337
+      ]
+    },
+    {
+      "number": 7681,
+      "title": "Dual Nature Multi Token Protocol",
+      "status": "Draft",
+      "created": "2024-04-08",
+      "requires": [
+        20,
+        1155
+      ]
+    },
+    {
+      "number": 7682,
+      "title": "Auxiliary Funds Capability",
+      "status": "Draft",
+      "created": "2024-04-09",
+      "requires": [
+        5792
+      ]
+    },
+    {
+      "number": 7683,
+      "title": "Cross Chain Intents",
+      "status": "Draft",
+      "created": "2024-04-11",
+      "requires": [
+        7930
+      ]
+    },
+    {
+      "number": 7694,
+      "title": "Solana Storage Router",
+      "status": "Draft",
+      "created": "2024-04-18",
+      "requires": [
+        3668,
+        7700
+      ]
+    },
+    {
+      "number": 7695,
+      "title": "Ownership Delegation and Context for ERC-721",
+      "status": "Draft",
+      "created": "2024-04-02",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 7699,
+      "title": "ERC-20 Transfer Reference Extension",
+      "status": "Draft",
+      "created": "2024-04-26",
+      "requires": [
+        20,
+        165
+      ]
+    },
+    {
+      "number": 7700,
+      "title": "Cross-chain Storage Router Protocol",
+      "status": "Draft",
+      "created": "2024-04-30",
+      "requires": [
+        155
+      ]
+    },
+    {
+      "number": 7710,
+      "title": "Smart Contract Delegation",
+      "status": "Draft",
+      "created": "2024-05-20",
+      "requires": [
+        1271,
+        7579
+      ]
+    },
+    {
+      "number": 7715,
+      "title": "Request Permissions from Wallets",
+      "status": "Draft",
+      "created": "2024-05-24",
+      "requires": [
+        4337,
+        7710
+      ]
+    },
+    {
+      "number": 7720,
+      "title": "Deferred Token Transfer",
+      "status": "Draft",
+      "created": "2024-06-09",
+      "requires": [
+        20
+      ]
+    },
+    {
+      "number": 7721,
+      "title": "Lockable Extension for ERC-1155",
+      "status": "Draft",
+      "created": "2023-05-25",
+      "requires": [
+        165,
+        1155
+      ]
+    },
+    {
+      "number": 7722,
+      "title": "Opaque Token",
+      "status": "Draft",
+      "created": "2024-06-09",
+      "requires": []
+    },
+    {
+      "number": 7726,
+      "title": "Common Quote Oracle",
+      "status": "Draft",
+      "created": "2024-06-20",
+      "requires": [
+        7528
+      ]
+    },
+    {
+      "number": 7729,
+      "title": "Token with Metadata",
+      "status": "Draft",
+      "created": "2023-06-24",
+      "requires": [
+        20
+      ]
+    },
+    {
+      "number": 7730,
+      "title": "Structured Data Clear Signing Format",
+      "status": "Draft",
+      "created": "2024-02-07",
+      "requires": [
+        155,
+        712
+      ]
+    },
+    {
+      "number": 7734,
+      "title": "Decentralized Identity Verification (DID)",
+      "status": "Final",
+      "created": "2024-06-26",
+      "requires": []
+    },
+    {
+      "number": 7738,
+      "title": "Permissionless Script Registry",
+      "status": "Draft",
+      "created": "2024-07-01",
+      "requires": [
+        173
+      ]
+    },
+    {
+      "number": 7739,
+      "title": "Readable Typed Signatures for Smart Accounts",
+      "status": "Draft",
+      "created": "2024-05-28",
+      "requires": [
+        191,
+        712,
+        1271,
+        5267
+      ]
+    },
+    {
+      "number": 7741,
+      "title": "Authorize Operator",
+      "status": "Draft",
+      "created": "2024-06-03",
+      "requires": [
+        712,
+        1271
+      ]
+    },
+    {
+      "number": 7743,
+      "title": "Multi-Owner Non-Fungible Tokens (MO-NFT)",
+      "status": "Final",
+      "created": "2024-07-13",
+      "requires": []
+    },
+    {
+      "number": 7744,
+      "title": "Code Index",
+      "status": "Last Call",
+      "created": "2024-07-16",
+      "requires": []
+    },
+    {
+      "number": 7746,
+      "title": "Composable Security Middleware Hooks",
+      "status": "Last Call",
+      "created": "2024-07-17",
+      "requires": []
+    },
+    {
+      "number": 7750,
+      "title": "Decentralized Employment System",
+      "status": "Review",
+      "created": "2024-08-04",
+      "requires": []
+    },
+    {
+      "number": 7751,
+      "title": "Wrapping of bubbled up reverts",
+      "status": "Final",
+      "created": "2024-08-06",
+      "requires": []
+    },
+    {
+      "number": 7754,
+      "title": "Tamperproof Extension Wallets API (TWIST)",
+      "status": "Draft",
+      "created": "2024-07-29",
+      "requires": [
+        1193
+      ]
+    },
+    {
+      "number": 7758,
+      "title": "Transfer With Authorization",
+      "status": "Review",
+      "created": "2020-09-28",
+      "requires": [
+        20,
+        712
+      ]
+    },
+    {
+      "number": 7760,
+      "title": "Minimal Upgradeable Proxies",
+      "status": "Draft",
+      "created": "2024-08-19",
+      "requires": [
+        1967
+      ]
+    },
+    {
+      "number": 7765,
+      "title": "Privileged Non-Fungible Tokens Tied To RWA",
+      "status": "Draft",
+      "created": "2024-08-20",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 7766,
+      "title": "Signature Aggregation for ERC-4337",
+      "status": "Withdrawn",
+      "created": "2024-09-01",
+      "requires": [
+        4337,
+        7562
+      ]
+    },
+    {
+      "number": 7769,
+      "title": "JSON-RPC API for ERC-4337",
+      "status": "Draft",
+      "created": "2024-08-23",
+      "requires": [
+        155,
+        4337,
+        7562
+      ]
+    },
+    {
+      "number": 7770,
+      "title": "Fractional Reserve Token",
+      "status": "Draft",
+      "created": "2024-09-17",
+      "requires": [
+        20
+      ]
+    },
+    {
+      "number": 7774,
+      "title": "Cache invalidation in ERC-5219 mode Web3 URL",
+      "status": "Draft",
+      "created": "2024-09-20",
+      "requires": [
+        5219,
+        6944
+      ]
+    },
+    {
+      "number": 7776,
+      "title": "Transparent Financial Statements",
+      "status": "Review",
+      "created": "2024-09-20",
+      "requires": [
+        20
+      ]
+    },
+    {
+      "number": 7777,
+      "title": "Governance for Human Robot Societies",
+      "status": "Review",
+      "created": "2024-09-29",
+      "requires": []
+    },
+    {
+      "number": 7779,
+      "title": "Interoperable Delegated Accounts",
+      "status": "Draft",
+      "created": "2024-10-02",
+      "requires": [
+        7201,
+        7702
+      ]
+    },
+    {
+      "number": 7780,
+      "title": "Validation Module Extension for ERC-7579",
+      "status": "Draft",
+      "created": "2024-10-01",
+      "requires": [
+        7579
+      ]
+    },
+    {
+      "number": 7785,
+      "title": "Onchain registration of chain identifiers",
+      "status": "Draft",
+      "created": "2024-09-26",
+      "requires": [
+        2304
+      ]
+    },
+    {
+      "number": 7786,
+      "title": "Cross-Chain Messaging Gateway",
+      "status": "Final",
+      "created": "2024-10-14",
+      "requires": [
+        7930
+      ]
+    },
+    {
+      "number": 7787,
+      "title": "Soulbound Degradable Governance",
+      "status": "Draft",
+      "created": "2024-10-15",
+      "requires": [
+        20
+      ]
+    },
+    {
+      "number": 7794,
+      "title": "Grant Registry",
+      "status": "Draft",
+      "created": "2024-10-22",
+      "requires": []
+    },
+    {
+      "number": 7795,
+      "title": "Wallet Call Token Capabilities",
+      "status": "Draft",
+      "created": "2024-10-22",
+      "requires": [
+        20,
+        721,
+        1155,
+        5792
+      ]
+    },
+    {
+      "number": 7796,
+      "title": "Conditional send transaction RPC",
+      "status": "Review",
+      "created": "2024-04-16",
+      "requires": []
+    },
+    {
+      "number": 7802,
+      "title": "Token With Mint/Burn Access Across Chains",
+      "status": "Draft",
+      "created": "2024-10-30",
+      "requires": [
+        165,
+        5679
+      ]
+    },
+    {
+      "number": 7803,
+      "title": "EIP-712 Extensions for Account Abstraction",
+      "status": "Draft",
+      "created": "2024-10-08",
+      "requires": [
+        712
+      ]
+    },
+    {
+      "number": 7806,
+      "title": "Minimal intent-centric EOA smart account",
+      "status": "Draft",
+      "created": "2024-11-02",
+      "requires": [
+        7702
+      ]
+    },
+    {
+      "number": 7811,
+      "title": "Wallet Asset Discovery",
+      "status": "Draft",
+      "created": "2024-11-07",
+      "requires": [
+        20,
+        155,
+        721,
+        5792
+      ]
+    },
+    {
+      "number": 7812,
+      "title": "ZK Identity Registry",
+      "status": "Review",
+      "created": "2024-11-08",
+      "requires": []
+    },
+    {
+      "number": 7813,
+      "title": "Store, Table-Based Introspectable Storage",
+      "status": "Final",
+      "created": "2024-11-08",
+      "requires": []
+    },
+    {
+      "number": 7818,
+      "title": "Expirable ERC-20",
+      "status": "Final",
+      "created": "2024-11-13",
+      "requires": [
+        20
+      ]
+    },
+    {
+      "number": 7820,
+      "title": "Access Control Registry",
+      "status": "Final",
+      "created": "2024-11-19",
+      "requires": []
+    },
+    {
+      "number": 7821,
+      "title": "Minimal Batch Executor Interface",
+      "status": "Draft",
+      "created": "2024-11-21",
+      "requires": [
+        7579
+      ]
+    },
+    {
+      "number": 7827,
+      "title": "JSON Contract with Value Version Control",
+      "status": "Draft",
+      "created": "2024-11-07",
+      "requires": []
+    },
+    {
+      "number": 7828,
+      "title": "Interoperable Names",
+      "status": "Review",
+      "created": "2024-11-27",
+      "requires": [
+        155,
+        7930
+      ]
+    },
+    {
+      "number": 7829,
+      "title": "Data Asset NFT",
+      "status": "Review",
+      "created": "2024-11-29",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 7831,
+      "title": "Multi-Chain Addressing",
+      "status": "Draft",
+      "created": "2024-08-30",
+      "requires": [
+        55,
+        137,
+        155,
+        165,
+        2304
+      ]
+    },
+    {
+      "number": 7832,
+      "title": "Sustainable collaborative NFT collections",
+      "status": "Review",
+      "created": "2024-12-04",
+      "requires": [
+        721
+      ]
+    },
+    {
+      "number": 7836,
+      "title": "Wallet Call Preparation API",
+      "status": "Draft",
+      "created": "2024-12-06",
+      "requires": [
+        1193,
+        5792
+      ]
+    },
+    {
+      "number": 7837,
+      "title": "Diffusive Tokens",
+      "status": "Final",
+      "created": "2024-12-07",
+      "requires": []
+    },
+    {
+      "number": 7841,
+      "title": "Cross-chain Message Format and Mailbox",
+      "status": "Draft",
+      "created": "2024-12-12",
+      "requires": []
+    },
+    {
+      "number": 7845,
+      "title": "Universal Orchestrator RPC",
+      "status": "Draft",
+      "created": "2024-11-07",
+      "requires": []
+    },
+    {
+      "number": 7846,
+      "title": "Wallet Connection API",
+      "status": "Draft",
+      "created": "2024-12-15",
+      "requires": []
+    },
+    {
+      "number": 7847,
+      "title": "Social Media NFTs",
+      "status": "Draft",
+      "created": "2024-12-18",
+      "requires": [
+        721,
+        1155
+      ]
+    },
+    {
+      "number": 7856,
+      "title": "Chain-Specific Payment Requests",
+      "status": "Draft",
+      "created": "2025-01-01",
+      "requires": []
+    },
+    {
+      "number": 7857,
+      "title": "AI Agents NFT with Private Metadata",
+      "status": "Final",
+      "created": "2025-01-02",
+      "requires": []
+    },
+    {
+      "number": 7858,
+      "title": "Expirable NFTs and SBTs",
+      "status": "Final",
+      "created": "2024-01-04",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 7861,
+      "title": "ERC-721 Verifiable Credential Extension",
+      "status": "Draft",
+      "created": "2025-01-14",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 7866,
+      "title": "Decentralised User Profiles",
+      "status": "Review",
+      "created": "2025-01-22",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 7871,
+      "title": "Wallet Signing API",
+      "status": "Draft",
+      "created": "2024-01-29",
+      "requires": [
+        191,
+        712,
+        5792
+      ]
+    },
+    {
+      "number": 7876,
+      "title": "Ethereum Network Configuration for DApps",
+      "status": "Draft",
+      "created": "2025-01-03",
+      "requires": [
+        55
+      ]
+    },
+    {
+      "number": 7878,
+      "title": "Bequeathable Contracts",
+      "status": "Final",
+      "created": "2025-02-01",
+      "requires": [
+        20,
+        165,
+        721,
+        1155
+      ]
+    },
+    {
+      "number": 7884,
+      "title": "Operation Router",
+      "status": "Draft",
+      "created": "2025-01-23",
+      "requires": []
+    },
+    {
+      "number": 7887,
+      "title": "Cancelation for ERC-7540 Tokenized Vaults",
+      "status": "Draft",
+      "created": "2025-02-18",
+      "requires": [
+        165,
+        7540
+      ]
+    },
+    {
+      "number": 7888,
+      "title": "Crosschain Broadcaster",
+      "status": "Draft",
+      "created": "2025-02-18",
+      "requires": []
+    },
+    {
+      "number": 7891,
+      "title": "Splitting and Merging of NFTs",
+      "status": "Draft",
+      "created": "2025-02-15",
+      "requires": [
+        721,
+        6150
+      ]
+    },
+    {
+      "number": 7893,
+      "title": "DeFi Protocol Solvency Proof Mechanism",
+      "status": "Final",
+      "created": "2025-01-30",
+      "requires": [
+        20,
+        165
+      ]
+    },
+    {
+      "number": 7895,
+      "title": "API for Hierarchical Accounts",
+      "status": "Draft",
+      "created": "2025-02-18",
+      "requires": []
+    },
+    {
+      "number": 7897,
+      "title": "Wallet-Linked Services for Smart Accounts",
+      "status": "Withdrawn",
+      "created": "2024-04-15",
+      "requires": [
+        165,
+        1167,
+        4337,
+        6551,
+        7656
+      ]
+    },
+    {
+      "number": 7902,
+      "title": "Wallet Capabilities for Account Abstraction",
+      "status": "Draft",
+      "created": "2025-03-01",
+      "requires": [
+        5792,
+        7702,
+        7906,
+        8141,
+        8250,
+        8272
+      ]
+    },
+    {
+      "number": 7908,
+      "title": "HD wallet In Treasury Management",
+      "status": "Final",
+      "created": "2025-03-07",
+      "requires": []
+    },
+    {
+      "number": 7913,
+      "title": "Signature Verifiers",
+      "status": "Final",
+      "created": "2025-03-21",
+      "requires": []
+    },
+    {
+      "number": 7920,
+      "title": "Composite EIP-712 Signatures",
+      "status": "Draft",
+      "created": "2025-03-20",
+      "requires": [
+        20,
+        712
+      ]
+    },
+    {
+      "number": 7929,
+      "title": "PermaLink Asset Bound Token",
+      "status": "Draft",
+      "created": "2025-04-01",
+      "requires": [
+        721
+      ]
+    },
+    {
+      "number": 7930,
+      "title": "Interoperable Addresses",
+      "status": "Review",
+      "created": "2025-02-02",
+      "requires": []
+    },
+    {
+      "number": 7936,
+      "title": "Versioned Proxy Contract Interface",
+      "status": "Review",
+      "created": "2025-04-17",
+      "requires": []
+    },
+    {
+      "number": 7943,
+      "title": "uRWA - Universal Real World Asset Interface",
+      "status": "Final",
+      "created": "2025-06-10",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 7945,
+      "title": "Confidential Transactions Supported Token",
+      "status": "Final",
+      "created": "2025-05-09",
+      "requires": [
+        20
+      ]
+    },
+    {
+      "number": 7946,
+      "title": "Unidirectional Wallet Uplink aka UWULink",
+      "status": "Draft",
+      "created": "2025-05-10",
+      "requires": [
+        155,
+        7702
+      ]
+    },
+    {
+      "number": 7947,
+      "title": "Account Abstraction Recovery Interface",
+      "status": "Draft",
+      "created": "2025-05-07",
+      "requires": []
+    },
+    {
+      "number": 7950,
+      "title": "Encode chain id with transaction hash",
+      "status": "Final",
+      "created": "2025-05-22",
+      "requires": [
+        155
+      ]
+    },
+    {
+      "number": 7955,
+      "title": "Permissionless CREATE2 Factory",
+      "status": "Draft",
+      "created": "2025-05-15",
+      "requires": [
+        1014,
+        7702
+      ]
+    },
+    {
+      "number": 7962,
+      "title": "Key Hash Based Tokens",
+      "status": "Review",
+      "created": "2025-05-16",
+      "requires": [
+        20,
+        712,
+        721,
+        5267
+      ]
+    },
+    {
+      "number": 7963,
+      "title": "Oracle-Permissioned ERC-20 with ZK Proofs",
+      "status": "Review",
+      "created": "2025-05-13",
+      "requires": [
+        20,
+        1967
+      ]
+    },
+    {
+      "number": 7964,
+      "title": "Crosschain EIP-712 Signatures",
+      "status": "Draft",
+      "created": "2025-06-05",
+      "requires": [
+        712,
+        1271,
+        5267
+      ]
+    },
+    {
+      "number": 7965,
+      "title": "Proof-based Broadcast in ERC-7786 Gateways",
+      "status": "Draft",
+      "created": "2025-06-06",
+      "requires": [
+        7786,
+        7930
+      ]
+    },
+    {
+      "number": 7968,
+      "title": "Owner-Authorized Token Transfer Protocol",
+      "status": "Draft",
+      "created": "2025-06-11",
+      "requires": [
+        20
+      ]
+    },
+    {
+      "number": 7969,
+      "title": "DomainKeys Identified Mail (DKIM) Registry",
+      "status": "Draft",
+      "created": "2025-06-11",
+      "requires": []
+    },
+    {
+      "number": 7984,
+      "title": "Confidential Fungible Token",
+      "status": "Draft",
+      "created": "2025-07-03",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 7985,
+      "title": "Gateway Attributes for Message Control",
+      "status": "Draft",
+      "created": "2024-07-04",
+      "requires": [
+        7786
+      ]
+    },
+    {
+      "number": 7988,
+      "title": "Minimal Avatar Smart Wallet (MASW)",
+      "status": "Draft",
+      "created": "2025-07-08",
+      "requires": [
+        7702
+      ]
+    },
+    {
+      "number": 7992,
+      "title": "Verifiable ML Model Inference (ZKML)",
+      "status": "Draft",
+      "created": "2025-07-23",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 7994,
+      "title": "Purpose-Bound ERC-20 with Conditional Unlock",
+      "status": "Final",
+      "created": "2025-07-29",
+      "requires": [
+        20,
+        7291
+      ]
+    },
+    {
+      "number": 7996,
+      "title": "Contract Feature Detection",
+      "status": "Draft",
+      "created": "2025-07-07",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 8000,
+      "title": "Operator contract for non delegated EOAs",
+      "status": "Draft",
+      "created": "2025-07-02",
+      "requires": [
+        1153,
+        2771
+      ]
+    },
+    {
+      "number": 8001,
+      "title": "Agent Coordination Framework",
+      "status": "Final",
+      "created": "2025-08-02",
+      "requires": [
+        712,
+        1271,
+        2098,
+        5267
+      ]
+    },
+    {
+      "number": 8002,
+      "title": "Simplified Payment Verification Gateway",
+      "status": "Draft",
+      "created": "2025-08-07",
+      "requires": []
+    },
+    {
+      "number": 8004,
+      "title": "Trustless Agents",
+      "status": "Draft",
+      "created": "2025-08-13",
+      "requires": [
+        155,
+        712,
+        721,
+        1271
+      ]
+    },
+    {
+      "number": 8017,
+      "title": "Payout Race",
+      "status": "Draft",
+      "created": "2025-08-31",
+      "requires": [
+        20
+      ]
+    },
+    {
+      "number": 8019,
+      "title": "Minimal Wallet-Managed Auto-Login for SIWE",
+      "status": "Review",
+      "created": "2025-09-02",
+      "requires": [
+        4361
+      ]
+    },
+    {
+      "number": 8023,
+      "title": "Multi-step Contract Ownership",
+      "status": "Draft",
+      "created": "2025-09-16",
+      "requires": []
+    },
+    {
+      "number": 8033,
+      "title": "Agent Council Oracles",
+      "status": "Draft",
+      "created": "2025-09-28",
+      "requires": [
+        20
+      ]
+    },
+    {
+      "number": 8034,
+      "title": "Referable NFT Royalties",
+      "status": "Final",
+      "created": "2025-10-02",
+      "requires": [
+        165,
+        712,
+        5521
+      ]
+    },
+    {
+      "number": 8040,
+      "title": "ESG Tokenization Protocol",
+      "status": "Draft",
+      "created": "2025-09-06",
+      "requires": [
+        20,
+        721,
+        1155
+      ]
+    },
+    {
+      "number": 8041,
+      "title": "Fixed-Supply Agent NFT Collections",
+      "status": "Draft",
+      "created": "2025-10-11",
+      "requires": [
+        7572,
+        8004,
+        8119
+      ]
+    },
+    {
+      "number": 8042,
+      "title": "Diamond Storage",
+      "status": "Final",
+      "created": "2025-10-11",
+      "requires": [
+        7201
+      ]
+    },
+    {
+      "number": 8047,
+      "title": "Forensic Token (Forest)",
+      "status": "Draft",
+      "created": "2025-10-15",
+      "requires": [
+        165,
+        1155,
+        5615
+      ]
+    },
+    {
+      "number": 8048,
+      "title": "Onchain Metadata for Token Registries",
+      "status": "Draft",
+      "created": "2025-09-30",
+      "requires": [
+        165,
+        7930,
+        8119
+      ]
+    },
+    {
+      "number": 8049,
+      "title": "Contract-Level Onchain Metadata",
+      "status": "Draft",
+      "created": "2025-10-10",
+      "requires": [
+        20,
+        165,
+        7930
+      ]
+    },
+    {
+      "number": 8054,
+      "title": "Forkable ERC-20 Token",
+      "status": "Draft",
+      "created": "2025-10-10",
+      "requires": [
+        20
+      ]
+    },
+    {
+      "number": 8056,
+      "title": "Scaled UI Amount Extension for ERC-20 Tokens",
+      "status": "Draft",
+      "created": "2025-10-20",
+      "requires": [
+        20,
+        165
+      ]
+    },
+    {
+      "number": 8063,
+      "title": "Groups - Membership Tokens",
+      "status": "Final",
+      "created": "2025-10-28",
+      "requires": [
+        20,
+        165
+      ]
+    },
+    {
+      "number": 8065,
+      "title": "Zero Knowledge Token Wrapper",
+      "status": "Draft",
+      "created": "2025-10-18",
+      "requires": [
+        20,
+        165,
+        721,
+        1155,
+        6909
+      ]
+    },
+    {
+      "number": 8074,
+      "title": "Self-Describing Bytes via EIP-712 Selectors",
+      "status": "Draft",
+      "created": "2025-10-30",
+      "requires": [
+        712
+      ]
+    },
+    {
+      "number": 8084,
+      "title": "Zero-knowledge proof metadata",
+      "status": "Draft",
+      "created": "2025-11-10",
+      "requires": []
+    },
+    {
+      "number": 8085,
+      "title": "Dual-Mode Fungible Tokens",
+      "status": "Draft",
+      "created": "2025-11-15",
+      "requires": [
+        20,
+        8086
+      ]
+    },
+    {
+      "number": 8086,
+      "title": "Privacy Token",
+      "status": "Draft",
+      "created": "2025-11-19",
+      "requires": []
+    },
+    {
+      "number": 8092,
+      "title": "Associated Accounts",
+      "status": "Draft",
+      "created": "2025-11-25",
+      "requires": [
+        712,
+        1271,
+        6492,
+        7930
+      ]
+    },
+    {
+      "number": 8100,
+      "title": "Representable Contract State",
+      "status": "Draft",
+      "created": "2025-12-01",
+      "requires": [
+        155
+      ]
+    },
+    {
+      "number": 8106,
+      "title": "RWA Event-based Compliance Framework",
+      "status": "Draft",
+      "created": "2025-12-16",
+      "requires": [
+        20
+      ]
+    },
+    {
+      "number": 8107,
+      "title": "ENS Trust Registry for Agent Coordination",
+      "status": "Review",
+      "created": "2025-12-16",
+      "requires": [
+        137,
+        165,
+        712,
+        1271,
+        5267,
+        8001
+      ]
+    },
+    {
+      "number": 8109,
+      "title": "Diamonds, Simplified",
+      "status": "Withdrawn",
+      "created": "2025-12-21",
+      "requires": []
+    },
+    {
+      "number": 8110,
+      "title": "Domain Architecture for Diamonds",
+      "status": "Draft",
+      "created": "2025-12-20",
+      "requires": [
+        2535,
+        8042
+      ]
+    },
+    {
+      "number": 8111,
+      "title": "Bound Signatures",
+      "status": "Review",
+      "created": "2025-12-23",
+      "requires": []
+    },
+    {
+      "number": 8113,
+      "title": "Series Accounting for Incentivized Vaults",
+      "status": "Draft",
+      "created": "2025-12-25",
+      "requires": [
+        4626,
+        7540
+      ]
+    },
+    {
+      "number": 8117,
+      "title": "Anti-Poisoning Compact EVM Address Format",
+      "status": "Draft",
+      "created": "2025-12-30",
+      "requires": [
+        55,
+        1191
+      ]
+    },
+    {
+      "number": 8119,
+      "title": "Parameterized Storage Keys",
+      "status": "Draft",
+      "created": "2025-01-06",
+      "requires": []
+    },
+    {
+      "number": 8121,
+      "title": "Cross-Chain Function Calls via Hooks",
+      "status": "Draft",
+      "created": "2025-12-12",
+      "requires": [
+        3668,
+        7930
+      ]
+    },
+    {
+      "number": 8122,
+      "title": "Minimal Agent Registry",
+      "status": "Draft",
+      "created": "2025-12-17",
+      "requires": [
+        6909,
+        7930,
+        8048,
+        8049,
+        8127
+      ]
+    },
+    {
+      "number": 8126,
+      "title": "AI Agent Verification",
+      "status": "Final",
+      "created": "2026-01-15",
+      "requires": [
+        155,
+        191,
+        712,
+        721,
+        3009,
+        8004
+      ]
+    },
+    {
+      "number": 8127,
+      "title": "Human Readable Token Identifiers",
+      "status": "Draft",
+      "created": "2026-01-14",
+      "requires": [
+        7930
+      ]
+    },
+    {
+      "number": 8143,
+      "title": "Smart Credential Resolution Interface",
+      "status": "Draft",
+      "created": "2025-12-15",
+      "requires": [
+        165,
+        3668
+      ]
+    },
+    {
+      "number": 8152,
+      "title": "Content-Addressable Logic Modules (CALM)",
+      "status": "Review",
+      "created": "2026-01-18",
+      "requires": []
+    },
+    {
+      "number": 8153,
+      "title": "Facet-Based Diamonds",
+      "status": "Final",
+      "created": "2026-02-07",
+      "requires": [
+        2535
+      ]
+    },
+    {
+      "number": 8161,
+      "title": "Transferable Tokenized Vault Requests",
+      "status": "Final",
+      "created": "2025-02-12",
+      "requires": [
+        165,
+        7540
+      ]
+    },
+    {
+      "number": 8167,
+      "title": "Modular Dispatch Proxies",
+      "status": "Final",
+      "created": "2026-02-16",
+      "requires": []
+    },
+    {
+      "number": 8176,
+      "title": "Descriptor Attestations for ERC-7730",
+      "status": "Draft",
+      "created": "2026-02-26",
+      "requires": [
+        712,
+        1271,
+        7730
+      ]
+    },
+    {
+      "number": 8179,
+      "title": "Blob Space Segments",
+      "status": "Draft",
+      "created": "2026-02-08",
+      "requires": [
+        4844
+      ]
+    },
+    {
+      "number": 8180,
+      "title": "Blob Authenticated Messaging",
+      "status": "Draft",
+      "created": "2026-02-21",
+      "requires": [
+        4844,
+        8179
+      ]
+    },
+    {
+      "number": 8183,
+      "title": "Agentic Commerce",
+      "status": "Draft",
+      "created": "2026-02-25",
+      "requires": [
+        20
+      ]
+    },
+    {
+      "number": 8187,
+      "title": "Token Puller",
+      "status": "Draft",
+      "created": "2026-02-27",
+      "requires": [
+        20,
+        712,
+        1271,
+        2612,
+        5267,
+        6492
+      ]
+    },
+    {
+      "number": 8196,
+      "title": "AI Agent Authenticated Wallet",
+      "status": "Final",
+      "created": "2026-03-14",
+      "requires": [
+        155,
+        191,
+        712,
+        4337,
+        8126
+      ]
+    },
+    {
+      "number": 8199,
+      "title": "Sandboxed Smart Wallet",
+      "status": "Draft",
+      "created": "2026-03-19",
+      "requires": [
+        165,
+        173,
+        8023
+      ]
+    },
+    {
+      "number": 8217,
+      "title": "Agent NFT Identity Bindings",
+      "status": "Draft",
+      "created": "2026-04-05",
+      "requires": [
+        7930,
+        8004
+      ]
+    },
+    {
+      "number": 8226,
+      "title": "Regulated Agent Mandate",
+      "status": "Draft",
+      "created": "2026-04-12",
+      "requires": [
+        165,
+        712,
+        1271
+      ]
+    },
+    {
+      "number": 8255,
+      "title": "Expiring Token Approvals",
+      "status": "Draft",
+      "created": "2026-05-06",
+      "requires": [
+        20,
+        2612
+      ]
+    },
+    {
+      "number": 8257,
+      "title": "Agent Tool Registry",
+      "status": "Draft",
+      "created": "2026-04-17",
+      "requires": [
+        150,
+        165,
+        712,
+        1967
+      ]
+    },
+    {
+      "number": 8259,
+      "title": "AI Agent Identity & Threat Registry",
+      "status": "Draft",
+      "created": "2026-05-07",
+      "requires": []
+    },
+    {
+      "number": 8262,
+      "title": "Zero-Knowledge Compliance Oracle",
+      "status": "Review",
+      "created": "2026-04-07",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 8273,
+      "title": "Attestation-Gated Agentic Actions",
+      "status": "Draft",
+      "created": "2025-05-26",
+      "requires": [
+        165,
+        1153
+      ]
+    },
+    {
+      "number": 8286,
+      "title": "Modular Accounts for Frame Transactions",
+      "status": "Draft",
+      "created": "2026-06-04",
+      "requires": [
+        7579,
+        8141
+      ]
+    },
+    {
+      "number": 8290,
+      "title": "Shielded Note Teleportation",
+      "status": "Draft",
+      "created": "2026-06-05",
+      "requires": []
+    },
+    {
+      "number": 8320,
+      "title": "Regulated Asset Claim",
+      "status": "Draft",
+      "created": "2026-07-03",
+      "requires": [
+        165,
+        712,
+        1271
+      ]
+    },
+    {
+      "number": 8325,
+      "title": "Asset Anchor Registry",
+      "status": "Last Call",
+      "created": "2026-07-04",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 8326,
+      "title": "Canonical Document Bundle Anchor",
+      "status": "Last Call",
+      "created": "2026-07-05",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 8327,
+      "title": "Directional Transfer Domain Registry",
+      "status": "Last Call",
+      "created": "2026-07-05",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 8328,
+      "title": "Subject-Linked Compliance Event Log",
+      "status": "Last Call",
+      "created": "2026-07-05",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 8329,
+      "title": "Subject-Linked Impact Snapshot Log",
+      "status": "Last Call",
+      "created": "2026-07-05",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 8330,
+      "title": "Subject-Linked NAV Snapshot Oracle",
+      "status": "Review",
+      "created": "2026-07-05",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 8348,
+      "title": "Financial Lease",
+      "status": "Draft",
+      "created": "2026-07-23",
+      "requires": [
+        20,
+        165,
+        721,
+        4907,
+        8325
+      ]
+    },
+    {
+      "number": 8349,
+      "title": "Index-Based Multi-Facet Proxy",
+      "status": "Draft",
+      "created": "2026-07-25",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 8350,
+      "title": "Agent Memory State Registry",
+      "status": "Draft",
+      "created": "2026-07-14",
+      "requires": [
+        712,
+        1271,
+        7702
+      ]
+    },
+    {
+      "number": 8354,
+      "title": "Confidential Agent Policy Verdicts",
+      "status": "Draft",
+      "created": "2026-07-16",
+      "requires": [
+        165,
+        712,
+        721,
+        1271,
+        7812,
+        8004
+      ]
+    },
+    {
+      "number": 8376,
+      "title": "Token Launch Abuse Detection and Remediation",
+      "status": "Draft",
+      "created": "2026-08-07",
+      "requires": [
+        20,
+        165,
+        214
+      ]
+    },
+    {
+      "number": 8377,
+      "title": "Reference-Relative Slippage Bounds",
+      "status": "Draft",
+      "created": "2026-08-05",
+      "requires": [
+        165,
+        7726
+      ]
+    },
+    {
+      "number": 8410,
+      "title": "Portable Execution Plan Artifact",
+      "status": "Draft",
+      "created": "2026-09-04",
+      "requires": [
+        155,
+        712
+      ]
+    },
+    {
+      "number": 8426,
+      "title": "Wallet Pass Extension for NFTs",
+      "status": "Draft",
+      "created": "2026-08-07",
+      "requires": [
+        165,
+        721,
+        1271,
+        4361,
+        6492
+      ]
+    },
+    {
+      "number": 8436,
+      "title": "Agent Collective Decision Framework",
+      "status": "Draft",
+      "created": "2026-10-04",
+      "requires": [
+        165,
+        712,
+        1271,
+        6372
+      ]
+    },
+    {
+      "number": 8441,
+      "title": "Hybrid post-quantum stealth address scheme",
+      "status": "Draft",
+      "created": "2026-08-28",
+      "requires": [
+        5564,
+        6538
+      ]
+    },
+    {
+      "number": 8444,
+      "title": "Agentic Resource Discovery (ARD) Onchain",
+      "status": "Draft",
+      "created": "2026-10-12",
+      "requires": [
+        165,
+        712,
+        1271
+      ]
+    }
+  ]
+}

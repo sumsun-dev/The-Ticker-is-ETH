@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import usePageMeta from '../hooks/usePageMeta';
+import StandardTabs from '../components/eips/StandardTabs';
 import { loadEips, EIP_TOPICS, type EipRecord } from '../data/eipsData';
 import { loadEthCalls, type CallRecord } from '../data/ethCallsData';
 import { inclusionLabel, inclusionOf, lastDiscussed, matchEip, sortByRecent } from '../utils/eips';
@@ -49,6 +50,7 @@ const Eips: React.FC = () => {
     return (
         <div className="min-h-screen pt-28 pb-20 px-6 container mx-auto text-theme-text">
             <div className="max-w-5xl mx-auto break-keep">
+                <StandardTabs active="eip" />
                 <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="mb-14">
                     <div className="inline-block px-4 py-1.5 rounded-full border border-theme-border bg-theme-surface backdrop-blur-sm text-sm font-medium text-brand-primary mb-4">
                         {t('badge')}

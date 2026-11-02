@@ -27,6 +27,7 @@ import {
 import { isPublishable, participantCount } from '../src/utils/debates';
 import { inclusionLabel, inclusionOf } from '../src/utils/eips';
 import type { EipsFile } from '../src/data/eipsData';
+import type { ErcsFile } from '../src/data/ercsData';
 import type { CallRecord } from '../src/data/ethCallsData';
 import type { Debate } from '../src/data/ethDebatesData';
 import {
@@ -133,6 +134,8 @@ const debates = allDebates
 // EIP 해설 (scripts/extract-eips.ts). 상태 배지는 화면처럼 콜 기록에서 계산한다
 const eips = readJson<EipsFile>(join(DATA, 'eips.json')).eips.sort((a, b) => b.number - a.number);
 const ethCalls = readJson<{ calls: CallRecord[] }>(join(DATA, 'eth-calls.json')).calls;
+// ERC 해설 (scripts/extract-ercs.ts)
+const ercs = readJson<ErcsFile>(join(DATA, 'ercs.json')).ercs.sort((a, b) => a.number - b.number);
 
 const contents: ContentItem[] = [...research, ...newsItems];
 
@@ -160,6 +163,7 @@ const staticRoutes: SitemapEntry[] = [
     { loc: '/debates', changefreq: 'weekly', priority: '0.7' },
     { loc: '/calls', changefreq: 'weekly', priority: '0.7' },
     { loc: '/eips', changefreq: 'weekly', priority: '0.7' },
+    { loc: '/ercs', changefreq: 'weekly', priority: '0.7' },
     { loc: '/team', changefreq: 'monthly', priority: '0.7' },
     { loc: '/ecosystem', changefreq: 'monthly', priority: '0.7' },
     { loc: '/events', changefreq: 'weekly', priority: '0.7' },
@@ -200,7 +204,14 @@ const eipEntries: SitemapEntry[] = eips.map((e) => ({
     priority: '0.6',
 }));
 
-const allEntries = [...staticRoutes, ...contentEntries, ...videoEntries, ...memberEntries, ...debateEntries, ...eipEntries];
+const ercEntries: SitemapEntry[] = ercs.map((e) => ({
+    loc: `/ercs/${e.number}`,
+    lastmod: toIso(e.generatedAt),
+    changefreq: 'monthly',
+    priority: '0.6',
+}));
+
+const allEntries = [...staticRoutes, ...contentEntries, ...videoEntries, ...memberEntries, ...debateEntries, ...eipEntries, ...ercEntries];
 
 const sitemapXml =
     '<?xml version="1.0" encoding="UTF-8"?>\n' +
@@ -411,6 +422,42 @@ for (const e of eips) {
     eipPages++;
 }
 
+// ERC 해설 상세
+let ercPages = 0;
+for (const e of ercs) {
+    const path = `/ercs/${e.number}`;
+    const bodyHtml =
+        `<article>` +
+        `<h1>ERC-${e.number} ${esc(e.titleKo)} (${esc(e.meta.title)})</h1>` +
+        `<p>${esc(e.meta.status)} · ${esc(e.topic)} · ${esc(e.meta.created)} 작성</p>` +
+        `<p>${esc(e.summary)}</p>` +
+        `<h2>왜 필요한가</h2><p>${esc(e.why)}</p>` +
+        (e.iface.length ? `<h2>구현해야 하는 것</h2><ul>${e.iface.map((f) => `<li><code>${esc(f.sig)}</code>: ${esc(f.ko)}</li>`).join('')}</ul>` : '') +
+        `<h2>심층 설명</h2>${e.deep.map((d) => `<h3>${esc(d.title)}</h3><p>${esc(d.body)}</p>`).join('')}` +
+        (e.safety.length ? `<h2>쓸 때 주의할 점</h2><ul>${e.safety.map((w) => `<li>${esc(w.title)}: ${esc(w.body)}</li>`).join('')}</ul>` : '') +
+        `<p><a href="https://ercs.ethereum.org/ERCS/erc-${e.number}">ERC 원문</a> · <a href="/ercs">← ERCs</a></p>` +
+        `</article>`;
+    const html = buildShell({
+        title: `ERC-${e.number} ${e.titleKo}`,
+        description: e.summary,
+        url: `${SITE_URL}${path}`,
+        image: DEFAULT_IMAGE,
+        type: 'article',
+        publishedTime: toIso(e.generatedAt),
+        jsonLd: [
+            faqLd([{ q: `ERC-${e.number}(${e.meta.title})는 무엇인가?`, a: e.summary }, { q: `ERC-${e.number}는 왜 필요한가?`, a: e.why }]),
+            breadcrumbLd([
+                { name: 'Home', url: '/' },
+                { name: 'ERCs', url: '/ercs' },
+                { name: `ERC-${e.number}`, url: path },
+            ]),
+        ],
+        bodyHtml,
+    });
+    writePage(`ercs/${e.number}`, html);
+    ercPages++;
+}
+
 // 멤버 상세
 let memberPages = 0;
 for (const m of members) {
@@ -609,11 +656,11 @@ const staticPages: StaticPage[] = [
     {
         path: 'eips',
         title: 'EIPs',
-        description: `이더리움 코어 개발자 콜에 나온 EIP ${eips.length}개를 원문과 콜 기록을 바탕으로 쉽게, 그리고 깊게 풀어 둔 한국어 해설.`,
+        description: `이더리움 EIP ${eips.length}개를 원문과 코어 개발자 콜 기록을 바탕으로 쉽게, 그리고 깊게 풀어 둔 한국어 해설.`,
         bodyHtml:
             `<h1>이더리움은 EIP로 바뀝니다</h1>` +
             `<p>EIP(Ethereum Improvement Proposal)는 이더리움을 이렇게 바꾸자는 공개 제안서입니다. 코어 개발자 콜에서 논의를 거쳐 하드포크에 들어가야 실제 네트워크가 바뀝니다.</p>` +
-            `<h2>코어 개발자 콜에 나온 EIP</h2><ul>` +
+            `<h2>EIP 해설</h2><ul>` +
             eips.map((e) => `<li><a href="/eips/${e.number}">EIP-${e.number} ${esc(e.titleKo)}</a> (${esc(e.meta.title)}) — ${esc(e.summary)}</li>`).join('') +
             `</ul>`,
         jsonLd: [
@@ -622,6 +669,25 @@ const staticPages: StaticPage[] = [
                 url: '/eips',
                 description: '이더리움 EIP 한국어 해설',
                 items: eips.map((e) => ({ name: `EIP-${e.number} ${e.titleKo}`, url: `/eips/${e.number}` })),
+            }),
+        ],
+    },
+    {
+        path: 'ercs',
+        title: 'ERCs',
+        description: `토큰, NFT, 지갑 같은 이더리움 앱 표준(ERC) ${ercs.length}개를 원문을 바탕으로 쉽게, 그리고 깊게 풀어 둔 한국어 해설.`,
+        bodyHtml:
+            `<h1>ERC, 앱과 지갑이 함께 쓰는 약속</h1>` +
+            `<p>ERC는 이더리움 위에서 돌아가는 앱이 같은 방식으로 말하도록 정한 표준입니다. 하드포크 없이 앱과 지갑이 채택하면 쓰입니다.</p>` +
+            `<h2>ERC 해설</h2><ul>` +
+            ercs.map((e) => `<li><a href="/ercs/${e.number}">ERC-${e.number} ${esc(e.titleKo)}</a> (${esc(e.meta.title)}) — ${esc(e.summary)}</li>`).join('') +
+            `</ul>`,
+        jsonLd: [
+            collectionPageLd({
+                name: 'ERCs',
+                url: '/ercs',
+                description: '이더리움 ERC 한국어 해설',
+                items: ercs.map((e) => ({ name: `ERC-${e.number} ${e.titleKo}`, url: `/ercs/${e.number}` })),
             }),
         ],
     },
@@ -751,7 +817,8 @@ const llms =
     `- [Videos](${SITE_URL}/contents): Ethereum Korea One Genesis 세션 영상 (${videos.length}개, Contents의 영상 탭, 한국어·영어 요약)\n` +
     `- [Ethereum News](${SITE_URL}/news): 이더리움 최신 소식 데일리 피드 (${ethNews.items.length}건)\n` +
     `- [Ethereum Debates](${SITE_URL}/debates): 코어 개발자·리서처가 갈린 쟁점 (${debates.length}건)\n` +
-    `- [EIPs](${SITE_URL}/eips): 코어 개발자 콜에 나온 EIP 한국어 해설, 쉬운 설명과 심층 설명 (${eips.length}개)\n` +
+    `- [EIPs](${SITE_URL}/eips): EIP 한국어 해설, 쉬운 설명과 심층 설명 (${eips.length}개)\n` +
+    `- [ERCs](${SITE_URL}/ercs): ERC(토큰·NFT·지갑 등 앱 표준) 한국어 해설, 구현할 함수와 주의할 점 (${ercs.length}개)\n` +
     `- [Team](${SITE_URL}/team): 코어팀과 기여자\n` +
     `- [Ecosystem](${SITE_URL}/ecosystem): 이더리움 생태계\n` +
     `- [Events](${SITE_URL}/events): 이벤트\n\n` +
@@ -848,5 +915,5 @@ writeFileSync(join(DIST, 'feed.xml'), rss);
 
 // ── 요약 출력 ───────────────────────────────────────────────
 console.log(
-    `[generate-seo] sitemap: ${allEntries.length} urls · static: ${staticPagesCount} · content shells: ${contentPages} · debate shells: ${debatePages} · eip shells: ${eipPages} · member shells: ${memberPages} · video shells: ${videoPages} · llms.txt: ${recent.length} · llms-full: ${sortedContents.length} · rss: ${feedItems.length}`,
+    `[generate-seo] sitemap: ${allEntries.length} urls · static: ${staticPagesCount} · content shells: ${contentPages} · debate shells: ${debatePages} · eip shells: ${eipPages} · erc shells: ${ercPages} · member shells: ${memberPages} · video shells: ${videoPages} · llms.txt: ${recent.length} · llms-full: ${sortedContents.length} · rss: ${feedItems.length}`,
 );
