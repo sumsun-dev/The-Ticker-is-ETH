@@ -43,7 +43,7 @@ export const ErcDraftSchema = z.object({
   before: z.array(z.string().min(1).max(300)).min(1).max(5),
   after: z.array(z.string().min(1).max(300)).min(1).max(5),
   impact: z.array(z.object({ who: z.string().min(1).max(40), text: z.string().min(1).max(500) })).min(1).max(5),
-  iface: z.array(z.object({ sig: z.string().min(1).max(600), ko: z.string().min(1).max(400) })).max(16).default([]),
+  iface: z.array(z.object({ sig: z.string().min(1).max(600), ko: z.string().min(1).max(400) })).max(40).default([]),
   flow: z
     .object({
       title: z.string().min(1).max(120),
