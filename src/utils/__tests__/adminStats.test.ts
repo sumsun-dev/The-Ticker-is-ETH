@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { periods, summarize } from '../adminStats';
+import { mergeAeo, periods, summarize } from '../adminStats';
 import type { StatsHistory } from '../../types/adminStats';
 
 const site = (visitors: number) => ({
@@ -73,5 +73,16 @@ describe('adminStats', () => {
     expect(s.visitors).toBeNull();
     expect(s.subscribers).toBeNull();
     expect(s.site).toBeUndefined();
+  });
+
+  it('mergeAeo: 주별 AEO를 합치고, 페이지는 AI 요청 순', () => {
+    expect(mergeAeo([])).toBeUndefined();
+    const a = { referrals: [['ChatGPT', 2]], kinds: [['실시간 답변', 3]], pages: [['/a', 3, 1]], errors: [] } as const;
+    const b = { referrals: [['ChatGPT', 1], ['Perplexity', 1]], kinds: [['학습 수집', 5]], pages: [['/a', 1, 0], ['/b', 5, 0]], errors: [['404 /x', 2]] } as const;
+    const m = mergeAeo([structuredClone(a) as never, structuredClone(b) as never]);
+    expect(m?.referrals).toEqual([['ChatGPT', 3], ['Perplexity', 1]]);
+    expect(m?.kinds).toEqual([['학습 수집', 5], ['실시간 답변', 3]]);
+    expect(m?.pages).toEqual([['/b', 5, 0], ['/a', 4, 1]]);
+    expect(m?.errors).toEqual([['404 /x', 2]]);
   });
 });

@@ -3,7 +3,7 @@
  * 수집(ssh·fetch·브라우저)과 송출은 scripts/local/weekly-stats.ts가 맡는다.
  */
 
-import type { LiPostRecord, SiteWeek, StatsHistory, TgPostRecord, WeekRecord } from '../../src/types/adminStats';
+import type { AeoPage, LiPostRecord, SiteWeek, StatsHistory, TgPostRecord, WeekRecord } from '../../src/types/adminStats';
 
 const DAY = 24 * 60 * 60 * 1000;
 const KST = 9 * 60 * 60 * 1000;
@@ -70,27 +70,67 @@ export type SiteStats = SiteWeek;
 
 const MOBILE_UA = /Mobile|Android|iPhone|iPad/;
 const SEARCH_BOTS = /Googlebot|bingbot|Yeti|DuckDuckBot|Applebot|Daum|YandexBot|Baiduspider/i;
-const AI_BOTS: Array<[string, RegExp]> = [
-  ['OpenAI', /GPTBot|OAI-SearchBot|ChatGPT-User/i],
-  ['Anthropic', /ClaudeBot|Claude-User|Claude-SearchBot|anthropic-ai/i],
-  ['Perplexity', /PerplexityBot|Perplexity-User/i],
-  ['Google AI', /Google-Extended|GoogleOther|Google-CloudVertexBot/i],
-  ['Meta', /meta-externalagent|FacebookBot/i],
-  ['ByteDance', /Bytespider/i],
-  ['Amazon', /Amazonbot/i],
-  ['Common Crawl', /CCBot/i],
+type AiKind = '학습 수집' | '검색 색인' | '실시간 답변';
+/** 회사가 공개한 크롤러 이름(User-Agent). 이름을 속인 봇은 못 거른다. 위에서부터 처음 맞는 것 하나로 센다 */
+const AI_BOTS: Array<[string, AiKind, RegExp]> = [
+  ['OpenAI', '실시간 답변', /ChatGPT-User/i],
+  ['OpenAI', '검색 색인', /OAI-SearchBot/i],
+  ['OpenAI', '학습 수집', /GPTBot/i],
+  ['Anthropic', '실시간 답변', /Claude-User/i],
+  ['Anthropic', '검색 색인', /Claude-SearchBot/i],
+  ['Anthropic', '학습 수집', /ClaudeBot|anthropic-ai/i],
+  ['Perplexity', '실시간 답변', /Perplexity-User/i],
+  ['Perplexity', '검색 색인', /PerplexityBot/i],
+  ['Google AI', '학습 수집', /GoogleOther|Google-CloudVertexBot/i], // Google-Extended는 robots.txt 토큰이라 UA에 안 나온다
+  ['Meta', '실시간 답변', /meta-externalfetcher/i],
+  ['Meta', '학습 수집', /meta-externalagent|FacebookBot/i],
+  ['ByteDance', '학습 수집', /Bytespider/i],
+  ['Amazon', '학습 수집', /Amazonbot/i],
+  ['Common Crawl', '학습 수집', /CCBot/i],
 ];
+export const aiBot = (ua: string) => AI_BOTS.find(([, , re]) => re.test(ua));
+/**
+ * 취약점 스캐너가 AI 봇 이름을 사칭해 설정·비밀 파일을 찔러 본다(2026-11 로그에서 ChatGPT-User·Claude-SearchBot 이름으로 /.env, /.aws/credentials 등).
+ * 이런 경로는 AI 집계에서 뺀다. ponytail: 경로 기준 추정. 정확히 가리려면 회사가 공개한 IP 대역과 대조한다
+ */
+const PROBE_PATH = /\/\.|\.(env|pem|key|ya?ml|json|php|sql|bak|config|ini|xml|txt|log|sh|zip|gz)(\?|$)|\/(wp-|xmlrpc|phpmyadmin|cgi-bin)/i;
+const PUBLIC_FILES = /^\/(robots\.txt|llms(-[\w-]+)?\.txt|sitemap[\w-]*\.xml)(\?|$)/;
+export const isProbe = (path: string) => PROBE_PATH.test(path) && !PUBLIC_FILES.test(path);
+
+/** AI 답변 서비스. referer 호스트나 utm_source(ChatGPT는 링크에 ?utm_source=chatgpt.com을 붙인다)로 알아본다 */
+const AI_REFERRERS: Array<[string, RegExp]> = [
+  ['ChatGPT', /(^|\.)(chatgpt\.com|chat\.openai\.com)$|^chatgpt$/],
+  ['Perplexity', /(^|\.)perplexity\.ai$|^perplexity$/],
+  ['Gemini', /^(gemini|bard)\.google\.com$|^gemini$/],
+  ['Copilot', /^copilot\.microsoft\.com$|^copilot$/],
+  ['Claude', /^claude\.ai$/],
+  ['Grok', /(^|\.)grok\.com$/],
+  ['DeepSeek', /^chat\.deepseek\.com$/],
+];
+export function aiReferral(l: Pick<LogLine, 'referer' | 'path'>): string | null {
+  const utm = /[?&]utm_source=([^&]+)/.exec(l.path)?.[1] ?? '';
+  let src = utm;
+  try {
+    src = decodeURIComponent(utm);
+  } catch {
+    // 깨진 %인코딩은 그대로 본다
+  }
+  const keys = [hostOf(l.referer), src.toLowerCase()].filter(Boolean);
+  return AI_REFERRERS.find(([, re]) => keys.some((k) => re.test(k)))?.[0] ?? null;
+}
 const SECTIONS: Record<string, string> = { '': '홈', news: '뉴스', contents: '콘텐츠', debates: '논쟁', events: '이벤트', team: '팀', contributors: '팀', ecosystem: '생태계', research: '리서치', calls: '코어 콜', about: '소개' };
+
+const isSiteRoute = (p: string) => SECTIONS[p.split('?')[0].split('/')[1] ?? ''] !== undefined;
 
 const kstDate = (t: Date) => new Date(t.getTime() + KST).toISOString().slice(0, 10);
 const count = (xs: string[]) => [...xs.reduce((m, x) => m.set(x, (m.get(x) ?? 0) + 1), new Map<string, number>())].sort((a, b) => b[1] - a[1]);
-const hostOf = (referer: string) => {
+function hostOf(referer: string): string {
   try {
     return new URL(referer).hostname.replace(/^www\./, '');
   } catch {
     return '';
   }
-};
+}
 
 /**
  * SPA라 서버에는 첫 진입만 남는다(사이트 안 이동은 안 잡힌다). 앱 JS(/assets/*.js)를 받아 간 IP+UA만 사람 방문자로 센다 (HTML만 긁는 스크래퍼 제외).
@@ -101,7 +141,7 @@ export function siteStats(lines: LogLine[], w: Window): SiteStats {
   const key = (l: LogLine) => `${l.ip}|${l.ua}`;
   const get = lines.filter((l) => l.method === 'GET');
   const inW = get.filter((l) => inWindowKst(l.time, w));
-  const people = inW.filter((l) => !BOT_UA.test(l.ua));
+  const people = inW.filter((l) => !BOT_UA.test(l.ua) && !aiBot(l.ua));
   const ok = people.filter((l) => l.status < 400);
   const humans = new Set(ok.filter((l) => isAsset(l.path)).map(key));
   const seenBefore = new Set(get.filter((l) => kstDate(l.time) < w.start && isAsset(l.path) && l.status < 400).map(key));
@@ -113,6 +153,12 @@ export function siteStats(lines: LogLine[], w: Window): SiteStats {
   const hours = count(pages.map((l) => String(new Date(l.time.getTime() + KST).getUTCHours())));
   const site = (h: string) => h === 'ethcollective.xyz';
   const external = pages.map((l) => hostOf(l.referer)).filter((h) => h && !site(h));
+  const clean = (p: string) => p.split('?')[0];
+  const ai = inW.flatMap((l) => {
+    const b = aiBot(l.ua);
+    return b && !isProbe(l.path) ? [{ l, company: b[0], kind: b[1] }] : [];
+  });
+  const humanLoads = new Map(count(pages.map((l) => clean(l.path))));
   return {
     visitors: humans.size,
     newVisitors: [...humans].filter((k) => !seenBefore.has(k)).length,
@@ -122,11 +168,21 @@ export function siteStats(lines: LogLine[], w: Window): SiteStats {
     peakHour: hours.length ? Number(hours[0][0]) : null,
     sections: count(pages.map((l) => SECTIONS[l.path.split('?')[0].split('/')[1] ?? ''] ?? '기타')),
     topPages: count(pages.map((l) => l.path.split('?')[0])).slice(0, 10),
-    sources: count(pages.map((l) => refererSource(l.referer))),
+    sources: count(pages.map((l) => (aiReferral(l) ? 'AI 답변' : refererSource(l.referer)))),
     refHosts: count(external).slice(0, 5),
     bots: {
       search: inW.filter((l) => SEARCH_BOTS.test(l.ua)).length,
-      ai: count(inW.flatMap((l) => AI_BOTS.filter(([, re]) => re.test(l.ua)).map(([name]) => name))),
+      ai: count(ai.map((x) => x.company)),
+    },
+    aeo: {
+      referrals: count(pages.flatMap((l) => aiReferral(l) ?? [])),
+      kinds: count(ai.map((x) => x.kind)),
+      // 학습 수집 봇(특히 Amazonbot)은 페이지를 고르게 긁어 순위가 무의미하다. 답변에 쓰이는 검색 색인·실시간 답변만 본다
+      // 모르는 경로도 SPA 대체로 200이 나가므로, 사칭 스캐너(/admin, /actuator 등)가 끼지 않게 실제 사이트 경로만 센다
+      pages: count(ai.filter((x) => x.kind !== '학습 수집' && x.l.status < 400 && isPage(x.l.path) && isSiteRoute(x.l.path)).map((x) => clean(x.l.path)))
+        .slice(0, 10)
+        .map(([p, c]): AeoPage => [p, c, humanLoads.get(p) ?? 0]),
+      errors: count(ai.filter((x) => x.l.status >= 400).map((x) => `${x.l.status} ${clean(x.l.path)}`)).slice(0, 5),
     },
     // 취약점 스캐너(.env·.git 탐색)는 앱 JS를 받지 않으니, 실제 방문자가 겪은 깨진 링크만 남는다
     notFound: count(people.filter((l) => l.status === 404 && humans.has(key(l)) && isPage(l.path)).map((l) => l.path.split('?')[0])).slice(0, 3),
@@ -280,6 +336,9 @@ export function formatReport(r: Report): string {
         '<b>크롤러</b>',
         `검색엔진 ${n(cur.bots.search)}회, AI ${n(ai)}회`,
         ...(cur.bots.ai.length ? [`AI 내역: ${cur.bots.ai.map(([b, c]) => `${esc(b)} ${n(c)}`).join(', ')}`] : []),
+        ...(cur.aeo?.kinds.length ? [`AI 용도: ${cur.aeo.kinds.map(([k, c]) => `${k} ${n(c)}`).join(', ')}`] : []),
+        ...(cur.aeo ? [`AI 답변에서 온 방문: ${cur.aeo.referrals.length ? cur.aeo.referrals.map(([k, c]) => `${k} ${n(c)}`).join(', ') : '없음'}`] : []),
+        ...(cur.aeo?.errors.length ? [`AI 봇이 받은 오류: ${cur.aeo.errors.map(([k, c]) => `${esc(k)} ${n(c)}`).join(', ')}`] : []),
         ...(cur.notFound.length ? [`방문자가 겪은 404: ${cur.notFound.map(([p, c]) => `${esc(p)} ${c}`).join(', ')}`] : []),
       ].join('\n'),
     );

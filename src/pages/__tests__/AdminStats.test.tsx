@@ -111,4 +111,30 @@ describe('AdminStats', () => {
         expect(within(table).getByText('sose')).toBeInTheDocument();
         expect(screen.getByText('가장 많이 쓴 기여자')).toBeInTheDocument();
     });
+
+    it('홈페이지 탭에 AI 노출(AEO): AI 답변 유입, 봇 용도, AI만 읽은 페이지, 오류', async () => {
+        const base = data(false);
+        const aeo = {
+            referrals: [['ChatGPT', 3]] as Array<[string, number]>,
+            kinds: [['실시간 답변', 12], ['학습 수집', 40]] as Array<[string, number]>,
+            pages: [['/events/ek1-genesis', 20, 12], ['/calls/acde-244', 9, 0]] as Array<[string, number, number]>,
+            errors: [['404 /old', 2]] as Array<[string, number]>,
+        };
+        mockFetch({ ...base, weeks: [{ ...base.weeks[0], site: { ...base.weeks[0].site!, aeo } }] });
+        renderWithProviders(<AdminStats />);
+        fireEvent.click(await screen.findByRole('tab', { name: '홈페이지' }));
+        const section = screen.getByRole('region', { name: 'AI 노출' });
+        expect(within(section).getByText('ChatGPT')).toBeInTheDocument();
+        expect(within(section).getByText('실시간 답변')).toBeInTheDocument();
+        expect(within(section).getByRole('link', { name: 'Ethereum Korea One · Genesis' })).toHaveAttribute('href', 'https://ethcollective.xyz/events/ek1-genesis');
+        expect(within(section).getByText('AI만')).toBeInTheDocument();
+        expect(within(section).getByText('404 /old')).toBeInTheDocument();
+    });
+
+    it('AEO 기록 전 기간은 안내만 보여 준다', async () => {
+        mockFetch(data(false));
+        renderWithProviders(<AdminStats />);
+        fireEvent.click(await screen.findByRole('tab', { name: '홈페이지' }));
+        expect(within(screen.getByRole('region', { name: 'AI 노출' })).getByText(/2026년 11월 수집부터/)).toBeInTheDocument();
+    });
 });

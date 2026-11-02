@@ -18,6 +18,22 @@ export interface SiteWeek {
   refHosts: Ranked;
   bots: { search: number; ai: Ranked };
   notFound: Ranked;
+  /** AI 답변 엔진 노출(AEO). 2026년 11월 수집부터 있다 */
+  aeo?: AeoWeek;
+}
+
+/** [경로, AI 답변·색인 봇 요청(학습 수집 제외), 사람 첫 진입] */
+export type AeoPage = [string, number, number];
+
+export interface AeoWeek {
+  /** AI 답변 서비스(ChatGPT·Perplexity 등)에서 링크를 눌러 들어온 사람의 첫 진입, 서비스별 */
+  referrals: Ranked;
+  /** AI 봇 요청을 용도별로: 학습 수집 / 검색 색인 / 실시간 답변 */
+  kinds: Ranked;
+  /** 답변·색인 봇이 많이 읽은 페이지 */
+  pages: AeoPage[];
+  /** AI 봇이 받은 오류 ["404 /path", 횟수] */
+  errors: Ranked;
 }
 
 export interface WeekRecord {
