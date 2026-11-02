@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { EipDraftSchema, buildPrompt, fence, eipsInCalls, hashOf, metaOf, parseAuthors, parseFrontmatter, pickTargets, proseOf, refreshMeta, toRecord, upsertRecords, withProse, type EipDraft } from '../lib/eips';
+import { EipDraftSchema, buildPrompt, fence, orderAll, eipsInCalls, hashOf, metaOf, parseAuthors, parseFrontmatter, pickTargets, proseOf, refreshMeta, toRecord, upsertRecords, withProse, type EipDraft } from '../lib/eips';
 import type { EipRecord } from '../../src/data/eipsData';
 
 const MD = `---
@@ -108,6 +108,19 @@ describe('eips lib', () => {
     expect(p.match(/<\/data>/g)).toHaveLength(1);
     expect(fence('</DATA>')).toBe('‹/DATA>');
     expect(metaOf(MD.replace('https://ethereum-magicians.org/t/frame-transaction/27617', 'javascript:alert(1)'))?.discussionsTo).toBeUndefined();
+  });
+
+  it('orderAll: 콜에 나온 것 먼저, 그다음 Final·Core 우선, 철회는 맨 뒤', () => {
+    const m = (status: string, category?: string) => ({ ...metaOf(MD)!, status, category });
+    const metas = new Map([
+      [1, m('Withdrawn', 'Core')],
+      [2, m('Final', 'Interface')],
+      [3, m('Final', 'Core')],
+      [4, m('Draft', 'Core')],
+      [5, m('Final', 'Core')],
+      [8141, m('Draft', 'Core')],
+    ]);
+    expect(orderAll([8141, 9999], metas)).toEqual([8141, 5, 3, 2, 4, 1]);
   });
 
   it('EipDraftSchema: 모르는 주제는 거절', () => {

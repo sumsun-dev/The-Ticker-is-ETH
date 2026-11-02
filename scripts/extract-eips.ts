@@ -5,6 +5,7 @@
  *
  * env: EIPS_LIMIT(한 번에 쓸 수, 기본 3) · EIPS(번호 쉼표 목록 — 있는 것도 다시 씀) · EIPS_MODEL(기본 fable)
  *      EIPS_DRY_RUN=1(대상과 프롬프트 앞부분만 출력, 저장 안 함) · HUMANIZE_OFF=1(윤문 끔)
+ *      EIPS_SCOPE=all(콜에 나온 것 다음으로 ethereum/EIPs 저장소의 모든 EIP까지 대상. 기본은 콜에 나온 것만. 순서는 lib/eips.ts orderAll)
  *      EIPS_REUSE=1(.cache/eips/<n>.out.txt에 남은 모델 응답을 다시 씀, 모델 호출 없이 검증·윤문만)
  */
 import fs from 'fs';
@@ -15,7 +16,7 @@ import { runClaude } from './lib/claude';
 import { extractJson } from './lib/eth-debates';
 import { humanizeTexts, normalizeTerms } from './lib/humanize';
 import { callLabel } from './lib/eth-calls';
-import { EipDraftSchema, buildPrompt, eipsInCalls, hashOf, metaOf, pickTargets, proseOf, refreshMeta, toRecord, upsertRecords, withProse, type EipContext } from './lib/eips';
+import { EipDraftSchema, buildPrompt, eipsInCalls, orderAll, hashOf, metaOf, pickTargets, proseOf, refreshMeta, toRecord, upsertRecords, withProse, type EipContext } from './lib/eips';
 import type { EipMeta, EipsFile } from '../src/data/eipsData';
 import { isPublishable } from '../src/utils/debates';
 import type { Debate } from '../src/data/ethDebatesData';
@@ -31,6 +32,18 @@ const LIMIT = Number(process.env.EIPS_LIMIT ?? 3);
 const DRY = Boolean(process.env.EIPS_DRY_RUN);
 const ONLY = (process.env.EIPS ?? '').split(',').map(Number).filter((n) => n > 0);
 const CACHE_HOURS = 20;
+const SCOPE_ALL = process.env.EIPS_SCOPE === 'all';
+
+/** ethereum/EIPs 저장소의 EIP 번호 전체 (트리 API 한 번) */
+async function allEipNumbers(): Promise<number[]> {
+  const r = await fetch('https://api.github.com/repos/ethereum/EIPs/git/trees/master?recursive=1', {
+    headers: { accept: 'application/vnd.github+json', ...(process.env.GITHUB_TOKEN ? { authorization: `Bearer ${process.env.GITHUB_TOKEN}` } : {}) },
+    signal: AbortSignal.timeout(30_000),
+  });
+  if (!r.ok) throw new Error(`EIP 목록 받기 실패: HTTP ${r.status}`);
+  const { tree } = (await r.json()) as { tree: Array<{ path: string }> };
+  return tree.map((x) => /^EIPS\/eip-(\d+)\.md$/.exec(x.path)?.[1]).filter((x): x is string => Boolean(x)).map(Number);
+}
 
 type Call = { id: string; series: string; number: number; date: string; kind?: string; eips?: number[]; decisions?: Array<{ eips?: number[]; status: string; text: string; fork?: string }> };
 
@@ -105,7 +118,8 @@ async function main() {
   const debates = readJson<{ debates: Debate[] }>(path.join(DATA, 'eth-debates.json')).debates;
   let file = readJson<EipsFile>(FILE);
 
-  const candidates = ONLY.length ? ONLY : eipsInCalls(calls).map((x) => x.number);
+  const callOrder = eipsInCalls(calls).map((x) => x.number);
+  const candidates = ONLY.length ? ONLY : SCOPE_ALL ? [...new Set([...callOrder, ...(await allEipNumbers())])] : callOrder;
   const sources = new Map<number, string>();
   const metas = new Map<number, EipMeta>();
   for (const n of candidates) {
@@ -120,7 +134,8 @@ async function main() {
 
   const today = new Date().toISOString().slice(0, 10);
   const hashes = new Map([...sources].map(([n, md]) => [n, hashOf(md)]));
-  const targets = ONLY.length ? ONLY.filter((n) => sources.has(n)) : pickTargets(candidates, file.eips, hashes, today, LIMIT);
+  const order = SCOPE_ALL ? orderAll(callOrder, metas) : candidates;
+  const targets = ONLY.length ? ONLY.filter((n) => sources.has(n)) : pickTargets(order, file.eips, hashes, today, LIMIT);
   console.log(`[eips] 이번에 쓸 EIP: ${targets.length ? targets.map((n) => `EIP-${n}`).join(', ') : '없음'}`);
 
   for (const n of targets) {

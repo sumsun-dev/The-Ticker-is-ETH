@@ -75,6 +75,28 @@ export function eipsInCalls(calls: CallLike[]): Array<{ number: number; last: st
   return [...m].map(([number, v]) => ({ number, ...v })).sort((a, b) => b.last.localeCompare(a.last) || b.mentions - a.mentions);
 }
 
+/** 전체 EIP를 채울 때 상태 순서: 메인넷에 적용된 것부터, 철회된 것은 맨 뒤 */
+const STATUS_ORDER = ['Final', 'Living', 'Last Call', 'Review', 'Draft', 'Stagnant', 'Withdrawn'];
+const statusRank = (s: string) => {
+  const i = STATUS_ORDER.indexOf(s);
+  return i < 0 ? STATUS_ORDER.length : i;
+};
+const isProtocol = (m: EipMeta) => m.category === 'Core' || m.category === 'Networking';
+
+/**
+ * 전체 EIP 순서: 콜에 나온 것(최근 순) → 나머지를 상태 순(Final 먼저), 같은 상태면 Core·Networking 먼저, 그다음 번호 큰 것.
+ * 원문 메타가 없는 번호는 뺀다
+ */
+export function orderAll(callOrder: number[], metas: Map<number, EipMeta>): number[] {
+  const inCalls = callOrder.filter((n) => metas.has(n));
+  const seen = new Set(inCalls);
+  const rest = [...metas]
+    .filter(([n]) => !seen.has(n))
+    .sort(([na, a], [nb, b]) => statusRank(a.status) - statusRank(b.status) || Number(isProtocol(b)) - Number(isProtocol(a)) || nb - na)
+    .map(([n]) => n);
+  return [...inCalls, ...rest];
+}
+
 /** 원문이 바뀌어도 이보다 자주 다시 쓰지 않는다 (Draft는 자주 고쳐진다) */
 export const REWRITE_AFTER_DAYS = 14;
 
