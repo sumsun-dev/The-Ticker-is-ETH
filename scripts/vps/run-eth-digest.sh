@@ -30,11 +30,11 @@ main() {
     return
   fi
 
-  # 밤 실행: EIP·ERC 해설을 하루 STANDARDS_PER_DAY(기본 30)개씩 채운다 (오너 2026-11-03 「하루에 각각 30개씩, 다 완료될때까지」)
-  # 종류마다 작업자 2개(샤드)라 4개가 동시에 돈다. 해설 하나에 약 12분이라 3시간 남짓, 아침 다이제스트 전에 끝나게 5시간으로 끊는다.
+  # 밤 실행: EIP·ERC 해설을 하루 STANDARDS_PER_DAY(기본 50)개씩 채운다 (오너 2026-11-03 「하루에 각각 30개씩, 다 완료될때까지」, 2026-11-04 「하루 50개씩으로 늘리자」)
+  # 종류마다 작업자 2개(샤드)라 4개가 동시에 돈다. VPS에선 해설 하나에 약 4분이라 50개면 2시간 남짓, 아침 다이제스트 전에 끝나게 5시간으로 끊는다.
   # 다 채우면 대상이 없어 바로 끝나고, 이후엔 원문이 바뀐 것만 다시 쓴다
   if [ "${1:-}" = standards ]; then
-    local half=$(( (${STANDARDS_PER_DAY:-30} + 1) / 2 )) i
+    local half=$(( (${STANDARDS_PER_DAY:-50} + 1) / 2 )) i
     mkdir -p "$HOME/logs"
     for i in 1 2; do
       EIPS_SCOPE=all EIPS_SHARD=$i/2 EIPS_LIMIT=$half timeout 5h npx tsx scripts/extract-eips.ts > "$HOME/logs/eips-$i.log" 2>&1 &
