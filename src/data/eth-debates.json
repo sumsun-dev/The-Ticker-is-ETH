@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-01T01:19:32.135Z",
+  "updatedAt": "2026-11-04T01:20:46.805Z",
   "processedDigests": [
     "2026-08-24",
     "2026-08-25",
@@ -32,9 +32,603 @@
     "2026-10-23",
     "2026-10-26",
     "2026-10-29",
-    "2026-11-01"
+    "2026-11-01",
+    "2026-11-04"
   ],
   "debates": [
+    {
+      "id": "ai-elliptic-curve-break-threat",
+      "title": "AI가 타원곡선 암호의 숨은 돌파구를 찾아 양자 전환을 앞당길 위협인가?",
+      "category": "프로토콜 설계",
+      "summary": "Vitalik Buterin이 ECDLP(타원곡선 이산로그 문제)나 페어링에 대해 이차체(quadratic sieve)급 미발견 알고리즘이 존재한다면 AI가 그것을 찾아낼 수 있다고 우려하자, Laura Shin은 근거 없는 일반론이라 반박했고 암호학자들은 대칭암호의 큰 보안 마진을 들어 선을 그었으며 dankrad는 대칭암호만의 돌파 가능성도 배제할 수 없다고 응수했다.",
+      "keyPoints": [
+        "타원곡선·격자(lattice)에 대해 아직 발견되지 않은 더 강력한 고전 알고리즘이 존재할 가능성이 있는가",
+        "AI가 50년치 수학을 압축해 그런 돌파구를 실제로 찾아낼 수 있는가",
+        "해시·대칭암호의 큰 보안 마진을 보고 타원곡선도 안심할 수 있는가"
+      ],
+      "background": "이더리움의 서명과 주소 체계는 타원곡선 암호(ECC)에 의존하며, 양자컴퓨터가 이를 깬다고 알려져 양자내성(post-quantum) 전환이 로드맵에 올라 있다. Vitalik은 위협이 양자컴퓨터뿐 아니라 AI 에이전트가 기존 기법보다 훨씬 강력한 고전 공격을 발견하는 경로로도 올 수 있다고 본다. 이차체는 정수 인수분해의 고전 알고리즘으로, 그에 상응하는 ECDLP 공격은 아직 알려지지 않았다. 이 논쟁은 양자내성 전환의 긴급도를 좌우하는 위협 모델을 공개 검증하는 과정이다.",
+      "whyItMatters": "위협 모델의 신빙성이 양자내성 전환 타임라인의 긴급도를 결정한다. 대칭암호와 타원곡선의 보안 마진이 다르다는 합의가 어느 선까지 가느냐가 로드맵 우선순위에 반영될 수 있다.",
+      "keywords": [
+        "ECDLP",
+        "post-quantum Ethereum",
+        "quadratic sieve",
+        "lattice cryptanalysis"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "미발견 돌파구를 AI가 찾아낼 수 있다",
+          "holders": [
+            {
+              "handle": "VitalikButerin",
+              "name": "vitalik.eth",
+              "role": "이더리움 창시자",
+              "avatar": "https://pbs.twimg.com/profile_images/2042521108067352576/3rv2_9m1_400x400.jpg"
+            }
+          ],
+          "points": [
+            "ECDLP나 페어링에 이차체급 알고리즘이 존재하는데 아직 못 찾았을 뿐이라면, 50년 이상의 수학을 5년에 스피드런하는 AI가 그것을 찾아낼 수 있다",
+            "격자 기반 암호에 대해서도 오늘보다 강력한 알고리즘이 존재할 가능성을 배제할 수 없다"
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "근거 없는 일반론이다",
+          "holders": [
+            {
+              "handle": "laurashin",
+              "name": "Laura Shin",
+              "role": "미디어·Unchained",
+              "avatar": "https://pbs.twimg.com/profile_images/1539462748173746176/hxR80FYT_400x400.png"
+            },
+            {
+              "handle": "matthew_d_green",
+              "name": "Matthew Green",
+              "watchlist": false,
+              "avatar": "https://pbs.twimg.com/profile_images/1876672891107868672/MheNrACO_400x400.jpg"
+            }
+          ],
+          "points": [
+            "지금 타원곡선이 위협받는다는 증거가 전혀 없으며, 'AI가 수학을 하니 암호 난해성 가정을 깰 것'이라는 근거 없는 일반론을 넘어서는 것이 없다 (laurashin)",
+            "해시 함수와 암호는 지금 찾아낸 최선의 공격보다 훨씬 많은 라운드를 돌리고 있어 대칭암호의 보안 마진이 크다 (matthew_d_green)"
+          ]
+        },
+        {
+          "stance": "neutral",
+          "label": "대칭암호 마진은 크지만 돌파 가능성은 남는다",
+          "holders": [
+            {
+              "handle": "dankrad",
+              "name": "Dankrad Feist",
+              "role": "EF 리서처, 데이터 가용성·확장성",
+              "avatar": "https://pbs.twimg.com/profile_images/1115816977061351424/HdvT_PLp_400x400.png"
+            }
+          ],
+          "points": [
+            "대칭암호의 보안 마진이 크다는 데는 동의하지만, EC를 깨는 기법이 대칭암호에 적용되지 않듯 역으로 EC와 무관한 대칭암호만의 돌파구가 따로 나올 가능성도 배제할 수 없다"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-11-02",
+          "by": "laurashin",
+          "stance": "con",
+          "quote": "하지만 지금 이것에 대한 증거가 없고, 타원곡선이 위협받는다는 증거는 더더욱 없다. 'AI가 수학을 하니 우리의 암호 난해성 가정을 깰 것'이라는 근거 없는 일반론을 넘어서는 것이 없다.",
+          "url": "https://x.com/laurashin/status/2117248070006317384",
+          "digest": "2026-11-04",
+          "relation": "none",
+          "original": "@davidmanheim @VitalikButerin @sja1729 But there's no evidence of this at this time, and certainly no evidence of EC being under threat, beyond a general \"wow, AI is doing math so it must break our cryptography hardness assumptions\" without any basis.  2/2",
+          "translation": "@davidmanheim @VitalikButerin @sja1729 하지만 현재로서는 이에 대한 증거가 없으며, EC(타원곡선, elliptic curve)가 위협받고 있다는 증거도 전혀 없다. '와, AI가 수학을 하고 있으니 분명 우리 암호학의 난이도 가정(hardness assumption)을 깰 것'이라는 근거 없는 일반론 외에는 아무것도 없다. 2/2"
+        },
+        {
+          "date": "2026-11-02",
+          "by": "matthew_d_green",
+          "stance": "con",
+          "quote": "우리는 지금 모든 해시 함수와 암호를 찾아낸 최선의 공격보다 훨씬 많은 라운드로 돌리고 있기 때문이다. 그리고 키 의존적 라운드는 대칭 방식에 복잡성을 더한다.",
+          "url": "https://x.com/dankrad/status/2117296515962343908",
+          "digest": "2026-11-04",
+          "replyTo": "dankrad",
+          "relation": "reply",
+          "original": "@dankrad @LindellYehuda @durumcrustulum Because we’re currently running all of our hash functions and ciphers many rounds beyond the best attacks we’ve been able to find. And adding key-dependent rounds really does add complexity to symmetric schemes. https://eprint.iacr.org/2019/1492.pdf",
+          "translation": "@dankrad @LindellYehuda @durumcrustulum 왜냐하면 우리는 현재 모든 해시 함수(hash function)와 암호(cipher)를 우리가 찾아낼 수 있었던 최선의 공격보다 훨씬 많은 라운드(round)로 돌리고 있기 때문이다. 그리고 키에 의존하는 라운드를 추가하는 것은 대칭 암호 체계(symmetric scheme)에 실제로 복잡성을 더해준다. https://eprint.iacr.org/2019/1492.pdf"
+        },
+        {
+          "date": "2026-11-02",
+          "by": "dankrad",
+          "stance": "neutral",
+          "quote": "EC 돌파구가 대칭암호에 적용되지 않는 것은 분명하다. 하지만 (EC에 적용되지 않는) 대칭암호만의 돌파구도 있을 수 있다.",
+          "url": "https://x.com/dankrad/status/2117323548536754635",
+          "digest": "2026-11-04",
+          "replyTo": "nfinf5",
+          "relation": "reply",
+          "original": "@nfinf5 @matthew_d_green @LindellYehuda @durumcrustulum Obviously an EC breakthrough won't apply to symmetric crypto. But there could also be a symmetric crypto breakthrough (that won't apply to EC)",
+          "translation": "@nfinf5 @matthew_d_green @LindellYehuda @durumcrustulum 당연히 EC(타원곡선) 분야의 돌파구는 대칭 암호(symmetric crypto)에는 적용되지 않을 것이다. 하지만 대칭 암호 분야에서도 돌파구가 있을 수 있다(이는 EC에는 적용되지 않는다)."
+        },
+        {
+          "date": "2026-11-03",
+          "by": "VitalikButerin",
+          "stance": "pro",
+          "quote": "내 우려는 이렇게 표현하겠다. ECDLP나 페어링에 대한 이차체(quadratic sieve)에 상응하는 것, 그리고 격자를 깨는 오늘보다 강력한 알고리즘이 존재하는데 우리가 아직 찾지 못했을 뿐이고, 50년 이상의 수학을 5년에 스피드런하는 AI가 그것을 찾아낸다면?",
+          "url": "https://x.com/VitalikButerin/status/2117443537868562768",
+          "digest": "2026-11-04",
+          "replyTo": "davidmanheim",
+          "relation": "reply",
+          "original": "@davidmanheim @LindellYehuda @sja1729 I would describe my worry as: what if the equivalent of quadratic sieve for ECDLP or pairings (and similarly, more-powerful-than-today algorithms for breaking lattices) exist, and we've just not yet managed to find them - but AI speedrunning 50+ years of math in 5 years will.",
+          "translation": "@davidmanheim @LindellYehuda @sja1729 내 우려를 이렇게 설명하고 싶다. ECDLP(타원곡선 이산로그 문제)나 페어링(pairing)에 대해 이차 체(quadratic sieve)에 해당하는 것이 존재하고(마찬가지로 격자(lattice)를 깨는 데 오늘날보다 더 강력한 알고리즘이 존재하고), 우리가 아직 그것을 찾아내지 못했을 뿐이라면 어떨까. 그런데 AI가 50년 넘는 수학의 역사를 5년 만에 속주행(speedrun)해서 그것을 찾아낼 수도 있다는 것이다."
+        }
+      ],
+      "firstSeen": "2026-11-02",
+      "lastActivity": "2026-11-03",
+      "status": "active",
+      "rootUrl": "https://x.com/VitalikButerin/status/2117443537868562768",
+      "engagement": {
+        "likes": 22,
+        "retweets": 1,
+        "quotes": 0,
+        "replies": 14,
+        "views": 4024
+      }
+    },
+    {
+      "id": "devcon-host-region-value",
+      "title": "이더리움 콘퍼런스는 수익에 중요한 사용자가 있는 지역에 집중해야 하나?",
+      "category": "거버넌스 · 커뮤니티",
+      "summary": "Aave의 Stani Kulechov가 Devconnect 아르헨티나와 Devcon 뭄바이에는 수익에 중요한 사용자가 없어 자금을 새 주류 청중에 써야 한다고 주장하자, EthLabs의 binji_x는 아르헨티나가 역대 최대 Devconnect였고 이더리움은 단일 중앙 콘퍼런스가 필요 없으며 인도가 글로벌 채택에서 앞선다고 반박했다.",
+      "keyPoints": [
+        "콘퍼런스 개최지는 수수료를 많이 내는 사용자가 있는 시장을 기준으로 골라야 하나",
+        "아르헨티나·인도 같은 신흥 채택 시장이 생태계 성장에 중요한가",
+        "이더리움은 단일 중앙 콘퍼런스가 필요한가 아니면 다층 행사로 충분한가"
+      ],
+      "background": "Devcon과 Devconnect는 이더리움 재단이 여는 대표 행사다. 2025년 Devconnect는 아르헨티나에서 열렸고 다음 Devcon은 뭄바이에서 예정돼 있다. 이 논쟁은 성장 전략의 우선순위를 구매력 있는 사용자에 둘지 채택 인구에 둘지의 시각차이며, 앱 진영과 생태계 진영의 관점 차이로 번졌다.",
+      "whyItMatters": "개최지 선정 기준은 이더리움이 성장의 우선순위를 수수료 기여가 큰 사용자에 둘지 신흥 채택 인구에 둘지를 가르는 대리 지표다. 수익성 중심 전략과 분산된 글로벌 채택 전략 사이의 긴장이 깔려 있다.",
+      "keywords": [
+        "Devconnect Argentina",
+        "Devcon Mumbai",
+        "crypto adoption India"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "수익에 중요한 사용자가 있는 곳에 써야 한다",
+          "holders": [
+            {
+              "handle": "StaniKulechov",
+              "name": "Stani",
+              "role": "Aave 창업자",
+              "avatar": "https://pbs.twimg.com/profile_images/2040150832155668480/NuKn2fQi_400x400.jpg"
+            },
+            {
+              "handle": "MacroMate8",
+              "name": "Seraphim",
+              "watchlist": false,
+              "avatar": "https://pbs.twimg.com/profile_images/1965774012971118592/I-MiUG2N_400x400.jpg"
+            },
+            {
+              "handle": "cryptogle",
+              "name": "ogle",
+              "watchlist": false,
+              "avatar": "https://pbs.twimg.com/profile_images/1601021930710122496/Zjcr1dUt_400x400.png"
+            }
+          ],
+          "points": [
+            "아르헨티나와 뭄바이에는 수익(bottom line)에 정말 중요한 사용자가 없고, 온체인이 주류로 가는 지금 자금은 새 청중에 집중돼야 한다 (StaniKulechov)",
+            "온체인 흐름을 분석하면 상위 수수료 생성자는 대부분 미국이나 동아시아 기반이며, 개발자 수가 아니라 생산적 산출이 중요하다 (MacroMate8)",
+            "사람들은 이 행사를 남의 돈으로 여행하는 핑계로 쓰고 대개 같은 사람들끼리 어울려 실제 BD는 없다 (cryptogle)"
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "신흥 시장과 분산 행사가 중요하다",
+          "holders": [
+            {
+              "handle": "binji_x",
+              "name": "binji",
+              "role": "EthLabs, 이더리움 커뮤니케이션·커뮤니티",
+              "avatar": "https://pbs.twimg.com/profile_images/2057797822666473472/Ns8EleJw_400x400.jpg"
+            },
+            {
+              "handle": "saintniko",
+              "name": "niko",
+              "watchlist": false,
+              "avatar": "https://pbs.twimg.com/profile_images/2101866582708293632/emJ9rau8_400x400.jpg"
+            }
+          ],
+          "points": [
+            "아르헨티나는 역대 최대 Devconnect였고, 이더리움은 단일 중앙 콘퍼런스가 필요 없이 뉴욕의 Ethconf와 기관 서밋, 칸의 ETHCC 같은 다층 행사가 있다",
+            "글로벌 크립토 채택을 보면 인도가 앞서 있다"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-11-01",
+          "by": "StaniKulechov",
+          "stance": "pro",
+          "quote": "2025년 Devconnect 아르헨티나에 아무도 안 오고 Devcon 뭄바이에도 거의 안 갈 이유는 단순하다. 이곳들에는 수익(bottom line)에 정말 중요한 사용자가 없다.",
+          "url": "https://x.com/StaniKulechov/status/2116819963994583336",
+          "digest": "2026-11-04",
+          "relation": "none",
+          "original": "the reason no one showed up for Devconnect Argentina in 2025 and barely anyone will go to Devcon Mumbai is simple:\n\nthese places don’t have users that really matter for the bottom line\n\nwe lived in a beautifully playful era up until 2021 where travelling around the world funded by VCs was okayish ROI\n\n2026 is entirely different. a very small number of projects succeed now, let alone alts that go up. there isnt enough ROI in gallivanting around the globe to meet users who barely make a dent in revenues\n\nthe userbase that matters is on CT, in Korea, Japan, HK, US. these places have a lot of rich people who generate fat fees for dapps\n\nteams that roam around the world to random locations are just burning VC money and aren’t focussed enough on user acquisition",
+          "translation": "2025년 Devconnect 아르헨티나에 아무도 오지 않았고 Devcon 뭄바이에도 거의 아무도 가지 않을 이유는 간단하다. 이런 곳들에는 매출(bottom line)에 진짜로 중요한 유저가 없기 때문이다. 우리는 2021년까지는 VC의 돈으로 세계를 돌아다니는 것이 그럭저럭 괜찮은 투자수익률(ROI)이 나오던 아름답고 유쾌한 시대를 살았다. 2026년은 완전히 다르다. 지금은 아주 적은 수의 프로젝트만 성공하며, 알트코인이 오르는 것은 말할 것도 없다. 매출에 거의 흔적도 남기지 못하는 유저를 만나러 전 세계를 떠돌아다니는 데는 충분한 ROI가 나오지 않는다. 진짜로 중요한 유저층은 CT(크립토 트위터, Crypto Twitter), 한국, 일본, 홍콩, 미국에 있다. 이런 곳에는 dapp에 두터운 수수료를 만들어주는 부유한 사람들이 많다. 전 세계 이곳저곳 아무 장소나 돌아다니는 팀들은 그냥 VC 자금을 태우고 있을 뿐이고 유저 확보(user acquisition)에 충분히 집중하지 못하고 있다."
+        },
+        {
+          "date": "2026-11-01",
+          "by": "StaniKulechov",
+          "stance": "pro",
+          "quote": "이것의 많은 부분은 진전이기도 하다. 온체인이 주류로 가고 있고 이제 자금은 새 청중에 쓰는 데 집중된다.",
+          "url": "https://x.com/StaniKulechov/status/2116852612566003796",
+          "digest": "2026-11-04",
+          "replyTo": "MacroMate8",
+          "relation": "reply",
+          "original": "@MacroMate8 I'd say lot of this is also progression, onchain is moving towards mainstream and dollars are now focused on spending on new audiences",
+          "translation": "@MacroMate8 이건 자연스러운 흐름이기도 하다고 본다. 온체인(onchain)이 메인스트림으로 나아가고 있고, 돈은 이제 새로운 대중을 확보하는 데 쓰이는 데 집중되고 있다."
+        },
+        {
+          "date": "2026-11-01",
+          "by": "binji_x",
+          "stance": "con",
+          "quote": "미끼를 문다. 아르헨티나는 역대 최대 Devconnect였다. 이더리움은 단일 중앙 콘퍼런스가 필요 없이 뉴욕의 Ethconf와 기관 서밋, 칸의 ETHCC를 갖는다. 글로벌 크립토 채택을 보면 인도가 앞선다.",
+          "url": "https://x.com/binji_x/status/2116882370410295374",
+          "digest": "2026-11-04",
+          "replyTo": "MacroMate8",
+          "relation": "reply",
+          "original": "Okay I’m falling for the bait.\n\n> Argentina was the biggest Devconnect ever\n> Ethereum doesn’t need one centralized conference, it has Ethconf, which was in NYC, has had institutional summits, also in NYC, ETHCC in Cannes.\n> If you look at global crypto adoption, India continues to be in the top, and has been consistently (I believe it was #1 last year). Source: https://t.co/j3BhHh83ci\n\nI 100% agree that wasting VC dollars on things that don’t impact one company’s bottom line is correct, but not every company will have the same bottom line, and when you’re building a truly decentralized substrate, there will be many companies.\n\nBut let’s dive in to a blockchain thesis while I’m at it:\n\n> decentralization is the end product for an L1, one of the biggest reasons for value being driven to them are the idea that they’re geologically versatile networks with minimized geopolitical risk; if that is to hold true, you kinda want to be everywhere. India is 17% of the world’s population, one of the most tech native places in the world, and its soft power (cultural footprint via Bollywood) is very strong in neighboring countries.\n> if the goal is to build for the whole world, you have to go meet the whole world.",
+          "translation": "좋다, 나도 미끼를 물겠다. 아르헨티나는 역대 최대 규모의 Devconnect였다. 이더리움(Ethereum)에는 하나로 중앙화된 컨퍼런스가 필요 없다. 이더리움에는 Ethconf가 있고, 이는 뉴욕에서 열렸으며, 역시 뉴욕에서 열린 기관 서밋(institutional summit)도 있었고, 칸에서 열리는 ETHCC도 있다. 전 세계 크립토 채택(adoption)을 보면 인도는 계속 상위권에 있고 꾸준히 그래왔다(작년에는 1위였던 것으로 기억한다). 출처는 https://t.co/j3BhHh83ci 다. 한 회사의 매출에 영향을 주지 않는 일에 VC 자금을 낭비하는 것이 잘못됐다는 데는 100퍼센트 동의한다. 하지만 모든 회사가 같은 매출 구조를 갖는 것은 아니며, 진정으로 탈중앙화된 기반(substrate)을 만들고 있다면 거기에는 여러 회사가 있게 될 것이다. 하지만 이왕 이야기가 나온 김에 블록체인 테제(thesis)를 하나 짚어보자. 탈중앙화는 L1의 최종 산물이며, 가치가 L1으로 몰리는 가장 큰 이유 중 하나는 이들이 지정학적 리스크를 최소화한, 지리적으로 다양한 버전을 가진 네트워크라는 발상이다. 만약 그것이 사실이려면 어디에나 존재하고 싶어야 한다. 인도는 세계 인구의 17퍼센트를 차지하고 세계에서 가장 테크 네이티브한 지역 중 하나이며, 소프트파워(발리우드를 통한 문화적 영향력)가 인접 국가들에서 매우 강하다. 전 세계를 위해 만드는 것이 목표라면 전 세계를 직접 만나러 가야 한다."
+        },
+        {
+          "date": "2026-11-01",
+          "by": "cryptogle",
+          "stance": "pro",
+          "quote": "세계를 도는 친구들에게 미안하지만 이건 정확히 맞다. 사람들은 이 행사를 남의 돈으로 여행하는 핑계로 쓰고, 대개 같은 사람들끼리 어울려 실제 BD는 없다.",
+          "url": "https://x.com/cryptogle/status/2116962595014144375",
+          "digest": "2026-11-04",
+          "replyTo": "MacroMate8",
+          "relation": "quote",
+          "original": "sorry to my globe-trotting friends, but this is exactly right\n\npeople use these events as excuses to go travel on someone else's dime - and frankly most of the time the same people hang with each other in all locations so no bd being done anyway. it's a work-larp all around",
+          "translation": "전 세계를 돌아다니는 내 친구들에게는 미안하지만 이 말은 정확히 맞다. 사람들은 이런 행사를 남의 돈으로 여행을 가는 핑계로 쓴다. 그리고 솔직히 대부분의 경우 어느 장소를 가도 같은 사람들끼리 어울리기 때문에 어차피 비즈니스 개발(BD, business development)이 이루어지는 것도 아니다. 전부 다 업무를 가장한 라프(larp, 역할극)일 뿐이다."
+        },
+        {
+          "date": "2026-11-01",
+          "by": "saintniko",
+          "stance": "con",
+          "quote": "다들 작년에 아르헨티나 간 것 같은데? 정말 즐거웠다.",
+          "url": "https://x.com/saintniko/status/2116973678668001677",
+          "digest": "2026-11-04",
+          "replyTo": "MacroMate8",
+          "relation": "reply",
+          "original": "@MacroMate8 feel like everyone went to Argentina last year??? was a blast",
+          "translation": "@MacroMate8 작년에는 다들 아르헨티나에 간 것 같은데??? 정말 즐거웠다."
+        },
+        {
+          "date": "2026-11-02",
+          "by": "MacroMate8",
+          "stance": "pro",
+          "quote": "나는 총 사용자가 아니라 중요한 사용자라고 말했다. 온체인 흐름을 길게 분석했는데 상위 수수료 생성자는 대부분 미국이나 동아시아 기반이다. 자기가 온 곳이 중요하지 않다고 인정해도 괜찮다.",
+          "url": "https://x.com/MacroMate8/status/2117107524411527677",
+          "digest": "2026-11-04",
+          "relation": "none",
+          "original": "notice i said users that matter, not total users\n\ni have analysed onchain flows at length and the top fee generators are mostly US or East Asia based. occasionally in Europe\n\nit’s okay to admit that the place you are from doesn’t matter. im a proud UK citizen but i know that place is becoming irrelevant by the day.\n\ni don’t cry about it, i just move on and pursue more commercially viable markets",
+          "translation": "내가 '중요한 유저'라고 했지 '전체 유저'라고 하지 않았다는 점에 주목해달라. 나는 온체인 흐름(onchain flow)을 오랫동안 분석해왔고, 상위 수수료 발생처는 대부분 미국이나 동아시아 기반이다. 유럽에서는 간혹 그렇다. 자신이 온 곳이 중요하지 않다는 것을 인정해도 괜찮다. 나는 영국 국민인 것이 자랑스럽지만 그곳이 날이 갈수록 중요하지 않아지고 있다는 것을 안다. 나는 그것 때문에 울지 않고 그냥 넘어가서 상업적으로 더 유망한 시장을 추구할 뿐이다."
+        }
+      ],
+      "firstSeen": "2026-11-01",
+      "lastActivity": "2026-11-02",
+      "status": "active",
+      "rootUrl": "https://x.com/StaniKulechov/status/2116819963994583336",
+      "engagement": {
+        "likes": 340,
+        "retweets": 8,
+        "quotes": 15,
+        "replies": 70,
+        "views": 56334
+      }
+    },
+    {
+      "id": "freeze-recovery-crypto-ethos",
+      "title": "자금 동결·회수는 크립토가 갖춰야 할 기능인가, 에토스에 반하는 은행의 재발명인가?",
+      "category": "거버넌스 · 커뮤니티",
+      "summary": "바이낸스 해킹과 북한 세탁 국면에서 동결·회수를 기능으로 넣자는 주장이 나오자, EF 생태계의 jchaskin22는 동결 버튼을 누가 쥐느냐며 쓸모없는 암호학을 단 은행의 재발명이라 반박했고 LaLiLuLeL0x와 Cassie Heart 등은 신뢰 가능한 중립성을 해친다고 반대했으며, jaybny는 도난을 막는 사회적 합의가 필요하다며 개입을 옹호했다.",
+      "keyPoints": [
+        "동결·회수 권한을 누가 쥐며 그 권한은 어떻게 남용되는가",
+        "동결 가능한 체인이 '신뢰 가능한 중립(credibly neutral)' 네트워크일 수 있는가",
+        "국가 단위 절도를 막기 위해 코드 이즈 로(code is law) 원칙을 양보해야 하는가"
+      ],
+      "background": "바이낸스 해킹 이후 도난·세탁 자금을 동결하고 회수할 수 있어야 한다는 주장이 커졌고, 같은 기간 ERC-8415와 자산 레벨 한도 제안이 포럼에 올라오며 표준화 프로세스 안의 쟁점이 됐다. 이는 앞선 THORChain과 북한의 ZEC 세탁을 둘러싼 퍼미션리스 논쟁의 연장선이다. 동결·회수가 프로토콜의 기본 기능이 되면 누군가는 그 키를 쥐어야 하므로, 이는 탈중앙·검열저항의 경계를 직접 건드린다.",
+      "whyItMatters": "개입 권한의 정당성 논쟁이 담론에 그치지 않고 ERC-8415 같은 실제 표준 설계를 가르는 기준이 됐다. 동결 키를 누가 쥐느냐는 질문의 답이 체인의 신뢰 가능한 중립성 경계를 정한다.",
+      "keywords": [
+        "ERC-8415",
+        "freeze recovery",
+        "credibly neutral",
+        "code is law"
+      ],
+      "positions": [
+        {
+          "stance": "con",
+          "label": "동결 버튼을 쥔 은행의 재발명이다",
+          "holders": [
+            {
+              "handle": "jchaskin22",
+              "name": "chaskin.eth",
+              "role": "EF 리서처·생태계",
+              "avatar": "https://pbs.twimg.com/profile_images/2016950149633691648/Kht-necI_400x400.jpg"
+            },
+            {
+              "handle": "LaLiLuLeL0x",
+              "name": "La-Li-Lu-Le-Lo",
+              "role": "glue.fi 기여자",
+              "watchlist": false,
+              "avatar": "https://pbs.twimg.com/profile_images/2090373729578532864/T5jsuU-4_400x400.jpg"
+            },
+            {
+              "handle": "cass_on_mars",
+              "name": "Cassie Heart",
+              "watchlist": false,
+              "avatar": "https://pbs.twimg.com/profile_images/2024718481648672768/YxfdUulP_400x400.jpg"
+            },
+            {
+              "handle": "Decentralizd",
+              "name": "Degen",
+              "watchlist": false,
+              "avatar": "https://pbs.twimg.com/profile_images/2116960491667099648/iOTaTbqV_400x400.jpg"
+            }
+          ],
+          "points": [
+            "동결·회수를 기능으로 넣으면 그 버튼을 누가 쥐느냐는 문제가 남으며, 이는 쓸모없는 암호학을 단 은행의 재발명이다 (jchaskin22)",
+            "동결 가능한 체인은 고객 자금에 대한 전권과 고객 보호법 부재, 책임 부재로 법적 회색지대를 악용하는 규제받지 않는 은행이며 신뢰 가능한 중립 네트워크가 아니다 (LaLiLuLeL0x)",
+            "VC들은 크립토 에토스가 아니라 규제당국보다 빨리 규제를 우회하는 데 관심이 있어 지적 선의를 채굴하고 산업의 껍데기만 남긴다 (cass_on_mars)"
+          ]
+        },
+        {
+          "stance": "pro",
+          "label": "도난을 막는 사회적 합의가 필요하다",
+          "holders": [
+            {
+              "handle": "jaybny",
+              "name": "Jay Berg",
+              "watchlist": false,
+              "avatar": "https://pbs.twimg.com/profile_images/2000765967690031104/AcyhJcub_400x400.jpg"
+            }
+          ],
+          "points": [
+            "동결·회수는 사회적 합의의 문제이며, 절도를 멈출 합의 없이 가짜 탈중앙과 proof-of-stake 뒤에 숨어 온 탓에 생태계가 정체됐다"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-11-01",
+          "by": "jchaskin22",
+          "stance": "con",
+          "quote": "'해킹·도난 자금을 동결하고 자산을 회수하고 거래를 되돌려 고객을 보호할 수 있는 것은 기능이어야 하며 크립토 에토스에 반하지 않는다.' 좋다, 그럼 동결 버튼은 누가 쥐는가? 축하한다, 쓸모없는 암호학을 단 은행을 재발명했다.",
+          "url": "https://x.com/jchaskin22/status/2116919736227578355",
+          "digest": "2026-11-04",
+          "replyTo": "lmrankhan",
+          "relation": "quote",
+          "original": "“Being able to freeze hacked or stolen funds, recover assets, reverse txns and protect customers should be a feature, not something that goes against cryptos ethos”\n\nCool, so who holds the freeze button? Congrats you’ve reinvented a bank with useless cryptography",
+          "translation": "'해킹당했거나 도난당한 자금을 동결(freeze)하고, 자산을 회수하고, 트랜잭션(transaction)을 되돌리고, 고객을 보호할 수 있는 기능은 크립토의 정신(ethos)에 반하는 것이 아니라 하나의 기능이어야 한다.' 그래, 그러면 그 동결 버튼은 누가 쥐고 있는가? 축하한다, 당신들은 쓸모없는 암호학을 갖다 붙인 은행을 재발명한 것이다."
+        },
+        {
+          "date": "2026-11-01",
+          "by": "LaLiLuLeL0x",
+          "stance": "con",
+          "quote": "자금을 동결할 수 있는 체인은 '규제받지 않는 은행'이고, 고객 자금에 대한 전권과 고객 보호법 부재, 책임 부재로 법적 회색지대를 악용한다. 정부가 새 지도자에 대해 말했다는 이유로 계좌 동결을 요구하는 때를 상상해보라. 이것이 우리가 크립토에서 맞서 싸우는 것이다.",
+          "url": "https://x.com/LaLiLuLeL0x/status/2116939638384304410",
+          "digest": "2026-11-04",
+          "replyTo": "jchaskin22",
+          "relation": "quote",
+          "original": "A chain that can freeze funds is “unregulated banking,” full power over customer money, no customer protection laws, and no responsibility, taking advantage of a legal grey area.\n\nThese are not the challenges in crypto; this is not “ code is law”; these are not the basis for a credibly neutral network.\n\nImagine when governments ask these companies to freeze your account because you say something about the new leader. In the banking world, in most states, it is illegal; in crypto, it is a grey area. This is what we fight against in crypto.",
+          "translation": "자금을 동결할 수 있는 체인은 '규제받지 않는 은행업(unregulated banking)'이다. 고객의 돈에 대한 전적인 권한을 가지면서 고객 보호 법률도 없고 책임도 없이 법적 회색지대를 이용하는 것이다. 이것은 크립토가 안고 있어야 할 과제가 아니다. 이것은 '코드가 법이다(code is law)'가 아니다. 이것은 신뢰할 수 있는 중립적 네트워크(credibly neutral network)의 토대가 아니다. 정부가 당신이 새 지도자에 대해 뭔가 말했다는 이유로 이런 회사들에게 당신의 계정을 동결하라고 요구하는 상황을 상상해보라. 은행의 세계에서는 대부분의 국가에서 이것이 불법이지만, 크립토에서는 회색지대다. 이것이 바로 우리가 크립토에서 맞서 싸우는 대상이다."
+        },
+        {
+          "date": "2026-11-01",
+          "by": "Decentralizd",
+          "stance": "con",
+          "quote": "크립토를 점점 더 나쁘게 만들려는 조직적 압박이 있다. 이번에는 특정인이 지시하면 모든 것을 동결하는 것을 일상으로 만들려 하고, 너희는 그것을 응원할 것이다.",
+          "url": "https://x.com/Decentralizd/status/2116959724243759377",
+          "digest": "2026-11-04",
+          "replyTo": "jchaskin22",
+          "relation": "quote",
+          "original": "there is a coordinated push to make crypto suck more and more btw\n\nthis time they want you to allow them to making freezing everything when epsteins cousin says so a normal daily occurance\n\nand you goys will cheer it on",
+          "translation": "참고로 크립토를 점점 더 쓰레기로 만들려는 조직적인 움직임이 있다. 이번에는 '엡스타인의 사촌'이 그러라고 하면 모든 것을 동결할 수 있게 허용하라는 것이고, 이것이 평범한 일상이 되길 바라며 '너희들'은 그것에 환호할 것이다."
+        },
+        {
+          "date": "2026-11-02",
+          "by": "cass_on_mars",
+          "stance": "con",
+          "quote": "그들은 VC다. 크립토 에토스에 신경 쓰지 않는다. 규제당국보다 빨리 규제를 우회해 지적 선의를 채굴하고 산업의 껍데기만 남긴 채 다음 표적으로 옮겨가는 데 관심이 있다.",
+          "url": "https://x.com/cass_on_mars/status/2117098901496897733",
+          "digest": "2026-11-04",
+          "replyTo": "AdamBitcoinP2P1",
+          "relation": "reply",
+          "original": "@AdamBitcoinP2P1 @jchaskin22 they're VCs - they don't actually cary about crypto's ethos. they care about how they can sidestep regulation faster than regulators can keep up so they can stripmine the intellectual goodwill and leave an industry husk, then move on to their next target.",
+          "translation": "@AdamBitcoinP2P1 @jchaskin22 그들은 VC다. 그들은 크립토의 정신(ethos)을 실제로는 신경 쓰지 않는다. 그들이 신경 쓰는 것은 규제당국이 따라오는 속도보다 더 빠르게 규제를 회피하는 방법이며, 그렇게 해서 지적 선의(intellectual goodwill)를 채굴하듯 긁어가고 업계를 빈껍데기로 남긴 뒤 다음 타겟으로 넘어가는 것이다."
+        },
+        {
+          "date": "2026-11-02",
+          "by": "jaybny",
+          "stance": "pro",
+          "quote": "그것은 사회적 합의라 불린다. 그리고 크립토 사람들 사이에 절도를 멈출 합의가 없다는 사실, 가짜 proof-of-stake와 가짜 탈중앙 뒤에 숨는 것이 우리가 정체된 이유다. 이제 어른이 될 때다.",
+          "url": "https://x.com/jaybny/status/2117171281967878166",
+          "digest": "2026-11-04",
+          "replyTo": "jchaskin22",
+          "relation": "reply",
+          "original": "@jchaskin22 It's called social consensus. and the fact that there's no consensus among crypto people to stop theft. literally stealing everyones funds. hiding behind make-believe proof-of-stake and fake decentralization is the reason we're stuck in a rut\n\nit's time to grow up",
+          "translation": "@jchaskin22 그것을 소셜 컨센서스(social consensus)라고 부른다. 그리고 크립토 업계 사람들 사이에 도둑질을 멈추자는 컨센서스가 없다는 사실, 문자 그대로 모든 사람의 자금을 훔치는 행위를 두고 가짜 지분증명(proof-of-stake)과 가짜 탈중앙화 뒤에 숨는 것이 바로 우리가 제자리걸음에 갇혀 있는 이유다. 이제는 철이 들 때다."
+        }
+      ],
+      "firstSeen": "2026-11-01",
+      "lastActivity": "2026-11-02",
+      "status": "active",
+      "rootUrl": "https://x.com/jchaskin22/status/2116919736227578355",
+      "engagement": {
+        "likes": 346,
+        "retweets": 28,
+        "quotes": 5,
+        "replies": 27,
+        "views": 10230
+      }
+    },
+    {
+      "id": "ai-frontier-pause-treaty",
+      "title": "AI 프론티어 모델 개발을 국제 조약으로 감속시켜야 하나?",
+      "category": "거버넌스 · 커뮤니티",
+      "summary": "dankrad가 프론티어 모델 훈련 중단과 미중 조약, 하드웨어·데이터센터·에너지를 통한 집행을 옹호하자, lex_node는 결국 오픈소스에 대한 공격이라며 반대했고 다른 이들은 조약의 집행 가능성과 감속의 효용에 회의를 제기했다.",
+      "keyPoints": [
+        "강대국이 조약을 실제로 준수하고 검증할 수 있는가, 핵 조약 선례는 성공인가 실패인가",
+        "사회가 따라잡도록 감속하는 것이 정말 더 안전한가",
+        "프론티어 감속은 결국 오픈소스에 대한 공격인가",
+        "같은 개입 성향이 모든 EOA(외부 소유 계정)의 전송 속도 제한 같은 프로토콜 레벨 조치로 번질 수 있는가"
+      ],
+      "background": "dankrad Feist는 EF 리서처로 데이터 가용성과 확장성을 연구한다. 그는 현재 AI 역량을 사회가 완전히 활용하는 데만 10년이 걸리며 프론티어를 더 밀어붙이면 인간이 반응할 수 없는 속도로 리스크가 급증한다고 본다. 제안한 수단은 미국의 신규 프론티어 모델 훈련 금지, 미중 조약과 다른 국가의 동참, 하드웨어·데이터센터·에너지를 통한 집행이다. 이는 이더리움 프로토콜이 아니라 AI 정책에 관한 입장이지만, EF 핵심 연구자의 개입 수용 성향을 드러내는 사례로 다뤄졌다.",
+      "whyItMatters": "EF 핵심 연구자의 AI 리스크관이 전송 속도 제한 같은 프로토콜 레벨 개입 수용으로까지 번진다. 대화 중 dankrad가 모든 EOA에 프로토콜 레벨 rate limit을 걸 수 있다고 답한 대목은 검열저항을 중시하는 커뮤니티가 주시할 쟁점이다.",
+      "keywords": [
+        "AI pause",
+        "frontier model treaty",
+        "EOA rate limiting",
+        "dankrad"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "프론티어 감속과 국제 조약이 필요하다",
+          "holders": [
+            {
+              "handle": "dankrad",
+              "name": "Dankrad Feist",
+              "role": "EF 리서처, 데이터 가용성·확장성",
+              "avatar": "https://pbs.twimg.com/profile_images/1115816977061351424/HdvT_PLp_400x400.png"
+            }
+          ],
+          "points": [
+            "지금 AI 역량만 해도 사회에 퍼뜨려 완전히 활용하는 데 10년이 걸리므로, 여기서 프론티어를 더 밀어붙이면 인간이 반응할 수 있는 시간 척도를 벗어나 리스크가 크게 증가한다",
+            "핵 군축을 제한한 성공적 조약 사례가 여럿 있으며 집행은 하드웨어, 데이터센터, 에너지 통제의 조합으로 가능하다",
+            "빠르게 가는 쪽의 리스크가 감속의 리스크보다 크며, 교통 전체를 늦추면 모두에게 더 안전해진다"
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "오픈소스에 대한 공격이다",
+          "holders": [
+            {
+              "handle": "lex_node",
+              "name": "_gabrielShapir0",
+              "role": "크립토 법률·규제 변호사",
+              "avatar": "https://pbs.twimg.com/profile_images/2058233189882032128/pRSMN_6C_400x400.jpg"
+            }
+          ],
+          "points": [
+            "국제 협력 자체는 핵무기에서처럼 가능하지만, 프론티어 감속은 결국 오픈소스에 대한 공격이므로 결코 지지할 수 없다"
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "조약은 집행할 수 없다",
+          "holders": [
+            {
+              "handle": "udiWertheimer",
+              "name": "Udi Wertheimer",
+              "watchlist": false,
+              "avatar": "https://pbs.twimg.com/profile_images/1899559293159952384/xpng4kz2_400x400.jpg"
+            },
+            {
+              "handle": "bobbinth",
+              "name": "Bobbin's Threadbare",
+              "watchlist": false,
+              "avatar": "https://pbs.twimg.com/profile_images/1046106111735205889/js199JL0_400x400.jpg"
+            }
+          ],
+          "points": [
+            "상대 강대국이 조약을 준수하는지 신뢰하고 검증할 방법이 없어, 핵무기 때처럼 1950년대 조약 시도가 모두 무너졌다 (bobbinth)",
+            "모두가 빠르게 오를 거대한 하키스틱 곡선 앞에 서 있는데 천천히 오르는 것이 더 낫다는 근거가 없으며, 느리게 가는 것이 오히려 더 위험할 수 있다 (udiWertheimer)"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-10-31",
+          "by": "dankrad",
+          "stance": "pro",
+          "quote": "나는 AI 일시중지, 즉 프론티어 모델 훈련의 중단을 지지한다. 지금 AI를 사회 전체에 퍼뜨려 완전히 활용하는 데만 10년이 걸릴 것이고, 여기서 프론티어를 더 밀어붙이면 리스크가 크게 증가한다. 인간의 생명을 중시한다면 인간이 반응할 수 있는 시간 척도로 유지해야 한다.",
+          "url": "https://x.com/dankrad/status/2116540014418883052",
+          "digest": "2026-11-04",
+          "relation": "none",
+          "original": "I am for an AI pause, meaning a pause to training frontier models.\n\nI think the AI models we have now are amazing. They save an incredible amount of human labor and can help drive science and technology forward and accelerate them enormously. I reckon it would take a decade to even disseminate current AI capabilities through society and make full use of them.\n\nDriving the frontier forward from here will massively increase the risks. If we value human life, we should try to keep things at timescale that humans can react. The risks of things  happening that most of us find abhorrent will increase a lot otherwise. This will mean not getting some of the benefits of AI, but on balance, I think the risks are now getting too high.\n\nPractical ways to implement this pause are:\n - USA to ban training of new frontier models in a suitable way\n - USA and China making a treaty and encouraging more countries to join\n - Enforcement can be via limits on hardware or large data centers, probably both\n\nI don't think that this pause should be forever. The goal is to slow down the frontier, let society catch up, and make it more resilient (better resistance to cyber and biological threats, individuals managing more of their life with AI , democratic resilience). In a few years time, we can be in a better place to take the next steps. The goal is not to stop AI and its benefits forever, it's preserving and improving human life through it, and that's only possible by slowing it down to human timescales for now.",
+          "translation": "나는 AI 일시정지(pause)를 지지한다. 즉 프론티어 모델(frontier model) 훈련을 일시정지하는 것을 지지한다는 뜻이다. 나는 지금 우리가 가진 AI 모델들이 놀랍다고 생각한다. 이들은 엄청난 양의 인간 노동을 절약해주고 과학과 기술을 앞으로 밀고 나가는 데 도움을 주며 그것을 크게 가속화할 수 있다. 내 생각에는 지금의 AI 역량을 사회 전체에 전파하고 완전히 활용하는 데만도 10년은 걸릴 것이다. 여기서 더 프론티어를 밀어붙이면 리스크가 크게 늘어날 것이다. 우리가 인간의 생명을 가치 있게 여긴다면 인간이 반응할 수 있는 시간 척도(timescale)로 상황을 유지하려고 노력해야 한다. 그렇지 않으면 우리 대부분이 끔찍하다고 여길 일들이 일어날 위험이 크게 늘어날 것이다. 이는 AI가 주는 혜택 중 일부를 얻지 못하게 된다는 뜻이지만, 전체적으로 따져보면 나는 지금 그 리스크가 너무 커지고 있다고 생각한다. 이 일시정지를 실행할 수 있는 실질적인 방법으로는 다음이 있다. 미국이 적절한 방식으로 새로운 프론티어 모델의 훈련을 금지하는 것, 미국과 중국이 조약을 맺고 더 많은 나라가 여기에 합류하도록 독려하는 것, 그리고 집행은 하드웨어나 대형 데이터센터에 대한 제한을 통해 이루어질 수 있으며 아마도 둘 다를 통해 이루어질 것이다. 나는 이 일시정지가 영원히 지속되어야 한다고는 생각하지 않는다. 목표는 프론티어의 속도를 늦추고 사회가 따라잡을 시간을 주며 사회를 더 회복탄력적으로(resilient) 만드는 것이다(사이버 위협과 생물학적 위협에 대한 저항력을 높이고, 개인이 삶의 더 많은 부분을 AI로 관리하게 하고, 민주적 회복탄력성을 높이는 것). 몇 년 후에는 우리가 다음 단계로 나아가기에 더 나은 위치에 있을 수 있을 것이다. 목표는 AI와 그 혜택을 영원히 멈추는 것이 아니라 AI를 통해 인간의 생명을 보존하고 향상시키는 것이며, 그것은 지금으로서는 AI를 인간의 시간 척도로 늦추는 것을 통해서만 가능하다."
+        },
+        {
+          "date": "2026-10-31",
+          "by": "bobbinth",
+          "stance": "con",
+          "quote": "의도에는 대체로 동의하지만 가장 큰 문제는 집행이다. 핵무기 때처럼 상대가 개발하지 않는지 확인할 신뢰할 방법이 없어 50년대에 모든 조약 시도가 무너졌다.",
+          "url": "https://x.com/dankrad/status/2116551989282693468",
+          "digest": "2026-11-04",
+          "replyTo": "dankrad",
+          "relation": "reply",
+          "original": "I generally agree with the intent - but the biggest issue will be enforcement. Kind of what happened with nuclear weapons - there was no reliable way to check that the opposing side is not developing them, and so all attempts at treaties fell apart in the 50s.\n\nInterestingly, one theory is that if the FFT algorithm had been invented sooner, the treaties would have been much more likely.",
+          "translation": "나는 그 의도에는 대체로 동의한다. 하지만 가장 큰 문제는 집행(enforcement)이 될 것이다. 핵무기에서 벌어졌던 일과 비슷하다. 상대편이 핵무기를 개발하고 있지 않다는 것을 확인할 믿을 만한 방법이 없었고, 그래서 1950년대에 있었던 모든 조약 시도가 무산되었다. 흥미롭게도 한 이론에 따르면 FFT(고속 푸리에 변환) 알고리즘이 더 일찍 발명되었더라면 그 조약들이 성사될 가능성이 훨씬 높았을 것이라고 한다."
+        },
+        {
+          "date": "2026-10-31",
+          "by": "udiWertheimer",
+          "stance": "con",
+          "quote": "'사회가 따라잡을 시간을 준다'는 것이 긍정적 효과를 낸다는 생각은 어디서 오는가? 모두가 빠르게 오를 거대한 하키스틱 곡선 앞에 서 있는데 누가 천천히 오르는 게 더 낫다고 하는가?",
+          "url": "https://x.com/dankrad/status/2116560192036868501",
+          "digest": "2026-11-04",
+          "replyTo": "dankrad",
+          "relation": "reply",
+          "original": "where does this notion come from that “giving time for society to catch up” is going to have positive effects?\n\nif we’re standing at the feet of a massive hockey stick that we’re all about to climb at breakneck speeds, who says it’s “better” to try to climb it slowly? who says it’s possible?\n\nif there’s a massive exponent/singularity event coming how do we know it’s not “better” for “society” to just, well, get it over with?",
+          "translation": "'사회가 따라잡을 시간을 준다'는 것이 긍정적인 효과를 낼 것이라는 발상은 대체 어디서 나온 것인가? 만약 우리가 엄청난 속도로 다 함께 올라가야 할 거대한 하키스틱 곡선의 발치에 서 있는 것이라면, 그것을 천천히 오르려고 하는 것이 '더 낫다'고 누가 말하는가? 그것이 가능하다고 누가 말하는가? 만약 거대한 지수적 사건, 즉 특이점(singularity) 사건이 다가오고 있다면, '사회'가 그냥 그걸 빨리 겪어버리는 것이 '더 나은' 것이 아니라고 우리가 어떻게 알 수 있는가?"
+        },
+        {
+          "date": "2026-10-31",
+          "by": "dankrad",
+          "stance": "pro",
+          "quote": "그 어느 것도 실현 가능성을 반박하지 않는다. 통제는 하드웨어, 데이터센터, 에너지의 조합일 것이다.",
+          "url": "https://x.com/dankrad/status/2116581945534554450",
+          "digest": "2026-11-04",
+          "replyTo": "bobbinth",
+          "relation": "reply",
+          "original": "@bobbinth None of that contradicts the feasibility. I think control would be a combination of hardware, data centers and energy.",
+          "translation": "@bobbinth 그 어떤 것도 실현 가능성(feasibility)과 모순되지 않는다. 나는 통제가 하드웨어, 데이터센터, 에너지의 조합으로 이루어질 것이라고 생각한다."
+        },
+        {
+          "date": "2026-10-31",
+          "by": "lex_node",
+          "stance": "con",
+          "quote": "국제 협력은 가능하다고 본다. 핵무기에서 해봤다. 그래도 Dankrad에게 동의하지 않는다. 전반적으로 나쁜 생각이다. 특히 결국 오픈소스에 대한 공격이기 때문인데, 나는 그것을 결코 지지하지 않을 것이다.",
+          "url": "https://x.com/lex_node/status/2116585390404780057",
+          "digest": "2026-11-04",
+          "replyTo": "lex_node",
+          "relation": "reply",
+          "original": "@lex_node @dankrad I think international cooperation is possible, we've done it for nuclear weapons...\n\nstill disagree with Dankrad. Bad idea overall. Esp because it's an attack on open source at the end of the day, which I will never support.",
+          "translation": "@lex_node @dankrad 국제적 협력은 가능하다고 생각한다. 핵무기에 대해서도 그렇게 해냈으니까. 그래도 Dankrad의 생각에는 여전히 동의하지 않는다. 전체적으로 나쁜 아이디어다. 특히 결국 이것은 오픈소스(open source)에 대한 공격이기 때문인데, 나는 그것은 절대 지지하지 않을 것이다."
+        },
+        {
+          "date": "2026-10-31",
+          "by": "dankrad",
+          "stance": "pro",
+          "quote": "모든 EOA(외부 소유 계정)에 대해 전송 속도를 제한하는 데 찬성한다. 그것은 프로토콜 레벨이어야 할 것이고, 다만 그 주변에 풀어야 할 문제가 많다.",
+          "url": "https://x.com/dankrad/status/2116577396958941419",
+          "digest": "2026-11-04",
+          "replyTo": "LorenzoARK",
+          "relation": "reply",
+          "original": "@LorenzoARK Yeah it would have to be. A lot of problems to solve around that though.",
+          "translation": "@LorenzoARK 그래, 그래야 할 것이다. 다만 그 주변에 풀어야 할 문제들이 많다."
+        }
+      ],
+      "firstSeen": "2026-10-31",
+      "lastActivity": "2026-10-31",
+      "status": "active",
+      "rootUrl": "https://x.com/lex_node/status/2116585390404780057",
+      "engagement": {
+        "likes": 0,
+        "retweets": 0,
+        "quotes": 0,
+        "replies": 1,
+        "views": 45
+      }
+    },
     {
       "id": "dprk-hackback-coinbase-liquidity",
       "title": "북한의 암호화폐 탈취에 맞서 민간이 직접 역해킹에 나서야 하나, 아니면 그 자금 통로를 대는 거래소부터 책임져야 하나?",
@@ -653,7 +1247,7 @@
       ],
       "firstSeen": "2026-10-26",
       "lastActivity": "2026-10-27",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/lightclients/status/2115104431494799656",
       "engagement": {
         "likes": 52,
@@ -796,7 +1390,7 @@
       ],
       "firstSeen": "2026-10-26",
       "lastActivity": "2026-10-27",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/lex_node/status/2114785376279683476",
       "engagement": {
         "likes": 168,
@@ -910,7 +1504,7 @@
       ],
       "firstSeen": "2026-10-27",
       "lastActivity": "2026-10-27",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/binji_x/status/2115055698979479718",
       "engagement": {
         "likes": 65,
@@ -1024,7 +1618,7 @@
       ],
       "firstSeen": "2026-10-26",
       "lastActivity": "2026-10-26",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/nero_eth/status/2114639333063889295",
       "engagement": {
         "likes": 12,
@@ -4704,7 +5298,7 @@
       ],
       "firstSeen": "2026-10-05",
       "lastActivity": "2026-10-05",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/donnoh_eth/status/2107059228716196077",
       "engagement": {
         "likes": 95,
@@ -4903,7 +5497,7 @@
       ],
       "firstSeen": "2026-10-03",
       "lastActivity": "2026-10-04",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/lex_node/status/2106388135592575003",
       "engagement": {
         "likes": 122,
@@ -5117,7 +5711,7 @@
       ],
       "firstSeen": "2026-10-02",
       "lastActivity": "2026-10-04",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/dankrad/status/2106119279242293410",
       "engagement": {
         "likes": 236,
