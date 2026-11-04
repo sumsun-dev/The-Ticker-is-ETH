@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-03T15:15:41.128Z",
+  "updatedAt": "2026-11-04T01:36:31.782Z",
   "eips": [
     {
       "number": 684,
@@ -988,6 +988,155 @@
       "sourceHash": "e934db8fded813da",
       "model": "fable",
       "generatedAt": "2026-11-03T14:53:30.344Z"
+    },
+    {
+      "number": 7645,
+      "titleKo": "ORIGIN을 SENDER로 별칭 처리",
+      "topic": "EVM·실행",
+      "summary": "EVM의 ORIGIN 명령어가 거래를 처음 시작한 계정 대신 바로 앞 호출자의 주소, 즉 SENDER와 같은 값을 돌려주도록 바꾸는 제안입니다.",
+      "why": "ORIGIN 명령어는 거래를 처음 시작한 계정의 주소를 돌려주고 SENDER(CALLER) 명령어는 바로 앞 호출자의 주소를 돌려줍니다. 이 둘을 구분하는 방식은 피싱 공격 같은 보안 문제를 일으킬 수 있어 2016년 중반부터 사용이 권장되지 않았습니다. 예를 들어 ERC-4337의 번들러(여러 사용자 작업을 묶어 제출하는 주체)가 ORIGIN으로 권한을 확인하는 컨트랙트에 토큰이나 권한이 있으면, 번들러가 묶어 처리하는 어떤 거래든 그 권한을 가로챌 수 있습니다. 하위 호출에서도 ORIGIN이 계속 번들러 주소로 남기 때문입니다. 또 EIP-7377, EIP-3074 같은 계정 추상화 시도는 모두 ORIGIN을 바꾸거나 우회하는 문제를 먼저 풀어야 합니다. 그래서 원문은 ORIGIN이 이더리움 계정 모델을 더 유연하게 바꾸는 데 걸림돌이 된다고 봅니다.",
+      "before": [
+        "ORIGIN(0x32)은 거래를 처음 시작한 계정의 주소를 돌려줍니다",
+        "여러 단계를 거친 호출에서도 ORIGIN은 최초 발신자 주소로 고정됩니다",
+        "최초 발신자와 직접 호출자를 구분하는 로직이 피싱 등 권한 탈취에 악용될 수 있습니다"
+      ],
+      "after": [
+        "ORIGIN이 모든 실행 맥락에서 SENDER(0x33)와 같은 값을 돌려줍니다",
+        "호출 단계마다 ORIGIN이 바로 앞 호출자의 주소로 바뀝니다",
+        "두 값을 구분하던 데서 생기던 보안 허점이 사라지고 계정 추상화의 공통 걸림돌이 제거됩니다"
+      ],
+      "impact": [
+        {
+          "who": "컨트랙트 개발자",
+          "text": "ORIGIN으로 거래 시작 주소를 얻던 컨트랙트는 새 정의에서도 올바르게 동작하는지 점검해야 하고 문제가 생기는 코드는 우회하거나 피해야 합니다."
+        },
+        {
+          "who": "클라이언트 팀",
+          "text": "ORIGIN이 호출될 때 SENDER를 실행한 것처럼 현재 호출의 발신자 주소를 스택에 올리도록 모든 클라이언트가 EVM을 바꿔야 합니다."
+        },
+        {
+          "who": "계정 추상화 생태계",
+          "text": "모든 계정 추상화 제안이 부딪히는 ORIGIN 처리 문제가 사라져 설계가 단순해집니다."
+        },
+        {
+          "who": "사용자",
+          "text": "ORIGIN을 잘못 쓰는 레거시 코드가 이 변경으로 영향을 받을 수 있어 그런 코드를 피하도록 안내가 필요할 수도 있습니다."
+        }
+      ],
+      "example": {
+        "title": "여러 단계 호출에서 ORIGIN 값이 바뀌는 과정",
+        "steps": [
+          {
+            "label": "지금 1",
+            "title": "계정 A가 거래를 시작",
+            "body": "계정 A가 컨트랙트 B를 호출합니다. B 안에서는 ORIGIN과 SENDER가 둘 다 A입니다."
+          },
+          {
+            "label": "지금 2",
+            "title": "B가 다시 C를 호출",
+            "body": "컨트랙트 B가 컨트랙트 C를 호출합니다. C 안에서 SENDER는 B지만 ORIGIN은 여전히 A입니다. C가 ORIGIN으로 권한을 판단하면 이 차이가 악용될 수 있습니다."
+          },
+          {
+            "label": "이후",
+            "title": "같은 호출에서 ORIGIN도 B",
+            "body": "이 EIP가 적용되면 C 안에서 ORIGIN도 B를 돌려줍니다. 어느 호출 단계에서든 ORIGIN과 SENDER가 항상 같은 값이 됩니다."
+          }
+        ]
+      },
+      "deep": [
+        {
+          "title": "정의 변경: 0x32가 0x33과 같은 값을 반환",
+          "body": "현재 ORIGIN 옵코드는 거래를 처음 시작한 주소를 반환합니다. 이 EIP에서 ORIGIN 옵코드(0x32)는 모든 실행 맥락에서 SENDER(CALLER로도 불림) 옵코드(0x33)가 반환하는 값과 같은 값을 반환해야 합니다(MUST). 즉 최초 발신자 추적 기능 자체를 제거하는 것이 아니라, ORIGIN을 SENDER의 별칭으로 만들어 두 옵코드가 항상 같은 값을 내놓게 합니다. 홉이 없는 단순 거래에서는 지금도 두 값이 같으므로, 실제로 달라지는 것은 컨트랙트가 다른 컨트랙트를 다시 호출하는 다중 홉 상황입니다.",
+          "ref": "원문: Specification · Definition Change"
+        },
+        {
+          "title": "EVM 구현과 거래 검증",
+          "body": "모든 이더리움 클라이언트는 ORIGIN 옵코드가 호출될 때, SENDER 옵코드가 실행된 것처럼 현재 호출의 발신자 주소를 스택에 올리도록 EVM을 바꿔야 합니다(MUST). 거래 검증은 지금과 똑같이 이뤄지며 위에서 정한 옵코드 동작 말고는 거래 구조나 처리 로직에 바뀌는 것이 없습니다. 변경 범위를 EVM 내부의 옵코드 하나로 좁혀 둔 설계입니다. 원문은 구현자들이 이 명세에 피드백을 주고 구현이나 테스트 과정에서 발견한 문제를 보고해 달라고 요청합니다.",
+          "ref": "원문: Specification · EVM Implementation, Transaction Validation"
+        },
+        {
+          "title": "세 가지 근거: 계정 추상화, 보안, 기술 부채",
+          "body": "원문이 드는 근거는 세 가지입니다. 첫째, 계정 추상화 촉진입니다. 모든 계정 추상화 시도가 공통으로 부딪히는 장벽을 깔끔하게 없애 더 유연한 계정 모델을 가능하게 합니다. 둘째, 보안 강화입니다. 최초 발신자와 직접 호출자를 구분하는 데서 생기는 취약점을 제거합니다. 셋째, 기술 부채 정리입니다. 오래전부터 사용이 권장되지 않던 기능을 없애 EVM의 거래·실행 모델을 단순하게 만들고 앞으로의 변경을 더 쉽고 안전하게 만듭니다.",
+          "ref": "원문: Rationale"
+        },
+        {
+          "title": "하위 호환성: 완전하지 않음",
+          "body": "이 변경은 완전한 하위 호환이 아닙니다. ORIGIN과 SENDER의 구분에 로직이나 보안을 의존하는 컨트랙트는 영향을 받습니다. 그래서 명세는 ORIGIN으로 거래 시작 주소를 얻는 컨트랙트를 점검해 새 정의에서도 올바르게 동작하는지 확인하고 깨지는 경우 우회하거나 피하라고 요구합니다(MUST). 원문은 ORIGIN 사용이 오랫동안 권장되지 않았고 영향이 작으며 어떤 계정 추상화 해법이든 결국 ORIGIN을 처리해야 한다는 점을 들어 이 비호환을 필요한 진전으로 봅니다.",
+          "ref": "원문: Backwards Compatibility"
+        },
+        {
+          "title": "테스트 케이스: 네 가지 호출 방식의 직접·다중 홉 검증",
+          "body": "CALL, STATICCALL, DELEGATECALL, CALLCODE 각각에 대해 두 가지를 확인합니다. 직접 호출(Direct)에서는 대상 컨트랙트에서 ORIGIN과 SENDER가 같은 값을 내는지 확인합니다. 홉이 없는 단순 거래에서는 지금도 이미 같습니다. 다중 홉(Multi-hop)에서는 여러 단계를 거치는 거래의 각 호출 프레임마다 ORIGIN과 SENDER가 같은 값을 내는지 확인합니다.",
+          "ref": "원문: Test Cases"
+        },
+        {
+          "title": "보안 고려: ORIGIN 전면 금지 가능성",
+          "body": "별칭 처리로 ORIGIN 옵코드와 관련된 특정 보안 취약점은 해소됩니다. 원문은 이 EIP 범위 밖의 이야기로, 오해와 오용을 더 줄이려면 ORIGIN 사용 자체를 금지하는 것이 현명할 수 있다고 덧붙입니다. 방법으로는 EVM 바깥의 도구 변경, 또는 EVM 안에서 ORIGIN을 쓰는 컨트랙트 배포를 되돌리는(revert) 방식을 듭니다. 별칭 처리로 나빠지는 기존 오용 사례는 아직 명확한 예가 확인되지 않았지만 그런 레거시 코드를 피하도록 사용자를 교육할 필요가 있을 수 있다고 적습니다.",
+          "ref": "원문: Security Considerations"
+        },
+        {
+          "title": "현재 상태: Stagnant, 포크에서도 제외",
+          "body": "원문 상태는 Stagnant입니다. 오랫동안 진전이 없어 논의가 멈춘 상태이며 다시 활성화되지 않으면 이대로 채택되지 않을 수도 있습니다. 코어 개발자 콜에서도 09.10 ACDE #245에서 Hegota 포크 대상에서 EIP-2488, EIP-8219, EIP-8182와 함께 EIP-7645를 제외했습니다. 네 건 모두 전 클라이언트 만장일치 저평가(0.0~0.8)였습니다.",
+          "ref": "원문: status · 콜 기록: 09.10 ACDE #245"
+        }
+      ],
+      "glossary": [
+        {
+          "term": "옵코드(opcode)",
+          "def": "EVM이 실행하는 저수준 명령어 하나하나를 가리킵니다."
+        },
+        {
+          "term": "ORIGIN",
+          "def": "거래를 처음 시작한 계정의 주소를 돌려주는 EVM 명령어(0x32)입니다."
+        },
+        {
+          "term": "SENDER(CALLER)",
+          "def": "바로 앞 호출자의 주소를 돌려주는 EVM 명령어(0x33)입니다."
+        },
+        {
+          "term": "계정 추상화(account abstraction)",
+          "def": "외부 소유 계정과 스마트 컨트랙트 계정의 구분을 줄여 계정 동작을 더 유연하게 만들려는 방향입니다."
+        },
+        {
+          "term": "번들러(bundler)",
+          "def": "ERC-4337에서 여러 사용자의 작업을 묶어 하나의 거래로 체인에 제출하는 주체입니다."
+        },
+        {
+          "term": "다중 홉(multi-hop)",
+          "def": "컨트랙트가 다른 컨트랙트를 다시 호출해 여러 단계를 거치는 실행을 말합니다."
+        }
+      ],
+      "related": [
+        {
+          "number": 4337,
+          "note": "번들러가 ORIGIN 기반 권한을 가지면 묶인 거래가 이를 가로챌 수 있다는 사례로 인용됩니다."
+        },
+        {
+          "number": 7377,
+          "note": "ORIGIN 처리가 걸림돌이 되는 계정 추상화 시도의 예로 인용됩니다."
+        },
+        {
+          "number": 3074,
+          "note": "ORIGIN 처리가 걸림돌이 되는 계정 추상화 시도의 예로 인용됩니다."
+        }
+      ],
+      "meta": {
+        "title": "Alias ORIGIN to SENDER",
+        "description": "Eliminate ORIGIN tech debt to lay groundwork for account abstraction and close security holes",
+        "status": "Stagnant",
+        "type": "Standards Track",
+        "category": "Core",
+        "created": "2024-03-03",
+        "authors": [
+          "Cyrus Adkisson",
+          "Eirik Ulversøy"
+        ],
+        "requires": [],
+        "discussionsTo": "https://ethereum-magicians.org/t/eip-7645-alias-origin-to-sender/19047"
+      },
+      "sourceHash": "57c2d8606b731a01",
+      "model": "fable",
+      "generatedAt": "2026-11-04T01:25:20.567Z"
     },
     {
       "number": 7666,
@@ -6120,6 +6269,330 @@
       "sourceHash": "dbd3bcf2bd669e4b",
       "model": "fable",
       "generatedAt": "2026-11-03T14:10:10.546Z"
+    },
+    {
+      "number": 8182,
+      "titleKo": "비공개 ETH·ERC-20 전송",
+      "topic": "보안·프라이버시",
+      "summary": "프로토콜이 직접 관리하는 쉴드 풀(shielded pool) 시스템 컨트랙트를 설치해 ETH와 ERC-20 토큰을 비공개로 보낼 수 있게 합니다. 새 명령어나 트랜잭션 타입은 추가하지 않습니다.",
+      "why": "이더리움에서 자산을 공개로 보내는 일은 쉽습니다. 하지만 보내는 사람, 받는 사람, 금액을 숨겨야 하는 전송에는 공통 기본값이 없습니다. 급여 지급, 기업 자금 관리, 기부 같은 평범한 금융 활동은 내역이 모두에게 보이면 곤란해서 지금은 전통 금융이나 다른 블록체인으로 밀려납니다. 원문은 시장이 이 문제를 스스로 풀지 못한 이유를 풀의 규모 효과에서 찾습니다. 비공개 전송의 익명성은 같은 풀을 쓰는 사용자와 자금이 얼마나 많은지에 달려 있어 작은 풀은 제품이 아무리 좋아도 프라이버시가 약합니다. 또 풀을 업그레이드할 수 있게 만들면 그 권한을 가진 쪽이 사용자 자금을 위협할 수 있고 반대로 불변으로 만들면 증명 체계가 약해져도 고칠 수 없습니다. 이 EIP는 하드포크로만 바뀌는 프로토콜 관리 풀을 제공해 이 교착을 깨자고 제안합니다.",
+      "before": [
+        "비공개 전송에 공통 표준이 없어 앱마다 자체 풀을 만들고 키워야 합니다",
+        "풀이 작으면 제품이 좋아도 프라이버시가 약합니다",
+        "업그레이드형 풀은 운영 주체 리스크가, 불변 풀은 암호 가정 변화에 적응 못하는 문제가 있습니다"
+      ],
+      "after": [
+        "프로토콜 정의 주소의 시스템 컨트랙트가 ETH와 ERC-20의 공유 쉴드 풀이 됩니다",
+        "프록시나 관리자 없이 하드포크로만 코드가 바뀝니다",
+        "사용자가 자기 인증 방식(ECDSA 서명, 패스키 등)을 직접 등록해 씁니다",
+        "새 프리컴파일, opcode, 트랜잭션 타입 없이 시스템 컨트랙트 설치만 필요합니다"
+      ],
+      "impact": [
+        {
+          "who": "사용자",
+          "text": "급여, 자금 관리, 기부처럼 금액이나 상대를 공개하기 어려운 전송을 이더리움 위에서 할 수 있게 됩니다."
+        },
+        {
+          "who": "지갑·앱 개발자",
+          "text": "자체 풀을 키우고 지킬 필요 없이 공유 풀 위에 제품을 만듭니다. 다만 노트 전달, 멤풀 암호화 같은 보완 인프라는 이 EIP 범위 밖이라 직접 갖춰야 합니다."
+        },
+        {
+          "who": "클라이언트 팀",
+          "text": "포크 활성화 시점에 지정 주소에 시스템 컨트랙트 코드를 설치해야 합니다. 바이트코드는 신뢰 설정 완료 후 릴리스에 반영됩니다."
+        },
+        {
+          "who": "토큰 발행자",
+          "text": "전송 수수료형(fee-on-transfer)과 리베이싱 토큰은 이 풀과 호환되지 않아 입금하면 안 됩니다."
+        }
+      ],
+      "example": {
+        "title": "입금부터 비공개 전송, 출금까지",
+        "steps": [
+          {
+            "label": "1",
+            "title": "인증 정책 등록",
+            "body": "사용자가 setAuthPolicy를 호출해 자신의 ownerNullifierKeyHash, noteSecretSeedHash, 정책 집합 커밋먼트를 레지스트리에 등록합니다."
+          },
+          {
+            "label": "2",
+            "title": "공개 입금",
+            "body": "deposit을 호출해 ETH나 토큰을 넣습니다. 증명이 필요 없고 받는 쪽 식별자를 숨긴 ownerCommitment로 노트 하나가 트리에 들어갑니다."
+          },
+          {
+            "label": "3",
+            "title": "비공개 전송",
+            "body": "transact 호출 하나에서 풀 증명과 인증 증명 두 개를 검증합니다. 입력 노트는 널리파이어로 폐기되고 수신자·잔돈·수수료용 출력 노트 3개가 삽입됩니다."
+          },
+          {
+            "label": "4",
+            "title": "노트 수신",
+            "body": "수신자 지갑은 이벤트에 실린 outputNoteData를 해석해 자기 노트를 찾습니다. 전달 방식 자체는 이 EIP가 정하지 않습니다."
+          },
+          {
+            "label": "5",
+            "title": "출금",
+            "body": "출금 모드의 transact는 publicAmountOut과 publicRecipientAddress를 공개 입력으로 드러내고 지정 주소로 ETH나 토큰을 공개 전송합니다."
+          }
+        ]
+      },
+      "deep": [
+        {
+          "title": "시스템 컨트랙트와 업그레이드 모델",
+          "body": "쉴드 풀은 SHIELDED_POOL_ADDRESS = 0x0000000000000000000000000000000000081820에 시스템 컨트랙트로 배포됩니다. 프록시, 관리자 함수, 온체인 업그레이드 경로가 전혀 없고 코드는 이후 하드포크의 상태 전이 규칙으로만 교체할 수 있으며 스토리지는 교체 후에도 유지됩니다. 풀 증명 검증 키는 EIP-4844의 KZG와 같은 패턴인 일회성 다자간 신뢰 설정(trusted setup) 세리머니로 확정되고 컨트랙트 바이트코드에 내장됩니다. 세리머니가 끝나야 바이트코드가 확정되므로 EIP가 특정 바이트코드를 못 박지 않습니다.",
+          "ref": "원문: Specification · 5.1 Deployment and Upgrade Model, 5.5 Pool Proof Verification"
+        },
+        {
+          "title": "분할 증명 구조: 풀 증명과 인증 증명",
+          "body": "노트를 쓰는 transact는 신뢰 성격이 다른 두 증명으로 나뉩니다. 풀 증명은 하드포크로만 바뀌는 단일 회로의 Groth16 BN254 SNARK로, 가치 보존, 널리파이어 유도, 머클 멤버십, 출력 노트 시크릿의 결정적 유도, 레지스트리 리프·정책 집합 멤버십, 의도 다이제스트 재계산 같은 프로토콜 불변식을 모두 책임집니다. 인증 증명은 누구나 회로와 authVerifier 컨트랙트를 만들어 배포할 수 있는 무허가 계층으로, 사용자 자격 검증과 의도 파싱을 맡아 [blindedAuthCommitment, transactionIntentDigest] 두 값을 출력합니다. 시스템 컨트랙트는 풀 증명을 내장 검증 키로 검증하고 인증 증명은 사용자가 고른 authVerifier에 staticcall로 넘깁니다. 풀 회로의 버그는 풀 전체 자금을 위협하지만 인증 회로의 버그는 그 검증자에 정책을 등록한 신원만 위협합니다.",
+          "ref": "원문: Specification · 4. Architecture, 8.1 Pool Circuit Interface and Auth Proof Coupling"
+        },
+        {
+          "title": "노트, 널리파이어, 고정 형태 트랜잭션",
+          "body": "노트는 poseidon 해시 사슬로 커밋됩니다. ownerCommitment = poseidon(OWNER_COMMITMENT_DOMAIN, ownerNullifierKeyHash, noteSecret), noteBodyCommitment는 여기에 amount와 tokenAddress를 묶고 최종 noteCommitment는 컨트랙트가 부여한 leafIndex를 더해 구조적 유일성을 만듭니다. 노트를 쓰면 nullifier = poseidon(NULLIFIER_DOMAIN, noteCommitment, ownerNullifierKey)가 공개돼 이중 사용을 막습니다. 모든 transact는 입력 2개, 출력 3개의 고정 형태입니다. 실제 입력이 하나뿐이면 팬텀 입력이 빈 자리를 채우고 팬텀 널리파이어를 내며 남는 출력 자리는 amount가 0으로 강제되는 더미 출력이 채웁니다. 관찰자는 팬텀과 실제를 구분할 수 없어야 합니다. 해시는 BN254 스칼라 필드 위 Poseidon2(t=4, R_F=8, R_P=56)의 길이 태그 스펀지 형태로 통일됩니다.",
+          "ref": "원문: Specification · 7. Note Commitment and Nullifiers, 3.3 Poseidon Hash Construction"
+        },
+        {
+          "title": "인증 정책 레지스트리와 키 회전",
+          "body": "깊이 32의 희소 머클 트리 하나가 모든 사용자의 인증 정책을 담습니다. 리프는 poseidon(AUTH_POLICY_DOMAIN, uint160(user), ownerNullifierKeyHash, noteSecretSeedHash, policySetCommitment)이고 각 주소는 leafPosition 하나를 영구 배정받습니다. 개별 정책은 policyCommitment = poseidon(POLICY_COMMITMENT_DOMAIN, uint160(authVerifier), authDataCommitment, registrationBlinder)로 깊이 POLICY_SET_DEPTH = 8 트리에 숨겨져 등록 시점에는 어느 주소가 어떤 인증 방식을 쓰는지 드러나지 않습니다(authVerifier는 지출 시점에 공개 입력으로 드러납니다). ownerNullifierKeyHash는 회전 불가라 바꾸려면 새 주소로 새 신원을 등록하고 노트를 이전해야 합니다. noteSecretSeedHash와 정책 집합은 setAuthPolicy로 바꿀 수 있지만 이전 상태가 AUTH_POLICY_ROOT_HISTORY_BLOCKS = 64 블록의 루트 히스토리 창이 지날 때까지 유효하므로 회전이 즉시 효력을 갖지 않습니다.",
+          "ref": "원문: Specification · 6. Auth Policy Registry, 5.2.1 Auth-Policy Root History"
+        },
+        {
+          "title": "transact 실행 절차",
+          "body": "컨트랙트는 19개 공개 입력을 받아 순서대로 검사합니다. 체인 ID 일치, 의도 만료(validUntilSeconds는 block.timestamp + MAX_INTENT_LIFETIME = 86400초 이내), 노트 커밋먼트 루트(현재 루트 또는 크기 NOTE_COMMITMENT_ROOT_HISTORY_SIZE = 500의 히스토리), 인증 정책 루트, 널리파이어 중복, 범위 검사(publicAmountOut < 2^248, 주소류 < 2^160)를 확인한 뒤 풀 증명을 내장 키로, 인증 증명을 authVerifier staticcall로 검증합니다. 이어 널리파이어 2개와 intentReplayId를 소비 처리하고 출력 노트 데이터 3개의 keccak256 mod p 해시를 공개 입력과 대조합니다. publicAmountOut > 0이면 출금으로 ETH 또는 ERC-20을 공개 지급하고 0이면 순수 비공개 전송입니다. 마지막으로 출력 커밋먼트 3개를 트리에 넣고 ShieldedPoolTransact 이벤트를 냅니다.",
+          "ref": "원문: Specification · 5.4.1 transact"
+        },
+        {
+          "title": "증명 없는 입금과 ERC-20 호환성 제한",
+          "body": "deposit은 증명 없이 동작합니다. ETH는 msg.value == amount를, ERC-20은 transferFrom 전후의 balanceOf 차이가 정확히 amount인지 확인한 뒤 노트 하나를 삽입합니다. 컨트랙트는 ownerCommitment가 등록된 주소에 대응하는지 검증하지 않고 outputNoteData도 해석하지 않습니다. 보내는 쪽이 오프체인에서 수신자의 ownerNullifierKeyHash를 알아내 noteSecret과 함께 ownerCommitment를 계산하는 흐름입니다. 잔액 차이 검사 때문에 전송 수수료형 토큰은 입금이 거부되고 리베이싱 토큰은 신뢰성 있게 감지할 수 없으며 출금(transfer) 쪽에서만 수수료를 떼는 토큰은 입금은 통과해도 출금 때 모자라게 전달되므로 입금하면 안 됩니다. 노트 전달, 멤풀 암호화, 네트워크 익명성, 지갑 통합은 이 EIP 범위 밖으로 남습니다.",
+          "ref": "원문: Specification · 5.4.2 deposit, Motivation · Scope"
+        },
+        {
+          "title": "진행 상태: Review, Hegotá 포함 제외",
+          "body": "이 EIP는 Review 상태라 명세가 아직 바뀔 수 있습니다. 코어 개발자 콜에서는 09.10 ACDE #245에서 Hegotá 포크 후보 중 제외(DFI)로 결정됐습니다. EIP-2488, EIP-8219, EIP-7645와 함께 네 건 모두 전 클라이언트 만장일치 저평가(0.0~0.8)를 받았습니다.",
+          "ref": "원문: Preamble · status / 콜 기록: 09.10 ACDE #245"
+        }
+      ],
+      "glossary": [
+        {
+          "term": "쉴드 풀(shielded pool)",
+          "def": "여러 사용자의 자산을 한 컨트랙트에 모아 두고, 그 안의 이동 내역을 암호학적으로 숨기는 공동 자금 풀입니다."
+        },
+        {
+          "term": "노트(note)",
+          "def": "풀 안의 자산 한 조각입니다. 소유자, 금액, 토큰 종류가 해시 커밋먼트 뒤에 숨겨진 채 머클 트리에 기록됩니다."
+        },
+        {
+          "term": "널리파이어(nullifier)",
+          "def": "노트를 쓸 때 공개되는 일회용 표식입니다. 어느 노트가 쓰였는지는 숨기면서 같은 노트의 이중 사용을 막습니다."
+        },
+        {
+          "term": "시스템 컨트랙트",
+          "def": "프로토콜이 정한 주소에 하드포크로 설치되는 컨트랙트입니다. 일반 배포와 달리 코드 교체도 하드포크로만 가능합니다."
+        },
+        {
+          "term": "Groth16",
+          "def": "영지식 증명 방식의 하나입니다. 비밀을 드러내지 않고 계산이 규칙대로 수행됐음을 짧은 증명으로 보일 수 있습니다."
+        },
+        {
+          "term": "신뢰 설정(trusted setup)",
+          "def": "영지식 증명의 검증 키를 만드는 다자간 준비 절차입니다. 참가자 중 한 명만 정직해도 안전하게 설계됩니다."
+        }
+      ],
+      "related": [
+        {
+          "number": 20,
+          "note": "원문 requires. 풀이 받는 토큰 표준으로, 입출금 시 transferFrom과 transfer의 반환값 처리 규칙을 명세합니다."
+        },
+        {
+          "number": 4844,
+          "note": "풀 증명 검증 키를 일회성 다자간 신뢰 설정으로 확정하는 방식의 선례로 원문이 KZG 세리머니를 듭니다."
+        }
+      ],
+      "meta": {
+        "title": "Private ETH and ERC-20 Transfers",
+        "description": "A canonical validity layer for private ETH and compatible ERC-20 transfers via a system contract and a split-proof architecture.",
+        "status": "Review",
+        "type": "Standards Track",
+        "category": "Core",
+        "created": "2026-03-03",
+        "authors": [
+          "Tom Lehman"
+        ],
+        "requires": [
+          20
+        ],
+        "discussionsTo": "https://ethereum-magicians.org/t/eip-8182-private-eth-and-erc-20-transfers/27889"
+      },
+      "sourceHash": "5fcacb0f71bec7f4",
+      "model": "fable",
+      "generatedAt": "2026-11-04T01:29:38.009Z"
+    },
+    {
+      "number": 8188,
+      "titleKo": "계정·슬롯의 마지막 기록 블록",
+      "topic": "확장성·데이터",
+      "summary": "모든 계정과 스토리지 슬롯에 마지막으로 수정된 블록 번호(last_written_block)를 합의 상태로 기록합니다. 쓰기 때만 갱신되고 가스 비용은 바뀌지 않으며 클라이언트가 저장소 계층화에 쓸 신호가 됩니다.",
+      "why": "이더리움의 상태(state), 곧 모든 계정 잔액과 컨트랙트 저장값은 계속 늘어나지만, 각 데이터가 언제 마지막으로 수정됐는지는 프로토콜 어디에도 기록되지 않습니다. 그래서 노드 소프트웨어(클라이언트)는 캐시나 스냅샷 같은 자체 추정에 의존하는데, 이 방식은 노드마다 결과가 달라 합의 신호로 쓸 수 없습니다. 마지막 수정 블록이 합의 수준에 기록되면 모든 노드가 같은 기준으로 최근에 수정된 활성 상태를 가려낼 수 있습니다. 클라이언트는 이를 바탕으로 자주 바뀌는 데이터와 오랫동안 그대로인 데이터를 서로 다른 저장 계층에 나눠 두는 최적화를 할 수 있습니다. 목표는 트라이 갱신, 상태 루트 계산, 컴팩션처럼 상태를 반복해서 다시 쓰는 작업의 비용을 줄이는 것입니다. 이 제안은 메타데이터 기록까지만 다루며 가스 비용은 바꾸지 않습니다.",
+      "before": [
+        "상태가 언제 마지막으로 수정됐는지 프로토콜에 아무 기록이 없습니다",
+        "클라이언트가 캐시, 스냅샷 같은 자체 추정에 의존하고 노드마다 결과가 다릅니다",
+        "자주 바뀌는 상태와 오래 방치된 상태가 저장소에서 섞여 있어 블록당 쓰기 비용이 전체 상태 크기에 끌려갑니다"
+      ],
+      "after": [
+        "모든 계정과 슬롯에 마지막 수정 블록 번호가 합의 수준으로 기록됩니다",
+        "모든 노드가 같은 기준으로 최근 수정된 활성 상태를 구분합니다",
+        "클라이언트가 활성 상태와 비활성 상태를 다른 저장 계층에 나눠 둘 수 있습니다",
+        "가스 비용과 컨트랙트 동작은 지금과 같습니다"
+      ],
+      "impact": [
+        {
+          "who": "클라이언트 팀",
+          "text": "계정·슬롯 인코딩과 갱신 규칙을 새로 구현해야 합니다. 대신 저장소 계층화, 커밋 경로 최적화, 재시작 시 프리페치에 쓸 수 있는 합의 수준 신호를 얻습니다."
+        },
+        {
+          "who": "노드 운영자",
+          "text": "포크 후 쓰인 상태에 메타데이터가 붙어 디스크가 최대 약 10.8GB 늘 수 있습니다. 모든 상태가 다시 쓰였다고 가정한 최악치입니다."
+        },
+        {
+          "who": "사용자·앱 개발자",
+          "text": "가스 비용과 컨트랙트 동작은 바뀌지 않아 체감 변화가 없습니다."
+        },
+        {
+          "who": "증명을 다루는 개발자",
+          "text": "갱신된 항목의 상태 증인(witness)과 증명 크기가 추가 바이트만큼 커집니다."
+        }
+      ],
+      "example": {
+        "title": "블록 N에서 스토리지 슬롯을 수정할 때",
+        "steps": [
+          {
+            "label": "1",
+            "title": "슬롯 값 변경",
+            "body": "블록 N에 포함된 트랜잭션이 SSTORE로 슬롯의 값을 0이 아닌 다른 값으로 바꿉니다."
+          },
+          {
+            "label": "2",
+            "title": "슬롯 필드 갱신",
+            "body": "그 슬롯의 last_written_block이 N으로 설정됩니다."
+          },
+          {
+            "label": "3",
+            "title": "계정 필드 갱신",
+            "body": "슬롯이 바뀌면 계정의 storageRoot가 다시 계산되므로, 그 컨트랙트 계정의 last_written_block도 N이 됩니다."
+          },
+          {
+            "label": "4",
+            "title": "같은 블록의 재쓰기",
+            "body": "같은 블록 안에서 그 슬롯을 다시 써도 필드는 이미 N이라 더 바뀌지 않습니다."
+          },
+          {
+            "label": "5",
+            "title": "revert 시 복원",
+            "body": "호출이 revert되면 필드는 잔액, 논스와 똑같이 프레임 이전 값으로 되돌아갑니다."
+          }
+        ]
+      },
+      "deep": [
+        {
+          "title": "계정과 슬롯의 인코딩 변경",
+          "body": "계정 인코딩은 RLP([nonce, balance, storageRoot, codeHash])에서 다섯 번째 필드를 더한 RLP([nonce, balance, storageRoot, codeHash, last_written_block])로 바뀝니다. 요소가 4개뿐인 기존 형식을 디코딩할 때는 last_written_block을 0으로 간주해야 합니다(MUST). 스토리지 슬롯은 값 하나였던 RLP(value)가 리스트 RLP([value, last_written_block])로 바뀝니다. 두 형식은 RLP 접두 바이트로 구분합니다. 단일 바이트열은 접두가 0x80대, 리스트는 0xc0대이므로 충돌이 없고 기존 형식 슬롯도 last_written_block = 0으로 디코딩합니다. 포크 이전 상태는 포크 후 처음 수정될 때까지 기존 인코딩을 그대로 유지하므로 별도의 트리 전환은 필요 없습니다.",
+          "ref": "원문: Specification · Encoding Changes"
+        },
+        {
+          "title": "쓰기 때만 갱신되는 블록 번호",
+          "body": "last_written_block은 상태가 수정될 때 현재 block_number로 설정되며 같은 블록 안에서 다시 써도 이미 같은 값이라 변화가 없습니다. 슬롯 규칙은 네 가지입니다. SSTORE로 0이 아닌 값이 다른 값으로 바뀌면 슬롯과 소유 계정의 필드를 모두 갱신합니다(storageRoot가 다시 계산되기 때문). 슬롯을 0으로 지우면 슬롯은 트라이에서 제거되고 계정 필드만 갱신합니다. 같은 값을 다시 쓰면 아무것도 바꾸지 않습니다. 새 슬롯은 현재 블록 번호를 담고 생성됩니다. 계정 쪽에서는 0이 아닌 금액의 잔액 이동이 보내는 쪽과 받는 쪽을 모두 갱신하고 논스 증가와 새 계정 생성도 갱신 대상입니다. SELFDESTRUCT는 EIP-6780의 잔액 이동 규칙을 따릅니다. 같은 트랜잭션에서 생성되지 않은 컨트랙트는 제거되지 않으므로 잔액이 바뀔 때 자기 자신과 수취 계정을 갱신하며 수취인이 자기 자신이면 잔액이 바뀌지 않아 갱신하지 않습니다. 같은 트랜잭션에서 생성되고 파괴된 컨트랙트는 트라이에서 제거되어 이 필드를 갖지 않습니다.",
+          "ref": "원문: Specification · Block Update Rule"
+        },
+        {
+          "title": "읽기는 갱신하지 않고, revert는 되돌립니다",
+          "body": "SLOAD, BALANCE, EXTCODESIZE, EXTCODECOPY, EXTCODEHASH와 상태를 바꾸지 않는 호출 명령어 같은 순수 읽기는 last_written_block을 갱신해서는 안 됩니다(MUST NOT). 이유는 세 가지입니다. 읽기가 필드를 바꾸면 모든 오래된 읽기가 트라이 리프 재작성과 상태 루트 재계산으로 이어져 읽기에 쓰기 수준의 비용이 붙습니다. 또 안정 계층의 데이터가 읽기만으로 가변 계층으로 옮겨져 쓰기 증폭이 생기고 가변 경로를 분리한다는 목표와 어긋납니다. 마지막으로 이 필드는 상태 루트에 반영되는 합의 상태이므로, 읽기가 이를 바꾸면 STATICCALL 동안 상태가 변하지 않는다는 EIP-214의 보장이 깨집니다. 호출 프레임이 revert되면 필드는 balance, nonce, 스토리지와 똑같이 프레임 이전 값으로 복원되며 롤백된 상태 변경에 딸린 갱신을 남겨 두어서는 안 됩니다(MUST NOT).",
+          "ref": "원문: Specification · Reads, Reverts / Rationale · Why do reads not update the block?"
+        },
+        {
+          "title": "상태 크기에 미치는 영향",
+          "body": "필드는 계정당 5바이트, 슬롯당 6바이트를 더합니다. 블록 번호는 현재 4바이트이고 RLP가 길이 접두 1바이트(0x84)를 붙여 5바이트가 됩니다. 계정은 이미 리스트라 그대로 5바이트만 늘지만 슬롯은 단일 바이트열을 리스트로 감싸면서 리스트 접두 1바이트가 더 붙어 6바이트가 됩니다. 4바이트 필드는 2^32 - 1, 약 42억 9천만 블록까지 담습니다. 현재 12초 슬롯 기준 약 1,600년 뒤에야 넘치고 슬롯이 6초로 줄어도 약 800년 뒤입니다. 2026년 초 상태 규모로 어림하면 계정 3억 6천만 개 × 5바이트 ≈ 1.8GB, 슬롯 15억 개 × 6바이트 ≈ 9.0GB, 합계 약 10.8GB입니다. 이는 모든 상태가 포크 후 한 번 이상 쓰였다고 가정한 최악치이며 포크 후 수정되지 않는 상태는 기존 인코딩을 유지해 비용이 없습니다. 실제 영향은 클라이언트별 벤치마크로 정량화해야 한다고 원문은 적습니다.",
+          "ref": "원문: Rationale · How does extra metadata affect the state size?"
+        },
+        {
+          "title": "EIP-8037 상태 생성 비용과의 연계",
+          "body": "이 제안은 모든 상태 항목에 바이트를 더하므로 EIP-8037의 바이트당 상태 생성 비용과 맞물립니다. EIP-8037은 새 상태 1바이트마다 CPSB(cost per state byte) 가스를 물리며 그 기준값이 새 계정의 디스크 크기 STATE_BYTES_PER_NEW_ACCOUNT = 120과 새 슬롯의 STATE_BYTES_PER_STORAGE_SET = 64입니다. 생성 가스가 실제 디스크 증가를 계속 반영하려면 두 값을 각각 125와 70으로 올려야 합니다(SHOULD). 올리지 않으면 새 계정과 슬롯이 실제 인코딩 크기보다 싸게 책정됩니다. 보안 측면에서 새 쓰기 연산이 생기지는 않아 DoS 위험은 기존 쓰기 가스 규칙 안에 묶이지만 쓰기가 건드리는 데이터 양과 갱신 항목의 증인·증명 크기는 늘어납니다.",
+          "ref": "원문: Rationale · Relation with state creation cost / Security Considerations"
+        },
+        {
+          "title": "클라이언트가 이 신호로 할 수 있는 것",
+          "body": "원문이 드는 활용처는 세 가지입니다. 첫째, 최근 쓰인 상태와 오래 쓰이지 않은 상태를 결정적으로 나눠 서로 다른 저장 계층에 둘 수 있습니다. 가변 계층은 쓰기 처리량에, 안정 계층은 압축과 읽기 처리량에 맞춰 튜닝합니다. 둘째, 블록마다 더럽혀진 트라이 경로를 다시 해시하고 저장하는 커밋 경로에서, 활성 상태를 좁은 키 공간에 모으면 공간 지역성이 좋아져 블록당 쓰기 비용이 전체 상태 크기가 아니라 활성 집합 크기에 비례하게 됩니다. LSM 트리의 컴팩션이든 B 트리의 copy-on-write 페이지 재작성이든 효과는 같습니다. 셋째, 노드 재시작 때 최근에 쓰인 항목만 골라 미리 읽어 캐시를 복구할 수 있습니다. 이 중 어느 것도 의무가 아닙니다. 블록 번호를 가공 없이 기록하는 이유는, 갱신 주기 같은 더 굵은 단위는 블록 번호에서 결정적으로 유도할 수 있지만 반대는 불가능하기 때문입니다. 덕분에 가격 정책이 정해지기 전에 메타데이터만 먼저 확정해도 되고 정책이 나중에 바뀌어도 인코딩을 다시 바꿀 필요가 없습니다.",
+          "ref": "원문: Rationale · How can clients utilize the write-age metadata? / Why record the block number directly?"
+        },
+        {
+          "title": "진행 상태와 포크 결정",
+          "body": "계정과 슬롯 인코딩이 바뀌어 트라이 해싱과 상태 루트 계산에 영향을 주므로 적용에는 하드포크가 필요합니다. 가스 비용에 차등을 두는 실제 상태 계층화는 이 필드를 사용하는 별도 제안의 몫으로 남겨 두었습니다. 이 제안은 Draft 상태라 명세가 아직 바뀔 수 있습니다. 포크 반영 쪽은 09.10 ACDE #245 콜에서 EIP-8358, EIP-8115와 함께 Hegota 대상에서 제외됐습니다. 세 건 모두 낮은 평점을 받았습니다.",
+          "ref": "원문: Backwards Compatibility / 콜 기록: 09.10 ACDE #245"
+        }
+      ],
+      "glossary": [
+        {
+          "term": "RLP",
+          "def": "이더리움이 계정, 트랜잭션 같은 데이터를 바이트열로 직렬화하는 인코딩 규칙입니다."
+        },
+        {
+          "term": "스토리지 슬롯",
+          "def": "스마트 컨트랙트가 값을 저장하는 32바이트 단위의 칸입니다."
+        },
+        {
+          "term": "상태 루트(state root)",
+          "def": "전체 상태를 해시 하나로 요약한 값으로 블록 헤더에 들어갑니다. 상태가 조금만 바뀌어도 달라집니다."
+        },
+        {
+          "term": "트라이(trie)",
+          "def": "이더리움이 상태를 담는 트리 구조로, 상태 루트 계산의 기반입니다."
+        },
+        {
+          "term": "컴팩션(compaction)",
+          "def": "데이터베이스가 흩어진 데이터를 정리해 다시 쓰는 내부 작업입니다."
+        },
+        {
+          "term": "쓰기 증폭(write amplification)",
+          "def": "실제로 바꾼 데이터보다 더 많은 양을 디스크에 다시 쓰게 되는 현상입니다."
+        }
+      ],
+      "related": [
+        {
+          "number": 8037,
+          "note": "바이트당 상태 생성 비용을 정의하는 선행 제안(requires)입니다. 이 제안의 추가 바이트를 반영해 기준값 상향을 권고합니다."
+        },
+        {
+          "number": 6780,
+          "note": "SELFDESTRUCT 처리의 기준 규칙입니다. last_written_block 갱신도 이 규칙의 잔액 이동을 따릅니다."
+        },
+        {
+          "number": 214,
+          "note": "STATICCALL의 상태 불변 보장을 정의합니다. 읽기가 필드를 갱신하지 않는 근거입니다."
+        }
+      ],
+      "meta": {
+        "title": "Last-Written Block for Accounts and Slots",
+        "description": "Records the last-written block number of each account and storage slot as consensus-level state metadata.",
+        "status": "Draft",
+        "type": "Standards Track",
+        "category": "Core",
+        "created": "2026-03-10",
+        "authors": [
+          "Wei Han Ng",
+          "Amirul Ashraf",
+          "Guillaume Ballet",
+          "Maria Silva",
+          "Gary Rong",
+          "Carlos Perez",
+          "Jochem Brouwer"
+        ],
+        "requires": [
+          8037
+        ],
+        "discussionsTo": "https://ethereum-magicians.org/t/eip8188-state-tiering-by-write-age/28234"
+      },
+      "sourceHash": "dc2306ba2877472d",
+      "model": "fable",
+      "generatedAt": "2026-11-04T01:36:31.758Z"
     },
     {
       "number": 8198,
