@@ -5,8 +5,9 @@ import EipRef from '../components/eips/EipRef';
 import NotFound from './NotFound';
 import { FORKS, forkBySlug } from '../data/forks';
 import { loadEips } from '../data/eipsData';
+import { loadRoadmapExplainers, type ForkImpact } from '../data/roadmapExplainers';
 import { loadEthCalls, type CallRecord } from '../data/ethCallsData';
-import { ROADMAP_ITEMS, STRAWMAP_FORKS } from '../data/roadmap';
+import { ROADMAP_ITEMS, STRAWMAP_FORKS, itemSlug } from '../data/roadmap';
 import { FORK_STATUS_LABEL, forkEipStatuses, type ForkStatus } from '../utils/forks';
 import { dotDate } from '../utils/calls';
 
@@ -19,12 +20,20 @@ const ForkDetail: React.FC = () => {
     const f = forkBySlug(slug);
     const [titles, setTitles] = useState<Map<number, string>>(new Map());
     const [calls, setCalls] = useState<CallRecord[]>([]);
+    const [impact, setImpact] = useState<ForkImpact | null>(null);
+    const [topics, setTopics] = useState<ReadonlySet<string>>(new Set());
     usePageMeta({ title: f ? `${f.name} 하드포크` : '하드포크', description: f?.summary ?? '', canonical: `/forks/${slug}` });
 
     useEffect(() => {
         loadEips().then((x) => setTitles(new Map(x.eips.map((e) => [e.number, e.titleKo]))));
         loadEthCalls().then((x) => setCalls(x.calls));
     }, []);
+    useEffect(() => {
+        loadRoadmapExplainers().then((x) => {
+            setImpact(x.forks[slug] ?? null);
+            setTopics(new Set(Object.keys(x.topics)));
+        });
+    }, [slug]);
 
     const statuses = useMemo(() => (f && !f.date ? forkEipStatuses(calls, f) : []), [calls, f]);
     if (!f) return <NotFound />;
@@ -94,6 +103,22 @@ const ForkDetail: React.FC = () => {
                     </section>
                 )}
 
+                {impact && (
+                    <section aria-labelledby="fd-you" className="border-t border-theme-border py-8">
+                        <h2 id="fd-you" className={H2}>
+                            {f.date ? '무엇이 달라졌나' : '나에게 달라지는 것'}
+                        </h2>
+                        <dl className="flex flex-col">
+                            {impact.impact.map((x) => (
+                                <div key={x.who} className="grid sm:grid-cols-[8rem_minmax(0,1fr)] gap-1 sm:gap-4 py-3 border-b border-theme-border">
+                                    <dt className="font-bold text-sm">{x.who}</dt>
+                                    <dd className="text-sm leading-relaxed text-theme-text-secondary">{x.text}</dd>
+                                </div>
+                            ))}
+                        </dl>
+                    </section>
+                )}
+
                 {rows.length > 0 && (
                     <section aria-labelledby="fd-eips" className="border-t border-theme-border py-8">
                         <div className="flex flex-wrap items-baseline justify-between gap-2 mb-4">
@@ -130,11 +155,18 @@ const ForkDetail: React.FC = () => {
                             Strawmap에서 이 포크 칸
                         </h2>
                         <p className="flex flex-wrap gap-2">
-                            {roadmap.map((it) => (
-                                <span key={it.en} className={`rounded-full px-3 py-1 text-sm ${it.kind === 'headliner' ? 'bg-brand-primary text-white' : 'bg-theme-surface text-theme-text-muted'}`}>
-                                    {it.name}
-                                </span>
-                            ))}
+                            {roadmap.map((it) => {
+                                const cls = `rounded-full px-3 py-1 text-sm ${it.kind === 'headliner' ? 'bg-brand-primary text-white' : 'bg-theme-surface text-theme-text-muted'}`;
+                                return topics.has(itemSlug(it)) ? (
+                                    <Link key={it.en} to={`/roadmap/${itemSlug(it)}`} className={`${cls} hover:opacity-80`}>
+                                        {it.name}
+                                    </Link>
+                                ) : (
+                                    <span key={it.en} className={cls}>
+                                        {it.name}
+                                    </span>
+                                );
+                            })}
                         </p>
                         <Link to="/roadmap" className="mt-4 inline-block text-sm text-brand-accent hover:underline">
                             로드맵 전체 보기

@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import usePageMeta from '../hooks/usePageMeta';
 import EipRef from '../components/eips/EipRef';
 import { loadEips } from '../data/eipsData';
-import { LAYERS, NORTH_STARS, ROADMAP_ITEMS, STRAWMAP_FORKS, STRAWMAP_UPDATED, STRAWMAP_URL, THROUGHLINES, roadmapGrid, type RoadmapItem } from '../data/roadmap';
+import { loadRoadmapExplainers } from '../data/roadmapExplainers';
+import { LAYERS, NORTH_STARS, ROADMAP_ITEMS, STRAWMAP_FORKS, STRAWMAP_UPDATED, STRAWMAP_URL, THROUGHLINES, itemSlug, roadmapGrid, type RoadmapItem } from '../data/roadmap';
 import { dotDate } from '../utils/calls';
 
 const H2 = 'text-2xl font-bold';
@@ -15,7 +16,7 @@ const ITEM_STYLE: Record<RoadmapItem['kind'], string> = {
 };
 const DESCRIPTION = '이더리움 재단 프로토콜 팀의 Strawmap을 한국어로 옮긴 로드맵. 2029년까지 하드포크마다 들어갈 업그레이드와 다섯 가지 목표를 한눈에 봅니다.';
 
-const Item: React.FC<{ it: RoadmapItem; known: ReadonlySet<number> }> = ({ it, known }) => {
+const Item: React.FC<{ it: RoadmapItem; known: ReadonlySet<number>; topics: ReadonlySet<string> }> = ({ it, known, topics }) => {
     const cls = `block rounded-lg border px-2.5 py-2 text-xs leading-snug ${ITEM_STYLE[it.kind]}`;
     const body = (
         <>
@@ -23,6 +24,12 @@ const Item: React.FC<{ it: RoadmapItem; known: ReadonlySet<number> }> = ({ it, k
             {it.uncertain && <span className="ml-1 font-bold text-amber-400" aria-label="실현 여부 불확실">?</span>}
         </>
     );
+    if (topics.has(itemSlug(it)))
+        return (
+            <Link to={`/roadmap/${itemSlug(it)}`} className={`${cls} hover:border-brand-accent`}>
+                {body}
+            </Link>
+        );
     return it.eips?.length ? (
         <EipRef n={it.eips[0]} known={known} className={`${cls} hover:border-brand-accent`}>
             {body}
@@ -36,9 +43,11 @@ const Item: React.FC<{ it: RoadmapItem; known: ReadonlySet<number> }> = ({ it, k
 
 const Roadmap: React.FC = () => {
     const [known, setKnown] = useState<ReadonlySet<number>>(new Set());
+    const [topics, setTopics] = useState<ReadonlySet<string>>(new Set());
     usePageMeta({ title: '로드맵', description: DESCRIPTION, canonical: '/roadmap' });
     useEffect(() => {
         loadEips().then((f) => setKnown(new Set(f.eips.map((e) => e.number))));
+        loadRoadmapExplainers().then((f) => setTopics(new Set(Object.keys(f.topics))));
     }, []);
     const grid = useMemo(() => roadmapGrid(), []);
     const linked = ROADMAP_ITEMS.filter((it) => it.eips?.length);
@@ -127,7 +136,7 @@ const Roadmap: React.FC = () => {
                                             <td key={i} className="p-1.5 align-top">
                                                 <div className="flex flex-col gap-1.5">
                                                     {cell.map((it) => (
-                                                        <Item key={it.en} it={it} known={known} />
+                                                        <Item key={it.en} it={it} known={known} topics={topics} />
                                                     ))}
                                                 </div>
                                             </td>
@@ -151,7 +160,13 @@ const Roadmap: React.FC = () => {
                         {linked.map((it) => (
                             <li key={it.en} className="py-3 border-b border-theme-border flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
                                 <span className="font-semibold">
-                                    {it.name}
+                                    {topics.has(itemSlug(it)) ? (
+                                        <Link to={`/roadmap/${itemSlug(it)}`} className="hover:text-brand-accent">
+                                            {it.name}
+                                        </Link>
+                                    ) : (
+                                        it.name
+                                    )}
                                     <span className="ml-2 text-xs font-normal text-theme-text-muted">{STRAWMAP_FORKS[it.fork].name}</span>
                                 </span>
                                 <span className="flex flex-wrap gap-x-3 text-sm">

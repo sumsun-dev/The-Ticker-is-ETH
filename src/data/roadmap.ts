@@ -124,3 +124,12 @@ export function roadmapGrid(items: RoadmapItem[] = ROADMAP_ITEMS): Record<Exclud
     for (const it of items) grid[it.layer === 'cross' ? 'dl' : it.layer][it.fork].push(it);
     return grid;
 }
+
+/** 개념 상세 주소 (/roadmap/:slug). 원본 영어 이름에서 만든다 */
+export const itemSlug = (it: Pick<RoadmapItem, 'en'>): string =>
+    it.en
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-|-$/g, '');
+
+export const itemBySlug = (slug: string): RoadmapItem | undefined => ROADMAP_ITEMS.find((it) => itemSlug(it) === slug);
