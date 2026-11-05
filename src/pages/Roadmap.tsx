@@ -21,6 +21,8 @@ const KIND_STYLE: Record<HistoryKind, string> = {
     ef: 'bg-brand-primary/15 text-brand-accent',
     fork: 'bg-amber-400/10 text-amber-300',
 };
+/** 연대표는 앞 다섯 줄만 펼쳐 두고 나머지는 접는다 */
+const HISTORY_OPEN = 5;
 const isInternal = (url: string) => url.startsWith('/');
 
 const DESCRIPTION = '이더리움 재단 프로토콜 팀의 Strawmap을 한국어로 옮긴 로드맵. 2029년까지 하드포크마다 들어갈 업그레이드와 다섯 가지 목표를 한눈에 봅니다.';
@@ -67,7 +69,7 @@ const Roadmap: React.FC = () => {
                 <header className="mb-12 max-w-3xl">
                     <p className="text-sm font-semibold text-brand-accent mb-3">이더리움 로드맵</p>
                     <h1 className="text-4xl md:text-5xl font-bold mb-4">2029년까지, 이더리움은 어디로 가나</h1>
-                    <p className="text-theme-text-muted text-base md:text-lg leading-relaxed">
+                    <p className="text-theme-text-muted text-base md:text-lg leading-relaxed text-balance">
                         이더리움 재단 프로토콜 팀이 그린 Strawmap을 한국어로 옮겼습니다. 앞으로 일곱 번 남짓의 하드포크에 어떤 업그레이드가 들어갈지, 그 끝에 무엇을 노리는지를 한 장에 담은 지도입니다.
                     </p>
                     <p className="mt-4 flex flex-wrap gap-x-5 gap-y-1 text-sm text-theme-text-muted">
@@ -79,8 +81,9 @@ const Roadmap: React.FC = () => {
                             지난 하드포크 보기
                         </Link>
                     </p>
-                    <p className="mt-5 rounded-xl border border-amber-400/40 bg-amber-400/5 px-4 py-3 text-sm leading-relaxed text-amber-100">
-                        Strawmap은 공식 계획이 아니라 토론용 초안입니다(strawman + roadmap). 연구자들 사이에서도 의견이 갈리고, 시점은 크게 앞당겨지거나 늦어질 수 있습니다.
+                    <p className="mt-5 rounded-xl border border-amber-400/40 bg-amber-400/5 px-4 py-3 text-sm leading-relaxed text-amber-100 text-balance">
+                        <span className="block">Strawmap은 공식 계획이 아니라 토론용 초안입니다(strawman + roadmap).</span>
+                        <span className="block">연구자들 사이에서도 의견이 갈리고, 시점은 크게 앞당겨지거나 늦어질 수 있습니다.</span>
                     </p>
                 </header>
 
@@ -164,8 +167,8 @@ const Roadmap: React.FC = () => {
                     <h2 id="rm-history" className={`${H2} mb-2`}>
                         로드맵이 걸어온 길
                     </h2>
-                    <p className="text-theme-text-muted mb-6 max-w-3xl">
-                        Strawmap은 갑자기 나온 지도가 아닙니다. 비탈릭이 2021년부터 그려 온 갈래 그림, 저스틴 드레이크의 Beam Chain과 Lean Ethereum을 거쳐 지금 모양이 됐습니다.
+                    <p className="text-theme-text-muted mb-6 max-w-3xl text-balance">
+                        Strawmap은 갑자기 나온 지도가 아닙니다. 비탈릭이 2021년부터 그려 온 갈래 그림, 저스틴 드레이크의 <span className="whitespace-nowrap">Beam Chain</span>과 <span className="whitespace-nowrap">Lean Ethereum</span>을 거쳐 지금 모양이 됐습니다.
                     </p>
                     <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 mb-10">
                         {HISTORY_ERAS.map((e, i) => (
@@ -178,8 +181,8 @@ const Roadmap: React.FC = () => {
                             </li>
                         ))}
                     </ol>
-                    <ol className="flex flex-col">
-                        {ROADMAP_HISTORY.map((h) => (
+                    {(() => {
+                        const row = (h: (typeof ROADMAP_HISTORY)[number]) => (
                             <li key={`${h.date}-${h.title}`} className="grid grid-cols-[5.5rem_minmax(0,1fr)] sm:grid-cols-[7rem_minmax(0,1fr)] gap-4 py-5 border-b border-theme-border">
                                 <span className="text-sm text-theme-text-muted tabular-nums">{dotDate(h.date)}</span>
                                 <div className="flex flex-col gap-2">
@@ -202,18 +205,36 @@ const Roadmap: React.FC = () => {
                                     </ul>
                                 </div>
                             </li>
-                        ))}
-                    </ol>
+                        );
+                        const rest = ROADMAP_HISTORY.slice(HISTORY_OPEN);
+                        return (
+                            <>
+                                <ol className="flex flex-col">{ROADMAP_HISTORY.slice(0, HISTORY_OPEN).map(row)}</ol>
+                                {rest.length > 0 && (
+                                    <details className="group">
+                                        <summary className="cursor-pointer list-none py-4 text-sm font-semibold text-brand-accent hover:underline">
+                                            <span className="group-open:hidden">나머지 {rest.length}개 펼치기 ({dotDate(rest[0].date)}부터 지금까지)</span>
+                                            <span className="hidden group-open:inline">접기</span>
+                                        </summary>
+                                        <ol className="flex flex-col">{rest.map(row)}</ol>
+                                    </details>
+                                )}
+                            </>
+                        );
+                    })()}
                 </section>
 
                 <section aria-labelledby="rm-pillars" className="border-t border-theme-border py-10">
                     <h2 id="rm-pillars" className={`${H2} mb-2`}>
                         비탈릭의 여섯 갈래로 다시 보기
                     </h2>
-                    <p className="text-theme-text-muted mb-6 max-w-3xl">
+                    <p className="text-theme-text-muted mb-2 max-w-3xl text-balance">
                         Strawmap 항목을 비탈릭의 2024년 연재 기준 여섯 갈래로 나눴습니다. 같은 일이 예전에 어떤 이름으로 불렸는지 이어 볼 수 있습니다. 갈래 분류는 Strawmap 원본에 없는 것으로 ECK가 붙였습니다.
                     </p>
-                    <ul className="grid gap-4 md:grid-cols-2">
+                    <p className="text-xs text-theme-text-muted mb-6">
+                        그림: 비탈릭 부테린, 2023년판 로드맵 (Possible futures 연재 수록, WTFPL). 누르면 크게 봅니다.
+                    </p>
+                    <ul className="grid gap-4">
                         {PILLARS.map((p) => {
                             const items = ROADMAP_ITEMS.filter((it) => ITEM_PILLAR[itemSlug(it)] === p.key);
                             return (
@@ -224,6 +245,14 @@ const Roadmap: React.FC = () => {
                                             원문
                                         </a>
                                     </div>
+                                    <a href={`/images/roadmap/pillar-${p.key}.png`} target="_blank" rel="noopener noreferrer" className="block rounded-lg bg-white p-2 overflow-x-auto">
+                                        <img
+                                            src={`/images/roadmap/pillar-${p.key}.png`}
+                                            alt={`The ${p.name} 로드맵 그림. 비탈릭 부테린이 그린 2023년판으로, 이 갈래의 목표와 단계별 항목을 화살표로 잇습니다.`}
+                                            loading="lazy"
+                                            className="block w-full min-w-[36rem] h-auto"
+                                        />
+                                    </a>
                                     <p className="text-sm leading-relaxed">{p.goal}</p>
                                     <p className="text-sm leading-relaxed text-theme-text-muted">{p.shift}</p>
                                     <p className="flex flex-wrap gap-1.5">
