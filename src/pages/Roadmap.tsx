@@ -4,6 +4,7 @@ import usePageMeta from '../hooks/usePageMeta';
 import EipRef from '../components/eips/EipRef';
 import { loadEips } from '../data/eipsData';
 import { loadRoadmapExplainers } from '../data/roadmapExplainers';
+import { HISTORY_ERAS, HISTORY_KIND, ITEM_PILLAR, PILLARS, ROADMAP_HISTORY, type HistoryKind } from '../data/roadmapHistory';
 import { LAYERS, NORTH_STARS, ROADMAP_ITEMS, STRAWMAP_FORKS, STRAWMAP_UPDATED, STRAWMAP_URL, THROUGHLINES, itemSlug, roadmapGrid, type RoadmapItem } from '../data/roadmap';
 import { dotDate } from '../utils/calls';
 
@@ -14,6 +15,14 @@ const ITEM_STYLE: Record<RoadmapItem['kind'], string> = {
     onchain: 'bg-theme-surface text-theme-text border-theme-border',
     offchain: 'border-dashed border-theme-border text-theme-text-muted',
 };
+const KIND_STYLE: Record<HistoryKind, string> = {
+    vitalik: 'bg-eth-purple/15 text-eth-purple',
+    drake: 'bg-emerald-400/10 text-emerald-300',
+    ef: 'bg-brand-primary/15 text-brand-accent',
+    fork: 'bg-amber-400/10 text-amber-300',
+};
+const isInternal = (url: string) => url.startsWith('/');
+
 const DESCRIPTION = '이더리움 재단 프로토콜 팀의 Strawmap을 한국어로 옮긴 로드맵. 2029년까지 하드포크마다 들어갈 업그레이드와 다섯 가지 목표를 한눈에 봅니다.';
 
 const Item: React.FC<{ it: RoadmapItem; known: ReadonlySet<number>; topics: ReadonlySet<string> }> = ({ it, known, topics }) => {
@@ -149,6 +158,91 @@ const Roadmap: React.FC = () => {
                     <p className="mt-3 text-xs text-theme-text-muted">
                         포크를 넘어 이어지는 흐름: {THROUGHLINES.map((t) => `${t.name}(${STRAWMAP_FORKS[t.from].name}~${STRAWMAP_FORKS[t.to].name})`).join(', ')}. 시점은 Strawmap 상단 표기 기준입니다.
                     </p>
+                </section>
+
+                <section aria-labelledby="rm-history" className="border-t border-theme-border py-10">
+                    <h2 id="rm-history" className={`${H2} mb-2`}>
+                        로드맵이 걸어온 길
+                    </h2>
+                    <p className="text-theme-text-muted mb-6 max-w-3xl">
+                        Strawmap은 갑자기 나온 지도가 아닙니다. 비탈릭이 2021년부터 그려 온 갈래 그림, 저스틴 드레이크의 Beam Chain과 Lean Ethereum을 거쳐 지금 모양이 됐습니다.
+                    </p>
+                    <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 mb-10">
+                        {HISTORY_ERAS.map((e, i) => (
+                            <li key={e.name} className="rounded-xl border border-theme-border bg-theme-surface p-5 flex flex-col gap-1.5">
+                                <span className="text-xs font-semibold text-theme-text-muted">
+                                    {i + 1}. {e.years}
+                                </span>
+                                <span className="font-bold">{e.name}</span>
+                                <span className="text-sm leading-relaxed text-theme-text-muted">{e.body}</span>
+                            </li>
+                        ))}
+                    </ol>
+                    <ol className="flex flex-col">
+                        {ROADMAP_HISTORY.map((h) => (
+                            <li key={`${h.date}-${h.title}`} className="grid grid-cols-[5.5rem_minmax(0,1fr)] sm:grid-cols-[7rem_minmax(0,1fr)] gap-4 py-5 border-b border-theme-border">
+                                <span className="text-sm text-theme-text-muted tabular-nums">{dotDate(h.date)}</span>
+                                <div className="flex flex-col gap-2">
+                                    <p className="flex flex-wrap items-center gap-2">
+                                        <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${KIND_STYLE[h.kind]}`}>{HISTORY_KIND[h.kind]}</span>
+                                        {isInternal(h.url) ? (
+                                            <Link to={h.url} className="font-bold hover:text-brand-accent">
+                                                {h.title}
+                                            </Link>
+                                        ) : (
+                                            <a href={h.url} target="_blank" rel="noopener noreferrer" className="font-bold hover:text-brand-accent">
+                                                {h.title}
+                                            </a>
+                                        )}
+                                    </p>
+                                    <ul className="flex flex-col gap-1 text-sm leading-relaxed text-theme-text-secondary">
+                                        {h.changes.map((c) => (
+                                            <li key={c}>{c}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </li>
+                        ))}
+                    </ol>
+                </section>
+
+                <section aria-labelledby="rm-pillars" className="border-t border-theme-border py-10">
+                    <h2 id="rm-pillars" className={`${H2} mb-2`}>
+                        비탈릭의 여섯 갈래로 다시 보기
+                    </h2>
+                    <p className="text-theme-text-muted mb-6 max-w-3xl">
+                        Strawmap 항목을 비탈릭의 2024년 연재 기준 여섯 갈래로 나눴습니다. 같은 일이 예전에 어떤 이름으로 불렸는지 이어 볼 수 있습니다. 갈래 분류는 Strawmap 원본에 없는 것으로 ECK가 붙였습니다.
+                    </p>
+                    <ul className="grid gap-4 md:grid-cols-2">
+                        {PILLARS.map((p) => {
+                            const items = ROADMAP_ITEMS.filter((it) => ITEM_PILLAR[itemSlug(it)] === p.key);
+                            return (
+                                <li key={p.key} className="rounded-xl border border-theme-border bg-theme-surface p-5 flex flex-col gap-3">
+                                    <div className="flex items-baseline justify-between gap-3">
+                                        <span className="text-xl font-bold">The {p.name}</span>
+                                        <a href={p.url} target="_blank" rel="noopener noreferrer" className="text-xs text-brand-accent hover:underline">
+                                            원문
+                                        </a>
+                                    </div>
+                                    <p className="text-sm leading-relaxed">{p.goal}</p>
+                                    <p className="text-sm leading-relaxed text-theme-text-muted">{p.shift}</p>
+                                    <p className="flex flex-wrap gap-1.5">
+                                        {items.map((it) =>
+                                            topics.has(itemSlug(it)) ? (
+                                                <Link key={it.en} to={`/roadmap/${itemSlug(it)}`} className="rounded-full bg-theme-bg px-2.5 py-1 text-xs hover:text-brand-accent">
+                                                    {it.name}
+                                                </Link>
+                                            ) : (
+                                                <span key={it.en} className="rounded-full bg-theme-bg px-2.5 py-1 text-xs text-theme-text-muted">
+                                                    {it.name}
+                                                </span>
+                                            ),
+                                        )}
+                                    </p>
+                                </li>
+                            );
+                        })}
+                    </ul>
                 </section>
 
                 <section aria-labelledby="rm-eips" className="border-t border-theme-border pt-10">
