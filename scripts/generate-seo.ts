@@ -29,7 +29,8 @@ import { inclusionLabel, inclusionOf } from '../src/utils/eips';
 import type { EipsFile } from '../src/data/eipsData';
 import type { ErcsFile } from '../src/data/ercsData';
 import { FORKS } from '../src/data/forks';
-import { NORTH_STARS, ROADMAP_ITEMS, STRAWMAP_FORKS, STRAWMAP_UPDATED } from '../src/data/roadmap';
+import { NORTH_STARS, ROADMAP_ITEMS, STRAWMAP_FORKS, STRAWMAP_UPDATED, itemSlug } from '../src/data/roadmap';
+import type { RoadmapExplainersFile } from '../src/data/roadmapExplainers';
 import type { CallRecord } from '../src/data/ethCallsData';
 import type { Debate } from '../src/data/ethDebatesData';
 import {
@@ -136,6 +137,8 @@ const debates = allDebates
 // EIP 해설 (scripts/extract-eips.ts). 상태 배지는 화면처럼 콜 기록에서 계산한다
 const eips = readJson<EipsFile>(join(DATA, 'eips.json')).eips.sort((a, b) => b.number - a.number);
 const ethCalls = readJson<{ calls: CallRecord[] }>(join(DATA, 'eth-calls.json')).calls;
+const roadmapEx = readJson<RoadmapExplainersFile>(join(DATA, 'roadmap-explainers.json'));
+const topicItems = ROADMAP_ITEMS.filter((it) => roadmapEx.topics[itemSlug(it)]);
 // ERC 해설 (scripts/extract-ercs.ts)
 const ercs = readJson<ErcsFile>(join(DATA, 'ercs.json')).ercs.sort((a, b) => a.number - b.number);
 
@@ -217,7 +220,8 @@ const ercEntries: SitemapEntry[] = ercs.map((e) => ({
 
 const forkEntries: SitemapEntry[] = FORKS.map((f) => ({ loc: `/forks/${f.slug}`, changefreq: f.date ? 'yearly' : 'weekly', priority: '0.6' }));
 
-const allEntries = [...staticRoutes, ...contentEntries, ...videoEntries, ...memberEntries, ...debateEntries, ...eipEntries, ...ercEntries, ...forkEntries];
+const topicEntries: SitemapEntry[] = topicItems.map((it) => ({ loc: `/roadmap/${itemSlug(it)}`, changefreq: 'monthly', priority: '0.5' }));
+const allEntries = [...staticRoutes, ...contentEntries, ...videoEntries, ...memberEntries, ...debateEntries, ...eipEntries, ...ercEntries, ...forkEntries, ...topicEntries];
 
 const sitemapXml =
     '<?xml version="1.0" encoding="UTF-8"?>\n' +
@@ -474,6 +478,7 @@ for (const f of FORKS) {
         `<h1>${esc(f.name)} 하드포크</h1>` +
         `<p>${esc([f.alias, f.date ? `메인넷 ${f.date}` : f.target].filter(Boolean).join(' · '))}</p>` +
         `<p>${esc(f.summary)}</p>` +
+        (roadmapEx.forks[f.slug] ? `<h2>${f.date ? '무엇이 달라졌나' : '나에게 달라지는 것'}</h2><dl>${roadmapEx.forks[f.slug].impact.map((x) => `<dt>${esc(x.who)}</dt><dd>${esc(x.text)}</dd>`).join('')}</dl>` : '') +
         (list.length ? `<h2>${f.date ? '주요 EIP' : '들어가는 EIP'}</h2><ul>${list.map((x) => `<li><a href="${eipTitle.has(x.number) ? `/eips/${x.number}` : `https://eips.ethereum.org/EIPS/eip-${x.number}`}">EIP-${x.number}</a> ${esc(eipTitle.get(x.number) ?? x.note)}</li>`).join('')}</ul>` : '') +
         `<p><a href="/forks">← 하드포크</a> · <a href="/roadmap">로드맵</a></p>` +
         `</article>`;
@@ -491,6 +496,42 @@ for (const f of FORKS) {
                     { name: 'Home', url: '/' },
                     { name: '하드포크', url: '/forks' },
                     { name: f.name, url: path },
+                ]),
+            ],
+            bodyHtml,
+        }),
+    );
+}
+
+// 로드맵 개념 상세
+for (const it of topicItems) {
+    const t = roadmapEx.topics[itemSlug(it)];
+    const path = `/roadmap/${itemSlug(it)}`;
+    const fork = STRAWMAP_FORKS[it.fork];
+    const bodyHtml =
+        `<article>` +
+        `<h1>${esc(t.title)}</h1>` +
+        `<p>Strawmap ${esc(fork.name)} (${esc(fork.when)}) · ${esc(it.en)}</p>` +
+        `<p>${esc(t.summary)}</p>` +
+        `<h2>왜 필요한가</h2><p>${esc(t.why)}</p>` +
+        (t.steps.length ? `<h2>어떻게 동작하나</h2><ol>${t.steps.map((s) => `<li><strong>${esc(s.title)}</strong> ${esc(s.body)}</li>`).join('')}</ol>` : '') +
+        (it.eips?.length ? `<h2>관련 EIP</h2><ul>${it.eips.map((n) => `<li><a href="${eipTitle.has(n) ? `/eips/${n}` : `https://eips.ethereum.org/EIPS/eip-${n}`}">EIP-${n}</a> ${esc(eipTitle.get(n) ?? '')}</li>`).join('')}</ul>` : '') +
+        `<p><a href="/roadmap">← 로드맵</a></p>` +
+        `</article>`;
+    writePage(
+        `roadmap/${itemSlug(it)}`,
+        buildShell({
+            title: t.title,
+            description: t.summary,
+            url: `${SITE_URL}${path}`,
+            image: DEFAULT_IMAGE,
+            type: 'article',
+            jsonLd: [
+                faqLd([{ q: `이더리움 로드맵의 ${it.name}은 무엇인가?`, a: t.summary }]),
+                breadcrumbLd([
+                    { name: 'Home', url: '/' },
+                    { name: '로드맵', url: '/roadmap' },
+                    { name: it.name, url: path },
                 ]),
             ],
             bodyHtml,
@@ -739,7 +780,7 @@ const staticPages: StaticPage[] = [
             `<h1>2029년까지, 이더리움은 어디로 가나</h1>` +
             `<p>이더리움 재단 프로토콜 팀의 Strawmap(원본 갱신 ${STRAWMAP_UPDATED})을 한국어로 옮겼습니다. 공식 계획이 아니라 토론용 초안입니다.</p>` +
             `<h2>다섯 가지 목표</h2><ul>${NORTH_STARS.map((x) => `<li>${esc(x.name)} (${esc(x.metric)}): ${esc(x.body)}</li>`).join('')}</ul>` +
-            STRAWMAP_FORKS.map((f, i) => `<h2>${esc(f.name)} (${esc(f.when)})</h2><ul>${ROADMAP_ITEMS.filter((x) => x.fork === i).map((x) => `<li>${esc(x.name)} (${esc(x.en)})${x.eips?.length ? ` EIP-${x.eips.join(', EIP-')}` : ''}</li>`).join('')}</ul>`).join(''),
+            STRAWMAP_FORKS.map((f, i) => `<h2>${esc(f.name)} (${esc(f.when)})</h2><ul>${ROADMAP_ITEMS.filter((x) => x.fork === i).map((x) => `<li>${roadmapEx.topics[itemSlug(x)] ? `<a href="/roadmap/${itemSlug(x)}">${esc(x.name)}</a>` : esc(x.name)} (${esc(x.en)})${x.eips?.length ? ` EIP-${x.eips.join(', EIP-')}` : ''}</li>`).join('')}</ul>`).join(''),
         jsonLd: [],
     },
     {
