@@ -27,8 +27,12 @@
       "events": "Meetups and conferences",
       "ecosystem": "Teams and tools in Korea's Ethereum ecosystem",
       "team": "The people behind ECK",
-      "about": "What ECK does"
-    }
+      "about": "What ECK does",
+      "roadmap": "Upgrades through 2029, from the Strawmap",
+      "forks": "What changed in each fork, Frontier to Hegotá"
+    },
+    "roadmap": "Roadmap",
+    "forks": "Hard forks"
   },
   "footer": {
     "description": "ECK (Ethereum Collective Korea) is a non-profit team growing Korea's Ethereum ecosystem through research, news curation, community events, and education.",

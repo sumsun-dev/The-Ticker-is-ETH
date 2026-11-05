@@ -5,6 +5,9 @@ import MainLayout from './layouts/MainLayout';
 import ErrorBoundary from './components/common/ErrorBoundary';
 import { PageSkeleton } from './components/common/Skeleton';
 const Home = React.lazy(() => import('./pages/Home'));
+const Roadmap = React.lazy(() => import('./pages/Roadmap'));
+const Forks = React.lazy(() => import('./pages/Forks'));
+const ForkDetail = React.lazy(() => import('./pages/ForkDetail'));
 const About = React.lazy(() => import('./pages/About'));
 const Team = React.lazy(() => import('./pages/Team'));
 const MemberDetail = React.lazy(() => import('./pages/MemberDetail'));
@@ -80,6 +83,9 @@ const AppRoutes: React.FC = () => {
           <Route path="/eips/:number" element={<EipDetail />} />
           <Route path="/ercs" element={<Ercs />} />
           <Route path="/ercs/:number" element={<ErcDetail />} />
+          <Route path="/roadmap" element={<Roadmap />} />
+          <Route path="/forks" element={<Forks />} />
+          <Route path="/forks/:slug" element={<ForkDetail />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

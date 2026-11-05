@@ -28,6 +28,8 @@ import { isPublishable, participantCount } from '../src/utils/debates';
 import { inclusionLabel, inclusionOf } from '../src/utils/eips';
 import type { EipsFile } from '../src/data/eipsData';
 import type { ErcsFile } from '../src/data/ercsData';
+import { FORKS } from '../src/data/forks';
+import { NORTH_STARS, ROADMAP_ITEMS, STRAWMAP_FORKS, STRAWMAP_UPDATED } from '../src/data/roadmap';
 import type { CallRecord } from '../src/data/ethCallsData';
 import type { Debate } from '../src/data/ethDebatesData';
 import {
@@ -164,6 +166,8 @@ const staticRoutes: SitemapEntry[] = [
     { loc: '/calls', changefreq: 'weekly', priority: '0.7' },
     { loc: '/eips', changefreq: 'weekly', priority: '0.7' },
     { loc: '/ercs', changefreq: 'weekly', priority: '0.7' },
+    { loc: '/roadmap', changefreq: 'monthly', priority: '0.7' },
+    { loc: '/forks', changefreq: 'monthly', priority: '0.7' },
     { loc: '/team', changefreq: 'monthly', priority: '0.7' },
     { loc: '/ecosystem', changefreq: 'monthly', priority: '0.7' },
     { loc: '/events', changefreq: 'weekly', priority: '0.7' },
@@ -211,7 +215,9 @@ const ercEntries: SitemapEntry[] = ercs.map((e) => ({
     priority: '0.6',
 }));
 
-const allEntries = [...staticRoutes, ...contentEntries, ...videoEntries, ...memberEntries, ...debateEntries, ...eipEntries, ...ercEntries];
+const forkEntries: SitemapEntry[] = FORKS.map((f) => ({ loc: `/forks/${f.slug}`, changefreq: f.date ? 'yearly' : 'weekly', priority: '0.6' }));
+
+const allEntries = [...staticRoutes, ...contentEntries, ...videoEntries, ...memberEntries, ...debateEntries, ...eipEntries, ...ercEntries, ...forkEntries];
 
 const sitemapXml =
     '<?xml version="1.0" encoding="UTF-8"?>\n' +
@@ -458,6 +464,40 @@ for (const e of ercs) {
     ercPages++;
 }
 
+// 하드포크 상세
+const eipTitle = new Map(eips.map((e) => [e.number, e.titleKo]));
+for (const f of FORKS) {
+    const path = `/forks/${f.slug}`;
+    const list = [...(f.headliners ?? []), ...f.eips.filter((x) => !f.headliners?.some((h) => h.number === x.number))];
+    const bodyHtml =
+        `<article>` +
+        `<h1>${esc(f.name)} 하드포크</h1>` +
+        `<p>${esc([f.alias, f.date ? `메인넷 ${f.date}` : f.target].filter(Boolean).join(' · '))}</p>` +
+        `<p>${esc(f.summary)}</p>` +
+        (list.length ? `<h2>${f.date ? '주요 EIP' : '들어가는 EIP'}</h2><ul>${list.map((x) => `<li><a href="${eipTitle.has(x.number) ? `/eips/${x.number}` : `https://eips.ethereum.org/EIPS/eip-${x.number}`}">EIP-${x.number}</a> ${esc(eipTitle.get(x.number) ?? x.note)}</li>`).join('')}</ul>` : '') +
+        `<p><a href="/forks">← 하드포크</a> · <a href="/roadmap">로드맵</a></p>` +
+        `</article>`;
+    writePage(
+        `forks/${f.slug}`,
+        buildShell({
+            title: `${f.name} 하드포크`,
+            description: f.summary,
+            url: `${SITE_URL}${path}`,
+            image: DEFAULT_IMAGE,
+            type: 'article',
+            jsonLd: [
+                faqLd([{ q: `이더리움 ${f.name} 하드포크는 무엇인가?`, a: f.summary }]),
+                breadcrumbLd([
+                    { name: 'Home', url: '/' },
+                    { name: '하드포크', url: '/forks' },
+                    { name: f.name, url: path },
+                ]),
+            ],
+            bodyHtml,
+        }),
+    );
+}
+
 // 멤버 상세
 let memberPages = 0;
 for (const m of members) {
@@ -688,6 +728,34 @@ const staticPages: StaticPage[] = [
                 url: '/ercs',
                 description: '이더리움 ERC 한국어 해설',
                 items: ercs.map((e) => ({ name: `ERC-${e.number} ${e.titleKo}`, url: `/ercs/${e.number}` })),
+            }),
+        ],
+    },
+    {
+        path: 'roadmap',
+        title: '로드맵',
+        description: '이더리움 재단 프로토콜 팀의 Strawmap을 한국어로 옮긴 로드맵. 2029년까지 하드포크마다 들어갈 업그레이드와 다섯 가지 목표.',
+        bodyHtml:
+            `<h1>2029년까지, 이더리움은 어디로 가나</h1>` +
+            `<p>이더리움 재단 프로토콜 팀의 Strawmap(원본 갱신 ${STRAWMAP_UPDATED})을 한국어로 옮겼습니다. 공식 계획이 아니라 토론용 초안입니다.</p>` +
+            `<h2>다섯 가지 목표</h2><ul>${NORTH_STARS.map((x) => `<li>${esc(x.name)} (${esc(x.metric)}): ${esc(x.body)}</li>`).join('')}</ul>` +
+            STRAWMAP_FORKS.map((f, i) => `<h2>${esc(f.name)} (${esc(f.when)})</h2><ul>${ROADMAP_ITEMS.filter((x) => x.fork === i).map((x) => `<li>${esc(x.name)} (${esc(x.en)})${x.eips?.length ? ` EIP-${x.eips.join(', EIP-')}` : ''}</li>`).join('')}</ul>`).join(''),
+        jsonLd: [],
+    },
+    {
+        path: 'forks',
+        title: '하드포크',
+        description: '2015년 Frontier부터 다가오는 Glamsterdam, Hegotá까지 이더리움 하드포크마다 무엇이 바뀌었는지 정리한 연대기.',
+        bodyHtml:
+            `<h1>이더리움이 바뀌어 온 순간들</h1><ul>` +
+            FORKS.map((f) => `<li><a href="/forks/${f.slug}">${esc(f.name)}</a> (${esc(f.date ?? f.target ?? '')}): ${esc(f.summary)}</li>`).join('') +
+            `</ul>`,
+        jsonLd: [
+            collectionPageLd({
+                name: '하드포크',
+                url: '/forks',
+                description: '이더리움 하드포크 연대기',
+                items: FORKS.map((f) => ({ name: f.name, url: `/forks/${f.slug}` })),
             }),
         ],
     },
