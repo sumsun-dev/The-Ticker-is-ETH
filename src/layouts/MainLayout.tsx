@@ -89,7 +89,7 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const item = (key: string, path: string) => ({ key, path, name: t(`nav.${key}`), desc: t(`nav.desc.${key}`) });
     const navGroups = [
         { key: 'news', items: [item('news', '/news'), item('debates', '/debates'), item('contents', '/contents')] },
-        { key: 'protocol', items: [item('calls', '/calls'), item('eips', '/eips'), item('ercs', '/ercs')] },
+        { key: 'protocol', items: [item('roadmap', '/roadmap'), item('forks', '/forks'), item('calls', '/calls'), item('eips', '/eips'), item('ercs', '/ercs')] },
         { key: 'community', items: [item('events', '/events'), item('ecosystem', '/ecosystem'), item('team', '/team'), item('about', '/about')] },
     ];
     const isActive = (path: string) => pathname === path || pathname.startsWith(`${path}/`);

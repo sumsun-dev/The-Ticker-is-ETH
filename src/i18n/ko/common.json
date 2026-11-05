@@ -27,8 +27,12 @@
       "events": "밋업과 컨퍼런스 일정",
       "ecosystem": "한국 이더리움 생태계의 팀과 도구",
       "team": "ECK를 만드는 사람들",
-      "about": "ECK가 하는 일"
-    }
+      "about": "ECK가 하는 일",
+      "roadmap": "Strawmap으로 보는 2029년까지의 업그레이드 지도",
+      "forks": "Frontier부터 Hegotá까지, 포크마다 바뀐 것"
+    },
+    "roadmap": "로드맵",
+    "forks": "하드포크"
   },
   "footer": {
     "description": "ECK(Ethereum Collective Korea)는 리서치, 뉴스 큐레이션, 커뮤니티 이벤트, 교육을 통해 한국 이더리움 생태계의 성장을 돕는 비영리 팀입니다.",
