@@ -5,12 +5,30 @@
     "contents": "Contents",
     "news": "News",
     "debates": "Debates",
-    "calls": "Calls",
+    "calls": "Core Dev Calls",
     "eips": "EIPs",
     "events": "Events",
     "ecosystem": "Ecosystem",
     "subscribe": "Subscribe",
-    "skipToContent": "Skip to main content"
+    "skipToContent": "Skip to main content",
+    "ercs": "ERCs",
+    "groups": {
+      "news": "News",
+      "protocol": "Protocol",
+      "community": "Community"
+    },
+    "desc": {
+      "news": "Daily Ethereum news and digests",
+      "debates": "Open debates in the community",
+      "contents": "Research and videos by ECK",
+      "calls": "What core devs decided each week",
+      "eips": "Protocol changes, explained simply and in depth",
+      "ercs": "Standards shared by tokens, wallets and apps",
+      "events": "Meetups and conferences",
+      "ecosystem": "Teams and tools in Korea's Ethereum ecosystem",
+      "team": "The people behind ECK",
+      "about": "What ECK does"
+    }
   },
   "footer": {
     "description": "ECK (Ethereum Collective Korea) is a non-profit team growing Korea's Ethereum ecosystem through research, news curation, community events, and education.",

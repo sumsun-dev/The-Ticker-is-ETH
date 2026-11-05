@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
-import { Menu, X } from 'lucide-react';
+import { ChevronDown, Menu, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import EthCursorTrail from '../components/cursor/EthCursorTrail';
 import LanguageToggle from '../components/common/LanguageToggle';
@@ -13,6 +13,27 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const { t } = useTranslation();
     const mobileMenuRef = useRef<HTMLDivElement>(null);
+    const desktopNavRef = useRef<HTMLDivElement>(null);
+    const [openGroup, setOpenGroup] = useState<string | null>(null);
+    const { pathname } = useLocation();
+
+    // 다른 페이지로 가면(뒤로 가기 포함) 펼친 메뉴를 닫는다. 렌더 중 상태 조정 패턴
+    const [navPath, setNavPath] = useState(pathname);
+    if (navPath !== pathname) {
+        setNavPath(pathname);
+        setOpenGroup(null);
+        setIsMobileMenuOpen(false);
+    }
+
+    // 펼친 메뉴 바깥을 누르면 닫는다
+    useEffect(() => {
+        if (!openGroup) return;
+        const onDown = (e: MouseEvent) => {
+            if (!desktopNavRef.current?.contains(e.target as Node)) setOpenGroup(null);
+        };
+        document.addEventListener('mousedown', onDown);
+        return () => document.removeEventListener('mousedown', onDown);
+    }, [openGroup]);
     const menuButtonRef = useRef<HTMLButtonElement>(null);
 
     useEffect(() => {
@@ -26,6 +47,10 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
     // ESC key closes mobile menu; focus trap
     const handleKeyDown = useCallback((e: KeyboardEvent) => {
+        if (e.key === 'Escape' && openGroup) {
+            setOpenGroup(null);
+            return;
+        }
         if (e.key === 'Escape' && isMobileMenuOpen) {
             setIsMobileMenuOpen(false);
             menuButtonRef.current?.focus();
@@ -46,7 +71,7 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 first.focus();
             }
         }
-    }, [isMobileMenuOpen]);
+    }, [isMobileMenuOpen, openGroup]);
 
     useEffect(() => {
         document.addEventListener('keydown', handleKeyDown);
@@ -61,17 +86,13 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         }
     }, [isMobileMenuOpen]);
 
-    const navLinks = [
-        { name: t('nav.about'), path: '/about' },
-        { name: t('nav.team'), path: '/team' },
-        { name: t('nav.contents'), path: '/contents' },
-        { name: t('nav.news'), path: '/news' },
-        { name: t('nav.debates'), path: '/debates' },
-        { name: t('nav.calls'), path: '/calls' },
-        { name: t('nav.eips'), path: '/eips' },
-        { name: t('nav.ecosystem'), path: '/ecosystem' },
-        { name: t('nav.events'), path: '/events' },
+    const item = (key: string, path: string) => ({ key, path, name: t(`nav.${key}`), desc: t(`nav.desc.${key}`) });
+    const navGroups = [
+        { key: 'news', items: [item('news', '/news'), item('debates', '/debates'), item('contents', '/contents')] },
+        { key: 'protocol', items: [item('calls', '/calls'), item('eips', '/eips'), item('ercs', '/ercs')] },
+        { key: 'community', items: [item('events', '/events'), item('ecosystem', '/ecosystem'), item('team', '/team'), item('about', '/about')] },
     ];
+    const isActive = (path: string) => pathname === path || pathname.startsWith(`${path}/`);
 
     return (
         <div className="min-h-screen flex flex-col overflow-x-hidden bg-theme-bg text-theme-text">
@@ -104,16 +125,42 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
                     {/* Desktop Nav */}
                     <div className="hidden md:flex gap-8 items-center">
-                        {navLinks.map((link) => (
-                            <Link
-                                key={link.path}
-                                to={link.path}
-                                className="text-sm font-medium text-theme-text-secondary hover:text-theme-text focus-visible:text-theme-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-theme-bg rounded transition-colors relative group"
-                            >
-                                {link.name}
-                                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-accent transition-all group-hover:w-full" />
-                            </Link>
-                        ))}
+                        <div ref={desktopNavRef} className="flex gap-2 items-center">
+                            {navGroups.map((g) => {
+                                const open = openGroup === g.key;
+                                const active = g.items.some((i) => isActive(i.path));
+                                return (
+                                    <div key={g.key} className="relative">
+                                        <button
+                                            type="button"
+                                            aria-expanded={open}
+                                            aria-controls={`nav-${g.key}`}
+                                            onClick={() => setOpenGroup(open ? null : g.key)}
+                                            className={`flex items-center gap-1 px-3 py-2 rounded-full text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent ${open || active ? 'text-theme-text' : 'text-theme-text-secondary hover:text-theme-text'} ${open ? 'bg-theme-surface' : ''}`}
+                                        >
+                                            {t(`nav.groups.${g.key}`)}
+                                            <ChevronDown size={14} aria-hidden="true" className={`transition-transform ${open ? 'rotate-180' : ''}`} />
+                                        </button>
+                                        {open && (
+                                            <div id={`nav-${g.key}`} className="absolute left-1/2 -translate-x-1/2 top-full mt-3 w-[460px] grid grid-cols-2 gap-1 p-2 rounded-2xl border border-theme-border-secondary bg-theme-bg-secondary shadow-2xl">
+                                                {g.items.map((i) => (
+                                                    <Link
+                                                        key={i.path}
+                                                        to={i.path}
+                                                        aria-current={isActive(i.path) ? 'page' : undefined}
+                                                        onClick={() => setOpenGroup(null)}
+                                                        className="flex flex-col gap-1 rounded-xl px-4 py-3 hover:bg-theme-surface-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent aria-[current=page]:bg-theme-surface"
+                                                    >
+                                                        <span className="text-sm font-semibold text-theme-text">{i.name}</span>
+                                                        <span className="text-xs leading-relaxed text-theme-text-secondary break-keep">{i.desc}</span>
+                                                    </Link>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
+                                );
+                            })}
+                        </div>
                         <LanguageToggle />
                         {/* <AuthButton /> temporarily disabled */}
                         <a href="https://t.me/thetickeriseth" target="_blank" rel="noopener noreferrer" className="bg-theme-surface hover:bg-theme-surface-hover text-theme-text px-5 py-2 rounded-full text-sm font-medium transition-colors border border-theme-border-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent">
@@ -135,23 +182,29 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
                 {/* Mobile Nav Menu */}
                 <div
-                    className={`md:hidden backdrop-blur-xl overflow-hidden bg-primary-95 border-t border-theme-border-secondary
+                    className={`md:hidden backdrop-blur-xl bg-primary-95 border-t border-theme-border-secondary
                         transition-[max-height,opacity] duration-300 ease-in-out
-                        ${isMobileMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}
+                        ${isMobileMenuOpen ? 'max-h-[calc(100vh-4rem)] overflow-y-auto opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}
                     role="menu"
                     aria-hidden={!isMobileMenuOpen}
                 >
                     <div ref={mobileMenuRef} className="flex flex-col p-6 gap-4">
-                        {navLinks.map((link) => (
-                            <Link
-                                key={link.path}
-                                to={link.path}
-                                role="menuitem"
-                                onClick={() => setIsMobileMenuOpen(false)}
-                                className="text-lg font-medium text-theme-text-secondary hover:text-theme-text focus-visible:text-theme-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent rounded"
-                            >
-                                {link.name}
-                            </Link>
+                        {navGroups.map((g) => (
+                            <div key={g.key} className="flex flex-col gap-1">
+                                <span className="text-xs font-semibold text-theme-text-muted uppercase tracking-wide">{t(`nav.groups.${g.key}`)}</span>
+                                {g.items.map((i) => (
+                                    <Link
+                                        key={i.path}
+                                        to={i.path}
+                                        role="menuitem"
+                                        aria-current={isActive(i.path) ? 'page' : undefined}
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                        className="py-2 text-lg font-medium text-theme-text-secondary hover:text-theme-text aria-[current=page]:text-theme-text focus-visible:text-theme-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent rounded"
+                                    >
+                                        {i.name}
+                                    </Link>
+                                ))}
+                            </div>
                         ))}
                         <div className="pt-4 border-t border-theme-border flex items-center gap-4">
                             <LanguageToggle />
