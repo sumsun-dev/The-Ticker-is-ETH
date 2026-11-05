@@ -31,6 +31,7 @@ import type { ErcsFile } from '../src/data/ercsData';
 import { FORKS } from '../src/data/forks';
 import { NORTH_STARS, ROADMAP_ITEMS, STRAWMAP_FORKS, STRAWMAP_UPDATED, itemSlug } from '../src/data/roadmap';
 import type { RoadmapExplainersFile } from '../src/data/roadmapExplainers';
+import { ITEM_PILLAR, PILLARS, ROADMAP_HISTORY } from '../src/data/roadmapHistory';
 import type { CallRecord } from '../src/data/ethCallsData';
 import type { Debate } from '../src/data/ethDebatesData';
 import {
@@ -780,7 +781,9 @@ const staticPages: StaticPage[] = [
             `<h1>2029년까지, 이더리움은 어디로 가나</h1>` +
             `<p>이더리움 재단 프로토콜 팀의 Strawmap(원본 갱신 ${STRAWMAP_UPDATED})을 한국어로 옮겼습니다. 공식 계획이 아니라 토론용 초안입니다.</p>` +
             `<h2>다섯 가지 목표</h2><ul>${NORTH_STARS.map((x) => `<li>${esc(x.name)} (${esc(x.metric)}): ${esc(x.body)}</li>`).join('')}</ul>` +
-            STRAWMAP_FORKS.map((f, i) => `<h2>${esc(f.name)} (${esc(f.when)})</h2><ul>${ROADMAP_ITEMS.filter((x) => x.fork === i).map((x) => `<li>${roadmapEx.topics[itemSlug(x)] ? `<a href="/roadmap/${itemSlug(x)}">${esc(x.name)}</a>` : esc(x.name)} (${esc(x.en)})${x.eips?.length ? ` EIP-${x.eips.join(', EIP-')}` : ''}</li>`).join('')}</ul>`).join(''),
+            STRAWMAP_FORKS.map((f, i) => `<h2>${esc(f.name)} (${esc(f.when)})</h2><ul>${ROADMAP_ITEMS.filter((x) => x.fork === i).map((x) => `<li>${roadmapEx.topics[itemSlug(x)] ? `<a href="/roadmap/${itemSlug(x)}">${esc(x.name)}</a>` : esc(x.name)} (${esc(x.en)})${x.eips?.length ? ` EIP-${x.eips.join(', EIP-')}` : ''}</li>`).join('')}</ul>`).join('') +
+            `<h2>로드맵이 걸어온 길</h2><ol>${ROADMAP_HISTORY.map((h) => `<li>${h.date} <a href="${h.url}">${esc(h.title)}</a>: ${esc(h.changes.join(' '))}</li>`).join('')}</ol>` +
+            `<h2>비탈릭의 여섯 갈래</h2>${PILLARS.map((p) => `<h3>The ${p.name}</h3><p>${esc(p.goal)} ${esc(p.shift)}</p><p>${ROADMAP_ITEMS.filter((x) => ITEM_PILLAR[itemSlug(x)] === p.key).map((x) => esc(x.name)).join(', ')}</p>`).join('')}`,
         jsonLd: [],
     },
     {

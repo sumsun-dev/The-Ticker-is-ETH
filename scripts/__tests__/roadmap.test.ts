@@ -33,3 +33,17 @@ describe('roadmap explainers', () => {
     expect(p.match(/<\/data>/g)).toHaveLength(1); // 진짜 닫는 태그 하나뿐
   });
 });
+
+describe('roadmap history', () => {
+  it('should map only real roadmap items to pillars and keep history in date order', async () => {
+    const { ITEM_PILLAR, PILLARS, ROADMAP_HISTORY, pillarOf } = await import('../../src/data/roadmapHistory');
+    const slugs = new Set(ROADMAP_ITEMS.map(itemSlug));
+    expect(Object.keys(ITEM_PILLAR).filter((s) => !slugs.has(s))).toEqual([]);
+    expect(PILLARS.every((p) => Object.values(ITEM_PILLAR).includes(p.key))).toBe(true);
+    const dates = ROADMAP_HISTORY.map((h) => h.date);
+    expect(dates).toEqual([...dates].sort());
+    expect(JSON.stringify(ROADMAP_HISTORY)).not.toContain('—');
+    expect(pillarOf('focil')?.name).toBe('Scourge');
+    expect(pillarOf('wormholes')).toBeUndefined();
+  });
+});

@@ -5,6 +5,7 @@ import EipRef from '../components/eips/EipRef';
 import NotFound from './NotFound';
 import { loadEips } from '../data/eipsData';
 import { loadRoadmapExplainers, type RoadmapTopic as Topic } from '../data/roadmapExplainers';
+import { pillarOf } from '../data/roadmapHistory';
 import { LAYERS, ROADMAP_ITEMS, STRAWMAP_FORKS, STRAWMAP_URL, itemBySlug, itemSlug } from '../data/roadmap';
 
 const H2 = 'text-xl md:text-2xl font-bold mb-4';
@@ -53,6 +54,11 @@ const RoadmapTopic: React.FC = () => {
                             <span className="rounded-full bg-theme-surface px-3 py-1 text-theme-text-muted">
                                 {fork.name} ({fork.when}) {KIND[it.kind]}
                             </span>
+                        )}
+                        {pillarOf(slug) && (
+                            <a href={pillarOf(slug)!.url} target="_blank" rel="noopener noreferrer" className="rounded-full bg-eth-purple/15 px-3 py-1 text-eth-purple hover:opacity-80" title="비탈릭 로드맵의 갈래 (ECK 분류)">
+                                The {pillarOf(slug)!.name}
+                            </a>
                         )}
                         {it.uncertain && <span className="rounded-full bg-amber-400/10 px-3 py-1 text-amber-400">실현 여부 불확실</span>}
                     </p>
