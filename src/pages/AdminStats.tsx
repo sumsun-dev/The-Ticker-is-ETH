@@ -35,15 +35,15 @@ const btnOff = 'border-theme-border bg-theme-bg text-theme-text-secondary hover:
 
 const ModeTabs: React.FC<{ mode: Mode; onChange: (m: Mode) => void }> = ({ mode, onChange }) => (
     <div className="flex gap-1.5" role="tablist" aria-label="집계 단위">
-        {(['week', 'month'] as const).map((m) => (
+        {(['day', 'week', 'month'] as const).map((m) => (
             <button key={m} role="tab" aria-selected={mode === m} onClick={() => onChange(m)} className={`${btn} ${mode === m ? btnOn : btnOff}`}>
-                {m === 'week' ? '주별' : '월별'}
+                {{ day: '일별', week: '주별', month: '월별' }[m]}
             </button>
         ))}
     </div>
 );
 
-const periodText = (p: Period, mode: Mode) => (mode === 'week' ? `${p.start.slice(5).replace('-', '.')} – ${p.end.slice(5).replace('-', '.')}` : p.label);
+const periodText = (p: Period, mode: Mode) => (mode === 'day' ? p.label : mode === 'week' ? `${p.start.slice(5).replace('-', '.')} – ${p.end.slice(5).replace('-', '.')}` : p.label);
 
 const TABS = [
     { key: 'telegram', label: '텔레그램' },
@@ -88,7 +88,7 @@ const Dashboard: React.FC<{ data: StatsHistory; updated: string }> = ({ data, up
             .slice(i, i + 12)
             .reverse()
             .map((p) => f(sums.get(p.key) as Summary));
-    const shortLabel = (p: Period) => (mode === 'week' ? p.start.slice(5).replace('-', '.') : `${p.start.slice(2, 4)}.${p.start.slice(5, 7)}`);
+    const shortLabel = (p: Period) => (mode !== 'month' ? p.start.slice(5).replace('-', '.') : `${p.start.slice(2, 4)}.${p.start.slice(5, 7)}`);
     // 차트·표용: 보이는 모든 기간, 오래된 것부터
     const series: SeriesRow[] = [...list].reverse().map((p) => ({ key: p.key, label: shortLabel(p), partial: p.end >= todayKst(), sum: sums.get(p.key) as Summary }));
     const membersOf = (p: Period) =>
@@ -106,7 +106,8 @@ const Dashboard: React.FC<{ data: StatsHistory; updated: string }> = ({ data, up
         .reverse()
         .map((p) => ({ key: p.key, label: shortLabel(p), members: membersOf(p) }));
     const rules = ruleInsights({ cur, prev, types, slot });
-    const ai = findAiInsight(data, sel.key);
+    // AI 분석은 주·월 단위로만 쓴다. 일의 키(날짜)가 월요일이면 그 주 분석과 겹치므로 일에서는 찾지 않는다
+    const ai = mode === 'day' ? undefined : findAiInsight(data, sel.key);
     const ongoing = sel.end >= todayKst();
     const aiCount = (s: Summary) => (s.site ? s.site.bots.ai.reduce((a, [, v]) => a + v, 0) : null);
     const searchPct = (s: Summary) => {
@@ -126,7 +127,7 @@ const Dashboard: React.FC<{ data: StatsHistory; updated: string }> = ({ data, up
                     <h1 className="text-xl font-bold text-theme-text">성과</h1>
                     <p className="text-xs text-theme-text-muted md:hidden">마지막 수집 {updated}</p>
                 </div>
-                <div className="flex flex-wrap items-center gap-1.5">
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
                     <ModeTabs
                         mode={mode}
                         onChange={(m) => {
@@ -134,20 +135,22 @@ const Dashboard: React.FC<{ data: StatsHistory; updated: string }> = ({ data, up
                             setSelected('');
                         }}
                     />
-                    <span className="w-1.5" />
-                    <button onClick={() => go(1)} disabled={!prevPeriod} aria-label="이전 기간" className={`${btn} ${btnOff} px-2 disabled:opacity-40`}>
-                        <ChevronLeft size={15} />
-                    </button>
-                    <select value={sel.key} onChange={(e) => setSelected(e.target.value)} aria-label="기간 선택" className={`${btn} ${btnOn} tabular-nums focus:outline-none`}>
-                        {list.map((p) => (
-                            <option key={p.key} value={p.key}>
-                                {periodText(p, mode)}
-                            </option>
-                        ))}
-                    </select>
-                    <button onClick={() => go(-1)} disabled={i === 0} aria-label="다음 기간" className={`${btn} ${btnOff} px-2 disabled:opacity-40`}>
-                        <ChevronRight size={15} />
-                    </button>
+                    {/* 이동 버튼과 기간 선택은 한 묶음으로 줄을 바꾼다 */}
+                    <div className="flex items-center gap-1.5">
+                        <button onClick={() => go(1)} disabled={!prevPeriod} aria-label="이전 기간" className={`${btn} ${btnOff} px-2 disabled:opacity-40`}>
+                            <ChevronLeft size={15} />
+                        </button>
+                        <select value={sel.key} onChange={(e) => setSelected(e.target.value)} aria-label="기간 선택" className={`${btn} ${btnOn} tabular-nums focus:outline-none`}>
+                            {list.map((p) => (
+                                <option key={p.key} value={p.key}>
+                                    {periodText(p, mode)}
+                                </option>
+                            ))}
+                        </select>
+                        <button onClick={() => go(-1)} disabled={i === 0} aria-label="다음 기간" className={`${btn} ${btnOff} px-2 disabled:opacity-40`}>
+                            <ChevronRight size={15} />
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -156,7 +159,7 @@ const Dashboard: React.FC<{ data: StatsHistory; updated: string }> = ({ data, up
                     ongoing={ongoing}
                     channel="telegram"
                     metrics={[
-                        { label: '구독자', value: cur.subscribers, prev: prev?.subscribers ?? null, unit: '명', trend: trend((s) => s.subscribers), emptyReason: '기록 전' },
+                        { label: '구독자', value: cur.subscribers, prev: prev?.subscribers ?? null, unit: '명', trend: trend((s) => s.subscribers), emptyReason: mode === 'day' ? '월요일에만 기록' : '기록 전' },
                         { label: '평균 조회수', value: cur.tgAvgViews, prev: prev?.tgAvgViews ?? null, unit: '회', trend: trend((s) => s.tgAvgViews), emptyReason: '조회 쌓인 글 부족', note: `글당 평균${cur.tgFresh ? `, 최근 ${cur.tgFresh}개 글은 조회가 쌓이는 중이라 제외` : ''}` },
                         { cumulative: true, label: '올린 글', value: cur.tgPosts, prev: prev?.tgPosts ?? null, unit: '개', trend: trend((s) => s.tgPosts) },
                     ]}
@@ -174,7 +177,7 @@ const Dashboard: React.FC<{ data: StatsHistory; updated: string }> = ({ data, up
                     ongoing={ongoing}
                     channel="linkedin"
                     metrics={[
-                        { label: '팔로워', value: cur.followers, prev: prev?.followers ?? null, unit: '명', trend: trend((s) => s.followers), emptyReason: '기록 전' },
+                        { label: '팔로워', value: cur.followers, prev: prev?.followers ?? null, unit: '명', trend: trend((s) => s.followers), emptyReason: mode === 'day' ? '월요일에만 기록' : '기록 전' },
                         { cumulative: true, label: '노출', value: cur.liImpressions, prev: prev?.liImpressions ?? null, unit: '회', trend: trend((s) => s.liImpressions), emptyReason: '기록 시작 전' },
                         { label: '글당 노출', value: liPerPost(cur), prev: prev ? liPerPost(prev) : null, unit: '회', trend: trend(liPerPost), emptyReason: '기록 시작 전' },
                     ]}
