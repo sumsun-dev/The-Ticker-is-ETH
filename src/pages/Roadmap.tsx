@@ -239,7 +239,7 @@ const Roadmap: React.FC = () => {
                     <p className="text-xs text-theme-text-muted mb-6">
                         그림: 비탈릭 부테린, 2023년판 로드맵 (Possible futures 연재 수록, WTFPL). 누르면 크게 봅니다.
                     </p>
-                    <ul className="grid gap-4">
+                    <ul className="grid grid-cols-1 gap-4 xl:grid-cols-2">
                         {PILLARS.map((p) => {
                             const items = ROADMAP_ITEMS.filter((it) => ITEM_PILLAR[itemSlug(it)] === p.key);
                             return (
@@ -255,7 +255,7 @@ const Roadmap: React.FC = () => {
                                             src={`/images/roadmap/pillar-${p.key}.png`}
                                             alt={`The ${p.name} 로드맵 그림. 비탈릭 부테린이 그린 2023년판으로, 이 갈래의 목표와 단계별 항목을 화살표로 잇습니다.`}
                                             loading="lazy"
-                                            className="block w-full min-w-[36rem] h-auto"
+                                            className="block w-full min-w-[36rem] xl:min-w-0 h-auto"
                                         />
                                     </a>
                                     <p className="text-sm leading-relaxed">{p.goal}</p>
