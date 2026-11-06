@@ -66,10 +66,10 @@ const Roadmap: React.FC = () => {
     return (
         <div className="min-h-screen pt-28 pb-20 px-6 container mx-auto text-theme-text">
             <div className="max-w-6xl mx-auto break-keep">
-                <header className="mb-12 max-w-4xl">
+                <header className="mb-12">
                     <p className="text-sm font-semibold text-brand-accent mb-3">이더리움 로드맵</p>
                     <h1 className="text-4xl md:text-5xl font-bold mb-4">2029년까지, 이더리움은 어디로 가나</h1>
-                    <p className="text-theme-text-muted text-base md:text-lg leading-relaxed text-balance">
+                    <p className="max-w-4xl text-theme-text-muted text-base md:text-lg leading-relaxed text-balance">
                         <span className="block">이더리움 재단 프로토콜 팀이 그린 Strawmap을 한국어로 옮겼습니다.</span>
                         <span className="block">
                             {/* 쉼표 자리에서 꺾이게 마디마다 inline-block */}
