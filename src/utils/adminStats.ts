@@ -19,14 +19,16 @@ export const MATURE_DAYS = 3;
 export const MIN_MATURE_POSTS = 3;
 export const isMature = (date: string, now: string) => Date.parse(now) - Date.parse(date) >= MATURE_DAYS * DAY;
 
-/** 데이터가 있는 가장 이른 날부터. 일은 마지막 수집 전날까지(수집이 주 1회라 그 뒤는 비어 있다), 주는 지난주까지, 월은 진행 중인 이번 달까지. 최신이 앞 */
+/** 데이터가 있는 가장 이른 날부터. 일은 마지막 수집 전날 또는 마지막 일별 기록까지, 주는 지난주까지, 월은 진행 중인 이번 달까지. 최신이 앞 */
 export function periods(h: StatsHistory, mode: Mode, today: string, limit = mode === 'day' ? 90 : mode === 'week' ? 26 : 24): Period[] {
-  const firsts = [h.siteDaily[0]?.date, h.tgPosts[0] && kstDate(h.tgPosts[0].date), h.liPosts[0]?.date, h.weeks[0]?.week].filter(Boolean) as string[];
+  const firsts = [h.siteDaily[0]?.date, h.tgDaily?.[0]?.date, h.tgPosts[0] && kstDate(h.tgPosts[0].date), h.liPosts[0]?.date, h.weeks[0]?.week].filter(Boolean) as string[];
   if (!firsts.length) return [];
   const first = firsts.sort()[0];
   const out: Period[] = [];
   if (mode === 'day') {
-    for (let t = Date.parse(kstDate(h.updatedAt)) - DAY; out.length < limit && iso(t) >= first; t -= DAY) {
+    // 주간 수집 전날, 또는 그 뒤에 따로 쌓인 일별 기록(서버 cron 구독자, --site-only) 중 늦은 날부터
+    const lastDay = [iso(Date.parse(kstDate(h.updatedAt)) - DAY), h.siteDaily.at(-1)?.date ?? '', h.tgDaily?.at(-1)?.date ?? ''].sort().at(-1) as string;
+    for (let t = Date.parse(lastDay); out.length < limit && iso(t) >= first; t -= DAY) {
       const d = iso(t);
       out.push({ key: d, label: `${d.slice(5).replace('-', '.')} (${'일월화수목금토'[new Date(t).getUTCDay()]})`, start: d, end: d });
     }
@@ -107,8 +109,10 @@ export interface Summary {
 export function summarize(h: StatsHistory, p: Period): Summary {
   const days = h.siteDaily.filter((d) => inP(d.date, p));
   const weeks = h.weeks.filter((w) => inP(w.week, p));
-  // 주간 순위표는 하루로 쪼갤 수 없다. 일 단위에서는 붙이지 않는다
-  const siteWeeks = p.start === p.end ? [] : weeks.flatMap((w) => (w.site ? [w.site] : []));
+  const oneDay = p.start === p.end;
+  // 주간 순위표는 하루로 쪼갤 수 없다. 일은 그날 상세(siteDaily.site)가 있을 때만 쓴다
+  const siteWeeks = oneDay ? [] : weeks.flatMap((w) => (w.site ? [w.site] : []));
+  const daySite = oneDay ? days[0]?.site : undefined;
   const exactWeek = weeks.length === 1 && weeks[0].week === p.start && p.end === iso(Date.parse(p.start) + 6 * DAY) ? weeks[0].site : undefined;
   const tg = h.tgPosts.filter((x) => inP(kstDate(x.date), p));
   const li = h.liPosts.filter((x) => inP(x.date, p));
@@ -124,7 +128,9 @@ export function summarize(h: StatsHistory, p: Period): Summary {
     visitors: exactWeek ? exactWeek.visitors : days.length && !(weekMode && days.length < 7) ? sum(days.map((d) => d.visitors)) : null,
     pageLoads: exactWeek ? exactWeek.pageLoads : days.length && !(weekMode && days.length < 7) ? sum(days.map((d) => d.pageLoads)) : null,
     siteDays: days.length,
-    site: siteWeeks.length
+    site: daySite
+      ? { sources: daySite.sources, sections: daySite.sections, topPages: daySite.topPages, refHosts: daySite.refHosts, bots: daySite.bots, aeo: daySite.aeo, newVisitors: daySite.newVisitors, mobilePct: daySite.mobilePct }
+      : siteWeeks.length
       ? {
           sources: mergeRanked(siteWeeks.map((s) => s.sources)),
           sections: mergeRanked(siteWeeks.map((s) => s.sections)),
@@ -135,12 +141,14 @@ export function summarize(h: StatsHistory, p: Period): Summary {
           ...(exactWeek ? { newVisitors: exactWeek.newVisitors, mobilePct: exactWeek.mobilePct, daily: exactWeek.daily } : {}),
         }
       : undefined,
-    titles: Object.assign({}, ...weeks.map((w) => w.site?.titles ?? {})),
+    // 일은 그날이 든 주의 페이지 제목을 빌린다
+    titles: Object.assign({}, ...(oneDay ? h.weeks.filter((w) => w.week <= p.start && p.start <= iso(Date.parse(w.week) + 6 * DAY)) : weeks).map((w) => w.site?.titles ?? {})),
     tgPosts: tg.length,
     tgViews: sum(tg.map((x) => x.views)),
     tgAvgViews: mature.length >= MIN_MATURE_POSTS ? Math.round(sum(mature.map((x) => x.views)) / mature.length) : null,
     tgFresh: tg.length - mature.length,
-    subscribers: last(weeks.map((w) => w.tg?.subscribers)),
+    // 일은 서버가 매일 남긴 구독자만 쓴다. 주·월은 월요일 수집값
+    subscribers: oneDay ? (h.tgDaily?.find((d) => d.date === p.start)?.subscribers ?? null) : last(weeks.map((w) => w.tg?.subscribers)),
     liPosts: li.length,
     liImpressions: liCovered ? sum(li.map((x) => x.impressions)) : null,
     liReactions: sum(li.map((x) => x.reactions)),

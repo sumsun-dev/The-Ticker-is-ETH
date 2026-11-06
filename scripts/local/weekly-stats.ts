@@ -10,6 +10,7 @@
  *   npx tsx scripts/local/weekly-stats.ts --dry       # 출력만 (DM·스냅샷·기록 저장 안 함)
  *   npx tsx scripts/local/weekly-stats.ts --backfill  # DM 없이 남아 있는 과거 데이터(채널 글 전체, 링크드인 표, 로그 14일)로 기록만 채움
  *   npx tsx scripts/local/weekly-stats.ts --insights  # 수집 없이 지금 기록으로 AI 분석(지난주·이번 달)만 다시 만들어 올림
+ *   --site-only                                       # 홈페이지 로그(일별 상세 포함)만 다시 집계해 기록에 합침 (DM·텔레그램·링크드인·AI 없음)
  *   --no-ai                                           # 기록 갱신 때 AI 분석을 건너뜀
  * Env: TELEGRAM_BOT_TOKEN, LINKEDIN_ALERT_CHAT|VITALIK_ALERT_CHAT, WP_HOST (기본 wp-vps), TG_CHANNEL (기본 thetickeriseth), WEEK_END (YYYY-MM-DD, 수동 구간),
  *      STATS_INSIGHT_MODEL (기본 fable, 한도 소진 시 lib/claude가 opus로 대체)
@@ -32,6 +33,7 @@ const DRY = process.argv.includes('--dry');
 const BACKFILL = process.argv.includes('--backfill');
 const INSIGHTS_ONLY = process.argv.includes('--insights');
 const NO_AI = process.argv.includes('--no-ai');
+const SITE_ONLY = process.argv.includes('--site-only');
 const INSIGHT_MODEL = process.env.STATS_INSIGHT_MODEL ?? 'fable';
 const CHANNEL = process.env.TG_CHANNEL ?? 'thetickeriseth';
 const WP_HOST = process.env.WP_HOST ?? 'wp-vps';
@@ -187,7 +189,8 @@ async function main() {
     const days = fullDays(lines, now);
     update.siteDaily = days.map((d) => {
       const s = siteStats(lines, { start: d, end: d });
-      return { date: d, visitors: s.visitors, pageLoads: s.pageLoads };
+      const { newVisitors, mobilePct, sections, topPages, sources, refHosts, bots, notFound, aeo } = s;
+      return { date: d, visitors: s.visitors, pageLoads: s.pageLoads, site: { newVisitors, mobilePct, sections, topPages, sources, refHosts, bots, notFound, aeo } };
     });
     // 백필이면 로그가 온전히 덮는 지난 주들도 주 기록으로 남긴다
     const mondays = BACKFILL ? days.filter((d) => new Date(d).getUTCDay() === 1 && days.includes(iso(Date.parse(d) + 6 * DAY))) : [w.start];
@@ -197,6 +200,19 @@ async function main() {
     });
   } catch (e) {
     report.site = asError(e);
+  }
+  if (SITE_ONLY) {
+    if (report.site instanceof Error) throw report.site;
+    if (DRY) {
+      process.stdout.write(`${JSON.stringify(update.siteDaily?.slice(-1), null, 2)}\n`);
+      return;
+    }
+    // 주 기록은 건드리지 않고(텔레그램·링크드인 값 보존) 일별만 합친다
+    // 마지막 수집 시각(updatedAt)은 전체 수집 기준이라 그대로 둔다
+    const old = loadHistory();
+    saveHistory({ ...mergeHistory(old, { siteDaily: update.siteDaily }, now), updatedAt: old.updatedAt || now.toISOString() });
+    log(`일별 홈페이지 기록 갱신: ${update.siteDaily?.length ?? 0}일`);
+    return;
   }
   try {
     const { report: tg, all } = await telegram(w, BACKFILL ? '0000-00-00' : w.start);
