@@ -6,6 +6,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 import * as readline from 'readline';
 import { uploadMedia, isR2Configured } from './lib/r2-upload';
+import { mergeAlbums } from './lib/telegram-albums';
 
 dotenv.config({ path: path.resolve(process.cwd(), '.env.local') });
 
@@ -80,6 +81,8 @@ interface RawMessage {
   linkEntities?: LinkEntity[];
   /** Public URLs of attached photos, uploaded to R2 */
   imageUrls?: string[];
+  /** 앨범(사진 여러 장) 묶음 id. mergeAlbums 로 합친 뒤에는 남지 않는다 */
+  groupedId?: string;
 }
 
 /**
@@ -190,6 +193,7 @@ async function main() {
     const fwdFrom = (msg as Api.Message & { fwdFrom?: { fromName?: string; postAuthor?: string } }).fwdFrom;
     const dateStr = new Date(msg.date * 1000).toISOString();
     const imageUrls = await collectImages(client, msg);
+    const groupedId = msg.groupedId ? String(msg.groupedId) : undefined;
 
     if (fwdFrom) {
       // Collect forwarded messages for review
@@ -220,6 +224,7 @@ async function main() {
         forwardedFrom,
         ...(fwdLinks.length ? { linkEntities: fwdLinks } : {}),
         ...(imageUrls.length ? { imageUrls } : {}),
+        ...(groupedId ? { groupedId } : {}),
       });
 
       count++;
@@ -247,6 +252,7 @@ async function main() {
       forwarded: false,
       ...(links.length ? { linkEntities: links } : {}),
       ...(imageUrls.length ? { imageUrls } : {}),
+      ...(groupedId ? { groupedId } : {}),
     });
 
     count++;
@@ -259,7 +265,7 @@ async function main() {
   console.log(`\nTotal messages fetched: ${messages.length} (original: ${originalCount}, forwarded: ${forwarded.length})`);
 
   const grouped = new Map<string, RawMessage[]>();
-  for (const msg of messages) {
+  for (const msg of mergeAlbums(messages)) {
     const existing = grouped.get(msg.postAuthor) ?? [];
     existing.push(msg);
     grouped.set(msg.postAuthor, existing);
@@ -284,7 +290,7 @@ async function main() {
   const output: OutputData = {
     channel: CHANNEL,
     fetchedAt: new Date().toISOString(),
-    totalMessages: messages.length,
+    totalMessages: contributors.reduce((n, c) => n + c.messages.length, 0),
     contributors,
   };
 
