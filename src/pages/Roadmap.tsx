@@ -102,7 +102,10 @@ const Roadmap: React.FC = () => {
                             <li key={s.name} className="rounded-xl border border-theme-border bg-theme-surface p-5 flex flex-col gap-2">
                                 <span className="text-xs font-semibold text-theme-text-muted">{s.layer}</span>
                                 <span className="text-lg font-bold">{s.name}</span>
-                                <span className="text-xl font-bold text-brand-accent">{s.metric}</span>
+                                <span className="flex flex-col">
+                                    <span className="text-xl font-bold text-brand-accent">{s.metric}</span>
+                                    <span lang="en" className="text-xs text-theme-text-muted">{s.metricEn}</span>
+                                </span>
                                 <span className="text-sm leading-relaxed text-theme-text-muted">{s.body}</span>
                             </li>
                         ))}

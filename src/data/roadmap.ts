@@ -40,11 +40,11 @@ export const STRAWMAP_FORKS = [
 ] as const;
 
 export const NORTH_STARS = [
-    { layer: '합의', name: '빠른 L1', metric: '몇 초 안에 확정', body: '거래가 블록에 들어가고 되돌릴 수 없게 확정되기까지 걸리는 시간을 지금의 십몇 분에서 몇 초로 줄입니다.' },
-    { layer: '실행', name: '기가가스 L1', metric: '초당 1기가가스', body: 'zkEVM과 실시간 증명으로 L1 처리량을 약 1만 TPS 수준까지 올립니다.' },
-    { layer: '데이터', name: '테라가스 L2', metric: '초당 1GB', body: '데이터 가용성 샘플링으로 L2 전체 처리량을 약 1천만 TPS 수준까지 올립니다.' },
-    { layer: '여러 층', name: '양자 내성 L1', metric: '수백 년 보안', body: '해시 기반 서명과 증명으로 양자컴퓨터가 나와도 버티게 합니다.' },
-    { layer: '실행', name: '프라이버시 L1', metric: '차폐 전송', body: '금액과 상대를 가린 송금을 L1의 기본 기능으로 넣습니다.' },
+    { layer: '합의', name: '빠른 L1', metric: '몇 초 안에 확정', metricEn: 'finality in seconds', body: '거래가 블록에 들어가고 되돌릴 수 없게 확정되기까지 걸리는 시간을 지금의 십몇 분에서 몇 초로 줄입니다.' },
+    { layer: '실행', name: '기가가스 L1', metric: '초당 1기가가스', metricEn: '1 gigagas/sec', body: 'zkEVM과 실시간 증명으로 L1 처리량을 약 1만 TPS 수준까지 올립니다.' },
+    { layer: '데이터', name: '테라가스 L2', metric: '초당 1GB', metricEn: '1 gigabyte/sec', body: '데이터 가용성 샘플링으로 L2 전체 처리량을 약 1천만 TPS 수준까지 올립니다.' },
+    { layer: '여러 층', name: '양자 내성 L1', metric: '수백 년 보안', metricEn: 'centuries-long security', body: '해시 기반 서명과 증명으로 양자컴퓨터가 나와도 버티게 합니다.' },
+    { layer: '실행', name: '프라이버시 L1', metric: '차폐 전송', metricEn: 'L1 shielded transfers', body: '금액과 상대를 가린 송금을 L1의 기본 기능으로 넣습니다.' },
 ] as const;
 
 /** 여러 포크에 걸쳐 이어지는 흐름 (원본의 가로 막대) */
