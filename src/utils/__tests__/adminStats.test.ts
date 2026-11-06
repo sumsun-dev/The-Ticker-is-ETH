@@ -57,6 +57,25 @@ describe('adminStats', () => {
     expect(t.liImpressions).toBe(40);
   });
 
+  it('summarize: 일은 그날 상세(siteDaily.site)와 그날 구독자(tgDaily)를 쓴다', () => {
+    const day = { sources: [['검색', 2]] as Array<[string, number]>, sections: [], topPages: [['/roadmap', 3]] as Array<[string, number]>, refHosts: [], bots: { search: 1, ai: [['OpenAI', 4]] as Array<[string, number]> }, notFound: [], newVisitors: 2, mobilePct: 50 };
+    const hd: StatsHistory = {
+      ...h,
+      siteDaily: [{ date: '2026-10-20', visitors: 6, pageLoads: 7, site: day }],
+      tgDaily: [{ date: '2026-10-20', subscribers: 1506 }],
+    };
+    const s = summarize(hd, { key: '2026-10-20', label: '', start: '2026-10-20', end: '2026-10-20' });
+    expect(s.site?.sources).toEqual([['검색', 2]]);
+    expect(s.site?.bots.ai).toEqual([['OpenAI', 4]]);
+    expect(s.site?.newVisitors).toBe(2);
+    expect(s.titles).toEqual({});
+    expect(s.subscribers).toBe(1506);
+    // 서버가 매일 남긴 구독자가 마지막 주간 수집보다 새로우면 그날까지 보여 준다
+    expect(periods({ ...hd, tgDaily: [{ date: '2026-10-28', subscribers: 1 }] }, 'day', '2026-10-29')[0].key).toBe('2026-10-28');
+    // 그날 기록이 없으면 비운다 (월요일 주 기록 값을 끌어오지 않는다)
+    expect(summarize(hd, { key: '2026-10-19', label: '', start: '2026-10-19', end: '2026-10-19' }).subscribers).toBeNull();
+  });
+
   it('summarize: 주는 주간 고유 방문자, 글은 KST 날짜로 묶는다', () => {
     const s = summarize(h, { key: '2026-10-12', label: '', start: '2026-10-12', end: '2026-10-18' });
     expect(s.visitors).toBe(10);

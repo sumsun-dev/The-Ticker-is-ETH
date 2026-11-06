@@ -22,6 +22,9 @@ export interface SiteWeek {
   aeo?: AeoWeek;
 }
 
+/** 하루치 홈페이지 상세. 하루로 셀 수 없는 시간대(peakHour)·일별 분포(daily)는 뺀다 */
+export type SiteDay = Pick<SiteWeek, 'newVisitors' | 'mobilePct' | 'sections' | 'topPages' | 'sources' | 'refHosts' | 'bots' | 'notFound' | 'aeo'>;
+
 /** [경로, AI 답변·색인 봇 요청(학습 수집 제외), 사람 첫 진입] */
 export type AeoPage = [string, number, number];
 
@@ -65,8 +68,10 @@ export interface StatsHistory {
   updatedAt: string;
   channel: string;
   weeks: WeekRecord[];
-  /** 날짜별 방문자(그날 처음 앱을 받은 IP+UA)와 첫 진입 */
-  siteDaily: Array<{ date: string; visitors: number; pageLoads: number }>;
+  /** 날짜별 방문자(그날 처음 앱을 받은 IP+UA)와 첫 진입. site는 그날의 상세 (2026년 11월 수집부터) */
+  siteDaily: Array<{ date: string; visitors: number; pageLoads: number; site?: SiteDay }>;
+  /** 날짜별 텔레그램 구독자. 서버 cron(deploy/tg-subscribers.mjs)이 따로 쌓고 /api/admin/stats가 붙여 준다 */
+  tgDaily?: Array<{ date: string; subscribers: number }>;
   /** 채널 글 전체. 조회수는 마지막 수집 시점 누적값 */
   tgPosts: TgPostRecord[];
   /** 링크드인 글. comments는 자동 첫 댓글을 뺀 수 */

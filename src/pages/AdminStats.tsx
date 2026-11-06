@@ -159,7 +159,7 @@ const Dashboard: React.FC<{ data: StatsHistory; updated: string }> = ({ data, up
                     ongoing={ongoing}
                     channel="telegram"
                     metrics={[
-                        { label: '구독자', value: cur.subscribers, prev: prev?.subscribers ?? null, unit: '명', trend: trend((s) => s.subscribers), emptyReason: mode === 'day' ? '월요일에만 기록' : '기록 전' },
+                        { label: '구독자', value: cur.subscribers, prev: prev?.subscribers ?? null, unit: '명', trend: trend((s) => s.subscribers), emptyReason: mode === 'day' ? '그날 기록 없음' : '기록 전' },
                         { label: '평균 조회수', value: cur.tgAvgViews, prev: prev?.tgAvgViews ?? null, unit: '회', trend: trend((s) => s.tgAvgViews), emptyReason: '조회 쌓인 글 부족', note: `글당 평균${cur.tgFresh ? `, 최근 ${cur.tgFresh}개 글은 조회가 쌓이는 중이라 제외` : ''}` },
                         { cumulative: true, label: '올린 글', value: cur.tgPosts, prev: prev?.tgPosts ?? null, unit: '개', trend: trend((s) => s.tgPosts) },
                     ]}
