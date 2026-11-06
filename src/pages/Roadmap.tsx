@@ -70,7 +70,12 @@ const Roadmap: React.FC = () => {
                     <p className="text-sm font-semibold text-brand-accent mb-3">이더리움 로드맵</p>
                     <h1 className="text-4xl md:text-5xl font-bold mb-4">2029년까지, 이더리움은 어디로 가나</h1>
                     <p className="text-theme-text-muted text-base md:text-lg leading-relaxed text-balance">
-                        이더리움 재단 프로토콜 팀이 그린 Strawmap을 한국어로 옮겼습니다. 앞으로 일곱 번 남짓의 하드포크에 어떤 업그레이드가 들어갈지, 그 끝에 무엇을 노리는지를 한 장에 담은 지도입니다.
+                        <span className="block">이더리움 재단 프로토콜 팀이 그린 Strawmap을 한국어로 옮겼습니다.</span>
+                        <span className="block">
+                            {/* 쉼표 자리에서 꺾이게 마디마다 inline-block */}
+                            <span className="inline-block">앞으로 일곱 번 남짓의 하드포크에 어떤 업그레이드가 들어갈지,</span>{' '}
+                            <span className="inline-block">그 끝에 무엇을 노리는지를 한 장에 담은 지도입니다.</span>
+                        </span>
                     </p>
                     <p className="mt-4 flex flex-wrap gap-x-5 gap-y-1 text-sm text-theme-text-muted">
                         <span>원본 갱신 {dotDate(STRAWMAP_UPDATED)}</span>
@@ -81,7 +86,7 @@ const Roadmap: React.FC = () => {
                             지난 하드포크 보기
                         </Link>
                     </p>
-                    <p className="mt-5 rounded-xl border border-amber-400/40 bg-amber-400/5 px-4 py-3 text-sm leading-relaxed text-amber-100 text-balance">
+                    <p className="mt-5 w-fit max-w-full rounded-xl border border-amber-400/40 bg-amber-400/5 px-4 py-3 text-sm leading-relaxed text-amber-100 text-balance">
                         <span className="block">Strawmap은 공식 계획이 아니라 토론용 초안입니다(strawman + roadmap).</span>
                         <span className="block">연구자들 사이에서도 의견이 갈리고, 시점은 크게 앞당겨지거나 늦어질 수 있습니다.</span>
                     </p>
