@@ -66,11 +66,16 @@ const Roadmap: React.FC = () => {
     return (
         <div className="min-h-screen pt-28 pb-20 px-6 container mx-auto text-theme-text">
             <div className="max-w-6xl mx-auto break-keep">
-                <header className="mb-12 max-w-3xl">
+                <header className="mb-12">
                     <p className="text-sm font-semibold text-brand-accent mb-3">이더리움 로드맵</p>
                     <h1 className="text-4xl md:text-5xl font-bold mb-4">2029년까지, 이더리움은 어디로 가나</h1>
-                    <p className="text-theme-text-muted text-base md:text-lg leading-relaxed text-balance">
-                        이더리움 재단 프로토콜 팀이 그린 Strawmap을 한국어로 옮겼습니다. 앞으로 일곱 번 남짓의 하드포크에 어떤 업그레이드가 들어갈지, 그 끝에 무엇을 노리는지를 한 장에 담은 지도입니다.
+                    <p className="max-w-4xl text-theme-text-muted text-base md:text-lg leading-relaxed text-balance">
+                        <span className="block">이더리움 재단 프로토콜 팀이 그린 Strawmap을 한국어로 옮겼습니다.</span>
+                        <span className="block">
+                            {/* 쉼표 자리에서 꺾이게 마디마다 inline-block */}
+                            <span className="inline-block">앞으로 일곱 번 남짓의 하드포크에 어떤 업그레이드가 들어갈지,</span>{' '}
+                            <span className="inline-block">그 끝에 무엇을 노리는지를 한 장에 담은 지도입니다.</span>
+                        </span>
                     </p>
                     <p className="mt-4 flex flex-wrap gap-x-5 gap-y-1 text-sm text-theme-text-muted">
                         <span>원본 갱신 {dotDate(STRAWMAP_UPDATED)}</span>
@@ -234,7 +239,7 @@ const Roadmap: React.FC = () => {
                     <p className="text-xs text-theme-text-muted mb-6">
                         그림: 비탈릭 부테린, 2023년판 로드맵 (Possible futures 연재 수록, WTFPL). 누르면 크게 봅니다.
                     </p>
-                    <ul className="grid gap-4">
+                    <ul className="grid grid-cols-1 gap-4 xl:grid-cols-2">
                         {PILLARS.map((p) => {
                             const items = ROADMAP_ITEMS.filter((it) => ITEM_PILLAR[itemSlug(it)] === p.key);
                             return (
@@ -250,7 +255,7 @@ const Roadmap: React.FC = () => {
                                             src={`/images/roadmap/pillar-${p.key}.png`}
                                             alt={`The ${p.name} 로드맵 그림. 비탈릭 부테린이 그린 2023년판으로, 이 갈래의 목표와 단계별 항목을 화살표로 잇습니다.`}
                                             loading="lazy"
-                                            className="block w-full min-w-[36rem] h-auto"
+                                            className="block w-full min-w-[36rem] xl:min-w-0 h-auto"
                                         />
                                     </a>
                                     <p className="text-sm leading-relaxed">{p.goal}</p>
