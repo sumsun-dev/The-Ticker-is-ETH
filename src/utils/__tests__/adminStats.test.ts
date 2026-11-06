@@ -39,6 +39,24 @@ describe('adminStats', () => {
     expect(ms.map((m) => m.label)).toEqual(['2026.11 (진행 중)', '2026.10']);
   });
 
+  it('periods: 일은 마지막 수집 전날부터 거꾸로, 하루짜리 기간', () => {
+    const ds = periods(h, 'day', '2026-10-27');
+    expect(ds[0]).toMatchObject({ key: '2026-10-25', start: '2026-10-25', end: '2026-10-25' });
+    expect(ds[1].key).toBe('2026-10-24');
+    expect(ds.at(-1)?.key).toBe('2026-10-01');
+  });
+
+  it('summarize: 일은 그날 방문자와 글만, 주간 순위표는 붙이지 않는다', () => {
+    const s = summarize(h, { key: '2026-10-12', label: '', start: '2026-10-12', end: '2026-10-12' });
+    expect(s.visitors).toBe(4);
+    expect(s.pageLoads).toBe(5);
+    expect(s.site).toBeUndefined();
+    const t = summarize(h, { key: '2026-10-13', label: '', start: '2026-10-13', end: '2026-10-13' });
+    expect(t.tgPosts).toBe(1);
+    expect(t.tgViews).toBe(300);
+    expect(t.liImpressions).toBe(40);
+  });
+
   it('summarize: 주는 주간 고유 방문자, 글은 KST 날짜로 묶는다', () => {
     const s = summarize(h, { key: '2026-10-12', label: '', start: '2026-10-12', end: '2026-10-18' });
     expect(s.visitors).toBe(10);

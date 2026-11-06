@@ -1,7 +1,7 @@
-/** 관리자 성과 대시보드 집계: 누적 기록(StatsHistory)을 주·월 단위로 묶는다 */
+/** 관리자 성과 대시보드 집계: 누적 기록(StatsHistory)을 일·주·월 단위로 묶는다 */
 import type { AeoPage, AeoWeek, LiPostRecord, Ranked, SiteWeek, StatsHistory, TgPostRecord } from '../types/adminStats';
 
-export type Mode = 'week' | 'month';
+export type Mode = 'day' | 'week' | 'month';
 export interface Period { key: string; label: string; start: string; end: string }
 
 const DAY = 864e5;
@@ -19,13 +19,18 @@ export const MATURE_DAYS = 3;
 export const MIN_MATURE_POSTS = 3;
 export const isMature = (date: string, now: string) => Date.parse(now) - Date.parse(date) >= MATURE_DAYS * DAY;
 
-/** 데이터가 있는 가장 이른 날부터. 주는 지난주까지, 월은 진행 중인 이번 달까지. 최신이 앞 */
-export function periods(h: StatsHistory, mode: Mode, today: string, limit = mode === 'week' ? 26 : 24): Period[] {
+/** 데이터가 있는 가장 이른 날부터. 일은 마지막 수집 전날까지(수집이 주 1회라 그 뒤는 비어 있다), 주는 지난주까지, 월은 진행 중인 이번 달까지. 최신이 앞 */
+export function periods(h: StatsHistory, mode: Mode, today: string, limit = mode === 'day' ? 90 : mode === 'week' ? 26 : 24): Period[] {
   const firsts = [h.siteDaily[0]?.date, h.tgPosts[0] && kstDate(h.tgPosts[0].date), h.liPosts[0]?.date, h.weeks[0]?.week].filter(Boolean) as string[];
   if (!firsts.length) return [];
   const first = firsts.sort()[0];
   const out: Period[] = [];
-  if (mode === 'week') {
+  if (mode === 'day') {
+    for (let t = Date.parse(kstDate(h.updatedAt)) - DAY; out.length < limit && iso(t) >= first; t -= DAY) {
+      const d = iso(t);
+      out.push({ key: d, label: `${d.slice(5).replace('-', '.')} (${'일월화수목금토'[new Date(t).getUTCDay()]})`, start: d, end: d });
+    }
+  } else if (mode === 'week') {
     const t = Date.parse(today);
     let mon = t - ((new Date(t).getUTCDay() + 6) % 7) * DAY - 7 * DAY; // 지난주 월요일
     while (out.length < limit && iso(mon + 6 * DAY) >= first) {
@@ -102,7 +107,8 @@ export interface Summary {
 export function summarize(h: StatsHistory, p: Period): Summary {
   const days = h.siteDaily.filter((d) => inP(d.date, p));
   const weeks = h.weeks.filter((w) => inP(w.week, p));
-  const siteWeeks = weeks.flatMap((w) => (w.site ? [w.site] : []));
+  // 주간 순위표는 하루로 쪼갤 수 없다. 일 단위에서는 붙이지 않는다
+  const siteWeeks = p.start === p.end ? [] : weeks.flatMap((w) => (w.site ? [w.site] : []));
   const exactWeek = weeks.length === 1 && weeks[0].week === p.start && p.end === iso(Date.parse(p.start) + 6 * DAY) ? weeks[0].site : undefined;
   const tg = h.tgPosts.filter((x) => inP(kstDate(x.date), p));
   const li = h.liPosts.filter((x) => inP(x.date, p));
