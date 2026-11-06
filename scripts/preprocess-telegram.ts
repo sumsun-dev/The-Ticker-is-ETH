@@ -299,6 +299,12 @@ function main() {
     }
   }
 
+  // 앨범을 합치면서 없어진 글(예전 사진 한 장짜리 tg-*.md)을 지운다
+  const kept = new Set(index.map((e) => `${e.id}.md`));
+  const stale = fs.readdirSync(articlesDir).filter((f) => /^tg-\d+\.md$/.test(f) && !kept.has(f));
+  for (const f of stale) fs.unlinkSync(path.resolve(articlesDir, f));
+  if (stale.length) console.log(`Removed: ${stale.length} stale article .md files`);
+
   const merged = [...preservedEntries, ...index];
   merged.sort((a, b) => b.date.localeCompare(a.date));
 
