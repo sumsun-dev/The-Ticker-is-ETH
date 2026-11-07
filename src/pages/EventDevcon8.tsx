@@ -16,7 +16,7 @@ import {
 
 // 한국어 스크립트: src/data/devcon8-transcripts/<발표 id>.md 가 있으면 버튼이 생긴다 (누를 때 불러옴). 넣는 방법은 docs/devcon8-transcripts.md
 const TRANSCRIPTS = import.meta.glob('../data/devcon8-transcripts/*.md', { query: '?raw', import: 'default' }) as Record<string, () => Promise<string>>;
-const transcriptLoader = (id: string) => TRANSCRIPTS[`../data/devcon8-transcripts/${id}.md`];
+const transcriptLoader = (id: string): (() => Promise<string>) | undefined => TRANSCRIPTS[`../data/devcon8-transcripts/${id}.md`];
 
 const TOPICS = [...new Set(DEVCON8_TALKS.map((t) => t.topic))];
 
