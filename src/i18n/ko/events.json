@@ -1,5 +1,8 @@
 {
-  "subtitle": "ECK가 함께 만들거나 참여한 이더리움 행사 기록입니다.",
+  "subtitle": "ECK가 만든 행사와 함께 볼 만한 외부 이더리움 행사를 기록합니다.",
+  "tabEck": "ECK 행사",
+  "tabGlobal": "외부 행사",
+  "globalNote": "이더리움 재단 등 해외에서 열린 주요 행사를 ECK가 한국어로 정리한 리포트입니다.",
   "metaDescription": "Ethereum Korea One, Ethcon Korea 등 ECK가 함께한 이더리움 행사 기록.",
   "upcomingEmptyTitle": "다음 행사를 준비하고 있습니다",
   "upcomingEmptyBody": "일정이 정해지면 텔레그램 채널에서 가장 먼저 알려드립니다.",

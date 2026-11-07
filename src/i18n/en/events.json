@@ -1,5 +1,8 @@
 {
-  "subtitle": "Ethereum events ECK has organized or taken part in.",
+  "subtitle": "Events ECK has organized, plus reports on major Ethereum events worldwide.",
+  "tabEck": "ECK events",
+  "tabGlobal": "Global events",
+  "globalNote": "ECK's Korean-language reports on major Ethereum events held abroad.",
   "metaDescription": "Ethereum events ECK has been part of, including Ethereum Korea One and Ethcon Korea.",
   "upcomingEmptyTitle": "Our next event is in the works",
   "upcomingEmptyBody": "We announce new dates on our Telegram channel first.",
