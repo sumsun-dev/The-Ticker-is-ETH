@@ -1,5 +1,5 @@
 /**
- * 텔레그램 채널(@thetickeriseth)에 올라온 글을 ECK LinkedIn 회사 페이지에 자동 게시 (맥 전용, launchd 30분 주기).
+ * 텔레그램 채널(@thetickeriseth)에 올라온 글을 ECK LinkedIn 회사 페이지에 자동 게시 (맥 전용, launchd 하루 두 번 10:30·18:30. 실패한 글은 다음 실행에서 다시 시도).
  *
  * 회사 명의 API 게시(w_organization_social)는 Community Management API 심사가 필요해, ai-secondbrain과 같은 방식으로
  * 로그인된 전용 크롬 프로필 + playwright로 페이지 관리자 화면에서 직접 올린다. 채널 글은 공개 웹 뷰(t.me/s/thetickeriseth)를 읽어
@@ -162,6 +162,9 @@ const COMMENT_SUBMIT = 'button.comments-comment-box__submit-button, button.comme
 
 type Page = Awaited<ReturnType<Awaited<ReturnType<typeof launch>>['newPage']>>;
 
+/** 게시 버튼을 누르기 전에 난 실패. 처음부터 다시 해도 글이 두 번 올라가지 않는다 */
+class RetryBeforePost extends Error {}
+
 async function publish(page: Page, post: LinkedInPost, media: Media) {
   await page.goto(ADMIN_URL, { waitUntil: 'domcontentloaded', timeout: 60_000 });
   const box = page.locator(SHARE_BOX);
@@ -176,7 +179,16 @@ async function publish(page: Page, post: LinkedInPost, media: Media) {
   if (kind !== 'text') {
     // 미디어 에디터의 file input은 숨겨져 있지만 setInputFiles는 DOM input이면 동작한다. 앨범은 한 번에 여러 장
     const input = modal.locator('input[type=file]').first();
-    await input.waitFor({ state: 'attached', timeout: 15_000 });
+    const attached = await input.waitFor({ state: 'attached', timeout: 15_000 }).then(
+      () => true,
+      () => false,
+    );
+    if (!attached) {
+      // 가끔 창이 업로드 칸 없이 열린다(#1711·#1729). 아직 아무것도 올리지 않은 단계라 다시 열어도 중복 게시가 없다
+      const shot = join(tmpdir(), `eck-li-no-input-${Date.now()}.png`);
+      await page.screenshot({ path: shot }).catch(() => {});
+      throw new RetryBeforePost(`업로드 칸 없음 (화면: ${shot})`);
+    }
     await input.setInputFiles(kind === 'video' ? [media.video!] : media.photos);
     if (kind === 'video') {
       // '다음' 버튼은 업로드 전에도 보인다. 업로드 전에 넘어가 게시하면 컴포저만 닫히고 글이 생기지 않는다(2026-09-09 실측).
@@ -259,7 +271,13 @@ async function postToLinkedIn(post: LinkedInPost, media: Media) {
   const ctx = await launch(HEADLESS);
   try {
     const page = ctx.pages()[0] ?? (await ctx.newPage());
-    await publish(page, post, media);
+    try {
+      await publish(page, post, media);
+    } catch (e) {
+      if (!(e instanceof RetryBeforePost)) throw e;
+      log(`${e.message} → 창을 새로 열어 한 번 더 시도`);
+      await publish(page, post, media);
+    }
     await addFirstComment(page, post).catch(async (e) => {
       log(`댓글 실패: ${e instanceof Error ? e.message : e}`);
       await notify(`LinkedIn 게시는 됐지만 첫 댓글(링크) 달기에 실패했습니다. 직접 달아 주세요.\n${post.comment}`);
