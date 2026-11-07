@@ -525,7 +525,8 @@
       "name": "L2BEAT",
       "descriptionKey": "ecosystem.tools.l2beat",
       "url": "https://l2beat.com",
-      "category": "analytics"
+      "category": "analytics",
+      "highlight": true
     },
     {
       "id": "growthepie",
@@ -668,14 +669,24 @@
       "name": "Forkcast",
       "descriptionKey": "ecosystem.tools.forkcast",
       "url": "https://forkcast.org",
-      "category": "research"
+      "category": "research",
+      "highlight": true
+    },
+    {
+      "id": "ethereum-tv",
+      "name": "Ethereum TV",
+      "descriptionKey": "ecosystem.tools.ethereumTv",
+      "url": "https://ethereumtv.co",
+      "category": "research",
+      "highlight": true
     },
     {
       "id": "eips",
       "name": "EIPs",
       "descriptionKey": "ecosystem.tools.eips",
       "url": "https://eips.ethereum.org",
-      "category": "research"
+      "category": "research",
+      "highlight": true
     },
     {
       "id": "ethereum-roadmap",
