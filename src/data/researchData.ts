@@ -4,22 +4,29 @@ import { loadArticleContent } from '../utils/data-loader';
 
 export type ResearchIndexItem = Omit<ResearchItem, 'content'>;
 
-const NEWS_AUTHOR_AVATARS: Record<string, string> = {
-    '@r2jamong': '/assets/team/rejamong.jpg',
+/** 주간 리포트 RSS 는 작성자를 X 계정(@r2jamong)으로 준다. 텔레그램 글과 같은 이름으로 맞춰 필터가 둘로 갈리지 않게 한다 */
+const NEWS_AUTHOR_NAMES: Record<string, string> = {
+    '@r2jamong': 'Rejamong',
 };
+
+const NEWS_AUTHOR_AVATARS: Record<string, string> = {
+    Rejamong: '/assets/team/rejamong.jpg',
+};
+
+const newsAuthor = (raw: string) => NEWS_AUTHOR_NAMES[raw] ?? raw;
 
 function adaptNewsItems(newsItems: NewsItem[]): ResearchIndexItem[] {
     return newsItems.map(item => ({
         id: `news-${item.id}`,
         title: item.title,
-        author: item.author,
-        authorId: item.author,
+        author: newsAuthor(item.author),
+        authorId: newsAuthor(item.author),
         date: item.published.split('T')[0],
         category: 'Weekly Report' as const,
         summary: item.summary,
         thumbnailUrl: '',
         readTime: '15 min',
-        authorAvatar: NEWS_AUTHOR_AVATARS[item.author] ?? '',
+        authorAvatar: NEWS_AUTHOR_AVATARS[newsAuthor(item.author)] ?? '',
         contentType: 'html' as const,
         originalLink: item.link,
     }));
