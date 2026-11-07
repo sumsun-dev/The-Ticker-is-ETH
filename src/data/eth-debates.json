@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-04T01:20:46.805Z",
+  "updatedAt": "2026-11-07T01:07:46.335Z",
   "processedDigests": [
     "2026-08-24",
     "2026-08-25",
@@ -33,9 +33,130 @@
     "2026-10-26",
     "2026-10-29",
     "2026-11-01",
-    "2026-11-04"
+    "2026-11-04",
+    "2026-11-07"
   ],
   "debates": [
+    {
+      "id": "paraguay-crisis-btc-vs-eth",
+      "title": "파라과이 은행 위기의 대안으로 비트코인보다 이더리움·ETH가 더 나은가?",
+      "category": "거버넌스 · 커뮤니티",
+      "summary": "파라과이에서 인구 다수가 은행 예치금 접근을 잃은 국면을 두고 Stani Kulechov는 비트코인이 그 어느 때보다 중요하다고 했고, lex_node는 그의 프로젝트가 올라가 있는 이더리움과 ETH가 이 상황에 더 낫다고 반박했으며, binji_x는 현장 가이드로 이더리움의 한계와 자기수탁(self-custody) 책임을 짚으며 신중론을 폈다.",
+      "keyPoints": [
+        "은행 접근을 잃은 사람에게 금융 주권의 답은 비트코인인가, ETH와 이더리움 디파이인가",
+        "크립토는 이미 은행에 묶인 돈을 되찾아 줄 수 있는가, 아니면 앞으로의 자기수탁만 가능한가",
+        "은행 위기를 채택 서사로 쓸 때 자기수탁·발행사 동결 권한·신고 의무 같은 책임 안내가 함께 가야 하는가"
+      ],
+      "background": "파라과이에서 은행 예치금 접근이 광범위하게 막힌 사건을 배경으로, 금융 접근권을 중개자 없는 자산으로 확보하자는 주장이 나왔다. Stani Kulechov는 대출 프로토콜 Aave의 창업자이고, lex_node는 바로 그 Aave가 이더리움 위에서 돌아간다고 지적했다. 이더리움에서는 과담보(overcollateralized) 대출 프로토콜과 프라이버시 도구를 통해 중개자 없이 차입과 스왑(swap)이 가능하다. binji_x는 EthLabs에서 이더리움 커뮤니케이션을 맡고 있으며, 본인 이해관계를 공개하고 스페인어 장문 가이드로 실무 주의사항을 안내했다.",
+      "whyItMatters": "은행 위기 같은 실제 금융 붕괴 국면에서 어떤 자산과 서사를 내세우느냐는 크립토의 효용 주장과 생태계의 신뢰도를 동시에 시험한다. 과장된 채택 서사 대신 자기수탁의 책임과 발행사 동결 권한, 현지 신고 의무까지 안내하는지가 커뮤니티의 책임성을 가르는 지점이다.",
+      "sources": [],
+      "keywords": [
+        "Paraguay bank crisis",
+        "Aave",
+        "ETH self custody",
+        "debanking"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "이 상황엔 ETH와 이더리움이 더 낫다",
+          "holders": [
+            {
+              "handle": "lex_node",
+              "name": "_gabrielShapir0",
+              "role": "크립토 법률·규제 전문 변호사, MetaLeX Labs",
+              "avatar": "https://pbs.twimg.com/profile_images/2058233189882032128/pRSMN_6C_400x400.jpg"
+            }
+          ],
+          "points": [
+            "그가 응원하는 프로젝트(Aave)는 이더리움 위에 있고 ETH가 이 상황에 더 낫다",
+            "파라과이 사람은 탈은행화(debanking)를 피하면서 바로 그 Aave에서 중개자 없이 차입과 스왑을 할 수 있다",
+            "그 과정에서 프라이버시(privacy)까지 지킬 수 있다"
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "지금이야말로 비트코인이 중요하다",
+          "holders": [
+            {
+              "handle": "StaniKulechov",
+              "name": "Stani",
+              "role": "Aave 창업자",
+              "avatar": "https://pbs.twimg.com/profile_images/2040150832155668480/NuKn2fQi_400x400.jpg"
+            }
+          ],
+          "points": [
+            "자기 돈에 접근하는 것이 중개자의 특혜가 아닌 기본권인 금융 시스템을 상기시킨다",
+            "파라과이 사례를 보면 비트코인이 그 어느 때보다 지금 중요하다"
+          ]
+        },
+        {
+          "stance": "neutral",
+          "label": "응원 이전에 책임 있는 안내가 먼저다",
+          "holders": [
+            {
+              "handle": "binji_x",
+              "name": "binji",
+              "role": "EthLabs, 이더리움 커뮤니케이션·커뮤니티",
+              "avatar": "https://pbs.twimg.com/profile_images/2057797822666473472/Ns8EleJw_400x400.jpg"
+            }
+          ],
+          "points": [
+            "이더리움도 이미 은행에 묶여 버린 돈은 되찾아 줄 수 없다",
+            "자기수탁에는 책임이 따르고 스테이블코인 발행사는 동결 권한이 있다",
+            "현금화 가능성부터 확인하고 소액으로 실험하며 파라과이의 암호자산 신고 의무도 지켜야 한다"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-11-05",
+          "by": "StaniKulechov",
+          "stance": "con",
+          "quote": "비트코인은 그 어느 때보다 지금 중요하다. 오늘 파라과이를 보라.",
+          "url": "https://x.com/StaniKulechov/status/2118485514898878631",
+          "digest": "2026-11-07",
+          "relation": "none",
+          "original": "Bitcoin matters now more than ever.\n\nLook at Paraguay today.",
+          "translation": "비트코인(Bitcoin)은 지금 그 어느 때보다 중요하다. 오늘의 파라과이를 보라."
+        },
+        {
+          "date": "2026-11-06",
+          "by": "lex_node",
+          "stance": "pro",
+          "quote": "당신 프로젝트는 이더리움 위에 있고, 이 일에는 ETH가 문자 그대로 더 낫다. 탈은행화를 피하면서도 파라과이 사람은 바로 당신 프로토콜에서 중개자 없이 차입하고 스왑할 수 있고, 그러면서 프라이버시까지 지킬 수 있다.",
+          "url": "https://x.com/lex_node/status/2118533324046041123",
+          "digest": "2026-11-07",
+          "replyTo": "StaniKulechov",
+          "relation": "reply",
+          "original": "@StaniKulechov ser your project is on Ethereum and ETH literally is better for this as whilst avoiding debanking a paraguayan may also still borrow (on YOUR protocol), swap, etc without ever needing an intermediary...also privacy while doing that....",
+          "translation": "@StaniKulechov 이봐요(ser), 당신의 프로젝트는 이더리움(Ethereum) 위에 있고, ETH는 바로 이런 용도에 더 낫습니다. 은행 서비스에서 배제당하는 것(debanking)을 피하면서도 파라과이 사람은 여전히 (당신의 프로토콜 위에서) 대출(borrow)을 받거나, 스왑(swap)을 하거나, 그 외의 일들을 중개자 없이 할 수 있으니까요... 게다가 그렇게 하는 동안 프라이버시(privacy)도 지킬 수 있고요...."
+        },
+        {
+          "date": "2026-11-06",
+          "by": "binji_x",
+          "stance": "neutral",
+          "quote": "현장에서 보면 이렇다. 이더리움도 이미 은행에 묶인 돈은 되찾아 줄 수 없고, 자기수탁에는 책임이 따르며 발행사는 동결 권한을 가진다. 소액으로 현금화 가능성부터 확인하고, 파라과이의 암호자산 신고 의무도 지켜야 한다.",
+          "url": "https://x.com/binji_x/status/2118500481219834307",
+          "digest": "2026-11-07",
+          "replyTo": "StaniKulechov",
+          "relation": "reply",
+          "original": "@StaniKulechov From the ground:\n\nhttps://x.com/0xpumbi/status/2118448970930270469?a=MuukwEFHqwpF0lz-blA&s=46",
+          "translation": "@StaniKulechov 현장에서 전하는 소식입니다: https://x.com/0xpumbi/status/2118448970930270469?a=MuukwEFHqwpF0lz-blA&s=46"
+        }
+      ],
+      "firstSeen": "2026-11-05",
+      "lastActivity": "2026-11-06",
+      "status": "active",
+      "rootUrl": "https://x.com/lex_node/status/2118533324046041123",
+      "engagement": {
+        "likes": 130,
+        "retweets": 2,
+        "quotes": 0,
+        "replies": 13,
+        "views": 2540
+      }
+    },
     {
       "id": "ai-elliptic-curve-break-threat",
       "title": "AI가 타원곡선 암호의 숨은 돌파구를 찾아 양자 전환을 앞당길 위협인가?",
@@ -619,7 +740,7 @@
       ],
       "firstSeen": "2026-10-31",
       "lastActivity": "2026-10-31",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/lex_node/status/2116585390404780057",
       "engagement": {
         "likes": 0,
@@ -820,7 +941,7 @@
       ],
       "firstSeen": "2026-10-30",
       "lastActivity": "2026-10-30",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/laurashin/status/2116169183692013948",
       "engagement": {
         "likes": 300,
@@ -1017,7 +1138,7 @@
       ],
       "firstSeen": "2026-10-30",
       "lastActivity": "2026-10-30",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/decentrek/status/2115960332032299192",
       "engagement": {
         "likes": 393,
@@ -5167,7 +5288,7 @@
       ],
       "firstSeen": "2026-10-06",
       "lastActivity": "2026-10-07",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/barnabemonnot/status/2107398728403312970",
       "engagement": {
         "likes": 94,
