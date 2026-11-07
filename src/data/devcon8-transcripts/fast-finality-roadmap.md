@@ -1,9 +1,3 @@
-## 16분에서 몇 초로: 이더리움 빠른 완결성 로드맵
-
-얀 폰란텐(Yann Vonlanthen) · Devcon 8 · 2026년 11월 3일
-
-번역 안내: 사용자가 제공한 영어 자막 전체를 바탕으로 발표와 질의응답을 순서대로 옮겼습니다. 반복되는 추임새와 말더듬은 정리하고, 소제목과 화자 표시를 추가했습니다. 기술 용어는 문맥과 공식 자료에 따라 표기를 정리했으며, 확인하지 못한 제안명이나 끊긴 구절은 별도로 표시했습니다. 원본 영상과의 대조 검수는 하지 않았습니다. 시간·보안 수준·이론적 한계에 관한 설명은 발표 당시의 연구와 제안에 관한 발언이며, 현재 구현이나 확정된 업그레이드 일정의 보장으로 제시하는 것이 아닙니다.
-
 ## 목표는 초 단위 완결성
 
 얀: 안녕하세요. 바로 시작하겠습니다. 오늘은 이더리움의 빠른 완결성을 위한 가능한 로드맵, 그리고 지금의 16분을 어떻게 몇 초로 줄일 수 있을지 이야기하고 싶습니다.
@@ -70,7 +64,7 @@
 
 얀: 네트워킹을 개선하는 방법에 관한 제안이 많이 있습니다. 현재는 어테스테이션을 묶어서 전파하는 EIP-8334가 있고, 그 밖에도 점진적인 개선이 많이 있습니다.
 
-가십 계층을 완전히 다시 설계할 수도 있습니다. ‘Waggle’이라는 제안이 있는데, 이번 주에 더 들어 보실 수도 있습니다. [원문 자막 불명확: 제안명의 정확한 표기는 확인하지 못함]. 그 부분에서 할 수 있는 일이 많습니다.
+가십 계층을 완전히 다시 설계할 수도 있습니다. 관련 제안에 관해서는 이번 주에 더 들어 보실 수도 있습니다. 그 부분에서 할 수 있는 일이 많습니다.
 
 ## 이론적인 한계는 몇 슬롯인가
 
@@ -80,20 +74,12 @@
 
 얀: 좋은 질문입니다. 지금까지의 구성에서는 두 개의 별도 합의 프로토콜을 사용하므로, 현재 이론적인 한계는 두 슬롯이라고 생각합니다. 한 슬롯에서 확인을 얻고, 다음 슬롯에서 완결성을 얻는 것이죠. 지금까지는 장기적으로 그렇게 보고 있습니다.
 
-진행자: 감사합니다. [원문 자막 불명확: 마지막 인사 구절이 끊김].
+진행자: 감사합니다.
 
-## 출처와 번역 기준
+일부 불완전한 전사와 현장 반응은 생략했습니다.
 
-원문: From 16 Minutes to Seconds: A Roadmap to Fast Finality on Ethereum · Yann Vonlanthen · Devcon 8 · 2026-11-03
+원문: Devcon 8, Ethereum Foundation · https://ethereumtv.co/talks/from-16-minutes-to-seconds-a-roadmap-to-fast-finality-on-ethereum
 
-Ethereum TV: https://ethereumtv.co/talks/from-16-minutes-to-seconds-a-roadmap-to-fast-finality-on-ethereum
+영상: https://www.youtube.com/watch?v=dLe4uNzLpZ4
 
-원본 영상: https://www.youtube.com/watch?v=dLe4uNzLpZ4
-
-한국어 번역: AI 번역(Codex) · 번역 기준: 사용자가 제공한 영어 자막 전체(발표 및 질의응답) · 검수 상태: 제공된 영어 텍스트와 대조, 일부 기술 용어·EIP 표기는 공식 워크숍 자료 확인, 원본 영상 미대조
-
-표기 참고: EIP-8453과 합의 분리의 표기는 이더리움 재단 케임브리지 워크숍 자료를, EIP-8334의 어테스테이션 묶음 전파 표기는 해당 워크숍의 네트워킹 슬라이드를 참고했습니다. 이는 용어 확인이며 발표자의 수치나 전망을 검증한 것은 아닙니다.
-
-https://consensus.ethereum.foundation/cambridge/
-
-https://consensus.ethereum.foundation/cambridge/slides/simulating-decoupled-consensus
+번역: ECK(AI 번역·텍스트 검수)

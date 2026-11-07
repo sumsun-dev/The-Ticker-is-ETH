@@ -150,7 +150,7 @@ const PanelButton: React.FC<{ id: string; open: boolean; onClick: () => void; ic
 
 /** 스크립트 파일: 빈 줄로 문단을 나누고, "## " 로 시작하는 줄은 소제목 */
 const ScriptBody: React.FC<{ text: string }> = ({ text }) => (
-    <div className="grid gap-3 text-sm leading-relaxed text-theme-text-secondary">
+    <div className="grid min-w-0 gap-3 text-sm leading-relaxed text-theme-text-secondary [overflow-wrap:anywhere]">
         {text
             .split(/\n\s*\n/)
             .map((block) => block.trim())
@@ -162,7 +162,13 @@ const ScriptBody: React.FC<{ text: string }> = ({ text }) => (
                     </h4>
                 ) : (
                     <p key={i} className="whitespace-pre-line">
-                        {block}
+                        {block.split(/(https:\/\/[^\s]+)/g).map((part, j) =>
+                            part.startsWith('https://ethereumtv.co/') || part.startsWith('https://www.youtube.com/') ? (
+                                <a key={j} href={part} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-theme-text">
+                                    {part.startsWith('https://ethereumtv.co/') ? 'Ethereum TV' : 'YouTube'}
+                                </a>
+                            ) : part,
+                        )}
                     </p>
                 ),
             )}
