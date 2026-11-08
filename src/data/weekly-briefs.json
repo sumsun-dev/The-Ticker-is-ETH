@@ -1,6 +1,128 @@
 {
   "briefs": [
     {
+      "start": "2026-11-02",
+      "end": "2026-11-08",
+      "sentAt": "2026-11-08T10:02:42.575Z",
+      "messageIds": [
+        19
+      ],
+      "brief": {
+        "headline": "이더리움 노드 소프트웨어 Reth에서 잘못된 블록 검증 결과를 만들 수 있는 버그가 발견돼 11월 5일 공개와 함께 긴급 패치가 배포됐습니다. 이더리움재단(EF)은 11월 6일 차기 업그레이드 글램스테르담의 가스 비용 재조정이 일부 배포된 컨트랙트를 취약하게 만든다고 공식 경고했습니다.",
+        "sections": [
+          {
+            "heading": "프로토콜 · 코어 개발",
+            "items": [
+              {
+                "title": "Reth 상태 루트 버그 발견과 전 생태계 긴급 패치",
+                "date": "11.05",
+                "summary": "노드 소프트웨어 Reth에서 조작된 트랜잭션이 블록 실행 결과 요약값인 state root를 잘못 만들 수 있는 버그가 Tempo 팀의 퍼징(무작위 입력 테스트)으로 발견됐습니다. Reth v2.10.0 등 패치가 배포됐고 Base는 11월 4일 자사 블록 빌더를 모두 패치했으며 LayerZero는 예방 차원에서 일부 크로스체인 경로를 중단했습니다.",
+                "sources": [
+                  {
+                    "label": "ECK",
+                    "url": "https://ethcollective.xyz/news?date=2026-11-07"
+                  },
+                  {
+                    "label": "@gakonst",
+                    "url": "https://x.com/gakonst/status/2118467839116063082"
+                  }
+                ]
+              },
+              {
+                "title": "EF, 글램스테르담 가스 재조정이 배포 컨트랙트에 미치는 영향 공식 경고",
+                "date": "11.06",
+                "summary": "EF 블로그가 Chainsecurity 조사 결과 가스 비용을 재조정하는 EIP-8037과 EIP-8038이 일부 배포된 컨트랙트가 전제하는 조건(인바리언트)을 깨뜨린다고 11월 6일 공지했습니다. Geth 개발자 vdWijden은 깨지는 조건을 모은 자가 점검용 저장소를 공개하고 배포자들에게 점검을 요청했습니다.",
+                "sources": [
+                  {
+                    "label": "ECK",
+                    "url": "https://ethcollective.xyz/news?date=2026-11-07"
+                  },
+                  {
+                    "label": "EF 블로그",
+                    "url": "https://blog.ethereum.org/en/2026/11/06/glamsterdam-8037-8038"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "heading": "업계 동향",
+            "items": [
+              {
+                "title": "Devcon 8 폐막, 다음 행사는 2027년 10월 리스본",
+                "date": "11.06",
+                "summary": "인도 뭄바이에서 열린 이더리움 개발자 콘퍼런스 Devcon 8이 11월 6일 폐막했습니다. 다음 행사인 Devcon 9은 2027년 10월 11일부터 13일까지 포르투갈 리스본에서 열린다고 발표됐습니다.",
+                "sources": [
+                  {
+                    "label": "ECK",
+                    "url": "https://ethcollective.xyz/contents/tg-1729"
+                  },
+                  {
+                    "label": "@EFDevcon",
+                    "url": "https://x.com/EFDevcon/status/2118664094819782946"
+                  }
+                ]
+              },
+              {
+                "title": "Base, Denim 업그레이드 메인넷 배포로 블록 간격 200밀리초",
+                "date": "11.05",
+                "summary": "이더리움 위에 쌓은 2층 네트워크(L2)인 Base가 Denim 업그레이드를 메인넷에 배포해 블록 생성 간격이 2초에서 200밀리초로 줄었습니다. 발행자가 토큰 전송을 승인 주체 경유로 강제할 수 있게 하는 B20 토큰 표준 개선도 포함됐습니다.",
+                "sources": [
+                  {
+                    "label": "ECK",
+                    "url": "https://ethcollective.xyz/news?date=2026-11-07"
+                  },
+                  {
+                    "label": "@base",
+                    "url": "https://x.com/base/status/2118433679202791587"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "heading": "커뮤니티 논쟁",
+            "items": [
+              {
+                "title": "ETH를 '돈'으로 부를지를 두고 입장이 갈렸다",
+                "date": "11.06",
+                "summary": "비탈릭 부테린이 Devcon에서 'ETH is money'라고 말했다는 전언이 퍼졌으나 1차 출처는 확인되지 않았습니다. EF의 binji_x는 ETH가 가치저장 자산은 됐지만 아직 돈은 아니라고 했고 lex_node는 생태계가 ETH를 프로그래머블 가치저장으로 규정하는 방향으로 정렬되고 있다고 평가했습니다.",
+                "sources": [
+                  {
+                    "label": "ECK",
+                    "url": "https://ethcollective.xyz/news?date=2026-11-07"
+                  },
+                  {
+                    "label": "@binji_x",
+                    "url": "https://x.com/binji_x/status/2118609348922372419"
+                  }
+                ]
+              },
+              {
+                "title": "SEC 제출 DeFi 대출 법적 프레임워크를 두고 Morpho 안 비판",
+                "date": "11.04",
+                "summary": "Aave와 Morpho가 각각 SEC(미국 증권거래위원회)에 제출한 DeFi 대출 법적 프레임워크를 두고 lex_node와 Aave의 Stani Kulechov가 Morpho 안이 큐레이터에게 책임을 전가한다고 비판했습니다. Morpho 측의 반론은 이번 수집분에서 확인되지 않았습니다.",
+                "sources": [
+                  {
+                    "label": "ECK",
+                    "url": "https://ethcollective.xyz/news?date=2026-11-07"
+                  },
+                  {
+                    "label": "@lex_node",
+                    "url": "https://x.com/lex_node/status/2117898489589883036"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "upcoming": [
+          "11.17 Frame Transaction Breakout 8회차 (14:00 UTC, 한국시간 23:00)",
+          "2027.10.11~13 Devcon 9 리스본 개최"
+        ]
+      }
+    },
+    {
       "start": "2026-10-26",
       "end": "2026-11-01",
       "sentAt": "2026-11-01T10:02:55.088Z",
