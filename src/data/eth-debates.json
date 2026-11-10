@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-07T01:07:46.335Z",
+  "updatedAt": "2026-11-10T01:33:21.651Z",
   "processedDigests": [
     "2026-08-24",
     "2026-08-25",
@@ -34,9 +34,934 @@
     "2026-10-29",
     "2026-11-01",
     "2026-11-04",
-    "2026-11-07"
+    "2026-11-07",
+    "2026-11-10"
   ],
   "debates": [
+    {
+      "id": "vitalik-sov-strength-or-weakness",
+      "title": "Vitalik의 가치저장(SoV) 선언은 강함의 신호인가 약함의 신호인가, 그리고 ETH는 좋은 SoV인가?",
+      "category": "거버넌스 · 커뮤니티",
+      "summary": "Bankless의 David Hoffman은 Vitalik이 ETH를 가치저장(SoV, store of value)으로 원하는 것은 수수료 창출 자산으로는 말이 안 되기 때문에 옳지만 ETH는 좋은 SoV가 아니며, 지금 시점의 선언은 강함이 아니라 약함에서 나온 것이라고 평가했다. barnabemonnot는 구조적 이유로 이미 늦었다고 동의했고, ryanberckmans와 AminCad는 SoV 정렬이 오히려 강세 프레임이며 ETH가 세계 기축통화가 될 것이라고 맞섰다.",
+      "keyPoints": [
+        "Vitalik의 SoV 선언은 강함의 신호인가 약함의 신호인가?",
+        "ETH는 좋은 가치저장 자산인가, 아니면 다른 자산과 차별화되지 않는 SoV인가?",
+        "SoV 정렬이 커뮤니티를 결집시키는 강세 프레임인가, 수수료 자산으로서의 실패를 자인하는 약세 프레임인가?"
+      ],
+      "whyItMatters": "SoV 포지셔닝이 커뮤니티를 통합할지 분열시킬지 가늠하는 초기 반응으로, ETH 자산 테제의 서사 주도권이 걸려 있다. Lean Ethereum 로드맵 실행과 신뢰 없는 담보 수요 증가가 실제로 ETH 가치가 되는지가 양측 주장을 가를 것이다.",
+      "keywords": [
+        "ETH store of value",
+        "ETH SoV",
+        "Vitalik SoV",
+        "Lean Ethereum"
+      ],
+      "positions": [
+        {
+          "stance": "con",
+          "label": "약함의 신호이고 ETH는 좋은 SoV가 아니다",
+          "holders": [
+            {
+              "handle": "TrustlessState",
+              "name": "David Hoffman",
+              "role": "Bankless 공동 진행",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/2067341164508753920/liVbRn0l_400x400.jpg"
+            },
+            {
+              "handle": "tulipking",
+              "name": "Tulip King 🌷",
+              "watchlist": false,
+              "avatar": "https://pbs.twimg.com/profile_images/2062216238223265793/WY21HCO0_400x400.jpg"
+            }
+          ],
+          "points": [
+            "Vitalik이 이더리움을 SoV로 원하는 건 수수료 창출 자산으로는 말이 안 되기 때문에 옳지만, ETH가 좋은 SoV냐가 문제이고 아니다(TrustlessState).",
+            "이 선언의 타이밍은 강함이 아니라 약함에서 나온 느낌이며, 이 스레드는 2021년이었다면 글로벌 뉴스였을 것이다(TrustlessState).",
+            "PoW 전환·프로그래머빌리티 제거에는 반대하며 그건 이더리움을 이더리움 아닌 것으로 만들고, 최선은 무엇이든 해서 끝까지 밀어붙이는 것이다(TrustlessState).",
+            "토큰이 달린 Linux에 얼마의 시총을 매기겠나. 단일 참여자만 있는 시장은 성립하지 않으며, 금 채굴자는 비용을 치르고 금을 팔아 공급을 넓은 보유자 기반에 분배하지만 이더리움의 '채굴자'는 지대추구자처럼 군다(tulipking)."
+          ]
+        },
+        {
+          "stance": "neutral",
+          "label": "너무 늦었다는 데 동의하되 구조적 이유를 든다",
+          "holders": [
+            {
+              "handle": "barnabemonnot",
+              "name": "Barnabé Monnot | barnabé.eth",
+              "role": "EF 리서처, 인센티브·발행",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/2069104465202814976/alWWQ8SG_400x400.jpg"
+            }
+          ],
+          "points": [
+            "Hoffman의 평가에 전적으로 동의하며 이 배는 이미 떠났다고 본다.",
+            "우리가 사는 환경이 ETH라는 자산이 번창하기에 적합하지 않고, 가장 적합했던 환경은 2020-2021이었다.",
+            "money·SoV는 설득으로 바뀌는 것이 아니라 되거나 안 되거나이며, money가 되려 하면서 슈퍼컴퓨터·기술 로드맵을 내세우는 것은 상충하는 힘이다."
+          ]
+        },
+        {
+          "stance": "pro",
+          "label": "SoV 정렬은 강세이고 ETH는 세계 기축통화가 될 것",
+          "holders": [
+            {
+              "handle": "ryanberckmans",
+              "name": "⟠",
+              "role": "이더리움 옹호 논객·ETH 투자자",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/1517698378259480577/OyjdGW3D_400x400.jpg"
+            },
+            {
+              "handle": "AminCad",
+              "name": "AminCad Ξ🐬🔊 - evm/acc",
+              "watchlist": false,
+              "avatar": "https://pbs.twimg.com/profile_images/1558276967098486784/Bh7QsB7f_400x400.jpg"
+            }
+          ],
+          "points": [
+            "ETH를 강하게 불포스팅하고 커뮤니티를 디플레이션이 아니라 SoV로 정렬하는 것이 약세라는 주장은 틀렸다(ryanberckmans).",
+            "모두가 이더리움에서 거래한다면 외부 신뢰 의존이 없는 순수 가치저장의 셸링 포인트는 네이티브 자산 ETH이며, Lean Ethereum 로드맵으로 L1이 탈중앙화를 희생하지 않고 처리량을 200배로 늘리면 신뢰 없는 담보 수요가 급증한다(AminCad).",
+            "이더리움 경제가 커질수록 ETH는 이더리움 내 가치저장 셸링 포인트에서 글로벌 기축통화로 전환되어 인류 역사상 가장 가치 있는 자산이 될 것이다(AminCad)."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-11-08",
+          "by": "TrustlessState",
+          "stance": "con",
+          "quote": "나는 이것을 ETH라는 자산의 전망이 얼마나 나쁜지에 대한 자인으로 본다. Vitalik이 이더리움을 SoV로 원하는 건 옳다. 수수료 창출 자산으로는 말이 안 되기 때문이다. 문제는 그것이 좋은 SoV인가인데, 아니다.",
+          "url": "https://x.com/TrustlessState/status/2119510063651991865",
+          "digest": "2026-11-10",
+          "replyTo": "VitalikButerin",
+          "relation": "quote",
+          "original": "I view this as an admission of how bad the prospects for ETH the asset are. Vitalik is right to want Ethereum to be an SoV because it doesn’t make sense as a fee generating asset, the problem is whether or not it’s a good SoV (it’s not)",
+          "translation": "나는 이것을 자산으로서의 ETH 전망이 얼마나 나쁜지에 대한 인정으로 본다. Vitalik이 이더리움을 가치저장수단(SoV, store of value)으로 만들고자 하는 것은 옳은데, 왜냐하면 수수료를 창출하는 자산으로서는 말이 되지 않기 때문이다. 문제는 그것이 좋은 SoV인지 아닌지이다(아니다)."
+        },
+        {
+          "date": "2026-11-08",
+          "by": "TrustlessState",
+          "stance": "con",
+          "quote": "이 모든 일의 타이밍은 강함이 아니라 약함에서 나오는 느낌이다. 이 스레드는 2021년이었다면 글로벌 뉴스였을 것이다.",
+          "url": "https://x.com/TrustlessState/status/2119512958468530298",
+          "digest": "2026-11-10",
+          "replyTo": "tulipking",
+          "relation": "reply",
+          "original": "@tulipking The timing of this whole thing makes it feel like it’s coming from a place of weakness, not strength.\n\nThis thread would have been global news in 2021",
+          "translation": "@tulipking 이 모든 일의 타이밍을 보면 이것이 강함이 아니라 약함에서 나오는 것처럼 느껴진다. 이 스레드는 2021년이었다면 전 세계적인 뉴스가 되었을 것이다."
+        },
+        {
+          "date": "2026-11-08",
+          "by": "barnabemonnot",
+          "stance": "neutral",
+          "quote": "전적으로 동의한다. 안타깝지만 이 건은 이미 배가 떠났다고 생각한다. 우리가 사는 환경은 ETH라는 자산이 번창하도록 놔두기에 적합하지 않다. ETH가 가졌던 가장 적합한 환경은 2020+2021이었다.",
+          "url": "https://x.com/barnabemonnot/status/2119522449062535180",
+          "digest": "2026-11-10",
+          "replyTo": "tulipking",
+          "relation": "reply",
+          "original": "My answer is spiritually similar but very different.\n\nMy thought is that the universe/comtext/environment that we live is not suited to let ETH as an asset thrive\n\nThe most suitable environment eth ever had was 2020+2021 - a month in history in which money and capital was the most warped it had ever been.\n\nThats when the “optimistic” version of crypto was at its height. Onchain gdp. A rising circular economy. Growth and reinvestment. Builders were building money legos and the legos were compounding.\n\nToday’s environment is much less this. We seemed to have collapsed back to where surface area is a bug, not a feature, and it’s better to be Zcash than Aave.\n\nThis is when ultrasound money was at its peak, which I remain convinced was the best narrative eth ever had. It’s just the environment didn’t last to support it.\n\nWe are on in the pessimistic “bunker mode” side of crypto, and Ethereum was always in the optimistic “we can do it” side of crypto.\n\nEthereum’s side of crypto has not had the best time, and thus eth the asset hasn’t had the best time either.",
+          "translation": "내 답은 정신적으로는 비슷하지만 매우 다르다. 내 생각은 우리가 살고 있는 우주, 맥락(context), 환경이 자산으로서의 ETH가 번성하도록 적합하지 않다는 것이다. ETH가 가져본 가장 적합한 환경은 2020년과 2021년이었다. 역사상 돈과 자본이 가장 왜곡되었던 한 시기였다. 그때가 '낙관적인' 버전의 크립토가 정점에 있던 시기였다. 온체인 GDP. 상승하는 순환 경제. 성장과 재투자. 빌더들은 머니 레고를 만들고 있었고 그 레고들은 계속 복리로 쌓이고 있었다. 오늘날의 환경은 그것과는 많이 다르다. 우리는 표면적(surface area)이 기능이 아니라 버그가 되는 상태로 다시 붕괴한 것처럼 보이며, 지금은 Aave보다 Zcash가 되는 것이 더 나은 시기다. 이때가 울트라사운드 머니(ultrasound money)가 정점에 있던 시기였고, 나는 그것이 여전히 ETH가 가져본 최고의 내러티브였다고 확신한다. 다만 그것을 지탱해줄 환경이 지속되지 않았을 뿐이다. 우리는 지금 크립토의 비관적인 '벙커 모드' 쪽에 있고, 이더리움은 항상 크립토의 낙관적인 '우리는 할 수 있다' 쪽에 있었다. 이더리움이 속한 크립토 쪽은 최근 좋은 시기를 보내지 못했고, 따라서 자산으로서의 ETH 역시 좋은 시기를 보내지 못한 것이다."
+        },
+        {
+          "date": "2026-11-08",
+          "by": "ryanberckmans",
+          "stance": "pro",
+          "quote": "네 말대로라면 ETH를 강하게 불포스팅하고 커뮤니티를 디플레이션이 아니라 SoV로 정렬하는 게 오히려 약세라는 거다. 멋진 논리다. ETH 승리 자축용으로 북마크해 둔다.",
+          "url": "https://x.com/ryanberckmans/status/2119545593911500980",
+          "digest": "2026-11-10",
+          "replyTo": "tulipking",
+          "relation": "reply",
+          "original": "@tulipking V bullposting ETH and aligning the community around SoV and not deflation is actually bearish, according to you. Great thesis moron. Bookmarked for the ETH victory lap",
+          "translation": "@tulipking 네 말대로라면 V(Vitalik)가 ETH에 대해 불포스팅(bullposting)을 하고 커뮤니티를 디플레이션이 아니라 SoV 중심으로 정렬시키는 것이 사실은 베어리시(bearish)하다는 것이다. 훌륭한 논제다, 멍청아. ETH의 승리의 랩을 위해 북마크해 둔다."
+        },
+        {
+          "date": "2026-11-09",
+          "by": "tulipking",
+          "stance": "con",
+          "quote": "금 채굴자는 높은 비용을 감수하고 금을 팔아 공급을 경제에 들여오며 넓은 보유자 기반에 분배한다. 이더리움처럼 금 채굴자가 지대추구자인 경제가 아니라.",
+          "url": "https://x.com/tulipking/status/2119663948450377955",
+          "digest": "2026-11-10",
+          "replyTo": "KittyCatRightM3",
+          "relation": "reply",
+          "original": "A 1/1 sports card maybe, but what if I owned literally every sports card? Markets rely on many parties. No market, especially money, works with literally 1 participant\n\nImportantly, gold miners have to bear high costs and sell their gold, introducing supply into the economy and distributing to a broad base of holders. Rather than have an economy where gold miners are rent seekers like in Ethereum",
+          "translation": "1/1 스포츠 카드라면 그럴 수도 있겠지만, 내가 말 그대로 모든 스포츠 카드를 소유하고 있다면 어떨까? 시장은 다수의 참여자에 의존한다. 어떤 시장도, 특히 화폐는, 말 그대로 참여자가 1명뿐이라면 작동하지 않는다. 중요한 것은 금 채굴자들은 높은 비용을 감당해야 하고 자신들의 금을 팔아야 하며, 이를 통해 경제에 공급을 투입하고 넓은 기반의 보유자들에게 분배한다는 점이다. 이더리움처럼 금 채굴자들이 렌트 추구자(rent seeker)가 되는 경제를 갖는 것과는 다르다."
+        },
+        {
+          "date": "2026-11-09",
+          "by": "AminCad",
+          "stance": "pro",
+          "quote": "모두가 이더리움에서 거래한다면, 외부 신뢰 의존이 없는 순수 가치저장의 셸링 포인트는 그 네트워크의 네이티브 자산일 것이다. 이더리움 경제가 커질수록 ETH는 세계 경제 전체에서 지배적 가치저장 수단의 역할로 전환될 것이다.",
+          "url": "https://x.com/AminCad/status/2119839290184319199",
+          "digest": "2026-11-10",
+          "replyTo": "michaelcairo_",
+          "relation": "reply",
+          "original": "If everyone is transacting on Ethereum, the Schelling point for a pristine store of value — one that doesn't have external trust dependencies — would be that network's native asset.\n\nEven on L2 blockchains that use Ethereum as their consensus computer, ETH is the primary type of collateral. See the Base chart below for example. Therefore, it stands to reason that as throughput and economic activity on Ethereum increase, ether's use as trustless collateral will increase.\n\nAnd the reason why people demand a trustless asset is that it acts as a flight to safety from external counterparties.\n\nThe Ethereum economy itself will look radically different if Ethereum's developers and researchers successfully execute upon their Lean Ethereum roadmap. The L1, by itself, will be able to process 200 times more transactions per second than it can process right now. The most incredible thing about this roadmap is that it doesn't sacrifice Ethereum's decentralization at all. The demands upon consensus nodes would remain what they are now, meaning Ethereum would be extremely decentralized and thus would remain robust as a credible neutral settlement layer.\n\nWhat amounts to a comparative trickle of demand, generated from the need for digitally native collateral on Ethereum, would turn into a torrent, in that scenario.\n\nAt some point, as the Ethereum-settled economy grows larger, ether would reach an inflection point where its role as the Schelling point for storing value within the Ethereum network would turn into a role of the dominant store of value across the global economic network as a whole.",
+          "translation": "만약 모든 사람이 이더리움에서 거래를 한다면, 외부 신뢰 의존성이 없는 순수한 가치저장수단을 위한 셸링 포인트(Schelling point)는 바로 그 네트워크의 네이티브 자산이 될 것이다. 이더리움을 합의 컴퓨터(consensus computer)로 사용하는 L2 블록체인들에서도 ETH는 주요한 담보(collateral) 유형이다. 예를 들어 아래의 Base 차트를 보라. 따라서 이더리움의 처리량(throughput)과 경제 활동이 증가함에 따라 트러스트리스(trustless)한 담보로서의 ether의 사용도 증가할 것이라는 결론이 합리적이다. 그리고 사람들이 트러스트리스한 자산을 필요로 하는 이유는 그것이 외부 거래상대방으로부터의 안전 도피처(flight to safety) 역할을 하기 때문이다. 이더리움의 개발자와 연구자들이 린 이더리움(Lean Ethereum) 로드맵을 성공적으로 실행한다면 이더리움 경제 자체가 근본적으로 달라질 것이다. L1 자체만으로도 지금보다 200배 더 많은 초당 트랜잭션을 처리할 수 있게 될 것이다. 이 로드맵에서 가장 놀라운 점은 이더리움의 탈중앙화를 전혀 희생시키지 않는다는 것이다. 합의 노드(consensus node)에 대한 요구사항은 지금과 동일하게 유지될 것이며, 이는 이더리움이 극도로 탈중앙화된 상태를 유지하고 따라서 신뢰할 수 있는 중립적 정산 레이어(settlement layer)로서 견고함을 유지한다는 것을 의미한다. 그 시나리오에서는 이더리움에서 디지털 네이티브 담보가 필요해서 생기는, 지금은 비교적 작은 물줄기에 불과한 수요가 거대한 흐름으로 바뀔 것이다. 어느 시점에서는, 이더리움으로 정산되는 경제가 더 커짐에 따라 ether는 변곡점에 도달할 것이며, 이더리움 네트워크 내에서 가치를 저장하기 위한 셸링 포인트 역할이 전체 글로벌 경제 네트워크에서 지배적인 가치저장수단 역할로 바뀌게 될 것이다."
+        }
+      ],
+      "firstSeen": "2026-11-08",
+      "lastActivity": "2026-11-09",
+      "status": "active",
+      "rootUrl": "https://x.com/TrustlessState/status/2119510063651991865",
+      "engagement": {
+        "likes": 243,
+        "retweets": 9,
+        "quotes": 3,
+        "replies": 56,
+        "views": 23057
+      }
+    },
+    {
+      "id": "glamsterdam-defer-state-mitigations",
+      "title": "글램스테르담에서 확장책만 먼저 내고 상태 폭증 완화책은 보류해도 되나?",
+      "category": "프로토콜 설계",
+      "summary": "donnoh_eth는 글램스테르담에서 확장(scaling expansion) 변경만 먼저 배포하고 상태 폭증(state bloat) 완화책은 보류하자며 완화책의 근거인 공급 유발 수요가 실제로 올지 모른다고 제안했다. 반론으로 상태에 쓰기만 하면 채굴되는 XEN 토큰이 이미 최대 상태 소비자여서 어떤 확장도 즉시 상태를 폭증시킨다는 점, 노드가 비대해진 뒤에는 완화가 더 어렵다는 점이 제기됐고, lex_node는 이더리움이 개입들이 서로 충돌하는 만성질환자 단계에 이르렀다고 총평했다.",
+      "keyPoints": [
+        "글램스테르담에서 확장책만 먼저 내고 상태 폭증 완화책은 보류해도 되나?",
+        "완화책의 근거인 공급 유발 수요가 올지 불확실한데 선제적으로 넣어야 하나?",
+        "XEN처럼 상태에 쓰기만 하면 채굴되는 토큰이 있는 한 어떤 확장도 즉시 상태를 폭증시키나?"
+      ],
+      "background": "글램스테르담은 가스 리밋을 올리는 확장책과, 그로 인한 상태 성장을 막는 완화책(EIP-8037 등 상태 생성 리프라이싱)을 함께 담고 있다. donnoh_eth는 둘을 분리해 확장만 먼저 내자고 제안했다. XEN은 여러 EVM 체인에서 상태에 쓰기만 하면 채굴되는 토큰으로, 이더리움 상태의 최대 소비자이자 상시 가스 상위권이어서 완화 없이 확장만 하면 즉시 상태가 불편한 수준으로 증가한다는 반론의 근거가 된다.",
+      "whyItMatters": "확장과 상태 관리의 결합 여부는 글램스테르담 축소 논의에서 어떤 EIP가 살아남는지를 좌우한다. 완화를 뒤로 미룬 채 확장만 내면 XEN 같은 상태 소비자 때문에 노드가 비대해진 뒤에야 더 어려운 완화에 나서게 될 위험이 있다.",
+      "sources": [
+        {
+          "title": "EIP-8037: State Creation Gas Cost Increase",
+          "url": "https://eips.ethereum.org/EIPS/eip-8037"
+        }
+      ],
+      "keywords": [
+        "state bloat",
+        "XEN token",
+        "Glamsterdam scaling",
+        "supply-induced demand"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "확장만 먼저 내고 완화는 보류하자",
+          "holders": [
+            {
+              "handle": "donnoh_eth",
+              "name": "donnoh.gwei 💗",
+              "role": "L2BEAT 리서치 책임",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/1906978600311521280/aSbKSjtX_400x400.jpg"
+            },
+            {
+              "handle": "0xjimboo",
+              "name": "Jimboo",
+              "watchlist": false,
+              "avatar": "https://pbs.twimg.com/profile_images/2058133310438547456/zltvpFMf_400x400.jpg"
+            },
+            {
+              "handle": "tangsanzangbtc",
+              "name": "比特唐三藏",
+              "watchlist": false,
+              "avatar": "https://pbs.twimg.com/profile_images/2094072672363900928/92K0rlvw_400x400.jpg"
+            }
+          ],
+          "points": [
+            "확장 변경만 먼저 배포하고 상태 폭증 완화책은 뒤에 쥐고 있자. 완화책이 필요하다는 핵심 논거는 공급 유발 수요인데 그것이 올지, 얼마나 빨리 올지조차 모른다(donnoh_eth).",
+            "XEN은 몇 년간 대응하지 않고도 버텼으니 더 기다려도 되며, 상태 성장 문제는 오래전부터 작업돼 왔다(donnoh_eth).",
+            "먼저 확장을 내야 실제 사용 지표를 얻고 비로소 움직일 수 있다(tangsanzangbtc, 0xjimboo)."
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "완화책 보류는 위험하다",
+          "holders": [
+            {
+              "handle": "superpobe",
+              "name": "POBE 🗡️",
+              "watchlist": false,
+              "avatar": "https://pbs.twimg.com/profile_images/2110029385399185408/TSLGFtIH_400x400.jpg"
+            },
+            {
+              "handle": "mrdexlar",
+              "name": "Dexlar",
+              "watchlist": false,
+              "avatar": "https://pbs.twimg.com/profile_images/1977462178203500544/EaLklhFp_400x400.jpg"
+            },
+            {
+              "handle": "asmaaa_099",
+              "name": "Cairdrops",
+              "watchlist": false,
+              "avatar": "https://pbs.twimg.com/profile_images/2030335923687145473/CVG5mnuO_400x400.jpg"
+            }
+          ],
+          "points": [
+            "확장은 먼저 내더라도 상태 폭증 완화책을 나중으로 미루는 것은 위험하다(superpobe, asmaaa_099).",
+            "노드가 이미 비대해진 뒤에는 상태 폭증을 고치기가 훨씬 어렵다(mrdexlar)."
+          ]
+        },
+        {
+          "stance": "other",
+          "label": "개입들이 충돌하는 만성질환자 단계다",
+          "holders": [
+            {
+              "handle": "lex_node",
+              "name": "_gabrielShapir0",
+              "role": "크립토 법률 변호사·논객",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/2058233189882032128/pRSMN_6C_400x400.jpg"
+            }
+          ],
+          "points": [
+            "이더리움은 만성질환자 단계에 도달했다. 처음엔 차이를 내는 처치를 더할 수 있지만 시간이 지나면 필요한 개입들이 서로 충돌해 한 문제를 좋게 하면서 다른 문제에 영향을 주지 않기가 불가능해진다."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-11-08",
+          "by": "donnoh_eth",
+          "stance": "pro",
+          "quote": "글램스테르담에서 확장 변경만 배포하고 상태 폭증 완화책은 뒤에 쥐고 있는 게 어떤가. 완화책이 필요하다는 주요 논거는 공급 유발 수요인데, 그게 일어날지, 얼마나 빨리 일어날지조차 우리는 모른다.",
+          "url": "https://x.com/donnoh_eth/status/2119433190700093852",
+          "digest": "2026-11-10",
+          "relation": "none",
+          "original": "BTW on Glamsterdam, why don't we just ship the scaling expansions and keep the scaling mitigations (state bloat mitigation) in our back pocket? Isn't the main theory of needing the latter the idea of supply-induced demand? But we don't even know if that will happen or how fast",
+          "translation": "그런데 Glamsterdam에 대해 말하자면, 왜 우리는 그냥 스케일링 확장(scaling expansions)을 출시하고 스케일링 완화책(scaling mitigations, 상태 비대화 완화(state bloat mitigation))은 여유분으로 남겨두지 않는 걸까? 후자가 필요하다는 주된 논리는 공급이 유발하는 수요(supply-induced demand)라는 아이디어 아닌가? 하지만 우리는 그것이 실제로 일어날지, 혹은 얼마나 빠르게 일어날지조차 모른다."
+        },
+        {
+          "date": "2026-11-08",
+          "by": "donnoh_eth",
+          "stance": "neutral",
+          "quote": "XEN은 많은 EVM 체인에서 상태에 쓰기만 하면 채굴되는 토큰이다. 이더리움 상태의 최대 소비자이며 상시 가스 상위권이다. 이미 어떤 확장으로도 불편한 수준에 이를 만큼 수요가 많다.",
+          "url": "https://x.com/donnoh_eth/status/2119437997472894979",
+          "digest": "2026-11-10",
+          "replyTo": "lex_node",
+          "relation": "reply",
+          "original": "@lex_node it’s a token on many evm chains that can be mined by writing to state. it is the biggest consumer of state on ethereum by far. and consistently one of the top consumer of gas in general. it has already lots of demand to get to uncomfortable levels with any scaling",
+          "translation": "@lex_node 그것은 상태(state)에 쓰기를 함으로써 채굴할 수 있는, 많은 EVM 체인 위의 토큰이다. 그것은 이더리움에서 단연 가장 큰 상태(state) 소비자다. 그리고 전반적인 가스 소비에서도 꾸준히 상위권을 차지한다. 그것은 어떤 스케일링을 하더라도 불편한 수준에 도달할 만큼 이미 많은 수요를 가지고 있다."
+        },
+        {
+          "date": "2026-11-08",
+          "by": "lex_node",
+          "stance": "other",
+          "quote": "이더리움은 만성질환자 단계에 도달했다. 처음엔 차이를 만드는 처치를 더할 수 있지만 시간이 지나면 필요한 개입들이 서로 충돌해, 한 문제에 이득을 주면서 다른 문제에 영향을 주지 않기가 불가능해진다.",
+          "url": "https://x.com/lex_node/status/2119453458495357033",
+          "digest": "2026-11-10",
+          "replyTo": "lex_node",
+          "relation": "reply",
+          "original": "@lex_node Ethereum has reached the state of the chronically ill patient .\n\nAt first you can add in treatments that make a difference but over time the interventions required start conflicting and it’s impossible to benefit one problem without it impacting another.",
+          "translation": "@lex_node 이더리움은 만성질환 환자와 같은 상태에 도달했다. 처음에는 효과가 있는 치료를 추가할 수 있지만, 시간이 지나면 필요한 개입들이 서로 충돌하기 시작하고 한 문제에 도움이 되는 조치가 다른 문제에 영향을 주지 않을 수 없게 된다."
+        },
+        {
+          "date": "2026-11-08",
+          "by": "donnoh_eth",
+          "stance": "pro",
+          "quote": "XEN은 기다려도 된다. 우리는 몇 년간 대응하지 않았다.",
+          "url": "https://x.com/donnoh_eth/status/2119487989147435019",
+          "digest": "2026-11-10",
+          "replyTo": "donnoh_eth",
+          "relation": "reply",
+          "original": "@donnoh_eth @lex_node dude XEN can wait, we didn’t react for years",
+          "translation": "@donnoh_eth @lex_node 이봐, XEN은 기다릴 수 있다, 우리는 수년 동안 반응하지 않았다."
+        },
+        {
+          "date": "2026-11-08",
+          "by": "superpobe",
+          "stance": "con",
+          "quote": "말은 되지만 상태 폭증 완화책을 나중으로 미루는 건 위험하다.",
+          "url": "https://x.com/superpobe/status/2119435608041112018",
+          "digest": "2026-11-10",
+          "replyTo": "lex_node",
+          "relation": "reply",
+          "original": "@lex_node makes sense but state bloat mitigation is risky later",
+          "translation": "@lex_node 말이 되지만 상태 비대화 완화(state bloat mitigation)는 나중에 하면 위험하다."
+        },
+        {
+          "date": "2026-11-09",
+          "by": "mrdexlar",
+          "stance": "con",
+          "quote": "노드가 이미 비대해진 뒤에는 상태 폭증을 고치기가 훨씬 어렵지 않나?",
+          "url": "https://x.com/mrdexlar/status/2119674113866498266",
+          "digest": "2026-11-10",
+          "replyTo": "lex_node",
+          "relation": "reply",
+          "original": "@lex_node isnt state bloat way harder to fix once the nodes are already bloated",
+          "translation": "@lex_node 노드들이 이미 비대해진 뒤에는 상태 비대화(state bloat)를 고치는 게 훨씬 더 어렵지 않나?"
+        }
+      ],
+      "firstSeen": "2026-11-08",
+      "lastActivity": "2026-11-09",
+      "status": "active",
+      "rootUrl": "https://x.com/donnoh_eth/status/2119433190700093852",
+      "engagement": {
+        "likes": 60,
+        "retweets": 0,
+        "quotes": 0,
+        "replies": 19,
+        "views": 4681
+      }
+    },
+    {
+      "id": "glamsterdam-activate-now-or-cancel",
+      "title": "불변 컨트랙트를 깨는 현행 글램스테르담을 지금 활성화해야 하나, 현재 형태를 취소해야 하나?",
+      "category": "프로토콜 설계",
+      "summary": "ryanberckmans는 이더리움이 보장하는 것은 가스 가격이 아니라 중립적 상태 전이 함수 접근뿐이라며 조속한 글램스테르담 활성화를 주장했다가, 리프라이싱(repricing)이 깨는 불변량(invariant)이 알려진 것보다 심각하다는 것을 알고 하루 만에 공개 철회했다. gakonst·lex_node·pcaversaccio는 불변 코드가 계속 작동한다는 것이 이더리움의 존재 이유라며 현재 형태의 포크 취소가 곧 성공이라고 맞섰다.",
+      "keyPoints": [
+        "이더리움은 opcode 가스 가격과 가스 인트로스펙션(gas introspection) 동작을 보장하는가, 아니면 올바른 상태 전이 함수에 대한 접근만 보장하는가?",
+        "불변 컨트랙트가 리프라이싱으로 깨지는데도 현행 글램스테르담을 지금 활성화해야 하나, 현재 형태를 취소해야 하나?",
+        "코어 개발자 콜 바깥의 공론장이 포크의 사회적 합의를 뒤집을 수 있나, 그 책임은 누구에게 있나?"
+      ],
+      "background": "글램스테르담은 상태 생성 가스 비용을 올리는 EIP-8037(State Creation Gas Cost Increase)과 EIP-8038을 묶는데, 감사 과정에서 이 리프라이싱이 이전에 무효였던 트랜잭션으로 컨트랙트를 악용하게 만들고 gasleft()가 호출 도중 증가할 수 있게 되어 가스 인트로스펙션에 의존하던 배포된 컨트랙트가 깨진다는 점이 드러났다. 이 때문에 ACDE #248(2026-10-22)에서 Hoodi 글램스테르담 하드포크(hard fork)는 무기한 취소됐고 메인넷 일정도 전면 영향 분석까지 보류됐다. 쟁점은 opcode 가격과 가스 인트로스펙션 동작이 이더리움이 보장하는 불변량인지 여부다.",
+      "whyItMatters": "업그레이드의 사회적 합의가 코어 개발자 콜 바깥의 공론장에서 하루 만에 뒤집힐 수 있음을 보여준 사건으로, 글램스테르담 일정 자체와 '이더리움이 불변 컨트랙트의 무엇을 보장하는가'라는 정의가 걸려 있다. 감사 결과와 데이터 기반 영향 분석의 공개 문서화가 다음 분기점이다.",
+      "sources": [
+        {
+          "title": "EIP-8037: State Creation Gas Cost Increase",
+          "url": "https://eips.ethereum.org/EIPS/eip-8037"
+        }
+      ],
+      "keywords": [
+        "Glamsterdam",
+        "EIP-8037",
+        "gas introspection",
+        "gasleft repricing"
+      ],
+      "resolution": "ACDE #248(2026-10-22)에서 Hoodi 글램스테르담 하드포크는 무기한 취소됐고 메인넷 일정은 전면 영향 분석 완료까지 보류됐으며, ACDT #102(2026-10-26)는 감사 완료까지 최소 2주 추가 지연을 결정했다(논쟁은 계속).",
+      "positions": [
+        {
+          "stance": "con",
+          "label": "현행 형태 포크 취소가 곧 성공이다",
+          "holders": [
+            {
+              "handle": "gakonst",
+              "name": "Georgios Konstantopoulos",
+              "role": "Paradigm CTO",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/1596214564470734849/1Tg5-gNh_400x400.jpg"
+            },
+            {
+              "handle": "lex_node",
+              "name": "_gabrielShapir0",
+              "role": "크립토 법률 변호사·논객",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/2058233189882032128/pRSMN_6C_400x400.jpg"
+            },
+            {
+              "handle": "pcaversaccio",
+              "name": "sudo rm -rf --no-preserve-root /",
+              "role": "스마트컨트랙트 보안 리서처",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/1734666604049289216/7ezXxfGv_400x400.jpg"
+            }
+          ],
+          "points": [
+            "현행 글램스테르담은 CROPS가 아니며 메인넷에 활성화되기 전까지는 늦은 것이 아니고, 코어 개발자들은 지난 1.5년간 제대로 된 분석을 하지 않았다(gakonst).",
+            "'가스 가격을 보장한 적 없다'는 논리는 이상하며, 이더리움의 핵심은 수년간 계속 작동하는 불변 코드·dApp을 호스팅할 수 있다는 것으로 광고돼 왔다(lex_node).",
+            "불변량을 깨는 로직을 온체인에 배포하지 않는 것이 성공이며, 가스 인트로스펙션 동작은 이더리움이 보장하지 않지만 포크 취소 여부는 결국 사회적 합의다(pcaversaccio)."
+          ]
+        },
+        {
+          "stance": "neutral",
+          "label": "활성화를 주장했다가 하루 만에 철회함",
+          "holders": [
+            {
+              "handle": "ryanberckmans",
+              "name": "⟠",
+              "role": "이더리움 옹호 논객·ETH 투자자",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/1517698378259480577/OyjdGW3D_400x400.jpg"
+            }
+          ],
+          "points": [
+            "처음엔 이더리움이 가스 가격·인트로스펙션이 아니라 올바른 상태 전이 함수에 대한 최대한 중립적이고 신뢰 가능한 접근만 보장하므로 조속히 활성화하자고 했다.",
+            "60M에서 200M으로 늘어나는 가스 리밋 공급 폭증이 L1 가스값을 크게 끌어내릴 것이라 봤다.",
+            "하루 만에 문제가 알려진 것보다, 자신을 포함해, 사실상 더 심각하다는 것을 알고 철회했고, 해결 전에는 글램이 활성화될 수 없다는 최종 입장을 냈다.",
+            "영향받는 컨트랙트들이 이더리움이 약속한 적 없는 '가짜 보장'(가스 인트로스펙션)에 의존하게 만든 것은 유감이라며 사과했다."
+          ]
+        },
+        {
+          "stance": "other",
+          "label": "EF 최고 리더십 지위에 따르는 책임을 물음",
+          "holders": [
+            {
+              "handle": "rakitadragan",
+              "name": "Dragan Rakita",
+              "role": "Tempo·revm 저자",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/1622380143799943169/2D-5fxsO_400x400.jpg"
+            }
+          ],
+          "points": [
+            "ryanberckmans가 취한 입장에는 EF 내 최고 리더십 지위에 따르는 상당한 책임이 있으며, 그 지위가 없는 척 행동하지 말고 받아들이거나 그만두라."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-11-07",
+          "by": "ryanberckmans",
+          "stance": "pro",
+          "quote": "우리는 글램 활성화를 향해 조속히 나아가야 한다. 이더리움이 앱에 하는 약속은 가스 가격이나 총 ETH 수수료 수준, opcode 가격에 미치지 않으며, 우리는 올바른 상태 전이 함수에 최대한 신뢰 가능하고 중립적인 접근을 보장할 뿐이다.",
+          "url": "https://x.com/ryanberckmans/status/2119097450203873687",
+          "digest": "2026-11-10",
+          "replyTo": "pcaversaccio",
+          "relation": "quote",
+          "original": "We should continue towards Glam activation asap.\n\nA lot of research went into Glam's strategy to increase opcode gas prices for state creation.\n\nIt seems fair to say that the timing of this debate is irrelevant as to its correctness or rightness for eth and our users... Yet, why did some of us (eg. quoted author who is an ef board member) only start looking in detail at Glam EIPs eg. after testnet forks started? This isn't a personal attack, it's an observation that there's a collective responsibility-- for OP, for me, for all of us-- to steward fork strategy at the right times in the process.\n\nimo ethereum's commitments to apps do not extend to gas pricing, or to total ETH fee levels, or to USD fees. And also not to opcode pricing or gas introspection that depends on those prices. We guarantee maximally credibly neutral, maximally live access to the correct state transition function. Those guarantees imply that we always use a neutral pricing mechanism to clear congestion wherever possible. However, pricing opcodes can't use a neutral mechanism, we need to pick magic number opcode gas prices. Some of our best people researched this extensively and picked updated magic numbers, and that's something imo we should stick with now and continue our larger plans that are on track to grow to global ubiquity.\n\nThe good news and practical reality may be that the explosion of blockspace supply from 60M to 200M gas limit seems likely to absolutely crater the L1 gas price. It will take time for demand to grow to meet the new supply, including from net new entrants (eg. GENIUS and institutions), induced demand from lower prices, and the coming next gen of return-to-mainnet-type eth native apps.\n\nBy the time L1 blockspace demand catches up, we will be exploding supply again as we get closer to the full lean eth vision. That's eth's vision: postquantum and postAI ETH SoV, supported by ethereum's hypergrowing capacity, which is supported by best-in-class security and formal verification.\n\nLooking back, it's unfortunate that we provided these affected contracts with a footgun that has put them in the situation where they were *able* to rely on fake guarantees that ethereum never promises (afaik, essentially just gas introspection). We're sorry.\n\nimo it's time to roll forward on this. Let's do what we can in an appropriately scoped capacity for the affected contracts, then activate Glam asap, and continue our excellent progress towards global ubiquity.",
+          "translation": "우리는 Glam 활성화를 향해 가능한 빨리 계속 나아가야 한다. 상태 생성(state creation)에 대한 오피코드(opcode) 가스 가격을 올리려는 Glam의 전략에는 많은 연구가 투입되었다. 이 논쟁의 타이밍이 ETH와 우리 사용자들에게 그것이 맞는지 옳은지와는 무관하다고 말하는 것이 공정해 보인다... 그런데 왜 우리 중 일부(예를 들어 인용된 글의 저자로, EF 이사회 멤버인 사람)는 테스트넷 포크가 시작된 뒤에야 Glam EIP들을 자세히 들여다보기 시작했을까? 이것은 개인에 대한 공격이 아니라, 포크 전략을 과정의 적절한 시점에 관리해야 할 공동의 책임이 있다는 것을 OP에게도, 나에게도, 우리 모두에게도 지적하는 관찰이다. 내 생각에 이더리움이 앱들에게 한 약속은 가스 가격, ETH 수수료의 총량, 또는 USD 기준 수수료에까지 미치지는 않는다. 그리고 그 가격에 의존하는 오피코드 가격이나 가스 인트로스펙션(gas introspection)에까지도 미치지 않는다. 우리가 보장하는 것은 올바른 상태 전이 함수(state transition function)에 대한 최대한 신뢰가능하게 중립적이고 최대한 라이브한 접근이다. 그 보장들은 우리가 혼잡을 해소할 때 가능한 한 항상 중립적인 가격 결정 메커니즘을 사용한다는 것을 의미한다. 하지만 오피코드 가격을 정할 때는 중립적인 메커니즘을 쓸 수 없고, 우리는 매직 넘버(magic number) 식의 오피코드 가스 가격을 직접 골라야 한다. 우리의 최고 인재들 중 일부가 이를 광범위하게 연구해서 업데이트된 매직 넘버를 선택했고, 내 생각에는 우리가 지금 이를 고수하면서 전 세계적 보편화(global ubiquity)로 성장해 가고 있는 우리의 더 큰 계획을 계속 진행해야 한다. 좋은 소식이자 현실적인 사실은 블록스페이스(blockspace) 공급이 60M에서 200M 가스 한도로 폭발적으로 늘어나면 L1 가스 가격이 확실히 크게 붕괴할 가능성이 높다는 것이다. 새로운 순수 신규 진입자들(예를 들어 GENIUS 및 기관들), 낮아진 가격에서 유발되는 수요(induced demand), 그리고 앞으로 올 차세대의 메인넷 복귀형 ETH 네이티브 앱들을 포함해서, 수요가 새로운 공급을 따라잡는 데는 시간이 걸릴 것이다. L1 블록스페이스 수요가 그것을 따라잡을 때쯔음이면, 우리는 완전한 린 이더리움(lean eth) 비전에 더 가까워지면서 다시 공급을 폭발적으로 늘리고 있을 것이다. 그것이 ETH의 비전이다. 즉 최고 수준의 보안과 형식 검증(formal verification)으로 뒷받침되는 이더리움의 초고속 성장 용량(hypergrowing capacity)에 의해 지탱되는, 포스트퀀텀(postquantum)이자 포스트AI인 ETH SoV다. 돌이켜보면, 우리가 영향을 받은 이 계약들에게 풋건(footgun, 자충수가 되는 함정)을 제공해서 그들이 이더리움이 결코 약속한 적 없는 가짜 보장(아마 내가 아는 한 본질적으로는 가스 인트로스펙션뿐인)에 의존할 수 *있게* 만든 상황에 놓이게 한 것은 유감스러운 일이다. 우리는 사과한다. 내 생각에 이제는 이 문제를 계속 진행시킬 때다. 영향을 받은 계약들을 위해 적절한 범위 내에서 우리가 할 수 있는 것을 하고, 그런 다음 Glam을 가능한 빨리 활성화하고, 전 세계적 보편화를 향한 우리의 훌륭한 진전을 계속 이어가자."
+        },
+        {
+          "date": "2026-11-07",
+          "by": "gakonst",
+          "stance": "con",
+          "quote": "리서치가 얼마나 들어갔든 상관없다. 현재 형태의 글램스테르담은 CROPS가 아니다. 메인넷에 활성화되기 전까지는 늦은 게 아니며, 코어 개발자들은 지난 1.5년간 제대로 된 분석을 하지 않았다. 나는 밀어붙이지 않겠다.",
+          "url": "https://x.com/gakonst/status/2119102976325214694",
+          "digest": "2026-11-10",
+          "replyTo": "ryanberckmans",
+          "relation": "reply",
+          "original": "i don't care how much research went into it, Glamsterdam in its current form is _not_ CROPS and also idgaf if anyone thinks i'm too late here, until it's activated on mainnet it's not too late. core devs have not done proper analysis over the last 1.5 years and i'm not gonna push for a fork that breaks invariants that were unknown until ~2 weeks ago. this is all a sunk cost fallacy here.",
+          "translation": "얼마나 많은 연구가 거기에 투입되었는지는 상관없다. 현재 형태의 Glamsterdam은 CROPS가 _아니다_. 그리고 누가 내가 여기서 너무 늦었다고 생각하든 나는 신경 쓰지 않는다. 메인넷에 활성화되기 전까지는 늦은 게 아니다. 코어 개발자(core dev)들은 지난 1.5년 동안 제대로 된 분석을 하지 않았고, 나는 약 2주 전까지 알려지지 않았던 불변성(invariant)을 깨는 포크를 밀어붙이지 않을 것이다. 이것은 전부 매몰비용 오류(sunk cost fallacy)일 뿐이다."
+        },
+        {
+          "date": "2026-11-07",
+          "by": "lex_node",
+          "stance": "con",
+          "quote": "'우리는 보장한 적 없다'는 게 무슨 뜻인가. 그럼 무엇이 보장됐나. 이더리움의 핵심은 수년간 계속 작동하는 불변 코드·dApp을 호스팅할 수 있다는 것으로 광고돼 왔다.",
+          "url": "https://x.com/lex_node/status/2119107687409430961",
+          "digest": "2026-11-10",
+          "replyTo": "ryanberckmans",
+          "relation": "reply",
+          "original": "bro this (and your post above) is some seriously weird-ass spaghetti reasoning\n\n\"we never guaranteed\"\n\nwhat does this mean? what *has* been guaranteed?\n\nthe point of Ethereum for many years has been advertised to be able to host immutable code/dApps that will keep functioning\n\nI don't have a strong opinion on whether to go ahead with this or not but this \"we never guaranteed nuffin'\" reasoning is just absurd man",
+          "translation": "형, 이거(그리고 위에 있는 네 글)는 정말로 이상한 스파게티식 논리다. '우리는 결코 보장한 적 없다'는 게 무슨 뜻인가? 그러면 *무엇이* 보장되었는가? 이더리움의 요점은 오랫동안 계속 작동할 불변의(immutable) 코드/dApp을 호스팅할 수 있다는 것으로 홍보되어 왔다. 나는 이걸 진행할지 말지에 대해 강한 의견은 없지만, 이 '우리는 아무것도 보장한 적 없다'는 식의 논리는 정말 터무니없다, 진짜."
+        },
+        {
+          "date": "2026-11-07",
+          "by": "pcaversaccio",
+          "stance": "con",
+          "quote": "현재 형태의 하드포크를 취소하는 것을 나는 성공으로 본다. 불변량을 깨는 로직을 온체인에 배포하지 않기 때문이다. 내가 결정하는 건 아니고 동의하지 않는 인터넷의 한 사람일 뿐이며, 결국 사회적 합의의 문제다.",
+          "url": "https://x.com/pcaversaccio/status/2119110076011090154",
+          "digest": "2026-11-10",
+          "replyTo": "ryanberckmans",
+          "relation": "reply",
+          "original": "i consider cancelling the current hard fork in _its current form_ (some other EIPs are fine imho) a success because we don't deploy invariant-breaking logic onchain. i don't decide, am just some random guy from the internet that doesn't agree, ultimately it's a social consensus as it should be to decide here.",
+          "translation": "나는 현재 형태의 하드포크를 취소하는 것(다른 일부 EIP들은 내 생각엔 괜찮다)을 성공이라고 본다. 왜냐하면 우리가 불변성을 깨는 로직을 온체인에 배포하지 않게 되기 때문이다. 내가 결정하는 것은 아니고, 나는 그저 동의하지 않는 인터넷의 어떤 평범한 사람일 뿐이며, 결국 여기서 결정하는 것은 당연히 그래야 하듯 소셜 컨센서스(social consensus)다."
+        },
+        {
+          "date": "2026-11-07",
+          "by": "ryanberckmans",
+          "stance": "neutral",
+          "quote": "이제는 (분명히) 글램 활성화로 조속히 나아가면 안 된다. 그렇게 말한 건 내가 틀렸다. 문제가 일반적으로 이해되는 것보다, 나를 포함해, 사실상 더 심각하다는 걸 알게 됐다.",
+          "url": "https://x.com/ryanberckmans/status/2119138301470814246",
+          "digest": "2026-11-10",
+          "relation": "none",
+          "original": "We should (clearly, now) not continue towards Glam activation asap. I was wrong to say so.\n\nI since learned that the problem is essentially worse than is generally understood (incl by me).\n\nWe have an urgent need for more people to write more things with data in *public* on this.",
+          "translation": "우리는 (분명히, 지금은) Glam 활성화를 향해 가능한 빨리 계속 나아가서는 안 된다. 그렇게 말한 것은 내가 틀렸다. 그 이후 나는 이 문제가 일반적으로 이해되고 있는 것(나를 포함해서)보다 본질적으로 더 심각하다는 것을 알게 되었다. 우리는 더 많은 사람들이 이 문제에 대해 데이터를 가지고 *공개적으로* 더 많은 글을 쓸 긴급한 필요가 있다."
+        },
+        {
+          "date": "2026-11-08",
+          "by": "rakitadragan",
+          "stance": "other",
+          "quote": "당신이 취한 입장으로 상당한 책임을 떠안았다. 그것은 EF 내 최고 리더십 지위다. 원치 않으면 괜찮지만 그럼 그만두라. 그 지위가 없는 척 행동하는 건 격을 떨어뜨린다.",
+          "url": "https://x.com/rakitadragan/status/2119279750124630448",
+          "digest": "2026-11-10",
+          "replyTo": "pcaversaccio",
+          "relation": "reply",
+          "original": "@pcaversaccio @ryanberckmans You gained a significant amount of responsibility with the position you took. It is the highest leadership position within EF\n\nIf you don't want it, that is okay, but then just quit.  Acting as if you don't have the position is degrading.",
+          "translation": "@pcaversaccio @ryanberckmans 당신은 당신이 맡은 직위와 함께 상당한 책임을 얻었다. 그것은 EF 내에서 가장 높은 리더십 직위다. 그 직위를 원하지 않는다면 그것도 괜찮지만, 그렇다면 그냥 그만두어라. 그 직위가 없는 것처럼 행동하는 것은 품위를 떨어뜨리는 일이다."
+        },
+        {
+          "date": "2026-11-08",
+          "by": "ryanberckmans",
+          "stance": "neutral",
+          "quote": "입증된 '매직 넘버'(수많은 리서치에서 나온 값)를 늘 고르긴 하지만, 내 글은 틀렸다. 이건 심각한 문제이고 해결하기 전까지 글램은 활성화할 수 없다. 사람들이 작업 중이니 도울 수 있으면 도우라.",
+          "url": "https://x.com/ryanberckmans/status/2119491856136339734",
+          "digest": "2026-11-10",
+          "replyTo": "0xSufist",
+          "relation": "reply",
+          "original": "@0xSufist While we pick substantiated \"magic numbers\" (i.e. non magic params from lots of research) all the time (opcode prices, gas limits, block times, etc), my post was wrong-- this is a serious issue and glam can't activate until we solve it asap. They're working on it, help if you can",
+          "translation": "@0xSufist 우리가 항상(오피코드 가격, 가스 한도, 블록 시간 등에서) 근거가 뒷받침된 '매직 넘버'(즉 많은 연구에서 나온, 사실은 매직이 아닌 파라미터)를 고르는 것은 맞지만, 내 글은 틀렸다. 이것은 심각한 문제이고 우리가 가능한 빨리 그것을 해결하기 전까지는 Glam이 활성화될 수 없다. 그들은 그 문제를 해결하는 중이며, 도울 수 있다면 도와라."
+        }
+      ],
+      "firstSeen": "2026-11-07",
+      "lastActivity": "2026-11-08",
+      "status": "active",
+      "rootUrl": "https://x.com/ryanberckmans/status/2119491856136339734",
+      "engagement": {
+        "likes": 0,
+        "retweets": 0,
+        "quotes": 0,
+        "replies": 0,
+        "views": 42
+      }
+    },
+    {
+      "id": "eth-backed-overcollateralized-stable",
+      "title": "ETH 과담보 스테이블코인이 ETH를 가치저장 자산으로 굳히는 길이 될 수 있나?",
+      "category": "토큰화 · 기관",
+      "summary": "binji_x는 ETH 과담보 스테이블코인이 'ETH 본위'로서 ETH를 가치저장 자산으로 굳힐 수 있다고 제안하며 DAI가 ETH 단일 담보를 포기한 이유를 물었다. gakonst는 변동성 담보 기반 과담보 스테이블은 자연적 롱 수요가 있어야 해 약세장에선 공급 확장이 불가능하다며 크립토 담보·불변성, 지급능력, 확장성 중 둘만 고를 수 있다는 스테이블코인 트릴레마를 제시했고, donnoh_eth는 Liquity의 BOLD도 체인링크 오라클에 전적으로 의존해 평가만큼 견고하지 않다고 지적했다.",
+      "keyPoints": [
+        "ETH 과담보 스테이블코인이 ETH를 가치저장 자산으로 굳힐 수 있나?",
+        "변동성 담보 기반 스테이블은 약세장에서 공급을 확장할 수 있나?",
+        "크립토 담보·불변성, 지급능력, 확장성을 동시에 만족할 수 있나(스테이블코인 트릴레마)?"
+      ],
+      "background": "DAI는 초기 ETH 단일 담보에서 출발했으나 이후 다양한 담보로 전환했고, Liquity의 BOLD는 ETH 담보 기반 불변 스테이블을 지향한다. 과담보 스테이블코인은 담보 가치가 발행액보다 커야 지급능력을 유지하는데, 담보가 변동성 자산이면 그 담보에 대한 자연적 롱 수요가 있어야 공급을 늘릴 수 있다. gakonst는 크립토 담보·불변, 지급능력, 확장성 세 속성 중 둘만 고를 수 있다는 '스테이블코인 트릴레마'로 이를 정식화하며 구 DAI·LUSD는 확장성을 포기한 조합, USDT·USDC는 크립토 담보를 포기한 조합으로 분류한다.",
+      "whyItMatters": "ETH 기반 탈중앙 스테이블코인의 구조적 한계는 SoV 담론에서 ETH를 money로 되돌리는 설계가 실제로 가능한지를 좌우한다. 오라클 의존과 약세장 확장성이라는 제약이 'ETH 본위' 구상의 현실성을 가른다.",
+      "keywords": [
+        "overcollateralized ETH stablecoin",
+        "stablecoin trilemma",
+        "BOLD Liquity",
+        "DAI collateral"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "ETH 과담보 스테이블이 ETH를 SoV로 굳힌다",
+          "holders": [
+            {
+              "handle": "binji_x",
+              "name": "binji",
+              "role": "EthLabs, 이더리움 커뮤니케이션",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/2057797822666473472/Ns8EleJw_400x400.jpg"
+            }
+          ],
+          "points": [
+            "금에 금본위제가 있었듯 ETH에도 'ETH 본위'가 있어 ETH에서 파생된 money를 뒷받침하면 가치저장으로서의 약속이 더 공고해지고 ETH가 IRL에서 쓰이는 money로 돌아온다.",
+            "ETH 전용 스테이블은 불변성(immutability)도 상속한다.",
+            "다만 ETH 전용 스테이블은 ETH의 급락(drawdown)을 상속하기 어렵다는 점은 인정한다."
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "구조적으로 안 된다, 스테이블코인 트릴레마",
+          "holders": [
+            {
+              "handle": "gakonst",
+              "name": "Georgios Konstantopoulos",
+              "role": "Paradigm CTO",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/1596214564470734849/1Tg5-gNh_400x400.jpg"
+            },
+            {
+              "handle": "donnoh_eth",
+              "name": "donnoh.gwei 💗",
+              "role": "L2BEAT 리서치 책임",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/1906978600311521280/aSbKSjtX_400x400.jpg"
+            }
+          ],
+          "points": [
+            "과담보 스테이블은 변동성 담보에 대한 자연적 롱 수요가 있어야 하는데, 강세장엔 좋지만 가격이 오르지 않으면 공급을 계속 확장할 다른 담보원이 필요해 작동하지 않는다(gakonst).",
+            "크립토 담보·불변성, 지급능력, 확장성 세 속성 중 둘만 고를 수 있는 스테이블코인 트릴레마가 있어, 구 DAI·LUSD는 확장성을 포기했고 USDT·USDC는 크립토 담보를 포기했다. 이것이 스테이블코인 역사의 쓰라린 교훈이다(gakonst).",
+            "Liquity의 BOLD는 일부 주장만큼 좋지 않고 체인링크(Chainlink) 오라클에 전적으로 의존하는데 이는 신뢰 기반이라 러그될 수 있다(donnoh_eth)."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-11-07",
+          "by": "binji_x",
+          "stance": "pro",
+          "quote": "ETH가 SoV가 되는 거대한 동력은 ETH를 IRL에서 쓸 수 있는 money로 되돌리는 것, 즉 과담보 ETH 기반 스테이블이다. 금이 금본위제를 가졌듯 ETH는 'ETH 본위'를 가져야 하며 이는 가치저장으로서의 약속을 더욱 공고히 한다.",
+          "url": "https://x.com/binji_x/status/2119004673432494423",
+          "digest": "2026-11-10",
+          "replyTo": "DefiIgnas",
+          "relation": "quote",
+          "original": "Why did DAI stop using only ETH as collateral? Why is BOLD by LQTY not as successful as USDT AND USDC?  Is it just a distribution thing?\n\nA massive driver to $ETH being an SOV would be to make it back money that can be used IRL\n\nAKA an overcollateralized ETH-backed stable.\n\nGold had the gold standard, ETH should have the ETH standard which would further entrench its promise as a store of value, and let ETH also be useful for money  by the means of backing money spawned from it.\n\n  https://t.co/QwrmWf16AM",
+          "translation": "DAI는 왜 ETH만을 담보로 쓰는 것을 그만두었을까? LQTY의 BOLD는 왜 USDT와 USDC만큼 성공적이지 못할까? 그냥 유통(distribution) 문제일까? $ETH가 SoV가 되는 데 있어 거대한 동인(driver)은 ETH를 실생활(IRL)에서 쓸 수 있는 돈, 즉 과담보화된(overcollateralized) ETH 기반 스테이블코인으로 만드는 것일 것이다. 금에는 금본위제(gold standard)가 있었다. ETH에는 ETH 본위제(ETH standard)가 있어야 하며, 이는 가치저장수단으로서의 약속을 더욱 굳히는 동시에, ETH로부터 생성된 화폐를 뒷받침하는 방식을 통해 ETH가 화폐로서도 유용해지도록 만들 것이다."
+        },
+        {
+          "date": "2026-11-07",
+          "by": "binji_x",
+          "stance": "pro",
+          "quote": "ETH 전용 스테이블은 ETH의 급락을 상속한다. 그게 어려운 부분이다.",
+          "url": "https://x.com/binji_x/status/2119005105697505782",
+          "digest": "2026-11-10",
+          "replyTo": "binji_x",
+          "relation": "reply",
+          "original": "@binji_x an eth-only stable inherits eth's drawdowns, that's the hard part.",
+          "translation": "@binji_x ETH만을 쓰는 스테이블코인은 ETH의 하락(drawdown)을 그대로 물려받는다. 그게 어려운 부분이다."
+        },
+        {
+          "date": "2026-11-07",
+          "by": "donnoh_eth",
+          "stance": "con",
+          "quote": "BOLD는 일부가 주장하는 만큼 좋지 않다. 전적으로 체인링크 오라클에 의존하는데 이는 신뢰 기반이고 러그될 수 있다.",
+          "url": "https://x.com/donnoh_eth/status/2119006108522066231",
+          "digest": "2026-11-10",
+          "replyTo": "binji_x",
+          "relation": "reply",
+          "original": "@binji_x BOLD is not as good as some claim, it fully relies on chainlink oracles which are trusted and can rug",
+          "translation": "@binji_x BOLD는 일부가 주장하는 것만큼 좋지 않다. 그것은 전적으로 Chainlink 오라클(oracle)에 의존하는데, 이는 신뢰가 필요한(trusted) 것이며 러그(rug, 먹튀)를 당할 수 있다."
+        },
+        {
+          "date": "2026-11-07",
+          "by": "gakonst",
+          "stance": "con",
+          "quote": "과담보 스테이블로서의 DAI는 변동성 자산을 담보로 쓸 경우 그에 대한 자연적 롱 수요가 필요하다. 강세장엔 좋지만 가격이 오르지 않을 때는 공급을 계속 키우려면 다른 담보원이 필요하다. 안타깝게도 작동하지 않는다.",
+          "url": "https://x.com/gakonst/status/2119114476083716324",
+          "digest": "2026-11-10",
+          "replyTo": "binji_x",
+          "relation": "reply",
+          "original": "DAI as an overcollateralized stable requires natural long demand for its backing if its a volatile asset - during bull times thats great but when prices dont go up you need other sources of backing to continue scaling the DAI supply - it doesnt work unfortunately\n\nThe design space is well explored- you give something up always to scale the stablecoin supply: the collateral, negative rates etc…\n\n@hasufl had epic writings on this",
+          "translation": "과담보화된 스테이블코인으로서의 DAI는 뒷받침하는 자산이 변동성 있는 자산이라면 그에 대한 자연스러운 롱(long) 수요를 필요로 한다. 불장(bull market) 동안에는 그것이 아주 좋지만, 가격이 오르지 않을 때는 DAI 공급량을 계속 확장하기 위해 다른 뒷받침 자원이 필요하다. 유감스럽게도 그것은 작동하지 않는다. 이 설계 공간(design space)은 이미 잘 탐구되어 있다. 스테이블코인 공급을 확장하려면 항상 무언가를 포기해야 한다. 담보, 네거티브 금리 등등이다. @hasufl가 이에 대해 훌륭한 글들을 쓴 적이 있다."
+        },
+        {
+          "date": "2026-11-08",
+          "by": "gakonst",
+          "stance": "con",
+          "quote": "이것이 스테이블코인 트릴레마다(지어낸 용어로, 아무도 적어둔 적 없는 것 같다). 크립토 담보·불변, 지급능력, 확장성 세 속성 중 스테이블코인은 둘만 고를 수 있다. 구 DAI·LUSD는 1+2를 골라 확장성을 희생했고, USDT·USDC는 크립토 담보를 희생했다.",
+          "url": "https://x.com/gakonst/status/2119352501086355770",
+          "digest": "2026-11-10",
+          "replyTo": "gakonst",
+          "relation": "reply",
+          "original": "correct, this is the stablecoin trilemma (made up term, dont think anyone ever wrote this down):\n\nbetween three properties of\n1) crypto-backed/immutable\n2) solvent\n3) scalable,\na stablecoin can only choose 2 of 3.\n\nold-dai, lusd chose 1+2 (sacrifice scalability)\nusdt, usdc choose 2+3 (sacrifice immutability)\nterrausd and its many clones chose 1+3 (sacrifice solvency)\n\nnote that the three choices not equal:\n- a stablecoin that isnt solvent fails its single most important test.\n- give that money's utility scales with its network, sacrificing scalability is a large price that ultimately dooms the coin to failure\n- immutability, then, is arguably the least-bad thing to sacrifice, because (\"the only free lunch\") it can be at least partially addressed with diversification. you also become less vulnerable with scale (see tether being a huge holder of t-bills giving it a certain political immunity)",
+          "translation": "맞다, 이것이 스테이블코인 트릴레마(stablecoin trilemma, 내가 만든 용어이고, 이걸 글로 적은 사람은 없을 것 같다)다. 1) 크립토로 뒷받침되는/불변의(immutable), 2) 솔벤트(solvent, 지급능력이 있는), 3) 스케일러블(scalable)한 이 세 가지 속성 중에서 스테이블코인은 셋 중 둘만 선택할 수 있다. old-DAI와 LUSD는 1+2를 선택했다(확장성을 희생). USDT와 USDC는 2+3을 선택했다(불변성을 희생). TerraUSD와 그 수많은 클론들은 1+3을 선택했다(지급능력을 희생). 세 가지 선택이 동등하지 않다는 점에 주목할 필요가 있다. 지급능력이 없는 스테이블코인은 가장 중요한 단 하나의 시험에서 낙제한다. 화폐의 효용이 그 네트워크와 함께 커진다는 점을 고려하면, 확장성을 희생하는 것은 결국 그 코인을 실패로 몰아넣는 큰 대가다. 그렇다면 불변성은 아마도 포기하기에 가장 덜 나쁜 것인데, 왜냐하면('유일한 공짜 점심') 그것은 적어도 다각화(diversification)를 통해 부분적으로는 해결할 수 있기 때문이다. 또한 규모가 커지면 취약성도 줄어든다(Tether가 T-bill을 대량으로 보유함으로써 일종의 정치적 면역력을 갖게 되는 것을 보라)."
+        }
+      ],
+      "firstSeen": "2026-11-07",
+      "lastActivity": "2026-11-08",
+      "status": "active"
+    },
+    {
+      "id": "state-tree-migration-method",
+      "title": "전체 상태 트리 이전은 온라인 방식이어야 하나, 셀프(오프라인) 마이그레이션이어야 하나?",
+      "category": "프로토콜 설계",
+      "summary": "I* 포크의 상태 구조 개편을 두고 gakonst·chfast·CPerezz19는 셀프(오프라인) 마이그레이션이 온라인 방식보다 훨씬 복잡하고 취약하며 조정이 악몽이 될 것이라고 비판했다. 반대쪽에서는 16GB RAM·2TB 디스크 환경에서 메인넷을 Partitioned Binary Tree로 셀프 마이그레이션하는 데 4개 클라이언트가 성공했다는 실증 결과가 제시됐으나, CPerezz19는 추가 EIP와 코드 표면이 필요하다는 사실 자체가 온라인 방식의 우위를 증명한다고 재반박했다.",
+      "keyPoints": [
+        "전체 상태 트리 이전은 온라인 방식이어야 하나, 셀프(오프라인) 마이그레이션이어야 하나?",
+        "셀프 마이그레이션의 조정 복잡성과 추가 코드 표면은 감수할 가치가 있나?",
+        "실측 성공이 셀프 마이그레이션의 타당성을 증명하나, 오히려 온라인 방식의 우위를 증명하나?"
+      ],
+      "background": "I* 포크에서 논의되는 상태 트리 재구조화(이진/Partitioned Binary Tree로 전환)에는 두 가지 이전 방식이 경쟁한다. 온라인 방식은 노드가 정상 운영 중 읽기·쓰기를 변환 레이어를 거쳐 점진적으로 옮기고, 셀프(오프라인) 마이그레이션은 각 노드가 자체적으로 상태를 옮기되 합의 레이어(CL)가 섀도루트(shadowroot)로 결과를 볼 수 있게 한다. 수집 기록상 일부 트윗의 발언자 귀속이 불확실해 원문 확인이 필요하다.",
+      "whyItMatters": "전체 상태를 어떤 방식으로 옮길지가 I* 포크의 리스크 프로파일과 노드 요구 사양, 그리고 클라이언트 간 조정 부담을 결정한다. 셀프 마이그레이션 실증을 어느 쪽 근거로 읽느냐가 앞으로의 스펙 방향을 가른다.",
+      "keywords": [
+        "state tree migration",
+        "self-migration",
+        "partitioned binary tree",
+        "shadowroot"
+      ],
+      "positions": [
+        {
+          "stance": "con",
+          "label": "셀프 마이그레이션은 과도하게 복잡·취약하다",
+          "holders": [
+            {
+              "handle": "gakonst",
+              "name": "Georgios Konstantopoulos",
+              "role": "Paradigm CTO, reth",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/1596214564470734849/1Tg5-gNh_400x400.jpg"
+            },
+            {
+              "handle": "chfast",
+              "name": "Paweł Bylica",
+              "role": "EF, evmone",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/849982543982145536/mRbvphSB_400x400.jpg"
+            },
+            {
+              "handle": "CPerezz19",
+              "name": "CPerezz.eth ⟠ 🦀",
+              "role": "EF 리서처",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/1254074532417200128/M2uQcW5K_400x400.jpg"
+            }
+          ],
+          "points": [
+            "셀프 마이그레이션은 온라인 방식보다 훨씬 복잡하고 취약하며, 조정이 악몽이 되고 각 읽기·쓰기가 두 번씩 일어나며 깜깜이로 진행돼 추가 복잡성에 아무 이득이 없다(gakonst).",
+            "데이터 구조에 대한 이견을 소셜미디어로 가져와 밈으로 이기려는 수준이냐며 논의 방식을 꼬집는다(chfast).",
+            "온라인 방식이 공짜로 주는 것을 얻으려면 셀프 마이그레이션은 추가 EIP와 코드 표면이 필요하며, 실증 성공은 오히려 온라인 방식이 현실적이고 가야 할 길임을 증명한다(CPerezz19)."
+          ]
+        },
+        {
+          "stance": "pro",
+          "label": "셀프 마이그레이션은 실측으로 작동한다",
+          "holders": [
+            {
+              "handle": "gballet",
+              "name": "Guillaume Ballet",
+              "watchlist": false,
+              "avatar": "https://pbs.twimg.com/profile_images/1016220024535699456/-1LUYnWJ_400x400.jpg"
+            },
+            {
+              "handle": "donnoh_eth",
+              "name": "donnoh.gwei 💗",
+              "role": "L2BEAT 리서치 책임",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/1906978600311521280/aSbKSjtX_400x400.jpg"
+            }
+          ],
+          "points": [
+            "16GB RAM·2TB 디스크 환경에서 XEN 최대 부하(200MGas, IOPS)로 메인넷을 Partitioned Binary Tree(PBT)로 셀프 마이그레이션하는 데 4개 클라이언트가 성공했다.",
+            "섀도루트 가시성을 위한 합의 레이어(CL) EIP를 작업 중이다(수집 기록상 해당 성과 트윗의 발언자 귀속은 donnoh_eth 계정이나 gballet 측 작업을 전한 것으로 보여 원문 확인이 필요하다)."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-11-06",
+          "by": "gakonst",
+          "stance": "con",
+          "quote": "이걸 작동시키는 것은 온라인 방식보다 훨씬 복잡하고 취약하다. 조정은 악몽이 될 것이고, 각 읽기·쓰기가 두 번씩 일어나며 깜깜이로 진행되는 만큼 이 추가 복잡성에는 아무 이득이 없다.",
+          "url": "https://x.com/gakonst/status/2118790699525005353",
+          "digest": "2026-11-10",
+          "relation": "none",
+          "original": "Getting this to work is so much more complex and brittle than the online method. The coordination is going to be a nightmare, and there is no benefit to this added complexity since each read / write are done twice, only flying blind.",
+          "translation": "이것을 작동시키는 것은 온라인 방식(online method)보다 훨씬 더 복잡하고 취약하다. 조율(coordination)은 악몽이 될 것이고, 각각의 읽기/쓰기가 두 번씩 이루어지면서 단지 눈을 가린 채 날아가는 꼴이 되므로 이 추가된 복잡성에서 얻는 이득은 전혀 없다."
+        },
+        {
+          "date": "2026-11-07",
+          "by": "chfast",
+          "stance": "con",
+          "quote": "이게 소셜미디어로 가져와 밈으로 이기려는 수준의 이견인가?",
+          "url": "https://x.com/chfast/status/2118928710304964735",
+          "digest": "2026-11-10",
+          "replyTo": "gballet",
+          "relation": "reply",
+          "original": "@gballet Is this the level of disagreement where we bring it on social media and hope to win with memes?",
+          "translation": "@gballet 이게 소셜 미디어로 끌고 가서 밈(meme)으로 이기길 바라는 수준의 의견 불일치인가?"
+        },
+        {
+          "date": "2026-11-07",
+          "by": "donnoh_eth",
+          "stance": "pro",
+          "quote": "우리는 방금 16GB RAM과 2TB 디스크에서 XEN 최대 부하(200MGas, IOPS)로 메인넷을 셀프 마이그레이션해 PBT로 옮겼다. 4개 클라이언트가 성공했다. 섀도루트 가시성을 위한 CL EIP를 작업 중이다.",
+          "url": "https://x.com/donnoh_eth/status/2118998759426154546",
+          "digest": "2026-11-10",
+          "replyTo": "donnoh_eth",
+          "relation": "reply",
+          "original": "@donnoh_eth @gakonst @gballet WE JUST MIGRATED MAINNET TO PBT IN 16GB RAM and 2TB disk via SELF-MIGRATION. At 200MGas with XEN max load (IOPS). 4 clients successfully.\n\nWe are working on tge CL EIP to have shadowroot visibility.\nBut, seems no one has read anything and jumped to conclusions.",
+          "translation": "@donnoh_eth @gakonst @gballet 우리는 방금 메인넷을 16GB RAM과 2TB 디스크에서 셀프 마이그레이션(self-migration)을 통해 PBT로 마이그레이션했다. 200M 가스에서 XEN 최대 부하(IOPS) 상태로 말이다. 4개의 클라이언트에서 성공적으로. 우리는 shadowroot 가시성을 확보하기 위한 CL EIP 작업을 진행 중이다. 하지만 아무도 아무것도 읽지 않고 결론으로 바로 뛰어넘은 것처럼 보인다."
+        },
+        {
+          "date": "2026-11-07",
+          "by": "CPerezz19",
+          "stance": "con",
+          "quote": "핵심은 이것이다. 온라인 방식이 공짜로 주는 것을 얻으려면 더 많은 EIP와 코드 표면이 필요하다. 셀프 마이그레이션은 오히려 온라인 방식이 현실적이고 가야 할 길임을 증명한다.",
+          "url": "https://x.com/CPerezz19/status/2119019833182310516",
+          "digest": "2026-11-10",
+          "replyTo": "CPerezz19",
+          "relation": "reply",
+          "original": "@CPerezz19 @donnoh_eth @gakonst That's the thing: you need more EIPs + code surface to get what the online method gives you for free. Self migration further proves the point that the online method is realistic and the way to go.",
+          "translation": "@CPerezz19 @donnoh_eth @gakonst 바로 그게 문제다. 온라인 방식이 공짜로 주는 것을 얻으려면 더 많은 EIP와 코드 표면(code surface)이 필요하다. 셀프 마이그레이션은 온라인 방식이 현실적이고 나아가야 할 길이라는 점을 더욱 입증해준다."
+        }
+      ],
+      "firstSeen": "2026-11-06",
+      "lastActivity": "2026-11-07",
+      "status": "active",
+      "rootUrl": "https://x.com/donnoh_eth/status/2118998759426154546",
+      "engagement": {
+        "likes": 1,
+        "retweets": 0,
+        "quotes": 0,
+        "replies": 2,
+        "views": 54
+      }
+    },
+    {
+      "id": "where-to-document-invariants",
+      "title": "깨지 않을 불변량을 어디에 명문화해야 하나, 정보성 EIP인가 각 EIP의 하위호환성 섹션인가?",
+      "category": "거버넌스 · 커뮤니티",
+      "summary": "barnabemonnot는 불변량을 파라미터(가스 비용·블록 타임)와 가격 책정 메커니즘으로 구분하고 무엇이 불변량인지는 특정 주체가 아니라 정보성 EIP가 PFI→CFI→SFI 파이프라인을 거치는 EIP 프로세스로 정해야 한다고 제안했다. nero_eth는 일반적 아이디어엔 동의하지만 불변량은 해당 EIP의 하위호환성 섹션이나 포크 메타 EIP에 두는 것이 맞고 정보성 EIP는 이미 과부하라고 이견을 냈다.",
+      "keyPoints": [
+        "깨지 않을 불변량을 어디에 명문화해야 하나, 정보성 EIP인가 각 EIP의 하위호환성 섹션·포크 메타 EIP인가?",
+        "파라미터와 가격 책정 메커니즘을 구분해 후자는 비파괴적으로만 바꿔야 하나?",
+        "불변량 목록은 특정 주체가 아니라 EIP 프로세스가 정해야 하나?"
+      ],
+      "background": "EIP-8037 리프라이싱이 가스 인트로스펙션 불변량에 의존하던 컨트랙트를 깨면서 불변 컨트랙트가 의존해도 되는 불변량을 어디에 어떻게 문서화할지가 쟁점이 됐다. barnabemonnot는 파라미터(변할 수 있음)와 가격 책정 메커니즘(비파괴적으로만 변경)을 구분하고 글램스테르담이 둘 다 건드리며 EIP-8037은 메커니즘 업데이트가 예상 밖의 파괴적 변화를 낸 경우라고 설명한다. 앱 개발자들은 상호운용을 위해 '예상 SSTORE 비용' 기반 가드레일을 수년간 관행처럼 써 왔다고 증언해 암묵적 규범이 실제로 축적돼 온 정황이 드러났다.",
+      "whyItMatters": "불변량 목록이 공식 문서가 되면 앞으로 모든 EIP가 그 목록과의 충돌 여부를 심사받게 되고 자동 리서치(오토리서치)가 늘수록 기계 판독 가능한 불변량 명세의 중요성이 커진다. 명문화 위치는 그 심사가 EIP 프로세스에 녹아들지, 각 EIP의 책임으로 분산될지를 가른다.",
+      "sources": [
+        {
+          "title": "EIP-8037: State Creation Gas Cost Increase",
+          "url": "https://eips.ethereum.org/EIPS/eip-8037"
+        }
+      ],
+      "keywords": [
+        "Ethereum invariants",
+        "EIP backward compatibility",
+        "informational EIP",
+        "EIP-8037"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "정보성 EIP를 PFI→CFI→SFI 파이프라인에 태우자",
+          "holders": [
+            {
+              "handle": "barnabemonnot",
+              "name": "Barnabé Monnot | barnabé.eth",
+              "role": "EF 리서처, 인센티브·발행",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/2069104465202814976/alWWQ8SG_400x400.jpg"
+            }
+          ],
+          "points": [
+            "불변량에는 두 종류가 있다. 파라미터(연산의 가스 비용·블록 타임)와 연산의 가격 책정 메커니즘이다. 컨트랙트는 전자가 안 변한다고 의존해선 안 되고 후자(메커니즘)는 이상적으로 비파괴적인 방식으로 업데이트돼야 한다.",
+            "글램스테르담은 둘 다 건드리며 EIP-8037은 비파괴적이어야 할 메커니즘 업데이트가 예상 밖의 파괴적 변화를 낸 경우라 추가 지연이 생겼다.",
+            "무엇이 불변량인지는 특정 한 주체가 아니라 PFI→CFI→SFI 파이프라인을 거치는 정보성 EIP를 통한 EIP 프로세스가 정해야 하며 오토리서치가 늘수록 더 중요해진다."
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "정보성 EIP 말고 각 EIP의 하위호환성 섹션·포크 메타 EIP에 두자",
+          "holders": [
+            {
+              "handle": "nero_eth",
+              "name": "Toni Wahrstätter ⟠",
+              "role": "EF 리서처",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/1858347774129094657/xUc7IS2K_400x400.jpg"
+            }
+          ],
+          "points": [
+            "일반적 아이디어엔 동의하지만 불변량은 있어야 할 곳, 즉 해당 EIP의 하위호환성(backward compatibility) 섹션이나 포크의 메타 EIP에 두는 게 맞다.",
+            "정보성 EIP는 이미 과부하 상태다."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-11-07",
+          "by": "barnabemonnot",
+          "stance": "pro",
+          "quote": "정말로 두 종류의 '불변량'이 있다. 파라미터(연산의 가스 비용이나 블록 타임)와 연산의 가격 책정 메커니즘이다. 컨트랙트는 전자가 안 변한다고 의존해선 안 되지만, 후자인 메커니즘은 이상적으로 비파괴적인 방식으로 업데이트돼야 한다.",
+          "url": "https://x.com/barnabemonnot/status/2118997007465324770",
+          "digest": "2026-11-10",
+          "replyTo": "z0r0zzz",
+          "relation": "quote",
+          "original": "Even though I disagree with some of the assumptions made, this is a good write-up of the discussion, and I appreciate the perspective on the benefits and the conclusion that Glamsterdam should proceed.\n\nThere really are two classes of “invariants”\n- *Parameters*, eg, gas cost of an operation or block time\n- Pricing *mechanisms* for operations\n\nContracts should not rely on the first class not changing. However mechanisms should be updated ideally in a non-breaking manner.\n\nGlamsterdam has a mix of both changes. Unfortunately, a planned mechanism update (EIP-8037) produces breaking changes where we should not expect some to be, hence the additional delay\n\nIn any case, if either of the two categories sees some change, every effort should be made to identify and support apps that are directly or indirectly affected. It could be that the gas cost update makes a specific use case relatively more expensive, or cheaper, changing app economics.\n\nA repository was released for app devs to identify the changes https://t.co/H3XuZZZZVL Internal and external audits have already led to active outreach, this step is designed for last mile coverage",
+          "translation": "나는 여기서 이루어진 일부 가정에 동의하지 않지만, 이것은 논의에 대한 좋은 정리글이며, 이점에 대한 관점과 Glamsterdam이 진행되어야 한다는 결론에 감사한다. '불변성(invariant)'에는 실제로 두 가지 범주가 있다. 하나는 연산의 가스 비용이나 블록 시간 같은 *파라미터(parameter)*이고, 다른 하나는 연산에 대한 가격 결정 *메커니즘(mechanism)*이다. 계약(contract)들은 첫 번째 범주가 변하지 않을 것이라고 의존해서는 안 된다. 그러나 메커니즘은 이상적으로는 깨지지 않는 방식(non-breaking manner)으로 업데이트되어야 한다. Glamsterdam에는 이 두 가지 변경이 섞여 있다. 유감스럽게도 계획된 메커니즘 업데이트(EIP-8037)는 일부가 깨질 것으로 예상하지 않았어야 할 부분에서 브레이킹 체인지(breaking change)를 발생시키며, 그 때문에 추가적인 지연이 생겼다. 어쨌든 두 범주 중 어느 쪽이든 변경이 생긴다면, 직간접적으로 영향을 받는 앱을 식별하고 지원하기 위한 모든 노력을 기울여야 한다. 가스 비용 업데이트가 특정 사용 사례를 상대적으로 더 비싸게 만들거나, 혹은 더 싸게 만들어서 앱의 경제성(economics)을 바꿀 수도 있다. 앱 개발자들이 변경 사항을 식별할 수 있도록 저장소(repository)가 공개되었다. https://t.co/H3XuZZZZVL 내부 및 외부 감사(audit)는 이미 적극적인 아웃리치(outreach)로 이어졌으며, 이 단계는 마지막 커버리지를 위해 설계된 것이다."
+        },
+        {
+          "date": "2026-11-07",
+          "by": "barnabemonnot",
+          "stance": "pro",
+          "quote": "그걸 정하는 건 우리가 아니라, PFI→CFI→SFI 파이프라인을 거치는 정보성 EIP를 통한 EIP 프로세스여야 한다. 기여는 기꺼이 하겠지만 한 주체가 정해선 안 된다.",
+          "url": "https://x.com/barnabemonnot/status/2119007391228502263",
+          "digest": "2026-11-10",
+          "replyTo": "barnabemonnot",
+          "relation": "reply",
+          "original": "@barnabemonnot @z0r0zzz @ethbeat_org it should not be us, imo it should be the eip process with an informational eip that goes through the pfi -&gt; cfi -&gt; sfi pipeline. happy to contribute but it cannot be one party",
+          "translation": "@barnabemonnot @z0r0zzz @ethbeat_org 그것은 우리가 해서는 안 된다. 내 생각에는 PFI → CFI → SFI 파이프라인을 거치는 인포메이셔널(informational) EIP를 통한 EIP 프로세스가 되어야 한다. 기여하는 것은 기쁘지만 한 당사자만의 일이 되어서는 안 된다."
+        },
+        {
+          "date": "2026-11-07",
+          "by": "nero_eth",
+          "stance": "con",
+          "quote": "일반적 생각엔 동의하지만 그건 있어야 할 곳, 즉 EIP의 하위호환성 섹션에 두라. 아니면 포크의 메타 EIP에. 정보성 EIP는 내 생각엔 좀 과부하 상태다.",
+          "url": "https://x.com/nero_eth/status/2119067028141007153",
+          "digest": "2026-11-10",
+          "replyTo": "donnoh_eth",
+          "relation": "reply",
+          "original": "@donnoh_eth @barnabemonnot @z0r0zzz @ethbeat_org Agree with the general idea but just put it where it belongs - the backward compatibility section of the eip.\nOr into the fork's meta eip.\nInfo eips are a bit oberloaded, imo.",
+          "translation": "@donnoh_eth @barnabemonnot @z0r0zzz @ethbeat_org 전반적인 아이디어에는 동의하지만 그냥 그것이 속해야 할 곳에 두면 된다. 즉 EIP의 하위 호환성(backward compatibility) 섹션 말이다. 아니면 그 포크의 메타 EIP에 넣어도 된다. 내 생각에 인포(info) EIP들은 조금 과부하(overloaded) 상태다."
+        }
+      ],
+      "firstSeen": "2026-11-07",
+      "lastActivity": "2026-11-07",
+      "status": "active",
+      "rootUrl": "https://x.com/barnabemonnot/status/2118997007465324770",
+      "engagement": {
+        "likes": 90,
+        "retweets": 8,
+        "quotes": 1,
+        "replies": 12,
+        "views": 5762
+      }
+    },
     {
       "id": "paraguay-crisis-btc-vs-eth",
       "title": "파라과이 은행 위기의 대안으로 비트코인보다 이더리움·ETH가 더 나은가?",
@@ -282,7 +1207,7 @@
       ],
       "firstSeen": "2026-11-02",
       "lastActivity": "2026-11-03",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/VitalikButerin/status/2117443537868562768",
       "engagement": {
         "likes": 22,
@@ -436,7 +1361,7 @@
       ],
       "firstSeen": "2026-11-01",
       "lastActivity": "2026-11-02",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/StaniKulechov/status/2116819963994583336",
       "engagement": {
         "likes": 340,
@@ -581,7 +1506,7 @@
       ],
       "firstSeen": "2026-11-01",
       "lastActivity": "2026-11-02",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/jchaskin22/status/2116919736227578355",
       "engagement": {
         "likes": 346,
@@ -4512,7 +5437,7 @@
       ],
       "firstSeen": "2026-10-10",
       "lastActivity": "2026-10-11",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/TrustlessState/status/2108947848607756290",
       "engagement": {
         "likes": 176,
@@ -4734,7 +5659,7 @@
       ],
       "firstSeen": "2026-10-02",
       "lastActivity": "2026-10-09",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/tayvano_/status/2106055842206531682",
       "engagement": {
         "likes": 289,
@@ -5113,7 +6038,7 @@
       ],
       "firstSeen": "2026-09-07",
       "lastActivity": "2026-10-09",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/lex_node/status/2108549202426909146",
       "engagement": {
         "likes": 380,
