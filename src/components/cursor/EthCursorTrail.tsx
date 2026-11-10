@@ -1,6 +1,6 @@
 import { useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
-import { useModalStatus } from '@privy-io/react-auth';
+import { useLocation } from 'react-router-dom';
 
 // --- Constants ---
 const POOL_SIZE = 15;
@@ -59,7 +59,8 @@ function shouldShowCustomCursor(): boolean {
 
 // --- Component ---
 const EthCursorTrail: React.FC = () => {
-  const { isOpen: isPrivyModalOpen } = useModalStatus();
+  // ponytail: Privy 는 /profile 에서만 뜨므로 그 페이지에선 기본 커서를 쓴다. 다른 곳에 로그인을 붙이면 경로를 더한다
+  const isPrivyModalOpen = useLocation().pathname === '/profile';
   const containerRef = useRef<HTMLDivElement>(null);
   const cursorRef = useRef<HTMLDivElement>(null);
   const poolRef = useRef<Particle[]>([]);
@@ -206,7 +207,7 @@ const EthCursorTrail: React.FC = () => {
     }
   }, []);
 
-  // Hide custom cursor while Privy modal is open
+  // Privy 로그인 창이 뜰 수 있는 페이지에서는 기본 커서
   useEffect(() => {
     if (!shouldShowCustomCursor()) return;
 
