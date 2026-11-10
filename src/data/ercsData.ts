@@ -51,6 +51,14 @@ export interface ErcIndexFile {
 let pendingRecords: Promise<ErcsFile> | null = null;
 let pendingIndex: Promise<ErcIndexFile> | null = null;
 
+let list: Promise<ErcsFile> | null = null;
+
+/** 목록·검색용: 해설 본문이 빠진 판 (vite-json-slice.ts). 상세 화면은 loadErcs */
+export function loadErcList(): Promise<ErcsFile> {
+    list ??= import('./ercs.json?list').then(({ default: data }) => data as ErcsFile);
+    return list;
+}
+
 export async function loadErcs(): Promise<ErcsFile> {
     if (!pendingRecords) {
         pendingRecords = import('./ercs.json')

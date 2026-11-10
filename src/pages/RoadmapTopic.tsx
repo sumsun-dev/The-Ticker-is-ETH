@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import usePageMeta from '../hooks/usePageMeta';
 import EipRef from '../components/eips/EipRef';
 import NotFound from './NotFound';
-import { loadEips } from '../data/eipsData';
+import { loadEipList } from '../data/eipsData';
 import { loadRoadmapExplainers, type RoadmapTopic as Topic } from '../data/roadmapExplainers';
 import { pillarOf } from '../data/roadmapHistory';
 import { LAYERS, ROADMAP_ITEMS, STRAWMAP_FORKS, STRAWMAP_URL, itemBySlug, itemSlug } from '../data/roadmap';
@@ -21,7 +21,7 @@ const RoadmapTopic: React.FC = () => {
 
     useEffect(() => {
         loadRoadmapExplainers().then((f) => setTopics(f.topics));
-        loadEips().then((x) => setTitles(new Map(x.eips.map((e) => [e.number, e.titleKo]))));
+        loadEipList().then((x) => setTitles(new Map(x.eips.map((e) => [e.number, e.titleKo]))));
     }, [slug]);
 
     if (!it || topic === null) return <NotFound />;

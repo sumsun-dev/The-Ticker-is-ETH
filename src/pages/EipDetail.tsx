@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import usePageMeta from '../hooks/usePageMeta';
 import { eipUrl, loadEips, type EipRecord } from '../data/eipsData';
-import { loadErcIndex, loadErcs } from '../data/ercsData';
+import { loadErcIndex, loadErcList } from '../data/ercsData';
 import { standardHref } from '../utils/ercs';
 import { loadEthCalls, type CallRecord } from '../data/ethCallsData';
 import { loadEthDebates, type Debate } from '../data/ethDebatesData';
@@ -27,7 +27,7 @@ const EipDetail: React.FC = () => {
         loadEips().then((f) => setRecords(f.eips));
         loadEthCalls().then((f) => setCalls(f.calls));
         loadEthDebates().then(setDebates);
-        Promise.all([loadErcs(), loadErcIndex()])
+        Promise.all([loadErcList(), loadErcIndex()])
             .then(([r, i]) => setErcSets({ ercs: new Set(r.ercs.map((x) => x.number)), ercIndex: new Set(i.ercs.map((x) => x.number)) }))
             .catch(() => undefined);
     }, []);

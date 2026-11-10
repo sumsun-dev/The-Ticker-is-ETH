@@ -26,9 +26,11 @@ const { record } = vi.hoisted(() => ({ record: (number: number, titleKo: string,
     ...extra,
 }) }));
 
+const EIPS = () => ({ updatedAt: '', eips: [record(8141, '프레임 트랜잭션', '계정 추상화'), record(7702, '지갑 코드 위임', '계정 추상화'), record(8037, '상태 가스', '수수료·가스')] });
 vi.mock('../../data/eipsData', async (orig) => ({
     ...(await orig<typeof import('../../data/eipsData')>()),
-    loadEips: vi.fn().mockResolvedValue({ updatedAt: '', eips: [record(8141, '프레임 트랜잭션', '계정 추상화'), record(7702, '지갑 코드 위임', '계정 추상화'), record(8037, '상태 가스', '수수료·가스')] }),
+    loadEipList: vi.fn().mockImplementation(async () => EIPS()),
+    loadEips: vi.fn().mockImplementation(async () => EIPS()),
 }));
 
 vi.mock('../../data/ethCallsData', () => ({

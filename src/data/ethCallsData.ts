@@ -114,16 +114,16 @@ export interface CallsFile {
     calls: CallRecord[];
 }
 
-let cache: CallsFile | null = null;
-let pending: Promise<CallsFile> | null = null;
+let lite: Promise<CallsFile> | null = null;
+let full: Promise<CallsFile> | null = null;
 
-export async function loadEthCalls(): Promise<CallsFile> {
-    if (cache) return cache;
-    if (pending) return pending;
-    pending = import('./eth-calls.json').then(({ default: data }) => {
-        cache = data as CallsFile;
-        pending = null;
-        return cache;
-    });
-    return pending;
+/** 목록·홈·EIP·포크용: 발언(topics[].positions·quote)과 채팅이 빠진 판 (vite-json-slice.ts). 콜 상세는 loadEthCallsFull */
+export function loadEthCalls(): Promise<CallsFile> {
+    lite ??= import('./eth-calls.json?lite').then(({ default: data }) => data as CallsFile);
+    return lite;
+}
+
+export function loadEthCallsFull(): Promise<CallsFile> {
+    full ??= import('./eth-calls.json').then(({ default: data }) => data as CallsFile);
+    return full;
 }

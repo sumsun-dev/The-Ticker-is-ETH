@@ -1,10 +1,11 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import type { PluginOption } from 'vite'
+import jsonSlice from './vite-json-slice'
 
 // https://vite.dev/config/
 export default defineConfig(async () => {
-  const plugins: PluginOption[] = [react()]
+  const plugins: PluginOption[] = [react(), jsonSlice()]
 
   if (process.env.ANALYZE) {
     const { visualizer } = await import('rollup-plugin-visualizer')

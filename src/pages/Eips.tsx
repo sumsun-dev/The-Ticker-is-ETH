@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import usePageMeta from '../hooks/usePageMeta';
 import StandardTabs from '../components/eips/StandardTabs';
-import { loadEips, EIP_TOPICS, type EipRecord } from '../data/eipsData';
+import { loadEipList, EIP_TOPICS, type EipRecord } from '../data/eipsData';
 import { loadEthCalls, type CallRecord } from '../data/ethCallsData';
 import { inclusionLabel, inclusionOf, lastDiscussed, matchEip, sortByRecent } from '../utils/eips';
 import { dotDate, STATUS_TEXT } from '../utils/calls';
@@ -28,7 +28,7 @@ const Eips: React.FC = () => {
     usePageMeta({ title: 'EIPs', description: t('description'), canonical: '/eips' });
 
     useEffect(() => {
-        Promise.all([loadEips(), loadEthCalls()])
+        Promise.all([loadEipList(), loadEthCalls()])
             .then(([e, c]) => {
                 setRecords(e.eips);
                 setCalls(c.calls);

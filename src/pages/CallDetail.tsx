@@ -3,9 +3,9 @@ import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import usePageMeta from '../hooks/usePageMeta';
-import { loadEthCalls, type CallRecord, type CallSpeaker } from '../data/ethCallsData';
+import { loadEthCallsFull, type CallRecord, type CallSpeaker } from '../data/ethCallsData';
 import { loadEthDebates, type Debate } from '../data/ethDebatesData';
-import { eipUrl, loadEips } from '../data/eipsData';
+import { eipUrl, loadEipList } from '../data/eipsData';
 import Avatar from '../components/debates/Avatar';
 import RemarkModal from '../components/calls/RemarkModal';
 import { STATUS_DOT as DEBATE_STATUS_DOT, participantCount } from '../utils/debates';
@@ -85,9 +85,9 @@ const CallDetail: React.FC = () => {
     const [openQuotes, setOpenQuotes] = useState<Set<number>>(new Set());
 
     useEffect(() => {
-        loadEthCalls().then((file) => setCalls(file.calls));
+        loadEthCallsFull().then((file) => setCalls(file.calls));
         loadEthDebates().then(setDebates);
-        loadEips()
+        loadEipList()
             .then((f) => setExplained(new Set(f.eips.map((e) => e.number))))
             .catch(() => undefined);
     }, []);

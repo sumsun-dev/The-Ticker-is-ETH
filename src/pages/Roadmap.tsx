@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import usePageMeta from '../hooks/usePageMeta';
 import EipRef from '../components/eips/EipRef';
-import { loadEips } from '../data/eipsData';
+import { loadEipList } from '../data/eipsData';
 import { loadRoadmapExplainers } from '../data/roadmapExplainers';
 import { HISTORY_ERAS, HISTORY_KIND, ITEM_PILLAR, PILLARS, ROADMAP_HISTORY, type HistoryKind } from '../data/roadmapHistory';
 import { LAYERS, NORTH_STARS, ROADMAP_ITEMS, STRAWMAP_FORKS, STRAWMAP_UPDATED, STRAWMAP_URL, THROUGHLINES, itemSlug, roadmapGrid, type RoadmapItem } from '../data/roadmap';
@@ -57,7 +57,7 @@ const Roadmap: React.FC = () => {
     const [topics, setTopics] = useState<ReadonlySet<string>>(new Set());
     usePageMeta({ title: '로드맵', description: DESCRIPTION, canonical: '/roadmap' });
     useEffect(() => {
-        loadEips().then((f) => setKnown(new Set(f.eips.map((e) => e.number))));
+        loadEipList().then((f) => setKnown(new Set(f.eips.map((e) => e.number))));
         loadRoadmapExplainers().then((f) => setTopics(new Set(Object.keys(f.topics))));
     }, []);
     const grid = useMemo(() => roadmapGrid(), []);
