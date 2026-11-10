@@ -12,6 +12,7 @@
     "subscribe": "구독",
     "skipToContent": "본문으로 바로가기",
     "ercs": "ERC 해설",
+    "mandate": "EF Mandate",
     "groups": {
       "news": "소식",
       "protocol": "프로토콜",
@@ -24,6 +25,7 @@
       "calls": "매주 콜에서 정한 것과 다음 할 일",
       "eips": "프로토콜을 바꾸는 제안, 쉬운 설명과 심층 설명",
       "ercs": "토큰, 지갑, 앱이 함께 쓰는 표준",
+      "mandate": "이더리움 재단이 밝힌 역할과 원칙",
       "events": "밋업과 컨퍼런스 일정",
       "ecosystem": "한국 이더리움 생태계의 팀과 도구",
       "team": "ECK를 만드는 사람들",

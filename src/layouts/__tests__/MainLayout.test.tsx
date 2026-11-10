@@ -13,7 +13,7 @@ describe('MainLayout 상단 메뉴', () => {
         fireEvent.click(protocol);
         expect(protocol).toHaveAttribute('aria-expanded', 'true');
         const menu = document.getElementById('nav-protocol')!;
-        expect([...menu.querySelectorAll('a')].map((a) => a.getAttribute('href'))).toEqual(['/roadmap', '/forks', '/calls', '/eips', '/ercs']);
+        expect([...menu.querySelectorAll('a')].map((a) => a.getAttribute('href'))).toEqual(['/roadmap', '/forks', '/calls', '/eips', '/ercs', '/ef-mandate']);
         expect(menu.querySelector('a[aria-current="page"]')).toHaveAttribute('href', '/eips');
 
         fireEvent.keyDown(document, { key: 'Escape' });
