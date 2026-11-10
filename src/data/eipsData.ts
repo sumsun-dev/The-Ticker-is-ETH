@@ -50,6 +50,14 @@ export interface EipsFile {
 
 let pending: Promise<EipsFile> | null = null;
 
+let list: Promise<EipsFile> | null = null;
+
+/** 목록·검색·제목 조회용: 해설 본문이 빠진 판 (vite-json-slice.ts). 상세 화면은 loadEips */
+export function loadEipList(): Promise<EipsFile> {
+    list ??= import('./eips.json?list').then(({ default: data }) => data as EipsFile);
+    return list;
+}
+
 export async function loadEips(): Promise<EipsFile> {
     if (!pending) {
         pending = import('./eips.json')

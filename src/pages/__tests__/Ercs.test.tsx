@@ -29,7 +29,8 @@ const { rec } = vi.hoisted(() => ({
 
 vi.mock('../../data/ercsData', async (orig) => ({
     ...(await orig<typeof import('../../data/ercsData')>()),
-    loadErcs: vi.fn().mockResolvedValue({ updatedAt: '', ercs: [rec(20, '토큰 표준'), rec(2612, '서명으로 토큰 승인', [20, 712])] }),
+    loadErcList: vi.fn().mockImplementation(async () => ({ updatedAt: '', ercs: [rec(20, '토큰 표준'), rec(2612, '서명으로 토큰 승인', [20, 712])] })),
+    loadErcs: vi.fn().mockImplementation(async () => ({ updatedAt: '', ercs: [rec(20, '토큰 표준'), rec(2612, '서명으로 토큰 승인', [20, 712])] })),
     loadErcIndex: vi.fn().mockResolvedValue({
         updatedAt: '',
         ercs: [
@@ -40,7 +41,7 @@ vi.mock('../../data/ercsData', async (orig) => ({
         ],
     }),
 }));
-vi.mock('../../data/eipsData', async (orig) => ({ ...(await orig<typeof import('../../data/eipsData')>()), loadEips: vi.fn().mockResolvedValue({ eips: [] }) }));
+vi.mock('../../data/eipsData', async (orig) => ({ ...(await orig<typeof import('../../data/eipsData')>()), loadEipList: vi.fn().mockResolvedValue({ eips: [] }) }));
 vi.mock('../../data/ethNewsData', () => ({ loadEthDigests: vi.fn().mockResolvedValue([{ date: '2026-10-05', title: '', intro: '', sections: [{ heading: '', items: [{ title: 'ERC-2612 permit 피싱 주의', summary: '', url: '', source: '', date: '' }] }] }]) }));
 vi.mock('../../data/ethDebatesData', () => ({ loadEthDebates: vi.fn().mockResolvedValue([]) }));
 

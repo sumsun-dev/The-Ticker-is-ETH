@@ -4,8 +4,8 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import usePageMeta from '../hooks/usePageMeta';
 import StandardTabs from '../components/eips/StandardTabs';
-import { ERC_TOPICS, loadErcIndex, loadErcs, type ErcIndexEntry, type ErcRecord } from '../data/ercsData';
-import { loadEips } from '../data/eipsData';
+import { ERC_TOPICS, loadErcIndex, loadErcList, type ErcIndexEntry, type ErcRecord } from '../data/ercsData';
+import { loadEipList } from '../data/eipsData';
 import { ERC_STATUSES, ERC_STATUS_TEXT, baseStandards, dependentsOf, matchErc, sortErcs, standardHref, statusCounts } from '../utils/ercs';
 
 const CHIP = 'min-h-[36px] px-4 py-1.5 rounded-full text-sm font-medium transition-colors';
@@ -25,7 +25,7 @@ const Ercs: React.FC = () => {
     usePageMeta({ title: 'ERCs', description: t('description'), canonical: '/ercs' });
 
     useEffect(() => {
-        Promise.all([loadErcs(), loadErcIndex(), loadEips().catch(() => ({ eips: [] }))])
+        Promise.all([loadErcList(), loadErcIndex(), loadEipList().catch(() => ({ eips: [] }))])
             .then(([r, i, e]) => {
                 setRecords(r.ercs);
                 setIndex(i.ercs);

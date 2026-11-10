@@ -4,7 +4,7 @@ import usePageMeta from '../hooks/usePageMeta';
 import EipRef from '../components/eips/EipRef';
 import NotFound from './NotFound';
 import { FORKS, forkBySlug } from '../data/forks';
-import { loadEips } from '../data/eipsData';
+import { loadEipList } from '../data/eipsData';
 import { loadRoadmapExplainers, type ForkImpact } from '../data/roadmapExplainers';
 import { loadEthCalls, type CallRecord } from '../data/ethCallsData';
 import { ROADMAP_ITEMS, STRAWMAP_FORKS, itemSlug } from '../data/roadmap';
@@ -25,7 +25,7 @@ const ForkDetail: React.FC = () => {
     usePageMeta({ title: f ? `${f.name} 하드포크` : '하드포크', description: f?.summary ?? '', canonical: `/forks/${slug}` });
 
     useEffect(() => {
-        loadEips().then((x) => setTitles(new Map(x.eips.map((e) => [e.number, e.titleKo]))));
+        loadEipList().then((x) => setTitles(new Map(x.eips.map((e) => [e.number, e.titleKo]))));
         loadEthCalls().then((x) => setCalls(x.calls));
     }, []);
     useEffect(() => {

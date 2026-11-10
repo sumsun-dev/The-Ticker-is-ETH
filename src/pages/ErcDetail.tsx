@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import usePageMeta from '../hooks/usePageMeta';
 import { ercUrl, loadErcIndex, loadErcs, type ErcIndexEntry, type ErcRecord } from '../data/ercsData';
-import { loadEips } from '../data/eipsData';
+import { loadEipList } from '../data/eipsData';
 import { loadEthDigests, type EthDigest } from '../data/ethNewsData';
 import { loadEthDebates, type Debate } from '../data/ethDebatesData';
 import { ERC_STATUS_TEXT, dependentsOf, digestMentions, standardHref } from '../utils/ercs';
@@ -37,7 +37,7 @@ const ErcDetail: React.FC = () => {
     useEffect(() => {
         loadErcs().then((f) => setRecords(f.ercs));
         loadErcIndex().then((f) => setIndex(f.ercs));
-        loadEips()
+        loadEipList()
             .then((f) => setEipSet(new Set(f.eips.map((x) => x.number))))
             .catch(() => undefined);
         loadEthDigests().then(setDigests).catch(() => undefined);

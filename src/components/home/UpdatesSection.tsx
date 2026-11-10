@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight, Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { loadResearchIndex, type ResearchIndexItem } from '../../data/researchData';
+import { type ResearchIndexItem } from '../../data/researchData';
 import EthThumbnail from '../shared/EthThumbnail';
 
 const UpdatesSection: React.FC = () => {
@@ -11,7 +11,8 @@ const UpdatesSection: React.FC = () => {
     const [latestUpdates, setLatestUpdates] = useState<ResearchIndexItem[]>([]);
 
     useEffect(() => {
-        loadResearchIndex().then(data => setLatestUpdates(data.slice(0, 3)));
+        // 색인은 최신순. 홈은 앞 3개만 빌드 때 잘라 받는다 (vite-json-slice.ts)
+        import('../../data/research-index.json?head=3').then(({ default: data }) => setLatestUpdates(data as ResearchIndexItem[]));
     }, []);
 
     return (
