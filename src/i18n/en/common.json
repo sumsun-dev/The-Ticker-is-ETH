@@ -12,6 +12,7 @@
     "subscribe": "Subscribe",
     "skipToContent": "Skip to main content",
     "ercs": "ERCs",
+    "mandate": "EF Mandate",
     "groups": {
       "news": "News",
       "protocol": "Protocol",
@@ -24,6 +25,7 @@
       "calls": "What core devs decided each week",
       "eips": "Protocol changes, explained simply and in depth",
       "ercs": "Standards shared by tokens, wallets and apps",
+      "mandate": "The Ethereum Foundation's role and principles",
       "events": "Meetups and conferences",
       "ecosystem": "Teams and tools in Korea's Ethereum ecosystem",
       "team": "The people behind ECK",

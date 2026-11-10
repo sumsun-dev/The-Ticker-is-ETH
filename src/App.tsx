@@ -14,6 +14,7 @@ const Team = React.lazy(() => import('./pages/Team'));
 const MemberDetail = React.lazy(() => import('./pages/MemberDetail'));
 const Events = React.lazy(() => import('./pages/Events'));
 const EventDevcon8 = React.lazy(() => import('./pages/EventDevcon8'));
+const EfMandate = React.lazy(() => import('./pages/EfMandate'));
 const EventGenesis = React.lazy(() => import('./pages/EventGenesis'));
 const Contents = React.lazy(() => import('./pages/Contents'));
 const ContentsDetail = React.lazy(() => import('./pages/ContentsDetail'));
@@ -63,6 +64,7 @@ const AppRoutes: React.FC = () => {
           <Route path="/events" element={<Events />} />
           <Route path="/events/ek1-genesis" element={<EventGenesis />} />
           <Route path="/events/devcon-8" element={<EventDevcon8 />} />
+          <Route path="/ef-mandate" element={<EfMandate />} />
           <Route path="/contents" element={<Contents />} />
           <Route path="/contents/:id" element={<ContentsDetail />} />
           <Route path="/contents/videos" element={<Navigate to="/contents?category=Video" replace />} />
