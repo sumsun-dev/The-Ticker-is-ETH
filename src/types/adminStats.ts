@@ -20,10 +20,12 @@ export interface SiteWeek {
   notFound: Ranked;
   /** AI 답변 엔진 노출(AEO). 2026년 11월 수집부터 있다 */
   aeo?: AeoWeek;
+  /** visitors 중 자동 방문으로 보이는 수, 출처별 (클라우드 데이터센터 IP·검색엔진 렌더링). 2026-11-10 수집부터 있다 */
+  automated?: Ranked;
 }
 
 /** 하루치 홈페이지 상세. 하루로 셀 수 없는 시간대(peakHour)·일별 분포(daily)는 뺀다 */
-export type SiteDay = Pick<SiteWeek, 'newVisitors' | 'mobilePct' | 'sections' | 'topPages' | 'sources' | 'refHosts' | 'bots' | 'notFound' | 'aeo'>;
+export type SiteDay = Pick<SiteWeek, 'newVisitors' | 'mobilePct' | 'sections' | 'topPages' | 'sources' | 'refHosts' | 'bots' | 'notFound' | 'aeo' | 'automated'>;
 
 /** [경로, AI 답변·색인 봇 요청(학습 수집 제외), 사람 첫 진입] */
 export type AeoPage = [string, number, number];
@@ -50,20 +52,6 @@ export interface WeekRecord {
 export interface TgPostRecord { id: number; date: string; views: number; text: string }
 export interface LiPostRecord { title: string; urn: string; date: string; impressions: number; reactions: number; comments: number }
 
-/** 주간 수집 때 claude가 쓴 기간 분석 (scripts/lib/stats-insights.ts) */
-export interface AiInsight {
-  /** 기간 키: 주는 월요일(YYYY-MM-DD), 월은 YYYY-MM */
-  key: string;
-  mode: 'week' | 'month';
-  generatedAt: string;
-  model: string;
-  headline: string;
-  summary: string;
-  highlights: Array<{ channel: 'site' | 'telegram' | 'linkedin' | 'overall'; title: string; detail: string; tone: 'up' | 'down' | 'neutral' }>;
-  actions: string[];
-  caveats: string[];
-}
-
 export interface StatsHistory {
   updatedAt: string;
   channel: string;
@@ -76,6 +64,4 @@ export interface StatsHistory {
   tgPosts: TgPostRecord[];
   /** 링크드인 글. comments는 자동 첫 댓글을 뺀 수 */
   liPosts: LiPostRecord[];
-  /** 기간별 AI 분석. 없으면 대시보드는 규칙 기반 인사이트만 보여 준다 */
-  aiInsights?: AiInsight[];
 }

@@ -9,11 +9,8 @@
  *   npx tsx scripts/local/weekly-stats.ts             # 집계 후 DM, 대시보드 기록 갱신
  *   npx tsx scripts/local/weekly-stats.ts --dry       # 출력만 (DM·스냅샷·기록 저장 안 함)
  *   npx tsx scripts/local/weekly-stats.ts --backfill  # DM 없이 남아 있는 과거 데이터(채널 글 전체, 링크드인 표, 로그 14일)로 기록만 채움
- *   npx tsx scripts/local/weekly-stats.ts --insights  # 수집 없이 지금 기록으로 AI 분석(지난주·이번 달)만 다시 만들어 올림
- *   --site-only                                       # 홈페이지 로그(일별 상세 포함)만 다시 집계해 기록에 합침 (DM·텔레그램·링크드인·AI 없음)
- *   --no-ai                                           # 기록 갱신 때 AI 분석을 건너뜀
- * Env: TELEGRAM_BOT_TOKEN, LINKEDIN_ALERT_CHAT|VITALIK_ALERT_CHAT, WP_HOST (기본 wp-vps), TG_CHANNEL (기본 thetickeriseth), WEEK_END (YYYY-MM-DD, 수동 구간),
- *      STATS_INSIGHT_MODEL (기본 fable, 한도 소진 시 lib/claude가 opus로 대체)
+ *   --site-only                                       # 홈페이지 로그(일별 상세·지난주 기록)만 다시 집계해 기록에 합침 (DM·텔레그램·링크드인 없음)
+ * Env: TELEGRAM_BOT_TOKEN, LINKEDIN_ALERT_CHAT|VITALIK_ALERT_CHAT, WP_HOST (기본 wp-vps), TG_CHANNEL (기본 thetickeriseth), WEEK_END (YYYY-MM-DD, 수동 구간)
  */
 import { execFileSync } from 'node:child_process';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
@@ -21,9 +18,6 @@ import { homedir } from 'node:os';
 import { join } from 'node:path';
 import * as dotenv from 'dotenv';
 import { emptyHistory, formatReport, lastWeek, mergeHistory, parseLinkedIn, parseLogLine, parseTgPosts, prevWeek, siteStats, inWindowKst, type HistoryUpdate, type LiPost, type LiStats, type SiteStats, type LogLine, type Report, type Snapshot, type TgPost, type Window } from '../lib/weekly-stats';
-import { withAiInsights } from '../lib/stats-insights';
-import { runClaude } from '../lib/claude';
-import { kstDate } from '../../src/utils/adminStats';
 import type { StatsHistory, WeekRecord } from '../../src/types/adminStats';
 
 dotenv.config({ path: join(process.cwd(), '.env.local') });
@@ -31,10 +25,7 @@ dotenv.config({ path: join(process.cwd(), '.env') });
 
 const DRY = process.argv.includes('--dry');
 const BACKFILL = process.argv.includes('--backfill');
-const INSIGHTS_ONLY = process.argv.includes('--insights');
-const NO_AI = process.argv.includes('--no-ai');
 const SITE_ONLY = process.argv.includes('--site-only');
-const INSIGHT_MODEL = process.env.STATS_INSIGHT_MODEL ?? 'fable';
 const CHANNEL = process.env.TG_CHANNEL ?? 'thetickeriseth';
 const WP_HOST = process.env.WP_HOST ?? 'wp-vps';
 const SNAP = join(homedir(), '.eck', 'weekly-stats.json');
@@ -147,35 +138,8 @@ async function send(text: string) {
   if (!res.ok) throw new Error(`sendMessage ${res.status}: ${await res.text()}`);
 }
 
-/** 기간 하나당 AI 분석 시간 상한 */
-const INSIGHT_TIMEOUT_MS = 6 * 60 * 1000;
-
-/** 지난주·이번 달 AI 분석을 붙인다. 어떤 이유로 실패해도 들어온 기록을 그대로 돌려준다 */
-function addAiInsights(h: StatsHistory, now: Date): StatsHistory {
-  try {
-    const run = (prompt: string) => runClaude(prompt, INSIGHT_MODEL, INSIGHT_TIMEOUT_MS, { noTools: true });
-    const { history, errors } = withAiInsights(h, kstDate(now.toISOString()), run, INSIGHT_MODEL, now);
-    for (const e of errors) log(`AI 분석 실패 ${e}`);
-    log(`AI 분석: 실패 ${errors.length}건, 누적 ${history.aiInsights?.length ?? 0}개`);
-    return history;
-  } catch (e) {
-    log(`AI 분석 건너뜀: ${asError(e).message.split('\n')[0]}`);
-    return h;
-  }
-}
-
 async function main() {
   const now = new Date();
-  if (INSIGHTS_ONLY) {
-    const history = addAiInsights(loadHistory(), now);
-    if (DRY) {
-      process.stdout.write(`${JSON.stringify(history.aiInsights?.slice(-2), null, 2)}
-`);
-      return;
-    }
-    saveHistory(history);
-    return;
-  }
   const w = window();
   const prev = existsSync(SNAP) ? (JSON.parse(readFileSync(SNAP, 'utf-8')) as Snapshot) : undefined;
   const report: Report = { w, prev: prev && prev.week < w.start ? prev : undefined };
@@ -189,8 +153,8 @@ async function main() {
     const days = fullDays(lines, now);
     update.siteDaily = days.map((d) => {
       const s = siteStats(lines, { start: d, end: d });
-      const { newVisitors, mobilePct, sections, topPages, sources, refHosts, bots, notFound, aeo } = s;
-      return { date: d, visitors: s.visitors, pageLoads: s.pageLoads, site: { newVisitors, mobilePct, sections, topPages, sources, refHosts, bots, notFound, aeo } };
+      const { newVisitors, mobilePct, sections, topPages, sources, refHosts, bots, notFound, aeo, automated } = s;
+      return { date: d, visitors: s.visitors, pageLoads: s.pageLoads, site: { newVisitors, mobilePct, sections, topPages, sources, refHosts, bots, notFound, aeo, automated } };
     });
     // 백필이면 로그가 온전히 덮는 지난 주들도 주 기록으로 남긴다
     const mondays = BACKFILL ? days.filter((d) => new Date(d).getUTCDay() === 1 && days.includes(iso(Date.parse(d) + 6 * DAY))) : [w.start];
@@ -207,10 +171,10 @@ async function main() {
       process.stdout.write(`${JSON.stringify(update.siteDaily?.slice(-1), null, 2)}\n`);
       return;
     }
-    // 주 기록은 건드리지 않고(텔레그램·링크드인 값 보존) 일별만 합친다
+    // 일별과 지난주의 홈페이지 기록만 바꾼다. mergeHistory는 주 기록의 텔레그램·링크드인 값을 그대로 둔다
     // 마지막 수집 시각(updatedAt)은 전체 수집 기준이라 그대로 둔다
     const old = loadHistory();
-    saveHistory({ ...mergeHistory(old, { siteDaily: update.siteDaily }, now), updatedAt: old.updatedAt || now.toISOString() });
+    saveHistory({ ...mergeHistory(old, { siteDaily: update.siteDaily, weeks: update.weeks }, now), updatedAt: old.updatedAt || now.toISOString() });
     log(`일별 홈페이지 기록 갱신: ${update.siteDaily?.length ?? 0}일`);
     return;
   }
@@ -241,7 +205,6 @@ async function main() {
   process.stdout.write(`${text}\n`);
   if (DRY) return;
 
-  // 수집한 기록과 DM이 먼저다. AI 분석은 그 뒤에 따로 붙여 한 번 더 올린다 (느리거나 막혀도 위가 빠지지 않게)
   const history = mergeHistory(loadHistory(), update, now);
   saveHistory(history);
   log(`대시보드 기록 갱신: 주 ${history.weeks.length}개, 일 ${history.siteDaily.length}일, 텔레그램 글 ${history.tgPosts.length}개, 링크드인 글 ${history.liPosts.length}개`);
@@ -255,17 +218,6 @@ async function main() {
   };
   writeFileSync(SNAP, JSON.stringify(snap, null, 2));
   log(`DM 전송, 스냅샷 저장 (${w.start} ~ ${w.end})`);
-  if (!NO_AI) saveWithInsights(history, now);
-}
-
-function saveWithInsights(history: StatsHistory, now: Date) {
-  const withAi = addAiInsights(history, now);
-  if (withAi === history) return;
-  try {
-    saveHistory(withAi);
-  } catch (e) {
-    log(`AI 분석 저장 실패: ${asError(e).message.split('\n')[0]}`);
-  }
 }
 
 main().catch((e) => {

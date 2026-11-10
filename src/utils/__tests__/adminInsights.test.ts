@@ -8,8 +8,6 @@ import {
   monthlyTg,
   timeHeat,
   bestSlot,
-  ruleInsights,
-  findAiInsight,
 } from '../adminInsights';
 import { summarize, type Period, type Summary } from '../adminStats';
 import type { StatsHistory, TgPostRecord } from '../../types/adminStats';
@@ -118,36 +116,6 @@ describe('summarize 추가 지표', () => {
   it('링크드인 기록이 기간을 다 덮지 못하면 참여율도 null', () => {
     const late = { ...h, liPosts: h.liPosts.slice(1) };
     expect(summarize(late, p('2026-10-12', '2026-10-18')).liEngagement).toBeNull();
-  });
-});
-
-describe('ruleInsights', () => {
-  it('지난 기간과 비교하고, 눈에 띄는 글과 크롤러를 짚는다', () => {
-    const cur = summarize(h, p('2026-10-12', '2026-10-18'));
-    const prev = summarize(h, p('2026-10-05', '2026-10-11'));
-    const list = ruleInsights({ cur, prev, types: typeBreakdown(h.tgPosts, NOW), slot: null });
-    const texts = list.map((x) => x.text);
-    expect(list[0]).toMatchObject({ channel: 'telegram', tone: 'up' });
-    expect(texts[0]).toContain('글당 평균 조회 250회');
-    expect(texts[0]).toContain('+150%');
-    expect(texts.some((t) => t.includes('컨퍼런스 보고서') && t.includes('1.6배'))).toBe(true);
-    expect(texts.some((t) => t.includes('참여율 4%'))).toBe(true);
-  });
-
-  it('조회가 아직 쌓이는 글이 있으면 주의 문구를 단다', () => {
-    const fresh = { ...h, tgPosts: [...h.tgPosts, post(9, '2026-10-24T00:00:00Z', 3, 'x')] };
-    const cur = summarize(fresh, p('2026-10-19', '2026-10-25'));
-    const list = ruleInsights({ cur, prev: null, types: [], slot: null });
-    expect(list.some((x) => x.tone === 'caveat' && x.text.includes('1개'))).toBe(true);
-  });
-});
-
-describe('findAiInsight', () => {
-  it('선택한 기간의 AI 분석, 없으면 null', () => {
-    const ai = { key: '2026-10-12', mode: 'week' as const, generatedAt: NOW, model: 'm', headline: 'h', summary: 's', highlights: [], actions: [], caveats: [] };
-    expect(findAiInsight({ ...h, aiInsights: [ai] }, '2026-10-12')).toBe(ai);
-    expect(findAiInsight({ ...h, aiInsights: [ai] }, '2026-10-19')).toBeNull();
-    expect(findAiInsight(h, '2026-10-12')).toBeNull();
   });
 });
 

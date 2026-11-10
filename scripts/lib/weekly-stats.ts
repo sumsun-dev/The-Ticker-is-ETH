@@ -69,6 +69,22 @@ export function refererSource(referer: string, site = 'ethcollective.xyz'): stri
 export type SiteStats = SiteWeek;
 
 const MOBILE_UA = /Mobile|Android|iPhone|iPad/;
+
+/**
+ * 실제 브라우저처럼 JS까지 받아 가지만 사람이 아닌 방문. 방문자에서 빼지 않고 따로 센다.
+ * 2026-11 로그에서 사람으로 잡힌 접속의 대부분이 텐센트 클라우드(Aceville Pte Ltd) 대역의 데스크톱 크롬이었다 (11-05 하루 286명 중 약 260).
+ * ponytail: /16 앞자리 목록. 다른 클라우드가 늘면 whois로 확인해 추가한다
+ */
+const CLOUD_IPS: Array<[string, RegExp]> = [
+  ['텐센트 클라우드', /^(43\.(12[89]|1[3-8]\d|19[01])|101\.3[23]|124\.156|150\.109|119\.28|129\.226)\./],
+  ['화웨이 클라우드', /^(116\.204|121\.37)\./],
+  ['바이두', /^114\.111\./],
+];
+/** IP+UA 키가 자동 방문이면 그 출처, 아니면 null */
+export function automatedSource(ip: string, ua: string): string | null {
+  if (SEARCH_BOTS.test(ua)) return '검색엔진 렌더링';
+  return CLOUD_IPS.find(([, re]) => re.test(ip))?.[0] ?? null;
+}
 const SEARCH_BOTS = /Googlebot|bingbot|Yeti|DuckDuckBot|Applebot|Daum|YandexBot|Baiduspider/i;
 type AiKind = '학습 수집' | '검색 색인' | '실시간 답변';
 /** 회사가 공개한 크롤러 이름(User-Agent). 이름을 속인 봇은 못 거른다. 위에서부터 처음 맞는 것 하나로 센다 */
@@ -161,6 +177,11 @@ export function siteStats(lines: LogLine[], w: Window): SiteStats {
   const humanLoads = new Map(count(pages.map((l) => clean(l.path))));
   return {
     visitors: humans.size,
+    automated: count([...humans].flatMap((k) => {
+      const [ip, ...ua] = k.split('|');
+      const src = automatedSource(ip, ua.join('|'));
+      return src ? [src] : [];
+    })),
     newVisitors: [...humans].filter((k) => !seenBefore.has(k)).length,
     pageLoads: pages.length,
     mobilePct: humans.size ? Math.round((100 * [...humans].filter((k) => MOBILE_UA.test(k)).length) / humans.size) : 0,

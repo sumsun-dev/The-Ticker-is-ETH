@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { aiReferral, isProbe, bars, emptyHistory, formatReport, lastWeek, liWeek, mergeHistory, parseCount, parseLinkedIn, parseLogLine, parseTgPosts, refererSource, siteStats, type LogLine } from '../lib/weekly-stats';
+import { aiReferral, automatedSource, isProbe, bars, emptyHistory, formatReport, lastWeek, liWeek, mergeHistory, parseCount, parseLinkedIn, parseLogLine, parseTgPosts, refererSource, siteStats, type LogLine } from '../lib/weekly-stats';
 
 const line = (ip: string, when: string, path: string, ref = '-', ua = 'Mozilla/5.0 (Macintosh) Chrome/130') =>
   `${ip} - - [${when} +0000] "GET ${path} HTTP/2.0" 200 100 "${ref}" "${ua}" ethcollective.xyz`;
@@ -177,5 +177,30 @@ describe('weekly-stats', () => {
     expect(second.tgPosts.map((p) => [p.id, p.views])).toEqual([[1, 9], [2, 10]]);
     expect(second.liPosts).toEqual([{ title: 't', urn: 'u', date: '2026-10-12', impressions: 3, reactions: 0, comments: 0 }]);
     expect(second.updatedAt).toBe('2026-10-26T00:00:00.000Z');
+  });
+});
+
+describe('automated visits', () => {
+  it('should classify cloud datacenter IPs and search renderers, leaving normal ISPs as people', () => {
+    expect(automatedSource('43.156.10.10', 'Mozilla/5.0 (Windows NT 10.0) Chrome/130')).toBe('텐센트 클라우드');
+    expect(automatedSource('129.226.1.1', 'Mozilla/5.0 (Macintosh) Chrome/130')).toBe('텐센트 클라우드');
+    expect(automatedSource('121.37.1.1', 'Mozilla/5.0 (Macintosh) Chrome/130')).toBe('화웨이 클라우드');
+    expect(automatedSource('5.5.5.5', 'Mozilla/5.0 (compatible; Yeti/1.1; +https://naver.me/spd)')).toBe('검색엔진 렌더링');
+    expect(automatedSource('125.209.1.1', 'Mozilla/5.0 (iPhone) Mobile Safari')).toBeNull();
+    expect(automatedSource('43.192.1.1', 'Mozilla/5.0 (Macintosh) Chrome/130')).toBeNull();
+  });
+
+  it('should keep automated visitors in the total and count them by source', () => {
+    const lines = parse([
+      line('43.156.10.10', '13/Oct/2026:01:00:00', '/news'),
+      line('43.156.10.10', '13/Oct/2026:01:00:01', '/assets/index-abc.js', 'https://ethcollective.xyz/news'),
+      line('5.5.5.5', '13/Oct/2026:02:00:00', '/', '-', 'Mozilla/5.0 (compatible; Yeti/1.1)'),
+      line('5.5.5.5', '13/Oct/2026:02:00:01', '/assets/index-abc.js', '-', 'Mozilla/5.0 (compatible; Yeti/1.1)'),
+      line('125.209.1.1', '13/Oct/2026:03:00:00', '/'),
+      line('125.209.1.1', '13/Oct/2026:03:00:01', '/assets/index-abc.js'),
+    ]);
+    const s = siteStats(lines, { start: '2026-10-12', end: '2026-10-18' });
+    expect(s.visitors).toBe(3);
+    expect(s.automated).toEqual([['텐센트 클라우드', 1], ['검색엔진 렌더링', 1]]);
   });
 });

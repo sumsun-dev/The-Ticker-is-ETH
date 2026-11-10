@@ -1,8 +1,8 @@
 /** 성과 대시보드 탭 내용: 텔레그램, 기여자, 홈페이지, 링크드인. 위에서부터 수치 인사이트, 추이, 분포, 순위, 기간별 표 */
-import React, { useId } from 'react';
+import React, { useId, useState } from 'react';
 import type { AeoWeek, StatsHistory } from '../../types/adminStats';
 import type { Period, Summary } from '../../utils/adminStats';
-import { kstDate } from '../../utils/adminStats';
+import { automatedTotal, kstDate } from '../../utils/adminStats';
 import {
   blockLabel,
   DAY_LABELS,
@@ -19,7 +19,7 @@ import {
   type TypeRow,
 } from '../../utils/adminInsights';
 import { liThumb, pageThumb, tgThumb, type ThumbIndex } from '../../utils/adminMedia';
-import { AreaChart, HBars, Heatmap, Scatter, StackedBars, TrendChart } from './charts';
+import { HBars, Heatmap, Scatter, StackedBars, TrendChart } from './charts';
 import { FactGrid, MediaList, MemberTable, Panel, PeriodTable } from './ui';
 import { CHANNEL, n } from './theme';
 
@@ -197,18 +197,54 @@ export const MembersPane: React.FC<{ data: StatsHistory; cur: Summary; members: 
 
 export const SitePane: React.FC<{ data: StatsHistory; cur: Summary; prev: Summary | null; period: Period; series: SeriesRow[]; idx: ThumbIndex }> = ({ data, cur, prev, period, series, idx }) => {
   const { color } = CHANNEL.site;
-  const daily = data.siteDaily.map((d) => ({ key: d.date, label: dot(d.date), value: d.visitors }));
+  // 자동 방문 분류(2026-11-10 수집)가 없는 날은 '구분 전'으로 둔다
+  const daily = data.siteDaily.map((d) => {
+    const auto = automatedTotal(d.site?.automated);
+    const parts: Array<[string, number]> = auto === null ? [['구분 전', d.visitors]] : [['사람(추정)', d.visitors - auto], ['자동 방문', auto]];
+    return { key: d.date, label: dot(d.date), parts };
+  });
+  const autoNow = automatedTotal(cur.automated);
+  // 수집기가 몰린 날 하나가 그래프를 덮지 않게 기본은 사람(추정)만 보여 준다. 구분 전 날짜는 자동 방문이 섞인 숫자라 이 보기에서 뺀다
+  const [allVisits, setAllVisits] = useState(false);
+  const shown = allVisits
+    ? daily.slice(-31)
+    : daily.filter((r) => r.parts.some(([k]) => k === '사람(추정)')).slice(-31).map((r) => ({ ...r, parts: r.parts.filter(([k]) => k === '사람(추정)') }));
   const site = cur.site;
   const srcTotal = site ? site.sources.reduce((a, [, v]) => a + v, 0) : 0;
   const logged = series.filter((s) => s.sum.siteDays > 0);
 
   return (
     <div className="space-y-10">
-      <Info>ethcollective.xyz 서버 로그 기준 · 로그는 14일만 남아 2026년 10월부터 쌓임</Info>
+      <Info>ethcollective.xyz 서버 로그 기준 · 로그는 14일만 남아 2026년 10월부터 쌓임 · 자동 방문은 실제 브라우저처럼 접속한 클라우드 데이터센터·검색엔진 렌더링으로, 방문자에 포함해 따로 표시</Info>
       <FactGrid facts={siteFacts(cur, prev, data.siteDaily.filter((d) => inPeriod(d.date, period)))} />
       <Row cols="lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
-        <Panel title="일별 방문자" hint={`기록 ${daily.length}일 · 음영은 선택한 기간`}>
-          {daily.length ? <AreaChart points={daily} color={color} highlight={(d) => inPeriod(d, period)} unit="명" /> : <Empty>기록 없음</Empty>}
+        <Panel title="일별 방문자" hint={allVisits ? `기록 ${daily.length}일` : `구분 기록이 있는 ${shown.length}일`}>
+          {daily.length ? (
+            <>
+              <div className="mb-3 flex gap-1.5" role="group" aria-label="일별 방문자 보기">
+                {([false, true] as const).map((all) => (
+                  <button
+                    key={String(all)}
+                    type="button"
+                    aria-pressed={allVisits === all}
+                    onClick={() => setAllVisits(all)}
+                    className={`rounded-full border px-2.5 py-0.5 text-[11px] ${allVisits === all ? 'border-theme-text bg-theme-text text-theme-bg' : 'border-theme-border text-theme-text-secondary'}`}
+                  >
+                    {all ? '자동 방문 포함' : '사람(추정)만'}
+                  </button>
+                ))}
+              </div>
+              <StackedBars rows={shown} colors={allVisits ? { '사람(추정)': color, '자동 방문': '#A1A1AA', '구분 전': '#D4D4D8' } : { '사람(추정)': color }} unit="명" selected={period.start === period.end ? period.start : undefined} />
+              {cur.visitors !== null && autoNow !== null && (
+                <p className="mt-3 text-xs leading-relaxed text-theme-text-secondary">
+                  이 기간 방문자 {n(cur.visitors)}명 = 사람(추정) <b className="text-theme-text">{n(cur.visitors - autoNow)}</b>명 + 자동 방문 {n(autoNow)}명
+                  {cur.automated && cur.automated.length > 0 && <span className="text-theme-text-muted"> ({cur.automated.map(([k, v]) => `${k} ${n(v)}`).join(', ')})</span>}
+                </p>
+              )}
+            </>
+          ) : (
+            <Empty>기록 없음</Empty>
+          )}
         </Panel>
         <Panel title="유입 경로" hint="첫 진입 기준">
           {site ? (
@@ -256,6 +292,7 @@ export const SitePane: React.FC<{ data: StatsHistory; cur: Summary; prev: Summar
             selected={period.key}
             columns={[
               { label: '방문자', get: (s: Summary) => s.visitors },
+              { label: '자동 방문', get: (s: Summary) => automatedTotal(s.automated) },
               { label: 'AI 답변 유입', get: (s: Summary) => (s.site?.aeo ? s.site.aeo.referrals.reduce((a, [, v]) => a + v, 0) : null) },
               { label: '첫 진입', get: (s: Summary) => s.pageLoads },
               { label: '로그 일수', get: (s: Summary) => s.siteDays },
