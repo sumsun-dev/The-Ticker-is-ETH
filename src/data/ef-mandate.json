@@ -303,26 +303,6 @@
       "answer": "세련된 언어, 평판, 동료의 지지보다 그 팀이 반복해서 택하는 절충과 실제 설계를 봅니다. 첫 버전이 완성될 필요는 없고, 공개적으로 만들어 다른 팀이 이어받을 수 있으면 됩니다."
     }
   ],
-  "reception": [
-    {
-      "source": "CoinDesk",
-      "date": "2026-03-16",
-      "url": "https://www.coindesk.com/tech/2026/03/16/ethereum-foundation-s-new-mandate-sparks-debate-about-its-role-priorities",
-      "point": "지지 측은 창립 가치를 재확인하고 제품보다 관리에 집중한다는 점을 반겼고, 단크라드 파이스트(Dankrad Feist) 등 비판 측은 지나치게 철학적이며 실사용 확산에 소홀하다고 지적했습니다."
-    },
-    {
-      "source": "The Block",
-      "date": "2026-03-27",
-      "url": "https://www.theblock.co/post/395541/miladys-loyalty-pledge-unnecessary-culture-schism-ethereum-community",
-      "point": "직원들에게 Mandate 충성 서약을 요구했다는 보도(매체는 확인하지 못했다고 밝힘)와 Milady NFT를 떠올리게 하는 문서 디자인을 두고 개발자들 사이에 논쟁이 벌어졌다고 전했습니다."
-    },
-    {
-      "source": "The Defiant",
-      "date": "2026-03-27",
-      "url": "https://thedefiant.io/newsletter/defi-daily/the-ef-can-t-be-credibly-neutral-while-playing-favorites",
-      "point": "재단이 스스로를 신뢰할 수 있는 중립적 관리자라고 하면서 특정 문화와 브랜드를 가까이하고 서약을 요구한 것은 그 중립성과 어긋난다고 비판했습니다."
-    }
-  ],
   "glossary": [
     {
       "term": "CROPS",

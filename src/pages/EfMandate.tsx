@@ -26,7 +26,6 @@ interface MandateData {
     sections: Section[];
     principles: { technical: Array<{ name: string; body: string }>; social: Array<{ name: string; body: string }> };
     quandaries: Array<{ question: string; answer: string }>;
-    reception: Array<{ source: string; date: string; url: string; point: string }>;
     glossary: Array<{ term: string; body: string }>;
 }
 
@@ -96,7 +95,7 @@ const ChapterBlock: React.FC<{ s: Section }> = ({ s }) => (
                 </div>
             ))}
             {s.quote && (
-                <blockquote className="mt-6 rounded-xl border-l-2 border-brand-accent bg-brand-accent/[0.06] px-5 py-4">
+                <blockquote className="mt-6 rounded-xl bg-brand-accent/[0.06] px-5 py-4">
                     <Quote size={16} className="mb-2 text-brand-accent" aria-hidden />
                     <p className="text-[15px] font-medium leading-relaxed text-theme-text">{s.quote.ko}</p>
                     <p className="mt-1.5 text-[13px] italic text-theme-text-muted">“{s.quote.en}”</p>
@@ -234,23 +233,7 @@ const EfMandate: React.FC = () => {
                     </section>
                 )}
 
-                <div className="grid gap-10 pt-16 md:grid-cols-2">
-                    {D.reception.length > 0 && (
-                        <section aria-labelledby="mandate-reception">
-                            <SectionHead id="mandate-reception" title="발표 뒤 반응" />
-                            <ul className="grid gap-3">
-                                {D.reception.map((r) => (
-                                    <li key={r.url} className="text-sm leading-relaxed text-theme-text-secondary">
-                                        <a href={r.url} target="_blank" rel="noopener noreferrer" className="font-semibold text-brand-accent hover:underline">
-                                            {r.source}
-                                        </a>{' '}
-                                        <span className="tabular-nums text-theme-text-muted">{r.date}</span>
-                                        <p className="mt-0.5">{r.point}</p>
-                                    </li>
-                                ))}
-                            </ul>
-                        </section>
-                    )}
+                <div className="pt-16">
                     {D.glossary.length > 0 && (
                         <section aria-labelledby="mandate-glossary">
                             <SectionHead id="mandate-glossary" title="용어 풀이" />
