@@ -39,6 +39,8 @@ export interface Metric {
   deltaSuffix?: string;
   emptyReason?: string;
   note?: string;
+  /** 숫자 아래에 늘 보이는 짧은 설명 (예: 사람·자동 방문 구분) */
+  sub?: string;
   /** 누적 지표(글 수·방문자 등)는 진행 중인 기간을 다 끝난 기간과 비교하지 않는다 */
   cumulative?: boolean;
 }
@@ -60,6 +62,7 @@ export const ChannelKpis: React.FC<{ channel: ChannelKey; metrics: Metric[]; ong
               <span className="text-[22px] font-semibold tracking-tight tabular-nums text-theme-text">{m.value === null ? '–' : n(m.value)}</span>
               {m.value !== null && m.unit && <span className="text-xs text-theme-text-muted">{m.unit}</span>}
             </div>
+            {m.sub && <div className="mt-0.5 text-[11px] leading-snug text-theme-text-secondary">{m.sub}</div>}
             <div className="mt-0.5 truncate text-xs">
               {ongoing && m.cumulative && m.value !== null ? (
                 <span className="text-theme-text-muted">진행 중</span>

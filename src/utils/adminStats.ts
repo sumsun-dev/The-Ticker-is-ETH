@@ -85,6 +85,8 @@ export interface Summary {
   visitors: number | null;
   pageLoads: number | null;
   siteDays: number;
+  /** visitors 중 자동 방문(클라우드 데이터센터·검색엔진 렌더링), 출처별. 분류 기록(2026-11-10 수집)이 없는 기간은 null */
+  automated: Ranked | null;
   site?: Pick<SiteWeek, 'sources' | 'sections' | 'topPages' | 'refHosts'> & { bots: SiteWeek['bots']; aeo?: AeoWeek; newVisitors?: number; mobilePct?: number; daily?: Ranked };
   titles: Record<string, string>;
   tgPosts: number;
@@ -105,6 +107,12 @@ export interface Summary {
   topTg: TgPostRecord[];
   topLi: LiPostRecord[];
 }
+
+/** 합칠 목록이 없으면 null (분류 기록이 없는 기간) */
+const mergeOrNull = (xs: Ranked[]): Ranked | null => (xs.length ? mergeRanked(xs) : null);
+
+/** 자동 방문 합계 */
+export const automatedTotal = (r: Ranked | null | undefined): number | null => (r ? r.reduce((a, [, v]) => a + v, 0) : null);
 
 export function summarize(h: StatsHistory, p: Period): Summary {
   const days = h.siteDaily.filter((d) => inP(d.date, p));
@@ -128,6 +136,7 @@ export function summarize(h: StatsHistory, p: Period): Summary {
     visitors: exactWeek ? exactWeek.visitors : days.length && !(weekMode && days.length < 7) ? sum(days.map((d) => d.visitors)) : null,
     pageLoads: exactWeek ? exactWeek.pageLoads : days.length && !(weekMode && days.length < 7) ? sum(days.map((d) => d.pageLoads)) : null,
     siteDays: days.length,
+    automated: exactWeek ? (exactWeek.automated ?? null) : mergeOrNull(days.flatMap((d) => (d.site?.automated ? [d.site.automated] : []))),
     site: daySite
       ? { sources: daySite.sources, sections: daySite.sections, topPages: daySite.topPages, refHosts: daySite.refHosts, bots: daySite.bots, aeo: daySite.aeo, newVisitors: daySite.newVisitors, mobilePct: daySite.mobilePct }
       : siteWeeks.length

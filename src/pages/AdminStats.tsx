@@ -2,11 +2,10 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
 import usePageMeta from '../hooks/usePageMeta';
 import type { StatsHistory } from '../types/adminStats';
-import { periods, summarize, kstDate, type Mode, type Period, type Summary } from '../utils/adminStats';
-import { bestSlot, findAiInsight, memberBreakdown, ruleInsights, timeHeat, typeBreakdown } from '../utils/adminInsights';
+import { automatedTotal, periods, summarize, kstDate, type Mode, type Period, type Summary } from '../utils/adminStats';
+import { bestSlot, memberBreakdown, timeHeat, typeBreakdown } from '../utils/adminInsights';
 import { authorIndex, thumbIndex, type AuthorIndex, type ThumbIndex } from '../utils/adminMedia';
 import { loadResearchIndex } from '../data/researchData';
-import InsightPanel from '../components/admin/InsightPanel';
 import { ChannelKpis } from '../components/admin/ui';
 import AdminShell, { AdminLogin } from '../components/admin/AdminShell';
 import { LinkedInPane, MembersPane, SitePane, TelegramPane, type SeriesRow } from '../components/admin/sections';
@@ -105,10 +104,17 @@ const Dashboard: React.FC<{ data: StatsHistory; updated: string }> = ({ data, up
         .slice(0, 12)
         .reverse()
         .map((p) => ({ key: p.key, label: shortLabel(p), members: membersOf(p) }));
-    const rules = ruleInsights({ cur, prev, types, slot });
-    // AI 분석은 주·월 단위로만 쓴다. 일의 키(날짜)가 월요일이면 그 주 분석과 겹치므로 일에서는 찾지 않는다
-    const ai = mode === 'day' ? undefined : findAiInsight(data, sel.key);
     const ongoing = sel.end >= todayKst();
+    const visitorSub = (s: Summary) => {
+        const auto = automatedTotal(s.automated);
+        return s.visitors !== null && auto !== null ? `사람(추정) ${(s.visitors - auto).toLocaleString('en-US')} · 자동 ${auto.toLocaleString('en-US')}` : undefined;
+    };
+    const visitorNote = (s: Summary, m: string) => {
+        const auto = automatedTotal(s.automated);
+        const split = s.visitors !== null && auto !== null ? `사람(추정) ${(s.visitors - auto).toLocaleString('en-US')} · 자동 방문 ${auto.toLocaleString('en-US')}` : null;
+        const days = m === 'month' && s.visitors !== null ? `일별 방문자 합, ${s.siteDays}일치` : null;
+        return [split, days].filter(Boolean).join(' · ') || undefined;
+    };
     const aiCount = (s: Summary) => (s.site ? s.site.bots.ai.reduce((a, [, v]) => a + v, 0) : null);
     const searchPct = (s: Summary) => {
         const total = s.site?.sources.reduce((a, [, v]) => a + v, 0);
@@ -168,7 +174,7 @@ const Dashboard: React.FC<{ data: StatsHistory; updated: string }> = ({ data, up
                     ongoing={ongoing}
                     channel="site"
                     metrics={[
-                        { cumulative: true, label: '방문자', value: cur.visitors, prev: prev?.visitors ?? null, unit: '명', trend: trend((s) => s.visitors), emptyReason: '기간 전체 로그 없음', note: mode === 'month' && cur.visitors !== null ? `일별 방문자 합, ${cur.siteDays}일치` : undefined },
+                        { cumulative: true, label: '방문자', value: cur.visitors, prev: prev?.visitors ?? null, unit: '명', trend: trend((s) => s.visitors), emptyReason: '기간 전체 로그 없음', note: visitorNote(cur, mode), sub: visitorSub(cur) },
                         { cumulative: true, label: 'AI 크롤러', value: aiCount(cur), prev: prev ? aiCount(prev) : null, unit: '회', trend: trend(aiCount), emptyReason: '상세 기록 없음', note: 'AI 답변 엔진이 사이트를 읽어 간 요청 수' },
                         { label: '검색 유입', value: searchPct(cur), prev: prev ? searchPct(prev) : null, unit: '%', deltaSuffix: '%p', trend: trend(searchPct), emptyReason: '상세 기록 없음', note: '첫 진입 중 검색엔진에서 온 비중' },
                     ]}
@@ -183,13 +189,6 @@ const Dashboard: React.FC<{ data: StatsHistory; updated: string }> = ({ data, up
                     ]}
                 />
             </div>
-
-            {/* 숫자 인사이트는 탭마다 있다. 여기는 AI 분석이 있는 기간에만 */}
-            {ai && (
-                <div className="mt-5">
-                    <InsightPanel ai={ai} rules={rules} periodLabel={`${periodText(sel, mode)}${prevPeriod ? ` · 비교 ${periodText(prevPeriod, mode)}` : ''}`} />
-                </div>
-            )}
 
             <section className="mt-10" aria-label="기여자">
                 <h2 className="mb-4 text-base font-bold text-theme-text">기여자</h2>

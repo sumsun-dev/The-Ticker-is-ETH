@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { mergeAeo, periods, summarize } from '../adminStats';
+import { automatedTotal, mergeAeo, periods, summarize } from '../adminStats';
 import type { StatsHistory } from '../../types/adminStats';
 
 const site = (visitors: number) => ({
@@ -121,5 +121,29 @@ describe('adminStats', () => {
     expect(m?.kinds).toEqual([['학습 수집', 5], ['실시간 답변', 3]]);
     expect(m?.pages).toEqual([['/b', 5, 0], ['/a', 4, 1]]);
     expect(m?.errors).toEqual([['404 /x', 2]]);
+  });
+});
+
+describe('automated visits in summarize', () => {
+  const day = (automated?: Array<[string, number]>) => ({ sources: [], sections: [], topPages: [], refHosts: [], bots: { search: 0, ai: [] }, notFound: [], newVisitors: 1, mobilePct: 0, ...(automated ? { automated } : {}) });
+
+  it('should merge automated visits by source across days', () => {
+    const hd: StatsHistory = {
+      ...h,
+      weeks: [],
+      siteDaily: [
+        { date: '2026-11-05', visitors: 286, pageLoads: 300, site: day([['텐센트 클라우드', 260]]) },
+        { date: '2026-11-06', visitors: 24, pageLoads: 30, site: day([['텐센트 클라우드', 16], ['검색엔진 렌더링', 2]]) },
+      ],
+    };
+    const s = summarize(hd, { key: '2026-11', label: '', start: '2026-11-01', end: '2026-11-30' });
+    expect(s.automated).toEqual([['텐센트 클라우드', 276], ['검색엔진 렌더링', 2]]);
+    expect(automatedTotal(s.automated)).toBe(278);
+  });
+
+  it('should be null when the period has no classification yet', () => {
+    const s = summarize(h, { key: '2026-10-12', label: '', start: '2026-10-12', end: '2026-10-12' });
+    expect(s.automated).toBeNull();
+    expect(automatedTotal(s.automated)).toBeNull();
   });
 });

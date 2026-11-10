@@ -54,59 +54,6 @@ export const Sparkline: React.FC<{ values: Array<number | null>; color: string; 
   );
 };
 
-/** 일별 방문자 같은 시계열. key는 고유값(날짜), label은 표시용. highlight 구간(선택한 기간)을 밝게 칠한다 */
-export const AreaChart: React.FC<{
-  points: Array<{ key: string; label: string; value: number }>;
-  color: string;
-  highlight?: (key: string) => boolean;
-  unit?: string;
-}> = ({ points, color, highlight, unit = '' }) => {
-  const id = useId();
-  const w = 600;
-  const h = 160;
-  if (!points.length) return null;
-  const max = Math.max(1, ...points.map((p) => p.value));
-  const values = points.map((p) => p.value);
-  const step = points.length > 1 ? (w - 4) / (points.length - 1) : 0;
-  const line = linePath(values, w, h, max);
-  const area = `${line}L${(2 + (points.length - 1) * step).toFixed(1)},${h}L2,${h}Z`;
-  return (
-    <div>
-      <svg viewBox={`0 0 ${w} ${h}`} className="h-40 w-full" preserveAspectRatio="none" role="img" aria-label={`${points[0].label}부터 ${points.at(-1)!.label}까지 추이`}>
-        <defs>
-          <linearGradient id={id} x1="0" x2="0" y1="0" y2="1">
-            <stop offset="0%" stopColor={color} stopOpacity="0.4" />
-            <stop offset="100%" stopColor={color} stopOpacity="0" />
-          </linearGradient>
-        </defs>
-        {[0.25, 0.5, 0.75].map((f) => (
-          <line key={f} x1="0" x2={w} y1={h * f} y2={h * f} stroke="currentColor" className="text-theme-border" strokeDasharray="3 5" vectorEffect="non-scaling-stroke" />
-        ))}
-        {highlight &&
-          points.map((p, i) => (highlight(p.key) ? <rect key={p.key} x={Math.max(0, 2 + i * step - step / 2)} y="0" width={Math.max(step, 2)} height={h} fill={color} opacity="0.08" /> : null))}
-        <path d={area} fill={`url(#${id})`} />
-        <path d={line} fill="none" stroke={color} strokeWidth="2.5" strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
-        {points.map((p, i) => (
-          <circle key={p.key} cx={2 + i * step} cy={h - 2 - (p.value / max) * (h - 4)} r={highlight?.(p.key) ? 3.5 : 0} fill={color}>
-            <title>{`${p.label}: ${n(p.value)}${unit}`}</title>
-          </circle>
-        ))}
-        {/* 마우스 올림 영역 */}
-        {points.map((p, i) => (
-          <rect key={`hit-${p.key}`} x={Math.max(0, 2 + i * step - step / 2)} y="0" width={Math.max(step, 2)} height={h} fill="transparent">
-            <title>{`${p.label}: ${n(p.value)}${unit}`}</title>
-          </rect>
-        ))}
-      </svg>
-      <div className="mt-2 flex justify-between text-[11px] text-theme-text-muted">
-        <span>{points[0].label}</span>
-        <span>최고 {n(max)}{unit}</span>
-        <span>{points.at(-1)!.label}</span>
-      </div>
-    </div>
-  );
-};
-
 export interface TrendRow {
   key: string;
   label: string;

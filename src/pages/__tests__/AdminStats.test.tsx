@@ -22,7 +22,7 @@ const monday = (() => {
 })();
 const at = (days: number) => new Date(Date.parse(monday) + days * 864e5 + 3600e3).toISOString();
 
-const data = (withAi: boolean): StatsHistory => ({
+const data = (): StatsHistory => ({
     updatedAt: new Date(Date.parse(monday) + 30 * 864e5).toISOString(),
     channel: 'thetickeriseth',
     weeks: [{ week: monday, site: { ...site, titles: { '/events/ek1-genesis': 'Ethereum Korea One · Genesis' } }, tg: { subscribers: 1510 } }],
@@ -34,20 +34,6 @@ const data = (withAi: boolean): StatsHistory => ({
         { id: 5, date: at(3), views: 250, text: '디라이브, V3 출시' },
     ],
     liPosts: [{ title: '이더리움 코리아 기관 컨퍼런스 보고서 정리', urn: 'urn:li:activity:1', date: at(2).slice(0, 10), impressions: 230, reactions: 6, comments: 0 }],
-    ...(withAi
-        ? {
-              aiInsights: [
-                  {
-                      key: monday, mode: 'week' as const, generatedAt: '2026-10-24T04:00:00Z', model: 'fable',
-                      headline: '기관 컨퍼런스 보고서가 평균을 끌어올렸다',
-                      summary: '요약 문단',
-                      highlights: [{ channel: 'telegram' as const, title: '평균 조회 +37%', detail: '보고서 한 글이 만든 상승', tone: 'up' as const }],
-                      actions: ['행사 후속물을 화요일 낮에 올린다'],
-                      caveats: ['홈페이지 기록은 2주치'],
-                  },
-              ],
-          }
-        : {}),
 });
 
 const mockFetch = (body: StatsHistory) =>
@@ -60,17 +46,8 @@ describe('AdminStats', () => {
         vi.unstubAllGlobals();
     });
 
-    it('AI 분석이 있으면 헤드라인·하이라이트·다음 할 일을 보여 준다', async () => {
-        mockFetch(data(true));
-        renderWithProviders(<AdminStats />);
-        expect(await screen.findByRole('heading', { name: '기관 컨퍼런스 보고서가 평균을 끌어올렸다' })).toBeInTheDocument();
-        expect(screen.getByText(/AI 분석 ·/)).toBeInTheDocument();
-        expect(screen.getByText('행사 후속물을 화요일 낮에 올린다')).toBeInTheDocument();
-        expect(screen.getByText('평균 조회 +37%')).toBeInTheDocument();
-    });
-
-    it('AI 분석이 없으면 요약 상자 없이 탭마다 수치 인사이트를 보여 준다', async () => {
-        mockFetch(data(false));
+    it('요약 상자 없이 탭마다 수치 인사이트를 보여 준다', async () => {
+        mockFetch(data());
         renderWithProviders(<AdminStats />);
         expect(await screen.findByText('구독자 도달률')).toBeInTheDocument();
         expect(screen.queryByRole('region', { name: '인사이트' })).not.toBeInTheDocument();
@@ -80,7 +57,7 @@ describe('AdminStats', () => {
     });
 
     it('KPI와 썸네일 붙은 인기 글을 보여 준다', async () => {
-        mockFetch(data(false));
+        mockFetch(data());
         renderWithProviders(<AdminStats />);
         const tg = await screen.findByRole('region', { name: '텔레그램 주요 성과' });
         expect(within(tg).getAllByText(/^(구독자|평균 조회수|올린 글)$/).map((e) => e.textContent)).toEqual(['구독자', '평균 조회수', '올린 글']);
@@ -95,7 +72,7 @@ describe('AdminStats', () => {
     });
 
     it('월별로 바꾸면 기간 선택이 월 단위가 된다', async () => {
-        mockFetch(data(false));
+        mockFetch(data());
         renderWithProviders(<AdminStats />);
         fireEvent.click(await screen.findByRole('tab', { name: '월별' }));
         expect(screen.getByRole('tab', { name: '월별' })).toHaveAttribute('aria-selected', 'true');
@@ -103,7 +80,7 @@ describe('AdminStats', () => {
     });
 
     it('성과와 채널 상세 사이에 기여자 기여를 보여 준다', async () => {
-        mockFetch(data(false));
+        mockFetch(data());
         renderWithProviders(<AdminStats />);
         const section = await screen.findByRole('region', { name: '기여자' });
         expect(screen.queryByRole('tab', { name: '기여자' })).not.toBeInTheDocument();
@@ -113,7 +90,7 @@ describe('AdminStats', () => {
     });
 
     it('홈페이지 탭에 AI 노출(AEO): AI 답변 유입, 봇 용도, AI만 읽은 페이지, 오류', async () => {
-        const base = data(false);
+        const base = data();
         const aeo = {
             referrals: [['ChatGPT', 3]] as Array<[string, number]>,
             kinds: [['실시간 답변', 12], ['학습 수집', 40]] as Array<[string, number]>,
@@ -138,7 +115,7 @@ describe('AdminStats', () => {
     });
 
     it('AEO 기록 전 기간은 안내만 보여 준다', async () => {
-        mockFetch(data(false));
+        mockFetch(data());
         renderWithProviders(<AdminStats />);
         fireEvent.click(await screen.findByRole('tab', { name: '홈페이지' }));
         expect(within(screen.getByRole('region', { name: 'AI 노출' })).getByText(/2026년 11월 수집부터/)).toBeInTheDocument();
