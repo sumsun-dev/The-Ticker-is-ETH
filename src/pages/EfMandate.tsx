@@ -1,10 +1,11 @@
-import React from 'react';
-import { ExternalLink, FileText, Quote } from 'lucide-react';
+import React, { useState } from 'react';
+import { BookOpen, ChevronDown, ExternalLink, FileText, Quote } from 'lucide-react';
 import usePageMeta from '../hooks/usePageMeta';
 import data from '../data/ef-mandate.json';
 
 /**
- * EF Mandate(이더리움 재단, 2026-03-13) 한국어 해설. 원문을 옮기지 않고 장마다 요지·요점·짧은 인용만 싣는다.
+ * EF Mandate(이더리움 재단, 2026-03-13) 한국어 해설. 장마다 요지·요점·인용을 보여 주고, 「한국어 전문」을 펼치면
+ * 온체인 원문을 옮긴 번역(src/data/ef-mandate-full/<장>.md)을 불러온다.
  * 그림은 재단이 배포한 디자인 PDF의 표지·장 그림과 공식 블로그 대표 이미지 (public/assets/ef-mandate/).
  */
 
@@ -26,13 +27,68 @@ interface MandateData {
     sections: Section[];
     principles: { technical: Array<{ name: string; body: string }>; social: Array<{ name: string; body: string }> };
     quandaries: Array<{ question: string; answer: string }>;
-    reception: Array<{ source: string; date: string; url: string; point: string }>;
     glossary: Array<{ term: string; body: string }>;
 }
 
 const D = data as MandateData;
 const IMG = '/assets/ef-mandate';
 const chapterImg = (numeral: string) => `${IMG}/${numeral.toLowerCase()}.webp`;
+const FULL = import.meta.glob('../data/ef-mandate-full/*.md', { query: '?raw', import: 'default' }) as Record<string, () => Promise<string>>;
+
+/** 번역 파일: 빈 줄로 문단, "## " 줄은 소제목, "- "·"1. " 로 시작하는 줄로 된 블록은 목록 */
+const FullTextBody: React.FC<{ text: string }> = ({ text }) => (
+    <div className="grid gap-4 text-[15px] leading-[1.8] text-theme-text-secondary">
+        {text
+            .split(/\n\s*\n/)
+            .map((b) => b.trim())
+            .filter(Boolean)
+            .map((b, i) => {
+                if (b.startsWith('## ')) return <h4 key={i} className="pt-3 text-base font-semibold text-theme-text">{b.slice(3)}</h4>;
+                const lines = b.split('\n');
+                if (lines.every((l) => /^(- |\d+\. )/.test(l)))
+                    return (
+                        <ul key={i} className="grid gap-1.5 pl-1">
+                            {lines.map((l) => <li key={l}>{l.replace(/^- /, '· ')}</li>)}
+                        </ul>
+                    );
+                return <p key={i} className="whitespace-pre-line">{b}</p>;
+            })}
+    </div>
+);
+
+const FullText: React.FC<{ numeral: string }> = ({ numeral }) => {
+    const load = FULL[`../data/ef-mandate-full/${numeral.toLowerCase()}.md`];
+    const [open, setOpen] = useState(false);
+    const [text, setText] = useState<string | null>(null);
+    if (!load) return null;
+    const id = `full-${numeral.toLowerCase()}`;
+    const toggle = () => {
+        if (!open && text === null) load().then(setText).catch(() => setText('번역을 불러오지 못했습니다. 잠시 뒤 다시 열어 주세요.'));
+        setOpen(!open);
+    };
+    return (
+        <div className="mt-6">
+            <button
+                type="button"
+                aria-expanded={open}
+                aria-controls={id}
+                onClick={toggle}
+                className={`inline-flex items-center gap-1.5 rounded-full border px-4 py-2 text-[13px] font-semibold ${open ? 'border-white bg-white text-black' : 'border-theme-border text-theme-text hover:bg-white/5'}`}
+            >
+                <BookOpen size={14} /> {open ? '한국어 전문 접기' : '한국어 전문 읽기'}
+                <ChevronDown size={14} className={`transition-transform ${open ? 'rotate-180' : ''}`} />
+            </button>
+            {open && (
+                <div id={id} className="mt-4 rounded-2xl border border-theme-border-secondary bg-white/[0.02] px-5 py-5 sm:px-7">
+                    {text === null ? <p className="text-sm text-theme-text-muted">불러오는 중입니다.</p> : <FullTextBody text={text} />}
+                    <p className="mt-6 border-t border-theme-border-secondary pt-3 text-[12px] text-theme-text-muted">
+                        재단이 이더리움에 기록한 원문을 ECK가 우리말로 옮겼습니다. 정확한 표현은 원문을 확인해 주세요.
+                    </p>
+                </div>
+            )}
+        </div>
+    );
+};
 
 const SectionHead: React.FC<{ id: string; title: string }> = ({ id, title }) => (
     <div className="mb-6 flex items-center gap-4">
@@ -96,12 +152,13 @@ const ChapterBlock: React.FC<{ s: Section }> = ({ s }) => (
                 </div>
             ))}
             {s.quote && (
-                <blockquote className="mt-6 rounded-xl border-l-2 border-brand-accent bg-brand-accent/[0.06] px-5 py-4">
+                <blockquote className="mt-6 rounded-xl bg-brand-accent/[0.06] px-5 py-4">
                     <Quote size={16} className="mb-2 text-brand-accent" aria-hidden />
                     <p className="text-[15px] font-medium leading-relaxed text-theme-text">{s.quote.ko}</p>
                     <p className="mt-1.5 text-[13px] italic text-theme-text-muted">“{s.quote.en}”</p>
                 </blockquote>
             )}
+            <FullText numeral={s.numeral} />
         </div>
     </article>
 );
@@ -234,23 +291,7 @@ const EfMandate: React.FC = () => {
                     </section>
                 )}
 
-                <div className="grid gap-10 pt-16 md:grid-cols-2">
-                    {D.reception.length > 0 && (
-                        <section aria-labelledby="mandate-reception">
-                            <SectionHead id="mandate-reception" title="발표 뒤 반응" />
-                            <ul className="grid gap-3">
-                                {D.reception.map((r) => (
-                                    <li key={r.url} className="text-sm leading-relaxed text-theme-text-secondary">
-                                        <a href={r.url} target="_blank" rel="noopener noreferrer" className="font-semibold text-brand-accent hover:underline">
-                                            {r.source}
-                                        </a>{' '}
-                                        <span className="tabular-nums text-theme-text-muted">{r.date}</span>
-                                        <p className="mt-0.5">{r.point}</p>
-                                    </li>
-                                ))}
-                            </ul>
-                        </section>
-                    )}
+                <div className="pt-16">
                     {D.glossary.length > 0 && (
                         <section aria-labelledby="mandate-glossary">
                             <SectionHead id="mandate-glossary" title="용어 풀이" />
