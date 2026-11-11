@@ -47,6 +47,8 @@ import {
 } from '../src/data/videoData';
 import { parseSpeaker } from '../src/utils/youtubeDescription';
 import { GENESIS_SESSIONS } from '../src/data/ek1GenesisData';
+import { DEVCON8_IMAGES, DEVCON8_NEWS, DEVCON8_TALKS } from '../src/data/devcon8Data';
+import { callLabel } from '../src/utils/calls';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -138,6 +140,14 @@ const debates = allDebates
 // EIP 해설 (scripts/extract-eips.ts). 상태 배지는 화면처럼 콜 기록에서 계산한다
 const eips = readJson<EipsFile>(join(DATA, 'eips.json')).eips.sort((a, b) => b.number - a.number);
 const ethCalls = readJson<{ calls: CallRecord[] }>(join(DATA, 'eth-calls.json')).calls;
+const efMandate = readJson<{
+    meta: { published: string; originalUrl: string; blogUrl: string };
+    lead: string;
+    keyIdeas: { title: string; body: string }[];
+    sections: { numeral: string; titleEn: string; titleKo: string; summary: string; points: string[] }[];
+    quandaries: { question: string; answer: string }[];
+    glossary: { term: string; body: string }[];
+}>(join(DATA, 'ef-mandate.json'));
 const roadmapEx = readJson<RoadmapExplainersFile>(join(DATA, 'roadmap-explainers.json'));
 const topicItems = ROADMAP_ITEMS.filter((it) => roadmapEx.topics[itemSlug(it)]);
 // ERC 해설 (scripts/extract-ercs.ts)
@@ -176,6 +186,8 @@ const staticRoutes: SitemapEntry[] = [
     { loc: '/ecosystem', changefreq: 'monthly', priority: '0.7' },
     { loc: '/events', changefreq: 'weekly', priority: '0.7' },
     { loc: '/events/ek1-genesis', changefreq: 'monthly', priority: '0.6' },
+    { loc: '/events/devcon-8', changefreq: 'monthly', priority: '0.6' },
+    { loc: '/ef-mandate', changefreq: 'monthly', priority: '0.6' },
 ];
 
 const contentEntries: SitemapEntry[] = contents.map((c) => ({
@@ -222,7 +234,11 @@ const ercEntries: SitemapEntry[] = ercs.map((e) => ({
 const forkEntries: SitemapEntry[] = FORKS.map((f) => ({ loc: `/forks/${f.slug}`, changefreq: f.date ? 'yearly' : 'weekly', priority: '0.6' }));
 
 const topicEntries: SitemapEntry[] = topicItems.map((it) => ({ loc: `/roadmap/${itemSlug(it)}`, changefreq: 'monthly', priority: '0.5' }));
-const allEntries = [...staticRoutes, ...contentEntries, ...videoEntries, ...memberEntries, ...debateEntries, ...eipEntries, ...ercEntries, ...forkEntries, ...topicEntries];
+// 화면과 같이 정리본(full)만 싣는다
+const fullCalls = ethCalls.filter((c) => c.kind === 'full').sort((a, b) => b.date.localeCompare(a.date));
+const callTitle = (c: CallRecord) => `${callLabel(c)} · ${oneLine(c.headline ?? c.title)}`;
+const callEntries: SitemapEntry[] = fullCalls.map((c) => ({ loc: `/calls/${c.id}`, lastmod: toIso(c.date), changefreq: 'monthly', priority: '0.6' }));
+const allEntries = [...staticRoutes, ...contentEntries, ...videoEntries, ...memberEntries, ...debateEntries, ...callEntries, ...eipEntries, ...ercEntries, ...forkEntries, ...topicEntries];
 
 const sitemapXml =
     '<?xml version="1.0" encoding="UTF-8"?>\n' +
@@ -278,6 +294,8 @@ function buildShell(o: ShellOptions): string {
     html = setMeta(html, 'name', 'twitter:description', o.description);
     html = setMeta(html, 'name', 'twitter:image', o.image);
     html = html.replace(/<link rel="canonical"[^>]*>/, () => `<link rel="canonical" href="${escAttr(o.url)}" />`);
+    // 한국어·영어가 같은 주소를 쓰므로 hreflang 도 이 페이지를 가리켜야 한다 (템플릿 값은 홈)
+    html = html.replace(/(<link rel="alternate" hreflang="[^"]+" href=")[^"]*(")/g, (_m, p1: string, p2: string) => `${p1}${escAttr(o.url)}${p2}`);
 
     const extra: string[] = [];
     if (o.publishedTime) extra.push(`<meta property="article:published_time" content="${escAttr(o.publishedTime)}" />`);
@@ -605,6 +623,8 @@ interface StaticPage {
     description: string;
     bodyHtml: string;
     jsonLd: object[];
+    /** 공유 미리보기 그림 (사이트 기준 경로). 생략하면 기본 그림 */
+    image?: string;
 }
 
 function videoListHtml(list: ShellVideo[]): string {
@@ -685,6 +705,7 @@ const staticPages: StaticPage[] = [
     {
         path: 'news',
         title: 'Ethereum News',
+        image: ethDigests.digests[0]?.coverImage,
         description: ethDigests.digests[0]
             ? `${ethDigests.digests[0].date} 데일리 다이제스트 — ${ethDigests.digests[0].title}`
             : '이더리움 공식 블로그·리서치 포럼·핵심 트위터·커뮤니티 소식을 매일 한국어 다이제스트로 정리합니다.',
@@ -851,6 +872,70 @@ const staticPages: StaticPage[] = [
             `<h2>세션 영상</h2>${videoListHtml(videos)}`,
         jsonLd: [ek1GenesisEventLd(videos)],
     },
+    {
+        path: 'calls',
+        title: 'Core Dev Calls',
+        description: `이더리움 코어 개발자 콜(ACDE·ACDC) ${fullCalls.length}회의 결정과 쟁점을 한국어로 정리합니다. 어떤 EIP가 어느 포크에 들어가는지 콜마다 기록합니다.`,
+        bodyHtml:
+            `<h1>Core Dev Calls: 이더리움 코어 개발자 콜 정리</h1>` +
+            `<p>이더리움 프로토콜의 변경은 코어 개발자 콜(All Core Devs)에서 정해집니다. 실행 레이어 콜(ACDE)과 합의 레이어 콜(ACDC)마다 무엇이 결정됐고 어떤 쟁점이 오갔는지 한국어로 정리합니다.</p>` +
+            `<ul>` +
+            fullCalls.map((c) => `<li><a href="/calls/${escAttr(c.id)}">${esc(callTitle(c))}</a> (${esc(c.date)})<br>${esc(c.summary ?? c.lead ?? '')}</li>`).join('') +
+            `</ul>`,
+        jsonLd: [
+            collectionPageLd({
+                name: 'Core Dev Calls',
+                url: '/calls',
+                description: '이더리움 코어 개발자 콜의 결정과 쟁점 한국어 정리',
+                items: fullCalls.map((c) => ({ name: callTitle(c), url: `/calls/${c.id}` })),
+            }),
+        ],
+    },
+    {
+        path: 'events/devcon-8',
+        title: 'Devcon 8 India 현장 리포트',
+        description: '뭄바이에서 열린 Devcon 8의 주요 발표와 소식, 다음 Devcon 리스본 개최 소식을 정리했습니다.',
+        image: DEVCON8_IMAGES.keyVisual,
+        bodyHtml:
+            `<h1>Devcon 8 India 현장 리포트</h1>` +
+            `<p>뭄바이에서 열린 Devcon 8의 주요 발표 ${DEVCON8_TALKS.length}개와 행사 기간에 나온 공식 소식을 한국어로 정리했습니다.</p>` +
+            `<h2>행사 기간 소식</h2><ul>${DEVCON8_NEWS.map((n) => `<li>${esc(n.title)}: ${esc(n.body)} (<a href="${escAttr(n.source.url)}">${esc(n.source.label)}</a>)</li>`).join('')}</ul>` +
+            `<h2>주요 발표</h2>` +
+            DEVCON8_TALKS.map(
+                (t) =>
+                    `<h3>${esc(t.title)} (${esc(t.titleEn)})</h3><p>${esc(t.speakers)} · ${esc(t.date)}</p><p>${esc(t.summary)}</p>` +
+                    `<ul>${t.points.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>` +
+                    (t.flow ?? []).map((f) => `<h4>${esc(f.heading)}</h4><p>${esc(f.body)}</p>`).join('') +
+                    `<p>${t.videos.map((v) => `<a href="${escAttr(v.url)}">${esc(v.label)}</a>`).join(' · ')}</p>`,
+            ).join(''),
+        jsonLd: [
+            breadcrumbLd([
+                { name: 'Home', url: '/' },
+                { name: 'Events', url: '/events' },
+                { name: 'Devcon 8 India', url: '/events/devcon-8' },
+            ]),
+        ],
+    },
+    {
+        path: 'ef-mandate',
+        title: 'EF Mandate 해설',
+        description: '이더리움 재단이 2026년 3월 발표한 EF Mandate를 장마다 쉽게 풀었습니다. 재단의 역할, 원칙, 어려운 판단의 기준을 정리했습니다.',
+        image: '/assets/ef-mandate/hero.webp',
+        bodyHtml:
+            `<article><h1>EF Mandate 해설</h1>` +
+            `<p>${esc(efMandate.lead)}</p>` +
+            `<p><a href="${escAttr(efMandate.meta.originalUrl)}">원문</a> · <a href="${escAttr(efMandate.meta.blogUrl)}">재단 블로그</a> · ${esc(efMandate.meta.published)} 발표</p>` +
+            `<h2>핵심 생각</h2><ul>${efMandate.keyIdeas.map((k) => `<li>${esc(k.title)}: ${esc(k.body)}</li>`).join('')}</ul>` +
+            efMandate.sections.map((sec) => `<h2>${esc(sec.numeral)}. ${esc(sec.titleKo)} (${esc(sec.titleEn)})</h2><p>${esc(sec.summary)}</p><ul>${sec.points.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>`).join('') +
+            `<h2>어려운 판단의 기준</h2>${efMandate.quandaries.map((q) => `<h3>${esc(q.question)}</h3><p>${esc(q.answer)}</p>`).join('')}` +
+            `<h2>용어</h2><ul>${efMandate.glossary.map((g) => `<li>${esc(g.term)}: ${esc(g.body)}</li>`).join('')}</ul></article>`,
+        jsonLd: [
+            faqLd([
+                { q: 'EF Mandate는 무엇인가요?', a: efMandate.lead },
+                ...efMandate.quandaries.map((q) => ({ q: q.question, a: q.answer })),
+            ]),
+        ],
+    },
 ];
 
 let staticPagesCount = 0;
@@ -860,7 +945,7 @@ for (const sp of staticPages) {
         title: sp.title,
         description: sp.description,
         url: fullUrl,
-        image: DEFAULT_IMAGE,
+        image: sp.image ? `${SITE_URL}${sp.image}` : DEFAULT_IMAGE,
         type: 'website',
         jsonLd: sp.jsonLd,
         bodyHtml: sp.bodyHtml,
@@ -868,6 +953,51 @@ for (const sp of staticPages) {
     if (sp.path === '') writeFileSync(join(DIST, 'index.html'), html);
     else writePage(sp.path, html);
     staticPagesCount++;
+}
+
+// 코어 개발자 콜 상세 (/calls/:id)
+let callPages = 0;
+for (const c of fullCalls) {
+    const path = `/calls/${c.id}`;
+    const title = callTitle(c);
+    const summary = c.summary ?? c.lead ?? c.title;
+    const bodyHtml =
+        `<article>` +
+        `<h1>${esc(title)}</h1>` +
+        `<p>${esc(c.title)} · ${esc(c.date)}</p>` +
+        (c.lead ? `<p>${esc(c.lead)}</p>` : '') +
+        `<p>${esc(summary)}</p>` +
+        (c.whyItMatters ? `<h2>왜 중요한가</h2><p>${esc(c.whyItMatters)}</p>` : '') +
+        (c.decisions.length ? `<h2>결정</h2><ul>${c.decisions.map((d) => `<li>${esc(d.label)}: ${esc(d.text)}</li>`).join('')}</ul>` : '') +
+        (c.topics.length
+            ? `<h2>논의</h2>${c.topics.map((t) => `<h3>${esc(t.title)}</h3><p>${esc(t.intro)}</p>${t.decision ? `<p>결론: ${esc(t.decision)}</p>` : ''}`).join('')}`
+            : '') +
+        (c.glossary.length ? `<h2>용어</h2><ul>${c.glossary.map((g) => `<li>${esc(g.term)}: ${esc(g.def)}</li>`).join('')}</ul>` : '') +
+        (c.eips.length ? `<h2>다룬 EIP</h2><ul>${c.eips.map((n) => liLink(`/eips/${n}`, `EIP-${n}${eipTitle.get(n) ? ` ${eipTitle.get(n)}` : ''}`)).join('')}</ul>` : '') +
+        `<p><a href="${escAttr(c.forkcastUrl)}">Forkcast 기록</a>${c.videoUrl ? ` · <a href="${escAttr(c.videoUrl)}">녹화 영상</a>` : ''} · <a href="/calls">← Core Dev Calls</a></p>` +
+        `</article>`;
+    const html = buildShell({
+        title,
+        description: summary,
+        url: `${SITE_URL}${path}`,
+        image: DEFAULT_IMAGE,
+        type: 'article',
+        publishedTime: toIso(c.date),
+        jsonLd: [
+            faqLd([
+                { q: `${callLabel(c)}(${c.date}) 콜에서 무엇이 결정됐나?`, a: summary },
+                ...(c.whyItMatters ? [{ q: `${callLabel(c)} 콜은 왜 중요한가?`, a: c.whyItMatters }] : []),
+            ]),
+            breadcrumbLd([
+                { name: 'Home', url: '/' },
+                { name: 'Core Dev Calls', url: '/calls' },
+                { name: callLabel(c), url: path },
+            ]),
+        ],
+        bodyHtml,
+    });
+    writePage(`calls/${c.id}`, html);
+    callPages++;
 }
 
 // 영상 요약 페이지 (/contents/videos/:id)
@@ -931,6 +1061,10 @@ const llms =
     `- [Ethereum Debates](${SITE_URL}/debates): 코어 개발자·리서처가 갈린 쟁점 (${debates.length}건)\n` +
     `- [EIPs](${SITE_URL}/eips): EIP 한국어 해설, 쉬운 설명과 심층 설명 (${eips.length}개)\n` +
     `- [ERCs](${SITE_URL}/ercs): ERC(토큰·NFT·지갑 등 앱 표준) 한국어 해설, 구현할 함수와 주의할 점 (${ercs.length}개)\n` +
+    `- [Core Dev Calls](${SITE_URL}/calls): 코어 개발자 콜(ACDE·ACDC)의 결정과 쟁점 한국어 정리 (${fullCalls.length}회)\n` +
+    `- [Roadmap](${SITE_URL}/roadmap): 이더리움 로드맵 항목별 한국어 해설\n` +
+    `- [Hard Forks](${SITE_URL}/forks): 하드포크별 포함 EIP와 일정 (${FORKS.length}개)\n` +
+    `- [EF Mandate](${SITE_URL}/ef-mandate): 이더리움 재단 EF Mandate 한국어 해설\n` +
     `- [Team](${SITE_URL}/team): 코어팀과 기여자\n` +
     `- [Ecosystem](${SITE_URL}/ecosystem): 이더리움 생태계\n` +
     `- [Events](${SITE_URL}/events): 이벤트\n\n` +
@@ -942,6 +1076,12 @@ const llms =
                 `${head(oneLine(v.summary), 160)} (YouTube: ${watchUrl(v.id)})`,
         )
         .join('\n') +
+    '\n\n' +
+    `## Ethereum Debates\n` +
+    debates.map((d) => `- [${d.title}](${SITE_URL}/debates/${d.id}): ${head(oneLine(d.summary), 160)}`).join('\n') +
+    '\n\n' +
+    `## Core Dev Calls (recent)\n` +
+    fullCalls.slice(0, 12).map((c) => `- [${callTitle(c)}](${SITE_URL}/calls/${c.id}): ${c.date}. ${head(oneLine(c.summary ?? c.lead ?? ''), 160)}`).join('\n') +
     '\n\n' +
     `## Recent Contents\n` +
     recent
@@ -1027,5 +1167,5 @@ writeFileSync(join(DIST, 'feed.xml'), rss);
 
 // ── 요약 출력 ───────────────────────────────────────────────
 console.log(
-    `[generate-seo] sitemap: ${allEntries.length} urls · static: ${staticPagesCount} · content shells: ${contentPages} · debate shells: ${debatePages} · eip shells: ${eipPages} · erc shells: ${ercPages} · member shells: ${memberPages} · video shells: ${videoPages} · llms.txt: ${recent.length} · llms-full: ${sortedContents.length} · rss: ${feedItems.length}`,
+    `[generate-seo] sitemap: ${allEntries.length} urls · static: ${staticPagesCount} · content shells: ${contentPages} · debate shells: ${debatePages} · call shells: ${callPages} · eip shells: ${eipPages} · erc shells: ${ercPages} · member shells: ${memberPages} · video shells: ${videoPages} · llms.txt: ${recent.length} · llms-full: ${sortedContents.length} · rss: ${feedItems.length}`,
 );
