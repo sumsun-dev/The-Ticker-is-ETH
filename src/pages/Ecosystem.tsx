@@ -13,6 +13,7 @@ import usePageMeta from '../hooks/usePageMeta';
 import type { EcosystemCategory, EcosystemCategoryInfo, EcosystemTool, EcosystemTwitterAccount, TwitterCategory } from '../types/ecosystem';
 import ecosystemData from '../data/ecosystem-tools.json';
 import { ecosystemIconMap } from '../data/ecosystemIcons';
+import { LT } from '../utils/lang';
 
 
 
@@ -117,14 +118,14 @@ const Ecosystem: React.FC = () => {
                 href={tool.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`${tool.name} — ${t(tool.descriptionKey)}`}
+                aria-label={`${LT(tool.name)} — ${t(tool.descriptionKey)}`}
                 className="group p-6 md:p-8 rounded-2xl border border-brand-accent/20 bg-brand-accent/[0.03] backdrop-blur-md hover:border-brand-accent/50 hover:-translate-y-1 transition-all"
               >
                 <div className="flex items-start justify-between mb-4">
                   <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                     <img
                       src={getFaviconUrl(tool.url)}
-                      alt={`${tool.name} logo`}
+                      alt={`${LT(tool.name)} logo`}
                       width={24}
                       height={24}
                       loading="lazy"
@@ -139,7 +140,7 @@ const Ecosystem: React.FC = () => {
                   />
                 </div>
                 <h3 className="text-theme-text font-semibold text-base md:text-lg mb-2">
-                  {tool.name}
+                  {LT(tool.name)}
                 </h3>
                 <p className="text-theme-text-secondary text-sm md:text-base leading-relaxed font-light">
                   {t(tool.descriptionKey)}
@@ -286,7 +287,7 @@ const Ecosystem: React.FC = () => {
                 href={tool.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`${tool.name} — ${t(tool.descriptionKey)}`}
+                aria-label={`${LT(tool.name)} — ${t(tool.descriptionKey)}`}
                 layout
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -298,7 +299,7 @@ const Ecosystem: React.FC = () => {
                   <div className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                     <img
                       src={getFaviconUrl(tool.url)}
-                      alt={`${tool.name} logo`}
+                      alt={`${LT(tool.name)} logo`}
                       width={20}
                       height={20}
                       loading="lazy"
@@ -313,7 +314,7 @@ const Ecosystem: React.FC = () => {
                   />
                 </div>
                 <h3 className="text-theme-text font-semibold text-sm md:text-base mb-1.5">
-                  {tool.name}
+                  {LT(tool.name)}
                 </h3>
                 <p className="text-theme-text-muted text-xs md:text-sm leading-relaxed line-clamp-2 font-light">
                   {t(tool.descriptionKey)}

@@ -2,6 +2,7 @@
  * 이더리움 논쟁 아카이브 (scripts/extract-eth-debates.ts가 3일마다 갱신 → eth-debates.json).
  * 타입은 scripts/lib/eth-debates.ts의 Debate와 같은 모양이다. src 밖을 import하지 않으려고 여기 다시 적는다.
  */
+import { IS_EN } from '../utils/lang';
 
 export type DebateStance = 'pro' | 'con' | 'neutral' | 'other';
 export type DebateStatus = 'active' | 'cooling' | 'archived' | 'resolved';
@@ -71,7 +72,7 @@ let listPending: Promise<Debate[]> | undefined;
 
 /** 목록·EIP/ERC/콜 상세용: 발언 기록·입장 본문을 뺀 판 (vite-json-slice). 토론 상세는 loadEthDebates */
 export function loadEthDebateList(): Promise<Debate[]> {
-    return (listPending ??= import('./eth-debates.json?debates').then(({ default: data }) =>
+    return (listPending ??= (IS_EN ? import('./eth-debates.json?debates&en') : import('./eth-debates.json?debates')).then(({ default: data }) =>
         (data as { debates: Debate[] }).debates.filter(isPublishable),
     ));
 }
@@ -79,7 +80,7 @@ export function loadEthDebateList(): Promise<Debate[]> {
 export async function loadEthDebates(): Promise<Debate[]> {
     if (cache) return cache;
     if (pending) return pending;
-    pending = import('./eth-debates.json').then(({ default: data }) => {
+    pending = (IS_EN ? import('./eth-debates.json?full&en') : import('./eth-debates.json')).then(({ default: data }) => {
         cache = (data as { debates: Debate[] }).debates.filter(isPublishable);
         pending = null;
         return cache;

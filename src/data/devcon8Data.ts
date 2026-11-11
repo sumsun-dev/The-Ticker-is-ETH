@@ -4,18 +4,20 @@
  * ponytail: 한국어 본문만 있다. 영어판은 english-content-todo 와 함께 처리
  * 발표 흐름(flow)·길이와 추가 발표 8개는 devcon8-talks.json (Ethereum TV 대본을 읽고 정리, 전문 번역 아님)
  */
+import en from './en/devcon8Data.json';
+import { L } from '../utils/lang';
 import extra from './devcon8-talks.json';
 
 export type Devcon8Topic = 'ai' | 'privacy' | 'pq' | 'scale' | 'roadmap' | 'ecosystem';
 
-export const TOPIC_LABEL: Record<Devcon8Topic, string> = {
+export const TOPIC_LABEL: Record<Devcon8Topic, string> = L({
     ai: 'AI·보안',
     privacy: '프라이버시',
     pq: '포스트퀀텀',
     scale: '속도·확장',
     roadmap: '로드맵',
     ecosystem: '생태계',
-};
+}, en);
 
 export interface Devcon8Talk {
     id: string;
@@ -183,13 +185,13 @@ const ADDED_TALKS: Devcon8Talk[] = EXTRA.filter((t) => t.title).map((t) => ({
 }));
 
 // 날짜순 정렬 (같은 날은 적은 순서 유지)
-export const DEVCON8_TALKS: Devcon8Talk[] = [
+export const DEVCON8_TALKS: Devcon8Talk[] = L([
     ...BASE_TALKS.map((t) => ({ ...t, duration: extraById.get(t.id)?.duration, flow: extraById.get(t.id)?.flow })),
     ...ADDED_TALKS,
-].sort((x, y) => x.date.localeCompare(y.date));
+].sort((x, y) => x.date.localeCompare(y.date)), en);
 
 /** 행사 기간에 나온 공식 소식 (1차 출처 확인분만) */
-export const DEVCON8_NEWS = [
+export const DEVCON8_NEWS = L([
     {
         title: '글램스테르담 일정 추가 연기',
         body: '가스 재가격 EIP-8037과 8038이 기존 컨트랙트가 기대는 불변식 8개를 깬다는 사실이 확인되어, 문제가 해결될 때까지 후디 테스트넷 포크를 진행하지 않기로 했습니다. 새 날짜는 아직 없고, 헤고타 작업은 영향을 받지 않습니다.',
@@ -200,15 +202,15 @@ export const DEVCON8_NEWS = [
         body: '정부와 공공기관을 위한 안내 사이트를 열고, 부탄 국가 디지털 ID와 인도주의 지원 시범 사례를 소개했습니다.',
         source: { label: 'EF 블로그', url: 'https://blog.ethereum.org/2026/11/03/digital-pub-infra' },
     },
-];
+], en);
 
 /** 더 볼 만한 세션 */
-export const DEVCON8_MORE = [
+export const DEVCON8_MORE = L([
     { title: 'Paths to a Private L1', url: `${TV}paths-to-a-private-l1` },
     { title: 'Glamsterdam Hard Fork: Out of gas, still running', url: `${TV}glamsterdam-hard-fork-out-gas-still-running-sachinoglou` },
     { title: "Glamsterdam for App Developers", url: `${TV}glamsterdam-app-developers-what-ethereums-next-fork-kothari` },
     { title: 'Tragedy of the Ethereum Security Commons', url: `${TV}tragedy-ethereum-security-commons-feist-green` },
-];
+], en);
 
 const IMG = '/assets/events/devcon8';
 

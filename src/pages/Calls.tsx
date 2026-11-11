@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { LT } from '../utils/lang';
 import { useTranslation } from 'react-i18next';
 import usePageMeta from '../hooks/usePageMeta';
 import { loadEthCalls, type CallRecord, type CallsStatus } from '../data/ethCallsData';
@@ -162,7 +163,7 @@ const Calls: React.FC = () => {
                                                                     <span key={`${d.label}-${d.status}`} className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-theme-border text-xs text-theme-text-secondary whitespace-nowrap">
                                                                         <span className={`w-1.5 h-1.5 rounded-full ${STATUS_DOT[d.status]}`} aria-hidden />
                                                                         {d.label}
-                                                                        <span className="text-[10px] font-bold tracking-wider text-theme-text-muted">{d.status}</span>
+                                                                        <span className="text-[10px] font-bold tracking-wider text-theme-text-muted">{LT(d.status)}</span>
                                                                     </span>
                                                                 ))}
                                                             </span>

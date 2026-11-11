@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { EN_PREFIX, IS_EN } from '../utils/lang';
 
 interface PageMeta {
     title: string;
@@ -75,11 +76,19 @@ export default function usePageMeta({
         setMetaTag('property', 'og:image', img);
         setMetaTag('name', 'twitter:image', img);
 
+        // 영어판 주소는 /en 이 붙는다. 사이트 경로(/roadmap)로 받은 canonical 에도 붙인다
         const url = canonical
-            ? toAbsolute(canonical)
+            ? toAbsolute(IS_EN && canonical.startsWith('/') ? `${EN_PREFIX}${canonical === '/' ? '' : canonical}` : canonical)
             : `${window.location.origin}${window.location.pathname}`;
         setMetaTag('property', 'og:url', url);
         setLink('canonical', url);
+        // 화면 안에서 페이지를 옮겨도 언어 짝(hreflang)이 지금 페이지를 가리키게 한다
+        if (url.startsWith(SITE_URL)) {
+            const path = url.slice(SITE_URL.length).replace(/^\/en(?=\/|$)/, '');
+            const ko = `${SITE_URL}${path || '/'}`;
+            const alternates: Record<string, string> = { ko, en: `${SITE_URL}${EN_PREFIX}${path === '/' ? '' : path}`, 'x-default': ko };
+            for (const [lang, href] of Object.entries(alternates)) document.head.querySelector(`link[rel="alternate"][hreflang="${lang}"]`)?.setAttribute('href', href);
+        }
 
         if (description) {
             setMetaTag('name', 'description', description);

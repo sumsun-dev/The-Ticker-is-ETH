@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useTranslation, Trans } from 'react-i18next';
 import { ArrowRight, MessageCircle } from 'lucide-react';
 import EthDiamond from './EthDiamond';
+import { BASE } from '../../utils/lang';
 
 const PoeticCTA: React.FC = () => {
     const { t } = useTranslation('about');
@@ -46,7 +47,7 @@ const PoeticCTA: React.FC = () => {
                         className="flex flex-col sm:flex-row items-center justify-center gap-4"
                     >
                         <a
-                            href="/team"
+                            href={`${BASE}/team`}
                             className="group inline-flex items-center gap-2.5 px-7 py-3 rounded-full bg-gradient-to-r from-brand-primary to-brand-accent text-white font-medium text-sm hover:shadow-lg hover:shadow-brand-primary/20 transition-all"
                         >
                             {t('cta.contribute')}

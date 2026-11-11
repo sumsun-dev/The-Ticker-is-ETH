@@ -9,6 +9,7 @@ import EthThumbnail from '../components/shared/EthThumbnail';
 import VideoSection from '../components/contents/VideoSection';
 import { VIDEOS, filterVideos } from '../data/videoData';
 import usePageMeta from '../hooks/usePageMeta';
+import { T } from '../utils/lang';
 
 const PAGE_SIZE = 12;
 const DEBOUNCE_MS = 300;
@@ -38,7 +39,7 @@ const Contents: React.FC = () => {
     const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
     const { t } = useTranslation('contents');
     const debounceRef = useRef<ReturnType<typeof setTimeout>>(undefined);
-    usePageMeta({ title: 'Contents', description: '이더리움 리서치, 뉴스, 주간 리포트' });
+    usePageMeta({ title: 'Contents', description: T('이더리움 리서치, 뉴스, 주간 리포트', 'Ethereum research, news and weekly reports') });
 
     const handleSearchInput = useCallback((value: string) => {
         setSearchInput(value);

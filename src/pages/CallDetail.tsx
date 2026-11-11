@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
+import { LT } from '../utils/lang';
 import { useTranslation } from 'react-i18next';
 import usePageMeta from '../hooks/usePageMeta';
 import { loadEthCallsFull, type CallRecord, type CallSpeaker } from '../data/ethCallsData';
@@ -109,7 +110,7 @@ const CallDetail: React.FC = () => {
         const later = calls.filter((c) => c.series === call.series && c.date > call.date).sort((a, b) => a.date.localeCompare(b.date))[0];
         return later ? { label: callLabel(later), date: later.date, id: later.id } : nextCallEstimate([call], call.date);
     }, [call, calls]);
-    const host = useMemo(() => call?.speakers.find((s) => s.role?.includes('진행')) ?? call?.speakers[0], [call]);
+    const host = useMemo(() => call?.speakers.find((s) => /진행|host/i.test(s.role ?? '')) ?? call?.speakers[0], [call]);
     const forks = useMemo(() => [...new Set((call?.decisions ?? []).map((d) => d.fork).filter((f): f is string => Boolean(f)))], [call]);
     const eipStatus = useMemo(() => {
         const map = new Map<number, string>();
@@ -381,7 +382,7 @@ const CallDetail: React.FC = () => {
                                         <span className={`w-2 h-2 rounded-full mt-1.5 ${STATUS_DOT[d.status]}`} aria-hidden />
                                         <span className="flex flex-wrap items-center gap-2">
                                             <span className="text-sm font-semibold">{d.label}</span>
-                                            <span className={`${TAG} ${STATUS_TEXT[d.status]}`}>{d.status}</span>
+                                            <span className={`${TAG} ${STATUS_TEXT[d.status]}`}>{LT(d.status)}</span>
                                             {d.fork && <span className="text-xs text-theme-text-muted">{d.fork}</span>}
                                         </span>
                                         <span className="col-start-2 md:col-start-3 text-sm leading-relaxed text-theme-text-secondary" title={d.original}>
@@ -568,7 +569,7 @@ const CallDetail: React.FC = () => {
                                             EIP-{n}
                                         </EipLink>
                                         <span className="text-theme-text-secondary truncate">{call.decisions.find((d) => d.eips.includes(n))?.label.replace(/^(EIP-)?\d{3,5}\s*/, '') ?? ''}</span>
-                                        {eipStatus.has(n) && <span className={`${TAG} ml-auto ${STATUS_TEXT[eipStatus.get(n) as keyof typeof STATUS_TEXT]}`}>{eipStatus.get(n)}</span>}
+                                        {eipStatus.has(n) && <span className={`${TAG} ml-auto ${STATUS_TEXT[eipStatus.get(n) as keyof typeof STATUS_TEXT]}`}>{LT(eipStatus.get(n))}</span>}
                                     </li>
                                 ))}
                             </ul>

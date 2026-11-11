@@ -10,6 +10,7 @@ import { loadEthDebateList, type Debate } from '../data/ethDebatesData';
 import { debatesFor, inclusionLabel, inclusionOf, journeyOf } from '../utils/eips';
 import { dotDate, STATUS_DOT, STATUS_TEXT } from '../utils/calls';
 import { participantCount } from '../utils/debates';
+import { LT, T } from '../utils/lang';
 
 const H2 = 'text-xl md:text-2xl font-bold';
 const SIDE_H = 'text-sm font-bold mb-3';
@@ -91,7 +92,7 @@ const EipDetail: React.FC = () => {
                         <span className="px-2.5 py-1 rounded-full border border-theme-border text-theme-text-muted">{r.topic}</span>
                     </div>
                     <h1 className="text-3xl md:text-5xl font-bold leading-tight">
-                        {r.titleKo} <span className="block md:inline text-xl md:text-3xl font-medium text-theme-text-muted">{r.meta.title}</span>
+                        {r.titleKo}{/* 영어판에서 옮긴 제목이 원문 제목과 같으면 한 번만 적는다 */}{r.titleKo.toLowerCase() !== r.meta.title.toLowerCase() && <span className="block md:inline text-xl md:text-3xl font-medium text-theme-text-muted"> {r.meta.title}</span>}
                     </h1>
                     <p className="max-w-3xl text-lg md:text-xl leading-relaxed text-theme-text">{r.summary}</p>
                 </header>
@@ -209,7 +210,7 @@ const EipDetail: React.FC = () => {
                                                     <Link to={`/calls/${j.callId}`} className="font-semibold text-brand-accent hover:underline">
                                                         {j.call}
                                                     </Link>
-                                                    {j.status && <span className={`ml-2 text-xs font-semibold ${STATUS_TEXT[j.status]}`}>{j.status}</span>}
+                                                    {j.status && <span className={`ml-2 text-xs font-semibold ${STATUS_TEXT[j.status]}`}>{LT(j.status)}</span>}
                                                 </span>
                                                 <span className="text-[15px] leading-relaxed">{j.text ?? t('detail.discussed')}</span>
                                             </div>
@@ -230,7 +231,7 @@ const EipDetail: React.FC = () => {
                                             <Link to={`/debates/${d.id}`} className="block rounded-xl border border-theme-border p-4 hover:border-brand-primary transition-colors">
                                                 <span className="block font-bold leading-snug">{d.title}</span>
                                                 <span className="block mt-1 text-xs text-theme-text-muted">
-                                                    {participantCount(d)}명 · {dotDate(d.lastActivity)}
+                                                    {participantCount(d)}{T('명', ' people')} · {dotDate(d.lastActivity)}
                                                 </span>
                                             </Link>
                                         </li>

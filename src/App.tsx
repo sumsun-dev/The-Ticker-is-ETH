@@ -2,6 +2,7 @@ import React, { Suspense, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate, useParams } from 'react-router-dom';
 import { Toaster } from 'sonner';
 import MainLayout from './layouts/MainLayout';
+import { EN_PREFIX, IS_EN } from './utils/lang';
 import ErrorBoundary from './components/common/ErrorBoundary';
 import { PageSkeleton } from './components/common/Skeleton';
 const Home = React.lazy(() => import('./pages/Home'));
@@ -105,7 +106,7 @@ const Shell: React.FC<{ children: React.ReactNode }> = ({ children }) =>
 
 function App() {
   return (
-    <Router>
+    <Router basename={IS_EN ? EN_PREFIX : undefined}>
       <ScrollToTop />
       <Toaster theme="dark" position="bottom-right" richColors />
       <Shell>

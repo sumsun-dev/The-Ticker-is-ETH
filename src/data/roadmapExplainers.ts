@@ -1,6 +1,7 @@
 /**
  * 로드맵 개념 해설과 포크별 "나에게 달라지는 것" (scripts/extract-roadmap.ts가 쓰고 im-not-ai로 윤문해 roadmap-explainers.json에 쌓는다).
  */
+import { IS_EN } from '../utils/lang';
 
 export interface RoadmapTopic {
     title: string;
@@ -30,7 +31,7 @@ let pending: Promise<RoadmapExplainersFile> | null = null;
 
 export async function loadRoadmapExplainers(): Promise<RoadmapExplainersFile> {
     if (!pending) {
-        pending = import('./roadmap-explainers.json')
+        pending = (IS_EN ? import('./roadmap-explainers.json?full&en') : import('./roadmap-explainers.json'))
             .then(({ default: data }) => data as unknown as RoadmapExplainersFile)
             .catch((error) => {
                 pending = null;

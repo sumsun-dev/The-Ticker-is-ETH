@@ -4,6 +4,7 @@ import type { Debate } from '../data/ethDebatesData';
 import type { EipRecord } from '../data/eipsData';
 import { callLabel } from './calls';
 import { isPublishable } from './debates';
+import { IS_EN, LT } from './lang';
 
 type CallLike = Pick<CallRecord, 'id' | 'series' | 'number' | 'date' | 'kind' | 'eips' | 'decisions'>;
 
@@ -86,10 +87,11 @@ export function sortByRecent<T extends { record: EipRecord; last?: JourneyStep }
     return [...rows].sort((a, b) => (b.last?.date ?? '').localeCompare(a.last?.date ?? '') || b.record.number - a.record.number);
 }
 
-/** 포크 포함 상태 한국어 배지 */
-export function inclusionLabel(inc: Inclusion | undefined, metaStatus: string): string {
-    if (!inc) return metaStatus === 'Final' ? '최종 확정' : '콜 결정 없음';
+/** 포크 포함 상태 배지 (영어판은 en) */
+export function inclusionLabel(inc: Inclusion | undefined, metaStatus: string, en: boolean = IS_EN): string {
+    if (!inc) return LT(metaStatus === 'Final' ? '최종 확정' : '콜 결정 없음', en);
     const fork = inc.fork ? `${inc.fork} ` : '';
-    const text = { PFI: '포함 제안', CFI: '포함 검토', SFI: '포함 확정', DFI: '포함 제외' }[inc.status];
-    return `${fork}${text} (${inc.status})`;
+    const text = LT({ PFI: '포함 제안', CFI: '포함 검토', SFI: '포함 확정', DFI: '포함 제외' }[inc.status], en);
+    // 영어 라벨은 약어를 풀어 쓴 것이라 약어를 다시 붙이지 않는다
+    return en ? `${fork}${text}` : `${fork}${text} (${inc.status})`;
 }

@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { mockMembers, mockContributors } from '../../data/mockData';
 import EthDiamond from './EthDiamond';
+import { BASE } from '../../utils/lang';
 
 const TeamPreview: React.FC = () => {
     const { t } = useTranslation('about');
@@ -53,7 +54,7 @@ const TeamPreview: React.FC = () => {
                     {allMembers.map((member, idx) => (
                         <motion.a
                             key={member.id}
-                            href={`/team/${member.id}`}
+                            href={`${BASE}/team/${member.id}`}
                             initial={{ opacity: 0, scale: 0.5 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
@@ -81,7 +82,7 @@ const TeamPreview: React.FC = () => {
 
                 {/* CTA */}
                 <motion.a
-                    href="/team"
+                    href={`${BASE}/team`}
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}

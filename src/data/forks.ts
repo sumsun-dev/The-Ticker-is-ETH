@@ -2,6 +2,8 @@
  * 하드포크 연대기 (/forks). 지난 포크는 손으로 정리하고, 다가오는 포크의 EIP 상태는 eth-calls.json 결정으로 화면에서 계산한다.
  * 출처: 각 포크 메타 EIP, ethereum.org/history, Strawmap(2026-11-02 갱신본).
  */
+import en from './en/forks.json';
+import { L } from '../utils/lang';
 
 export interface ForkEip {
     number: number;
@@ -32,7 +34,7 @@ export interface Fork {
 const e = (number: number, note: string): ForkEip => ({ number, note });
 
 /** 최신 포크가 앞 */
-export const FORKS: Fork[] = [
+export const FORKS: Fork[] = L([
     {
         slug: 'hegota',
         name: 'Hegotá',
@@ -111,6 +113,6 @@ export const FORKS: Fork[] = [
     { slug: 'dao-fork', name: 'DAO 포크', date: '2016-07-20', meta: 779, major: false, summary: 'The DAO 해킹으로 빠져나간 자금을 돌려주는 상태 변경입니다. 반대한 쪽은 이더리움 클래식으로 남았습니다.', eips: [] },
     { slug: 'homestead', name: 'Homestead', date: '2016-03-14', meta: 606, major: true, summary: '출범 뒤 첫 프로덕션 업그레이드입니다. 거래 서명 규칙과 가스 계산을 다듬었습니다.', eips: [e(2, 'Homestead 규칙 변경'), e(7, 'DELEGATECALL'), e(8, 'devp2p 전방 호환성')] },
     { slug: 'frontier', name: 'Frontier', date: '2015-07-30', major: true, summary: '이더리움 메인넷 출범입니다.', eips: [] },
-];
+], en);
 
 export const forkBySlug = (slug: string) => FORKS.find((f) => f.slug === slug);

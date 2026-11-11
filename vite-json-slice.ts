@@ -1,4 +1,6 @@
 import { readFile } from 'node:fs/promises'
+import { basename, dirname, join } from 'node:path'
+import { localize, type Dict } from './src/utils/localize'
 import type { Plugin } from 'vite'
 
 /**
@@ -8,6 +10,7 @@ import type { Plugin } from 'vite'
  * - `team-enrichment.json?avatars` : 기여자 이름만 (홈 아바타)
  * - `eth-debates.json?debates`·`eth-digests.json?digests` : 토론·뉴스 목록용 (상세는 원본)
  * - `eips.json?list`·`ercs.json?list` : 해설 본문을 빼고 목록·검색에 쓰는 필드만 (상세 화면은 원본)
+ * - 뒤에 `&en` : 영어판. 같은 조각에 `src/data/en/<파일>` 사전을 입힌다 (`?full&en` 은 줄이지 않은 원본의 영어판)
  */
 export function sliceCalls(data: { calls: Array<Record<string, unknown> & { topics: Array<Record<string, unknown>> }> }) {
   return {
@@ -56,25 +59,33 @@ export function sliceDigests(data: { digests: Array<Record<string, unknown>> }) 
   return { ...data, digests: data.digests.map((d, i) => (i === 0 ? d : { ...d, sections: [] })) }
 }
 
+// 영어 사전. 아직 없으면 빈 사전(한국어 그대로)
+async function readDict(file: string, watch: (f: string) => void): Promise<Dict> {
+  const dictFile = join(dirname(file), 'en', basename(file))
+  watch(dictFile)
+  return readFile(dictFile, 'utf8').then((s) => JSON.parse(s) as Dict, () => ({}))
+}
+
 export default function jsonSlice(): Plugin {
   const PREFIX = '\0json-slice:'
   return {
     name: 'json-slice',
     enforce: 'pre',
     async resolveId(source, importer) {
-      const m = source.match(/^(.*\.json)\?(lite|list|avatars|debates|digests|head=\d+)$/)
+      const m = source.match(/^(.*\.json)\?((?:lite|list|avatars|debates|digests|full|head=\d+)(?:&en)?)$/)
       if (!m) return null
       const r = await this.resolve(m[1], importer, { skipSelf: true })
       // id 에 `.json?` 이 남으면 Vite 기본 JSON 플러그인이 결과를 다시 JSON 으로 읽으려 한다
       return r && `${PREFIX}${r.id.split('?')[0]}#${m[2]}.js`
     },
     async load(id) {
-      const m = id.match(/^\0json-slice:(.*?\.json)[^#]*#(lite|list|avatars|debates|digests|head=\d+)\.js/)
+      const m = id.match(/^\0json-slice:(.*?\.json)[^#]*#(lite|list|avatars|debates|digests|full|head=\d+)(&en)?\.js/)
       if (!m) return null
-      const [, file, q] = m
+      const [, file, q, en] = m
       this.addWatchFile(file)
       const data = JSON.parse(await readFile(file, 'utf8'))
-      const out = q === 'lite' ? sliceCalls(data) : q === 'list' ? sliceList(data) : q === 'avatars' ? sliceAvatars(data) : q === 'debates' ? sliceDebates(data) : q === 'digests' ? sliceDigests(data) : data.slice(0, Number(q.slice(5)))
+      const sliced = q === 'lite' ? sliceCalls(data) : q === 'list' ? sliceList(data) : q === 'avatars' ? sliceAvatars(data) : q === 'debates' ? sliceDebates(data) : q === 'digests' ? sliceDigests(data) : q === 'full' ? data : data.slice(0, Number(q.slice(5)))
+      const out = en ? localize(sliced, await readDict(file, (f) => this.addWatchFile(f))) : sliced
       return `export default JSON.parse(${JSON.stringify(JSON.stringify(out))})`
     },
   }

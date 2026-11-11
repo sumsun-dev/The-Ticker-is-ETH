@@ -7,6 +7,7 @@ import usePageMeta from '../hooks/usePageMeta';
 import { GENESIS_BANNER } from '../data/ek1GenesisData';
 import { DEVCON8_IMAGES } from '../data/devcon8Data';
 import { PAST_EVENTS as pastEvents } from '../data/pastEvents';
+import { T } from '../utils/lang';
 
 const years = [...new Set(pastEvents.map((e) => e.year))];
 
@@ -61,7 +62,7 @@ const Events: React.FC = () => {
                         {/* ponytail: 외부 행사 리포트가 하나뿐이라 카드 직접 작성. 늘어나면 배열로 */}
                         <article className="overflow-hidden rounded-2xl border border-theme-border-secondary bg-brand-surface">
                             <Link to="/events/devcon-8" className="block">
-                                <img src={DEVCON8_IMAGES.keyVisual} alt="Devcon VIII India 공식 키 비주얼" className="block aspect-[1800/953] h-auto w-full object-cover" />
+                                <img src={DEVCON8_IMAGES.keyVisual} alt={T('Devcon VIII India 공식 키 비주얼', 'Official key visual for Devcon VIII India')} className="block aspect-[1800/953] h-auto w-full object-cover" />
                             </Link>
                             <div className="grid gap-4 p-6">
                                 <div className="flex flex-wrap items-baseline justify-between gap-3">
@@ -74,8 +75,10 @@ const Events: React.FC = () => {
                                 <div className="grid grid-cols-[72px_1fr] items-center gap-4 rounded-xl border border-theme-border-secondary bg-white/[0.02] p-3 sm:grid-cols-[88px_1fr]">
                                     <img src={DEVCON8_IMAGES.vitalik} alt="" className="aspect-square w-full rounded-lg object-cover object-top" />
                                     <p className="text-sm text-theme-text-secondary">
-                                        가면을 쓰고 개막 키노트에 오른 비탈릭부터 Mission 2028, 글램스테르담 연기까지 주요 발표 16개와 소식을 영상과 함께 정리했습니다. 다음 Devcon은
-                                        2027년 리스본입니다.
+                                        {T(
+                                            '가면을 쓰고 개막 키노트에 오른 비탈릭부터 Mission 2028, 글램스테르담 연기까지 주요 발표 16개와 소식을 영상과 함께 정리했습니다. 다음 Devcon은 2027년 리스본입니다.',
+                                            'From Vitalik opening the keynote in a mask to Mission 2028 and the Glamsterdam delay: 16 key talks and the news, with video. The next Devcon is Lisbon 2027.',
+                                        )}
                                     </p>
                                 </div>
                                 <div>
@@ -83,7 +86,7 @@ const Events: React.FC = () => {
                                         to="/events/devcon-8"
                                         className="inline-flex items-center gap-1.5 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black hover:bg-gray-200"
                                     >
-                                        리포트 보기 <ArrowRight size={15} />
+                                        {T('리포트 보기', 'Read the report')} <ArrowRight size={15} />
                                     </Link>
                                 </div>
                             </div>

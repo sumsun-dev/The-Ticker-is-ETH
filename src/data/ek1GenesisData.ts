@@ -5,6 +5,8 @@
  * 사진: /assets/events/ek1-genesis/photos/<set>/<n>.webp (긴 변 1200px), 같은 이름의 thumbs/ (높이 240px).
  * 세트마다 앞의 featured장이 고른 대표 컷이다(리드 → 보조 순), 나머지는 촬영 순.
  */
+import en from './en/ek1GenesisData.json';
+import { L } from '../utils/lang';
 import data from './ek1-genesis.json';
 
 /** Day 2 층별 무대. Day 1(기관 초청 행사) 기록은 오너 결정으로 싣지 않는다 */
@@ -29,7 +31,7 @@ export type PhotoEntry = [string, number, number, string];
 const PHOTO_BASE = '/assets/events/ek1-genesis';
 
 export const GENESIS_BANNER = `${PHOTO_BASE}/main-banner.jpg`;
-export const GENESIS_SESSIONS = data.sessions as GenesisSession[];
+export const GENESIS_SESSIONS = L(data.sessions as GenesisSession[], en);
 export const GENESIS_PHOTOS = data.photos as unknown as Record<string, PhotoEntry[]>;
 /** 세트별 대표 컷 수 */
 export const GENESIS_FEATURED = data.featured as Record<string, number>;

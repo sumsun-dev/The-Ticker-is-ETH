@@ -12,10 +12,11 @@ import { useTranslation } from 'react-i18next';
 import { ArrowRight, MessageCircle } from 'lucide-react';
 import { teamAvatars } from '../data/teamAvatars';
 import usePageMeta from '../hooks/usePageMeta';
+import { T } from '../utils/lang';
 
 const Home: React.FC = () => {
     const { t } = useTranslation('home');
-    usePageMeta({ title: '', description: 'ECK(Ethereum Collective Korea) — 한국 이더리움 생태계 공공재 콜렉티브' });
+    usePageMeta({ title: '', description: T('ECK(Ethereum Collective Korea) — 한국 이더리움 생태계 공공재 콜렉티브', 'ECK (Ethereum Collective Korea): a nonprofit collective building public goods for the Ethereum ecosystem in Korea') });
 
     const allMembers = teamAvatars.slice(0, 20);
 
