@@ -73,6 +73,8 @@ export interface EthDigest {
     sections: EthDigestSection[];
     /** 커버 이미지 public 경로 (예: /assets/digests/2026-08-24.png) */
     coverImage?: string;
+    /** 화면에 쓰는 가벼운 WebP 판. 없으면 coverImage 를 쓴다 */
+    coverWebp?: string;
 }
 
 let digestCache: EthDigest[] | null = null;
