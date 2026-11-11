@@ -106,7 +106,7 @@ const ErcDetail: React.FC = () => {
                         ))}
                     </div>
                     <h1 className="text-3xl md:text-5xl font-bold leading-tight">
-                        {r.titleKo} <span className="block md:inline text-xl md:text-3xl font-medium text-theme-text-muted">{r.meta.title}</span>
+                        {r.titleKo}{/* 영어판에서 옮긴 제목이 원문 제목과 같으면 한 번만 적는다 */}{r.titleKo.toLowerCase() !== r.meta.title.toLowerCase() && <span className="block md:inline text-xl md:text-3xl font-medium text-theme-text-muted"> {r.meta.title}</span>}
                     </h1>
                     <p className="max-w-3xl text-lg md:text-xl leading-relaxed">{r.summary}</p>
                 </header>

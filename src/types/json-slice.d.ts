@@ -23,3 +23,24 @@ declare module '*.json?digests' {
   const data: unknown
   export default data
 }
+// 영어판: 같은 조각에 영어 사전(src/data/en)을 입힌 것. full 은 줄이지 않은 원본
+declare module '*.json?lite&en' {
+  const data: unknown
+  export default data
+}
+declare module '*.json?list&en' {
+  const data: unknown
+  export default data
+}
+declare module '*.json?debates&en' {
+  const data: unknown
+  export default data
+}
+declare module '*.json?digests&en' {
+  const data: unknown
+  export default data
+}
+declare module '*.json?full&en' {
+  const data: unknown
+  export default data
+}

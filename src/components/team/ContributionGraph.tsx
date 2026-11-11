@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import type { Contribution } from '../../types/team';
+import { T } from '../../utils/lang';
 
 interface ContributionGraphProps {
     data: Contribution[];
@@ -111,8 +112,8 @@ const ContributionGraph: React.FC<ContributionGraphProps> = ({ data }) => {
                                                 x: rect.left - parent.left + rect.width / 2,
                                                 y: rect.top - parent.top - 8,
                                                 text: count > 0
-                                                    ? `${dateStr} — ${count}건`
-                                                    : `${dateStr} — 활동 없음`,
+                                                    ? T(`${dateStr} — ${count}건`, `${dateStr}: ${count}`)
+                                                    : T(`${dateStr} — 활동 없음`, `${dateStr}: no activity`),
                                             });
                                         }}
                                         onMouseLeave={() => setTooltip(null)}

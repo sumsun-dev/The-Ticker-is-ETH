@@ -7,6 +7,7 @@ import { loadRoadmapExplainers } from '../data/roadmapExplainers';
 import { HISTORY_ERAS, HISTORY_KIND, ITEM_PILLAR, PILLARS, ROADMAP_HISTORY, type HistoryKind } from '../data/roadmapHistory';
 import { LAYERS, NORTH_STARS, ROADMAP_ITEMS, STRAWMAP_FORKS, STRAWMAP_UPDATED, STRAWMAP_URL, THROUGHLINES, itemSlug, roadmapGrid, type RoadmapItem } from '../data/roadmap';
 import { dotDate } from '../utils/calls';
+import { T } from '../utils/lang';
 
 const H2 = 'text-2xl font-bold';
 const LAYER_TEXT: Record<string, string> = { cl: 'text-orange-300', dl: 'text-emerald-300', el: 'text-sky-300' };
@@ -25,14 +26,14 @@ const KIND_STYLE: Record<HistoryKind, string> = {
 const HISTORY_OPEN = 5;
 const isInternal = (url: string) => url.startsWith('/');
 
-const DESCRIPTION = '이더리움 재단 프로토콜 팀의 Strawmap을 한국어로 옮긴 로드맵. 2029년까지 하드포크마다 들어갈 업그레이드와 다섯 가지 목표를 한눈에 봅니다.';
+const DESCRIPTION = T('이더리움 재단 프로토콜 팀의 Strawmap을 한국어로 옮긴 로드맵. 2029년까지 하드포크마다 들어갈 업그레이드와 다섯 가지 목표를 한눈에 봅니다.', "The Ethereum Foundation protocol team's Strawmap at a glance: the upgrades planned for each hard fork through 2029 and the five goals they serve.");
 
 const Item: React.FC<{ it: RoadmapItem; known: ReadonlySet<number>; topics: ReadonlySet<string> }> = ({ it, known, topics }) => {
     const cls = `block rounded-lg border px-2.5 py-2 text-xs leading-snug ${ITEM_STYLE[it.kind]}`;
     const body = (
         <>
             {it.name}
-            {it.uncertain && <span className="ml-1 font-bold text-amber-400" aria-label="실현 여부 불확실">?</span>}
+            {it.uncertain && <span className="ml-1 font-bold text-amber-400" aria-label={T('실현 여부 불확실', 'Uncertain')}>?</span>}
         </>
     );
     if (topics.has(itemSlug(it)))
@@ -55,7 +56,7 @@ const Item: React.FC<{ it: RoadmapItem; known: ReadonlySet<number>; topics: Read
 const Roadmap: React.FC = () => {
     const [known, setKnown] = useState<ReadonlySet<number>>(new Set());
     const [topics, setTopics] = useState<ReadonlySet<string>>(new Set());
-    usePageMeta({ title: '로드맵', description: DESCRIPTION, canonical: '/roadmap' });
+    usePageMeta({ title: T('로드맵', 'Roadmap'), description: DESCRIPTION, canonical: '/roadmap' });
     useEffect(() => {
         loadEipList().then((f) => setKnown(new Set(f.eips.map((e) => e.number))));
         loadRoadmapExplainers().then((f) => setTopics(new Set(Object.keys(f.topics))));
@@ -67,36 +68,36 @@ const Roadmap: React.FC = () => {
         <div className="min-h-screen pt-28 pb-20 px-6 container mx-auto text-theme-text">
             <div className="max-w-6xl mx-auto break-keep">
                 <header className="mb-12">
-                    <p className="text-sm font-semibold text-brand-accent mb-3">이더리움 로드맵</p>
-                    <h1 className="text-4xl md:text-5xl font-bold mb-4">2029년까지, 이더리움은 어디로 가나</h1>
+                    <p className="text-sm font-semibold text-brand-accent mb-3">{T('이더리움 로드맵', 'Ethereum Roadmap')}</p>
+                    <h1 className="text-4xl md:text-5xl font-bold mb-4">{T('2029년까지, 이더리움은 어디로 가나', 'Where Ethereum is headed through 2029')}</h1>
                     <p className="max-w-4xl text-theme-text-muted text-base md:text-lg leading-relaxed text-balance">
-                        <span className="block">이더리움 재단 프로토콜 팀이 그린 Strawmap을 한국어로 옮겼습니다.</span>
+                        <span className="block">{T('이더리움 재단 프로토콜 팀이 그린 Strawmap을 한국어로 옮겼습니다.', 'A guide to the Strawmap drawn by the Ethereum Foundation protocol team.')}</span>
                         <span className="block">
                             {/* 쉼표 자리에서 꺾이게 마디마다 inline-block */}
-                            <span className="inline-block">앞으로 일곱 번 남짓의 하드포크에 어떤 업그레이드가 들어갈지,</span>{' '}
-                            <span className="inline-block">그 끝에 무엇을 노리는지를 한 장에 담은 지도입니다.</span>
+                            <span className="inline-block">{T('앞으로 일곱 번 남짓의 하드포크에 어떤 업그레이드가 들어갈지,', 'It maps which upgrades go into the next seven or so hard forks,')}</span>{' '}
+                            <span className="inline-block">{T('그 끝에 무엇을 노리는지를 한 장에 담은 지도입니다.', 'and what they are aiming for, on a single page.')}</span>
                         </span>
                     </p>
                     <p className="mt-4 flex flex-wrap gap-x-5 gap-y-1 text-sm text-theme-text-muted">
-                        <span>원본 갱신 {dotDate(STRAWMAP_UPDATED)}</span>
+                        <span>{T('원본 갱신', 'Source updated')} {dotDate(STRAWMAP_UPDATED)}</span>
                         <a href={STRAWMAP_URL} target="_blank" rel="noopener noreferrer" className="text-brand-accent hover:underline">
-                            strawmap.org 원본
+                            {T('strawmap.org 원본', 'Original at strawmap.org')}
                         </a>
                         <Link to="/forks" className="text-brand-accent hover:underline">
-                            지난 하드포크 보기
+                            {T('지난 하드포크 보기', 'See past hard forks')}
                         </Link>
                     </p>
                     <p className="mt-5 rounded-xl border border-amber-400/40 bg-amber-400/5 px-4 py-3 text-sm leading-relaxed text-amber-100 text-balance">
-                        <span className="block">Strawmap은 공식 계획이 아니라 토론용 초안입니다(strawman + roadmap).</span>
-                        <span className="block">연구자들 사이에서도 의견이 갈리고, 시점은 크게 앞당겨지거나 늦어질 수 있습니다.</span>
+                        <span className="block">{T('Strawmap은 공식 계획이 아니라 토론용 초안입니다(strawman + roadmap).', 'The Strawmap is a discussion draft, not an official plan (strawman + roadmap).')}</span>
+                        <span className="block">{T('연구자들 사이에서도 의견이 갈리고, 시점은 크게 앞당겨지거나 늦어질 수 있습니다.', 'Researchers disagree on parts of it, and timelines may move up or slip considerably.')}</span>
                     </p>
                 </header>
 
                 <section aria-labelledby="rm-stars" className="border-t border-theme-border py-10">
                     <h2 id="rm-stars" className={`${H2} mb-2`}>
-                        다섯 가지 목표
+                        {T('다섯 가지 목표', 'Five goals')}
                     </h2>
-                    <p className="text-theme-text-muted mb-6">모든 업그레이드는 결국 이 다섯 가지 중 하나를 향합니다.</p>
+                    <p className="text-theme-text-muted mb-6">{T('모든 업그레이드는 결국 이 다섯 가지 중 하나를 향합니다.', 'Every upgrade ultimately serves one of these five.')}</p>
                     <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
                         {NORTH_STARS.map((s) => (
                             <li key={s.name} className="rounded-xl border border-theme-border bg-theme-surface p-5 flex flex-col gap-2">
@@ -116,22 +117,22 @@ const Roadmap: React.FC = () => {
                     <div className="flex flex-wrap items-end justify-between gap-4 mb-5">
                         <div>
                             <h2 id="rm-map" className={H2}>
-                                포크별 지도
+                                {T('포크별 지도', 'Map by fork')}
                             </h2>
-                            <p className="mt-1 text-theme-text-muted">왼쪽에서 오른쪽으로 시간이 흐릅니다. 파란 칸이 그 포크의 대표 업그레이드(헤드라이너)입니다.</p>
+                            <p className="mt-1 text-theme-text-muted">{T('왼쪽에서 오른쪽으로 시간이 흐릅니다. 파란 칸이 그 포크의 대표 업그레이드(헤드라이너)입니다.', "Time runs left to right. Blue cells are each fork's headliner upgrade.")}</p>
                         </div>
-                        <ul className="flex flex-wrap gap-3 text-xs text-theme-text-muted" aria-label="범례">
-                            <li className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-brand-primary" aria-hidden />헤드라이너</li>
-                            <li className="flex items-center gap-1.5"><span className="w-3 h-3 rounded border border-theme-border bg-theme-surface" aria-hidden />프로토콜 변경</li>
-                            <li className="flex items-center gap-1.5"><span className="w-3 h-3 rounded border border-dashed border-theme-border" aria-hidden />프로토콜 밖 작업</li>
-                            <li className="flex items-center gap-1.5"><span className="font-bold text-amber-400" aria-hidden>?</span>실현 여부 불확실</li>
+                        <ul className="flex flex-wrap gap-3 text-xs text-theme-text-muted" aria-label={T('범례', 'Legend')}>
+                            <li className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-brand-primary" aria-hidden />{T('헤드라이너', 'Headliner')}</li>
+                            <li className="flex items-center gap-1.5"><span className="w-3 h-3 rounded border border-theme-border bg-theme-surface" aria-hidden />{T('프로토콜 변경', 'Protocol change')}</li>
+                            <li className="flex items-center gap-1.5"><span className="w-3 h-3 rounded border border-dashed border-theme-border" aria-hidden />{T('프로토콜 밖 작업', 'Off-protocol work')}</li>
+                            <li className="flex items-center gap-1.5"><span className="font-bold text-amber-400" aria-hidden>?</span>{T('실현 여부 불확실', 'Uncertain')}</li>
                         </ul>
                     </div>
                     <div className="overflow-x-auto rounded-xl border border-theme-border">
                         <table className="w-full min-w-[1040px] table-fixed border-collapse text-sm">
                             <thead>
                                 <tr className="bg-theme-surface">
-                                    <th scope="col" className="w-20 p-3 text-left text-xs font-medium text-theme-text-muted">층</th>
+                                    <th scope="col" className="w-20 p-3 text-left text-xs font-medium text-theme-text-muted">{T('층', 'Layer')}</th>
                                     {STRAWMAP_FORKS.map((f) => (
                                         <th key={f.name} scope="col" className="p-3 text-left align-bottom">
                                             {'slug' in f ? (
@@ -167,16 +168,16 @@ const Roadmap: React.FC = () => {
                         </table>
                     </div>
                     <p className="mt-3 text-xs text-theme-text-muted">
-                        포크를 넘어 이어지는 흐름: {THROUGHLINES.map((t) => `${t.name}(${STRAWMAP_FORKS[t.from].name}~${STRAWMAP_FORKS[t.to].name})`).join(', ')}. 시점은 Strawmap 상단 표기 기준입니다.
+                        {T('포크를 넘어 이어지는 흐름', 'Threads that run across forks')}: {THROUGHLINES.map((t) => `${t.name}(${STRAWMAP_FORKS[t.from].name}~${STRAWMAP_FORKS[t.to].name})`).join(', ')}. {T('시점은 Strawmap 상단 표기 기준입니다.', 'Timing follows the labels at the top of the Strawmap.')}
                     </p>
                 </section>
 
                 <section aria-labelledby="rm-history" className="border-t border-theme-border py-10">
                     <h2 id="rm-history" className={`${H2} mb-2`}>
-                        로드맵이 걸어온 길
+                        {T('로드맵이 걸어온 길', 'How the roadmap got here')}
                     </h2>
                     <p className="text-theme-text-muted mb-6 max-w-3xl text-balance">
-                        Strawmap은 갑자기 나온 지도가 아닙니다. 비탈릭이 2021년부터 그려 온 갈래 그림, 저스틴 드레이크의 <span className="whitespace-nowrap">Beam Chain</span>과 <span className="whitespace-nowrap">Lean Ethereum</span>을 거쳐 지금 모양이 됐습니다.
+                        {T('Strawmap은 갑자기 나온 지도가 아닙니다. 비탈릭이 2021년부터 그려 온 갈래 그림, 저스틴 드레이크의 Beam Chain과 Lean Ethereum을 거쳐 지금 모양이 됐습니다.', "The Strawmap did not appear out of nowhere. It grew out of the track diagrams Vitalik has drawn since 2021 and Justin Drake's Beam Chain and Lean Ethereum.")}
                     </p>
                     <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 mb-10">
                         {HISTORY_ERAS.map((e, i) => (
@@ -221,8 +222,8 @@ const Roadmap: React.FC = () => {
                                 {rest.length > 0 && (
                                     <details className="group">
                                         <summary className="cursor-pointer list-none py-4 text-sm font-semibold text-brand-accent hover:underline">
-                                            <span className="group-open:hidden">나머지 {rest.length}개 펼치기 ({dotDate(rest[0].date)}부터 지금까지)</span>
-                                            <span className="hidden group-open:inline">접기</span>
+                                            <span className="group-open:hidden">{T(`나머지 ${rest.length}개 펼치기 (${dotDate(rest[0].date)}부터 지금까지)`, `Show ${rest.length} more (${dotDate(rest[0].date)} to now)`)}</span>
+                                            <span className="hidden group-open:inline">{T('접기', 'Collapse')}</span>
                                         </summary>
                                         <ol className="flex flex-col">{rest.map(row)}</ol>
                                     </details>
@@ -234,13 +235,13 @@ const Roadmap: React.FC = () => {
 
                 <section aria-labelledby="rm-pillars" className="border-t border-theme-border py-10">
                     <h2 id="rm-pillars" className={`${H2} mb-2`}>
-                        비탈릭의 여섯 갈래로 다시 보기
+                        {T('비탈릭의 여섯 갈래로 다시 보기', "Seen through Vitalik's six tracks")}
                     </h2>
                     <p className="text-theme-text-muted mb-2 max-w-3xl text-balance">
-                        Strawmap 항목을 비탈릭의 2024년 연재 기준 여섯 갈래로 나눴습니다. 같은 일이 예전에 어떤 이름으로 불렸는지 이어 볼 수 있습니다. 갈래 분류는 Strawmap 원본에 없는 것으로 ECK가 붙였습니다.
+                        {T('Strawmap 항목을 비탈릭의 2024년 연재 기준 여섯 갈래로 나눴습니다. 같은 일이 예전에 어떤 이름으로 불렸는지 이어 볼 수 있습니다. 갈래 분류는 Strawmap 원본에 없는 것으로 ECK가 붙였습니다.', "Strawmap items grouped into the six tracks from Vitalik's 2024 series, so you can see what the same work used to be called. The grouping is ECK's own and is not part of the original Strawmap.")}
                     </p>
                     <p className="text-xs text-theme-text-muted mb-6">
-                        그림: 비탈릭 부테린, 2023년판 로드맵 (Possible futures 연재 수록, WTFPL). 누르면 크게 봅니다.
+                        {T('그림: 비탈릭 부테린, 2023년판 로드맵 (Possible futures 연재 수록, WTFPL). 누르면 크게 봅니다.', 'Diagrams: Vitalik Buterin, 2023 roadmap (from the Possible futures series, WTFPL). Click to enlarge.')}
                     </p>
                     <ul className="grid grid-cols-1 gap-4 xl:grid-cols-2">
                         {PILLARS.map((p) => {
@@ -250,13 +251,13 @@ const Roadmap: React.FC = () => {
                                     <div className="flex items-baseline justify-between gap-3">
                                         <span className="text-xl font-bold">The {p.name}</span>
                                         <a href={p.url} target="_blank" rel="noopener noreferrer" className="text-xs text-brand-accent hover:underline">
-                                            원문
+                                            {T('원문', 'Source')}
                                         </a>
                                     </div>
                                     <a href={`/images/roadmap/pillar-${p.key}.png`} target="_blank" rel="noopener noreferrer" className="block rounded-lg bg-white p-2 overflow-x-auto">
                                         <img
                                             src={`/images/roadmap/pillar-${p.key}.png`}
-                                            alt={`The ${p.name} 로드맵 그림. 비탈릭 부테린이 그린 2023년판으로, 이 갈래의 목표와 단계별 항목을 화살표로 잇습니다.`}
+                                            alt={T(`The ${p.name} 로드맵 그림. 비탈릭 부테린이 그린 2023년판으로, 이 갈래의 목표와 단계별 항목을 화살표로 잇습니다.`, `The ${p.name} roadmap diagram, the 2023 version drawn by Vitalik Buterin, linking this track's goals and staged items with arrows.`)}
                                             loading="lazy"
                                             className="block w-full min-w-[36rem] xl:min-w-0 aspect-[3/1] object-contain"
                                         />
@@ -284,9 +285,9 @@ const Roadmap: React.FC = () => {
 
                 <section aria-labelledby="rm-eips" className="border-t border-theme-border pt-10">
                     <h2 id="rm-eips" className={`${H2} mb-2`}>
-                        EIP로 이어지는 업그레이드
+                        {T('EIP로 이어지는 업그레이드', 'Upgrades that map to EIPs')}
                     </h2>
-                    <p className="text-theme-text-muted mb-6">지도 칸 가운데 EIP가 있는 것입니다. 해설이 있으면 해설로, 없으면 원문으로 이어집니다.</p>
+                    <p className="text-theme-text-muted mb-6">{T('지도 칸 가운데 EIP가 있는 것입니다. 해설이 있으면 해설로, 없으면 원문으로 이어집니다.', 'Map cells that have an EIP. Each links to our explainer when there is one, otherwise to the original.')}</p>
                     <ul className="grid gap-x-8 sm:grid-cols-2">
                         {linked.map((it) => (
                             <li key={it.en} className="py-3 border-b border-theme-border flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">

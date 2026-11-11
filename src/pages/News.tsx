@@ -5,6 +5,7 @@ import { ExternalLink } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import usePageMeta from '../hooks/usePageMeta';
 import { loadEthDigestList, loadEthDigests, type EthDigest, type EthDigestSection } from '../data/ethNewsData';
+import { T } from '../utils/lang';
 
 function formatDigestDate(date: string, locale: string): string {
     return new Date(`${date}T00:00:00`).toLocaleDateString(locale, {
@@ -16,11 +17,11 @@ function formatDigestDate(date: string, locale: string): string {
 }
 
 function isDebateSection(section: EthDigestSection): boolean {
-    return section.heading.includes('논쟁');
+    return /논쟁|debate/i.test(section.heading);
 }
 
 function isInsightSection(section: EthDigestSection): boolean {
-    return section.heading.includes('인사이트');
+    return /인사이트|insight/i.test(section.heading);
 }
 
 const News: React.FC = () => {
@@ -34,7 +35,7 @@ const News: React.FC = () => {
 
     usePageMeta({
         title: 'Ethereum News',
-        description: '이더리움 공식 블로그·리서치 포럼·핵심 트위터·커뮤니티 소식을 매일 수집해 3일마다 한국어 다이제스트로 정리합니다.',
+        description: T('이더리움 공식 블로그·리서치 포럼·핵심 트위터·커뮤니티 소식을 매일 수집해 3일마다 한국어 다이제스트로 정리합니다.', 'We collect news from the official Ethereum blog, research forums, key Twitter accounts and the community every day and publish a digest every three days.'),
         canonical: '/news',
         image: digests[0]?.coverImage,
     });

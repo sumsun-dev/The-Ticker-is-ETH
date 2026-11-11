@@ -6,6 +6,7 @@ import usePageMeta from '../hooks/usePageMeta';
 import SessionPhotos from '../components/events/SessionPhotos';
 import JustifiedGallery from '../components/events/JustifiedGallery';
 import Lightbox from '../components/events/Lightbox';
+import { LT } from '../utils/lang';
 import {
     GENESIS_BANNER,
     GENESIS_PHOTOS,
@@ -19,9 +20,9 @@ import {
 const FLOORS: Track[] = ['2f', '3f', '4f'];
 
 const formatClass = (f: string) =>
-    f === '대담' || f === '키노트' || f === '개회'
+    [LT('대담'), LT('키노트'), LT('개회')].includes(f)
         ? 'text-eth-purple border-eth-purple/40'
-        : f === '라운드테이블'
+        : f === LT('라운드테이블')
           ? 'text-amber-300 border-amber-300/40'
           : 'text-brand-accent border-brand-accent/40';
 

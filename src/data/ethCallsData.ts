@@ -2,6 +2,7 @@
  * 코어 개발자 콜 기록 (scripts/extract-eth-calls.ts가 새 콜마다 갱신 → eth-calls.json).
  * 타입은 scripts/lib/eth-calls.ts의 CallRecord와 같은 모양이다. src 밖을 import하지 않으려고 여기 다시 적는다.
  */
+import { IS_EN } from '../utils/lang';
 
 export type CallStatus = 'SFI' | 'CFI' | 'PFI' | 'DFI' | '보류' | '확정' | '일정' | '기타';
 
@@ -119,11 +120,11 @@ let full: Promise<CallsFile> | null = null;
 
 /** 목록·홈·EIP·포크용: 발언(topics[].positions·quote)과 채팅이 빠진 판 (vite-json-slice.ts). 콜 상세는 loadEthCallsFull */
 export function loadEthCalls(): Promise<CallsFile> {
-    lite ??= import('./eth-calls.json?lite').then(({ default: data }) => data as CallsFile);
+    lite ??= (IS_EN ? import('./eth-calls.json?lite&en') : import('./eth-calls.json?lite')).then(({ default: data }) => data as CallsFile);
     return lite;
 }
 
 export function loadEthCallsFull(): Promise<CallsFile> {
-    full ??= import('./eth-calls.json').then(({ default: data }) => data as CallsFile);
+    full ??= (IS_EN ? import('./eth-calls.json?full&en') : import('./eth-calls.json')).then(({ default: data }) => data as CallsFile);
     return full;
 }

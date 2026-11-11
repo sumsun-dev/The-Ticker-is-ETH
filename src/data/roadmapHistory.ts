@@ -3,6 +3,8 @@
  * 출처는 항목마다 url로 단다 (2026-11-05 원문 대조: vitalik.eth.limo, blog.ethereum.org, strawmap.org, 각 X 게시물).
  * 갈래 분류(ITEM_PILLAR)는 Strawmap 원본에 없는 것으로, ECK가 Vitalik의 2024 "Possible futures" 연재를 기준으로 붙였다.
  */
+import en from './en/roadmapHistory.json';
+import { L } from '../utils/lang';
 
 export type HistoryKind = 'vitalik' | 'drake' | 'ef' | 'fork';
 
@@ -17,17 +19,17 @@ export interface HistoryEntry {
     fork?: string;
 }
 
-export const HISTORY_KIND: Record<HistoryKind, string> = { vitalik: '비탈릭 부테린', drake: '저스틴 드레이크', ef: '이더리움 재단', fork: '메인넷 적용' };
+export const HISTORY_KIND: Record<HistoryKind, string> = L({ vitalik: '비탈릭 부테린', drake: '저스틴 드레이크', ef: '이더리움 재단', fork: '메인넷 적용' }, en);
 
 /** 흐름을 네 시기로 요약 (연대표 위에 둔다) */
-export const HISTORY_ERAS = [
+export const HISTORY_ERAS = L([
     { years: '2021~2023', name: '갈래 그림', body: '비탈릭이 해마다 그린 한 장짜리 그림. 무엇을 할지를 다섯, 나중엔 여섯 갈래로 묶었습니다.' },
     { years: '2024', name: '연구 정리', body: '여섯 갈래를 한 편씩 풀어 목표와 남은 문제를 적은 연재. 갈래 안의 해법이 몇 차례 바뀝니다.' },
     { years: '2024~2025', name: '다시 짓기', body: '드레이크가 합의층부터 새로 짓자고 제안했고, 실행·데이터층까지 넓혀 Lean Ethereum이 됩니다.' },
     { years: '2026~', name: '포크별 일정', body: 'Strawmap이 Lean Ethereum과 당장의 작업을 하나로 엮어, 2029년까지 포크마다 무엇이 들어갈지 그립니다.' },
-] as const;
+] as const, en);
 
-export const ROADMAP_HISTORY: HistoryEntry[] = [
+export const ROADMAP_HISTORY: HistoryEntry[] = L([
     {
         date: '2021-12-02',
         kind: 'vitalik',
@@ -150,7 +152,7 @@ export const ROADMAP_HISTORY: HistoryEntry[] = [
         url: 'https://vitalik.eth.limo/general/2026/09/27/the_cryptographic_world_computer.html',
         changes: ['비탈릭이 앞으로의 이더리움을 "Strawmap을 따라 짓고 있는 lean Ethereum"이라고 부릅니다. 갈래 그림에서 시작한 로드맵이 Strawmap으로 모였다는 뜻입니다.'],
     },
-];
+], en);
 
 export type PillarKey = 'merge' | 'surge' | 'scourge' | 'verge' | 'purge' | 'splurge';
 
@@ -163,7 +165,7 @@ export interface Pillar {
     url: string;
 }
 
-export const PILLARS: Pillar[] = [
+export const PILLARS: Pillar[] = L([
     {
         key: 'merge',
         name: 'Merge',
@@ -206,7 +208,7 @@ export const PILLARS: Pillar[] = [
         shift: '2021년엔 PBS와 MEV까지 담은 "그 밖의 것" 칸이었습니다. 2022년 MEV가 Scourge로 빠지고 계정 추상화가 중심이 됐습니다.',
         url: 'https://vitalik.eth.limo/general/2024/10/29/futures6.html',
     },
-];
+], en);
 
 /** Strawmap 항목(itemSlug) → 비탈릭 갈래. 갈래에 딱 맞지 않는 항목(프라이버시, 명세·네트워크 작업 등)은 넣지 않는다 */
 export const ITEM_PILLAR: Record<string, PillarKey> = {

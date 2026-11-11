@@ -2,6 +2,8 @@ import type { TeamMember, Activity, Contribution } from '../types/team';
 import { formatDate, isStillActive } from '../utils/telegram';
 import rawEnrichment from './team-enrichment.json';
 import rawCoreTeam from './team-core.json';
+import teamEn from './en/team-core.json';
+import { L, T } from '../utils/lang';
 import { extraContributors } from './extraContributors';
 
 // --- Enrichment JSON 타입 ---
@@ -53,7 +55,7 @@ function findEnrichedContributor(name: string): EnrichedContributor | undefined 
 
 // --- Core Team 멤버 (JSON에서 로드) ---
 
-const rawMembers: TeamMember[] = (rawCoreTeam as Array<Omit<TeamMember, 'contributions' | 'recentActivity'>>).map(m => ({
+const rawMembers: TeamMember[] = L(rawCoreTeam as Array<Omit<TeamMember, 'contributions' | 'recentActivity'>>, teamEn).map(m => ({
     ...m,
     contributions: [],
     recentActivity: [],
@@ -92,7 +94,7 @@ function telegramToContributors(): (TeamMember & { category: string })[] {
             avatarUrl: `/assets/team/${contributor.name.toLowerCase()}.jpg`,
             contributions,
             recentActivity: contributor.recentActivity,
-            bio: `${enrichmentData.channel} 채널에서 ${Math.round(contributor.messageCount)}개의 메시지를 작성한 기여자입니다.`,
+            bio: T(`${enrichmentData.channel} 채널에서 ${Math.round(contributor.messageCount)}개의 메시지를 작성한 기여자입니다.`, `A contributor who has written ${Math.round(contributor.messageCount)} posts in the ${enrichmentData.channel} channel.`),
             memberType: 'contributor' as const,
             category: 'Content',
             social: {

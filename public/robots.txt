@@ -37,4 +37,5 @@ User-agent: CCBot
 Allow: /
 
 Sitemap: https://ethcollective.xyz/sitemap.xml
+Sitemap: https://ethcollective.xyz/sitemap-en.xml
 Host: https://ethcollective.xyz

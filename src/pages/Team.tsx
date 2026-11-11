@@ -8,6 +8,7 @@ import { mockMembers, mockContributors } from '../data/mockData';
 import { sortMembers, getTotalContributions } from '../utils/members';
 import usePageMeta from '../hooks/usePageMeta';
 import type { TeamMember } from '../types/team';
+import { T } from '../utils/lang';
 
 type SortOption = 'contributions' | 'seniority';
 
@@ -41,7 +42,7 @@ const Team: React.FC = () => {
     const [sortBy, setSortBy] = useState<SortOption>('contributions');
     const [filter, setFilter] = useState<string>('all');
     const { t } = useTranslation('team');
-    usePageMeta({ title: 'Team', description: 'ECK(Ethereum Collective Korea) 코어팀과 기여자' });
+    usePageMeta({ title: 'Team', description: T('ECK(Ethereum Collective Korea) 코어팀과 기여자', 'The core team and contributors of ECK (Ethereum Collective Korea)') });
 
     const [now] = useState(() => Date.now());
     const stats = useMemo(() => {

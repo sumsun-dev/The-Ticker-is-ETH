@@ -105,7 +105,35 @@ notify_owner() {
     --data-urlencode "chat_id=$chat" --data-urlencode "text=${1:0:3500}" || echo "[WARN] notify_owner 전송 실패"
 }
 
+# 영어판: 방금 쓴 한국어 데이터에서 아직 영어가 없는 문장만 번역해 src/data/en 사전에 채운다 (scripts/translate-en.ts).
+# 새 문장이 없으면 모델을 부르지 않고 바로 끝난다. 실패해도 한국어 발행은 진행하고, 남은 문장은 다음 실행이 이어 간다
+# 한국어 발행(커밋·푸시)이 끝난 뒤에 돈다: 번역이 오래 걸려도 한국어 새 글이 사이트에 늦게 뜨지 않는다.
+# 다른 실행이 번역 중이면(flock) 건너뛴다. 같은 사전 파일을 둘이 쓰면 나중 것이 앞 것을 덮는다
+translate_en() {
+  local status=0
+  flock -n /tmp/eck-translate-en.lock timeout 60m npx tsx scripts/translate-en.ts || status=$?
+  # 2: 사용량 한도(다이제스트·브리프도 같은 계정). 그 밖의 실패도 오너에게 알린다. 124 는 시간 초과로, 쓴 데까지 남고 다음 실행이 이어 간다
+  if [ "$status" -eq 2 ]; then
+    notify_owner "[영어판 번역] 사용량 한도에 걸려 멈췄습니다. 남은 문장은 다음 실행에서 이어 갑니다."
+  elif [ "$status" -ne 0 ] && [ "$status" -ne 124 ]; then
+    notify_owner "[영어판 번역] 실패했습니다 (exit $status). 다른 실행이 번역 중이었다면 무시해도 됩니다."
+  fi
+  git add src/data/en/
+  git diff --cached --quiet && return 0
+  # 푸시까지 못 가면(사전 충돌 등) 이 커밋만 버린다. rebase 중간 상태로 남으면 다음 실행의 pull 부터 막혀 발행 전체가 멈춘다
+  if ! (git commit -q -m "chore: sync english dictionaries [automated]" && git pull --rebase --autostash origin main && git push origin main); then
+    git rebase --abort 2>/dev/null || true
+    git reset -q --hard origin/main
+    notify_owner "[영어판 번역] 사전 커밋을 올리지 못해 버렸습니다. 다음 실행에서 다시 번역합니다."
+  fi
+}
+
 commit_and_push() {
+  publish_ko "$1"
+  translate_en
+}
+
+publish_ko() {
   git add src/data/eth-digests.json src/data/eth-debates.json src/data/eth-calls.json src/data/x-profiles.json src/data/weekly-briefs.json src/data/eips.json src/data/ercs.json src/data/erc-index.json public/assets/digests/
   git diff --cached --quiet || (
     git commit -m "$1" &&

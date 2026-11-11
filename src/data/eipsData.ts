@@ -2,8 +2,9 @@
  * EIP 해설 (scripts/extract-eips.ts가 EIP 원문과 콜 기록으로 쓰고 im-not-ai 룰북으로 윤문해 eips.json에 쌓는다).
  * 콜 여정·포크 포함 상태·관련 논쟁은 저장하지 않고 화면에서 eth-calls.json·eth-debates.json으로 계산한다 (src/utils/eips.ts).
  */
+import { IS_EN, LT } from '../utils/lang';
 
-export const EIP_TOPICS = ['계정 추상화', '수수료·가스', '확장성·데이터', '합의·스테이킹', '보안·프라이버시', 'EVM·실행', '네트워크·노드', '기타'] as const;
+export const EIP_TOPICS = LT(['계정 추상화', '수수료·가스', '확장성·데이터', '합의·스테이킹', '보안·프라이버시', 'EVM·실행', '네트워크·노드', '기타'] as const);
 export type EipTopic = (typeof EIP_TOPICS)[number];
 
 export interface EipMeta {
@@ -54,13 +55,13 @@ let list: Promise<EipsFile> | null = null;
 
 /** 목록·검색·제목 조회용: 해설 본문이 빠진 판 (vite-json-slice.ts). 상세 화면은 loadEips */
 export function loadEipList(): Promise<EipsFile> {
-    list ??= import('./eips.json?list').then(({ default: data }) => data as EipsFile);
+    list ??= (IS_EN ? import('./eips.json?list&en') : import('./eips.json?list')).then(({ default: data }) => data as EipsFile);
     return list;
 }
 
 export async function loadEips(): Promise<EipsFile> {
     if (!pending) {
-        pending = import('./eips.json')
+        pending = (IS_EN ? import('./eips.json?full&en') : import('./eips.json'))
             .then(({ default: data }) => data as unknown as EipsFile)
             .catch((error) => {
                 pending = null;

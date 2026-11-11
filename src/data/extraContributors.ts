@@ -1,7 +1,9 @@
 import type { TeamMember } from '../types/team';
+import en from './en/extraContributors.json';
+import { L } from '../utils/lang';
 
 // 텔레그램 기록 밖에서 손으로 넣은 기여자. mockData(팀 화면)와 teamAvatars(홈)가 같이 쓴다
-export const extraContributors: (TeamMember & { category: string })[] = [
+export const extraContributors: (TeamMember & { category: string })[] = L([
     {
         id: 'gen-1',
         name: 'Gen',
@@ -70,4 +72,4 @@ export const extraContributors: (TeamMember & { category: string })[] = [
         category: 'Content',
         social: { twitter: 'https://x.com/1004yukichan' },
     },
-];
+], en);

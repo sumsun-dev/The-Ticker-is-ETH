@@ -3,6 +3,8 @@
  * 원본에 기계가 읽을 데이터가 없어 분기마다 원본 갱신일을 보고 다시 옮긴다.
  * eips: 원본 칸의 EIP 링크 중 번호를 확인한 것만 적는다.
  */
+import en from './en/roadmap.json';
+import { L } from '../utils/lang';
 
 export const STRAWMAP_UPDATED = '2026-11-02';
 export const STRAWMAP_URL = 'https://strawmap.org';
@@ -23,13 +25,13 @@ export interface RoadmapItem {
     eips?: number[];
 }
 
-export const LAYERS: Array<{ key: Layer; name: string }> = [
+export const LAYERS: Array<{ key: Layer; name: string }> = L([
     { key: 'cl', name: '합의' },
     { key: 'dl', name: '데이터' },
     { key: 'el', name: '실행' },
-];
+], en);
 
-export const STRAWMAP_FORKS = [
+export const STRAWMAP_FORKS = L([
     { name: 'Glamsterdam', when: '2027년 초', slug: 'glamsterdam' },
     { name: 'Hegotá', when: '2027', slug: 'hegota' },
     { name: 'I*', when: '2028' },
@@ -37,26 +39,26 @@ export const STRAWMAP_FORKS = [
     { name: 'K*', when: '2029' },
     { name: 'L*', when: '2029~30' },
     { name: '그 이후', when: '장기' },
-] as const;
+] as const, en);
 
-export const NORTH_STARS = [
+export const NORTH_STARS = L([
     { layer: '합의', name: '빠른 L1', metric: '몇 초 안에 확정', metricEn: 'finality in seconds', body: '거래가 블록에 들어가고 되돌릴 수 없게 확정되기까지 걸리는 시간을 지금의 십몇 분에서 몇 초로 줄입니다.' },
     { layer: '실행', name: '기가가스 L1', metric: '초당 1기가가스', metricEn: '1 gigagas/sec', body: 'zkEVM과 실시간 증명으로 L1 처리량을 약 1만 TPS 수준까지 올립니다.' },
     { layer: '데이터', name: '테라가스 L2', metric: '초당 1GB', metricEn: '1 gigabyte/sec', body: '데이터 가용성 샘플링으로 L2 전체 처리량을 약 1천만 TPS 수준까지 올립니다.' },
     { layer: '여러 층', name: '양자 내성 L1', metric: '수백 년 보안', metricEn: 'centuries-long security', body: '해시 기반 서명과 증명으로 양자컴퓨터가 나와도 버티게 합니다.' },
     { layer: '실행', name: '프라이버시 L1', metric: '차폐 전송', metricEn: 'L1 shielded transfers', body: '금액과 상대를 가린 송금을 L1의 기본 기능으로 넣습니다.' },
-] as const;
+] as const, en);
 
 /** 여러 포크에 걸쳐 이어지는 흐름 (원본의 가로 막대) */
-export const THROUGHLINES = [
+export const THROUGHLINES = L([
     { layer: 'cl' as Layer, name: '슬롯 시간 단축', from: 1, to: 5 },
     { layer: 'dl' as Layer, name: '데이터 가용성 확대', from: 1, to: 5 },
     { layer: 'el' as Layer, name: '가스 한도 상향', from: 1, to: 5, eips: [7938] },
-];
+], en);
 
 const i = (name: string, en: string, layer: Layer, fork: number, kind: ItemKind, extra: Partial<RoadmapItem> = {}): RoadmapItem => ({ name, en, layer, fork, kind, ...extra });
 
-export const ROADMAP_ITEMS: RoadmapItem[] = [
+export const ROADMAP_ITEMS: RoadmapItem[] = L([
     // 합의 층
     i('ePBS', 'ePBS', 'cl', 0, 'headliner', { eips: [7732] }),
     i('빠른 확인', 'fast confirmation', 'cl', 0, 'offchain'),
@@ -115,7 +117,7 @@ export const ROADMAP_ITEMS: RoadmapItem[] = [
     i('암호화 멤풀', 'encrypted mempool', 'el', 6, 'onchain', { uncertain: true }),
     i('웜홀', 'wormholes', 'el', 6, 'onchain', { eips: [7503] }),
     i('최종 상태', 'endgame state', 'el', 6, 'onchain', { uncertain: true }),
-];
+], en);
 
 /** 지도 칸: 층 × 포크. leanVM 같은 여러 층 항목은 데이터 층 칸에 함께 둔다 */
 export function roadmapGrid(items: RoadmapItem[] = ROADMAP_ITEMS): Record<Exclude<Layer, 'cross'>, RoadmapItem[][]> {

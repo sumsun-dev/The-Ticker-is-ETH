@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, ChevronDown, ExternalLink, FileText, ListOrdered, PlayCircle } from 'lucide-react';
 import usePageMeta from '../hooks/usePageMeta';
+import { IS_EN, T } from '../utils/lang';
 import {
     DEVCON8_IMAGES,
     DEVCON8_LINKS,
@@ -21,10 +22,10 @@ const transcriptLoader = (id: string): (() => Promise<string>) | undefined => TR
 const TOPICS = [...new Set(DEVCON8_TALKS.map((t) => t.topic))];
 
 const HIGHLIGHTS = [
-    { label: '다음 Devcon', value: '2027 리스본', note: '10월 11일~13일, 2년 연속 개최' },
-    { label: '포스트퀀텀 전환', value: 'Mission 2028', note: '2028년 12월 완료를 목표로 제안' },
-    { label: '글램스테르담', value: '추가 연기', note: '가스 재가격 EIP 문제로 새 날짜 미정' },
-    { label: '슬롯 시간', value: '12초 → 8초', note: '2027년 10초부터 단계적으로' },
+    { label: T('다음 Devcon', 'Next Devcon'), value: T('2027 리스본', 'Lisbon 2027'), note: T('10월 11일~13일, 2년 연속 개최', 'October 11 to 13, back-to-back years') },
+    { label: T('포스트퀀텀 전환', 'Post-quantum transition'), value: 'Mission 2028', note: T('2028년 12월 완료를 목표로 제안', 'Proposed to complete by December 2028') },
+    { label: T('글램스테르담', 'Glamsterdam'), value: T('추가 연기', 'Delayed again'), note: T('가스 재가격 EIP 문제로 새 날짜 미정', 'No new date yet due to the gas repricing EIPs') },
+    { label: T('슬롯 시간', 'Slot time'), value: T('12초 → 8초', '12s → 8s'), note: T('2027년 10초부터 단계적으로', 'In steps, starting with 10s in 2027') },
 ];
 
 const SectionHead: React.FC<{ id: string; title: string }> = ({ id, title }) => (
@@ -57,7 +58,7 @@ const TalkRow: React.FC<{ talk: Devcon8Talk }> = ({ talk }) => {
             target="_blank"
             rel="noopener noreferrer"
             className="group relative block self-start overflow-hidden rounded-xl border border-theme-border-secondary bg-white/5"
-            aria-label={`${talk.title} 영상 보기`}
+            aria-label={T(`${talk.title} 영상 보기`, `Watch ${talk.title}`)}
         >
             <img src={ytThumb(talk.youtubeId)} alt="" loading="lazy" className="block aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]" />
             <span className="absolute inset-0 grid place-items-center bg-black/20 opacity-90 transition-opacity group-hover:bg-black/10">
@@ -68,7 +69,7 @@ const TalkRow: React.FC<{ talk: Devcon8Talk }> = ({ talk }) => {
             <div className="mb-1 flex flex-wrap items-center gap-2">
                 <span className="rounded-full border border-brand-accent/40 px-2 text-[11px] font-semibold tracking-wide text-brand-accent">{TOPIC_LABEL[talk.topic]}</span>
                 <span className="text-[12px] tabular-nums text-theme-text-muted">
-                    {talk.date} 발표{talk.duration && ` · ${talk.duration}`}
+                    {talk.date}{T(' 발표', '')}{talk.duration && ` · ${talk.duration}`}
                 </span>
             </div>
             <h3 className="text-[17px] font-semibold leading-snug text-theme-text">{talk.title}</h3>
@@ -97,10 +98,11 @@ const TalkRow: React.FC<{ talk: Devcon8Talk }> = ({ talk }) => {
                     </a>
                 ))}
                 {talk.flow && talk.flow.length > 0 && (
-                    <PanelButton id={`flow-${talk.id}`} open={panel === 'flow'} onClick={() => toggle('flow')} icon={<ListOrdered size={14} />} label="한국어 정리" />
+                    <PanelButton id={`flow-${talk.id}`} open={panel === 'flow'} onClick={() => toggle('flow')} icon={<ListOrdered size={14} />} label={T('한국어 정리', 'Summary')} />
                 )}
-                {loadScript && (
-                    <PanelButton id={`script-${talk.id}`} open={panel === 'script'} onClick={() => toggle('script')} icon={<FileText size={14} />} label="한국어 스크립트" />
+                {/* 한국어 스크립트는 영어 발표를 옮긴 것이라 영어판에서는 띄우지 않는다 */}
+                {loadScript && !IS_EN && (
+                    <PanelButton id={`script-${talk.id}`} open={panel === 'script'} onClick={() => toggle('script')} icon={<FileText size={14} />} label={T('한국어 스크립트', 'Korean transcript')} />
                 )}
             </div>
             {panel === 'flow' && talk.flow && (
@@ -117,14 +119,14 @@ const TalkRow: React.FC<{ talk: Devcon8Talk }> = ({ talk }) => {
                         ))}
                     </ol>
                     <p className="border-t border-theme-border-secondary px-4 py-2.5 text-[12px] text-theme-text-muted">
-                        대본을 바탕으로 ECK가 발표 흐름을 우리말로 정리한 것입니다. 원문 전체는 영상 페이지에서 볼 수 있습니다.
+                        {T('대본을 바탕으로 ECK가 발표 흐름을 우리말로 정리한 것입니다. 원문 전체는 영상 페이지에서 볼 수 있습니다.', "ECK's outline of the talk, written from the transcript. The full talk is on the video page.")}
                     </p>
                 </div>
             )}
             {panel === 'script' && (
                 <div id={`script-${talk.id}`} className="mt-4 max-h-[60vh] overflow-y-auto rounded-xl border border-theme-border-secondary bg-white/[0.02] px-4 py-4">
                     {script === null ? (
-                        <p className="text-sm text-theme-text-muted">불러오는 중입니다.</p>
+                        <p className="text-sm text-theme-text-muted">{T('불러오는 중입니다.', 'Loading.')}</p>
                     ) : (
                         <ScriptBody text={script} />
                     )}
@@ -177,8 +179,8 @@ const ScriptBody: React.FC<{ text: string }> = ({ text }) => (
 
 const EventDevcon8: React.FC = () => {
     usePageMeta({
-        title: 'Devcon 8 India 현장 리포트',
-        description: '뭄바이에서 열린 Devcon 8의 주요 발표와 소식, 다음 Devcon 리스본 개최 소식을 정리했습니다.',
+        title: T('Devcon 8 India 현장 리포트', 'Devcon 8 India report'),
+        description: T('뭄바이에서 열린 Devcon 8의 주요 발표와 소식, 다음 Devcon 리스본 개최 소식을 정리했습니다.', 'Key talks and news from Devcon 8 in Mumbai, plus the announcement of the next Devcon in Lisbon.'),
         image: DEVCON8_IMAGES.keyVisual,
     });
     const [topic, setTopic] = useState<Devcon8Topic | 'all'>('all');
@@ -195,22 +197,24 @@ const EventDevcon8: React.FC = () => {
                         <Link to="/events?type=global" className="mb-8 inline-flex items-center gap-1.5 text-sm text-theme-text-muted hover:text-theme-text">
                             <ArrowLeft size={14} /> Events
                         </Link>
-                        <div className="text-xs font-semibold uppercase tracking-widest text-brand-accent">외부 행사 리포트 · Ethereum Foundation</div>
+                        <div className="text-xs font-semibold uppercase tracking-widest text-brand-accent">{T('외부 행사 리포트 · Ethereum Foundation', 'Event report · Ethereum Foundation')}</div>
                         <h1 className="mt-2 text-4xl font-bold tracking-tight text-theme-text sm:text-6xl">Devcon 8 India</h1>
                         <div className="mt-4 flex flex-wrap gap-x-5 gap-y-1 text-sm tabular-nums text-theme-text-secondary">
                             <span>2026.11.03 ~ 11.06</span>
-                            <span>뭄바이 Jio World Centre</span>
+                            <span>{T('뭄바이 Jio World Centre', 'Jio World Centre, Mumbai')}</span>
                         </div>
                         <p className="mt-6 max-w-xl text-base leading-relaxed text-theme-text-secondary">
-                            이더리움 재단이 여는 개발자 행사 Devcon이 인도 뭄바이에서 나흘 동안 열렸습니다. 올해 무대의 중심에는 AI 시대의 보안과 프라이버시, 그리고
-                            양자컴퓨터에 대비한 암호 전환이 있었습니다. 238개 세션 가운데 주요 발표와 행사 기간에 나온 소식을 정리했습니다.
+                            {T(
+                                '이더리움 재단이 여는 개발자 행사 Devcon이 인도 뭄바이에서 나흘 동안 열렸습니다. 올해 무대의 중심에는 AI 시대의 보안과 프라이버시, 그리고 양자컴퓨터에 대비한 암호 전환이 있었습니다. 238개 세션 가운데 주요 발표와 행사 기간에 나온 소식을 정리했습니다.',
+                                "Devcon, the Ethereum Foundation's developer conference, ran for four days in Mumbai, India. This year's stage centered on security and privacy in the age of AI and on the cryptographic transition ahead of quantum computers. Here are the key talks out of 238 sessions and the news from the week.",
+                            )}
                         </p>
                     </div>
                     <figure className="relative order-first mx-auto w-full max-w-sm overflow-hidden md:order-none rounded-3xl border border-white/10 shadow-2xl shadow-black/50">
-                        <img src={DEVCON8_IMAGES.vitalik} alt="망토와 웃는 얼굴 가면을 쓰고 Devcon 8 무대에 선 비탈릭 부테린" className="block aspect-[4/5] max-h-[60vh] w-full object-cover object-top md:max-h-none" />
+                        <img src={DEVCON8_IMAGES.vitalik} alt={T('망토와 웃는 얼굴 가면을 쓰고 Devcon 8 무대에 선 비탈릭 부테린', 'Vitalik Buterin on the Devcon 8 stage in a cape and a smiling mask')} className="block aspect-[4/5] max-h-[60vh] w-full object-cover object-top md:max-h-none" />
                         <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent px-5 pt-12 pb-4">
-                            <span className="text-[11px] font-semibold uppercase tracking-widest text-brand-accent">개막 키노트</span>
-                            <b className="mt-1 block text-lg leading-snug text-white">가면을 쓰고 무대에 오른 비탈릭</b>
+                            <span className="text-[11px] font-semibold uppercase tracking-widest text-brand-accent">{T('개막 키노트', 'Opening keynote')}</span>
+                            <b className="mt-1 block text-lg leading-snug text-white">{T('가면을 쓰고 무대에 오른 비탈릭', 'Vitalik takes the stage in a mask')}</b>
                         </figcaption>
                     </figure>
                 </div>
@@ -230,7 +234,7 @@ const EventDevcon8: React.FC = () => {
                 </section>
 
                 <section className="pt-4" aria-labelledby="devcon8-talks">
-                    <SectionHead id="devcon8-talks" title="주요 발표" />
+                    <SectionHead id="devcon8-talks" title={T('주요 발표', 'Key talks')} />
                     <div className="mb-4 flex flex-wrap gap-1.5">
                         {(['all', ...TOPICS] as const).map((k) => (
                             <button
@@ -240,7 +244,7 @@ const EventDevcon8: React.FC = () => {
                                 onClick={() => setTopic(k)}
                                 className={`rounded-full border px-3 py-1.5 text-[13px] ${topic === k ? 'border-white bg-white font-semibold text-black' : 'border-theme-border-secondary bg-brand-surface text-theme-text-secondary'}`}
                             >
-                                {k === 'all' ? '전체' : TOPIC_LABEL[k]}
+                                {k === 'all' ? T('전체', 'All') : TOPIC_LABEL[k]}
                             </button>
                         ))}
                     </div>
@@ -250,7 +254,7 @@ const EventDevcon8: React.FC = () => {
                         ))}
                     </ol>
                     <div className="mt-6 rounded-2xl border border-theme-border-secondary bg-white/[0.02] px-5 py-4">
-                        <b className="text-sm text-theme-text">더 볼 만한 세션</b>
+                        <b className="text-sm text-theme-text">{T('더 볼 만한 세션', 'More sessions worth watching')}</b>
                         <ul className="mt-2 grid gap-1.5 sm:grid-cols-2">
                             {DEVCON8_MORE.map((m) => (
                                 <li key={m.url}>
@@ -264,7 +268,7 @@ const EventDevcon8: React.FC = () => {
                 </section>
 
                 <section className="pt-16" aria-labelledby="devcon8-news">
-                    <SectionHead id="devcon8-news" title="행사 기간에 나온 소식" />
+                    <SectionHead id="devcon8-news" title={T('행사 기간에 나온 소식', 'News from the week')} />
                     <div className="grid gap-4 md:grid-cols-2">
                         {DEVCON8_NEWS.map((n) => (
                             <article key={n.title} className="rounded-2xl border border-theme-border-secondary bg-brand-surface p-5">
@@ -279,16 +283,17 @@ const EventDevcon8: React.FC = () => {
                 </section>
 
                 <section className="pt-16" aria-labelledby="devcon8-next">
-                    <SectionHead id="devcon8-next" title="다음 Devcon" />
+                    <SectionHead id="devcon8-next" title={T('다음 Devcon', 'Next Devcon')} />
                     <div className="grid overflow-hidden rounded-2xl border border-brand-accent/30 bg-brand-surface md:grid-cols-[1fr_1.1fr]">
-                        <img src={DEVCON8_IMAGES.lisbon} alt="Devcon IX 리스본 2027년 10월 11~13일 안내 이미지" loading="lazy" className="block h-full w-full object-cover" />
+                        <img src={DEVCON8_IMAGES.lisbon} alt={T('Devcon IX 리스본 2027년 10월 11~13일 안내 이미지', 'Announcement image for Devcon IX, Lisbon, October 11 to 13, 2027')} loading="lazy" className="block h-full w-full object-cover" />
                         <div className="p-6">
                             <div className="text-xs font-semibold uppercase tracking-widest text-brand-accent">Devcon IX</div>
-                            <h3 className="mt-1 text-2xl font-bold text-theme-text">2027년 10월 11일~13일, 포르투갈 리스본</h3>
+                            <h3 className="mt-1 text-2xl font-bold text-theme-text">{T('2027년 10월 11일~13일, 포르투갈 리스본', 'October 11 to 13, 2027, Lisbon, Portugal')}</h3>
                             <p className="mt-3 text-sm leading-relaxed text-theme-text-secondary">
-                                이번이 마지막 Devcon이라는 이야기도 돌았지만, 폐막 무대에서 다음 행사를 리스본 CCL(Lisbon Congress Centre)에서 연다고 발표했습니다. 그동안 Devcon과
-                                Devconnect가 해마다 번갈아 열렸는데, 2027년에는 2019년 이후 처음으로 Devcon이 2년 연속 열립니다. 2027년 Devconnect 개최 여부는 아직 공식 언급이
-                                없습니다.
+                                {T(
+                                    '이번이 마지막 Devcon이라는 이야기도 돌았지만, 폐막 무대에서 다음 행사를 리스본 CCL(Lisbon Congress Centre)에서 연다고 발표했습니다. 그동안 Devcon과 Devconnect가 해마다 번갈아 열렸는데, 2027년에는 2019년 이후 처음으로 Devcon이 2년 연속 열립니다. 2027년 Devconnect 개최 여부는 아직 공식 언급이 없습니다.',
+                                    'There was talk that this would be the last Devcon, but the closing session announced the next one at the Lisbon Congress Centre (CCL). Devcon and Devconnect have alternated year by year, and 2027 will be the first time since 2019 that Devcon runs in back-to-back years. Nothing official has been said yet about a 2027 Devconnect.',
+                                )}
                             </p>
                             <a
                                 href={DEVCON8_LINKS.lisbon}
@@ -296,7 +301,7 @@ const EventDevcon8: React.FC = () => {
                                 rel="noopener noreferrer"
                                 className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-accent hover:underline"
                             >
-                                <ExternalLink size={14} /> Devcon IX 안내
+                                <ExternalLink size={14} /> {T('Devcon IX 안내', 'About Devcon IX')}
                             </a>
                         </div>
                     </div>
@@ -309,7 +314,7 @@ const EventDevcon8: React.FC = () => {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-1.5 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black hover:bg-gray-200"
                     >
-                        <PlayCircle size={15} /> 전체 영상 238개 (이더리움 TV)
+                        <PlayCircle size={15} /> {T('전체 영상 238개 (이더리움 TV)', 'All 238 videos (Ethereum TV)')}
                     </a>
                     <a
                         href={DEVCON8_LINKS.official}
@@ -317,10 +322,10 @@ const EventDevcon8: React.FC = () => {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-1.5 rounded-full border border-theme-border px-5 py-2.5 text-sm font-semibold text-theme-text hover:bg-white/5"
                     >
-                        <ExternalLink size={14} /> Devcon 공식 사이트
+                        <ExternalLink size={14} /> {T('Devcon 공식 사이트', 'Official Devcon site')}
                     </a>
                     <Link to="/events" className="inline-flex items-center rounded-full border border-theme-border px-5 py-2.5 text-sm font-semibold text-theme-text hover:bg-white/5">
-                        다른 행사 보기
+                        {T('다른 행사 보기', 'See other events')}
                     </Link>
                 </div>
             </div>

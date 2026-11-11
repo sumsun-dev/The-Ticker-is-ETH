@@ -1,6 +1,6 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import LanguageDetector from 'i18next-browser-languagedetector';
+import { IS_EN } from '../utils/lang';
 
 import koCommon from './ko/common.json';
 import koHome from './ko/home.json';
@@ -29,7 +29,6 @@ import enEips from './en/eips.json';
 import enErcs from './en/ercs.json';
 
 i18n
-  .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     resources: {
@@ -62,16 +61,13 @@ i18n
         ercs: enErcs,
       },
     },
+    // 언어는 주소(/en)로 정한다
+    lng: IS_EN ? 'en' : 'ko',
     fallbackLng: 'ko',
     defaultNS: 'common',
     ns: ['common', 'home', 'about', 'team', 'contents', 'events', 'ecosystem', 'news', 'debates', 'calls'],
     interpolation: {
       escapeValue: false,
-    },
-    detection: {
-      order: ['localStorage'],
-      lookupLocalStorage: 'i18nextLng',
-      caches: ['localStorage'],
     },
   });
 

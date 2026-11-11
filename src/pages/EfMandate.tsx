@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { BookOpen, ChevronDown, ExternalLink, FileText, Quote } from 'lucide-react';
 import usePageMeta from '../hooks/usePageMeta';
 import data from '../data/ef-mandate.json';
+import en from '../data/en/ef-mandate.json';
+import { IS_EN, L, T } from '../utils/lang';
 
 /**
  * EF Mandate(이더리움 재단, 2026-03-13) 한국어 해설. 장마다 요지·요점·인용을 보여 주고, 「한국어 전문」을 펼치면
@@ -30,7 +32,7 @@ interface MandateData {
     glossary: Array<{ term: string; body: string }>;
 }
 
-const D = data as MandateData;
+const D = L(data as MandateData, en);
 const IMG = '/assets/ef-mandate';
 const chapterImg = (numeral: string) => `${IMG}/${numeral.toLowerCase()}.webp`;
 const FULL = import.meta.glob('../data/ef-mandate-full/*.md', { query: '?raw', import: 'default' }) as Record<string, () => Promise<string>>;
@@ -60,10 +62,11 @@ const FullText: React.FC<{ numeral: string }> = ({ numeral }) => {
     const load = FULL[`../data/ef-mandate-full/${numeral.toLowerCase()}.md`];
     const [open, setOpen] = useState(false);
     const [text, setText] = useState<string | null>(null);
-    if (!load) return null;
+    // 한국어 전문은 영어 원문을 옮긴 것이라 영어판에서는 띄우지 않는다 (원문 링크가 따로 있다)
+    if (!load || IS_EN) return null;
     const id = `full-${numeral.toLowerCase()}`;
     const toggle = () => {
-        if (!open && text === null) load().then(setText).catch(() => setText('번역을 불러오지 못했습니다. 잠시 뒤 다시 열어 주세요.'));
+        if (!open && text === null) load().then(setText).catch(() => setText(T('번역을 불러오지 못했습니다. 잠시 뒤 다시 열어 주세요.', 'Could not load the translation. Please try again shortly.')));
         setOpen(!open);
     };
     return (
@@ -75,14 +78,14 @@ const FullText: React.FC<{ numeral: string }> = ({ numeral }) => {
                 onClick={toggle}
                 className={`inline-flex items-center gap-1.5 rounded-full border px-4 py-2 text-[13px] font-semibold ${open ? 'border-white bg-white text-black' : 'border-theme-border text-theme-text hover:bg-white/5'}`}
             >
-                <BookOpen size={14} /> {open ? '한국어 전문 접기' : '한국어 전문 읽기'}
+                <BookOpen size={14} /> {open ? T('한국어 전문 접기', 'Hide full Korean text') : T('한국어 전문 읽기', 'Read full Korean text')}
                 <ChevronDown size={14} className={`transition-transform ${open ? 'rotate-180' : ''}`} />
             </button>
             {open && (
                 <div id={id} className="mt-4 rounded-2xl border border-theme-border-secondary bg-white/[0.02] px-5 py-5 sm:px-7">
-                    {text === null ? <p className="text-sm text-theme-text-muted">불러오는 중입니다.</p> : <FullTextBody text={text} />}
+                    {text === null ? <p className="text-sm text-theme-text-muted">{T('불러오는 중입니다.', 'Loading.')}</p> : <FullTextBody text={text} />}
                     <p className="mt-6 border-t border-theme-border-secondary pt-3 text-[12px] text-theme-text-muted">
-                        재단이 이더리움에 기록한 원문을 ECK가 우리말로 옮겼습니다. 정확한 표현은 원문을 확인해 주세요.
+                        {T('재단이 이더리움에 기록한 원문을 ECK가 우리말로 옮겼습니다. 정확한 표현은 원문을 확인해 주세요.', 'ECK translated the original that the Foundation recorded on Ethereum into Korean. Check the original for exact wording.')}
                     </p>
                 </div>
             )}
@@ -125,7 +128,7 @@ const ChapterBlock: React.FC<{ s: Section }> = ({ s }) => (
         <figure className="md:sticky md:top-24 md:self-start">
             <img
                 src={chapterImg(s.numeral)}
-                alt={`EF Mandate ${s.numeral}장 ${s.titleEn} 그림`}
+                alt={T(`EF Mandate ${s.numeral}장 ${s.titleEn} 그림`, `Illustration for EF Mandate chapter ${s.numeral}, ${s.titleEn}`)}
                 loading="lazy"
                 className="mx-auto block aspect-[3/4] w-full max-w-[280px] rounded-2xl border border-white/10 object-cover shadow-xl shadow-black/40"
             />
@@ -165,8 +168,8 @@ const ChapterBlock: React.FC<{ s: Section }> = ({ s }) => (
 
 const EfMandate: React.FC = () => {
     usePageMeta({
-        title: 'EF Mandate 해설',
-        description: '이더리움 재단이 2026년 3월 발표한 EF Mandate를 장마다 쉽게 풀었습니다. 재단의 역할, 원칙, 어려운 판단의 기준을 정리했습니다.',
+        title: T('EF Mandate 해설', 'EF Mandate explained'),
+        description: T('이더리움 재단이 2026년 3월 발표한 EF Mandate를 장마다 쉽게 풀었습니다. 재단의 역할, 원칙, 어려운 판단의 기준을 정리했습니다.', "A plain-language walkthrough, chapter by chapter, of the EF Mandate the Ethereum Foundation published in March 2026: the Foundation's role, its principles, and how it makes hard calls."),
         image: `${IMG}/hero.webp`,
         canonical: '/ef-mandate',
     });
@@ -181,26 +184,26 @@ const EfMandate: React.FC = () => {
                     <div>
                         <div className="text-xs font-semibold uppercase tracking-widest text-brand-accent">Ethereum Foundation · {D.meta.published.replaceAll('-', '.')}</div>
                         <h1 className="mt-2 text-4xl font-bold tracking-tight text-white sm:text-6xl">EF Mandate</h1>
-                        <p className="mt-2 text-lg text-white/80">이더리움 재단은 무엇을 하고, 무엇을 하지 않는가</p>
+                        <p className="mt-2 text-lg text-white/80">{T('이더리움 재단은 무엇을 하고, 무엇을 하지 않는가', 'What the Ethereum Foundation does, and what it does not')}</p>
                         <p className="mt-6 max-w-xl text-base leading-relaxed text-white/80">{D.lead}</p>
                         <div className="mt-7 flex flex-wrap gap-2.5">
                             <LinkButton href={D.meta.originalUrl} primary icon={<ExternalLink size={14} />}>
-                                원문 (ethereum.org)
+                                {T('원문 (ethereum.org)', 'Original (ethereum.org)')}
                             </LinkButton>
                             {D.meta.pdfUrl && (
                                 <LinkButton href={D.meta.pdfUrl} icon={<FileText size={14} />}>
-                                    디자인 PDF
+                                    {T('디자인 PDF', 'Designed PDF')}
                                 </LinkButton>
                             )}
                             <LinkButton href={D.meta.blogUrl} icon={<ExternalLink size={14} />}>
-                                재단 블로그
+                                {T('재단 블로그', 'Foundation blog')}
                             </LinkButton>
                         </div>
                     </div>
                     <figure className="order-first mx-auto w-full max-w-[260px] md:order-none md:max-w-[300px]">
                         <img
                             src={`${IMG}/cover.webp`}
-                            alt="EF Mandate 표지 그림"
+                            alt={T('EF Mandate 표지 그림', 'EF Mandate cover art')}
                             className="block aspect-[3/4] w-full rounded-2xl border border-white/15 object-cover shadow-2xl shadow-black/60"
                         />
                     </figure>
@@ -209,7 +212,7 @@ const EfMandate: React.FC = () => {
 
             <div className="container mx-auto max-w-5xl px-6">
                 <section className="py-12" aria-labelledby="mandate-ideas">
-                    <SectionHead id="mandate-ideas" title="한눈에 보기" />
+                    <SectionHead id="mandate-ideas" title={T('한눈에 보기', 'At a glance')} />
                     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                         {D.keyIdeas.map((k) => (
                             <div key={k.title} className="rounded-2xl border border-theme-border-secondary bg-brand-surface p-5">
@@ -223,14 +226,14 @@ const EfMandate: React.FC = () => {
                             {D.meta.onchain}{' '}
                             {D.meta.onchainTx && (
                                 <a href={D.meta.onchainTx} target="_blank" rel="noopener noreferrer" className="text-brand-accent hover:underline">
-                                    블록 탐색기에서 보기
+                                    {T('블록 탐색기에서 보기', 'View on a block explorer')}
                                 </a>
                             )}
                         </p>
                     )}
                 </section>
 
-                <nav aria-label="장 목차" className="mb-4 flex gap-2 overflow-x-auto pb-2 [scrollbar-width:none]">
+                <nav aria-label={T('장 목차', 'Chapters')} className="mb-4 flex gap-2 overflow-x-auto pb-2 [scrollbar-width:none]">
                     {D.sections.map((s) => (
                         <a
                             key={s.id}
@@ -243,7 +246,7 @@ const EfMandate: React.FC = () => {
                     ))}
                 </nav>
 
-                <section aria-label="장별 해설">
+                <section aria-label={T('장별 해설', 'Chapter by chapter')}>
                     {D.sections.map((s) => (
                         <ChapterBlock key={s.id} s={s} />
                     ))}
@@ -251,12 +254,12 @@ const EfMandate: React.FC = () => {
 
                 {(D.principles.technical.length > 0 || D.principles.social.length > 0) && (
                     <section className="pt-12" aria-labelledby="mandate-principles">
-                        <SectionHead id="mandate-principles" title="행동 원칙 한눈에" />
+                        <SectionHead id="mandate-principles" title={T('행동 원칙 한눈에', 'Principles at a glance')} />
                         <div className="grid gap-4 md:grid-cols-2">
                             {(
                                 [
-                                    ['기술 원칙', 'Technical Pillar', D.principles.technical],
-                                    ['사회 원칙', 'Social Pillar', D.principles.social],
+                                    [T('기술 원칙', 'Technical principles'), 'Technical Pillar', D.principles.technical],
+                                    [T('사회 원칙', 'Social principles'), 'Social Pillar', D.principles.social],
                                 ] as const
                             ).map(([ko, en, list]) => (
                                 <div key={en} className="rounded-2xl border border-theme-border-secondary bg-brand-surface p-5">
@@ -279,7 +282,7 @@ const EfMandate: React.FC = () => {
 
                 {D.quandaries.length > 0 && (
                     <section className="pt-16" aria-labelledby="mandate-quandaries">
-                        <SectionHead id="mandate-quandaries" title="어려운 판단은 이렇게" />
+                        <SectionHead id="mandate-quandaries" title={T('어려운 판단은 이렇게', 'How hard calls get made')} />
                         <div className="grid gap-3">
                             {D.quandaries.map((q) => (
                                 <div key={q.question} className="rounded-2xl border border-theme-border-secondary bg-white/[0.02] p-5">
@@ -294,7 +297,7 @@ const EfMandate: React.FC = () => {
                 <div className="pt-16">
                     {D.glossary.length > 0 && (
                         <section aria-labelledby="mandate-glossary">
-                            <SectionHead id="mandate-glossary" title="용어 풀이" />
+                            <SectionHead id="mandate-glossary" title={T('용어 풀이', 'Glossary')} />
                             <dl className="grid gap-3">
                                 {D.glossary.map((g) => (
                                     <div key={g.term}>
@@ -311,21 +314,21 @@ const EfMandate: React.FC = () => {
                     <img src={`${IMG}/viii.webp`} alt="" aria-hidden loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-35" />
                     <div className="absolute inset-0 bg-gradient-to-r from-[#050816] via-[#050816]/80 to-transparent" />
                     <div className="relative p-8">
-                        <b className="text-xl text-white">원문 전체 읽기</b>
-                        <p className="mt-2 max-w-md text-sm text-white/75">이 페이지는 ECK가 원문을 우리말로 풀어 정리한 해설입니다. 정확한 표현은 원문을 확인해 주세요.</p>
+                        <b className="text-xl text-white">{T('원문 전체 읽기', 'Read the full original')}</b>
+                        <p className="mt-2 max-w-md text-sm text-white/75">{T('이 페이지는 ECK가 원문을 우리말로 풀어 정리한 해설입니다. 정확한 표현은 원문을 확인해 주세요.', "This page is ECK's explainer of the original. Check the original for exact wording.")}</p>
                         <div className="mt-5 flex flex-wrap gap-2.5">
                             <LinkButton href={D.meta.originalUrl} primary icon={<ExternalLink size={14} />}>
-                                원문 (ethereum.org)
+                                {T('원문 (ethereum.org)', 'Original (ethereum.org)')}
                             </LinkButton>
                             {D.meta.pdfUrl && (
                                 <LinkButton href={D.meta.pdfUrl} icon={<FileText size={14} />}>
-                                    디자인 PDF
+                                    {T('디자인 PDF', 'Designed PDF')}
                                 </LinkButton>
                             )}
                         </div>
                     </div>
                 </div>
-                <p className="mt-4 text-xs text-theme-text-muted">그림: Ethereum Foundation, EF Mandate (2026) 디자인 PDF와 재단 블로그 대표 이미지.</p>
+                <p className="mt-4 text-xs text-theme-text-muted">{T('그림: Ethereum Foundation, EF Mandate (2026) 디자인 PDF와 재단 블로그 대표 이미지.', 'Images: Ethereum Foundation, EF Mandate (2026) designed PDF and the Foundation blog cover image.')}</p>
             </div>
         </div>
     );

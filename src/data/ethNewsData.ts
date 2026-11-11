@@ -2,6 +2,7 @@
  * 이더리움 뉴스 인박스 (scripts/fetch-eth-news.ts가 매일 수집 → eth-news-inbox.json).
  * 타입 이름은 news-feed용 NewsItem과의 충돌을 피해 EthNewsItem을 사용한다.
  */
+import { IS_EN } from '../utils/lang';
 
 export interface EthNewsItem {
     id: string;
@@ -84,7 +85,7 @@ let digestListPending: Promise<EthDigest[]> | undefined;
 
 /** 뉴스 첫 화면용: 최신호만 본문, 지난 호는 sections 가 빈 판 (vite-json-slice). 지난 호를 열 땐 loadEthDigests */
 export function loadEthDigestList(): Promise<EthDigest[]> {
-    return (digestListPending ??= import('./eth-digests.json?digests').then(
+    return (digestListPending ??= (IS_EN ? import('./eth-digests.json?digests&en') : import('./eth-digests.json?digests')).then(
         ({ default: data }) => (data as { digests: EthDigest[] }).digests,
     ));
 }
@@ -94,7 +95,7 @@ export async function loadEthDigests(): Promise<EthDigest[]> {
     if (digestCache) return digestCache;
     if (digestPromise) return digestPromise;
 
-    digestPromise = import('./eth-digests.json').then(({ default: data }) => {
+    digestPromise = (IS_EN ? import('./eth-digests.json?full&en') : import('./eth-digests.json')).then(({ default: data }) => {
         digestCache = (data as { digests: EthDigest[] }).digests;
         digestPromise = null;
         return digestCache;
