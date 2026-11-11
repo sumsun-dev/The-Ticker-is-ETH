@@ -49,6 +49,7 @@ import { parseSpeaker } from '../src/utils/youtubeDescription';
 import { GENESIS_SESSIONS } from '../src/data/ek1GenesisData';
 import { DEVCON8_IMAGES, DEVCON8_NEWS, DEVCON8_TALKS } from '../src/data/devcon8Data';
 import { callLabel } from '../src/utils/calls';
+import { PAST_EVENTS } from '../src/data/pastEvents';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -140,11 +141,22 @@ const debates = allDebates
 // EIP 해설 (scripts/extract-eips.ts). 상태 배지는 화면처럼 콜 기록에서 계산한다
 const eips = readJson<EipsFile>(join(DATA, 'eips.json')).eips.sort((a, b) => b.number - a.number);
 const ethCalls = readJson<{ calls: CallRecord[] }>(join(DATA, 'eth-calls.json')).calls;
+// 화면 글과 같은 한국어 문구를 쓴다
+const eventsKo = readJson<{ locations: Record<string, string>; descriptions: Record<string, string> }>(join(ROOT, 'src/i18n/ko/events.json'));
+const ecoKo = readJson<{ ecosystem: { description: string; categories: Record<string, string>; tools: Record<string, string>; twitter: Record<string, string> } }>(
+    join(ROOT, 'src/i18n/ko/ecosystem.json'),
+).ecosystem;
+const eco = readJson<{
+    categories: { id: string }[];
+    tools: { id: string; name: string; url: string; category: string }[];
+    twitterAccounts: { id: string; name: string; handle: string; url: string }[];
+}>(join(DATA, 'ecosystem-tools.json'));
 const efMandate = readJson<{
     meta: { published: string; originalUrl: string; blogUrl: string };
     lead: string;
     keyIdeas: { title: string; body: string }[];
     sections: { numeral: string; titleEn: string; titleKo: string; summary: string; points: string[] }[];
+    principles: { technical: { name: string; body: string }[]; social: { name: string; body: string }[] };
     quandaries: { question: string; answer: string }[];
     glossary: { term: string; body: string }[];
 }>(join(DATA, 'ef-mandate.json'));
@@ -805,7 +817,14 @@ const staticPages: StaticPage[] = [
             STRAWMAP_FORKS.map((f, i) => `<h2>${esc(f.name)} (${esc(f.when)})</h2><ul>${ROADMAP_ITEMS.filter((x) => x.fork === i).map((x) => `<li>${roadmapEx.topics[itemSlug(x)] ? `<a href="/roadmap/${itemSlug(x)}">${esc(x.name)}</a>` : esc(x.name)} (${esc(x.en)})${x.eips?.length ? ` EIP-${x.eips.join(', EIP-')}` : ''}</li>`).join('')}</ul>`).join('') +
             `<h2>로드맵이 걸어온 길</h2><ol>${ROADMAP_HISTORY.map((h) => `<li>${h.date} <a href="${h.url}">${esc(h.title)}</a>: ${esc(h.changes.join(' '))}</li>`).join('')}</ol>` +
             `<h2>비탈릭의 여섯 갈래</h2>${PILLARS.map((p) => `<h3>The ${p.name}</h3><p>${esc(p.goal)} ${esc(p.shift)}</p><p>${ROADMAP_ITEMS.filter((x) => ITEM_PILLAR[itemSlug(x)] === p.key).map((x) => esc(x.name)).join(', ')}</p>`).join('')}`,
-        jsonLd: [],
+        jsonLd: [
+            collectionPageLd({
+                name: '이더리움 로드맵',
+                url: '/roadmap',
+                description: '이더리움 재단 프로토콜 팀의 Strawmap을 한국어로 옮긴 로드맵과 항목별 해설',
+                items: topicItems.map((it) => ({ name: it.name, url: `/roadmap/${itemSlug(it)}` })),
+            }),
+        ],
     },
     {
         path: 'forks',
@@ -844,16 +863,61 @@ const staticPages: StaticPage[] = [
     {
         path: 'ecosystem',
         title: 'Ecosystem',
-        description: '한국 이더리움 생태계 — 프로젝트, 팀, 커뮤니티를 탐색합니다.',
-        bodyHtml: `<h1>Ecosystem</h1><p>한국 이더리움 생태계의 프로젝트와 팀, 커뮤니티를 소개합니다.</p>`,
-        jsonLd: [],
+        description: ecoKo.description,
+        bodyHtml:
+            `<h1>이더리움 생태계 지도</h1><p>${esc(ecoKo.description)}</p>` +
+            eco.categories
+                .map((c) => {
+                    const list = eco.tools.filter((t) => t.category === c.id);
+                    return list.length
+                        ? `<h2>${esc(ecoKo.categories[c.id] ?? c.id)}</h2><ul>${list.map((t) => `<li><a href="${escAttr(t.url)}">${esc(t.name)}</a>: ${esc(ecoKo.tools[t.id] ?? '')}</li>`).join('')}</ul>`
+                        : '';
+                })
+                .join('') +
+            `<h2>추천 트위터(X) 계정</h2><ul>${eco.twitterAccounts.map((a) => `<li><a href="${escAttr(a.url)}">${esc(a.name)} (${esc(a.handle)})</a>${ecoKo.twitter?.[a.id] ? `: ${esc(ecoKo.twitter[a.id])}` : ''}</li>`).join('')}</ul>`,
+        jsonLd: [
+            collectionPageLd({
+                name: '이더리움 생태계 지도',
+                url: '/ecosystem',
+                description: ecoKo.description,
+                items: eco.tools.map((t) => ({ name: t.name, url: t.url })),
+            }),
+        ],
     },
     {
         path: 'events',
         title: 'Events',
         description: 'Ethereum Korea One, Ethcon Korea 등 ECK가 함께한 이더리움 행사 기록.',
-        bodyHtml: `<h1>Events</h1><p>ECK가 함께 만들거나 참여한 이더리움 행사 기록입니다.</p><p><a href="/events/ek1-genesis">Ethereum Korea One Genesis</a></p>`,
-        jsonLd: [],
+        bodyHtml:
+            `<h1>Events</h1><p>ECK가 함께 만들거나 참여한 이더리움 행사와, 해외 주요 행사를 한국어로 정리한 리포트입니다.</p>` +
+            `<h2>최근 행사</h2><ul>` +
+            `<li><a href="/events/ek1-genesis">Ethereum Korea One: Genesis</a> (2026.09.28 – 09.29, 서울): 세션 영상과 행사 기록</li>` +
+            `<li><a href="/events/devcon-8">Devcon 8 India 현장 리포트</a>: 뭄바이에서 열린 Devcon 8의 주요 발표 ${DEVCON8_TALKS.length}개 한국어 정리</li>` +
+            `</ul>` +
+            `<h2>지난 행사</h2><ul>${PAST_EVENTS.map((e) => `<li><a href="${escAttr(e.link)}">${esc(e.title)}</a> (${esc(e.date)}, ${esc(eventsKo.locations[e.locationKey] ?? '')}): ${esc(eventsKo.descriptions[e.descriptionKey] ?? '')}</li>`).join('')}</ul>`,
+        jsonLd: [
+            collectionPageLd({
+                name: 'Events',
+                url: '/events',
+                description: 'ECK가 함께한 이더리움 행사 기록',
+                items: [
+                    { name: 'Ethereum Korea One: Genesis', url: '/events/ek1-genesis' },
+                    { name: 'Devcon 8 India 현장 리포트', url: '/events/devcon-8' },
+                    ...PAST_EVENTS.map((e) => ({ name: e.title, url: e.link })),
+                ],
+            }),
+            // 지난 행사: "언제·어디서 열렸나"에 답할 수 있게 Event 로도 싣는다
+            ...PAST_EVENTS.map((e) => ({
+                '@context': 'https://schema.org',
+                '@type': 'Event',
+                name: e.title,
+                startDate: e.date.slice(0, 10).replace(/\./g, '-'),
+                eventStatus: 'https://schema.org/EventScheduled',
+                location: { '@type': 'Place', name: eventsKo.locations[e.locationKey] ?? 'Seoul', address: { '@type': 'PostalAddress', addressLocality: 'Seoul', addressCountry: 'KR' } },
+                description: eventsKo.descriptions[e.descriptionKey],
+                url: e.link,
+            })),
+        ],
     },
     {
         path: 'events/ek1-genesis',
@@ -875,10 +939,10 @@ const staticPages: StaticPage[] = [
     {
         path: 'calls',
         title: 'Core Dev Calls',
-        description: `이더리움 코어 개발자 콜(ACDE·ACDC) ${fullCalls.length}회의 결정과 쟁점을 한국어로 정리합니다. 어떤 EIP가 어느 포크에 들어가는지 콜마다 기록합니다.`,
+        description: `이더리움 코어 개발자 콜(ACDE·ACDC·ACDT 등) ${fullCalls.length}회의 결정과 쟁점을 한국어로 정리합니다. 어떤 EIP가 어느 포크에 들어가는지 콜마다 기록합니다.`,
         bodyHtml:
             `<h1>Core Dev Calls: 이더리움 코어 개발자 콜 정리</h1>` +
-            `<p>이더리움 프로토콜의 변경은 코어 개발자 콜(All Core Devs)에서 정해집니다. 실행 레이어 콜(ACDE)과 합의 레이어 콜(ACDC)마다 무엇이 결정됐고 어떤 쟁점이 오갔는지 한국어로 정리합니다.</p>` +
+            `<p>이더리움 프로토콜의 변경은 코어 개발자 콜(All Core Devs)에서 정해집니다. 실행 레이어 콜(ACDE), 합의 레이어 콜(ACDC), 테스트 콜(ACDT)마다 무엇이 결정됐고 어떤 쟁점이 오갔는지 한국어로 정리합니다.</p>` +
             `<ul>` +
             fullCalls.map((c) => `<li><a href="/calls/${escAttr(c.id)}">${esc(callTitle(c))}</a> (${esc(c.date)})<br>${esc(c.summary ?? c.lead ?? '')}</li>`).join('') +
             `</ul>`,
@@ -927,6 +991,8 @@ const staticPages: StaticPage[] = [
             `<p><a href="${escAttr(efMandate.meta.originalUrl)}">원문</a> · <a href="${escAttr(efMandate.meta.blogUrl)}">재단 블로그</a> · ${esc(efMandate.meta.published)} 발표</p>` +
             `<h2>핵심 생각</h2><ul>${efMandate.keyIdeas.map((k) => `<li>${esc(k.title)}: ${esc(k.body)}</li>`).join('')}</ul>` +
             efMandate.sections.map((sec) => `<h2>${esc(sec.numeral)}. ${esc(sec.titleKo)} (${esc(sec.titleEn)})</h2><p>${esc(sec.summary)}</p><ul>${sec.points.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>`).join('') +
+            `<h2>기술 원칙</h2><ul>${efMandate.principles.technical.map((x) => `<li>${esc(x.name)}: ${esc(x.body)}</li>`).join('')}</ul>` +
+            `<h2>사회 원칙</h2><ul>${efMandate.principles.social.map((x) => `<li>${esc(x.name)}: ${esc(x.body)}</li>`).join('')}</ul>` +
             `<h2>어려운 판단의 기준</h2>${efMandate.quandaries.map((q) => `<h3>${esc(q.question)}</h3><p>${esc(q.answer)}</p>`).join('')}` +
             `<h2>용어</h2><ul>${efMandate.glossary.map((g) => `<li>${esc(g.term)}: ${esc(g.body)}</li>`).join('')}</ul></article>`,
         jsonLd: [
@@ -966,7 +1032,7 @@ for (const c of fullCalls) {
         `<h1>${esc(title)}</h1>` +
         `<p>${esc(c.title)} · ${esc(c.date)}</p>` +
         (c.lead ? `<p>${esc(c.lead)}</p>` : '') +
-        `<p>${esc(summary)}</p>` +
+        (c.summary ? `<p>${esc(c.summary)}</p>` : '') +
         (c.whyItMatters ? `<h2>왜 중요한가</h2><p>${esc(c.whyItMatters)}</p>` : '') +
         (c.decisions.length ? `<h2>결정</h2><ul>${c.decisions.map((d) => `<li>${esc(d.label)}: ${esc(d.text)}</li>`).join('')}</ul>` : '') +
         (c.topics.length
@@ -1061,7 +1127,7 @@ const llms =
     `- [Ethereum Debates](${SITE_URL}/debates): 코어 개발자·리서처가 갈린 쟁점 (${debates.length}건)\n` +
     `- [EIPs](${SITE_URL}/eips): EIP 한국어 해설, 쉬운 설명과 심층 설명 (${eips.length}개)\n` +
     `- [ERCs](${SITE_URL}/ercs): ERC(토큰·NFT·지갑 등 앱 표준) 한국어 해설, 구현할 함수와 주의할 점 (${ercs.length}개)\n` +
-    `- [Core Dev Calls](${SITE_URL}/calls): 코어 개발자 콜(ACDE·ACDC)의 결정과 쟁점 한국어 정리 (${fullCalls.length}회)\n` +
+    `- [Core Dev Calls](${SITE_URL}/calls): 코어 개발자 콜(ACDE·ACDC·ACDT 등)의 결정과 쟁점 한국어 정리 (${fullCalls.length}회)\n` +
     `- [Roadmap](${SITE_URL}/roadmap): 이더리움 로드맵 항목별 한국어 해설\n` +
     `- [Hard Forks](${SITE_URL}/forks): 하드포크별 포함 EIP와 일정 (${FORKS.length}개)\n` +
     `- [EF Mandate](${SITE_URL}/ef-mandate): 이더리움 재단 EF Mandate 한국어 해설\n` +
