@@ -1,6 +1,6 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { mockMembers, mockContributors } from '../../data/mockData';
+import { teamAvatars } from '../../data/teamAvatars';
 
 // Pre-generate deterministic pseudo-random values for particle animation
 function seededValue(i: number): { delay: number; duration: number } {
@@ -74,13 +74,7 @@ const MemberAvatarFlow: React.FC = () => {
         return () => mq.removeEventListener('change', handler);
     }, []);
 
-    const allAvatars = useMemo(() => {
-        const unique = new Map();
-        [...mockMembers, ...mockContributors].forEach(m => {
-            if (!unique.has(m.name)) unique.set(m.name, m);
-        });
-        return Array.from(unique.values()).slice(0, 50);
-    }, []);
+    const allAvatars = teamAvatars.slice(0, 50);
 
     const angles = useMemo(() => [-90, -30, 30, 90, 150, 210], []);
 

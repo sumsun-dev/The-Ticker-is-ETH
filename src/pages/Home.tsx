@@ -1,4 +1,4 @@
-import React, { useMemo, lazy, Suspense } from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import Hero from '../components/home/Hero';
 import MissionSection from '../components/home/MissionSection';
@@ -10,20 +10,14 @@ const CallsSection = lazy(() => import('../components/home/CallsSection'));
 const EcosystemSection = lazy(() => import('../components/home/EcosystemSection'));
 import { useTranslation } from 'react-i18next';
 import { ArrowRight, MessageCircle } from 'lucide-react';
-import { mockMembers, mockContributors } from '../data/mockData';
+import { teamAvatars } from '../data/teamAvatars';
 import usePageMeta from '../hooks/usePageMeta';
 
 const Home: React.FC = () => {
     const { t } = useTranslation('home');
     usePageMeta({ title: '', description: 'ECK(Ethereum Collective Korea) — 한국 이더리움 생태계 공공재 콜렉티브' });
 
-    const allMembers = useMemo(() => {
-        const coreNames = new Set(mockMembers.map(m => m.name.toLowerCase()));
-        const uniqueContributors = mockContributors.filter(
-            c => !coreNames.has(c.name.toLowerCase()),
-        );
-        return [...mockMembers, ...uniqueContributors].slice(0, 20);
-    }, []);
+    const allMembers = teamAvatars.slice(0, 20);
 
     return (
         <div className="bg-theme-bg">

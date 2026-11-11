@@ -5,6 +5,7 @@ import { ChevronDown, Menu, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import EthCursorTrail from '../components/cursor/EthCursorTrail';
 import LanguageToggle from '../components/common/LanguageToggle';
+import { prefetchRoute } from '../routes/prefetch';
 
 // import AuthButton from '../components/common/AuthButton'; // temporarily disabled
 
@@ -149,6 +150,8 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                                                         to={i.path}
                                                         aria-current={isActive(i.path) ? 'page' : undefined}
                                                         onClick={() => setOpenGroup(null)}
+                                                        onPointerEnter={() => prefetchRoute(i.path)}
+                                                        onFocus={() => prefetchRoute(i.path)}
                                                         className="flex flex-col gap-1 rounded-xl px-4 py-3 hover:bg-theme-surface-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent aria-[current=page]:bg-theme-surface"
                                                     >
                                                         <span className="text-sm font-semibold text-theme-text">{i.name}</span>
@@ -199,6 +202,8 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                                         role="menuitem"
                                         aria-current={isActive(i.path) ? 'page' : undefined}
                                         onClick={() => setIsMobileMenuOpen(false)}
+                                        onPointerEnter={() => prefetchRoute(i.path)}
+                                        onFocus={() => prefetchRoute(i.path)}
                                         className="py-2 text-lg font-medium text-theme-text-secondary hover:text-theme-text aria-[current=page]:text-theme-text focus-visible:text-theme-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent rounded"
                                     >
                                         {i.name}
