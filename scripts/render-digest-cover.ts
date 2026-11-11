@@ -6,7 +6,7 @@
  * 크로미엄: CHROMIUM_PATH → ~/.cache/ms-playwright → macOS Chrome → 리눅스 시스템 경로.
  */
 import { createHash } from 'node:crypto';
-import { existsSync, readFileSync, writeFileSync } from 'fs';
+import { existsSync, readFileSync, rmSync, writeFileSync } from 'fs';
 import { renderCover } from './lib/cover';
 import * as path from 'path';
 import type { Digest } from './generate-eth-digest';
@@ -32,13 +32,15 @@ async function main() {
     return;
   }
 
+  rmSync(webpFile, { force: true }); // 옛 WebP 가 새 PNG 와 짝지어지지 않게
   const ok = await renderCover({ headline: digest.shortTitle ?? digest.title, subTitle: digest.subTitle }, outFile, webpFile);
   if (!ok) return;
 
   // 같은 파일명 덮어쓰기 시 CDN/브라우저 캐시 무효화를 위해 콘텐츠 해시 쿼리를 붙인다
   const hash = createHash('md5').update(readFileSync(outFile)).digest('hex').slice(0, 8);
   digest.coverImage = `${publicPath}?v=${hash}`;
-  digest.coverWebp = `${publicPath.replace(/\.png$/, '.webp')}?v=${hash}`;
+  if (existsSync(webpFile)) digest.coverWebp = `${publicPath.replace(/\.png$/, '.webp')}?v=${hash}`;
+  else delete digest.coverWebp;
   writeFileSync(DIGESTS, JSON.stringify(data, null, 2), 'utf-8');
   console.log(`Rendered cover ${outFile} and linked as ${publicPath}`);
 }

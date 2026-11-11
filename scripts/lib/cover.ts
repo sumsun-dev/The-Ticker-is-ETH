@@ -162,18 +162,26 @@ export async function renderHtml(html: string, outFile: string, fit?: () => void
     if (fit) await page.evaluate(fit);
     const png = await page.screenshot({ path: outFile, type: 'png' });
     if (webpFile) {
-      // 화면용 WebP(PNG 의 약 1/12). 서버에 cwebp·sharp 가 없어 크로미엄 캔버스로 인코딩한다
-      const b64 = await page.evaluate(async (src) => {
-        const img = new Image();
-        img.src = src;
-        await img.decode();
-        const c = document.createElement('canvas');
-        c.width = img.naturalWidth;
-        c.height = img.naturalHeight;
-        c.getContext('2d')!.drawImage(img, 0, 0);
-        return c.toDataURL('image/webp', 0.9).split(',')[1];
-      }, `data:image/png;base64,${png.toString('base64')}`);
-      writeFileSync(webpFile, Buffer.from(b64, 'base64'));
+      // 화면용 WebP(PNG 의 약 1/12). 서버에 cwebp·sharp 가 없어 크로미엄 캔버스로 인코딩한다.
+      // 부가 기능이라 실패해도 PNG 는 살린다 (화면은 PNG 로 돌아간다)
+      try {
+        const b64 = await page.evaluate(async (src) => {
+          const img = new Image();
+          img.src = src;
+          await img.decode();
+          const c = document.createElement('canvas');
+          c.width = img.naturalWidth;
+          c.height = img.naturalHeight;
+          c.getContext('2d')!.drawImage(img, 0, 0);
+          const url = c.toDataURL('image/webp', 0.9);
+          // 지원하지 않으면 예외 없이 PNG 를 돌려준다
+          if (!url.startsWith('data:image/webp')) throw new Error('webp unsupported');
+          return url.split(',')[1];
+        }, `data:image/png;base64,${png.toString('base64')}`);
+        writeFileSync(webpFile, Buffer.from(b64, 'base64'));
+      } catch (error) {
+        console.warn('[WARN] webp encode failed:', error instanceof Error ? error.message : error);
+      }
     }
   } finally {
     await browser.close();

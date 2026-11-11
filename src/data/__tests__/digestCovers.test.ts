@@ -12,9 +12,4 @@ describe('eth-digests cover files', () => {
     const missing = digests.flatMap((d) => [d.coverImage, d.coverWebp]).filter((p): p is string => !!p && !existsSync(file(p)));
     expect(missing).toEqual([]);
   });
-
-  it('should have a WebP cover wherever there is a PNG cover', () => {
-    const { digests } = data as unknown as Digests;
-    expect(digests.filter((d) => d.coverImage && !d.coverWebp).map((d) => d.date)).toEqual([]);
-  });
 });
