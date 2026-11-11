@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-10T14:00:22.146Z",
+  "updatedAt": "2026-11-11T14:00:20.026Z",
   "ercs": [
     {
       "number": 20,
@@ -5622,7 +5622,7 @@
     {
       "number": 8325,
       "title": "Asset Anchor Registry",
-      "status": "Last Call",
+      "status": "Final",
       "created": "2026-07-04",
       "requires": [
         165
@@ -5631,7 +5631,7 @@
     {
       "number": 8326,
       "title": "Canonical Document Bundle Anchor",
-      "status": "Last Call",
+      "status": "Final",
       "created": "2026-07-05",
       "requires": [
         165
@@ -5640,7 +5640,7 @@
     {
       "number": 8327,
       "title": "Directional Transfer Domain Registry",
-      "status": "Last Call",
+      "status": "Final",
       "created": "2026-07-05",
       "requires": [
         165
