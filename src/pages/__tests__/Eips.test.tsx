@@ -43,7 +43,7 @@ vi.mock('../../data/ethCallsData', () => ({
 }));
 
 vi.mock('../../data/ethDebatesData', () => ({
-    loadEthDebates: vi.fn().mockResolvedValue([{ id: 'aa', title: 'EIP-8141과 8130 논쟁', summary: '', lastActivity: '2026-09-01', publish: true, positions: [], timeline: [] }]),
+    loadEthDebateList: vi.fn().mockResolvedValue([{ id: 'aa', title: 'EIP-8141과 8130 논쟁', summary: '', lastActivity: '2026-09-01', publish: true, positions: [], timeline: [] }]),
 }));
 
 const at = (path: string) =>

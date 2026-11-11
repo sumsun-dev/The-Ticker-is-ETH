@@ -5,7 +5,7 @@ import usePageMeta from '../hooks/usePageMeta';
 import { ercUrl, loadErcIndex, loadErcs, type ErcIndexEntry, type ErcRecord } from '../data/ercsData';
 import { loadEipList } from '../data/eipsData';
 import { loadEthDigests, type EthDigest } from '../data/ethNewsData';
-import { loadEthDebates, type Debate } from '../data/ethDebatesData';
+import { loadEthDebateList, type Debate } from '../data/ethDebatesData';
 import { ERC_STATUS_TEXT, dependentsOf, digestMentions, standardHref } from '../utils/ercs';
 import { debatesFor } from '../utils/eips';
 import { dotDate } from '../utils/calls';
@@ -41,7 +41,7 @@ const ErcDetail: React.FC = () => {
             .then((f) => setEipSet(new Set(f.eips.map((x) => x.number))))
             .catch(() => undefined);
         loadEthDigests().then(setDigests).catch(() => undefined);
-        loadEthDebates().then(setDebates).catch(() => undefined);
+        loadEthDebateList().then(setDebates).catch(() => undefined);
     }, []);
 
     const r = records?.find((x) => x.number === n) ?? null;

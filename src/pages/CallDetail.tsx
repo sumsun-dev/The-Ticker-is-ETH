@@ -4,7 +4,7 @@ import { ArrowLeft, ExternalLink } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import usePageMeta from '../hooks/usePageMeta';
 import { loadEthCallsFull, type CallRecord, type CallSpeaker } from '../data/ethCallsData';
-import { loadEthDebates, type Debate } from '../data/ethDebatesData';
+import { loadEthDebateList, type Debate } from '../data/ethDebatesData';
 import { eipUrl, loadEipList } from '../data/eipsData';
 import Avatar from '../components/debates/Avatar';
 import RemarkModal from '../components/calls/RemarkModal';
@@ -86,7 +86,7 @@ const CallDetail: React.FC = () => {
 
     useEffect(() => {
         loadEthCallsFull().then((file) => setCalls(file.calls));
-        loadEthDebates().then(setDebates);
+        loadEthDebateList().then(setDebates);
         loadEipList()
             .then((f) => setExplained(new Set(f.eips.map((e) => e.number))))
             .catch(() => undefined);

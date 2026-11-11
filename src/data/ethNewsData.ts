@@ -78,6 +78,15 @@ export interface EthDigest {
 let digestCache: EthDigest[] | null = null;
 let digestPromise: Promise<EthDigest[]> | null = null;
 
+let digestListPending: Promise<EthDigest[]> | undefined;
+
+/** 뉴스 첫 화면용: 최신호만 본문, 지난 호는 sections 가 빈 판 (vite-json-slice). 지난 호를 열 땐 loadEthDigests */
+export function loadEthDigestList(): Promise<EthDigest[]> {
+    return (digestListPending ??= import('./eth-digests.json?digests').then(
+        ({ default: data }) => (data as { digests: EthDigest[] }).digests,
+    ));
+}
+
 /** 매일 생성되는 한국어 편집 다이제스트 (eth-digests.json) */
 export async function loadEthDigests(): Promise<EthDigest[]> {
     if (digestCache) return digestCache;

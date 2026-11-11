@@ -15,3 +15,11 @@ declare module '*.json?avatars' {
   const data: unknown
   export default data
 }
+declare module '*.json?debates' {
+  const data: unknown
+  export default data
+}
+declare module '*.json?digests' {
+  const data: unknown
+  export default data
+}

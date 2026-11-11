@@ -5,9 +5,7 @@ import { renderWithProviders } from '../../test/helpers/render';
 
 vi.mock('../../data/ethNewsData', async () => {
   const actual = await vi.importActual<typeof import('../../data/ethNewsData')>('../../data/ethNewsData');
-  return {
-    ...actual,
-    loadEthDigests: vi.fn().mockResolvedValue([
+  const full = [
       {
         date: '2026-08-25',
         title: '설전 감지 첫날의 다이제스트',
@@ -62,7 +60,12 @@ vi.mock('../../data/ethNewsData', async () => {
           },
         ],
       },
-    ]),
+  ];
+  return {
+    ...actual,
+    loadEthDigests: vi.fn().mockResolvedValue(full),
+    // 빌드 때 만드는 목록판처럼 지난 호는 본문(sections)을 비운다
+    loadEthDigestList: vi.fn().mockResolvedValue(full.map((d, i) => (i === 0 ? d : { ...d, sections: [] }))),
   };
 });
 

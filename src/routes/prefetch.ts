@@ -1,5 +1,5 @@
-import { loadEthDigests } from '../data/ethNewsData';
-import { loadEthDebates } from '../data/ethDebatesData';
+import { loadEthDigestList } from '../data/ethNewsData';
+import { loadEthDebateList } from '../data/ethDebatesData';
 import { loadContentsIndex } from '../data/researchData';
 import { loadRoadmapExplainers } from '../data/roadmapExplainers';
 import { loadEthCalls } from '../data/ethCallsData';
@@ -10,8 +10,8 @@ import { loadErcIndex, loadErcList } from '../data/ercsData';
 // import() 는 브라우저가 한 번만 받으므로 App.tsx 의 lazy() 와 같은 파일을 가리키면 된다.
 // ponytail: 상단 메뉴 페이지만. 상세 페이지 링크까지 넓히려면 여기에 경로 패턴을 더한다
 const ROUTES: Record<string, () => unknown[]> = {
-  '/news': () => [import('../pages/News'), loadEthDigests()],
-  '/debates': () => [import('../pages/Debates'), loadEthDebates()],
+  '/news': () => [import('../pages/News'), loadEthDigestList()],
+  '/debates': () => [import('../pages/Debates'), loadEthDebateList()],
   '/contents': () => [import('../pages/Contents'), loadContentsIndex()],
   '/roadmap': () => [import('../pages/Roadmap'), loadEipList(), loadRoadmapExplainers()],
   '/forks': () => [import('../pages/Forks'), loadEthCalls()],

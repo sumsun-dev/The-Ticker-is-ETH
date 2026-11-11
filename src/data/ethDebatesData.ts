@@ -67,6 +67,15 @@ import { isPublishable } from '../utils/debates';
 let cache: Debate[] | null = null;
 let pending: Promise<Debate[]> | null = null;
 
+let listPending: Promise<Debate[]> | undefined;
+
+/** 목록·EIP/ERC/콜 상세용: 발언 기록·입장 본문을 뺀 판 (vite-json-slice). 토론 상세는 loadEthDebates */
+export function loadEthDebateList(): Promise<Debate[]> {
+    return (listPending ??= import('./eth-debates.json?debates').then(({ default: data }) =>
+        (data as { debates: Debate[] }).debates.filter(isPublishable),
+    ));
+}
+
 export async function loadEthDebates(): Promise<Debate[]> {
     if (cache) return cache;
     if (pending) return pending;
