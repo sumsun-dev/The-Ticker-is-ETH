@@ -84,6 +84,7 @@ export type Digest = z.infer<typeof DigestSchema> & {
   date: string;
   telegramMessageId?: number;
   coverImage?: string;
+  coverWebp?: string;
   /** DM 검수 미리보기 발송 시각 — 중복 발송 방지 */
   previewedAt?: string;
 };

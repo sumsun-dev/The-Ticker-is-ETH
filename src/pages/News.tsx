@@ -83,7 +83,7 @@ const News: React.FC = () => {
             >
                 {digest.coverImage ? (
                     <img
-                        src={digest.coverImage}
+                        src={digest.coverWebp ?? digest.coverImage}
                         alt=""
                         loading="lazy"
                         className="w-full aspect-[1200/630] object-cover"
@@ -136,7 +136,7 @@ const News: React.FC = () => {
                     <article>
                         {currentDigest.coverImage && (
                             <img
-                                src={currentDigest.coverImage}
+                                src={currentDigest.coverWebp ?? currentDigest.coverImage}
                                 alt={currentDigest.title}
                                 className="w-full rounded-2xl border border-theme-border mb-8"
                                 loading="eager"

@@ -11,6 +11,7 @@ vi.mock('../../data/ethNewsData', async () => {
         title: '설전 감지 첫날의 다이제스트',
         intro: '오늘의 에디터 노트입니다.',
         coverImage: '/assets/digests/2026-08-25.png',
+        coverWebp: '/assets/digests/2026-08-25.webp',
         sections: [
           {
             heading: '프로토콜 · 리서치',
@@ -90,10 +91,21 @@ describe('News', () => {
     expect(screen.getByText('ePBS를 둘러싼 공방')).toBeInTheDocument();
     expect(screen.queryByText('EIP-8390 다이제스트 항목')).not.toBeInTheDocument();
 
+    // 화면은 가벼운 WebP 를 받는다 (PNG 는 공유 미리보기·텔레그램용)
     expect(screen.getByRole('img', { name: '설전 감지 첫날의 다이제스트' })).toHaveAttribute(
       'src',
-      '/assets/digests/2026-08-25.png',
+      '/assets/digests/2026-08-25.webp',
     );
+  });
+
+  it('should fall back to the PNG cover when a digest has no WebP', async () => {
+    renderWithProviders(<News />, { route: '/news?date=2026-08-24' });
+    await waitFor(() => {
+      expect(screen.getByRole('img', { name: '싱크 커미티 제거 제안 등장' })).toHaveAttribute(
+        'src',
+        '/assets/digests/2026-08-24.png',
+      );
+    });
   });
 
   it('should switch digest via the archive grid', async () => {

@@ -2,11 +2,11 @@
  * 다이제스트 커버 이미지 렌더러 — HTML 카드를 헤드리스 크로미엄으로 PNG(1200×630) 캡처.
  * ai-secondbrain 카드뉴스와 동일한 스택(playwright-core + 외부 크로미엄 바이너리).
  *
- * 출력: public/assets/digests/{date}.png + 다이제스트에 coverImage 경로 기록.
+ * 출력: public/assets/digests/{date}.png(공유 미리보기·텔레그램) + {date}.webp(화면) + 다이제스트에 coverImage·coverWebp 경로 기록.
  * 크로미엄: CHROMIUM_PATH → ~/.cache/ms-playwright → macOS Chrome → 리눅스 시스템 경로.
  */
 import { createHash } from 'node:crypto';
-import { existsSync, readFileSync, writeFileSync } from 'fs';
+import { existsSync, readFileSync, rmSync, writeFileSync } from 'fs';
 import { renderCover } from './lib/cover';
 import * as path from 'path';
 import type { Digest } from './generate-eth-digest';
@@ -26,17 +26,21 @@ async function main() {
 
   const outFile = path.join(OUT_DIR, `${digest.date}.png`);
   const publicPath = `/assets/digests/${digest.date}.png`;
-  if (digest.coverImage?.startsWith(publicPath) && existsSync(outFile)) {
+  const webpFile = outFile.replace(/\.png$/, '.webp');
+  if (digest.coverImage?.startsWith(publicPath) && existsSync(outFile) && digest.coverWebp && existsSync(webpFile)) {
     console.log(`[SKIP] cover for ${digest.date} already rendered`);
     return;
   }
 
-  const ok = await renderCover({ headline: digest.shortTitle ?? digest.title, subTitle: digest.subTitle }, outFile);
+  rmSync(webpFile, { force: true }); // 옛 WebP 가 새 PNG 와 짝지어지지 않게
+  const ok = await renderCover({ headline: digest.shortTitle ?? digest.title, subTitle: digest.subTitle }, outFile, webpFile);
   if (!ok) return;
 
   // 같은 파일명 덮어쓰기 시 CDN/브라우저 캐시 무효화를 위해 콘텐츠 해시 쿼리를 붙인다
   const hash = createHash('md5').update(readFileSync(outFile)).digest('hex').slice(0, 8);
   digest.coverImage = `${publicPath}?v=${hash}`;
+  if (existsSync(webpFile)) digest.coverWebp = `${publicPath.replace(/\.png$/, '.webp')}?v=${hash}`;
+  else delete digest.coverWebp;
   writeFileSync(DIGESTS, JSON.stringify(data, null, 2), 'utf-8');
   console.log(`Rendered cover ${outFile} and linked as ${publicPath}`);
 }

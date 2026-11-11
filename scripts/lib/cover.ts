@@ -4,7 +4,7 @@
  * 크로미엄: CHROMIUM_PATH → ~/.cache/ms-playwright → macOS Chrome → 리눅스 시스템 경로.
  */
 import { chromium } from 'playwright-core';
-import { existsSync, mkdirSync, readdirSync, readFileSync } from 'fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'fs';
 import { homedir } from 'os';
 import * as path from 'path';
 
@@ -147,7 +147,7 @@ function fitDigestCover() {
 }
 
 /** 완성된 HTML 문서를 1200×630 PNG로 캡처. fit은 페이지 안에서 실행되는 폰트 맞춤 함수(외부 참조 불가). 크로미엄이 없으면 false. */
-export async function renderHtml(html: string, outFile: string, fit?: () => void): Promise<boolean> {
+export async function renderHtml(html: string, outFile: string, fit?: () => void, webpFile?: string): Promise<boolean> {
   const executablePath = resolveChromium();
   if (!executablePath) {
     console.warn('[WARN] no Chromium binary found (set CHROMIUM_PATH) — cover skipped');
@@ -160,15 +160,37 @@ export async function renderHtml(html: string, outFile: string, fit?: () => void
     await page.setContent(html, { waitUntil: 'networkidle' });
     await page.evaluateHandle('document.fonts.ready');
     if (fit) await page.evaluate(fit);
-    await page.screenshot({ path: outFile, type: 'png' });
+    const png = await page.screenshot({ path: outFile, type: 'png' });
+    if (webpFile) {
+      // 화면용 WebP(PNG 의 약 1/12). 서버에 cwebp·sharp 가 없어 크로미엄 캔버스로 인코딩한다.
+      // 부가 기능이라 실패해도 PNG 는 살린다 (화면은 PNG 로 돌아간다)
+      try {
+        const b64 = await page.evaluate(async (src) => {
+          const img = new Image();
+          img.src = src;
+          await img.decode();
+          const c = document.createElement('canvas');
+          c.width = img.naturalWidth;
+          c.height = img.naturalHeight;
+          c.getContext('2d')!.drawImage(img, 0, 0);
+          const url = c.toDataURL('image/webp', 0.9);
+          // 지원하지 않으면 예외 없이 PNG 를 돌려준다
+          if (!url.startsWith('data:image/webp')) throw new Error('webp unsupported');
+          return url.split(',')[1];
+        }, `data:image/png;base64,${png.toString('base64')}`);
+        writeFileSync(webpFile, Buffer.from(b64, 'base64'));
+      } catch (error) {
+        console.warn('[WARN] webp encode failed:', error instanceof Error ? error.message : error);
+      }
+    }
   } finally {
     await browser.close();
   }
   return true;
 }
 
-/** 다이제스트 커버를 outFile(PNG)로 렌더. 크로미엄이 없으면 false. */
-export async function renderCover(spec: CoverSpec, outFile: string): Promise<boolean> {
+/** 다이제스트 커버를 outFile(PNG)로 렌더. webpFile 을 주면 같은 그림의 WebP 도 쓴다. 크로미엄이 없으면 false. */
+export async function renderCover(spec: CoverSpec, outFile: string, webpFile?: string): Promise<boolean> {
   const { logoDataUri, fontDataUri } = coverAssets();
-  return renderHtml(coverHtml(spec, logoDataUri, fontDataUri), outFile, fitDigestCover);
+  return renderHtml(coverHtml(spec, logoDataUri, fontDataUri), outFile, fitDigestCover, webpFile);
 }
