@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import usePageMeta from '../hooks/usePageMeta';
-import { loadEthDigests, type EthDigest, type EthDigestSection } from '../data/ethNewsData';
+import { loadEthDigestList, loadEthDigests, type EthDigest, type EthDigestSection } from '../data/ethNewsData';
 
 function formatDigestDate(date: string, locale: string): string {
     return new Date(`${date}T00:00:00`).toLocaleDateString(locale, {
@@ -40,7 +40,7 @@ const News: React.FC = () => {
     });
 
     useEffect(() => {
-        loadEthDigests().then((digestData) => {
+        loadEthDigestList().then((digestData) => {
             setDigests(digestData);
             setIsLoading(false);
         });
@@ -50,6 +50,12 @@ const News: React.FC = () => {
         () => digests.find((d) => d.date === selectedDate) ?? digests[0] ?? null,
         [digests, selectedDate],
     );
+
+    // 처음엔 최신호만 본문이 든 판을 받는다. 지난 호를 고르면 원본을 받아 바꿔 끼운다
+    const needsFull = !!currentDigest && currentDigest.sections.length === 0;
+    useEffect(() => {
+        if (needsFull) loadEthDigests().then(setDigests).catch(() => undefined);
+    }, [needsFull]);
 
     useEffect(() => {
         setActiveSection(0);

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import usePageMeta from '../hooks/usePageMeta';
-import { loadEthDebates, type Debate } from '../data/ethDebatesData';
+import { loadEthDebateList, type Debate } from '../data/ethDebatesData';
 import Avatar from '../components/debates/Avatar';
 import { STATUS_DOT, STATUS_ORDER, countByCategory, countByStatus, shortDate } from '../utils/debates';
 
@@ -40,7 +40,7 @@ const Debates: React.FC = () => {
     usePageMeta({ title: 'Ethereum Debates', description: t('description'), canonical: '/debates' });
 
     useEffect(() => {
-        loadEthDebates()
+        loadEthDebateList()
             .then(setDebates)
             .finally(() => setIsLoading(false));
     }, []);

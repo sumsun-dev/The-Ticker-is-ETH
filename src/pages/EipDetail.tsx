@@ -6,7 +6,7 @@ import { eipUrl, loadEips, type EipRecord } from '../data/eipsData';
 import { loadErcIndex, loadErcList } from '../data/ercsData';
 import { standardHref } from '../utils/ercs';
 import { loadEthCalls, type CallRecord } from '../data/ethCallsData';
-import { loadEthDebates, type Debate } from '../data/ethDebatesData';
+import { loadEthDebateList, type Debate } from '../data/ethDebatesData';
 import { debatesFor, inclusionLabel, inclusionOf, journeyOf } from '../utils/eips';
 import { dotDate, STATUS_DOT, STATUS_TEXT } from '../utils/calls';
 import { participantCount } from '../utils/debates';
@@ -26,7 +26,7 @@ const EipDetail: React.FC = () => {
     useEffect(() => {
         loadEips().then((f) => setRecords(f.eips));
         loadEthCalls().then((f) => setCalls(f.calls));
-        loadEthDebates().then(setDebates);
+        loadEthDebateList().then(setDebates);
         Promise.all([loadErcList(), loadErcIndex()])
             .then(([r, i]) => setErcSets({ ercs: new Set(r.ercs.map((x) => x.number)), ercIndex: new Set(i.ercs.map((x) => x.number)) }))
             .catch(() => undefined);

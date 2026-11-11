@@ -43,7 +43,7 @@ vi.mock('../../data/ercsData', async (orig) => ({
 }));
 vi.mock('../../data/eipsData', async (orig) => ({ ...(await orig<typeof import('../../data/eipsData')>()), loadEipList: vi.fn().mockResolvedValue({ eips: [] }) }));
 vi.mock('../../data/ethNewsData', () => ({ loadEthDigests: vi.fn().mockResolvedValue([{ date: '2026-10-05', title: '', intro: '', sections: [{ heading: '', items: [{ title: 'ERC-2612 permit 피싱 주의', summary: '', url: '', source: '', date: '' }] }] }]) }));
-vi.mock('../../data/ethDebatesData', () => ({ loadEthDebates: vi.fn().mockResolvedValue([]) }));
+vi.mock('../../data/ethDebatesData', () => ({ loadEthDebateList: vi.fn().mockResolvedValue([]) }));
 
 const at = (path: string) =>
     renderWithProviders(
