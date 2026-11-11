@@ -11,3 +11,7 @@ declare module '*.json?head=3' {
   const data: unknown
   export default data
 }
+declare module '*.json?avatars' {
+  const data: unknown
+  export default data
+}
