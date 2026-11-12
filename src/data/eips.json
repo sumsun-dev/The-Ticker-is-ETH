@@ -21384,7 +21384,8 @@
         "requires": [
           1559,
           7685,
-          7732
+          7732,
+          7997
         ],
         "discussionsTo": "https://ethereum-magicians.org/t/eip-8282-builder-execution-requests/28699"
       },
