@@ -67,7 +67,8 @@ $(grep -v dotenv <<<"$out" | tail -15)"
 
   npx tsx scripts/generate-eth-digest.ts
   npx tsx scripts/sync-x-profiles.ts
-  npx tsx scripts/extract-eth-debates.ts
+  # 논쟁 추출은 부가 단계라 실패해도 커버·송출·커밋은 진행 (2026-11-13: 참여자 name 누락 스키마 오류로 그날 호 송출이 통째로 빠짐)
+  npx tsx scripts/extract-eth-debates.ts || true
   # 새 논쟁을 오너 DM으로 알린다. 노출 버튼 응답 처리는 5분 크론(notify-debates.ts --commit)이 맡는다. 실패해도 나머지는 진행
   npx tsx scripts/notify-debates.ts || true
   npx tsx scripts/extract-eth-calls.ts
