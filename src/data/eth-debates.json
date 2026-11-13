@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-10T01:33:21.651Z",
+  "updatedAt": "2026-11-13T07:23:23.349Z",
   "processedDigests": [
     "2026-08-24",
     "2026-08-25",
@@ -35,9 +35,131 @@
     "2026-11-01",
     "2026-11-04",
     "2026-11-07",
-    "2026-11-10"
+    "2026-11-10",
+    "2026-11-13"
   ],
   "debates": [
+    {
+      "id": "formal-verification-spec-trust",
+      "title": "형식검증에서 증명은 읽지 않고 스펙만 읽으면 신뢰에 충분한가?",
+      "category": "프로토콜 설계",
+      "summary": "lightclients가 형식검증(formal verification)의 장점을 증명(proof)은 읽을 필요 없이 스펙만 읽으면 되는 것이라고 요약하자, nero_eth는 그것은 쉬운 부분일 뿐이고 증명된 스펙이 사람이 의도한 비공식 스펙(informal spec)과 같다고 믿는 것이 진짜 어려운 문제라고 반박했다. GiulioRebuffo는 스펙이 구현보다 단순하므로 스펙을 이해하지 못하면 구현도 이해하지 못하는 것이라며 lightclients 편에 섰다.",
+      "keyPoints": [
+        "형식검증의 신뢰 근거를 증명이 아니라 스펙 한 곳으로 압축할 수 있나?",
+        "기계검증된 스펙이 사람이 의도한 비공식 스펙과 일치한다는 보장은 어디서 오나?",
+        "형식검증 파이프라인에서 비공식 스펙 정리는 스펙 작성 이전에 와야 하나?"
+      ],
+      "background": "이더리움은 합의·실행 스펙과 핵심 구현의 형식검증(formal verification)을 확대하고 있다. 형식검증은 스펙이 명시한 속성을 기계가 검증 가능한 증명(proof)으로 보장하는 방식으로, 증명 자체는 수십억 줄에 이를 수 있어도 검증기만 통과하면 사람은 증명을 직접 읽지 않아도 된다. 그 신뢰를 스펙 한 곳으로 압축할 수 있느냐가 쟁점이다. 증명은 스펙에 적힌 것만 보장하므로, 스펙이 설계자가 실제로 의도한 비공식 스펙(informal spec)과 어긋나거나 전제된 현실 가정이 틀리면 증명이 통과해도 안전하지 않을 수 있다.",
+      "whyItMatters": "형식검증이 이더리움 스펙 검증의 새 표준으로 확산되는 시점에 커뮤니티가 무엇을 신뢰의 근거로 삼을지에 대한 인식 차가 드러났다. 증명 통과가 곧 안전으로 받아들여지면 비공식 스펙과의 일치나 현실 가정 검증이 사각지대로 남을 수 있어, 형식검증 도입 과정에서 이 단계를 명시적으로 다루는지를 지켜볼 만하다.",
+      "sources": [],
+      "keywords": [
+        "formal verification",
+        "proven spec",
+        "informal spec",
+        "Ethereum spec verification"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "증명은 안 읽어도 되고 스펙만 읽으면 된다",
+          "holders": [
+            {
+              "handle": "lightclients",
+              "name": "ً",
+              "role": "Geth 개발자",
+              "avatar": "https://pbs.twimg.com/profile_images/1554130973935030274/wHWuxuTT_400x400.jpg"
+            },
+            {
+              "handle": "GiulioRebuffo",
+              "name": "Giulio Rebuffo",
+              "avatar": "https://pbs.twimg.com/profile_images/1958660076597559296/luoz1d4e_400x400.jpg"
+            }
+          ],
+          "points": [
+            "형식검증의 핵심 장점은 증명(proof)이 수십억 줄이어도 검증기만 통과하면 사람은 증명을 읽을 필요 없이 스펙만 읽으면 되는 것이다.",
+            "이 단순함 덕분에 형식검증을 대중(the masses)이 쓸 수 있다.",
+            "스펙은 보통 구현보다 훨씬 단순하므로, 스펙을 이해하지 못한다면 구현도 이해하지 못한다."
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "그건 쉬운 부분일 뿐, 진짜 난제는 남는다",
+          "holders": [
+            {
+              "handle": "nero_eth",
+              "name": "Toni Wahrstätter ⟠",
+              "role": "EF 리서처",
+              "avatar": "https://pbs.twimg.com/profile_images/1858347774129094657/xUc7IS2K_400x400.jpg"
+            }
+          ],
+          "points": [
+            "증명이 검증기를 통과해 스펙과 맞아떨어지는 것(spec + proof = proven spec)은 쉬운 부분이고, 증명된 스펙이 사람이 의도한 비공식 스펙(informal spec)과 같다고 믿는 것이 진짜 어려운 문제다.",
+            "스펙에서 시작하는 것은 파이프라인에서 이미 너무 늦으며, 비공식 스펙을 먼저 정리하고 강하게 믿어온 가정이 현실에서 틀릴 때 생기는 문제부터 논의해야 한다."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-11-11",
+          "by": "lightclients",
+          "stance": "pro",
+          "quote": "형식검증의 뛰어난 점은 증명을 읽을 필요가 없고 스펙만 읽으면 된다는 것이다.",
+          "url": "https://x.com/lightclients/status/2120438996677644770",
+          "digest": "2026-11-13",
+          "replyTo": "lightclients",
+          "relation": "reply",
+          "original": "@lightclients the brilliant part is you don't need to read the proofs, only the spec",
+          "translation": "@lightclients 가장 훌륭한 부분은 증명(proof)들을 읽을 필요가 없고 스펙(spec)만 읽으면 된다는 점입니다."
+        },
+        {
+          "date": "2026-11-11",
+          "by": "GiulioRebuffo",
+          "stance": "pro",
+          "quote": "스펙을 이해하지 못한다면 구현도 이해하지 못하는 것이 아닐까 싶다. 스펙은 보통 구현보다 훨씬 단순하다.",
+          "url": "https://x.com/nero_eth/status/2120548780634440065",
+          "digest": "2026-11-13",
+          "replyTo": "nero_eth",
+          "relation": "reply",
+          "original": "@nero_eth @lightclients if you dont understand the spec, then I fear you do not understand the implementation. spec is usually much simpler than impl",
+          "translation": "@nero_eth @lightclients 스펙을 이해하지 못한다면, 구현(implementation)도 이해하지 못하고 있는 것이 아닐까 걱정됩니다. 스펙은 보통 구현보다 훨씬 더 단순합니다."
+        },
+        {
+          "date": "2026-11-11",
+          "by": "nero_eth",
+          "stance": "con",
+          "quote": "그래서 스펙에서 시작하는 것은 파이프라인에서 너무 늦다. 먼저 비공식 스펙을 알아내야 하고, 강하게 믿어온 가정이 실제로는 틀렸을 때 생기는 문제도 함께 다뤄야 한다.",
+          "url": "https://x.com/nero_eth/status/2120550103995879738",
+          "digest": "2026-11-13",
+          "replyTo": "GiulioRebuffo",
+          "relation": "reply",
+          "original": "@GiulioRebuffo @lightclients I agree, so starting from the specs is too late in the pipline. We must start at figuring out the informal spec first, and also talk about issues that arise from strong-believed assumptions being wrong in practice.",
+          "translation": "@GiulioRebuffo @lightclients 동의합니다, 그러니 스펙에서부터 시작하는 것은 파이프라인상 너무 늦은 지점입니다. 우리는 먼저 비공식 스펙(informal spec)을 파악하는 것부터 시작해야 하고, 또한 강하게 믿어온 가정(assumption)들이 실제로는 틀린 것으로 드러날 때 발생하는 문제들에 대해서도 이야기해야 합니다."
+        },
+        {
+          "date": "2026-11-11",
+          "by": "nero_eth",
+          "stance": "con",
+          "quote": "스펙 더하기 증명이 증명된 스펙이라는 데는 동의한다. 다만 그것은 쉬운 부분이고, 증명된 스펙이 비공식 스펙과 같다고 믿는 것이 어려운 부분이다.",
+          "url": "https://x.com/nero_eth/status/2120551930053238821",
+          "digest": "2026-11-13",
+          "replyTo": "GiulioRebuffo",
+          "relation": "reply",
+          "original": "OP might just imply that we don't understand what we're doing and not taking proofs literally. I agree that spec + proof = proven spec.\nJust saying that's the easy part. Trusting that proven spec =  informal spec is the hard part. And this still ignores that we assume things that don't hold up in practice.",
+          "translation": "원 트윗(OP)은 우리가 지금 하고 있는 일을 제대로 이해하지 못하고 있으며 증명들을 문자 그대로 받아들이지 않고 있다는 것을 암시하는 것일 수도 있습니다. 스펙 + 증명 = 증명된 스펙(proven spec)이라는 것에는 동의합니다. 다만 그건 쉬운 부분이라는 말을 하는 것입니다. 증명된 스펙이 비공식 스펙과 같다고 믿는 것이 어려운 부분입니다. 그리고 이는 여전히 우리가 실제로는 성립하지 않는 것들을 가정하고 있다는 사실을 무시하고 있는 것입니다."
+        }
+      ],
+      "firstSeen": "2026-11-11",
+      "lastActivity": "2026-11-11",
+      "status": "active",
+      "rootUrl": "https://x.com/lightclients/status/2120438996677644770",
+      "engagement": {
+        "likes": 36,
+        "retweets": 1,
+        "quotes": 0,
+        "replies": 2,
+        "views": 1756
+      }
+    },
     {
       "id": "vitalik-sov-strength-or-weakness",
       "title": "Vitalik의 가치저장(SoV) 선언은 강함의 신호인가 약함의 신호인가, 그리고 ETH는 좋은 SoV인가?",
@@ -1072,7 +1194,7 @@
       ],
       "firstSeen": "2026-11-05",
       "lastActivity": "2026-11-06",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/lex_node/status/2118533324046041123",
       "engagement": {
         "likes": 130,
@@ -5282,7 +5404,7 @@
       ],
       "firstSeen": "2026-10-12",
       "lastActivity": "2026-10-13",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/laurashin/status/2109783276277924181",
       "engagement": {
         "likes": 22,
