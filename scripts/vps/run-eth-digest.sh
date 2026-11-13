@@ -68,7 +68,7 @@ $(grep -v dotenv <<<"$out" | tail -15)"
   npx tsx scripts/generate-eth-digest.ts
   npx tsx scripts/sync-x-profiles.ts
   # 논쟁 추출은 부가 단계라 실패해도 커버·송출·커밋은 진행 (2026-11-13: 참여자 name 누락 스키마 오류로 그날 호 송출이 통째로 빠짐)
-  npx tsx scripts/extract-eth-debates.ts || true
+  npx tsx scripts/extract-eth-debates.ts || notify_owner "[다이제스트] 논쟁 추출 실패. 송출은 계속합니다 (로그 /home/gv/logs/eth-digest.log)"
   # 새 논쟁을 오너 DM으로 알린다. 노출 버튼 응답 처리는 5분 크론(notify-debates.ts --commit)이 맡는다. 실패해도 나머지는 진행
   npx tsx scripts/notify-debates.ts || true
   npx tsx scripts/extract-eth-calls.ts
@@ -143,4 +143,8 @@ publish_ko() {
   )
 }
 
+# 어느 모드든 러너가 실패로 끝나면 오너 DM으로 로그 끝부분을 보낸다 (오너 2026-11-13 "실패나면 텔레봇으로 DM")
+# 크론이 stdout을 이 로그로 보내므로 끝 15줄이 실패 직전 출력이다
+trap 'rc=$?; [ "$rc" -eq 0 ] || notify_owner "[ECK 러너] ${1:-digest} 실패 (exit $rc)
+$(tail -n 15 "$HOME/logs/eth-digest.log" 2>/dev/null | grep -v dotenv)"' EXIT
 main "$@"
