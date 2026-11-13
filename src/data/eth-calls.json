@@ -1,6 +1,561 @@
 {
-  "updatedAt": "2026-10-30T00:50:59.179Z",
+  "updatedAt": "2026-11-13T07:35:29.724Z",
   "calls": [
+    {
+      "id": "acdc-191",
+      "series": "acdc",
+      "number": 191,
+      "date": "2026-11-12",
+      "title": "AllCoreDevs - Consensus #191",
+      "forkcastUrl": "https://forkcast.org/calls/acdc/191/",
+      "videoUrl": "https://youtube.com/watch?v=ZsMGx-uF4LY",
+      "issueUrl": "https://github.com/ethereum/pm/issues/2291",
+      "kind": "full",
+      "durationMin": 92,
+      "headline": "퀵슬롯 버리고\n양자 전환 올인",
+      "lead": "이더리움 개발의 최우선 과제가 양자컴퓨터 대비로 바뀌고 있다는 신호다",
+      "intro": "이더리움 합의 계층(CL) 클라이언트 개발자들이 격주로 모이는 올코어데브 콜이다.",
+      "summary": "제안팀이 스스로 퀵슬롯(Quick Slots, EIP-8198)을 철회해 헤고타(Hegota) 후보에서 빠졌고 BLS 서명 기반 디커플드 합의(decoupled consensus)는 폐기가 선언됐다. 양자내성(PQ) 전환이 사실상 앞으로의 포크 전체를 지배하는 우선순위로 올라섰다.",
+      "whyItMatters": "양자컴퓨터와 AI가 현행 암호를 깨는 시점 추정이 1년 사이 2032년에서 2029년으로 당겨지면서 앞으로의 하드포크가 신기능보다 암호 교체에 집중될 가능성이 커졌다. 검증자, 스테이킹 풀, 하드웨어 지갑 제조사까지 키 교체를 준비해야 하는 긴 이행이 시작된다는 뜻이다.",
+      "decisions": [
+        {
+          "label": "페이로드 해시 검증",
+          "text": "실행 페이로드 가십 검증에 블록 해시 확인을 넣는 consensus-specs PR#5770 결정을 월요일 ACDT와 세폴리아(Sepolia), EIP-8037 상황이 정리될 때까지 미뤘다. 실행 계층(EL) 쪽 결론을 먼저 보고 정한다.",
+          "original": "consensus-specs PR#5770 (block hash gossip check) deferred; decision to follow ACDT Monday and Sepolia/8037 resolution",
+          "eips": [],
+          "status": "보류",
+          "timestamp": "00:18:16"
+        },
+        {
+          "label": "BLS DC 폐기",
+          "text": "BLS 서명 기반 디커플드 합의는 폐기됐고 관련 작업은 양자내성 버전으로만 진행한다. 합의 재설계와 양자 전환을 따로 하지 않고 처음부터 한 번에 간다.",
+          "original": "BLS decoupled Consensus is dead; DC work must proceed as PQ-DC only",
+          "eips": [],
+          "status": "확정",
+          "timestamp": "01:09:31"
+        },
+        {
+          "label": "EIP-8483 키 등록",
+          "text": "검증자와 빌더가 양자내성 키를 미리 등록하는 EIP-8483이 헤고타 후보(PFI)로 접수됐다. 서명 방식이 확정되는 즉시 커뮤니티가 포크 전에 키 등록을 시작할 수 있게 하는 장치다.",
+          "original": "PFI for Hegota: EIP-8483 (Post-Quantum material registration for validators and builders)",
+          "eips": [
+            8483
+          ],
+          "status": "PFI",
+          "fork": "Hegota",
+          "timestamp": "01:20:34"
+        },
+        {
+          "label": "퀵슬롯 제외",
+          "text": "퀵슬롯(EIP-8198)이 CFI에서 DFI로 바뀌어 헤고타 후보에서 빠졌다. 제안을 책임지던 챔피언(champion)이 양자 대비에 집중하려고 스스로 철회했다.",
+          "original": "EIP-8198 (Quick Slots) moved from CFI to DFI; champion Caspar Schwarz-Schilling (Ethlabs) withdrawing it to prioritize PQ",
+          "eips": [
+            8198
+          ],
+          "status": "DFI",
+          "timestamp": "01:23:25"
+        },
+        {
+          "label": "다음 콜 일정",
+          "text": "다음 콜 ACDC #192는 미국 추수감사절인 11월 26일에 예정대로 연다. 핵심 참석자가 빠지면 되돌릴 수 없는 결정은 하지 않기로 했다.",
+          "original": "ACDC #192 to proceed on November 26 (Thanksgiving) as scheduled; no irrevocable decisions if key attendees absent",
+          "eips": [],
+          "status": "일정",
+          "timestamp": "01:29:31"
+        }
+      ],
+      "targets": [
+        {
+          "key": "leanvm-ready",
+          "text": "서명 집계용 암호 장치 린VM(LeanVM) 프로덕션 준비 2027년 1월, 형식 감사 시작 2027년 2월 1일. 확정 일정이 아니라 EF 내부 목표다.",
+          "timestamp": "01:12:11"
+        },
+        {
+          "key": "acdc-192",
+          "text": "2026년 11월 26일 ACDC #192. 추수감사절이지만 예정대로 진행하기로 확정했다.",
+          "timestamp": "01:30:12"
+        }
+      ],
+      "actions": [
+        {
+          "owner": "EL과 CL 클라이언트 팀",
+          "text": "인터롭 채널에 합류해 과대 용량이거나 무효인 ePBS 페이로드 처리를 논의하고, 월요일 ACDT 콜에 결과를 가져온다",
+          "timestamp": "00:11:29"
+        },
+        {
+          "owner": "cayman (Lodestar)",
+          "text": "CL에서 RLP와 블록 해시를 검사하는 대신 비드(bid)에 페이로드 루트를 넣는 대안 PR을 연다",
+          "timestamp": "00:18:56"
+        },
+        {
+          "owner": "EF와 코어 개발자",
+          "text": "양자내성 서명 방식을 공개적으로 확정하고 검증자, 하드웨어 지갑 제조사, 스테이킹 풀 등 생태계에 알린다",
+          "timestamp": "01:03:15"
+        }
+      ],
+      "agenda": [
+        {
+          "timestamp": "00:08:45",
+          "heading": "ePBS 악성 페이로드 테스트"
+        },
+        {
+          "timestamp": "00:11:59",
+          "heading": "실행 페이로드 가십 검증과 블록 해시 확인",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "00:20:04",
+          "heading": "데브콘 L1 연구개발 워크숍 요약"
+        },
+        {
+          "timestamp": "00:27:04",
+          "heading": "양자·AI 위협 긴급도 평가",
+          "discussion": true
+        },
+        {
+          "timestamp": "00:50:49",
+          "heading": "헤고타 범위 설정과 FOCIL",
+          "discussion": true
+        },
+        {
+          "timestamp": "01:03:31",
+          "heading": "PQ 가스퍼 대 PQ 디커플드 합의",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "01:11:44",
+          "heading": "린VM 준비 상황과 형식 검증"
+        },
+        {
+          "timestamp": "01:17:47",
+          "heading": "양자내성 네트워킹과 TLS"
+        },
+        {
+          "timestamp": "01:19:37",
+          "heading": "양자내성 자료 등록 EIP (EIP-8483)",
+          "decision": true
+        },
+        {
+          "timestamp": "01:28:54",
+          "heading": "퀵슬롯 DFI와 나머지 헤고타 EIP",
+          "decision": true
+        },
+        {
+          "timestamp": "01:30:46",
+          "heading": "단계적 양자 전환 제안과 다음 단계"
+        }
+      ],
+      "topics": [
+        {
+          "title": "양자·AI 위협, 어느 수준의 비상인가",
+          "intro": "데브콘 워크숍에서 양자컴퓨터가 현행 암호를 깨는 시점(Q-Day) 추정이 2029년으로 당겨진 뒤, 핵전쟁 경보에 빗댄 DEFCON 척도로 대응 긴급도의 온도를 쟀다.",
+          "positions": [
+            {
+              "speaker": "Matthew Keil",
+              "text": "긴급도를 3으로 보되 2 시나리오를 미리 계획해야 한다고 했다. 위기감이 높아진 것 자체를 반겼다.",
+              "timestamp": "00:30:09",
+              "original": "I am very pleased to hear the sense of urgency has been elevated, because this is something I've been advocating for a while. And I agree with you that I don't necessarily feel like anything material has changed, but I think the sense of urgency Should be elevated, commensurate with the existential risk. And… So, would I put it at a 2 or a 3? I probably would go with 3. But I do think when we get to a world where we are in DEF CON 3, we should start to… At least be reverent to… What the roadmap needs to be, and do that planning, so that when we do get to 2 or to 1, we're prepared.",
+              "translation": "긴급성 수준이 높아졌다는 소식을 들으니 매우 기쁩니다. 저도 한동안 이를 주장해 왔기 때문입니다. 그리고 실질적으로 무언가가 바뀌었다고는 반드시 느끼지 않는다는 점에서는 동의하지만, 존재적 위험(existential risk)에 걸맞게 긴급성 수준은 높아져야 한다고 생각합니다. 그래서 저라면 2 아니면 3으로 두겠냐고 하면, 아마 3으로 가겠습니다. 하지만 우리가 데프콘(DEF CON) 3 수준의 상황에 이르면, 적어도 로드맵이 어떤 모습이어야 하는지에 대해 신중을 기하고 그 계획을 세워 두어서, 2나 1에 도달했을 때 준비가 되어 있어야 한다고 생각합니다."
+            },
+            {
+              "speaker": "soispoke",
+              "text": "새로운 사실적 증거는 없다며 패닉 반응을 경계했다. 서두르면 신뢰 상실과 버그 출시 같은 비용이 따르고 보안을 높이려다 이더리움을 깨는 역설이 될 수 있다고 맞섰다.",
+              "timestamp": "00:31:37",
+              "original": "Yeah, thanks. Yeah, I mean, I did want to share a bit of, some thoughts I had. I think, wait, yeah, first of all, I think there was a lot of positive out of the Mumbai, Sort of, like, workshop, and it felt like, you know, for the first time, you have, like. a really good, deeply engaged dialogue between PQ and cryptography researchers and core devs, and… And I think, to me, it definitely makes sense to sort of, like, bump PQ and AI as major priorities. I think I would also feel around 3 right now. But what worries me a bit more is, like, the sort of, like, panic reaction that ended up being a bit unproductive at times, like… I don't know, I remember spending hours talking about what we could do if Ethereum's cryptography broke tomorrow, and I think that's not very useful. I also agree that, to me at least, there is no… actual new factual evidence that changed between now and two weeks ago. I think we can just, like, all feel like AI is really good at math and at finding bugs, but I feel like we all knew this, so it's maybe more awareness. But still, like, now there is… it sounds like there is, like, this sort of, like, willingness from many to risk open tire forks and go for somewhat of an emergency mode, and… Yeah, I just wanted to say, I think people are maybe underestimating the costs of doing that, like, there's gonna be always a very huge cost in rushing, and I think, like, it's pretty clear that AI is a threat, not only for, like, breaking our cryptography, but also…",
+              "translation": "네, 감사합니다. 몇 가지 생각을 나누고 싶었습니다. 먼저, 뭄바이(Mumbai) 워크숍에서 많은 긍정적인 결과가 나왔다고 생각합니다. 처음으로 포스트 퀀텀(post-quantum, PQ)과 암호학 연구자들, 코어 개발자들 사이에 정말 깊이 있는 대화가 이루어진 것 같았습니다. 그리고 저는 PQ와 AI를 주요 우선순위로 끌어올리는 것이 분명히 타당하다고 생각합니다. 저도 지금은 3 정도로 느낍니다. 하지만 저를 조금 더 걱정시키는 것은, 때때로 다소 비생산적이었던 일종의 패닉 반응입니다. 내일 당장 이더리움의 암호체계가 깨진다면 우리가 무엇을 할 수 있을지에 대해 몇 시간을 들여 이야기했던 기억이 나는데, 그게 그다지 유용하지는 않다고 생각합니다. 또한 적어도 저에게는, 2주 전과 지금 사이에 바뀐 실제로 새로운 사실적 증거는 없다고 생각합니다. 우리 모두가 AI가 수학과 버그 찾기에 정말 뛰어나다고 느낄 수는 있지만, 이는 이미 다들 알고 있던 것이라, 어쩌면 인식이 좀 더 높아진 것일 뿐이라고 생각합니다. 그럼에도 지금은 많은 사람들이 공개적인 하드포크(hard fork)를 감수하고 일종의 비상 모드로 가려는 의향을 보이는 것 같습니다. 그래서 저는 그렇게 하는 데 드는 비용을 사람들이 과소평가하고 있는 것 같다는 말을 하고 싶었습니다. 서두르는 데는 항상 매우 큰 비용이 따를 것이고, AI가 우리의 암호체계를 깨뜨리는 것뿐 아니라 다른 면에서도 위협이라는 것은 분명하다고 생각합니다."
+            },
+            {
+              "speaker": "Barnabé Monnot",
+              "text": "soispoke에 답해 위협만 아니라 기회도 커졌다고 했다. 암호학 결과와 벤치마크, 프로토콜에 대한 확신이 강해져 지금 움직일 역량이 긴급도보다 더 빨리 늘었다는 입장이다.",
+              "timestamp": "00:35:46",
+              "original": "Yep, yeah, thanks for your thoughts on Amazon. I would say, like, for me, emergency is one dimension, and I think on that dimension, clearly the threat level has increased, at least over the last few weeks since Cambridge, Mumbai, like, we've heard new things, so new results from the labs and everything that definitely, like, warrant us to Yeah, integrate this new… this new data. But yeah, emergency to me is just one dimension. Like, the other dimension is also opportunity, and I think what has also happened quite significantly over the last few weeks and months is Our capability to ship, what is required to move… to a PQ and AI-ready chain has increased quite dramatically. Like, we have much stronger results on the cryptography, much stronger benchmarks. We are quite confident, or raising our confidence around the consensus protocol, thinking about specification and implementations, even, like, considering retrofitting PQ Gasper to, to the Gasper to the… to the PQ signature, so… So I would say… to me, the opportunity to move with more urgency while still being, obviously, like, very careful at times is the highest priority, has increased maybe even faster than the level of emergency has increased for me, and I think this gives us the benefit of having the choice to move. With the right steps, and to not have to move in a panic later on and make plans that would be much more damaging to our users and the change.",
+              "translation": "요, 네, 아마존(Amazon)에 대한 의견 감사합니다. 저로서는 긴급성이 하나의 차원이라고 말하고 싶습니다. 그리고 그 차원에서는, 적어도 케임브리지(Cambridge)와 뭄바이(Mumbai) 이후 최근 몇 주 동안 위협 수준이 분명히 높아졌습니다. 연구소들로부터 새로운 결과와 새로운 소식들을 들었고, 이는 분명히 이 새로운 데이터를 반영해야 할 근거가 됩니다. 하지만 저에게 긴급성은 단지 하나의 차원일 뿐입니다. 다른 차원은 기회이기도 한데, 최근 몇 주와 몇 달 사이에 상당히 크게 일어난 변화는, PQ와 AI에 대비된 체인으로 전환하는 데 필요한 것을 실제로 구현해 낼 수 있는 우리의 역량이 매우 급격히 증가했다는 점이라고 생각합니다. 암호학 쪽에서 훨씬 더 강력한 결과와 훨씬 더 강력한 벤치마크를 갖게 되었습니다. 합의 프로토콜 쪽에서도 명세와 구현을 생각하면서 자신감이 꽤 높아지고 있고, PQ 게스퍼(Gasper)를, 게스퍼를, PQ 서명에 맞게 재설계하는 것까지도 고려하고 있습니다. 그래서 저는, 때때로 분명히 매우 신중을 기하면서도 더 큰 긴급성을 가지고 움직일 기회가 최우선이라는 점에서, 그 기회가 제게는 긴급성의 수준이 높아진 것보다 어쩌면 더 빠르게 커졌다고 말하고 싶습니다. 그리고 이는 우리에게 올바른 단계를 밟아 움직일 수 있는 선택권을 준다는 이점이 있으며, 나중에 패닉 상태에서 움직이면서 우리 사용자들과 체인에 훨씬 더 큰 피해를 줄 계획을 세우지 않아도 되게 해준다고 생각합니다."
+            },
+            {
+              "speaker": "Fredrik",
+              "text": "AI 능력이 급가속 중이며 여러 랩 관계자들의 최대 걱정은 양자 하드웨어보다 AI가 암호를 먼저 깨는 것이라고 전했다. 사용자 이행 기간이 길어 빨리 시작해야 한다고 했다.",
+              "timestamp": "00:37:32",
+              "original": "Yeah, maybe to start off, I don't really believe that ECDSA will be completely broken next month, or something like that. Touch wood, I hope. But I have seen LLM capabilities Accelerating extremely much, and if you look… back to January, and compare it to now, I would say there is a massive difference. And if you look back from this time last year until now, then, you know, it's even greater. And if you go back 2 years, then the LLM models were… I don't know, practically… babies compared to how they're at the level they're at today. So, my… one of my concerns isn't how it is today, but how will the models be 2 years from now? And, You know, by the time we're at the point where these models are extremely capable and could potentially end up breaking this, then it's… practically too late, unless we have already started or solved it. I've talked to… Quite a few people from multiple labs, and people who are working, with labs, and… You know, we've talked about things like… Post-quantum and other things. from what I've heard and distilled from these discussions is that, you know, they are concerned about post-quantum and such. But the main concern that they have is crypto breaking through AI much sooner, compared to PQ being available. I think another reason to accelerate this, even though, again, I don't believe it's gonna break next month or anything like that, but the reason is that the migration period is gonna take a long time, especially on the user layer, so the sooner we…",
+              "translation": "네, 먼저 말씀드리자면, ECDSA가 다음 달에 완전히 깨질 것이라고는 저는 정말로 믿지 않습니다. 부디 그렇지 않기를 바랍니다. 하지만 LLM의 역량이 극도로 빠르게 가속화되는 것을 보았습니다. 1월로 돌아가서 지금과 비교해 보면, 엄청난 차이가 있다고 말씀드리고 싶습니다. 그리고 작년 이 시기부터 지금까지를 보면, 그 차이는 훨씬 더 큽니다. 그리고 2년 전으로 돌아가면, LLM 모델들은 오늘날의 수준에 비하면 거의 아기 수준이었습니다. 그래서 제 우려 중 하나는 오늘의 상태가 아니라, 2년 후에 이 모델들이 어떤 수준이 될 것인가입니다. 그리고 이 모델들이 극도로 뛰어난 역량을 갖추어 결국 이를 깨뜨릴 수 있는 지점에 이르렀을 때는, 이미 시작했거나 해결해 두지 않은 이상 사실상 너무 늦은 상태일 것입니다. 저는 여러 연구소의 많은 사람들, 그리고 연구소들과 함께 일하는 사람들과 이야기를 나누었습니다. 포스트 퀀텀(post-quantum)과 그 밖의 것들에 대해서도 이야기했습니다. 이러한 논의들에서 듣고 정리한 바로는, 그들은 포스트 퀀텀 등에 대해 우려하고 있지만, 그들이 가진 주된 우려는 PQ가 준비되는 것보다 AI를 통한 암호체계 붕괴가 훨씬 더 빨리 일어날 것이라는 점입니다. 이를 가속화해야 하는 또 다른 이유는, 다시 말씀드리지만 다음 달에 깨질 것이라고 믿는 것은 아니지만, 이행 기간이, 특히 사용자 계층에서, 오랜 시간이 걸릴 것이기 때문입니다. 그러니 우리가 더 빨리…"
+            },
+            {
+              "speaker": "Caspar Schwarz-Schilling",
+              "text": "글램스테르담(Glamsterdam) 이후 모든 포크에서 PQ와 AI 대비를 공동 최우선으로 삼는 것이 비용이 가장 적고 총량으로도 더 많이 출시하는 길이라고 주장했다. 의지를 보이기 위해 자신이 맡은 퀵슬롯 철회를 내놨다.",
+              "timestamp": "00:40:45",
+              "original": "Yeah, thanks. So, yeah, as ETH Labs yesterday, we posted on ETH Magicians our view on the topic, And maybe just to briefly summarize our position here. I mean, I think when it comes to this slide, I would probably pick something between 2 and 3 here, and would just say that, erring on the side of caution. And moving with urgency, but obviously always safely is where I would land. And yeah, I think for us, first, I think that the most important thing here is to just collectively agree on whether we want to make post-quantum and AI our collective focus for the hard folks after Glamsterdam. And… or whether we kind of want to just keep running some parallel tracks and then ship other features alongside. And I think that is the most important question for us, and everything else will sort of follow out of this. And we are kind of on the side of making it the collective priority. Because, one, we think it's the least costly to decide, sort of, once and for all, and that we'll also ship more in aggregate if you zoom out over, say, one or two years. And I think the reason here is that we will have this sort of Damocus foot hanging over us with AI capabilities and then advances in maths hanging over us. And so instead of having to sort of re-evaluate our priorities depending on progress there, we're already… we already know that we're fully locked in on making Ethereum post-quantum post-AI, and in our opinion, I think, this will allow us to just move faster and avoid Having to…",
+              "translation": "네, 감사합니다. ETH 랩스(ETH Labs)로서 어제 이 주제에 대한 저희의 견해를 ETH 매지션스(ETH Magicians)에 게시했습니다. 여기서 저희 입장을 간단히 요약해 보겠습니다. 이 슬라이드에 관해서는, 저라면 2와 3 사이의 어딘가를 고르겠고, 신중을 기하는 쪽으로 기울겠다고 말씀드리고 싶습니다. 긴급성을 가지고 움직이지만 분명히 항상 안전하게 움직이는 것이 제 입장입니다. 그리고 저희에게 가장 중요한 것은, 글램스테르담(Glamsterdam) 이후의 하드포크(hard fork)들에서 포스트 퀀텀(post-quantum)과 AI를 우리의 집단적 초점으로 삼을 것인지, 아니면 몇 개의 병행 트랙을 계속 운영하면서 다른 기능들도 함께 출시할 것인지를 다 함께 합의하는 것이라고 생각합니다. 이것이 저희에게 가장 중요한 질문이며, 다른 모든 것은 여기서부터 따라 나올 것이라고 생각합니다. 그리고 저희는 이를 집단적 우선순위로 삼는 쪽에 서 있습니다. 첫째로, 이를 한 번에 결정하는 것이 비용이 가장 적게 든다고 생각하고, 1년이나 2년 정도의 범위로 넓게 보면 전체적으로 더 많은 것을 출시하게 될 것이라고 생각합니다. 그 이유는, AI 역량과 수학적 진보가 다모클레스의 칼(Sword of Damocles)처럼 우리 위에 계속 매달려 있을 것이기 때문입니다. 그래서 그 진전 상황에 따라 우선순위를 계속 재평가해야 하는 대신, 저희는 이미 이더리움을 포스트 퀀텀, 포스트 AI로 만드는 데 완전히 전념하기로 되어 있다는 것을 알고 있으며, 저희 생각으로는 이것이 더 빠르게 움직이고 나중에 다시 그런 일을 겪지 않아도 되게 해 줄 것입니다."
+            },
+            {
+              "speaker": "Justin Drake",
+              "text": "암호 붕괴가 이미 발견되고도 은폐됐을 가능성을 EF가 조사 중이며, 결과가 긍정이든 부정이든 몇 주 안에 공개하겠다고 약속했다.",
+              "timestamp": "00:46:49",
+              "original": "Sure, happy to speak. So, I guess I agree with Fredrik that… you know, going forward, the capabilities of AI is going to increase, and so we shouldn't be worried about the future. one of the things that I'm looking into right now is, what about the present? There is a potential scenario where cryptographic breaks may have already been found, and they are withheld by the people who have found them because of various pressures. And so… EF is taking this scenario very seriously. One of the commitments that I can make is that once our investigations are over, we will make public our findings, whether they're positive or negative, and I think this will be a breath of fresh air for the ecosystem, because right now. a lot of the AI labs are completely silent. Not only do they not post, the findings that they have cryptographically, but they also don't post the negative results. So… This is an effort which will be ongoing for… For the next few weeks, and potentially next month, we'll be able to provide more transparency as to what's happening behind the scenes.",
+              "translation": "네, 말씀드리겠습니다. 저는 프레드리크(Fredrik)의 의견에 동의합니다. 앞으로 AI의 역량은 계속 증가할 것이고, 그러니 미래에 대해서만 걱정할 일은 아닙니다. 제가 지금 살펴보고 있는 것 중 하나는, 현재는 어떠한가 하는 것입니다. 암호학적 붕괴가 이미 발견되었지만 여러 압박 때문에 그것을 발견한 사람들이 숨기고 있는 시나리오가 있을 수 있습니다. 그래서 EF(이더리움 재단)는 이 시나리오를 매우 심각하게 받아들이고 있습니다. 제가 약속할 수 있는 것 중 하나는, 저희의 조사가 끝나면 그 결과가 긍정적이든 부정적이든 공개하겠다는 것입니다. 그리고 저는 이것이 생태계에 신선한 활력이 될 것이라고 생각합니다. 왜냐하면 현재 많은 AI 연구소들이 완전히 침묵하고 있기 때문입니다. 그들은 암호학적으로 발견한 것들을 게시하지 않을 뿐만 아니라, 부정적인 결과도 게시하지 않습니다. 이것은 앞으로 몇 주, 그리고 어쩌면 다음 달까지 계속될 작업이며, 그 이후에는 배후에서 무슨 일이 일어나고 있는지에 대해 더 많은 투명성을 제공할 수 있을 것입니다."
+            }
+          ],
+          "quote": {
+            "text": "그들의 가장 큰 걱정은 양자 하드웨어가 오기 전에 AI가 암호를 훨씬 먼저 깨는 것이다.",
+            "original": "The main concern that they have is crypto breaking through AI much sooner, compared to PQ being available.",
+            "speaker": "Fredrik",
+            "timestamp": "00:37:32"
+          }
+        },
+        {
+          "title": "FOCIL을 지킬 것인가, 미룰 것인가",
+          "intro": "헤고타에서 사실상 유일하게 포함 확정(SFI) 상태인 검열 저항 기능 FOCIL을 양자 전환 우선 기조 속에서도 유지할지가 쟁점이 됐다.",
+          "positions": [
+            {
+              "speaker": "Matthew Keil",
+              "text": "FOCIL은 CL 쪽에서는 비교적 쉽지만 EL의 프레임(Frames) 통합 복잡성이 미지수라며 좋다 싫다의 감정이 아니라 답해야 할 구체적 설계 질문 목록을 놓고 결정하자고 했다.",
+              "timestamp": "00:52:25",
+              "original": "With regards to FOCIL, on the CL side, it's relatively easy, aside from the PQ signature part. But the integration of FOCIL with frames, my understanding is on the EL side, there is some complexity there, and before making that decision, because of the importance of FOCIL, I'm curious if there's a deep understanding of what does that actually mean, and timelines, and etc. on the EL side. Before we… we feel confident whether we want to drop it or not.",
+              "translation": "FOCIL과 관련해서, CL(합의 계층) 쪽에서는 PQ 서명 부분을 제외하면 비교적 쉽습니다. 하지만 FOCIL과 프레임즈(frames)의 통합은, 제가 이해하기로는 EL(실행 계층) 쪽에 어느 정도 복잡성이 있습니다. 그리고 FOCIL의 중요성을 고려할 때 그 결정을 내리기 전에, EL 쪽에서 그것이 실제로 무엇을 의미하는지, 타임라인이 어떻게 되는지 등에 대한 깊은 이해가 있는지 궁금합니다. 그것을 폐기할지 말지를 확신하기 전에 말입니다."
+            },
+            {
+              "speaker": "soispoke",
+              "text": "FOCIL은 CL에서 단순하고 프레임과의 상호작용도 개념적으로 명확하다며 PQ의 주요 걸림돌로 모는 것에 반대했다. 포함 목록(IL)은 4슬롯만 살고 체인에 오르지 않는 임시 객체라 모든 트랜잭션 유형을 지원할 필요도 없다고 했다.",
+              "timestamp": "00:53:21",
+              "original": "Yeah. I mean, I would also agree that the, you know, FOCIL has been here forever on the… on the Consensus layer side of things, and I'm not very worried about the complexity over there. I feel like, you know, in Mumbai we did discuss, The interactions between FOCIL and frames. And, at least to me, they are, like, very conceptually clear, but of course, we need to, See, what it… means on devnets. I feel like there are… there is no, I don't know, huge complexities compared to anything else we've… discussed so far, like, I… I mean, I sometimes struggle to understand, like, comparisons between, oh yeah, FOCIL is gonna slow down PQ by a ton, because it has, like, a few interactions with frame transactions. But at the same time, we are, like, thinking about, like, now completely changing the cryptography across all three layers of the protocol, and we just, are in the middle of shipping Glamsterdam, which is, I think, orders of magnitude more complex. So… Of course, there are, like, there are gonna be things to… to… to, like, figure out. I think, again, conceptually, I think those things are pretty simple and straightforward. But I don't think it's, it's actually complex. And what I… what I do think is, like, we haven't thought very much about, FOCIL NPQ. And so, exactly what that means, needs to be thought of more. like, exec… you know, does FOCIL… like, what does… what needs to happen for FOCIL to be fully compatible to PQ, needs to be a bit more featured. I don't think it's a…",
+              "translation": "네. 저도 FOCIL이 합의 계층(Consensus layer) 쪽에서는 이미 오래전부터 있었던 것이고, 그쪽의 복잡성에 대해서는 크게 걱정하지 않는다는 데 동의합니다. 뭄바이(Mumbai)에서 FOCIL과 프레임즈(frames) 간의 상호작용에 대해 논의했던 것으로 기억하는데, 적어도 저에게는 개념적으로 매우 분명합니다. 물론 데브넷(devnets)에서 그것이 실제로 무엇을 의미하는지 확인해야 하지만요. 지금까지 논의한 다른 어떤 것과 비교해도 그다지 큰 복잡성은 없다고 느낍니다. 가끔 이런 비교를 이해하기 어려울 때가 있습니다. FOCIL이 프레임 트랜잭션과 몇 가지 상호작용이 있다는 이유로 PQ를 크게 지연시킬 것이라는 비교 말입니다. 하지만 동시에 우리는 지금 프로토콜의 세 계층 전체에 걸쳐 암호체계를 완전히 바꾸는 것을 고려하고 있고, 또 글램스테르담(Glamsterdam)을 출시하는 한창인 과정에 있는데, 이것이 훨씬 더 복잡하다고 생각합니다. 물론 파악해야 할 것들이 있을 것입니다. 다시 말하지만, 개념적으로는 그런 것들이 꽤 단순하고 직관적이라고 생각합니다. 그것이 실제로 복잡하다고는 생각하지 않습니다. 다만 제가 생각하기에, 우리가 FOCIL과 PQ에 대해서는 그다지 많이 생각해 보지 않았습니다. 그러니 그것이 정확히 무엇을 의미하는지는 좀 더 생각해 볼 필요가 있습니다. FOCIL이 PQ와 완전히 호환되기 위해 무엇이 필요한지는 좀 더 구체화되어야 합니다. 그것이 복잡하다고는 생각하지 않습니다."
+            },
+            {
+              "speaker": "Potuz",
+              "text": "결코 확정하지 않는 미래 로드맵에 기대 기능을 잡아선 안 된다고 반박했다. 수 킬로바이트 IL을 쓰는 FOCIL은 12초 슬롯의 PQ 가스퍼(Gasper)와 양립하기 어렵다고 봤다.",
+              "timestamp": "00:55:33",
+              "original": "Yeah, so… I… I want to say that the degree of emergency, and this is something that perhaps was already hinted by Barnabe, the degree of emergency might, give us some timelines as to when we would be forced to ship this or not, or when we want to start this process or not. But I don't think it should, like… This is not what is important to me. What was eye-changing to me at Devcon was the fact that for the very first time, we got together and tried to figure out what would be PQ right now. what would be… what are the steps that we need to fork and make Ethereum PQ resistant? And what we found there is that, for the very first time, we… we couldn't, fork For example, today, if we had 6-second slots, it just would not be possible. So it seemed to me that we kept this magical thing that some Features would appear in the future that would enable for features that we want to ship now, that we have ready now, that we want now. Quick slots is one of them. If we had 10-second slots, I'm pretty certain that Gasper and PQ would not work with 10 seconds, and we know this for a fact now, because we had this week to plan for it. And I believe that's probably part of the reason why Ethlabs is deprioritizing quick slots. But the same kind of things happen with FOCIL. FOCIL with ILs that are kilobytes and several kilobytes, it's very unlikely to be able to be possible with Gasper. We are already not sure if we can actually make Gasper with 12 seconds. So, all of these features depended on a…",
+              "translation": "네, 저는 긴급성의 정도에 대해 말씀드리고 싶습니다. 이는 어쩌면 바나베(Barnabe)가 이미 암시했던 부분일 수도 있는데, 긴급성의 정도는 우리가 언제 이를 반드시 출시해야 하는지, 혹은 언제 이 과정을 시작하고 싶은지에 대한 일정 감각을 줄 수 있습니다. 하지만 그것이 중요하다고는 생각하지 않습니다. 저에게 그것은 중요한 것이 아닙니다. 데브콘(Devcon)에서 제게 눈이 번쩍 뜨이게 한 사실은, 처음으로 우리가 모여서 지금 당장 PQ가 어떤 모습이어야 하는지를 알아내려 했다는 것입니다. 이더리움을 포크해서 PQ에 내성을 갖게 만들려면 어떤 단계가 필요한지 말입니다. 그리고 거기서 알게 된 것은, 처음으로, 우리가 포크할 수 없었다는 것입니다. 예를 들어, 오늘 만약 6초 슬롯이었다면 그것은 그냥 불가능했을 것입니다. 그래서 저에게는, 지금 출시하고 싶고 지금 준비되어 있고 지금 원하는 기능들을 가능하게 해 줄 어떤 마법 같은 것이 미래에 나타날 것이라는 식으로 우리가 생각해 왔던 것처럼 보였습니다. 퀵 슬롯(Quick Slots)이 그 예시 중 하나입니다. 만약 10초 슬롯이었다면, 게스퍼(Gasper)와 PQ가 10초로는 작동하지 않을 것이라고 저는 꽤 확신합니다. 그리고 이번 주에 이를 계획해 볼 시간이 있었기 때문에 이제 이것이 사실이라는 것을 알고 있습니다. 그리고 이것이 바로 ETH랩스(Ethlabs)가 퀵 슬롯의 우선순위를 낮추는 이유 중 하나라고 생각합니다. 하지만 FOCIL에서도 같은 종류의 일이 일어납니다. 킬로바이트, 몇 킬로바이트에 달하는 IL을 가진 FOCIL은 게스퍼로는 가능하지 않을 가능성이 매우 큽니다. 우리는 이미 게스퍼를 12초로 만들 수 있을지조차 확신하지 못하고 있습니다. 그래서 이 모든 기능들은 어떤 전제에 의존하고 있었습니다."
+            },
+            {
+              "speaker": "Jihoon",
+              "text": "PQ FOCIL은 P2P 객체 크기가 최대 관건인데 다른 객체와 비슷한 수준으로 유지할 수 있어 보인다며 P2P 계층이 지금보다 큰 객체를 다루도록 전방 호환성을 갖추자고 했다.",
+              "timestamp": "01:01:57",
+              "original": "Yeah, I wanna… I'll share, something regarding PQ FOCIL. I was looking into it recently. And… From a sales standpoint, I think the biggest concern would be the P2P object size. And I'm still receiving feedback from people who are working on PQGasper or PQDC. But to me, it seems like it can be kept to a level comparable to other objects, I mean, there are other objects, such as attestations, because we are not using 12 seconds for all objects, we use it In a different window for different objects, and before we… When we make a decision on whether broadcasting this object for this time period is possible or not. I think we need to be more forward compatible. So my intuition is that our P2P, needs to be capable of handling larger objects than we have today, and hopefully I get more information in a couple of weeks so that we can make an informed decision.",
+              "translation": "네, PQ FOCIL과 관련해서 몇 가지를 공유하고 싶습니다. 최근에 이를 살펴보고 있었습니다. 세일즈 관점에서 보면, 가장 큰 우려는 P2P 오브젝트 크기일 것이라고 생각합니다. 그리고 PQ게스퍼(PQGasper)나 PQDC 작업을 하고 있는 분들로부터 아직 피드백을 받고 있습니다. 하지만 저에게는, 이것이 어테스테이션(attestations) 같은 다른 오브젝트들과 비슷한 수준으로 유지될 수 있을 것으로 보입니다. 왜냐하면 모든 오브젝트에 대해 12초를 사용하는 것이 아니라, 오브젝트마다 서로 다른 윈도우를 사용하기 때문입니다. 그리고 이 시간 윈도우 동안 이 오브젝트를 브로드캐스트하는 것이 가능한지 결정을 내리기 전에, 우리는 더 미래 호환적이어야 한다고 생각합니다. 그래서 제 직감으로는, 우리의 P2P가 오늘날보다 더 큰 오브젝트를 다룰 수 있어야 하며, 몇 주 안에 더 많은 정보를 얻어서 근거 있는 결정을 내릴 수 있기를 바랍니다."
+            }
+          ],
+          "quote": {
+            "text": "미래의 PQ가 어떤 모습일지를 제약하게 된다면, 지금 FOCIL이나 퀵슬롯을 이야기할 수는 없다.",
+            "original": "We cannot really be talking about FOCIL or quick slots now, if that's going to constrain what PQ is going to be in the future.",
+            "speaker": "Potuz",
+            "timestamp": "00:55:33"
+          }
+        },
+        {
+          "title": "PQ 가스퍼냐 PQ 디커플드 합의냐",
+          "intro": "양자내성 서명을 현행 합의 프로토콜 가스퍼에 그대로 끼우는 빠른 길과 합의를 재설계하는 디커플드 합의 중 어느 쪽으로 갈지를 논의했고 BLS 기반 디커플드 합의의 폐기가 선언됐다.",
+          "decision": "확정 결정 01:09:31",
+          "positions": [
+            {
+              "speaker": "jtraglia",
+              "text": "PQDC를 진지하게 검토하기 전에 몇 주간 PQ 가스퍼부터 파보자고 제안했다. PQ 가스퍼 작업 대부분은 PQDC에도 어차피 필요하다는 근거다.",
+              "timestamp": "01:06:43",
+              "original": "Yep. So, I would like to propose we spend at least a few weeks working on PQ Gasper before seriously considering PQDC, because, I should say, like, most things that we're gonna do for PQ, Gasper we will also have to do for PQDC. And I'm just curious about the feasibility of it, honestly. Like, if it's possible to do PQ Gasper. without PQDC, I'd prefer to do that.",
+              "translation": "네. 저는 PQDC를 본격적으로 검토하기 전에 적어도 몇 주 동안은 PQ 게스퍼(Gasper) 작업에 시간을 쓸 것을 제안하고 싶습니다. 왜냐하면, PQ 게스퍼를 위해 할 일들 대부분은 PQDC를 위해서도 해야 할 일이기 때문입니다. 그리고 저는 솔직히 그 실현 가능성이 궁금합니다. PQDC 없이 PQ 게스퍼를 할 수 있다면, 저는 그렇게 하는 쪽을 선호합니다."
+            },
+            {
+              "speaker": "Mikhail Kalinin",
+              "text": "집계 대역폭과 연산, 증명 풀 변경까지 깊이 들어가야 타당성이 보이므로 몇 주로는 강한 증거가 나오지 않을 것이라고 신중론을 폈다. 작업 도중 PQDC로 갈아타는 상황도 실제 가능성으로 염두에 두자고 했다.",
+              "timestamp": "01:07:19",
+              "original": "I wanted to add on the, PQ Gasper versus PQDC, and the feasibility of PQ Gasper. I think that, until we are quite, deep into the stage of working on PQ Gasper, it will be difficult to assess its visibility, because PQ Gasper… switching to PQ signatures will imply rethinking how the aggregation works in terms of bandwidth, in terms of compute, how the attestation pool, and how the SL clients will handle all this stuff. And, I think, this is quite, white deep changes, so it… probably these few weeks of working on PQ Gasper will actually not give us any, strong evidence of whether it's going to be feasible or not, and if we take this road, we will probably have to switch to PQDC, being quite deep into the process, and I would like us to, keep this in mind, and have a clear understanding of that this can be, can be the possibility. One quick comment on PQ, Gasper, is that, we, all kind of aware that long periods of non-finality even, like, with BLS, Gasper are quite hard to handle, for clients and for the network. With PQ Gasper, I believe it will become even worse, but probably this is, like, the least of the evil, so, but this is another consideration that… I would like us to keep in mind, and with PQDC, it should be… Should be, much, much better.",
+              "translation": "PQ 게스퍼(Gasper) 대 PQDC, 그리고 PQ 게스퍼의 실현 가능성에 대해 덧붙이고 싶습니다. PQ 게스퍼 작업 단계에 꽤 깊이 들어가기 전까지는 그 가시성(visibility)을 평가하기 어려울 것이라고 생각합니다. 왜냐하면 PQ 게스퍼로 전환한다는 것은, PQ 서명으로 전환하는 것은 대역폭(bandwidth) 관점에서, 컴퓨트(compute) 관점에서 어그리게이션(aggregation)이 어떻게 작동하는지, 어테스테이션 풀(attestation pool)은 어떻게 되는지, SL 클라이언트들이 이 모든 것을 어떻게 처리할지를 다시 생각해야 한다는 것을 의미하기 때문입니다. 그리고 이는 꽤 심층적인 변화라고 생각하기 때문에, PQ 게스퍼 작업에 쓰는 이 몇 주는 실제로 그것이 실현 가능할지에 대한 강력한 증거를 주지 못할 가능성이 큽니다. 그리고 만약 이 길을 택한다면, 그 과정에 꽤 깊이 들어간 상태에서 PQDC로 전환해야 할 가능성이 있을 것입니다. 저는 우리가 이 점을 염두에 두고, 이것이 하나의 가능성이 될 수 있다는 것을 명확히 이해하고 있기를 바랍니다. PQ 게스퍼에 대해 한 가지 짧게 덧붙이면, 우리 모두는 BLS 게스퍼에서도 파이널리티(finality)가 없는 긴 기간을 다루기가 클라이언트와 네트워크 모두에 꽤 어렵다는 것을 알고 있습니다. PQ 게스퍼에서는 이것이 더 나빠질 것이라고 생각합니다. 하지만 이는 아마도 차악(次惡)일 것입니다. 그래도 이것은 우리가 염두에 두어야 할 또 다른 고려사항입니다. 그리고 PQDC에서는 이것이 훨씬, 훨씬 더 나을 것입니다."
+            },
+            {
+              "speaker": "Potuz",
+              "text": "Mikhail에 동의하면서도 디커플드 합의 명세는 처음부터 PQ 세계를 겨냥해야 한다고 했다. BLS DC를 먼저 출시하고 나중에 PQ로 옮기는 미래는 더 이상 없다는 것이다.",
+              "timestamp": "01:08:56",
+              "original": "I just want to comment on the DC stuff. So, something that comes out of this discussion is that the couple Consensus specifications should be already PQ. Like, it doesn't look like we have any future in which we ship DC first, and then we move PQ. So it seems that now DC has become this thing where if we… we are going to try to do a PQ Gasper… Gasper, and if it doesn't work, then we're gonna move into DC, which I completely agree with everything Mikhail said, but then… then we should already be specifying DC already in the PQ world, and not as if we were doing before.",
+              "translation": "DC(디커플드 합의, decoupled consensus) 관련해서 한 가지만 말씀드리고 싶습니다. 이 논의에서 나온 것은, 디커플드 합의 명세가 이미 PQ여야 한다는 것입니다. DC를 먼저 출시하고 그다음에 PQ로 넘어가는 미래는 없어 보입니다. 그러니 지금 DC는, 우리가 PQ 게스퍼를 시도해 보고 그것이 되지 않으면 DC로 넘어간다는 식의 것이 된 것 같습니다. 저는 미하일(Mikhail)이 말한 모든 것에 완전히 동의하지만, 그렇다면 우리는 이미 PQ 세계 안에서 DC를 명세해야 하며, 이전처럼 명세해서는 안 됩니다."
+            },
+            {
+              "speaker": "Ben Edgington",
+              "text": "지난주 논의의 중요한 결론으로 BLS 디커플드 합의는 죽었다고 선언했다. 한다면 곧장 PQ 디커플드 합의로 가야 한다고 했다.",
+              "timestamp": "01:09:36",
+              "original": "Yeah, thanks, Potus, and with my, conflict of interests hat on, I will say that that was one major outcome of last week, is, I think, BLS, decoupled Consensus is dead. And we do need to jump straight to PQ decoupled Consensus, if we're gonna do it at all. So, yep, that seems to be a clear outcome. It's a shame. BLS has been good to us. I love it. Mikhail. Thank you. So, on the question of what further information do we need to be able to make good decisions, I'm hearing a couple of things. We need to understand how FOCIL and post-quantum cryptography interact, what are the compromises we might need to make there. And, we need a clearer understanding of whether post-quantum Gasper is feasible, and if so, if it involves any compromises in terms of the valid data set, or time to finality, or whatever. So, those are two clear work streams we should, kick off, or are underway. As it is. We should talk a bit about LeanVM, and just, get a checkpoint on where we are. So this is, on the Consensus side. This is what's planned to be used to aggregate the signatures. to replace the BLS aggregation, so we, we plan to use LeanXMSS signatures. Would somebody, maybe Kev, to call you out, want to speak to the readiness of, of LeanVM, or maybe Tom Wambsgans. Who would like to speak to that? And by ready… sorry, just by ready, do you mean production ready, or ready for testing with clients? What state of readiness? Splendid. George. Are you suggesting that the, 3-4 months timeframe is… is…",
+              "translation": "네, 감사합니다, 포투스(Potus). 이해관계 충돌 모자를 쓰고 말씀드리면, 지난주의 주요 성과 중 하나는, BLS 디커플드 합의(decoupled consensus)는 끝났다는 것이라고 생각합니다. 그리고 만약 이것을 하게 된다면, 곧바로 PQ 디커플드 합의로 넘어가야 합니다. 네, 그것이 명확한 결론인 것 같습니다. 안타까운 일입니다. BLS는 우리에게 좋았습니다. 저는 그것을 사랑합니다. 미하일(Mikhail), 감사합니다. 그래서 좋은 결정을 내리기 위해 우리에게 더 필요한 정보가 무엇인가 하는 질문에 대해, 저는 두 가지를 듣고 있습니다. 첫째, FOCIL과 포스트 퀀텀 암호학이 어떻게 상호작용하는지, 거기서 우리가 해야 할 타협이 무엇인지를 이해해야 합니다. 둘째, 포스트 퀀텀 게스퍼(Gasper)가 실현 가능한지에 대한 더 명확한 이해가 필요하며, 만약 그렇다면 유효 데이터 집합(valid data set)이나 파이널리티까지 걸리는 시간 등의 측면에서 어떤 타협이 수반되는지도 알아야 합니다. 그래서 이것이 우리가 시작해야 할, 또는 이미 진행 중인 두 가지 명확한 작업 흐름입니다. 이제 린VM(LeanVM)에 대해 조금 이야기하고, 현재 상황을 체크포인트로 짚어 보겠습니다. 이것은 합의(Consensus) 쪽 이야기입니다. 이는 서명을 집계하는 데 사용할 계획인 것으로, BLS 어그리게이션(aggregation)을 대체하기 위해 린XMSS(LeanXMSS) 서명을 사용할 계획입니다. 누군가, 어쩌면 케브(Kev)를 지목해서, 린VM의 준비 상태에 대해 말씀해 주실 분이 있을까요, 아니면 톰 왐스간스(Tom Wambsgans)님이 말씀해 주실까요. 누가 이에 대해 말씀해 주시겠습니까. 그리고 준비라고 하면, 죄송합니다만 그것이 프로덕션에 바로 쓸 수 있는 준비를 의미하는지, 아니면 클라이언트와의 테스트에 쓸 준비를 의미하는지 궁금합니다. 어느 정도의 준비 상태를 말씀하시는 건가요. 훌륭합니다. 조지(George). 3~4개월이라는 기간을 말씀하시는 건가요…"
+            },
+            {
+              "speaker": "Mikhail Kalinin",
+              "text": "비완결(non-finality) 구간은 BLS 가스퍼로도 버거운데 PQ 가스퍼에서는 더 나빠질 것이라고 덧붙였다. PQDC라면 훨씬 잘 다룰 수 있다고 했다.",
+              "timestamp": "01:10:09",
+              "original": "One quick comment on PQ, Gasper, is that, we, all kind of aware that long periods of non-finality even, like, with BLS, Gasper are quite hard to handle, for clients and for the network. With PQ Gasper, I believe it will become even worse, but probably this is, like, the least of the evil, so, but this is another consideration that… I would like us to keep in mind, and with PQDC, it should be… Should be, much, much better.",
+              "translation": "PQ 게스퍼(Gasper)에 대해 한 가지 짧게 덧붙이자면, 우리 모두는 BLS 게스퍼에서도 파이널리티(finality)가 없는 긴 기간을 다루는 것이 클라이언트와 네트워크 모두에 꽤 어렵다는 것을 알고 있습니다. PQ 게스퍼에서는 이것이 더 나빠질 것이라고 생각합니다. 하지만 이는 아마도 차악(次惡)일 것입니다. 그래도 이것은 우리가 염두에 두어야 할 또 다른 고려사항입니다. 그리고 PQDC에서는 이것이 훨씬, 훨씬 더 나을 것입니다."
+            }
+          ],
+          "quote": {
+            "text": "지난주의 중요한 결론 하나는 BLS 디커플드 합의가 죽었다는 것이다. 한다면 곧장 PQ 디커플드 합의로 건너뛰어야 한다.",
+            "original": "That was one major outcome of last week, is, I think, BLS decoupled Consensus is dead. And we do need to jump straight to PQ decoupled Consensus, if we're gonna do it at all.",
+            "speaker": "Ben Edgington",
+            "timestamp": "01:09:36"
+          }
+        },
+        {
+          "title": "페이로드 검증, 블록 해시냐 비드 수정이냐",
+          "intro": "글램스테르담의 ePBS에서 실행 페이로드가 비드(bid)와 일치하는지 CL이 확인하는 방법으로, CL에 RLP 인코딩을 들이는 블록 해시 검사와 비드 구조 변경 중 무엇을 택할지가 갈렸다.",
+          "decision": "보류 결정 00:18:16",
+          "positions": [
+            {
+              "speaker": "jtraglia",
+              "text": "가십 검증에 실행 블록 해시 확인을 넣으려면 CL에 RLP 인코딩 능력이 필요한데, 본인도 내키지 않지만 중요한 검사라 방식을 명시적으로 규정하자고 제안했다.",
+              "timestamp": "00:12:04",
+              "original": "Yep. Hey everyone. Yeah, I'd like to talk about a spec change which adds more gossip checks to the execution payload envelope validation function for Glamsterdam. There's one check which I expect to be a bit controversial, the execution block hash check. To do this properly in the CL, we'll need to introduce a function which can compute the hash. This means adding the ability to, RLP encode data into the CL. While I'm not particularly a fan of this, this is an important check to have, and I prefer to be explicit in how it should be done. There are alternatives, such as adding a root field to the bid, or introducing a new Engine API endpoint. But those feel more difficult, and they would break backwards compatibility with Sepolia. Most clients actually already have a function for computing the execution block hash. So it should be a relatively simple change for most, it's just like a… Yeah. What do you guys think? Yeah, I'm just… I'm not sure if… It's, like, the right time to change the bit structure again. Like, it just feels really late into the process. Especially when… When clients can't add the BlockChast check, but I think you're right that that probably is the most correct change. Yeah. What do other clients think?",
+              "translation": "네. 안녕하세요 모두. 저는 글램스테르담(Glamsterdam)을 위한 실행 페이로드 엔벨로프(execution payload envelope) 검증 함수에 더 많은 가십(gossip) 체크를 추가하는 명세 변경에 대해 이야기하고 싶습니다. 다소 논란이 될 것으로 예상되는 체크가 하나 있는데, 바로 실행 블록 해시 체크입니다. 이를 CL(합의 계층)에서 제대로 하려면, 해시를 계산할 수 있는 함수를 도입해야 합니다. 이는 CL에 RLP 인코딩 기능을 추가한다는 것을 의미합니다. 저는 이것을 특별히 좋아하지는 않지만, 이는 반드시 있어야 할 중요한 체크이고, 어떻게 해야 하는지에 대해 명확히 하는 쪽을 선호합니다. 비드(bid)에 루트 필드를 추가하거나 새로운 엔진 API(Engine API) 엔드포인트를 도입하는 것과 같은 대안들이 있습니다. 하지만 그런 방법들은 더 어렵게 느껴지고, 세폴리아(Sepolia)와의 하위 호환성을 깨뜨릴 것입니다. 실제로 대부분의 클라이언트는 이미 실행 블록 해시를 계산하는 함수를 가지고 있습니다. 그러니 대부분에게는 비교적 단순한 변경일 것입니다. 그냥 이런 느낌입니다. 어떻게 생각하시나요. 저는 지금이 비드 구조를 다시 변경할 적절한 시점인지 잘 모르겠습니다. 과정상 너무 늦은 느낌입니다. 특히 클라이언트들이 블록 해시 체크를 추가할 수 없을 때는 더욱 그렇습니다. 하지만 그것이 아마 가장 올바른 변경이라는 말씀에는 맞다고 생각합니다. 다른 클라이언트들은 어떻게 생각하시나요?"
+            },
+            {
+              "speaker": "cayman",
+              "text": "비드에 페이로드 루트를 넣는 쪽이 올바른 해법이라고 반박했다. 해시 검사는 EL의 커밋 장치를 CL에 들여오는 편법이라는 입장으로, 콜 뒤에 대안 PR을 열기로 했다.",
+              "timestamp": "00:13:17",
+              "original": "Yeah, I, came in from Lodestar here. I, I, suggested the, using a payload root, putting that in the bid, because I think this is just more, it's kind of, like, the right solution here, right? The problem is that we can have these payloads where we are actually checking them against the commitment that we have in the bid. The problem is that we don't have a commitment in the bid that is… like, kind of native to the CL layer, so if we put a… If we put a hash payload root. in that bid, then we have an easy commitment to check against. The solution with… Checking the payload hash involves basically… putting the, EL commitment. checks and machinery into the CL, which is just… just as… is wrong. from a separation of concerns perspective, it's expedient, but it is wrong, so… Yep.",
+              "translation": "네, 로드스타(Lodestar) 쪽에서 왔습니다. 저는 페이로드 루트(payload root)를 사용해서 그것을 비드(bid)에 넣는 방안을 제안했는데, 이것이 여기서 더 올바른 해법이라고 생각하기 때문입니다. 문제는, 우리가 비드에 가지고 있는 커밋먼트(commitment)에 대해 이 페이로드들을 실제로 검증할 수 있다는 것입니다. 문제는, 비드 안에 CL(합의 계층) 레이어에 네이티브한 커밋먼트가 없다는 것입니다. 그래서 만약 해시 페이로드 루트를 그 비드에 넣는다면, 검증할 대상이 되는 간단한 커밋먼트를 갖게 됩니다. 페이로드 해시를 체크하는 해법은 기본적으로, EL(실행 계층)의 커밋먼트 체크와 그 메커니즘을 CL에 집어넣는 것을 의미하는데, 이는 그저 잘못된 것입니다. 관심사의 분리(separation of concerns) 관점에서, 그것은 편의적이지만 잘못된 것입니다. 네."
+            },
+            {
+              "speaker": "Enrico Del Fante",
+              "text": "Teku는 Besu 의존성으로 이미 검사를 구현했고 같은 장치를 가십 검증에 재사용하는 PR도 있다며 지금 비드 구조를 바꾸기에는 너무 늦었다고 했다.",
+              "timestamp": "00:14:58",
+              "original": "Yeah, I went to look into the… Kevin's idea. Bot… Tech already has implemented the check, at least for, for the historical sink, and we have an open PR to add the same… reuse essentially the same, the same machinery. 2… We'll do the additional check on the… On the gossip, so… At the end, we are okay with, with that PR. And, yeah, changing the structure now seems like a little bit… Too late. Maybe something that we can change next, Borks? Well, yeah, that's another thing.",
+              "translation": "네, 케빈(Kevin)의 아이디어를 살펴보았습니다. Bot… Tech는 적어도 히스토리컬 싱크(historical sink)에 대해서는 이미 그 체크를 구현해 두었고, 저희도 동일한 메커니즘을 재사용해서 추가하는 오픈 PR이 있습니다. 가십(gossip) 쪽에 추가 체크를 할 것입니다. 결국 저희는 그 PR에 대해 괜찮다고 생각합니다. 그리고 지금 구조를 바꾸는 것은 조금 너무 늦은 것 같습니다. 다음 번, Borks에서 바꿀 수 있는 것일지도 모르겠네요. 그것도 또 다른 이야기이긴 합니다."
+            },
+            {
+              "speaker": "saulius",
+              "text": "Grandine도 구현은 했지만 이 접근이 싫다며 피할 길이 있다면 지지하겠다고 했다. 세폴리아가 정말 깨진 상태라면 새 장치를 CL에 넣지 말고 제대로 고치자고 했다.",
+              "timestamp": "00:16:53",
+              "original": "Yes, despite the fact that we have this implemented, we don't like this. approach. And if there is any… possibility to actually not go this way, we… we would, support it. And actually, Terence mentioned that Sepolia is kinda broken, maybe he could explain. That, I mean, if Sepolia is… Actually broken, then. I would prefer, really, to do a proper fix without introducing all those new things to CL.",
+              "translation": "네, 저희가 이것을 구현해 두었다는 사실과는 별개로, 저희는 이 접근법을 좋아하지 않습니다. 그리고 실제로 이 방식으로 가지 않을 수 있는 가능성이 있다면, 저희는 그것을 지지하겠습니다. 그리고 실제로 테런스(Terence)가 세폴리아(Sepolia)가 어느 정도 망가져 있다고 언급했는데, 그가 설명해 줄 수 있을 것 같습니다. 만약 세폴리아가 실제로 망가져 있다면, 저는 CL에 그 모든 새로운 것들을 도입하지 않고 제대로 된 수정을 하는 쪽을 정말로 선호합니다."
+            },
+            {
+              "speaker": "Barnabas",
+              "text": "세폴리아를 살리자고 CL을 복잡하게 만들지 말자고 했다. 어차피 수명이 다했으니 내년에 새 테스트넷을 띄우면 된다는 pk910의 의견에 동조했다.",
+              "timestamp": "00:19:05",
+              "original": "Yeah, so I would like to reiterate what PK put in the comment as well, that, we shouldn't be basically blocking anything on Sepolia. We could just launch a new Sepolia next year, because it's already end of life. We just basically extended the end of life till next year. But if there is, if there's a nicer approach that the CLs would prefer, I think that should be the default way. I'm not overcomplicate the sale. Just… just… just for the sake of saving Sepolia. That's it.",
+              "translation": "네, PK가 댓글에 남긴 내용도 다시 한번 강조하고 싶습니다. 기본적으로 세폴리아(Sepolia) 때문에 무언가를 막아서는 안 된다는 것입니다. 저희는 그냥 내년에 새로운 세폴리아를 론칭할 수도 있습니다. 왜냐하면 세폴리아는 이미 수명이 끝난(end of life) 상태이기 때문입니다. 저희는 그 수명 종료 시점을 그냥 내년까지로 연장한 것일 뿐입니다. 하지만 CL 쪽에서 선호하는 더 나은 접근법이 있다면, 그것이 기본 방식이 되어야 한다고 생각합니다. 저는 단지 세폴리아를 살리기 위해 일을 지나치게 복잡하게 만들고 싶지는 않습니다. 그게 전부입니다."
+            }
+          ],
+          "quote": {
+            "text": "페이로드 해시를 검사하는 해법은 EL의 커밋 검사 장치를 CL 안에 들여오는 것인데, 역할 분리 관점에서 틀렸다. 편법일 뿐 옳지 않다.",
+            "original": "The solution with checking the payload hash involves basically putting the EL commitment checks and machinery into the CL, which is wrong from a separation of concerns perspective. It's expedient, but it is wrong.",
+            "speaker": "cayman",
+            "timestamp": "00:13:17"
+          }
+        }
+      ],
+      "speakers": [
+        {
+          "label": "Ben Edgington",
+          "name": "Ben Edgington",
+          "share": 0.268
+        },
+        {
+          "label": "jtraglia",
+          "name": "jtraglia",
+          "share": 0.101
+        },
+        {
+          "label": "soispoke",
+          "name": "soispoke",
+          "share": 0.081
+        },
+        {
+          "label": "Will Corcoran",
+          "name": "Will Corcoran",
+          "share": 0.068
+        },
+        {
+          "label": "Potuz",
+          "name": "Potuz",
+          "org": "Offchain Labs",
+          "role": "Prysm",
+          "handle": "potuz_eth",
+          "avatar": "https://pbs.twimg.com/profile_images/1494001194427158539/bfrZyMsG_400x400.jpg",
+          "share": 0.056
+        },
+        {
+          "label": "Fredrik",
+          "name": "Fredrik",
+          "share": 0.038
+        },
+        {
+          "label": "Justin Drake",
+          "name": "Justin Drake",
+          "share": 0.036
+        },
+        {
+          "label": "Caspar Schwarz-Schilling",
+          "name": "Caspar Schwarz-Schilling",
+          "share": 0.033
+        },
+        {
+          "label": "Matthew Keil",
+          "name": "Matthew Keil",
+          "org": "ChainSafe",
+          "role": "Lodestar",
+          "handle": "matthewkeil",
+          "avatar": "https://pbs.twimg.com/profile_images/1455695649899438083/nWUpW5EK_400x400.jpg",
+          "share": 0.032
+        },
+        {
+          "label": "Barnabas",
+          "name": "Barnabas Busa",
+          "org": "EF DevOps",
+          "handle": "BarnabasBusa",
+          "avatar": "https://pbs.twimg.com/profile_images/534855342300352514/m-C5ReWq_400x400.jpeg",
+          "share": 0.03
+        },
+        {
+          "label": "Mikhail Kalinin",
+          "name": "Mikhail Kalinin",
+          "share": 0.029
+        },
+        {
+          "label": "Ben Adams",
+          "name": "Ben Adams",
+          "org": "Nethermind",
+          "handle": "ben_a_adams",
+          "avatar": "https://pbs.twimg.com/profile_images/1282411238602006529/l4lHaQHE_400x400.jpg",
+          "share": 0.024
+        },
+        {
+          "label": "Toni Wahrstätter",
+          "name": "Toni Wahrstätter",
+          "org": "EF",
+          "role": "리서처",
+          "handle": "nero_eth",
+          "avatar": "https://pbs.twimg.com/profile_images/1858347774129094657/xUc7IS2K_400x400.jpg",
+          "share": 0.023
+        },
+        {
+          "label": "Barnabé Monnot",
+          "name": "Barnabé Monnot",
+          "share": 0.021
+        },
+        {
+          "label": "Antonio Sanso",
+          "name": "Antonio Sanso",
+          "share": 0.02
+        },
+        {
+          "label": "saulius",
+          "name": "Saulius Grigaitis",
+          "org": "Grandine",
+          "share": 0.017
+        },
+        {
+          "label": "George Kadianakis",
+          "name": "George Kadianakis",
+          "share": 0.017
+        },
+        {
+          "label": "Łukasz Rozmej",
+          "name": "Łukasz Rozmej",
+          "org": "Nethermind",
+          "role": "EIP-8037 공동 저자",
+          "share": 0.015
+        },
+        {
+          "label": "cayman",
+          "name": "Cayman Nava",
+          "org": "ChainSafe",
+          "role": "Lodestar",
+          "share": 0.014
+        },
+        {
+          "label": "Jihoon",
+          "name": "Jihoon",
+          "share": 0.014
+        },
+        {
+          "label": "Kamil Salakhiev",
+          "name": "Kamil Salakhiev",
+          "share": 0.014
+        },
+        {
+          "label": "Enrico Del Fante",
+          "name": "Enrico Del Fante",
+          "org": "Consensys",
+          "role": "Teku",
+          "handle": "tbenr",
+          "avatar": "https://pbs.twimg.com/profile_images/1425021438269050892/3IRr4G_z_400x400.jpg",
+          "share": 0.012
+        },
+        {
+          "label": "Dima Gusakov | Lido",
+          "name": "Dima Gusakov",
+          "org": "Lido",
+          "share": 0.012
+        },
+        {
+          "label": "Felix (Geth)",
+          "name": "Felix",
+          "share": 0.011
+        },
+        {
+          "label": "Tom Wambsgans",
+          "name": "Tom Wambsgans",
+          "share": 0.006
+        },
+        {
+          "label": "Audio shared by Ben Edgington",
+          "name": "Audio shared by Ben Edgington",
+          "share": 0.005
+        }
+      ],
+      "chat": [
+        {
+          "speaker": "pk910",
+          "text": "세폴리아는 어차피 수명이 다했으니 결정을 막아선 안 된다. 상태가 나쁘면 폐기 처리하고 내년에 계획대로 새 EL 테스트넷을 시작하면 된다",
+          "timestamp": "00:18:14"
+        },
+        {
+          "speaker": "saulius",
+          "text": "단계적 도입의 가장 큰 이점은 PQ와 AI의 날이 오기 전에 린VM 버그로 이더리움이 위험해지지 않는다는 것이다",
+          "timestamp": "00:19:09"
+        },
+        {
+          "speaker": "Gottfried Herold",
+          "text": "구현 버그 위험은 확실히 줄지만, BLS가 권한을 갖는 동안 이산로그(DLOG)가 실제로 깨지면 한 포크 동안 더 취약한 상태가 된다. 결국 실제 붕괴에 어느 정도의 대응 시간이 주어지느냐의 문제다",
+          "timestamp": "00:20:18"
+        }
+      ],
+      "glossary": [
+        {
+          "term": "SFI",
+          "def": "Scheduled for Inclusion. 포크 포함이 확정된 상태"
+        },
+        {
+          "term": "CFI",
+          "def": "Considered for Inclusion. 포함이 유력하게 검토되는 상태"
+        },
+        {
+          "term": "PFI",
+          "def": "Proposed for Inclusion. 포함 제안이 접수돼 후보로 유지되는 상태"
+        },
+        {
+          "term": "DFI",
+          "def": "Declined for Inclusion. 포크 후보에서 제외된 상태"
+        },
+        {
+          "term": "PQ",
+          "def": "post-quantum. 양자컴퓨터 공격을 견디는 양자내성 암호"
+        },
+        {
+          "term": "FOCIL",
+          "def": "여러 검증자가 트랜잭션 포함 목록(IL)을 강제해 검열 저항을 높이는 제안"
+        },
+        {
+          "term": "디커플드 합의",
+          "def": "decoupled consensus(DC). 합의를 블록 처리와 분리해 재설계하는 구상"
+        },
+        {
+          "term": "가스퍼",
+          "def": "Gasper. 현행 이더리움 지분증명의 합의 프로토콜"
+        }
+      ],
+      "eips": [
+        8198,
+        8483
+      ],
+      "relatedDebates": []
+    },
     {
       "id": "acdc-190",
       "series": "acdc",
@@ -19075,14 +19630,14 @@
   "status": {
     "currentFork": {
       "name": "글램스테르담",
-      "stage": "테스트넷 일정 재검토 단계",
-      "line": "후디 포크 최소 2주 연기 · 감사 후 재논의 · 메인넷 날짜 미정"
+      "stage": "일정 재검토 단계",
+      "line": "후디 감사 뒤 재검토 · 메인넷 미정 · 데브넷 11월 16~20일 추정"
     },
     "nextFork": {
       "name": "헤고타",
       "stage": "범위 정하는 중",
-      "line": "SFI 1건(EIP-8015) · CFI 4건 추가 · 첫 데브넷은 데브콘 이후 목표"
+      "line": "SFI 1건(EIP-8015) · CFI 4건 · PQ-DC 단일 노선 확정"
     },
-    "basis": "acdc-190"
+    "basis": "acdc-191"
   }
 }
