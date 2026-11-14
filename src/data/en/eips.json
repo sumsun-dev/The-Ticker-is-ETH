@@ -5636,7 +5636,7 @@
  "2bty74ksjiv": "Even when a withdrawal is finalized on the Beacon Chain, there is no way for that ETH to reach an execution layer account",
  "2bu6fbwbq3z": "Filter out candidates",
  "2bul2513ma5": "Representing the execution block in SSZ as well unifies the block representation across the two layers",
- "2buo6k4vl94": "L2 (layer 2)",
+ "2buo6k4vl94": "L2 (Layer 2)",
  "2buvoot2clp": "If the stored timestamp matches the input, the corresponding beacon block root is returned. If the input is invalid or does not match, execution reverts.",
  "2bva4ve1012": "There is no need to write lattice code yourself. You can connect to the proven ML-DSA library of each language, such as Java, Rust, Go, C# and C. Gas must be deducted before verification starts.",
  "2bvd9xgmuqe": "Post-fork cost",
