@@ -3,7 +3,7 @@
  * 원문은 GitHub ethereum/EIPs(없으면 ethereum/ERCs)에서 받고, EIP당 모델 1회 + im-not-ai 윤문 1회. 검수 없이 자동 공개(오너 결정 2026-11-02).
  * 매 실행마다 원문 상태(Draft→Final 등)는 모델 없이 새로 고치고, 해설은 새 EIP와 원문이 바뀐 지 오래된 것만 EIPS_LIMIT개씩 쓴다.
  *
- * env: EIPS_LIMIT(한 번에 쓸 수, 기본 3) · EIPS(번호 쉼표 목록 — 있는 것도 다시 씀) · EIPS_MODEL(기본 fable)
+ * env: EIPS_LIMIT(한 번에 쓸 수, 기본 3) · EIPS(번호 쉼표 목록 — 있는 것도 다시 씀) · EIPS_MODEL(기본 sonnet)
  *      EIPS_DRY_RUN=1(대상과 프롬프트 앞부분만 출력, 저장 안 함) · HUMANIZE_OFF=1(윤문 끔)
  *      EIPS_SCOPE=all(콜에 나온 것 다음으로 ethereum/EIPs 저장소의 모든 EIP까지 대상. 기본은 콜에 나온 것만. 순서는 lib/eips.ts orderAll)
  *      EIPS_SHARD=1/2(작업자 여럿이 대상을 나눠 가짐. 저장은 잠금 후 다시 읽어 합치므로 동시에 돌려도 안전)
@@ -29,7 +29,7 @@ dotenv.config({ path: path.resolve(process.cwd(), '.env') });
 const DATA = path.resolve(process.cwd(), 'src/data');
 const FILE = path.join(DATA, 'eips.json');
 const CACHE_DIR = path.resolve(process.cwd(), '.cache/eips');
-const MODEL = process.env.EIPS_MODEL ?? 'fable';
+const MODEL = process.env.EIPS_MODEL ?? 'sonnet';
 const LIMIT = Number(process.env.EIPS_LIMIT ?? 3);
 const DRY = Boolean(process.env.EIPS_DRY_RUN);
 const ONLY = (process.env.EIPS ?? '').split(',').map(Number).filter((n) => n > 0);

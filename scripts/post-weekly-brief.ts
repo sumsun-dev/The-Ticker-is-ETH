@@ -3,7 +3,7 @@
  * 헤드리스 claude로 사실 위주 브리프를 쓰고, im-not-ai 룰북(scripts/assets/humanize-quick-rules.md)으로 윤문한 뒤 텔레그램 그룹에 보낸다. 일요일 저녁 크론(run-eth-digest.sh weekly).
  * 보낸 호는 src/data/weekly-briefs.json에 남겨 같은 주를 두 번 보내지 않는다.
  *
- * env: TELEGRAM_BOT_TOKEN · WEEKLY_CHAT(그룹 chat id, -100…) · WEEKLY_MODEL(기본 fable)
+ * env: TELEGRAM_BOT_TOKEN · WEEKLY_CHAT(그룹 chat id, -100…) · WEEKLY_MODEL(기본 opus)
  *      WEEKLY_PREVIEW_CHAT(검수용 DM chat id: 여기로 보내고 송출 기록은 남기지 않음)
  *      WEEKLY_END=YYYY-MM-DD(구간 마지막 날, 기본 오늘 KST) · WEEKLY_DRY_RUN=1(생성해서 출력만, 송출·저장 없음)
  */
@@ -31,7 +31,7 @@ dotenv.config({ path: path.resolve(process.cwd(), '.env') });
 
 const DATA = path.resolve(process.cwd(), 'src/data');
 const OUTPUT = path.join(DATA, 'weekly-briefs.json');
-const MODEL = process.env.WEEKLY_MODEL ?? 'fable';
+const MODEL = process.env.WEEKLY_MODEL ?? 'opus';
 const ARTICLE_CHARS = 2500;
 
 type Sent = { start: string; end: string; sentAt: string; messageIds: number[]; brief: Brief };

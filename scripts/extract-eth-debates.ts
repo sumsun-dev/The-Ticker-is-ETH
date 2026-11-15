@@ -63,7 +63,7 @@ const ACCOUNTS = path.resolve(process.cwd(), 'scripts/config/twitter-accounts.js
 /** 자동 수집한 배경 자료(EIP 본문·포럼 글) 캐시. 커밋하지 않는다(.gitignore). */
 const CONTEXT_CACHE = path.resolve(process.cwd(), '.cache/eth-context.json');
 const MAX_DIGESTS = Number(process.env.DEBATES_MAX_DIGESTS ?? 14);
-/** 추출·교정에 쓰는 모델. VPS CLI가 fable을 받는지 확인되면 기본값을 fable로 올린다. */
+/** 추출·교정에 쓰는 모델. 자동 작업에는 fable 을 쓰지 않는다(오너 2026-11-16). */
 const DEBATES_MODEL = process.env.DEBATES_MODEL ?? 'opus';
 const runDebateModel = (prompt: string) => runClaude(prompt, DEBATES_MODEL);
 

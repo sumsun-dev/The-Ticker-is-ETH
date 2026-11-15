@@ -1,10 +1,10 @@
 /**
  * 코어 개발자 콜 기록 추출 — Forkcast 아티팩트를 콜 레코드(src/data/eth-calls.json)로.
- * ACDE·ACDC·ACDT만 정리한다(콜당 fable 1회 + 발언 번역 sonnet 1회). 브레이크아웃 등 다른 시리즈는 결정 기록이 없어 목록에 넣지 않는다(오너 결정 2026-09-08).
+ * ACDE·ACDC·ACDT만 정리한다(콜당 sonnet 1회 + 발언 번역 sonnet 1회). 브레이크아웃 등 다른 시리즈는 결정 기록이 없어 목록에 넣지 않는다(오너 결정 2026-09-08).
  * 텔레그램 콜 브리프(post-calls-telegram.ts)는 이 레코드에서 파생되므로 사이트와 메시지 내용이 같다.
  *
  * env: CALLS_EXTRACT(id 쉼표 목록, 예 acde-244 — 이미 있는 콜도 다시 처리) · CALLS_LIMIT(한 번에 처리할 새 콜 수, 기본 3) · CALLS_SINCE(이 날짜 이후 콜만, 기본 2026-08-01)
- *      CALLS_MODEL(기본 fable) · CALLS_TRANSLATE_MODEL(기본 sonnet) · CALLS_DRY_RUN=1(프롬프트 앞부분만 출력) · CALLS_SKIP_STATUS=1(포크 상태 요약 생략)
+ *      CALLS_MODEL(기본 sonnet) · CALLS_TRANSLATE_MODEL(기본 sonnet) · CALLS_DRY_RUN=1(프롬프트 앞부분만 출력) · CALLS_SKIP_STATUS=1(포크 상태 요약 생략)
  */
 import fs from 'fs';
 import path from 'path';
@@ -46,7 +46,7 @@ const PROFILES = path.resolve(process.cwd(), 'src/data/x-profiles.json');
 const DEBATES = path.resolve(process.cwd(), 'src/data/eth-debates.json');
 const CACHE_DIR = path.resolve(process.cwd(), '.cache/forkcast');
 const USER_AGENT = 'eck-news-bot/1.0 (+https://ethcollective.xyz)';
-const MODEL = process.env.CALLS_MODEL ?? 'fable';
+const MODEL = process.env.CALLS_MODEL ?? 'sonnet';
 const TRANSLATE_MODEL = process.env.CALLS_TRANSLATE_MODEL ?? 'sonnet';
 const LIMIT = Number(process.env.CALLS_LIMIT ?? 3);
 /** 아카이브 시작일. 이전 콜은 기록하지 않는다 (피드에는 2025년 콜까지 실려 있다) */

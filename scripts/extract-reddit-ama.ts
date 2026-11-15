@@ -7,7 +7,7 @@
  *
  * 실행: npx tsx scripts/extract-reddit-ama.ts --url <스레드 URL> [--file <피드 파일>] [--number 14] [--date 2025-08-29] [--title "..."]
  *      npx tsx scripts/extract-reddit-ama.ts --reapply --id ama-14   (모델 재호출 없이 명단·참여자만 갱신)
- * env: AMA_MODEL(기본 fable) · AMA_DRY_RUN=1(프롬프트만 출력) · AMA_MAX_BYTES(원자료 예산, 기본 90000)
+ * env: AMA_MODEL(기본 sonnet) · AMA_DRY_RUN=1(프롬프트만 출력) · AMA_MAX_BYTES(원자료 예산, 기본 90000)
  */
 import fs from 'fs';
 import path from 'path';
@@ -25,7 +25,7 @@ const SPEAKERS = path.resolve(process.cwd(), 'src/data/call-speakers.json');
 const PROFILES = path.resolve(process.cwd(), 'src/data/x-profiles.json');
 const DEBATES = path.resolve(process.cwd(), 'src/data/eth-debates.json');
 const USER_AGENT = 'eck-news-bot/1.0 (+https://ethcollective.xyz)';
-const MODEL = process.env.AMA_MODEL ?? 'fable';
+const MODEL = process.env.AMA_MODEL ?? 'sonnet';
 const MAX_BYTES = Number(process.env.AMA_MAX_BYTES ?? 90_000);
 const RAW_DUMP = path.resolve(process.cwd(), '.cache/ama-raw.json');
 

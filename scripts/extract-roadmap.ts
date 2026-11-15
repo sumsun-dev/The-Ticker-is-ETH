@@ -4,7 +4,7 @@
  * 이미 있는 것은 건너뛴다. Strawmap을 다시 옮겨 항목이 바뀌면 그 항목만 ROADMAP_ONLY로 다시 쓴다.
  *
  * env: ROADMAP_LIMIT(한 번에 쓸 수, 기본 5) · ROADMAP_ONLY(topic:<slug> 또는 fork:<slug> 쉼표 목록, 있는 것도 다시 씀)
- *      ROADMAP_MODEL(기본 fable) · ROADMAP_DRY_RUN=1(대상과 프롬프트 앞부분만 출력) · ROADMAP_SHARD=1/2 · HUMANIZE_OFF=1
+ *      ROADMAP_MODEL(기본 sonnet) · ROADMAP_DRY_RUN=1(대상과 프롬프트 앞부분만 출력) · ROADMAP_SHARD=1/2 · HUMANIZE_OFF=1
  */
 import fs from 'fs';
 import path from 'path';
@@ -27,7 +27,7 @@ dotenv.config({ path: path.resolve(process.cwd(), '.env') });
 const DATA = path.resolve(process.cwd(), 'src/data');
 const FILE = path.join(DATA, 'roadmap-explainers.json');
 const CACHE_DIR = path.resolve(process.cwd(), '.cache/roadmap');
-const MODEL = process.env.ROADMAP_MODEL ?? 'fable';
+const MODEL = process.env.ROADMAP_MODEL ?? 'sonnet';
 const LIMIT = Number(process.env.ROADMAP_LIMIT ?? 5);
 const DRY = Boolean(process.env.ROADMAP_DRY_RUN);
 const ONLY = (process.env.ROADMAP_ONLY ?? '').split(',').map((s) => s.trim()).filter(Boolean);

@@ -9,7 +9,7 @@
  * 2단계 생성 (2026-09-08, 오너 지시): 인박스를 통째로 넣지 않고
  *   1) 브리핑: 수집 항목을 주제별로 정리·요약한 편집자용 브리핑을 먼저 만들고 (긴 글 전문까지 읽는다)
  *   2) 집필: 그 브리핑으로 다이제스트를 쓴다.
- * env: DIGEST_MODEL(기본 fable) · DIGEST_BRIEF_MODEL(기본 fable) · DIGEST_DRY_RUN=1(브리핑만 만들어 출력하고 저장하지 않음)
+ * env: DIGEST_MODEL(기본 sonnet) · DIGEST_BRIEF_MODEL(기본 sonnet) · DIGEST_DRY_RUN=1(브리핑만 만들어 출력하고 저장하지 않음)
  */
 import { runClaude } from './lib/claude';
 import { humanizeTexts, normalizeTerms } from './lib/humanize';
@@ -24,7 +24,7 @@ const OUTPUT = path.resolve(process.cwd(), 'src/data/eth-digests.json');
 const DIGEST_INTERVAL_DAYS = Number(process.env.DIGEST_INTERVAL_DAYS ?? 3);
 const MAX_INPUT_ITEMS = 120 * Math.max(1, DIGEST_INTERVAL_DAYS); // 하루 약 120건 × 주기 (강제 실행 0일 때도 최소 하루치)
 const KEEP_DIGESTS = 30;
-const DIGEST_MODEL = process.env.DIGEST_MODEL ?? 'fable';
+const DIGEST_MODEL = process.env.DIGEST_MODEL ?? 'sonnet';
 const BRIEF_MODEL = process.env.DIGEST_BRIEF_MODEL ?? DIGEST_MODEL;
 /** 브리핑 입력에서 항목당 본문 상한과 한 번의 호출에 넣는 총량 (넘으면 나눠서 호출) */
 const BRIEF_ITEM_CHARS = 3000; // 긴 글(note tweet)이 잘리지 않게. 총량이 커지면 청크로 나뉜다
