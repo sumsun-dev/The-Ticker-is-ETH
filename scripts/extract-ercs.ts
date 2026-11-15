@@ -4,7 +4,7 @@
  * 해설은 Final 먼저, 다른 ERC가 많이 기대는 표준 순으로 ERCS_LIMIT개씩. ERC당 모델 1회 + im-not-ai 윤문 1회, 검수 없이 자동 공개(오너 결정 2026-11-02).
  * 러너에 넣지 않았다. 오너가 말할 때 세션에서 배치로 돌린다.
  *
- * env: ERCS_LIMIT(기본 20) · ERCS(번호 쉼표 목록 — 있는 것도 다시 씀) · ERCS_MODEL(기본 fable)
+ * env: ERCS_LIMIT(기본 20) · ERCS(번호 쉼표 목록 — 있는 것도 다시 씀) · ERCS_MODEL(기본 sonnet)
  *      ERCS_SHARD=1/2(작업자 여럿이 대상을 나눠 가짐, 저장은 잠금 후 다시 읽어 합침)
  *      ERCS_DRY_RUN=1(대상과 프롬프트 앞부분만 출력) · ERCS_REUSE=1(.cache/ercs/<n>.out.txt의 모델 응답을 다시 씀) · HUMANIZE_OFF=1
  */
@@ -28,7 +28,7 @@ const DATA = path.resolve(process.cwd(), 'src/data');
 const FILE = path.join(DATA, 'ercs.json');
 const INDEX = path.join(DATA, 'erc-index.json');
 const CACHE_DIR = path.resolve(process.cwd(), '.cache/ercs');
-const MODEL = process.env.ERCS_MODEL ?? 'fable';
+const MODEL = process.env.ERCS_MODEL ?? 'sonnet';
 const LIMIT = Number(process.env.ERCS_LIMIT ?? 20);
 const DRY = Boolean(process.env.ERCS_DRY_RUN);
 const ONLY = (process.env.ERCS ?? '').split(',').map(Number).filter((n) => n > 0);
