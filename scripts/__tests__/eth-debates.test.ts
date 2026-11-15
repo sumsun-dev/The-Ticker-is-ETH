@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import {
   computeStatus,
+  fixAttributions,
   mergeDebates,
   applyProfiles,
   parseThreadReplies,
@@ -308,5 +309,30 @@ describe('parseWatchDecision', () => {
     expect(parseWatchDecision('wr:oisinkyne')).toEqual({ handle: 'oisinkyne', add: false });
     expect(parseWatchDecision('p:some-debate')).toBeNull();
     expect(parseWatchDecision('wa:not a handle')).toBeNull();
+  });
+});
+
+describe('fixAttributions', () => {
+  const positions = [
+    { stance: 'pro' as const, label: 'A', holders: [{ handle: 'lightclients', name: 'matt' }], points: ['p'] },
+    { stance: 'con' as const, label: 'B', holders: [{ handle: 'nero_eth', name: 'Toni' }], points: ['p'] },
+  ];
+  const t = (by: string, url: string, author?: string) => ({ date: '2026-11-11', by, quote: 'q', url, ...(author ? { author } : {}) });
+
+  it('should move a reply written to someone onto its real author', () => {
+    const { debate, fixed } = fixAttributions({ positions, timeline: [t('lightclients', 'https://x.com/lightclients/status/9', 'GiulioRebuffo')] });
+    expect(fixed).toBe(1);
+    expect(debate.timeline[0]).toMatchObject({ by: 'GiulioRebuffo', url: 'https://x.com/GiulioRebuffo/status/9' });
+  });
+
+  it('should only fix the URL handle when by already matches the author (name or handle)', () => {
+    const { debate, fixed } = fixAttributions({ positions, timeline: [t('Toni', 'https://x.com/lightclients/status/7', 'nero_eth')] });
+    expect(fixed).toBe(0);
+    expect(debate.timeline[0]).toMatchObject({ by: 'Toni', url: 'https://x.com/nero_eth/status/7' });
+  });
+
+  it('should leave entries without author untouched', () => {
+    const entry = t('nero_eth', 'https://x.com/nero_eth/status/5');
+    expect(fixAttributions({ positions, timeline: [entry] }).debate.timeline[0]).toBe(entry);
   });
 });

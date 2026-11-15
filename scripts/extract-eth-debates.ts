@@ -30,6 +30,7 @@ import {
   DebateDraftSchema,
   DraftEnvelopeSchema,
   extractJson,
+  fixAttributions,
   handleMatchesName,
   humanizeDebateDraft,
   mergeDebates,
@@ -97,8 +98,15 @@ const EDITOR_PROMPT = `당신은 ECK(Ethereum Collective Korea)의 시니어 리
   - label: 그 입장을 한 구절로 (예: "호재다", "돌아오는 게 거의 없다")
   - holders: 인물 목록. X 계정이면 handle(@ 없이)과 name, 계정을 모르면 name만 두고 watchlist: false. 인용으로만 등장한 인물도 넣되 watchlist: false.
     각 인물에 role: 소속과 직책을 한 구절로 (예: "Geth 리드", "Paradigm CTO", "EF 리서처", "Base 개발자", "독립 리서처", "인플루언서·투자자"). "인물 정보"의 워치리스트 메모와 바이오를 근거로 하고, 근거가 없으면 role을 생략한다. 지어내지 않는다.
-  - points: 핵심 논거 1~4개, 각 한 문장. 인용 트윗의 취지를 유지하되, 배경 자료로 기술적 맥락을 보충해 독자가 논거를 이해할 수 있게 쓴다 (예: "8130으로 타임락을 우회할 수 있다"가 아니라 왜 그렇게 되는지까지).
+  - points: 핵심 논거 1~4개, 각 한 문장. 그 편 인물의 원문에 실제로 있는 논거만 쓴다. 독자에게 필요한 기술적 맥락은 points가 아니라 background에 쓴다.
 - timeline: 인용 트윗 목록. date(YYYY-MM-DD), by(핸들 또는 이름), stance, quote(한국어 번역 1~2문장, 원문 취지 유지, 전문 전재 금지), url(제공된 것만), digest(그 항목의 다이제스트 날짜).
+
+원문 읽기 규칙 (2026-11-15 채점에서 가장 많이 틀린 것):
+- 원문이 "@핸들"로 시작하면 그 핸들에게 단 답글이다. 그 글은 답글을 쓴 사람의 말이지 @핸들 인물의 말이 아니다. by와 holders에는 실제 작성자를 쓴다.
+- "I agree", "yes but", "맞다" 처럼 상대 말을 받아들인 뒤 덧붙인 글은 정면 반박이 아니다. 같은 편이거나 중립(neutral)으로 두고 summary에서도 반박으로 그리지 않는다.
+- 뉴스·보도 계정이 남의 발언을 전한 글은 그 계정의 입장이 아니다. 발언한 사람을 인물로 쓰고, 보도 계정은 holders에 넣지 않는다.
+- 같은 스레드라도 다투는 대상이 다르면 레코드를 나눈다. 한 레코드의 인용은 모두 같은 질문에 대한 것이어야 한다.
+- points, summary, keyPoints의 문장마다 그 근거가 되는 원문 문장이 있어야 한다. 원문에 없는 논거, 더 강한 표현, 추측한 의도를 보태지 않는다.
 
 인용과 용어 규칙:
 - quote는 의역이 아니라 원문의 핵심 문장을 충실히 옮긴 번역이다. 원문 문장 구조를 유지하고, 필요하면 2~3문장까지 옮긴다. 원문에 없는 해석을 보태지 않는다.
@@ -218,7 +226,7 @@ function toEngagement(tweet: Record<string, unknown> | null): Engagement | undef
 }
 
 
-/** 인용 트윗의 답글·인용 상대와 원문 전문을 tweet.php로 채운다. 둘 다 이미 있는 항목은 건너뛴다. */
+/** 인용 트윗의 답글·인용 상대, 원문 전문, 실제 작성자를 tweet.php로 채우고 귀속을 교정한다. 셋 다 이미 있는 항목은 건너뛴다. */
 async function fillRelations(debates: Debate[], xApi: ReturnType<typeof makeXApi>): Promise<Debate[]> {
   if (!xApi) return debates;
   const out: Debate[] = [];
@@ -226,7 +234,7 @@ async function fillRelations(debates: Debate[], xApi: ReturnType<typeof makeXApi
     const timeline: TimelineEntry[] = [];
     for (const t of d.timeline) {
       const id = tweetIdOf(t.url);
-      if ((t.relation && t.original) || !id) {
+      if ((t.relation && t.original && t.author) || !id) {
         timeline.push(t);
         continue;
       }
@@ -235,7 +243,8 @@ async function fillRelations(debates: Debate[], xApi: ReturnType<typeof makeXApi
         timeline.push(t);
         continue;
       }
-      const author = String((tw.author as Record<string, unknown> | undefined)?.screen_name ?? t.by).toLowerCase();
+      const screenName = (tw.author as Record<string, unknown> | undefined)?.screen_name;
+      const author = String(screenName ?? t.by).toLowerCase();
       const replyTo = tw.in_reply_to_screen_name ? String(tw.in_reply_to_screen_name) : '';
       const quoted = String(((tw.quoted as Record<string, unknown> | undefined)?.author as Record<string, unknown> | undefined)?.screen_name ?? '');
       const original = t.original ?? (fullText(tw) || undefined);
@@ -245,9 +254,11 @@ async function fillRelations(debates: Debate[], xApi: ReturnType<typeof makeXApi
         else if (quoted && quoted.toLowerCase() !== author) relation = { replyTo: quoted, relation: 'quote' };
         else relation = { relation: 'none' };
       }
-      timeline.push({ ...t, ...relation, ...(original ? { original } : {}) });
+      timeline.push({ ...t, ...relation, ...(original ? { original } : {}), ...(screenName ? { author: String(screenName) } : {}) });
     }
-    out.push({ ...d, timeline });
+    const { debate, fixed } = fixAttributions({ ...d, timeline });
+    if (fixed) console.log(`  ${d.id}: 인용 ${fixed}개의 발화자를 실제 작성자로 바로잡음`);
+    out.push(debate);
   }
   return out;
 }
@@ -279,15 +290,28 @@ const REFINE_PROMPT = `당신은 ECK(Ethereum Collective Korea)의 시니어 리
 원문 전문을 처음부터 끝까지 읽고 레코드를 교정하세요.
 
 교정 규칙:
-- id, title, category는 그대로 둡니다. 인물(holders)의 handle과 name도 그대로 두되, 원문 전체를 보니 입장이 다르면 다른 편(pro/con/neutral/other)으로 옮길 수 있습니다. 새 인물을 만들지 않습니다.
+- id, category는 그대로 둡니다. title은 실제로 갈리는 지점과 다르면 고칠 수 있습니다. 인물(holders)의 handle과 name은 그대로 두되, 원문 전체를 보니 입장이 다르면 다른 편(pro/con/neutral/other)으로 옮길 수 있습니다. 인용 원문의 실제 작성자(@핸들 줄)가 holders에 없으면 그 사람을 추가하고, 인용이 하나도 없는 인물이나 보도 계정은 뺍니다.
+- 같은 편끼리의 맞장구만 남아 실제 대립이 없으면 positions를 억지로 찬반으로 나누지 말고 그대로 정리하되 summary에 대립이 약하다고 적습니다.
 - summary, keyPoints, background, whyItMatters, positions[].label, positions[].points를 원문 전문에 맞게 다시 씁니다. 원문에 근거가 없는 내용은 뺍니다. 배경 자료가 있으면 사실 확인에 씁니다.
 - timeline의 각 항목은 url을 바꾸지 말고 quote와 stance만 교정합니다. quote는 의역이 아니라 원문의 핵심 문장을 충실히 옮긴 번역이며 2~3문장까지 허용합니다. 원문에 없는 해석을 보태지 않습니다. 항목을 추가하거나 빼지 않습니다.
 - 전문 용어는 통용되는 한국어를 쓰고 레코드 안에서 처음 나올 때 원어를 괄호로 병기합니다. 예: 발행(issuance), 스테이킹 비율(staking ratio), 수익률(yield), 소각(burn), 검증자(validator), 프리컴파일(precompile), 프레임 트랜잭션(frame transaction), 멤풀(mempool), 하드포크(hard fork), 계정 추상화(account abstraction), 인증자(authenticator), 키스토어(keystore). EIP 번호와 고유명사는 원어 그대로.
 - 문체는 설명형 서술. 대시(—)와 이모지는 쓰지 않습니다.
+원문 읽기 규칙 (2026-11-15 채점에서 가장 많이 틀린 것):
+- 원문이 "@핸들"로 시작하면 그 핸들에게 단 답글이다. 그 글은 답글을 쓴 사람의 말이지 @핸들 인물의 말이 아니다. by와 holders에는 실제 작성자를 쓴다.
+- "I agree", "yes but", "맞다" 처럼 상대 말을 받아들인 뒤 덧붙인 글은 정면 반박이 아니다. 같은 편이거나 중립(neutral)으로 두고 summary에서도 반박으로 그리지 않는다.
+- 뉴스·보도 계정이 남의 발언을 전한 글은 그 계정의 입장이 아니다. 발언한 사람을 인물로 쓰고, 보도 계정은 holders에 넣지 않는다.
+- 같은 스레드라도 다투는 대상이 다르면 레코드를 나눈다. 한 레코드의 인용은 모두 같은 질문에 대한 것이어야 한다.
+- points, summary, keyPoints의 문장마다 그 근거가 되는 원문 문장이 있어야 한다. 원문에 없는 논거, 더 강한 표현, 추측한 의도를 보태지 않는다.
+
 출력: 입력 레코드와 같은 형식의 JSON 하나만 (키: id, title, category, summary, keyPoints, background, whyItMatters, positions, timeline). timeline 항목은 {date, by, stance, quote, url}만 담습니다.`;
 
 /** 기존 레코드를 인용 트윗 원문 전문으로 교정한다. 헤드리스 호출은 레코드당 한 번(opus). */
 async function refineDebates(file: DebatesFile, ids: string[], context: string) {
+  // 채점(scripts/score-debates.ts)이 남긴 문제 목록이 있으면 교정 지시에 넣는다
+  const scores = path.resolve(process.cwd(), '.cache/debate-scores.json');
+  const problems: Record<string, string[]> = fs.existsSync(scores)
+    ? Object.fromEntries(Object.values(JSON.parse(fs.readFileSync(scores, 'utf-8')).rows as Record<string, { id: string; problems: string[] }>).map((r) => [r.id, r.problems]))
+    : {};
   for (const id of ids) {
     const d = file.debates.find((x) => x.id === id);
     if (!d) {
@@ -299,7 +323,7 @@ async function refineDebates(file: DebatesFile, ids: string[], context: string) 
       positions: d.positions.map((p) => ({ stance: p.stance, label: p.label, holders: p.holders.map((h) => ({ handle: h.handle, name: h.name, role: h.role })), points: p.points })),
       timeline: d.timeline.map((t) => ({ date: t.date, by: t.by, stance: t.stance, quote: t.quote, url: t.url })),
     };
-    const originals = d.timeline.map((t, i) => `[${i + 1}] ${t.url}\n@${t.by} · ${t.date}\n${(t.original ?? '(원문 없음)').replace(/\s+/g, ' ')}`).join('\n\n');
+    const originals = d.timeline.map((t, i) => `[${i + 1}] ${t.url}\n@${t.author ?? t.by} · ${t.date}\n${(t.original ?? '(원문 없음)').replace(/\s+/g, ' ')}`).join('\n\n');
     const auto = await collectBackground(
       [d.title, d.summary, ...d.timeline.map((t) => t.original ?? t.quote)],
       [...(d.sources ?? []).map((s) => s.url), ...d.timeline.flatMap((t) => (t.original ?? '').match(/https?:\/\/[^\s)]+/g) ?? [])],
@@ -308,6 +332,7 @@ async function refineDebates(file: DebatesFile, ids: string[], context: string) 
       `${REFINE_PROMPT}\n\n` +
       (context ? `배경 자료 (사실 확인용):\n${context}\n\n` : '') +
       (auto.text ? `배경 자료 (자동 수집: EIP 본문과 포럼 스레드):\n${auto.text}\n\n` : '') +
+      (problems[id]?.length ? `검수자가 지적한 문제 (원문과 대조해 사실이면 고칠 것):\n${problems[id].map((p) => `- ${p}`).join('\n')}\n\n` : '') +
       `현재 레코드:\n${JSON.stringify(record, null, 1)}\n\n인용 트윗 원문 전문 (${d.timeline.length}건):\n\n${originals}`;
     if (process.env.DEBATES_DRY_RUN) {
       console.log(prompt.slice(0, 3000));
@@ -334,7 +359,7 @@ async function refineDebates(file: DebatesFile, ids: string[], context: string) 
     const byUrl = new Map(draft.timeline.map((t) => [t.url, t]));
     const timeline = d.timeline.map((t) => (byUrl.has(t.url) ? { ...t, quote: byUrl.get(t.url)!.quote, stance: byUrl.get(t.url)!.stance ?? t.stance } : t));
     Object.assign(d, {
-      title: d.title, category: d.category,
+      title: draft.title, category: d.category,
       summary: draft.summary, keyPoints: draft.keyPoints,
       background: draft.background ?? d.background, whyItMatters: draft.whyItMatters ?? d.whyItMatters,
       positions, timeline,
@@ -420,7 +445,16 @@ async function main() {
   if (process.env.DEBATES_REFINE) {
     const ids = process.env.DEBATES_REFINE === '1' ? file.debates.map((d) => d.id) : process.env.DEBATES_REFINE.split(',').map((s) => s.trim()).filter(Boolean);
     const ctxFile = process.env.DEBATES_CONTEXT_FILE;
+    // 실제 작성자부터 채워 귀속을 바로잡은 뒤 교정한다 (X API 키가 없으면 건너뜀)
+    const xApi = makeXApi();
+    const filled = await fillRelations(file.debates.filter((d) => ids.includes(d.id)), xApi);
+    file.debates = file.debates.map((d) => filled.find((x) => x.id === d.id) ?? d);
     await refineDebates(file, ids, ctxFile && fs.existsSync(ctxFile) ? fs.readFileSync(ctxFile, 'utf-8').trim() : '');
+    // 교정에서 새로 들어온 인물의 아바타
+    await fetchProfiles(file.debates.flatMap((d) => d.positions.flatMap((p) => p.holders.flatMap((h) => (h.handle ? [h.handle] : [])))), profiles, xApi);
+    file.debates = applyProfiles(file.debates, profiles);
+    fs.writeFileSync(PROFILES, JSON.stringify(profiles, null, 2), 'utf-8');
+    fs.writeFileSync(OUTPUT, JSON.stringify({ ...file, updatedAt: new Date().toISOString() }, null, 2), 'utf-8');
     return;
   }
   if (process.env.DEBATES_FILL_TEXT) {

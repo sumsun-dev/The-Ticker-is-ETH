@@ -69,6 +69,8 @@ $(grep -v dotenv <<<"$out" | tail -15)"
   npx tsx scripts/sync-x-profiles.ts
   # 논쟁 추출은 부가 단계라 실패해도 커버·송출·커밋은 진행 (2026-11-13: 참여자 name 누락 스키마 오류로 그날 호 송출이 통째로 빠짐)
   npx tsx scripts/extract-eth-debates.ts || notify_owner "[다이제스트] 논쟁 추출 실패. 송출은 계속합니다 (로그 /home/gv/logs/eth-digest.log)"
+  # 바뀐 논쟁 레코드만 채점표로 채점한다(.cache/debate-scores.json). 알림 DM에 점수가 붙는다. 송출 전이라 한 번에 8건까지
+  SCORE_MAX=8 npx tsx scripts/score-debates.ts || notify_owner "[다이제스트] 논쟁 채점 실패. 송출은 계속합니다"
   # 새 논쟁을 오너 DM으로 알린다. 노출 버튼 응답 처리는 5분 크론(notify-debates.ts --commit)이 맡는다. 실패해도 나머지는 진행
   npx tsx scripts/notify-debates.ts || true
   npx tsx scripts/extract-eth-calls.ts

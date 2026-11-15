@@ -95,8 +95,19 @@ async function tg<T>(token: string, method: string, body: unknown): Promise<T> {
   return json.result as T;
 }
 
+/** scripts/score-debates.ts 채점 결과 (러너가 추출 직후 채점). 없으면 점수 줄을 생략한다 */
+function scoreOf(id: string): { total: number; grade: string; problems: string[] } | undefined {
+  const file = path.resolve(process.cwd(), '.cache/debate-scores.json');
+  try {
+    return JSON.parse(fs.readFileSync(file, 'utf-8')).rows?.[id];
+  } catch {
+    return undefined;
+  }
+}
+
 function messageOf(debate: Debate): string {
   const count = holderCount(debate);
+  const score = scoreOf(debate.id);
   const lines = [
     '<b>새 논쟁</b>',
     `<b>${esc(debate.title)}</b>`,
@@ -106,6 +117,10 @@ function messageOf(debate: Debate): string {
   ];
   if (debate.keyPoints[0]) lines.push('', `쟁점: ${esc(debate.keyPoints[0])}`);
   if (debate.rootUrl) lines.push('', `원문: ${debate.rootUrl}`);
+  if (score) {
+    lines.push('', `<b>정리 채점 ${score.total}점 (${esc(score.grade)})</b>`);
+    for (const p of score.problems.slice(0, score.total < 70 ? 3 : 1)) lines.push(`- ${esc(p)}`);
+  }
   lines.push(
     '',
     isShown(debate)
