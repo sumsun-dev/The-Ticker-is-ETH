@@ -1,6 +1,129 @@
 {
   "briefs": [
     {
+      "start": "2026-11-09",
+      "end": "2026-11-15",
+      "sentAt": "2026-11-15T10:03:26.069Z",
+      "messageIds": [
+        20
+      ],
+      "brief": {
+        "headline": "Ethlabs가 11월 11일 이더리움의 양자내성(양자컴퓨터 공격을 견디는 암호 체계) 전환 목표를 2029년에서 2027년으로 앞당기자는 제안서를 거버넌스 포럼에 올렸습니다. 11월 12일 코어 개발자 콜에서는 Quick Slots 제안이 철회되고 기존 서명 방식 기반의 합의 재설계안이 폐기됐습니다.",
+        "sections": [
+          {
+            "heading": "프로토콜 · 코어 개발",
+            "items": [
+              {
+                "title": "Ethlabs, 2027년 양자내성 전환 제안서 pqai27 게시",
+                "date": "11.11",
+                "summary": "Ethlabs가 이더리움을 2027년까지 양자내성으로 전환하자는 입장문을 Ethereum Magicians 포럼에 올렸습니다. 다음 업그레이드 Hegotá의 중심을 양자내성과 새 트랜잭션 형식 Frames로 삼고 검열 저항 기능 FOCIL은 일시중단하자는 내용입니다.",
+                "sources": [
+                  {
+                    "label": "ECK",
+                    "url": "https://ethcollective.xyz/news?date=2026-11-13"
+                  },
+                  {
+                    "label": "Ethereum Magicians",
+                    "url": "https://ethereum-magicians.org/t/an-ethlabs-view-on-post-quantum-and-post-ai-timelines-pqai27/30351"
+                  }
+                ]
+              },
+              {
+                "title": "ACDC #191, Quick Slots 철회와 BLS 합의 재설계안 폐기",
+                "date": "11.12",
+                "summary": "11월 12일 합의 레이어 개발자 콜에서 Quick Slots(EIP-8198)가 담당자의 자진 철회로 Hegotá 후보에서 빠졌습니다. 현행 BLS 서명 기반의 합의 재설계안은 폐기됐고 검증자가 양자내성 키를 미리 등록하는 EIP-8483이 새 후보로 접수됐습니다.",
+                "sources": [
+                  {
+                    "label": "ECK",
+                    "url": "https://ethcollective.xyz/calls/acdc-191"
+                  },
+                  {
+                    "label": "Forkcast 회의록",
+                    "url": "https://forkcast.org/calls/acdc/191/"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "heading": "업계 동향",
+            "items": [
+              {
+                "title": "Visa 스테이블코인 정산 연환산 250억 달러 돌파",
+                "date": "11.11",
+                "summary": "방송 Unchained에 따르면 Visa의 스테이블코인 정산 규모가 연환산 기준 250억 달러를 넘었습니다. 올해 4월 70억 달러에서 약 3.6배 늘었습니다.",
+                "sources": [
+                  {
+                    "label": "ECK",
+                    "url": "https://ethcollective.xyz/news?date=2026-11-13"
+                  },
+                  {
+                    "label": "@laurashin",
+                    "url": "https://x.com/laurashin/status/2120243345155056073"
+                  }
+                ]
+              },
+              {
+                "title": "BitMine, ETH 공급량 5% 도달 시 매집 중단 방침",
+                "date": "11.08",
+                "summary": "ETH 보유 기업 BitMine의 톰 리는 11월 8일 자 인터뷰에서 보유량이 ETH 전체 공급량의 5%에 이르면 당분간 매집을 멈추겠다고 밝혔습니다. 단일 주체의 집중 보유를 원치 않는다는 비탈릭 부테린과 이더리움재단(EF) 연구원 저스틴 드레이크의 요청에 따른 것입니다.",
+                "sources": [
+                  {
+                    "label": "ECK",
+                    "url": "https://ethcollective.xyz/news?date=2026-11-10"
+                  },
+                  {
+                    "label": "@ETH_MAXER",
+                    "url": "https://x.com/ETH_MAXER/status/2119568898660217028"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "heading": "커뮤니티 논쟁",
+            "items": [
+              {
+                "title": "비탈릭 부테린, ETH를 가치저장수단으로 규정",
+                "date": "11.08",
+                "summary": "이더리움 공동창립자 비탈릭 부테린이 11월 8일 ETH를 수수료 소각 토큰보다 가치저장수단으로 보는 것이 타당하다는 글을 올렸습니다. 체인링크의 Zach Rynes는 이 경우 네트워크의 성공이 ETH 가치로 자동으로 이어지지 않는다는 반론을 냈습니다.",
+                "sources": [
+                  {
+                    "label": "ECK",
+                    "url": "https://ethcollective.xyz/news?date=2026-11-10"
+                  },
+                  {
+                    "label": "@VitalikButerin",
+                    "url": "https://x.com/VitalikButerin/status/2119401255919604064"
+                  }
+                ]
+              },
+              {
+                "title": "글램스테르담 가스 재조정, 논쟁 끝에 결정 보류",
+                "date": "11.08",
+                "summary": "글램스테르담 업그레이드의 가스(연산 수수료 단위) 재조정이 기존 배포 컨트랙트를 깨뜨릴 수 있다는 논쟁이 이어져, 활성화를 주장하던 ryanberckmans가 11월 8일 입장을 철회했습니다. Geth 개발자 Marius van der Wijden은 감사 보고 전까지 스펙 변경 결정을 보류한다고 밝혔습니다.",
+                "sources": [
+                  {
+                    "label": "ECK",
+                    "url": "https://ethcollective.xyz/news?date=2026-11-10"
+                  },
+                  {
+                    "label": "@ryanberckmans",
+                    "url": "https://x.com/ryanberckmans/status/2119491856136339734"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "upcoming": [
+          "11.16 ACDT #103 콜에서 글램스테르담 가스 재조정 감사 결과 공개, 감사는 11.16에서 11.19 사이 완료 예정",
+          "11.16 RPC Standards #38 콜",
+          "11.26 ACDC #192 콜, 미국 추수감사절에도 예정대로 개최"
+        ]
+      }
+    },
+    {
       "start": "2026-11-02",
       "end": "2026-11-08",
       "sentAt": "2026-11-08T10:02:42.575Z",
