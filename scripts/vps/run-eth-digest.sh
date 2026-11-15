@@ -33,12 +33,18 @@ main() {
   # 밤 실행: EIP·ERC 해설을 하루 STANDARDS_PER_DAY(기본 50)개씩 채운다 (오너 2026-11-03 「하루에 각각 30개씩, 다 완료될때까지」, 2026-11-04 「하루 50개씩으로 늘리자」)
   # 종류마다 작업자 2개(샤드)라 4개가 동시에 돈다. VPS에선 해설 하나에 약 4분이라 50개면 2시간 남짓, 아침 다이제스트 전에 끝나게 5시간으로 끊는다.
   # 다 채우면 대상이 없어 바로 끝나고, 이후엔 원문이 바뀐 것만 다시 쓴다
+  # 수동 대량 실행(오너 2026-11-15 「시간보다 개수」)이 돌고 있으면 밤 실행은 건너뛴다: 같은 EIP를 골라 중복으로 쓴다.
+  # STANDARDS_TIMEOUT 으로 5시간 제한을 바꿀 수 있다 (수동 실행에서 목표 개수를 채울 때)
   if [ "${1:-}" = standards ]; then
-    local half=$(( (${STANDARDS_PER_DAY:-50} + 1) / 2 )) i
+    if pgrep -f "scripts/extract-e(ip|rc)s.ts" >/dev/null; then
+      echo "[SKIP] standards: EIP·ERC 해설 작업이 이미 돌고 있음"
+      return
+    fi
+    local half=$(( (${STANDARDS_PER_DAY:-50} + 1) / 2 )) i limit=${STANDARDS_TIMEOUT:-5h}
     mkdir -p "$HOME/logs"
     for i in 1 2; do
-      EIPS_SCOPE=all EIPS_SHARD=$i/2 EIPS_LIMIT=$half timeout 5h npx tsx scripts/extract-eips.ts > "$HOME/logs/eips-$i.log" 2>&1 &
-      ERCS_SHARD=$i/2 ERCS_LIMIT=$half timeout 5h npx tsx scripts/extract-ercs.ts > "$HOME/logs/ercs-$i.log" 2>&1 &
+      EIPS_SCOPE=all EIPS_SHARD=$i/2 EIPS_LIMIT=$half timeout "$limit" npx tsx scripts/extract-eips.ts > "$HOME/logs/eips-$i.log" 2>&1 &
+      ERCS_SHARD=$i/2 ERCS_LIMIT=$half timeout "$limit" npx tsx scripts/extract-ercs.ts > "$HOME/logs/ercs-$i.log" 2>&1 &
     done
     wait
     tail -n 3 "$HOME"/logs/eips-?.log "$HOME"/logs/ercs-?.log
