@@ -44,6 +44,8 @@ const TimelineEntrySchema = z.object({
   relation: z.enum(RELATIONS).optional(),
   /** 트윗 원문 전문 (tweet.php display_text) */
   original: z.string().optional(),
+  /** tweet.php가 알려 준 실제 작성자 핸들. 모델이 쓴 by·URL 핸들보다 우선한다 (fixAttributions) */
+  author: z.string().optional(),
   /** 원문 전문 번역 (헤드리스 일괄 번역) */
   translation: z.string().optional(),
 });
@@ -450,6 +452,29 @@ export function discourseTopicJsonUrl(url: string): string | undefined {
 /** x.com/<handle>/status/<id> 에서 트윗 id를 뽑는다 */
 export function tweetIdOf(url: string): string | undefined {
   return /(?:x|twitter)\.com\/[^/]+\/status\/(\d+)/.exec(url)?.[1];
+}
+
+/**
+ * 인용 귀속 교정: 모델은 남에게 단 답글(@상대 …)을 상대의 말로 적거나 URL 핸들을 잘못 쓴다 (2026-11-15 채점 68건 중 29·15건).
+ * tweet.php의 실제 작성자(author)가 있으면 by와 URL을 작성자로 맞추고, 바뀐 인용 수를 돌려준다.
+ * 입장(stance)과 인물 배치는 손대지 않는다: 교정 뒤 채점·교정(refine)이 다시 본다.
+ */
+export function fixAttributions<T extends { positions: Position[]; timeline: TimelineEntry[] }>(d: T): { debate: T; fixed: number } {
+  const handleOf = (by: string) => {
+    const b = by.replace(/^@/, '').toLowerCase();
+    for (const p of d.positions) for (const h of p.holders) if (h.handle && (h.handle.toLowerCase() === b || h.name.toLowerCase() === b)) return h.handle;
+    return by.replace(/^@/, '');
+  };
+  let fixed = 0;
+  const timeline = d.timeline.map((t) => {
+    const id = tweetIdOf(t.url);
+    if (!t.author || !id) return t;
+    const url = `https://x.com/${t.author}/status/${id}`;
+    if (handleOf(t.by).toLowerCase() === t.author.toLowerCase()) return url.toLowerCase() === t.url.toLowerCase() ? t : { ...t, url };
+    fixed++;
+    return { ...t, by: t.author, url };
+  });
+  return { debate: { ...d, timeline }, fixed };
 }
 
 /** 헤드리스 응답에서 JSON 객체만 추출 (코드펜스·앞뒤 설명 제거) */
