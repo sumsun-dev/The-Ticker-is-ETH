@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-15T16:37:46.631Z",
+  "updatedAt": "2026-11-15T17:06:36.439Z",
   "ercs": [
     {
       "number": 20,
@@ -36466,6 +36466,165 @@
       "generatedAt": "2026-11-15T13:02:36.727Z"
     },
     {
+      "number": 7508,
+      "titleKo": "동적 온체인 토큰 속성 저장소",
+      "topic": "NFT·멀티토큰",
+      "summary": "ERC-721·ERC-1155 토큰의 속성을 모든 네트워크에서 같은 주소를 쓰는 공용 저장소 컨트랙트에 온체인으로 기록해 어떤 외부 컨트랙트든 그 속성을 조회하고 활용할 수 있게 합니다.",
+      "why": "NFT는 흔히 이미지나 능력치 같은 속성을 오프체인 메타데이터 서버에 저장합니다. 이 방식에서는 서버가 내려가면 속성이 영원히 사라지고 다른 게임이나 서비스가 이 속성을 쓰려면 신뢰할 수 없는 외부 URL을 그대로 믿고 가져와야 합니다. 또한 토큰 컨트랙트마다 속성을 저장하는 방식이 제각각이라, 한 컬렉션의 캐릭터 능력치를 다른 컬렉션이나 게임에서 그대로 활용하기 어렵습니다. 토큰이 소유자의 행동에 따라 진화하거나 상태가 바뀌는 기능을 만들고 싶어도, 표준화된 온체인 저장소가 없으면 컬렉션마다 속성 관리와 접근 제어 코드를 처음부터 새로 만들어야 하고 이는 배포 비용과 컨트랙트 복잡도를 늘립니다.",
+      "before": [
+        "속성이 오프체인 서버에 저장돼 서버가 사라지면 함께 사라짐",
+        "컬렉션마다 속성 저장 방식이 달라 다른 앱·게임이 재사용하기 어려움",
+        "컬렉션이 속성 관리·접근 제어 코드를 직접 구현해야 함",
+        "기존에 배포된 컬렉션은 새 속성 기능을 쓰려면 재배포가 필요함"
+      ],
+      "after": [
+        "모든 네트워크에서 같은 주소를 쓰는 공용 레포지토리에 속성이 영구 기록됨",
+        "다른 컨트랙트가 키만 알면 어떤 컬렉션의 속성이든 바로 조회 가능",
+        "소유자·협업자·토큰소유자 등 접근 유형을 레포지토리가 공통 제공",
+        "기존 ERC-721·1155 컬렉션도 레포지토리에 등록만 하면 그대로 사용 가능"
+      ],
+      "impact": [
+        {
+          "who": "NFT 소유자",
+          "text": "자신이 가진 토큰의 속성이 특정 서버에 좌우되지 않고 블록체인에 영구히 남습니다."
+        },
+        {
+          "who": "게임·앱 개발자",
+          "text": "다른 컬렉션의 토큰 속성을 신뢰할 수 있는 온체인 값으로 바로 가져와 자기 서비스에 활용할 수 있습니다."
+        },
+        {
+          "who": "컬렉션(컨트랙트) 개발자",
+          "text": "속성 저장·접근 제어 로직을 직접 구현하지 않고 공용 레포지토리에 등록만 하면 됩니다."
+        },
+        {
+          "who": "지갑·마켓플레이스",
+          "text": "표준화된 getter로 여러 컬렉션의 속성을 동일한 방식으로 조회해 보여줄 수 있습니다."
+        }
+      ],
+      "iface": [],
+      "flow": {
+        "title": "속성 등록과 조회 흐름",
+        "steps": [
+          {
+            "label": "컬렉션 소유자",
+            "title": "레포지토리에 컬렉션 등록",
+            "body": "registerAccessControl로 컬렉션과 소유자 주소를 등록하고 Ownable 확장을 쓸지 여부를 지정합니다."
+          },
+          {
+            "label": "컬렉션 소유자",
+            "title": "속성별 접근 권한 설정",
+            "body": "manageAccessControl로 각 속성 키마다 Owner, Collaborator, TokenOwner 등 누가 값을 바꿀 수 있는지 정합니다."
+          },
+          {
+            "label": "권한자·협업자",
+            "title": "토큰 속성 기록",
+            "body": "setStringAttribute 등으로 토큰에 키와 값을 직접 저장하거나, presignedSet 계열로 서명된 메시지를 통해 대리 기록합니다."
+          },
+          {
+            "label": "외부 컨트랙트",
+            "title": "속성 조회 및 활용",
+            "body": "getStringAttribute 등 getter를 호출해 다른 컬렉션이나 게임이 해당 토큰의 속성을 그대로 읽어 씁니다."
+          }
+        ]
+      },
+      "deep": [
+        {
+          "title": "접근 제어 구조(AccessType)",
+          "body": "레포지토리는 속성 키마다 다섯 가지 접근 유형 중 하나를 지정할 수 있습니다. Owner는 컬렉션 소유자만, Collaborator는 지정된 협업자만, OwnerOrCollaborator는 둘 중 누구나, TokenOwner는 해당 토큰의 소유자만, SpecificAddress는 별도로 지정한 주소만 값을 바꿀 수 있습니다. registerAccessControl로 컬렉션을 등록한 뒤 manageAccessControl로 키별 유형을 정하고 manageCollaborators로 협업자 목록을 관리합니다.",
+          "ref": "원문: Specification(Interface, AccessType)"
+        },
+        {
+          "title": "속성 타입과 키-값 저장",
+          "body": "속성은 address, bool, bytes, int256, string, uint256 여섯 가지 타입으로 나뉘며 각각 {key, value} 구조체로 표현됩니다. 어떤 타입이든 컬렉션 주소와 토큰 ID, 문자열 키를 기준으로 값 하나가 매핑되고 값이 바뀌면 해당 타입 전용 Updated 이벤트가 발생합니다.",
+          "ref": "원문: Specification(Interface)"
+        },
+        {
+          "title": "단일·배치 조회 및 설정",
+          "body": "각 타입마다 getX/setX로 토큰 하나의 속성 하나를 다루는 함수와, getXs/setXs로 여러 컬렉션·여러 토큰에 걸쳐 한 번에 처리하는 배치 함수가 모두 제공됩니다. collections와 tokenIds 배열은 모든 항목이 같은 컬렉션이나 같은 토큰이면 원소 하나만 넣어도 됩니다. getAttributes/setAttributes는 여섯 타입을 한 번의 호출로 모두 조회·설정합니다.",
+          "ref": "원문: Specification(배치 getter/setter)"
+        },
+        {
+          "title": "프리사인 서명을 통한 대리 설정",
+          "body": "prepareMessageToPresignXAttribute 함수로 서명할 원본 메시지를 얻고 사용자가 이 메시지에 ECDSA로 서명하면 다른 주소가 presignedSetXAttribute(v, r, s 포함)를 호출해 대신 속성을 설정할 수 있습니다. 메시지는 DOMAIN_SEPARATOR, 메서드별 TYPEHASH, collection, tokenId, key, value, deadline을 keccak256으로 묶어 만들며 deadline이 지난 서명은 거부됩니다.",
+          "ref": "원문: Message format for presigned attribute"
+        },
+        {
+          "title": "컬렉션 단위 속성과 스키마",
+          "body": "개별 토큰이 아니라 컬렉션 전체가 공유하는 속성은 토큰 ID로 uint256의 최댓값을 사용해 조회·설정합니다. 컬렉션 소유자는 각 속성에 대해 name, description, type, display_name, display_type, decimals, min_value, max_value, conditional_value, modifiers, multi_storage 필드를 가진 스키마를 정의할 수 있으며 이 중 name과 type만 필수입니다.",
+          "ref": "원문: Schema"
+        },
+        {
+          "title": "가스 절감을 위한 문자열 인덱싱과 사전 결정 주소",
+          "body": "문자열은 저장 비용이 크기 때문에, 레포지토리는 같은 문자열 키나 값을 처음 저장하는 사람만 전체 비용을 지불하고 이후 사용자는 그 문자열의 인덱스만 저장하도록 설계되었습니다. 이 절감 방식은 레포지토리 전체에 적용되어 한 컬렉션이 이미 등록한 문자열을 다른 컬렉션이 써도 다시 비용을 치르지 않습니다. 레포지토리 컨트랙트는 'ATTBTS'를 연상시키는 0xA77B75로 시작하는 주소로 모든 네트워크에 같게 배포되도록 설계되었으며 정확한 주소는 미정입니다.",
+          "ref": "원문: Rationale, Pre-determined address of the Attributes repository"
+        },
+        {
+          "title": "표준 상태",
+          "body": "이 제안은 Draft 상태로, 아직 확정되지 않았으며 세부 내용이 바뀌거나 진행이 멈출 수 있습니다.",
+          "ref": "원문: Preamble(status)"
+        }
+      ],
+      "safety": [
+        {
+          "title": "자산 위험 없음",
+          "body": "레포지토리는 사용자 자산을 직접 보관하지 않으므로, 속성 레포지토리와 상호작용한다고 해서 자산이 위험해지지는 않습니다."
+        },
+        {
+          "title": "체인별 서명 분리로 리플레이 방지",
+          "body": "서명 메시지에 들어가는 DOMAIN_SEPARATOR가 체인ID와 레포지토리 주소를 포함해 체인마다 달라지므로, 한 체인에서 만든 서명이 다른 체인에서 재사용되면 거부됩니다."
+        },
+        {
+          "title": "프리사인 메시지 재사용",
+          "body": "유효기간(deadline) 전까지는 같은 프리사인 메시지를 여러 번 제출할 수 있어 속성을 되돌리거나 재설정하는 로직과 결합하면 의도치 않게 값이 다시 적용될 수 있습니다. 서비스는 유효기간을 짧게 잡는 것이 권장됩니다."
+        },
+        {
+          "title": "미감사 컨트랙트 주의",
+          "body": "감사받지 않은 컨트랙트와 연동할 때는 주의가 필요합니다."
+        }
+      ],
+      "glossary": [
+        {
+          "term": "온체인(on-chain)",
+          "def": "블록체인 위에 직접 기록되어 누구나 검증할 수 있는 저장 방식입니다."
+        },
+        {
+          "term": "ECDSA 서명",
+          "def": "개인키로 메시지에 서명해 소유나 승인 의사를 증명하는 암호 기법입니다."
+        },
+        {
+          "term": "프리사인(presigned) 메시지",
+          "def": "본인이 아닌 다른 주소가 대신 트랜잭션을 제출할 수 있도록 미리 서명해 둔 메시지입니다."
+        },
+        {
+          "term": "협업자(Collaborator)",
+          "def": "컬렉션 소유자가 속성 관리 권한을 위임한 추가 주소입니다."
+        },
+        {
+          "term": "도메인 구분자(DOMAIN_SEPARATOR)",
+          "def": "서명이 특정 체인과 컨트랙트에서만 유효하도록 묶어 주는 값입니다."
+        }
+      ],
+      "meta": {
+        "title": "Dynamic On-Chain Token Attributes Repository",
+        "description": "Dynamic on-chain storage of token attributes in a public-good repository.",
+        "status": "Draft",
+        "type": "Standards Track",
+        "category": "ERC",
+        "created": "2023-08-15",
+        "authors": [
+          "Steven Pineda",
+          "Jan Turk"
+        ],
+        "requires": [
+          165
+        ],
+        "discussionsTo": "https://ethereum-magicians.org/t/dynamic-on-chain-token-attributes-repository/15667"
+      },
+      "sourceHash": "e1042231e53caa64",
+      "model": "sonnet",
+      "generatedAt": "2026-11-15T16:48:40.791Z"
+    },
+    {
       "number": 7509,
       "titleKo": "엔티티 컴포넌트 시스템",
       "topic": "기타",
@@ -53617,6 +53776,194 @@
       "generatedAt": "2026-11-15T15:12:48.714Z"
     },
     {
+      "number": 7770,
+      "titleKo": "부분준비 토큰 표준",
+      "topic": "금고·DeFi",
+      "summary": "기초자산에 가치가 연동되지만 기초자산으로 전액이 아닌 일부만 즉시 교환 가능하고 나머지는 다른 담보로 뒷받침되는 합성토큰의 민트·번·위험정보 공개 인터페이스입니다.",
+      "why": "L1과 L2를 넘나드는 브리지 자산(예: 아비트럼의 ETH, BSC의 WETH)은 기초자산으로 전액 뒷받침되어야만 발행할 수 있어서 생태계의 토큰 공급을 늘리는 방법이 '브리지로 가져오기'뿐입니다. 담보를 맡기고 토큰을 빌려 발행하는 부분준비 방식을 쓰면 공급을 더 유연하게 늘릴 수 있지만 여러 리스크 큐레이터와 대출 시장이 각자 다른 방식으로 민트·번 권한과 준비비율을 관리하면 토큰 보유자는 지금 토큰이 얼마나 빌려졌는지, 즉시 상환 가능한 비율이 얼마인지 알 길이 없습니다. 표준 인터페이스가 없으면 지갑이나 앱이 이런 위험을 일관되게 보여줄 수도 없고 서로 다른 발행처의 토큰을 비교하기도 어렵습니다.",
+      "before": [
+        "각 프로젝트가 민트·번 로직과 준비비율 계산을 독자적으로 구현해 인터페이스가 서로 다릅니다.",
+        "토큰 보유자가 현재 얼마나 빌려졌는지, 즉시 상환 가능한 현금 비율이 얼마인지 확인할 표준 방법이 없습니다.",
+        "리스크 큐레이터나 대출 시장이 표준화된 방식으로 민트 권한을 받기 어렵습니다.",
+        "투표권이나 배당 계산에서 빌려준 공급분을 분리해 표시할 공통 방법이 없습니다."
+      ],
+      "after": [
+        "fractionalReserveMint / fractionalReserveBurn 함수와 이벤트로 민트·번 내역이 공통 인터페이스에 기록됩니다.",
+        "totalBorrowedSupply(), requiredReserveRatio() 등 getter로 보유자가 준비비율을 직접 조회할 수 있습니다.",
+        "담보를 맡긴 사용자에게 리스크 큐레이터나 대출 시장이 표준 인터페이스로 토큰을 빌려줄 수 있습니다.",
+        "segregatedAccount로 표시된 계정의 보유분은 준비비율 계산과 추가 민트 대상에서 제외됩니다."
+      ],
+      "impact": [
+        {
+          "who": "토큰 보유자",
+          "text": "준비비율과 분리계정 여부를 확인해 토큰이 즉시 상환 가능한 상태인지 가늠할 수 있습니다."
+        },
+        {
+          "who": "리스크 큐레이터·대출 시장",
+          "text": "표준 민트·번 인터페이스로 담보 기반 대출과 공급 관리를 운영합니다."
+        },
+        {
+          "who": "지갑·앱 개발자",
+          "text": "표준 getter를 호출해 토큰의 담보·위험 상태를 사용자에게 보여줄 수 있습니다."
+        },
+        {
+          "who": "토큰 발행사",
+          "text": "ERC-20을 확장하는 것만으로 부분준비 방식의 합성토큰을 설계할 수 있습니다."
+        }
+      ],
+      "iface": [
+        {
+          "sig": "event MintFractionalReserve(address indexed minter, address to, uint256 amount);",
+          "ko": "부분준비 방식으로 토큰이 민트될 때 발생하는 이벤트입니다."
+        },
+        {
+          "sig": "event BurnFractionalReserve(address indexed burner, address from, uint256 amount);",
+          "ko": "부분준비 방식으로 민트된 토큰이 소각(상환)될 때 발생하는 이벤트입니다."
+        },
+        {
+          "sig": "event SetSegregatedAccount(address account, bool segregated);",
+          "ko": "특정 계정을 분리계정으로 지정하거나 해제할 때 발생하는 이벤트입니다."
+        },
+        {
+          "sig": "function fractionalReserveMint(address _to, uint256 _amount) external;",
+          "ko": "권한을 가진 주체가 담보를 근거로 새 토큰을 _to에게 민트합니다."
+        },
+        {
+          "sig": "function fractionalReserveBurn(address _from, uint256 _amount) external;",
+          "ko": "권한을 가진 주체가 _from의 토큰을 소각해 빌린 공급을 줄입니다."
+        },
+        {
+          "sig": "function totalBorrowedSupply() external view returns (uint256);",
+          "ko": "부분준비 민트로 발행되어 아직 상환되지 않은 토큰의 총량을 반환합니다."
+        },
+        {
+          "sig": "function requiredReserveRatio() external view returns (uint256);",
+          "ko": "추가 민트를 허용하기 위해 유지해야 하는 최소 준비비율(1e18 단위)을 반환합니다."
+        },
+        {
+          "sig": "function segregatedAccount(address _account) external view returns (bool);",
+          "ko": "해당 주소가 분리계정으로 지정되어 있는지 여부를 반환합니다."
+        },
+        {
+          "sig": "function totalSegregatedSupply() external view returns (uint256);",
+          "ko": "모든 분리계정이 보유한 토큰 잔액의 합을 반환합니다."
+        }
+      ],
+      "flow": {
+        "title": "부분준비 민트 흐름",
+        "steps": [
+          {
+            "label": "사용자",
+            "title": "담보 예치",
+            "body": "전용 컨트랙트에 기초자산(예: DAI)이나 그보다 가치가 큰 담보를 잠급니다."
+          },
+          {
+            "label": "리스크 큐레이터·대출 시장",
+            "title": "민트 요청",
+            "body": "담보가 확인된 주소를 대상으로 fractionalReserveMint(_to, _amount)를 호출합니다."
+          },
+          {
+            "label": "토큰 컨트랙트",
+            "title": "준비비율 검증",
+            "body": "민트 후 준비비율에 1e18을 곱한 값이 requiredReserveRatio()를 벗어나면 트랜잭션이 되돌립니다(revert)."
+          },
+          {
+            "label": "토큰 컨트랙트",
+            "title": "상태 갱신 및 이벤트",
+            "body": "totalSupply(), totalBorrowedSupply(), _to의 잔액이 _amount만큼 증가하고 MintFractionalReserve 이벤트가 발생합니다."
+          }
+        ]
+      },
+      "deep": [
+        {
+          "title": "ERC-20 확장 요구",
+          "body": "이 표준은 반드시(MUST) ERC-20과 호환되어야 합니다. 인터페이스 IERCXXX는 IERC20을 상속한 형태로 정의되어 있고 기존 transfer·balanceOf 등 ERC-20 기능 위에 민트·번·준비비율 관련 함수와 이벤트만 추가됩니다.",
+          "ref": "원문: Specification"
+        },
+        {
+          "title": "민트·번 함수의 상태 변화",
+          "body": "fractionalReserveMint(_to, _amount)가 성공하면 totalSupply(), totalBorrowedSupply(), _to의 잔액이 모두 _amount만큼 증가해야 하며(MUST) MintFractionalReserve 이벤트를 발생시켜야 합니다. 반대로 fractionalReserveBurn(_from, _amount)가 성공하면 같은 세 값이 _amount만큼 감소해야 하고 BurnFractionalReserve 이벤트를 발생시켜야 합니다.",
+          "ref": "원문: Mint and burn functionality"
+        },
+        {
+          "title": "준비비율 계산 (원문에 두 가지 공식이 병기됨)",
+          "body": "'Reserve ratio' 절은 준비비율을 (totalSupply() - totalBorrowedSupply() - 분리계정 잔액 합) / totalSupply()로 정의하고 이 값에 1e18을 곱한 수치가 requiredReserveRatio()보다 낮으면 추가 민트가 금지된다(MUST NOT)고 적습니다. 반면 'Mint and burn functionality' 절은 같은 준비비율을 (totalSupply() - 분리계정 잔액 합) / (totalSupply() + totalBorrowedSupply())로 다시 정의하고 1e18을 곱한 값이 requiredReserveRatio()를 초과하면 fractionalReserveMint가 반드시(MUST) 되돌아가야 한다고 적습니다. 원문에 두 식이 서로 다르게 명시되어 있으며 참조 구현은 첫 번째 식과 같은 방향의 검사(reserveRatio >= requiredReserveRatio)를 따릅니다.",
+          "ref": "원문: Reserve ratio, Mint and burn functionality"
+        },
+        {
+          "title": "분리계정(segregated account)",
+          "body": "임의의 시점에 모든 분리계정 잔액의 합은 반드시(MUST) totalSegregatedSupply()와 같아야 합니다. 분리계정으로 지정된 주소의 잔액은 준비비율 계산에서 현금(cash)으로 치지 않으며 그 결과 분리계정에 들어간 돈을 근거로는 추가 토큰을 민트할 수 없습니다. DAO 투표권이나 배당이 토큰 보유량에 연동될 때 공급 증가가 왜곡되는 것을 막기 위한 장치입니다.",
+          "ref": "원문: Segregated accounts, Rationale"
+        },
+        {
+          "title": "민트·번 권한과 담보 요건",
+          "body": "fractionalReserveMint와 fractionalReserveBurn은 권한을 가진 주소, 예를 들어 리스크 큐레이터나 대출 시장만 호출해야 합니다(SHOULD). 이들은 전용 컨트랙트에 이미 담보를 잠근 주소에만 새 토큰을 민트해야 합니다(SHOULD). 표준은 이 권한 부여나 담보 평가 방식 자체를 규정하지 않고 토큰 소유자가 민트 권한을 받은 주체의 신뢰성을 책임지도록 합니다.",
+          "ref": "원문: Mint and burn functionality, Rationale"
+        },
+        {
+          "title": "이자 수익 분배",
+          "body": "fractionalReserveMint로 빌려준 토큰은 대출 운영과 함께 쓰여야 하며(SHOULD), 그 대출에는 이자가 붙어야 하고(SHOULD) 이자 수익 중 일부는 분리계정이 아닌 토큰 보유자에게 분배되어야 합니다(SHOULD). 분배 방식은 표준이 정하지 않으며 리베이스 토큰으로 만들거나 스테이킹 또는 에어드랍으로 지급하는 방식이 가능하다고 설명합니다.",
+          "ref": "원문: Account balance, Rationale"
+        },
+        {
+          "title": "단독 사용 시의 공급 구조",
+          "body": "부분준비 토큰은 DAI처럼 알려진 기초자산에 연동되지 않고 단독으로도 쓸 수 있습니다. 이 경우 초기 공급은 고정되어 있지만 추가 공급을 빌릴 수 있고 공급이 일시적으로 늘어나도 순보유량(totalSupply() - totalBorrowedSupply())은 변하지 않는다고 설명합니다.",
+          "ref": "원문: Rationale"
+        },
+        {
+          "title": "제안 상태",
+          "body": "이 표준은 현재 Draft 상태로, 아직 확정되지 않았으며 내용이 바뀌거나 중단될 수 있는 제안입니다.",
+          "ref": "원문: 헤더(status)"
+        }
+      ],
+      "safety": [
+        {
+          "title": "경제적 리스크는 표준 범위 밖",
+          "body": "부분준비 뱅킹에는 지급불능이나 뱅크런 같은 여러 경제적 위험이 따르지만 이 표준은 그런 위험을 어떻게 관리해야 하는지에 대한 가이드라인을 제시하지 않는다고 명시합니다."
+        }
+      ],
+      "glossary": [
+        {
+          "term": "부분준비(프랙셔널 리저브)",
+          "def": "발행된 토큰 전체가 아니라 일부만 기초자산으로 즉시 교환 가능하고, 나머지는 다른 담보나 대출로 뒷받침되는 발행 방식입니다."
+        },
+        {
+          "term": "페그(peg)",
+          "def": "한 토큰의 가치를 다른 자산(기초자산)의 가치에 고정시켜 두는 것을 말합니다."
+        },
+        {
+          "term": "준비비율(reserve ratio)",
+          "def": "전체 공급 중에서 즉시 상환 가능한(빌려주지 않은) 몫이 차지하는 비율입니다."
+        },
+        {
+          "term": "분리계정(segregated account)",
+          "def": "보유 토큰이 준비비율 계산과 추가 민트 대상에서 제외되도록 지정된 계정입니다."
+        },
+        {
+          "term": "리스크 큐레이터",
+          "def": "담보 평가와 대출 조건을 설계해 민트 권한을 행사하는 주체입니다."
+        }
+      ],
+      "meta": {
+        "title": "Fractional Reserve Token",
+        "description": "An interface for tokens that maintain a peg to an underlying token while being only partially redeemable to this token.",
+        "status": "Draft",
+        "type": "Standards Track",
+        "category": "ERC",
+        "created": "2024-09-17",
+        "authors": [
+          "Yaron Velner"
+        ],
+        "requires": [
+          20
+        ],
+        "discussionsTo": "https://ethereum-magicians.org/t/erc-7770-fractional-reserve-token/21103"
+      },
+      "sourceHash": "f2071ff13b8ecb30",
+      "model": "sonnet",
+      "generatedAt": "2026-11-15T16:53:04.331Z"
+    },
+    {
       "number": 7774,
       "titleKo": "웹3 URL 이벤트 기반 캐시 무효화",
       "topic": "기타",
@@ -54211,6 +54558,185 @@
       "generatedAt": "2026-11-14T14:43:06.559Z"
     },
     {
+      "number": 7779,
+      "titleKo": "재위임 가능한 위임 계정 표준",
+      "topic": "계정·지갑",
+      "summary": "EIP-7702로 위임된 외부소유계정(EOA)이 지갑을 바꿔 다시 위임할 때 저장소 충돌 없이 안전하게 이전할 수 있게 하는 인터페이스입니다.",
+      "why": "EIP-7702 이후 EOA는 스마트 계정 구현에 위임되어 실행 로직을 갖게 되지만 그 저장소는 계정에 계속 귀속됩니다. 사용자가 지갑을 바꿔 다른 구현으로 재위임하면 기존 구현이 쓰던 저장소 슬롯과 새 구현이 쓰는 슬롯이 겹칠 수 있고 이런 저장소 충돌은 계정이 잠기거나 보안 취약점이 생기는 등 예상치 못한 동작으로 이어질 수 있습니다. 지금까지는 어떤 지갑이 어떤 저장소 베이스를 쓰는지 외부에서 조회할 표준 방법이 없어서 새 지갑이 재위임 전에 기존 위임 상태나 저장소 충돌 여부를 확인할 근거가 없었습니다. EOA는 원래 니모닉 기반의 단순한 키쌍이라 지갑 간 자유로운 이동이 보장됐지만 위임이 도입되면서 그 자유로운 마이그레이션이 저장소 문제로 제한될 위험이 생겼습니다.",
+      "before": [
+        "위임된 EOA가 어떤 저장소 슬롯을 쓰는지 외부에서 확인할 표준 방법이 없습니다.",
+        "새 지갑으로 재위임할 때 기존 구현의 저장소와 충돌해 계정이 잠기거나 보안 취약점이 생길 수 있습니다.",
+        "재위임 전에 기존 구현이 저장소를 정리할 표준화된 훅이 없습니다."
+      ],
+      "after": [
+        "accountStorageBases()로 계정이 사용한 모든 저장소 베이스 슬롯을 조회해 충돌 여부를 미리 확인할 수 있습니다.",
+        "accountId()로 현재 위임된 구현의 정보를 조회해 \"지갑A → 지갑B\" 같은 재위임 UX를 보여줄 수 있습니다.",
+        "onRedelegation() 훅으로 재위임 전에 저장소를 가능한 만큼 정리할 수 있습니다."
+      ],
+      "impact": [
+        {
+          "who": "EOA 사용자",
+          "text": "지갑을 바꿔도 저장소 충돌 없이 안전하게 재위임할 수 있습니다."
+        },
+        {
+          "who": "지갑 개발자",
+          "text": "다른 지갑이 위임한 계정을 재위임하기 전에 저장소 베이스를 확인해 충돌을 검증할 수 있습니다."
+        },
+        {
+          "who": "스마트 계정 구현자",
+          "text": "accountStorageBases(), accountId(), onRedelegation()을 구현해 표준에 맞는 재위임 경험을 제공해야 합니다."
+        }
+      ],
+      "iface": [
+        {
+          "sig": "function accountId() external view returns (string);",
+          "ko": "계정의 네임스페이스(버전, 이름, 지갑 벤더명 등) 정보를 문자열로 반환합니다."
+        },
+        {
+          "sig": "function accountStorageBases() external view returns (bytes32[]);",
+          "ko": "계정이 지금까지 사용해 온 모든 저장소 베이스 슬롯 목록을 반환합니다."
+        },
+        {
+          "sig": "function onRedelegation() external returns (bool);",
+          "ko": "재위임 직전에 호출되어 계정이 새 구현으로 넘어가기 전 저장소를 정리하도록 하는 훅입니다."
+        }
+      ],
+      "flow": {
+        "title": "재위임 흐름",
+        "steps": [
+          {
+            "label": "사용자",
+            "title": "지갑 B로 이동 결정",
+            "body": "기존에 지갑 A 구현으로 위임된 EOA를 지갑 B로 재위임하기로 합니다."
+          },
+          {
+            "label": "지갑 B",
+            "title": "accountStorageBases() 조회",
+            "body": "재위임 전 기존 계정의 저장소 베이스 목록을 조회해 자신의 슬롯과 충돌하는지 확인합니다."
+          },
+          {
+            "label": "지갑 B",
+            "title": "accountId() 조회",
+            "body": "기존 구현 정보를 가져와 사용자에게 \"지갑 A → 지갑 B\" 같은 안내를 보여줍니다."
+          },
+          {
+            "label": "지갑 A 구현",
+            "title": "onRedelegation() 호출",
+            "body": "재위임 직전에 저장소를 가능한 만큼 정리하고 msg.sender가 소유자인지 검증합니다."
+          },
+          {
+            "label": "EOA",
+            "title": "지갑 B로 재위임 완료",
+            "body": "초기화 단계에서 새 저장소 베이스를 append-only 배열에 추가합니다."
+          }
+        ]
+      },
+      "deep": [
+        {
+          "title": "accountId로 네임스페이스 식별",
+          "body": "accountId()는 계정 버전, 이름, 지갑 벤더명 등을 담은 문자열을 반환하는 view 함수입니다. 원문은 네임스페이스 형식 자체를 표준화하지 않으며 예시로 \"v0.1.2.7702Account.WalletProjectA\" 형태를 제시합니다. 지갑이 재위임 과정을 사용자에게 보여줄 때(예: \"지갑A → 지갑B\") 기존 구현 정보를 이 함수로 가져올 수 있습니다.",
+          "ref": "원문: Specification, accountId()"
+        },
+        {
+          "title": "accountStorageBases와 고정 슬롯",
+          "body": "accountStorageBases()는 bytes32[] 배열을 반환하며 이 배열 자체는 keccak(keccak('InteroperableDelegatedAccount.ERC.Storage')-1) & ~0xff 슬롯에 저장되어야 합니다. 이 배열은 append-only이며 새로 위임되는 계정은 초기화 단계에서 자신의 저장소 베이스를 이 배열에 추가해야 합니다. 이미 동일한 항목이 있으면 추가하지 않을 수 있습니다. 저장소 베이스는 외부 저장소를 쓰지 않는 한 keccak256()으로 계산해야 합니다.",
+          "ref": "원문: Specification, accountStorageBases()"
+        },
+        {
+          "title": "외부 저장소 계약 표기 방식",
+          "body": "계정이 외부 저장소 컨트랙트를 사용하는 경우, accountStorageBases()는 ERC 번호를 접두사로 붙이고 외부 저장소 컨트랙트 주소를 이어붙인 값을 반환해야 합니다. 원문 예시로 저장소 컨트랙트 주소가 0xAAAA...AAAA이면 반환값은 0x777977797779...AAAA...AAAA 형태가 됩니다(7779가 ERC 번호를 나타내는 접두사로 반복됨).",
+          "ref": "원문: accountStorageBases(), 외부 저장소 표기 예시"
+        },
+        {
+          "title": "충돌 저장소에 대한 검증 책임",
+          "body": "계정이 충돌하는 저장소 베이스를 발견하면 오프체인 또는 온체인에서 추가 검증을 수행하고 위임을 진행할지 결정할 수 있습니다. 충돌한 저장소에 섀도 서명자 등 사용자를 노리는 의심스러운 값이 포함되어 있다면 지갑은 위임을 되돌릴 수 있습니다.",
+          "ref": "원문: accountStorageBases(), Rationale: Storage base checks"
+        },
+        {
+          "title": "onRedelegation의 선택적 정리 훅",
+          "body": "onRedelegation()은 새 구현으로 재위임되기 직전에 호출되는 선택적(optional) 함수입니다. 호출되면 기존 계정은 가능한 한 저장소 변수를 초기화하는 등 지갑별 로직을 수행해 사용자가 재위임 시 영향을 받지 않도록 해야 합니다. msg.sender가 계정 소유자인지 검증해야 하며 이는 커스텀 검증 스킴이나 self-call로 수행될 수 있습니다. 원문은 완전한 초기화를 강제하지 않고 \"최대한\"의 노력을 기대한다고 명시합니다.",
+          "ref": "원문: Specification, onRedelegation(); Rationale: Optional onRedelegation()"
+        },
+        {
+          "title": "Draft 상태",
+          "body": "이 제안은 현재 Draft 상태로, 아직 확정되지 않았으며 내용이 바뀌거나 중단될 수 있습니다.",
+          "ref": "원문: 헤더 status"
+        }
+      ],
+      "safety": [
+        {
+          "title": "호출자 인증",
+          "body": "onRedelegation()을 호출할 때는 msg.sender가 실제 계정 소유자인지 검증하는 보안 메커니즘을 포함해야 합니다."
+        },
+        {
+          "title": "준수 여부는 구현에 의존",
+          "body": "표준이 저장소 베이스 제공과 저장소 정리를 요구하더라도, 실제로 계정 구현이 이를 지키는지는 구현에 따라 다르므로 필요하면 오프체인에서 진위를 확인하는 것이 권장됩니다."
+        },
+        {
+          "title": "완전한 저장소 삭제가 불가능할 수 있음",
+          "body": "구현 방식에 따라 저장소를 완전히 지우는 것이 불가능할 수 있으며 이 경우 가능한 최선의 조치를 수행하고 onRedelegation() 호출 후 임의의 주체가 초기화 함수를 다시 트리거하지 못하도록 해야 합니다."
+        },
+        {
+          "title": "리플레이 보호 유지",
+          "body": "onRedelegation()은 서명 재사용 공격 같은 취약점을 막기 위해 리플레이 보호 상태를 초기화해서는 안 됩니다."
+        },
+        {
+          "title": "저장소 슬롯은 keccak256으로 계산",
+          "body": "저장소 슬롯 충돌을 줄이기 위해 표준은 keccak256() 계산을 강제하며 해시의 원본 값(프리이미지)은 계정 구현이 자유롭게 정할 수 있습니다."
+        }
+      ],
+      "glossary": [
+        {
+          "term": "EOA",
+          "def": "개인키로 직접 서명하는 외부소유계정으로, 원래는 스마트 컨트랙트 로직 없이 키쌍만으로 동작했습니다."
+        },
+        {
+          "term": "위임(delegation)",
+          "def": "EIP-7702로 EOA가 스마트 컨트랙트 코드를 자신의 실행 로직으로 지정하는 것을 말합니다."
+        },
+        {
+          "term": "저장소 베이스(storage base)",
+          "def": "계정이 자신의 상태 변수를 저장하기 위해 사용하는 기준 슬롯 위치입니다."
+        },
+        {
+          "term": "재위임(redelegation)",
+          "def": "이미 위임된 EOA가 다른 스마트 계정 구현으로 다시 위임을 바꾸는 것입니다."
+        },
+        {
+          "term": "keccak256",
+          "def": "이더리움에서 널리 쓰는 해시 함수로, 저장소 슬롯 계산에 사용되어 충돌 가능성을 낮춥니다."
+        },
+        {
+          "term": "append-only 배열",
+          "def": "기존 항목을 덮어쓰지 않고 새 항목만 뒤에 추가하는 배열입니다."
+        }
+      ],
+      "meta": {
+        "title": "Interoperable Delegated Accounts",
+        "description": "Interface for delegated externally owned accounts to enable better redelegation between wallets.",
+        "status": "Draft",
+        "type": "Standards Track",
+        "category": "ERC",
+        "created": "2024-10-02",
+        "authors": [
+          "David Kim",
+          "Richard Meissner",
+          "Akshay Patel",
+          "Joshua Kim",
+          "Fangting",
+          "Yoav Weiss"
+        ],
+        "requires": [
+          7201,
+          7702
+        ],
+        "discussionsTo": "https://ethereum-magicians.org/t/erc-7779-interoperable-delegated-account/21237"
+      },
+      "sourceHash": "726aa5b3e66561be",
+      "model": "sonnet",
+      "generatedAt": "2026-11-15T16:57:21.237Z"
+    },
+    {
       "number": 7780,
       "titleKo": "ERC-7579 검증 모듈 확장",
       "topic": "계정·지갑",
@@ -54332,6 +54858,156 @@
       "sourceHash": "2a19b43c2031ac95",
       "model": "fable",
       "generatedAt": "2026-11-15T15:20:55.376Z"
+    },
+    {
+      "number": 7785,
+      "titleKo": "체인 식별자 온체인 등록",
+      "topic": "이름·메타데이터",
+      "summary": "체인 이름을 해시해 32바이트짜리 체인 식별자를 만들고, ENS로 이름과 식별자를 매핑해 중앙화된 깃허브 목록을 대체하는 방법을 제안합니다.",
+      "why": "지금은 Mainnet이 0x1이라는 식으로, 체인 이름과 식별자의 대응 관계가 깃허브의 중앙화된 목록 하나로 관리됩니다. 이 방식은 두 가지 문제가 있습니다. 첫째, L2가 계속 늘어나는 상황에서 목록 관리가 확장되지 않습니다. 둘째, 목록을 관리하는 쪽이 단일 장애점이 되어 등록을 막거나 검열할 수 있습니다. 더 나아가 이름과 식별자가 1대1로 고정되지 않으면 스푸핑 공격까지 가능해집니다. 공격자가 새로 만든 이름(예: my-testnet)을 이미 쓰이고 있는 메인넷 식별자(0x1)에 연결해 두면, 사용자는 무해해 보이는 테스트넷 트랜잭션에 서명한다고 믿으면서 실제로는 메인넷 트랜잭션에 서명하게 되고, 공격자는 이 서명을 메인넷에 그대로 재전송할 수 있습니다.",
+      "before": [
+        "체인 이름과 식별자 매핑이 깃허브의 중앙 목록 하나로만 관리됩니다",
+        "L2 수가 늘어날수록 목록 관리가 확장되지 않습니다",
+        "목록 관리자가 단일 장애점이 되어 등록이 막힐 수 있습니다",
+        "이름과 식별자가 1대1로 보장되지 않으면 스푸핑으로 트랜잭션이 재전송될 위험이 있습니다"
+      ],
+      "after": [
+        "체인 이름을 해시해 32바이트 식별자를 만들어 식별자 공간을 넓힙니다",
+        "ENS로 이름을 등록해 검열 저항적이고 트러스트리스하게 식별자를 조회합니다",
+        "이름마다 고유한 식별자가 매핑되어 스푸핑을 막습니다",
+        "기존(레거시) 식별자도 역방향 매핑으로 호환해 사용할 수 있습니다"
+      ],
+      "impact": [
+        {
+          "who": "지갑 사용자",
+          "text": "트랜잭션에 서명하기 전에 체인 식별자를 트러스트리스하게 검증할 수 있어 재전송 공격 위험이 줄어듭니다."
+        },
+        {
+          "who": "L2·롤업 운영자",
+          "text": "중앙 목록 관리자를 거치지 않고 스스로 ENS 이름과 식별자를 등록할 수 있습니다."
+        },
+        {
+          "who": "지갑·앱 개발자",
+          "text": "ENS 레코드를 조회해 체인 식별자를 다시 계산하고 검증하는 로직을 구현해야 합니다."
+        },
+        {
+          "who": "기존 목록 관리 기관(EF 등)",
+          "text": "l2.eth, chainid.reverse 같은 서브도메인을 부트스트랩한 뒤 각 롤업에 이전하는 역할을 맡습니다."
+        }
+      ],
+      "iface": [],
+      "flow": {
+        "title": "체인 이름으로 식별자를 검증하는 과정",
+        "steps": [
+          {
+            "label": "지갑·앱",
+            "title": "ENS 이름 조회",
+            "body": "사용자가 서명하려는 체인의 ENS 이름(예: rollup.eth)을 조회합니다."
+          },
+          {
+            "label": "ENS",
+            "title": "레코드 반환",
+            "body": "ENS가 version, bridge 주소, chain_id를 담은 레코드를 돌려줍니다."
+          },
+          {
+            "label": "지갑·앱",
+            "title": "식별자 재계산",
+            "body": "이름과 돌아온 정보로 해시를 다시 계산해 레코드의 chain_id와 같은지 비교합니다."
+          },
+          {
+            "label": "지갑·앱",
+            "title": "일치 여부 판단",
+            "body": "값이 같으면 신뢰하고, 다르면 스푸핑된 식별자로 보고 서명을 거부합니다."
+          }
+        ]
+      },
+      "deep": [
+        {
+          "title": "체인 식별자를 32바이트로 확장하고 해시로 유도",
+          "body": "현재 체인 식별자는 짧게 임의로 정해지는데, 수가 늘어나면 32바이트로 늘리고 암호 해시 함수로 유도하도록 제안합니다. 입력값은 반드시 체인 이름(CHAIN_NAME)을 포함해야 하고, 그 외 정보는 선택적으로 넣을 수 있습니다. L2의 경우 예시는 chain_id = Keccak-256(CHAIN_NAME, SETTLEMENT_CHAIN_ID, VERSION, DEPLOYER_CONTRACT_ADDRESS, SALT)입니다. SETTLEMENT_CHAIN_ID는 L2가 정산하는 L1(메인넷 또는 테스트넷)의 id, VERSION은 해시 함수의 도메인을 구분하는 임의 문자열, DEPLOYER_CONTRACT_ADDRESS는 L1에 있는 L2의 주소입니다.",
+          "ref": "원문: Specification - Extending chain identifiers"
+        },
+        {
+          "title": "ENS를 통한 체인 이름 해석",
+          "body": "어떤 ENS 이름이든 ERC-2304에 정의된 방식으로 체인 식별자로 해석될 수 있습니다. 이름이 가리키는 레코드에는 식별자뿐 아니라, 그 식별자를 검증하는 데 필요한 부가 정보도 함께 담겨야 합니다. 예시로 메인넷에서 rollup 이라는 이름은 rollup.eth -> {version, bridge, chain_id} 로 해석되고, chain_id == hash(\"rollup\", 0x1, version, bridge) 식으로 재계산해 값이 맞는지 검증합니다.",
+          "ref": "원문: Specification - Chain name resolution"
+        },
+        {
+          "title": "스푸핑·재전송 공격과 방지 원리",
+          "body": "기존 중앙 목록은 이름과 식별자 사이의 1대1 대응을 보장합니다. 이 보장이 없으면 공격자가 my-testnet 같은 새 이름을 메인넷 식별자 0x1에 연결해 둘 수 있습니다. 사용자는 겉보기에 무해한 my-testnet용 트랜잭션에 서명한다고 생각하지만 실제로는 메인넷 트랜잭션에 서명하는 것이고, 공격자는 이 서명을 메인넷에 재전송할 수 있습니다. 이름에서 해시로 식별자를 유도하고 레거시 식별자는 역방향 매핑으로 확인하면 이런 스푸핑을 없앨 수 있습니다.",
+          "ref": "원문: Motivation / Security Considerations"
+        },
+        {
+          "title": "기존(레거시) 식별자와의 호환",
+          "body": "이 제안의 방식으로 유도되지 않은 기존 식별자는 식별자에서 이름으로 가는 역방향 매핑을 통해 고유성을 확인함으로써 계속 지원할 수 있습니다. 예를 들어 legacy-rollup.eth 가 식별자 0x123 으로 해석된다면, chainid.reverse 도메인에서 0x123 을 거꾸로 조회했을 때 나오는 chain_name 이 legacy-rollup 과 같은지 확인합니다. 두 값이 같으면 그 매핑을 유효한 것으로 봅니다.",
+          "ref": "원문: Backwards Compatibility"
+        },
+        {
+          "title": "부트스트랩과 이전(handover) 절차",
+          "body": "레거시 체인 식별자 처리를 시작하기 위해, 이더리움 재단(EF)이 기존 이더리움 목록을 이용해 l2.eth 와 chainid.reverse 라는 두 서브도메인을 먼저 채워 넣는 방식을 그리고 있습니다. 이후 어떤 롤업이 자신의 rollup.eth 를 등록해 자기 chain_id 를 가리키게 하면, EF는 rollup.l2.eth 와 chain_id.chainid.reverse 를 해당 롤업에 이전합니다. 롤업은 이전받은 chain_id.chainid.reverse 가 rollup.eth 를 반환하도록 갱신합니다.",
+          "ref": "원문: Bootstrapping and handover"
+        },
+        {
+          "title": "아직 정리되지 않은 부분과 제안의 상태",
+          "body": "이 ERC는 Draft 상태로, 아직 바뀌거나 중단될 수 있는 제안입니다. Rationale 항목은 TBD로 남아 있어 설계 결정의 근거나 대안 비교가 아직 작성되지 않았습니다. 또한 ERC-2304가 ENSIP-11을 충분히 대체할 수 있는지는 원문에도 TODO로 표시되어 있어 확정되지 않았습니다.",
+          "ref": "원문: 상태(Draft), Rationale, Specification 내 TODO"
+        }
+      ],
+      "safety": [
+        {
+          "title": "도메인 스푸핑에 따른 재전송 공격",
+          "body": "이름과 식별자의 1대1 대응이 깨지면 스푸핑으로 재전송 공격이 가능해집니다. 새로 유도하는 식별자는 해시 함수로 만들고, 레거시 식별자는 역방향 매핑을 확인함으로써 이를 없앨 수 있습니다."
+        },
+        {
+          "title": "도메인 스쿼팅 가능성",
+          "body": "나중에 비싸게 팔기 위해 이름을 대량으로 선점하는 도메인 스쿼팅이 일어날 가능성이 있습니다. 다만 L2 등록이 계속 늘어나는 한 기존의 중앙화된 깃허브 목록에서도 같은 문제가 나타날 것으로 예상됩니다."
+        }
+      ],
+      "glossary": [
+        {
+          "term": "ENS",
+          "def": "이더리움 이름 서비스. 사람이 읽기 쉬운 이름을 주소나 다른 데이터로 매핑해 주는 시스템입니다."
+        },
+        {
+          "term": "Keccak-256",
+          "def": "임의 길이의 입력을 고정된 길이의 출력으로 바꾸는 암호 해시 함수로, 이더리움에서 널리 쓰입니다."
+        },
+        {
+          "term": "재전송 공격(replay attack)",
+          "def": "한 맥락에서 만든 서명이나 트랜잭션을 다른 맥락(예: 다른 체인)에 그대로 다시 사용하는 공격입니다."
+        },
+        {
+          "term": "역방향 매핑",
+          "def": "식별자를 입력으로 받아 그에 대응하는 이름을 거꾸로 찾아 주는 매핑입니다."
+        },
+        {
+          "term": "트러스트리스(trustless)",
+          "def": "특정 중개자나 관리 기관을 신뢰하지 않고도 결과를 스스로 검증할 수 있는 성질입니다."
+        },
+        {
+          "term": "도메인 스쿼팅",
+          "def": "나중에 되팔 목적으로 가치 있는 이름을 미리 대량으로 선점해 두는 행위입니다."
+        }
+      ],
+      "meta": {
+        "title": "Onchain registration of chain identifiers",
+        "description": "Derive chain identifiers by hashing their chain name and use ENS to map chain names to these identifiers",
+        "status": "Draft",
+        "type": "Standards Track",
+        "category": "ERC",
+        "created": "2024-09-26",
+        "authors": [
+          "Marco Stronati",
+          "Jeff Lau"
+        ],
+        "requires": [
+          2304
+        ],
+        "discussionsTo": "https://ethereum-magicians.org/t/on-chain-registration-of-chain-identifiers/21299"
+      },
+      "sourceHash": "31800598a3509979",
+      "model": "sonnet",
+      "generatedAt": "2026-11-15T16:59:48.855Z"
     },
     {
       "number": 7786,
@@ -54649,6 +55325,241 @@
       "sourceHash": "7d9b514452f25b4e",
       "model": "fable",
       "generatedAt": "2026-11-15T15:24:29.255Z"
+    },
+    {
+      "number": 7794,
+      "titleKo": "크로스체인 그랜트 레지스트리",
+      "topic": "기타",
+      "summary": "여러 블록체인에 걸친 그랜트(지원금)의 등록, 참여자, 마일스톤, 자금 지급 상태를 하나의 레지스트리 컨트랙트에서 표준화된 이벤트로 추적하게 합니다.",
+      "why": "그랜트 프로그램마다 인터페이스와 관리 방식이 제각각이어서 자금 지원자와 수혜자 모두 서로 다른 절차를 익혀야 하고, 여러 체인에 걸쳐 진행되는 그랜트의 데이터를 한곳에서 모으기 어렵습니다. 마일스톤 진행 상황이나 자금 지급 여부를 표준화된 방법으로 기록할 수 없어 투명성이 떨어지고, 프로그램 간 비교나 성과 분석도 힘듭니다. 수혜자 팀 구성이 바뀌어도 이를 온체인에서 일관되게 남길 방법이 없어 외부 프로토콜이 그랜트 데이터를 신뢰성 있게 활용하기도 어렵습니다.",
+      "before": [
+        "그랜트 프로그램마다 제각각의 인터페이스와 관리 방식을 사용합니다.",
+        "여러 체인에 걸친 그랜트 데이터를 한곳에서 추적하기 어렵습니다.",
+        "마일스톤과 자금 지급 상태를 표준화된 방법으로 기록할 수 없습니다.",
+        "수혜자 팀 구성 변경을 온체인에서 투명하게 남기기 어렵습니다."
+      ],
+      "after": [
+        "하나의 레지스트리 컨트랙트로 어느 체인의 그랜트든 같은 방식으로 등록합니다.",
+        "마일스톤, 수혜자, 자금 지급 상태가 이벤트로 투명하게 남습니다.",
+        "온체인 지급과 오프체인 지급 모두 지급 상태 플래그로 추적할 수 있습니다.",
+        "외부 프로토콜이 표준 이벤트를 읽어 그랜트 프로그램 성과를 분석할 수 있습니다."
+      ],
+      "impact": [
+        {
+          "who": "그랜트 매니저(자금 지원 프로그램 운영자)",
+          "text": "그랜트 등록부터 수혜자 관리, 마일스톤, 자금 지급까지 하나의 컨트랙트에서 처리합니다."
+        },
+        {
+          "who": "그랜트 수혜자",
+          "text": "자신이 속한 그랜트의 마일스톤과 지급 상태가 온체인에 투명하게 기록됩니다."
+        },
+        {
+          "who": "외부 분석·집계 프로토콜",
+          "text": "표준화된 이벤트를 읽어 여러 체인의 그랜트 데이터를 한꺼번에 집계하고 분석할 수 있습니다."
+        },
+        {
+          "who": "앱·컨트랙트 개발자",
+          "text": "체인마다 다른 그랜트 관리 인터페이스를 새로 만들 필요 없이 공통 인터페이스를 재사용합니다."
+        }
+      ],
+      "iface": [
+        {
+          "sig": "event GranteeAdded(bytes32 indexed grantId, address indexed grantee);",
+          "ko": "그랜트에 새 수혜자가 추가되었을 때 발생합니다."
+        },
+        {
+          "sig": "event GranteeRemoved(bytes32 indexed grantId, address indexed grantee);",
+          "ko": "그랜트에서 수혜자가 제거되었을 때 발생합니다."
+        },
+        {
+          "sig": "event StartDateSet(bytes32 indexed grantId, uint256 startDate);",
+          "ko": "그랜트의 시작일이 설정되었을 때 발생합니다."
+        },
+        {
+          "sig": "event MilestoneDateAdded(bytes32 indexed grantId, uint256 milestoneDate);",
+          "ko": "그랜트에 새 마일스톤 날짜가 추가되었을 때 발생합니다."
+        },
+        {
+          "sig": "event MilestoneDateRemoved(bytes32 indexed grantId, uint256 milestoneDate);",
+          "ko": "그랜트에서 마일스톤 날짜가 제거되었을 때 발생합니다."
+        },
+        {
+          "sig": "event DisbursementRemoved(bytes32 indexed grantId, uint256 milestoneDate);",
+          "ko": "특정 마일스톤의 자금 지급 정보가 삭제되었을 때 발생합니다."
+        },
+        {
+          "sig": "event ExternalLinkAdded(bytes32 indexed grantId, string link);",
+          "ko": "그랜트에 오프체인 문서 등 외부 링크가 추가되었을 때 발생합니다."
+        },
+        {
+          "sig": "event ExternalLinkRemoved(bytes32 indexed grantId, string link);",
+          "ko": "그랜트에서 외부 링크가 제거되었을 때 발생합니다."
+        },
+        {
+          "sig": "function transferOwnership(bytes32 grantId, address newGrantManager) external;",
+          "ko": "그랜트의 관리 권한을 새 grantManager 주소로 이전합니다."
+        },
+        {
+          "sig": "function addGrantee(bytes32 grantId, address grantee) external;",
+          "ko": "그랜트에 새 수혜자 주소를 추가합니다."
+        },
+        {
+          "sig": "function removeGrantee(bytes32 grantId, address grantee) external;",
+          "ko": "그랜트에서 수혜자 주소를 제거합니다."
+        },
+        {
+          "sig": "function setStartDate(bytes32 grantId, uint256 startDate) external;",
+          "ko": "그랜트의 시작일을 설정합니다."
+        },
+        {
+          "sig": "function addMilestoneDate(bytes32 grantId, uint256 milestoneDate) external;",
+          "ko": "그랜트에 새 마일스톤 날짜를 추가합니다."
+        },
+        {
+          "sig": "function removeMilestoneDate(bytes32 grantId, uint256 milestoneDate) external;",
+          "ko": "그랜트에서 마일스톤 날짜를 제거합니다."
+        },
+        {
+          "sig": "function removeDisbursement(bytes32 grantId, uint256 milestoneDate) external;",
+          "ko": "특정 마일스톤의 자금 지급 정보를 삭제합니다."
+        },
+        {
+          "sig": "function addExternalLink(bytes32 grantId, string memory link) external;",
+          "ko": "그랜트와 관련된 오프체인 문서 URL 등 외부 링크를 추가합니다."
+        },
+        {
+          "sig": "function removeExternalLink(bytes32 grantId, uint256 index) external;",
+          "ko": "배열 인덱스로 지정한 외부 링크를 제거합니다."
+        },
+        {
+          "sig": "function getGrant(bytes32 grantId) external view returns (Grant memory);",
+          "ko": "id, chainid, community 라벨이 담긴 그랜트의 불변 정보를 조회합니다."
+        },
+        {
+          "sig": "function getGrantManager(bytes32 grantId) external view returns (address);",
+          "ko": "현재 그랜트 매니저의 주소를 조회합니다."
+        }
+      ],
+      "flow": {
+        "title": "그랜트 등록부터 자금 지급까지",
+        "steps": [
+          {
+            "label": "그랜트 매니저",
+            "title": "그랜트 등록",
+            "body": "registerGrant로 id, chainid, community, grantManager를 제출해 고유한 grantId를 발급받습니다."
+          },
+          {
+            "label": "그랜트 매니저",
+            "title": "수혜자 추가",
+            "body": "addGrantee로 그랜트에 참여할 수혜자 주소를 등록합니다."
+          },
+          {
+            "label": "그랜트 매니저",
+            "title": "시작일·마일스톤 설정",
+            "body": "setStartDate와 addMilestoneDate로 그랜트 일정과 마일스톤 날짜를 기록합니다."
+          },
+          {
+            "label": "그랜트 매니저",
+            "title": "자금 지급 정보 등록",
+            "body": "addDisbursement로 특정 마일스톤의 지급 토큰과 금액을 기록합니다."
+          },
+          {
+            "label": "그랜트 매니저",
+            "title": "지급 완료 표시",
+            "body": "실제 지급이 이루어지면 setDisbursementStatus로 isDisbursed를 true로 갱신합니다."
+          },
+          {
+            "label": "외부 프로토콜",
+            "title": "데이터 조회·분석",
+            "body": "get 계열 함수나 이벤트 로그를 읽어 그랜트 진행 상황과 지급 현황을 집계합니다."
+          }
+        ]
+      },
+      "deep": [
+        {
+          "title": "식별자와 데이터 구조 분리",
+          "body": "그랜트는 id, chainid, community로 구성된 불변 식별 정보와, grantManager·grantees·마일스톤·디스버스먼트·외부 링크로 구성된 가변 정보로 나뉩니다. grantId는 id, chainid, community, block.timestamp를 keccak256으로 해시해 생성되므로 등록 시점마다 고유하게 결정됩니다. community는 빈 문자열일 수 없고 grantManager는 0 주소일 수 없으며, 이미 등록된 grantId는 다시 등록할 수 없습니다(GrantAlreadyRegistered).",
+          "ref": "원문: Specification, Reference Implementation"
+        },
+        {
+          "title": "그랜트 매니저 권한 모델",
+          "body": "transferOwnership, addGrantee, removeGrantee, setStartDate, addMilestoneDate, removeMilestoneDate, addDisbursement, removeDisbursement, setDisbursementStatus, addExternalLink, removeExternalLink는 모두 현재 grantManager만 호출할 수 있습니다. 참조 구현의 _requireManager는 msg.sender가 grantManager와 다르면 InvalidGrantManager로 되돌립니다. 소유권은 transferOwnership으로 다른 주소에 넘길 수 있으며, 새 주소 역시 0 주소일 수 없습니다.",
+          "ref": "원문: Specification"
+        },
+        {
+          "title": "수혜자(그랜티) 관리",
+          "body": "grantees는 EnumerableSet.AddressSet으로 관리되어 중복 추가를 막고 목록 조회와 삭제를 지원합니다. 이미 추가된 주소를 다시 addGrantee하면 GranteeAlreadyAdded, 존재하지 않는 주소를 removeGrantee하면 GranteeNotFound가 발생합니다. 0 주소는 그랜티로 추가할 수 없습니다.",
+          "ref": "원문: Specification, Rationale"
+        },
+        {
+          "title": "마일스톤과 시작일",
+          "body": "setStartDate로 그랜트 시작일을 기록하고, addMilestoneDate와 removeMilestoneDate로 EnumerableSet.UintSet에 마일스톤 날짜를 추가하거나 삭제합니다. 이미 존재하는 날짜를 다시 추가하면 MilestoneDateAlreadyAdded, 존재하지 않는 날짜를 삭제하거나 참조하면 MilestoneDateNotFound가 발생합니다. getMilestonesDates는 시작일과 마일스톤 날짜 배열을 함께 반환합니다.",
+          "ref": "원문: Specification"
+        },
+        {
+          "title": "마일스톤별 자금 지급(디스버스먼트)",
+          "body": "addDisbursement는 특정 milestoneDate에 fundingToken과 fundingAmount를 기록하며 기존 값을 덮어씁니다. 호출 전 해당 milestoneDate가 그랜트에 존재해야 하며, 없으면 MilestoneDateNotFound가 발생합니다. setDisbursementStatus는 isDisbursed 플래그만 갱신해 실제 지급 여부를 표시하고, removeDisbursement는 해당 마일스톤의 디스버스먼트 데이터를 삭제합니다.",
+          "ref": "원문: Specification"
+        },
+        {
+          "title": "외부 링크를 통한 오프체인 연동",
+          "body": "addExternalLink로 그랜트 관련 URL을 문자열 배열에 추가할 수 있으며 빈 문자열은 InvalidExternalLink로 거부됩니다. removeExternalLink는 배열 인덱스로 링크를 제거하는데, 참조 구현은 마지막 요소를 해당 인덱스로 옮기고 배열을 pop하는 방식으로 구현되어 있어 링크 순서가 보존되지 않습니다. 인덱스가 배열 범위를 벗어나면 InvalidIndex가 발생합니다.",
+          "ref": "원문: Specification, Reference Implementation"
+        },
+        {
+          "title": "오프체인 자금 지급 프로그램과의 모듈성",
+          "body": "Rationale에 따르면 모든 그랜트 프로그램이 온체인으로 자금을 지급하지는 않으므로, 디스버스먼트 상태(isDisbursed)만 레지스트리에 기록하고 실제 지급은 외부 링크나 오프체인 절차로 처리할 수 있도록 설계되었습니다. 이로써 온체인 지급과 오프체인 지급 프로그램 모두 같은 레지스트리에서 상태를 추적할 수 있습니다.",
+          "ref": "원문: Rationale"
+        },
+        {
+          "title": "표준 상태",
+          "body": "이 ERC는 현재 Draft 상태로, 아직 커뮤니티 검토와 변경을 거치는 중인 제안입니다.",
+          "ref": "원문: 헤더(status)"
+        }
+      ],
+      "safety": [],
+      "glossary": [
+        {
+          "term": "그랜트(Grant)",
+          "def": "연구나 프로젝트에 자금을 지원하는 지원금 또는 지원 프로그램을 말합니다."
+        },
+        {
+          "term": "디스버스먼트(Disbursement)",
+          "def": "그랜트 자금을 실제로 수혜자에게 지급하는 행위와 그 기록을 말합니다."
+        },
+        {
+          "term": "마일스톤(Milestone)",
+          "def": "그랜트 진행 과정에서 설정하는 중간 목표 시점을 말합니다."
+        },
+        {
+          "term": "EnumerableSet",
+          "def": "중복 없이 원소를 추가·삭제·열거할 수 있게 해 주는 OpenZeppelin의 자료구조입니다."
+        },
+        {
+          "term": "그랜트 매니저(Grant Manager)",
+          "def": "특정 그랜트의 등록 정보와 마일스톤, 수혜자, 지급 상태를 변경할 권한을 가진 주소입니다."
+        },
+        {
+          "term": "grantId",
+          "def": "id, chainid, community, 등록 시점을 해시해 만든 그랜트의 고유 식별자입니다."
+        }
+      ],
+      "meta": {
+        "title": "Grant Registry",
+        "description": "A cross-network registry contract to manage and track grants, enhancing transparency and  interoperability for grant programs.",
+        "status": "Draft",
+        "type": "Standards Track",
+        "category": "ERC",
+        "created": "2024-10-22",
+        "authors": [
+          "Guilherme Neves"
+        ],
+        "requires": [],
+        "discussionsTo": "https://ethereum-magicians.org/t/erc-7794-grant-registry/20791"
+      },
+      "sourceHash": "397b0ee6d3779ebb",
+      "model": "sonnet",
+      "generatedAt": "2026-11-15T17:03:11.099Z"
     },
     {
       "number": 7795,
@@ -57257,6 +58168,179 @@
       "generatedAt": "2026-11-15T16:35:35.912Z"
     },
     {
+      "number": 7847,
+      "titleKo": "소셜 미디어 포스트 NFT",
+      "topic": "NFT·멀티토큰",
+      "summary": "Nostr 방식의 서명된 이벤트를 NFT 메타데이터에 담아, 탈중앙화되고 검열에 저항하는 소셜 미디어 게시물을 블록체인에 영구히 발행할 수 있게 하는 표준입니다.",
+      "why": "기존 소셜 미디어는 중앙화된 플랫폼 서버에 게시물이 저장되어 운영사가 임의로 삭제·검열·조작할 수 있고, 계정이 정지되면 작성자가 자신의 글에 접근하지 못할 수도 있습니다. Nostr 같은 탈중앙 소셜 프로토콜이 등장했지만 이는 블록체인 바깥의 relay 서버에 의존해 영속성과 검열 저항이 relay 운영자의 선의에 좌우됩니다. 한편 블록체인에 게시물을 올리려는 시도들은 저마다 다른 컨트랙트 구조와 데이터 형식을 쓰기 때문에, 지갑이나 마켓플레이스가 이를 일반 NFT로만 인식하고 소셜 게시물로는 해석하지 못합니다. 표준화된 포맷이 없으면 서로 다른 프로젝트의 게시물을 하나의 피드로 모으거나, 작성자 서명으로 진위를 검증하는 공통 방법도 마련할 수 없습니다.",
+      "before": [
+        "게시물이 중앙 플랫폼 서버에만 저장되어 운영사가 삭제·검열할 수 있습니다.",
+        "게시물을 온체인에 올려도 표준 형식이 없어 지갑·마켓플레이스가 이를 소셜 게시물로 인식하지 못합니다.",
+        "작성자 서명과 내용이 분리돼 있어 제3자가 위조해도 검증할 공통 방법이 없습니다.",
+        "Nostr 등 기존 탈중앙 소셜 데이터를 이더리움 생태계로 가져올 표준 경로가 없습니다."
+      ],
+      "after": [
+        "게시물이 NFT로 발행되어 블록체인의 영속성과 검열 저항을 그대로 물려받습니다.",
+        "메타데이터의 attributes가 표준화되어 NFT를 보여주는 모든 지갑·마켓플레이스가 곧 발행 채널이 됩니다.",
+        "id와 sig로 게시물 내용과 작성자 서명을 검증할 수 있어 누구나 위조 여부를 확인할 수 있습니다.",
+        "Nostr 이벤트 구조를 그대로 매핑해 기존 탈중앙 소셜 데이터를 온체인으로 옮기거나 공개할 수 있습니다."
+      ],
+      "impact": [
+        {
+          "who": "지갑·마켓플레이스 개발자",
+          "text": "NFT를 표시하는 기존 인터페이스가 그대로 게시물 피드 뷰어 역할을 할 수 있습니다."
+        },
+        {
+          "who": "탈중앙 소셜 앱 개발자",
+          "text": "자체 스마트컨트랙트 집합 없이 NFT 표준만으로 검열 저항적 소셜 네트워크를 만들 수 있습니다."
+        },
+        {
+          "who": "일반 사용자(작성자)",
+          "text": "개인키로 직접 서명한 게시물을 소유하며 특정 플랫폼에 종속되지 않고 콘텐츠를 발행할 수 있습니다."
+        },
+        {
+          "who": "피드·타임라인 구축자",
+          "text": "공개된 온체인 데이터로 자체 알고리즘으로 피드를 구성할 수 있습니다."
+        }
+      ],
+      "iface": [
+        {
+          "sig": "event PubEvent(\n    bytes32 id,\n    bytes32 indexed pubkey,\n    uint256 created_at,\n    uint32 indexed kind,\n    string content,\n    string tags,\n    string sig,\n);",
+          "ko": "새 게시물이 생성될 때 발생하는 이벤트로, id·작성자 공개키·생성시간·종류·내용·태그·서명을 기록합니다."
+        },
+        {
+          "sig": "event PubEvent(\n    bytes32 id,\n    bytes32 indexed pubkey,\n    uint256 created_at,\n    uint32 indexed kind,\n    string content,\n    string tags,\n    string sig\n);",
+          "ko": "답글을 게시할 때도 동일한 PubEvent를 사용하며 kind는 역시 1이고 tags에 답글 관련 e·p 태그가 포함됩니다."
+        },
+        {
+          "sig": "function createPost(\n  uint256 tokenId,\n  string uri,\n  bytes32 id,\n  bytes32 pubkey,\n  uint256 created_at,\n  uint32 kind,\n  string content,\n  string tags,\n  string sig\n) public {\n\n  mint(tokenId, uri);\n  emit PubEvent(id, pubkey, created_at, kind, content, tags, sig);\n}",
+          "ko": "토큰을 민팅한 뒤 PubEvent를 emit해 게시물 발행을 알리는 참조 구현 함수입니다."
+        }
+      ],
+      "flow": {
+        "title": "게시물 생성부터 조회까지",
+        "steps": [
+          {
+            "label": "작성자",
+            "title": "키 생성과 서명",
+            "body": "32바이트 개인키로 공개키·생성시간·kind·태그·내용을 직렬화해 sha256으로 id를 만들고 secp256k1 Schnorr로 서명합니다."
+          },
+          {
+            "label": "작성자 또는 앱",
+            "title": "NFT 민팅",
+            "body": "id, pubkey, created_at, kind, content, tags, sig를 포함해 NFT를 발행하고 메타데이터 attributes에 같은 값을 기록합니다."
+          },
+          {
+            "label": "컨트랙트",
+            "title": "PubEvent 발생",
+            "body": "민팅과 동시에 PubEvent를 emit해 새 게시물이나 답글이 생성됐음을 온체인에 알립니다."
+          },
+          {
+            "label": "지갑·마켓플레이스·피드 앱",
+            "title": "조회와 피드 구성",
+            "body": "NFT 메타데이터를 읽어 id와 sig로 위조 여부를 검증하고, e·p·q 태그로 답글·리포스트 관계를 엮어 피드를 구성합니다."
+          }
+        ]
+      },
+      "deep": [
+        {
+          "title": "id 도출 규칙",
+          "body": "[0, pubkey(소문자 hex), created_at(유닉스초), kind(숫자), tags(문자열 배열의 배열), content(문자열)] 구조를 UTF-8 JSON으로 직렬화한 뒤 sha256한 값이 id입니다. 구현마다 다른 id가 나오지 않도록 앞뒤 공백 제거, 태그 내 공백은 단일 공백, content 안의 개행(\\n), 큰따옴표(\\\"), 백슬래시(\\\\), 캐리지리턴(\\r), 탭(\\t), 백스페이스(\\b), 폼피드(\\f)를 각각 이스케이프하는 규칙을 반드시 지켜야 합니다.",
+          "ref": "원문: To derive the id"
+        },
+        {
+          "title": "kind 값",
+          "body": "kind 0은 사용자 메타데이터로 content에 {name, about, picture} 형태의 JSON 문자열을 담으며 추가 필드도 넣을 수 있고, relay는 같은 pubkey의 새 이벤트가 오면 이전 것을 지울 수 있습니다. kind 1은 원본 콘텐츠(답글 포함)로 짧은 텍스트와 함께 다른 미디어·이벤트에 대한 온오프체인 참조를 포함할 수 있습니다. 리포스트는 kind 6입니다.",
+          "ref": "원문: Kinds, Reposts"
+        },
+        {
+          "title": "태그 시스템",
+          "body": "blockchain 태그(\"blockchain\", 체인명/id, 컨트랙트, token_id)는 권장 태그로, token_id는 민팅 전이라 모를 경우 생략할 수 있습니다. imeta 태그로 dim·url·m 값을 넣어 여러 미디어를 첨부하고, e 태그로 다른 게시물을 참조하고, p 태그로 관련 공개키들을 나열하고, r 태그로 외부 URL을 넣습니다.",
+          "ref": "원문: Tags"
+        },
+        {
+          "title": "메타데이터 JSON 매핑",
+          "body": "이벤트 필드는 NFT metadata의 attributes 배열에 trait_type/value 쌍으로 저장합니다. id, pubkey, created_at, kind, sig, content를 제외한 모든 attribute는 이벤트 태그로 간주됩니다. description은 content와 동일해야 하고, image·animation_url·external_url은 각각 imeta의 이미지, 멀티미디어, r 태그 참조와 연결됩니다.",
+          "ref": "원문: Metadata JSON"
+        },
+        {
+          "title": "키 생성과 서명",
+          "body": "개인키는 32바이트 hex 문자열이면 어떤 이더리움 개인키나 니모닉도 쓸 수 있고 openssl rand -hex 32 같은 명령으로도 만들 수 있습니다. 공개키는 비트코인 BIP 341(Taproot+Schnorr) 방식을 따르고, 서명은 secp256k1 곡선 위의 Schnorr 서명으로 개인키, 메시지, 임의의 nonce(k)로 공개 nonce(R), challenge(e), 서명(s)을 계산합니다. nostr-tools 같은 도구 사용이 권장됩니다.",
+          "ref": "원문: Generating Keys, Sign a post"
+        },
+        {
+          "title": "PubEvent와 참조 구조",
+          "body": "PubEvent(id, pubkey, created_at, kind, content, tags, sig)는 새 게시물과 답글 모두에 쓰이는 공통 이벤트입니다. 답글의 e 태그는 [event-id, relay-url, marker, pubkey] 형태로 marker가 \"reply\"·\"root\"·\"mention\"을 구분하고, p 태그는 답글 스레드에 관련된 공개키 목록을 담습니다. 쿼트 리포스트는 kind 1에 q 태그([event-id, relay-url, pubkey, blockchain-name-or-id])를 붙여 스레드 답글과 구분합니다.",
+          "ref": "원문: The PubEvent, The reply \"e\" tag, Quote Reposts"
+        },
+        {
+          "title": "ERC-721/1155와의 호환",
+          "body": "ERC-721에서는 각 게시물이 고유한 tokenId여야 하고, ERC-1155에서는 같은 tokenId가 여러 번 민팅되어도 하나의 게시물 이벤트만 나타내야 합니다. 기존 NFT 표준 위에 추가되는 방식이라 기존 NFT와 호환되며, 이 표준을 이해하는 클라이언트만 추가로 소셜 게시물로 해석합니다.",
+          "ref": "원문: Token Standards Compatibility, Backwards Compatibility"
+        },
+        {
+          "title": "아직 확정되지 않은 제안",
+          "body": "이 제안은 현재 Draft 상태로 아직 확정되지 않았으며, 세부 내용이 바뀌거나 논의가 멈출 수 있습니다.",
+          "ref": "원문: Preamble status"
+        }
+      ],
+      "safety": [
+        {
+          "title": "데이터 무결성",
+          "body": "id가 명시된 직렬화 규칙대로 정확히 도출돼야 위조를 막을 수 있습니다. NFT의 소유자가 누구인지는 서명이 올바르다면 게시물의 진위와는 무관합니다."
+        },
+        {
+          "title": "스팸과 모더레이션",
+          "body": "이 표준 위에 구축된 플랫폼은 자체적으로 모더레이션 계층, 차단목록, 평판 시스템을 마련해야 하며, 이는 이벤트 기반 소셜 미디어와 NFT 모두 누구나 콘텐츠를 만들 수 있기 때문입니다."
+        }
+      ],
+      "glossary": [
+        {
+          "term": "Nostr",
+          "def": "공개키·개인키 기반의 탈중앙 소셜 미디어 프로토콜로, 중앙 서버 없이 이벤트를 발행하고 중계합니다."
+        },
+        {
+          "term": "relay",
+          "def": "Nostr 생태계에서 이벤트를 전달·저장하는 중계 서버입니다."
+        },
+        {
+          "term": "Schnorr 서명",
+          "def": "secp256k1 곡선에서 개인키로 메시지에 서명하는 방식으로, 비트코인 Taproot에서도 쓰입니다."
+        },
+        {
+          "term": "sha256",
+          "def": "임의 길이 데이터를 32바이트 고정 길이 값으로 변환하는 해시 함수입니다."
+        },
+        {
+          "term": "kind",
+          "def": "이벤트의 종류를 나타내는 숫자로, 0은 사용자 메타데이터, 1은 원본 게시물(답글 포함), 6은 리포스트입니다."
+        },
+        {
+          "term": "outbox model",
+          "def": "이벤트 작성자의 '쓰기' relay에서 참조된 이벤트를 찾는 탈중앙 소셜 네트워크의 검색 방식입니다."
+        }
+      ],
+      "meta": {
+        "title": "Social Media NFTs",
+        "description": "Create a social media post or publication in the form of an NFT.",
+        "status": "Draft",
+        "type": "Standards Track",
+        "category": "ERC",
+        "created": "2024-12-18",
+        "authors": [
+          "Nick Juntilla"
+        ],
+        "requires": [
+          721,
+          1155
+        ],
+        "discussionsTo": "https://ethereum-magicians.org/t/erc-7847-social-media-nfts/22280"
+      },
+      "sourceHash": "9887e19c7fd505e6",
+      "model": "sonnet",
+      "generatedAt": "2026-11-15T16:47:43.510Z"
+    },
+    {
       "number": 7857,
       "titleKo": "비공개 메타데이터 AI 에이전트 NFT",
       "topic": "NFT·멀티토큰",
@@ -57693,6 +58777,198 @@
       "generatedAt": "2026-11-10T14:40:01.109Z"
     },
     {
+      "number": 7861,
+      "titleKo": "ERC-721 검증가능 자격증명 확장",
+      "topic": "NFT·멀티토큰",
+      "summary": "ERC-721 NFT에 발급자, 자격증명 종류, 암호화·검증 방법을 컬렉션 단위로 명시하고 개별 NFT의 자격증명 위치와 폐기 여부를 표준 방식으로 조회할 수 있는 확장입니다.",
+      "why": "ERC-721 컬렉션들이 신원증명, 학력증명 같은 검증 가능한 자격증명(Verifiable Credential)을 NFT에 연결하려 할 때, 저장 위치, 암호화 여부, 검증 방법, 폐기 여부를 확인하는 방식이 컬렉션마다 제각각이었습니다. 이 때문에 지갑이나 검증 서비스 같은 제3자 플랫폼은 자격증명을 다루는 컬렉션마다 개별 통합 로직을 새로 만들어야 했습니다. 자격증명은 신원이나 학력처럼 민감한 정보를 담는 경우가 많은데, 암호화 상태와 검증 방법을 미리 알 수 없으면 안전하게 다루기 어렵고 폐기된 자격증명을 표준 방법으로 구분할 수 없어 신뢰성 있는 활용과 실시간 추적이 힘들었습니다.",
+      "before": [
+        "자격증명 저장 위치·암호화·검증 방법을 컬렉션마다 다르게 정의해 제3자가 매번 개별 대응해야 함",
+        "자격증명이 폐기됐는지 확인할 표준 방법이 없음",
+        "발급·폐기 이력을 추적할 공통 이벤트가 없어 실시간 모니터링이 어려움"
+      ],
+      "after": [
+        "issuer(), credentialType()로 컬렉션의 발급자와 자격증명 종류를 표준 방식으로 조회",
+        "credentialURI()로 개별 자격증명의 오프체인 위치 확인",
+        "isRevoked()로 폐기 여부를 표준 방식으로 확인",
+        "CredentialIssued/CredentialRevoked 이벤트로 발급·폐기 생애주기를 실시간 추적"
+      ],
+      "impact": [
+        {
+          "who": "사용자",
+          "text": "자신의 지갑에 있는 NFT가 신원·학력 등 자격증명임을 표준 방식으로 제시할 수 있습니다."
+        },
+        {
+          "who": "지갑",
+          "text": "표준 함수로 자격증명 NFT를 식별하고 암호화·검증 정보를 안내할 수 있습니다."
+        },
+        {
+          "who": "앱·컨트랙트 개발자",
+          "text": "컬렉션마다 다른 통합 로직을 새로 만들지 않고 공통 인터페이스로 자격증명을 검증할 수 있습니다."
+        },
+        {
+          "who": "자격증명 발급기관",
+          "text": "발급과 폐기 생애주기를 온체인 이벤트로 투명하게 관리할 수 있습니다."
+        }
+      ],
+      "iface": [
+        {
+          "sig": "event CredentialIssued(uint256 indexed tokenId, address indexed to);",
+          "ko": "새 자격증명이 발급될 때 발생하는 이벤트입니다."
+        },
+        {
+          "sig": "event CredentialRevoked(uint256 indexed tokenId);",
+          "ko": "자격증명이 폐기될 때 발생하는 이벤트입니다."
+        },
+        {
+          "sig": "function issuer() external view returns (string memory);",
+          "ko": "자격증명 컬렉션의 발급자 DID 또는 주소를 반환합니다."
+        },
+        {
+          "sig": "function credentialType() external view returns (string memory);",
+          "ko": "컬렉션에 속한 자격증명의 종류를 반환합니다."
+        },
+        {
+          "sig": "function encryptionMethod() external view returns (string memory);",
+          "ko": "자격증명의 암호화 방법을 반환하며, 암호화되지 않았으면 빈 문자열을 반환합니다."
+        },
+        {
+          "sig": "function verificationMethod() external view returns (string memory);",
+          "ko": "자격증명의 증명을 검증하는 방법을 반환합니다."
+        },
+        {
+          "sig": "function credentialURI(uint256 tokenId) external view returns (string memory);",
+          "ko": "해당 NFT의 자격증명 위치를 가리키는 URI를 반환합니다."
+        },
+        {
+          "sig": "function isRevoked(uint256 tokenId) external view returns (bool);",
+          "ko": "해당 자격증명이 폐기되었는지 여부를 반환합니다."
+        }
+      ],
+      "flow": {
+        "title": "자격증명 발급부터 검증까지",
+        "steps": [
+          {
+            "label": "발급자",
+            "title": "자격증명 NFT 발급",
+            "body": "NFT를 사용자에게 발급하고 CredentialIssued 이벤트를 발생시킵니다."
+          },
+          {
+            "label": "사용자",
+            "title": "자격증명 위치 확인",
+            "body": "credentialURI()로 자격증명 데이터의 저장 위치를 확인하고 암호화된 경우 필요시 복호화합니다."
+          },
+          {
+            "label": "검증자",
+            "title": "진위 확인",
+            "body": "verificationMethod()로 자격증명의 진위를 검증하고 isRevoked()로 폐기 여부를 확인합니다."
+          },
+          {
+            "label": "발급자",
+            "title": "자격증명 폐기",
+            "body": "필요시 NFT를 소각해 폐기 처리하고 CredentialRevoked 이벤트로 상태 변경을 알립니다."
+          }
+        ]
+      },
+      "deep": [
+        {
+          "title": "컬렉션 단위 발급자·종류 정보",
+          "body": "issuer()와 credentialType()은 컬렉션 전체에 공유되는 속성으로, 모든 토큰에 공통으로 적용되는 발급자와 자격증명 종류를 한 번에 관리할 수 있습니다. issuer()가 빈 문자열이면 발급자가 없다는 뜻입니다.",
+          "ref": "원문: Specification - Overview"
+        },
+        {
+          "title": "credentialURI로 오프체인 위치 지정",
+          "body": "credentialURI(tokenId)는 ERC-721의 tokenURI와 비슷하게, 개별 자격증명의 저장 위치를 가리킵니다. IPFS 같은 공개 저장소나 접근 제어가 있는 커스텀 저장소를 가리킬 수 있습니다. tokenId가 유효하지 않은 NFT면 호출이 실패해야 하며 다른 방식으로 자격증명을 조회하는 구현이라면 빈 문자열을 반환해야 합니다.",
+          "ref": "원문: Interface"
+        },
+        {
+          "title": "encryptionMethod와 복호화 흐름",
+          "body": "encryptionMethod()는 암호화되지 않은 경우에만, 그리고 반드시 빈 문자열을 반환해야 합니다. 암호화된 경우에는 암호화 방법 이름만 반환하는 것이 권장되며 복호화에 필요한 추가 정보는 별도 함수나 컨트랙트 메타데이터로 따로 제공될 수 있습니다. 복호화 과정에는 사용자 지갑 서명 등 동의 절차가 포함될 수 있습니다.",
+          "ref": "원문: Overview, Interface"
+        },
+        {
+          "title": "verificationMethod와 진위 검증",
+          "body": "verificationMethod()는 자격증명의 진위와 무결성을 검증하는 방법을 반환합니다. 반환값의 형식은 구현자가 정하지만 W3C의 verification method 개념과 호환되는 것이 권장됩니다. 영지식증명을 쓰는 경우 자격증명 전체를 공개하지 않고도 특정 질의만 검증할 수 있습니다.",
+          "ref": "원문: Interface, Overview"
+        },
+        {
+          "title": "isRevoked와 폐기 처리",
+          "body": "isRevoked(tokenId)는 폐기되지 않았으면 false, 폐기되었으면 true를 반환해야 하며 존재하지 않는 자격증명에는 true를 반환할 수 있습니다. 폐기 구현은 의무가 아니며 NFT를 소각하는 방식, 컨트랙트 내 별도 구조, 또는 오프체인 폐기 목록으로 구현할 수 있습니다. 소각 방식이라면 NFT가 소각되지 않았다는 사실만으로 유효성이 확인됩니다.",
+          "ref": "원문: Interface, Overview"
+        },
+        {
+          "title": "이벤트를 통한 생애주기 추적",
+          "body": "CredentialIssued와 CredentialRevoked는 해당 작업이 수행될 때 발생할 수 있으며(MAY) 오프체인 시스템은 이 이벤트로 자격증명 상태를 효율적으로 실시간 모니터링할 수 있습니다. 이벤트 발생이 의무는 아니지만 생애주기 추적을 위해 권장됩니다.",
+          "ref": "원문: Interface, Motivation"
+        },
+        {
+          "title": "ERC-165 지원과 ERC-721 호환성",
+          "body": "supportsInterface는 0x7861069로 호출될 때 true를 반환해야 합니다. 이 표준은 ERC-721의 기존 기능을 변경하지 않고 새 함수만 추가하므로 기존 ERC-721 컨트랙트와 완전히 호환됩니다.",
+          "ref": "원문: Interface, Backwards Compatibility"
+        },
+        {
+          "title": "아직 Draft 단계인 제안",
+          "body": "이 표준은 현재 Draft 상태이며 Rationale 섹션도 아직 작성되지 않았습니다. 함수 구성이나 세부 규칙이 앞으로 바뀌거나 논의가 멈출 수 있습니다.",
+          "ref": "원문: 상태(Draft)"
+        }
+      ],
+      "safety": [
+        {
+          "title": "엄격한 접근 제어 필요",
+          "body": "자격증명을 발급하거나 폐기할 수 있는 권한과, 발급자·종류 같은 컬렉션 속성을 설정하는 권한에 엄격한 접근 제어를 적용해 컬렉션 정보의 무결성을 지켜야 합니다."
+        },
+        {
+          "title": "양도 불가 처리 권장",
+          "body": "자격증명의 진위를 유지하고 무단 전송을 막기 위해 자격증명 NFT는 전송이 불가능하도록 전송 함수를 재정의하는 것이 좋습니다."
+        },
+        {
+          "title": "credentialURI에 민감정보 노출 금지",
+          "body": "credentialURI는 누구나 조회할 수 있으므로 민감한 정보를 직접 담으면 안 됩니다. 민감한 데이터는 암호화해 오프체인에 저장하고 credentialURI는 그 암호화된 데이터의 위치만 가리켜야 합니다."
+        }
+      ],
+      "glossary": [
+        {
+          "term": "검증 가능 자격증명(Verifiable Credential)",
+          "def": "신뢰할 수 있는 기관이 발급한 주장을 담은, 위조를 확인할 수 있고 검증 가능한 디지털 인증서입니다."
+        },
+        {
+          "term": "DID",
+          "def": "탈중앙화된 방식으로 신원을 나타내는 식별자로, 이 표준에서는 발급자를 가리키는 값으로 쓰일 수 있습니다."
+        },
+        {
+          "term": "영지식증명(ZK proof)",
+          "def": "자격증명 내용을 전부 공개하지 않고도 특정 사실만 증명할 수 있게 하는 암호 기법입니다."
+        },
+        {
+          "term": "선택적 공개(Selective Disclosure)",
+          "def": "자격증명에 담긴 정보 중 필요한 일부만 골라서 공개하는 기법입니다."
+        },
+        {
+          "term": "검증 방법(Verification Method)",
+          "def": "자격증명의 증명이 진짜인지 확인하는 데 쓰이는 W3C의 개념으로, 이 표준의 verificationMethod()가 이를 가리킵니다."
+        }
+      ],
+      "meta": {
+        "title": "ERC-721 Verifiable Credential Extension",
+        "description": "An extension to ERC-721 that adds collection-wide verifiable credential properties, this allows native support for onchain credentials.",
+        "status": "Draft",
+        "type": "Standards Track",
+        "category": "ERC",
+        "created": "2025-01-14",
+        "authors": [
+          "Valerio Massimo Camaiani"
+        ],
+        "requires": [
+          165,
+          721
+        ],
+        "discussionsTo": "https://ethereum-magicians.org/t/erc-721-verifiable-credential-extension/22562"
+      },
+      "sourceHash": "f1200199eb43af3e",
+      "model": "sonnet",
+      "generatedAt": "2026-11-15T16:53:08.719Z"
+    },
+    {
       "number": 7866,
       "titleKo": "탈중앙 사용자 프로필",
       "topic": "이름·메타데이터",
@@ -57883,6 +59159,169 @@
       "generatedAt": "2026-11-14T14:27:36.033Z"
     },
     {
+      "number": 7876,
+      "titleKo": "DApp용 통합 네트워크 설정",
+      "topic": "기타",
+      "summary": "DApp이 이더리움 호환 네트워크의 RPC, 네이티브 화폐, 컨트랙트 주소, 블록 탐색기 정보를 하나의 JSON 포맷으로 통일해 관리하도록 하는 설정 표준입니다.",
+      "why": "DApp은 여러 이더리움 호환 네트워크를 지원하지만, 네트워크 설정을 각자 다른 형식으로 정의하는 경우가 많습니다. 이 때문에 네트워크 간 상호운용성과 설정 공유가 어려워집니다. 네트워크 운영자가 자신의 체인을 여러 DApp에 일관되게 지원시키려 해도, 스마트컨트랙트 개발자가 주소나 ABI 변경을 여러 플랫폼에 전달하려 해도, 조직 내부에서 iOS와 Android 등 여러 플랫폼의 설정을 통일하려 해도 표준이 없으면 매번 새로운 포맷을 설계해야 합니다. 또한 체인마다 고유한 기능을 표현할 표준 필드가 없으면 네트워크는 외부 저장소에 별도로 커스텀 설정을 보관해야 하므로 통합 관리가 더 어려워집니다.",
+      "before": [
+        "네트워크마다 DApp이 제각각 형식으로 RPC, 익스플로러, 컨트랙트 주소를 정의합니다.",
+        "플랫폼(iOS, Android)마다 설정을 따로 유지해야 합니다.",
+        "체인 고유 기능을 표현할 표준 필드가 없어 외부 저장소에 따로 보관합니다.",
+        "컨트랙트 주소나 ABI 변경이 플랫폼마다 따로 전달됩니다."
+      ],
+      "after": [
+        "하나의 JSON 포맷으로 모든 EVM 호환 네트워크 정보를 표현합니다.",
+        "체인ID를 키로 사용해 네트워크를 고유하게 식별합니다.",
+        "문서화되지 않은 필드는 무시하도록 해 체인별 확장 필드를 안전하게 추가할 수 있습니다.",
+        "네트워크 운영자, 컨트랙트 개발자, DApp 개발자가 같은 포맷을 공유해 설정을 빠르게 전파합니다."
+      ],
+      "impact": [
+        {
+          "who": "DApp 개발자",
+          "text": "여러 네트워크 설정을 하나의 표준 포맷으로 통합 관리할 수 있습니다."
+        },
+        {
+          "who": "네트워크 운영자",
+          "text": "자신의 체인이 다양한 DApp에 일관되게 지원되도록 설정을 배포할 수 있습니다."
+        },
+        {
+          "who": "스마트컨트랙트 개발자",
+          "text": "컨트랙트 주소와 ABI 변경을 여러 플랫폼에 일관되게 전달할 수 있습니다."
+        },
+        {
+          "who": "지갑, 탐색기 서비스",
+          "text": "표준화된 익스플로러 URL 패턴을 활용해 주소, 트랜잭션, NFT 링크를 생성할 수 있습니다."
+        }
+      ],
+      "iface": [],
+      "flow": {
+        "title": "설정 활용 흐름",
+        "steps": [
+          {
+            "label": "네트워크 운영자, 컨트랙트 개발자",
+            "title": "설정 파일 작성",
+            "body": "RPC, 네이티브 화폐, 컨트랙트 주소, 익스플로러 정보를 담은 JSON 설정 파일을 version과 timestamp와 함께 작성합니다."
+          },
+          {
+            "label": "DApp",
+            "title": "설정 로드",
+            "body": "DApp이 이 JSON을 읽어 networks 객체의 체인ID 키로 필요한 네트워크 정보를 찾습니다."
+          },
+          {
+            "label": "DApp",
+            "title": "필드 사용",
+            "body": "rpcs의 url로 노드에 연결하고, contracts의 address와 abiUrl로 컨트랙트를 불러오며, explorers의 상대 경로에 :address, :tx 같은 매개변수를 채워 링크를 만듭니다."
+          },
+          {
+            "label": "DApp",
+            "title": "확장 필드 처리",
+            "body": "문서화되지 않은 속성은 무시하거나 가능하면 해석하여, API 키나 ERC-1967 프록시 정보 같은 체인별 확장을 깨지지 않게 수용합니다."
+          }
+        ]
+      },
+      "deep": [
+        {
+          "title": "최상위 Configuration 구조",
+          "body": "최상위 Configuration 객체는 version(semver 형식 버전), timestamp(ISO 8601 형식 갱신 시각), summary(설정에 대한 짧은 요약), description(상세 설명), abiRoot(ABI가 외부에 호스팅된 경우의 루트 URL, 없으면 null), networks(체인ID를 키로 하는 NetworkConfig 레코드)로 구성됩니다. 설정 전체는 JSON 객체를 사용해야 하며(MUST), 들여쓰기는 공백 2칸을 권장합니다(RECOMMENDED).",
+          "ref": "원문: Specification, Interface definition"
+        },
+        {
+          "title": "NetworkConfig 필드",
+          "body": "각 네트워크는 NetworkConfig로 표현됩니다. name(네트워크 이름), testnet(테스트넷 여부를 나타내는 불리언), nativeCurrency(name, symbol, decimals로 구성된 네이티브 화폐 정보), relations(다른 네트워크와의 관계), rpcs(노드 이름을 키로 하는 RpcConfig 레코드), explorers(블록 탐색기 레코드), contracts(컨트랙트 이름을 키로 하는 ContractConfig 레코드, 값은 미배포 시 null)를 포함합니다. 네트워크의 고유 식별자로는 네트워크 이름이 아니라 체인ID를 키로 사용합니다.",
+          "ref": "원문: Specification, NetworkConfig"
+        },
+        {
+          "title": "ContractConfig와 컨트랙트 규칙",
+          "body": "ContractConfig는 address(체크섬 주소, MUST), abiUrl(ABI JSON 파일 경로, abiRoot 기준 상대경로 또는 절대경로 가능, 없거나 null이면 ABI 불명), blockCreated(배포된 블록 번호)로 구성됩니다. 설정에 나열하는 컨트랙트는 필요한 범위로 한정해야 하며(SHOULD), 같은 이름의 컨트랙트는 모든 네트워크에서 이름이 일관되어야 합니다(MUST). 바이트코드는 네트워크마다 다를 수 있지만 같은 컨트랙트의 다른 버전을 나타내야 하며(SHOULD), 차이는 커스텀 속성이나 다른 abiUrl로 전달합니다. ABI를 설정 안에 직접 인라인하는 것은 금지되며(MUST NOT), 컨트랙트가 미배포된 네트워크는 값을 null로 명시해야 합니다(MUST). 블록 탐색기에서 바이트코드가 검증된 경우 컨트랙트 이름은 Solidity 소스 코드의 이름과 일치시키는 것이 권장됩니다(RECOMMENDED).",
+          "ref": "원문: Contracts"
+        },
+        {
+          "title": "ExplorerConfig와 RpcConfig",
+          "body": "ExplorerConfig는 root(탐색기 루트 URL), block, address, tx, nft(각각 root에 대한 상대 경로, 해당 기능이 없으면 null)로 구성됩니다. 상대 경로에는 :block, :address, :tx, :token 같은 자리표시자를 포함해야 하며(MUST), 이를 실제 값으로 치환해 링크를 만듭니다. RpcConfig는 url 하나만 가진 단순한 구조로, 여러 노드를 rpcs 레코드의 서로 다른 키(예: main, backup)로 등록할 수 있습니다.",
+          "ref": "원문: Specification, ExplorerConfig, RpcConfig"
+        },
+        {
+          "title": "확장(Extensions) 규칙",
+          "body": "문서화되지 않은 속성은 구현체가 무시하거나 가능한 경우 해석을 지원해야 합니다(MUST). 이를 통해 호환성을 깨지 않고 설정을 확장할 수 있습니다. 새 속성은 새로운 기능을 지원하는 데 쓰여야 하지만(SHOULD) 기존 속성의 기본 타입을 바꾸거나 확장해서는 안 됩니다(MUST NOT). 확장에서 유니온 타입은 쓰지 않아야 하며(SHOULD NOT), blockCreated를 숫자 대신 16진수 문자열로 바꾸는 것이 잘못된 확장의 예로 제시됩니다. 확장은 모든 설정 레이어에서 속성을 추가할 수 있는 유연한 구조(예: documentationUrls: string[] 대신 documentation: { url: string }[])를 사용해야 합니다(SHOULD).",
+          "ref": "원문: Extensions"
+        },
+        {
+          "title": "체인ID 사용과 EIP-3085 호환성",
+          "body": "이 표준은 네트워크의 고유 식별자로 임의의 이름 대신 체인ID를 사용합니다. 체인ID는 이더리움 명세에 포함되어 전역적으로 인식되고 충돌이 없어 기존 툴링과의 상호운용성을 높이기 때문입니다. 또한 이 표준은 지갑의 Add Ethereum Chain 요청을 다루는 EIP-3085와 가능한 한 호환되도록 설계되었지만, EIP-3085의 경직된 구조가 향후 확장을 제한하는 지점에서는 확장성을 우선해 다르게 설계되었습니다.",
+          "ref": "원문: Rationale, Backwards Compatibility"
+        },
+        {
+          "title": "표준의 현재 상태",
+          "body": "이 표준은 현재 Draft 상태이며 requires로 EIP-55(체크섬 주소)를 명시하고 있습니다. Draft 상태이므로 세부 필드나 규칙이 앞으로 바뀌거나 논의가 중단될 수 있는 제안입니다.",
+          "ref": "원문: 머리말(status, requires)"
+        }
+      ],
+      "safety": [
+        {
+          "title": "공개 정보만 포함",
+          "body": "설정에는 블록 탐색기 등 공개 도구로 이미 확인 가능한 정보만 담아야 하며(SHOULD), 민감하거나 비공개인 정보를 포함할 경우 추가 보호 장치를 적용해야 합니다(MUST)."
+        },
+        {
+          "title": "API 키 노출 시 주의사항",
+          "body": "API 키를 포함할 때는 특정 동작이나 컨트랙트 주소로 범위를 제한하고 IP 제한, 시간당 요청 한도 같은 처리율 제한을 적용하는 것이 권장됩니다(SHOULD). API 키를 공개 배포 설정에 노출해서는 안 되며(MUST NOT), 조직 내부에서는 환경변수 등 안전한 방식으로 관리해야 합니다."
+        },
+        {
+          "title": "민감 정보 포함 금지",
+          "body": "개인키, 지갑 복구 문구(니모닉) 등 보안이나 개인정보를 침해할 수 있는 정보는 설정에 포함해서는 안 됩니다(MUST NOT)."
+        },
+        {
+          "title": "기존 보안 관행과의 호환",
+          "body": "이 표준은 블록 탐색기를 통한 공개 데이터 검증, JSON 스키마 검증, ABI 체크섬 검증 같은 기존 이더리움 생태계의 보안 관행과 호환되어 전체적인 보안 위험이 낮다고 설명합니다."
+        }
+      ],
+      "glossary": [
+        {
+          "term": "RPC",
+          "def": "지갑이나 DApp이 이더리움 노드와 통신해 블록체인 데이터를 읽고 트랜잭션을 보내는 데 쓰는 통신 규약입니다."
+        },
+        {
+          "term": "ABI",
+          "def": "스마트컨트랙트의 함수와 이벤트 구조를 정의한 JSON 형식의 인터페이스 명세입니다."
+        },
+        {
+          "term": "체크섬 주소",
+          "def": "대소문자 조합으로 인코딩해 오타를 검출할 수 있게 만든 이더리움 주소 표기법(EIP-55)입니다."
+        },
+        {
+          "term": "체인ID",
+          "def": "이더리움 호환 네트워크를 서로 구분하는 고유한 숫자 식별자입니다."
+        },
+        {
+          "term": "니모닉",
+          "def": "지갑을 복구할 때 쓰는 단어 조합으로 이루어진 복구 문구입니다."
+        },
+        {
+          "term": "프록시 컨트랙트",
+          "def": "실제 로직을 별도의 구현 컨트랙트에 위임해 나중에 교체할 수 있게 만든 업그레이드 가능한 컨트랙트 구조(ERC-1967)입니다."
+        }
+      ],
+      "meta": {
+        "title": "Ethereum Network Configuration for DApps",
+        "description": "EVM-compatible network configuration specification for DApps supporting any custom network features through extensions.",
+        "status": "Draft",
+        "type": "Standards Track",
+        "category": "ERC",
+        "created": "2025-01-03",
+        "authors": [
+          "Bogdan Gusiev",
+          "Sergey Bomko"
+        ],
+        "requires": [
+          55
+        ],
+        "discussionsTo": "https://ethereum-magicians.org/t/eip-7876-unified-network-configuration/22763"
+      },
+      "sourceHash": "9ee9a791198808d6",
+      "model": "sonnet",
+      "generatedAt": "2026-11-15T16:58:39.876Z"
+    },
+    {
       "number": 7878,
       "titleKo": "상속 가능한 컨트랙트",
       "topic": "토큰",
@@ -58056,6 +59495,325 @@
       "sourceHash": "af1e862c981a2fc0",
       "model": "fable",
       "generatedAt": "2026-11-10T14:21:29.997Z"
+    },
+    {
+      "number": 7887,
+      "titleKo": "토큰화 금고 요청 취소 기능",
+      "topic": "금고·DeFi",
+      "summary": "ERC-7540 비동기 토큰화 금고에서 대기 중인 예치나 상환 요청을 취소하고, 취소된 자산이나 지분을 돌려받을 수 있게 하는 확장 표준입니다.",
+      "why": "ERC-7540 비동기 금고에 예치나 상환을 요청하면 자산이나 지분이 Pending 상태로 묶입니다. 장기 실물자산(real-world assets) 풀에서 상환하는 경우처럼 처리까지 오랜 시간이 걸릴 수 있는데, 기존 ERC-7540에는 이 요청을 되돌릴 방법이 없습니다. 사용자가 생각을 바꾸거나 처리가 지연되어도 자산을 빼낼 수 없어 자금이 장기간 묶이는 문제가 생깁니다. 이 표준은 요청을 취소하고 그 결과를 청구하는 절차를 추가해 이 문제를 해결합니다.",
+      "before": [
+        "예치나 상환 요청이 Pending 상태가 되면 취소할 방법이 없습니다",
+        "장기 실물자산 상환처럼 처리가 오래 걸리면 자산이나 지분이 그만큼 묶입니다",
+        "통합 서비스가 취소 가능 여부나 취소 상태를 표준적으로 확인할 방법이 없습니다"
+      ],
+      "after": [
+        "cancelDepositRequest, cancelRedeemRequest로 대기 중인 요청의 취소를 요청할 수 있습니다",
+        "취소 요청도 Pending, Claimable, Claimed 단계를 거쳐 상태를 추적할 수 있습니다",
+        "claimCancelDepositRequest, claimCancelRedeemRequest로 취소된 자산이나 지분을 직접 받을 수 있습니다",
+        "ERC-165의 supportsInterface로 금고가 취소 기능을 지원하는지 미리 확인할 수 있습니다"
+      ],
+      "impact": [
+        {
+          "who": "금고 이용자",
+          "text": "처리가 지연되거나 마음이 바뀐 경우 요청을 취소하고 자산이나 지분을 돌려받을 수 있습니다"
+        },
+        {
+          "who": "금고(vault) 개발자",
+          "text": "ERC-7540 위에 취소 관련 함수와 이벤트, ERC-165 인터페이스 ID를 추가로 구현해야 합니다"
+        },
+        {
+          "who": "지갑·앱 개발자",
+          "text": "취소 요청 제출부터 청구까지 이어지는 표준화된 플로우를 만들 수 있습니다"
+        },
+        {
+          "who": "통합 서비스(integrator)",
+          "text": "supportsInterface로 완전 비동기, 부분 비동기, 완전 동기(ERC-4626) 금고를 한 컨트랙트에서 구분해 처리할 수 있습니다"
+        }
+      ],
+      "iface": [],
+      "flow": {
+        "title": "예치 취소 요청의 생명주기",
+        "steps": [
+          {
+            "label": "사용자",
+            "title": "취소 요청 제출",
+            "body": "cancelDepositRequest(requestId, controller)를 호출합니다. pendingCancelDepositRequest가 true가 되고, 이 controller의 신규 예치 요청은 차단됩니다."
+          },
+          {
+            "label": "금고",
+            "title": "내부적으로 취소 처리",
+            "body": "금고 내부에서 취소를 처리해 pendingCancelDepositRequest를 false로, claimableCancelDepositRequest를 취소된 assets만큼 늘립니다."
+          },
+          {
+            "label": "사용자",
+            "title": "취소 청구",
+            "body": "claimCancelDepositRequest(requestId, receiver, controller)를 호출해 claimableDepositRequest를 줄이고 assets를 receiver가 받습니다."
+          }
+        ]
+      },
+      "deep": [
+        {
+          "title": "취소 요청의 세 단계",
+          "body": "취소 요청은 제출 후 Pending, Claimable, Claimed 세 단계를 거칩니다. cancelDepositRequest 또는 cancelRedeemRequest를 호출하면 pendingCancelCancelDepositRequest 또는 pendingCancelRedeemRequest가 true가 되어 Pending 상태가 됩니다. 금고가 내부적으로 취소를 처리하면 claimableCancelDepositRequest 또는 claimableCancelRedeemRequest가 해당 금액만큼 늘어나 Claimable 상태가 됩니다. 이후 claimCancelDepositRequest 또는 claimCancelRedeemRequest를 호출해야 비로소 Claimed 상태가 되며 자산이나 지분이 이동합니다. Claim 단계는 건너뛸 수 없고, 같은 블록 안에서도 취소 호출과 청구 호출을 반드시 따로 해야 합니다. 금고가 먼저 토큰을 사용자에게 밀어 보내는 것(push)은 금지되며 사용자가 직접 당겨 받는 것(pull)만 허용됩니다. 다만 동기식 취소 흐름이라면 Pending을 거치지 않고 곧바로 Claimable로 넘어갈 수 있습니다.",
+          "ref": "원문: Cancelation Lifecycle"
+        },
+        {
+          "title": "취소 중에는 신규 요청이 차단됩니다",
+          "body": "예치 취소 요청이 Pending 상태인 동안에는 같은 controller의 새로운 requestDeposit 호출이 반드시 revert되어야 합니다. 상환 취소 요청이 Pending인 동안에도 새로운 requestRedeem 호출은 마찬가지로 revert됩니다. 이 규칙은 취소가 대기 중인 상태에서 새 요청이 동시에 들어오는 복잡한 상태 조합을 아예 막기 위한 것으로, 통합 서비스가 금고의 현재 상태를 읽기 쉽게 만드는 데 목적이 있습니다.",
+          "ref": "원문: Methods, Rationale"
+        },
+        {
+          "title": "controller와 operator 권한",
+          "body": "cancelDepositRequest, claimCancelDepositRequest, cancelRedeemRequest 호출에서 controller는 반드시 msg.sender와 같아야 하며, 다른 주소가 대신 호출하려면 controller가 그 주소를 operator로 승인해 두어야 합니다. claimCancelRedeemRequest의 입력 파라미터 이름은 owner이지만 본문 설명에서는 동일하게 controller가 msg.sender와 같거나 승인된 operator여야 한다고 규정합니다.",
+          "ref": "원문: Methods"
+        },
+        {
+          "title": "네 가지 이벤트",
+          "body": "CancelDepositRequest는 cancelDepositRequest 호출 시, CancelDepositClaim은 claimCancelDepositRequest 호출로 자산을 청구할 때 발생합니다. 마찬가지로 CancelRedeemRequest는 cancelRedeemRequest 호출 시, CancelRedeemClaim은 claimCancelRedeemRequest 호출로 지분을 청구할 때 발생합니다. 각 이벤트는 controller와 requestId를 기록하고, Claim 이벤트는 추가로 receiver와 실제 전달된 assets 또는 shares 수량을 기록합니다. sender는 실제로 함수를 호출한 주소로 controller와 다를 수 있습니다.",
+          "ref": "원문: Events"
+        },
+        {
+          "title": "ERC-165 인터페이스 식별자",
+          "body": "이 표준을 구현하는 컨트랙트는 ERC-165의 supportsInterface를 반드시 구현해야 합니다. 취소 기능이 있는 비동기 예치 금고는 interfaceID 0x8bf840e3에 대해 true를 반환해야 하고, 취소 기능이 있는 비동기 상환 금고는 0xe76cffc7에 대해 true를 반환해야 합니다. ERC-7540 자체가 완전 비동기, 부분 비동기, 완전 동기 흐름을 선택적으로 허용하기 때문에, 이 식별자로 통합 서비스가 하나의 컨트랙트가 어떤 흐름을 지원하는지 구분할 수 있습니다.",
+          "ref": "원문: ERC-165 support, Rationale"
+        },
+        {
+          "title": "ERC-7540과의 하위 호환성",
+          "body": "이 인터페이스는 ERC-7540과 완전히 하위 호환됩니다. 기존 ERC-7540 금고에 취소 관련 함수와 이벤트를 추가하는 형태이므로, 취소 기능을 지원하지 않는 기존 금고의 동작을 바꾸지 않습니다.",
+          "ref": "원문: Backwards Compatibility"
+        },
+        {
+          "title": "아직 Draft 상태인 제안입니다",
+          "body": "이 문서는 현재 상태가 Draft로, 아직 내용이 바뀌거나 중단될 수 있는 제안 단계입니다.",
+          "ref": "원문: 헤더(status)"
+        }
+      ],
+      "safety": [],
+      "glossary": [
+        {
+          "term": "Pending",
+          "def": "요청이 제출되어 아직 처리되지 않은 대기 상태입니다."
+        },
+        {
+          "term": "Claimable",
+          "def": "처리가 끝나 사용자가 결과를 청구할 수 있는 상태입니다."
+        },
+        {
+          "term": "controller",
+          "def": "요청으로 생긴 자산이나 지분을 받을 권한을 가진 주소입니다."
+        },
+        {
+          "term": "operator",
+          "def": "controller가 자신을 대신해 요청이나 청구를 호출하도록 승인한 다른 주소입니다."
+        },
+        {
+          "term": "ERC-7540",
+          "def": "예치와 상환을 비동기로 처리할 수 있게 하는 토큰화 금고 표준으로, 이 문서가 확장하는 대상입니다."
+        },
+        {
+          "term": "ERC-165",
+          "def": "컨트랙트가 어떤 인터페이스를 지원하는지 조회할 수 있게 하는 표준입니다."
+        }
+      ],
+      "meta": {
+        "title": "Cancelation for ERC-7540 Tokenized Vaults",
+        "description": "Extension of ERC-7540 with cancelation support",
+        "status": "Draft",
+        "type": "Standards Track",
+        "category": "ERC",
+        "created": "2025-02-18",
+        "authors": [
+          "Jeroen Offerijns",
+          "Vikram Arun"
+        ],
+        "requires": [
+          165,
+          7540
+        ],
+        "discussionsTo": "https://ethereum-magicians.org/t/erc-7887-cancelation-for-erc-7540-tokenized-vaults/22906"
+      },
+      "sourceHash": "a4011f8a54d5f2b0",
+      "model": "sonnet",
+      "generatedAt": "2026-11-15T17:02:02.500Z"
+    },
+    {
+      "number": 7891,
+      "titleKo": "계층형 NFT 분할·병합 표준",
+      "topic": "NFT·멀티토큰",
+      "summary": "하나의 NFT를 여러 자식 NFT로 쪼개거나 다시 하나로 합치면서 각 토큰의 지분 비율을 추적할 수 있게 하는 표준입니다.",
+      "why": "EIP-6150이 정의한 계층형 NFT는 부모와 자식의 관계가 한 번 정해지면 바뀌지 않는 고정 구조입니다. 그런데 부동산, 주식, 게임 자산처럼 실제 자산은 하나를 여러 조각으로 나누거나, 흩어진 조각을 다시 하나로 모아야 하는 경우가 많습니다. 예를 들어 주식 한 장을 나타내는 NFT를 여러 투자자가 나눠 갖도록 쪼개거나, 조금씩 모은 지분을 다시 완전한 한 장으로 합치는 일은 EIP-6150만으로는 표준화된 방법이 없었습니다. 또한 여러 사람이 하나의 자산을 나눠 가질 때 각자의 소유 비율(지분)을 토큰 표준 안에서 직접 추적할 방법도 없어 이런 기능을 쓰려면 매번 별도의 외부 로직을 만들어야 했습니다. ERC-7891은 분할과 병합, 지분 이동을 표준 인터페이스로 정의해 이 문제를 해결합니다.",
+      "before": [
+        "부모-자식 관계가 한 번 정해지면 재구조화할 수 없음(EIP-6150의 한계)",
+        "자산을 여러 조각으로 쪼개거나 다시 합치는 표준화된 방법이 없음",
+        "여러 소유자의 지분 비율을 토큰 표준 안에서 추적할 방법이 없음"
+      ],
+      "after": [
+        "mintSplit으로 부모 NFT 아래 지분을 가진 자식 NFT를 발행할 수 있음",
+        "mintMerge로 여러 자식 NFT를 하나의 새 토큰으로 합칠 수 있음",
+        "sharePass로 토큰 간 지분을 민팅·소각 없이 직접 이동할 수 있음",
+        "토큰을 burn하면 남은 지분이 부모 토큰으로 돌아감"
+      ],
+      "impact": [
+        {
+          "who": "컨트랙트 개발자",
+          "text": "EIP-721, EIP-165, ERC-6150을 함께 구현하고 분할·병합·지분 이동 로직을 정확히 맞춰야 합니다."
+        },
+        {
+          "who": "지갑·앱 개발자",
+          "text": "Split, Merged 이벤트와 지분 정보를 읽어 분할·병합 결과와 소유 비율을 화면에 보여줘야 합니다."
+        },
+        {
+          "who": "사용자",
+          "text": "부동산이나 주식형 자산의 일부 지분만 사거나, 모은 지분을 합쳐 온전한 자산으로 만들 수 있습니다."
+        }
+      ],
+      "iface": [
+        {
+          "sig": "event Split(uint256 indexed parentId, uint256 indexed childId, uint8 share);",
+          "ko": "부모 아래에 지분을 가진 자식 토큰이 새로 발행되었을 때 발생하는 이벤트입니다."
+        },
+        {
+          "sig": "event Merged(uint256 indexed newTokenId, uint256[] mergedTokenIds);",
+          "ko": "여러 자식 토큰이 합쳐져 새 토큰이 만들어졌을 때 발생하는 이벤트입니다."
+        },
+        {
+          "sig": "function mintParent(string memory _tokenURI) external payable returns (uint256 tokenId);",
+          "ko": "계층의 최상위가 되는 부모 NFT를 새로 발행합니다."
+        },
+        {
+          "sig": "function mintSplit(uint256 parentId, uint8 _share) external payable returns (uint256 tokenId);",
+          "ko": "지정한 부모 아래에 특정 지분을 가진 자식 NFT를 발행합니다."
+        },
+        {
+          "sig": "function mintMerge(uint256 parentId, uint256[] memory _tokenIds) external payable returns (uint256 newTokenId);",
+          "ko": "같은 부모를 둔 여러 자식 토큰을 모아 새 토큰 하나로 합칩니다."
+        },
+        {
+          "sig": "function sharePass(uint256 to, uint256 from, uint8 _share) external;",
+          "ko": "한 토큰이 가진 지분 중 일부를 다른 토큰으로 옮깁니다."
+        },
+        {
+          "sig": "function burn (uint256 tokenId) external;",
+          "ko": "토큰을 소각하고 그 토큰의 지분을 부모 토큰에게 돌려줍니다."
+        }
+      ],
+      "flow": {
+        "title": "분할과 병합의 사용 흐름",
+        "steps": [
+          {
+            "label": "발행자",
+            "title": "루트 토큰 발행",
+            "body": "mintParent를 호출해 계층의 최상위가 되는 부모 NFT를 발행합니다."
+          },
+          {
+            "label": "발행자",
+            "title": "자식 토큰 분할 발행",
+            "body": "mintSplit으로 parentId 아래에 지정한 share만큼 지분을 가진 자식 NFT를 발행합니다."
+          },
+          {
+            "label": "소유자",
+            "title": "지분 이동",
+            "body": "sharePass로 민팅이나 소각 없이 한 토큰의 지분을 다른 토큰으로 옮깁니다."
+          },
+          {
+            "label": "소유자",
+            "title": "자식 토큰 병합",
+            "body": "mintMerge로 같은 부모를 둔 여러 자식 토큰을 모아 새 토큰 하나로 합칩니다."
+          },
+          {
+            "label": "소유자",
+            "title": "토큰 소각",
+            "body": "burn으로 토큰을 없애면 그 토큰이 갖고 있던 지분이 부모 토큰에게 반환됩니다."
+          }
+        ]
+      },
+      "deep": [
+        {
+          "title": "표준 상속 관계",
+          "body": "ERC-7891을 구현하는 컨트랙트는 이 표준과 함께 EIP-721, EIP-165, ERC-6150을 모두 구현해야 합니다(MUST). 인터페이스 선언도 IERC7891이 IERC6150, IERC721, IERC165를 상속하는 형태로 되어 있어 기존 EIP-721 토큰과 ERC-6150의 부모-자식 계층 구조를 그대로 재사용하면서 분할·병합 기능만 추가합니다. 이 인터페이스의 ERC-165 식별자는 0x43cb816b입니다.",
+          "ref": "원문: Specification"
+        },
+        {
+          "title": "mintParent",
+          "body": "mintParent(_tokenURI)는 계층의 최상위가 되는 부모 NFT를 새로 발행합니다. 메타데이터를 가리키는 URI 문자열을 받아 새로 발행된 토큰의 tokenId를 반환합니다. payable로 선언되어 있어 발행 시 대가를 지불하는 구현이 가능합니다.",
+          "ref": "원문: Specification"
+        },
+        {
+          "title": "mintSplit과 Split 이벤트",
+          "body": "mintSplit(parentId, _share)은 지정한 parentId 아래에 share 비율만큼의 지분을 가진 자식 NFT를 발행하고 새 tokenId를 반환합니다. 이때 Split(parentId, childId, share) 이벤트가 발생해 어떤 부모 아래 어떤 자식이 얼마의 지분으로 생성됐는지 기록합니다. share는 uint8 타입의 지분 비율입니다.",
+          "ref": "원문: Specification"
+        },
+        {
+          "title": "mintMerge와 Merged 이벤트",
+          "body": "mintMerge(parentId, _tokenIds)는 같은 parentId를 둔 자식 토큰 여러 개(_tokenIds 배열)를 하나의 새 토큰으로 합치고 newTokenId를 반환합니다. 병합이 일어나면 Merged(newTokenId, mergedTokenIds) 이벤트가 발생해 새로 만들어진 토큰과 그 안에 합쳐진 원래 토큰 목록을 기록합니다.",
+          "ref": "원문: Specification"
+        },
+        {
+          "title": "sharePass",
+          "body": "sharePass(to, from, _share)는 from 토큰이 가진 지분 중 _share만큼을 to 토큰으로 옮깁니다. 새로운 토큰을 발행하거나 기존 토큰을 소각하지 않고 지분만 내부적으로 재배분하는 함수입니다.",
+          "ref": "원문: Specification"
+        },
+        {
+          "title": "burn",
+          "body": "burn(tokenId)은 토큰을 소각하면서 그 토큰이 갖고 있던 지분을 부모 NFT에게 돌려줍니다. 이를 통해 자식 토큰이 없어져도 전체 지분의 합이 깨지지 않고 부모 쪽으로 회수됩니다.",
+          "ref": "원문: Specification"
+        },
+        {
+          "title": "설계 의도",
+          "body": "원문 Rationale에 따르면 이 표준은 ERC-6150의 부모-자식 구조를 그대로 재사용해 호환성을 유지하면서 지분 관리를 내부 매핑으로 추가한 것입니다. mintSplit과 mintMerge는 자산의 분해와 결합이라는 서로 다른 동작을 명확히 구분하도록 설계됐고 sharePass는 민팅·소각 없이 지분만 효율적으로 재배분하는 수단으로 제공됩니다. 인터페이스는 가스 효율성과 의미적 명확성을 유지하도록 최소한으로 설계되었습니다.",
+          "ref": "원문: Rationale"
+        },
+        {
+          "title": "제안 상태",
+          "body": "이 ERC는 status가 Draft로, 아직 논의 중이며 내용이 바뀌거나 중단될 수 있는 제안입니다.",
+          "ref": "원문: Preamble"
+        }
+      ],
+      "safety": [],
+      "glossary": [
+        {
+          "term": "분할(Split)",
+          "def": "하나의 NFT를 지분을 가진 여러 자식 NFT로 나누는 동작입니다."
+        },
+        {
+          "term": "병합(Merge)",
+          "def": "여러 자식 NFT를 하나의 새 토큰으로 합치는 동작입니다."
+        },
+        {
+          "term": "지분(Share)",
+          "def": "토큰이 가진 소유 비율을 나타내는 값입니다."
+        },
+        {
+          "term": "ERC-6150",
+          "def": "NFT 간 부모-자식 계층 구조를 정의하는 표준입니다."
+        },
+        {
+          "term": "ERC-165",
+          "def": "컨트랙트가 어떤 인터페이스를 지원하는지 식별하는 표준입니다."
+        }
+      ],
+      "meta": {
+        "title": "Splitting and Merging of NFTs",
+        "description": "Interface for hierarchical NFTs, enabling splitting a single NFT and merging multiple NFTs",
+        "status": "Draft",
+        "type": "Standards Track",
+        "category": "ERC",
+        "created": "2025-02-15",
+        "authors": [
+          "Nitin Bhagat",
+          "JongWook Bae",
+          "Su-Hyun Lee"
+        ],
+        "requires": [
+          721,
+          6150
+        ],
+        "discussionsTo": "https://ethereum-magicians.org/t/eip-7891-hierarchical-nfts-with-splitting-and-merging/22986"
+      },
+      "sourceHash": "bad1cfb47d279d85",
+      "model": "sonnet",
+      "generatedAt": "2026-11-15T17:06:36.378Z"
     },
     {
       "number": 7893,
