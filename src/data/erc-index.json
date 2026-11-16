@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-15T16:42:22.867Z",
+  "updatedAt": "2026-11-16T14:00:25.061Z",
   "ercs": [
     {
       "number": 20,
@@ -5649,7 +5649,7 @@
     {
       "number": 8328,
       "title": "Subject-Linked Compliance Event Log",
-      "status": "Last Call",
+      "status": "Final",
       "created": "2026-07-05",
       "requires": [
         165
@@ -5658,7 +5658,7 @@
     {
       "number": 8329,
       "title": "Subject-Linked Impact Snapshot Log",
-      "status": "Last Call",
+      "status": "Final",
       "created": "2026-07-05",
       "requires": [
         165
@@ -5667,7 +5667,7 @@
     {
       "number": 8330,
       "title": "Subject-Linked NAV Snapshot Oracle",
-      "status": "Review",
+      "status": "Last Call",
       "created": "2026-07-05",
       "requires": [
         165
