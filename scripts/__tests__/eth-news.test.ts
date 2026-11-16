@@ -121,6 +121,23 @@ describe('tweetsToItems', () => {
     expect(tweetsToItems({ error: 'rate limit' }, 'a')).toEqual([]);
   });
 
+  it('should attribute tweets written by someone else to the real author', () => {
+    const payload = {
+      timeline: [
+        { tweet_id: '21', text: '@barnabemonnot I agree', author: { screen_name: 'soispoke' }, in_reply_to_status_id_str: '20' },
+        { tweet_id: '22', text: 'own post', author: { screen_name: 'barnabemonnot' } },
+        { tweet_id: '23', text: 'no author field' },
+        { tweet_id: '24', text: 'RT @someone: hi', author: { screen_name: 'someone' } },
+      ],
+    };
+    const items = tweetsToItems(payload, 'barnabemonnot');
+    expect(items[0]).toMatchObject({ id: 'x:barnabemonnot:21', source: 'x:barnabemonnot', author: 'soispoke', url: 'https://x.com/soispoke/status/21' });
+    expect(items[1]).toMatchObject({ author: 'barnabemonnot', url: 'https://x.com/barnabemonnot/status/22' });
+    expect(items[2]).toMatchObject({ author: 'barnabemonnot', url: 'https://x.com/barnabemonnot/status/23' });
+    // RT 는 수집 계정 기준 유지 (다이제스트·논쟁 추출기가 'RT @' 를 걸러낸다)
+    expect(items[3]).toMatchObject({ author: 'barnabemonnot', url: 'https://x.com/barnabemonnot/status/24' });
+  });
+
   it('should capture conversation id and reply flag', () => {
     const payload = {
       timeline: [
