@@ -123,16 +123,20 @@ export function tweetsToItems(payload: unknown, screenname: string): NewsItem[] 
       if (!nativeId || !body) return null;
       const conversationId = tw.conversation_id ? String(tw.conversation_id) : undefined;
       const isReply = Boolean(tw.in_reply_to_status_id_str);
+      // 타임라인에는 남이 쓴 글(답글 등)이 섞여 온다. 실제 작성자를 author·url 에 쓰고, id/source 는 중복 제거 호환을 위해 수집 계정 기준 유지.
+      // RT 는 수집 계정 기준 유지('RT @' 로 시작하면 다이제스트·논쟁 추출기가 거른다).
+      const realAuthor = String(tw.author?.screen_name ?? tw.screen_name ?? '').trim();
+      const author = realAuthor && !body.startsWith('RT @') ? realAuthor : screenname;
       return {
         id: `x:${screenname}:${nativeId}`,
         source: `x:${screenname}`,
         sourceType: 'twitter' as const,
         title: body.slice(0, 80),
-        url: `https://x.com/${screenname}/status/${nativeId}`,
+        url: `https://x.com/${author}/status/${nativeId}`,
         publishedAt: toIso(tw.created_at),
         // 긴 글(note tweet)도 전문을 남긴다. 500자로 자르면 다이제스트와 논쟁 분석이 앞부분만 보게 된다.
         summary: body.slice(0, 4000),
-        author: screenname,
+        author,
         ...(conversationId ? { conversationId } : {}),
         ...(isReply ? { isReply } : {}),
       };
