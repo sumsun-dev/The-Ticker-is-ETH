@@ -72,6 +72,11 @@ $(grep -v dotenv <<<"$out" | tail -15)"
   fi
 
   npx tsx scripts/generate-eth-digest.ts
+  # 사실 검사 결과(고침·뺌)가 있으면 오너 DM. 실패해도 러너는 계속
+  if [ -s .cache/digest-factcheck.txt ]; then
+    notify_owner "[다이제스트 사실 검사] $(cat .cache/digest-factcheck.txt)" || true
+    rm -f .cache/digest-factcheck.txt
+  fi
   npx tsx scripts/sync-x-profiles.ts
   # 논쟁 추출은 부가 단계라 실패해도 커버·송출·커밋은 진행 (2026-11-13: 참여자 name 누락 스키마 오류로 그날 호 송출이 통째로 빠짐)
   npx tsx scripts/extract-eth-debates.ts || notify_owner "[다이제스트] 논쟁 추출 실패. 송출은 계속합니다 (로그 /home/gv/logs/eth-digest.log)"
