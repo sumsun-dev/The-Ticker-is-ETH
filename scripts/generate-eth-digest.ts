@@ -13,6 +13,7 @@
  */
 import { runClaude } from './lib/claude';
 import { humanizeTexts, normalizeTerms } from './lib/humanize';
+import { factcheckDigest } from './lib/digest-factcheck';
 import { z } from 'zod';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -299,7 +300,22 @@ async function main() {
   console.log(`Generating digest for ${today} from ${candidates.length} items (${DIGEST_MODEL})...`);
   const result = runClaude(prompt, DIGEST_MODEL);
 
-  const parsed = normalizeTerms(humanizeDigest(DigestSchema.parse(extractJson(result))));
+  let parsed = normalizeTerms(humanizeDigest(DigestSchema.parse(extractJson(result))));
+  // 생성 모델과 별개인 사실 검사: 문장을 인용 원문과 대조해 오귀속·입장 뒤집힘을 고치거나 뺀다 (DIGEST_CHECK=0 이면 건너뜀)
+  if (process.env.DIGEST_CHECK !== '0') {
+    const checkModel = process.env.DIGEST_CHECK_MODEL ?? 'sonnet';
+    console.log(`Fact-checking digest (${checkModel})...`);
+    const checked = factcheckDigest(parsed, inbox.items, (p) => runClaude(p, checkModel));
+    parsed = checked.digest;
+    const reportFile = path.resolve(process.cwd(), '.cache/digest-factcheck.txt');
+    if (checked.report.length > 0) {
+      fs.mkdirSync(path.dirname(reportFile), { recursive: true });
+      fs.writeFileSync(reportFile, `${today}\n${checked.report.join('\n')}\n`, 'utf-8');
+      console.log(`[FACTCHECK]\n${checked.report.join('\n')}`);
+    } else {
+      fs.rmSync(reportFile, { force: true });
+    }
+  }
   const digest: Digest = { date: today, ...parsed };
   // 한 항목이 여러 사람을 인용하면 url은 하나뿐이라 나머지 발언이 논쟁 추출기에 도달하지 못한다.
   // 자동으로 쪼개지 않고 경고만 남겨, 프롬프트 규칙이 지켜지는지 로그로 본다
