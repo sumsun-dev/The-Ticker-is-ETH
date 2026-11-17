@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-16T14:00:25.061Z",
+  "updatedAt": "2026-11-17T14:00:22.377Z",
   "ercs": [
     {
       "number": 20,
@@ -4937,7 +4937,7 @@
     {
       "number": 7963,
       "title": "Oracle-Permissioned ERC-20 with ZK Proofs",
-      "status": "Review",
+      "status": "Last Call",
       "created": "2025-05-13",
       "requires": [
         20,
@@ -5723,12 +5723,13 @@
     {
       "number": 8376,
       "title": "Token Launch Abuse Detection and Remediation",
-      "status": "Draft",
+      "status": "Review",
       "created": "2026-08-07",
       "requires": [
         20,
         165,
-        214
+        214,
+        7997
       ]
     },
     {
@@ -5795,6 +5796,16 @@
         165,
         712,
         1271
+      ]
+    },
+    {
+      "number": 8501,
+      "title": "Generative Engine Optimization Framework",
+      "status": "Draft",
+      "created": "2026-11-14",
+      "requires": [
+        165,
+        6372
       ]
     }
   ]
