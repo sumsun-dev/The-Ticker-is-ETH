@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-16T14:50:52.038Z",
+  "updatedAt": "2026-11-17T01:06:02.362Z",
   "eips": [
     {
       "number": 1,
@@ -29798,139 +29798,130 @@
     },
     {
       "number": 7851,
-      "titleKo": "코드 제어 EOA 위임",
+      "titleKo": "코드로 제어하는 EOA 위임",
       "topic": "계정 추상화",
-      "summary": "EIP-7702로 위임된 EOA가 지갑 코드로 직접 위임 대상을 바꾸고 원래 개인키(ECDSA)의 권한을 영구히 끌 수 있게 합니다. 새 위임 접두사 0xef0101과 SETSELFDELEGATE 명령어를 추가합니다.",
-      "why": "EIP-7702는 일반 계정(EOA)이 스마트 계약처럼 동작하도록 위임을 걸 때 원래 개인키의 서명(ECDSA)으로 시작합니다. 그런데 일단 통제가 지갑 코드로 넘어가면, 사용자는 패스키나 멀티시그, 소셜 리커버리 같은 지갑 코드 쪽 수단으로 계정을 운영하게 됩니다. 그 뒤에도 원래 개인키는 살아 있어서 여전히 트랜잭션을 서명하거나 위임을 마음대로 바꿀 수 있는 잔여 권한으로 남는다는 문제가 있습니다. 또 현재 구조에서는 위임을 바꾸려면 다시 원래 키의 서명이 필요해서 지갑 코드가 위임의 수명주기를 스스로 관리할 수 없습니다. 이 EIP는 지갑 코드가 위임을 직접 갱신할 수 있게 하고 원래 키의 잔여 권한을 영구히 소각(비활성화)하는 길을 엽니다.",
+      "summary": "EIP-7702로 위임된 계정이 지갑 코드 스스로 위임 대상을 바꾸면서 원래 개인키의 서명 권한을 영구히 끌 수 있게 하는 제안입니다.",
+      "why": "EIP-7702는 EOA(개인키로 직접 서명하는 기존 계정)가 자신의 코드 슬롯에 특정 스마트 컨트랙트를 위임 대상으로 지정하게 해줍니다. 그런데 위임이 끝난 뒤에도 원래 개인키는 여전히 유효해서 사용자가 패스키나 멀티시그, 소셜 복구 같은 지갑 코드로 계정 관리를 넘긴 뒤에도 원본 키로 거래를 승인하거나 위임을 바꿀 수 있습니다. 키가 유출되거나 분실되면 지갑 로직을 거치지 않고 계정이 탈취될 위험이 남아있는 셈입니다. 이 EIP는 지갑 코드 자신이 나서서 이 계정은 이제 원본 ECDSA 키로 거래할 수 없다고 영구히 선언할 수 있는 길을 열어줍니다.",
       "before": [
-        "위임의 시작과 변경 모두 원래 EOA 개인키의 ECDSA 서명으로만 승인합니다.",
-        "패스키나 멀티시그로 계정을 운영해도 원래 개인키의 권한이 그대로 남아 있습니다.",
-        "남아 있는 원래 키 권한을 끌 방법이 없습니다."
+        "EIP-7702 위임 후에도 원래 EOA 개인키로 거래 서명과 위임 변경이 계속 가능합니다",
+        "지갑 코드가 위임 대상을 바꾸려면 여전히 원본 키 서명이 필요합니다",
+        "키가 유출되면 지갑 로직을 거치지 않고 계정을 바로 가져갈 위험이 남습니다"
       ],
       "after": [
-        "지갑 코드가 SETSELFDELEGATE 명령어로 자기 계정의 위임 대상을 직접 바꿉니다.",
-        "첫 호출에서 계정 코드가 0xef0101 접두사로 바뀌며 원래 키의 ECDSA 권한이 영구히 꺼집니다.",
-        "권한이 꺼진 뒤에도 지갑 코드로는 위임을 계속 갱신할 수 있습니다."
+        "지갑 코드가 SETSELFDELEGATE를 호출해 원본 키의 ECDSA 권한을 영구히 끌 수 있습니다",
+        "ECDSA를 끈 뒤에도 지갑 코드는 위임 대상(델리게이트)을 계속 바꿀 수 있습니다",
+        "ECDSA로 서명된 거래나 7702 위임 변경은 검증 단계에서 거부됩니다"
       ],
       "impact": [
         {
-          "who": "사용자",
-          "text": "패스키, 멀티시그, 소셜 리커버리 같은 지갑 코드 쪽 수단만으로 계정을 운영하면서 원래 개인키의 잔여 권한을 소각할 수 있습니다. 단 한 번 끄면 되돌릴 수 없습니다."
-        },
-        {
           "who": "지갑 개발자",
-          "text": "SETSELFDELEGATE는 명시적인 사용자 확인을 받은 뒤에만 노출하고 최고 권한 작업으로 다뤄야 합니다."
+          "text": "SETSELFDELEGATE는 되돌릴 수 없는 최고 권한 작업이므로 사용자의 명시적 확인을 거친 뒤에만 노출해야 합니다"
         },
         {
-          "who": "클라이언트 팀",
-          "text": "0xef0101 코드를 실행 단계에서는 0xef0100과 똑같은 위임으로, 검증 단계에서는 ECDSA 비활성 표시로 인식하도록 구현해야 합니다."
+          "who": "사용자",
+          "text": "키를 분실하거나 탈취당해도 멀티시그, 소셜 복구 같은 지갑 로직만으로 계정을 계속 통제할 수 있습니다"
         },
         {
-          "who": "노드 운영자(트랜잭션 풀)",
-          "text": "보낸 계정의 코드가 0xef0101로 시작하면 ECDSA 서명 트랜잭션을 거부해야 하므로, 발신자 계정 코드를 한 번 더 읽는 작업이 추가될 수 있습니다."
+          "who": "클라이언트·트랜잭션 풀 팀",
+          "text": "송신자 계정이 ECDSA 비활성 위임인지 추가로 확인해 해당 거래를 거부하는 로직이 필요합니다"
+        },
+        {
+          "who": "검증자",
+          "text": "블록 생성 시 ECDSA 비활성 계정에서 온 ECDSA 서명 거래를 포함하지 않아야 합니다"
         }
       ],
       "example": {
-        "title": "원래 키 권한을 소각하고 지갑 코드로 갈아타는 과정",
+        "title": "ECDSA 권한을 끄고 지갑 코드로 넘어가는 과정",
         "steps": [
           {
-            "label": "1",
-            "title": "EIP-7702로 위임 시작",
-            "body": "사용자가 원래 EOA 키로 EIP-7702 위임에 서명합니다. 계정 코드가 0xef0100 || 위임 주소로 기록되고 이때는 아직 원래 키 권한이 살아 있습니다."
+            "label": "1단계",
+            "title": "EIP-7702로 위임 부트스트랩",
+            "body": "사용자가 원래 EOA 개인키로 서명해 계정 코드에 0xef0100 || 지갑주소를 기록합니다. 이 시점까지는 원래 키로도 거래를 승인할 수 있습니다."
           },
           {
-            "label": "2",
+            "label": "2단계",
             "title": "지갑 코드가 SETSELFDELEGATE 호출",
-            "body": "위임받은 지갑 코드가 자기 계정에 대해 SETSELFDELEGATE(새 위임 주소)를 실행합니다. 이 명령어는 실행 중인 계정 자신(authority)에만 작동합니다."
+            "body": "사용자 확인을 거쳐 지갑 코드가 SETSELFDELEGATE(지갑주소)를 실행합니다. 원본 코드가 23바이트 0xef0100 형식이면 0xef0101 || 지갑주소로 바뀝니다."
           },
           {
-            "label": "3",
-            "title": "ECDSA 권한 영구 소각",
-            "body": "계정 코드가 0xef0101 || 새 위임 주소로 바뀝니다. 이 시점부터 원래 ECDSA 키로는 트랜잭션도, EIP-7702 위임 변경도 승인할 수 없습니다."
+            "label": "3단계",
+            "title": "ECDSA 권한 영구 비활성",
+            "body": "이후 원래 개인키로 서명한 거래나 7702 위임 변경은 검증에서 거부됩니다. 지갑 코드만이 계정을 통제합니다."
           },
           {
-            "label": "4",
-            "title": "원래 키 서명은 모두 무효",
-            "body": "해당 계정이 보낸 ECDSA 서명 트랜잭션은 블록에 포함될 수 없고 트랜잭션 풀에서 거부됩니다. 이 계정이 서명한 EIP-7702 승인도 무효 처리되어 건너뜁니다."
-          },
-          {
-            "label": "5",
-            "title": "지갑 코드로 재위임",
-            "body": "이후에도 지갑 코드는 SETSELFDELEGATE를 다시 호출해 위임 대상을 바꿀 수 있습니다. 다만 ECDSA 권한은 계속 꺼진 상태로 유지되며 되살릴 수 없습니다."
+            "label": "4단계",
+            "title": "필요 시 위임 대상 재지정",
+            "body": "지갑 코드는 다시 SETSELFDELEGATE를 호출해 다른 델리게이트 주소로 바꿀 수 있습니다. ECDSA는 계속 비활성 상태로 남습니다."
           }
         ]
       },
       "deep": [
         {
           "title": "두 가지 위임 접두사: 0xef0100과 0xef0101",
-          "body": "EIP-7702의 기존 위임 지시자는 0xef0100 || delegate_address이고, 이 EIP가 추가하는 0xef0101 || delegate_address는 ECDSA 비활성 위임입니다. ECDSA 비활성이란 원래 ECDSA 키가 트랜잭션이나 EIP-7702 위임 변경을 더는 승인할 수 없다는 뜻이며 위임 대상이 영원히 동결된다는 뜻은 아닙니다. 지갑 코드는 ECDSA 비활성 상태를 유지한 채 위임 대상을 갱신할 수 있습니다. 비가역 불변식은 하나입니다. ECDSA 권한은 한 번 꺼지면 절대 복원되지 않습니다. 위임 코드 실행에서는 클라이언트가 0xef0101을 0xef0100과 동일하게 다뤄야 하므로, 실행 경로 자체는 달라지지 않습니다.",
-          "ref": "원문: Abstract, Specification, Specification · Delegated Code Execution"
+          "body": "EIP-7702는 EOA 코드 슬롯에 0xef0100 뒤에 위임 대상 주소를 붙여 저장합니다. 이것이 ECDSA 활성 위임입니다. 이 EIP는 여기에 0xef0101 접두사를 추가합니다. 0xef0101 뒤에 같은 방식으로 위임 대상 주소가 붙으면 ECDSA 비활성 위임이 됩니다. 두 접두사 모두 실행 시에는 동일하게 취급되어 위임된 코드를 그대로 실행합니다. 차이는 검증 단계에서만 나타납니다. 0xef0101이 설정된 계정은 원래 EOA 개인키로 서명한 거래나 7702 위임 변경이 더 이상 유효하지 않습니다. 위임 대상 주소 자체는 고정되지 않으며 지갑 코드가 나중에 다시 바꿀 수 있습니다.",
+          "ref": "원문: Abstract · Specification"
         },
         {
-          "title": "SETSELFDELEGATE 명령어 동작",
-          "body": "SETSELFDELEGATE(delegate_address)는 자기 계정 전용(self-only)입니다. authority는 현재 실행 컨텍스트 주소로 정의되고 이 명령어는 authority만 갱신합니다. 스택에서 항목 하나를 받아 하위 160비트를 delegate_address로 해석하고 성공 시 1, 상태 변경이 없으면 0을 올립니다. 실행 로직은 세 단계입니다. 첫째, delegate_address가 address(0)이면 0을 올리고 상태를 바꾸지 않습니다. 둘째, authority의 상태에 저장된 원시 코드(현재 프레임의 위임 지시자를 따라간 코드가 아님)가 정확히 23바이트이고 0xef0100 또는 0xef0101로 시작하면 code(authority)를 0xef0101 || delegate_address로 쓰고 1을 올립니다. 셋째, 그 외에는 0을 올립니다. 가스는 시도마다 SETSELFDELEGATE_GAS(9500)를 소모하고 정적 컨텍스트에서 실행되면 예외 중단해야 합니다. 상태 변경은 일반 EVM revert 의미론을 따라 프레임이나 트랜잭션이 revert되면 함께 되돌아갑니다. 명령어 코드값(SETSELFDELEGATE_OPCODE)은 아직 TBD입니다.",
-          "ref": "원문: Specification · Parameters, Specification · SETSELFDELEGATE"
-        },
-        {
-          "title": "갱신 효과는 프레임 단위로 적용",
-          "body": "성공적으로 갱신된 뒤에는 authority를 대상으로 하는 이후의 코드 실행 연산이 갱신된 위임 지시자를 따라 실행할 코드를 얻습니다. 효과는 프레임 로컬입니다. 이미 코드를 얻어 실행 중인 프레임은 그 코드를 계속 실행하고 같은 트랜잭션 안에서 나중에 authority를 다시 호출(재진입)하면 그 호출은 이후의 코드 실행 연산이므로 갱신된 위임 지시자로 코드를 불러옵니다. 또한 ECDSA 활성 위임(0xef0100)에서 호출하면 ECDSA 권한을 끄면서 위임을 설정하고 이미 비활성(0xef0101)인 위임에서 호출하면 비활성 상태를 유지한 채 재위임합니다.",
+          "title": "SETSELFDELEGATE 옵코드",
+          "body": "SETSELFDELEGATE는 스택에서 delegate_address 하나를 받는 자기 자신 전용(self-only) 명령어입니다. 현재 실행 컨텍스트 주소를 authority로 두고 그 계정의 코드만 바꿉니다. 실행마다 9500가스(SETSELFDELEGATE_GAS)를 소비하며 성공하면 스택에 1을, 상태 변화가 없으면 0을 남깁니다. 정적 컨텍스트(STATICCALL 등)에서 호출하면 예외로 중단됩니다. 상태 변경은 일반적인 EVM 되돌림 규칙을 따르므로 프레임이나 트랜잭션이 되돌려지면 위임 변경도 함께 취소됩니다.",
           "ref": "원문: Specification · SETSELFDELEGATE"
         },
         {
-          "title": "검증 규칙: 비활성 계정의 서명 차단",
-          "body": "EIP-7702 승인 처리 중에 authority의 현재 코드가 정확히 23바이트이고 0xef0101로 시작하면, 그 authority가 서명한 승인은 모두 무효로 보고 건너뜁니다. 또 복구된 발신자의 코드가 현재 상태에서 정확히 23바이트이고 0xef0101로 시작하는 ECDSA 인증 트랜잭션은 무효이며 블록에 포함될 수 없습니다. 트랜잭션 풀도 이런 트랜잭션을 거부해야 합니다. 실행 부하 변화는 작습니다. 위임 코드를 이미 해석하는 실행 경로는 기존 위임 코드 조회를 재사용할 수 있고 트랜잭션 풀은 발신자 계정 코드 읽기가 한 번 추가될 수 있습니다.",
-          "ref": "원문: Specification · Validation, Security Considerations"
+          "title": "실행 절차 3단계",
+          "body": "옵코드는 다음 순서로 동작합니다. delegate_address가 0이면 아무 변경 없이 0을 반환합니다. authority에 저장된 원본 코드가 정확히 23바이트이고 0xef0100 또는 0xef0101로 시작하면 코드를 0xef0101 || delegate_address로 바꾸고 1을 반환합니다. 그 외의 경우는 변경 없이 0을 반환합니다. 여기서 확인하는 code는 현재 프레임이 따라가고 있는 위임 대상의 코드가 아니라 authority 계정 자체에 저장된 원본 코드입니다. 이미 코드를 읽어들인 프레임은 계속 기존 코드로 실행되지만 EXTCODESIZE 등으로 authority를 조회하면 갱신된 23바이트 위임 표시자가 즉시 보입니다.",
+          "ref": "원문: Specification · SETSELFDELEGATE 실행 절차"
         },
         {
-          "title": "가스 9500의 근거",
-          "body": "SETSELFDELEGATE_GAS는 9500으로, EIP-7702의 PER_AUTH_BASE_COST에서 authority 주소 복구에 할당된 3000 가스를 뺀 값과 같습니다. 이 명령어는 위임이 이미 해석된 뒤 현재 실행 컨텍스트 계정에 23바이트 위임 지시자 하나를 쓸 뿐, 서명을 검증하지 않고 승인 튜플을 처리하지 않으며 계정 논스를 올리거나 다른 계정을 건드리지도 않기 때문입니다.",
-          "ref": "원문: Rationale, Specification · Parameters"
+          "title": "검증과 트랜잭션 풀",
+          "body": "authority의 현재 코드가 23바이트이고 0xef0101로 시작하면, 그 authority가 서명한 7702 authorization은 처리 중 무효로 건너뛰어집니다. 마찬가지로 그런 계정에서 나온 ECDSA 서명 거래는 블록에 포함될 수 없고 트랜잭션 풀도 이를 거부해야 합니다. 새 블록을 처리할 때 풀은 송신자가 막 ECDSA 비활성 위임으로 바뀐 보류 중 거래도 함께 제거하는 것이 바람직합니다.",
+          "ref": "원문: Specification · Validation"
         },
         {
-          "title": "보안 범위: 프로토콜 서명만 막고 컨트랙트 서명 검증은 못 막음",
-          "body": "이 EIP가 무효화하는 것은 프로토콜 수준의 ECDSA 인증 트랜잭션과 EIP-7702 승인뿐입니다. 토큰의 permit 함수처럼 컨트랙트가 직접 ECDSA 서명을 검증하는 경우에는 ECDSA 비활성 계정의 서명이 자동으로 거부되지 않습니다. ecrecover 프리컴파일이 ECDSA 비활성 계정을 어떻게 다룰지는 동반 제안인 EIP-8151에서 다룹니다. 또 ECDSA 비활성 진입은 비가역이므로, 지갑은 SETSELFDELEGATE를 명시적인 사용자 확인 뒤에만 노출하고 최고 권한으로 취급해야 합니다. 기존 0xef0100 위임은 그대로 유지되어 하위 호환성 문제는 없습니다.",
-          "ref": "원문: Security Considerations, Backwards Compatibility"
+          "title": "가스 값의 근거",
+          "body": "SETSELFDELEGATE_GAS는 9500으로, EIP-7702의 PER_AUTH_BASE_COST에서 주소 복구에 쓰이는 3000가스를 뺀 값입니다. 이 옵코드는 서명 검증, authorization 튜플 처리, nonce 증가, 다른 계정 접근을 전혀 하지 않고 이미 위임이 해석된 현재 실행 컨텍스트 계정 하나에 23바이트 위임 표시자를 쓰는 작업만 하기 때문에 서명 복구 비용을 뺀 값이 적절하다고 설명합니다.",
+          "ref": "원문: Rationale"
         },
         {
-          "title": "진행 상태: Draft, 헤고타 후보에서는 제외",
-          "body": "이 EIP는 Draft 상태라서 명세가 아직 바뀔 수 있고 명령어 코드값도 TBD입니다. 2026년 9월 10일 ACDE #245 콜에서 EIP-7819(set delegate 명령어)와 함께 헤고타(Hegota) 포크 후보에서 제외(DFI)되었습니다. 두 EIP 모두 클라이언트 평점이 1.0 미만이었고 옹호하는 이가 없었습니다.",
-          "ref": "원문: 전문(status) · 콜 기록: 09.10 ACDE #245"
+          "title": "보안 고려사항",
+          "body": "0xef0101로 전환하면 원래 EOA 개인키의 ECDSA 권한은 영구히 복구할 수 없습니다. 반면 위임 대상 자체는 지갑 코드가 계속 바꿀 수 있으므로, 지갑은 SETSELFDELEGATE 호출을 사용자의 명시적 확인 후에만, 최고 권한 작업으로 취급해 노출해야 합니다. 다만 이 EIP는 프로토콜 수준의 ECDSA 인증 거래와 7702 authorization만 무효화합니다. 토큰의 permit 함수처럼 컨트랙트가 직접 ECDSA 서명을 검증하는 경우는 이 EIP만으로는 막히지 않으며 ecRecover 프리컴파일에 대응 제약을 거는 별도 제안이 필요하다고 명시합니다.",
+          "ref": "원문: Security Considerations"
+        },
+        {
+          "title": "현재 상태와 콜 결정",
+          "body": "이 EIP는 아직 Draft 상태로, 세부 사항이 바뀔 수 있습니다. SETSELFDELEGATE_OPCODE 값도 TBD(미정)로 남아 있습니다. 2026-09-10 ACDE #245 [DFI · Hegota] 콜에서는 EIP-7851과 EIP-7819(set delegate 명령어)가 클라이언트 평점이 1.0 미만이고 옹호하는 사람이 없다는 이유로 헤고타(Hegota) 포크 후보에서 제외(DFI)되었습니다.",
+          "ref": "콜 기록: 09.10 ACDE #245 [DFI · Hegota]"
         }
       ],
       "glossary": [
         {
           "term": "EOA",
-          "def": "개인키 하나로 움직이는 이더리움의 일반 계정입니다. 스마트 계약 계정과 달리 코드가 없고 서명으로만 동작합니다."
+          "def": "외부 소유 계정, 개인키로 직접 서명하는 기존 형태의 이더리움 계정입니다"
         },
         {
           "term": "ECDSA",
-          "def": "이더리움 계정이 트랜잭션에 서명할 때 쓰는 타원곡선 전자서명 방식입니다. 이 서명을 만들 수 있는 것이 곧 개인키의 권한입니다."
+          "def": "이더리움 거래 서명에 쓰이는 전자서명 알고리즘입니다"
         },
         {
-          "term": "EIP-7702 위임",
-          "def": "EOA의 계정 코드 자리에 특수 표시(0xef0100 || 주소)를 적어, 그 계정이 지정된 컨트랙트 코드처럼 동작하게 만드는 기능입니다."
+          "term": "위임(delegation)",
+          "def": "EIP-7702로 EOA 계정이 특정 스마트 컨트랙트 코드를 자신의 실행 코드로 지정하는 것입니다"
         },
         {
-          "term": "오피코드(opcode)",
-          "def": "이더리움 가상머신(EVM)이 실행하는 개별 명령어입니다. SETSELFDELEGATE는 이 EIP가 새로 추가하는 오피코드입니다."
+          "term": "opcode",
+          "def": "EVM이 한 단계씩 실행하는 개별 명령어입니다"
         },
         {
-          "term": "트랜잭션 풀",
-          "def": "노드가 블록에 담기 전의 트랜잭션을 모아 두는 대기 공간입니다. 여기서 걸러진 트랜잭션은 블록에 들어가지 못합니다."
+          "term": "정적 컨텍스트",
+          "def": "STATICCALL처럼 상태 변경이 금지된 실행 환경입니다"
         },
         {
-          "term": "DFI",
-          "def": "코어 개발자 콜에서 특정 EIP를 해당 포크 후보 목록에서 제외하기로 하는 결정입니다."
+          "term": "permit",
+          "def": "가스 없이 서명만으로 토큰 승인을 처리하는 컨트랙트 함수 패턴입니다"
         }
       ],
       "related": [
         {
           "number": 7702,
-          "note": "이 EIP가 확장하는 기반 제안입니다. 7702가 원래 키로 위임을 시작하면, 이 EIP가 그 뒤의 위임 수명주기를 지갑 코드로 넘깁니다."
-        },
-        {
-          "number": 8151,
-          "note": "ECDSA 비활성 계정에 대한 ecrecover 프리컴파일 동작을 다루는 동반 제안입니다."
+          "note": "이 EIP가 확장하는 기반 표준으로, 위임 부트스트랩 방식과 코드 슬롯 형식을 그대로 이어받습니다"
         }
       ],
       "meta": {
@@ -29949,9 +29940,9 @@
         ],
         "discussionsTo": "https://ethereum-magicians.org/t/eip-7851-code-controlled-eoa-delegation/22344"
       },
-      "sourceHash": "92d7407d2d3c6e2d",
-      "model": "fable",
-      "generatedAt": "2026-11-03T15:01:18.905Z"
+      "sourceHash": "439e4826ef1aa6a3",
+      "model": "sonnet",
+      "generatedAt": "2026-11-17T01:06:02.298Z"
     },
     {
       "number": 7862,
@@ -52002,153 +51993,154 @@
     },
     {
       "number": 8288,
-      "titleKo": "멤풀 서명·증명 집계",
+      "titleKo": "인-멤풀 서명·증명 집계",
       "topic": "보안·프라이버시",
-      "summary": "양자내성 서명과 STARK 증명을 블록에 그대로 싣는 대신, 멤풀에서 재귀 STARK 하나로 묶어 블록 헤더에 담는 EIP-8141 프레임 모드를 추가합니다.",
-      "why": "양자컴퓨터에도 안전한 해시 기반 서명은 하나가 약 2~3kB이고 검증에 15만~20만 가스가 듭니다. 격자 기반 서명도 비용이 비슷합니다. 해시 기반 영지식 증명인 STARK(Scalable Transparent ARguments of Knowledge)는 128kB가 넘고 사용자 기기에서 빨리 만들려면 512kB까지 커져 검증에 수백만 가스가 필요합니다. 이런 데이터를 트랜잭션에 그대로 실으면 프라이버시 프로토콜은 쓸 수 없을 만큼 비싸지고 포함 목록 제도인 FOCIL(EIP-7805)이나 프레임 트랜잭션(EIP-8141)과는 아예 맞지 않습니다. 이 EIP는 트랜잭션에는 가벼운 선언만 남기고 실제 서명과 증명은 멤풀이 검증한 뒤 재귀 STARK 하나로 합쳐 블록이 그 증명 하나만 들고 다니게 해서 이 문제를 풉니다.",
+      "summary": "EIP-8141 프레임에 새 모드를 더해 양자 내성 서명과 STARK 증명을 트랜잭션에 직접 싣는 대신 멤풀에서 재귀 STARK 하나로 묶어 블록 헤더에만 넣는 집계 방식입니다.",
+      "why": "지금 제안된 양자 내성 서명은 해시 기반이라 서명 하나가 약 2~3kB이고 검증에 15만~20만 가스가 듭니다. 영지식증명인 STARK는 더 심각해서 빠르게 생성하려면 512kB까지 커지고 검증 가스가 수백만에 달합니다. 이런 크기와 비용을 트랜잭션마다 그대로 블록에 싣는다면, STARK를 쓰는 프라이버시 프로토콜은 현실적으로 쓸 수 없고 포함 리스트 강제 기능인 FOCIL(EIP-7805)이나 프레임 트랜잭션(EIP-8141)과도 맞물릴 수 없습니다. 이 EIP는 블록에 서명·증명 원본을 직접 넣는 대신, 멤풀 단계에서 여러 서명과 증명을 재귀 STARK 하나로 묶어 그 증명 하나만 블록에 넣는 방식으로 이 문제를 풉니다.",
       "before": [
-        "양자내성 서명 하나가 약 2~3kB, 검증에 15만~20만 가스가 듭니다",
-        "STARK 증명은 128kB에서 512kB에 달해 수백만 가스가 필요합니다",
-        "서명과 증명 데이터가 블록에 그대로 실려 모든 검증 노드가 비용을 집니다"
+        "해시 기반 양자 내성 서명은 약 2~3kB, 검증 가스 15만~20만",
+        "STARK 증명은 최대 512kB, 검증에 수백만 가스 필요",
+        "이 크기 때문에 STARK 기반 프라이버시 프로토콜은 비현실적",
+        "FOCIL·프레임 트랜잭션과 이 정도 크기의 증명은 호환 불가"
       ],
       "after": [
-        "트랜잭션은 (scheme, data_hash, verification_key_hash) 세 값짜리 가벼운 의존성 선언만 싣습니다",
-        "실제 서명과 증명은 멤풀에서 검증되고 재귀 STARK 하나로 합쳐집니다",
-        "블록 헤더의 recursive_stark 하나가 블록 안 모든 의존성의 유효성을 증명합니다",
-        "leanSPHINCS 서명 검증은 3,000가스, STARK는 30,000가스로 책정됩니다"
+        "트랜잭션은 (scheme, data_hash, verification_key_hash) 의존성만 선언",
+        "실제 서명·증명 검증은 멤풀이 만든 재귀 STARK 하나가 대신 증명",
+        "블록 헤더에 재귀 STARK 하나(recursive_stark)만 들어감",
+        "멤풀 단계 오버헤드는 AGGREGATION_INTERVAL(1초)마다 약 256kB로 고정"
       ],
       "impact": [
         {
-          "who": "사용자·지갑",
-          "text": "양자내성 서명이나 영지식 증명을 쓰는 트랜잭션을 현실적인 가스 비용으로 보낼 수 있습니다."
+          "who": "양자 내성 서명·프라이버시 프로토콜 사용자",
+          "text": "서명·증명 원본을 블록에 싣지 않아 가스 비용이 크게 줄어듭니다"
         },
         {
-          "who": "멤풀 노드",
-          "text": "래퍼 객체를 검증하고 1,000밀리초마다 재귀 STARK를 새로 만들어 전달하는 집계 역할이 생깁니다."
+          "who": "지갑·앱 개발자",
+          "text": "EIP-8141 프레임에 DEP_VERIFY_FRAME_MODE 프레임을 추가해 의존성을 선언해야 합니다"
         },
         {
-          "who": "빌더·FOCIL 생성자",
-          "text": "받은 증명들을 같은 형식의 재귀 STARK로 다시 감싸 블록이나 포함 목록에 싣습니다. STARK 관련 오버헤드는 집계 주기당 약 256kB로 고정됩니다."
+          "who": "클라이언트·빌더 팀",
+          "text": "블록 헤더 recursive_stark 검증과 Lean Ethereum 증명 툴링을 구현해야 합니다"
         },
         {
-          "who": "클라이언트 팀",
-          "text": "블록 헤더에 recursive_stark 필드가 추가되는 합의 변경이어서 네트워크 업그레이드로 활성화해야 합니다."
+          "who": "검증자(어텐스터)",
+          "text": "FOCIL 포함 리스트에서도 재귀 STARK로 의존성 유효성을 함께 확인해야 합니다"
         }
       ],
       "example": {
-        "title": "양자내성 서명 트랜잭션이 블록에 담기기까지",
+        "title": "서명이 블록에 들어가기까지",
         "steps": [
           {
-            "label": "1",
-            "title": "제출",
-            "body": "사용자가 의존성 검증 프레임이 든 프레임 트랜잭션을 만들고 서명·증명 원본을 함께 담은 mode 0 래퍼로 멤풀에 브로드캐스트합니다."
+            "label": "선언",
+            "title": "의존성 선언",
+            "body": "사용자는 트랜잭션에 DEP_VERIFY_FRAME_MODE 프레임을 넣어 (scheme, data_hash, verification_key_hash) 트리플을 선언합니다. 실제 서명·증명은 본문에 넣지 않습니다."
           },
           {
-            "label": "2",
-            "title": "멤풀 검증",
-            "body": "멤풀 노드가 래퍼의 각 증명을 개별 검증합니다. 유효하면 수락하고 포함 불가능해진 트랜잭션의 의존성은 제거 대상으로 기록합니다."
+            "label": "멤풀",
+            "title": "래퍼로 묶기",
+            "body": "멤풀 노드는 AGGREGATION_INTERVAL(1초)마다 여러 트랜잭션의 의존성을 모아 래퍼 오브젝트로 묶고 직접 증명(mode 0) 또는 재귀 STARK(mode 1)를 붙입니다."
           },
           {
-            "label": "3",
-            "title": "집계",
-            "body": "노드는 1,000밀리초(AGGREGATION_INTERVAL)마다 유효한 트랜잭션 전부를 담은 mode 1 래퍼와 재귀 STARK를 만들어 피어에 전달합니다. 이미 보낸 트랜잭션은 해시로 대체합니다."
+            "label": "재귀 집계",
+            "title": "증명을 다시 묶기",
+            "body": "다른 노드가 만든 래퍼를 받으면, 그 안의 증명들을 다시 재귀적으로 묶어 더 큰 재귀 STARK로 전파합니다."
           },
           {
-            "label": "4",
-            "title": "블록 생성",
-            "body": "빌더가 포함할 트랜잭션들의 의존성을 합치고 미포함분을 제거한 뒤, 최종 집합을 증명하는 재귀 STARK를 만들어 블록 헤더의 recursive_stark에 넣습니다."
+            "label": "빌더",
+            "title": "블록에 포함",
+            "body": "빌더는 포함할 트랜잭션을 정하고 그 트랜잭션들의 의존성만 남긴 최종 재귀 STARK를 블록 헤더 recursive_stark에 넣습니다."
           },
           {
-            "label": "5",
+            "label": "검증",
             "title": "블록 검증",
-            "body": "다른 노드는 블록에서 의존성 목록을 재계산해 block_deps_hash와 맞는지 보고 재귀 STARK 하나만 AGGREGATED_VK로 검증하면 됩니다."
+            "body": "다른 노드는 block_deps_hash가 트랜잭션 의존성과 맞는지, 재귀 STARK가 유효한지만 확인하면 됩니다. 개별 서명을 다시 검증하지 않습니다."
           }
         ]
       },
       "deep": [
         {
-          "title": "의존성 검증 프레임(DEP_VERIFY_FRAME_MODE = 4)",
-          "body": "EIP-8141 프레임 모드에 DEP_VERIFY_FRAME_MODE(값 4)를 추가합니다. 이 프레임은 EVM 코드로 실행되지 않고 (scheme, data_hash, verification_key_hash) 트리플을 의존성으로 선언합니다. data는 정확히 96*k 바이트로, 각 96바이트는 31바이트 0 패딩과 scheme 1바이트, data_hash 32바이트, verification_key_hash 32바이트입니다. 현재 scheme은 LEANSPHINCS_SCHEME(0x10)만 유효하고 LEANSTARK_SCHEME(0x11)은 get_deps_hash가 정의될 때까지 예약 상태입니다. 트리플 수는 1 이상 MAX_DEPENDENCIES_PER_FRAME(256) 이하, target은 None, value와 flags는 0이어야 하고 원자적 배치(atomic batch)의 구성원이 될 수 없습니다. limits.execution은 트리플별 검증 가스의 합과 정확히 같아야 하고 limits.state는 0입니다. 영수증은 status = 1, gas_used.state = 0, 로그 없음으로 남는데, 프레임 하나를 빼면 뒤 프레임들의 인덱스가 밀려 FRAMEPARAM 조회가 어긋나기 때문에 실행하지 않는 프레임에도 영수증을 남깁니다.",
-          "ref": "원문: Specification · New Frame Mode, Rationale · Why the dependency frame still gets a receipt"
+          "title": "DEP_VERIFY_FRAME_MODE: 의존성 선언 프레임",
+          "body": "EIP-8141 프레임에 새 모드 DEP_VERIFY_FRAME_MODE(값 4)가 추가됩니다. 이 프레임은 EVM 코드로 실행되지 않고 data 필드에 96바이트씩 (scheme, data_hash, verification_key_hash) 트리플을 담습니다. scheme은 31바이트 0 패딩 뒤 1바이트로 LEANSPHINCS_SCHEME(0x10) 또는 LEANSTARK_SCHEME(0x11, get_deps_hash 미정의로 현재는 사용 불가)을 가리킵니다. 트리플 개수는 1개 이상 MAX_DEPENDENCIES_PER_FRAME(256)개 이하여야 하고 target은 None, value와 flags는 0, ATOMIC_BATCH_FLAG를 가진 프레임 뒤에 올 수 없습니다. limits.execution은 트리플마다 LEANSPHINCS_VERIFICATION_GAS(3000) 또는 LEANSTARK_VERIFICATION_GAS(30000)를 합산한 값과 정확히 같아야 하고 limits.state는 0입니다.",
+          "ref": "원문: Specification · New Frame Mode"
         },
         {
-          "title": "트랜잭션 의존성과 0 data_hash 규약",
-          "body": "트랜잭션의 의존성 목록은 모든 의존성 검증 프레임의 트리플을 모아 deduplicate_and_sort로 정렬·중복 제거한 것입니다. data_hash가 32바이트 0이면 그 트랜잭션 자신의 서명 해시 compute_sig_hash(tx)를 뜻합니다. 서명 해시가 프레임 data를 덮기 때문에 트랜잭션이 자기 서명 해시를 직접 실을 수 없어서 이런 자리표시 규약을 둡니다. 프레임의 data 자체는 바뀌지 않아 compute_sig_hash는 0 바이트를 그대로 덮고 FRAMEDATACOPY도 0을 돌려줍니다. 실행 중에는 FRAMEPARAM(0x02, i)로 프레임 모드를, FRAMEPARAM(0x04, i)로 data 길이를 읽고 FRAMEDATACOPY로 트리플을 복사해 컨트랙트가 선언된 의존성을 들여다볼 수 있습니다.",
-          "ref": "원문: Specification · Transaction Dependencies, Transaction Execution Visibility"
+          "title": "트랜잭션·블록의 의존성 목록 계산",
+          "body": "dependencies(tx)는 트랜잭션 안의 모든 DEP_VERIFY_FRAME_MODE 프레임에서 뽑은 트리플을 정렬·중복제거한 목록입니다. data_hash가 32바이트 0이면 이는 '이 트랜잭션 자신의 서명 해시(compute_sig_hash(tx))'를 가리키는 자리표시자로 치환됩니다. 트랜잭션은 자기 서명 해시를 프레임 data에 직접 넣을 수 없는데, 서명 해시 자체가 그 data를 포함해 계산되기 때문입니다. dependencies(block)은 블록 내 모든 트랜잭션의 의존성을 다시 정렬·중복제거한 목록입니다. 같은 의존성을 여러 번 선언해도 합법이지만 선언한 수만큼 가스가 과금되므로 낭비입니다.",
+          "ref": "원문: Specification · Transaction Dependencies"
         },
         {
-          "title": "블록 유효성: recursive_stark 헤더 필드",
-          "body": "블록 헤더에 recursive_stark = [stark_proof, block_deps_hash] 필드가 추가됩니다. block_deps_hash는 블록 내 모든 트랜잭션 의존성의 합집합에 대한 get_deps_hash(dependencies(block))이고 증명이 공개 입력으로 약속하는 다이제스트입니다. 블록이 유효하려면 이 해시가 맞아야 합니다. 의존성이 비어 있으면 stark_proof도 비어 있어야 하며 그렇지 않으면 증명이 고정된 프로토콜 수준 검증 키 AGGREGATED_VK에 대해 검증돼야 합니다. 재귀 STARK 회로는 직접 의존성을 leanSPHINCS·leanSTARK 검증기로 확인하고 내부 재귀 증명들을 검증해 의존성을 합친 뒤, discard 집합과 중복을 제거한 결과의 해시가 공개 입력 deps_hash와 같음을 증명합니다. 무제한 깊이 재귀를 위해 AGGREGATED_VK 자체를 증명의 입력으로 넣습니다. 회로는 트랜잭션이나 블록 구조를 모르고 평평한 트리플 목록만 봅니다.",
+          "title": "블록 헤더 recursive_stark 필드",
+          "body": "블록 헤더에 recursive_stark = [stark_proof, block_deps_hash]가 새로 추가됩니다. block_deps_hash는 get_deps_hash(dependencies(block))로, 블록 안 모든 트리플의 data_hash와 verification_key_hash를 이어붙여 DEPS_HASH(현재 BLAKE2s, BLAKE3로 교체 예정)로 해시한 값입니다. dependencies(block)이 비어 있으면 stark_proof도 비어 있어야 하고 그렇지 않으면 재귀 STARK가 block_deps_hash와 고정된 프로토콜 검증키 AGGREGATED_VK에 대해 검증에 성공해야 블록이 유효합니다. get_deps_hash는 현재 LEANSPHINCS_SCHEME 의존성 목록에만 정의되어 있습니다.",
           "ref": "원문: Specification · Block Validity: Recursive STARK"
         },
         {
+          "title": "재귀 STARK 증명의 구조",
+          "body": "증명의 public input은 [deps_hash, AGGREGATED_VK]입니다. 회로는 먼저 각 직접 의존성에 대해 scheme별로 verify_leanSPHINCS 또는 verify_leanSTARK를 검증하고 다음으로 다른 재귀 증명들을 verify_leanSTARK로 검증해 그 안의 의존성(inner_deps)을 합칩니다. 마지막으로 discards 집합에 있는 항목을 제거하고 정렬·중복제거한 뒤, 그 결과의 get_deps_hash가 공개된 deps_hash와 일치하는지 확인합니다. 회로는 트랜잭션이나 블록의 구조를 전혀 모르고 트리플의 평평한 목록만 봅니다. 무제한 깊이 재귀를 위해 AGGREGATED_VK 자체가 증명의 입력으로 들어갑니다.",
+          "ref": "원문: Specification · Recursive STARK Proof Structure"
+        },
+        {
           "title": "멤풀 래퍼와 재귀 집계",
-          "body": "멤풀에서는 트랜잭션을 [transactions, mode, content] 래퍼로 감싸 AGGREGATION_INTERVAL(1,000밀리초)마다 브로드캐스트합니다. mode 0은 의존성별 개별 증명을 싣고 mode 1은 전체를 증명하는 재귀 STARK 하나를 싣습니다. 두 모드 모두 leanSPHINCS 의존성 16개(MAX_LEANSIG_DEPS_PER_WRAPPER), leanSTARK 의존성 1개(MAX_LEANSTARK_DEPS_PER_WRAPPER) 한도와, deps가 전체 트랜잭션 의존성의 정렬·중복 제거된 합집합이라는 조건을 검증합니다. 멤풀 노드는 받은 래퍼를 검증해 수락하고 매 주기마다 유효한 트랜잭션 전부를 담은 mode 1 래퍼를 새로 만들어 전달하며 이미 보낸 트랜잭션은 해시로 대체합니다. 증명 시간이 부족하면 자기 직전 라운드 집계, 제거할 항목 반영, 새 트랜잭션을 많이 더하는 타 노드 집계 순, 우선순위 수수료 순의 사용자 트랜잭션 순서로 우선 처리합니다. STARK 없이 leanSPHINCS만 있는 풀이라면 서명 100개 정도까지는 그냥 이어 붙인 mode 0 재전파가 더 공간 효율적일 수 있습니다.",
-          "ref": "원문: Specification · Mempool Wrapper Object, Recursive Mempool Aggregation"
+          "body": "멤풀에서 트랜잭션들은 AGGREGATION_INTERVAL(1000ms)마다 한 번 래퍼 오브젝트로 방송됩니다. mode 0은 deps와 개별 proofs를 그대로 담고(직접 증명), mode 1은 하나의 recursive_stark로 모든 deps를 증명합니다. 멤풀 노드는 다른 노드의 래퍼를 받으면 증명을 검증하고 매 주기마다 자신이 아는 모든 유효한 트랜잭션의 의존성을 다시 하나의 mode 1 래퍼로 재귀 집계해 전파합니다. 증명 시간이 부족하면 자신의 이전 집계, 삭제 대상 제거, 새 트랜잭션이 많은 다른 노드의 집계, 우선순위 수수료가 높은 개별 트랜잭션 순으로 처리합니다.",
+          "ref": "원문: Specification · Mempool Wrapper Object / Recursive Mempool Aggregation"
         },
         {
-          "title": "가스 계산",
-          "body": "의존성 검증 프레임의 limits.execution은 트리플별로 LEANSPHINCS_VERIFICATION_GAS(3,000) 또는 LEANSTARK_VERIFICATION_GAS(30,000)를 더한 값입니다. 실제 STARK 검증은 빌더가 오프체인에서 하므로 이 가스는 기대 비용이고 모든 검증 노드가 아니라 빌더와 멤풀만 비용을 지기 때문에 온체인 검증보다 훨씬 쌉니다. 여기에 트랜잭션마다 recursive_stark_gas(tx) = LEANSTARK_VERIFICATION_GAS * 중복 포함 트리플 수가 고유 가스(intrinsic gas)에 더해져 트랜잭션과 블록의 gas_used에 들어갑니다. 의존성은 트랜잭션 본문 수준에 있어 실행이 되돌려져도(revert) 영향받지 않고 가스는 전부 청구됩니다. 같은 의존성을 여러 번 선언하는 것은 합법이지만 선언마다 과금되므로 낭비입니다. 고정 가스는 leanSPHINCS와 STARK 각 한 가지 파라미터를 전제한 것이고 k회용 서명 혼용이나 증명 크기별 트레이드오프가 생기면 가변 비용으로 바뀔 수 있다고 적고 있습니다.",
-          "ref": "원문: Specification · Gas Accounting, Rationale · Gas costs"
-        },
-        {
-          "title": "FOCIL 호환",
-          "body": "FOCIL(EIP-7805) 데이터 구조가 [transactions, recursive_stark]로 확장돼 포함 목록도 블록처럼 자기 트랜잭션들의 의존성 증명을 함께 들고 다닙니다. 어테스터는 FOCIL 내 재귀 증명을 검증해 어떤 트랜잭션이 포함 의무 대상인지 판단합니다. 빌더는 FOCIL과 멤풀 래퍼를 같은 방식으로 처리합니다. 의존성과 증명을 추출하고 포함할 트랜잭션을 정한 뒤 미포함 트랜잭션의 의존성을 뺀 합집합에 대한 재귀 STARK를 새로 만들어 헤더에 넣습니다. 멤풀 재전파, FOCIL 생성, 블록 빌딩은 설계상 정확히 같은 집계 작업입니다. 멤풀 노드는 트랜잭션 의미를 몰라도 증명을 재귀 집계할 수 있고 피어당 대역폭 오버헤드는 트랜잭션 수와 무관하게 상수라서 FOCIL의 검열 저항성이 유지됩니다.",
+          "title": "FOCIL과의 호환",
+          "body": "FOCIL(EIP-7805) 구조체에도 recursive_stark 필드가 추가되어 [transactions, recursive_stark] 형태가 됩니다. 어텐스터는 포함 리스트의 트랜잭션들이 반드시 포함돼야 하는지 판단할 때 이 재귀 증명으로 의존성 유효성을 함께 검증합니다. 빌더는 P2P로 받은 FOCIL들과 멤풀 래퍼들에서 의존성과 증명을 추출하고 실제로 블록에 포함할 트랜잭션만 남긴 뒤 그 최종 집합에 대한 새 재귀 STARK를 만들어 블록 헤더의 recursive_stark에 넣습니다. 멤풀 노드의 재집계, FOCIL 생성자의 집계, 빌더의 집계는 모두 같은 작업입니다.",
           "ref": "원문: Specification · FOCIL Compatibility"
         },
         {
-          "title": "신뢰 가정과 DoS 방어",
-          "body": "보안은 Lean Ethereum 회로의 건전성, deps_hash에 쓰는 해시 함수(현재 툴링은 BLAKE2s, BLAKE3가 유력한 교체 후보이고 헤더와 회로가 함께 바뀜), 그리고 재귀 STARK의 건전성에 기댑니다. 재귀 증명의 건전성은 널리 참으로 여겨지고 이미 온체인에서 쓰이지만 전 과정 형식 증명을 어렵게 만들고 사용자가 넣는 검증 키의 재귀 깊이는 무제한일 수 있습니다. DoS 방어는 트랜잭션당 leanSPHINCS 의존성 16개(MAX_SIGS_PER_TX)와 leanSTARK 1개(MAX_STARKS_PER_TX), 프레임당 256개, 래퍼당 한도, 의존성 수에 비례하는 가스로 이뤄집니다. 한도는 같은 데이터를 calldata로 그대로 보냈을 때와 최악의 멤풀 부하가 같도록 잡았지만 양자내성 서명과 증명 자체가 기존 타원곡선 방식보다 크고 비싸서 멤풀 DoS 노출 증가는 여전히 남습니다. 한도 설계는 ERC-7562의 멤풀 정책 틀을 참고했습니다.",
-          "ref": "원문: Security Considerations"
+          "title": "가스 과금",
+          "body": "의존성 검증 프레임의 limits.execution은 LEANSPHINCS 트리플마다 3000, LEANSTARK 트리플마다 30000 가스를 합산한 값입니다. 이 가스는 실제 STARK 검증 비용이 아니라, 빌더와 멤풀만 부담하는 오프체인 검증 비용을 어림한 값이라 쌉니다. 추가로 트랜잭션은 recursive_stark_gas(tx) = LEANSTARK_VERIFICATION_GAS * 선언된 트리플 수(중복 포함)만큼을 intrinsic gas로 더 냅니다. 이 의존성들은 EVM 안에서 생성되는 게 아니라 트랜잭션 본문 단위이므로, 트랜잭션이 리버트되어도 가스는 그대로 전부 과금됩니다.",
+          "ref": "원문: Specification · Gas Accounting"
         },
         {
-          "title": "현재 상태",
-          "body": "이 EIP는 Draft 상태라 상수(AGGREGATED_VK, DEPS_HASH는 아직 TBD)와 명세가 앞으로 바뀔 수 있습니다. 2026년 9월 16일 AMA #15에서 논의됐으나 결정은 없었고 특정 포크에 포함하기로 한 결정도 아직 없습니다.",
-          "ref": "원문: status, 콜 기록 09.16 AMA #15"
+          "title": "DoS 한도와 상태, 콜 논의",
+          "body": "DoS 방지를 위해 트랜잭션당 leanSPHINCS 의존성은 MAX_SIGS_PER_TX(16)개, leanSTARK 의존성은 MAX_STARKS_PER_TX(1)개로 제한되고 프레임당 트리플은 MAX_DEPENDENCIES_PER_FRAME(256)개, 래퍼당 의존성은 MAX_LEANSIG_DEPS_PER_WRAPPER·MAX_LEANSTARK_DEPS_PER_WRAPPER로 제한됩니다. 이 한도는 서명·증명을 그대로 calldata로 보냈을 때와 같은 수준으로 멤풀 부담을 맞추도록 ERC-7562의 멤풀 정책 틀을 참고해 정했습니다. 이 EIP는 status가 Draft이고 AGGREGATED_VK, DEPS_HASH 값은 TBD, 참조 구현도 TBD라 세부 수치는 바뀔 수 있습니다. 2026-09-16 AMA #15에서 논의되었으나 포크 포함 여부에 대한 결정은 아직 없습니다.",
+          "ref": "원문: Security Considerations · Denial of Service; 콜 기록: 09.16 AMA #15"
         }
       ],
       "glossary": [
         {
           "term": "STARK",
-          "def": "신뢰 설정 없이 해시 함수만으로 계산의 올바름을 증명하는 영지식 증명 방식입니다. 양자컴퓨터에도 안전하지만 증명이 큽니다."
+          "def": "확장성 있고 투명한 지식 증명(Scalable Transparent ARgument of Knowledge). 어떤 계산을 올바르게 수행했음을 짧은 증명으로 보여주는 방식입니다."
         },
         {
-          "term": "재귀 STARK",
-          "def": "다른 STARK 증명들의 유효성을 다시 하나의 STARK로 증명하는 기법입니다. 많은 증명을 증명 하나로 압축할 수 있습니다."
-        },
-        {
-          "term": "의존성(dependency)",
-          "def": "이 EIP에서 트랜잭션이 선언하는 (scheme, data_hash, verification_key_hash) 세 값입니다. 블록의 재귀 STARK가 그 유효성을 증명해야 합니다."
-        },
-        {
-          "term": "leanSPHINCS",
-          "def": "Lean Ethereum 툴링의 해시 기반 양자내성 서명 방식입니다. 상태 관리 없이 여러 번 쓸 수 있는 서명입니다."
+          "term": "재귀 증명(recursive proof)",
+          "def": "증명 안에 다른 증명의 검증 과정을 포함시켜, 여러 증명을 하나의 증명으로 압축하는 기법입니다."
         },
         {
           "term": "FOCIL",
-          "def": "포크초이스 강제 포함 목록(EIP-7805)입니다. 검증자들이 특정 트랜잭션의 블록 포함을 강제해 검열에 저항하는 제도입니다."
+          "def": "포크 선택 강제 포함 리스트. 검증자가 특정 트랜잭션을 블록에 반드시 포함시키도록 강제하는 메커니즘입니다(EIP-7805)."
         },
         {
-          "term": "멤풀",
-          "def": "블록에 담기기 전의 트랜잭션들이 대기하며 노드 사이에 전파되는 공간입니다."
+          "term": "leanSPHINCS",
+          "def": "Lean Ethereum에서 쓰는 해시 기반 양자 내성 서명 방식입니다."
+        },
+        {
+          "term": "프레임(frame)",
+          "def": "EIP-8141이 정의하는 트랜잭션 내부의 세부 실행 단위입니다."
+        },
+        {
+          "term": "양자 내성(post-quantum)",
+          "def": "양자컴퓨터로도 깨기 어려운 암호 방식을 말합니다."
         }
       ],
       "related": [
         {
           "number": 8141,
-          "note": "이 EIP가 확장하는 프레임 트랜잭션 명세입니다. DEP_VERIFY_FRAME_MODE가 새 프레임 모드로 추가됩니다."
+          "note": "이 EIP가 새 프레임 모드로 확장하는 프레임 트랜잭션 표준"
         },
         {
           "number": 2718,
-          "note": "타입드 트랜잭션 봉투입니다. 프레임 트랜잭션의 기반 형식으로 requires에 포함됩니다."
+          "note": "프레임 트랜잭션이 따르는 트랜잭션 타입 포맷"
         },
         {
           "number": 7805,
-          "note": "FOCIL 포함 목록입니다. 이 EIP는 FOCIL에 recursive_stark 필드를 더해 호환되도록 설계됐습니다."
+          "note": "FOCIL. 이 EIP가 호환성을 설계한 포함 리스트 메커니즘"
         },
         {
           "number": 7562,
-          "note": "멤풀 정책 프레임워크입니다. 이 EIP의 멤풀 한도 설계가 이를 참고했습니다."
+          "note": "멤풀 DoS 한도 설계 시 참고한 멤풀 정책 프레임워크"
         }
       ],
       "meta": {
@@ -52168,9 +52160,9 @@
         ],
         "discussionsTo": "https://ethereum-magicians.org/t/eip-8288-frame-type-for-pq-sig-and-stark-aggregation/28723"
       },
-      "sourceHash": "1ec57e72f4372e80",
-      "model": "fable",
-      "generatedAt": "2026-11-03T14:48:57.913Z"
+      "sourceHash": "79c0a49c5613eec3",
+      "model": "sonnet",
+      "generatedAt": "2026-11-17T01:01:34.331Z"
     },
     {
       "number": 8289,

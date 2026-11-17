@@ -1,6 +1,464 @@
 {
-  "updatedAt": "2026-11-13T07:35:29.724Z",
+  "updatedAt": "2026-11-17T00:55:53.209Z",
   "calls": [
+    {
+      "id": "acdt-103",
+      "series": "acdt",
+      "number": 103,
+      "date": "2026-11-16",
+      "title": "AllCoreDevs - Testing #103",
+      "forkcastUrl": "https://forkcast.org/calls/acdt/103/",
+      "videoUrl": "https://www.youtube.com/watch?v=ltmaae3DFY0",
+      "issueUrl": "https://github.com/ethereum/pm/issues/2299",
+      "kind": "full",
+      "durationMin": 101,
+      "headline": "8037 결정은\n목요일로 연기",
+      "lead": "가스 3.3배 확장안이 컨트랙트를 깨뜨려 출시결정이 미뤄졌다",
+      "intro": "이더리움 실행 계층의 테스트와 보안 이슈를 다루는 ACDT(AllCoreDevs Testing) 콜로, 이번엔 앱 개발자와 보안 감사팀까지 초청해 열렸다.",
+      "summary": "글램스테르담(Glamsterdam)에 포함된 스케일링 EIP-8037/8038이 다수 스마트컨트랙트의 불변식(invariant)을 깨뜨린다는 사실이 뒤늦게 드러나, 출시 여부에 대한 최종 결정은 이번 콜에서 내려지지 않고 목요일 ACDE 콜로 넘겨졌다.",
+      "whyItMatters": "블록 가스 한도를 60M에서 200M으로 3.3배 늘리는 이번 변경은 하드코딩된 가스값에 의존하는 1만~1만5천 개 컨트랙트와 트라이/캐치(try/catch) 기반 컴포저빌리티를 깨뜨릴 수 있다. 그대로 출시되면 일부 불변(immutable) 프로토콜은 재배포가 불가능해 자금이 묶이고 반대로 늦추면 양자내성(post-quantum) 계정 전환을 포함한 다음 포크 헤고타(Hegota) 일정이 수개월 밀린다.",
+      "decisions": [
+        {
+          "label": "EIP-8037 출시 보류",
+          "text": "오늘 EIP-8037에 대한 결정은 내려지지 않았고 공식적인 추진 방향 결정은 목요일 ACDE 콜로 미뤄졌다. 아직 그대로 출시할지 바꿀지 정해지지 않았다는 뜻이다.",
+          "original": "No decision on EIP-8037 today; formal path-forward decision deferred to ACDE on Thursday",
+          "eips": [
+            8037
+          ],
+          "status": "기타",
+          "timestamp": "01:30:30"
+        },
+        {
+          "label": "글램스테르담 지연",
+          "text": "메인넷 배포 전 애플리케이션 레이어가 대응할 시간을 벌기 위해 글램스테르담 일정을 늦춘 판단이 타당했다고 결론났다. 앱을 먼저 생각한 지연이었다는 의미다.",
+          "original": "Glamsterdam delay was justified to prioritize app-layer mitigation time before mainnet",
+          "eips": [],
+          "status": "확정",
+          "fork": "Glamsterdam",
+          "timestamp": "01:17:50"
+        }
+      ],
+      "targets": [
+        {
+          "key": "glamsterdam-mainnet-jan-2027",
+          "text": "글램스테르담 메인넷은 영향받는 팀들의 신호를 근거로 2027년 1월을 목표로 거론됐다. 아직 제안 단계이며 확정은 아니다.",
+          "timestamp": "01:33:29"
+        },
+        {
+          "key": "eipip-ai-integration",
+          "text": "EIPIP 콜은 11월 18일 수요일 UTC 16시에 열리며, EIP 심사 과정에 AI를 통합하는 방안을 논의한다. 확정된 일정이다.",
+          "timestamp": "01:51:19"
+        }
+      ],
+      "actions": [
+        {
+          "owner": "EF 스펙팀",
+          "text": "스펙 PR #3948(배포된 패턴 불변식 코퍼스)과 #3982(체인 불변식 점검)를 검토하고 머지한다.",
+          "timestamp": "01:22:57"
+        },
+        {
+          "owner": "모든 코어 개발자 (목요일 ACDE)",
+          "text": "EIP-8037을 그대로 출시할지 바꿀지 추진 방향을 결정하고, 후디(Hoodi) 테스트넷 포크 날짜에 합의한다.",
+          "timestamp": "01:30:00"
+        },
+        {
+          "owner": "Rahul (EF 액세스 레이어)",
+          "text": "아직 트리아지하지 않은 영향받는 L2·앱 팀에 직접 보안 연락망을 통해 추가로 접촉한다.",
+          "timestamp": "01:17:50"
+        }
+      ],
+      "agenda": [
+        {
+          "timestamp": "00:17:34",
+          "heading": "EIP-8037/8038 개요 및 현재 상황"
+        },
+        {
+          "timestamp": "00:28:07",
+          "heading": "체인시큐리티 감사 결과",
+          "discussion": true
+        },
+        {
+          "timestamp": "00:35:44",
+          "heading": "데다웁 감사 결과"
+        },
+        {
+          "timestamp": "00:45:48",
+          "heading": "EF 내부 조사와 애플리케이션 아웃리치"
+        },
+        {
+          "timestamp": "00:49:49",
+          "heading": "주스박스 프로토콜의 우려와 트라이/캐치 컴포저빌리티",
+          "discussion": true
+        },
+        {
+          "timestamp": "00:59:12",
+          "heading": "불변성, 불변식 문서화, 그리고 향후 보장 범위",
+          "discussion": true
+        },
+        {
+          "timestamp": "01:16:10",
+          "heading": "프로토콜-앱 레이어 정합성 개선",
+          "decision": true
+        },
+        {
+          "timestamp": "01:29:29",
+          "heading": "글램스테르담 추진 방향과 ACDE 결정",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "01:50:13",
+          "heading": "페이로드 바인딩 솔루션 선정"
+        },
+        {
+          "timestamp": "01:50:42",
+          "heading": "EIPIP 콜: EIP 프로세스에서의 AI"
+        }
+      ],
+      "topics": [
+        {
+          "title": "트라이/캐치 컴포저빌리티 붕괴",
+          "intro": "EIP-8037 때문에 사용자가 가스를 조정해 캐치 블록을 일부러 트리거하면서 주스박스(Juicebox) 같은 확장형 프로토콜의 신뢰 기반이 흔들렸다.",
+          "positions": [
+            {
+              "speaker": "Jango",
+              "text": "주스박스는 결제·캐시아웃 기능을 확장 가능하도록 트라이/캐치를 쓰는데, 글램스테르담 하에서는 사용자가 가스 한도를 조정해 컴포저블 확장을 일부러 실패시키고 캐치 블록을 트리거할 수 있다. 이는 사용자에게 암묵적인 분기 권한을 주는 것으로, 안전한 트라이/캐치 컴포저빌리티에 대한 큰 훼손이다.",
+              "timestamp": "00:49:49",
+              "original": "My pleasure, thank you for hosting, and… Giving the opportunity. Just to clarify some, poignant… Things in the juicebox protocol to make things explicit. And how it affects, our apps. The biggest one are try-catch blocks. We… As an extensible protocol, we try to just be the generalized pay and cash out functions of the open internet, and so folks should be able to bring extensions on what happens when you pay, what happens when you cash out, including payouts, splits. Etc. And there are… many moments with, with Glam that the user can choose and tune the gas limit such that the, composability aspect fails, and then triggers the catch block, and then, the rest of the code runs. Which, you know, the try-catch is there such that if someone brings a composable element that is truly broken for whatever reason, the rest of the execution does, does not continue. Or rather, continues. which, you know, prevents someone from changing a composable element and then breaking the rest of the protocol. But this, change would basically allow users to tune, do they want to go into the composable element or not? And I feel like composability is a large, value prop of Ethereum. So, Certainly of the Juicebox protocol, but I imagine of Ethereum at large. A second point I think, is more philosophical here, and the one word that comes to mind when I think about this change, and a lot of the time I spend building protocols over the past years, is confidence. I think In thinking about breaking…",
+              "translation": "제가 오히려 감사합니다. 주최해 주시고 기회를 주셔서 감사합니다. Juicebox protocol에서 몇 가지 핵심적인 부분을 명확히 하고, 그것이 저희 앱들에 어떤 영향을 미치는지 말씀드리고자 합니다. 가장 큰 것은 try-catch 블록입니다. 저희는 확장 가능한 프로토콜로서 오픈 인터넷의 일반화된 pay 및 cash out 기능이 되고자 하며, 그렇기 때문에 사용자들이 지불할 때 무슨 일이 일어나는지, cash out할 때 무슨 일이 일어나는지에 대한 확장 기능, 즉 payout이나 split 등을 가져올 수 있어야 합니다. 그리고 Glam에서는 사용자가 gas limit을 선택하고 조정하여 composability(조합성) 측면이 실패하게 만들고, 그러면 catch 블록이 트리거되어 나머지 코드가 실행되는 경우가 많습니다. try-catch가 존재하는 이유는, 누군가가 어떤 이유로든 진짜로 고장난 조합 가능한 요소를 가져왔을 때 나머지 실행이 계속되지 않도록, 아니 오히려 계속되도록 하기 위한 것입니다. 즉 누군가가 조합 가능한 요소를 바꿔서 나머지 프로토콜을 망가뜨리는 것을 막기 위한 장치입니다. 하지만 이번 변경은 기본적으로 사용자가 그 조합 가능한 요소에 들어갈지 말지를 직접 조정할 수 있게 만들 것입니다. 저는 composability가 이더리움의 큰 가치 제안이라고 생각합니다. 물론 Juicebox protocol에게도 그렇지만, 이더리움 전체에게도 마찬가지라고 생각합니다. 두 번째로 말씀드리고 싶은 점은 좀 더 철학적인 것인데, 이번 변경을 생각할 때, 그리고 지난 몇 년간 프로토콜을 만들며 보낸 시간을 생각할 때 떠오르는 한 단어는 confidence(신뢰)입니다. user space를 깨는 것에 대해 생각해보면…"
+            },
+            {
+              "speaker": "Marius Van Der Wijden (M)",
+              "text": "공감하지만 분석 결과 영향받는 컨트랙트는 전체 9천만 개 중 1만~1만5천 개 수준의 소수라는 점을 강조했다. 과거 EIP-2929/2930 때도 절대적 불변성 가정은 이미 깨졌다고 덧붙였다.",
+              "timestamp": "00:54:01",
+              "original": "Yeah, I… I can… I can… I can respond. I… I… I do empathize a lot with what you're saying, I think what we… what we kind of… have seen with the analysis is that it's not the majority of contracts that we are… we are… we are breaking. Or that I might need to upgrade. I think it's around… In the, in the highest estimates, it's around, 10, 15,000 contracts? the amount of contracts on Ethereum, in comparison, is around 90 million, so… Like, this is… this is a… I would say 8… I don't want to, yeah, make this sound less than, but it's, like, a fringe subset of the contracts that are impacted by this change. I do think that we need to be extremely Extremely careful when we are breaking user space, that the out… that the benefits outweigh, the risks and the drawbacks. I, for myself, feel like the… they do in this case, And, also in the other cases that are… That, that are being proposed. Or that, that are on the… timeline, or in… or coming in the future. If you… I see there's… there's, like, a… there's, like, a question about… About the amount of value? In these contracts. I think the total amount of value is… I don't have any reliable numbers on this, but it is on the order of A few hundred thousand, And… wire… At least the… sorry, the contracts that have not yet Said that they're going to upgrade, and, and, so these, yeah. more immutable contracts. And so it's very hard for me to justify Holding back this, this, like, $300 billion ecosystem, for, like. a few 300, 400, 500K worth…",
+              "translation": "네, 답변드릴 수 있습니다. 말씀하신 내용에 대해 많이 공감합니다. 저희가 분석을 통해 본 바로는, 저희가 깨뜨리는 것이 컨트랙트의 다수는 아니라는 점입니다. 혹은 업그레이드가 필요한 컨트랙트가 다수는 아니라는 것입니다. 가장 높은 추정치로 보면 약 1만에서 1만 5천 개 정도의 컨트랙트인데, 이더리움 상의 전체 컨트랙트 수는 약 9천만 개입니다. 그러니 이는, 가볍게 말하고 싶지는 않지만, 이번 변경으로 영향을 받는 컨트랙트는 극히 일부에 해당합니다. 저는 user space를 깨뜨릴 때는 극도로 조심해야 하며, 그 이점이 리스크와 단점을 상회해야 한다고 생각합니다. 저 개인적으로는 이번 경우에도, 그리고 현재 제안되어 있거나 로드맵상에 있거나 앞으로 나올 다른 경우들에도 그렇다고 느낍니다. 이 컨트랙트들에 들어 있는 가치의 규모에 대한 질문이 있었던 것으로 보입니다. 전체 가치 규모에 대해 신뢰할 수 있는 수치는 없지만, 수십만 달러 정도의 규모이며, 적어도 아직 업그레이드하겠다고 밝히지 않은, 즉 더 immutable한 컨트랙트들을 기준으로 그렇습니다. 그래서 저로서는 3,000억 달러 규모의 이 생태계를 30만, 40만, 50만 달러 정도의 가치를 위해 붙잡아 두는 것을 정당화하기가 매우 어렵습니다…"
+            },
+            {
+              "speaker": "Toni Wahrstaetter",
+              "text": "하드코딩된 가스값 때문에 깨지는 것과 gas left가 늘어날 수 있다는 더 복잡한 불변식 차원의 붕괴는 구분해서 논의해야 한다고 짚었다.",
+              "timestamp": "00:58:56",
+              "original": "Yeah, just as a response to Jango, because I think, what he said is very valid, and should be taken seriously. It feels like we must differentiate the discussion a bit between breaking, things because of hard-coded gas versus The more complex, breakage, which is, like, invariant breaking and gas left, for example, being able to increase, it's a very different, breakage than just hardcoding gas. And one thing I've been hearing a lot in the past weeks since we… since chain security brought, brought the topic up, and people have started looking more deeply into the topic, is that it's just very unclear right now for app Devs what things core devs think about potentially breaking in the future versus what are actually the hard guarantees that won't be broken. And it's easy to just say everything around gas, but probably there's a lot of assumptions taken around gas that are also, Very set in stone versus others that are, like. about to break with every potential repricing we have to do. So, one… action item, I think that many people, have already, voiced, and also I saw it on the ACD agenda, would be to just be more clear in what are the things that might be breaking in the future. Vitalik already started, listing some of those in his blog post, and I think we should just make it a more formal process. and define those a little bit better. And this might… It might not help with the current situation, but at least we can… Do better in the future on that one.",
+              "translation": "네, Jango에 대한 답변으로 말씀드리자면, 그가 한 말은 매우 타당하고 심각하게 받아들여져야 한다고 생각합니다. 저는 hard-coded gas 때문에 발생하는 breaking과, 더 복잡한 breaking, 즉 invariant breaking이나 gas left가 증가할 수 있게 되는 경우를 조금 구분해서 논의해야 한다고 느낍니다. 이는 단순히 gas를 하드코딩하는 것과는 매우 다른 종류의 breaking입니다. 그리고 최근 몇 주간 chain security가 이 주제를 제기한 이후 사람들이 더 깊이 들여다보면서 많이 듣게 된 이야기는, 앞으로 core dev들이 깨질 수 있다고 생각하는 것들과 실제로 절대 깨지지 않을 것이라는 확고한 보장이 무엇인지가 app dev들에게 지금 매우 불분명하다는 점입니다. gas와 관련된 모든 것이라고 단순하게 말하기는 쉽지만, gas에 대해서도 아주 확고하게 정해져 있는 가정들이 있는 반면, 앞으로 있을 수 있는 리프라이싱(repricing)마다 깨질 수 있는 가정들도 있을 것입니다. 그래서 이미 많은 분들이 제기했고 ACD 의제에서도 본 action item 하나는, 앞으로 깨질 수 있는 것들이 무엇인지 더 명확히 하자는 것입니다. Vitalik은 이미 자신의 블로그 포스트에서 그중 일부를 나열하기 시작했는데, 저는 이것을 더 공식적인 프로세스로 만들어서 좀 더 잘 정의해야 한다고 생각합니다. 이것이 지금 상황에는 도움이 되지 않을 수도 있지만, 적어도 앞으로는 이 부분에서 더 잘할 수 있을 것입니다."
+            },
+            {
+              "speaker": "Daniel Gretzke",
+              "text": "Jango의 우려에 강하게 동의하며 특히 가스 리저버(reservoir) 메커니즘 자체가 트라이/캐치 가정을 근본적으로 깨고 2차적인 UX 문제를 낳으므로 재고가 필요하다고 주장했다.",
+              "timestamp": "01:37:47",
+              "original": "Hi, Daniel from Uniswap here. I understand that there is a strong desire to just keep going, because already a lot of work has gone in, it causes a lot of delays. But I really want to emphasize that 8037 should definitely be reconsidered, especially the handling of the gas reservoir, because this just fundamentally breaks Some assumptions that we have basically fundamentally catch… Where breaks try catching. And also introduces a bunch of second-order effects that create a very difficult UX for the end users of the applications on Ethereum. I do… for me, you know, it's totally fine that gas assumptions are allowed to break. And we should not, you know, be using very conservative, hard-coded gas. I think everyone's aware of this, I do think that the main issue is that when we add implicit branching based on the transaction gas that a user sets, or these kinds of things, I would… I would argue that this would fundamentally break how we Build contracts, and… Yeah, so I just wanted to emphasize that this really needs to be rethought, and all kind of also edge cases handled. Before actually considering moving forward with it. I mean, generally, I'd be… I'd prefer to wait for an increased smart contract size limit, if that means you know, we can fix all the other issues. Like, all the other issues are way more important to me than the small contract size limit, which is nice, but… I think the other part would be worse, just speaking as an app dev.",
+              "translation": "안녕하세요, Uniswap의 Daniel입니다. 이미 많은 작업이 들어갔고 지연이 많이 발생하고 있기 때문에 그대로 진행하고자 하는 강한 의지가 있다는 것은 이해합니다. 하지만 EIP-8037은 반드시 재고되어야 한다는 점을 강조하고 싶습니다. 특히 gas reservoir 처리 방식이 그렇습니다. 이는 저희가 기본적으로 가지고 있던 가정들, 즉 try-catch가 깨지는 지점에 대한 가정들을 근본적으로 깨뜨리기 때문입니다. 그리고 이더리움 상의 애플리케이션 최종 사용자들에게 매우 어려운 UX를 만드는 여러 2차 효과들도 발생시킵니다. 저로서는 gas에 대한 가정들이 깨지는 것은 전혀 문제가 없습니다. 그리고 저희는 매우 보수적인 hard-coded gas를 사용해서는 안 됩니다. 이는 모두가 알고 있는 사실이라고 생각합니다. 다만 주된 문제는, 사용자가 설정하는 트랜잭션 gas를 기준으로 암묵적인 분기(implicit branching)를 추가하게 되면, 이것이 저희가 컨트랙트를 만드는 방식을 근본적으로 깨뜨릴 것이라는 점입니다. 그래서 이 부분은 실제로 다시 고민되어야 하고 모든 엣지 케이스도 처리되어야 한다는 점을 강조하고 싶었습니다. 이를 진행하기로 고려하기 전에 말입니다. 일반적으로 말씀드리면, 다른 모든 문제를 고칠 수 있다는 의미라면 저는 스마트 컨트랙트 사이즈 제한 증가를 기다리는 쪽을 선호합니다. 다른 모든 문제들이 작은 컨트랙트 사이즈 제한보다 저에게는 훨씬 더 중요합니다. 사이즈 제한 증가는 좋은 일이지만, app dev로서 말씀드리면 다른 부분이 더 나쁜 결과를 낳을 것이라고 생각합니다."
+            }
+          ],
+          "quote": {
+            "text": "이제 이더리움에서 불변(immutable) 프로토콜을 짓는 것이 어리석은 일이 됐는지, 그렇다면 그렇게 분명히 밝혀야 한다.",
+            "original": "I question if that confidence is really at play here... do we find it now foolish to build immutable protocols on Ethereum? And if so, I think it's just good to pronounce that very clearly and obviously.",
+            "speaker": "Jango",
+            "timestamp": "00:49:49"
+          }
+        },
+        {
+          "title": "불변식 문서화와 미래 보장 범위",
+          "intro": "어떤 프로토콜 특성이 영원히 보장되고 어떤 것이 바뀔 수 있는지가 핵심 개발자들 사이에서도 불분명하다는 공통 인식이 모였다.",
+          "positions": [
+            {
+              "speaker": "Toni Wahrstaetter",
+              "text": "앱 개발자 입장에서 코어 개발자가 앞으로 무엇을 깨뜰 수 있다고 생각하는지, 반대로 무엇이 진짜 깨지지 않을 보장인지가 지금 매우 불분명하다고 지적하며 이를 더 공식적으로 정의하자고 제안했다.",
+              "timestamp": "00:58:56",
+              "original": "Yeah, just as a response to Jango, because I think, what he said is very valid, and should be taken seriously. It feels like we must differentiate the discussion a bit between breaking, things because of hard-coded gas versus The more complex, breakage, which is, like, invariant breaking and gas left, for example, being able to increase, it's a very different, breakage than just hardcoding gas. And one thing I've been hearing a lot in the past weeks since we… since chain security brought, brought the topic up, and people have started looking more deeply into the topic, is that it's just very unclear right now for app Devs what things core devs think about potentially breaking in the future versus what are actually the hard guarantees that won't be broken. And it's easy to just say everything around gas, but probably there's a lot of assumptions taken around gas that are also, Very set in stone versus others that are, like. about to break with every potential repricing we have to do. So, one… action item, I think that many people, have already, voiced, and also I saw it on the ACD agenda, would be to just be more clear in what are the things that might be breaking in the future. Vitalik already started, listing some of those in his blog post, and I think we should just make it a more formal process. and define those a little bit better. And this might… It might not help with the current situation, but at least we can… Do better in the future on that one.",
+              "translation": "네, Jango에 대한 답변으로 말씀드리자면, 그가 한 말은 매우 타당하고 심각하게 받아들여져야 한다고 생각합니다. 저는 hard-coded gas 때문에 발생하는 breaking과, 더 복잡한 breaking, 즉 invariant breaking이나 gas left가 증가할 수 있게 되는 경우를 조금 구분해서 논의해야 한다고 느낍니다. 이는 단순히 gas를 하드코딩하는 것과는 매우 다른 종류의 breaking입니다. 그리고 최근 몇 주간 chain security가 이 주제를 제기한 이후 사람들이 더 깊이 들여다보면서 많이 듣게 된 이야기는, 앞으로 core dev들이 깨질 수 있다고 생각하는 것들과 실제로 절대 깨지지 않을 것이라는 확고한 보장이 무엇인지가 app dev들에게 지금 매우 불분명하다는 점입니다. gas와 관련된 모든 것이라고 단순하게 말하기는 쉽지만, gas에 대해서도 아주 확고하게 정해져 있는 가정들이 있는 반면, 앞으로 있을 수 있는 리프라이싱(repricing)마다 깨질 수 있는 가정들도 있을 것입니다. 그래서 이미 많은 분들이 제기했고 ACD 의제에서도 본 action item 하나는, 앞으로 깨질 수 있는 것들이 무엇인지 더 명확히 하자는 것입니다. Vitalik은 이미 자신의 블로그 포스트에서 그중 일부를 나열하기 시작했는데, 저는 이것을 더 공식적인 프로세스로 만들어서 좀 더 잘 정의해야 한다고 생각합니다. 이것이 지금 상황에는 도움이 되지 않을 수도 있지만, 적어도 앞으로는 이 부분에서 더 잘할 수 있을 것입니다."
+            },
+            {
+              "speaker": "Marius Van Der Wijden (M)",
+              "text": "앞으로도 절대 바뀌지 않을 불변식과, 바뀔 것이 확실한 불변식, 그리고 그 이유까지 담은 문서화(EIP 형태일 수도 있음)를 만들자고 제안했다.",
+              "timestamp": "01:20:21",
+              "original": "Yeah, there was, there was, a proposal… from, from donnoh, to create an EIP with all of the invariants, and, I… I don't know if the… if, like, creating an EIP is the right way of… of specifying the invariants, but I do feel like there… There needs to be some sort of documentation about The invariants that we… that we are sure will never change, or as sure as we can be, that they will never change, And the invariants that we are… that we are very sure that will change, in the future, and also links to Why they will change, and, and then, like, yeah, just… giving a… Giving a better sense, or a better look into the current thinking of core developers, around, What is necessary to be changed, what is un… like, what is… what… what is… Likely not going to change, and, Why we think certain things have to change in the future.",
+              "translation": "네, donnoh가 모든 invariant를 담은 EIP를 만들자는 제안을 한 적이 있습니다. EIP를 만드는 것이 invariant를 명시하는 올바른 방법인지는 잘 모르겠지만, 저희가 절대 바뀌지 않을 것이라고 확신하는, 혹은 최대한 확신할 수 있는 invariant들과, 앞으로 바뀔 것이라고 매우 확신하는 invariant들, 그리고 왜 바뀔 것인지에 대한 링크까지 포함한 일종의 문서가 필요하다고 느낍니다. 그렇게 해서 지금 무엇이 바뀌어야 하는지, 무엇이 바뀌지 않을 가능성이 높은지, 그리고 왜 어떤 것들은 앞으로 바뀌어야 한다고 생각하는지에 대한 core developer들의 현재 생각을 더 잘 파악할 수 있도록 해야 합니다."
+            },
+            {
+              "speaker": "Mario Vega",
+              "text": "스펙팀은 앞으로 사용자에게 절대 깨지지 않는다고 말하는 불변식에 더 집중하고 테스트가 깨지면 AI가 자동으로 고치게 두지 않고 왜 깨졌는지 멈춰서 따져보겠다고 밝혔다.",
+              "timestamp": "01:22:15",
+              "original": "Definitely. Yeah, thanks. Thanks, Dan, can you hear me? Nice, nice. Yeah, so, my name is Mario, I'm… Part of the specifications team, for the execution layer, we play a role in testing all the protocol changes that go into the fork, namely every change in Amsterdam, and basically also every single change in Hegota. And, yeah, I would like to start off with saying that EIP-8037 has definitely left a mark on everyone that is testing, and that is, like, working on the specifications. I feel like now, more than ever, we cannot simply just eat up any specification change that comes our way, and just basically not see it through the lens of the application layer, because it's, it's been, like, we've, we, our work is basically just, to test the protocol invariants and make sure that they don't break, they don't… we don't have consensus changes, but also, like, I feel like it's also on our side to… foresee any of these issues that might come up, and for that, we have a couple of ideas of how we can do a better job in the future, with the specification changes, and one of them is trying to see that the invariants that we tell the users are definitely not gonna break. So this would be on top of, like, us, testing for protocol changes, also, like, paying attention on these things. We're definitely gonna, have a more focused mindset on the user, and I would definitely, like. for, like, us to see, specifically the CFI and the, well, the consider for inclusion EIPs for the next forks, I…",
+              "translation": "물론입니다. 감사합니다. Dan, 제 목소리 들리시나요? 좋습니다. 네, 제 이름은 Mario이고 execution layer의 specifications team 소속입니다. 저희는 포크에 들어가는 모든 프로토콜 변경사항을 테스트하는 역할을 하는데, 즉 Amsterdam의 모든 변경사항과 Hegota의 모든 변경사항을 다룹니다. 먼저 말씀드리고 싶은 것은, EIP-8037이 테스트를 하고 명세 작업을 하는 모든 사람들에게 분명히 흔적을 남겼다는 점입니다. 저는 이제 그 어느 때보다도, 저희에게 오는 어떤 명세 변경이든 애플리케이션 레이어의 관점에서 보지 않고 그냥 받아들일 수는 없다고 느낍니다. 왜냐하면 저희의 일은 기본적으로 프로토콜 invariant를 테스트하고 그것들이 깨지지 않도록, 즉 consensus 변경이 없도록 하는 것이지만, 동시에 이런 문제들이 발생할 수 있다는 것을 미리 예견하는 것도 저희 쪽의 책임이라고 느낍니다. 이를 위해 저희는 앞으로 명세 변경과 관련해 더 잘할 수 있는 몇 가지 아이디어를 가지고 있는데, 그중 하나는 저희가 사용자들에게 절대 깨지지 않을 것이라고 말하는 invariant들을 확실히 확인하는 것입니다. 이는 프로토콜 변경사항을 테스트하는 것 위에, 이런 부분들에도 주의를 기울이는 작업이 될 것입니다. 저희는 분명히 사용자에게 더 집중하는 사고방식을 가지려고 하며, 특히 다음 포크들에 대한 CFI, 즉 consider for inclusion EIP들을 저희가 직접 살펴보고 싶습니다…"
+            }
+          ],
+          "quote": {
+            "text": "코어 개발자가 앞으로 무엇이 깨질 수 있다고 생각하는지와, 실제로 절대 깨지지 않을 보장이 무엇인지가 앱 개발자에게 지금 매우 불분명하다.",
+            "original": "It's just very unclear right now for app devs what things core devs think about potentially breaking in the future versus what are actually the hard guarantees that won't be broken.",
+            "speaker": "Toni Wahrstaetter",
+            "timestamp": "00:58:56"
+          }
+        },
+        {
+          "title": "글램스테르담 추진 방향과 ACDE 결정",
+          "intro": "EIP-8037을 그대로 출시할지 바꿀지에 대한 최종 결정은 이 콜이 아니라 목요일 ACDE 콜에서 내려진다는 점이 재확인됐다.",
+          "decision": "결정 보류 01:30:30",
+          "positions": [
+            {
+              "speaker": "Ansgar Dietrichs",
+              "text": "오늘은 결정을 내리는 자리가 아니었다고 밝히며 글램스테르담을 현재 형태 그대로 추진하고자 하는 강한 의지가 있다고 말했다. PQ 전환에서 실행 계층은 사용자들의 지갑 이전까지 긴 시간이 걸리므로 하루라도 빨리 시작하는 것이 중요해 변경 비용이 매우 크다고 설명했다.",
+              "timestamp": "01:31:31",
+              "original": "Perfect. Yeah, I mean, I just wanted to basically, like, plus one what you said just now. I think it is clearly, like, a… not ideal situation that we find ourselves in, and I do think this has kind of, like, been iterated a few times today already. I think, A. things definitely didn't go ideally to even get to this place, but I think more importantly, also, like. this is not going to be the last hard fork that, whether it now goes ahead or not, that will make changes to the execution system. Some of these will just be inevitable with quantum and everything coming up. And we just need to get to basically now take on that challenge of just being much more proactive, much more actively communicating, working with the ecosystem, like… making sure that for future hard forks, everyone is on the same page. Early on, we understand, kind of, like, the potential things that will be impacted, how we can minimize that while there's still room to change EIPs, all these kind of things, so I think all of this, we are all coming out of this situation with this kind of shared conviction on doing this, and I think today's call is also a great step in that direction with so much participation, and I think we all agree that that needs to improve. In… in terms of Glamsterdam itself, I also just wanted to… to say that today was not meant to be about decisions. We have the ACDE call on Thursday, I just also wanted to stress that there is still a strong… desire, at least, to try to move ahead with…",
+              "translation": "좋습니다. 네, 방금 말씀하신 내용에 저도 하나 더 동의하고 싶습니다. 저희가 지금 처한 상황이 이상적이지 않다는 것은 분명하며, 이는 오늘 이미 몇 차례 반복해서 나온 이야기라고 생각합니다. 이 지점까지 오게 된 과정이 분명 이상적이지 않았지만, 더 중요한 것은 이번이 execution system에 변경을 가져올 마지막 하드포크는 아니라는 점입니다. 이번 건이 그대로 진행되든 안 되든 말입니다. 이 중 일부는 quantum 등 앞으로 다가올 일들과 함께 불가피할 것입니다. 저희는 이제 이 과제를 받아들여서 훨씬 더 proactive하게, 생태계와 훨씬 더 적극적으로 소통하고 협력해야 합니다. 앞으로의 하드포크에서는 모두가 같은 정보를 공유하도록 해야 합니다. 초기 단계에서부터 어떤 것들이 영향을 받을 가능성이 있는지, EIP를 바꿀 여지가 아직 있을 때 그 영향을 어떻게 최소화할 수 있는지와 같은 것들을 이해해야 합니다. 저희 모두 이번 상황에서 이를 실행해야 한다는 공통된 확신을 가지고 나오고 있다고 생각하며, 오늘 콜도 이렇게 많은 참여와 함께 그 방향으로 가는 좋은 한 걸음이라고 생각합니다. 그리고 이 부분이 개선되어야 한다는 데에는 모두 동의한다고 생각합니다. Glamsterdam 자체에 대해서는, 오늘이 결정을 내리는 자리가 아니었다는 점도 말씀드리고 싶습니다. 목요일에 ACDE 콜이 있는데, 그래도 여전히 이 건을 진행하고자 하는 강한 의지가 있다는 점을 강조하고 싶습니다…"
+            },
+            {
+              "speaker": "Daniel Gretzke",
+              "text": "이미 많은 작업이 들어갔고 지연 비용이 크다는 점은 이해하지만 특히 가스 리저버 처리 방식 때문에 트라이/캐치 가정이 근본적으로 깨지므로 8037은 반드시 재고돼야 한다고 거듭 강조했다.",
+              "timestamp": "01:37:47",
+              "original": "Hi, Daniel from Uniswap here. I understand that there is a strong desire to just keep going, because already a lot of work has gone in, it causes a lot of delays. But I really want to emphasize that 8037 should definitely be reconsidered, especially the handling of the gas reservoir, because this just fundamentally breaks Some assumptions that we have basically fundamentally catch… Where breaks try catching. And also introduces a bunch of second-order effects that create a very difficult UX for the end users of the applications on Ethereum. I do… for me, you know, it's totally fine that gas assumptions are allowed to break. And we should not, you know, be using very conservative, hard-coded gas. I think everyone's aware of this, I do think that the main issue is that when we add implicit branching based on the transaction gas that a user sets, or these kinds of things, I would… I would argue that this would fundamentally break how we Build contracts, and… Yeah, so I just wanted to emphasize that this really needs to be rethought, and all kind of also edge cases handled. Before actually considering moving forward with it. I mean, generally, I'd be… I'd prefer to wait for an increased smart contract size limit, if that means you know, we can fix all the other issues. Like, all the other issues are way more important to me than the small contract size limit, which is nice, but… I think the other part would be worse, just speaking as an app dev.",
+              "translation": "안녕하세요, Uniswap의 Daniel입니다. 이미 많은 작업이 들어갔고 지연이 많이 발생하고 있기 때문에 그대로 진행하고자 하는 강한 의지가 있다는 것은 이해합니다. 하지만 EIP-8037은 반드시 재고되어야 한다는 점을 강조하고 싶습니다. 특히 gas reservoir 처리 방식이 그렇습니다. 이는 저희가 기본적으로 가지고 있던 가정들, 즉 try-catch가 깨지는 지점에 대한 가정들을 근본적으로 깨뜨리기 때문입니다. 그리고 이더리움 상의 애플리케이션 최종 사용자들에게 매우 어려운 UX를 만드는 여러 2차 효과들도 발생시킵니다. 저로서는 gas에 대한 가정들이 깨지는 것은 전혀 문제가 없습니다. 그리고 저희는 매우 보수적인 hard-coded gas를 사용해서는 안 됩니다. 이는 모두가 알고 있는 사실이라고 생각합니다. 다만 주된 문제는, 사용자가 설정하는 트랜잭션 gas를 기준으로 암묵적인 분기(implicit branching)를 추가하게 되면, 이것이 저희가 컨트랙트를 만드는 방식을 근본적으로 깨뜨릴 것이라는 점입니다. 그래서 이 부분은 실제로 다시 고민되어야 하고 모든 엣지 케이스도 처리되어야 한다는 점을 강조하고 싶었습니다. 이를 진행하기로 고려하기 전에 말입니다. 일반적으로 말씀드리면, 다른 모든 문제를 고칠 수 있다는 의미라면 저는 스마트 컨트랙트 사이즈 제한 증가를 기다리는 쪽을 선호합니다. 다른 모든 문제들이 작은 컨트랙트 사이즈 제한보다 저에게는 훨씬 더 중요합니다. 사이즈 제한 증가는 좋은 일이지만, app dev로서 말씀드리면 다른 부분이 더 나쁜 결과를 낳을 것이라고 생각합니다."
+            },
+            {
+              "speaker": "Toni Wahrstaetter",
+              "text": "스펙 쪽에서 봤을 때 모두를 만족시키는 깨끗한 해법은 없으며 8037을 빼면 EIP-7825 트랜잭션 한도 이후 필요해진 대형 컨트랙트 배포 자체가 막힌다고 설명하며 지금 스펙을 바꾸는 데는 매우 큰 비용이 따른다고 말했다.",
+              "timestamp": "01:39:32",
+              "original": "Yeah, what I can add to this discussion is that from the spec side, we have been looking into ways how to resolve the situation, and the problem there is basically that there isn't really a nice solution that fits everyone. So, doing small tweaks to the specs would introduce, like, other broken invariants. And the underlying… just to provide some background here, one of the issues why 8037 was even needed was because, for security reasons, we had, for example, the transaction limit cap EIP-7825 in the last fork. And in order to even be able to deploy Max Di's contract, which app developers were chasing us for years. To ship, and in order to deploy those, we didn't even have enough gas per transaction available anymore to deploy those. So, for example, changes like just removing 8037 would also mean we will not be able to deploy those big contracts anymore, and other downsides that will appear downstream. So, I think we should be very hesitant in changing the specs, just because it comes with huge cost, especially when it comes to security right now. And I would prefer, like, while… like, not closing the topic right now and moving on with scheduling Hoodi, we should still… Be aware that any changes we do to the specs right now come with a very big cost. Yeah, no, I totally agree with you. This was just one of the examples that is, like, obviously interacting with this topic. But there are many, like, things where you can do small tweaks to the specs right now, for example,…",
+              "translation": "네, 이 논의에 덧붙일 수 있는 점은, spec 쪽에서는 이 상황을 해결할 방법을 계속 살펴보고 있었는데, 문제는 기본적으로 모두에게 맞는 좋은 해법이 딱히 없다는 것입니다. 그래서 spec에 작은 수정을 가하는 것도 다른 invariant들을 깨뜨리게 됩니다. 배경을 좀 설명드리면, 애초에 8037이 필요했던 이유 중 하나는, 보안상의 이유로 지난 포크에서 트랜잭션 제한 캡인 EIP-7825를 도입했기 때문입니다. 그리고 app developer들이 수년간 저희에게 요청해온 Max Di의 컨트랙트를 배포할 수 있게 하려면, 즉 그것을 배포하기 위해서는 더 이상 트랜잭션당 사용할 수 있는 gas가 충분하지 않았습니다. 그래서 예를 들어 8037을 그냥 제거하는 것과 같은 변경은, 그 큰 컨트랙트들을 더 이상 배포할 수 없게 된다는 것과, 그 외에도 하위 단계에서 나타날 다른 단점들을 의미하게 됩니다. 그래서 저는 저희가 spec을 바꾸는 데 매우 신중해야 한다고 생각합니다. 특히 지금은 보안과 관련된 문제이기 때문에 큰 비용이 따릅니다. 저는 지금 이 주제를 닫지 않고 Hoodi 일정을 그대로 진행하면서도, 지금 spec에 가하는 어떤 변경이든 매우 큰 비용이 따른다는 것을 계속 인식하고 있어야 한다고 생각합니다. 네, 전적으로 동의합니다. 이는 이 주제와 명백히 연관된 예시 중 하나일 뿐입니다. 하지만 지금 spec에 작은 수정을 가할 수 있는 부분들도 많이 있습니다, 예를 들면…"
+            },
+            {
+              "speaker": "Jango",
+              "text": "현재 버전의 프로토콜에서는 고칠 수 있다고 밝혔지만 사용자에게 계속 불변 프로토콜 위에서 사업을 이어가라고 자신 있게 말할 수 없게 됐다는 점이 가장 큰 문제라고 말했다.",
+              "timestamp": "01:09:56",
+              "original": "So, yeah, it can be fixed in the current version of the protocol, and everything we do, tries to be the last version of the protocol. Every version that has, preceded has been a security, you know, like, the recent The year has been AI hardening of the protocol, as basically everyone's been doing, making sure we're the good guys to the punchline before bad guys can get there. And feeling really, really good about how everything was deployed in June, ready to scale, ready to pour gas onto growth. And now, having no confidence to, to even kind of, assure current users that they should continue running their business on the protocol. And they obviously want to run immutable… they want to run their business on immutable protocols because… for obvious reasons. If… there's, you know, there's bedrock underneath. They wouldn't want to do so if there wasn't, but, you know, Ethereum is the one beacon of potential hope that we may have bedrock to run business on top of. And I guess not just business, but campaigns, fundraising, legal defense funds, etc. If we were to redeploy, the funds at risk right now on the latest version are, you know, in the fringe category, about $200K. Not to mention, you know, developer costs, audit costs, deployment costs, etc, but still very, very meaningless compared to the great scope of Ethereum. The biggest thing is going to continue to be the confidence thing, which I think is really the value prop. It is the wealth that is Ethereum. And if I were to…",
+              "translation": "그러니, 네, 현재 버전의 프로토콜에서도 고칠 수 있습니다. 저희가 하는 모든 일은 프로토콜의 마지막 버전이 되고자 하는 시도입니다. 이전의 모든 버전은 보안, 즉 올해는 프로토콜의 AI 하드닝(hardening)이 있었는데, 이는 기본적으로 모두가 나쁜 사람들보다 먼저 결론에 도달하는 좋은 사람이 되기 위해 해온 일입니다. 그리고 6월에 모든 것이 배포되어 확장할 준비가 되고, 성장에 gas를 쏟아부을 준비가 되었다는 것에 대해 정말 좋게 느끼고 있었습니다. 그런데 지금은, 현재 사용자들에게 이 프로토콜 위에서 계속 사업을 운영해야 한다고 확신시켜 줄 신뢰조차 없는 상황입니다. 그들은 당연히 immutable한 프로토콜 위에서 사업을 운영하고 싶어 합니다. 명백한 이유 때문입니다. 밑에 bedrock(기반암)이 있다면 말입니다. 그것이 없다면 그렇게 하고 싶지 않을 것입니다. 하지만 이더리움은, 저희가 그 위에서 사업을 운영할 수 있는 bedrock을 가질 수 있다는 유일한 희망의 등대입니다. 그리고 사업뿐만 아니라 캠페인, 펀드레이징, 법적 변호 기금 등도 마찬가지라고 생각합니다. 만약 재배포를 해야 한다면, 현재 최신 버전에서 위험에 노출된 자금은 극히 일부 범주로, 약 20만 달러 정도입니다. 개발자 비용, 감사 비용, 배포 비용 등은 말할 것도 없지만, 그래도 이더리움의 큰 범위에 비하면 매우, 매우 미미한 수준입니다. 가장 큰 문제는 계속해서 신뢰의 문제일 것이며, 저는 이것이 정말로 가치 제안이라고 생각합니다. 그것이 바로 이더리움이라는 부(wealth)입니다. 만약 제가…"
+            }
+          ],
+          "quote": {
+            "text": "오늘 현재 모습 그대로 글램스테르담을 추진하려는 강한 의지는 여전히 있다.",
+            "original": "There is still a strong desire, at least, to try to move ahead with the fork as it stands today.",
+            "speaker": "Ansgar Dietrichs",
+            "timestamp": "01:31:31"
+          }
+        },
+        {
+          "title": "감사 결과 공개 범위",
+          "intro": "체인시큐리티와 데다웁이 찾은 취약 컨트랙트 목록을 공개 보고서로 낼지, 영향받는 프로토콜에만 비공개로 전달할지를 둘러싼 논의가 채팅을 중심으로 오갔다.",
+          "positions": [
+            {
+              "speaker": "Hubert (ChainSecurity)",
+              "text": "보고서 공유는 기꺼이 하겠지만 공개 보고서에 구체적 문제를 적을지 요약만 담을지 먼저 정리가 필요하다고 물었다.",
+              "timestamp": "00:31:40",
+              "viaChat": true,
+              "original": "Happy to do so, we just need to clarify if it is fine to point out specific problems in a public report or whether the public report should only contain summaries.",
+              "translation": "그렇게 하는 것은 좋습니다만, 공개 리포트에서 구체적인 문제를 짚어도 되는지, 아니면 공개 리포트에는 요약만 담아야 하는지를 명확히 할 필요가 있습니다."
+            },
+            {
+              "speaker": "Dima Gusakov | Lido",
+              "text": "스테이킹 프로토콜이 언급된 만큼, 리도(Lido) 쪽에서 조치할 수 있도록 비공개로 요청했다.",
+              "timestamp": "00:33:42",
+              "viaChat": true,
+              "original": "Given the presentation mentioning staking protocols, I want to request it in private to act from the Lido side",
+              "translation": "발표에서 스테이킹 프로토콜이 언급된 만큼, Lido 측에서 조치를 취할 수 있도록 비공개로 요청드리고 싶습니다."
+            },
+            {
+              "speaker": "Potuz",
+              "text": "스펙 변경 없이 포크가 진행될 가능성이 있다면, 구체적인 이슈는 공개 보고서보다 영향받는 프로토콜에 비공개로 알리는 쪽이 나을 수 있다고 제안했다.",
+              "timestamp": "00:34:09",
+              "viaChat": true,
+              "original": "this is a good question, if there's any chance the fork goes on without spec changes, some of these specific issues may perhaps be better privately informed to the affected protocols instead? 00:34:25\tDima Gusakov | Lido:\tReacted to \"this is a good question, if there's any chance the fork goes on without spec changes, some of these specific issues may perhaps be better privately informed to the affected protocols instead?\" with 👍 00:34:27\tLumi | Offchain Labs:\tReacted to \"this is a good question, if there's any chance the fork goes on without spec changes, some of these specific issues may perhaps be better privately informed to the affected protocols instead?\" with 👍 00:34:30\tjoshua:\tReacted to \"this is a good question, if there's any chance the fork goes on without spec changes, some of these specific issues may perhaps be better privately informed to the affected protocols instead?\" with 👍 00:34:36\td:\tReacted to \"this is a good que...\" with 👍 00:34:38\tParithosh Jayanthi:\tReacted to \"Can we get a link to the report?\" with 👍 00:34:39\tSatyajit:\tReacted to \"this is a good que...\" with 👍 00:34:46\tParithosh Jayanthi:\tReacted to \"this is a good question, if there's any chance the fork goes on without spec changes, some of these specific issues may perhaps be better privately informed to the affected protocols instead?\" with 👍 00:34:48\tHubert (ChainSecurity):\tReacted to \"Given the presenta...\" with 👍",
+              "translation": "좋은 질문입니다. 포크가 spec 변경 없이 진행될 가능성이 있다면, 이런 구체적인 문제들은 비공개로 영향을 받는 프로토콜들에 알리는 것이 더 나을 수도 있지 않을까요?\n00:34:25 Dima Gusakov | Lido: \"좋은 질문입니다, 포크가 spec 변경 없이 진행될 가능성이 있다면, 이런 구체적인 문제들은 비공개로 영향을 받는 프로토콜들에 알리는 것이 더 나을 수도 있지 않을까요?\"에 좋아요로 반응함\n00:34:27 Lumi | Offchain Labs: 같은 메시지에 좋아요로 반응함\n00:34:30 joshua: 같은 메시지에 좋아요로 반응함\n00:34:36 d: \"좋은 질...\"에 좋아요로 반응함\n00:34:38 Parithosh Jayanthi: \"리포트 링크를 받을 수 있을까요?\"에 좋아요로 반응함\n00:34:39 Satyajit: \"좋은 질...\"에 좋아요로 반응함\n00:34:46 Parithosh Jayanthi: \"좋은 질문입니다, 포크가 spec 변경 없이 진행될 가능성이 있다면, 이런 구체적인 문제들은 비공개로 영향을 받는 프로토콜들에 알리는 것이 더 나을 수도 있지 않을까요?\"에 좋아요로 반응함\n00:34:48 Hubert (ChainSecurity): \"발표에서 언급된...\"에 좋아요로 반응함"
+            },
+            {
+              "speaker": "Marius Van Der Wijden (M)",
+              "text": "EF가 영향받는 프로토콜에 비공개로 연락하는 대규모 아웃리치 캠페인을 이미 시작했다고 확인했다.",
+              "timestamp": "00:34:57",
+              "viaChat": true,
+              "original": "We have started a big outreach campaign to privately contact affected protocols 00:35:05\tParithosh Jayanthi:\tReacted to \"We have started a big outreach campaign to privately contact affected protocols\" with ❤️ 00:35:08\tRadek | solidity:\tReacted to \"We have started a bi...\" with ❤️ 00:35:08\tjochem-brouwer:\tHeeft gereageerd op \"We have started a ...\" met ❤️ 00:35:18\tPotuz:\tReacted to \"We have started a bi...\" with ❤️ 00:35:27\tStatuette:\tReacted to \"We have started a big outreach campaign to privately contact affected protocols\" with ❤️ 00:35:36\thangleang:\tReacted to \"We have started a ...\" with ❤️ 00:35:36\tGreg K | Lido:\tReacted to \"this is a good question, if there's any chance the fork goes on without spec changes, some of these specific issues may perhaps be better privately informed to the affected protocols instead?\" with 👍 00:36:28\tDragan Rakita:\tReacted to \"We have started a big outreach campaign to privately contact affected protocols\" with ❤️",
+              "translation": "영향을 받는 프로토콜들에 비공개로 연락하기 위한 대규모 아웃리치 캠페인을 시작했습니다.\n00:35:05 Parithosh Jayanthi: \"영향을 받는 프로토콜들에 비공개로 연락하기 위한 대규모 아웃리치 캠페인을 시작했습니다\"에 하트로 반응함\n00:35:08 Radek | solidity: \"대규모 아웃리치 캠...\"에 하트로 반응함\n00:35:08 jochem-brouwer: \"대규모 아웃리치...\"에 하트로 반응함\n00:35:18 Potuz: \"대규모 아웃리치 캠...\"에 하트로 반응함\n00:35:27 Statuette: \"영향을 받는 프로토콜들에 비공개로 연락하기 위한 대규모 아웃리치 캠페인을 시작했습니다\"에 하트로 반응함\n00:35:36 hangleang: \"대규모 아웃리치...\"에 하트로 반응함\n00:35:36 Greg K | Lido: \"좋은 질문입니다, 포크가 spec 변경 없이 진행될 가능성이 있다면, 이런 구체적인 문제들은 비공개로 영향을 받는 프로토콜들에 알리는 것이 더 나을 수도 있지 않을까요?\"에 좋아요로 반응함\n00:36:28 Dragan Rakita: \"영향을 받는 프로토콜들에 비공개로 연락하기 위한 대규모 아웃리치 캠페인을 시작했습니다\"에 하트로 반응함"
+            }
+          ],
+          "quote": {
+            "text": "영향받는 프로토콜에 비공개로 연락하는 대규모 아웃리치 캠페인을 시작했다.",
+            "original": "We have started a big outreach campaign to privately contact affected protocols",
+            "speaker": "Marius Van Der Wijden (M)",
+            "timestamp": "00:34:57"
+          }
+        }
+      ],
+      "speakers": [
+        {
+          "label": "danceratopz",
+          "name": "danceratopz",
+          "org": "EF",
+          "role": "테스팅",
+          "handle": "danceratopz",
+          "avatar": "https://pbs.twimg.com/profile_images/1478357444132839427/sxWspbwH_400x400.jpg",
+          "share": 0.286
+        },
+        {
+          "label": "Marius Van Der Wijden (M)",
+          "name": "Marius van der Wijden",
+          "org": "EF",
+          "role": "geth",
+          "handle": "vdWijden",
+          "avatar": "https://pbs.twimg.com/profile_images/1334610351976026113/o0FQPHZX_400x400.jpg",
+          "share": 0.186
+        },
+        {
+          "label": "Ilias | Dedaub",
+          "name": "Ilias",
+          "org": "Dedaub",
+          "share": 0.108
+        },
+        {
+          "label": "Rahul (EF)",
+          "name": "Rahul",
+          "share": 0.095
+        },
+        {
+          "label": "Jango",
+          "name": "Jango",
+          "share": 0.088
+        },
+        {
+          "label": "Tanguy (ChainSecurity)",
+          "name": "Tanguy",
+          "share": 0.056
+        },
+        {
+          "label": "Toni Wahrstaetter",
+          "name": "Toni Wahrstaetter",
+          "share": 0.051
+        },
+        {
+          "label": "Mario Vega",
+          "name": "Mario Vega",
+          "org": "EF",
+          "role": "테스팅, ACDT 진행",
+          "handle": "elbuenmayini",
+          "avatar": "https://pbs.twimg.com/profile_images/1616232824415342592/Wly-1ddA_400x400.jpg",
+          "share": 0.031
+        },
+        {
+          "label": "Ansgar Dietrichs",
+          "name": "Ansgar Dietrichs",
+          "org": "EF",
+          "role": "리서처",
+          "handle": "adietrichs",
+          "avatar": "https://pbs.twimg.com/profile_images/1575685906786402304/P5UbjDt6_400x400.jpg",
+          "share": 0.026
+        },
+        {
+          "label": "Daniel Gretzke",
+          "name": "Daniel Gretzke",
+          "share": 0.02
+        },
+        {
+          "label": "neville (Dedaub)",
+          "name": "neville",
+          "share": 0.012
+        },
+        {
+          "label": "Hubert (ChainSecurity)",
+          "name": "Hubert",
+          "share": 0.009
+        },
+        {
+          "label": "jochem-brouwer",
+          "name": "Jochem Brouwer",
+          "org": "EF",
+          "role": "EthereumJS · EIP-8037 공동 저자",
+          "share": 0.009
+        },
+        {
+          "label": "Milos | enso.build",
+          "name": "Milos",
+          "org": "enso.build",
+          "share": 0.007
+        },
+        {
+          "label": "jtraglia",
+          "name": "jtraglia",
+          "share": 0.004
+        },
+        {
+          "label": "Trent Van Epps",
+          "name": "Trent Van Epps",
+          "org": "Protocol Guild",
+          "handle": "trent_vanepps",
+          "avatar": "https://pbs.twimg.com/profile_images/1695072606045515777/97BhkqE6_400x400.jpg",
+          "share": 0.003
+        },
+        {
+          "label": "Dima Gusakov | Lido",
+          "name": "Dima Gusakov",
+          "org": "Lido",
+          "share": 0
+        },
+        {
+          "label": "Potuz",
+          "name": "Potuz",
+          "org": "Offchain Labs",
+          "role": "Prysm",
+          "handle": "potuz_eth",
+          "avatar": "https://pbs.twimg.com/profile_images/1494001194427158539/bfrZyMsG_400x400.jpg",
+          "share": 0
+        }
+      ],
+      "chat": [
+        {
+          "speaker": "Toni Wahrstaetter",
+          "text": "앞으로는 최악의 블록 경우뿐 아니라 코딩 패턴도 테스트하고, 리프라이싱이나 PQ로 깨질 수 있는 불변식을 정의하고, 영향이 충분히 이해된 EIP만 일정에 올리도록 하고, 앱 개발자·보안 감사팀과 더 일찍 맞춰야 한다고 정리했다.",
+          "timestamp": "00:27:46"
+        },
+        {
+          "speaker": "Luis Pinto",
+          "text": "8037/8038 스펙의 어느 부분이 정확히 어떻게 컨트랙트를 깨뜨리는지(gas left 비단조 감소, 상태 가스 증가, 가스 배분, 환불 방식 변경 등)가 아직 명확히 정리되지 않은 것 같다고 물었다.",
+          "timestamp": "00:48:21"
+        },
+        {
+          "speaker": "Potuz",
+          "text": "트위터 등에서 영향받은 컨트랙트를 찾은 방법론 자체가 잘못됐을 수 있다는 지적이 있다며, 업그레이드 프로세스를 전혀 따르지 않아 아예 못 찾은 프로젝트들이 나중에 드러날 가능성을 경계해야 한다고 썼다.",
+          "timestamp": "00:53:20"
+        }
+      ],
+      "glossary": [
+        {
+          "term": "SFI",
+          "def": "Scheduled for Inclusion, 포크에 포함이 확정된 상태"
+        },
+        {
+          "term": "CFI",
+          "def": "Considered for Inclusion, 포함을 검토 중인 상태"
+        },
+        {
+          "term": "PFI",
+          "def": "Proposed for Inclusion, 포함 후보로 제안·접수된 상태"
+        },
+        {
+          "term": "DFI",
+          "def": "포함 후보에서 제외된 상태"
+        },
+        {
+          "term": "ACDT/ACDE",
+          "def": "AllCoreDevs 콜의 테스팅(T)/실행 계층(E) 트랙 구분"
+        },
+        {
+          "term": "가스 리저버·리필 메커니즘",
+          "def": "EIP-8037이 도입하는 가스 예약·재충전 방식"
+        },
+        {
+          "term": "헤고타(Hegota)",
+          "def": "글램스테르담 다음 하드포크로, 양자내성(PQ) 계정 전환을 포함"
+        },
+        {
+          "term": "불변식(invariant)",
+          "def": "프로토콜이 항상 참이라고 보장하는 속성으로, 컨트랙트가 의존하는 전제"
+        }
+      ],
+      "eips": [
+        8037,
+        8038
+      ],
+      "relatedDebates": [
+        "glamsterdam-activate-now-or-cancel",
+        "where-to-document-invariants",
+        "l1-repricing-breaks-deployed-contracts",
+        "state-gas-repricing-growth",
+        "create2-factory-eip7997-worth"
+      ],
+      "telegramMessageId": 1742
+    },
     {
       "id": "acdc-191",
       "series": "acdc",
@@ -19631,14 +20089,14 @@
   "status": {
     "currentFork": {
       "name": "글램스테르담",
-      "stage": "일정 재검토 단계",
-      "line": "후디 감사 뒤 재검토 · 메인넷 미정 · 데브넷 11월 16~20일 추정"
+      "stage": "보안 트리아지 단계",
+      "line": "후디 무기한 연기 · 8037결정 목요일ACDE · 메인넷 2027년1월 제안"
     },
     "nextFork": {
       "name": "헤고타",
-      "stage": "범위 정하는 중",
-      "line": "SFI 1건(EIP-8015) · CFI 4건 · PQ-DC 단일 노선 확정"
+      "stage": "범위 분류 중",
+      "line": "SFI 1건·CFI 4건·PFI 1건(PQ)·헤고타devnet0 데브콘 후"
     },
-    "basis": "acdc-191"
+    "basis": "acdt-103"
   }
 }
