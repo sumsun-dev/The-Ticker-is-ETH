@@ -13,7 +13,7 @@
 #      세 번째 줄은 일요일 19:00 KST 기자 그룹방 주간 브리프 (.env에 WEEKLY_CHAT 필요).
 #              0 14 * * * cd /home/gv/projects/the-ticker-is-eth && git pull -q --rebase --autostash origin main && scripts/vps/run-eth-digest.sh standards >> ~/logs/eth-digest.log 2>&1
 #      네 번째 줄은 23:00 KST EIP·ERC 해설 채우기. 크론 줄에서 먼저 pull해 standards 모드가 없는 옛 러너가 다이제스트를 돌리지 않게 한다.
-#              0 11 * * 1 cd /home/gv/projects/the-ticker-is-eth && git pull -q --rebase --autostash origin main && scripts/vps/run-eth-digest.sh factcheck >> ~/logs/eth-digest.log 2>&1
+#              0 2 * * 1 cd /home/gv/projects/the-ticker-is-eth && git pull -q --rebase --autostash origin main && scripts/vps/run-eth-digest.sh factcheck >> ~/logs/eth-digest.log 2>&1
 #      다섯 번째 줄은 월요일 11:00 KST 지난 글 주간 사실 점검(DM만). 마찬가지로 먼저 pull한다.
 set -euo pipefail
 
