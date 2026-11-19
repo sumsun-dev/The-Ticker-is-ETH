@@ -136,7 +136,7 @@ export async function collectTargets(
     const withOrig = tl.filter((t) => t.original);
     const authors = new Set(tl.map((t) => (t.by ?? '').replace(/^@/, '').toLowerCase()).filter(Boolean));
     const ghost = authors.size
-      ? [...new Set((b.positions ?? []).flatMap((p) => (p.holders ?? []).map((h) => h.handle)))].filter((h) => !authors.has(h.replace(/^@/, '').toLowerCase()))
+      ? [...new Set((b.positions ?? []).flatMap((p) => (p.holders ?? []).map((h) => h.handle)))].filter((h) => h && !authors.has(h.replace(/^@/, '').toLowerCase()))
       : [];
     out.push({
       kind: 'debate',

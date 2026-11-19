@@ -164,4 +164,10 @@ describe('논쟁 입장 주인 코드 대조', () => {
     const ok = weeklyFactcheck(await collectTargets(data(), '2026-11-12', '2026-11-19'), 'a', 'b', () => '[]');
     expect(ok.issues).toHaveLength(0);
   });
+  it('handle 없는 holder(X 계정 없는 인물)는 건너뛴다', async () => {
+    const d = data();
+    d.debates[0].positions = [{ label: 'x', holders: [{ name: 'Kain Warwick' } as never, { handle: 'Gary_Rong' }], points: [] }];
+    const r = weeklyFactcheck(await collectTargets(d, '2026-11-12', '2026-11-19'), 'a', 'b', () => '[]');
+    expect(r.issues).toHaveLength(0);
+  });
 });
