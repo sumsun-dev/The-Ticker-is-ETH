@@ -174,7 +174,7 @@ export async function collectTargets(
   return out;
 }
 
-const VerdictSchema = z.array(
+export const VerdictSchema = z.array(
   z.object({
     n: z.number(),
     grade: z.enum(['ok', 'contradiction', 'overreach']),
@@ -183,7 +183,7 @@ const VerdictSchema = z.array(
   }),
 );
 
-function parseArray(text: string): unknown {
+export function parseArray(text: string): unknown {
   const s = text.indexOf('[');
   const e = text.lastIndexOf(']');
   if (s === -1 || e === -1) throw new Error('응답에 JSON 배열 없음');

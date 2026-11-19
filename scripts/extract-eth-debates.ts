@@ -32,6 +32,7 @@ import {
   extractJson,
   fixAttributions,
   handleMatchesName,
+  holderWarnings,
   humanizeDebateDraft,
   mergeDebates,
   parseThreadReplies,
@@ -675,6 +676,15 @@ async function main() {
       .sort((a, b) => weight(b.engagement) - weight(a.engagement))[0];
     return best && weight(best.engagement) > weight(d.engagement) ? { ...d, rootUrl: best.url, engagement: best.engagement } : d;
   });
+
+  // 입장 주인이 타임라인에 없는 논쟁을 러너가 오너 DM 으로 알린다 (데이터는 바꾸지 않음). 이번에 바뀐 논쟁만
+  const touched = new Set(drafts.map((d) => d.id));
+  const warns = holderWarnings(merged.filter((d) => touched.has(d.id)));
+  const warnFile = path.resolve(process.cwd(), '.cache/debate-holder-warn.txt');
+  if (warns.length) {
+    fs.mkdirSync(path.dirname(warnFile), { recursive: true });
+    fs.writeFileSync(warnFile, `${warns.join('\n')}\n`, 'utf-8');
+  } else fs.rmSync(warnFile, { force: true });
 
   markProcessed(merged, profiles);
   const created = drafts.filter((dr) => !file.debates.some((d) => d.id === dr.id)).length;

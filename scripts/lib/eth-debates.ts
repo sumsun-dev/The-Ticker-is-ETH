@@ -485,3 +485,13 @@ export function extractJson(text: string): unknown {
   if (start === -1 || end === -1) throw new Error('no JSON object in response');
   return JSON.parse(trimmed.slice(start, end + 1));
 }
+
+/** handle 이 있고 watchlist 가 false 가 아닌 인물이 그 논쟁 타임라인 작성자(by)에 없으면 경고 한 줄. 데이터는 바꾸지 않는다 */
+export function holderWarnings(debates: ReadonlyArray<Pick<Debate, 'id' | 'title'> & { positions: ReadonlyArray<{ holders: ReadonlyArray<{ handle?: string; watchlist?: boolean }> }>; timeline: ReadonlyArray<{ by: string }> }>): string[] {
+  const norm = (s: string) => s.replace(/^@/, '').toLowerCase();
+  return debates.flatMap((d) => {
+    const authors = new Set(d.timeline.map((t) => norm(t.by)));
+    const missing = [...new Map(d.positions.flatMap((p) => p.holders).filter((h) => h.handle && h.watchlist !== false && !authors.has(norm(h.handle))).map((h) => [norm(h.handle as string), `@${h.handle}`])).values()];
+    return missing.length ? [`${d.title} (${d.id}): ${missing.join(', ')}`] : [];
+  });
+}

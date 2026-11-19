@@ -61,10 +61,16 @@ $(grep -hiE -m2 "hit your .*limit" "$HOME"/logs/eips-?.log "$HOME"/logs/ercs-?.l
 
   # 주 1회 지난 글 사실 점검: 최근 7일 다이제스트·논쟁·콜을 원문과 대조해 판정만 오너 DM으로 보낸다 (자동 수정·커밋·푸시 없음)
   if [ "${1:-}" = factcheck ]; then
-    npx tsx scripts/audit-weekly-facts.ts
+    npx tsx scripts/audit-weekly-facts.ts || notify_owner "[주간 사실 점검] 실행 실패 (로그 /home/gv/logs/eth-digest.log)" || true
     if [ -s .cache/weekly-factcheck.txt ]; then
       notify_owner "[주간 사실 점검] $(cat .cache/weekly-factcheck.txt)" || true
       rm -f .cache/weekly-factcheck.txt
+    fi
+    # 3단계: EIP·ERC 해설과 발언자 소속 점검. 2단계가 실패해도 돈다
+    npx tsx scripts/audit-standards-facts.ts || notify_owner "[EIP·발언자 점검] 실행 실패 (로그 /home/gv/logs/eth-digest.log)" || true
+    if [ -s .cache/standards-factcheck.txt ]; then
+      notify_owner "[EIP·발언자 점검] $(cat .cache/standards-factcheck.txt)" || true
+      rm -f .cache/standards-factcheck.txt
     fi
     return
   fi
@@ -92,6 +98,11 @@ $(grep -v dotenv <<<"$out" | tail -15)"
   npx tsx scripts/sync-x-profiles.ts
   # 논쟁 추출은 부가 단계라 실패해도 커버·송출·커밋은 진행 (2026-11-13: 참여자 name 누락 스키마 오류로 그날 호 송출이 통째로 빠짐)
   npx tsx scripts/extract-eth-debates.ts || notify_owner "[다이제스트] 논쟁 추출 실패. 송출은 계속합니다 (로그 /home/gv/logs/eth-digest.log)"
+  if [ -s .cache/debate-holder-warn.txt ]; then
+    notify_owner "[논쟁 입장 주인 점검] 입장 주인이 타임라인에 없는 논쟁
+$(cat .cache/debate-holder-warn.txt)" || true
+    rm -f .cache/debate-holder-warn.txt
+  fi
   # 바뀐 논쟁 레코드만 채점표로 채점한다(.cache/debate-scores.json). 알림 DM에 점수가 붙는다. 송출 전이라 한 번에 8건까지
   SCORE_MAX=8 npx tsx scripts/score-debates.ts || notify_owner "[다이제스트] 논쟁 채점 실패. 송출은 계속합니다"
   # 새 논쟁을 오너 DM으로 알린다. 노출 버튼 응답 처리는 5분 크론(notify-debates.ts --commit)이 맡는다. 실패해도 나머지는 진행
