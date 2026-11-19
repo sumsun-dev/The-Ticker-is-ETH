@@ -395,13 +395,14 @@
       "id": "pqai2027-timeline-realism",
       "title": "2027년까지 완전한 양자내성을 목표로 하는 pqai2027 구호는 현실적인 계획인가?",
       "category": "프로토콜 설계",
-      "summary": "barnabemonnot는 2027년에 포크 네 개를 모두 배포하는 pqai2027 타임라인이 오늘의 준비 상태와 동떨어져 현실성이 떨어진다고 보았고, ryanberckmans는 pqai27의 핵심은 2027이라는 연도가 아니라 양자내성(post-quantum, PQ)으로 가는 가장 직접적이고 안전한 경로에 정렬하는 것이라며 2027 꼬리표는 떼어도 된다고 반응했다. 두 사람은 하드 데드라인에 대한 회의는 공유하되 그 이유와 강조점에서 갈렸다.",
+      "summary": "soispoke는 2027년에 포크 네 개(Glamsterdam, Hegotá EL·CL, I*)를 내는 일은 일어나지 않을 것이라며 pqai2027 타임라인이 오늘의 준비 상태와 동떨어져 있다고 보았고, 2027을 뺀 pqai 구호라면 더 편하겠으며 FOCIL 제거가 I*의 PQ 전환을 극적으로 앞당긴다고도 확신하지 못한다고 했다. barnabemonnot는 I*를 2027년의 스트레치 목표로 보고 일부 코어 개발자는 H*까지의 전달을 야심차지만 가능하다고 본다고 답하며, 서두르자는 것은 아니지만 시간만이 올바른 결정의 재료는 아니라고 했다. ryanberckmans는 pqai27의 핵심은 2027이라는 연도가 아니라 가장 직접적이고 안전한 양자내성(post-quantum, PQ) 경로에 정렬하는 것이며, Hegotá에서 FOCIL을 빼고 2028년 I*에서 완전한 PQ가 도입돼도 큰 성과라고 응수했다.",
       "keyPoints": [
         "2027년이라는 구체적 시한을 로드맵에 못 박는 것이 현재 준비 상태에 비추어 타당한가",
+        "I*를 2027년의 스트레치 목표로 볼 때 H*까지의 전달이 현실적인가",
         "pqai2027에서 중요한 것은 2027이라는 연도인가, PQ로 가는 직접 경로 정렬인가",
         "Hegota에서 FOCIL을 빼는 것이 I* 단계의 PQ 전환을 실제로 앞당기는가"
       ],
-      "background": "pqai2027은 이더리움을 2027년까지 완전한 양자내성(post-quantum)으로 만들자는 로드맵 구호로, 실행 레이어(EL)의 서명 스킴 확정(leanSPHINCS·XMSS, EIP-8288 등)과 연쇄적인 하드포크(Glamsterdam, Hegotá EL, Hegotá CL, I*)를 전제로 한다. barnabemonnot는 I*를 2027년의 스트레치 목표로 보되 H*까지의 전달은 야심차지만 실현 가능하다는 일부 코어 개발자(core developer) 의견을 전한다. 서명 전달에는 비확장형 SPHINCS부터 제한적 EIP-8288을 쓰는 확장형 SPHINCS까지 여러 단계가 있으며, barnabemonnot는 EIP-8288이 서명 스킴에만 국한된 EIP가 아니라고도 지적한다.",
+      "background": "pqai2027은 이더리움을 2027년까지 완전한 양자내성(post-quantum)으로 만들자는 로드맵 구호로, 실행 레이어(EL)의 서명 스킴 확정(leanSPHINCS·XMSS, EIP-8288 등)과 연쇄적인 하드포크(Glamsterdam, Hegotá EL, Hegotá CL, I*)를 전제로 한다. barnabemonnot는 I*를 2027년의 스트레치 목표로 보되 H*까지의 전달은 야심차지만 실현 가능하다는 일부 코어 개발자(core developer) 의견을 전한다. 서명 전달에는 비확장형 SPHINCS부터 제한적 EIP-8288을 쓰는 확장형 SPHINCS까지 여러 단계가 있으며, soispoke는 EIP-8288이 서명 집계만이 아니라 leanSPHINCS와 leanSTARK(현재 leanPCS 쪽으로 기울고 있음)도 포함한다고 지적한다.",
       "whyItMatters": "양자내성 전환의 시한을 로드맵에 명시할지, 아니면 경로 정렬에만 합의하고 날짜는 유연하게 둘지에 따라 서명 스킴 확정과 포크 스코핑의 긴급도가 달라진다. FOCIL 제거가 PQ 전환 속도에 실제로 기여하는지가 Hegota 스코프 결정의 남은 쟁점이다.",
       "sources": [],
       "keywords": [
@@ -416,6 +417,24 @@
           "label": "2027 시한은 준비 상태와 동떨어졌다",
           "holders": [
             {
+              "handle": "soispoke",
+              "name": "soispoke.eth",
+              "role": "EF 리서처 (Robust Incentives Group)",
+              "avatar": "https://pbs.twimg.com/profile_images/1999476317415264256/CL0l5_ZD_400x400.jpg"
+            }
+          ],
+          "points": [
+            "2027년에 Glamsterdam, Hegotá EL/CL, I* 네 개 포크를 배포하는 일은 일어나지 않을 것이다.",
+            "pqai2027 타임라인은 오늘의 준비 상태와 동떨어져 있으며, 서명 스킴·leanVM 세부·해시 함수 선택 같은 암호학 측 확정 사항부터 근거 있게 따져야 한다.",
+            "손 놓고 기다리자는 뜻은 아니며, 아직 매우 불확실한 것이 많다는 점을 짚은 것이다.",
+            "2027을 뺀 pqai 구호라면 더 편하고, Hegota에서 FOCIL을 제거하는 것이 I*의 PQ 전환을 극적으로 앞당긴다고는 확신하지 못한다."
+          ]
+        },
+        {
+          "stance": "neutral",
+          "label": "I*는 스트레치 목표이고 H*까지는 야심차지만 가능하다",
+          "holders": [
+            {
               "handle": "barnabemonnot",
               "name": "Barnabé Monnot | barnabé.eth",
               "role": "EF 리서처, 인센티브·이슈언스",
@@ -423,9 +442,11 @@
             }
           ],
           "points": [
-            "2027년에 Glamsterdam, Hegotá EL/CL, I* 네 개 포크를 모두 배포하는 일은 일어나지 않을 것이다.",
-            "pqai2027 타임라인은 오늘의 준비 상태와 조금 동떨어져 있으며, 암호학 측에서 확정할 서명 스킴 같은 더 근거 있는 문제부터 풀어야 한다.",
-            "서두르자는 뜻은 아니지만, 더 많은 시간이 올바른 결정의 유일한 재료라고도 생각하지 않는다."
+            "글이 I*에 대해 더 분명히 전했어야 한다. I*는 완전한 양자내성의 일부로 보되 2027년의 스트레치 목표로 본다.",
+            "일부 코어 개발자는 글에 서술된 H*까지의 전달이 야심차지만 실현 가능하다고 의견을 냈다.",
+            "Glamsterdam은 2026년에서 늦어진 전달이라 2027년에 얼마나 걸칠지 말하기 이르고 2027년의 한 개 전체 포크로 보지 않으며, H*는 EL과 CL 두 포크로 나뉘므로 어느 쪽도 전체 무게라고 하기는 부정확하다.",
+            "서두르자는 것은 아니지만 더 많은 시간만이 올바른 결정의 재료라고는 확신하지 않으며, 자원을 특정 영역에 돌려 확실성을 높이고 안전하게 출시할 수 있다.",
+            "서명 스킴은 가능한 한 빨리 동결하자는 데 동의하고, leanVM은 CL 전환의 가장 큰 블로커일 수 있어 서명 동결과 분리해 더 많은 사람이 달라붙어야 한다."
           ]
         },
         {
@@ -440,9 +461,9 @@
             }
           ],
           "points": [
-            "pqai27의 본질은 2027년 배포 목표가 아니라 PQ로 가는 가장 직접적이고 안전한 경로에 정렬하는 것이다.",
-            "2027이라는 숫자를 빼면 이 구호(meme)를 더 받아들이기 편할 것이다.",
-            "Hegota에서 FOCIL을 제거하는 것이 I*의 PQ 전환을 극적으로 앞당긴다고는 확신하지 못한다."
+            "pqai27의 핵심 성격은 2027년 배포 목표보다 가장 직접적이고 안전한 PQ 경로에 정렬하는 것이다.",
+            "그 직접 경로의 구체적 내용은 그다음에 협상하면 된다.",
+            "Hegota에서 FOCIL을 제거하고 2028년 I*에서 완전한 PQ가 도입된다면 큰 성과다."
           ]
         }
       ],
@@ -459,6 +480,19 @@
           "original": "I’m all for prioritising PQ more, but shipping 4 forks in 2027 (Glamsterdam, Hegotá EL, Hegotá CL, I*) is just not going to happen.\n\nWe need concrete, grounded plans that are ambitious and doable. Those take time to put in place, and rushing is always going to be a losing game.",
           "author": "soispoke",
           "translation": "양자내성(PQ, post-quantum)을 더 우선시하는 것에는 전적으로 동의하지만, 2027년에 4개의 포크(Glamsterdam, Hegotá EL, Hegotá CL, I*)를 출시하는 것은 그냥 불가능한 일입니다. 우리에게는 야심차면서도 실현 가능한, 구체적이고 현실에 기반한 계획이 필요합니다. 그런 계획을 세우는 데는 시간이 걸리며, 서두르는 것은 언제나 지는 게임이 될 뿐입니다."
+        },
+        {
+          "date": "2026-11-12",
+          "by": "barnabemonnot",
+          "stance": "neutral",
+          "quote": "글이 I*에 대해 더 분명히 전했어야 했다. 우리는 I*를 이더리움을 완전한 양자내성이라 부르는 데 포함하지만 2027년의 스트레치 목표로 생각한다. 일부 코어 개발자는 글에 서술된 H*까지의 전달이 야심차지만 실현 가능하다고 의견을 냈다.",
+          "url": "https://x.com/barnabemonnot/status/2120877088169185724",
+          "digest": "2026-11-16",
+          "replyTo": "soispoke",
+          "relation": "reply",
+          "original": "Perhaps the post needed to communicate more clearly on I*: we consider it part of calling Ethereum \"fully pq\", but we want to think of it as a stretch goal for 2027. Meanwhile, some core devs have opined that deliveries up to H* described in the post are ambitious, but feasible.\n\nIn more detail:\n- Glamsterdam is a late delivery from 2026. It is too early to say how far into 2027 it will run, and whether it will cause more or many more cycles of work (see https://ethlabs.org/writings/tracking-glamsterdam.html) but it is not in my view \"one full fork\" in 2027.\n- H* is divided into EL and CL, so two separate forks. That doesn't mean each is \"half-weight\", but I think it is would not be accurate to say that either is \"full-weight\".\n- I* again is a stretch goal. It is good to keep in mind as we do the work, since some of its networking considerations can be pulled earlier in time, and perhaps even benefit H* deliveries.\n\nAre there more points that are not sufficiently grounded, in your view?",
+          "author": "barnabemonnot",
+          "translation": "글이 I*에 대해 더 분명하게 전달했어야 했을지도 모르겠습니다. 우리는 I*를 이더리움을 '완전한 양자내성(PQ)'이라 부르는 데 포함되는 부분으로 보지만, 2027년의 스트레치 목표(stretch goal)로 생각하고자 합니다. 한편 일부 코어 개발자들은 글에 서술된 H*까지의 전달이 야심차지만 실현 가능하다는 의견을 냈습니다. 자세히 보면, Glamsterdam은 2026년에서 늦어진 전달이라 2027년에 얼마나 걸칠지 말하기 이르며 제 생각에 2027년의 '한 개 전체 포크'는 아닙니다. H*는 EL과 CL로 나뉘어 두 개의 별도 포크이며, 어느 쪽이 '전체 무게'라고 하기는 정확하지 않을 것입니다. I*는 다시 말하지만 스트레치 목표입니다. 그 네트워킹 고려사항 중 일부는 더 일찍 당겨올 수 있고 H* 전달에 도움이 될 수도 있어 작업하며 염두에 두면 좋습니다. 더 근거가 부족하다고 보시는 지점이 있습니까?"
         },
         {
           "date": "2026-11-12",
@@ -501,6 +535,19 @@
         },
         {
           "date": "2026-11-12",
+          "by": "barnabemonnot",
+          "stance": "neutral",
+          "quote": "서두르자고 소란을 피우는 것은 아니지만, 더 많은 시간이 올바른 결정의 유일한 재료라는 데는 확신이 없다. 자원을 특정 영역에 돌려 확실성을 높이고 안전하게 출시할 수 있다. leanVM은 CL 전환의 가장 큰 블로커일 수 있어 서명 동결과 분리해 더 많은 눈을 두어야 한다.",
+          "url": "https://x.com/barnabemonnot/status/2120918036446425410",
+          "digest": "2026-11-16",
+          "replyTo": "soispoke",
+          "relation": "reply",
+          "original": "Ok yes I agree with these points and I think they are exactly the questions we should ask/are asking at the moment.\n\nI'm not claiming we should rush in a hullabaloo, but I'm also not convinced that more time is the only ingredient in making the right decisions. We have the ability to redirect resources into specific areas that will raise our certainty and allow us to ship safely.\n\nOn the specific points:\n- Settling on signature schemes, we talked about it, it's a question of when to stop the iterative process of improvement that we're doing with autoresearch and other methods. Potuz on the call today was calling for freezing those asap. I agree, so we can start planning for the ecosystem. For leanVM, this is a much meatier part, I would separate it from the signature freeze. I think it's now clear that it is possibly the number 1 blocker to a good transition on the CL. We should put more eyes on it.\n- Spoke with @asn_d6 earlier as well about cryptographic agility, I think we have to decide how much of a constraint it is for the most basic primitives we have. I'm not under the impression that most consider it to be an absolute requirement, but I could be wrong.\n- We can certainly think about PQ consensus without aggregation, I think the better bet right now if we want to diversify is more to progress PQ Gasper and PQ decoupled consensus both with aggregation, and assume leanVM will be available. We can revisit this in a few weeks/a month once we have much greater clarity on the scope of lean VM.\n- 8288 for leanSPHINCS is signature aggregation for me, not just the CL signature aggregation of leanXMSS. I love the leanSTARK version of 8288 but I wouldn't consider this part of our pq-ready or even pq-scale stages, I think. It will be an amazing feature for scaling privacy solutions and rollup proof aggregation. But these are net-new features even compared to today, and they're imo a luxury we can't afford on the most critical path of PQ.",
+          "author": "barnabemonnot",
+          "translation": "네, 그 점들에 동의하며 지금 우리가 던져야 하고 던지고 있는 바로 그 질문이라고 생각합니다. 저는 소란스럽게 서두르자고 주장하는 것은 아니지만, 더 많은 시간이 올바른 결정을 내리는 유일한 재료라는 데도 확신이 없습니다. 우리는 자원을 특정 영역에 돌려 확실성을 높이고 안전하게 출시할 수 있습니다. 서명 스킴은 가능한 한 빨리 동결하자는 데 동의하고, leanVM은 CL 전환의 가장 큰 블로커일 수 있으니 서명 동결과 분리해 더 많은 눈을 두어야 합니다. 8288의 leanSPHINCS는 서명 집계이고 leanSTARK 버전은 PQ 준비 단계에서도 감당할 수 없는 사치라고 생각합니다."
+        },
+        {
+          "date": "2026-11-12",
           "by": "soispoke",
           "stance": "con",
           "quote": "기다리며 아무것도 하지 말자고 한 것은 결코 아니고, 많은 것이 여전히 매우 불확실하다는 점을 짚은 것이다. pqai2027은 열망을 담은 밈일 수는 있지만 오늘의 준비 상태와는 조금 동떨어져 있다.",
@@ -521,7 +568,7 @@
       "id": "formal-verification-spec-trust",
       "title": "형식검증에서 증명은 읽지 않고 스펙만 읽으면 신뢰에 충분한가?",
       "category": "프로토콜 설계",
-      "summary": "lightclients가 형식검증(formal verification)의 장점을 증명(proof)은 읽을 필요 없이 스펙만 읽으면 되는 것이라고 요약하자, nero_eth는 그것은 쉬운 부분일 뿐이고 증명된 스펙이 사람이 의도한 비공식 스펙(informal spec)과 같다고 믿는 것이 진짜 어려운 문제라고 반박했다. GiulioRebuffo는 스펙이 구현보다 단순하므로 스펙을 이해하지 못하면 구현도 이해하지 못하는 것이라며 lightclients 편에 섰다.",
+      "summary": "leonardoalt가 lightclients에게 형식검증(formal verification)의 훌륭한 점은 증명(proof)은 읽을 필요 없이 스펙만 읽으면 된다는 것이라고 답하자, GiulioRebuffo도 증명은 검사만 통과하면 되니 스펙을 읽으라고 거들었다. nero_eth가 스펙을 이해하지 못하면 어떻게 하느냐고 묻자 GiulioRebuffo는 스펙이 구현보다 단순하므로 스펙을 이해하지 못하면 구현도 이해하지 못하는 것이라고 답했고, nero_eth는 증명된 스펙이 사람이 의도한 비공식 스펙(informal spec)과 같다고 믿는 것이 진짜 어려운 문제라고 반박했다. 이어 GiulioRebuffo가 원글(lightclients)이 어그로를 끌고 있다고 의심했고 lightclients는 그렇지 않다고 답했다.",
       "keyPoints": [
         "형식검증의 신뢰 근거를 증명이 아니라 스펙 한 곳으로 압축할 수 있나?",
         "기계검증된 스펙이 사람이 의도한 비공식 스펙과 일치한다는 보장은 어디서 오나?",
@@ -542,10 +589,10 @@
           "label": "증명은 안 읽어도 되고 스펙만 읽으면 된다",
           "holders": [
             {
-              "handle": "lightclients",
-              "name": "ً",
-              "role": "Geth 개발자",
-              "avatar": "https://pbs.twimg.com/profile_images/1554130973935030274/wHWuxuTT_400x400.jpg"
+              "handle": "leonardoalt",
+              "name": "Leo Alt",
+              "role": "형식검증·컴파일러 연구자",
+              "avatar": "https://pbs.twimg.com/profile_images/1458195165819060238/4H4wKJto_400x400.jpg"
             },
             {
               "handle": "GiulioRebuffo",
@@ -554,8 +601,7 @@
             }
           ],
           "points": [
-            "형식검증의 핵심 장점은 증명(proof)이 수십억 줄이어도 검증기만 통과하면 사람은 증명을 읽을 필요 없이 스펙만 읽으면 되는 것이다.",
-            "이 단순함 덕분에 형식검증을 대중(the masses)이 쓸 수 있다.",
+            "형식검증의 훌륭한 점은 증명(proof)이 수십억 줄이어도 검사만 통과하면 되고 사람은 증명을 읽을 필요 없이 스펙만 읽으면 된다는 것이다.",
             "스펙은 보통 구현보다 훨씬 단순하므로, 스펙을 이해하지 못한다면 구현도 이해하지 못한다."
           ]
         },
@@ -594,6 +640,32 @@
           "date": "2026-11-11",
           "by": "GiulioRebuffo",
           "stance": "pro",
+          "quote": "증명을 읽을 필요는 없다. 스펙을 읽어라. 증명이 200억 줄이어도 검사만 통과하면 된다.",
+          "url": "https://x.com/GiulioRebuffo/status/2120538008722301395",
+          "digest": "2026-11-13",
+          "replyTo": "lightclients",
+          "relation": "reply",
+          "original": "@lightclients you don't need to read the proofs. read the spec. proofs can be 20 B lines and as long as it checks u r good fam.",
+          "translation": "@lightclients 증명은 읽을 필요 없습니다. 스펙을 읽으세요. 증명이 200억 줄이어도 검사만 통과하면 괜찮습니다.",
+          "author": "GiulioRebuffo"
+        },
+        {
+          "date": "2026-11-11",
+          "by": "nero_eth",
+          "stance": "con",
+          "quote": "스펙을 이해하지 못하면 어떻게 하느냐.",
+          "url": "https://x.com/nero_eth/status/2120548546998903250",
+          "digest": "2026-11-13",
+          "replyTo": "GiulioRebuffo",
+          "relation": "reply",
+          "original": "@GiulioRebuffo @lightclients What if we don't understand the spec ser?",
+          "translation": "@GiulioRebuffo @lightclients 스펙을 이해하지 못하면 어떻게 하죠?",
+          "author": "nero_eth"
+        },
+        {
+          "date": "2026-11-11",
+          "by": "GiulioRebuffo",
+          "stance": "pro",
           "quote": "스펙을 이해하지 못한다면 구현도 이해하지 못하는 것이 아닐까 싶다. 스펙은 보통 구현보다 훨씬 단순하다.",
           "url": "https://x.com/GiulioRebuffo/status/2120548780634440065",
           "digest": "2026-11-13",
@@ -618,6 +690,19 @@
         },
         {
           "date": "2026-11-11",
+          "by": "GiulioRebuffo",
+          "stance": "pro",
+          "quote": "물론 쓰기 전에 무엇을 할지 알아야 하지만, 요점은 증명이 아니라 스펙이 중요하다는 것이다. 검사를 통과하고 상위 수준의 연결이 있으면 증명을 읽을 필요는 없다.",
+          "url": "https://x.com/GiulioRebuffo/status/2120550441016840532",
+          "digest": "2026-11-13",
+          "replyTo": "nero_eth",
+          "relation": "reply",
+          "original": "@nero_eth @lightclients I mean sure, obviously you need to know what you want to do before even writting it down. but the point is that proofs dont matter, spec do. OP refers to proofs - you don't need to read the proofs as long as they check and the high level glue is there.",
+          "translation": "@nero_eth @lightclients 물론 적기 전에 무엇을 하려는지 알아야 하는 건 당연합니다. 하지만 요점은 증명은 중요하지 않고 스펙이 중요하다는 것입니다. 원글은 증명을 말하는데, 검사만 통과하고 상위 수준의 연결이 있으면 증명을 읽을 필요는 없습니다.",
+          "author": "GiulioRebuffo"
+        },
+        {
+          "date": "2026-11-11",
           "by": "nero_eth",
           "stance": "con",
           "quote": "스펙 더하기 증명이 증명된 스펙이라는 데는 동의한다. 다만 그것은 쉬운 부분이고, 증명된 스펙이 비공식 스펙과 같다고 믿는 것이 어려운 부분이다.",
@@ -628,6 +713,32 @@
           "original": "OP might just imply that we don't understand what we're doing and not taking proofs literally. I agree that spec + proof = proven spec.\nJust saying that's the easy part. Trusting that proven spec =  informal spec is the hard part. And this still ignores that we assume things that don't hold up in practice.",
           "translation": "원 트윗(OP)은 우리가 지금 하고 있는 일을 제대로 이해하지 못하고 있으며 증명들을 문자 그대로 받아들이지 않고 있다는 것을 암시하는 것일 수도 있습니다. 스펙 + 증명 = 증명된 스펙(proven spec)이라는 것에는 동의합니다. 다만 그건 쉬운 부분이라는 말을 하는 것입니다. 증명된 스펙이 비공식 스펙과 같다고 믿는 것이 어려운 부분입니다. 그리고 이는 여전히 우리가 실제로는 성립하지 않는 것들을 가정하고 있다는 사실을 무시하고 있는 것입니다.",
           "author": "nero_eth"
+        },
+        {
+          "date": "2026-11-11",
+          "by": "GiulioRebuffo",
+          "stance": "neutral",
+          "quote": "원글이 어그로를 끌고 있는 것 같다.",
+          "url": "https://x.com/GiulioRebuffo/status/2120553987246051787",
+          "digest": "2026-11-13",
+          "replyTo": "nero_eth",
+          "relation": "reply",
+          "original": "@nero_eth @lightclients I think OP is ragebaiting",
+          "translation": "@nero_eth @lightclients 원글이 어그로를 끌고 있는 것 같습니다.",
+          "author": "GiulioRebuffo"
+        },
+        {
+          "date": "2026-11-11",
+          "by": "lightclients",
+          "stance": "neutral",
+          "quote": "어그로를 끄는 게 아니다.",
+          "url": "https://x.com/lightclients/status/2120554345255350407",
+          "digest": "2026-11-13",
+          "replyTo": "GiulioRebuffo",
+          "relation": "reply",
+          "original": "@GiulioRebuffo @nero_eth i’m not ragebaiting",
+          "translation": "@GiulioRebuffo @nero_eth 저는 어그로를 끄는 게 아닙니다.",
+          "author": "lightclients"
         }
       ],
       "firstSeen": "2026-11-11",
