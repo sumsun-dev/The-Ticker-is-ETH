@@ -26,9 +26,9 @@ export interface InboxEntry {
 export type Ask = (prompt: string) => string;
 
 const CHUNK = 30;
-const MAX_SOURCE = 4000;
+export const MAX_SOURCE = 4000;
 const CTX_SEP = '\n---\n'; // 대화 맥락이 붙은 원문(논쟁·스레드)은 다른 참여자가 주어일 수 있어 lead 검사를 하지 않는다
-const NO_SOURCE = '원문 없음';
+export const NO_SOURCE = '원문 없음';
 
 const JudgeSchema = z.array(z.object({ n: z.number(), ok: z.boolean(), problem: z.string().optional() }));
 const FixSchema = z.array(z.object({ n: z.number(), title: z.string(), summary: z.string(), why: z.string() }));
@@ -40,7 +40,7 @@ const handleOf = (url: string): string | undefined =>
 const statusId = (url: string): string | undefined => /\/status\/(\d+)/.exec(url)?.[1];
 
 // 정확한 url → 쿼리 뺀 url → 같은 status id (계정이 잘못 박힌 옛 url 도 같은 트윗으로 찾는다)
-const lookup = <T>(map: Map<string, T>, url: string): T | undefined => {
+export const lookup = <T>(map: Map<string, T>, url: string): T | undefined => {
   const hit = map.get(url) ?? map.get(url.split('?')[0]);
   if (hit !== undefined) return hit;
   const id = statusId(url);
@@ -168,7 +168,7 @@ export function factcheckDigest<D extends CheckDigest>(
 }
 
 /** 링크 트윗을 맨 앞에, 같은 conversationId 의 다른 항목(author: summary)을 뒤에 붙인다 (합계 MAX_SOURCE 자) */
-function contextOf(main: InboxEntry, inbox: InboxEntry[]): string {
+export function contextOf(main: InboxEntry, inbox: InboxEntry[]): string {
   const rest = main.conversationId
     ? inbox.filter((o) => o !== main && o.summary && o.conversationId === main.conversationId)
     : [];
