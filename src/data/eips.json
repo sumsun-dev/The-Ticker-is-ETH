@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-19T14:43:01.590Z",
+  "updatedAt": "2026-11-20T00:59:29.091Z",
   "eips": [
     {
       "number": 1,
@@ -34861,105 +34861,108 @@
       "number": 7773,
       "titleKo": "글램스테르담 하드포크 메타",
       "topic": "기타",
-      "summary": "글램스테르담(Glamsterdam) 네트워크 업그레이드에 들어가는 EIP 목록을 한 문서로 정리한 메타 EIP입니다. 포함이 확정된 18개 변경과 네트워킹·정보성 EIP, 테스트넷 활성화 일정을 담습니다.",
-      "why": "이더리움 네트워크 업그레이드(하드포크)는 한 번에 수십 개의 개별 변경 제안(EIP)을 묶어서 적용합니다. 어떤 제안이 제안 단계인지, 검토 중인지, 거절됐는지, 확정됐는지가 계속 바뀌기 때문에 전체 그림을 보여 주는 기준 문서가 필요합니다. 이 메타 EIP가 그 역할을 합니다. 글램스테르담 업그레이드에 공식적으로 제안(Proposed)·고려(Considered)·거절(Declined)·확정(Scheduled)된 EIP를 모두 나열하고 각 EIP의 전체 명세로 가는 링크를 제공합니다. 또 Sepolia, Hoodi 같은 테스트넷의 활성화 시점이 정해지는 대로 이 문서의 표에 기록됩니다. 사용자, 개발자, 클라이언트 팀 누구나 이 문서 하나로 글램스테르담에 무엇이 들어가는지 확인할 수 있습니다.",
+      "summary": "EIP-7773은 글램스테르담 네트워크 업그레이드에 포함되거나 검토·보류 중인 EIP들을 한곳에 모아 분류한 목록 문서입니다. 현재 Review 단계입니다.",
+      "why": "하드포크 하나에는 보통 수십 개의 EIP가 동시에 논의되는데, 각 EIP가 포함·검토·보류·거절 중 어느 단계에 있는지가 여러 논의 스레드와 콜 기록에 흩어져 있으면 클라이언트 팀과 연구자가 업그레이드 전체 범위를 파악하기 어렵습니다. EIP-7773은 글램스테르담에 해당하는 EIP들을 EIP-7723이 정의한 네 단계(Scheduled, Considered, Declined, Proposed for Inclusion)로 분류해 한 문서에 모읍니다. 이렇게 하면 누구나 이 문서 하나로 업그레이드 구성과 활성화 일정을 확인할 수 있습니다.",
       "before": [
-        "글램스테르담에 포함되는 EIP를 확인하려면 개별 제안의 상태를 각각 추적해야 합니다",
-        "테스트넷과 메인넷 활성화 시점을 모아 둔 공식 기록이 없습니다"
+        "글램스테르담에 어떤 EIP가 포함되는지 여러 논의 스레드와 콜 기록에 흩어져 있었습니다.",
+        "각 EIP의 포함 여부(확정·검토·보류)를 한곳에서 확인할 방법이 없었습니다.",
+        "메인넷과 후디(Hoodi) 활성화 시점이 정해지지 않은 상태였습니다."
       ],
       "after": [
-        "확정 18개, 네트워킹 5개, 정보성 2개 EIP가 한 문서에 정리됩니다",
-        "Sepolia와 Hoodi 테스트넷 활성화 시각이 표에 기록되고 메인넷 시점도 결정되면 같은 표에 채워집니다"
+        "20개 EIP가 Scheduled for Inclusion으로 확정되어 한 목록에 정리됐습니다.",
+        "네트워킹 EIP(eth/70, eth/71, eth/72, snap/2)와 Informational EIP가 별도 항목으로 구분됐습니다.",
+        "세폴리아(Sepolia) 활성화 에포크 353024(2026-10-06 13:53:36 UTC)가 명시됐습니다.",
+        "메타 EIP 자체가 Review 상태로 올라가 업그레이드 전체 명세가 검토 단계에 들어갔습니다."
       ],
       "impact": [
         {
-          "who": "사용자",
-          "text": "글램스테르담에서 무엇이 바뀌는지 이 문서 하나로 확인할 수 있습니다."
+          "who": "클라이언트 개발팀",
+          "text": "목록에 포함된 20개 EIP를 모두 구현하고 세폴리아 등 테스트넷 활성화 일정에 맞춰 테스트해야 합니다."
+        },
+        {
+          "who": "코어 개발자·리서처",
+          "text": "포함·검토·보류·거절 EIP 전체 현황을 이 문서 하나로 추적할 수 있습니다."
+        },
+        {
+          "who": "검증자(밸리데이터)",
+          "text": "활성화 시점에 맞춰 클라이언트를 업그레이드해야 글램스테르담 포크에서 이탈하지 않습니다."
         },
         {
           "who": "지갑·앱 개발자",
-          "text": "가스 비용 변경, 컨트랙트 크기 상한 확대 등 확정 목록을 보고 미리 대응할 수 있습니다."
-        },
-        {
-          "who": "클라이언트 팀",
-          "text": "구현해야 할 전체 명세와 테스트넷 일정의 기준 문서로 씁니다."
-        },
-        {
-          "who": "검증자",
-          "text": "슬래싱된 검증자의 제안 제외, 출금·통합 처리량 확대 등 합의 계층 변경을 파악할 수 있습니다."
+          "text": "ETH 전송 로그화(EIP-7708), 컨트랙트 크기 상한 변경(EIP-7954) 등 개별 EIP의 영향을 미리 점검해야 합니다."
         }
       ],
       "example": null,
       "deep": [
         {
-          "title": "포함 확정(Scheduled for Inclusion) EIP 18개",
-          "body": "확정 목록 가운데 가스·수수료 회계로는 EIP-2780(Resource-Based Intrinsic Transaction Gas), EIP-7778(Block Gas Accounting without Refunds), EIP-7976(Increase Calldata Floor Cost), EIP-7981(Increase Access List Cost), EIP-8037(State Creation Gas Cost Increase), EIP-8038(State-Access Gas Cost Update)이 있습니다. 블록 생산 구조로는 EIP-7732(Enshrined Proposer-Builder Separation)와 EIP-8282(Builder Execution Requests), 실행 데이터로는 EIP-7928(Block-Level Access Lists)과 EIP-7708(ETH Transfers Emit a Log)이 들어갑니다. EVM 쪽은 EIP-7843(SLOTNUM Opcode), EIP-7954(Increase Maximum Contract Size), EIP-8024(Backward Compatible SWAPN, DUPN, EXCHANGE), EIP-7997(Deterministic Factory Contract), EIP-8246(Remove SELFDESTRUCT Burn)입니다. 합의 계층은 EIP-7688(Forward Compatible Consensus Data Structures), EIP-8045(Exclude Slashed Validators from Proposing), EIP-8061(Increase Exit and Consolidation Churn)입니다.",
+          "title": "포함 단계 분류",
+          "body": "EIP-7773은 EIP-7723이 정의한 네 단계로 EIP를 분류합니다. Scheduled for Inclusion은 글램스테르담에 포함이 확정된 EIP, Considered for Inclusion은 포함 여부를 논의 중인 EIP, Declined for Inclusion은 포함이 보류된 EIP, Proposed for Inclusion은 아직 제안 단계인 EIP를 가리킵니다. 각 단계의 정확한 정의는 EIP-7723 원문에 있고, EIP-7773은 이 분류를 글램스테르담에 적용한 결과만 나열합니다.",
+          "ref": "원문: Specification"
+        },
+        {
+          "title": "Scheduled for Inclusion 20개 EIP",
+          "body": "20개 EIP는 성격별로 나눠볼 수 있습니다. 가스·상태 비용 조정에는 EIP-2780, 7778, 7976, 7981, 8037, 8038이 속합니다. SSZ 데이터 구조로는 EIP-7495, 7688, 7916이 있습니다. EVM 옵코드·실행 쪽은 EIP-7843, 7954, 7997, 8024, 8246입니다. 블록 구성과 PBS에는 EIP-7708, 7732, 7928, 8282가 들어갑니다. 검증자·합의 쪽은 EIP-8045, 8061입니다. 원문은 이 20개를 하나의 목록으로만 제시하고 그룹 이름을 따로 붙이지는 않습니다.",
           "ref": "원문: Specification · EIPs Scheduled for Inclusion"
         },
         {
-          "title": "포함 단계의 정의는 EIP-7723을 따릅니다",
-          "body": "이 문서가 쓰는 네 가지 상태, 즉 Scheduled for Inclusion(포함 확정), Considered for Inclusion(포함 고려), Declined for Inclusion(포함 거절), Proposed for Inclusion(포함 제안)의 정의는 EIP-7723에 있습니다. 이 메타 EIP는 그 정의 체계를 가져와 글램스테르담에 적용한 것입니다. 문서의 requires 필드에도 EIP-7607과 EIP-7723이 전제 조건으로 지정되어 있습니다.",
-          "ref": "원문: Preamble(requires) · Specification"
+          "title": "네트워킹과 정보성 EIP",
+          "body": "Scheduled for Inclusion 외에 Networking EIP와 Informational EIP가 별도로 실려 있습니다. 네트워킹 EIP는 eth/70(EIP-7975, 부분 블록 영수증 목록), eth/72(EIP-8070, 희소 블롭풀), eth/71(EIP-8159, 블록 접근 목록 교환), snap/2(EIP-8189, BAL 기반 상태 힐링), 그리고 데이터 컬럼 브로드캐스트용 EIP-8136입니다. 이들은 프로토콜 규칙이 아니라 클라이언트 간 통신 프로토콜 버전을 다룹니다. Informational EIP로는 가스 비용 분석을 다루는 EIP-7904와 가스 한도 일정을 다루는 EIP-8261이 실려 있는데, 포크에 강제로 적용되지는 않는 참고 자료입니다.",
+          "ref": "원문: Other EIPs"
         },
         {
-          "title": "네트워킹 EIP 5개와 정보성 EIP 2개",
-          "body": "확정 목록과 별도로 노드 간 통신 프로토콜을 바꾸는 네트워킹 EIP가 있습니다. EIP-7975(eth/70 - Partial Block Receipt Lists), EIP-8070(eth/72 - Sparse Blobpool), EIP-8136(Cell-Level Deltas for Data Column Broadcast), EIP-8159(eth/71 - Block Access List Exchange), EIP-8189(snap/2 - BAL-Based State Healing)입니다. 이 가운데 EIP-8159와 EIP-8189는 확정 목록의 블록 접근 목록(BAL, EIP-7928)을 노드 동기화에 활용하는 프로토콜입니다. 정보성(Informational) EIP로는 EIP-7904(Compute Gas Cost Analysis)와 EIP-8261(Gas Limit Schedule)이 실립니다.",
-          "ref": "원문: Specification · Other EIPs"
+          "title": "마스코트와 활성화 일정",
+          "body": "EIP-8066 절차에 따라 글램스테르담의 마스코트는 북극곰(Polar bear)으로 정해졌습니다. 활성화 표에는 세폴리아(Sepolia) 활성화 에포크 353024, 타임스탬프 1791294816(2026-10-06 13:53:36 UTC)가 적혀 있습니다. 후디(Hoodi)와 메인넷 활성화 시점은 원문에 비어 있으며, 클라이언트 팀이 결정하는 대로 채워진다고 명시돼 있습니다.",
+          "ref": "원문: Specification · Mascot, Activation"
         },
         {
-          "title": "활성화 일정: 테스트넷 두 곳은 확정, 메인넷은 미정",
-          "body": "Sepolia 테스트넷은 에포크 353024, 타임스탬프 1791294816(2026-10-06 13:53:36 UTC)에 활성화됩니다. Hoodi 테스트넷은 에포크 132352, 타임스탬프 1793036568(2026-10-26 17:42:48 UTC)입니다. 메인넷 칸은 비어 있습니다. 원문은 클라이언트 팀들이 활성화 시점을 결정하는 대로 표의 행을 채운다고 적고 있습니다.",
-          "ref": "원문: Specification · Activation"
+          "title": "선행 EIP",
+          "body": "이 메타 EIP는 EIP-7607과 EIP-7723을 requires로 명시합니다. EIP-7723은 앞서 설명한 포함 단계 용어를 정의합니다. EIP-7607의 구체적 내용은 원문 본문에 따로 설명되어 있지 않습니다.",
+          "ref": "원문: 머리말(frontmatter) requires"
         },
         {
-          "title": "마스코트와 문서의 성격",
-          "body": "글램스테르담의 마스코트는 EIP-8066 절차에 따라 북극곰(polar bear)으로 정해졌습니다. Rationale 절은 이 메타 EIP의 목적을 글램스테르담에 포함된 모든 변경의 전체 조망과 전체 명세 링크 제공이라고 설명합니다. 프로토콜 동작을 직접 바꾸는 문서가 아니므로 Security Considerations 절은 None입니다.",
-          "ref": "원문: Specification · Mascot, Rationale, Security Considerations"
-        },
-        {
-          "title": "상태는 Review, 목록은 아직 바뀔 수 있습니다",
-          "body": "2025년 7월 20일 ACDT #88 콜에서 EIP-7773을 Review 상태로 옮기기로 확정했고 반대는 없었습니다. 업그레이드 전체 명세를 묶는 이 문서가 검토 단계에 진입했다는 뜻입니다. 다만 상태가 Review인 만큼 문서 내용은 아직 바뀔 수 있습니다. 메인넷 활성화 시점도 아직 정해지지 않았고 표는 결정이 나는 대로 채워집니다.",
-          "ref": "원문: Preamble(status) · 콜 기록: 07.20 ACDT #88"
+          "title": "콜 기록과 현재 상태",
+          "body": "2026-07-20 ACDT #88에서 글램스테르담 메타 EIP인 EIP-7773을 Review 상태로 옮기는 데 반대가 없어 확정됐습니다. 이는 업그레이드 전체 명세를 묶는 이 문서가 검토 단계에 들어갔다는 뜻입니다. 다만 상태가 아직 Review이므로 포함 EIP 목록과 활성화 일정, 특히 후디·메인넷 활성화 시점은 앞으로 바뀔 수 있습니다.",
+          "ref": "콜 기록: 2026-07-20 ACDT #88"
         }
       ],
       "glossary": [
         {
-          "term": "하드포크",
-          "def": "네트워크 전체가 같은 시점에 새 규칙으로 갈아타는 업그레이드 방식입니다. 글램스테르담도 하드포크입니다."
-        },
-        {
           "term": "메타 EIP",
-          "def": "프로토콜을 직접 바꾸지 않고, 다른 EIP들을 묶거나 절차를 정의하는 문서 유형입니다."
+          "def": "개별 기술 변경이 아니라 하드포크에 포함되는 EIP들을 모아 목록화하는 문서."
         },
         {
-          "term": "에포크",
-          "def": "이더리움 합의 계층의 시간 단위입니다. 활성화 시점을 에포크 번호로 지정합니다."
+          "term": "하드포크",
+          "def": "이더리움 네트워크 전체가 동시에 적용하는 프로토콜 업그레이드."
         },
         {
-          "term": "테스트넷",
-          "def": "메인넷 적용 전에 변경을 미리 돌려 보는 시험용 네트워크입니다. Sepolia와 Hoodi가 여기에 해당합니다."
+          "term": "Scheduled for Inclusion",
+          "def": "다음 하드포크에 포함이 확정된 EIP를 가리키는 분류명."
+        },
+        {
+          "term": "액티베이션 에포크",
+          "def": "업그레이드가 실제로 적용되는 시점을 나타내는 블록 단위(에포크) 번호."
+        },
+        {
+          "term": "PBS",
+          "def": "Proposer-Builder Separation, 블록을 만드는 역할과 제안하는 역할을 분리하는 설계."
+        },
+        {
+          "term": "SSZ",
+          "def": "Simple Serialize, 이더리움 컨센서스 레이어에서 데이터를 직렬화하는 형식."
         }
       ],
       "related": [
         {
           "number": 7723,
-          "note": "포함 확정·고려·거절·제안 등 이 문서가 쓰는 상태의 정의를 담은 EIP입니다. requires로 지정되어 있습니다."
+          "note": "Scheduled, Considered, Declined, Proposed for Inclusion 등 포함 단계 용어를 정의하는 선행 EIP"
         },
         {
           "number": 7607,
-          "note": "이 문서가 requires로 지정한 전제 EIP입니다."
-        },
-        {
-          "number": 7732,
-          "note": "포함 확정 목록의 핵심 변경 가운데 하나인 프로토콜 내 제안자-빌더 분리(Enshrined Proposer-Builder Separation)입니다."
-        },
-        {
-          "number": 7928,
-          "note": "블록 수준 접근 목록(Block-Level Access Lists)입니다. 네트워킹 EIP-8159와 EIP-8189가 이를 활용합니다."
+          "note": "EIP-7773이 requires로 참조하는 선행 EIP로, 세부 내용은 원문에 설명되어 있지 않음"
         },
         {
           "number": 8066,
-          "note": "업그레이드 마스코트를 정하는 절차를 다루며, 이 절차로 북극곰이 선정됐습니다."
+          "note": "마스코트 선정 절차를 정의하는 EIP로, 글램스테르담 마스코트인 북극곰 선정에 적용됨"
         }
       ],
       "meta": {
@@ -34981,9 +34984,9 @@
         ],
         "discussionsTo": "https://ethereum-magicians.org/t/eip-7773-glamsterdam-network-upgrade-meta-thread/21195"
       },
-      "sourceHash": "98d469425c8def40",
-      "model": "fable",
-      "generatedAt": "2026-11-04T14:38:01.106Z"
+      "sourceHash": "13d6acab704198d1",
+      "model": "sonnet",
+      "generatedAt": "2026-11-20T00:59:29.022Z"
     },
     {
       "number": 7775,
