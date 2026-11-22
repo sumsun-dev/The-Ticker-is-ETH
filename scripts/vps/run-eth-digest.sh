@@ -26,6 +26,15 @@ main() {
   # --autostash: 이전 실행이 남긴 미커밋 산출물이 있어도 pull이 막히지 않게
   git pull --rebase --autostash origin main
 
+  # 지난 일요일 호가 빠졌으면 어느 모드로 돌든 맨 앞에서 한 번 이어 보낸다. 일요일 19:00 크론은 주 1회뿐이라
+  # 그 한 번이 사용량 한도 등으로 실패하면 다음 주까지 복구 기회가 없었다 (2026-11-22: 11-16~11-22 호 누락).
+  # 모드 분기 앞에 두는 이유: 아침 다이제스트에만 달아 두면 복구까지 최대 하루가 걸리고, set -e 아래에서
+  # 앞 단계가 하나만 죽어도 보충이 통째로 날아간다. 여기 두면 그날 가장 먼저 도는 크론이 복구를 맡는다
+  # (크론은 09:40 다이제스트 · 18:00 콜 · 19:00 주간 · 23:00 EIP·ERC · 월 11:00 사실 점검 KST).
+  # 이미 보낸 주면 스크립트가 모델을 부르기 전에 [SKIP]으로 끝나므로 매번 돌려도 비용이 없다.
+  # 서로 다른 모드의 시작 시각이 최소 수 시간씩 벌어져 있어 두 실행이 같은 호를 겹쳐 보낼 일은 없다
+  post_weekly_brief "$(last_sunday_kst)" || true
+
   # 저녁 실행: 아침에 미뤄 둔 콜 브리프만 올린다
   if [ "${1:-}" = calls ]; then
     CALLS_CHAT=@thetickeriseth npx tsx scripts/post-calls-telegram.ts || true
@@ -76,13 +85,6 @@ $(grep -hiE -m2 "hit your .*limit" "$HOME"/logs/eips-?.log "$HOME"/logs/ercs-?.l
     commit_and_push "chore: publish weekly press brief [automated]"
     return
   fi
-
-  # 지난 일요일 호가 빠졌으면 다이제스트보다 먼저 이어 보낸다. 일요일 19:00 크론은 한 주에 한 번뿐이라
-  # 그 한 번이 사용량 한도 등으로 실패하면 다음 주까지 복구 기회가 없었다 (2026-11-22: 11-16~11-22 호 누락).
-  # 다이제스트 단계보다 앞에 두는 이유: 뒤에 두면 set -e 아래에서 앞 단계가 하나만 죽어도 보충이 통째로 날아가고,
-  # EIP 해설(최대 45분)까지 기다려 월요일 오전 늦게야 나간다. 기자 그룹방 호는 늦을수록 값이 떨어진다.
-  # 이미 보낸 주면 스크립트가 모델을 부르기 전에 [SKIP]으로 끝나므로 매일 돌려도 비용이 없다
-  post_weekly_brief "$(last_sunday_kst)" || true
 
   npx tsx scripts/generate-eth-digest.ts
   # 사실 검사 결과(고침·뺌)가 있으면 오너 DM. 실패해도 러너는 계속
