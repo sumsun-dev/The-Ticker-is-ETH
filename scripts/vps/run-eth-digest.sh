@@ -77,6 +77,13 @@ $(grep -hiE -m2 "hit your .*limit" "$HOME"/logs/eips-?.log "$HOME"/logs/ercs-?.l
     return
   fi
 
+  # 지난 일요일 호가 빠졌으면 다이제스트보다 먼저 이어 보낸다. 일요일 19:00 크론은 한 주에 한 번뿐이라
+  # 그 한 번이 사용량 한도 등으로 실패하면 다음 주까지 복구 기회가 없었다 (2026-11-22: 11-16~11-22 호 누락).
+  # 다이제스트 단계보다 앞에 두는 이유: 뒤에 두면 set -e 아래에서 앞 단계가 하나만 죽어도 보충이 통째로 날아가고,
+  # EIP 해설(최대 45분)까지 기다려 월요일 오전 늦게야 나간다. 기자 그룹방 호는 늦을수록 값이 떨어진다.
+  # 이미 보낸 주면 스크립트가 모델을 부르기 전에 [SKIP]으로 끝나므로 매일 돌려도 비용이 없다
+  post_weekly_brief "$(last_sunday_kst)" || true
+
   npx tsx scripts/generate-eth-digest.ts
   # 사실 검사 결과(고침·뺌)가 있으면 오너 DM. 실패해도 러너는 계속
   if [ -s .cache/digest-factcheck.txt ]; then
@@ -107,11 +114,6 @@ $(grep -hiE -m2 "hit your .*limit" "$HOME"/logs/eips-?.log "$HOME"/logs/ercs-?.l
   # 콜에 나온 EIP 해설(쉬운 설명+심층 설명). EIP당 모델 8분 남짓이라 송출이 다 끝난 뒤에 돌리고 45분으로 끊는다.
   # EIP마다 저장하므로 끊겨도 쓴 것까지는 남고 다음 실행이 이어 간다. 실패해도 커밋은 진행
   timeout 45m npx tsx scripts/extract-eips.ts || true
-
-  # 지난 일요일 호가 빠졌으면 여기서 이어 보낸다. 일요일 19:00 크론은 한 주에 한 번뿐이라
-  # 그 한 번이 사용량 한도 등으로 실패하면 다음 주까지 복구 기회가 없었다 (2026-11-22: 11-16~11-22 호 누락).
-  # 이미 보낸 주면 스크립트가 모델을 부르기 전에 [SKIP]으로 끝나므로 매일 돌려도 비용이 없다
-  post_weekly_brief "$(last_sunday_kst)" || true
 
   commit_and_push "chore: publish eth digest [automated]"
 }
