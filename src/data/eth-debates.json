@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-19T01:10:10.796Z",
+  "updatedAt": "2026-11-22T01:14:16.012Z",
   "processedDigests": [
     "2026-08-24",
     "2026-08-25",
@@ -38,9 +38,480 @@
     "2026-11-10",
     "2026-11-13",
     "2026-11-16",
-    "2026-11-19"
+    "2026-11-19",
+    "2026-11-22"
   ],
   "debates": [
+    {
+      "id": "smaller-frequent-forks-scope",
+      "title": "이더리움은 포크를 더 작은 범위로 쪼개 더 자주 내보내야 하나?",
+      "category": "거버넌스 · 커뮤니티",
+      "summary": "Glamsterdam 지연으로 컨트랙트 크기 확대 같은 기능이 미뤄지자 lex_node, sakulstra 등 앱 개발자들이 소규모 포크를 더 자주 내거나 삶의 질(QOL) 기능만 담은 선행 포크를 먼저 내보내자고 요구했고, lightclients와 CPerezz19 등 코어 개발자들은 작은 포크가 더 빨리 나간다는 데는 동의하면서도 범위 축소와 재테스트 비용, 프로토콜 이해 병목을 들어 현실성에 선을 그었다.",
+      "keyPoints": [
+        "컨트랙트 크기 확대 같은 QOL 기능만 담은 소규모 선행 포크(Proto-glamsterdam)를 먼저 내보낼 수 있나?",
+        "AI 활용으로 포크 처리량(throughput)을 높여 더 자주 포크할 수 있나, 아니면 프로토콜을 이해하는 작업이 병목인가?",
+        "FOCIL 제외처럼 범위를 줄이는 결정 자체가 가능한가?"
+      ],
+      "background": "Glamsterdam은 ePBS, BALs, EIP-8037 등 20여 개 EIP를 묶은 역대 최대 규모의 하드포크(hard fork)로, 애초 2026년 초 메인넷을 목표했으나 EIP-8037이 배포된 컨트랙트의 불변량을 깨는 문제가 드러나 가장 이른 메인넷 일정이 2027년 1월 중순으로 밀렸다. nero_eth의 분석에 따르면 Dencun 이후 모든 포크가 스코프 확정에서 메인넷까지 400일 이상 걸렸으나 Glamsterdam은 가장 짧은 320일을 목표로 잡았다. Pectra는 포크를 쪼갰고 Fusaka는 EOF를 막판에 뺐지만 Glamsterdam은 거의 모든 EIP를 유지한 채 테스트넷에 도달했고, 공개 테스트넷 이후에도 6주간 스펙 변경이 10건 이어졌다.",
+      "whyItMatters": "앱 개발자의 빠른 출시 요구와 코어 개발자(core developer)의 리뷰·이해 역량 한계 사이 긴장은 다음 포크의 스코프 결정 방식과 사전 cut date 합의 관행을 바꿀 수 있다. 컨트랙트 크기 제약이 장기화되면 자체 L2로 옮겨가려는 앱 개발자의 유인이 커진다는 점에서 로드맵 우선순위 논쟁과 맞닿아 있다.",
+      "sources": [
+        {
+          "title": "EIP-8037: State Creation Gas Cost Increase",
+          "url": "https://eips.ethereum.org/EIPS/eip-8037"
+        },
+        {
+          "title": "EIP-1283: Net gas metering for SSTORE without dirty maps",
+          "url": "https://eips.ethereum.org/EIPS/eip-1283"
+        }
+      ],
+      "keywords": [
+        "Glamsterdam",
+        "Proto-glamsterdam",
+        "smaller forks",
+        "EIP-8037"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "포크를 더 작게 쪼개 자주 내보내자",
+          "holders": [
+            {
+              "handle": "sakulstra",
+              "name": "sakulstra"
+            },
+            {
+              "handle": "lex_node",
+              "name": "_gabrielShapir0",
+              "role": "크립토 법률·규제 논쟁 변호사, MetaLeX Labs",
+              "avatar": "https://pbs.twimg.com/profile_images/2058233189882032128/pRSMN_6C_400x400.jpg"
+            },
+            {
+              "handle": "0xcyp",
+              "name": "cyp.eth",
+              "avatar": "https://pbs.twimg.com/profile_images/1919609669695246336/7ZteouTN_400x400.jpg"
+            },
+            {
+              "handle": "URozmej",
+              "name": "Łukasz Rozmej",
+              "role": "EIP-8037 공동 저자"
+            },
+            {
+              "handle": "Philastru",
+              "name": "Philastru"
+            }
+          ],
+          "points": [
+            "더 작은 범위의 하드포크를 더 자주 내면 되는데, 조정이 정말 그렇게 어려운지 묻는다 (sakulstra).",
+            "글램스테르담 지연에서 가장 아픈 것은 컨트랙트 크기 확대 지연이므로 QOL 기능만 담은 소규모 Proto-glamsterdam을 먼저 내보내자 (lex_node).",
+            "6, 7개월 주기로 하드포크하면 검증자(validator)도 따라올 수 있다 (0xcyp).",
+            "작업이 작성에서 리뷰·가이드로 옮겨가 시간이 걸리긴 해도 훨씬 더 병렬화할 수 있어 처리량을 높일 수 있다 (URozmej)."
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "불가능하거나 오히려 더 많은 작업이다",
+          "holders": [
+            {
+              "handle": "lightclients",
+              "name": "ً",
+              "role": "Geth·프로토콜 개발",
+              "avatar": "https://pbs.twimg.com/profile_images/1554130973935030274/wHWuxuTT_400x400.jpg"
+            },
+            {
+              "handle": "omw_to_the_moon",
+              "name": "0xRahul",
+              "avatar": "https://pbs.twimg.com/profile_images/1972986052085182464/1WRiq-FD_400x400.jpg"
+            },
+            {
+              "handle": "CPerezz19",
+              "name": "CPerezz.eth ⟠ 🦀",
+              "role": "EF, EIP-8037 공동 저자",
+              "avatar": "https://pbs.twimg.com/profile_images/1254074532417200128/M2uQcW5K_400x400.jpg"
+            }
+          ],
+          "points": [
+            "Proto-glamsterdam을 먼저 내보낼 가능성은 0%다 (lightclients).",
+            "새 포크를 따로 만드는 것은 코드를 제거하고 다시 테스트해야 해서 사실 훨씬 더 많은 작업이다 (omw_to_the_moon).",
+            "ACD에서 이를 뒷받침하는 연구까지 했지만 왜 이게 큰 문제인지 모르겠고, 64kb 이상 확대는 훨씬 더 어렵다 (CPerezz19)."
+          ]
+        },
+        {
+          "stance": "neutral",
+          "label": "작은 포크가 빨리 나가는 건 맞지만 범위 축소와 이해가 병목이다",
+          "holders": [
+            {
+              "handle": "nero_eth",
+              "name": "Toni Wahrstätter ⟠",
+              "role": "EF 리서처",
+              "avatar": "https://pbs.twimg.com/profile_images/1858347774129094657/xUc7IS2K_400x400.jpg"
+            }
+          ],
+          "points": [
+            "Fusaka 등 과거 사례에서 보듯 작은 포크가 더 빨리 나가는 것은 맞다.",
+            "프로토콜을 이해하는 작업은 AI로 가속할 수는 있어도 병렬화되지 않는다.",
+            "Frame을 더 빨리 내보내려고 FOCIL을 뺄지처럼 범위를 줄이는 결정 자체가 어렵다."
+          ]
+        },
+        {
+          "stance": "other",
+          "label": "지연은 중요하지 않고 가동시간만 중요하다",
+          "holders": [
+            {
+              "handle": "hammundi7",
+              "name": "hammundi7"
+            }
+          ],
+          "points": [
+            "이더리움을 믿는다면 지연과 일정이 아니라 완전한 가동시간(uptime)만 중요하다고 믿어야 한다."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-11-20",
+          "by": "lex_node",
+          "stance": "pro",
+          "quote": "글램스테르담 지연에서 가장 아픈 부분은 컨트랙트 크기 확대 지연이다. 이런 QOL 기능만 담은 소규모 Proto-glamsterdam을 할 가능성은 없나?",
+          "url": "https://x.com/lex_node/status/2123747840107196822",
+          "digest": "2026-11-22",
+          "relation": "none",
+          "original": "the worst part of Glamsterdam delay is delayed contract size increase...@ethlabs_org any chance of doing a smaller Proto-glamsterdam with these types of QOL features only?",
+          "author": "lex_node",
+          "translation": "글램스테르담(Glamsterdam) 지연의 가장 안 좋은 부분은 컨트랙트 크기 증가(contract size increase)도 함께 지연된다는 점이다. @ethlabs_org 이런 종류의 삶의 질 개선(QOL) 기능만 담은 더 작은 규모의 프로토-글램스테르담(Proto-glamsterdam)을 진행할 가능성은 없을까?"
+        },
+        {
+          "date": "2026-11-20",
+          "by": "sakulstra",
+          "stance": "pro",
+          "quote": "순진한 질문일 수 있지만, 훨씬 작은 범위로 더 자주 하드포크할 수는 없나? 조정이 정말 그렇게 까다로운가? 앱 개발자로서 이런 차질은 매우 고통스럽다.",
+          "url": "https://x.com/sakulstra/status/2123758078399250526",
+          "digest": "2026-11-22",
+          "replyTo": "nero_eth",
+          "relation": "reply",
+          "original": "@nero_eth Probably naive question, but couldn't we do more frequent hard forks with much smaller scope - is coordination really that tricky?\n\nAs app dev these setbacks are very painful. What do we do if we e.g. assumed we can do bigger contracts by now - but due to delays we can't.",
+          "author": "sakulstra",
+          "translation": "@nero_eth 아마 단순한 질문이겠지만, 범위를 훨씬 작게 잡아서 하드포크(hard fork)를 더 자주 하면 안 되는 걸까요? 조율(coordination)이 정말 그렇게 까다로운 일인가요? 앱 개발자 입장에서는 이런 지연이 상당히 고통스럽습니다. 예를 들어 지금쯤이면 더 큰 컨트랙트를 쓸 수 있을 거라고 가정했는데 지연 때문에 그렇게 못하게 된다면 우리는 어떻게 해야 하나요."
+        },
+        {
+          "date": "2026-11-20",
+          "by": "lightclients",
+          "stance": "con",
+          "quote": "가능성 0%다.",
+          "url": "https://x.com/lightclients/status/2123758229092233367",
+          "digest": "2026-11-22",
+          "replyTo": "lex_node",
+          "relation": "reply",
+          "original": "@lex_node @ethlabs_org 0% chance",
+          "author": "lightclients",
+          "translation": "@lex_node @ethlabs_org 가능성은 0%입니다."
+        },
+        {
+          "date": "2026-11-20",
+          "by": "hammundi7",
+          "stance": "other",
+          "quote": "이더리움을 믿는다면 지연과 일정은 중요하지 않다고 믿어야 한다. 중요한 것은 이더리움의 완전한 가동시간뿐이다.",
+          "url": "https://x.com/hammundi7/status/2123759969090912349",
+          "digest": "2026-11-22",
+          "replyTo": "lex_node",
+          "relation": "reply",
+          "original": "@lex_node @ethlabs_org If you believe in eth you should believe delays and timelines don’t matter . Only that ethereum has full uptime and this is what matters .",
+          "author": "hammundi7",
+          "translation": "@lex_node @ethlabs_org 이더리움(eth)을 믿는다면 지연이나 일정(timeline)은 중요하지 않다고 믿어야 합니다. 오직 이더리움이 완전한 가동 시간(uptime)을 유지한다는 것, 그것만이 중요합니다."
+        },
+        {
+          "date": "2026-11-20",
+          "by": "lex_node",
+          "stance": "pro",
+          "quote": "이더리움 위에 구축하는 기업에는 매우 중요하다. 시간이 곧 돈이다.",
+          "url": "https://x.com/lex_node/status/2123760123990405384",
+          "digest": "2026-11-22",
+          "replyTo": "hammundi7",
+          "relation": "reply",
+          "original": "@hammundi7 @ethlabs_org I mean it very much matters to businesses building on ethereum, time is money. . .",
+          "author": "lex_node",
+          "translation": "@hammundi7 @ethlabs_org 제 말은, 이더리움 위에서 사업을 구축하는 기업들에게는 이게 매우 중요하다는 뜻입니다. 시간이 곧 돈이니까요."
+        },
+        {
+          "date": "2026-11-20",
+          "by": "omw_to_the_moon",
+          "stance": "con",
+          "quote": "그렇긴 하지만 새 포크를 만드는 것은 코드를 제거하고 다시 테스트해야 해서 사실 훨씬 더 많은 작업이다.",
+          "url": "https://x.com/omw_to_the_moon/status/2123765322033352957",
+          "digest": "2026-11-22",
+          "replyTo": "lex_node",
+          "relation": "reply",
+          "original": "@lex_node @ethlabs_org ikr but its actually significantly more work to create a new fork (need to remove code, re test etc etc)",
+          "author": "omw_to_the_moon",
+          "translation": "@lex_node @ethlabs_org 맞아요, 그런데 새 포크(fork)를 만드는 건 실제로 훨씬 더 많은 작업이 필요해요 (코드를 제거하고, 다시 테스트하는 등등의 작업이 필요하죠)."
+        },
+        {
+          "date": "2026-11-20",
+          "by": "nero_eth",
+          "stance": "neutral",
+          "quote": "확실히 할 수는 있다. Fusaka와 그 이전 포크가 보여줬듯 작은 포크가 더 빨리 나간다.",
+          "url": "https://x.com/nero_eth/status/2123768452112363941",
+          "digest": "2026-11-22",
+          "replyTo": "lex_node",
+          "relation": "reply",
+          "original": "@lex_node @sakulstra We def could yeah. Fusaka and earlier forks showed. Smaller forks ship faster.",
+          "author": "nero_eth",
+          "translation": "@lex_node @sakulstra 확실히 할 수 있습니다, 네. 푸사카(Fusaka)와 그 이전 포크들이 이를 보여줬죠. 더 작은 포크일수록 더 빠르게 출시됩니다."
+        },
+        {
+          "date": "2026-11-20",
+          "by": "URozmej",
+          "stance": "pro",
+          "quote": "작업이 작성에서 리뷰·가이드로 옮겨갔고 시간이 걸린다는 데 동의한다. 하지만 훨씬 더 많이 병렬화할 수 있어 처리량을 높일 수 있다.",
+          "url": "https://x.com/URozmej/status/2123785026827399280",
+          "digest": "2026-11-22",
+          "replyTo": "nero_eth",
+          "relation": "reply",
+          "original": "@nero_eth I agree that the work shifted from writing to reviewing and guiding. I agree it takes time too. I agree there is a limit for single fork latency (it is lower than before though!). But we can parallelise a lot more, thus increasing throughput.",
+          "author": "URozmej",
+          "translation": "@nero_eth 작업의 성격이 작성(writing)에서 리뷰(reviewing)와 안내(guiding)로 옮겨갔다는 점에는 동의합니다. 시간이 걸린다는 점도 동의합니다. 단일 포크의 지연 시간(latency)에 한계가 있다는 점도 동의합니다 (다만 예전보다는 낮아졌죠!). 하지만 우리는 훨씬 더 많이 병렬화(parallelise)할 수 있고, 그렇게 함으로써 처리량(throughput)을 늘릴 수 있습니다."
+        },
+        {
+          "date": "2026-11-20",
+          "by": "nero_eth",
+          "stance": "neutral",
+          "quote": "모든 것에 동의하지만 '프로토콜을 이해하는 것'은 AI로 가속할 수는 있어도 병렬화할 수는 없다.",
+          "url": "https://x.com/nero_eth/status/2123785430898229704",
+          "digest": "2026-11-22",
+          "replyTo": "URozmej",
+          "relation": "reply",
+          "original": "@URozmej Agree with everything but \"understanding the protocol\" is something that can be accelerated with ai but not parallelized.",
+          "author": "nero_eth",
+          "translation": "@URozmej 다 동의하지만, '프로토콜을 이해하는 것'은 AI로 가속화할 수는 있어도 병렬화할 수는 없는 작업입니다."
+        },
+        {
+          "date": "2026-11-20",
+          "by": "Philastru",
+          "stance": "pro",
+          "quote": "나는 변화(업그레이드) 속도를 말한 것이다. 더 중앙화된 경쟁자들에게 속도로 밀리고 있다.",
+          "url": "https://x.com/Philastru/status/2123788760970367089",
+          "digest": "2026-11-22",
+          "replyTo": "hammundi7",
+          "relation": "reply",
+          "original": "@hammundi7 @lex_node @ethlabs_org I was talking about speed of change (upgrades). We can move faster- we’re being out-competing by others (granted they are more centralized but regular out of crypto folks don’t know or care about that yet).",
+          "author": "Philastru",
+          "translation": "@hammundi7 @lex_node @ethlabs_org 저는 변화(업그레이드)의 속도에 대해 이야기하고 있었습니다. 우리는 더 빠르게 움직일 수 있습니다. 우리는 다른 곳들에게 경쟁에서 밀리고 있어요 (물론 그들이 더 중앙화되어 있다는 건 인정하지만, 암호화폐 업계 바깥의 일반 사람들은 아직 그걸 모르거나 신경 쓰지 않습니다)."
+        },
+        {
+          "date": "2026-11-20",
+          "by": "0xcyp",
+          "stance": "pro",
+          "quote": "왜 더 작은 릴리스를 더 빠른 속도로 내지 않나? Pectra에서 Fusaka처럼 6, 7개월마다 하드포크하면 검증자들이 따라올 수 있다고 본다.",
+          "url": "https://x.com/0xcyp/status/2123837191235469722",
+          "digest": "2026-11-22",
+          "replyTo": "nero_eth",
+          "relation": "reply",
+          "original": "@nero_eth why not smaller releases at a faster pace? i think validators can follow along if we hard fork every 6-7 months (like Pectra-&gt;Fusaka)",
+          "author": "0xcyp",
+          "translation": "@nero_eth 더 빠른 속도로 더 작은 릴리스를 하는 건 왜 안 될까요? 6~7개월마다 하드포크를 한다면 (펙트라(Pectra)에서 푸사카(Fusaka)로 갔던 것처럼) 검증자(validator)들도 따라갈 수 있을 것 같은데요."
+        },
+        {
+          "date": "2026-11-20",
+          "by": "nero_eth",
+          "stance": "neutral",
+          "quote": "우리는 범위를 줄이는 데 어려움을 겪는다. 예컨대 Frame을 더 빨리 내보내려고 FOCIL을 정말 빼고 싶은가.",
+          "url": "https://x.com/nero_eth/status/2123839297211990228",
+          "digest": "2026-11-22",
+          "replyTo": "0xcyp",
+          "relation": "reply",
+          "original": "@0xcyp We have hard times reducing scope. E.g. do we really want to pull FOCIL to ship Frames faster (thereby accelerate timelines for pq).",
+          "author": "nero_eth",
+          "translation": "@0xcyp 범위를 줄이는 게 쉽지 않습니다. 예를 들어, 프레임(Frames)을 더 빨리 출시하기 위해 FOCIL을 빼고 싶은 건지 (그렇게 해서 양자내성(pq, post-quantum) 일정을 앞당기고 싶은 건지) 정말 그런 걸까요."
+        },
+        {
+          "date": "2026-11-20",
+          "by": "CPerezz19",
+          "stance": "con",
+          "quote": "얼마 전 ACD에서 이를 뒷받침하는 연구까지 했다. 아직도 왜 이게 큰 문제인지 모르겠다. 덜 편하다는 건 이해하지만, 64kb 이상은 훨씬 더 어려울 것이라 한동안 그대로 두는 편이 낫다.",
+          "url": "https://x.com/CPerezz19/status/2123792265046888675",
+          "digest": "2026-11-22",
+          "replyTo": "lex_node",
+          "relation": "reply",
+          "original": "@lex_node @ethlabs_org Even I made the study to support this in ACD some time ago: https://ethresear.ch/t/data-driven-analysis-on-eip-7907/23850\n\nI still don't get why this is such a big deal. I undestand is less confy. But more than 64kb will be much harder to achieve. So I'd be nice to keep i there for som time :)",
+          "author": "CPerezz19",
+          "translation": "@lex_node @ethlabs_org 저도 전에 ACD에서 이를 뒷받침하는 연구를 한 적이 있어요: https://ethresear.ch/t/data-driven-analysis-on-eip-7907/23850 그런데도 이게 왜 이렇게 큰 문제인지 아직도 이해가 안 됩니다. 덜 편한(confy) 건 이해해요. 하지만 64kb를 넘기는 건 달성하기 훨씬 더 어려울 겁니다. 그러니 한동안은 그대로 두는 게 좋을 것 같아요 :)"
+        }
+      ],
+      "firstSeen": "2026-11-20",
+      "lastActivity": "2026-11-20",
+      "status": "active",
+      "rootUrl": "https://x.com/sakulstra/status/2123758078399250526",
+      "engagement": {
+        "likes": 3,
+        "retweets": 1,
+        "quotes": 0,
+        "replies": 1,
+        "views": 614
+      }
+    },
+    {
+      "id": "stealth-address-vs-fresh-address",
+      "title": "스텔스 주소는 시드에서 새 주소를 만들어 직접 전달하는 방식보다 쓸 가치가 있나?",
+      "category": "프로토콜 설계",
+      "summary": "fluidkey 해킹을 계기로 apoorveth는 키를 따로 보관하는 스텔스 주소(stealth address)보다 기존 시드 문구에서 새 주소를 생성해 송신자에게 직접 전달하는 편이 더 간단하지 않냐고 물었고, donnoh_eth는 수신자와 상호작용 없이 한 식별자로 여러 번 반복 수령할 수 있다는 점이 핵심 UX 개선이라고 반박했다.",
+      "keyPoints": [
+        "기부가 아니면 어차피 상대와 접촉해야 하므로 스텔스 주소의 비접촉 생성 이점이 실질적인가?",
+        "EIP-7702와 프라이버시 풀(privacy pool)로 스텔스 주소를 대체할 수 있나?",
+        "스텔스 주소 채택의 진짜 병목은 하드웨어 월렛 미지원인가?"
+      ],
+      "background": "스텔스 주소는 수신자가 공개한 하나의 메타 식별자(예: donnoh.gwei)로부터 송신자가 수신자와 상호작용 없이 매번 새로운 일회용 수신 주소를 생성할 수 있게 하는 프라이버시 기법이다. fluidkey는 이를 구현한 서비스로 최근 해킹을 당했다. 스텔스 주소는 수신 키를 핫키(hot key) 형태로 보관해야 할 때가 많은 것이 약점으로 꼽힌다. EIP-7702는 외부 소유 계정(EOA)이 코드를 설정해 배치·가스 대납 등을 가능하게 하는 트랜잭션 유형으로, 다른 토큰으로 가스를 내는 등의 대안적 UX 경로를 연다.",
+      "whyItMatters": "하드웨어 월렛이 스텔스 주소를 네이티브로 지원하지 않으면 프라이버시 기능이 보안을 희생하는 트레이드오프로 남는다. EIP-7702·프라이버시 풀 같은 대안이 스텔스 주소의 효용을 어디까지 대체할지가 이더리움 프라이버시 UX 로드맵의 방향을 좌우한다.",
+      "sources": [
+        {
+          "title": "EIP-7702: Set Code for EOAs",
+          "url": "https://eips.ethereum.org/EIPS/eip-7702"
+        }
+      ],
+      "keywords": [
+        "stealth addresses",
+        "fluidkey",
+        "EIP-7702",
+        "privacy pools"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "스텔스 주소는 UX 개선이 크다",
+          "holders": [
+            {
+              "handle": "donnoh_eth",
+              "name": "donnoh.gwei 💗",
+              "role": "L2Beat 리서치 총괄, 인터롭·브리지 리서처",
+              "avatar": "https://pbs.twimg.com/profile_images/1906978600311521280/aSbKSjtX_400x400.jpg"
+            }
+          ],
+          "points": [
+            "스텔스 주소는 수신자와 상호작용하지 않고도 그를 위한 주소를 생성할 수 있는데, 이것이 핵심 기능이다.",
+            "donnoh.gwei 같은 식별자 하나만 공개하면 추가 상호작용 없이 여러 번 결제받을 수 있어 UX 개선이 엄청나다.",
+            "암호학은 견고하고 꽤 단순하며 난해한 수학이 아니다."
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "시드에서 새 주소를 만드는 편이 더 간단하다",
+          "holders": [
+            {
+              "handle": "apoorveth",
+              "name": "apoorveth"
+            }
+          ],
+          "points": [
+            "키를 따로 저장하는 스텔스 주소보다 기존 시드 문구에서 새 주소를 생성해 송신자에게 직접 주는 것이 꽤 간단하다.",
+            "기부를 제외하면 어차피 상대방과 접촉해야 하므로 비접촉 생성의 이점이 제한적이다.",
+            "EIP-7702로 다른 토큰으로 가스를 내고, 연결 없이 잔액을 합치려면 프라이버시 풀 등으로 shield하면 된다."
+          ]
+        },
+        {
+          "stance": "other",
+          "label": "진짜 병목은 하드웨어 월렛 미지원이다",
+          "holders": [
+            {
+              "handle": "nero_eth",
+              "name": "Toni Wahrstätter ⟠",
+              "role": "EF 리서처",
+              "avatar": "https://pbs.twimg.com/profile_images/1858347774129094657/xUc7IS2K_400x400.jpg"
+            }
+          ],
+          "points": [
+            "스텔스 주소의 핵심 문제는 하드웨어 월렛이 이를 네이티브로 지원하지 않는다는 것이다. 그 탓에 앱들은 핫키를 쓰도록 내몰린다."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-11-20",
+          "by": "apoorveth",
+          "stance": "con",
+          "quote": "fluidkey 해킹은 안타깝다. 다만 키를 다른 곳에 보관하면서까지 스텔스 주소를 쓸 가치가 있는지 생각하게 된다. 기존 시드 문구에서 새 주소를 생성해 송신자에게 직접 주는 것은 꽤 간단하다.",
+          "url": "https://x.com/apoorveth/status/2123739365000257606",
+          "digest": "2026-11-22",
+          "relation": "none",
+          "original": "Unfortunate to see the fluidkey hack\n\nbut I was thinking is it really worth it to have stealth addresses by having your keys stored somewhere else 🤔\n\nit's quite simple to generate a fresh address from your existing seed phrase and directly give to the sender.\nCan someone enlighten me? is it just the UX?",
+          "author": "apoorveth",
+          "translation": "플루이드키(fluidkey) 해킹을 보니 안타깝지만, 키를 다른 곳에 저장해두면서까지 스텔스 주소(stealth address)를 쓰는 게 정말 그럴 가치가 있는 건지 생각해봤습니다. 기존 시드 문구(seed phrase)에서 새 주소를 생성해서 발신자에게 바로 알려주는 것도 꽤 간단하잖아요. 누가 설명해 주실 수 있나요? 그냥 사용자 경험(UX) 문제일 뿐인가요?"
+        },
+        {
+          "date": "2026-11-20",
+          "by": "donnoh_eth",
+          "stance": "pro",
+          "quote": "그 기능의 핵심은 수신자와 상호작용하지 않고도 그를 위한 주소를 생성할 수 있다는 것이다.",
+          "url": "https://x.com/donnoh_eth/status/2123741915086811240",
+          "digest": "2026-11-22",
+          "replyTo": "apoorveth",
+          "relation": "reply",
+          "original": "@apoorveth the feature is being able to generate addresses for the receiver without interacting with them",
+          "author": "donnoh_eth",
+          "translation": "@apoorveth 이 기능의 핵심은 수신자와 상호작용하지 않고도 그들을 위한 주소를 생성할 수 있다는 점입니다."
+        },
+        {
+          "date": "2026-11-20",
+          "by": "apoorveth",
+          "stance": "con",
+          "quote": "맞지만 기부가 아니면 어차피 상대방과 접촉해야 한다고 느낀다.",
+          "url": "https://x.com/apoorveth/status/2123744329303019979",
+          "digest": "2026-11-22",
+          "replyTo": "donnoh_eth",
+          "relation": "reply",
+          "original": "@donnoh_eth true but apart from donations i feel like you have to be in contact with the other party anyways",
+          "author": "apoorveth",
+          "translation": "@donnoh_eth 맞는 말이지만, 기부(donation)를 제외하면 어차피 상대방과 연락을 주고받아야 하는 것 같은데요."
+        },
+        {
+          "date": "2026-11-20",
+          "by": "donnoh_eth",
+          "stance": "pro",
+          "quote": "그렇더라도 내가 donnoh.gwei를 주면 당신은 추가 상호작용 없이 스텔스 주소로 여러 번 결제할 수 있다. UX 개선이 엄청나고 암호학은 견고하며 난해한 수학이 결코 아니다.",
+          "url": "https://x.com/donnoh_eth/status/2123751905889268176",
+          "digest": "2026-11-22",
+          "replyTo": "apoorveth",
+          "relation": "reply",
+          "original": "@apoorveth but even then, i can just give you donnoh.gwei and you can pay me using stealth addresses many times with no further interaction. the ux improvement is massive! the cryptography is sound and quite simple, definitely not moon math",
+          "author": "donnoh_eth",
+          "translation": "@apoorveth 그렇다 해도, 저는 그냥 donnoh.gwei만 알려드리면 되고 당신은 그걸로 더 이상의 상호작용 없이 스텔스 주소를 이용해 여러 번 저에게 지불할 수 있습니다. 사용자 경험(UX) 개선 효과는 엄청납니다! 암호학(cryptography)도 견고하고 꽤 단순해서, 절대 이해하기 어려운 수학(moon math)은 아닙니다."
+        },
+        {
+          "date": "2026-11-20",
+          "by": "apoorveth",
+          "stance": "con",
+          "quote": "7702로 그것을 계속 쓰면서 다른 토큰으로 가스를 낼 수 있고, 연결 없이 잔액을 합치려면 프라이버시 풀 등으로 shield하면 된다.",
+          "url": "https://x.com/apoorveth/status/2123761159581085748",
+          "digest": "2026-11-22",
+          "replyTo": "impoulav",
+          "relation": "reply",
+          "original": "@impoulav @donnoh_eth with 7702 you can continue to use it and pay gas in other tokens\n\nand if you'd like to consolidate balances without linking you can shield into @0xprivacypools, @RAILGUN_Project, etc.",
+          "author": "apoorveth",
+          "translation": "@impoulav @donnoh_eth 7702를 쓰면 계속 이를 사용하면서 다른 토큰으로 가스(gas)를 지불할 수 있고, 연결(linking)되지 않게 잔액을 통합하고 싶다면 @0xprivacypools, @RAILGUN_Project 등으로 실드(shield)할 수도 있습니다."
+        },
+        {
+          "date": "2026-11-20",
+          "by": "nero_eth",
+          "stance": "other",
+          "quote": "스텔스 주소가 직면한 핵심 문제는 하드웨어 월렛이 이를 네이티브로 지원하지 않아 앱들이 핫키를 쓰도록 내몬다는 점이다.",
+          "url": "https://x.com/nero_eth/status/2123767793854148689",
+          "digest": "2026-11-22",
+          "replyTo": "apoorveth",
+          "relation": "reply",
+          "original": "@apoorveth @impoulav @donnoh_eth @0xprivacypools @RAILGUN_Project The main problem stealth addresses are facing is that hardware wallets don't support them natively, forcing apps into using hot keys.",
+          "author": "nero_eth",
+          "translation": "@apoorveth @impoulav @donnoh_eth @0xprivacypools @RAILGUN_Project 스텔스 주소(stealth address)가 직면한 가장 큰 문제는 하드웨어 지갑(hardware wallet)이 이를 네이티브로 지원하지 않아서, 앱들이 핫 키(hot key)를 쓰도록 강제된다는 점입니다."
+        }
+      ],
+      "firstSeen": "2026-11-20",
+      "lastActivity": "2026-11-20",
+      "status": "active",
+      "rootUrl": "https://x.com/apoorveth/status/2123739365000257606",
+      "engagement": {
+        "likes": 49,
+        "retweets": 1,
+        "quotes": 0,
+        "replies": 16,
+        "views": 3671
+      }
+    },
     {
       "id": "snap-reuse-light-client-serving",
       "title": "SNAP 프로토콜을 경량 클라이언트의 지속적 상태 서빙에 재사용해도 되는가?",
@@ -4702,7 +5173,7 @@
       ],
       "firstSeen": "2026-10-22",
       "lastActivity": "2026-10-22",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/blockspaceforum/status/2113083480221356207",
       "engagement": {
         "likes": 19,
@@ -4901,7 +5372,7 @@
       ],
       "firstSeen": "2026-10-15",
       "lastActivity": "2026-10-21",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/nero_eth/status/2110787397151568355",
       "engagement": {
         "likes": 6,
@@ -5052,7 +5523,7 @@
       ],
       "firstSeen": "2026-10-21",
       "lastActivity": "2026-10-21",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/trent_vanepps/status/2112925186143957056",
       "engagement": {
         "likes": 2,
