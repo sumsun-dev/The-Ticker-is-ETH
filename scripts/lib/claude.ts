@@ -5,15 +5,22 @@
  */
 import { execFileSync } from 'node:child_process';
 
-/** 기본 모델이 막혔을 때 대신 쓸 모델. CLAUDE_FALLBACK_MODEL로 덮어쓸 수 있다 */
-export const FALLBACK_MODEL: Record<string, string> = { fable: 'opus' };
+/**
+ * 기본 모델이 막혔을 때 대신 쓸 모델. CLAUDE_FALLBACK_MODEL로 덮어쓸 수 있다.
+ * 대체가 없는 모델은 한도 소진이 곧 발행 누락이다: 주간 기자 브리프가 fable에서 opus로 바뀐 뒤
+ * (2026-11-16) opus에는 대체가 없어 11-22 호가 통째로 빠졌다. 한 단계 낮은 모델로라도 내보내는 쪽을 택한다
+ */
+export const FALLBACK_MODEL: Record<string, string> = { fable: 'opus', opus: 'sonnet' };
 
 /**
  * 한도 소진·과부하처럼 "다른 모델이면 될" 실패를 알리는 CLI 메시지. 프롬프트 오류나 타임아웃은 여기 걸리지 않는다.
  * 실측(2026-09-10): 한도 소진은 "You're out of usage credits. Switch to another model, …"으로 오고
  * CLI의 --fallback-model로는 구제되지 않아 여기서 직접 잡는다.
+ * 실측(2026-11-22): 주/5시간 한도는 "You've hit your weekly limit · resets Nov 23, 6pm (UTC)"로 온다.
+ * 이 문구가 여기 없어서 주간 기자 브리프가 대체 모델로 넘어가지 못하고 그 주 호가 빠졌다
+ * (run-eth-digest.sh의 EIP·ERC 단계는 같은 문구를 "hit your .*limit"로 이미 잡고 있었다)
  */
-const BLOCKED = /out of usage|usage credits|usage limit|limit reached|rate.?limit|quota|overloaded|capacity|not available|model_not|cc_cli_limit/i;
+const BLOCKED = /out of usage|usage credits|usage limit|limit reached|hit your .*limit|rate.?limit|quota|overloaded|capacity|not available|model_not|cc_cli_limit/i;
 
 export const isBlocked = (detail: string): boolean => BLOCKED.test(detail);
 export const fallbackOf = (model: string): string | undefined => process.env.CLAUDE_FALLBACK_MODEL || FALLBACK_MODEL[model];

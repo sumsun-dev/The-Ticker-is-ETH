@@ -11,6 +11,7 @@
 #              0 10 * * 0 /home/gv/projects/the-ticker-is-eth/scripts/vps/run-eth-digest.sh weekly >> ~/logs/eth-digest.log 2>&1
 #      두 번째 줄은 저녁(18:00 KST) 콜 브리프 게시. 다이제스트가 올라간 날 아침엔 콜을 미뤄 두 글이 겹치지 않게 한다.
 #      세 번째 줄은 일요일 19:00 KST 기자 그룹방 주간 브리프 (.env에 WEEKLY_CHAT 필요).
+#      이 한 번이 실패하면 아침 실행(첫 줄)이 다음 날부터 지난 일요일 호를 이어 시도한다 — 크론 추가는 필요 없다.
 #              0 14 * * * cd /home/gv/projects/the-ticker-is-eth && git pull -q --rebase --autostash origin main && scripts/vps/run-eth-digest.sh standards >> ~/logs/eth-digest.log 2>&1
 #      네 번째 줄은 23:00 KST EIP·ERC 해설 채우기. 크론 줄에서 먼저 pull해 standards 모드가 없는 옛 러너가 다이제스트를 돌리지 않게 한다.
 #              0 2 * * 1 cd /home/gv/projects/the-ticker-is-eth && git pull -q --rebase --autostash origin main && scripts/vps/run-eth-digest.sh factcheck >> ~/logs/eth-digest.log 2>&1
@@ -70,15 +71,8 @@ $(grep -hiE -m2 "hit your .*limit" "$HOME"/logs/eips-?.log "$HOME"/logs/ercs-?.l
   fi
 
   # 일요일 저녁 실행: 기자 그룹방 주간 브리프 (월~일)
-  # 실패하거나 경고(윤문 실패·항목 삭제·출처 제거)가 있으면 오너 DM으로 알린다 (오너 2026-10-14)
   if [ "${1:-}" = weekly ]; then
-    local out status=0
-    out=$(npx tsx scripts/post-weekly-brief.ts 2>&1) || status=$?
-    echo "$out"
-    if [ "$status" -ne 0 ] || ! grep -q "Sent weekly brief" <<<"$out" || grep -q "\[WARN\]" <<<"$out"; then
-      notify_owner "[주간 브리프] 확인 필요 (exit $status)
-$(grep -v dotenv <<<"$out" | tail -15)"
-    fi
+    post_weekly_brief "$(TZ=Asia/Seoul date +%F)" || true
     commit_and_push "chore: publish weekly press brief [automated]"
     return
   fi
@@ -114,7 +108,34 @@ $(grep -v dotenv <<<"$out" | tail -15)"
   # EIP마다 저장하므로 끊겨도 쓴 것까지는 남고 다음 실행이 이어 간다. 실패해도 커밋은 진행
   timeout 45m npx tsx scripts/extract-eips.ts || true
 
+  # 지난 일요일 호가 빠졌으면 여기서 이어 보낸다. 일요일 19:00 크론은 한 주에 한 번뿐이라
+  # 그 한 번이 사용량 한도 등으로 실패하면 다음 주까지 복구 기회가 없었다 (2026-11-22: 11-16~11-22 호 누락).
+  # 이미 보낸 주면 스크립트가 모델을 부르기 전에 [SKIP]으로 끝나므로 매일 돌려도 비용이 없다
+  post_weekly_brief "$(last_sunday_kst)" || true
+
   commit_and_push "chore: publish eth digest [automated]"
+}
+
+# 직전 일요일(KST). 오늘이 일요일이면 지난주 일요일 — 오늘 호는 저녁 weekly 크론이 맡는다
+last_sunday_kst() {
+  local dow
+  dow=$(TZ=Asia/Seoul date +%w)
+  TZ=Asia/Seoul date -d "-$(( dow == 0 ? 7 : dow )) days" +%F
+}
+
+# 기자 그룹방 주간 브리프 한 번 송출. $1 = 구간 마지막 날(YYYY-MM-DD, 그 날까지 7일이 한 호)
+# 실패하거나 경고(윤문 실패·항목 삭제·출처 제거)가 있으면 오너 DM으로 알린다 (오너 2026-10-14)
+# 이미 보낸 주면 조용히 1을 돌려준다: 보충 실행이 매일 부르므로 알림이 쌓이면 안 된다
+post_weekly_brief() {
+  local out status=0
+  out=$(WEEKLY_END="$1" npx tsx scripts/post-weekly-brief.ts 2>&1) || status=$?
+  echo "$out"
+  grep -q 'already sent' <<<"$out" && return 1
+  if [ "$status" -ne 0 ] || ! grep -q "Sent weekly brief" <<<"$out" || grep -q "\[WARN\]" <<<"$out"; then
+    notify_owner "[주간 브리프] 확인 필요 ($1, exit $status)
+$(grep -v dotenv <<<"$out" | tail -15)"
+  fi
+  return 0
 }
 
 latest_digest_message_id() {
