@@ -11,6 +11,9 @@ describe('headless claude fallback', () => {
     expect(isBlocked("You're out of usage credits. Switch to another model, or manage usage credits at claude.ai/settings/usage?from=cc_cli_limit_message, to continue.")).toBe(true);
     expect(isBlocked('Claude AI usage limit reached|1789000000')).toBe(true);
     expect(isBlocked('5-hour limit reached ∙ resets 3pm')).toBe(true);
+    // 실제 CLI 문구 (2026-11-22 opus 주간 한도). 이 문구를 놓쳐 주간 기자 브리프가 대체 모델 없이 실패했다
+    expect(isBlocked("You've hit your weekly limit · resets Nov 23, 6pm (UTC)")).toBe(true);
+    expect(isBlocked("You've hit your 5-hour limit")).toBe(true);
     expect(isBlocked('API Error: 529 {"type":"overloaded_error"}')).toBe(true);
     expect(isBlocked('Error: model_not_found')).toBe(true);
     // 프롬프트·환경 문제는 모델을 바꿔도 그대로다
@@ -18,13 +21,15 @@ describe('headless claude fallback', () => {
     expect(isBlocked('spawnSync claude ETIMEDOUT')).toBe(false);
   });
 
-  it('should fall back from fable to opus, and honor the env override', () => {
+  it('should fall back from fable to opus and from opus to sonnet, and honor the env override', () => {
     expect(FALLBACK_MODEL.fable).toBe('opus');
     expect(fallbackOf('fable')).toBe('opus');
-    expect(fallbackOf('sonnet')).toBeUndefined();
-    process.env.CLAUDE_FALLBACK_MODEL = 'sonnet';
-    expect(fallbackOf('fable')).toBe('sonnet');
+    // 주간 기자 브리프가 쓰는 모델. 대체가 없으면 한도 소진이 곧 그 주 호 누락이다 (2026-11-22)
     expect(fallbackOf('opus')).toBe('sonnet');
+    expect(fallbackOf('sonnet')).toBeUndefined();
+    process.env.CLAUDE_FALLBACK_MODEL = 'haiku';
+    expect(fallbackOf('fable')).toBe('haiku');
+    expect(fallbackOf('opus')).toBe('haiku');
   });
 });
 
