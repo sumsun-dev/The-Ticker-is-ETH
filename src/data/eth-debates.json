@@ -346,7 +346,8 @@
         "quotes": 0,
         "replies": 1,
         "views": 614
-      }
+      },
+      "publish": true
     },
     {
       "id": "stealth-address-vs-fresh-address",
