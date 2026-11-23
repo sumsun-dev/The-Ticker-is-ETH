@@ -1,6 +1,129 @@
 {
   "briefs": [
     {
+      "start": "2026-11-16",
+      "end": "2026-11-22",
+      "sentAt": "2026-11-23T09:02:45.218Z",
+      "messageIds": [
+        23
+      ],
+      "brief": {
+        "headline": "글램스테르담 하드포크의 메인넷 적용이 2027년 1월 중순 이후로 미뤄졌습니다. 가스 비용 구조를 바꾸는 EIP-8037/8038이 이미 배포된 스마트컨트랙트 다수의 작동 전제를 깨뜨린다는 점이 뒤늦게 드러난 데 따른 것입니다.",
+        "sections": [
+          {
+            "heading": "프로토콜 · 코어 개발",
+            "items": [
+              {
+                "title": "글램스테르담, 스펙 변경 없이 후디 테스트넷 12월 16~17일 임시 확정",
+                "date": "11.19",
+                "summary": "11월 19일 ACDE #249 콜에서 개발자들은 글램스테르담을 현재 스펙 그대로 진행하기로 가닥을 잡고 후디(Hoodi) 테스트넷 포크를 12월 16~17일로 임시 확정했습니다. 최종 진행 여부는 11월 26일 ACDC 콜에서 결정되며, 메인넷은 2027년 1월 중순 이후로 거론됩니다.",
+                "sources": [
+                  {
+                    "label": "ECK 회의록",
+                    "url": "https://ethcollective.xyz/calls/acde-249"
+                  },
+                  {
+                    "label": "Forkcast 회의록",
+                    "url": "https://forkcast.org/calls/acde/249/"
+                  }
+                ]
+              },
+              {
+                "title": "PQ 합의층 전환 콜에서 서명 전파 네트워킹 병목이 수치로 제시됨",
+                "date": "11.20",
+                "summary": "11월 20일 PQ-CL 브레이크아웃 #3에서 양자내성(양자컴퓨터 공격에도 견디는 암호) 서명 전파 시뮬레이션이 공개됐습니다. 기존 gossip-sub 방식은 대역폭을 7배 더 쓰고 검증자 80만 명 규모에서 집계 도착 시간이 P99 기준 11.7초였으며, 검증자를 약 5만4천 명으로 줄이면 집계 자체를 없앨 수 있다는 계산이 나왔습니다.",
+                "sources": [
+                  {
+                    "label": "ECK 다이제스트",
+                    "url": "https://ethcollective.xyz/news?date=2026-11-22"
+                  },
+                  {
+                    "label": "Forkcast 회의록",
+                    "url": "https://forkcast.org/calls/pqcl/003/"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "heading": "업계 동향",
+            "items": [
+              {
+                "title": "Base 토큰화 주식 주간 거래량 10억 달러 돌파",
+                "date": "11.20",
+                "summary": "Base 책임자 Jesse Pollak은 11월 20일 Unchained 인터뷰에서 Base상 토큰화 주식의 주간 거래량이 10억 달러를 넘겼다고 밝혔습니다. Base 대출 시장에는 약 3,000만 달러 규모의 주식 토큰이 대출 담보로 잡혀 있다고 덧붙였습니다.",
+                "sources": [
+                  {
+                    "label": "ECK 다이제스트",
+                    "url": "https://ethcollective.xyz/news?date=2026-11-22"
+                  },
+                  {
+                    "label": "@laurashin",
+                    "url": "https://x.com/laurashin/status/2123857567684395420"
+                  }
+                ]
+              },
+              {
+                "title": "Sky, USDS 스테이블코인 유통량 하루 만에 약 40% 감소",
+                "date": "11.20",
+                "summary": "DefiLlama에 따르면 Sky(옛 MakerDAO)의 USDS 유통량이 52.4억 달러에서 약 31.6억 달러로 하루 만에 줄었습니다. 같은 날 불법 연계 자금흐름 보도가 나왔고, Sky는 자사 Peg Stability Module이 출범 이후 9,680억 달러 이상을 처리했으며 제기된 수치는 그중 약 0.03%라고 반박했습니다.",
+                "sources": [
+                  {
+                    "label": "ECK 다이제스트",
+                    "url": "https://ethcollective.xyz/news?date=2026-11-22"
+                  },
+                  {
+                    "label": "@laurashin",
+                    "url": "https://x.com/laurashin/status/2123737792718967232"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "heading": "커뮤니티 논쟁",
+            "items": [
+              {
+                "title": "포크를 더 작게, 더 자주 내보내야 하는지를 두고 개발자들이 갈림",
+                "date": "11.20",
+                "summary": "글램스테르담 지연으로 컨트랙트 크기 확대 기능이 미뤄지자 sakulstra, lex_node 등 앱 개발자들이 삶의 질 개선 기능만 담은 소규모 포크를 먼저 내자고 요구했습니다. nero_eth와 lightclients 등 코어 개발자들은 작은 포크가 더 빨리 나간다는 데는 동의하면서도 재테스트 비용과 프로토콜 이해 병목을 들어 반대했습니다.",
+                "sources": [
+                  {
+                    "label": "ECK",
+                    "url": "https://ethcollective.xyz/debates/smaller-frequent-forks-scope"
+                  },
+                  {
+                    "label": "@sakulstra",
+                    "url": "https://x.com/sakulstra/status/2123758078399250526"
+                  }
+                ]
+              },
+              {
+                "title": "ETH 가치저장론을 두고 가치 포착 여부 논쟁",
+                "date": "11.14",
+                "summary": "11월 14일 0xNairolf가 ETH가 생태계 가치의 더 큰 몫을 포착해야 한다고 주장하자, 이더리움재단(EF) 연구원 Ansgar Dietrichs는 가치 포착은 지분형 토큰 구조라 거부해야 한다고 맞섰습니다. 같은 시점 Arca 최고투자책임자 Jeff Dorman은 laurashin 인터뷰에서 팻 프로토콜 이론이 틀렸고 가치는 L1이 아니라 애플리케이션에 쌓인다고 비판했습니다.",
+                "sources": [
+                  {
+                    "label": "ECK 다이제스트",
+                    "url": "https://ethcollective.xyz/news?date=2026-11-16"
+                  },
+                  {
+                    "label": "@adietrichs",
+                    "url": "https://x.com/adietrichs/status/2121653952995373202"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "upcoming": [
+          "11.24 PQ FOCIL 전담 브레이크아웃 콜 #47",
+          "11.26 ACDC #192, 글램스테르담 후디 포크 확정 여부 결정",
+          "12.16~17 글램스테르담 후디 테스트넷 포크(예정)"
+        ]
+      }
+    },
+    {
       "start": "2026-11-09",
       "end": "2026-11-15",
       "sentAt": "2026-11-15T10:03:26.069Z",
