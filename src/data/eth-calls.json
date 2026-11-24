@@ -1,6 +1,485 @@
 {
-  "updatedAt": "2026-11-20T00:55:17.130Z",
+  "updatedAt": "2026-11-24T00:52:01.927Z",
   "calls": [
+    {
+      "id": "acdt-104",
+      "series": "acdt",
+      "number": 104,
+      "date": "2026-11-23",
+      "title": "AllCoreDevs - Testing #104",
+      "forkcastUrl": "https://forkcast.org/calls/acdt/104/",
+      "videoUrl": "https://www.youtube.com/watch?v=XjVCrKfUZyQ",
+      "issueUrl": "https://github.com/ethereum/pm/issues/2306",
+      "kind": "full",
+      "durationMin": 96,
+      "headline": "EIP-8037\n스펙 변경 없음 기본",
+      "lead": "글램스테르담 EIP-8037 스펙을 바꾸지 않기로 의견이 모였다",
+      "intro": "이더리움 코어 개발자들이 테스트와 데브넷 현황을 점검하는 올코어데브스 테스팅(ACDT) 콜이다.",
+      "summary": "이 콜에서는 EIP-8037 가스 스펙을 바꾸지 않는 쪽으로 의견이 모였고 보고타 데브넷-3 확장은 이번 주엔 보류됐다. 최종 확정은 이번 주 ACDC로 넘겼다.",
+      "whyItMatters": "스펙을 유지하면 이미 영향받은 앱·지갑 팀들은 1월 중순까지 예정대로 대응하면 되지만 실행 중 가스가 늘어나는 낯선 동작은 그대로 남는다. 데브넷-3가 보류되면서 포스트퀀텀 프레임 스펙이 정리될 때까지 헤고타 스케일링 EIP들의 실험도 함께 늦춰진다.",
+      "decisions": [
+        {
+          "label": "EIP-8037 스펙 유지",
+          "text": "EIP-8037 스펙을 바꾸지 않는 것이 기본 입장이며 이번 주 ACDC에서 공식 확정한다. 트랜잭션 가스 처리 방식을 지금 그대로 두고 앱 개발팀은 1월 중순까지 예정대로 대응하면 된다는 뜻이다.",
+          "original": "Default position: no spec change to EIP-8037; to be formally locked at ACDC",
+          "eips": [
+            8037
+          ],
+          "status": "확정",
+          "timestamp": "00:35:02"
+        },
+        {
+          "label": "보고타 데브넷3 보류",
+          "text": "보고타 데브넷-3 범위 확장은 이번 주엔 하지 않기로 했고 다음 주 ACDT에서 프레임 스펙 진전 여부를 보고 다시 논의한다. 포스트퀀텀 프레임 스펙이 정리되기 전까지는 새 데브넷을 띄우지 않겠다는 뜻이다.",
+          "original": "Bogota devnet-3 scope: no-go this week; revisit next ACDT pending frames spec progress",
+          "eips": [],
+          "status": "보류",
+          "timestamp": "01:08:51"
+        },
+        {
+          "label": "프레임 브레이크아웃 중단",
+          "text": "프레임(Frames) 전담 브레이크아웃 콜은 폐지되고 관련 논의는 ACDT와 비동기 디스코드 채널로 옮긴다. 별도 회의 없이 한 자리에서 논의를 계속 이어간다.",
+          "original": "Frames breakout calls cancelled; frames spec discussions move to ACDT and async channels",
+          "eips": [],
+          "status": "확정",
+          "timestamp": "00:58:49"
+        }
+      ],
+      "targets": [
+        {
+          "key": "hoodi-fork",
+          "text": "후디(Hoodi) 테스트넷 날짜는 이번 주 ACDC에서 정해진다. 아직 확정되지 않은 제안 단계다.",
+          "timestamp": "00:43:38"
+        }
+      ],
+      "actions": [
+        {
+          "owner": "Maria Silva / Toni Wahrstaetter",
+          "text": "EIP-8037 근거(rationale) 섹션에 아직 공개되지 않은 설계 결정과 트레이드오프를 추가한다.",
+          "timestamp": "00:24:03"
+        },
+        {
+          "owner": "EF / wolovim",
+          "text": "Forkcast에 EIP별로 깨지는 불변식(invariant) 요약을 추가해 앱 개발자들의 인지도를 높인다.",
+          "timestamp": "00:25:06"
+        },
+        {
+          "owner": "모든 EL 팀 / lightclient",
+          "text": "프레임(Frames)과 EIP-8288의 증명 프레임 대 서명 목록 설계 논의를 pq-el 디스코드 채널에서 비동기로 계속한다.",
+          "timestamp": "01:12:05"
+        }
+      ],
+      "agenda": [
+        {
+          "timestamp": "00:15:14",
+          "heading": "EIP-8037/EIP-8038 애플리케이션 피드백"
+        },
+        {
+          "timestamp": "00:31:08",
+          "heading": "EIP-8037 스펙 변경 결정 트리",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "00:44:29",
+          "heading": "체인시큐리티의 포크 개발 프로세스 의견"
+        },
+        {
+          "timestamp": "00:46:04",
+          "heading": "헤고타 데브넷 현황"
+        },
+        {
+          "timestamp": "00:48:13",
+          "heading": "보고타 데브넷-3 범위 설정",
+          "discussion": true,
+          "decision": true
+        },
+        {
+          "timestamp": "01:14:06",
+          "heading": "EIP-8288과 프레임의 하위 호환성",
+          "discussion": true
+        }
+      ],
+      "topics": [
+        {
+          "title": "EIP-8037 가스 스펙, 바꿀 것인가 유지할 것인가",
+          "intro": "리저버(reservoir) 메커니즘 때문에 깨지는 가스 불변식을 두고 7가지 대안을 검토했지만 결론은 현 스펙 유지였다.",
+          "decision": "확정 00:35:02",
+          "positions": [
+            {
+              "speaker": "Toni Wahrstaetter",
+              "text": "7가지 스펙 변경안의 장단점을 분석했지만 새로운 불변식을 깨지 않으면서 기존 불변식을 모두 고치는 안은 없었다. 지금은 스펙을 바꾸지 않는 쪽이 최선이라고 본다.",
+              "timestamp": "00:31:19",
+              "original": "Perfect, let me quickly share my screen, because… I've also posted it into the… into the, 8037 chat, into the agenda. So if you want to follow along there, you can do so. But basically, where I'm coming from is that last week we have discussed certain spec changes, but we haven't really talked much about what each spec change would mean. So I'm not proposing any spec changes here, I just wanted to go through some potential spec changes and Also, the pros and cons that each of those spec changes would bring. And one of the very central questions I've asked here at the very top is, like, this… what seems like the most controversial spec change. That gas left must go down during the transaction, and just to give you an idea where we are today, today we are at the bottom left here in the chart, where gas left, is not just going down, it can go up. And based… this is basically where we are today. And then, there were, like, a bunch of ideas. You can see we have, like, 7 boxes here at the bottom. For example, Lukasz worked on some ideas and some refinements of them. But in the end, there was, like, no… Solution that would, like, be simple to implement, and at the same time fixes Invariants without introducing new broken ones. For example, just to give you an idea, there was this idea that, of course, we can take the reservoir apart. and just refund the reservoir during the transaction execution. The problem with that is it doesn't actually fix any invariant. It fixes one…",
+              "translation": "좋습니다, 화면을 빠르게 공유하겠습니다. 이미... 8037 채팅에... 의제(agenda)에도 올려두었습니다. 그러니 거기서 따라오셔도 됩니다. 기본적으로 제가 말씀드리고자 하는 바는, 지난주에 특정 스펙 변경(spec change)에 대해 논의했지만, 각 스펙 변경이 실제로 무엇을 의미하는지는 제대로 이야기하지 않았다는 것입니다. 그래서 여기서 어떤 스펙 변경을 제안하는 것이 아니라, 몇 가지 잠재적인 스펙 변경 사항들을 살펴보고, 각 스펙 변경이 가져올 장단점도 함께 짚어보고자 합니다. 그리고 맨 위에서 제가 던진 매우 핵심적인 질문 하나는, 가장 논쟁적인 것처럼 보이는 스펙 변경에 관한 것입니다. 트랜잭션 도중에는 남은 가스(gas left)가 반드시 감소해야 한다는 것인데, 오늘 우리가 어디에 있는지 감을 드리자면, 지금 우리는 이 차트의 왼쪽 아래에 있습니다. 여기서 남은 가스는 그저 감소하는 것이 아니라 올라갈 수도 있습니다. 그리고 이것이 기본적으로 오늘 우리가 있는 위치입니다. 그리고 여러 아이디어들이 있었습니다. 아래쪽에 7개의 박스가 보이실 겁니다. 예를 들어 Lukasz가 몇 가지 아이디어와 그에 대한 개선안을 작업했습니다. 하지만 결국, 구현하기 쉬우면서도 새로운 깨진 불변식(invariant)을 도입하지 않고 불변식을 고치는 해법은 없었습니다. 예를 들어 감을 드리자면, 물론 리저버(reservoir)를 분리해서 트랜잭션 실행 중에 리저버를 환불해버리면 된다는 아이디어가 있었습니다. 문제는 그것이 실제로는 어떤 불변식도 고치지 못한다는 것입니다. 그것은 하나는 고칩니다만..."
+            },
+            {
+              "speaker": "Maria Silva",
+              "text": "리저버를 설계할 때부터 환불을 바로 주는 게 철학이었고 이미 접촉한 앱들이 1월까지 대응 가능한 상태이니 지금 다시 스펙을 바꿀 이득이 없다.",
+              "timestamp": "00:40:58",
+              "original": "I… I would just add also that, I think the… the general… so the initial… let's say, design philosophy, where we were trying… when we were designing the reservoir and the refill mechanisms and all of that, the initial design essentially was to try to… to To make it as, representative of what was happening. So state gas should… would try to mimic what was happening during the transaction for state creation, and so this meant giving refunds Sooner rather than later. And I think for… like, as a design philosophy, to me, it's much better if you can give the refunds directly instead of waiting until the end of the transaction. And so I would say even, like, that solution is true, that it fixes some invariants. It still doesn't fix all the invariants, to be honest, so we still… there are some things that we are breaking anyways. And to me, it's a much… worst design overall than just making the gas available right away, which was the reason why we initially did it when we were designing it. And so, in my mind, if we are in a point where We have, we are… we have a good analysis of the impact of this EIP. All the contract developers that were affected, they know and they are fixing it on time. I don't see the benefit of rehashing this and trying to change the spec, With an option that, again, doesn't solve everything, solves some things. And comes with delays to the fork, and comes with unknowns that we would need to sort of actually do it, and then spend all the time we did with the…",
+              "translation": "저도 덧붙이자면, 일반적인... 그러니까 초기의... 말하자면, 설계 철학은, 우리가 리저버(reservoir)와 리필(refill) 메커니즘, 그리고 그 모든 것을 설계하려고 했을 때, 초기 설계는 기본적으로 실제로 일어나는 일을 가능한 한 대표하도록 만들려는 시도였습니다. 즉 상태 가스(state gas)는 트랜잭션 실행 중 상태 생성(state creation) 동안 일어나는 일을 모방하려고 해야 한다는 것이었고, 이는 환불을 가능한 한 늦추지 않고 일찍 해주는 것을 의미했습니다. 그리고 설계 철학으로서, 저는 트랜잭션이 끝날 때까지 기다리는 대신 환불을 바로 해줄 수 있다면 그것이 훨씬 더 낫다고 생각합니다. 그래서 저는, 그 해법이 일부 불변식(invariant)을 고친다는 것이 사실이라 해도, 솔직히 말하면 그것이 모든 불변식을 고치는 것은 아니라고 말씀드리고 싶습니다. 그러니 우리는 여전히 어쨌든 깨뜨리고 있는 것들이 있습니다. 그리고 제게는, 그것이 전체적으로 가스를 바로 사용 가능하게 만드는 것보다 훨씬 더 나쁜 설계입니다. 그것이 바로 우리가 처음 이것을 설계했을 때 그렇게 한 이유였습니다. 그래서 제 생각에는, 만약 우리가 이 EIP의 영향에 대해 좋은 분석을 가지고 있는 지점에 있다면, 영향을 받은 모든 컨트랙트 개발자들이 그것을 알고 있고 제때 고치고 있다면, 저는 이것을 다시 들춰내서 스펙을 바꾸려는 시도에서 얻는 이점을 보지 못합니다. 모든 것을 해결하지 못하고 일부만 해결하는 옵션으로, 게다가 포크(fork)에 지연을 가져오고, 실제로 그것을 하기 위해 우리가 정리해야 할 불확실성들을 동반하며, 그러면 우리가 이미 썼던 모든 시간을 다시 쓰게 되는..."
+            },
+            {
+              "speaker": "Andrew Ashikhmin",
+              "text": "리저버 같은 논란 있는 부분을 덜어내고 스케일링 일부를 헤고타로 미루는 식으로 단계적으로 가는 게 더 안전하다고 제안했다.",
+              "timestamp": "00:25:32",
+              "original": "Yeah, and I know that we've tested 8037 a lot, and spent a lot of effort on it, but I'm thinking… What if it's, try to remove the controversial bits from it, like the reservoir mechanism. So… that we break fewer invariants, and also, I think Pavel found that, because of, 8037 complexities. It's, actually… it complicates FOCIL a little bit. I'm not sure whether Pavel is on the call, maybe not, but… Yeah, he wrote about it on Twitter or on Discord. So… so, basically, my point is, is it… like, yeah, I know it's quite late, but maybe we can still… rescue the most relevant bits of 8037 for scaling, while trimming the unnecessary complexity and, like, postponing it for… to future folks. I'm just thinking, if without the reservoir, we can still have some scaling, it's… To my mind, it's still better to move in steps, like… We can… And, like, it's just safer to… instead of, like, having a massive change, just break it down into more… more sizable and, chunks. That's it. So, maybe even without the reservoir, we have enough scaling that's… And we can add… This mechanism in Hegota still, if we decide that we do need it.",
+              "translation": "네, 그리고 우리가 8037을 많이 테스트했고 거기에 많은 노력을 쏟았다는 것을 알고 있습니다만, 저는 생각하기에... 만약 거기서 리저버(reservoir) 메커니즘 같은 논쟁적인 부분들을 제거해보려고 하면 어떨까 합니다. 그렇게 하면 더 적은 불변식(invariant)을 깨뜨리게 될 것이고, 또한 제 생각에 Pavel이 발견한 것이 있는데, 8037의 복잡성 때문에 그것이 실제로 FOCIL을 조금 복잡하게 만든다는 것입니다. Pavel이 콜에 있는지는 모르겠습니다, 아마 없을 것 같은데, 하지만... 네, 그가 트위터나 디스코드에 그것에 대해 썼습니다. 그러니... 기본적으로 제 요점은, 좀 늦었다는 것은 알지만, 그래도 우리가 여전히 스케일링을 위한 8037의 가장 관련성 있는 부분들을 구해내면서, 불필요한 복잡성은 덜어내고, 그것을 미래 포크로... 미룰 수 있지 않을까 하는 것입니다. 저는 그냥 생각하기에, 리저버 없이도 우리가 여전히 어느 정도의 스케일링을 가질 수 있다면, 제 생각에는 여전히 단계적으로 가는 것이 더 낫습니다. 즉... 우리는... 그리고, 거대한 변경을 한 번에 하는 대신, 그것을 더... 더 다루기 쉬운 크기의 조각들로 나누는 것이 더 안전합니다. 그게 다입니다. 그러니 리저버가 없어도, 우리에게는 충분한 스케일링이... 있을 수 있고 우리가 정말로 그것이 필요하다고 결정하면 Hegota에서 이 메커니즘을 여전히 추가할 수 있습니다."
+            },
+            {
+              "speaker": "Łukasz Rozmej",
+              "text": "가스 한도를 올리는 방식으로 못 고치는 트랜잭션을 아직 찾지 못했다면서도 스펙 유지와 변경 중 어느 쪽에도 완전히 설득되지는 않았다고 밝혔다.",
+              "timestamp": "00:36:03",
+              "original": "So, kind of question to Toni and also my comment is that I didn't found any transactions yet that wouldn't be fixed by just raising the gas limit. Sometimes… beyond the 16 million gas cap, but that's including the reservoir, so that's fine in Glamsterdam. And… yeah, I'm still not entirely sold on either retaining the current spec or changing the spec in this way. I'm… Potentially, if the timelines weren't any… concern, I would potentially, I think, lean a bit into changing the spec, but I'm… it's still… I think I don't know enough yet. But I… at least this is some… something viable that doesn't break anything in… in… In a hard way, that… that we cannot… That is unfixable in… and fixes those invariants, so it is still quite appealing to me. But again, I'm not completely sold, even if I helped develop this idea.",
+              "translation": "그러니 Toni에게 하는 일종의 질문이자 제 의견은, 저는 아직 가스 한도(gas limit)를 올리는 것만으로 고쳐지지 않는 트랜잭션을 하나도 찾지 못했다는 것입니다. 때로는... 16 million 가스 상한을 넘어서기도 하지만, 그것은 리저버(reservoir)를 포함한 것이므로, Glamsterdam에서는 괜찮습니다. 그리고... 네, 저는 여전히 현재 스펙을 유지하는 것과 이런 방식으로 스펙을 바꾸는 것 둘 중 어느 쪽에도 완전히 설득되지 않았습니다. 저는... 만약 일정이 전혀 문제가 되지 않는다면, 저는 스펙을 바꾸는 쪽으로 조금 기울 것 같다고 생각하지만, 저는... 아직 충분히 알지 못한다고 생각합니다. 하지만 저는... 적어도 이것은 어떤 것인데, 세게... 어떤 식으로도 깨지지 않고, 우리가 고칠 수 없는 방식으로는 깨지지 않으면서도 그 불변식(invariant)들을 고치는, 실현 가능한 것이라서 여전히 꽤 매력적으로 느껴집니다. 그렇지만 다시 말하지만, 제가 이 아이디어를 개발하는 데 도움을 주었음에도, 완전히 설득된 것은 아닙니다."
+            },
+            {
+              "speaker": "Luis Pinto",
+              "text": "불변식을 깨는 것보다 사용자가 가스를 더 내는 쪽이 낫다고 본다. 불변식 훼손은 EVM을 예측 불가능하게 만들 수 있다.",
+              "timestamp": "00:29:25",
+              "original": "Yeah, regards to that, I don't mind the reservoir at all. It's, just… I think we are in, between a trade-off between, breaking invariants in EVM and solidity language. And, or having the users to post more gas to the transaction, so that it, that it finishes. I think… I'm not sure how others think, but… maybe I would lean more towards the side of maybe having to post more gas instead of breaking invariance. I think breaking invariance could be very dangerous where the engine, the framework, which is EVM in this case, does not make much sense, or stops making that much sense. If we go one path, and it happens something, and you go another path, and it happens something else, completely different. So, I mean, yeah. That's my thoughts on that.",
+              "translation": "네, 그 점에 관해서는, 저는 리저버(reservoir)에 전혀 거부감이 없습니다. 다만... 제 생각에는 우리가 EVM과 Solidity 언어에서 불변식(invariant)을 깨뜨리는 것과, 사용자들이 트랜잭션을 완료하기 위해 더 많은 가스를 올리게 하는 것 사이의 트레이드오프(trade-off) 상황에 있다고 봅니다. 다른 분들이 어떻게 생각하시는지는 모르겠지만, 저는 오히려 불변식을 깨뜨리는 것보다는 더 많은 가스를 올리게 하는 쪽으로 기울 것 같습니다. 저는 불변식을 깨뜨리는 것이 매우 위험할 수 있다고 생각합니다. 이 경우 엔진, 즉 프레임워크인 EVM이 말이 되지 않거나, 더 이상 그렇게 말이 되지 않게 멈춰버릴 수 있기 때문입니다. 한 경로로 가면 어떤 일이 일어나고, 다른 경로로 가면 완전히 다른 어떤 일이 일어난다면요. 그러니 네, 그것이 그에 대한 제 생각입니다."
+            }
+          ],
+          "quote": {
+            "text": "여기에는 만능 해법이 없다. 지금 스펙을 바꾸면 이미 접촉한 모든 앱이 자기 코드베이스를 다시 들여다봐야 한다.",
+            "original": "There is no silver bullet here, and any spec change we would do now would also need to be analyzed again, which means all the apps that we have already reached out to would need to look into their code bases again.",
+            "speaker": "Toni Wahrstaetter",
+            "timestamp": "00:31:19"
+          }
+        },
+        {
+          "title": "보고타 데브넷-3, 지금 띄울 것인가",
+          "intro": "클라이언트 팀마다 포스트퀀텀 프레임 스펙 준비도에 대한 판단이 달라 데브넷-3 범위를 두고 입장이 갈렸다.",
+          "decision": "보류 01:08:51",
+          "positions": [
+            {
+              "speaker": "Iván | ethrex",
+              "text": "현재 보고타 스코프를 유지하고 프레임 강화, 멤풀 테스트, EIP-8151 앱 호환성에 집중하자고 제안했다. leanSPHINCS를 최소한으로 도입하는 EIP 하나만 추가하면 된다고 밝혔다.",
+              "timestamp": "00:50:22",
+              "original": "Thanks, Mario. From ethrex's perspective, we support keeping the current Bogota devnet scope as the baseline, and prioritizing frame hardening, mempool testing, and application compatibility. Especially around 8151. And I'll leave room for at least one more EIP that will introduce us to having leanSPHINCS natively. And… But yeah, that's… our take. I think there's currently, I… I am specifically referring to one that I introduced in last ACDE, that I will… I will propose for Hegota, next week. Which is basically… I don't want to take too much time on this. It's basically taking leanSPHINCS from 8288, and do the minimal thing we can do to have it in Hegota. that's basically the idea. But we need Hegota to have native leanSPHINCS support, and this is an idea of having it while keeping extensibility for 8288.",
+              "translation": "감사합니다, Mario. ethrex 쪽 관점에서는, 현재 Bogota 데브넷(devnet) 범위를 기준선으로 유지하고, 프레임(frame) 강화, 멤풀(mempool) 테스트, 그리고 애플리케이션 호환성에 우선순위를 두는 것을 지지합니다. 특히 8151 관련해서요. 그리고 적어도 leanSPHINCS를 네이티브로 도입하게 될 EIP 하나를 위한 자리는 남겨두겠습니다. 그리고... 네, 그게... 저희 입장입니다. 제 생각에는 현재... 저는 특히 지난 ACDE에서 제가 소개했던 것 하나를 가리키는 것인데, 다음 주 Hegota를 위해 제안할 것입니다. 기본적으로... 여기에 너무 많은 시간을 쓰고 싶지는 않습니다. 기본적으로 8288에서 leanSPHINCS를 가져와서, Hegota에 그것을 넣기 위해 할 수 있는 최소한의 작업을 하는 것입니다. 그것이 기본적인 아이디어입니다. 하지만 우리는 Hegota가 네이티브 leanSPHINCS 지원을 갖추도록 할 필요가 있고, 이것은 8288에 대한 확장성(extensibility)을 유지하면서 그것을 넣는 아이디어입니다."
+            },
+            {
+              "speaker": "Łukasz Rozmej",
+              "text": "EIP-8279, EIP-8131, 그리고 아직 PFI 상태인 EIP-7907을 추가해 스케일링을 미리 확보하자고 제안했다.",
+              "timestamp": "00:52:32",
+              "original": "So, as we probably still want… I don't know if we want scaling. But we could probably get it relatively cheap if we delivered Glamsterdam. I would still consider 8279, 8131, and potentially, which is still PFI7907, to unblock the scaling. I don't think either one is big EIPs. But, yeah, those are kind of… really see… Important or useful, to… which are not, like, new features. Sorry, I have them in the chat, which are, 8279, 8131, and 7907. So the two ones are block access byte floor, Unified Transaction Content Floor, and Meter Contract Code Size.",
+              "translation": "그러니 우리가 아마도 여전히... 스케일링을 원하는지는 모르겠습니다. 하지만 Glamsterdam에서 전달한다면 비교적 저렴하게 그것을 얻을 수 있을 것입니다. 저는 여전히 8279, 8131, 그리고 어쩌면 PFI7907까지도 스케일링을 막힌 것을 풀기 위해 고려하겠습니다. 저는 둘 다 큰 EIP라고 생각하지는 않습니다. 하지만, 네, 그것들은... 정말 보기에... 새로운 기능은 아니지만 중요하거나 유용합니다. 죄송합니다, 채팅에 적어두었는데, 8279, 8131, 그리고 7907입니다. 그러니 그 두 개는 블록 액세스 바이트 플로어(block access byte floor), Unified Transaction Content Floor, 그리고 Meter Contract Code Size입니다."
+            },
+            {
+              "speaker": "lightclient",
+              "text": "프레임이 EIP-8288과 어떻게 하위호환될지 스펙이 정리되기 전까지는 데브넷-3를 할 이유가 없다고 봤다. 스펙이 반쯤 된 상태로 가면 모두의 시간을 낭비하는 셈이라고 했다.",
+              "timestamp": "01:07:11",
+              "original": "Why would we do it, though? I just think we're still a few weeks from… Spec being finalized on this stuff. Which is kind of why I think it makes sense to work on that and wait until… It's ready. And then have the devnet? Unless there's something else that's pressing in the meantime. And I don't see anything that's pressing to the same degree. Why would we ship a devnet without a spec? It's obviously not gonna be frozen, but, like, we just have to work through what it should look like, and… Make a best effort on having a spec that's something that people actually, you know, something that people actually anticipate could be the final spec. If we get halfway there, then it's just kind of wasting everyone's time. for devnet 3 frames. Is that the question? Yeah, I mean, we need to specify how Frames is going to be forward compatible with 8288. And what exactly the direction of 8288 is. Right now, it sounds like it's leanPCS, but this is, like, a development in the last one and a half weeks. Then, ideally, we also would have leanSPHINCS. Specified in there. I don't think that they've finalized the scheme yet, so maybe we… take the parameter values they have right now and ship it. Maybe we wait. I'm also not super sure. But most of it is figuring out how we're going to forward compatible with 8288. Right. And currently, I feel like we're… already at the amount of EIPs that we might want to ship for Hegota? But maybe others feel differently on that.",
+              "translation": "그런데 왜 그렇게 해야 할까요? 저는 우리가 이 부분의 스펙(spec)이 확정되기까지 아직 몇 주 남았다고 생각합니다. 그래서 그 작업을 하고 준비될 때까지 기다리는 것이 말이 된다고 생각합니다. 그런 다음 데브넷(devnet)을 띄우는 거죠? 그 사이에 뭔가 다른 급한 일이 있지 않다면요. 그리고 저는 같은 정도로 급한 것이 없다고 봅니다. 왜 스펙 없이 데브넷을 띄우겠습니까? 분명 고정(frozen)되지는 않겠지만, 그래도 우리는 그것이 어떤 모습이어야 하는지를 정리해야 하고, 사람들이 실제로, 아시다시피, 사람들이 실제로 최종 스펙이 될 것이라고 예상할 수 있는 어떤 것에 대해 최선의 노력을 기울여야 합니다. 만약 우리가 거기까지 반밖에 못 간다면, 그것은 데브넷 3 프레임(Frames)에 대해 모두의 시간을 낭비하는 것일 뿐입니다. 그게 질문인가요? 네, 그러니까, 우리는 Frames가 어떻게 8288과 미래 호환(forward compatible)될 것인지를 명시해야 합니다. 그리고 8288의 방향이 정확히 무엇인지도요. 지금은 leanPCS처럼 들리는데, 이것은, 그러니까, 지난 1주일 반 사이의 변화입니다. 그런 다음, 이상적으로는 거기에 leanSPHINCS도 명시되어 있으면 좋겠습니다. 저는 그들이 아직 그 스킴(scheme)을 확정하지 않았다고 생각하는데, 그러니 우리는... 지금 가지고 있는 파라미터 값을 가져다 그대로 배포할 수도 있습니다. 아니면 기다릴 수도 있고요. 저도 그렇게 확신하지는 못합니다. 하지만 대부분은 우리가 8288과 어떻게 미래 호환될 것인지를 알아내는 것입니다. 맞습니다. 그리고 지금은, 저는 우리가 Hegota를 위해 배포하고 싶은 EIP의 양에... 이미 도달한 것 같다고 느낍니다. 하지만 다른 분들은 그 점에 대해 다르게 느끼실 수도 있습니다."
+            },
+            {
+              "speaker": "Andrew Ashikhmin",
+              "text": "작은 개선 차원의 데브넷-3는 말이 된다며 PAY 옵코드(EIP-5920), 블룸 필터 제거(EIP-7668) 같은 정리 작업과 PQ 방향 작업을 제안했지만 스코프를 너무 키우지는 말자고 했다.",
+              "timestamp": "00:59:52",
+              "original": "Yes, from Erigon… Bogota devnet 3 makes sense as a small, improvement over Bogota devnet 2. Perhaps we would like to add two cleanups, like, say, the PAY opcode, and also removing the Bloom filters, so 7668, and 5920, and also, of course, Things that, are in the post-quantum direction as well. But… probably we shouldn't expand the scope too much to avoid the same trap of Hegota being too big.",
+              "translation": "네, Erigon 쪽에서는... Bogota 데브넷 3이 Bogota 데브넷 2에 대한 작은 개선으로서 말이 된다고 봅니다. 아마 저희는 두 가지 정리 작업을 추가하고 싶은데, 예를 들면 PAY 옵코드, 그리고 블룸 필터(Bloom filter) 제거, 즉 7668과 5920, 그리고 물론 포스트 퀀텀(post-quantum) 방향에 있는 것들도요. 하지만... 아마 Hegota가 너무 커졌던 것과 같은 함정을 피하기 위해 범위를 너무 확장해서는 안 될 것입니다."
+            },
+            {
+              "speaker": "jochem-brouwer",
+              "text": "PQ와 무관한 새 EIP는 넣지 말자는 입장이다. 다만 셀프디스트럭트 비활성화(EIP-4758)가 이미 데브넷-2에 있으니, 데브넷-3가 열린다면 TCREATE(EIP-8360)를 짝으로 넣거나 4758을 빼야 한다고 밝혔다.",
+              "timestamp": "01:02:54",
+              "original": "Yes, I'm here. So, like, our general stance is that we do not want to introduce any new EIPs which do not have something to do with the PQ work. But we also want to note that EIP-4758, which is the Deactivate SELFDESTRUCT, is already included in Bogota 2. But if you deactivate self-destruct, then we really all… sorry, owe it to the, to the app layer. that, We also introduced TCREATE, so if there's a Bogota 3, then we would also like that, well, either monthly two things, or we remove 4758 from the devnet, or we add 4758 and 8360. Yeah, that's… that's our stance.",
+              "translation": "네, 저 여기 있습니다. 그러니, 저희의 일반적인 입장은 PQ 작업과 관련이 없는 새로운 EIP는 도입하고 싶지 않다는 것입니다. 하지만 SELFDESTRUCT를 비활성화하는 EIP-4758이 이미 Bogota 2에 포함되어 있다는 점도 짚고 싶습니다. 하지만 self-destruct를 비활성화하면, 우리는 정말로... 죄송합니다, 애플리케이션 레이어(app layer)에 그것을 빚지게 됩니다. 저희는 TCREATE도 도입했으니, Bogota 3이 있다면, 저희는 두 가지를 함께 하거나, 혹은 데브넷에서 4758을 제거하거나, 아니면 4758과 8360을 둘 다 추가하는 것을 원합니다. 네, 그것이... 저희 입장입니다."
+            }
+          ],
+          "quote": {
+            "text": "스펙도 없는데 왜 데브넷을 띄우나?",
+            "original": "Why would we ship a devnet without a spec?",
+            "speaker": "lightclient",
+            "timestamp": "01:08:11"
+          }
+        },
+        {
+          "title": "프레임을 EIP-8288과 어떻게 호환시킬 것인가",
+          "intro": "포스트퀀텀 증명 지원을 증명 프레임(proof frame)으로 넣을지 서명 목록(signature list)에 넣을지가 합의되지 않은 핵심 쟁점으로 남았다.",
+          "positions": [
+            {
+              "speaker": "lightclient",
+              "text": "증명/의존성 프레임과 서명 목록 중 어느 쪽으로 포스트퀀텀 증명을 지원할지가 핵심 질문이라고 제기했다. L2들이 서명 목록 확장보다 프리컴파일 추가가 쉽다는 피드백을 줘서 증명 프레임 쪽으로 기울고 있다고 밝혔다.",
+              "timestamp": "01:14:44",
+              "original": "Yeah, I guess the main question I have right now is, is leanPCS the way that we want to… Plan for aggregations in the future. And the way that we want to support permissionless Use of cryptography. Both in terms of, like, signatures and maybe in terms of, like, more generic proofs. For Ethereum for frames. And… I don't know, maybe we can't make that decision, that we have the certainty in something like leanPCS right now? But then I have to ask how… Like, what's the right black box to treat? 8288, leanPCS, like, the possibilities there, if we're gonna be designing for frames. So right now, the original idea for 8288 was a little bit… broader, in the sense that we might have had some sort of ISA that was tailored to a Stark verifier, which could verify, like, very generic computation. And in that world, to me, it made sense to have this dependency type of frame, and the target might be, instead of EVM code, it would be this new ISA, and you would define your your cryptographic scheme, your signature scheme, your proof, whatever. And… and so in that sense, like, the… yeah, 8288 idea made a lot of… a lot of sense, and the target made a lot of sense as the… Discriminator for what we're going to be calling. Now, we're looking at leanPCS, and leanPCS is much more of, like, a pairing up type of operation. And we're talking about… having, essentially, like, still some sort of allow list of what's allowed. And it's a bit broader than just signatures, because we would have leanSPHINCS…",
+              "translation": "네, 지금 제가 가진 주된 질문은, leanPCS가 미래의 애그리게이션(aggregation)을 계획하는 방식으로 우리가 원하는 길인가 하는 것입니다. 그리고 우리가 permissionless한 암호학(cryptography) 사용을 지원하고자 하는 방식이기도 한지요. 서명(signature) 측면에서도, 그리고 어쩌면 더 일반적인 증명(proof) 측면에서도, 이더리움의 프레임즈(Frames)를 위해서요. 그리고... 모르겠습니다, 어쩌면 우리는 지금 leanPCS 같은 것에 확신을 가지고 그 결정을 내릴 수 없을지도 모릅니다. 하지만 그렇다면 저는 어떤 블랙박스로 취급하는 것이 맞는지 물어야 합니다. 8288, leanPCS, 거기서 가능한 것들, 만약 우리가 프레임즈를 위해 설계하려 한다면요. 그래서 지금, 8288의 원래 아이디어는 조금 더... 넓었습니다, 어떤 의미에서는 매우 일반적인 계산을 검증할 수 있는 Stark 검증기에 맞춰진 어떤 종류의 ISA(instruction set architecture)를 가질 수도 있었다는 의미에서요. 그리고 그런 세계에서는, 저에게는 이런 의존성(dependency) 유형의 프레임을 갖는 것이 말이 되었고, 대상(target)은 EVM 코드 대신 이 새로운 ISA가 될 수 있었고, 여러분의 암호학적 스킴(scheme), 서명 스킴, 증명, 무엇이든 정의할 수 있었습니다. 그리고... 그래서 그런 의미에서, 8288 아이디어는 꽤... 꽤 말이 되었고, 대상이 우리가 부를 것에 대한 판별자(discriminator)로서 꽤 말이 되었습니다. 그런데 지금 우리는 leanPCS를 보고 있고, leanPCS는 훨씬 더... 페어링 업(pairing up) 유형의 연산에 가깝습니다. 그리고 우리는... 본질적으로 여전히 허용되는 것들에 대한 일종의 허용 목록(allow list)을 갖는 것에 대해 이야기하고 있습니다. 그리고 이것은 단순히 서명보다 조금 더 넓은데, 왜냐하면 leanSPHINCS도 갖게 될 것이기 때문입니다..."
+            },
+            {
+              "speaker": "Toni Wahrstätter",
+              "text": "의존성은 프레임보다 서명에 더 가까우니 서명 목록으로 가는 게 더 단순하다고 본다. EIP-8288 현재 스펙도 증명 프레임의 대상 주소가 비어 있어야 한다는 규정이 있어 애초에 온체인 코드 실행을 의도한 건 아니었던 것 같다고 지적했다.",
+              "timestamp": "01:29:01",
+              "original": "Yeah, I just wanted to say to Matt, like, last time I checked 8288, a few days ago, I think the proof frame had even this rule that the target address needs to be empty, so it doesn't feel like, with 8288, there was the intention to have, like. this be done by a specified code, and also the leanPCS EIP, I think, uses the arbitrary scheme. So my feeling is… Yeah, so my feeling is, like, this whole discussion between ProofFrame and sigList, to me, it feels like both will work with whatever, with leanSTARK, with leanPCS, with leanSPHINCS, and because dependencies feel like… closer to being signatures than being frame, I would just go for the signature list, and Yeah, of course, this means we have to, like, enshrine schemes, and the protocol then has to assume that nodes know how to handle them, for example, when it comes to aggregation. But I think, I think that's fine.",
+              "translation": "네, Matt에게 그냥 말씀드리고 싶었던 것은, 제가 마지막으로 8288을 확인했을 때, 며칠 전인데, 증명 프레임(proof frame)에는 대상 주소(target address)가 비어 있어야 한다는 규칙까지 있었던 것 같습니다. 그래서 8288에서는 이것이 특정된 코드로 이루어지도록 하려는 의도가 있었던 것 같지 않고, 또한 leanPCS EIP도 제 생각에는 임의의(arbitrary) 스킴을 사용합니다. 그래서 제 느낌은... 네, 제 느낌은, ProofFrame과 sigList 사이의 이 모든 논의가, 저에게는 둘 다 leanSTARK든, leanPCS든, leanSPHINCS든 무엇과도 작동할 것처럼 느껴지고, 의존성(dependency)이 프레임보다는 서명에 더 가깝게 느껴지기 때문에, 저는 그냥 sigList로 가겠습니다. 그리고... 네, 물론 이것은 우리가 스킴을 성문화(enshrine)해야 한다는 것을 의미하고, 그러면 프로토콜은 노드들이 그것들을 다루는 방법을 알고 있다고 가정해야 합니다, 예를 들어 애그리게이션(aggregation)에 관련해서요. 하지만 저는, 그것은 괜찮다고 생각합니다."
+            },
+            {
+              "speaker": "Iván | ethrex",
+              "text": "leanSPHINCS와 leanPCS는 함께 쓰일 것이며 일반 사용자는 leanSPHINCS 서명을 쓰고 leanPCS는 프라이버시 프로토콜과 연산 증명에 쓰인다고 설명했다. leanPCS가 PQ 자체에 꼭 필요한 건 아니라고 밝혔다.",
+              "timestamp": "01:24:08",
+              "original": "Yes, I hear you, but, from what I understand is that leanSPHINCS claims and leanPCS claims will coexist, because not all users will be using leanPCS. I think leanPCS will be used more by privacy protocols, or Users that want to post proof of some computation on the network, but the regular users will just want to… to leanSPHINCS signatures, in, in Ethereum. I want to, to, to… clarify that. we don't… leanPCS is not… it's not needed for PQ. I think it's more like a way of subsidized proofs once we have this, in the protocol with leanSPHINCS and the frame dependencies. Yeah, just wanted to clarify that.",
+              "translation": "네, 말씀하신 바는 이해하지만, 제가 이해하기로는 leanSPHINCS 클레임(claim)과 leanPCS 클레임은 공존할 것입니다, 왜냐하면 모든 사용자가 leanPCS를 사용하지는 않을 것이기 때문입니다. 저는 leanPCS가 프라이버시 프로토콜이나, 어떤 계산의 증명을 네트워크에 올리고자 하는 사용자들에 의해 더 많이 사용될 것이라고 생각하지만, 일반 사용자들은 그냥 이더리움에서 leanSPHINCS 서명을 원할 것입니다. 저는 이것을 명확히 하고 싶습니다. leanPCS는... PQ를 위해 필요한 것이 아닙니다. 저는 그것이 오히려, 한번 leanSPHINCS와 프레임 의존성(dependency)을 가진 프로토콜에서 이것을 갖게 되면, 증명을 보조하는(subsidize) 하나의 방법에 더 가깝다고 생각합니다. 그냥 그 점을 명확히 하고 싶었습니다."
+            },
+            {
+              "speaker": "Kevaundray Wedderburn",
+              "text": "leanSPHINCS, leanSTARK, leanPCS는 모두 F(x)=y를 증명하는 같은 구조를 공유한다고 설명하며 프레임이든 서명 목록이든 증명 데이터를 콜데이터 밖에서 분리 추출할 수 있어야 한다는 조건만 맞으면 된다고 봤다.",
+              "timestamp": "01:25:20",
+              "original": "Yeah, thanks. Yeah, so I think that in all of the cases, the user was going to make, the proof. I think Mislav wrote that in the chat as well. Like, the way that I understand it is that at a very high level, we have some function which takes in some input X, and you get some output Y. And we want to prove that F on X is Y. So for leanSPHINCS, you can think of F as the sign-in algorithm for SPHINCS, and the proof, in this case, is just a signature, so the user has to, like, construct the signature. For leanSTARK, you can think of F as a RISC-V VM, or a Wasm VM, And what you want to show is that when I execute this RISC-V VM on some input, where one of the inputs is a program, I get this output. So Y is the output? X is the program, plus the inputs to the program. But this time, the proof is actually a STARK proof. And for leanPCS, like, F is a… well, it's a PCS, and we… we want a PCS because this is basically the building block for Starks, which allows you to do arbitrary computation. So it's like taking leanSTARK and then, sort of. Only exposing the minimal part that is useful. So yeah, that's how I would, mainly… Sort of, say how this… how it works? Yeah, exactly. It is, but I think Toni's also a direct response. I can go after it. I think it was roughly the same as what Toni said. Like, to me. I think we only need to ensure two things. One of them is that we can extract or separate the signature or the STARK proof from the rest of the transaction, just so that you can…",
+              "translation": "네, 감사합니다. 네, 그러니까 저는 모든 경우에서 사용자가 증명(proof)을 만들 것이라고 생각합니다. Mislav도 채팅에 그렇게 썼던 것 같습니다. 제가 이해하는 방식으로는, 매우 높은 수준에서, 우리는 어떤 입력 X를 받아서 어떤 출력 Y를 내는 함수가 있습니다. 그리고 우리는 F(X)가 Y라는 것을 증명하고 싶습니다. leanSPHINCS의 경우, F를 SPHINCS의 서명(sign-in) 알고리즘으로 생각할 수 있고, 이 경우 증명은 그냥 서명이므로, 사용자는 서명을 구성해야 합니다. leanSTARK의 경우, F를 RISC-V VM이나 Wasm VM으로 생각할 수 있고, 여러분이 보여주고 싶은 것은 이 RISC-V VM을 어떤 입력에서 실행했을 때, 그 입력 중 하나가 프로그램일 때, 이 출력을 얻는다는 것입니다. 그러니 Y는 출력인가요? X는 프로그램 더하기 프로그램에 대한 입력들입니다. 하지만 이번에는 증명이 실제로 STARK 증명입니다. 그리고 leanPCS의 경우, F는... 음, 그것은 PCS이고, 우리가 PCS를 원하는 이유는 이것이 기본적으로 Stark의 빌딩 블록이기 때문이며, 이것이 임의의 계산을 할 수 있게 해줍니다. 그러니까 이것은 leanSTARK를 가져다가, 그런 다음, 말하자면, 유용한 최소한의 부분만 노출시키는 것과 같습니다. 그러니 네, 그것이 제가 주로... 말하자면, 이것이 어떻게 작동하는지를 말씀드리는 방식입니다. 네, 맞습니다. 그렇습니다만, Toni도 직접적인 답변인 것 같습니다. 그 다음에 제가 말해도 될까요. 제 생각에는 대략 Toni가 말한 것과 같았습니다. 저에게는요. 저는 우리가 오직 두 가지만 확실히 하면 된다고 생각합니다. 그중 하나는 우리가 서명이나 STARK 증명을 트랜잭션의 나머지 부분으로부터 추출하거나 분리할 수 있다는 것이고, 그것은 단지 여러분이... 할 수 있도록 하기 위해서입니다."
+            },
+            {
+              "speaker": "Dragan Rakita",
+              "text": "서명 목록 쪽에 힘을 보태며 임의의 서명을 콜데이터 없이 컨트랙트가 바로 접근하게 하고 서명 복구를 병렬로 처리하는 것이 성능상 중요하다고 강조했다.",
+              "timestamp": "01:42:46",
+              "original": "Yeah. I think we have a good opportunity to… With a signature list of other means to allow any kind of signature to be accessible by the contract, so… We don't need to have that… signatures. Be input in the call data, then transferred to the call, and all that machinery behind. So, in general, Transaction would hold full signature, and that signature could be done over the transaction hash, or some arbitrary hash, or arbitrary message. That's one point. And second point is… It would be really good to think about extracting. When you have signature, you need to prove the signature is basically… the owner of that signed that signature is correct. It's really good if we can recover all of that in parallel, so there are standalone tasks that can be done in parallel with all those intersections. I think from the performance standpoint, this is important. Yeah, just those two things. Thanks.",
+              "translation": "네. 저는 우리에게 좋은 기회가 있다고 생각합니다, sigList나 다른 수단으로 어떤 종류의 서명이든 컨트랙트가 접근할 수 있게 허용하는... 그러면 우리는 그 서명들을 콜데이터(call data)에 입력으로 넣고, 그것을 콜(call)로 전달하고, 그 뒤에 있는 모든 그 장치(machinery)를 가질 필요가 없습니다. 그러니 전반적으로, 트랜잭션은 완전한 서명을 담게 되고, 그 서명은 트랜잭션 해시(hash)나, 어떤 임의의 해시, 혹은 임의의 메시지에 대해 이루어질 수 있습니다. 그것이 한 가지 포인트입니다. 그리고 두 번째 포인트는... 추출하는 것에 대해 생각해보는 것이 정말 좋을 것 같습니다. 서명이 있을 때, 여러분은 그 서명이 기본적으로... 그 서명을 서명한 소유자가 맞다는 것을 증명해야 합니다. 우리가 그 모든 것을 병렬로 복구할 수 있다면 정말 좋겠는데, 그러면 그 모든 교차 지점(intersection)들과 함께 병렬로 수행될 수 있는 독립적인(standalone) 작업들이 생기기 때문입니다. 저는 성능 관점에서 이것이 중요하다고 생각합니다. 네, 그냥 그 두 가지입니다. 감사합니다."
+            }
+          ],
+          "quote": {
+            "text": "leanPCS에서는 과거 8288처럼 사용자 정의 코드를 호출해 집계하던 방식보다 서명 목록에 추가하는 쪽이 더 합리적이다.",
+            "original": "With leanPCS, it makes more sense to go with the signature list addition than in the past with 8288, where you would have been calling user-defined code that could have been aggregated.",
+            "speaker": "lightclient",
+            "timestamp": "01:21:23"
+          }
+        }
+      ],
+      "speakers": [
+        {
+          "label": "lightclient",
+          "name": "lightclient (Matt Garnett)",
+          "org": "EF",
+          "role": "geth",
+          "handle": "lightclients",
+          "avatar": "https://pbs.twimg.com/profile_images/1554130973935030274/wHWuxuTT_400x400.jpg",
+          "share": 0.277
+        },
+        {
+          "label": "Mario Vega",
+          "name": "Mario Vega",
+          "org": "EF",
+          "role": "테스팅, ACDT 진행",
+          "handle": "elbuenmayini",
+          "avatar": "https://pbs.twimg.com/profile_images/1616232824415342592/Wly-1ddA_400x400.jpg",
+          "share": 0.196
+        },
+        {
+          "label": "Rahul (EF)",
+          "name": "Rahul",
+          "share": 0.095
+        },
+        {
+          "label": "Toni Wahrstaetter",
+          "name": "Toni Wahrstaetter",
+          "share": 0.084
+        },
+        {
+          "label": "Kevaundray Wedderburn",
+          "name": "Kevaundray Wedderburn",
+          "org": "EF",
+          "role": "응용 리서치",
+          "handle": "kevaundray",
+          "avatar": "https://pbs.twimg.com/profile_images/1658523090467315712/a3xJ6ySn_400x400.jpg",
+          "share": 0.076
+        },
+        {
+          "label": "Iván | ethrex",
+          "name": "Iván Litteri",
+          "org": "LambdaClass",
+          "role": "ethrex 테크 리드",
+          "handle": "ivanlitteri",
+          "avatar": "https://pbs.twimg.com/profile_images/1801577809728462848/UPASaIEt_400x400.jpg",
+          "share": 0.052
+        },
+        {
+          "label": "Maria Silva",
+          "name": "Maria Silva",
+          "role": "EIP-8037 제1저자",
+          "handle": "misilva73",
+          "avatar": "https://pbs.twimg.com/profile_images/1551690804594458624/elGlKFpy_400x400.jpg",
+          "share": 0.038
+        },
+        {
+          "label": "Andrew Ashikhmin",
+          "name": "Andrew Ashikhmin",
+          "org": "Erigon",
+          "handle": "yperbasis",
+          "avatar": "https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png",
+          "share": 0.032
+        },
+        {
+          "label": "Toni Wahrstätter",
+          "name": "Toni Wahrstätter",
+          "org": "EF",
+          "role": "리서처",
+          "handle": "nero_eth",
+          "avatar": "https://pbs.twimg.com/profile_images/1858347774129094657/xUc7IS2K_400x400.jpg",
+          "share": 0.024
+        },
+        {
+          "label": "Stefan Starflinger",
+          "name": "Stefan Starflinger",
+          "org": "EF DevOps",
+          "share": 0.021
+        },
+        {
+          "label": "Łukasz Rozmej",
+          "name": "Łukasz Rozmej",
+          "org": "Nethermind",
+          "role": "EIP-8037 공동 저자",
+          "share": 0.02
+        },
+        {
+          "label": "Dragan Rakita",
+          "name": "Dragan Rakita",
+          "org": "Tempo",
+          "role": "revm 저자",
+          "handle": "rakitadragan",
+          "avatar": "https://pbs.twimg.com/profile_images/1622380143799943169/2D-5fxsO_400x400.jpg",
+          "share": 0.017
+        },
+        {
+          "label": "Justin Florentine",
+          "name": "Justin Florentine",
+          "org": "Besu",
+          "share": 0.015
+        },
+        {
+          "label": "Luis Pinto",
+          "name": "Luis Pinto",
+          "org": "Besu",
+          "share": 0.013
+        },
+        {
+          "label": "jochem-brouwer",
+          "name": "Jochem Brouwer",
+          "org": "EF",
+          "role": "EthereumJS · EIP-8037 공동 저자",
+          "share": 0.011
+        },
+        {
+          "label": "Barnabas",
+          "name": "Barnabas Busa",
+          "org": "EF DevOps",
+          "handle": "BarnabasBusa",
+          "avatar": "https://pbs.twimg.com/profile_images/534855342300352514/m-C5ReWq_400x400.jpeg",
+          "share": 0.007
+        },
+        {
+          "label": "Jihoon",
+          "name": "Jihoon",
+          "share": 0.007
+        },
+        {
+          "label": "Dustin",
+          "name": "Dustin Brody",
+          "org": "Nimbus",
+          "share": 0.005
+        },
+        {
+          "label": "Guru",
+          "name": "Guru",
+          "share": 0.004
+        },
+        {
+          "label": "danceratopz",
+          "name": "danceratopz",
+          "org": "EF",
+          "role": "테스팅",
+          "handle": "danceratopz",
+          "avatar": "https://pbs.twimg.com/profile_images/1478357444132839427/sxWspbwH_400x400.jpg",
+          "share": 0.004
+        },
+        {
+          "label": "Ben Adams",
+          "name": "Ben Adams",
+          "org": "Nethermind",
+          "handle": "ben_a_adams",
+          "avatar": "https://pbs.twimg.com/profile_images/1282411238602006529/l4lHaQHE_400x400.jpg",
+          "share": 0.003
+        }
+      ],
+      "chat": [
+        {
+          "speaker": "Trent Van Epps",
+          "text": "대부분 팀이 트위터로 소식을 접한다는 게 안타깝다. EF가 400만 팔로워 계정을 더 신경 써서 활용하고 체계적인 프로토콜 소통 전략을 세워야 한다. 이 피드백은 EF에 이미 여러 번 전달했다.",
+          "timestamp": "00:24:55"
+        },
+        {
+          "speaker": "Ansgar Dietrichs",
+          "text": "지금 스펙을 다시 바꾸면 올해 테스트넷을 포기하고, 재검토·재분석·테스트를 거쳐 2~3월 테스트넷, 4월 메인넷으로 가야 한다. 약 2개월 지연이고, 그렇게 해도 결국 지금 버전을 그대로 쓰게 될 위험도 있다.",
+          "timestamp": "00:30:57"
+        },
+        {
+          "speaker": "Mislav | Ethlabs",
+          "text": "모든 사용자 키의 머클 트리 루트로 검증하면 지갑이 증명을 만들어 트랜잭션에 담을 수 있다. 이러면 VOPS/FOCIL과도 호환된다.",
+          "timestamp": "00:56:45"
+        }
+      ],
+      "glossary": [
+        {
+          "term": "SFI",
+          "def": "Scheduled for Inclusion, 포크에 포함이 확정된 상태"
+        },
+        {
+          "term": "CFI",
+          "def": "Considered for Inclusion, 포함을 검토 중인 상태"
+        },
+        {
+          "term": "PFI",
+          "def": "Proposed for Inclusion, 포함 제안 후보로 접수된 상태"
+        },
+        {
+          "term": "DFI",
+          "def": "Declined for Inclusion, 포함 후보에서 제외된 상태"
+        },
+        {
+          "term": "리저버(reservoir)",
+          "def": "EIP-8037에서 트랜잭션 가스 한도를 넘는 상태 가스를 처리하는 완충 메커니즘"
+        },
+        {
+          "term": "프레임(Frames)",
+          "def": "EIP-8141에서 여러 서명·증명을 하나의 트랜잭션에 묶어 처리하는 구조"
+        },
+        {
+          "term": "ACDC / ACDT / ACDE",
+          "def": "올코어데브스 합의(Consensus) / 테스팅(Testing) / 실행(Execution) 콜의 약칭"
+        },
+        {
+          "term": "leanSPHINCS / leanPCS",
+          "def": "포스트퀀텀 서명 체계(leanSPHINCS)와 그 기반이 되는 다항식 커밋먼트 스킴(leanPCS)"
+        }
+      ],
+      "eips": [
+        4758,
+        5920,
+        7668,
+        7907,
+        8037,
+        8038,
+        8131,
+        8141,
+        8279,
+        8288,
+        8360
+      ],
+      "relatedDebates": [
+        "smaller-frequent-forks-scope",
+        "pqai2027-timeline-realism",
+        "glamsterdam-activate-now-or-cancel",
+        "where-to-document-invariants",
+        "eip7702-binance-hack-blame",
+        "l1-repricing-breaks-deployed-contracts",
+        "state-gas-repricing-growth",
+        "create2-factory-eip7997-worth",
+        "tornado-cash-anonset-obsolete",
+        "aa-validation-programmable-vs-bounded",
+        "gas-params-privacy-leak",
+        "tx-format-ship-first-vs-permissionless"
+      ],
+      "telegramMessageId": 1754
+    },
     {
       "id": "acde-249",
       "series": "acde",
@@ -20631,14 +21110,14 @@
   "status": {
     "currentFork": {
       "name": "글램스테르담",
-      "stage": "후디 테스트넷 일정 조율 중",
-      "line": "후디 12월14일주 임시확정(11/26 최종결정)·메인넷 27년1월목표"
+      "stage": "후디 테스트넷 확정 대기",
+      "line": "후디 12월14일 주 목표·11월26일 ACDC 확정·메인넷 27년1월 목표"
     },
     "nextFork": {
       "name": "헤고타",
-      "stage": "스코프 확정 중",
-      "line": "PQ프레임 옵션2~5 검토·클라이언트 입장 11월말 제출"
+      "stage": "범위 확정 중",
+      "line": "SFI 8015·CFI 4건·PFI 8483·프레임 범위 옵션2~5 논의중"
     },
-    "basis": "acde-249"
+    "basis": "acdt-104"
   }
 }
