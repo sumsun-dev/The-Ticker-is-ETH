@@ -1,9 +1,10 @@
 /**
- * 기자 그룹방용 주간 브리프 — 한 주(월~일) 동안 사이트에 올라온 다이제스트·코어 콜·논쟁·Short 글을 모아
- * 헤드리스 claude로 사실 위주 브리프를 쓰고, im-not-ai 룰북(scripts/assets/humanize-quick-rules.md)으로 윤문한 뒤 텔레그램 그룹에 보낸다. 일요일 저녁 크론(run-eth-digest.sh weekly).
+ * 기자 그룹방용 주간 브리프 — 그 주(월~일 KST) 텔레그램 채널(@thetickeriseth)에 올라온 메시지 전부를 모아
+ * 헤드리스 claude로 한 주 흐름을 주제별로 정리한 심층 요약을 쓰고, im-not-ai 룰북(scripts/assets/humanize-quick-rules.md)으로 윤문한 뒤 텔레그램 그룹에 보낸다(최대 2통). 일요일 저녁 크론(run-eth-digest.sh weekly).
  * 보낸 호는 src/data/weekly-briefs.json에 남겨 같은 주를 두 번 보내지 않는다.
  *
  * env: TELEGRAM_BOT_TOKEN · WEEKLY_CHAT(그룹 chat id, -100…) · WEEKLY_MODEL(기본 opus)
+ *      WEEKLY_SOURCE_CHANNEL(읽을 채널, 기본 thetickeriseth)
  *      WEEKLY_PREVIEW_CHAT(검수용 DM chat id: 여기로 보내고 송출 기록은 남기지 않음)
  *      WEEKLY_END=YYYY-MM-DD(구간 마지막 날, 기본 오늘 KST) · WEEKLY_DRY_RUN=1(생성해서 출력만, 송출·저장 없음)
  */
@@ -12,16 +13,14 @@ import * as path from 'path';
 import * as dotenv from 'dotenv';
 import { runClaude } from './lib/claude';
 import { humanizeTexts, normalizeTerms } from './lib/humanize';
+import { decodeEntities, parseChannelPage, type ChannelPost } from './lib/linkedin-caption';
 import {
   BriefSchema,
-  SITE,
   extractUrls,
-  briefBlocks,
-  fitOneMessage,
-  inWindow,
+  fitMessages,
   keepKnownSources,
-  normDate,
-  splitMessages,
+  kstDate,
+  weekPosts,
   weekWindow,
   type Brief,
 } from './lib/weekly-brief';
@@ -32,50 +31,44 @@ dotenv.config({ path: path.resolve(process.cwd(), '.env') });
 const DATA = path.resolve(process.cwd(), 'src/data');
 const OUTPUT = path.join(DATA, 'weekly-briefs.json');
 const MODEL = process.env.WEEKLY_MODEL ?? 'opus';
-const ARTICLE_CHARS = 2500;
+const CHANNEL = process.env.WEEKLY_SOURCE_CHANNEL ?? 'thetickeriseth';
 
-type Sent = { start: string; end: string; sentAt: string; messageIds: number[]; brief: Brief };
+type Sent = { start: string; end: string; sentAt: string; messageIds: number[]; brief: unknown };
 
-const readJson = <T>(file: string): T => JSON.parse(fs.readFileSync(path.join(DATA, file), 'utf-8')) as T;
 const todayKst = () => new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10);
 
-const PROMPT = `당신은 ECK(Ethereum Collective Korea)의 홍보 담당 에디터입니다.
-아래는 이번 주(월~일) ECK 사이트에 올라온 콘텐츠입니다. 이것으로 기자들에게 보내는 주간 브리프를 작성하세요.
-독자는 이더리움 전문가가 아닌 기자이고, 브리프 내용을 그대로 인용하거나 확인해 기사로 옮깁니다.
+const promptFor = (w: { start: string; end: string }) => `당신은 ECK(Ethereum Collective Korea)의 보도 지원 에디터입니다.
+아래는 ${w.start}~${w.end} 한 주 동안 ECK 텔레그램 채널(The Ticker is ETH)에 올라온 메시지 전부입니다. 다이제스트, 코어 개발자 콜 정리, 논쟁, 짧은 글 등이 섞여 있습니다.
+이것으로 기자에게 보내는 「주간 심층 요약」을 씁니다. 한 사건만 다루지 말고, 한 주 동안 채널에서 다룬 흐름 전체를 주제별로 정리합니다. 독자는 이더리움 전문가가 아닌 기자입니다.
 
-작성 원칙:
-- 문장은 "~습니다", "~했습니다" 존댓말로 끝냅니다.
-- 사실만 씁니다. 누가, 무엇을, 언제 했는지. 해석, 평가, 전망, 수사("구호에서 측정값으로" 같은 표현)는 쓰지 않습니다.
-- 날짜를 꼭 적습니다. 시각이 입력에 있으면 UTC와 한국시간을 함께 씁니다.
-- 수치, EIP 번호, 고유명사는 입력 그대로 둡니다. 입력에 없는 사실은 만들지 않습니다.
-- 전문 용어는 처음 나올 때 쉬운 말로 풉니다 (예: CFI는 "검토 대상", 실행 지연은 "확정까지의 대기 시간").
-- 인명은 통용되는 한글 표기가 확실할 때만 한글로, 아니면 영문 그대로 씁니다. 소속을 함께 적습니다 (예: 이더리움재단(EF) 연구원 저스틴 드레이크).
-- 가격, 시세, 등락률은 싣지 않습니다.
-- 대시(—) 구두점과 이모지는 쓰지 않습니다. 번역투("~를 통해", "~에 있어서", "결론적으로", "시사하는 바가 크다")를 피하고 짧고 평이한 문장으로 씁니다.
-- 같은 사건이 다이제스트, 콜 요약, Short 글에 겹쳐 나오면 하나로 합칩니다.
+원칙:
+- 문장은 "~습니다". 메시지에 있는 사실만 씁니다. 수치, EIP 번호, 날짜, 고유명사는 메시지 그대로. 없는 사실, 전망, 평가는 만들지 않습니다.
+- 발언 인용(따옴표)은 메시지에 그 사람의 말로 나온 것만.
+- 여러 날 이어진 같은 이야기(예: 한 업그레이드를 둘러싼 콜과 논쟁)는 하나의 주제로 묶어 날짜 순서대로 흐름을 보여 줍니다.
+- 중요도 순으로 주제를 씁니다. 주제 수는 내용에 맞게: 소식이 적은 주는 3~4개, 많은 주는 10개까지. 주제 하나는 3~5문장, 공백 포함 250자 안쪽으로 핵심만 씁니다(오너 2026-11-24 「한 주제당 3~5줄」). 세부 발언·수치는 가장 중요한 것 하나만 남기고 나머지는 링크로 넘깁니다. 채널에서 다룬 소식을 빠뜨리지 않습니다.
+- 전문 용어는 처음 나올 때 쉬운 말로 풉니다. 가격·시세는 싣지 않습니다. 대시(—)와 이모지 금지. 번역투 금지.
+- 인명은 통용 한글 표기가 확실할 때만 한글, 아니면 영문. 첫 등장에 소속.
+- 주제마다 근거 메시지 링크(https://t.me/${CHANNEL}/번호)를 1~3개 달고, 메시지 안의 ECK 사이트 링크가 있으면 하나 더 답니다. url은 입력에 나온 것만.
 
 구성:
-- headline: 이번 주 가장 중요한 사실 1~2문장.
-- sections: heading은 "프로토콜 · 코어 개발", "업계 동향", "커뮤니티 논쟁" 중 하나. 각각 최대 2개 항목, 중요한 순서대로. 해당 소식이 없으면 섹션을 뺍니다.
-- 항목 하나에는 사건 하나만 담습니다. 서로 다른 회사나 프로젝트의 소식을 한 항목으로 묶지 않습니다.
-- 항목: title은 사실형 제목, date는 사건 날짜 "MM.DD"(예: "10.06", 모르면 ""), summary는 2문장, 공백 포함 200자 안쪽. EIP 번호를 길게 나열하지 말고 핵심만 씁니다.
-- sources는 항목당 최대 2개 (ECK 1개 + 원문 1개가 기본).
-- sources: ECK 링크를 먼저, 원문(X, Forkcast, 공식 발표)을 뒤에. label은 짧게 (예: "Forkcast 회의록", "ECK", "@EthCoordinate"). url은 반드시 입력에 나온 URL만 씁니다.
-- upcoming: 입력에 나온 다음 주 이후 일정만 "MM.DD 내용" 형태로. 없으면 빈 배열.
-- 전체 분량은 공백 포함 2500자 안쪽. 텔레그램 메시지 하나에 들어가야 하므로 이 한도를 꼭 지킵니다.
+- title: 이번 주를 한 줄로 (사실형)
+- overview: 이번 주 흐름 2~3문장
+- topics: [{ heading: 주제 제목(사실형, 25자 안쪽), text: 본문, sources: [{label, url}] }]
+- upcoming: 메시지에 나온 다음 주 이후 일정 "MM.DD 내용" (없으면 빈 배열)
+- 전체 공백 포함 4,000자 안쪽이 기본, 소식이 아주 많은 주만 7,000자까지 (텔레그램 메시지 최대 2통).
 
 JSON 객체 하나만 출력합니다:
-{"headline": "...", "sections": [{"heading": "...", "items": [{"title": "...", "date": "...", "summary": "...", "sources": [{"label": "...", "url": "..."}]}]}], "upcoming": ["..."]}`;
+{"title":"","overview":"","topics":[{"heading":"","text":"","sources":[{"label":"","url":""}]}],"upcoming":[""]}`;
 
 /** im-not-ai 룰북으로 문장만 윤문한다. 출처·날짜·구조는 그대로 */
 function humanize(brief: Brief): Brief {
-  const items = brief.sections.flatMap((s) => s.items);
-  const texts = [brief.headline, ...items.flatMap((i) => [i.title, i.summary]), ...brief.upcoming];
-  const out = humanizeTexts(texts, '기자에게 보내는 보도자료형 주간 브리프("~습니다" 존댓말)', (p) => runClaude(p, MODEL));
-  let k = 1;
+  const texts = [brief.title, brief.overview, ...brief.topics.flatMap((t) => [t.heading, t.text]), ...brief.upcoming];
+  const out = humanizeTexts(texts, '기자에게 보내는 주간 심층 요약("~습니다" 존댓말)', (p) => runClaude(p, MODEL));
+  let k = 2;
   return {
-    headline: out[0],
-    sections: brief.sections.map((s) => ({ ...s, items: s.items.map((i) => ({ ...i, title: out[k++], summary: out[k++] })) })),
+    title: out[0],
+    overview: out[1],
+    topics: brief.topics.map((t) => ({ ...t, heading: out[k++], text: out[k++] })),
     upcoming: brief.upcoming.map(() => out[k++]),
   };
 }
@@ -88,42 +81,33 @@ function extractJson(text: string): unknown {
   return JSON.parse(trimmed.slice(start, end + 1));
 }
 
-/** 이번 주 입력 텍스트와 그 안에 나온 URL 목록 */
-function collectInput(w: { start: string; end: string }): { input: string; urls: Set<string> } {
-  const parts: string[] = [];
+/** 링크는 "텍스트 (url)" 로 남기는 채널 글 HTML → 평문 */
+const toText = (html: string): string =>
+  decodeEntities(
+    html
+      .replace(/<br\s*\/?>/g, '\n')
+      .replace(/<a [^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g, (_m, h: string, t: string) => `${t.replace(/<[^>]+>/g, '')} (${h})`)
+      .replace(/<[^>]+>/g, ''),
+  ).trim();
 
-  const { digests } = readJson<{ digests: { date: string; title: string; sections: { heading: string; items: { title: string; summary: string; url: string; source: string; date: string }[] }[] }[] }>('eth-digests.json');
-  for (const d of digests.filter((d) => inWindow(d.date, w))) {
-    parts.push(`## 다이제스트 ${d.date}: ${d.title}\nECK: ${SITE}/news?date=${d.date}`);
-    for (const s of d.sections) {
-      for (const i of s.items) parts.push(`- [${s.heading}] ${i.title} (${i.date}, ${i.source})\n  ${i.summary}\n  원문: ${i.url}`);
-    }
+/** 채널 웹 뷰를 ?before= 로 거슬러 올라가며 구간 글을 모아 입력 텍스트와 그 안의 URL 목록을 만든다. t.me 실패는 throw */
+async function collectInput(w: { start: string; end: string }): Promise<{ input: string; urls: Set<string>; count: number }> {
+  const all = new Map<number, ChannelPost>();
+  let before: number | undefined;
+  for (let i = 0; i < 40; i++) {
+    const r = await fetch(`https://t.me/s/${CHANNEL}${before ? `?before=${before}` : ''}`, { headers: { 'user-agent': 'Mozilla/5.0' } });
+    if (!r.ok) throw new Error(`t.me/s/${CHANNEL} responded ${r.status}`);
+    const page = parseChannelPage(await r.text(), CHANNEL);
+    if (!page.length) break;
+    for (const p of page) all.set(p.id, p);
+    before = page[0].id;
+    if (page[0].date && kstDate(page[0].date) < w.start) break;
   }
-
-  const { calls } = readJson<{ calls: { id: string; date: string; title: string; forkcastUrl?: string; summary?: string; intro?: string; decisions?: unknown; targets?: unknown }[] }>('eth-calls.json');
-  for (const c of calls.filter((c) => inWindow(c.date, w))) {
-    parts.push(
-      `## 코어 개발자 콜 ${c.date}: ${c.title}\n원문: ${c.forkcastUrl ?? ''}\nECK: ${SITE}/calls/${c.id}\n${c.summary ?? c.intro ?? ''}\n결정: ${JSON.stringify(c.decisions ?? [])}\n일정: ${JSON.stringify(c.targets ?? [])}`,
-    );
-  }
-
-  const { debates } = readJson<{ debates: { id: string; title: string; summary: string; lastActivity: string; rootUrl: string; publish?: boolean }[] }>('eth-debates.json');
-  for (const d of debates.filter((d) => inWindow(d.lastActivity, w))) {
-    // 사이트에 노출된 논쟁만 ECK 페이지 링크가 살아 있다
-    const eck = d.publish ? `\nECK: ${SITE}/debates/${d.id}` : '';
-    parts.push(`## 논쟁 (최근 활동 ${d.lastActivity}): ${d.title}\n원문: ${d.rootUrl}${eck}\n${d.summary}`);
-  }
-
-  const research = readJson<{ id: string; title: string; author: string; date: string; category: string }[]>('research-index.json');
-  for (const r of research.filter((r) => inWindow(r.date, w) && r.category !== 'Research')) {
-    const file = path.join(DATA, 'articles', `${r.id}.md`);
-    const body = fs.existsSync(file) ? fs.readFileSync(file, 'utf-8').replace(/!\[[^\]]*\]\([^)]*\)/g, '').trim() : '';
-    if (body.length < 80) continue; // 이미지만 올린 글
-    parts.push(`## Short ${normDate(r.date)} (${r.author}): ${r.title}\nECK: ${SITE}/contents/${r.id}\n${body.slice(0, ARTICLE_CHARS)}`);
-  }
-
-  const input = parts.join('\n\n');
-  return { input, urls: new Set(extractUrls(input)) };
+  const posts = weekPosts([...all.values()], w);
+  const input = posts
+    .map((p) => `### 메시지 #${p.id} (${kstDate(p.date)}${p.replyTo ? `, #${p.replyTo}에 대한 답글` : ''}) https://t.me/${CHANNEL}/${p.id}\n${toText(p.html) || '(사진·영상만)'}`)
+    .join('\n\n');
+  return { input, urls: new Set(extractUrls(input)), count: posts.length };
 }
 
 async function send(token: string, chatId: string, text: string): Promise<number> {
@@ -154,21 +138,21 @@ async function main() {
     return;
   }
 
-  const { input, urls } = collectInput(w);
-  if (!input) {
-    console.log(`[SKIP] no content in ${w.start} ~ ${w.end}`);
+  const { input, urls, count } = await collectInput(w);
+  if (!count) {
+    console.log(`[SKIP] no channel posts in ${w.start} ~ ${w.end}`);
     return;
   }
-  const raw = runClaude(`${PROMPT}\n\n# 이번 주 콘텐츠 (${w.start} ~ ${w.end})\n\n${input}`, MODEL);
+  console.log(`채널 글 ${count}건, 입력 ${input.length}자`);
+  const raw = runClaude(`${promptFor(w)}\n\n# 채널 메시지\n\n${input}`, MODEL);
   const { brief: draft, dropped } = keepKnownSources(BriefSchema.parse(extractJson(raw)), urls);
   for (const url of dropped) console.warn(`[WARN] 입력에 없는 출처 링크를 뺐습니다: ${url}`);
 
-  const { brief, dropped: cut } = fitOneMessage(normalizeTerms(humanize(draft)), w);
-  for (const title of cut) console.warn(`[WARN] 한 메시지에 맞추려고 뺀 항목: ${title}`);
-  // fitOneMessage로 대개 한 개. 일정·핵심만으로도 넘치는 드문 경우를 위한 안전장치
-  const messages = splitMessages(briefBlocks(brief, w));
+  const { brief, messages, dropped: cut } = fitMessages(normalizeTerms(humanize(draft)), w, 2);
+  for (const heading of cut) console.warn(`[WARN] 2통에 맞추려고 뺀 주제: ${heading}`);
   if (dryRun) {
-    console.log(messages.join('\n\n----- (다음 메시지) -----\n\n'));
+    console.log(messages.map((m) => `[${m.length}자]\n${m}`).join('\n\n----- (다음 메시지) -----\n\n'));
+    console.log(`\n메시지 ${messages.length}통: ${messages.map((m) => m.length).join(', ')}자`);
     return;
   }
 
