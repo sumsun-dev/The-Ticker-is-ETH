@@ -1,5 +1,5 @@
 /**
- * 기자 그룹방용 주간 브리프의 순수 로직 — 입력 수집 범위, 출처 화이트리스트, 텔레그램 HTML 포맷, 4096자 분할.
+ * 기자 그룹방용 주간 브리프의 순수 로직 — 채널 글 구간 필터, 출처 화이트리스트, 텔레그램 HTML 포맷, 4096자 분할.
  * LLM 호출과 송출은 scripts/post-weekly-brief.ts가 맡는다.
  */
 import { z } from 'zod';
@@ -7,26 +7,20 @@ import { z } from 'zod';
 export const SITE = 'https://ethcollective.xyz';
 export const TELEGRAM_LIMIT = 4096;
 
-export const SECTION_HEADINGS = ['프로토콜 · 코어 개발', '업계 동향', '커뮤니티 논쟁'] as const;
-
 export const BriefSchema = z.object({
-  /** 이번 주 핵심, 1~2문장 */
-  headline: z.string(),
-  sections: z.array(
+  /** 이번 주를 한 줄로 */
+  title: z.string(),
+  /** 이번 주 흐름 2~3문장 */
+  overview: z.string(),
+  /** 중요한 순서 */
+  topics: z.array(
     z.object({
-      heading: z.enum(SECTION_HEADINGS),
-      items: z.array(
-        z.object({
-          title: z.string(),
-          /** MM.DD (사건 날짜, 모르면 빈 문자열) */
-          date: z.string(),
-          summary: z.string(),
-          sources: z.array(z.object({ label: z.string(), url: z.string() })),
-        }),
-      ),
+      heading: z.string(),
+      text: z.string(),
+      sources: z.array(z.object({ label: z.string(), url: z.string() })),
     }),
   ),
-  /** 다음 주 일정, "10.26 후디 테스트넷 글램스테르담 포크" 형태 */
+  /** 다음 주 이후 일정, "10.26 후디 테스트넷 글램스테르담 포크" 형태 */
   upcoming: z.array(z.string()),
 });
 export type Brief = z.infer<typeof BriefSchema>;
@@ -61,22 +55,32 @@ export function weekLabel(w: { start: string; end: string }): string {
 /** 본문에서 http(s) URL을 뽑는다 (출처 화이트리스트용) */
 export const extractUrls = (text: string): string[] => text.match(/https?:\/\/[^\s)<>"'\]]+/g) ?? [];
 
-/** 모델이 입력에 없는 링크를 지어내지 못하게, 입력에 있던 URL만 남긴다. 출처가 다 빠진 항목은 그대로 둔다(사실은 입력 기반) */
+/** 모델이 입력에 없는 링크를 지어내지 못하게, 입력에 있던 URL만 남긴다. 출처가 다 빠진 주제는 그대로 둔다(사실은 입력 기반) */
 export function keepKnownSources(brief: Brief, allowed: Set<string>): { brief: Brief; dropped: string[] } {
   const dropped: string[] = [];
-  const sections = brief.sections.map((s) => ({
-    ...s,
-    items: s.items.map((item) => ({
-      ...item,
-      sources: item.sources.filter((src) => {
-        const ok = allowed.has(src.url);
-        if (!ok) dropped.push(src.url);
-        return ok;
-      }),
-    })),
+  const topics = brief.topics.map((t) => ({
+    ...t,
+    sources: t.sources.filter((src) => {
+      const ok = allowed.has(src.url);
+      if (!ok) dropped.push(src.url);
+      return ok;
+    }),
   }));
-  return { brief: { ...brief, sections }, dropped };
+  return { brief: { ...brief, topics }, dropped };
 }
+
+export interface ChannelPostLike {
+  id: number;
+  date: string;
+  [k: string]: unknown;
+}
+
+/** 채널 글의 KST 날짜 'YYYY-MM-DD' */
+export const kstDate = (iso: string): string => new Date(new Date(iso).getTime() + 9 * 3600e3).toISOString().slice(0, 10);
+
+/** 구간(KST 날짜, 양 끝 포함)에 든 글만 id 순으로 */
+export const weekPosts = <T extends ChannelPostLike>(posts: T[], w: { start: string; end: string }): T[] =>
+  posts.filter((p) => p.date && kstDate(p.date) >= w.start && kstDate(p.date) <= w.end).sort((a, b) => a.id - b.id);
 
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const escAttr = (s: string) => esc(s).replace(/"/g, '&quot;');
@@ -85,48 +89,31 @@ const isEck = (s: { url: string }) => s.url.startsWith(SITE);
 const eckFirst = <T extends { url: string }>(sources: T[]): T[] => [...sources.filter(isEck), ...sources.filter((s) => !isEck(s))];
 const sourceLabel = (s: { label: string; url: string }) => (isEck(s) ? 'ECK' : s.label);
 
-/** 텔레그램 HTML 블록 목록. 메시지에서는 빈 줄로 이어 붙이고, splitMessages는 블록 경계에서만 자른다 */
+/** 텔레그램 HTML 블록 목록. 메시지에서는 빈 줄로 이어 붙이고, splitMessages는 블록 경계에서만 자른다. 주제 하나가 한 블록이라 두 통에 걸쳐 잘리지 않는다 */
 export function briefBlocks(brief: Brief, w: { start: string; end: string }): string[] {
-  const blocks: string[] = [
-    `<b>The Ticker is ETH 주간 브리프</b>\n${weekLabel(w)}\nEthereum Collective Korea(ECK)가 한 주간의 이더리움 생태계 주요 소식을 정리해 드립니다.`,
-    `<b>[이번 주 핵심]</b>\n${esc(brief.headline)}`,
-  ];
-  for (const section of brief.sections) {
-    if (!section.items.length) continue;
-    section.items.forEach((item, i) => {
-      const title = item.date ? `${item.title} (${item.date})` : item.title;
-      const lines = [`<b>${esc(title)}</b>`, esc(item.summary)];
-      if (item.sources.length) {
-        lines.push(`출처: ${eckFirst(item.sources).map((s) => `<a href="${escAttr(s.url)}">${esc(sourceLabel(s))}</a>`).join(' · ')}`);
-      }
-      // 섹션 제목은 첫 항목과 한 블록으로 묶어, 메시지가 나뉠 때 제목만 앞 메시지 끝에 남지 않게 한다
-      if (i === 0) lines.unshift(`<b>[${section.heading}]</b>`, '');
-      blocks.push(lines.join('\n'));
-    });
-  }
-  if (brief.upcoming.length) {
-    blocks.push(`<b>[다음 주 일정]</b>\n${brief.upcoming.map((u) => `· ${esc(u)}`).join('\n')}`);
-  }
-  blocks.push(`<a href="${SITE}">ECK 웹사이트</a>`);
+  const blocks: string[] = [`<b>[ECK 주간 브리프]</b> ${weekLabel(w)}`, `<b>${esc(brief.title)}</b>\n${esc(brief.overview)}`];
+  brief.topics.forEach((t, i) => {
+    const lines = [`<b>${i + 1}. ${esc(t.heading)}</b>`, esc(t.text)];
+    if (t.sources.length) lines.push(eckFirst(t.sources).map((s) => `<a href="${escAttr(s.url)}">${esc(sourceLabel(s))}</a>`).join(' · '));
+    blocks.push(lines.join('\n'));
+  });
+  if (brief.upcoming.length) blocks.push(`<b>다음 일정</b>\n${brief.upcoming.map(esc).join('\n')}`);
   return blocks;
 }
 
-export const formatBrief = (brief: Brief, w: { start: string; end: string }): string => briefBlocks(brief, w).join('\n\n');
-
 /**
- * 한 메시지(4096자)에 들어갈 때까지 항목이 가장 많은 섹션의 마지막 항목부터 뺀다. 섹션 안 항목은 중요한 순서라고 본다.
- * 빈 섹션은 formatBrief가 건너뛴다
+ * maxMessages통에 들어갈 때까지 뒤쪽(덜 중요한) 주제부터 뺀다. 뺀 heading 을 돌려준다
  */
-export function fitOneMessage(brief: Brief, w: { start: string; end: string }, limit = TELEGRAM_LIMIT): { brief: Brief; dropped: string[] } {
+export function fitMessages(brief: Brief, w: { start: string; end: string }, maxMessages = 2, limit = TELEGRAM_LIMIT): { brief: Brief; messages: string[]; dropped: string[] } {
   let cur = brief;
   const dropped: string[] = [];
-  while (formatBrief(cur, w).length > limit) {
-    const target = cur.sections.reduce((a, b) => (b.items.length > a.items.length ? b : a));
-    if (target.items.length === 0) break;
-    dropped.push(target.items[target.items.length - 1].title);
-    cur = { ...cur, sections: cur.sections.map((s) => (s === target ? { ...s, items: s.items.slice(0, -1) } : s)) };
+  let messages = splitMessages(briefBlocks(cur, w), limit);
+  while (messages.length > maxMessages && cur.topics.length > 0) {
+    dropped.push(cur.topics[cur.topics.length - 1].heading);
+    cur = { ...cur, topics: cur.topics.slice(0, -1) };
+    messages = splitMessages(briefBlocks(cur, w), limit);
   }
-  return { brief: cur, dropped };
+  return { brief: cur, messages, dropped };
 }
 
 /**
