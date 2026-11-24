@@ -7,7 +7,7 @@
  * 다이제스트 글(사이트 링크로 판별)은 GitHub main의 eth-digests.json에서 풍부한 본문을 만든다. 게시한 글 id는 ~/.eck/linkedin-channel-seen.json.
  *
  * Usage:
- *   npx tsx scripts/local/linkedin-channel-post.ts --login        # 1회: 전용 프로필에 LinkedIn 로그인 (일반 크롬 창)
+ *   npx tsx scripts/local/linkedin-channel-post.ts --login        # 로그인·보안 확인 해제: 전용 프로필을 일반 크롬 창으로 열기
  *   npx tsx scripts/local/linkedin-channel-post.ts --check        # 로그인·관리자 권한·컴포저 확인 (게시 안 함)
  *   npx tsx scripts/local/linkedin-channel-post.ts --dry          # 새 글 감지·본문·댓글·사진까지만
  *   npx tsx scripts/local/linkedin-channel-post.ts                # 새 글 감지 → 게시 + 첫 댓글
@@ -162,6 +162,36 @@ const COMMENT_SUBMIT = 'button.comments-comment-box__submit-button, button.comme
 
 type Page = Awaited<ReturnType<Awaited<ReturnType<typeof launch>>['newPage']>>;
 
+const RE_BLOCKED = /보안 확인 수행 중|사람인지 확인|Performing security verification|Verify you are human/i;
+
+async function isBlocked(page: Page) {
+  const text = await page.locator('body').innerText({ timeout: 5000 }).catch(() => '');
+  return RE_BLOCKED.test(text) || (await page.locator('iframe[src*="challenges.cloudflare.com"]').count()) > 0;
+}
+
+/** 버튼이 없을 때 화면을 보고 원인을 한국어로 알려 준다. 스크린샷도 남긴다 */
+async function diagnose(page: Page): Promise<string> {
+  const shot = join(tmpdir(), `eck-li-blocked-${Date.now()}.png`);
+  await page.screenshot({ path: shot }).catch(() => {});
+  const where = ` (화면: ${shot})`;
+  if (await isBlocked(page)) return `LinkedIn 보안 확인(Cloudflare) 화면에 막힘. 연속 게시로 봇 확인이 뜬 것. --login 으로 열리는 창에서 「사람인지 확인」 체크 한 번 하면 풀림${where}`;
+  if (/login|authwall|checkpoint|\/uas\//.test(page.url())) return `로그인이 풀림 (--login 으로 다시 로그인)${where}`;
+  return `게시 버튼 없음. 페이지 관리자 권한이 없거나 LinkedIn 화면이 바뀜 (URL: ${page.url()})${where}`;
+}
+
+/** 버튼을 기다린다. 없으면 null 이 아니라 원인 메시지를 돌려준다. 보안 확인 화면이면 저절로 풀리는지 최대 60초 더 본다(체크박스는 누르지 않는다) */
+async function waitForButton(page: Page, btn: ReturnType<Page['locator']>, timeout: number): Promise<string | null> {
+  if (await btn.waitFor({ timeout }).then(() => true, () => false)) return null;
+  if (await isBlocked(page)) {
+    log('보안 확인 화면. 저절로 풀리는지 최대 60초 대기');
+    for (let i = 0; i < 12; i++) {
+      await page.waitForTimeout(5000);
+      if (await btn.isVisible().catch(() => false)) return null;
+    }
+  }
+  return diagnose(page);
+}
+
 /** 게시 버튼을 누르기 전에 난 실패. 처음부터 다시 해도 글이 두 번 올라가지 않는다 */
 class RetryBeforePost extends Error {}
 
@@ -170,9 +200,8 @@ async function publish(page: Page, post: LinkedInPost, media: Media) {
   const box = page.locator(SHARE_BOX);
   const kind = media.video ? 'video' : media.photos.length ? 'photo' : 'text';
   const start = box.getByRole('button', { name: kind === 'video' ? RE_VIDEO : kind === 'photo' ? RE_PHOTO : RE_TEXT }).first();
-  await start.waitFor({ timeout: 30_000 }).catch(() => {
-    throw new Error('게시 버튼 없음. 로그인이 풀렸거나 페이지 관리자가 아님 (--login 재실행)');
-  });
+  const blocked = await waitForButton(page, start, 30_000);
+  if (blocked) throw new Error(blocked);
   await start.click();
   const modal = page.locator(MODAL).first();
   await modal.waitFor({ timeout: 20_000 });
@@ -293,10 +322,11 @@ async function checkMode() {
     const page = ctx.pages()[0] ?? (await ctx.newPage());
     await page.goto(ADMIN_URL, { waitUntil: 'domcontentloaded', timeout: 60_000 });
     await page.waitForTimeout(3000);
-    const ok = await page.locator(SHARE_BOX).getByRole('button', { name: RE_PHOTO }).first().waitFor({ timeout: 20_000 }).then(() => true, () => false);
+    const why = await waitForButton(page, page.locator(SHARE_BOX).getByRole('button', { name: RE_PHOTO }).first(), 20_000);
+    const ok = why === null;
     const shot = join(tmpdir(), 'eck-li-check.png');
     await page.screenshot({ path: shot });
-    log(ok ? '게시 버튼 확인. 로그인과 관리자 권한 정상' : '게시 버튼 없음. 로그인 또는 관리자 권한 확인 필요');
+    log(ok ? '게시 버튼 확인. 로그인과 관리자 권한 정상' : why);
     log(`현재 URL: ${page.url()}\n스크린샷: ${shot}`);
     if (!ok) process.exitCode = 1;
   } finally {
@@ -355,8 +385,8 @@ async function analyticsMode() {
 function loginMode() {
   mkdirSync(PROFILE_DIR, { recursive: true });
   // 자동화 플래그가 붙은 창은 로그인 단계에서 막힐 수 있어, 로그인만은 일반 크롬 창을 전용 프로필로 띄운다
-  execFileSync('open', ['-na', 'Google Chrome', '--args', `--user-data-dir=${PROFILE_DIR}`, '--no-first-run', 'https://www.linkedin.com/login']);
-  log(`일반 크롬 창(전용 프로필 ${PROFILE_DIR})을 열었습니다. ECK 페이지 관리자 계정으로 로그인한 뒤 창을 닫으세요.`);
+  execFileSync('open', ['-na', 'Google Chrome', '--args', `--user-data-dir=${PROFILE_DIR}`, '--no-first-run', ADMIN_URL]);
+  log(`일반 크롬 창(전용 프로필 ${PROFILE_DIR})을 열었습니다. ECK 페이지 관리자 계정으로 로그인하거나 보안 확인을 체크한 뒤 창을 닫으세요.`);
 }
 
 function acquireLock(): boolean {
@@ -395,7 +425,7 @@ async function main() {
     const targets = forced ? posts.filter((p) => p.id === forced) : pickChannelPosts(posts, loadSeen(), new Date());
     if (targets.length === 0) return log('게시할 새 글 없음');
     const digests = fetchDigests();
-    for (const ch of targets) {
+    for (const [idx, ch] of targets.entries()) {
       current = ch.id;
       // 이 글에 달린 답글(브리프 토론 메시지 등)의 링크는 첫 댓글로 합친다
       const post = buildLinkedInPost(ch, digests, undefined, posts.filter((p) => p.replyTo === ch.id));
@@ -422,6 +452,8 @@ async function main() {
       log(`#${ch.id}: LinkedIn 게시 완료 (${mediaDesc})`);
       await notify(`LinkedIn ECK 페이지에 채널 글 #${ch.id} 게시 완료 (${mediaDesc})\n${post.body.split('\n')[0].slice(0, 80)}`);
       rmSync(media.dir, { recursive: true, force: true });
+      // ponytail: 연속 게시가 LinkedIn 봇 확인을 부른 것으로 보여 글 사이에 쉰다. 값은 아래 90_000(ms) 조절
+      if (idx < targets.length - 1) await new Promise((r) => setTimeout(r, 90_000));
     }
   } catch (e) {
     const msg = e instanceof Error ? e.message : String(e);
