@@ -72,7 +72,6 @@ export function keepKnownSources(brief: Brief, allowed: Set<string>): { brief: B
 export interface ChannelPostLike {
   id: number;
   date: string;
-  [k: string]: unknown;
 }
 
 /** 채널 글의 KST 날짜 'YYYY-MM-DD' */
