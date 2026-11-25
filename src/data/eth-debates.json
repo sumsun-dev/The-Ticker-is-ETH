@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-22T01:14:16.012Z",
+  "updatedAt": "2026-11-25T01:04:47.735Z",
   "processedDigests": [
     "2026-08-24",
     "2026-08-25",
@@ -39,9 +39,253 @@
     "2026-11-13",
     "2026-11-16",
     "2026-11-19",
-    "2026-11-22"
+    "2026-11-22",
+    "2026-11-25"
   ],
   "debates": [
+    {
+      "id": "privacy-tool-ragekick-due-process",
+      "title": "민간 프라이버시 기업이 이미 서비스한 이용자의 자금 회수(ragequit) 옵션을 적법 절차 없이 임의로 꺼도 되는가?",
+      "category": "규제",
+      "summary": "RAILGUN과 프라이버시풀(Privacy Pools) 같은 온체인 프라이버시 도구의 컴플라이언스 설계를 두고, Ceazor7은 러그(rug)만 아니라면 민간 기업이 어떤 이유로든 ragequit 옵션을 끌 수 있어야 한다고 주장했고, lex_node는 서비스 제공 전 거절은 괜찮지만 일단 서비스한 뒤의 강제 환수는 ragequit이 아니라 ragekick이며 적법 절차 없는 ragekick은 사실상 러그라고 반박했다.",
+      "keyPoints": [
+        "서비스를 제공하기 전의 거절(ab initio)과 이미 제공한 뒤의 강제 환수는 법적으로 다른 수준의 적법 절차를 요구하는가?",
+        "민간 기업이 어떤 이유로든 이용자의 ragequit 옵션을 끄는 것은 정당한 재량인가, 아니면 적법 절차 없는 ragekick은 러그인가?",
+        "RAILGUN식 사전 거절 모델과 프라이버시풀식 사후 환수 모델 중 어느 쪽이 규제와 양립하는가?"
+      ],
+      "background": "RAILGUN과 프라이버시풀(Privacy Pools)은 이더리움의 온체인 프라이버시 도구다. 논쟁의 핵심 용어로 ragequit은 이용자가 스스로 풀에서 빠져나와 자금을 회수하는 것을 뜻하고, ragekick은 운영 주체가 이용자를 강제로 내보내거나 자금을 되돌리는 것을 뜻한다. 사전 거절(ab initio)은 서비스를 제공하기 전에 특정 이용자를 받지 않는 것을 말한다. 이 논쟁은 컴플라이언스(compliance) 압박 아래에서 어느 단계의 개입이 더 높은 적법 절차를 필요로 하는지를 다툰다.",
+      "whyItMatters": "온체인 프라이버시 도구가 규제 압박 속에서 살아남으려면 환수·동결 절차의 법적 정당성이 기술 설계만큼 핵심 변수가 되고 있다. RAILGUN식 사전 거절과 프라이버시풀식 사후 환수 중 어느 모델이 규제와 신뢰 가능한 중립성을 동시에 만족시키느냐가 앞으로의 설계 선택을 가른다.",
+      "sources": [],
+      "keywords": [
+        "RAILGUN",
+        "Privacy Pools",
+        "ragekick",
+        "ragequit"
+      ],
+      "positions": [
+        {
+          "stance": "con",
+          "label": "적법 절차 없는 ragekick은 사실상 러그다",
+          "holders": [
+            {
+              "handle": "lex_node",
+              "name": "_gabrielShapir0",
+              "role": "크립토 법률 변호사, MetaLeX Labs",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/2058233189882032128/pRSMN_6C_400x400.jpg"
+            }
+          ],
+          "points": [
+            "서비스를 제공하기 전에 거절하는 것(ab initio)은 괜찮고, RAILGUN이 바로 그렇게 한다.",
+            "일단 서비스를 제공한 뒤에 그것을 뒤엎는 데에는 더 높은 적법 절차 요건이 있어야 한다.",
+            "ragequit 옵션을 끄는 것은 ragequit이 아니라 ragekick이며, 적법 절차 없는 ragekick은 거의 항상 러그다.",
+            "이런 것은 훨씬 더 규제되어야 하며, 프라이버시풀 방식보다 RAILGUN 방식을 선호한다."
+          ]
+        },
+        {
+          "stance": "pro",
+          "label": "민간 기업 재량으로 꺼도 된다",
+          "holders": [
+            {
+              "handle": "Ceazor7",
+              "name": "CΞAZOR.eth mak'n 🥪s 🦇🔊",
+              "avatar": "https://pbs.twimg.com/profile_images/2064117978028032000/ZGgNs7lt_400x400.jpg"
+            }
+          ],
+          "points": [
+            "러그는 당연히 허용돼선 안 되지만, ragequit 옵션을 끄는 것은 허용돼야 한다.",
+            "민간 기업은 어떤 이유로든 그 결정을 내릴 수 있어야 한다."
+          ]
+        },
+        {
+          "stance": "neutral",
+          "label": "현실에서는 환수가 더 꼬인다",
+          "holders": [
+            {
+              "handle": "SweCryptoLawyer",
+              "name": "SweCryptoLawyer"
+            }
+          ],
+          "points": [
+            "이 목적으로 자금을 막았던 고객이 이용자에게 그 이유를 말할 수 없었다.",
+            "이용자가 자금 보유를 이유로 소송하자, 경찰이 이용자에게 귀띔할 수 없다고 해 결국 고객이 자금을 돌려줬다."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-11-23",
+          "by": "lex_node",
+          "stance": "con",
+          "quote": "서비스 제공 전 거절은 괜찮다. RAILGUN이 하는 게 바로 그런 것이다. 하지만 일단 서비스를 제공한 뒤에는 그것을 뒤엎는 데 더 높은 적법 절차 요건이 있어야 한다.",
+          "url": "https://x.com/lex_node/status/2124876178490294721",
+          "digest": "2026-11-25",
+          "replyTo": "Ceazor7",
+          "relation": "reply",
+          "original": "@Ceazor7 refusing service ab initio is fine--that's kind of what @RAILGUN_Project does...once you give service at that point there should be higher due process requirements to rug it",
+          "author": "lex_node",
+          "translation": "@Ceazor7 처음부터(ab initio) 서비스를 거부하는 것은 괜찮습니다. 그게 바로 @RAILGUN_Project가 하는 일과 비슷하죠... 일단 서비스를 제공하기 시작한 시점부터는 그것을 러그(rug)하는 데 더 높은 절차적 정당성(due process) 요건이 필요합니다."
+        },
+        {
+          "date": "2026-11-23",
+          "by": "SweCryptoLawyer",
+          "stance": "neutral",
+          "quote": "좀 난감한 문제다. 우리 고객 중 이 목적으로 자금을 막은 곳이 있었는데 이용자에게 그 이유를 말할 수 없었다. 이용자가 자금 보유를 이유로 소송하자, 경찰이 이용자에게 귀띔하면 안 된다고 해서 고객은 자금을 돌려줬다.",
+          "url": "https://x.com/SweCryptoLawyer/status/2124877022405239149",
+          "digest": "2026-11-25",
+          "replyTo": "lex_node",
+          "relation": "reply",
+          "original": "@lex_node its kind of awkward. We had a client who blocked funds for this purpose and could not tell the user why. the user later sued the client for holding the funds, and the client gave the funds back because the police told the client that we can't \"tip\" the user (by telling the court)",
+          "author": "SweCryptoLawyer",
+          "translation": "@lex_node 좀 애매한 상황입니다. 저희 쪽 의뢰인 중 한 곳이 바로 이런 목적으로 자금을 차단했는데, 사용자에게 그 이유를 말해줄 수 없었습니다. 그 사용자는 나중에 자금을 묶어둔 것에 대해 의뢰인을 상대로 소송을 제기했고, 결국 의뢰인은 자금을 돌려주었습니다. 경찰이 의뢰인에게 우리가 사용자에게 (법원에 알리는 방식으로) \"귀띔(tip)\"해줄 수는 없다고 말했기 때문입니다."
+        },
+        {
+          "date": "2026-11-23",
+          "by": "Ceazor7",
+          "stance": "pro",
+          "quote": "러그는 당연히 허용돼선 안 된다. 하지만 ragequit 옵션을 끄는 것은 허용돼야 한다. 민간 기업이 어떤 이유로든 말이다.",
+          "url": "https://x.com/Ceazor7/status/2124877967474204770",
+          "digest": "2026-11-25",
+          "replyTo": "lex_node",
+          "relation": "reply",
+          "original": "@lex_node @RAILGUN_Project ruging should obv not be allowed.. but rage quit option turn off should be. for whatever reason a private company wants.\n\n\"I dont like your curly red hair. No soup for you\"",
+          "author": "Ceazor7",
+          "translation": "@lex_node @RAILGUN_Project 러그(ruging)는 당연히 허용되어서는 안 됩니다... 하지만 레이지 퀴트(rage quit) 옵션을 끄는 것은 허용되어야 합니다. 어떤 이유든 민간 기업이 원하는 대로 말이죠. \"나는 당신의 곱슬곱슬한 빨간 머리가 마음에 들지 않아요. 당신에게는 수프를 주지 않겠습니다.\""
+        },
+        {
+          "date": "2026-11-23",
+          "by": "lex_node",
+          "stance": "con",
+          "quote": "미안하지만 그건 ragequit이 아니라 ragekick이다. 내 생각엔 그건 거의 항상 러그다. 이런 것은 훨씬 더 규제되어야 한다. 나는 프라이버시풀 방식보다 RAILGUN 방식을 선호한다.",
+          "url": "https://x.com/lex_node/status/2124878495910068542",
+          "digest": "2026-11-25",
+          "replyTo": "Ceazor7",
+          "relation": "reply",
+          "original": "sorry that's not ragequit, that's ragekick and it basically is always a rug imo, I think this sort of thing should be much more regulated\n\nbasically I moreso favorRAILgun approach vs. privacypools approach (both good projects obviously, but I'm not a fan of ragekick without due process)",
+          "author": "lex_node",
+          "translation": "죄송하지만 그건 레이지 퀴트(ragequit)가 아니라 레이지 킥(ragekick)입니다. 그리고 그것은 기본적으로 항상 러그라고 저는 생각합니다. 이런 종류의 일은 훨씬 더 강하게 규제되어야 한다고 봅니다. 기본적으로 저는 프라이버시풀(privacypools) 방식보다는 RAILgun 방식을 더 선호합니다 (둘 다 분명 좋은 프로젝트입니다만, 저는 절차적 정당성(due process) 없는 레이지 킥의 팬은 아닙니다)."
+        }
+      ],
+      "firstSeen": "2026-11-23",
+      "lastActivity": "2026-11-23",
+      "status": "active",
+      "rootUrl": "https://x.com/lex_node/status/2124876178490294721",
+      "engagement": {
+        "likes": 1,
+        "retweets": 0,
+        "quotes": 0,
+        "replies": 1,
+        "views": 147
+      }
+    },
+    {
+      "id": "board-reversal-shareholder-interest-proof",
+      "title": "번복된 이사회 결정이 시장가치를 1조 달러 되돌린 사례는 원래 결정이 주주 이익에 반했음을 증명하는가?",
+      "category": "거버넌스 · 커뮤니티",
+      "summary": "adietrichs는 번복된 이사회 결정이 시가총액을 1조 달러 되돌린 사례가 원래 조치가 주주 이익에 부합하지 않았음을 보여준다며 크립토가 radical markets로 복귀하기를 지향해야 한다고 주장했고, jchaskin22는 그 결론에는 동의하지만 예시는 논거가 되지 못한다며 이사회는 단기 가격이 아니라 장기 주주가치를 최적화해야 하고 갑작스러운 CEO 교체가 단기 변동성을 낳는 것은 당연하다고 반박했다.",
+      "keyPoints": [
+        "번복된 이사회 결정이 시장가치를 되돌렸다는 것이 원래 결정이 주주 이익에 반했음을 증명하는가?",
+        "이사회는 단기 가격과 장기 주주가치 중 무엇을 최적화 기준으로 삼아야 하는가?",
+        "이더리움의 정체성은 사이퍼펑크 가치뿐 아니라 radical markets(급진적 시장 설계)의 절반도 복원해야 하는가?"
+      ],
+      "background": "adietrichs는 한 기업에서 번복된 이사회 결정이 시가총액을 크게 되돌린 사례를 근거로 들었으나 구체적 기업명은 명시하지 않았다. 배경에는 지난 수십 년간 기업 거버넌스에서 주주 이익 중심주의(shareholder primacy)가 약화돼 왔다는 논의가 있다. adietrichs는 크립토가 이에 맞선 영적 반대 운동으로서 '시장으로의 복귀'와 radical markets를 지향해야 한다고 보며, radical markets는 급진적 시장 설계를 통한 자원·공공재 배분을 추구하는 개념이다. 그는 올해 이더리움에서 사이퍼펑크 가치가 되살아난 것은 좋지만 그 두 번째 절반이 빠져 있다고 본다.",
+      "whyItMatters": "이더리움 정체성 담론이 사이퍼펑크 가치 재부상에 더해 시장 설계(radical markets)와 기업 거버넌스 철학으로 확장되고 있다. adietrichs가 Vitalik의 응답을 요청한 만큼 이 비전이 공개 논의로 이어지는지, 그리고 그것이 프로토콜 우선순위 담론에 반영되는지를 지켜볼 만하다.",
+      "sources": [],
+      "keywords": [
+        "radical markets",
+        "cypherpunk",
+        "shareholder value",
+        "corporate governance"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "사례가 주주 이익 위배를 보여준다",
+          "holders": [
+            {
+              "handle": "adietrichs",
+              "name": "ansgar.eth",
+              "role": "EF 리서처",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/1575685906786402304/P5UbjDt6_400x400.jpg"
+            }
+          ],
+          "points": [
+            "번복된 이사회 결정이 시가총액에 1조 달러를 되돌려 놓았고, 이는 원래의 조치가 주주 이익에 부합하지 않았음을 보여준다.",
+            "지난 수십 년간 기업 거버넌스에서 주주 이익 중심주의에 반하는 흐름이 있었고, 크립토는 그 영적 반대 운동으로서 시장으로 복귀해야 한다.",
+            "이더리움은 늘 사이퍼펑크와 radical markets의 결합이었고, 되살아난 사이퍼펑크 가치만으로는 그 두 번째 절반이 빠져 있다."
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "결론엔 동의하나 그 예시는 증명이 못 된다",
+          "holders": [
+            {
+              "handle": "jchaskin22",
+              "name": "chaskin.eth",
+              "role": "EF 리서처",
+              "watchlist": true,
+              "avatar": "https://pbs.twimg.com/profile_images/2016950149633691648/Kht-necI_400x400.jpg"
+            }
+          ],
+          "points": [
+            "결론에는 동의하지만 그 예시가 결론을 증명한다고 보지 않는다.",
+            "이사회는 단기 가격이 아니라 장기 주주가치를 최적화해야 한다.",
+            "갑작스러운 CEO 교체가 단기 변동성을 낳는 것은, 그 결정이 장기적으로 주주에게 이익이 되더라도 당연한 일이다."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-11-23",
+          "by": "adietrichs",
+          "stance": "pro",
+          "quote": "번복된 이사회 결정이 시가총액에 1조 달러를 되돌려 놓았다. 이는 원래의 조치가 주주 이익에 부합하지 않았음을 보여준다. 지난 수십 년간 기업 거버넌스에서 주주 이익 중심주의에 반하는 흐름이 있었고, 크립토는 그 영적 반대 운동으로서 시장으로 복귀해야 한다.",
+          "url": "https://x.com/adietrichs/status/2124885248983101815",
+          "digest": "2026-11-25",
+          "relation": "none",
+          "original": "Reversed board decision adds back $1T to market cap. Shows original action wasn't in shareholder interest.\n\nThere has been a movement over past decades in corporate governance against centering shareholder interest.\n\nCrypto should be spiritual counter movement. Return to markets.",
+          "author": "adietrichs",
+          "translation": "번복된 이사회 결정이 시가총액(market cap)에 1조 달러를 다시 더해주었습니다. 이는 원래의 조치가 주주 이익에 부합하지 않았음을 보여줍니다. 지난 수십 년간 기업 지배구조(corporate governance) 분야에서는 주주 이익을 중심에 두는 것에 반대하는 흐름이 있었습니다. 크립토(crypto)는 그에 대한 정신적인 반대 운동이 되어야 합니다. 시장으로의 회귀 말입니다."
+        },
+        {
+          "date": "2026-11-23",
+          "by": "adietrichs",
+          "stance": "pro",
+          "quote": "더 일반적으로: 올해 이더리움에서 사이퍼펑크 가치가 되살아난 것을 보는 것은 좋았다. 훌륭한 일이다. 하지만 내 생각엔 나머지 절반이 빠져 있다. 내게 이더리움은 늘 사이퍼펑크와 radical markets의 결합이었고, 그 두 번째 절반도 새로운 비전이 필요하다.",
+          "url": "https://x.com/adietrichs/status/2124885786273148985",
+          "digest": "2026-11-25",
+          "relation": "none",
+          "original": "More generally: It's been nice to see a resurgence of the cypherpunk values in Ethereum this year. This is great! But it's missing the other half imo. For me Ethereum always stood for cypherpunk x radical markets. That second half also needs a renewed vision imo.",
+          "author": "adietrichs",
+          "translation": "좀 더 일반적으로 말하자면, 올해 이더리움(Ethereum)에서 사이퍼펑크(cypherpunk) 가치가 다시 부상하는 것을 보는 것은 좋았습니다. 이것은 훌륭한 일입니다! 하지만 제가 보기엔 나머지 절반이 빠져 있습니다. 저에게 이더리움은 항상 사이퍼펑크와 급진적 시장(radical markets)의 결합을 의미했습니다. 그 두 번째 절반 역시 새로워진 비전이 필요하다고 저는 생각합니다."
+        },
+        {
+          "date": "2026-11-23",
+          "by": "jchaskin22",
+          "stance": "con",
+          "quote": "당신의 결론에는 동의하지만, 그 예시가 그것을 증명한다고 보지 않는다. 이사회는 단기 가격이 아니라 장기 주주가치를 최적화해야 한다. 갑작스러운 CEO 교체가 단기 변동성을 낳는 것은, 그 결정이 궁극적으로 주주에게 이익이 되더라도 당연한 일이다.",
+          "url": "https://x.com/jchaskin22/status/2124930081080717340",
+          "digest": "2026-11-25",
+          "replyTo": "adietrichs",
+          "relation": "reply",
+          "original": "I agree with your conclusion, but I don't the example proves it\n\nBoards should be optimizing for long term shareholder value, not short term price\n\nObviously an abrupt CEO removal is going to create short term volatility, even if the decision ultimately proves to be in shareholders best interests",
+          "author": "jchaskin22",
+          "translation": "저는 당신의 결론에는 동의하지만, 그 예시가 그것을 증명한다고는 생각하지 않습니다. 이사회(board)는 단기적인 가격이 아니라 장기적인 주주 가치(shareholder value)를 최적화해야 합니다. 당연히 갑작스러운 CEO 해임은 단기적인 변동성(volatility)을 만들어낼 것입니다. 비록 그 결정이 결국 주주들의 최선의 이익에 부합하는 것으로 드러난다 해도 말입니다."
+        }
+      ],
+      "firstSeen": "2026-11-23",
+      "lastActivity": "2026-11-23",
+      "status": "active",
+      "rootUrl": "https://x.com/adietrichs/status/2124885786273148985",
+      "engagement": {
+        "likes": 38,
+        "retweets": 2,
+        "quotes": 0,
+        "replies": 2,
+        "views": 1152
+      }
+    },
     {
       "id": "smaller-frequent-forks-scope",
       "title": "이더리움은 포크를 더 작은 범위로 쪼개 더 자주 내보내야 하나?",
@@ -77,7 +321,8 @@
           "holders": [
             {
               "handle": "sakulstra",
-              "name": "sakulstra"
+              "name": "sakulstra",
+              "avatar": "https://pbs.twimg.com/profile_images/1547974385415270403/t5AtWko1_400x400.jpg"
             },
             {
               "handle": "lex_node",
@@ -97,7 +342,8 @@
             },
             {
               "handle": "Philastru",
-              "name": "Philastru"
+              "name": "Philastru 🛡️",
+              "avatar": "https://pbs.twimg.com/profile_images/1725011317822812160/BV-vBLW3_400x400.png"
             }
           ],
           "points": [
@@ -397,7 +643,8 @@
           "holders": [
             {
               "handle": "apoorveth",
-              "name": "apoorveth"
+              "name": "apoorv.gwei",
+              "avatar": "https://pbs.twimg.com/profile_images/2078993576499802112/qeGYLWHV_400x400.png"
             }
           ],
           "points": [
@@ -689,7 +936,7 @@
       ],
       "firstSeen": "2026-11-17",
       "lastActivity": "2026-11-17",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/Gary_Rong/status/2122502494983168265",
       "engagement": {
         "likes": 18,
@@ -853,7 +1100,7 @@
       ],
       "firstSeen": "2026-11-17",
       "lastActivity": "2026-11-17",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/mysticryuujin/status/2122544640356139035",
       "engagement": {
         "likes": 35,
@@ -4238,7 +4485,7 @@
       ],
       "firstSeen": "2026-10-26",
       "lastActivity": "2026-10-26",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/donnoh_eth/status/2114639333063889295",
       "engagement": {
         "likes": 12,
@@ -4508,7 +4755,7 @@
       ],
       "firstSeen": "2026-10-23",
       "lastActivity": "2026-10-25",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/lightclients/status/2113606207252611307",
       "engagement": {
         "likes": 139,
@@ -4768,7 +5015,7 @@
       ],
       "firstSeen": "2026-10-23",
       "lastActivity": "2026-10-25",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/pcaversaccio/status/2113612790212808867",
       "engagement": {
         "likes": 1541,
@@ -4966,7 +5213,7 @@
       ],
       "firstSeen": "2026-10-23",
       "lastActivity": "2026-10-24",
-      "status": "cooling",
+      "status": "archived",
       "publish": false
     },
     {
