@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-25T14:00:27.571Z",
+  "updatedAt": "2026-11-26T14:00:23.038Z",
   "ercs": [
     {
       "number": 20,
@@ -5609,6 +5609,13 @@
       "requires": []
     },
     {
+      "number": 8316,
+      "title": "Programmable Settlement Locks",
+      "status": "Draft",
+      "created": "2026-06-25",
+      "requires": []
+    },
+    {
       "number": 8320,
       "title": "Regulated Asset Claim",
       "status": "Draft",
@@ -5671,6 +5678,27 @@
       "created": "2026-07-05",
       "requires": [
         165
+      ]
+    },
+    {
+      "number": 8338,
+      "title": "Token-Bound Executable Skills",
+      "status": "Draft",
+      "created": "2026-07-10",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 8342,
+      "title": "Verifiable Invoice Commitment (VIC)",
+      "status": "Draft",
+      "created": "2026-04-26",
+      "requires": [
+        20,
+        712,
+        7730
       ]
     },
     {
@@ -5743,6 +5771,25 @@
       ]
     },
     {
+      "number": 8403,
+      "title": "Account Authority Lifecycle",
+      "status": "Draft",
+      "created": "2026-08-29",
+      "requires": [
+        8141
+      ]
+    },
+    {
+      "number": 8409,
+      "title": "Signed Service Payment Quotes",
+      "status": "Draft",
+      "created": "2026-09-04",
+      "requires": [
+        712,
+        1271
+      ]
+    },
+    {
       "number": 8410,
       "title": "Portable Execution Plan Artifact",
       "status": "Draft",
@@ -5750,6 +5797,50 @@
       "requires": [
         155,
         712
+      ]
+    },
+    {
+      "number": 8414,
+      "title": "Token-Bound Task Tenders",
+      "status": "Draft",
+      "created": "2026-09-05",
+      "requires": [
+        20,
+        165,
+        721
+      ]
+    },
+    {
+      "number": 8419,
+      "title": "Know-Your-Agent (KYA) Framework",
+      "status": "Draft",
+      "created": "2026-09-19",
+      "requires": [
+        165,
+        712,
+        721,
+        1271,
+        8004
+      ]
+    },
+    {
+      "number": 8423,
+      "title": "ERC-721 Burn Record Extension",
+      "status": "Draft",
+      "created": "2026-09-24",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 8424,
+      "title": "Confidential Real World Asset Token",
+      "status": "Draft",
+      "created": "2026-09-24",
+      "requires": [
+        165,
+        7984
       ]
     },
     {
@@ -5766,6 +5857,30 @@
       ]
     },
     {
+      "number": 8428,
+      "title": "ERC-721 Lineage Registry",
+      "status": "Draft",
+      "created": "2026-09-25",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 8432,
+      "title": "Onchain IP Asset and License Registry",
+      "status": "Draft",
+      "created": "2026-06-30",
+      "requires": [
+        2,
+        155,
+        165,
+        712,
+        721,
+        1271
+      ]
+    },
+    {
       "number": 8436,
       "title": "Agent Collective Decision Framework",
       "status": "Draft",
@@ -5775,6 +5890,18 @@
         712,
         1271,
         6372
+      ]
+    },
+    {
+      "number": 8439,
+      "title": "Settlement-Decoupled Nanopayment Ledger",
+      "status": "Draft",
+      "created": "2026-10-09",
+      "requires": [
+        712,
+        1271,
+        2098,
+        5267
       ]
     },
     {
@@ -5799,6 +5926,153 @@
       ]
     },
     {
+      "number": 8446,
+      "title": "Cross-Chain Client Gateway for CCIP-Read",
+      "status": "Draft",
+      "created": "2026-10-16",
+      "requires": [
+        3668,
+        7930
+      ]
+    },
+    {
+      "number": 8447,
+      "title": "Swarm AI Framework",
+      "status": "Draft",
+      "created": "2026-10-18",
+      "requires": [
+        165,
+        712,
+        1271,
+        6372,
+        8004,
+        8436
+      ]
+    },
+    {
+      "number": 8448,
+      "title": "Agent Service Order Amendments",
+      "status": "Draft",
+      "created": "2026-10-18",
+      "requires": [
+        20,
+        712,
+        1271,
+        2098,
+        8001
+      ]
+    },
+    {
+      "number": 8451,
+      "title": "Permanent Locks for Lockable Tokens",
+      "status": "Draft",
+      "created": "2026-10-19",
+      "requires": [
+        165,
+        721,
+        1155,
+        6982
+      ]
+    },
+    {
+      "number": 8467,
+      "title": "Agent Credit Backers",
+      "status": "Draft",
+      "created": "2026-10-20",
+      "requires": [
+        20,
+        165,
+        712,
+        721,
+        1271
+      ]
+    },
+    {
+      "number": 8468,
+      "title": "Agent Safety Framework (ASF)",
+      "status": "Draft",
+      "created": "2026-10-25",
+      "requires": [
+        165
+      ]
+    },
+    {
+      "number": 8471,
+      "title": "AI Dispute Resolution Framework (ADRF)",
+      "status": "Draft",
+      "created": "2026-10-29",
+      "requires": [
+        165,
+        6372,
+        8436
+      ]
+    },
+    {
+      "number": 8485,
+      "title": "NFT Controlled Application Spaces",
+      "status": "Draft",
+      "created": "2026-11-04",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
+      "number": 8489,
+      "title": "Agent Information Flow Paradigm",
+      "status": "Draft",
+      "created": "2026-11-08",
+      "requires": [
+        165,
+        6372
+      ]
+    },
+    {
+      "number": 8490,
+      "title": "Agent Meditation Mechanism",
+      "status": "Draft",
+      "created": "2026-11-09",
+      "requires": [
+        165,
+        6372
+      ]
+    },
+    {
+      "number": 8493,
+      "title": "Onchain URI Scheme",
+      "status": "Draft",
+      "created": "2026-11-09",
+      "requires": [
+        8048,
+        8049
+      ]
+    },
+    {
+      "number": 8495,
+      "title": "Token Metadata JSON Schema and Processing",
+      "status": "Draft",
+      "created": "2026-10-26",
+      "requires": [
+        721,
+        1155,
+        4804,
+        4906,
+        6909
+      ]
+    },
+    {
+      "number": 8498,
+      "title": "Namespaced State Transitions for SBTs",
+      "status": "Draft",
+      "created": "2026-11-13",
+      "requires": [
+        165,
+        712,
+        721,
+        5192
+      ]
+    },
+    {
       "number": 8501,
       "title": "Generative Engine Optimization Framework",
       "status": "Draft",
@@ -5806,6 +6080,19 @@
       "requires": [
         165,
         6372
+      ]
+    },
+    {
+      "number": 8506,
+      "title": "AI Inference Token Onchain",
+      "status": "Draft",
+      "created": "2026-11-20",
+      "requires": [
+        20,
+        165,
+        712,
+        1155,
+        1271
       ]
     }
   ]
