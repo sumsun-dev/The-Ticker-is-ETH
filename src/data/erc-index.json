@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-26T14:00:23.038Z",
+  "updatedAt": "2026-11-27T14:00:26.992Z",
   "ercs": [
     {
       "number": 20,
@@ -5206,6 +5206,16 @@
       ]
     },
     {
+      "number": 8060,
+      "title": "Native ETH embedding in NFTs",
+      "status": "Draft",
+      "created": "2025-10-26",
+      "requires": [
+        165,
+        721
+      ]
+    },
+    {
       "number": 8063,
       "title": "Groups - Membership Tokens",
       "status": "Final",
@@ -5235,6 +5245,15 @@
       "created": "2025-10-30",
       "requires": [
         712
+      ]
+    },
+    {
+      "number": 8076,
+      "title": "Cross-Token Escrow Protocol",
+      "status": "Draft",
+      "created": "2025-11-03",
+      "requires": [
+        20
       ]
     },
     {
@@ -5780,6 +5799,23 @@
       ]
     },
     {
+      "number": 8404,
+      "title": "Recomputable Verification Receipts",
+      "status": "Draft",
+      "created": "2026-08-29",
+      "requires": []
+    },
+    {
+      "number": 8406,
+      "title": "Fungible Agent Tokens",
+      "status": "Draft",
+      "created": "2026-09-01",
+      "requires": [
+        20,
+        165
+      ]
+    },
+    {
       "number": 8409,
       "title": "Signed Service Payment Quotes",
       "status": "Draft",
@@ -5997,6 +6033,19 @@
       ]
     },
     {
+      "number": 8470,
+      "title": "Token Launch Observations",
+      "status": "Draft",
+      "created": "2026-10-27",
+      "requires": [
+        165,
+        721,
+        2935,
+        8004,
+        8376
+      ]
+    },
+    {
       "number": 8471,
       "title": "AI Dispute Resolution Framework (ADRF)",
       "status": "Draft",
@@ -6005,6 +6054,45 @@
         165,
         6372,
         8436
+      ]
+    },
+    {
+      "number": 8473,
+      "title": "uRWA Policy",
+      "status": "Draft",
+      "created": "2026-10-22",
+      "requires": [
+        165,
+        7943
+      ]
+    },
+    {
+      "number": 8478,
+      "title": "x402 Payee Verification for ERC-8004 Agents",
+      "status": "Draft",
+      "created": "2026-10-30",
+      "requires": [
+        712,
+        1271,
+        7702,
+        8004
+      ]
+    },
+    {
+      "number": 8481,
+      "title": "Agent Pre-Sign Risk Report",
+      "status": "Draft",
+      "created": "2026-10-31",
+      "requires": [
+        20,
+        55,
+        712,
+        721,
+        1271,
+        2612,
+        3009,
+        7702,
+        8004
       ]
     },
     {
@@ -6073,6 +6161,13 @@
       ]
     },
     {
+      "number": 8499,
+      "title": "Hash-Based Key Derivation from BIP-39",
+      "status": "Draft",
+      "created": "2026-11-13",
+      "requires": []
+    },
+    {
       "number": 8501,
       "title": "Generative Engine Optimization Framework",
       "status": "Draft",
@@ -6094,6 +6189,33 @@
         1155,
         1271
       ]
+    },
+    {
+      "number": 8509,
+      "title": "Agent Linkability Report",
+      "status": "Draft",
+      "created": "2026-11-21",
+      "requires": [
+        6538,
+        8004
+      ]
+    },
+    {
+      "number": 8515,
+      "title": "GPU Collateral Evidence",
+      "status": "Draft",
+      "created": "2026-11-23",
+      "requires": [
+        712,
+        1271
+      ]
+    },
+    {
+      "number": 8517,
+      "title": "Post-Quantum Validator Seed Derivation",
+      "status": "Draft",
+      "created": "2026-11-24",
+      "requires": []
     }
   ]
 }

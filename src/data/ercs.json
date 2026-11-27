@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-26T15:15:43.760Z",
+  "updatedAt": "2026-11-27T14:55:52.936Z",
   "ercs": [
     {
       "number": 20,
@@ -80505,6 +80505,191 @@
       "generatedAt": "2026-11-18T14:19:08.138Z"
     },
     {
+      "number": 8060,
+      "titleKo": "NFT 내장 ETH 환수 표준",
+      "topic": "NFT·멀티토큰",
+      "summary": "ERC-721 토큰에 네이티브 ETH 가치를 내장해, 토큰을 소각하면 그 ETH를 소유자가 직접 돌려받을 수 있게 하는 확장 표준입니다.",
+      "why": "ERC-721은 대체 불가능한 자산의 소유권을 표준화했지만 토큰에 네이티브 ETH 가치를 직접 결합하는 방법은 정하지 않습니다. 지금까지 가치를 담은 NFT를 만들려면 외부 보관(vault) 컨트랙트, 래핑된 자산, 또는 오프체인 회계 가정에 의존해야 했습니다. 이런 방식은 지갑, 마켓플레이스, 인덱서, 애플리케이션마다 서로 다른 통합 패턴을 요구하고 추가적인 신뢰 가정과 파편화를 낳습니다. 사용권, 라이선스, 보증처럼 토큰 자체와 분리될 수 없는 경제적 담보를 표현하려 해도 표준화된 조회·환수 방법이 없어 각 프로젝트가 서로 다른 커스텀 로직을 만들어야 했고 그만큼 통합 비용과 오류 가능성이 늘었습니다.",
+      "before": [
+        "NFT에 가치를 담으려면 외부 vault 컨트랙트나 래핑된 자산에 의존해야 합니다.",
+        "지갑·마켓플레이스마다 가치 조회 방식이 달라 호환성이 떨어집니다.",
+        "가치 환수 로직이 프로젝트마다 달라 신뢰 가정과 파편화가 늘어납니다."
+      ],
+      "after": [
+        "토큰 컨트랙트가 직접 ETH 가치를 회계하고 valueOf로 표준화해 조회할 수 있습니다.",
+        "소유자가 burn을 호출해 토큰을 소각하면서 담긴 ETH를 바로 돌려받습니다.",
+        "지갑·마켓플레이스·인덱서가 공통 인터페이스로 가치 보유 NFT를 인식할 수 있습니다.",
+        "기존 ERC-721 호환성을 그대로 유지합니다."
+      ],
+      "impact": [
+        {
+          "who": "지갑·마켓플레이스 개발자",
+          "text": "valueOf를 호출해 NFT에 담긴 환수 가능 ETH 금액을 표시할 수 있습니다."
+        },
+        {
+          "who": "NFT 소유자",
+          "text": "토큰을 소각해 담겨 있던 ETH를 직접 돌려받을 수 있습니다."
+        },
+        {
+          "who": "라이선스·보증 발행자",
+          "text": "경제적 담보를 토큰 자체에 내장해 비수탁 방식으로 설계할 수 있습니다."
+        },
+        {
+          "who": "컨트랙트 개발자",
+          "text": "ERC-721을 그대로 확장해 가치 회계 로직만 추가하면 됩니다."
+        }
+      ],
+      "iface": [
+        {
+          "sig": "function valueOf(uint256 tokenId) external view returns (uint256);",
+          "ko": "해당 tokenId를 지금 소각할 경우 현재 소유자가 받을 수 있는 네이티브 ETH 금액을 반환합니다."
+        },
+        {
+          "sig": "function burn(uint256 tokenId) external;",
+          "ko": "tokenId를 소각하고 그에 연결된 ETH 가치를 소유자에게 전송합니다."
+        }
+      ],
+      "flow": {
+        "title": "가치 내장부터 환수까지",
+        "steps": [
+          {
+            "label": "컨트랙트",
+            "title": "토큰 발행과 가치 할당",
+            "body": "민팅 로직이 각 토큰에 네이티브 ETH 가치를 할당하고 내부적으로 회계합니다."
+          },
+          {
+            "label": "외부 앱",
+            "title": "valueOf 조회",
+            "body": "지갑이나 마켓플레이스가 valueOf(tokenId)를 호출해 환수 가능한 ETH 금액을 확인합니다."
+          },
+          {
+            "label": "소유자",
+            "title": "토큰 보유·거래",
+            "body": "일반 ERC-721 토큰처럼 보유하거나 다른 사람에게 양도할 수 있습니다."
+          },
+          {
+            "label": "소유자",
+            "title": "burn 호출",
+            "body": "현재 소유자가 burn(tokenId)을 호출해 토큰을 영구 소각합니다."
+          },
+          {
+            "label": "컨트랙트",
+            "title": "ETH 환수",
+            "body": "소각과 동시에 연결된 ETH가 소유자에게 전송되고 같은 가치는 다시 청구될 수 없습니다."
+          }
+        ]
+      },
+      "deep": [
+        {
+          "title": "인터페이스 요구사항",
+          "body": "이 확장을 준수하는 컨트랙트는 ERC-721과 ERC-165 인터페이스 감지를 반드시 구현해야 합니다. IERC721Value는 valueOf와 burn 두 함수만 정의하는 최소 인터페이스입니다.",
+          "ref": "원문: Specification"
+        },
+        {
+          "title": "valueOf의 의무",
+          "body": "valueOf(tokenId)는 현재 소유자가 그 시점에 토큰을 소각하면 받을 네이티브 ETH 금액을 정확히 반영해야 합니다. 존재하지 않는 tokenId에 대한 호출은 반드시 되돌려(revert)져야 합니다.",
+          "ref": "원문: valueOf"
+        },
+        {
+          "title": "burn의 의무",
+          "body": "burn은 msg.sender가 tokenId의 현재 소유자가 아니면 반드시 되돌려져야 합니다. 호출이 성공하면 토큰을 영구히 파괴하고 연결된 ETH 가치를 현재 소유자에게 전송하며 같은 가치가 다시 청구되지 않도록 보장하고 ERC-721 표준이 소각 시 요구하는 대로 영(zero) 주소로 Transfer 이벤트를 발생시켜야 합니다.",
+          "ref": "원문: burn"
+        },
+        {
+          "title": "가치 할당 방식",
+          "body": "ETH 가치를 각 토큰에 어떻게 할당할지는 구현체가 정의합니다. 모든 토큰에 동일한 값을 줄 수도, 토큰마다 다른 값을 줄 수도, 커스텀 민팅 로직으로 결정할 수도 있습니다. 다만 한 번 할당된 값은 valueOf(tokenId)로 일관되게 보고되어야 하고 소각 시점에 실제로 환수 가능해야 합니다.",
+          "ref": "원문: Value Assignment"
+        },
+        {
+          "title": "회계 모델",
+          "body": "토큰별 값 저장, 공동 자금 풀(pooled reserve) 모델, 결정론적 값 할당 등 다양한 내부 회계 전략을 쓸 수 있습니다. 다만 토큰별 환수 가치가 명확히 정의되어야 하고 valueOf(tokenId)는 그 특정 토큰의 환수 가치를 보고해야 하며 구현체는 보고된 모든 값이 실제로 담보되고 환수 가능하도록 보장해야 합니다.",
+          "ref": "원문: Accounting Model"
+        },
+        {
+          "title": "컨트랙트 ETH 잔액과 valueOf",
+          "body": "컨트랙트의 전체 ETH 잔액은 직접 전송, 잉여 적립, 기부, 기타 구현별 회계 등으로 전체 환수 가치의 합과 다를 수 있습니다. 따라서 valueOf(tokenId)는 컨트랙트의 원시 ETH 잔액으로부터 추론해서는 안 됩니다.",
+          "ref": "원문: ETH Balance Considerations"
+        },
+        {
+          "title": "소각 후 토큰 ID 재사용 여부",
+          "body": "소각은 해당 토큰 인스턴스와 그에 연결된 회계를 영구히 종료시켜 같은 가치가 다시 청구될 수 없게 합니다. 다만 이 보장은 소각된 그 토큰 인스턴스와 그 회계에만 적용되며 같은 숫자 토큰 ID를 이후 독립적인 생애주기나 회계 모델로 다시 만들 수 있는지는 이 제안이 규정하지 않습니다.",
+          "ref": "원문: Rationale"
+        },
+        {
+          "title": "제안 상태",
+          "body": "이 ERC는 현재 Draft 상태입니다. 아직 공식적으로 확정되지 않았으며 향후 명세 내용이 바뀌거나 논의가 멈출 수 있는 초기 제안이라는 점을 유의해야 합니다.",
+          "ref": "원문: 상태(Draft)"
+        }
+      ],
+      "safety": [
+        {
+          "title": "인가 오류로 인한 자금 위험",
+          "body": "잘못된 권한, 회계, 환수 로직은 지급불능, 의도치 않은 자금 손실, 무단 가치 추출로 이어질 수 있습니다. ETH 환수를 유발하는 소각은 반드시 현재 토큰 소유자만 시작할 수 있도록 보장해야 합니다."
+        },
+        {
+          "title": "재진입 공격 방지",
+          "body": "burn 과정에서 ETH를 전송할 때 재진입 공격에 노출될 수 있으므로, 체크-이펙트-인터랙션 패턴 등 동등한 안전장치를 적용하는 것이 권장됩니다."
+        },
+        {
+          "title": "토큰별 값의 정확한 회계",
+          "body": "토큰별 환수 가치를 정확히 회계해 토큰 상태, 보고된 값, 실제 환수 가능한 ETH 사이에 불일치가 생기지 않도록 해야 합니다."
+        },
+        {
+          "title": "중복 청구 방지",
+          "body": "한 번 환수된 가치가 두 번 이상 청구될 수 없도록 보장해야 합니다."
+        },
+        {
+          "title": "직접 전송 및 잉여 ETH 처리",
+          "body": "컨트랙트에 직접 전송된 ETH를 어떻게 처리할지, 그리고 잔액이 전체 환수 의무를 초과할 때 그 잉여를 어떻게 다룰지 신중히 설계해야 합니다."
+        }
+      ],
+      "glossary": [
+        {
+          "term": "ERC-721",
+          "def": "대체 불가능한 토큰(NFT)의 소유권을 표준화한 이더리움 토큰 표준입니다."
+        },
+        {
+          "term": "ERC-165",
+          "def": "컨트랙트가 어떤 인터페이스를 지원하는지 외부에서 조회할 수 있게 하는 표준입니다."
+        },
+        {
+          "term": "소각(burn)",
+          "def": "토큰을 영구적으로 파괴해 더 이상 존재하지 않게 만드는 동작입니다."
+        },
+        {
+          "term": "재진입(reentrancy)",
+          "def": "외부 호출이 끝나기 전에 같은 함수가 다시 호출되어 상태가 꼬이는 공격 기법입니다."
+        },
+        {
+          "term": "체크-이펙트-인터랙션",
+          "def": "조건 검사, 상태 변경, 외부 호출 순서로 코드를 작성해 재진입을 막는 설계 패턴입니다."
+        },
+        {
+          "term": "공동 자금 풀(pooled reserve)",
+          "def": "여러 토큰의 환수 가치를 하나의 공동 자금으로 모아 관리하는 회계 방식입니다."
+        }
+      ],
+      "meta": {
+        "title": "Native ETH embedding in NFTs",
+        "description": "Enables ERC-721 tokens to expose and redeem intrinsic native ETH value defined by contract logic.",
+        "status": "Draft",
+        "type": "Standards Track",
+        "category": "ERC",
+        "created": "2025-10-26",
+        "authors": [
+          "TEN.IO Meta"
+        ],
+        "requires": [
+          165,
+          721
+        ],
+        "discussionsTo": "https://ethereum-magicians.org/t/eip-8060-ierc721value-native-eth-embedding/25979"
+      },
+      "sourceHash": "a76d3c13ca15c8a7",
+      "model": "sonnet",
+      "generatedAt": "2026-11-27T14:03:53.336Z"
+    },
+    {
       "number": 8063,
       "titleKo": "그룹 멤버십 토큰",
       "topic": "토큰",
@@ -81060,6 +81245,183 @@
       "sourceHash": "9166e68dc0a2c5c9",
       "model": "sonnet",
       "generatedAt": "2026-11-18T14:22:50.826Z"
+    },
+    {
+      "number": 8076,
+      "titleKo": "교차 토큰 에스크로 교환 표준",
+      "topic": "금고·DeFi",
+      "summary": "결제자가 입금한 토큰을 컨트랙트가 보관하다가 유동성 공급자가 다른 토큰을 지정된 수신자에게 전달하면 같은 트랜잭션에서 맞교환이 끝나는 에스크로 표준입니다.",
+      "why": "결제자와 유동성 공급자가 토큰 쌍, 금액, 마감 시한을 오프체인으로 합의해도, 결제자가 입력 토큰을 먼저 보내면 출력 토큰 전달은 별도 트랜잭션에 맡겨집니다. 이 경우 유동성 공급자가 입금만 받고 출력 토큰을 보내지 않을 위험이 있습니다. 지갑이나 결제 앱도 주문을 어떻게 추적하고 정산이 실패했을 때 환불을 어떻게 처리할지 각자 다른 방식으로 구현해야 합니다. 공통 인터페이스가 없으면 서비스마다 에스크로 로직과 이벤트 구조가 달라져 지갑, 결제 앱, 유동성 공급자 서비스가 서로 호환되기 어렵습니다. 이 표준은 컨트랙트가 입력 토큰을 보관하고 유동성 공급자가 출력 토큰을 전달하는 순간 같은 트랜잭션에서 입력 토큰을 받도록 묶어 이런 신뢰 문제를 줄입니다.",
+      "before": [
+        "결제자가 먼저 보내면 유동성 공급자가 안 줄 위험이 있음",
+        "정산 실패 시 환불 로직을 앱마다 따로 구현해야 함",
+        "주문 추적과 상태 확인 방식이 서비스마다 다름",
+        "경쟁하는 여러 유동성 공급자의 체결 처리 방식이 표준화되지 않음"
+      ],
+      "after": [
+        "컨트랙트가 입력 토큰을 보관해 예치 여부를 바로 확인 가능",
+        "출력 토큰 전달과 입력 토큰 수령이 같은 트랜잭션에서 원자적으로 일어남",
+        "마감 시한이 지나면 결제자가 직접 환불받을 수 있음",
+        "OrderCreated·OrderCompleted·OrderCancelled 이벤트로 상태 추적이 표준화됨"
+      ],
+      "impact": [
+        {
+          "who": "결제자",
+          "text": "자금을 컨트랙트에 안전하게 맡기고 체결되지 않으면 마감 후 스스로 환불받을 수 있습니다."
+        },
+        {
+          "who": "유동성 공급자",
+          "text": "결제자의 입금을 먼저 확인한 뒤 출력 토큰을 보내고 같은 트랜잭션에서 입력 토큰을 받습니다."
+        },
+        {
+          "who": "지갑·결제 앱 개발자",
+          "text": "공통 인터페이스로 주문 생성, 추적, 체결, 취소를 일관되게 구현할 수 있습니다."
+        },
+        {
+          "who": "수신자",
+          "text": "결제자와 다른 주소라도 주문에 지정되면 출력 토큰을 직접 받을 수 있습니다."
+        }
+      ],
+      "iface": [
+        {
+          "sig": "event OrderCompleted(bytes32 indexed orderId);",
+          "ko": "주문이 체결되어 완료되면 발생하는 이벤트입니다."
+        },
+        {
+          "sig": "event OrderCancelled(bytes32 indexed orderId);",
+          "ko": "주문이 취소되면 발생하는 이벤트입니다."
+        },
+        {
+          "sig": "function completeOrder(bytes32 orderId) external;",
+          "ko": "유동성 공급자가 호출해 출력 토큰을 수신자에게 보내고 그 대가로 에스크로에 예치된 입력 토큰을 받습니다."
+        },
+        {
+          "sig": "function cancelOrder(bytes32 orderId) external;",
+          "ko": "마감 시한이 지난 뒤 결제자가 호출해 예치된 입력 토큰을 돌려받습니다."
+        }
+      ],
+      "flow": {
+        "title": "주문 생성부터 정산까지",
+        "steps": [
+          {
+            "label": "결제자",
+            "title": "주문 생성",
+            "body": "createOrder를 호출해 입력 토큔을 에스크로에 예치하고 수신자, 두 토큰, 금액, 마감 시한을 지정합니다. OrderCreated가 발생합니다."
+          },
+          {
+            "label": "유동성 공급자",
+            "title": "주문 체결",
+            "body": "마감 전에 completeOrder를 호출해 출력 토큰을 수신자에게 보내고 같은 트랜잭션에서 예치된 입력 토큰을 받습니다. OrderCompleted가 발생합니다."
+          },
+          {
+            "label": "결제자",
+            "title": "환불(체결되지 않은 경우)",
+            "body": "마감 시한이 지났는데 아무도 체결하지 않았다면 cancelOrder를 호출해 입력 토큔을 돌려받습니다. OrderCancelled가 발생합니다."
+          }
+        ]
+      },
+      "deep": [
+        {
+          "title": "역할과 자산 범위",
+          "body": "결제자는 createOrder를 호출해 입력 토큰을 공급하는 사람이고 마감 후 환불을 받을 수 있는 것도 결제자뿐입니다. 수신자는 to로 지정된 주소로 결제자 본인일 수도, 다른 주소일 수도 있습니다. 유동성 공급자는 completeOrder를 호출하는 쪽으로 주문에 미리 지정되지 않으며 수신자를 제외한 누구든 정확한 출력 금액을 보내 체결할 수 있습니다. 두 토큰은 같은 체인 위의 서로 다른 ERC-20 컨트랙트여야 하고 금액은 각 토큰의 최소 단위 기준 양의 정수여야 합니다. 네이티브 자산이나 전송 시 수수료를 떼거나 에스크로 보관 중 잔액이 바뀌는 토큔은 이 인터페이스의 범위 밖입니다. 모든 전송은 원천 잔액이 정확히 그 금액만큼 줄고 목적지 잔액이 그만큼 늘어나야 하며 ERC-20 호출이 false를 반환하는 경우를 포함해 전송이 실패하면 해당 주문 작업과 토큰 전송 전체가 되돌려져야 합니다.",
+          "ref": "원문: Roles and Assets"
+        },
+        {
+          "title": "createOrder의 조건",
+          "body": "호출자는 에스크로가 amountFrom만큼의 tokenFrom을 가져갈 수 있도록 충분한 허용량(allowance)을 미리 설정해야 합니다. to가 0 주소이거나 에스크로 자신이거나, 두 토큰 주소가 같거나, 두 금액 중 하나라도 양수가 아니거나, deadline이 현재 블록 시각(block.timestamp)보다 크지 않으면 호출은 되돌려집니다. 에스크로는 결제자, 수신자, 두 토큰, 두 금액, 마감 시한을 기록하고 결제자로부터 정확히 amountFrom을 가져와 보관합니다. 예치가 성공하면 그 에스크로 컨트랙트 안에서 고유한 bytes32 주문 ID를 반환하고 OrderCreated를 발생시켜야 합니다. 같은 파라미터로 만든 주문이라도 서로 다른 ID를 가져야 하며 에스크로로의 단순한 토큰 전송만으로는 주문이 생성되거나 자금이 채워지지 않습니다.",
+          "ref": "원문: createOrder"
+        },
+        {
+          "title": "completeOrder의 조건",
+          "body": "유동성 공급자는 에스크로가 amountTo만큼의 tokenTo를 가져갈 수 있도록 허용량을 설정해야 합니다. 주문이 마감 시한을 지났거나 호출자가 수신자 본인이면 호출은 되돌려집니다. 에스크로는 같은 트랜잭션 안에서 유동성 공급자로부터 정확히 amountTo를 to에게 전달하고 에스크로에 보관 중이던 정확히 amountFrom을 유동성 공급자에게 지급해야 합니다. 둘 중 하나라도 실패하면 주문은 자금 변동 없이 열린 상태로 남아야 합니다. 성공하면 주문을 완료 상태로 표시하고 OrderCompleted를 발생시킵니다.",
+          "ref": "원문: completeOrder"
+        },
+        {
+          "title": "cancelOrder의 조건",
+          "body": "호출자가 결제자가 아니거나 주문이 아직 마감 시한을 지나지 않았으면 호출은 되돌려집니다. 성공하면 에스크로는 보관 중이던 amountFrom 전액을 결제자에게 돌려주고 주문을 취소 상태로 표시하며 OrderCancelled를 발생시킵니다. 환불은 결제자가 직접 이 함수를 호출해야 시작됩니다.",
+          "ref": "원문: cancelOrder"
+        },
+        {
+          "title": "주문 생명주기와 마감 시한의 경계",
+          "body": "주문은 createOrder가 성공하면 열린 상태가 되고 completeOrder나 cancelOrder가 성공하면 종결 상태가 됩니다. 알려지지 않은 주문이거나 이미 종결된 주문에 대해 두 함수 모두 되돌려져야 합니다. deadline은 초 단위 유닉스 타임스탬프이며 block.timestamp가 deadline과 같은 순간까지는 체결(completion)이 가능하고 block.timestamp가 deadline을 넘어서야 취소(cancellation)가 가능해집니다. 이렇게 체결 가능 구간과 취소 가능 구간이 겹치지 않게 나뉩니다.",
+          "ref": "원문: Order Lifecycle"
+        },
+        {
+          "title": "설계 근거: 컨트랙트 커스터디와 고정 금액",
+          "body": "컨트랙트가 자금을 보관하기 때문에 유동성 공급자는 체결 전에 결제자가 실제로 입력 토큰을 예치했는지 확인할 수 있습니다. 결제자와 수신자 역할을 분리해 결제 앱이 유동성을 제공하지 않는 수혜자에게도 출력 토큔을 보낼 수 있게 합니다. 특정 유동성 공급자가 미리 지정되지 않으므로 자격을 갖춘 누구든 제시된 금액으로 체결할 수 있습니다. 금액이 고정되어 있어 컨트랙트는 가격 오라클이나 온체인 슬리피지 계산 없이도 정해진 양의 전달을 강제할 수 있습니다.",
+          "ref": "원문: Rationale"
+        },
+        {
+          "title": "제안 상태",
+          "body": "이 제안은 현재 Draft 상태인 초안입니다. 아직 검토와 논의를 거쳐 세부 사항이 바뀌거나 진행이 멈출 수 있습니다.",
+          "ref": "원문: Preamble status"
+        }
+      ],
+      "safety": [
+        {
+          "title": "토큰 동작",
+          "body": "토큰이 되돌려지거나(revert) 잘못된 잔액을 보여주거나 전송을 동결하거나 에스크로가 통제할 수 없는 방식으로 잔액을 바꿀 수 있습니다. 정확한 전송량 검증은 그런 문제가 없는 토큰에 대해서만 제시된 금액을 보장하므로, 통합하는 쪽은 주문을 받기 전에 두 토큰 컨트랙트와 발행자의 통제 권한을 평가해야 합니다."
+        },
+        {
+          "title": "원자성과 재진입",
+          "body": "토큰 호출은 외부 코드를 실행할 수 있습니다. 구현체는 주문 상태 변경 중 재진입을 막고 종결 전환이 일어나는 동안 주문이 다시 조작 가능한 상태로 남지 않도록 해야 합니다. 전송이 실패하면 전체 작업이 되돌려져야 합니다."
+        },
+        {
+          "title": "경쟁하는 체결",
+          "body": "여러 유동성 공급자가 같은 주문에 동시에 체결을 시도할 수 있습니다. 가장 먼저 성공한 체결만 정산되고 나머지는 되돌려지며 수수료만 낭비될 수 있습니다. 고정된 수신자와 금액 덕분에 경쟁하는 유동성 공급자가 출력을 다른 곳으로 돌리거나 조건을 바꿀 수는 없습니다."
+        },
+        {
+          "title": "만료와 유동성 부족",
+          "body": "에스크로는 유동성 공급자가 주문을 체결하거나 트랜잭션이 마감 전에 포함된다는 것을 보장하지 않습니다. 애플리케이션은 포함 지연을 고려하고 결제자에게 환불을 시작할 방법을 제공해야 합니다. 발행자의 제한이나 토큰 오류는 환불마저 막을 수 있습니다."
+        }
+      ],
+      "glossary": [
+        {
+          "term": "에스크로",
+          "def": "거래 당사자 대신 자금을 제3자(여기서는 컨트랙트)가 보관하다가 조건이 맞으면 전달하는 방식입니다."
+        },
+        {
+          "term": "유동성 공급자(LP)",
+          "def": "주문에 지정된 출력 토큰을 대신 전달해 주고 그 대가로 예치된 입력 토큰을 받는 참여자입니다."
+        },
+        {
+          "term": "허용량(allowance)",
+          "def": "토큰 보유자가 다른 주소(여기서는 에스크로)에게 자기 토큰을 대신 가져갈 수 있도록 미리 승인해 둔 한도입니다."
+        },
+        {
+          "term": "슬리피지",
+          "def": "거래 체결 시 예상 가격과 실제 체결 가격 사이의 차이입니다."
+        },
+        {
+          "term": "가격 오라클",
+          "def": "컨트랙트에 외부 자산 가격 정보를 전달해 주는 장치나 서비스입니다."
+        },
+        {
+          "term": "재진입(reentrancy)",
+          "def": "외부 컨트랙트 호출 중에 그 컨트랙트가 다시 원래 함수를 호출해 상태를 예기치 않게 바꾸는 공격 패턴입니다."
+        }
+      ],
+      "meta": {
+        "title": "Cross-Token Escrow Protocol",
+        "description": "An escrow contract holds a payer's tokens until a liquidity provider delivers a different token to a designated recipient.",
+        "status": "Draft",
+        "type": "Standards Track",
+        "category": "ERC",
+        "created": "2025-11-03",
+        "authors": [
+          "Xiang Gao",
+          "Xiaoyu Liu",
+          "Hao Zou",
+          "Yuxiang Fu"
+        ],
+        "requires": [
+          20
+        ],
+        "discussionsTo": "https://ethereum-magicians.org/t/erc-8076-custodial-contract-based-cross-token-exchange-protocol/26489"
+      },
+      "sourceHash": "c22bf90dd40e32f0",
+      "model": "sonnet",
+      "generatedAt": "2026-11-27T14:05:52.043Z"
     },
     {
       "number": 8084,
@@ -91414,6 +91776,413 @@
       "generatedAt": "2026-11-26T14:13:06.179Z"
     },
     {
+      "number": 8404,
+      "titleKo": "재계산 가능 검증 영수증",
+      "topic": "기타",
+      "summary": "클레임·증거·검증규칙·결과를 각각 해시로 고정한 6개 필드 영수증을 정의해, 누구나 독립적으로 같은 검증 절차를 재실행해 같은 결과가 나오는지 확인할 수 있게 합니다.",
+      "why": "저장된 참/거짓 값이나 검증자 서명, 또는 보고서 다이제스트만 가지고는 정확히 무엇을 검증했는지 알 수 없습니다. 어떤 클레임을, 어떤 증거 묶음으로, 어떤 절차와 바이트 인코딩으로, 어떤 외부 맥락 아래 평가했는지가 드러나지 않기 때문입니다. 그 결과 서로 다른 구현체가 실제로는 다른 입력을 평가하거나 같은 데이터를 다르게 해석했는데도 겉보기에는 합의한 것처럼 보일 수 있습니다. 또한 '검증 절차가 무엇을 결론 내렸는가'와 '독립된 구현체가 같은 절차를 실행해 같은 정형 결과를 다시 도출할 수 있는가'라는 서로 다른 두 질문이 흔히 하나로 뒤섞입니다. 이는 이더리움 앱들이 오프체인 검증 결과를 주고받거나 그 다이제스트를 온체인에 선택적으로 기록할 때 특히 문제가 됩니다. 온체인 앵커는 영수증 바이트의 포함이나 순서를 증명할 뿐, 그 안에 커밋된 의미론적 결과가 재현 가능하다는 것은 증명하지 않습니다.",
+      "before": [
+        "저장된 참/거짓 값이나 서명만으로는 어떤 클레임과 증거를 검증했는지 알 수 없습니다.",
+        "서로 다른 구현체가 실제로는 다른 입력을 평가했는데도 같은 결과로 보일 수 있습니다.",
+        "증거가 없는 경우(UNAVAILABLE)와 판정이 모호한 경우(UNVERIFIABLE), 단순 실패를 구분할 방법이 없습니다.",
+        "온체인에 다이제스트를 올려도 그 안의 의미론적 결과가 재현 가능한지는 보장되지 않습니다."
+      ],
+      "after": [
+        "클레임, 증거집합, 검증 프로필, 결과 각각이 SHA-256으로 콘텐츠 주소화되어 무엇을 검증했는지 명확합니다.",
+        "독립된 구현체가 동일한 절차를 재실행해 REPRODUCED, DIVERGED, CANNOT_RECOMPUTE로 재현 여부를 판정할 수 있습니다.",
+        "VERIFIED, REFUTED, UNVERIFIABLE라는 의미론적 결과와 재계산 상태가 분리되어 혼동되지 않습니다.",
+        "특정 생산자 구현체나 서명이 절대적 권위를 갖지 않고, 검증 프로필이 의미의 기준이 됩니다."
+      ],
+      "impact": [
+        {
+          "who": "검증 결과를 주고받는 앱·컨트랙트 개발자",
+          "text": "오프체인 검증 결과를 영수증 형태로 교환하고 다이제스트를 온체인에 선택적으로 기록할 수 있습니다."
+        },
+        {
+          "who": "검증 프로필 작성자",
+          "text": "클레임, 증거, 결과 계약, 사유코드 네임스페이스를 명세해 검증 절차의 의미를 정의해야 합니다."
+        },
+        {
+          "who": "재계산을 수행하는 검증자",
+          "text": "영수증과 프로필 패키지만으로 독립적으로 절차를 재실행해 결과를 재현할 수 있습니다."
+        },
+        {
+          "who": "감사자·규제 담당자",
+          "text": "서명이나 온체인 앵커링만으로는 의미론적 정확성이 보장되지 않는다는 점을 확인해야 합니다."
+        }
+      ],
+      "iface": [],
+      "flow": {
+        "title": "영수증 생성과 재계산 흐름",
+        "steps": [
+          {
+            "label": "프로필 작성자",
+            "title": "검증 프로필 정의",
+            "body": "클레임·증거·결과 계약과 사유코드, 외부 컨텍스트 규칙을 콘텐츠 주소화된 프로필로 고정합니다."
+          },
+          {
+            "label": "생산자",
+            "title": "검증 실행",
+            "body": "클레임과 증거집합에 대해 프로필의 절차를 실행해 하나의 정형 결과를 도출합니다."
+          },
+          {
+            "label": "생산자",
+            "title": "영수증 생성",
+            "body": "클레임, 증거집합, 프로필, 결과 각각의 SHA-256 다이제스트와 outcome, reasonCode를 담은 6필드 영수증을 만듭니다."
+          },
+          {
+            "label": "재계산자",
+            "title": "의존성 해시 검증",
+            "body": "프로필 패키지와 증거 페이로드를 받아 커밋된 다이제스트와 바이트가 일치하는지 먼저 확인합니다."
+          },
+          {
+            "label": "재계산자",
+            "title": "절차 재실행",
+            "body": "같은 검증 절차를 독립적으로 실행해 클레임·증거집합·프로필·결과 식별자가 영수증과 같은지 비교합니다."
+          },
+          {
+            "label": "재계산자",
+            "title": "상태 판정",
+            "body": "일치하면 REPRODUCED, 평가는 됐지만 다르면 DIVERGED, 의존성을 못 구하면 CANNOT_RECOMPUTE로 보고합니다."
+          }
+        ]
+      },
+      "deep": [
+        {
+          "title": "영수증의 여섯 필드",
+          "body": "영수증은 claimDigest, evidenceSetDigest, verificationProfileDigest, outcome, reasonCode, resultDigest 여섯 멤버만 가진 JSON 객체여야 하며 그 외 멤버는 허용되지 않습니다. 네 개의 다이제스트 멤버는 접두사 없는 64자 소문자 16진수로 SHA-256을 나타냅니다. outcome은 세 가지 검증 결과 중 하나, reasonCode는 해당 검증 프로필이 커밋한 사유코드 네임스페이스의 구성원이어야 합니다. 영수증은 클레임, 증거집합 서술자와 페이로드, 검증 프로필 패키지, 정형 결과 객체를 함께 동반하지만 그 내용을 직접 담지는 않습니다.",
+          "ref": "원문: Receipt"
+        },
+        {
+          "title": "세 가지 검증 결과(outcome)",
+          "body": "VERIFIED는 프로필이 정의한 명제가 커밋된 증거 클로저 아래에서 충족됨을, REFUTED는 그 명제가 반박됨을 뜻합니다. UNVERIFIABLE은 절차가 완료되어 식별된 비결정 결과를 냈지만 VERIFIED도 REFUTED도 아닌 경우로, 증거 부재뿐 아니라 쿼럼 부족, 모호성, 판단 불가능한 관계 등 프로필이 명시적으로 정의하는 모든 비결정 상태에 쓸 수 있습니다. 모든 outcome에 대해 프로필은 정확한 조건과 사유코드를 정의해야 합니다.",
+          "ref": "원문: Independent status axes"
+        },
+        {
+          "title": "재계산 상태와 검증 결과의 분리",
+          "body": "재계산 상태는 영수증의 일곱 번째 필드가 아니라 영수증과 공급된 의존성에 재계산 절차를 적용한 산출물입니다. REPRODUCED는 후보 클레임, 증거집합, 프로필, 정형 결과의 식별자가 영수증 커밋과 모두 같을 때만 성립합니다. DIVERGED는 필요한 의존성이 모두 있고 평가가 끝났지만 어느 식별자가 달라졌을 때, CANNOT_RECOMPUTE는 필요한 프로필 의존성이나 PRESENT로 커밋된 페이로드를 구할 수 없거나 구한 바이트가 고정된 핀과 맞지 않을 때입니다. UNVERIFIABLE 결과도 REPRODUCED일 수 있지만 CANNOT_RECOMPUTE는 다른 상태나 기본값 false로 바뀌어서는 안 됩니다.",
+          "ref": "원문: Independent status axes"
+        },
+        {
+          "title": "표준 바이트 인코딩 rvr-canonical-json-v0",
+          "body": "식별자를 계산할 모든 JSON은 이 규칙으로 정규화됩니다. null, 불리언, 문자열, 배열, 객체만 허용되고 숫자는 전면 금지되어 길이 같은 수량은 선행 0 없는 10진 문자열로 표현합니다. 중복 키와 짝없는 서러게이트는 거부되고 유니코드 정규화는 적용하지 않으며 객체 키는 유니코드 스칼라값 기준 오름차순으로 정렬하고 배열 순서와 중복은 그대로 보존합니다. 공백 없이 UTF-8로 정확히 한 번 인코딩하며 문자열 탈출은 표에 정의된 것만 허용되고 슬래시와 U+2028, U+2029는 리터럴로 유지합니다. 이 바이트 위에서 claimDigest, verificationProfileDigest, resultDigest를 SHA-256으로 계산합니다.",
+          "ref": "원문: Canonical byte contract, Identity rules"
+        },
+        {
+          "title": "증거집합 서술자",
+          "body": "증거집합 서술자는 schema와 members 두 필드만 가지며 members는 유일한 id를 갖는 비어있지 않은 배열입니다. PRESENT 멤버는 id, status, mediaType, byteLength, digest를 정확히 가지고 실제 페이로드 바이트의 길이와 SHA-256과 일치해야 합니다. 그 페이로드를 구할 수 없으면 서술자 자체는 유효하지만 재계산은 evaluationPerformed가 false인 CANNOT_RECOMPUTE가 되어야 하고 평가는 실행되면 안 됩니다. UNAVAILABLE 멤버는 id, status, reasonCode만 가지며 페이로드가 있으면 안 됩니다. 결과에 영향을 줄 수 있는 모든 입력은 이 증거 클로저에 포함되거나 프로필이 정의한 불변 커밋으로 식별되어야 하며 결과에 영향을 주는 주변 입력은 금지됩니다.",
+          "ref": "원문: Evidence set"
+        },
+        {
+          "title": "검증 프로필의 권위",
+          "body": "검증 프로필은 의미의 유일한 권위이며, 생산자 구현체나 서명자, 레지스트리는 영수증을 냈다는 사실만으로 권위를 갖지 않습니다. 프로필은 rvr-canonical-json-v0 객체로서 고유한 profileId, 정확한 검증 명세, 각 결과가 성립시키는 명제, 적합성 벡터셋, 캐노니컬 바이트 규칙, 영수증·클레임·증거집합·결과 계약, 결과해시와 영수증 프로젝션 규칙, verification·recomputation·gateRejections 세 사유코드 네임스페이스, 의존성 해석 규칙, 필수 외부 컨텍스트 커밋을 모두 포함해야 합니다. 서명은 프로필 불일치, 클로저 실패, 모순된 프로젝션, 결과 분기를 덮어쓸 수 없습니다.",
+          "ref": "원문: Verification Profile"
+        },
+        {
+          "title": "의존성 해석: 해시 먼저, 파싱은 그 다음",
+          "body": "재계산자는 명시적으로 공급된 프로필 패키지 루트를 기준으로, URL이나 작업 경로가 아닌 상대 posix 경로로만 의존성을 해석합니다. 빈 세그먼트, 점, 점점, 역슬래시, 콜론은 금지되고 심볼릭 링크를 해석한 뒤에도 패키지 루트 내부여야 합니다. 허용되는 순서는 오직 '루트 아래에서 해석하고 바이트를 한 번 읽은 뒤 커밋된 SHA-256과 대조하고 검증된 그 바이트로만 파싱하거나 사용'하는 것뿐입니다. 다이제스트가 일치하기 전에는 바이트가 검증이나 평가에 영향을 줄 수 없으며 검증 뒤 같은 경로를 다시 읽어 다른 바이트를 쓰는 것도 금지됩니다.",
+          "ref": "원문: Dependency resolution"
+        },
+        {
+          "title": "재계산 절차 10단계",
+          "body": "영수증과 일반 프로필 봉투를 엄격 파싱해 중복 키, 금지된 숫자, 짝없는 서러게이트를 거부한 뒤 verificationProfileDigest를 재계산해 영수증과 일치하는지 확인합니다. 이어서 필요한 프로필 의존성과 PRESENT로 커밋된 증거 페이로드를 해시 먼저 규칙으로 해석하되, 실패하면 CANNOT_RECOMPUTE를 반환합니다. 원 영수증의 결과 식별자와 프로젝션을 검증하고 후보 증거 클로저를 검증한 뒤 claimDigest와 evidenceSetDigest를 재계산하고 프로필의 결정적 절차를 실행해 정형 결과 하나를 도출하고 resultDigest를 재계산합니다. 네 식별자가 모두 영수증과 같으면 REPRODUCED, 평가가 끝났는데 다르면 DIVERGED로 새 outcome과 reasonCode를 진단 데이터로 남깁니다. 이 ERC는 아직 Draft 단계로, 세부 규칙이 앞으로 바뀌거나 논의가 중단될 수 있습니다.",
+          "ref": "원문: Recomputation procedure"
+        }
+      ],
+      "safety": [
+        {
+          "title": "오도된 미제공(UNAVAILABLE) 상태",
+          "body": "생산자가 거짓으로 증거를 UNAVAILABLE로 커밋할 수 있습니다. 재현은 그 서술자로부터 올바르게 도출됐음을 증명할 뿐, 증거가 실제로 구할 수 없었다는 역사적 사실을 증명하지는 않습니다."
+        },
+        {
+          "title": "서명과 온체인 앵커는 의미를 보증하지 않음",
+          "body": "서명은 아티팩트를 인증하고 온체인 트랜잭션은 그 바이트를 고정할 뿐, 의미론적 결과가 맞거나 재현 가능하다는 것을 입증하지 않습니다."
+        },
+        {
+          "title": "비결정적 판단은 재현될 수 없음",
+          "body": "다른 구현체가 비슷한 문장이나 같은 대략적 판정을 냈다는 이유만으로 비결정적 판단을 REPRODUCED라고 표시해서는 안 됩니다."
+        },
+        {
+          "title": "가변 외부 컨텍스트",
+          "body": "실시간 RPC 응답, 레지스트리, 시계, 가변 정책, 모델·리졸버 출력은 프로필이 불변 스냅샷과 정확한 해석 규칙으로 고정하지 않으면 재현 가능한 결과에 영향을 주면 안 됩니다."
+        },
+        {
+          "title": "의존성 치환과 TOCTOU",
+          "body": "다이제스트를 확인하기 전에 스키마나 명세를 적용하면 치환된 바이트가 검증에 영향을 줄 수 있고 검증 후 다시 읽으면 time-of-check/time-of-use 치환이 가능합니다. 반드시 해시를 먼저 확인하고 그 다음 검증된 동일 바이트로만 파싱해야 합니다."
+        }
+      ],
+      "glossary": [
+        {
+          "term": "콘텐츠 주소화(content-addressed)",
+          "def": "데이터의 해시값으로 그 데이터를 가리키는 방식입니다. 바이트가 조금만 달라도 식별자가 바뀝니다."
+        },
+        {
+          "term": "정형 결과(canonical result)",
+          "def": "검증 프로필이 정의한, 하나로 고정된 형태의 결과 객체입니다."
+        },
+        {
+          "term": "증거 클로저(evidence closure)",
+          "def": "결과에 영향을 줄 수 있는 모든 입력을 빠짐없이 모아 커밋한 집합입니다."
+        },
+        {
+          "term": "게이트 거부(gate rejection)",
+          "def": "검증 결과나 재계산 상태를 보고하기 전에, 형식이 잘못되었거나 모순된 입력을 거부하는 것입니다."
+        },
+        {
+          "term": "TOCTOU",
+          "def": "확인한 시점과 사용하는 시점 사이에 데이터가 바뀌는 보안 취약점입니다."
+        },
+        {
+          "term": "사유코드 네임스페이스(reason code namespace)",
+          "def": "프로필이 정의하는, 허용된 사유코드 문자열들의 집합입니다."
+        }
+      ],
+      "meta": {
+        "title": "Recomputable Verification Receipts",
+        "description": "Defines a six-field receipt using content-addressed claim, evidence-set, profile, and result identities.",
+        "status": "Draft",
+        "type": "Standards Track",
+        "category": "ERC",
+        "created": "2026-08-29",
+        "authors": [
+          "Pavlo Tvardovskyi"
+        ],
+        "requires": [],
+        "discussionsTo": "https://ethereum-magicians.org/t/erc-8404-recomputable-verification-receipts/29521"
+      },
+      "sourceHash": "d0e759e2d98f0ebc",
+      "model": "sonnet",
+      "generatedAt": "2026-11-27T14:11:10.518Z"
+    },
+    {
+      "number": 8406,
+      "titleKo": "펀저블 에이전트 지분 토큰",
+      "topic": "금고·DeFi",
+      "summary": "AI 에이전트를 스스로 지분을 발행하고 범위 안에서 자율 행동하며 모든 행동의 판단 근거를 온체인에 남기는 독립된 경제 주체로 만드는 표준입니다.",
+      "why": "AI 에이전트가 트레이딩, 스테이킹, 대출 등 온체인에서 실제로 자금을 움직이는 사례가 늘고 있지만 그 에이전트 자체를 하나의 경제 주체로 표준화한 규격은 없습니다. 자금을 모아 지분으로 나누는 금고(vault)는 이미 표준화되어 있지만 에이전트가 외부 프로토콜과 어떻게 상호작용하는지, 그 판단의 근거를 온체인에 어떻게 남기는지는 각 프로젝트가 제각각 구현해야 했습니다. 그 결과 지갑, 인덱서, 감사자는 에이전트마다 다른 방식을 따로 분석해야 하고 투자자는 에이전트가 왜 특정 결정을 내렸는지 확인할 표준화된 방법이 없어 신뢰를 검증하기 어렵습니다.",
+      "before": [
+        "에이전트가 자금을 어떻게 쓰는지 표준화된 방식으로 확인할 수 없습니다.",
+        "투자자가 지분을 사고 빠져나가는 방법이 프로젝트마다 다릅니다.",
+        "에이전트의 판단 근거가 온체인에 남지 않아 사후 검증이 어렵습니다.",
+        "에이전트의 자금 집행 범위를 소유자가 강제할 표준 장치가 없습니다."
+      ],
+      "after": [
+        "requestMint/mint, requestRedeem/redeem으로 어느 에이전트든 동일한 방식으로 투자하고 회수할 수 있습니다.",
+        "settleMint, settleRedeem, execute마다 reasoningHash와 reasoningURI로 판단 근거가 온체인에 남습니다.",
+        "execute는 Owner가 설정한 isInScope 범위를 벗어나면 반드시 되돌려져 자금 집행 범위가 강제됩니다.",
+        "agentURI로 에이전트의 정체성과 전략을 지갑과 탐색기가 통일된 방식으로 조회할 수 있습니다."
+      ],
+      "impact": [
+        {
+          "who": "지갑·탐색기 개발자",
+          "text": "agentURI와 표준 이벤트만으로 모든 FAT 에이전트의 상태와 보유 지분을 통일된 방식으로 보여줄 수 있습니다."
+        },
+        {
+          "who": "에이전트에 투자하는 홀더(Holder)",
+          "text": "requestMint/mint, requestRedeem/redeem이라는 동일한 흐름으로 참여하고 빠져나갈 수 있습니다."
+        },
+        {
+          "who": "에이전트를 운영하는 Executor·Owner",
+          "text": "settleMint, settleRedeem, execute마다 추론 근거를 남기고 Owner가 정한 Scope 안에서만 자금을 집행해야 합니다."
+        },
+        {
+          "who": "감사자·인덱서",
+          "text": "Settled, Executed 등 표준 이벤트의 reasoningHash로 에이전트의 모든 행동과 그 근거를 추적할 수 있습니다."
+        }
+      ],
+      "iface": [
+        {
+          "sig": "function acceptToken() external view returns (address);",
+          "ko": "매입 시 받고 상환 시 지급하는 단일 ERC-20(Accept Token)의 주소를 반환합니다."
+        },
+        {
+          "sig": "function shareToken() external view returns (address);",
+          "ko": "지분(Share)을 나타내는 ERC-20 토큰 컨트랙트의 주소를 반환합니다."
+        },
+        {
+          "sig": "function requestMint(uint256 amount) external;",
+          "ko": "Accept Token amount를 예치해 호출자의 보류 중인 발행 요청에 더합니다."
+        },
+        {
+          "sig": "function mint(address user) external returns (uint256 shares);",
+          "ko": "user의 확정된 지분을 전부 민팅해 지급하며 누구나 호출할 수 있지만 수령은 항상 user에게 갑니다."
+        },
+        {
+          "sig": "function settleMint(address requester, bytes32 reasoningHash, string calldata reasoningURI) external;",
+          "ko": "Executor가 requester의 보류 중인 발행 요청 일부, 전부, 혹은 0을 정산해 지분 수량을 확정하고 추론 근거를 남깁니다."
+        },
+        {
+          "sig": "function queryMintStatus(address user) external view returns (uint256 pendingAssets, uint256 claimableShares);",
+          "ko": "user의 보류 중인 예치금(pendingAssets)과 청구 가능한 확정 지분(claimableShares)을 조회합니다."
+        },
+        {
+          "sig": "function requestRedeem(uint256 shares) external;",
+          "ko": "지분 shares를 에스크로해 호출자의 보류 중인 상환 요청에 더합니다."
+        },
+        {
+          "sig": "function redeem(address user) external returns (uint256 tokens);",
+          "ko": "user의 확정된 Accept Token을 전부 지급하며 누구나 호출할 수 있지만 수령은 항상 user에게 갑니다."
+        },
+        {
+          "sig": "function settleRedeem(address requester, bytes32 reasoningHash, string calldata reasoningURI) external;",
+          "ko": "Executor가 requester의 보류 중인 상환 요청을 정산해 지급액을 확정하고 정산된 지분을 소각하며 추론 근거를 남깁니다."
+        },
+        {
+          "sig": "function queryRedeemStatus(address user) external view returns (uint256 pendingShares, uint256 claimableTokens);",
+          "ko": "user의 보류 중인 에스크로 지분(pendingShares)과 청구 가능한 확정 토큰(claimableTokens)을 조회합니다."
+        },
+        {
+          "sig": "function exchangeRate() external view returns (uint256 rate);",
+          "ko": "지분 1e18 단위당 Accept Token으로 환산한 현재 평가 환율을 반환합니다."
+        },
+        {
+          "sig": "function agentURI() external view returns (string memory);",
+          "ko": "에이전트를 설명하는 오프체인 메타데이터를 가리키는 URI를 반환합니다."
+        },
+        {
+          "sig": "function setAgentURI(string calldata uri) external;",
+          "ko": "Owner만 호출할 수 있으며 Agent URI를 갱신합니다."
+        },
+        {
+          "sig": "function setExecutor(address account, bool enabled) external;",
+          "ko": "Owner만 호출할 수 있으며 account를 Executor로 활성화하거나 비활성화합니다."
+        },
+        {
+          "sig": "function owner() external view returns (address);",
+          "ko": "Owner 권한을 가진 현재 주소를 반환합니다."
+        },
+        {
+          "sig": "function isExecutor(address account) external view returns (bool);",
+          "ko": "account가 현재 Executor로 활성화되어 있는지 반환합니다."
+        },
+        {
+          "sig": "function isInScope(address target, uint256 value, bytes calldata data) external view returns (bool);",
+          "ko": "target, value, data로의 execute 호출이 Owner가 설정한 집행 범위(Scope) 안에 있는지 판정합니다."
+        }
+      ],
+      "flow": {
+        "title": "지분 발행·상환의 요청-정산-청구 흐름",
+        "steps": [
+          {
+            "label": "이용자",
+            "title": "요청(request) 제출",
+            "body": "지분을 사려면 Accept Token을 예치(requestMint)하고 팔려면 지분을 에스크로(requestRedeem)합니다. 아직 수량은 정해지지 않습니다."
+          },
+          {
+            "label": "Executor",
+            "title": "정산(settle)으로 수량 확정",
+            "body": "settleMint 또는 settleRedeem을 호출해 보류분의 일부, 전부, 혹은 0을 확정하고 판단 근거(reasoningHash, reasoningURI)를 남깁니다."
+          },
+          {
+            "label": "누구나(크랭크)",
+            "title": "청구(claim)로 수령",
+            "body": "mint 또는 redeem을 호출해 확정된 지분이나 토큰을 받습니다. 누가 호출해도 지급은 항상 요청자 본인에게 갑니다."
+          }
+        ]
+      },
+      "deep": [
+        {
+          "title": "세 가지 역할: Owner, Executor, Holder",
+          "body": "FAT는 Owner, Executor, Holder 세 역할만 정의합니다. Owner는 Executor를 지정하거나 해제하고 Agent URI를 관리하며 execute의 집행 범위(Scope)를 설정하는 헌법 제정자 역할을 합니다. Executor는 settleMint, settleRedeem으로 요청을 정산하고 execute로 에이전트의 의지를 온체인에 실행하는 채널로, isInScope 범위 안에서는 에이전트가 보유한 모든 자산과 승인에 대해 사실상 무제한의 권한을 가집니다. Holder는 지분을 보유하고 구현에 따라 거래할 수 있는 역할입니다. 요청을 여는 것은 누구나 자기 자금으로만 가능하고 청구는 누구나 대신 호출할 수 있는 permissionless crank이지만 지급은 항상 요청자 본인에게 갑니다.",
+          "ref": "원문: Roles (§3)"
+        },
+        {
+          "title": "추론 근거 첨부",
+          "body": "settleMint, settleRedeem, execute 등 에이전트의 모든 행동은 bytes32 reasoningHash와 string reasoningURI를 함께 제출해야 합니다. reasoningHash는 0이 아니어야 하고 reasoningURI가 가리키는 바이트 내용의 keccak256과 정확히 일치해야 하며 reasoningURI는 그 시점에 실제로 해석 가능해야 합니다. 사후 공개는 지원되지 않습니다. 문서는 UTF-8 JSON으로 schema fat-reasoning/1 표지를 갖는 것이 권장되며 model, prompt, trace 같은 세부 필드는 구현자가 정합니다. 이 기록은 내용이 변경되지 않았음을 증명하는 변조 감지 장치일 뿐, 실제 행동이 그 추론을 따랐다는 보증은 아닙니다.",
+          "ref": "원문: Reasoned agent actions (§6.2)"
+        },
+        {
+          "title": "지분 발행(mint)의 2단계 흐름",
+          "body": "requestMint(amount)는 호출자의 Accept Token을 정확히 amount만큼 끌어와 보류 중인 예치금에 더하고 MintRequested를 발생시킵니다. 이후 Executor가 settleMint를 호출해 보류분의 일부, 전부, 혹은 0을 지분 수량으로 확정합니다. 0으로 확정하는 것은 명시적 거절이나 보류이며 그 자체로 추론 근거가 남는 행동입니다. 가격과 수수료 산정 공식은 구현자가 정하지만 수량은 호출자가 아니라 컨트랙트 로직이 계산하므로 Executor가 임의의 금액을 민팅할 수 없습니다. mint(user)는 누구나 호출할 수 있는 permissionless crank로, user의 확정된 지분 전체를 지급하고 0으로 초기화하며 슬리피지 가드 없이 이미 정산된 수량을 그대로 지급합니다.",
+          "ref": "원문: Share minting (§6.3)"
+        },
+        {
+          "title": "지분 상환(redeem)과 reclaim-or-disclose",
+          "body": "requestRedeem(shares)는 지분을 에스크로해 보류 중인 상환 요청에 더하고 Executor의 settleRedeem이 그 일부, 전부, 혹은 0을 확정하면서 정산된 지분을 소각합니다. 에이전트가 자금을 외부 프로토콜에 투입해 당장 상환할 유동성이 없으면 정산을 미룰 수 있는데, 이때 홀더가 무방비로 갇히지 않도록 에이전트는 둘 중 하나를 반드시 해야 합니다. 공시된 기한이 지나면 요청자가 보류 중인 예치금이나 에스크로된 지분을 직접 회수할 수 있는 reclaim 경로를 제공하거나, Agent URI의 reclaim 필드에 none이라고 명시해 요청이 철회 불가능함을 공개해야 합니다.",
+          "ref": "원문: Share redemption, Reclaim-or-disclose (§6.4.6)"
+        },
+        {
+          "title": "exchangeRate는 가격 예측이 아닙니다",
+          "body": "exchangeRate()는 지분 1e18 단위당 Accept Token 가치를 18자리 고정소수점으로 반환하는 가치평가 기준값입니다. 고정가 에이전트는 이 값이 일정할 수 있고 NAV 기반 에이전트는 시간에 따라 바뀔 수 있습니다. 다만 이 값은 실제 mint나 redeem이 정산될 가격을 보장하지 않습니다. 실제 체결 수량과 가격은 정산 시점에 확정되어 queryMintStatus와 queryRedeemStatus로 조회해야 합니다.",
+          "ref": "원문: Exchange Rate (§2), exchangeRate (§4)"
+        },
+        {
+          "title": "execute와 Scope 게이트",
+          "body": "execute는 Executor만 호출할 수 있고 DELEGATECALL은 금지되며 반드시 CALL 옵코드로 디스패치됩니다. value는 에이전트 자신의 잔액에서 지급되고 호출이 실패하면 revert 데이터를 그대로 전달하며 성공했을 때만 Executed 이벤트를 남깁니다. 무엇보다 execute는 호출 전 반드시 isInScope(target, value, data)를 검사하고 false면 되돌려야 합니다. isInScope가 표현하는 구체적 정책은 구현자가 정하지만 그 정책을 설정할 수 있는 권한은 반드시 Owner에게만 있어야 하고 Executor 역할 자체로는 Scope를 바꿀 수 없습니다.",
+          "ref": "원문: Executor dispatch (§6.6)"
+        },
+        {
+          "title": "Agent URI 메타데이터",
+          "body": "agentURI()는 에이전트의 이름, 설명, 이미지 등을 담은 오프체인 JSON 문서를 가리키며 setAgentURI는 Owner만 호출할 수 있습니다. ERC-721의 tokenURI와 비슷한 역할이지만 ERC-8004가 쓰는 동일한 이름의 agentURI와는 별개의 용도임을 원문이 명시합니다. 문서는 ipfs, https, ar, data 중 하나의 스킴을 쓸 수 있고 소비자는 어떤 스킴이든 받아들여야 합니다. Owner가 언제든 바꿀 수 있는 신뢰되지 않는 입력이므로 소비자는 AgentURIUpdated 이벤트로 변경 이력을 함께 보여주는 것이 권장됩니다.",
+          "ref": "원문: Agent URI (§6.5)"
+        },
+        {
+          "title": "표준 상태",
+          "body": "ERC-8406은 현재 Draft 상태로, 아직 커뮤니티 논의와 수정이 진행 중인 제안입니다. IAgent 인터페이스의 정식 ERC-165 인터페이스 ID도 이 문서가 Draft를 벗어날 때 확정될 예정이라고 원문에 명시되어 있어, 세부 내용이 앞으로 바뀔 수 있습니다.",
+          "ref": "원문: Conformance (§1), 문서 상태"
+        }
+      ],
+      "safety": [
+        {
+          "title": "재진입 위험",
+          "body": "execute는 신뢰할 수 없는 외부 코드를 호출하므로 재진입이 이 표준이 끌어들이는 가장 큰 위험입니다. requestMint, mint, requestRedeem, redeem, execute, 관리자 설정 함수 등 사용자 대상 상태 변경 함수에는 재진입 가드나 체크-이펙트-인터랙션 패턴을 적용하라는 보안 권고가 따르지만 필수 요건은 아닙니다."
+        },
+        {
+          "title": "Executor는 사실상 무제한 권한을 가집니다",
+          "body": "execute는 Owner가 설정한 Scope(isInScope) 외에는 대상이나 데이터를 추가로 제한하지 않으므로, Executor는 에이전트가 보유한 모든 자산과 승인에 대해 사실상 무제한의 권한을 가집니다. Holder와 Requester는 결국 Executor의 운영 방식을 신뢰해야 합니다."
+        },
+        {
+          "title": "추론 기록은 증거일 뿐 보증이 아닙니다",
+          "body": "reasoningHash와 reasoningURI는 기록이 변경되지 않았음을 증명하는 장치입니다. 실제 행동이 그 추론을 따랐다는 보증은 되지 않습니다."
+        }
+      ],
+      "glossary": [
+        {
+          "term": "Accept Token",
+          "def": "에이전트가 지분 매입 대가로 받고 상환 시 지급하는 단일 ERC-20 토큰입니다. 배포 시 정해지며 평생 바뀌지 않습니다."
+        },
+        {
+          "term": "Share",
+          "def": "에이전트의 경제적 성과에 대한 참여 지분을 나타내는 ERC-20 토큰입니다."
+        },
+        {
+          "term": "Executor",
+          "def": "Owner가 지정한 주소로, settleMint, settleRedeem, execute를 통해 에이전트의 자금을 실제로 움직이는 역할입니다."
+        },
+        {
+          "term": "Scope(isInScope)",
+          "def": "Owner가 설정한 집행 범위로, execute가 호출될 때마다 이 범위를 벗어나는지 검사합니다."
+        },
+        {
+          "term": "reasoningHash·reasoningURI",
+          "def": "에이전트의 판단 근거가 되는 오프체인 문서를 가리키는 URI와 그 내용의 해시값으로, 기록이 변경되지 않았음을 온체인에서 증명합니다."
+        },
+        {
+          "term": "exchangeRate",
+          "def": "지분 1개를 Accept Token으로 환산해 지금 얼마인지 보여주는 가치평가 기준값으로, 실제 정산가와 다를 수 있습니다."
+        }
+      ],
+      "meta": {
+        "title": "Fungible Agent Tokens",
+        "description": "Defines AI agents as on-chain economic entities that issue equity, act within owner-set boundaries, and attest reasoning for every action.",
+        "status": "Draft",
+        "type": "Standards Track",
+        "category": "ERC",
+        "created": "2026-09-01",
+        "authors": [
+          "Ashton"
+        ],
+        "requires": [
+          20,
+          165
+        ],
+        "discussionsTo": "https://ethereum-magicians.org/t/erc-8406-fungible-agent-tokens/29220"
+      },
+      "sourceHash": "e48226c5a29ea607",
+      "model": "sonnet",
+      "generatedAt": "2026-11-27T14:14:42.246Z"
+    },
+    {
       "number": 8409,
       "titleKo": "서명 기반 서비스 결제 견적서",
       "topic": "서명·인증",
@@ -95489,6 +96258,234 @@
       "generatedAt": "2026-11-26T15:08:47.556Z"
     },
     {
+      "number": 8470,
+      "titleKo": "토큰 출시 관측 레지스트리",
+      "topic": "토큰",
+      "summary": "독립적인 감시자(디텍터)가 토큰 출시에 대해 관찰한 사실을 블록 단위로 영구히 기록해 지갑과 AI 에이전트가 거래 전에 신뢰하는 디텍터의 최신 수치를 조회할 수 있게 하는 레지스트리입니다.",
+      "why": "토큰 출시에는 런치패드와 창작자가 선언한 것과 체인에 실제 기록된 관찰된 것 두 측면이 있습니다. 선언 쪽은 다른 제안이 표준화를 진행 중이지만 관찰 쪽은 지금까지 디텍터마다 자기만의 형식과 용어로 결과를 공개해 왔습니다. 그 결과 세 가지 문제가 생깁니다. 첫째, 공통 형식이 없어 두 디텍터가 같은 것을 측정했는지조차 비교할 수 없습니다. 둘째, 수치가 어느 블록에서 읽혔는지 남지 않아 같은 수치가 몇 블록 뒤에는 거짓이 될 수 있는데도 재현하거나 반증할 방법이 없습니다. 셋째, 오프체인 결과는 그 자리에서 덮어써지므로 결과가 나온 뒤에야 디텍터가 예전에 무엇을 말했는지 확인할 길이 없습니다. 원문은 한 체인에서 창작자가 선언한 면세 지갑이 전혀 사지 않은 출시 중 14.7%가 러그였고 30% 이상 산 경우는 2.8%에 그쳤다는 예시로, 선언 하나만으로는 서로 반대되는 상황을 구분할 수 없음을 보여줍니다.",
+      "before": [
+        "디텍터마다 제각각의 형식과 용어로 결과를 공개해 서로 비교할 수 없습니다.",
+        "수치가 어느 블록에서 측정됐는지 남지 않아 재현하거나 반증할 수 없습니다.",
+        "오프체인 결과가 그 자리에서 덮어써져 디텍터가 예전에 무엇을 말했는지 알 수 없습니다.",
+        "런치패드의 선언과 디텍터의 관찰을 연결할 공통 키가 없습니다."
+      ],
+      "after": [
+        "모든 관찰이 ERC-8376 launchId, 선언 ID, 또는 체인ID와 토큰 중 하나의 키로 정리됩니다.",
+        "모든 발견이 관측 블록과 블록 해시에 고정되어 재현하고 검증할 수 있습니다.",
+        "관찰은 수정이나 삭제 없이 영구 보존되며 새 관찰은 이전 것을 대체로 표시할 뿐입니다.",
+        "에이전트나 가드가 거래 직전에 신뢰하는 디텍터의 최신 수치를 한 번의 조회로 확인합니다."
+      ],
+      "impact": [
+        {
+          "who": "사용자·지갑",
+          "text": "지갑이 사용자가 고른 디텍터의 관찰 결과를 런치패드의 선언 내용과 나란히 보여줄 수 있습니다."
+        },
+        {
+          "who": "AI 에이전트와 가드",
+          "text": "매수 트랜잭션 직전에 신뢰하는 디텍터의 최신 수치를 한 번에 조회해 미달 시 거래를 거부할 수 있습니다."
+        },
+        {
+          "who": "디텍터(감시자)",
+          "text": "자신의 리포트를 표준 형식으로 레지스트리에 기록하고 ERC-8004 신원을 연결해 신뢰와 평판을 쌓을 수 있습니다."
+        },
+        {
+          "who": "대출 프로토콜·컨트랙트",
+          "text": "트랜잭션 안에서 신뢰하는 디텍터의 최신 관찰을 읽어 자동 판단에 사용할 수 있습니다."
+        }
+      ],
+      "iface": [
+        {
+          "sig": "function launchDirectory() external view returns (address);",
+          "ko": "이 레지스트리가 참조하는 ERC-8376 디렉터리의 주소를 반환합니다. 디렉터리가 없으면 0 주소입니다."
+        },
+        {
+          "sig": "function tokenKey(uint256 chainId, address token) external pure returns (bytes32);",
+          "ko": "체인ID와 토큰 주소로부터 토큰 키를 계산해 반환합니다."
+        },
+        {
+          "sig": "function declarationKey(uint256 chainId, bytes32 declarationId) external pure returns (bytes32);",
+          "ko": "선언 식별자로부터 벤더 스코프 런치 키를 계산해 반환합니다."
+        },
+        {
+          "sig": "function recordObservation(ObservationInput calldata input, Finding[] calldata findings) external returns (uint256 observationId, bytes32 launchKey);",
+          "ko": "디텍터가 출시에 대한 관찰과 그 안의 발견들을 레지스트리에 새로 기록합니다."
+        },
+        {
+          "sig": "function setDetectorIdentity(address identityRegistry, uint256 agentId) external;",
+          "ko": "디텍터가 자신의 ERC-8004 또는 ERC-721 신원을 레지스트리에 연결하거나 해제합니다."
+        },
+        {
+          "sig": "function detectorIdentity(address detector) external view returns (address identityRegistry, uint256 agentId);",
+          "ko": "어떤 디텍터가 현재 연결해 둔 신원 레지스트리와 agentId를 반환합니다."
+        },
+        {
+          "sig": "function getObservation(uint256 observationId) external view returns (Observation memory observation, Finding[] memory findings);",
+          "ko": "관찰 ID로 그 관찰의 전체 내용과 모든 발견을 기록된 순서대로 반환합니다."
+        },
+        {
+          "sig": "function latestOf(bytes32 launchKey, address detector) external view returns (uint256 observationId);",
+          "ko": "특정 런치 키에 대해 그 디텍터가 기록한 가장 최신 관찰의 ID를 반환합니다."
+        },
+        {
+          "sig": "function latestByToken(uint256 chainId, address token, address detector) external view returns (uint256 observationId);",
+          "ko": "키 종류와 무관하게 그 디텍터가 해당 토큰에 대해 기록한 가장 최신 관찰의 ID를 반환합니다."
+        },
+        {
+          "sig": "function latestFinding(uint256 chainId, address token, address detector, bytes32 kind, uint64 param) external view returns (uint256 observationId, uint64 observedBlock, uint64 recordedAt, uint256 value, Lean lean);",
+          "ko": "특정 디텍터의 최신 관찰에서 지정한 종류와 param의 발견값과 리딩을 반환합니다."
+        },
+        {
+          "sig": "function latestFindingFrom(uint256 chainId, address token, address[] calldata detectors, bytes32 kind, uint64 param) external view returns (address detector, uint256 observationId, uint64 observedBlock, uint64 recordedAt, uint256 value, Lean lean);",
+          "ko": "주어진 디텍터 목록을 순서대로 시도해 해당 값을 처음으로 측정한 디텍터의 결과를 반환합니다."
+        },
+        {
+          "sig": "function observationsOf(bytes32 launchKey, uint256 start, uint256 limit) external view returns (uint256[] memory);",
+          "ko": "런치 키에 속한 모든 디텍터의 관찰 ID 목록을 페이지 단위로 반환합니다."
+        },
+        {
+          "sig": "function observationsBy(bytes32 launchKey, address detector, uint256 start, uint256 limit) external view returns (uint256[] memory);",
+          "ko": "런치 키에서 한 디텍터가 기록한 관찰 ID 목록만 페이지 단위로 반환합니다."
+        },
+        {
+          "sig": "function detectorsOf(bytes32 launchKey, uint256 start, uint256 limit) external view returns (address[] memory);",
+          "ko": "런치 키에 한 번이라도 기록한 디텍터들의 목록을 처음 기록한 순서로 반환합니다."
+        },
+        {
+          "sig": "event ObservationRecorded(uint256 indexed observationId, bytes32 indexed launchKey, address indexed detector, KeyKind kind, uint256 chainId, address token, bytes32 declarationId, uint64 observedBlock, bytes32 observedBlockHash, bool hashChecked, uint256 supersedes, Tally tally, bytes32 reportHash, string reportURI, bytes32 evidenceRoot);",
+          "ko": "새 관찰이 기록될 때마다 그 전체 정보를 로그로 남깁니다."
+        },
+        {
+          "sig": "event FindingObserved(uint256 indexed observationId, bytes32 indexed kind, uint256 value, uint64 param, Lean lean);",
+          "ko": "관찰에 담긴 발견 하나하나를 기록 순서대로 로그로 남깁니다."
+        },
+        {
+          "sig": "event DetectorIdentitySet(address indexed detector, address indexed identityRegistry, uint256 indexed agentId);",
+          "ko": "디텍터가 신원을 연결하거나 해제할 때 그 변경을 로그로 남깁니다."
+        }
+      ],
+      "flow": {
+        "title": "관찰 기록부터 거래 전 조회까지",
+        "steps": [
+          {
+            "label": "디텍터",
+            "title": "출시를 관찰",
+            "body": "토큰 출시를 블록 단위로 관찰해 첫 거래 비중, 창작자 이력 등 수치를 측정합니다."
+          },
+          {
+            "label": "디텍터",
+            "title": "recordObservation 호출",
+            "body": "측정한 발견들과 리포트 해시·URI를 레지스트리에 기록합니다."
+          },
+          {
+            "label": "레지스트리",
+            "title": "영구 기록",
+            "body": "ObservationRecorded와 FindingObserved 이벤트를 남기고 기록은 이후 수정하거나 지울 수 없습니다."
+          },
+          {
+            "label": "지갑·에이전트·가드",
+            "title": "latestFinding 조회",
+            "body": "매수 직전에 신뢰하는 디텍터의 최신 수치를 한 번의 호출로 확인합니다."
+          },
+          {
+            "label": "지갑·에이전트·가드",
+            "title": "기준값과 비교",
+            "body": "값이 미측정이거나 정한 기준 밖이면 거래를 거부합니다."
+          }
+        ]
+      },
+      "deep": [
+        {
+          "title": "세 가지 런치 키 구조",
+          "body": "관찰은 ERC-8376 디렉터리가 등록한 출시면 그 launchId를, Token Launch Declarations 제안의 벤더 스코프 식별자로 선언된 출시면 그 declarationId로부터 유도한 키를, 그 외에는 체인ID와 토큰 주소로 유도한 토큰 키를 사용합니다. 각 키는 서로 다른 도메인 태그(TOKEN_SCOPED, VENUE_DECLARED)로 해시되어 서로 섞이지 않습니다. ERC-8376 키는 디렉터리가 없거나 등록되지 않은 launchId, 또는 입력된 chainId나 token이 0이 아니면 되돌립니다. 토큰 키는 chainId나 token이 0이거나 launchId가 0이 아니면 되돌립니다. 벤더 키는 레지스트리가 선언 컨트랙트를 직접 읽지 않으므로, 읽는 쪽이 getDeclaration을 호출해 종류와 토큰이 맞는지, 그 벤더가 신뢰하는 벤더인지 스스로 확인해야 합니다.",
+          "ref": "원문: Specification - Launch keys"
+        },
+        {
+          "title": "핵심 발견 6종",
+          "body": "First-block share는 첫 거래 블록에서 풀과 벤더 외 계정이 산 비중, Early-buyer share는 첫 거래 후 N초 동안 산 비중으로 둘 다 베이시스포인트(0~10000)입니다. Creator prior launches는 같은 창작자가 같은 체인에서 이전에 출시한 토큰 수, Funding-linked share는 창작자나 다른 보유자와 H홉 이내로 자금 출처가 겹치는 계정이 보유한 비중입니다. Product label은 프로젝트 주장과 체인 상태를 대조해 제품 존재 여부를 1 확인, 2 부분 확인, 3 미확인 또는 미측정으로 기록합니다. Text flags는 토큰 이름, 심볼, 메타데이터에서 발견된 패턴을 비트마스크로 기록합니다. 이 외에 ERC-8376이 정의한 신호도 그 필드 이름을 해시한 kind로 함께 기록할 수 있습니다.",
+          "ref": "원문: Specification - Findings"
+        },
+        {
+          "title": "미측정 값은 0이 아니다",
+          "body": "디텍터가 값을 확인하지 못했으면 반드시 type(uint256).max, 즉 미측정 값을 기록해야 하며 0을 쓸 수 없습니다. 0은 측정했고 결과가 0이었다는 뜻이기 때문입니다. 미측정 값은 가장 큰 수이므로 상한 비교는 자동으로 실패하지만 하한 비교, 예를 들어 잠금 비율이 최소 80퍼센트 이상인지 확인할 때는 미측정 여부를 따로 확인하지 않으면 통과해버립니다. 그래서 읽는 쪽은 하한 기준을 적용하기 전에 반드시 값이 미측정이 아닌지 먼저 확인해야 합니다.",
+          "ref": "원문: Specification - Findings"
+        },
+        {
+          "title": "텍스트 플래그와 AI 에이전트 방어",
+          "body": "토큰의 name, symbol, 설명, 각종 링크, 메타데이터 문서는 출시자가 직접 쓰는 텍스트이며 AI 에이전트가 이를 읽습니다. Text flags 발견은 그 텍스트에서 지시어 구문, 역할 마커, 송금 지시, 숨은 문자, 양방향 재정렬 문자, HTML이나 스크립트 같은 페이로드 마크업, 동형이의 문자, 과도한 길이 등의 패턴을 비트마스크로 기록합니다. 값이 0이거나 이 발견 자체가 없다고 해서 텍스트가 안전하다는 뜻은 아니며 원문은 읽는 쪽과 에이전트가 토큰의 텍스트를 항상 신뢰할 수 없는 데이터로 다루고 그 안의 지시를 절대 따르지 말아야 한다고 명시합니다.",
+          "ref": "원문: Specification - Text flags"
+        },
+        {
+          "title": "블록 고정, 해시 검증, Arbitrum 대응",
+          "body": "모든 발견은 observedBlock 하나에 고정되고 같은 체인의 관찰이면 그 블록의 해시를 EIP-2935 히스토리 컨트랙트나 256블록 이내의 blockhash로 검증해 hashChecked 플래그로 남깁니다. 다른 체인의 출시는 해시를 검증하지 않습니다. 현재 블록 번호는 보통 block.number로 읽지만 Arbitrum 체인에서는 block.number가 상위 체인의 번호라서 쓸 수 없어 ArbSys의 arbBlockNumber를 대신 읽도록 배포 시점에 고정합니다.",
+          "ref": "원문: Specification - Recording, Finality and reorganizations, Block-number source"
+        },
+        {
+          "title": "영구 기록과 대체(supersede)",
+          "body": "관찰과 그 안의 발견은 수정하거나 삭제할 수 없고 레지스트리는 그런 함수를 제공하지 않습니다. 디텍터가 생각을 바꾸면 새 관찰을 기록해 이전 관찰의 ID를 supersedes에 남기고 그 새 관찰이 해당 런치 키에서 그 디텍터의 최신이 됩니다. 이전 관찰은 getObservation과 observationsBy로 계속 읽을 수 있습니다. 한 디텍터가 같은 키에 기록하는 observedBlock은 절대 뒤로 갈 수 없습니다.",
+          "ref": "원문: Specification - Immutability and superseding"
+        },
+        {
+          "title": "디텍터 신원과 신뢰 모델",
+          "body": "디텍터는 setDetectorIdentity로 ERC-8004 신원이나 다른 ERC-721 신원을 연결할 수 있고 이 연결은 매 기록 시점에 다시 확인되어 디텍터가 신원을 더는 보유하지 않으면 0으로 기록됩니다. 읽는 쪽은 레지스트리나 관찰 자체를 증거로 취급해서는 안 되고 스스로 신뢰하는 디텍터를 고른 뒤 그 디텍터의 latestOf나 latestFinding을 읽어야 합니다. 관찰이 없거나 발견이 미측정이면 안전이 아니라 알 수 없음으로 보여야 하고 자동으로 동작하는 컨트랙트는 다른 디텍터의 lean이나 tally가 아니라 자신이 정한 기준값으로 판단해야 합니다.",
+          "ref": "원문: Specification - Detector identity, Trust and presentation"
+        },
+        {
+          "title": "아직 확정되지 않은 제안",
+          "body": "ERC-8470은 현재 Draft 상태이며 함께 참조하는 ERC-8376과 Token Launch Declarations 제안도 아직 표준으로 확정되지 않았습니다. 세부 인터페이스나 키 구조, 발견 종류가 앞으로 바뀌거나 제안 자체가 멈출 수 있습니다.",
+          "ref": "원문: 메타데이터 (status: Draft)"
+        }
+      ],
+      "safety": [],
+      "glossary": [
+        {
+          "term": "디텍터(detector)",
+          "def": "토큰 출시에 대한 사실을 관측해 기록하는 임의의 주소로, 누구나 될 수 있습니다."
+        },
+        {
+          "term": "런치 키(launch key)",
+          "def": "한 출시에 대한 관찰들을 묶는 식별자로, ERC-8376 launchId나 선언 ID, 또는 체인ID와 토큰으로 만든 해시 중 하나입니다."
+        },
+        {
+          "term": "파인딩(finding)",
+          "def": "관찰 하나에 담긴 개별 측정값 각각을 가리킵니다."
+        },
+        {
+          "term": "리인(lean)",
+          "def": "디텍터가 매수자 관점에서 한 파인딩을 어떻게 읽는지 나타내는 표시로, 경고, 주의, 문제없음, 없음 중 하나입니다."
+        },
+        {
+          "term": "not read(미측정)",
+          "def": "디텍터가 값을 확인하지 못했음을 뜻하는 특수한 값으로, 측정된 0과 구분됩니다."
+        },
+        {
+          "term": "ERC-8004",
+          "def": "온체인 에이전트의 신원과 평판을 관리하는 별도의 표준입니다."
+        }
+      ],
+      "meta": {
+        "title": "Token Launch Observations",
+        "description": "Lets independent detectors record block-pinned facts about a token launch, keyed like ERC-8376 and launch declarations",
+        "status": "Draft",
+        "type": "Standards Track",
+        "category": "ERC",
+        "created": "2026-10-27",
+        "authors": [
+          "soli0x"
+        ],
+        "requires": [
+          165,
+          721,
+          2935,
+          8004,
+          8376
+        ],
+        "discussionsTo": "https://ethereum-magicians.org/t/erc-8470-launch-observations/30112"
+      },
+      "sourceHash": "6b970182ecfc3e4e",
+      "model": "sonnet",
+      "generatedAt": "2026-11-27T14:16:56.643Z"
+    },
+    {
       "number": 8471,
       "titleKo": "AI 분쟁 해결 프레임워크",
       "topic": "기타",
@@ -95701,6 +96698,367 @@
       "sourceHash": "047d7bf854156060",
       "model": "sonnet",
       "generatedAt": "2026-11-26T15:15:43.702Z"
+    },
+    {
+      "number": 8473,
+      "titleKo": "uRWA 토큰 준법 정책 표준",
+      "topic": "토큰",
+      "summary": "ERC-7943 허가형 토큰이 전송을 허용할지 판단하는 준법 로직을 별도의 정책 컨트랙트에 위임할 수 있도록 표준 인터페이스를 정의합니다. 정책만 바꾸면 토큰 코드는 그대로 둘 수 있습니다.",
+      "why": "ERC-7943은 허가형 토큰이 계정 자격 확인(canSend, canReceive)과 전송 사전 검사(canTransfer)를 제공해야 한다고 정하지만 그 판단을 어떻게 내리는지는 정하지 않습니다. 신원 확인, 관할권, 보유한도, 거래시간 제한 같은 규칙은 토큰의 회계 로직보다 훨씬 자주 바뀌고 별도 팀이 작성하고 감사하다 보니, 토큰들은 이런 규칙을 별도 컨트랙트에 담아왔습니다. 하지만 구현마다 자기만의 인터페이스를 만들다 보니 준법 서비스 제공자는 토큰마다 따로 통합해야 하고 토큰은 제공자를 바꾸려면 전용 어댑터를 새로 만들어야 하며 감사자는 구현마다 어떤 함수가 컴플라이언스 컨트랙트에 닿는지 다시 분석해야 합니다. 더 심각하게는 사전 검사의 답이 실제 전송과 같은 방식으로 계산됐는지조차 통합업체가 확신할 수 없습니다.",
+      "before": [
+        "준법 서비스 제공자가 토큰마다 다른 인터페이스에 맞춰 따로 통합해야 합니다.",
+        "토큰이 컴플라이언스 제공자를 바꾸려면 전용 어댑터를 새로 만들어야 합니다.",
+        "감사자는 구현마다 어떤 함수가 컴플라이언스 컨트랙트에 닿는지 일일이 분석해야 합니다.",
+        "사전 검사(canTransfer)의 답이 실제 전송과 같은 방식으로 계산됐는지 통합업체가 확신할 수 없습니다."
+      ],
+      "after": [
+        "정책 컨트랙트가 표준 인터페이스(IERC8473Policy)만 구현하면 어느 토큰과도 바로 연동됩니다.",
+        "토큰은 정책을 다시 설치하는 것만으로 준법 제공자를 바꿀 수 있습니다.",
+        "감사자는 checkSend, checkReceive, checkTransfer 세 함수만 보면 컴플라이언스 경로를 파악할 수 있습니다.",
+        "canTransfer가 실제 이동과 같은 검사 경로를 거치므로 사전 검사와 실제 결과가 항상 일치합니다."
+      ],
+      "impact": [
+        {
+          "who": "토큰 발행자·개발자",
+          "text": "ERC-7943 토큰에 IERC8473 인터페이스를 추가해 준법 로직을 외부 정책 컨트랙트로 분리할 수 있습니다."
+        },
+        {
+          "who": "컴플라이언스(준법) 서비스 제공자",
+          "text": "자격심사, 보유한도, 거래시간 제한 같은 규칙을 표준 정책 인터페이스 하나로 여러 토큰에 제공할 수 있습니다."
+        },
+        {
+          "who": "지갑·통합 개발자",
+          "text": "표준화된 거부 사유 코드(예: RECEIVER_NOT_ELIGIBLE)를 이용해 어떤 정책인지 몰라도 거부 이유를 사용자에게 설명할 수 있습니다."
+        },
+        {
+          "who": "감사자",
+          "text": "모든 구현이 같은 규칙을 따르므로 이동 전 검사와 실제 이동이 같은 결정을 내리는지 표준화된 방식으로 확인할 수 있습니다."
+        }
+      ],
+      "iface": [
+        {
+          "sig": "function policy() external view returns (address _policy);",
+          "ko": "토큰이 현재 참조하는 정책 컨트랙트의 주소를 반환합니다."
+        },
+        {
+          "sig": "event PolicyChanged(address indexed _previousPolicy, address indexed _newPolicy);",
+          "ko": "정책이 설치될 때마다(최초 설치 포함) 발생하는 이벤트로, 이전 정책과 새 정책의 주소를 기록합니다."
+        },
+        {
+          "sig": "error ERC8473PolicyRejected(bytes32 _reason);",
+          "ko": "정책이 이동을 거부했을 때 토큰이 되돌리기에 사용하도록 권장되는 에러로, 정책이 돌려준 거부 사유를 담습니다."
+        }
+      ],
+      "flow": {
+        "title": "전송 시 정책 검사 흐름",
+        "steps": [
+          {
+            "label": "사용자",
+            "title": "전송 요청",
+            "body": "사용자가 토큰의 transfer 같은 함수를 호출해 이동을 시작합니다."
+          },
+          {
+            "label": "토큰",
+            "title": "TransferContext 생성",
+            "body": "토큰이 이동의 주체, 금액, 권한 종류(kind) 정보를 담은 TransferContext를 만듭니다."
+          },
+          {
+            "label": "토큰",
+            "title": "정책에 사전 검사 요청",
+            "body": "잔액이 바뀌기 전에 정책의 checkTransfer를 정적 호출(staticcall)해 TRANSFER_OK 여부를 확인합니다."
+          },
+          {
+            "label": "정책",
+            "title": "허용 또는 거부",
+            "body": "정책이 TRANSFER_OK를 반환하면 이동이 진행되고 다른 값을 반환하면 토큰이 되돌립니다."
+          },
+          {
+            "label": "토큰",
+            "title": "잔액 변경 및 이벤트 발생",
+            "body": "검사를 통과하면 잔액을 바꾸고 기본 표준의 전송 이벤트를 냅니다."
+          },
+          {
+            "label": "토큰",
+            "title": "완료 콜백",
+            "body": "wantsAfterTransfer가 참이면 afterTransfer를 호출해 정책이 완료된 이동을 기록하게 합니다."
+          }
+        ]
+      },
+      "deep": [
+        {
+          "title": "정책과 토큰의 경계",
+          "body": "ERC-7943 토큰은 잔액이나 소유권이 바뀌기 전에 반드시 정책의 checkTransfer를 TransferContext와 함께 호출하고 TRANSFER_OK가 아니면 되돌려야 합니다. 이 호출과 잔액 변경 사이에는 정책 외의 다른 외부 호출을 할 수 없고 checkSend·checkReceive·checkTransfer·wantsAfterTransfer는 모두 STATICCALL로 호출해야 합니다. policy()가 address(0)을 반환하면 토큰은 모든 이동을 거부해야 합니다.",
+          "ref": "원문: Specification - Token Requirements (Movements)"
+        },
+        {
+          "title": "TRANSFER_OK와 거부 코드",
+          "body": "TRANSFER_OK는 keccak256(\"TRANSFER_OK\")로 고정된 값이며 이 값 외의 모든 반환값은 bytes32(0)을 포함해 거부로 취급됩니다. 정책은 거부 사유를 대문자 이름의 keccak256으로 만들도록 권장되며 SENDER_NOT_ELIGIBLE, RECEIVER_NOT_ELIGIBLE, LOCKED_UP, MAX_HOLDERS, MAX_BALANCE, TRANSFER_LIMIT, WINDOW_CLOSED, KIND_NOT_ALLOWED, OPERATOR_NOT_ALLOWED, CHECK_UNAVAILABLE 같은 이름을 공통 사유로 제시합니다. 통합업체는 모르는 값을 허용으로 해석해서는 안 됩니다.",
+          "ref": "원문: Specification - Decisions and reason codes"
+        },
+        {
+          "title": "다섯 가지 이동 종류(kind)",
+          "body": "TransferKind는 TRANSFER, EXECUTED, FORCED, MINT, BURN 다섯 가지로 닫혀 있으며 토큰은 정해진 순서대로 조건을 확인해 첫 번째로 맞는 kind를 부여해야 합니다. forcedTransfer는 이유를 불문하고 항상 FORCED이고 홀더가 직접 지시한 이동은 집행 경로를 거치지 않으면 결코 FORCED가 될 수 없습니다. 기본 표준의 transfer, transferFrom 같은 함수를 통한 이동은 EXECUTED나 FORCED가 될 수 없습니다.",
+          "ref": "원문: Specification - Transfer kinds"
+        },
+        {
+          "title": "canTransfer의 사전 검사 동등성",
+          "body": "canTransfer는 TRANSFER, MINT, BURN 이동의 결과를 그 순간의 상태에서 미리 예측해야 하며 같은 상태라면 누가 제출하든 같은 결정이 나와야 합니다. 이 때문에 결과가 operator나 msg.sender에 의존할 수 없고 data도 호출자가 넘긴 값 없이 토큰 자신의 상태에서만 만들어야 합니다. 반대로 EXECUTED와 FORCED 이동은 서명이나 집행 주체에 따라 결과가 달라질 수 있어 canTransfer가 예측하지 않습니다.",
+          "ref": "원문: Specification - Checks and pre-flights"
+        },
+        {
+          "title": "afterTransfer 콜백과 상태 보관 정책",
+          "body": "보유자 수 같은 상태를 유지하는 정책은 완료된 이동을 알아야 하므로, 토큰은 잔액 변경과 전송 이벤트 발생 후 wantsAfterTransfer를 호출해 필요하면 afterTransfer를 호출합니다. 이 콜백이 실행되는 동안 토큰은 다른 이동이 시작되지 못하게 막아야 합니다. afterTransfer는 TRANSFER, MINT, BURN 이동에 대한 규칙을 집행해서는 안 되는데, canTransfer가 이 콜백을 호출하지 않기 때문에 그런 규칙은 checkTransfer에 있어야 합니다.",
+          "ref": "원문: Specification - Policy requirements"
+        },
+        {
+          "title": "정책 설치(onInstall)",
+          "body": "토큰이 정책을 설치할 때마다, 최초 설치를 포함해 PolicyChanged 이벤트를 내고 새 정책의 onInstall을 호출해 이전 정책 주소와 설치자가 넘긴 데이터를 전달해야 합니다. onInstall은 호출될 때마다 토큰의 이동에서 파생되는 상태를 처음부터 다시 세우거나 되돌려야 하며 이전 설치의 상태를 그대로 이어받을 수 없습니다. 이 ERC는 기존 정책을 제거할 때 그 정책에게 알리는 호출을 정의하지 않으므로, 깨지거나 악의적인 정책이 스스로 제거를 막을 수는 없습니다.",
+          "ref": "원문: Specification - Installing a policy, Rationale"
+        },
+        {
+          "title": "가스 비용과 설계 근거",
+          "body": "원문이 제시한 벤치마크에 따르면, 양쪽 계정이 허용목록에 있어야 하는 일반 ERC-20 전송은 약 34,500 가스가 들고 이 ERC를 통해 규칙을 적용하면 토큰 내부에서 직접 목록을 읽는 것보다 약 8,500 가스, afterTransfer 콜백까지 쓰면 약 9,700 가스가 더 든다고 밝힙니다. ERC-3643 방식과 비슷한 bool 반환 준법 호출은 약 6,400 가스가 더 드는 것으로 측정됐으며 이 수치는 Osaka 가스 일정 기준입니다.",
+          "ref": "원문: Rationale - What a check costs"
+        },
+        {
+          "title": "제안 상태",
+          "body": "이 ERC는 현재 Draft 상태로, 아직 확정되지 않았으며 세부 규칙이나 인터페이스가 앞으로 바뀌거나 논의가 멈출 수 있습니다.",
+          "ref": "원문: 머리말(Preamble) - status"
+        }
+      ],
+      "safety": [],
+      "glossary": [
+        {
+          "term": "정책(Policy)",
+          "def": "토큰 본체와 분리되어 전송을 허용할지 판단하는 별도의 컨트랙트입니다."
+        },
+        {
+          "term": "움직임(Movement)",
+          "def": "전송, 발행, 소각, 강제이전 등 토큰의 잔액이나 소유권이 바뀌는 하나하나의 단위를 말합니다."
+        },
+        {
+          "term": "사전 검사(canTransfer)",
+          "def": "실제로 이동을 실행하지 않고 그 결과를 미리 예측해 보는 조회 함수입니다."
+        },
+        {
+          "term": "정적 호출(staticcall)",
+          "def": "컨트랙트 상태를 바꿀 수 없는 조회용 호출 방식입니다."
+        },
+        {
+          "term": "홀더(Holder)",
+          "def": "이동하는 토큰에 대한 권한을 가진 것으로 기록된 계정입니다."
+        },
+        {
+          "term": "ERC-7943",
+          "def": "허가형(권한 기반) 토큰이 갖춰야 할 canSend, canReceive, canTransfer 등의 공통 인터페이스를 정한 표준입니다."
+        }
+      ],
+      "meta": {
+        "title": "uRWA Policy",
+        "description": "Defines an external policy that ERC-7943 tokens consult for every movement and for their compliance checks.",
+        "status": "Draft",
+        "type": "Standards Track",
+        "category": "ERC",
+        "created": "2026-10-22",
+        "authors": [
+          "Filipe Venancio"
+        ],
+        "requires": [
+          165,
+          7943
+        ],
+        "discussionsTo": "https://ethereum-magicians.org/t/erc-8473-urwa-policy-interface/30048"
+      },
+      "sourceHash": "b0025cd964a30dab",
+      "model": "sonnet",
+      "generatedAt": "2026-11-27T14:22:08.687Z"
+    },
+    {
+      "number": 8481,
+      "titleKo": "에이전트 사전서명 위험보고서",
+      "topic": "계정·지갑",
+      "summary": "AI 에이전트나 지갑이 트랜잭션에 서명하기 전에, 위험 소스가 토큰·승인·주소·결제·텍스트·시뮬레이션 사실을 블록 단위로 기록해 전달하는 표준 보고서 형식입니다. 점수나 판정 없이 사실만 담아 소비자가 직접 정책을 적용합니다.",
+      "why": "에이전트가 사람의 확인 없이 트랜잭션을 준비하고 서명하는 경우가 늘면서 일주일 전에 배포된 컨트랙트에 대한 무제한 승인, 이전에 쓰던 주소와 앞뒤 글자만 같은 주소로 보내는 전송, 결제를 받는 에이전트가 등록한 지갑과 다른 payTo로 보내는 결제, 토큰 이름에 숨겨진 지시문을 에이전트가 명령으로 읽는 사고가 반복됩니다. 이런 사실은 서명 전에 체인과 요청을 읽으면 누구나 확인할 수 있는데도, 기존 Prepared Transaction Envelope의 risk 필드는 ALLOW·WARN·BLOCK 같은 판정과 점수, 자유 형식 경고만 담을 뿐 근거 사실이 없고 어떤 요청에 대한 평가인지와 어느 블록에서 읽었는지가 없어 재사용되거나 반증할 수 없으며 못 읽은 항목이 문제없는 것처럼 보입니다. 실제 조사에서는 x402 결제를 받는다고 밝힌 에이전트 중 실제 결제조건을 제공한 827개 가운데 겨우 4개만 등록된 지갑을 payTo로 쓰고 있었습니다.",
+      "before": [
+        "위험 소스가 WARN 같은 판정만 주고 근거 사실을 밝히지 않아 소비자가 직접 확인하거나 다른 스캐너와 비교할 수 없습니다",
+        "평가가 어떤 요청에 대한 것인지, 어느 블록에서 읽었는지 명시되지 않아 다른 요청에 재사용되거나 반증할 수 없습니다",
+        "못 읽은 항목이 0이나 false와 같은 값으로 표시되어 문제없음처럼 보입니다",
+        "결제를 받는 에이전트의 등록 지갑과 실제 payTo가 다른지 확인할 표준 절차가 없습니다"
+      ],
+      "after": [
+        "보고서가 다이제스트로 정확히 그 요청에만 묶이고 소비자가 직접 다이제스트를 재계산해 대조합니다",
+        "모든 사실에 읽은 블록과 근거(evidence)가 붙어 재현하고 반증할 수 있습니다",
+        "읽지 않음(not-read) 상태가 읽은 값과 분리되어 못 읽은 것과 깨끗한 것이 구분됩니다",
+        "payTo와 등록된 agentWallet, 결제 쿼트의 서명까지 표준 쌍으로 대조한 결과를 제공합니다"
+      ],
+      "impact": [
+        {
+          "who": "AI 에이전트",
+          "text": "서명 전에 사실에 근거해 승인·전송·결제 요청의 위험을 스스로 판단할 수 있습니다."
+        },
+        {
+          "who": "지갑·정책 엔진",
+          "text": "표준화된 사실 목록 위에 자체 임계값과 정책을 적용해 서명 여부를 결정할 수 있습니다."
+        },
+        {
+          "who": "위험 리포트 소스 개발자",
+          "text": "ERC-8004 신원으로 서명한 보고서를 표준 형식으로 제공해 여러 소비자에게 재사용될 수 있습니다."
+        },
+        {
+          "who": "x402 결제를 받는 에이전트",
+          "text": "결제 조건의 payTo가 자신이 등록한 agentWallet과 일치하는지 표준 절차로 확인받을 수 있습니다."
+        }
+      ],
+      "iface": [
+        {
+          "sig": "approve(address token, address spender, uint160 amount, uint48 expiration)",
+          "ko": "Permit2 컨트랙트에서 호출자의 토큰 허용량을 스펜더에게 직접 설정하는 함수로, 이 호출이 approval 엔티티로 인식됩니다."
+        },
+        {
+          "sig": "PermitDetails(address token,uint160 amount,uint48 expiration,uint48 nonce)",
+          "ko": "Permit2 서명 승인에서 토큰, 금액, 만료시점, 논스를 담는 EIP-712 타입입니다."
+        },
+        {
+          "sig": "PermitSingle(PermitDetails details,address spender,uint256 sigDeadline)",
+          "ko": "단일 Permit2 승인 서명 요청의 EIP-712 타입입니다."
+        },
+        {
+          "sig": "PermitBatch(PermitDetails[] details,address spender,uint256 sigDeadline)",
+          "ko": "여러 건의 Permit2 승인을 한 번에 서명하는 EIP-712 타입이며, 각 항목이 개별 승인으로 집계됩니다."
+        },
+        {
+          "sig": "PresignReport(bytes32 subjectDigest,bytes32 contextDigest,bytes32 reportHash)",
+          "ko": "이 제안의 보고서 자체를 서명하는 EIP-712 타입으로, 요청 다이제스트와 보고서 내용 해시를 함께 서명합니다."
+        },
+        {
+          "sig": "enableModule(address)",
+          "ko": "Safe 스마트계정에 모듈을 활성화해 해당 모듈이 계정을 대신 조작할 권한을 갖게 하는 함수이며 module-enabled 변경으로 보고됩니다."
+        },
+        {
+          "sig": "installModule(uint256,address,bytes)",
+          "ko": "ERC-7579 모듈형 계정에 모듈을 설치하는 함수로, module-installed 변경으로 보고됩니다."
+        }
+      ],
+      "flow": {
+        "title": "사전 서명 위험 리포트 흐름",
+        "steps": [
+          {
+            "label": "소비자(에이전트·지갑)",
+            "title": "PresignRequest 전송",
+            "body": "서명하지 않은 트랜잭션이나 서명 요청, 결제·텍스트·의도 등 컨텍스트를 위험 소스에 보냅니다."
+          },
+          {
+            "label": "위험 소스",
+            "title": "요청 디코딩과 체인 조회",
+            "body": "calls와 typed data를 뜯어 토큰·승인·주소·계정 권한 변화를 식별하고, 필요하면 요청을 시뮬레이션합니다."
+          },
+          {
+            "label": "위험 소스",
+            "title": "PresignReport 서명",
+            "body": "읽은 사실과 못 읽은 항목을 블록·근거와 함께 담아 EIP-712로 서명하고 요청의 다이제스트에 묶습니다."
+          },
+          {
+            "label": "소비자",
+            "title": "검증과 정책 적용",
+            "body": "다이제스트를 직접 재계산해 대조하고 서명과 소스 신원을 확인한 뒤, 자체 정책으로 서명 여부를 결정합니다."
+          }
+        ]
+      },
+      "deep": [
+        {
+          "title": "보고서와 요청의 바인딩",
+          "body": "PresignRequest는 준비된 트랜잭션(EnvelopeSubject 또는 CallsSubject)과 컨텍스트를 담습니다. subjectDigest는 요청(chainId·from·calls·typedData·authorizationList 등)의 캐노니컬 JSON 바이트를 keccak256한 값이고 contextDigest는 결제·텍스트·토큰·의도 등 컨텍스트의 다이제스트입니다. 소비자는 이 두 값을 보고서에서 가져오지 않고 자신이 서명하려는 요청으로부터 직접 계산해 대조해야 하며 다르면 다른 요청에 대한 보고서로 취급합니다. EIP-7702 authorizationList는 순서가 유지되고 같은 권한자에 대한 나중 튜플이 앞선 것을 덮어쓰므로, 위임을 설치하거나 교체하는 요청은 같은 calls라도 다이제스트가 달라집니다.",
+          "ref": "원문: Binding"
+        },
+        {
+          "title": "읽음·못읽음 상태와 근거",
+          "body": "모든 finding은 kind, 대상 엔티티, status(read 또는 not-read), evidence로 구성됩니다. status가 read면 value를 반드시 담고 reason은 없어야 하며 not-read면 value 없이 reason(unsupported, unavailable, incomplete, not-requested, payment-required, timeout 중 하나)을 담아야 합니다. 체인 상태를 읽은 finding은 읽은 블록(at)을 명시해야 하고 요청 바이트만으로 계산한 finding(예: 텍스트 분석)은 at이 없습니다. evidence는 tx, log, call, observation, document, simulation 중 하나의 타입으로 근거를 담습니다. 이렇게 하면 못 읽은 것과 읽었는데 문제없는 것이 절대 같은 값으로 섞이지 않습니다.",
+          "ref": "원문: Report"
+        },
+        {
+          "title": "여덟 가지 엔티티와 커버리지",
+          "body": "소스는 calls, typed data, 컨텍스트에서 토큰, 승인, 주소(target·spender·recipient·payTo·quote-issuer·token·authority·account 역할), 결제, 텍스트 엔티티를 뽑아내고 시뮬레이션을 돌리면 계정의 standing power 변화와 의도 일치 결과도 더합니다. coverage 필드는 요청을 얼마나 뜯어봤는지를 나타내며 complete 또는 partial이고 partial이면 디코딩 못한 부분마다 gaps에 path(예: tx.calls[0].inner[0])와 이유를 남깁니다. 디코딩 못한 부분 안의 엔티티는 목록에 없을 뿐이며 이는 coverage의 gap으로만 드러나고 '못 읽음' finding으로 표시되지 않습니다.",
+          "ref": "원문: Entities, Coverage"
+        },
+        {
+          "title": "승인 세부 사실",
+          "body": "승인은 ERC-20 approve·increaseAllowance, setApprovalForAll(true), Permit2 approve, ERC-2612 Permit, Permit2 PermitSingle·PermitBatch에서 뽑힙니다. 각 승인 엔티티에는 approval.amount(승인 금액 또는 전체승인이면 all), approval.unlimited(해당 타입의 최댓값인지), approval.expiry(허용량 자체의 만료 시각, 서명 마감이 아님), approval.current-allowance(현재 이미 보유한 허용량), approval.share-of-supply(전체공급량 대비 베이시스포인트, 전체승인에는 적용 안 됨)가 코어 finding으로 반드시 보고됩니다.",
+          "ref": "원문: Approvals"
+        },
+        {
+          "title": "주소 위험 신호와 EIP-7702 위임",
+          "body": "모든 역할의 주소에 대해 address.code(none·contract·delegated), address.first-seen-block, address.prior-transfers가 코어 finding입니다. code가 delegated면 address.delegate-single-caller(위임 코드의 가치 이동 함수를 고정된 한 주소만 호출 가능한지)와 address.delegate-unbounded-outflow(외부 호출자가 한도·지연 없이 계정 전체 잔액을 한 번에 빼갈 수 있는지)가 추가됩니다. authorizationList가 있는 요청은 EIP-7702가 적용하는 순서대로 위임을 먼저 적용한 뒤의 코드로 이 값들을 계산해야 하며 적용할 수 없으면 반드시 not-read(unsupported)로 보고해야 합니다. address.lookalike는 서명자가 과거 주고받은 주소 중 지정한 앞뒤 자릿수가 같은 다른 주소를 찾아줍니다.",
+          "ref": "원문: Addresses"
+        },
+        {
+          "title": "스마트계정의 standing power 변화",
+          "body": "account.power-change는 Safe(모듈·가드·폴백핸들러·소유자·임계값), Zodiac Roles 모디파이어, ERC-7579 모듈형 계정에 대한 설정 변경 호출이나 이벤트를 하나씩 번호(n)를 붙여 보고하며 각 변경마다 grantee와 before·after 값을 담습니다. 계정이 자신의 구현체가 아닌 코드로 delegatecall을 하면 그 대상 전체가 계정처럼 동작할 수 있으므로 code-replaced로 보고됩니다. account.unsigned-actors는 요청이 적용된 뒤 서명자 없이도 계정의 자산을 움직일 수 있는 주소를 모두 센 값이며 0이어도 유효한 읽은 값입니다.",
+          "ref": "원문: Accounts"
+        },
+        {
+          "title": "x402 결제 조건과 등록된 지갑 대조",
+          "body": "컨텍스트에 결제 정보가 있으면 payment.match가 x402 PaymentRequirements의 payTo와 수취 에이전트가 ERC-8004 레지스트리에 등록한 agentWallet을 비교하는 것을 포함해 payTo=agentWallet, payTo=quote.recipient, asset=quote.asset, amount=quote.amount, network=quote.chainId, quote.signature, quote.issuer=agentWallet, quote.valid-at-issue, authorization.to=payTo, authorization.value=amount 등 정해진 쌍을 비교합니다. 한쪽 값이 요청에 없는 쌍은 생략되고 양쪽이 있지만 읽을 수 없는 쌍만 not-read로 표시됩니다. 조사에 따르면 체인 4663의 2026-10-28 블록 100,007,973 기준 x402 결제를 받는다고 밝힌 20,046개 중 5,642개 에이전트, 실제 결제조건을 제공한 827개 중 겨우 4개만 등록된 agentWallet을 payTo로 썼습니다.",
+          "ref": "원문: Payment, Motivation"
+        },
+        {
+          "title": "서명 검증과 소스 신원, 제안 상태",
+          "body": "보고서는 reportHash(서명과 detail을 뺀 나머지의 다이제스트)를 EIP712Domain(name=\"Agent Pre-Sign Risk Report\", version=\"1\", chainId=레지스트리의 체인ID) 아래 PresignReport 타입으로 서명합니다. 소비자는 요청에서 직접 두 다이제스트를 계산하고 source.signer에 대해 서명을 검증한 뒤, 그 signer가 레지스트리의 getAgentWallet·ownerOf이거나 등록 파일의 presign-risk-report 서비스 signers 목록에 있는지 확인해야 합니다. 이 세 단계 중 하나라도 실패하면 보고서는 서명되지 않은 것으로 취급됩니다. 이 제안은 현재 Draft 상태로, 아직 논의와 변경이 진행 중인 제안입니다.",
+          "ref": "원문: Signature and source identity"
+        }
+      ],
+      "safety": [],
+      "glossary": [
+        {
+          "term": "위험 소스(risk source)",
+          "def": "준비된 트랜잭션이나 서명 요청을 읽고 사실 기반 보고서를 반환하는 서비스입니다."
+        },
+        {
+          "term": "not-read(못 읽음)",
+          "def": "값을 확인하지 못했다는 전용 상태로, 0이나 false와 결코 같지 않습니다."
+        },
+        {
+          "term": "다이제스트(digest)",
+          "def": "요청이나 보고서를 정규화한 JSON을 keccak256으로 해시한 값으로, 어떤 요청을 가리키는지 특정합니다."
+        },
+        {
+          "term": "EIP-712",
+          "def": "구조화된 데이터에 타입을 붙여 서명하는 표준 서명 방식입니다."
+        },
+        {
+          "term": "x402",
+          "def": "결제가 필요한 HTTP 요청에 402 응답과 결제조건을 담아 주고받는 결제 프로토콜입니다."
+        },
+        {
+          "term": "ERC-8004",
+          "def": "에이전트의 신원과 지갑, 평판을 체인에 등록하는 표준입니다."
+        }
+      ],
+      "meta": {
+        "title": "Agent Pre-Sign Risk Report",
+        "description": "Defines typed, block-pinned facts a risk source returns about a prepared transaction before an agent or wallet signs it",
+        "status": "Draft",
+        "type": "Standards Track",
+        "category": "ERC",
+        "created": "2026-10-31",
+        "authors": [
+          "soli0x"
+        ],
+        "requires": [
+          20,
+          55,
+          712,
+          721,
+          1271,
+          2612,
+          3009,
+          7702,
+          8004
+        ],
+        "discussionsTo": "https://ethereum-magicians.org/t/erc-8481-agent-pre-sign-risk-report/30145"
+      },
+      "sourceHash": "ef9fbc92a64dc468",
+      "model": "sonnet",
+      "generatedAt": "2026-11-27T14:30:15.486Z"
     },
     {
       "number": 8485,
@@ -95985,6 +97343,1260 @@
       "generatedAt": "2026-11-26T15:04:13.518Z"
     },
     {
+      "number": 8489,
+      "titleKo": "에이전트 정보 흐름 규약",
+      "topic": "기타",
+      "summary": "에이전트·사람·컨트랙트가 정보를 주고받는 채널마다 열람·기여·재배포 규칙과 참여 권한을 온체인에 버전별로 기록해, 누구나 같은 기준으로 검증할 수 있게 하는 표준입니다.",
+      "why": "에이전트, 사람, 도구, 컨트랙트가 같은 채팅방이나 작업 공간에서 정보를 주고받을 때, 누가 읽을 수 있는지, 누가 글을 올릴 수 있는지, 늦게 들어온 참여자가 과거 기록을 볼 수 있는지, 내용을 다른 곳으로 퍼뜨려도 되는지는 시스템마다 다르게 정해져 있습니다. 서로 다른 구현체가 이 질문들에 같은 답을 내릴 방법이 없어 두 시스템을 연결하기 어렵습니다. 더구나 에이전트 세계에서는 신원을 손쉽게 여러 개 만들 수 있어 가입 자격 확인이 신원 위장 문제로 이어지고, 에이전트가 읽은 메시지를 그대로 실행할 수 있어 수신 내용 자체가 공격 표면이 되며, 저장 비용이 낮아 과거 기록을 얼마나 남길지도 임의로 정해집니다. 검증할 수 없는 조건을 실패로 기록하면 억울하게 거부당하는 참여자가 생깁니다. 이런 문제들을 한 모델, 세 레지스트리로 묶어 검증 가능하게 만들 공통 표준이 없었습니다.",
+      "before": [
+        "플랫폼마다 열람·기여 권한 규칙이 제각각이라 다른 시스템과 호환되지 않습니다.",
+        "채널 참여 자격을 검증할 공통 방법이 없어 신원 위장에 취약합니다.",
+        "규칙이 언제 바뀌었는지, 누가 어떤 권한을 가졌었는지 기록이 남지 않아 사후 분쟁을 해결하기 어렵습니다.",
+        "검증할 수 없는 조건이 그냥 실패로 처리되어 판단 오류가 생깁니다."
+      ],
+      "after": [
+        "채널마다 하나의 버전화된 흐름 패러다임을 채택해 열람·기여·재배포 등 13개 규칙 차원을 명시적으로 선언합니다.",
+        "참여 권한은 역할 비트·범위·근거·유효기간을 가진 개별 바인딩으로 기록되어 독립적으로 정지·회수·재승인할 수 있습니다.",
+        "자격 검증은 만족·불만족·판정불가·검증자오류 네 값으로 결과를 남겨 판정 불가를 실패로 오인하지 않습니다.",
+        "규칙 변경은 ERC-6372 시계 기준 발효 시점을 가져 과거 행위는 그 시점의 규칙으로 영구히 평가됩니다."
+      ],
+      "impact": [
+        {
+          "who": "에이전트·자율 시스템 개발자",
+          "text": "자신의 에이전트가 채널마다 다른 참여 규칙을 코드로 직접 구현하지 않고 공통 레지스트리를 조회해 처리할 수 있습니다."
+        },
+        {
+          "who": "채널·커뮤니티 운영자",
+          "text": "어떤 규칙을 채택했는지, 누구에게 어떤 역할을 언제부터 언제까지 주었는지를 온체인에 검증 가능하게 남길 수 있습니다."
+        },
+        {
+          "who": "검증자(verifier) 구현자",
+          "text": "자격 조건을 프레디케이트 트리와 네 값 결과 규약에 맞춰 구현하면 어떤 패러다임에도 재사용될 수 있습니다."
+        },
+        {
+          "who": "분쟁·감사 담당자",
+          "text": "특정 시점에 어떤 규칙과 바인딩으로 행위가 받아들여졌는지 사후에 재구성해 판단할 수 있습니다."
+        }
+      ],
+      "iface": [
+        {
+          "sig": "function supportsKind(uint8 kind) external view returns (bool);",
+          "ko": "해당 합성 검증자가 특정 리프 종류를 처리할 수 있는지 알려줍니다."
+        },
+        {
+          "sig": "function leafGasLimit() external view returns (uint256);",
+          "ko": "리프 검증자 호출마다 고정으로 전달되는 가스 상한을 알려줍니다."
+        },
+        {
+          "sig": "function contains(bytes32 subject) external view returns (bool);",
+          "ko": "허용목록 검증에서 특정 subject가 집합에 포함되는지 확인합니다."
+        },
+        {
+          "sig": "function registerParadigm(bytes calldata canonicalDescriptor, bytes32 family, bytes32 supersedes, bytes32[] calldata labels, RolePredicate[] calldata rolePredicates, string calldata descriptorURI) external returns (bytes32 paradigmId);",
+          "ko": "새 흐름 패러다임 서술자를 등록하고 고유 paradigmId를 발급합니다."
+        },
+        {
+          "sig": "function transferFamily(bytes32 family, address newController) external;",
+          "ko": "패러다임 계열의 통제권을 다른 주소로 이전합니다."
+        },
+        {
+          "sig": "function hasLabel(bytes32 paradigmId, bytes32 label) external view returns (bool);",
+          "ko": "등록된 패러다임이 특정 레이블을 달고 있는지 확인합니다. 실제 행동 준수 여부를 보장하지는 않습니다."
+        },
+        {
+          "sig": "function rolePredicateHash(bytes32 paradigmId, uint16 role) external view returns (bytes32);",
+          "ko": "특정 역할을 획득하기 위해 만족해야 하는 프레디케이트의 해시를 반환합니다."
+        },
+        {
+          "sig": "function openChannel(bytes32 paradigmId, address authority, bytes32 parent, string calldata metadataURI, BindingDecl[] calldata bindings) external returns (bytes32 channelId);",
+          "ko": "새 채널을 열고 최초 패러다임과 전송·거버넌스 바인딩들을 함께 등록합니다."
+        },
+        {
+          "sig": "function adoptParadigm(bytes32 channelId, bytes32 paradigmId, uint48 effectiveAt, bool requiresReadmission, bytes32 authorizationRef) external;",
+          "ko": "채널이 채택할 새 패러다임 버전과 그 발효 시점을 기록합니다."
+        },
+        {
+          "sig": "function currentParadigm(bytes32 channelId) external view returns (bytes32 paradigmId, uint48 effectiveSince);",
+          "ko": "현재 시점에 채널이 따르고 있는 패러다임과 발효 시점을 조회합니다."
+        },
+        {
+          "sig": "function recordDisclosure(bytes32 channelId, uint8 kind, bytes32 objectRef, bytes32 audienceRef, bytes32 authorizationRef) external;",
+          "ko": "특정 객체가 특정 대상에게 공개되었거나 공개가 철회되었다는 사실을 append-only로 기록합니다."
+        },
+        {
+          "sig": "function grant(bytes32 channelId, bytes32 subject, bytes32 onBehalfOf, uint16 roles, bytes32 scopeRef, uint8 basisKind, bytes32 basisRef, uint48 validFrom, uint48 validUntil) external returns (bytes32 bindingId);",
+          "ko": "채널 권한자나 관리 역할 보유자가 특정 subject에게 역할 바인딩을 직접 부여합니다."
+        },
+        {
+          "sig": "function admit(bytes32 channelId, uint16 role, bytes32 scopeRef, bytes calldata predicate, bytes[] calldata evidence, uint48 validUntil) external returns (bytes32 bindingId);",
+          "ko": "subject 스스로 프레디케이트 조건을 만족시켜 역할 하나를 획득합니다."
+        },
+        {
+          "sig": "function evaluate(bytes32 channelId, bytes32 subject, uint16 role, bytes32 scopeRef, uint48 timepoint) external view returns (uint8 outcome);",
+          "ko": "특정 시점에 subject가 특정 역할·범위를 만족하는지 네 값 결과로 평가합니다."
+        },
+        {
+          "sig": "function readmit(bytes32 bindingId, bytes calldata predicate, bytes[] calldata evidence) external;",
+          "ko": "재승인이 필요해진 바인딩을 현재 패러다임의 프레디케이트로 다시 평가해 재승인합니다."
+        }
+      ],
+      "flow": {
+        "title": "에이전트가 채널 역할을 얻는 과정",
+        "steps": [
+          {
+            "label": "채널 운영자",
+            "title": "패러다임 등록 및 채널 개설",
+            "body": "흐름 패러다임 서술자를 등록해 paradigmId를 받고, 그 패러다임으로 채널을 엽니다."
+          },
+          {
+            "label": "에이전트",
+            "title": "admit 호출",
+            "body": "채널의 현재 패러다임이 요구하는 프레디케이트와 증거를 담아 admit을 호출합니다."
+          },
+          {
+            "label": "합성 검증자",
+            "title": "프레디케이트 트리 평가",
+            "body": "트리의 각 리프를 지정된 검증자에게 고정 가스로 위임 호출해 네 값 중 하나로 결과를 합성합니다."
+          },
+          {
+            "label": "참여 레지스트리",
+            "title": "결과 처리",
+            "body": "SATISFIED면 새 역할 바인딩을 생성해 bindingId를 발급하고, 그 외 결과면 되돌려 판정불가를 실패로 혼동하지 않게 합니다."
+          }
+        ]
+      },
+      "deep": [
+        {
+          "title": "두 가지 정보 운반 방식과 여덟 개 구조 연산자",
+          "body": "AIFP는 정보가 흐르는 방식을 delivery(수신자에게 배달)와 shared-object(공유 객체에 기여·관찰) 두 운반 방식으로 나눕니다. 그 위에 fan-out, fan-in, feedback, n-party, select, forward, derive, merge라는 여덟 개 구조 연산자를 정의하며, 패러다임은 이 중 쓰는 연산자 집합을 선언합니다. 연산자 조합 자체는 제한이 없고 Section 5.4의 호환 규칙이 최종적으로 유효한 조합을 가립니다.",
+          "ref": "원문: Vocabulary(2.1-2.2)"
+        },
+        {
+          "title": "열람부터 순서까지, 13개 규칙 차원",
+          "body": "패러다임은 discovery(존재를 알 수 있는지), observation(누가 무엇을 읽는지), contribution(누가 올리고 수정하는지), management(누가 통제하는지), redistribution(채널 밖 유출 가능 여부), history(늦은 참여자가 보는 범위와 보존 기간), time(동기 여부·배달 방식), disclosure timing(공개 시점), contributor visibility(기여자 신원 공개 수준), admission basis(가입 근거), representation(대리 행위 허용), object relations(이전 객체와의 관계), ordering(누가 순서를 매기는지)까지 13개 차원을 각각 따로 선언합니다. economic, modality 두 확장 차원도 선택적으로 추가됩니다. 선언하지 않은 차원은 unspecified로, 기본값이 아니라 '정해지지 않음' 그 자체입니다.",
+          "ref": "원문: Vocabulary(2.3)"
+        },
+        {
+          "title": "역할은 비트, 참여는 바인딩",
+          "body": "참여 권한은 DISCOVER, OBSERVE, SUBMIT, RESPOND, MODIFY, MANAGE_ADMISSION, MANAGE_ORDER, MANAGE_REMOVE, MANAGE_RULES, REDISTRIBUTE, MANAGE_DISCLOSURE라는 11개 역할 비트로 나뉘며 '멤버' 같은 단일 플래그는 없습니다. 각 참여는 역할 비트, 범위, 근거, 유효기간, 부여 당시의 규칙 버전을 담은 개별 바인딩으로 기록되고 고유한 bindingId를 가집니다. 같은 주체라도 역할마다 바인딩을 따로 두면 한 역할만 정지하거나 회수할 수 있습니다.",
+          "ref": "원문: Vocabulary(2.4), Participation registry(9.1)"
+        },
+        {
+          "title": "네 값 검증 결과와 합성 규칙",
+          "body": "모든 자격 검증은 SATISFIED, NOT_SATISFIED, UNDETERMINABLE, VERIFIER_ERROR 네 값 중 하나로만 끝나며, 판정 불가나 검증자 오류를 실패로 기록해서는 안 됩니다. allOf는 자식 중 NOT_SATISFIED가 있으면 NOT_SATISFIED, 없으면 UNDETERMINABLE 우선, 없으면 VERIFIER_ERROR, 나머지는 SATISFIED로 합성됩니다. anyOf는 자식 중 SATISFIED가 있으면 SATISFIED, 없으면 UNDETERMINABLE 우선, 없으면 VERIFIER_ERROR, 나머지는 NOT_SATISFIED로 합성됩니다. 한 리프의 오류는 그 리프만의 VERIFIER_ERROR로 멈추고 다른 가지의 평가를 중단시키지 않습니다.",
+          "ref": "원문: Vocabulary(2.5), Predicates(6.4)"
+        },
+        {
+          "title": "패러다임 서술자와 레이블, 호환성 검사",
+          "body": "패러다임 서술자는 JSON 문서이며 RFC 8785 JCS로 정규화한 바이트의 keccak256이 paradigmId가 됩니다. source, intake, direct, panel, club, meeting, archive, blackboard, dispatch, forward, derive라는 11개 예약 레이블은 서술자만으로 판별 가능한 식별 조건을 만족해야 붙을 수 있고, 조건이 겹칠 수 있어 한 서술자가 여러 레이블을 가질 수 있습니다. 검증기는 commit-reveal 공개 시점에 적절한 운반 방식이 없거나 anonymous-qualified 가시성인데 credential 프레디케이트가 없는 등 호환되지 않는 조합을 등록 단계에서 거부합니다.",
+          "ref": "원문: Paradigm descriptors(5.1,5.2,5.4)"
+        },
+        {
+          "title": "프레디케이트 트리 인코딩과 검증자 인터페이스",
+          "body": "프레디케이트는 최대 64개 노드, 깊이 8 이하의 트리로 abi.encode(Node[]) 형태로 인코딩되며 각 노드는 kind, 자식 범위, verifier 주소, ref, params를 가집니다. open, allowlist, external, allOf, anyOf, credential, stake, identity, member, decision 등 10개 kind가 정의되어 있고, credential 이상은 지정된 검증자에게 위임되는 의미론적 리프입니다. 합성 검증자는 리프 호출마다 고정된 가스(leafGasLimit)를 강제로 전달해야 하며, 가스를 다 전달하지 못하면 결과를 내지 않고 AIFP_InsufficientGas()로 되돌립니다.",
+          "ref": "원문: Predicates(6.1-6.3)"
+        },
+        {
+          "title": "세 개의 온체인 레지스트리",
+          "body": "파라다임 레지스트리는 서술자 해시와 계열 통제권만 관리하고 내용을 해석하지 않습니다. 채널 레지스트리는 채널이 어느 시점부터 어느 패러다임 버전을 따르는지(adoptParadigm), 전송·거버넌스·경제 바인딩을, 그리고 공개 기록(recordDisclosure)을 append-only로 쌓습니다. 참여 레지스트리는 grant(관리자 직접 부여)와 admit(스스로 프레디케이트를 만족시켜 획득)이라는 두 경로로 역할 바인딩을 만들고, suspend·revoke·readmit으로 개별 바인딩의 상태를 관리합니다.",
+          "ref": "원문: Paradigm/Channel/Participation registry(7,8,9)"
+        },
+        {
+          "title": "과거 행위는 그 시점의 규칙으로 영구히 평가",
+          "body": "한 시점에 받아들여진 행위는 이후 규칙이 바뀌거나 바인딩이 회수되어도 그 역사적 사실 자체는 바뀌지 않습니다. 새 행위는 항상 현재 시계 값을 기준으로 심사되며 과거 시점을 사칭한 admit은 허용되지 않습니다. 재승인이 필요한 패러다임 전환이 있으면 그 전에 받은 바인딩은 전환 시점부터 UNDETERMINABLE로 평가되어 재승인 전까지는 거부도 승인도 아닌 상태로 남습니다.",
+          "ref": "원문: Historical validity and admission(10)"
+        },
+        {
+          "title": "아직 확정되지 않은 제안",
+          "body": "이 ERC는 2026년 11월 기준 Draft 상태로, 아직 논의와 변경이 진행 중인 초안입니다. 인터페이스, 수치, 레이블 목록 등이 최종 확정 전에 바뀔 수 있습니다.",
+          "ref": "원문: Preamble(status)"
+        }
+      ],
+      "safety": [],
+      "glossary": [
+        {
+          "term": "에이전트(agent)",
+          "def": "자율적으로 행동하는 소프트웨어, 사람, 도구, 컨트랙트를 포괄하는 말로 이 표준에서 정보를 주고받는 당사자를 가리킵니다."
+        },
+        {
+          "term": "패러다임(paradigm)",
+          "def": "한 채널의 정보 흐름 규칙을 정의한 버전화된 서술자로, 내용이 같으면 해시도 같아 변하지 않습니다."
+        },
+        {
+          "term": "바인딩(role binding)",
+          "def": "특정 주체가 특정 채널·범위에서 어떤 역할을 어떤 근거로 언제까지 가지는지 기록한 개별 레코드입니다."
+        },
+        {
+          "term": "프레디케이트(predicate)",
+          "def": "역할을 얻기 위해 만족해야 하는 조건을 노드 트리로 표현한 것입니다."
+        },
+        {
+          "term": "타임포인트(timepoint)",
+          "def": "ERC-6372 시계로 읽은 시각 값으로, 규칙 발효와 바인딩 유효기간의 기준이 됩니다."
+        },
+        {
+          "term": "재승인(readmission)",
+          "def": "패러다임이 바뀌면서 기존 바인딩을 새 규칙으로 다시 검증받아야 하는 절차입니다."
+        }
+      ],
+      "meta": {
+        "title": "Agent Information Flow Paradigm",
+        "description": "Versioned rules for how agents provide, observe and redistribute information in a channel, with scoped role bindings and four-valued checks",
+        "status": "Draft",
+        "type": "Standards Track",
+        "category": "ERC",
+        "created": "2026-11-08",
+        "authors": [
+          "Gary Yang"
+        ],
+        "requires": [
+          165,
+          6372
+        ],
+        "discussionsTo": "https://ethereum-magicians.org/t/erc-8489-agent-information-flow-paradigm/30300"
+      },
+      "sourceHash": "6b31f4fb019f253a",
+      "model": "sonnet",
+      "generatedAt": "2026-11-27T14:37:34.394Z"
+    },
+    {
+      "number": 8490,
+      "titleKo": "에이전트 자가점검 레지스트리",
+      "topic": "기타",
+      "summary": "AI 에이전트가 자신의 상태 점검·수정·업데이트 내역을 네 개 계층으로 나눠 체인에 기록하고 다른 당사자가 그 기록의 시점과 범위를 검증할 수 있게 하는 표준입니다.",
+      "why": "AI 에이전트는 코드와 설정, 의존성, 메모리, 스킬, 작업 계획, 판단 방식을 계속 바꾸면서도 같은 정체성을 유지합니다. 자가점검, 의존성 점검, 메모리 정리, 재계획, 반성 같은 유지보수 과정은 대부분 오프체인에서 백그라운드로 실행되고 결과도 로컬에만 남습니다. 그래서 외부에서는 어떤 상태가 지금 등록돼 있는지, 어느 계층을 최근에 점검했는지, 어떤 규칙 아래 변경이 이뤄졌는지, 에이전트가 주장하는 개선이 무엇을 평가한 결과인지 확인할 방법이 없습니다. 에이전트를 신뢰해야 하는 상대방은 이런 질문에 답을 얻지 못한 채 판단해야 합니다.",
+      "before": [
+        "자가점검·메모리 정리·재계획 결과가 오프체인에만 남아 외부에서 확인 불가",
+        "어떤 상태가 최신이고 언제부터 유효한지 알 수 없음",
+        "변경이 어떤 정책(규칙) 아래 승인됐는지 추적 불가",
+        "개선했다는 주장을 검증할 근거 자료가 없음"
+      ],
+      "after": [
+        "런타임·메모리·스킬·작업·역할·인지 네 계층별 상태 커밋먼트를 체인에 등록",
+        "정책 버전별 유효 시점과 결합해 어떤 규칙 아래 변경이 승인됐는지 확인 가능",
+        "각 유지보수 주기의 범위, 완료 계층, 결과(완료·부분·중단·실패)를 레지스트리가 검증",
+        "컨트롤러가 최소 요건(floor)을 정하고 특정 계층의 완료를 마감 기한과 함께 요구 가능"
+      ],
+      "impact": [
+        {
+          "who": "에이전트 개발자·운영자",
+          "text": "enroll과 report로 자가관리 내역을 표준 형식으로 기록합니다."
+        },
+        {
+          "who": "에이전트에 의존하는 상대방",
+          "text": "layerStatus와 signalStatus로 상대 에이전트의 유지보수 신선도를 조회합니다."
+        },
+        {
+          "who": "컨트롤러(배포자 등)",
+          "text": "floor와 demand로 최소 유지보수 요건을 강제합니다."
+        },
+        {
+          "who": "평판·신원 레지스트리, 분쟁 처리 시스템",
+          "text": "이 기록을 사실과 근거 자료로 참조합니다."
+        }
+      ],
+      "iface": [
+        {
+          "sig": "function enroll(bytes32[4] calldata baseline, Policy calldata policy, address controller, uint8 controllerRights) external;",
+          "ko": "subject가 자신을 레지스트리에 등록하며 네 계층의 기준 커밋먼트, 초기 정책, 선택적 컨트롤러를 설정합니다."
+        },
+        {
+          "sig": "function setOperator(address operator, uint8 permissions) external;",
+          "ko": "subject가 오퍼레이터를 지정하고 report·pulse·policy 권한 비트마스크를 부여합니다."
+        },
+        {
+          "sig": "function revokeOperator(address subject, address operator) external;",
+          "ko": "subject 또는 RIGHT_REVOKE_OPERATORS 권한을 가진 컨트롤러가 오퍼레이터 권한을 회수합니다."
+        },
+        {
+          "sig": "function setController(address subject, address newController, uint8 rights) external;",
+          "ko": "subject가 컨트롤러를 지정하거나, 컨트롤러가 자신의 권한 범위 안에서 지위를 이전·축소·포기합니다."
+        },
+        {
+          "sig": "function setPolicy(address subject, Policy calldata policy) external;",
+          "ko": "subject 또는 PERM_POLICY 권한을 가진 오퍼레이터가 새 정책 버전을 추가합니다."
+        },
+        {
+          "sig": "function setFloor(address subject, Floor calldata floor) external;",
+          "ko": "RIGHT_FLOOR 권한을 가진 컨트롤러가 최소 요건(floor)을 새 버전으로 교체합니다."
+        },
+        {
+          "sig": "function demand(address subject, uint8 layerMask, uint48 dueBy) external;",
+          "ko": "RIGHT_DEMAND 권한을 가진 컨트롤러가 특정 계층의 완료를 마감 기한과 함께 요구합니다."
+        },
+        {
+          "sig": "function withdrawDemand(address subject, uint8 layerMask) external;",
+          "ko": "RIGHT_DEMAND 권한을 가진 컨트롤러가 걸어둔 요구를 철회합니다."
+        },
+        {
+          "sig": "function report(address subject, CycleReport calldata r) external returns (uint64 seq);",
+          "ko": "subject 또는 PERM_REPORT 오퍼레이터가 하나의 유지보수 주기 결과를 등록합니다."
+        },
+        {
+          "sig": "function pulse(address subject, uint48 nextPlannedAt) external returns (uint64 seq);",
+          "ko": "subject 또는 PERM_PULSE·PERM_REPORT 오퍼레이터가 유지보수 내용 없는 활동 신호만 등록합니다."
+        },
+        {
+          "sig": "function headOf(address subject) external view returns (Head memory);",
+          "ko": "subject의 현재 상태 버전, 루트, 정책·플로어 버전, 활동 신호 등 요약 정보를 조회합니다."
+        },
+        {
+          "sig": "function checkpointOf(address subject, uint8 layer) external view returns (LayerCheckpoint memory);",
+          "ko": "특정 계층의 현재 커밋먼트와 마지막 완료 시각 등 체크포인트를 조회합니다."
+        },
+        {
+          "sig": "function rootAt(address subject, uint64 stateVersion) external view returns (bytes32);",
+          "ko": "특정 상태 버전에서의 상태 루트를 조회합니다."
+        },
+        {
+          "sig": "function policyOf(address subject, uint32 version) external view returns (Policy memory);",
+          "ko": "특정 버전의 정책 내용을 조회합니다."
+        },
+        {
+          "sig": "function policyEffectiveFrom(address subject, uint32 version) external view returns (uint48);",
+          "ko": "특정 정책 버전이 유효해진 시점을 조회합니다."
+        },
+        {
+          "sig": "function floorOf(address subject) external view returns (Floor memory);",
+          "ko": "현재 설정된 플로어를 조회합니다."
+        },
+        {
+          "sig": "function demandOf(address subject, uint8 layer) external view returns (Demand memory);",
+          "ko": "특정 계층에 걸린 요구(demand)의 내용을 조회합니다."
+        },
+        {
+          "sig": "function operatorPermissions(address subject, address operator) external view returns (uint8);",
+          "ko": "특정 오퍼레이터에게 부여된 권한 비트마스크를 조회합니다."
+        },
+        {
+          "sig": "function requirementsOf(address subject) external view returns (Requirements memory);",
+          "ko": "정책과 플로어를 결합한 유효 요건을 조회합니다."
+        },
+        {
+          "sig": "function layerStatus(address subject, uint8 layer) external view returns (MaintenanceStatus status, uint48 deadline, bool neverCompleted);",
+          "ko": "특정 계층의 유지보수 상태(FRESH·DUE·OVERDUE 등)와 데드라인을 판정합니다."
+        },
+        {
+          "sig": "function signalStatus(address subject) external view returns (SignalStatus status, uint48 lastSignalAt, uint48 silentSince);",
+          "ko": "subject의 활동 신호 상태(PRESENT·SILENT 등)를 판정합니다."
+        },
+        {
+          "sig": "function computeRoot(bytes32[4] calldata commitments) external pure returns (bytes32);",
+          "ko": "네 계층 커밋먼트로부터 상태 루트를 계산하는 순수 함수입니다."
+        },
+        {
+          "sig": "function computeLayerCommitment(uint8 layer, bytes32 schemaHash, bytes32 contentHash, bytes32 salt) external pure returns (bytes32);",
+          "ko": "계층 인덱스와 schemaHash, contentHash, salt로부터 계층 커밋먼트를 계산하는 순수 함수입니다."
+        },
+        {
+          "sig": "event Enrolled(address indexed subject, address indexed controller, uint8 controllerRights, bytes32 root, uint48 enrolledAt);",
+          "ko": "subject가 등록되었을 때 발생하며 초기 루트와 컨트롤러 정보를 담습니다."
+        },
+        {
+          "sig": "event ControllerChanged(address indexed subject, address indexed previousController, address indexed newController, uint8 rights);",
+          "ko": "컨트롤러가 지정, 교체 또는 변경되었을 때 발생합니다."
+        },
+        {
+          "sig": "event OperatorSet(address indexed subject, address indexed operator, uint8 permissions, address indexed by);",
+          "ko": "오퍼레이터의 권한이 설정되었을 때 발생합니다."
+        },
+        {
+          "sig": "event PolicyUpdated(address indexed subject, uint32 indexed version, bytes32 policyHash, uint48 effectiveFrom, address by);",
+          "ko": "새 정책 버전이 등록되었을 때 발생합니다."
+        },
+        {
+          "sig": "event FloorUpdated(address indexed subject, uint32 indexed version, uint48 effectiveFrom, address by);",
+          "ko": "새 플로어 버전이 등록되었을 때 발생합니다."
+        },
+        {
+          "sig": "event Demanded(address indexed subject, uint8 layerMask, uint48 dueBy, address by);",
+          "ko": "컨트롤러가 특정 계층에 완료를 요구했을 때 발생합니다."
+        },
+        {
+          "sig": "event DemandWithdrawn(address indexed subject, uint8 layerMask, address by);",
+          "ko": "걸려 있던 요구가 철회되었을 때 발생합니다."
+        },
+        {
+          "sig": "event CycleRecorded(address indexed subject, uint64 indexed seq, uint64 baseVersion, uint64 newVersion, CycleReport report, uint8 changedLayers, uint48 recordedAt, address submitter);",
+          "ko": "하나의 유지보수 주기 기록이 승인되었을 때 전체 내용과 변경된 계층을 담아 발생합니다."
+        },
+        {
+          "sig": "event LayerCommitmentChanged(address indexed subject, uint8 indexed layer, uint64 indexed version, bytes32 previousCommitment, bytes32 newCommitment);",
+          "ko": "특정 계층의 커밋먼트가 바뀌었을 때 이전 값과 새 값을 담아 발생합니다."
+        },
+        {
+          "sig": "event Pulsed(address indexed subject, uint64 indexed seq, uint48 recordedAt, uint48 nextPlannedAt, address submitter);",
+          "ko": "활동 신호(pulse)가 등록되었을 때 발생합니다."
+        },
+        {
+          "sig": "function begin(address subject) external returns (uint48 startedAt);",
+          "ko": "subject 또는 PERM_REPORT 오퍼레이터가 레지스트리가 관찰한 시작 시각을 기록합니다. (선택적 확장)"
+        },
+        {
+          "sig": "function cancelStart(address subject) external;",
+          "ko": "subject 또는 시작을 기록한 계정이 열려 있는 시작을 취소합니다. (선택적 확장)"
+        },
+        {
+          "sig": "function openStartOf(address subject) external view returns (uint48 startedAt, address recordedBy);",
+          "ko": "현재 열려 있는 시작 시각과 이를 기록한 계정을 조회합니다. (선택적 확장)"
+        },
+        {
+          "sig": "event CycleBegun(address indexed subject, uint48 startedAt, uint48 replacedStartedAt, address by);",
+          "ko": "시작이 기록되었을 때 발생하며 교체된 이전 시작 시각을 함께 담습니다. (선택적 확장)"
+        },
+        {
+          "sig": "event StartVoided(address indexed subject, uint48 startedAt, address by);",
+          "ko": "열려 있던 시작이 해당 주기 기록이 아닌 다른 이유로 무효화되었을 때 발생합니다. (선택적 확장)"
+        }
+      ],
+      "flow": {
+        "title": "자가관리 기록 등록과 조회 흐름",
+        "steps": [
+          {
+            "label": "에이전트(subject)",
+            "title": "등록",
+            "body": "enroll을 호출해 네 계층의 기준 커밋먼트와 초기 정책, 선택적 컨트롤러를 등록합니다."
+          },
+          {
+            "label": "에이전트 또는 오퍼레이터",
+            "title": "오프체인 점검 수행",
+            "body": "점검, 정리, 수정, 업데이트 등 하나 이상의 계층을 다루는 유지보수 주기(cycle)를 오프체인에서 실행합니다."
+          },
+          {
+            "label": "에이전트 또는 오퍼레이터",
+            "title": "주기 결과 제출",
+            "body": "report를 호출해 주기의 범위, 완료된 계층, 결과, 변경 후 커밋먼트를 등록합니다."
+          },
+          {
+            "label": "레지스트리",
+            "title": "검증과 갱신",
+            "body": "이전 상태와의 연결, 시간 순서, 적용 정책, 범위 밖 계층의 불변을 확인한 뒤 체크포인트와 상태 루트를 갱신합니다."
+          },
+          {
+            "label": "제3자(상대방·컨트롤러)",
+            "title": "상태 조회",
+            "body": "layerStatus와 signalStatus를 조회해 특정 계층의 유지보수가 최신인지, 최근 활동 신호가 있는지 확인합니다."
+          }
+        ]
+      },
+      "deep": [
+        {
+          "title": "네 개의 고정 계층",
+          "body": "이 표준은 에이전트 상태를 런타임(0), 메모리와 스킬(1), 작업과 역할(2), 인지(3) 네 계층으로 고정합니다. 순서는 추상도의 높낮이를 나타낼 뿐 실행 순서를 규정하지 않으며 하나의 주기는 네 계층 중 어떤 부분집합이든 다룰 수 있습니다. 같은 스킬이라도 계층 1에서는 보유·완결성·최신성을, 계층 2에서는 어떤 작업이 어떤 버전으로 그 스킬을 쓰는지를 다룹니다. 잔액이나 응답 지연 같은 시점성 관측값은 계층 상태 문서에 포함되지 않고 주기 기록 문서에 들어갑니다.",
+          "ref": "원문: Layers"
+        },
+        {
+          "title": "커밋먼트 산출 방식",
+          "body": "계층 상태 문서는 JSON 정규화(JCS, RFC 8785) 후 keccak256으로 contentHash를 얻고 스키마 식별자의 keccak256인 schemaHash와 salt를 함께 abi.encode로 묶어 계층 커밋먼트를 계산합니다. salt는 0일 수 있지만 공개 정보로 문서 내용을 추측할 수 있는 경우 비0 salt를 쓰고 문서를 공개할 때 함께 공개해야 합니다. 네 계층 커밋먼트를 다시 묶어 상태 루트를 얻습니다.",
+          "ref": "원문: Commitment format"
+        },
+        {
+          "title": "보고된 시간과 기록된 시간의 구분",
+          "body": "reportedStartedAt, reportedEndedAt, 계층별 completedAt은 제출자가 주장하는 시간이고 레지스트리가 트랜잭션을 받을 때 클록에서 읽는 recordedAt과는 별개입니다. 레지스트리는 시간 순서(이전 완료보다 늦고 클록보다 이르고 주기 시작과 종료 사이에 있음)만 검증할 수 있고 실제 실행 여부는 검증할 수 없습니다. 이 버전은 ERC-6372의 timestamp 모드만 사용하므로 간격은 초 단위입니다.",
+          "ref": "원문: Clock"
+        },
+        {
+          "title": "역할과 권한 구조",
+          "body": "subject만 자신에 대한 기록을 쓸 수 있는 1인칭 구조입니다. 컨트롤러는 floor 설정, 특정 계층의 완료 요구(demand), 오퍼레이터 강제 해지 중 임명 시 정해진 권한만 가지며 직접 기록을 쓰거나 오퍼레이터를 부여할 수 없습니다. 오퍼레이터는 subject가 부여한 비트마스크(PERM_REPORT, PERM_PULSE, PERM_POLICY)만큼 report·pulse·policy를 대신 제출할 수 있지만 모든 기록은 항상 subject에게 귀속됩니다.",
+          "ref": "원문: Roles and authorization"
+        },
+        {
+          "title": "정책과 플로어의 결합",
+          "body": "policy는 subject가 버전별로 선언하는 자기 요건으로 지원 계층, 필수 계층, 허용 트리거, 공개 수준(disclosure), 계층별 최대 점검 간격을 담습니다. floor는 컨트롤러가 설정하는 최소 요건으로 policy가 이보다 느슨해질 수 없습니다. 유효 요건은 두 값을 계층별로 최솟값으로 결합해 계산하며 floor가 요구하거나 demand가 걸린 계층은 subject가 임의로 supportedLayers에서 뺄 수 없습니다.",
+          "ref": "원문: Policy and floor"
+        },
+        {
+          "title": "주기 기록의 검증 규칙",
+          "body": "report 호출 시 레지스트리는 범위(layerMask·completedLayers·opsMask의 일치), outcome과 completedLayers의 일관성(COMPLETED·PARTIAL·ABORTED·FAILED), 적용 정책 버전의 유효성, 직전 상태와의 연결(baseVersion·preRoot), 범위 밖 계층의 불변, 시간 순서(주기 간 겹침 금지, 계층별 완료시각이 이전 완료보다 늦음), 복원 주장(restoresVersion)의 history 일치, 현재 정책 버전과의 적합성을 모두 확인해야만 기록을 승인합니다. 이 중 하나라도 어긋나면 기록은 거부됩니다.",
+          "ref": "원문: Cycle records"
+        },
+        {
+          "title": "상태 판정: layerStatus와 signalStatus",
+          "body": "layerStatus는 계층이 미등록·미지원·미예정 상태인지, 아니면 그 계층의 마지막 완료 시각과 최대 간격으로 계산한 데드라인에 비춰 FRESH·DUE·OVERDUE 중 하나인지를 판정합니다. 필수 계층이 한 번도 완료되지 않았다면 등록 시점부터 계산합니다. signalStatus는 pulse나 report로 갱신되는 활동 신호를 NOT_TRACKED·PRESENT·SILENT로 따로 판정하며 유지보수 신선도와는 독립적입니다.",
+          "ref": "원문: Status derivation"
+        },
+        {
+          "title": "recorded-start 확장과 Draft 상태",
+          "body": "이 ERC는 현재 Draft 상태이며 아직 논의와 변경이 진행 중인 제안이라는 점에 유의해야 합니다. 선택적으로 구현하는 recorded-start 확장은 begin으로 레지스트리가 직접 관찰한 시작 시각을 기록해 두고 그 시작에 정확히 맞는 주기 기록은 이후 정책이 바뀌어도 시작 시점의 정책 버전에 고정(pin)될 수 있게 합니다.",
+          "ref": "원문: Recorded start / 문서 상단 메타데이터"
+        }
+      ],
+      "safety": [
+        {
+          "title": "기록은 자가보고입니다",
+          "body": "모든 주기 기록은 subject의 주장일 뿐입니다. 레지스트리는 누가 언제 무엇을 제출했는지만 보증하며 오프체인 루틴이 실제로 실행됐거나 점검이 통과했음을 보증하지 않습니다. FRESH 상태도 건강성이나 능력을 뜻하지 않습니다."
+        },
+        {
+          "title": "커밋먼트는 내용을 공개하지 않습니다",
+          "body": "커밋먼트는 문서를 공개 요청받을 수 있게 묶어둘 뿐, 공개 전까지 내용을 드러내지 않습니다. 공개 정보로 추측 가능한 내용은 비0 salt로만 보호되며 subject는 끝까지 공개하지 않을 커밋먼트를 올릴 수도 있습니다."
+        },
+        {
+          "title": "지연 제출로 실패를 숨길 수 있습니다",
+          "body": "신선도는 보고된 완료 시각 기준으로 판정되므로 늦게 제출해도 오래된 주기로 보이지는 않지만 subject는 실패한 주기의 제출 자체를 미뤄 숨길 수 있습니다. 순서·연결 규칙은 지연된 기록이 주장할 수 있는 범위만 제한합니다."
+        },
+        {
+          "title": "정책 변경 시점을 둘러싼 조작 여지",
+          "body": "주기는 보고된 시작 시점에 유효했던 정책 버전으로 해석되고 그 시작 시점은 제출자가 정하므로, 직전 승인된 주기의 종료와 다음 정책 변경 사이의 틈에서 역산된 시작을 완전히 걸러낼 수 없습니다. 다만 그 틈에서도 현재 버전이 금지하는 계층이나 트리거는 쓸 수 없게 제한됩니다."
+        },
+        {
+          "title": "오퍼레이터 키 유출의 위험",
+          "body": "report 권한을 가진 오퍼레이터는 순서 규칙 안에서 임의의 커밋먼트와 완료 시각을 subject 이름으로 등록할 수 있습니다. 오퍼레이터 키가 유출되면 그 시점부터의 유지보수 기록 전체가 훼손됩니다."
+        }
+      ],
+      "glossary": [
+        {
+          "term": "레이어 커밋먼트(layer commitment)",
+          "def": "계층 상태 문서를 keccak256으로 묶은 값으로, 내용을 공개하지 않은 채 상태를 증명하는 데 쓰입니다."
+        },
+        {
+          "term": "상태 루트(state root)",
+          "def": "네 계층 커밋먼트를 하나로 묶은 값으로, subject의 전체 상태를 대표합니다."
+        },
+        {
+          "term": "정책(policy)",
+          "def": "subject가 스스로 선언하는 유지보수 규칙으로 지원 계층, 필수 계층, 허용 트리거, 최대 점검 간격 등을 담습니다."
+        },
+        {
+          "term": "플로어(floor)",
+          "def": "컨트롤러가 정하는 최소 요건으로, 정책이 이보다 느슨해질 수 없습니다."
+        },
+        {
+          "term": "펄스(pulse)",
+          "def": "유지보수 내용 없이 활동 신호만 남기는 기록으로, 계층 상태나 데드라인을 바꾸지 않습니다."
+        },
+        {
+          "term": "리콜드 스타트(recorded start)",
+          "def": "레지스트리가 직접 관찰해 기록한 주기 시작 시각으로, 정책 변경 전 버전에 기록을 고정시킬 때 씁니다."
+        }
+      ],
+      "meta": {
+        "title": "Agent Meditation Mechanism",
+        "description": "Attributable, versioned self-maintenance records of an AI agent across runtime, memory and skills, tasks and roles, and cognition",
+        "status": "Draft",
+        "type": "Standards Track",
+        "category": "ERC",
+        "created": "2026-11-09",
+        "authors": [
+          "Gary Yang"
+        ],
+        "requires": [
+          165,
+          6372
+        ],
+        "discussionsTo": "https://ethereum-magicians.org/t/erc-8490-agent-meditation-mechanism/30304"
+      },
+      "sourceHash": "4942cc36eeccda60",
+      "model": "sonnet",
+      "generatedAt": "2026-11-27T14:27:33.085Z"
+    },
+    {
+      "number": 8493,
+      "titleKo": "온체인 메타데이터 URI 스킴",
+      "topic": "이름·메타데이터",
+      "summary": "ERC-8048·ERC-8049에 저장된 온체인 메타데이터 값을 컨트랙트 주소와 토큰ID를 반복해서 적지 않고 짧은 키 하나로 JSON 문서에서 가리키는 onchain URI 스킴입니다.",
+      "why": "ERC-8048과 ERC-8049는 메타데이터를 키와 값의 쌍으로 온체인에 저장하지만, 지금까지 JSON 문서에는 그 값을 가리킬 간결한 방법이 없었습니다. 보통은 컨트랙트 주소, 체인, 토큰ID를 모두 담은 URL을 써야 했는데, 이는 읽는 쪽이 이미 알고 있는 정보를 그대로 반복하는 것이고, 토큰마다 URL이 달라져서 문서를 재사용할 수 없었습니다. 예를 들어 이미지 하나를 가리키는 URL도 토큰ID가 바뀌면 전부 새로 써야 합니다. onchain URI 스킴은 이런 중복을 없애고, onchain:image/png처럼 17바이트짜리 짧은 문자열로 모든 토큰에 동일하게 쓸 수 있는 참조 방식을 정의합니다.",
+      "before": [
+        "토큰마다 컨트랙트 주소, 체인, 토큰ID를 담은 긴 URL을 따로 작성해야 함",
+        "URL이 토큰마다 달라져 메타데이터 문서를 재사용할 수 없음",
+        "온체인에 저장된 키-값 메타데이터를 JSON에서 가리킬 표준화된 방법이 없음"
+      ],
+      "after": [
+        "onchain:image/png 같은 짧은 URI로 모든 토큰에 동일하게 사용 가능",
+        "컨트랙트와 토큰ID는 URI가 등장한 문서의 컨텍스트에서 자동으로 결정됨",
+        "하나의 자산은 하나의 온체인 키이므로 자산 하나를 바꿀 때 키 하나만 쓰면 됨"
+      ],
+      "impact": [
+        {
+          "who": "지갑·마켓플레이스 등 클라이언트",
+          "text": "onchain URI를 해석해 ERC-8048·ERC-8049 컨트랙트에서 실제 값을 조회하고 표시해야 합니다."
+        },
+        {
+          "who": "NFT·토큰 컨트랙트 개발자",
+          "text": "ERC-8048·ERC-8049 기반 메타데이터 컨트랙트는 추가 구현 없이 이 스킴을 바로 지원합니다."
+        },
+        {
+          "who": "메타데이터 문서 작성자",
+          "text": "미디어타입과 key 파라미터 작성 규칙, 예약된 이름(metadata_uri, metadata_contract)을 지켜야 합니다."
+        }
+      ],
+      "iface": [],
+      "flow": {
+        "title": "onchain URI 해석 흐름",
+        "steps": [
+          {
+            "label": "작성자",
+            "title": "메타데이터에 URI 기록",
+            "body": "JSON 문서에 \"image\": \"onchain:image/png\"처럼 미디어타입과 필요하면 key 파라미터를 넣어 값을 가리킵니다."
+          },
+          {
+            "label": "클라이언트",
+            "title": "최상위 문서 가져오기",
+            "body": "tokenURI, uri 등으로 top-level 문서를 가져오고, URI가 놓인 위치에 따라 읽을 키를 정합니다."
+          },
+          {
+            "label": "클라이언트",
+            "title": "대상 컨트랙트 결정",
+            "body": "root 객체에 metadata_contract가 있으면 그 컨트랙트를, 없으면 URI를 반환한 컨트랙트를 같은 체인에서 사용합니다."
+          },
+          {
+            "label": "클라이언트",
+            "title": "값 조회",
+            "body": "토큰ID가 있으면 ERC-8048의 metadata(tokenId, key)를, 없으면 ERC-8049의 metadata(key)를 호출합니다."
+          },
+          {
+            "label": "클라이언트",
+            "title": "바이트 처리",
+            "body": "반환된 바이트를 선언된 미디어타입으로 처리하고, 타입이 없으면 UTF-8 평문으로만 다루며 더 강한 타입으로 렌더링하지 않습니다."
+          }
+        ]
+      },
+      "deep": [
+        {
+          "title": "URI 문법",
+          "body": "onchain URI는 \"onchain:\" 뒤에 선택적으로 미디어타입과 \"?key=\" 파라미터가 붙는 구조입니다(onchain-uri = \"onchain:\" [mediatype] [\"?key=\" enckey]). 미디어타입과 key 파라미터가 모두 선택 사항이라 onchain:, onchain:image/png, onchain:?key=seat, onchain:image/png?key=hero 네 가지 형태가 모두 유효한 RFC 3986 URI입니다. type/subtype/parameter는 RFC 2045의 Content-Type 값과 동일한 형식이며 공백을 포함할 수 없습니다.",
+          "ref": "원문: Syntax"
+        },
+        {
+          "title": "미디어타입 처리",
+          "body": "작성자는 필드가 자체적으로 타입을 정의하거나 값이 순수 UTF-8 텍스트인 경우를 빼면 미디어타입을 넣는 것이 권장(SHOULD)됩니다. 미디어타입이 있으면 클라이언트는 같은 타입의 data: URI 페이로드처럼 다뤄야 합니다. text 타입이면서 charset이 없으면 UTF-8로 간주합니다. 미디어타입이 없으면 그 URI가 등장한 표준이나 필드가 타입을 결정하며, 아무것도 결정하지 못하면 클라이언트는 반드시 text/plain;charset=utf-8로 다루고 HTML, SVG 등 활성 콘텐츠로 렌더링해서는 안 됩니다.",
+          "ref": "원문: Media type"
+        },
+        {
+          "title": "키 결정 규칙",
+          "body": "key 파라미터가 있으면 그 값을 한 번 퍼센트 디코딩한 문자열이 키가 됩니다. [, ], %, &, =, # 같은 문자는 반드시 퍼센트 인코딩해야 하지만, 일부 작성자는 괄호를 그냥 쓰므로 클라이언트는 그 형태도 허용하는 것이 권장됩니다. key가 없고 URI가 top-level 문서 root 객체의 직접 멤버 값일 때만 그 멤버 이름이 키가 됩니다. 중첩된 객체, 배열, 다른 문서에서 링크된 문서, 함수가 직접 반환한 URI 등 그 외 모든 위치에서는 key 파라미터가 필수이며, 없으면 클라이언트는 그 URI를 값이 없는 것으로 취급해야 합니다. 키는 경로 의미가 없는 평평한 문자열이라 thumb.small 같은 키의 점(.)은 단순한 문자일 뿐입니다. 대소문자도 구분합니다.",
+          "ref": "원문: Key"
+        },
+        {
+          "title": "대상 컨트랙트와 조회 함수 결정",
+          "body": "값을 읽을 컨트랙트는 기본적으로 그 URI를 반환한 함수가 속한 컨트랙트입니다. 하지만 top-level 문서 root 객체에 metadata_contract 속성(ERC-8048·ERC-8049의 Onchain Metadata Contract Reference 확장)이 있으면 같은 체인의 그 컨트랙트에서 대신 읽습니다. 다른 위치의 metadata_contract는 아무 효과가 없습니다. URI를 반환한 함수가 토큰ID를 받는 함수였다면 ERC-8048의 metadata(tokenId, key)를, 토큰ID가 없는 함수였다면 ERC-8049의 metadata(key)를 호출합니다. 길이 0인 바이트나 호출 실패(revert)는 모두 값이 없다는 뜻입니다.",
+          "ref": "원문: Context and resolution"
+        },
+        {
+          "title": "링크된 문서와 중첩 처리",
+          "body": "onchain URI나 다른 어떤 URI로 다른 JSON 문서를 링크해도, 그 문서는 링크한 문서의 컨텍스트(토큰 단위 또는 컨트랙트 단위)를 그대로 유지하며, 같은 컨트랙트와 (토큰 단위라면) 같은 토큰ID로 자신의 onchain URI를 해석합니다. 클라이언트는 중첩 깊이에 자체 제한을 둘 수 있지만 최소 5단계까지는 해석하는 것이 권장(SHOULD)됩니다.",
+          "ref": "원문: Nested documents"
+        },
+        {
+          "title": "예약된 키 이름",
+          "body": "metadata_uri와 metadata_contract는 예약된 이름입니다. metadata_uri는 토큰의 JSON 문서를 담는 키이고, metadata_contract는 메타데이터 컨트랙트를 지정하는 JSON 속성입니다. tokenURI나 uri가 직접 onchain:application/json?key=metadata_uri 같은 URI로 JSON 문서 자체를 가리킬 수도 있는데, 이때는 멤버 이름이 없으므로 key 파라미터가 필수입니다. 작성자는 구현체들이 이름을 통일할 수 있도록 metadata_uri를 쓰는 것이 권장(SHOULD)되며, 두 예약된 이름을 커스텀 키로 쓰지 않는 것이 권장(SHOULD NOT)됩니다.",
+          "ref": "원문: Key"
+        },
+        {
+          "title": "역호환성과 제안 상태",
+          "body": "이 스킴은 컨트랙트 쪽에 새로운 인터페이스를 추가하지 않으므로 기존 ERC-8048·ERC-8049 컨트랙트는 변경 없이 그대로 지원됩니다. 스킴을 해석하지 못하는 클라이언트는 해석 불가능한 URI를 그냥 무시할 수 있고, 이 스킴을 쓴 문서도 모든 클라이언트에게 여전히 유효한 JSON입니다. 이 제안은 현재 Draft 상태이므로 아직 세부 내용이 바뀌거나 중단될 수 있습니다.",
+          "ref": "원문: Backwards Compatibility, status"
+        }
+      ],
+      "safety": [
+        {
+          "title": "선언된 타입과 실제 바이트 일치 확인",
+          "body": "클라이언트는 선언된 미디어타입이 그 값이 쓰인 JSON 멤버에 맞는지(예: image 필드에는 이미지 타입), 반환된 바이트가 실제로 그 타입으로 디코딩되는지 확인해야 하며, 바이트를 선언된 타입보다 더 강력한 타입으로 승격시켜 렌더링해서는 안 됩니다."
+        },
+        {
+          "title": "metadata_contract는 신뢰할 수 없는 대상",
+          "body": "metadata_contract는 문서가 지정한 컨트랙트를 클라이언트가 읽게 만드므로, 반환된 바이트를 신뢰하지 않는 콘텐츠로 취급하고 https로 가져온 콘텐츠와 같은 크기 제한과 처리 방식을 적용해야 하며, 새로운 컨트랙트와 상호작용할 때처럼 주소를 표시하거나 검증해야 합니다."
+        },
+        {
+          "title": "컨텍스트 밖 사본은 해석하지 말 것",
+          "body": "문서가 원래 컨텍스트 밖에서 제공된 사본이라면 참조할 컨트랙트가 없으므로, 그 안의 onchain URI는 읽는 쪽이 임의로 추측한 컨트랙트에 대고 해석하지 말고 data: URI나 https URI로 교체해야 합니다."
+        }
+      ],
+      "glossary": [
+        {
+          "term": "ERC-8048 / ERC-8049",
+          "def": "토큰 단위(8048) 또는 컨트랙트 단위(8049)로 메타데이터를 키와 값의 쌍으로 온체인에 저장하는 표준입니다."
+        },
+        {
+          "term": "metadata_contract",
+          "def": "어느 컨트랙트에서 메타데이터 값을 읽어야 하는지를 지정하는 JSON 속성입니다."
+        },
+        {
+          "term": "metadata_uri",
+          "def": "토큰의 JSON 메타데이터 문서 자체를 담기 위해 예약된 키 이름입니다."
+        },
+        {
+          "term": "퍼센트 인코딩",
+          "def": "URI에 쓸 수 없는 특수문자를 %기호와 숫자로 안전하게 표현하는 인코딩 방식입니다."
+        },
+        {
+          "term": "top-level document",
+          "def": "tokenURI, uri, contractURI 등이 반환하는, URI 해석의 기준이 되는 최상위 JSON 문서입니다."
+        },
+        {
+          "term": "data: URI",
+          "def": "외부 링크 없이 데이터 자체를 URI 문자열 안에 그대로 담아 전달하는 URI 스킴입니다."
+        }
+      ],
+      "meta": {
+        "title": "Onchain URI Scheme",
+        "description": "A URI scheme that references onchain metadata values by key, with the contract and token taken from the document's context.",
+        "status": "Draft",
+        "type": "Standards Track",
+        "category": "ERC",
+        "created": "2026-11-09",
+        "authors": [
+          "Prem Makeig"
+        ],
+        "requires": [
+          8048,
+          8049
+        ],
+        "discussionsTo": "https://ethereum-magicians.org/t/erc-8493-onchain-uri-scheme/30344"
+      },
+      "sourceHash": "ac3355be34279000",
+      "model": "sonnet",
+      "generatedAt": "2026-11-27T14:40:06.595Z"
+    },
+    {
+      "number": 8495,
+      "titleKo": "토큰 메타데이터 JSON 스키마",
+      "topic": "이름·메타데이터",
+      "summary": "NFT·토큰의 tokenURI가 반환하는 JSON 문서의 형식과, 지갑·마켓플레이스가 이를 안전하게 가져오고 해석하고 표시하는 방법을 하나의 표준으로 정리합니다.",
+      "why": "ERC-721은 name, description, image만, ERC-1155는 decimals, properties, localization만 정의했습니다. 그 외에 지갑과 마켓플레이스가 보여주는 비디오, HTML, 트레잇(속성) 같은 것들은 2018년 OpenSea가 문서화했을 뿐 표준으로 정해진 적이 없습니다. 그래서 트레잇 값이 불리언인지 숫자인지, 날짜가 초 단위인지 밀리초 단위인지, 어떤 URI 스킴을 읽어야 하는지, HTML을 어떻게 격리해야 하는지를 클라이언트마다 다르게 처리합니다. ERC-5625처럼 메타데이터 필드를 추가하는 제안들도 기준으로 삼을 기본 문서가 없고 필드 이름을 어떻게 지어야 하는지, 예전 클라이언트가 무엇을 보여줘야 하는지에 대한 규칙이 없었습니다.",
+      "before": [
+        "트레잇 값이 불리언인지 문자열인지 숫자인지 클라이언트마다 다르게 해석됩니다.",
+        "날짜 트레잇이 초 단위인지 밀리초 단위인지 통일되지 않아 표시가 엇갈립니다.",
+        "IPFS 게이트웨이 URL을 그대로 저장해 그 서버가 죽으면 콘텐츠를 못 불러옵니다.",
+        "animation_url의 HTML·SVG가 격리 없이 렌더링돼 지갑 접근 위험이 있습니다."
+      ],
+      "after": [
+        "display_type과 숫자·문자열 타입 규칙이 정해져 모든 클라이언트가 트레잇을 같게 해석합니다.",
+        "1000000000000 이상이면 밀리초로 읽는 기준이 생겨 날짜 표시가 통일됩니다.",
+        "게이트웨이 URL도 CID로 환산해 다른 게이트웨이나 노드로 재조회하고 검증할 수 있습니다.",
+        "HTML은 allow-same-origin이 없는 샌드박스 iframe에 격리되어 지갑 프로바이더에 접근하지 못합니다."
+      ],
+      "impact": [
+        {
+          "who": "지갑·마켓플레이스",
+          "text": "동일한 규칙으로 트레잇, 날짜, URI를 해석해 모든 클라이언트가 같은 화면을 보여줄 수 있습니다."
+        },
+        {
+          "who": "NFT·토큰 발행자",
+          "text": "어떤 URI 스킴과 형식을 써야 안전하게 표시되는지 구체적인 기준을 따를 수 있습니다."
+        },
+        {
+          "who": "인덱서",
+          "text": "내부망 주소 차단 등 URI를 안전하게 가져오는 절차를 표준으로 적용할 수 있습니다."
+        },
+        {
+          "who": "확장 제안 작성자",
+          "text": "ERC-5625 같은 후속 제안이 필드를 어떻게 추가해야 하는지 규칙을 따를 수 있습니다."
+        }
+      ],
+      "iface": [],
+      "flow": {
+        "title": "메타데이터 URI 처리 흐름",
+        "steps": [
+          {
+            "label": "클라이언트",
+            "title": "메타데이터 URI 획득",
+            "body": "tokenURI나 uri 함수로 토큰의 메타데이터 URI 문자열을 가져옵니다."
+          },
+          {
+            "label": "클라이언트",
+            "title": "공백 제거와 형식 판별",
+            "body": "앞뒤 공백을 제거하고 문자열이 중괄호로 시작·끝나면 URI가 아니라 JSON 문서 자체로 취급합니다."
+          },
+          {
+            "label": "클라이언트",
+            "title": "ID 치환과 스킴별 처리",
+            "body": "ERC-1155라면 {id}를 16진수 토큰ID로 바꾸고 data·ipfs·ar·https 등 스킴에 맞게 디코딩하거나 게이트웨이 검증을 거쳐 가져옵니다."
+          },
+          {
+            "label": "클라이언트",
+            "title": "UTF-8 디코딩과 JSON 파싱",
+            "body": "받은 바이트를 UTF-8로 디코딩한 뒤 JSON으로 파싱합니다. 실패하거나 객체가 아니면 문서가 없는 것으로 처리합니다."
+          },
+          {
+            "label": "클라이언트",
+            "title": "실패 시 10진수 재시도",
+            "body": "ERC-1155 토큰에서 16진수 ID로 조회가 실패하면, 10진수 토큰ID로 한 번 더 시도합니다."
+          },
+          {
+            "label": "클라이언트",
+            "title": "필드 치환과 표시",
+            "body": "문서 내 문자열 값에도 {id} 치환을 적용한 뒤, name·image·attributes 등 필드를 규칙에 따라 안전하게 표시합니다."
+          }
+        ]
+      },
+      "deep": [
+        {
+          "title": "표시 필드와 기본 처리 규칙",
+          "body": "메타데이터 문서는 name, description, image, animation_url, external_url, background_color, attributes 필드를 가집니다. 모두 선택 사항이며 제작자는 name과 image는 넣는 것이 권장되고 값이 없으면 null이나 빈 문자열 대신 필드를 생략해야 합니다. 클라이언트는 null과 빈 문자열을 없는 값으로 취급하고 모르는 필드는 무시하며 타입이 잘못된 필드는 무시하고 나머지는 읽어야 합니다. 같은 이름의 멤버가 객체 안에서 반복되면 마지막 값을 써야 합니다. name은 순수 텍스트로 마크다운이나 HTML로 해석하면 안 되고 description은 CommonMark 마크다운을 쓸 수 있지만 원본 HTML을 렌더링하면 안 되며 그 안의 원격 이미지를 불러오지 않는 것이 권장됩니다.",
+          "ref": "원문: Specification > Fields, name과 description"
+        },
+        {
+          "title": "URI 스킴 해석 규칙",
+          "body": "클라이언트는 https, ipfs, ar(Arweave), data URI를 반드시 해석해야 하고 ipns나 ERC-4804의 web3 스킴은 선택적으로 지원할 수 있으며 javascript나 file처럼 코드를 실행하거나 로컬 자원을 읽는 스킴은 해석하면 안 됩니다. 제작자는 절대경로 URI를 쓰고 바뀌지 않는 콘텐츠에는 ipfs, ar, data를 쓰는 것이 권장되며 http는 쓰지 않는 것이 권장됩니다. ipfs URI는 ipfs://<cid> 형태여야 하고 게이트웨이 URL을 대신 적으면 안 됩니다. 클라이언트는 https://<host>/ipfs/<cid> 같은 게이트웨이 URL을 CID와 경로만 남긴 ipfs URI로 바꿔 읽어야 하고 CID로 콘텐츠를 못 찾으면 쿼리스트링과 프래그먼트를 포함한 원래 URL로 되돌아갈 수 있지만 검증에 실패하면 이 되돌림을 쓰면 안 됩니다. 신뢰하지 않는 게이트웨이로 ipfs 콘텐츠를 가져올 때는 원시 블록이나 CAR 파일을 요청해 CID로 검증하는 것이 권장됩니다.",
+          "ref": "원문: Resolving URIs"
+        },
+        {
+          "title": "data URI와 메타데이터 URI 처리 절차",
+          "body": "제작자가 쓰는 data URI는 RFC 2397을 지켜야 하고 메타데이터 JSON에는 application/json과 base64 인코딩을 쓰는 것이 권장됩니다. 클라이언트는 규격을 지킨 data URI는 반드시 받아들이고 인코딩되지 않은 페이로드 같은 비표준 형태도 받아들이는 것이 권장됩니다. 메타데이터 URI 처리는 8단계입니다. 앞뒤 공백 제거, 중괄호로 시작·끝나면 JSON 문서 자체로 취급, ERC-1155라면 {id}를 16진수 토큰ID로 치환하고 ipfs://ipfs/<cid>와 게이트웨이 URL을 ipfs URI로 환산, data URI는 base64가 아니면 #을 %23으로 바꾼 뒤 Fetch 표준의 data: URL 처리기로 읽기, 지원하지 않는 스킴이면 문서 없음으로 처리, 나머지는 Resolving URIs 규칙대로 가져와 검증, 바이트를 UTF-8로 디코딩, JSON으로 파싱해 객체가 아니면 문서 없음으로 처리, 끝으로 16진수 치환 후 문서가 없으면 10진수 토큰ID로 한 번 더 시도하는 클라이언트도 있습니다.",
+          "ref": "원문: Resolving URIs, Processing a metadata URI"
+        },
+        {
+          "title": "attributes 트레잇 규칙",
+          "body": "attributes는 트레잇 객체의 배열입니다. trait_type은 트레잇 이름이고 있는 것이 권장되며 value는 문자열이나 숫자여야 하고 필수입니다. 쌍따옴표로 감싼 \"5\"는 문자열 트레잇, 5는 숫자 트레잇입니다. display_type은 absent, string이나 text(absent와 동일), number, boost_number, boost_percentage, date 중 하나로 표시 방식을 정하고 모르는 display_type은 absent로 취급해야 합니다. number, boost_number, boost_percentage, date는 value가 숫자여야 하고 문자열로 된 소수도 받아들일 수 있습니다. max_value는 숫자 트레잇에만 적용되고 value보다 크거나 같아야 합니다. date는 block.timestamp와 맞춰 초 단위이고 1000000000000 이상이면 밀리초로 읽는 것이 권장됩니다. 같은 trait_type이 반복되면 여러 값을 가진 하나의 트레잇이 되고 문자열 값은 앞뒤 공백을 자르고 정확히 비교하는 것이 권장됩니다. 속성이 컨트랙트가 ERC-165로 선언한 인터페이스의 값과 충돌하면 컨트랙트 쪽 값을 보여주는 것이 권장됩니다.",
+          "ref": "원문: Specification > attributes"
+        },
+        {
+          "title": "animation_url과 HTML 격리",
+          "body": "animation_url은 비디오, 오디오, 3D 모델, HTML 페이지를 담아 상세 화면에서 image 대신 보여줍니다. 지원하는 미디어 타입은 비디오가 video/mp4, video/x-m4v, video/webm, video/ogg, 오디오가 audio/mpeg, audio/wav, audio/ogg, 3D 모델이 model/gltf-binary와 model/gltf+json, 인터랙티브가 text/html입니다. 클라이언트가 animation_url을 렌더링할 수 없으면 image로 되돌아가야 하고 오디오면 image를 커버아트로 보여주는 것이 권장됩니다. HTML 페이지를 렌더링하는 클라이언트는 allow-scripts는 있지만 allow-same-origin은 없는 샌드박스 iframe 등으로 클라이언트 자신의 origin과 반드시 격리해야 하고 지갑 프로바이더나 서명 인터페이스를 노출하면 안 되며 팝업과 최상위 탐색을 막는 것이 권장됩니다. image는 문서로 렌더링하면 안 되고 Content-Type이나 data URI가 HTML 미디어 타입을 가리키면 image를 없는 값으로 취급하는 것이 권장됩니다.",
+          "ref": "원문: animation_url, image"
+        },
+        {
+          "title": "메타데이터 갱신 이벤트",
+          "body": "문서가 바뀌면 ERC-721 컨트랙트는 ERC-4906의 MetadataUpdate 이벤트를 내는 것이 권장되고 ERC-1155 컨트랙트도 토큰ID 하나에는 같은 MetadataUpdate를, 구간에는 BatchMetadataUpdate를 낼 수 있습니다. ERC-1155가 URI가 바뀔 때 URI 이벤트를 내야 한다는 요구사항도 그대로 적용됩니다. 문서를 캐시하는 클라이언트는 이 이벤트들을 받으면 해당 문서를 다시 가져오는 것이 권장되고 배치 업데이트라면 그 범위 안에 있는 캐시된 토큰ID를 고르는 것이 권장되며 범위에 있는 모든 ID가 실제로 존재한다는 뜻은 아닙니다. 미디어를 캐시하는 클라이언트는 문서를 다시 가져올 때 URI가 바뀌지 않았더라도 미디어도 다시 가져오는 것이 권장되지만 ipfs, ar, data처럼 콘텐츠 주소화된 URI는 예외입니다.",
+          "ref": "원문: Metadata updates"
+        },
+        {
+          "title": "확장 제안이 필드를 추가하는 규칙",
+          "body": "다른 제안이 메타데이터 문서에 필드를 추가하려면 requires에 이 제안(ERC-8495)을 넣어야 하고 자신이 정의하는 모든 최상위 필드 이름을 밝혀야 하며 하나의 최상위 객체 필드로 정의하는 것이 권장됩니다. 필드 이름은 소문자 ASCII와 숫자, 밑줄만 쓰고 글자로 시작하는 것이 권장됩니다. 확장은 이 제안이나 다른 확장이 정의한 필드의 의미나 타입을 바꾸면 안 되고 새 display_type이나 새 속성 필드는 정의할 수 있습니다. 확장을 쓰는 문서도 이 제안을 그대로 지켜야 하고 확장을 모르는 클라이언트는 그 필드를 무시해야 하며 아는 클라이언트는 기본 필드보다 확장 데이터를 우선하는 것이 권장됩니다. 이 제안은 현재 Draft 상태로, 아직 확정되지 않았고 앞으로 바뀌거나 중단될 수 있는 제안입니다.",
+          "ref": "원문: Extensions"
+        }
+      ],
+      "safety": [
+        {
+          "title": "HTML·SVG 스크립트 격리",
+          "body": "animation_url의 HTML이나 SVG 이미지는 스크립트를 실행할 수 있습니다. 클라이언트 자신의 origin에서 렌더링되면 쿠키, 저장소, 연결된 지갑에 접근할 수 있으므로 위의 격리 규칙을 지켜야 합니다. image URL도 나중에, 예를 들어 도메인이 만료된 뒤 HTML을 서빙하기 시작할 수 있어 클라이언트는 image를 결코 문서로 렌더링하면 안 됩니다."
+        },
+        {
+          "title": "피싱 링크",
+          "body": "description과 external_url의 링크는 피싱 페이지로 이어질 수 있습니다. 클라이언트는 https 링크만 따라가고 목적지 도메인을 보여주는 것이 권장됩니다."
+        },
+        {
+          "title": "내부망 접근(SSRF) 위험",
+          "body": "인덱서는 컨트랙트 배포자가 고른 URI를 가져오는데, Fetching 절의 주소 검사가 없으면 URI나 리다이렉트가 클라우드 인스턴스 메타데이터 엔드포인트 같은 내부 서비스에 닿을 수 있습니다."
+        },
+        {
+          "title": "정산 전 트레잇 조작",
+          "body": "https로 서빙되는 문서는 구매자의 결정과 정산 사이에 바뀔 수 있어, 판매자가 트레잇 오퍼를 채우도록 속성을 바꾼 뒤 다시 되돌릴 수 있습니다. 콘텐츠 주소화된 URI는 컨트랙트가 새 URI를 반환할 때만 바뀌므로, 트레잇으로 정산하는 프로토콜은 온체인 값을 읽는 것이 권장됩니다."
+        },
+        {
+          "title": "게이트웨이 검증과 토큰 식별",
+          "body": "게이트웨이는 요청한 CID와 맞지 않는 콘텐츠를 돌려줄 수 있어, 클라이언트가 직접 가져온 콘텐츠를 CID와 대조해 검증해야만 콘텐츠 주소화 URI가 보호 효과를 가집니다. 게이트웨이가 스스로 보고하는 CID와 비교하는 것은 검증이 아닙니다. 누구나 다른 컬렉션의 이름과 이미지를 복제할 수 있으므로 클라이언트는 토큰을 메타데이터가 아니라 체인, 컨트랙트, 토큰ID로 식별하는 것이 권장됩니다."
+        }
+      ],
+      "glossary": [
+        {
+          "term": "CID",
+          "def": "콘텐츠의 내용 자체로부터 계산되는 식별자로, IPFS에서 파일을 가리키는 데 씁니다."
+        },
+        {
+          "term": "IPFS",
+          "def": "콘텐츠를 여러 노드에 분산 저장하고 CID로 찾는 파일 시스템입니다."
+        },
+        {
+          "term": "Arweave(ar)",
+          "def": "데이터를 영구 보존 목적으로 저장하는 블록체인 기반 스토리지입니다."
+        },
+        {
+          "term": "data URI",
+          "def": "파일을 서버 없이 URI 문자열 안에 직접 담는 방식입니다."
+        },
+        {
+          "term": "샌드박스 iframe",
+          "def": "페이지를 격리된 영역에서 실행해 부모 페이지의 쿠키나 권한에 접근하지 못하게 하는 HTML 기법입니다."
+        },
+        {
+          "term": "콘텐츠 주소화",
+          "def": "URI가 서버 위치가 아니라 콘텐츠 내용 자체의 해시로 정해져, 내용이 바뀌면 URI도 바뀌는 방식입니다."
+        }
+      ],
+      "meta": {
+        "title": "Token Metadata JSON Schema and Processing",
+        "description": "Defines the JSON document that token URIs resolve to and how clients resolve, fetch, read, and safely display it.",
+        "status": "Draft",
+        "type": "Standards Track",
+        "category": "ERC",
+        "created": "2026-10-26",
+        "authors": [
+          "Devin Finzer",
+          "Alex Atallah",
+          "Ryan Ghods"
+        ],
+        "requires": [
+          721,
+          1155,
+          4804,
+          4906,
+          6909
+        ],
+        "discussionsTo": "https://ethereum-magicians.org/t/erc-8495-token-metadata-json-schema/30339"
+      },
+      "sourceHash": "b5f2d6741ab29de8",
+      "model": "sonnet",
+      "generatedAt": "2026-11-27T14:34:56.709Z"
+    },
+    {
+      "number": 8498,
+      "titleKo": "SBT 네임스페이스 상태 전환",
+      "topic": "NFT·멀티토큰",
+      "summary": "소울바운드 토큰(SBT) 안에 독립적으로 관리되는 여러 영역(네임스페이스)을 두고, 각 영역의 상태가 정해진 정책과 증거에 따라 바뀌었음을 검증하고 기록하는 공통 인터페이스입니다.",
+      "why": "자격, 소속, 기여, 경험은 시간이 지나며 계속 바뀝니다. 보유자는 거버넌스에 참여하거나 자산을 거래하고, 커뮤니티에 기여하거나 오프체인 인증을 받습니다. 기존 SBT 표준은 비전송성(잠금)이나 속성 변경 자체는 지원하지만, 무엇이 바뀌었는지, 어떤 규칙 아래 바뀌었는지, 변경 전 상태를 정확히 이어받았는지, 그리고 지금 이 상태를 실제로 써도 되는지를 공통된 방식으로 판단할 길이 없었습니다. 그 결과 앱마다 해석이 달라지고, 누적된 과거 기록과 현재 유효성이 혼동되기 쉬웠습니다. 예를 들어 자격이 만료돼도 과거 기록은 남아야 하고, 정정이 있어도 원래 주장은 보존돼야 하며, 한 영역을 정지시켜도 관련 없는 다른 영역에는 영향이 없어야 하는데, 이런 구분을 명시적으로 강제하는 표준이 없었습니다.",
+      "before": [
+        "발급자마다 상태 변경 방식과 증거 검증 방식이 제각각입니다.",
+        "자격이 만료됐는지, 여전히 유효한지를 앱마다 다르게 판단합니다.",
+        "한 영역(예: 거버넌스 참여)을 정지시키면 다른 영역(예: 교육 이력)까지 영향받을 위험이 있습니다.",
+        "변경 전 상태를 정확히 이어받았는지 검증할 공통 방법이 없습니다."
+      ],
+      "after": [
+        "네임스페이스마다 독립된 정책과 상태가 있어, 한 영역의 정지가 다른 영역에 영향을 주지 않습니다.",
+        "모든 상태 전환이 이전 상태의 해시, 정책 버전(epoch), 마감 시간을 명시적으로 검증합니다.",
+        "업데이트 가능 여부(updatesEnabled)와 현재 사용 가능 여부(usesEnabled)를 분리해 판단합니다.",
+        "모든 변경이 StateTransitioned 이벤트로 기록돼 외부에서 추적하고 검증할 수 있습니다."
+      ],
+      "impact": [
+        {
+          "who": "자격·평판 SBT 발급자",
+          "text": "서로 다른 영역의 자격을 독립된 네임스페이스로 분리하고, 정책 변경 시 영향 범위를 명확히 통제할 수 있습니다."
+        },
+        {
+          "who": "컨트랙트·정책 개발자",
+          "text": "증거 형식, 인가 방식, 만료·정정·폐기 규칙을 프로필로 직접 정의하면서 상태 전환의 핵심 검증은 표준 레이어에 맡길 수 있습니다."
+        },
+        {
+          "who": "지갑·탐색기(explorer)",
+          "text": "네임스페이스별 상태와 정책 상태를 조회해 어떤 자격이 현재 유효한지 일관된 방식으로 표시할 수 있습니다."
+        },
+        {
+          "who": "자격을 조회해 쓰는 외부 앱",
+          "text": "stateOf와 policyOf를 함께 확인해 '기록이 있다'와 '지금 써도 된다'를 구분해서 판단해야 합니다."
+        }
+      ],
+      "iface": [
+        {
+          "sig": "function stateOf(uint256 tokenId, bytes32 namespace) external view returns (StateHead memory);",
+          "ko": "특정 토큰의 특정 네임스페이스에서 가장 최근에 인정된 상태(revision, stateRoot, policyId, status, validUntil)를 반환합니다."
+        },
+        {
+          "sig": "function policyOf(bytes32 namespace, bytes32 policyId) external view returns (PolicyDefinition memory definition, PolicyStatus memory status);",
+          "ko": "네임스페이스에 등록된 정책의 불변 정의와 현재 라이브 컨트롤(epoch, updatesEnabled, usesEnabled)을 반환합니다."
+        }
+      ],
+      "flow": {
+        "title": "상태 전환(applyTransition) 처리 흐름",
+        "steps": [
+          {
+            "label": "제출자(보유자/발급자/검증자)",
+            "title": "전환 제안 구성",
+            "body": "현재 revision과 상태 해시를 predecessor로 지정하고, 목표 정책의 epoch, 다음 상태, 증거 커밋먼트를 담아 Transition을 만듭니다."
+          },
+          {
+            "label": "컨트랙트",
+            "title": "예상 상태·정책 검증",
+            "body": "expectedRevision, expectedStateHash가 현재 head와 일치하는지, 소스·타깃 정책의 epoch와 updatesEnabled가 유효한지 확인합니다."
+          },
+          {
+            "label": "컨트랙트",
+            "title": "증거·인가·전환 규칙 검증",
+            "body": "operationsCommitment가 제출된 evidence와 일치하는지, 라이프사이클 전환(예: Active→Suspended)이 허용되는지, 프로필이 요구하는 인가가 충족되는지 확인합니다."
+          },
+          {
+            "label": "컨트랙트",
+            "title": "원자적 커밋 및 이벤트 발행",
+            "body": "모든 검증을 통과하면 revision을 1 증가시켜 다음 상태를 저장하고 StateTransitioned를 발행합니다. 하나라도 실패하면 전체가 되돌려집니다."
+          },
+          {
+            "label": "외부 앱",
+            "title": "현재 사용 가능성 재확인",
+            "body": "stateOf로 Active 상태와 validUntil을, policyOf로 usesEnabled를 각각 확인해야 비로소 지금 자격을 써도 되는지 판단할 수 있습니다."
+          }
+        ]
+      },
+      "deep": [
+        {
+          "title": "네임스페이스와 StateHead",
+          "body": "네임스페이스는 컨트랙트 안에 등록되는 0이 아닌 bytes32 값으로, 상태의 식별 단위는 (chainId, credentialContract, tokenId, namespace) 튜플입니다. 같은 네임스페이스 값이라도 다른 컨트랙트에서는 같은 의미를 갖지 않습니다. 각 네임스페이스의 StateHead는 revision, stateRoot, policyId, status(Uninitialized/Active/Suspended/Revoked), validUntil 다섯 필드로 구성되며, 초기화 전에는 모두 0 또는 Uninitialized이고 초기화 이후에는 revision이 되돌아가거나 Uninitialized로 복귀할 수 없습니다. stateRoot의 실제 내용은 이 인터페이스가 규정하지 않고 정책(프로필)이 정의합니다.",
+          "ref": "원문: State reads"
+        },
+        {
+          "title": "정책(Policy)과 라이브 컨트롤",
+          "body": "policyOf는 불변인 PolicyDefinition(schemaId, rulesHash, verifier, verifierConfigHash, authorizationHash, specificationURI)과, 가변인 PolicyStatus(epoch, updatesEnabled, usesEnabled)를 함께 반환합니다. 정책 정의는 등록 후 바뀌지 않으며 다른 정의는 반드시 다른 policyId를 써야 합니다. epoch는 1부터 시작하고 updatesEnabled나 usesEnabled 중 하나라도 바뀌면 정확히 1씩 증가하며 되돌아가지 않습니다. updatesEnabled는 새 전환 제출 가능 여부, usesEnabled는 현재 자격으로 인정받을 수 있는지를 각각 독립적으로 통제합니다.",
+          "ref": "원문: Policies and profiles"
+        },
+        {
+          "title": "정식 인코딩과 전환 식별자",
+          "body": "모든 해시는 Keccak-256을 쓰고 특별한 언급이 없으면 Solidity abi.encode를 사용합니다. StateHead의 정식 해시는 keccak256(abi.encode(h))이며, 초기화 전 head의 해시는 bytes32(0)가 아니라 160바이트 0을 해시한 값(0xdfded4...)입니다. policyId는 네임스페이스와 정의 필드들을 abi.encode한 뒤 해시한 값이며, 전환마다 operationsCommitment == keccak256(evidence)가 정확히 일치해야 합니다. 전환의 고유 식별자(transitionId)는 EIP-712 digest로 계산되며 도메인은 name:EvolvingSBT, version:1, chainId, verifyingContract로 고정됩니다. authorization은 이 digest 계산에서 제외됩니다.",
+          "ref": "원문: Canonical encodings"
+        },
+        {
+          "title": "applyTransition의 승인 조건",
+          "body": "전환이 승인되려면 다음이 모두 성립해야 합니다. 토큰과 네임스페이스가 존재할 것, expectedRevision과 expectedStateHash가 현재 head와 일치할 것, deadline이 0이 아니고 현재 시각 이하일 것, operationsCommitment가 제출된 evidence와 일치할 것, 타깃 정책의 epoch가 targetPolicyEpoch와 같고 updatesEnabled가 true일 것, 초기화 전이면 sourcePolicyEpoch가 0이고 그 외에는 현재 정책의 epoch 및 updatesEnabled 조건을 만족할 것, 라이프사이클 표에서 허용되는 전환일 것, 증거와 인가가 정책의 요구를 만족할 것, 다음 revision이 uint64 범위를 넘지 않을 것입니다. 이 중 하나라도 실패하면 전체가 되돌려지며 부분 반영은 없습니다.",
+          "ref": "원문: Transition acceptance"
+        },
+        {
+          "title": "상태 라이프사이클",
+          "body": "Uninitialized에서는 Active로만 갈 수 있고, Active에서는 Active(갱신)·Suspended·Revoked로 갈 수 있으며, Suspended에서는 Suspended·Active(재개)·Revoked로 갈 수 있습니다. Revoked는 해당 토큰·네임스페이스에 대해 종결 상태로, 그 이후의 모든 전환은 거부됩니다. 초기화에는 정책이 요구하는 인가 외에 보유자의 동의가 별도로 필요하며, 토큰을 소유한다는 사실만으로 발급자·통제자 권한을 자동으로 갖지는 않습니다. 정지 중 정정이 허용되더라도 그 자체가 네임스페이스 재개 권한을 의미하지는 않습니다.",
+          "ref": "원문: Transition acceptance"
+        },
+        {
+          "title": "선택적 정책 마이그레이션",
+          "body": "구현체는 초기화된 head의 policyId 변경을 전부 거부할 수 있습니다. 마이그레이션을 지원하려면 소스와 타깃 정책 양쪽에서 명시적으로 허용해야 하고, 두 정책의 마이그레이션 인가와 상태 변환 규칙을 모두 만족해야 하며, 양쪽의 현재 epoch에 묶이고 revision 연속성을 유지해야 합니다. 정지 권한이나 종결된 폐기, 소스 프로필의 이력 보존 보장을 우회할 수 없습니다.",
+          "ref": "원문: Optional policy migration"
+        },
+        {
+          "title": "성장 프로필과 용량 소진",
+          "body": "누적 전환 자체가 추가 전용(append-only) 이력, 외부 사실의 진위, 중복 경험 없음을 보장하지는 않습니다. 추가 전용을 주장하는 프로필은 이전에 인정된 항목을 보존하는 커밋 관계를 정의해야 하고, 정정이나 폐기는 기존 항목을 몰래 지우지 않는 방식으로 표현돼야 합니다. 용량이 제한된 프로필은 추가·정정·무효화가 용량 소진 시 어떻게 동작하는지 명시해야 하며, 용량 소진이 그 자체로 모든 보호 경로(개별 클레임 무효화, 네임스페이스 정지·폐기, 정책 사용 중단)를 막아서는 안 됩니다. 참조 구현의 서명 기반 성장 프로필은 토큰·네임스페이스당 최대 32개 레코드를 보관하며, 32개에 도달하면 추가와 정정이 모두 실패하고 이후에는 정지·폐기나 정책 사용 중단만 가능합니다.",
+          "ref": "원문: Growth profiles, Capacity exhaustion, Reference Implementation"
+        },
+        {
+          "title": "Draft 단계의 제안",
+          "body": "이 제안은 2026년 11월 13일 생성된 Draft 상태로, 아직 커뮤니티 논의와 수정을 거치는 중입니다. 인터페이스 셀렉터, EIP-712 타입해시, 승인 조건 등 세부 사항이 최종 확정되기 전까지 바뀌거나 중단될 수 있습니다.",
+          "ref": "원문: Preamble status"
+        }
+      ],
+      "safety": [
+        {
+          "title": "증거와 권한에 대한 신뢰",
+          "body": "전환이 승인됐다는 것은 정책을 만족했다는 뜻일 뿐, 외부 사실이 무조건 참이라는 뜻은 아닙니다. 서명 기반 정책은 인정된 권한자를, 체인 증명 기반 정책은 검증자와 소스체인 인증·파이널리티 가정을 신뢰해야 합니다. 비전송성이 1인 1자격이나 키 공유·계정 매매 방지를 보장하지도 않습니다."
+        },
+        {
+          "title": "정책 변경과 가변적 의존성",
+          "body": "정책 필드가 불변이어도 verifier나 authorizationHash가 참조하는 외부 컨트랙트는 프록시 업그레이드나 키 교체로 실제 신뢰가 바뀔 수 있습니다. updatesEnabled를 끄면 재개할 때까지 정정 전환도 막히므로, usesEnabled로 현재 사용을 별도로 차단하는 수단이 필요합니다."
+        },
+        {
+          "title": "리플레이와 동시 업데이트",
+          "body": "전환 식별자는 체인, 컨트랙트, 토큰, 네임스페이스, predecessor, epoch, 다음 상태, 증거, deadline을 모두 묶으므로 같은 predecessor는 재사용될 수 없습니다. 다만 외부 검증 호출이나 컨트랙트 계정의 콜백은 재진입 위험을 만들 수 있어, 콜백 이후 검증이 무효화되지 않도록 보호가 필요합니다."
+        },
+        {
+          "title": "현재 유효성과 오래된 증명",
+          "body": "과거의 포함 증명은 현재 자격을 보장하지 않습니다. 만료, 정정, 네임스페이스 폐기, 정책의 usesEnabled, 독립적인 폐기 레지스트리, 애플리케이션별 사실이 각각 결과를 바꿀 수 있으므로, 명확한 신선도 규칙 없이 오래된 root나 캐시된 정책 상태를 받아들이면 이미 끝난 자격이 유지되는 것처럼 보일 수 있습니다."
+        },
+        {
+          "title": "가용성과 자원 한계",
+          "body": "상태 커밋먼트가 존재한다고 해서 그 증거나 참조된 명세가 계속 접근 가능하다는 보장은 없습니다. 사용자가 보관하던 자료를 잃으면 head가 유효해도 향후 증명이 불가능해질 수 있고, 검증이나 이력 재구성이 무제한인 프로필은 시간이 지나며 업데이트가 현실적으로 불가능해질 수 있습니다."
+        }
+      ],
+      "glossary": [
+        {
+          "term": "네임스페이스",
+          "def": "하나의 SBT 안에서 독립적으로 관리되는 상태 영역을 가리키는 식별자입니다."
+        },
+        {
+          "term": "stateRoot",
+          "def": "해당 네임스페이스의 실제 상태 내용을 커밋한 값으로, 그 내부 구조는 정책(프로필)이 정합니다."
+        },
+        {
+          "term": "epoch",
+          "def": "정책의 updatesEnabled·usesEnabled 설정이 바뀔 때마다 1씩 증가하는 버전 번호입니다."
+        },
+        {
+          "term": "EIP-712",
+          "def": "구조화된 데이터에 서명할 때 쓰는 표준으로, 이 제안에서는 전환의 고유 식별자(transitionId)를 계산하는 데 사용됩니다."
+        },
+        {
+          "term": "프로필(profile)",
+          "def": "스키마, 전환 규칙, 증거 인코딩, 인가 방식을 구체적으로 정의하는 정책의 실제 구현 단위입니다."
+        },
+        {
+          "term": "nullifier",
+          "def": "동일한 자격이나 증명이 중복 사용되지 않도록 소비 여부를 기록하는 애플리케이션 수준의 식별자입니다."
+        }
+      ],
+      "meta": {
+        "title": "Namespaced State Transitions for SBTs",
+        "description": "An interface for policy-validated, versioned state transitions across namespaces of a soulbound token.",
+        "status": "Draft",
+        "type": "Standards Track",
+        "category": "ERC",
+        "created": "2026-11-13",
+        "authors": [
+          "XiaoHai"
+        ],
+        "requires": [
+          165,
+          712,
+          721,
+          5192
+        ],
+        "discussionsTo": "https://ethereum-magicians.org/t/erc-8498-namespaced-state-transitions-for-sbts/30361"
+      },
+      "sourceHash": "21f93af35afa756f",
+      "model": "sonnet",
+      "generatedAt": "2026-11-27T14:44:20.794Z"
+    },
+    {
+      "number": 8499,
+      "titleKo": "BIP-39 해시 기반 키 유도",
+      "topic": "서명·인증",
+      "summary": "지갑이 BIP-39 복구구문에서 해시 기반 양자내성 서명키(SLH-DSA 등)를 항상 같은 방식으로 유도하도록 정의해, 어떤 지갑에서든 같은 구문으로 같은 키를 복원할 수 있게 합니다.",
+      "why": "하드웨어 지갑과 소프트웨어 지갑은 이미 해시 기반 양자내성 서명(leanSPHINCS 등)을 지원하기 시작했지만, BIP-39 복구구문에서 이런 키를 어떻게 뽑아내는지에 대한 공통 규칙이 없습니다. 어떤 지갑은 BIP-39 엔트로피에 Keccak-256을 적용하고, 다른 지갑은 BIP-39의 PBKDF2를 자체 salt로 다시 돌리고, 또 다른 지갑은 BIP-39 시드에 자체 라벨을 붙여 HMAC-SHA512를 적용합니다. 그 결과 같은 복구구문을 다른 지갑에 넣으면 전혀 다른 키가 나오고, 한 지갑에서 만든 양자내성 계정을 다른 지갑이나 복구 도구에서 복원할 수 없습니다. 또한 BIP-32처럼 타원곡선 공개키를 거치는 경로로 이런 키를 유도하면, 양자 컴퓨터가 그 공개키로부터 비밀키를 복원할 경우 해시 기반 키까지 함께 위험해질 수 있습니다.",
+      "before": [
+        "지갑마다 해시 기반 키를 서로 다른 방식으로 유도함",
+        "같은 복구구문을 다른 지갑에 넣어도 같은 양자내성 키가 나오지 않음",
+        "BIP-32처럼 타원곡선을 거치는 경로를 쓰면 양자내성이 깨질 위험이 있음",
+        "새 파라미터셋으로 옮기려 해도 표준 경로가 없어 지갑마다 다르게 구현함"
+      ],
+      "after": [
+        "모든 지갑이 같은 구문과 패스프레이즈에서 같은 SLH-DSA 키를 복원함",
+        "BIP-32·타원곡선 연산을 전혀 거치지 않아 ECDSA 키가 깨져도 해시 기반 키는 안전함",
+        "핑거프린트로 복원이 올바른 구문에서 이루어졌는지 확인 가능함",
+        "같은 구문에서 새 파라미터셋의 키를 추가로 유도해 쉽게 이전 가능함"
+      ],
+      "impact": [
+        {
+          "who": "지갑 개발자",
+          "text": "이 표준의 핵심 유도 규칙을 구현하면 다른 지갑이 만든 복구구문에서도 같은 SLH-DSA 키를 복원할 수 있습니다."
+        },
+        {
+          "who": "하드웨어 지갑 제조사",
+          "text": "BIP-39 시드만 가지고도 핵심 파생을 수행할 수 있어 기존 장치에 적용하기 쉽습니다."
+        },
+        {
+          "who": "사용자",
+          "text": "기존에 쓰던 복구구문 하나로 양자내성 키까지 백업하고 복원할 수 있습니다."
+        },
+        {
+          "who": "계정·컨트랙트 개발자",
+          "text": "ERC-1271 기반 계정 추상화에서 이 표준으로 유도한 SLH-DSA 키를 검증 키로 사용할 수 있습니다."
+        }
+      ],
+      "iface": [],
+      "flow": {
+        "title": "구문에서 키까지의 유도 흐름",
+        "steps": [
+          {
+            "label": "사용자",
+            "title": "복구구문 입력",
+            "body": "BIP-39 니모닉 단어와 선택적 패스프레이즈를 지갑에 입력합니다."
+          },
+          {
+            "label": "지갑",
+            "title": "BIP-39 시드 계산",
+            "body": "PBKDF2-HMAC-SHA512를 2048회 돌려 64바이트 시드 S를 만듭니다."
+          },
+          {
+            "label": "지갑",
+            "title": "루트 시크릿 추출",
+            "body": "고정 salt \"HBKD/v1\"로 HKDF-Extract를 적용해 64바이트 루트 R을 얻습니다."
+          },
+          {
+            "label": "지갑",
+            "title": "계정별 시드 유도",
+            "body": "purpose, account, 길이, 키 타입 이름을 담은 info로 HKDF-Expand를 돌려 키 시드를 뽑습니다."
+          },
+          {
+            "label": "지갑",
+            "title": "키 쌍 생성",
+            "body": "SLH-DSA 등 키 타입이 정한 절차로 시드를 키 쌍으로 바꿉니다."
+          },
+          {
+            "label": "지갑",
+            "title": "복원 확인",
+            "body": "account 0의 SLH-DSA-SHA2-128s 공개키로 핑거프린트를 계산해 사용자에게 보여줍니다."
+          }
+        ]
+      },
+      "deep": [
+        {
+          "title": "루트 시크릿 R 만들기",
+          "body": "니모닉 문장 M과 패스프레이즈 P(없으면 빈 문자열)로 BIP-39가 쓰는 PBKDF2-HMAC-SHA512를 2048회 돌려 64바이트 시드 S를 얻습니다. 여기에 고정 salt \"HBKD/v1\"을 키로 쓰는 HKDF-Extract(salt, IKM=S)를 한 번 더 적용해 64바이트 루트 시크릿 R을 만듭니다. 이 경로는 BIP-32나 타원곡선 연산을 전혀 거치지 않으므로, 같은 구문에서 만든 ECDSA 키가 양자 컴퓨터에 깨져도 R과 그로부터 나온 해시 기반 키는 노출되지 않습니다. M은 니모닉 단어집의 단어를 그대로 공백 하나로 구분한 형태여야 하고, 지갑은 단어집 밖 단어나 체크섬 실패를 반드시 거부해야 합니다.",
+          "ref": "원문: Core derivation - Root secret"
+        },
+        {
+          "title": "info 레이아웃과 세 가지 purpose",
+          "body": "R 이후의 모든 유도값은 HKDF-Expand(R, info, L)의 출력입니다. info는 purpose(1바이트) || account(4바이트, big-endian) || L(2바이트) || 이름 길이(1바이트) || 이름 || tail 순으로 이어붙인 바이트열입니다. purpose는 상태 없는 키가 0x01, 상태 있는 키가 0x02, 애플리케이션 시크릿이 0x03입니다. 길이 필드를 두는 이유는 길이를 명시하지 않으면 짧은 출력이 긴 출력의 앞부분과 같아져 버리기 때문이고, 각 필드에 고정폭이나 길이 바이트를 둔 이유는 서로 다른 입력이 같은 바이트열로 겹치지 않게 하기 위해서입니다. L은 32에서 16320바이트 사이여야 합니다.",
+          "ref": "원문: Derived values"
+        },
+        {
+          "title": "계정과 키 타입 문자열",
+          "body": "account는 0 이상 2^32 미만의 정수로, BIP-44의 계정 레벨처럼 하나의 루트 아래 독립된 키 집합을 나눕니다. 지갑은 0부터 순서대로, 빈틈 없이 계정을 쓰는 것이 권장됩니다. 키 타입은 공백을 뺀 출력 가능한 ASCII 문자 1~255자로, 서명 방식과 파라미터셋, 해시 함수, 상태 유무, 시드 길이 L(최소 32바이트), 시드에서 키 쌍을 만드는 절차 전체를 가리킵니다. 시드에서 공개키로 가는 매핑이 조금이라도 바뀌면 키 타입 문자열도 반드시 바뀌어야 하며, 서로 다른 두 절차가 같은 문자열을 공유해서는 안 됩니다. 트리 높이처럼 값이 달라지는 파라미터가 있으면 값마다 별도의 키 타입 문자열을 둡니다.",
+          "ref": "원문: Accounts / Key types"
+        },
+        {
+          "title": "상태 없는 키와 SLH-DSA 키 타입",
+          "body": "상태 없는 키의 시드는 seed = HKDF-Expand(R, 0x01 || account || L || 이름길이 || 키타입, L)이며, 루트를 복원하면 항상 같은 키 쌍이 나와야 합니다. SLH-DSA 키 타입은 FIPS 205의 파라미터셋 이름(SLH-DSA-SHA2-128s 등) 그대로이며 전부 상태 없는 키로, L은 해시 길이 n의 3배(48·72·96바이트)입니다. 시드는 SK.seed(n바이트), SK.prf(n바이트), PK.seed(n바이트) 순서로 잘라 slh_keygen_internal(FIPS 205 Algorithm 18)에 넣고, 공개키는 PK.seed || PK.root(2n바이트)입니다. 한 번 사용하면 비밀키가 바뀌는 키 타입(원타임 키 등)은 이 상태 없는 방식으로 유도해서는 안 됩니다. 복원이 이미 서명에 쓴 키를 되살리기 때문입니다.",
+          "ref": "원문: Stateless keys / SLH-DSA key types"
+        },
+        {
+          "title": "복원 시 핑거프린트와 계정 탐색",
+          "body": "구문을 복원한 뒤 지갑은 account 0의 SLH-DSA-SHA2-128s 공개키를 SHA-256으로 해시한 첫 4바이트, 즉 핑거프린트를 16진수 8자로 보여줘야 합니다. R이나 BIP-39 시드에서 직접 핑거프린트를 계산해서는 안 되며, 이는 패스프레이즈를 틀렸을 때 다른 유효한 루트가 만들어지는 것을 사용자가 알아채도록 하기 위함입니다. 계정 탐색은 0부터 순서대로 시도하다 사용 중인 키가 없는 첫 계정에서 멈추도록 권장되며, 교체된 키도 '사용 중'으로 계속 간주해야 탐색이 조기에 멈추지 않습니다. 구문은 서명 횟수를 기록하지 않으므로, 한도에 도달할 수 있는 키 타입은 다른 키를 인증(certify)하는 용도로만 구문에서 유도하는 것이 권장됩니다.",
+          "ref": "원문: Restoring"
+        },
+        {
+          "title": "선택 유도 - 상태 있는 키",
+          "body": "상태 있는 키(원타임·퓨타임·인덱스를 쓰는 다회용 키)는 루트만으로 재현되면 안 되며, 각 인스턴스는 애플리케이션이 정하는 32바이트 context와 암호학적으로 안전한 난수로 만든 32바이트 instance를 가집니다. 시드는 purpose 0x02와 context || instance를 info 끝에 붙여 유도합니다. instance는 결정적으로 만들어서는 안 되고, 서명을 내보내기 전에 사용한 인덱스 등 상태를 instance와 함께 저장해야 하며, 복원 후에는 반드시 새 인스턴스를 만들고 상태까지 함께 백업되고 그 상태가 최신일 때만 instance를 백업에서 되살릴 수 있습니다. 상태를 안정적으로 저장할 수 없는 장치나 메모리가 복제될 수 있는 서명기는 상태 있는 키를 가져서는 안 됩니다.",
+          "ref": "원문: Stateful keys"
+        },
+        {
+          "title": "선택 유도 - 애플리케이션 시크릿과 랜덤 루트",
+          "body": "애플리케이션 시크릿은 purpose 0x03과 애플리케이션이 고른 1~255바이트 UTF-8 라벨로 secret = HKDF-Expand(R, ..., L)을 유도하며, 키 타입의 시드로는 쓸 수 없고 예컨대 가스를 내는 ECDSA 계정의 개인키처럼 다른 용도의 키 재료로만 쓸 수 있습니다. 구문이 없는 장치나 자동화된 서명기는 최소 32바이트의 난수를 IKM으로 삼아 R = HKDF-Extract(salt, IKM)로 자체 루트를 만들 수 있고, 이후 모든 유도는 구문에서 만든 루트와 똑같이 적용됩니다. 구문의 상태 없는 키가 이런 장치의 키를 인증하고 필요하면 폐기할 수 있습니다.",
+          "ref": "원문: Application secrets / Random roots"
+        },
+        {
+          "title": "아직 확정되지 않은 제안",
+          "body": "ERC-8499는 현재 Draft 상태로, 아직 커뮤니티 논의와 검토를 거치는 중이며 세부 수치나 구조가 바뀌거나 제안이 멈출 수 있습니다. leanSPHINCS 등 구체적인 키 타입 예시는 참고용 테스트 벡터일 뿐 이 ERC가 직접 표준화하는 범위는 SLH-DSA 키 타입과 핵심 유도 규칙뿐입니다.",
+          "ref": "원문: Status"
+        }
+      ],
+      "safety": [
+        {
+          "title": "구문과 루트는 모든 키를 노출",
+          "body": "구문과 패스프레이즈를 아는 사람은 그로부터 유도되는 모든 계정의 상태 없는 키와 애플리케이션 시크릿을 전부 손에 넣습니다. R은 구문과 똑같은 수준의 비밀이므로, R만 저장하는 지갑도 구문을 저장하는 것과 같은 수준으로 보호해야 합니다."
+        },
+        {
+          "title": "상태 있는 키를 복제하면 위조 가능",
+          "body": "메모리나 저장소가 실행 중에 복제될 수 있는 서명기가 상태 있는 인스턴스를 들고 있으면, 두 복제본이 같은 원타임 키의 같은 인덱스로 서로 다른 메시지에 서명할 수 있고, 두 서명이 공개되면 위조가 가능해집니다. 가상머신 스냅숏이나 로드밸런서 뒤의 복제본, 복원된 백업이 모두 이런 복제에 해당합니다."
+        },
+        {
+          "title": "패스프레이즈 오타는 되돌릴 수 없는 손실",
+          "body": "패스프레이즈를 잘못 입력하면 아무도 모르는 다른 유효한 키가 만들어져 그쪽으로 보낸 자금이 사라집니다. 핑거프린트를 구문과 함께 확인하는 것이 이를 알아채는 방법이지만, 구문과 함께 보관된 핑거프린트는 패스프레이즈 추측 공격에도 쓰일 수 있습니다."
+        },
+        {
+          "title": "서명 횟수 예산은 복원으로 알 수 없다",
+          "body": "지갑은 복원된 키가 이미 서명한 적이 없다고 가정해서는 안 되며, 한도에 도달할 수 있는 키 타입은 구문에서 유도해 다른 키를 인증하는 용도로만 쓰고, 각 장치는 자신의 키로 서명하도록 권장됩니다."
+        },
+        {
+          "title": "자동화된 서명기는 구문을 들고 있지 말아야",
+          "body": "사람 없이 서명하는 서비스나 에이전트는 모든 계정의 키를 가지게 되는 구문이나 R을 보관하지 말고, 자체 랜덤 루트를 쓰고 구문의 키로 인증·폐기하도록 해야 합니다."
+        }
+      ],
+      "glossary": [
+        {
+          "term": "BIP-39",
+          "def": "니모닉 단어 목록으로 지갑의 복구구문을 만들고 이를 시드로 바꾸는 비트코인 표준입니다."
+        },
+        {
+          "term": "HKDF",
+          "def": "하나의 비밀값에서 여러 독립된 키를 뽑아내는 표준 키 유도 함수로 RFC 5869가 정의합니다."
+        },
+        {
+          "term": "SLH-DSA",
+          "def": "해시 함수만으로 만든 상태 없는 전자서명 방식으로 FIPS 205 표준에 정의되어 있습니다."
+        },
+        {
+          "term": "FIPS 205",
+          "def": "미국 NIST가 정한 해시 기반 전자서명(SLH-DSA)의 표준 문서입니다."
+        },
+        {
+          "term": "상태 있는 키",
+          "def": "서명할 때마다 내부 상태(사용한 인덱스 등)가 바뀌어, 같은 키로 두 번 서명하면 위조 위험이 생기는 키입니다."
+        },
+        {
+          "term": "핑거프린트",
+          "def": "루트나 키에서 짧게 뽑아낸 식별값으로, 복원이 올바른 구문에서 이루어졌는지 확인하는 데 씁니다."
+        }
+      ],
+      "meta": {
+        "title": "Hash-Based Key Derivation from BIP-39",
+        "description": "Derives hash-based post-quantum keys from a BIP-39 phrase using hash functions only.",
+        "status": "Draft",
+        "type": "Standards Track",
+        "category": "ERC",
+        "created": "2026-11-13",
+        "authors": [
+          "Johann Barbie"
+        ],
+        "requires": [],
+        "discussionsTo": "https://ethereum-magicians.org/t/erc-8499-hash-based-key-derivation-from-bip-39/30375"
+      },
+      "sourceHash": "b9fec142e2a6d9c9",
+      "model": "sonnet",
+      "generatedAt": "2026-11-27T14:39:41.228Z"
+    },
+    {
       "number": 8501,
       "titleKo": "생성형 엔진 측정 프레임워크",
       "topic": "기타",
@@ -96241,6 +98853,840 @@
       "sourceHash": "fb9abb07d5deb383",
       "model": "sonnet",
       "generatedAt": "2026-11-20T14:20:09.282Z"
+    },
+    {
+      "number": 8506,
+      "titleKo": "AI 추론 사용권 온체인 표준(AITO)",
+      "topic": "토큰",
+      "summary": "AI 추론 사용량에 대한 권리를 무엇이 약속됐고 누가 책임지며 얼마나 썼는지 체인에서 검증 가능한 형태로 정의하고, 보유·전송·소비할 수 있게 하는 표준입니다.",
+      "why": "지금은 AI 추론 공급을 특정 제공자 계정 안의 크레딧으로만 살 수 있어, 다른 에이전트나 지갑으로 넘기려면 그 제공자의 협조가 필요합니다. 또한 '토큰 100만 개'라는 말도 토크나이저가 다르거나, 추론 과정에서 쓰인 토큰이 표시 없이 과금되거나, 캐시된 입력이 다른 요율로 처리되는 등 세부 규칙이 없으면 실제 수량을 알 수 없습니다. 같은 개수라도 어떤 모델, 어떤 양자화, 어떤 설정으로 처리됐는지에 따라 품질이 달라지는데 이를 하나의 등급으로 뭉뚱그리면 구매자가 봐야 할 차이가 가려집니다. 재판매자가 실제로 재판매할 권리를 가졌는지, 어느 모델로 연결되는지도 알 수 없고, 선불로 판매된 크레딧이 공급자가 실제로 감당 가능한 양인지도 장부에 드러나지 않습니다. 과거 사용 기록을 새로운 권리의 근거로 착각해 소비에서 공급을 만들어내는 문제도 발생합니다.",
+      "before": [
+        "추론 크레딧이 특정 제공자 계정에 묶여 다른 주체나 다른 에이전트가 쓸 수 없음",
+        "'토큰 100만 개'가 실제로 어떤 과금 규칙과 품질을 보장하는지 알 수 없음",
+        "재판매자가 재판매 권한을 가졌는지, 공급 책임이 누구에게 있는지 확인할 방법이 없음",
+        "선불 크레딧이 과다 판매됐는지, 과거 사용 기록이 새 권리의 근거로 둔갑하는지 드러나지 않음"
+      ],
+      "after": [
+        "추론 사용권의 정의(Unit)·품질(Grade)·발행 근거(Source)가 체인에서 식별 가능한 레코드로 공개됨",
+        "ERC-1155 또는 ERC-20 토큰으로 사용권을 보유·전송하면서도 이중 소비는 원천적으로 막힘",
+        "승인-예치(hold)-청구-수락-정산 절차가 표준화되어 누가 무엇을 약속했고 무엇이 소비됐는지 체인에서 추적됨",
+        "발행 총량, 소비량, 보유 중인 예치량이 항상 맞아떨어지는 회계 불변식으로 검증 가능"
+      ],
+      "impact": [
+        {
+          "who": "사용자·AI 에이전트",
+          "text": "추론 사용권을 지갑에 보유하고 다른 서비스나 에이전트에게 전송·위임해 쓸 수 있습니다."
+        },
+        {
+          "who": "지갑·에이전트 개발자",
+          "text": "표준화된 승인·예치·청구 인터페이스로 사용권 소비 로직을 구현할 수 있습니다."
+        },
+        {
+          "who": "AI 공급자·리셀러",
+          "text": "발행 근거, 공급 책임, 재판매 권한을 레코드로 명시해야 합니다."
+        },
+        {
+          "who": "DeFi·마켓 개발자",
+          "text": "ERC-1155/20으로 감싼 추론 사용권을 거래·예치 상품에 연결할 수 있습니다."
+        }
+      ],
+      "iface": [
+        {
+          "sig": "event RecordAnchored(\n    bytes32 indexed id, RecordKind indexed kind, address indexed publisher, bytes32 supersedes, string uri\n);",
+          "ko": "발행자가 레코드 id를 자신의 주소 아래 앵커링했음을 알립니다."
+        },
+        {
+          "sig": "event RecordRelocated(bytes32 indexed id, address indexed publisher, string uri);",
+          "ko": "레코드 내용은 그대로 두고 가져올 수 있는 위치(uri)만 바뀌었음을 알립니다."
+        },
+        {
+          "sig": "event BatchAnchored(\n    bytes32 indexed root, RecordKind indexed kind, address indexed publisher, uint256 count, string uri\n);",
+          "ko": "여러 레코드를 머클 루트 하나로 묶어 한 번에 앵커링했음을 알립니다."
+        },
+        {
+          "sig": "function anchor(bytes32 id, RecordKind kind, bytes32 supersedes, string calldata uri) external;",
+          "ko": "호출자의 주소 아래 레코드 id를 앵커링합니다."
+        },
+        {
+          "sig": "function relocate(bytes32 id, string calldata uri) external;",
+          "ko": "호출자가 이미 앵커링한 레코드의 조회 위치를 변경합니다."
+        },
+        {
+          "sig": "function anchorBatch(bytes32 root, RecordKind kind, uint256 count, string calldata uri) external;",
+          "ko": "한 종류의 레코드 여러 개를 머클 루트로 묶어 한 번에 앵커링합니다."
+        },
+        {
+          "sig": "function recordOf(address publisher, bytes32 id)\n    external\n    view\n    returns (RecordKind kind, uint64 anchoredAt, bytes32 supersedes, string memory uri);",
+          "ko": "특정 발행자가 앵커링한 레코드의 정보를 조회합니다."
+        },
+        {
+          "sig": "function batchOf(address publisher, bytes32 root)\n    external\n    view\n    returns (RecordKind kind, uint64 anchoredAt, uint256 count, string memory uri);",
+          "ko": "특정 발행자가 앵커링한 묶음의 정보를 조회합니다."
+        },
+        {
+          "sig": "event SeriesCreated(\n    uint256 indexed seriesId,\n    address indexed issuer,\n    address indexed responsibleParty,\n    bytes32 termsHash,\n    string termsURI\n);",
+          "ko": "새 시리즈가 만들어졌음을 알립니다."
+        },
+        {
+          "sig": "event ResponsibilityAccepted(uint256 indexed seriesId, address indexed responsibleParty);",
+          "ko": "공급 책임자가 해당 시리즈의 공급 책임을 받아들였음을 알립니다."
+        },
+        {
+          "sig": "event FulfillerSet(uint256 indexed seriesId, address indexed fulfiller, bool allowed);",
+          "ko": "특정 이행자가 그 시리즈에서 허용되었는지 변경되었음을 알립니다."
+        },
+        {
+          "sig": "event Issued(uint256 indexed seriesId, address indexed to, uint256 amount, bytes32 basisRef);",
+          "ko": "특정 발행 근거(basisRef)에 따라 단위가 발행되었음을 알립니다."
+        },
+        {
+          "sig": "event Retired(uint256 indexed seriesId, address indexed holder, uint256 amount);",
+          "ko": "홀더가 자신의 단위를 소비 없이 반납했음을 알립니다."
+        },
+        {
+          "sig": "event Lapsed(uint256 indexed seriesId, address indexed holder, uint256 amount);",
+          "ko": "만료 후 홀더의 미사용 단위가 소멸되었음을 알립니다."
+        },
+        {
+          "sig": "function createSeries(SeriesTerms calldata terms, string calldata termsURI) external returns (uint256 seriesId);",
+          "ko": "조건(terms)을 지정해 새 시리즈를 만듭니다."
+        },
+        {
+          "sig": "function seriesIdOf(SeriesTerms calldata terms) external pure returns (uint256);",
+          "ko": "주어진 조건이 가지게 될 시리즈 식별자를 미리 계산합니다."
+        },
+        {
+          "sig": "function acceptResponsibility(uint256 seriesId) external;",
+          "ko": "공급 책임자가 해당 시리즈의 공급 의무를 공식적으로 받아들입니다."
+        },
+        {
+          "sig": "function setFulfiller(uint256 seriesId, address fulfiller, bool allowed) external;",
+          "ko": "공급 책임자가 특정 이행자의 허용 여부를 설정합니다."
+        },
+        {
+          "sig": "function issue(uint256 seriesId, address to, uint256 amount, bytes32 basisRef) external;",
+          "ko": "발행 근거를 명시해 단위를 발행합니다."
+        },
+        {
+          "sig": "function retire(uint256 seriesId, uint256 amount) external;",
+          "ko": "호출자 자신의 단위를 소비하지 않고 포기합니다."
+        },
+        {
+          "sig": "function lapse(uint256 seriesId, address holder) external;",
+          "ko": "시리즈 만료 후 홀더의 미사용 단위를 제거합니다."
+        },
+        {
+          "sig": "event Authorized(\n    bytes32 indexed authorizationId,\n    address indexed holder,\n    address indexed consumer,\n    uint256 seriesId,\n    uint256 cap,\n    uint64 validAfter,\n    uint64 validUntil,\n    bytes32 scope,\n    uint256 nonce\n);",
+          "ko": "홀더가 특정 소비자에게 소비 한도를 부여했음을 알립니다."
+        },
+        {
+          "sig": "event Revoked(bytes32 indexed authorizationId, address indexed holder);",
+          "ko": "홀더가 이전에 부여한 승인을 철회했음을 알립니다."
+        },
+        {
+          "sig": "event Held(\n    bytes32 indexed requestKey,\n    bytes32 indexed authorizationId,\n    address indexed fulfiller,\n    address consumer,\n    bytes32 requestId,\n    uint256 seriesId,\n    address holder,\n    uint256 amount,\n    uint64 holdUntil\n);",
+          "ko": "하나의 요청을 위해 단위가 예치되었음을 알립니다."
+        },
+        {
+          "sig": "event UsageClaimed(\n    bytes32 indexed requestKey,\n    address indexed fulfiller,\n    Outcome outcome,\n    uint256[] usage,\n    uint256 computed,\n    uint256 claimed,\n    bytes32 claimHash,\n    bytes32 evidenceRoot\n);",
+          "ko": "이행자가 실제 사용량과 결과를 체인에 청구했음을 알립니다."
+        },
+        {
+          "sig": "event Objected(bytes32 indexed requestKey, address indexed by, bytes32 reason);",
+          "ko": "소비자나 홀더가 청구에 이의를 제기했음을 알립니다."
+        },
+        {
+          "sig": "event Accepted(bytes32 indexed requestKey, address indexed acceptedBy, AcceptanceRule rule, uint256 amount);",
+          "ko": "청구가 특정 규칙에 따라 최종 수락되었음을 알립니다."
+        },
+        {
+          "sig": "event Settled(\n    bytes32 indexed requestKey,\n    uint256 indexed seriesId,\n    address indexed holder,\n    uint256 deducted,\n    uint256 released,\n    bytes32 receiptHash\n);",
+          "ko": "요청이 정산되어 일부가 차감되고 나머지가 반환되었음을 알립니다."
+        },
+        {
+          "sig": "event Released(bytes32 indexed requestKey, uint256 indexed seriesId, address indexed holder, uint256 amount);",
+          "ko": "요청이 차감 없이 예치분 전체를 홀더에게 돌려주며 종료되었음을 알립니다."
+        },
+        {
+          "sig": "function authorize(Authorization calldata a) external returns (bytes32 authorizationId);",
+          "ko": "홀더가 서명 대신 직접 호출해 소비 승인을 체인에 등록합니다."
+        },
+        {
+          "sig": "function revoke(Authorization calldata a) external;",
+          "ko": "홀더가 이전에 등록한 승인을 철회합니다."
+        }
+      ],
+      "flow": {
+        "title": "추론 사용권 소비 흐름",
+        "steps": [
+          {
+            "label": "홀더",
+            "title": "소비자에게 소비 권한 부여",
+            "body": "토큰 보유자가 서명으로 소비자에게 누적 사용 한도(cap)를 지정해 소비를 허용합니다. 승인은 예약이 아니라 상한선이라 전송을 막지 않습니다."
+          },
+          {
+            "label": "소비자",
+            "title": "요청과 예치(hold)",
+            "body": "소비자가 이행자를 지정해 한 번의 요청에 쓸 최대량(maxAmount)을 서명하고, 그 이행자가 해당 수량을 보유분에서 예치로 옮깁니다."
+          },
+          {
+            "label": "이행자",
+            "title": "추론 실행과 사용량 청구",
+            "body": "이행자가 실제로 추론을 실행한 뒤 구성요소별 사용량과 결과 유형을 체인에 청구합니다. 청구만으로는 아무것도 차감되지 않습니다."
+          },
+          {
+            "label": "체인·당사자",
+            "title": "수락",
+            "body": "시리즈가 정한 규칙(CoSign, Optimistic, ProviderMetered)에 따라 청구가 수락됩니다. 이의가 없으면 확정되고, 분쟁 시 지정된 해결자가 판단합니다."
+          },
+          {
+            "label": "홈 렛저",
+            "title": "정산 또는 해제",
+            "body": "수락된 양만큼 예치분에서 차감하고 나머지는 홀더에게 돌려줍니다. 한 요청은 정산 또는 해제 중 단 한 번만 종료됩니다."
+          }
+        ]
+      },
+      "deep": [
+        {
+          "title": "다섯 가지 핵심 객체와 세 가지 선택 모듈",
+          "body": "AITO는 Unit, Grade, Source, Instrument, Receipt라는 다섯 개의 핵심 객체와 Method, Assessment, Token Binding이라는 세 개의 선택 모듈로 구성됩니다. Unit은 무엇을 어떻게 세는지 정의하고, Grade는 무엇이 전달되기로 약속됐는지, Source는 누가 발행하고 누가 공급을 책임지는지, Instrument는 Unit·Grade·Source와 체인상의 조건을 합친 '시리즈'이며, Receipt는 실제로 일어난 사용과 정산을 기록합니다. Method와 Assessment는 서로 다른 Unit·Grade 간 변환이나 측정 결과를 기록하는 선택적 장치이고, Token Binding은 이 시리즈를 ERC-1155 또는 ERC-20 토큰으로 노출하는 모듈입니다. 구현체는 Core(시리즈·발행·소비·정산)와 적어도 하나의 토큰 바인딩을 갖춰야 사용권을 전송 가능하다고 주장할 수 있습니다.",
+          "ref": "원문: Specification 2.1"
+        },
+        {
+          "title": "시리즈는 조건 전체의 해시로 식별됩니다",
+          "body": "하나의 시리즈(series)는 SeriesTerms 구조체 전체를 keccak256으로 해시한 값을 식별자로 삼습니다. 발행자(issuer), 공급 책임자(responsibleParty), Unit·Grade·Source 레코드, 전체 조건 문서 해시(termsHash), 발행 총한도(cap), 유효기간(validFrom~validUntil), 전송 가능 여부(transferable), 차감 일정이 추후 바뀔 수 있는지(scheduleMutable), 반올림 방향, 수락 규칙 등 홀더의 권리에 영향을 주는 항목 중 단 하나라도 다르면 다른 시리즈가 됩니다. scheduleMutable이 켜진 시리즈는 차감 규칙이 바뀔 수 있다는 뜻이므로 그 시리즈가 약속하는 추론 수량은 확정된 것이 아니라고 취급해야 합니다.",
+          "ref": "원문: Series 4.2"
+        },
+        {
+          "title": "소비는 승인, 예치, 청구, 수락, 정산의 5단계",
+          "body": "사용권을 쓰려면 먼저 홀더가 Authorization으로 한 소비자에게 누적 한도(cap)를 서명해 줍니다. 이 승인은 예약이 아니라 상한선일 뿐이라 홀더는 여전히 모든 단위를 전송할 수 있습니다. 소비자는 ConsumptionRequest로 한 번의 요청에 쓸 최대량(maxAmount)과 이행자(fulfiller)를 지정하고, 그 이행자만이 해당 수량을 보유에서 예치로 옮기는 hold를 실행합니다. 이행자는 실제 추론 실행 후 구성요소별 사용량과 결과 유형을 체인에 청구(claimUsage)하는데, 청구 자체는 어떤 차감도 일으키지 않습니다. 체인은 청구된 사용량에 가중치(weights)를 곱해 computed 값을 계산하고, 예치량을 넘지 않는 한도에서 claimed 값을 정합니다. 수락되면 settle로 그 양만큼 차감하고 나머지는 홀더에게 돌아가며, 한 요청은 정산 또는 해제 중 단 한 번만 종료됩니다.",
+          "ref": "원문: Consumption 5.1~5.5"
+        },
+        {
+          "title": "청구를 받아들이는 세 가지 규칙",
+          "body": "시리즈마다 acceptanceRule로 청구 수락 방식을 고정합니다. CoSign은 소비자가 직접 서명해야 확정되고, 서명이 없으면 holdUntil이 지난 뒤 누구나 요청을 풀어 아무것도 차감되지 않게 할 수 있습니다. Optimistic은 소비자가 서명하거나 objectionWindow 동안 소비자나 홀더가 이의를 제기하지 않으면 자동 확정되며, 이의가 제기되면 해결자(resolver)가 있는 시리즈는 분쟁 상태로 넘어갑니다. ProviderMetered는 이행자의 청구가 예치량 한도 내에서 즉시 수락됩니다. 어떤 경우든 차감은 해당 요청의 예치량을 절대 넘지 않습니다.",
+          "ref": "원문: Consumption 5.4"
+        },
+        {
+          "title": "Source 레코드가 공급 책임의 근거를 명시",
+          "body": "Source 레코드는 누가 발행할 권리가 있는지(issuer), 누가 홀더에게 공급을 빚지는지(responsibleParty), 누가 실제로 연산을 수행하는지(fulfillers), 그리고 발행의 근거가 되는 issuanceBases를 담습니다. 각 issuanceBases 항목은 발행 권리자, 공급 의무자, 근거(자체 용량, 상류 예약 용량, 양도 가능한 상류 쿼터, 신용, 공유 상환 풀, 프로토콜 예산 등), 수량·시간 범위, 상류 재판매 승인 여부, 이중 발행 방지 방법을 모두 정해야 합니다. 신용이나 공유 용량을 근거로 발행하는 것은 그렇게 명시되는 한 허용되지만 예약 용량이라고 표현해서는 안 되며, 단지 상류 공급자가 존재한다는 서술은 그 공급자의 승인으로 간주되지 않습니다.",
+          "ref": "원문: Source 3.4"
+        },
+        {
+          "title": "회계 불변식으로 이중 소비를 차단",
+          "body": "홈 렛저는 모든 시리즈에 대해 총 발행량, 소비량, 반납(retired)량, 만료 소멸(lapsed)량, 현재 예치 중인 양, 그리고 홀더별 보유 가능량을 노출해야 하며, 항상 발행량이 소비량과 반납량, 소멸량, 예치량, 모든 홀더의 가용량 합을 더한 값과 같아야 합니다. 발행된 단위는 가용 상태로 시작해 전송, 예치, 반납되거나 만료 후 소멸되며, 예치된 단위는 정산으로 소비되거나 정산·해제로 다시 가용 상태가 됩니다. 소비·반납·소멸은 되돌릴 수 없는 최종 상태입니다. 다만 이 회계가 맞아떨어진다고 해서 렛저가 이중 소비를 허용하지 않는다는 뜻일 뿐, 실제 물리적 연산 용량이 존재하거나 다른 곳에 중복 약속되지 않았다는 것까지 보장하지는 않습니다.",
+          "ref": "원문: Series 4.5"
+        },
+        {
+          "title": "레코드는 내용 기반 식별자와 앵커링으로 추적",
+          "body": "Unit, Grade, Source, Terms, Receipt 등의 레코드는 RFC 8785 정규화 형식의 JSON이며, 그 식별자는 정규화된 바이트에 대한 keccak256 해시입니다. 레코드는 불변이라 내용이 바뀌면 다른 레코드가 되고, 새 버전은 supersedes 필드로 이전 레코드를 가리킵니다. IAITORecords 레지스트리는 발행자나 공급 책임자가 자신의 주소 아래 레코드를 앵커링하게 해주는데, 이는 그 주체가 레코드 내용을 책임진다는 뜻일 뿐 내용의 진위를 증명하지는 않습니다. 레코드를 풀어낼 수 없는 당사자는 그 레코드가 말하는 항목을 전부 알 수 없음으로 취급해야 합니다.",
+          "ref": "원문: Records 3.1, 3.8"
+        },
+        {
+          "title": "아직 확정되지 않은 제안입니다",
+          "body": "이 ERC는 2026년 11월 20일 작성되어 현재 상태가 Draft입니다. 세부 인터페이스나 수치, 선택적 프로파일의 구체적인 규칙은 논의 과정에서 바뀌거나 중단될 수 있으므로, 구현을 계획한다면 최신 논의 스레드와 명세 변경 여부를 확인해야 합니다.",
+          "ref": "원문: 메타데이터(status: Draft)"
+        }
+      ],
+      "safety": [],
+      "glossary": [
+        {
+          "term": "추론 토큰(inference token)",
+          "def": "AI 추론 사용량을 세는 단위로, 텍스트 토큰이나 이미지 생성의 킬로픽셀 스텝 등이 그 예입니다."
+        },
+        {
+          "term": "엔타이틀먼트(entitlement)",
+          "def": "정해진 사양·과금 규칙·전달 조건 아래, 권한을 위임하고 소비할 수 있는 AI 추론 공급에 대한 권리입니다."
+        },
+        {
+          "term": "홀드(hold)",
+          "def": "하나의 요청을 처리하기 위해 미리 확보해 두는 단위로, 소비가 확정되기 전 단계입니다."
+        },
+        {
+          "term": "책임당사자(responsible party)",
+          "def": "시리즈의 홀더들에게 추론 공급을 빚진 주체입니다."
+        },
+        {
+          "term": "이행자(fulfiller)",
+          "def": "책임당사자가 허락한, 실제로 추론을 실행하고 사용량을 청구할 수 있는 주체입니다."
+        },
+        {
+          "term": "수락 규칙(acceptance rule)",
+          "def": "청구된 사용량이 확정 차감으로 바뀌는 방식으로, CoSign·Optimistic·ProviderMetered 세 가지가 있습니다."
+        }
+      ],
+      "meta": {
+        "title": "AI Inference Token Onchain",
+        "description": "Consumable entitlements to AI inference supply with versioned specification, metering, authorized consumption and settlement",
+        "status": "Draft",
+        "type": "Standards Track",
+        "category": "ERC",
+        "created": "2026-11-20",
+        "authors": [
+          "Gary Yang"
+        ],
+        "requires": [
+          20,
+          165,
+          712,
+          1155,
+          1271
+        ],
+        "discussionsTo": "https://ethereum-magicians.org/t/erc-8506-ai-inference-token-onchain-aito/30453"
+      },
+      "sourceHash": "366debd88dbd30d0",
+      "model": "sonnet",
+      "generatedAt": "2026-11-27T14:46:28.064Z"
+    },
+    {
+      "number": 8509,
+      "titleKo": "에이전트 연결성 보고서",
+      "topic": "계정·지갑",
+      "summary": "ERC-8004 에이전트의 결제주소가 소유자·다른 에이전트와 어떻게 연결되는지 공개 체인 데이터로 확인해 표준 JSON 형식의 보고서로 보여주는 규격입니다.",
+      "why": "ERC-8004 표준에서 에이전트는 소유자 주소, 결제를 받는 agentWallet, 서비스 엔드포인트가 알리는 payTo 주소를 공개적으로 드러냅니다. 이 주소들은 모두 공개 체인 기록을 가지므로, 에이전트에게 결제한 사람이나 체인을 지켜보는 누구나 결제주소를 소유자에 연결하고 소유자가 보유한 다른 에이전트를 찾아내고 결제자 전체를 에이전트에 연결할 수 있습니다. 에이전트끼리 서비스를 사고파는 경우 이 문제는 더 커지는데, 에이전트의 결제자가 또 다른 에이전트인 경우가 많아 결제 하나가 두 운영자를 공개적으로 연결하기 때문입니다. 실제로 한 체인의 식별 레지스트리를 조사한 결과 등록된 26,235개 에이전트 중 25,620개가 소유자와 구분되는 agentWallet이 없어 결제가 그대로 소유자 주소에 꽂혔습니다. 여러 리더가 이미 이런 연결을 각자 다른 이름과 기준, 점수로 계산하고 있지만 무엇을 읽지 못했는지는 아무도 밝히지 않아, 점수를 서로 비교할 수 없고 근거 없는 주장은 검증할 수 없으며 못 읽은 값과 '링크 없음'이 똑같이 보여 사생활 보호로 오인되는 문제가 생깁니다.",
+      "before": [
+        "리더마다 다른 이름·기준으로 링크를 계산해 점수를 서로 비교할 수 없음",
+        "값에 트랜잭션이나 블록 같은 근거가 없어 주장을 검증하거나 재현할 수 없음",
+        "못 읽은 값과 '링크 없음'이 똑같이 보여 사생활 보호로 오인됨",
+        "소유자가 자신의 결제주소가 다른 에이전트나 자금원과 어떻게 얽혀 있는지 파악하기 어려움"
+      ],
+      "after": [
+        "모든 리더가 같은 필드와 정의로 보고서를 작성해 서로 비교 가능",
+        "모든 값에 트랜잭션·로그·호출 등 증거와 기준 블록이 함께 붙음",
+        "'못 읽음'과 '읽었지만 없음'을 서로 다른 상태로 명확히 구분",
+        "소유자 자금 조달 여부, 공유 결제주소, 스텔스 메타주소 등록 여부를 표준 필드로 확인 가능"
+      ],
+      "impact": [
+        {
+          "who": "에이전트에게 결제하는 사람·지갑",
+          "text": "결제 전에 결제주소가 소유자나 다른 에이전트와 연결돼 있는지 표준화된 근거로 확인할 수 있습니다."
+        },
+        {
+          "who": "에이전트 운영자",
+          "text": "자신의 결제 구조가 얼마나 공개적으로 연결되는지 파악하고 ERC-6538 스텔스 메타주소 등록 등으로 완화할 수 있습니다."
+        },
+        {
+          "who": "보고서를 만드는 리더(reader) 개발자",
+          "text": "필드, 증거, 못 읽음 사유를 이 규격대로 맞추면 다른 리더의 보고서와 호환됩니다."
+        },
+        {
+          "who": "지갑·디렉터리 서비스",
+          "text": "여러 리더의 보고서를 같은 기준으로 받아 자체 정책으로 해석할 수 있습니다."
+        }
+      ],
+      "iface": [],
+      "flow": {
+        "title": "보고서 생성과 소비 흐름",
+        "steps": [
+          {
+            "label": "컨슈머",
+            "title": "에이전트 조회 요청",
+            "body": "지갑이나 결제자가 특정 체인·레지스트리·agentId로 식별된 에이전트에 대한 연결성 보고서를 리더에게 요청합니다."
+          },
+          {
+            "label": "리더(reader)",
+            "title": "기준 블록에서 데이터 수집",
+            "body": "리더가 소유자, agentWallet, payTo 주소의 이력을 하나의 기준 블록에서 읽고 각 값에 대한 증거를 모읍니다."
+          },
+          {
+            "label": "리더(reader)",
+            "title": "JSON 보고서 작성",
+            "body": "읽은 값은 value와 evidence로, 읽지 못한 값은 reason과 함께 not_read로 표준 필드에 담아 보고서를 완성합니다."
+          },
+          {
+            "label": "컨슈머",
+            "title": "자신의 정책으로 판단",
+            "body": "컨슈머는 partial 여부와 각 필드를 자체 기준으로 해석해 결제나 거래 여부를 결정하며 링크를 공동 통제의 증거로 쓰지 않습니다."
+          }
+        ]
+      },
+      "deep": [
+        {
+          "title": "보고서의 기본 구조",
+          "body": "보고서는 JSON 객체로 version, read_at(UTC 읽은 시각), block(모든 필드가 고정된 블록 번호), agent(에이전트와 그 주소들), findings(핵심 발견 6개), helps(완화 요소)를 반드시 가지며 block_hash, source, extensions, score는 선택입니다. partial은 unsupported가 아닌 이유로 읽지 못한 필드가 하나라도 있으면 true가 되고 partial_reasons는 그런 필드마다 JSON Pointer로 위치를 하나씩 나열합니다. 규격을 어긴 보고서는 무효이며 컨슈머는 반드시 거부하고 그 어떤 필드도 사용해서는 안 됩니다.",
+          "ref": "원문: Report"
+        },
+        {
+          "title": "읽음과 못 읽음을 구분하는 필드 상태",
+          "body": "모든 필드는 두 형태 중 하나입니다. 읽은 경우 status가 read이고 value와 최소 하나의 evidence를 반드시 담으며 못 읽은 경우 status가 not_read이고 reason과 선택적 detail만 가지며 value나 evidence를 가질 수 없습니다. not_read 이유는 unsupported(그 필드를 아예 읽지 않음), unavailable(데이터 소스 응답 없음이나 오류), incomplete(페이지 제한 등으로 일부만 읽음), timeout, rate-limited, invalid(파싱 불가) 여섯 가지입니다. 리더는 다른 에이전트에서는 읽는 필드를 특정 에이전트에서만 unsupported로 보고할 수 없고 시도했다가 실패했을 때는 unsupported를 쓸 수 없습니다. '읽었지만 없음(none)'은 0, false, 빈 리스트처럼 증거까지 갖춘 값일 때만 성립합니다.",
+          "ref": "원문: Fields"
+        },
+        {
+          "title": "증거(evidence) 항목의 종류",
+          "body": "읽은 값마다 최소 하나의 증거가 필요합니다. 증거 종류는 call(특정 블록에서 누구나 재현할 수 있는 eth_call), tx(트랜잭션 해시), log(트랜잭션의 로그 하나), address(리더가 읽은 주소 이력과 그 범위 블록), block(블록 하나)입니다. 증거는 보고서의 기준 block보다 뒤의 블록을 가리킬 수 없고 tx·log·call 증거가 있으면 그것을 우선해야 하며 address 증거는 '어디를 봤는지'만 알려줄 뿐 값을 직접 증명하는 것은 아닙니다.",
+          "ref": "원문: Fields, Evidence"
+        },
+        {
+          "title": "주소별 항목(entries)과 역할",
+          "body": "에이전트의 주소를 다루는 필드는 entries 리스트를 가지며 각 항목은 role(agentWallet, payTo, owner)과 address를 가집니다. 같은 주소가 두 역할을 겸해도 역할마다 별도 항목을 만듭니다. address가 null이 되는 경우는 agentWallet이 설정되지 않아 값이 'unset'일 때와, 주소 자체를 알 수 없어 not_read로 보고할 때 두 가지뿐입니다. agent.payTo를 못 읽으면 payTo 역할을 담는 모든 필드에 address가 null인 payTo 항목을 같은 이유로 not_read 처리해 추가합니다.",
+          "ref": "원문: Entries"
+        },
+        {
+          "title": "결제 조건(payTo)은 체인 밖 x402 프로토콜로 확인",
+          "body": "payTo 주소는 체인이 아니라 tokenURI(agentId) 호출로 얻은 등록 파일에 실린 서비스 엔드포인트에 결제 없이 HTTP GET을 보내 얻습니다. 응답 상태코드가 402이고 본문 또는 PAYMENT-REQUIRED 헤더가 accepts 리스트를 가진 JSON이면(x402 결제 프로토콜 형식) 그 안에서 에이전트의 체인을 가리키는 network의 payTo 주소들만 모읍니다. 다른 소스에서 주소를 더하는 것은 금지됩니다. payTo는 블록이 아니라 리더가 실제로 읽은 시점(read_at)에 묶이는데, 결제 조건은 트랜잭션 없이도 바뀔 수 있기 때문입니다.",
+          "ref": "원문: Payment terms"
+        },
+        {
+          "title": "핵심 발견(findings) 여섯 가지",
+          "body": "findings는 여섯 필드를 모두 요구합니다. payment_lands_on_owner는 결제주소가 소유자와 같은지(agentWallet 미설정이면 'unset'), owner_funded_payment_address는 결제주소에 최초로 자금을 보낸 주소가 소유자인지, owner_payment_direct_link는 소유자와 결제주소 사이에 양방향 전송 기록이 있는지를 봅니다. owner_agent_count는 소유자가 레지스트리에서 보유한 에이전트 수(balanceOf), shared_payment_address는 같은 agentWallet 또는 payTo를 쓰는 다른 agentId들, payers_visible은 정해진 기간(window_seconds) 안에 결제주소로 돈을 보낸 서로 다른 발신자 수입니다.",
+          "ref": "원문: Core findings"
+        },
+        {
+          "title": "완화 요소(helps): 스텔스 메타주소와 쉴드 풀",
+          "body": "helps는 두 필드를 가집니다. stealth_meta_address는 소유자와 각 결제주소에 대해 ERC-6538 레지스트리에 등록된 스텔스 메타주소(스킴 ID별)가 있는지 확인하며 등록돼 있으면 결제자가 ERC-5564 스텔스 주소로 보낼 수 있어 추적이 어려워집니다. shielded_pool_receipts는 리더나 컨슈머가 지정한 쉴드 풀 목록(pools) 중 결제주소가 실제로 받은 적이 있는 풀(received_from)을 보여주되, 목록에 올랐다는 것이 안전하다거나 추천된다는 뜻은 아닙니다. 풀 목록이 없는 리더는 이 필드를 unsupported로 보고합니다.",
+          "ref": "원문: Helps"
+        },
+        {
+          "title": "선택적 확장과 아직 바뀔 수 있는 제안",
+          "body": "extensions.payment_wallet_leaks는 선택 항목으로, 한 주소에 대해 최초 자금원이 다른 몇 개 주소에도 자금을 댔는지(funding_sibling), 거래 상대방 수(linked_counterparties), 활동이 몰린 시간대(activity_hour_concentration), 보유 자산 가치(holdings_visibility)를 추가로 보여줄 수 있습니다. 생략된 확장 멤버는 못 읽음으로 취급되며 보고서를 partial로 만들지 않습니다. 이 제안은 2026년 11월 작성된 Draft 상태로, 아직 커뮤니티 논의와 변경을 거치는 중이며 최종 확정된 표준이 아닙니다.",
+          "ref": "원문: Extension: payment_wallet_leaks / 문서 상태"
+        }
+      ],
+      "safety": [
+        {
+          "title": "보고서 자체가 프라이버시 침해 수단이 될 수 있음",
+          "body": "개별 사실은 모두 공개 정보지만 소유자, 다른 에이전트, 자금원, 거래상대, 보유자산, 활동시간을 한곳에 모으면 신상파악(doxxing) 도구가 됩니다. 리더는 요청받은 범위를 넘어 보고서를 대량으로 공개하지 말아야 합니다."
+        },
+        {
+          "title": "연결(link)은 공동 통제의 증거가 아님",
+          "body": "거래소, 브리지, 라우터를 거친 전송도 링크로 기록되므로, 컨슈머는 링크를 공동 통제로 해석해서는 안 되고 보고서만으로 주소를 제재·차단·비난하는 근거로 써서는 안 됩니다."
+        },
+        {
+          "title": "못 읽음과 링크 없음을 혼동하면 안 됨",
+          "body": "못 읽은 필드나 빠진 항목, 보고서 자체의 부재는 아무것도 증명하지 않으며 링크가 없는 보고서도 사생활 보호의 증거가 아닙니다. 보고서가 다루지 않는 주소나 타이밍, 금액을 통한 연결도 존재할 수 있습니다."
+        },
+        {
+          "title": "결제 조건과 소유권은 언제든 바뀔 수 있음",
+          "body": "payTo는 운영자가 통제하는 엔드포인트가 요청마다 다르게 응답할 수 있고 소유자·agentWallet도 블록마다 바뀔 수 있어 보고서는 특정 시점의 기록일 뿐이며 오래된 보고서는 다시 읽어야 합니다."
+        },
+        {
+          "title": "보고서 텍스트를 명령으로 처리하면 안 됨",
+          "body": "detail 문자열이나 풀 목록 이름은 리더가 통제하는 텍스트이므로, 특히 언어모델에 보고서를 넘길 때는 이를 데이터로만 다루고 그 안의 지시를 따르지 않아야 합니다."
+        }
+      ],
+      "glossary": [
+        {
+          "term": "ERC-8004",
+          "def": "체인에서 AI 에이전트의 신원(소유자, agentWallet 등)을 등록하는 표준입니다."
+        },
+        {
+          "term": "agentWallet",
+          "def": "에이전트가 결제를 받도록 등록한 지갑 주소입니다."
+        },
+        {
+          "term": "ERC-6538",
+          "def": "스텔스 메타주소를 레지스트리에 등록하는 표준입니다."
+        },
+        {
+          "term": "스텔스 주소(ERC-5564)",
+          "def": "매번 다른 주소로 결제를 받아 추적을 어렵게 하는 방식입니다."
+        },
+        {
+          "term": "x402",
+          "def": "HTTP 402 응답으로 결제 조건을 알리는 프로토콜입니다."
+        },
+        {
+          "term": "JSON Pointer",
+          "def": "JSON 문서 안의 특정 위치를 가리키는 표기법(RFC 6901)입니다."
+        }
+      ],
+      "meta": {
+        "title": "Agent Linkability Report",
+        "description": "Defines a machine-readable report of what anyone can link about an ERC-8004 agent from public chain data",
+        "status": "Draft",
+        "type": "Standards Track",
+        "category": "ERC",
+        "created": "2026-11-21",
+        "authors": [
+          "soli0x"
+        ],
+        "requires": [
+          6538,
+          8004
+        ],
+        "discussionsTo": "https://ethereum-magicians.org/t/pre-erc-agent-linkability-report/30462"
+      },
+      "sourceHash": "4baa63e79af9d37f",
+      "model": "sonnet",
+      "generatedAt": "2026-11-27T14:51:37.287Z"
+    },
+    {
+      "number": 8515,
+      "titleKo": "GPU 담보 증거 레지스트리",
+      "topic": "금고·DeFi",
+      "summary": "GPU를 대출이나 리스의 담보로 잡을 때, 누가 어떤 GPU를 담보로 걸었는지와 그 GPU가 실제로 존재하며 가동했다는 서명된 증거를 온체인 레지스트리에 기록하는 표준입니다.",
+      "why": "GPU는 이제 항공기나 선박처럼 담보 대출, 세일앤리스백, 금융리스로 자금을 조달하며 점점 더 많은 온체인 대출자가 여기에 참여합니다. 그런데 대출자는 세 가지를 직접 확인할 방법이 없습니다. 첫째, 같은 GPU 서버가 이미 다른 금융사에 담보로 잡혀 있어도 알 길이 없습니다. 공개 등록 제도가 있어도 GPU 스스로 증명할 수 있는 식별자로 색인하지 않고 컨트랙트가 읽을 수도 없습니다. 둘째, 세일앤리스백에서는 대출자가 장비를 직접 점유하지 않는데, 리스사가 베이스보드 관리 텔레메트리 같은 장비 단위 데이터에 접근하지 못하는 경우가 많아 장비가 사라지거나 옮겨지거나 처음부터 존재하지 않았어도 기본값 전까지 모를 수 있습니다. 셋째, 상환은 실제 제공된 GPU 가동 시간에서 나오는 임대 수익에 의존하는데, 차주가 자체 신고한 이용률만으로 계산한 수치는 신고자의 신뢰도만큼만 믿을 수 있습니다.",
+      "before": [
+        "같은 GPU가 이미 다른 금융사에 담보로 잡혀 있어도 알 방법이 없습니다",
+        "리스한 장비가 실제로 존재하는지, 자리를 지키고 있는지 확인할 공통 방법이 없습니다",
+        "가동률(이용률) 수치가 차주의 자체 신고에만 의존합니다",
+        "금융사마다 장비를 다르게 식별해 중복 담보를 서로 대조할 수 없습니다"
+      ],
+      "after": [
+        "하드웨어 신원 인증서에서 파생한 장비 키로 모든 레지스트리에서 같은 GPU를 같은 이름으로 식별합니다",
+        "서비서가 어떤 장비를 담보로 잡았는지 레지스트리에 공개 기록되어 중복 담보 여부를 확인할 수 있습니다",
+        "관찰자가 EIP-712로 서명한 기간별 진술(가동·미가동·불명 시간)을 머클 루트로 커밋해 공개합니다",
+        "감사자나 예치자가 서명과 머클 루트를 직접 재검증해 서비서가 보고한 집계 수치를 사후 대조할 수 있습니다"
+      ],
+      "impact": [
+        {
+          "who": "GPU 담보 대출자·리스사",
+          "text": "GPU를 담보로 돈을 빌려주는 쪽은 레지스트리로 중복 담보와 존재·가동 증거를 확인할 근거를 얻습니다."
+        },
+        {
+          "who": "서비서(servicer)",
+          "text": "대출을 관리하는 서비서는 pledge·release·report 호출로 담보 상태와 기간별 보고를 온체인에 남겨야 합니다."
+        },
+        {
+          "who": "감사자·예치자",
+          "text": "온체인 대출 상품의 예치자나 외부 감사자는 서명과 머클 루트를 재계산해 서비서의 보고를 독립적으로 검증할 수 있습니다."
+        },
+        {
+          "who": "지갑·컨트랙트 개발자",
+          "text": "레지스트리를 읽는 컨트랙트나 대시보드 개발자는 EIP-712 진술 서명과 ERC-1271 검증 로직을 구현해야 합니다."
+        }
+      ],
+      "iface": [
+        {
+          "sig": "event DevicePledged(address indexed servicer, bytes32 indexed collateralId, bytes32 indexed deviceKey);",
+          "ko": "장비가 특정 서비서의 담보 아래 등록되었음을 알립니다."
+        },
+        {
+          "sig": "event DeviceReleased(address indexed servicer, bytes32 indexed collateralId, bytes32 indexed deviceKey);",
+          "ko": "장비가 담보에서 해제되었음을 알립니다."
+        },
+        {
+          "sig": "event Reported(address indexed servicer, bytes32 indexed collateralId, Report report, string uri);",
+          "ko": "서비서가 해당 기간의 집계 보고와 증거 문서 위치를 기록했음을 알립니다."
+        },
+        {
+          "sig": "function pledge(bytes32 collateralId, bytes32[] calldata deviceKeys) external;",
+          "ko": "호출자가 지정한 장비 키들을 자신의 담보 아래 등록합니다."
+        },
+        {
+          "sig": "function release(bytes32 collateralId, bytes32[] calldata deviceKeys) external;",
+          "ko": "호출자가 지정한 장비 키들을 자신의 담보에서 해제합니다."
+        },
+        {
+          "sig": "function report(bytes32 collateralId, Report calldata r, string calldata uri) external;",
+          "ko": "호출자의 담보에 대한 해당 기간의 보고를 기록합니다."
+        },
+        {
+          "sig": "function pledgeCount(bytes32 deviceKey) external view returns (uint256);",
+          "ko": "모든 서비서와 담보를 통틀어 해당 장비 키가 현재 몇 건 담보로 걸려 있는지 반환합니다."
+        },
+        {
+          "sig": "function pledgeAt(bytes32 deviceKey, uint256 index) external view returns (address servicer, bytes32 collateralId, uint64 pledgedAt);",
+          "ko": "해당 장비 키의 index번째 활성 담보 정보(서비서, 담보 식별자, 담보 설정 시각)를 반환합니다."
+        },
+        {
+          "sig": "function isPledged(address servicer, bytes32 collateralId, bytes32 deviceKey) external view returns (bool);",
+          "ko": "해당 장비 키가 특정 서비서의 담보 아래 활성 상태로 걸려 있는지 반환합니다."
+        },
+        {
+          "sig": "function deviceCount(address servicer, bytes32 collateralId) external view returns (uint256);",
+          "ko": "특정 서비서의 담보 아래 활성 상태로 걸려 있는 장비 수를 반환합니다."
+        },
+        {
+          "sig": "function latestReport(address servicer, bytes32 collateralId) external view returns (Report memory r, uint64 reportedAt);",
+          "ko": "특정 서비서의 담보에 대한 가장 최근 보고를 반환합니다."
+        }
+      ],
+      "flow": {
+        "title": "담보 등록과 증거 확인 흐름",
+        "steps": [
+          {
+            "label": "서비서",
+            "title": "담보 설정",
+            "body": "서비서가 pledge()로 GPU 장비 키들을 자신의 담보(collateral) 아래 등록합니다."
+          },
+          {
+            "label": "관찰자",
+            "title": "기간별 증거 서명",
+            "body": "관찰자가 하드웨어 인증·BMC 텔레메트리 등으로 관찰한 내용을 담은 진술을 EIP-712로 서명합니다."
+          },
+          {
+            "label": "서비서",
+            "title": "보고 제출",
+            "body": "서비서가 서명된 진술들을 머클 루트로 묶어 report()를 호출하고 문서 URI를 공개합니다."
+          },
+          {
+            "label": "대출자·감사자",
+            "title": "검증",
+            "body": "소비자가 URI의 문서를 내려받아 서명과 머클 루트를 재계산하고 집계값이 맞는지 직접 확인합니다."
+          }
+        ]
+      },
+      "deep": [
+        {
+          "title": "장비 키: 하드웨어로 증명 가능한 GPU 이름",
+          "body": "deviceKey는 keccak256(\"ERC8515.device\", pciVendorId, idType, idBytes)로 계산합니다. idType 0x01은 벤더가 지정한 장비 신원 인증서의 DER 인코딩 SubjectPublicKeyInfo 바이트를 그대로 써서 장비가 챌린지에 응답해 키 소유를 증명할 수 있는 강한 식별자입니다. idType 0x02는 벤더 관리 인터페이스가 보고하는 일련번호 문자열로, 누구나 주장할 수 있는 약한 라벨입니다. 서비서는 신원 인증서가 있는 장비라면 반드시 0x01을 써야 하고 0x02 키에 대한 증거를 존재 증거로 취급해서는 안 됩니다. 키는 솔트가 없어 같은 장비는 모든 레지스트리와 모든 서비서 아래서 같은 키를 가지며 이 때문에 금융사들 사이의 이중 담보가 겉으로 드러날 수 있습니다.",
+          "ref": "원문: Device keys"
+        },
+        {
+          "title": "진술(Statement): 관찰자 한 명의 기간별 증거",
+          "body": "진술은 kind, registry, servicer, collateralId, deviceKey, pciDeviceId, location, periodStart/periodEnd, observer, role, method, checksPassed/checksFailed, servedSeconds/missedSeconds/unknownSeconds, evidence로 구성된 JSON 객체입니다. method는 hw-attestation(장비 신원 키로 챌린지 응답), bmc-telemetry(전력·온도·상태 판독), workload-meter(작업 기록 미터), site-inspection(현장 방문) 중 하나입니다. servedSeconds+missedSeconds+unknownSeconds는 반드시 기간 길이와 같아야 하고 순간만 관찰하는 hw-attestation과 site-inspection은 전체 기간을 unknownSeconds로 보고해야 합니다. 관찰자 한 명당 하나의 진술이며 같은 장비·기간에 대한 여러 관찰자의 증거는 각각 별도의 진술입니다.",
+          "ref": "원문: Statements"
+        },
+        {
+          "title": "식별자와 서명",
+          "body": "진술 식별자는 RFC 8785(JSON 정규화)로 직렬화한 UTF-8 바이트의 keccak256 해시입니다. 관찰자는 이 식별자를 EIP-712 타입 데이터(Statement(bytes32 statementId))로 서명하며 도메인 name은 \"GPU Collateral Evidence\", version은 \"1\"이고 chainId·verifyingContract는 registry에서 가져옵니다. 서명은 봉투 {statement, signature} 형태로 배포됩니다. 관찰자가 EOA면 서명은 r||s||v 65바이트로 s는 secp256k1 그룹 차수의 절반 이하, v는 27 또는 28이어야 하고 observer로 복구되어야 합니다. 관찰자가 컨트랙트면 ERC-1271의 isValidSignature가 보고를 포함한 블록 이후 상태에서 0x1626ba7e를 반환해야 하며 그 상태를 읽을 수 없는 소비자는 진술을 미검증으로 취급해야 합니다.",
+          "ref": "원문: 식별자와 서명"
+        },
+        {
+          "title": "진술 루트: 머클 트리로 커밋",
+          "body": "보고는 진술 집합을 머클 루트 하나로 커밋합니다. 잎은 진술 식별자를 오름차순으로 중복 없이 나열해 keccak256(0x00 || statementId)로 해시하고 상위 레벨에서는 인접한 두 노드를 순서대로 keccak256(0x01 || left || right)로 묶습니다. 짝이 없는 마지막 노드는 그대로 위로 올립니다. 진술이 하나면 루트는 그 잎이고 진술이 없으면 루트는 bytes32(0)입니다. 이 구조 덕분에 같은 문서를 가져온 두 소비자는 항상 같은 숫자를 계산하고 서비서는 나중에 어떤 증거를 근거로 집계했는지 바꿀 수 없습니다.",
+          "ref": "원문: Statement root"
+        },
+        {
+          "title": "레지스트리: pledge·release·report",
+          "body": "모든 상태는 (servicer, collateralId) 쌍에 묶입니다. pledge는 이미 같은 담보 아래 활성 상태인 키나 중복 키가 있으면 되돌리지만 다른 서비서나 다른 담보에 이미 걸려 있는 키는 막지 않고 나란히 기록합니다. release는 활성 상태가 아닌 키가 있으면 되돌립니다. report는 periodStart<periodEnd<=block.timestamp, devicesAttested<=devicesReported<=담보 내 장비 수, servedSeconds+missedSeconds+unknownSeconds가 devicesReported*(기간 길이)와 같아야 하고 이전 보고보다 기간이 이어지거나 같은 기간이면 교체만 허용됩니다. 성공한 report는 최신 보고로 저장되고 Reported 이벤트로 전체 내용을 로그에 남겨 교체된 보고도 로그에서 복구할 수 있습니다.",
+          "ref": "원문: Pledges, Reports"
+        },
+        {
+          "title": "보고의 정확성은 레지스트리가 검증하지 않음",
+          "body": "report가 받아들여진다고 해서 내용이 맞는지 레지스트리가 확인하는 것은 아닙니다. 보고가 맞다는 것은 uri 문서에 담긴 모든 진술이 해당 레지스트리·서비서·담보·기간을 가리키고 보고 당시 담보에 활성 상태로 걸린 장비 키를 가리키며 devicesReported·devicesAttested와 선택 규칙(기간 내 가동·미가동 시간이 있는 진술 중 식별자가 가장 작은 것, 없으면 식별자가 가장 작은 진술)에 따른 합계가 실제로 맞는 경우를 말합니다. 소비자는 문서를 직접 받아 모든 서명을 확인하고 루트를 재계산하고 정확성을 검사한 뒤에야 보고를 증거로 취급해야 하며 그렇지 않으면 보고는 서비서의 주장일 뿐입니다.",
+          "ref": "원문: Reports"
+        },
+        {
+          "title": "레지스트리가 하지 않는 일과 제안 상태",
+          "body": "이 표준은 담보 설정과 증거 제출 내역을 기록하고 충돌을 드러낼 뿐, 진술을 검증하거나 하드웨어 증명을 확인하지 않고 금융사 간 우선순위를 정하지도, 담보 가치를 평가하지도 않습니다. pledge를 막지 않고 그대로 기록하는 이유도 누군가 먼저 선점해 장비를 막아버리는 것을 방지하기 위함입니다. 이 제안은 아직 Draft 상태로, 세부 규칙이나 인터페이스가 앞으로 바뀌거나 논의가 멈출 수 있습니다.",
+          "ref": "원문: Rationale, status"
+        }
+      ],
+      "safety": [
+        {
+          "title": "깨끗한 조회가 독점을 의미하지 않습니다",
+          "body": "pledgeCount가 0이라는 것은 해당 레지스트리에 아무도 담보로 걸지 않았다는 뜻일 뿐, 다른 레지스트리나 비공개 채널에 걸린 담보가 없다는 보장은 아닙니다."
+        },
+        {
+          "title": "서비서는 언제든 자기 담보를 해제할 수 있습니다",
+          "body": "차주가 서비서 역할을 겸하면, 채무가 남아 있어도 담보 기록이 사라질 수 있습니다."
+        },
+        {
+          "title": "서명 두 개가 독립된 두 당사자를 보장하지 않습니다",
+          "body": "role은 관찰자가 스스로 선언한 값이라 차주가 통제하는 키로 'third-party' 진술을 만들어도 정직한 진술과 구별되지 않습니다."
+        },
+        {
+          "title": "자체 신고된 가동 시간",
+          "body": "서비서나 관찰자가 차주 자신이면 servedSeconds는 차주가 자기 매출 근거를 스스로 주장하는 것이므로, 대출자가 통제하는 계정으로 들어오는 임대료 같은 독립적 증거와 함께 봐야 합니다."
+        },
+        {
+          "title": "보고 범위는 서비서가 고릅니다",
+          "body": "서비서는 어떤 장비·기간·진술을 보고에 담을지 고를 수 있어, 소비자는 보고에 포함된 장비 키 수만 보는 데서 그치지 않고 실제로 자신이 자금을 댄 장비 키 목록과 대조하고 빠진 장비·기간·불명 시간을 증거 부재로 취급해야 합니다."
+        }
+      ],
+      "glossary": [
+        {
+          "term": "담보(Collateral)",
+          "def": "하나의 채무를 보증하는 장비 집합으로, 서비서가 정한 bytes32 식별자로 구분됩니다."
+        },
+        {
+          "term": "서비서(Servicer)",
+          "def": "담보를 걸고 풀고 보고를 제출하는 계정으로, 대출자·제3자·차주 중 누구든 될 수 있습니다."
+        },
+        {
+          "term": "진술(Statement)",
+          "def": "관찰자 한 명이 특정 기간 한 장비에 대해 서명한 증거 기록입니다."
+        },
+        {
+          "term": "머클 루트(Merkle root)",
+          "def": "여러 진술 식별자를 하나의 해시로 묶어, 그 집합이 바뀌지 않았음을 증명하는 값입니다."
+        },
+        {
+          "term": "EIP-712",
+          "def": "구조화된 데이터를 서명하기 위한 표준 서명 방식입니다."
+        },
+        {
+          "term": "ERC-1271",
+          "def": "컨트랙트 계정이 서명을 검증하는 방법을 정의한 표준입니다."
+        }
+      ],
+      "meta": {
+        "title": "GPU Collateral Evidence",
+        "description": "Defines a public pledge index and signed per-period evidence of existence and delivery for GPUs securing loans or leases.",
+        "status": "Draft",
+        "type": "Standards Track",
+        "category": "ERC",
+        "created": "2026-11-23",
+        "authors": [
+          "Saber Yu",
+          "Qin Wang",
+          "Ruiqiang Li",
+          "Shiping Chen"
+        ],
+        "requires": [
+          712,
+          1271
+        ],
+        "discussionsTo": "https://ethereum-magicians.org/t/erc-8515-gpu-collateral-evidence/30476"
+      },
+      "sourceHash": "aadaed6030180871",
+      "model": "sonnet",
+      "generatedAt": "2026-11-27T14:54:36.899Z"
+    },
+    {
+      "number": 8517,
+      "titleKo": "포스트퀀텀 검증자 시드 파생",
+      "topic": "계정·지갑",
+      "summary": "니모닉 하나로 이더리움 검증자·빌더의 포스트퀀텀 서명키(leanXMSS)와 VRF 시드를 정해진 경로로 파생시켜, 모든 도구가 같은 키를 재현하고 복구할 수 있게 합니다.",
+      "why": "이더리움의 포스트퀀텀 합의는 BLS 대신 leanXMSS 서명과 VRF를 쓰는데, 둘 다 32바이트 시드에서 만들어집니다. 표준 파생 방법이 없으면 각 지갑·노드 도구가 이 시드를 매번 새로 무작위 생성하게 되고 검증자는 이미 가지고 있는 니모닉으로 포스트퀀텀 키를 복구할 방법이 없어 별도의 백업을 또 관리해야 합니다. 도구마다 서로 다른 키가 나오면 같은 니모닉을 다른 소프트웨어로 옮겼을 때 검증자 등록과 어긋나는 키가 나올 수 있고 스테이크를 맡긴 사람이 니모닉만으로 다른 운영자가 돌리는 검증자의 등록(소유 증명 포함)을 대신 구성해 줄 수도 없습니다.",
+      "before": [
+        "도구마다 포스트퀀텀 시드를 무작위로 새로 만들어 따로 백업해야 합니다",
+        "가지고 있는 니모닉으로 포스트퀀텀 키를 복구할 방법이 없습니다",
+        "스테이크 소유자가 다른 운영자의 검증자 등록과 소유 증명을 대신 만들 수 없습니다"
+      ],
+      "after": [
+        "니모닉과 네트워크, 역할, 계정 번호만 알면 모든 포스트퀀텀 키를 그대로 재현할 수 있습니다",
+        "leanXMSS 서명 시드와 VRF 시드가 같은 계정 시드에서 나와 키스토어 하나로 관리됩니다",
+        "스테이크 소유자가 니모닉만으로 다른 운영자의 검증자 등록 전체를 구성할 수 있습니다"
+      ],
+      "impact": [
+        {
+          "who": "검증자·스테이킹 운영자",
+          "text": "니모닉 하나로 BLS 키와 포스트퀀텀 키를 함께 백업하고 복구할 수 있습니다."
+        },
+        {
+          "who": "지갑·키스토어 개발자",
+          "text": "정해진 경로와 HKDF 규칙에 맞춰 같은 니모닉에서 항상 같은 포스트퀀텀 키를 만들어야 합니다."
+        },
+        {
+          "who": "하드웨어 지갑 제조사",
+          "text": "SLIP-0010과 같은 가벼운 HMAC-SHA512 파생을 재사용해 포스트퀀텀 키 생성을 지원할 수 있습니다."
+        },
+        {
+          "who": "블록 빌더",
+          "text": "VRF 시드 없이 leanXMSS 서명 시드만 파생하면 됩니다."
+        }
+      ],
+      "iface": [],
+      "flow": {
+        "title": "니모닉에서 포스트퀀텀 시드까지",
+        "steps": [
+          {
+            "label": "운영자",
+            "title": "니모닉 준비",
+            "body": "24단어 BIP-39 니모닉과(선택) 패스프레이즈로 64바이트 시드를 만듭니다."
+          },
+          {
+            "label": "도구",
+            "title": "마스터 노드 생성",
+            "body": "\"Ethereum PQ seed\" 도메인으로 HMAC-SHA512를 적용해 마스터 키와 체인코드를 만듭니다."
+          },
+          {
+            "label": "도구",
+            "title": "경로를 따라 하위 노드 파생",
+            "body": "5326(purpose) → 3600(coin type) → chain_id → role(검증자 0/빌더 1) → account 순서로 하드닝 전용 파생을 반복합니다."
+          },
+          {
+            "label": "도구",
+            "title": "계정 시드 확정",
+            "body": "경로 끝 노드의 key 값이 해당 네트워크·역할·계정의 account seed가 됩니다."
+          },
+          {
+            "label": "도구",
+            "title": "서명·VRF 시드 확장",
+            "body": "HKDF-Expand로 account seed에서 leanXMSS 서명 시드와 VRF 시드를 각각 뽑아냅니다. 빌더는 VRF 시드가 없습니다."
+          }
+        ]
+      },
+      "deep": [
+        {
+          "title": "파생 트리의 구조",
+          "body": "마스터 노드는 고정 도메인 문자열 \"Ethereum PQ seed\"로 HMAC-SHA512를 시드에 적용해 만든 (key, chain_code) 쌍입니다. 자식 노드는 chain_code를 HMAC 키로, 0x00과 부모 key, 그리고 index+HARDENED_OFFSET을 4바이트 빅엔디언으로 붙인 값을 데이터로 삼아 다시 HMAC-SHA512를 적용해 얻습니다. 모든 레벨이 하드닝(hardened)이라 자식 노드와 그 형제, 다른 노드를 알아도 부모 노드를 되짚을 수 없습니다. index는 반드시 0 이상 HARDENED_OFFSET(2**31) 미만이어야 하며 벗어나면 구현은 이를 거부해야 합니다.",
+          "ref": "원문: Nodes, Path"
+        },
+        {
+          "title": "경로 각 레벨의 의미",
+          "body": "경로는 m/5326/3600/<chain_id>/<role>/<account>입니다. 5326은 휴대폰 키패드로 \"lean\"을 입력한 숫자로 Lean Ethereum의 leanXMSS를 가리키는 목적(purpose) 값이고 3600은 ERC-2334와 동일한 coin type입니다. chain_id는 해당 네트워크 실행 계층의 EIP-155 체인ID(예: 메인넷 1)로 1 이상 HARDENED_OFFSET 미만이어야 하며 줄이거나 해시해 범위에 맞추는 것은 금지됩니다. role은 검증자면 ROLE_VALIDATOR(0), 빌더면 ROLE_BUILDER(1)이고 구현이 지원하지 않는 값은 거부해야 합니다. account는 ERC-2334의 계정 인덱스 역할로 네트워크·역할별로 0부터 별도로 셉니다.",
+          "ref": "원문: Path, Rationale"
+        },
+        {
+          "title": "계정 시드에서 서명·VRF 시드로",
+          "body": "경로 끝에서 얻은 노드의 key 값이 그 계정의 account_seed이며 chain_code는 쓰이지 않습니다. 여기서 HKDF-Expand(SHA-256 기반)로 두 시드를 뽑는데, info 문자열로 \"leanXMSS key\"를 쓰면 32바이트 xmss_seed가, \"VRF key\"를 쓰면 32바이트 vrf_seed가 나옵니다. 두 info 문자열이 다르므로 두 시드는 서로 독립적입니다. 빌더는 VRF 트리가 없으므로 빌더 도구는 vrf_seed 파생을 요구해서는 안 되고 생략할 수 있습니다.",
+          "ref": "원문: Seeds of the keys"
+        },
+        {
+          "title": "ERC-2333/2334 대비 바뀐 점",
+          "body": "ERC-2333은 매 레벨마다 Lamport 공개키를 거쳐 BLS12-381 곡선 차수로 나머지 연산을 하는 방식으로, 레벨당 SHA-256 연산을 500회 넘게 소모해 하드웨어 지갑이나 영지식증명에 부담이 큽니다. 이 표준은 포스트퀀텀 시드가 곡선 스칼라가 아닌 임의의 32바이트 문자열이라는 점을 이용해, SLIP-0010과 같은 레벨당 HMAC-SHA512 두 번의 하드닝 전용 파생만 씁니다. 또한 ERC-2334의 use 레벨과 그 하위 레벨은 쓰지 않는데, 포스트퀀텀 인출 크레덴셜이 실행 계층 주소이고 서명용 시드와 VRF용 시드는 HKDF로 이미 나뉘기 때문입니다.",
+          "ref": "원문: Rationale"
+        },
+        {
+          "title": "네트워크·역할 분리의 이유",
+          "body": "같은 leanXMSS 키가 두 네트워크나 두 역할(검증자·빌더)에서 쓰이면 같은 리프에서 서로 다른 메시지에 서명하게 되어 위조를 허용합니다. chain_id와 role을 각각 별도 서브트리로 둔 것은 이 문제를 막기 위함이며 잘못된 네트워크로 파생한 키는 등록과 맞지 않아 바로 감지되는 쪽이 재사용되는 쪽보다 안전합니다. 레벨이 account_seed보다 위에 있어, 키스토어 하나는 한 네트워크의 비밀만 담고 다른 네트워크에 불러와도 그 네트워크의 키가 재사용되지 않습니다.",
+          "ref": "원문: Rationale - Separate networks, Separate roles"
+        },
+        {
+          "title": "시드 유효성과 키스토어 권고",
+          "body": "입력 seed는 16~64옥텟이어야 하며 벗어나면 구현은 거부해야 합니다. seed는 BIP-39의 64옥텟 시드(PBKDF2-HMAC-SHA512, 2048회 반복, NFKD 정규화한 니모닉과 패스프레이즈 사용)를 쓰는 것이 권장되고 니모닉이 아닌 시드는 최소 256비트 엔트로피를 갖는 것이 권장됩니다. 키스토어는 account_seed를 암호화해 보관하고 네트워크와 역할을 포함한 파생 경로를 함께 기록하는 것이 권장되며 하나의 키스토어는 하나의 계정 키만 담습니다.",
+          "ref": "원문: Seed, Keystores"
+        },
+        {
+          "title": "진행 상태",
+          "body": "이 ERC는 현재 Draft 상태로, 아직 커뮤니티 논의 중인 제안이며 세부 값이나 규칙이 바뀌거나 중단될 수 있습니다.",
+          "ref": "원문: 헤더(status)"
+        }
+      ],
+      "safety": [
+        {
+          "title": "BLS 키와의 독립성",
+          "body": "이 표준과 ERC-2333의 BLS 키가 공유하는 입력은 루트 시드뿐입니다. 양자컴퓨터 등으로 BLS 비밀키가 복구되더라도 이 표준의 트리에 대해서는 아무것도 드러나지 않습니다."
+        },
+        {
+          "title": "파생의 양자 안전성은 니모닉 엔트로피에 의존",
+          "body": "공개된 leanXMSS 서명마다 시드에서 계산된 값이 드러나므로, 공격자는 추측한 니모닉으로 파생을 수행해 서명과 비교할 수 있습니다. 24단어 니모닉(256비트 엔트로피)은 양자 공격에도 약 128비트의 안전성을 유지하지만 12단어 니모닉(128비트 엔트로피)은 약 64비트 안전성밖에 남지 않습니다. PBKDF2의 2048회 반복은 검사 비용에 약 11비트를 더할 뿐입니다."
+        },
+        {
+          "title": "leanXMSS 리프 재사용 위험",
+          "body": "leanXMSS는 상태가 있는 서명 방식으로, 같은 리프에서 두 개의 다른 메시지에 서명하면 위조가 가능해집니다. 시드 자체는 어떤 리프까지 서명했는지 기록하지 않으므로, 시드로 키를 복원하는 것은 안전하지만 그 키로 서명하려면 별도의 서명 이력 관리가 필요합니다."
+        },
+        {
+          "title": "루트 시드 노출 시 전체 계정 위험",
+          "body": "루트 시드나 마스터 노드가 노출되면 모든 계정의 모든 키에 접근할 수 있게 됩니다. 반면 특정 계정 시드 하나가 노출되어도 트리의 다른 노드는 드러나지 않습니다."
+        }
+      ],
+      "glossary": [
+        {
+          "term": "니모닉(mnemonic)",
+          "def": "사람이 외우기 쉬운 단어 목록으로 암호 키를 백업·복구하는 표준 방식입니다."
+        },
+        {
+          "term": "leanXMSS",
+          "def": "양자컴퓨터에도 안전한 해시 기반 서명 방식으로, 포스트퀀텀 합의에서 BLS 서명을 대체합니다."
+        },
+        {
+          "term": "VRF(검증 가능 무작위 함수)",
+          "def": "누구나 결과값이 올바르게 계산됐는지 검증할 수 있는 무작위 값 생성 함수입니다."
+        },
+        {
+          "term": "HKDF",
+          "def": "하나의 비밀값에서 서로 독립적인 여러 하위 키를 뽑아내는 표준 키 파생 함수입니다."
+        },
+        {
+          "term": "하드닝된 파생(hardened derivation)",
+          "def": "자식 키나 다른 형제 노드를 알아도 부모 키를 되짚어 복원할 수 없게 만드는 파생 방식입니다."
+        },
+        {
+          "term": "소유 증명(proof of possession)",
+          "def": "검증자가 등록하는 공개키를 실제로 자신이 가지고 있다는 것을 증명하는 절차입니다."
+        }
+      ],
+      "meta": {
+        "title": "Post-Quantum Validator Seed Derivation",
+        "description": "Derives the post-quantum seeds of Ethereum validators and builders from a mnemonic",
+        "status": "Draft",
+        "type": "Standards Track",
+        "category": "ERC",
+        "created": "2026-11-24",
+        "authors": [
+          "Manu Nalepa"
+        ],
+        "requires": [],
+        "discussionsTo": "https://ethereum-magicians.org/t/erc-8517-post-quantum-validator-seed-derivation/30516"
+      },
+      "sourceHash": "0817e5f1925a8dfc",
+      "model": "sonnet",
+      "generatedAt": "2026-11-27T14:55:52.854Z"
     }
   ]
 }
