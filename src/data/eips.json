@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-26T14:46:38.703Z",
+  "updatedAt": "2026-11-27T01:05:46.793Z",
   "eips": [
     {
       "number": 1,
@@ -57379,163 +57379,152 @@
     },
     {
       "number": 8037,
-      "titleKo": "상태 생성 가스 비용 인상",
+      "titleKo": "상태 생성 가스비 인상",
       "topic": "수수료·가스",
-      "summary": "새 계정, 새 저장 슬롯, 컨트랙트 코드처럼 이더리움 상태를 늘리는 작업의 가스 비용을 상태 1바이트당 1530가스 기준으로 통일해 올리고 이 비용을 실행 가스와 분리해 따로 셉니다.",
-      "why": "이더리움 노드는 모든 계정과 저장 데이터를 '상태(state)'라는 데이터베이스에 보관합니다. 블록 가스 한도를 올리면 거래를 더 많이 처리할 수 있지만 상태도 그만큼 빨리 불어납니다. 원문에 따르면 2026년 1월 기준 Geth 노드의 상태 데이터베이스는 약 390 GiB이고, 가스 한도가 30M에서 60M으로 오른 뒤 하루에 새로 생기는 상태가 약 105 MiB에서 약 326 MiB로 세 배 넘게 늘어 연간 약 116 GiB씩 커지고 있습니다. 200M 한도에서는 연간 약 387 GiB가 늘어 노드 성능이 떨어지기 시작하는 650 GiB 선을 1년 안에 넘게 됩니다. 게다가 지금은 같은 크기의 상태를 만들어도 방법에 따라 비용이 다릅니다. 컨트랙트 배포는 바이트당 약 200가스인데 저장 슬롯은 바이트당 약 313가스이고, 이미 있는 코드를 또 배포해도 클라이언트는 중복 저장하지 않는데 비용은 같습니다. 이 제안은 상태 1바이트당 비용을 하나로 정해 모든 상태 생성 작업에 같은 잣대를 적용하고 상태 생성 비용을 따로 세어 블록 가스 한도를 더 올릴 수 있게 합니다.",
+      "summary": "컨트랙트 배포, 계정 생성, 저장슬롯 생성 등 상태(state)를 새로 만드는 모든 연산의 가스 단가를 바이트당 1530가스로 통일하고, 상태 생성 비용을 다른 실행 비용과 분리해 따로 계산합니다.",
+      "why": "이더리움 노드는 모든 계정과 저장공간 정보를 디스크에 영구 저장하는데, 이 상태(state) 데이터는 늘어나기만 하고 줄지 않습니다. 2026년 1월 기준 Geth 노드의 상태 전용 데이터베이스는 약 390GiB이고, 블록 가스 한도를 30M에서 60M으로 올리자 하루에 새로 쌓이는 상태량이 105MiB에서 326MiB로 세 배 넘게 늘었습니다. 이 속도를 글램스테르담에서 예정된 200M 한도로 그대로 늘리면 연간 약 387GiB씩 자라나, 노드 성능이 떨어지기 시작하는 650GiB 기준선을 1년 안에 넘게 됩니다. 게다가 지금은 계정 생성(바이트당 약 208가스), 저장슬롯 생성(약 313가스), 컨트랙트 배포(약 200가스)처럼 같은 크기의 상태를 만들어도 방법마다 가스 단가가 달라 비용이 들쭉날쭉합니다. 이 EIP는 상태 생성 단가를 하나로 맞추고 충분히 올려, 블록 한도를 더 키워도 상태가 감당할 수 있는 속도로만 자라도록 만듭니다.",
       "before": [
-        "새 계정 25,000, 새 저장 슬롯 20,000, 컨트랙트 코드 1바이트 200가스처럼 상태 생성 비용이 제각각이고 바이트당으로 환산하면 약 200에서 313가스까지 차이가 납니다",
-        "가스가 한 종류뿐이라 상태 생성 비용을 올리면 그만큼 다른 연산에 쓸 가스가 줄어듭니다",
-        "블록이 꽉 찼는지와 다음 블록의 기본 수수료는 가스 사용량 하나로 정합니다",
-        "가스 한도가 30M에서 60M으로 오르자 하루 새 상태가 약 105 MiB에서 약 326 MiB로 세 배 넘게 늘었습니다"
+        "계정 생성(25,000), 저장슬롯 생성(20,000), 코드 배포(바이트당 200) 등 상태를 늘리는 작업마다 가스 단가가 제각각입니다.",
+        "상태 생성 비용과 다른 실행 비용이 하나의 가스 한도에 섞여 있어, 큰 컨트랙트 배포가 트랜잭션 가스 한도에 가로막힙니다.",
+        "블록 가스 한도를 올릴 때마다 디스크에 쓰이는 상태 크기가 늘어나는 비율보다 더 빠르게 증가합니다."
       ],
       "after": [
-        "상태 1바이트당 1530가스(CPSB)를 기준으로 새 계정 183,600, 새 슬롯 97,920, 코드 1바이트 1530가스로 통일됩니다",
-        "가스가 실행 가스와 상태 가스로 나뉘고 EIP-7825의 거래당 한도는 실행 가스에만 적용돼 큰 컨트랙트도 한 거래로 배포할 수 있습니다",
-        "블록은 두 가스 가운데 더 많이 쓴 쪽으로 꽉 찼는지 판단하고 기본 수수료를 조정합니다",
-        "150M 가스 한도 기준으로 상태 증가를 연간 120 GiB 수준에 맞추는 것을 목표로 합니다"
+        "모든 상태 생성 작업이 '바이트당 1530가스(CPSB)'라는 공통 단가로 통일됩니다.",
+        "실행가스(execution-gas)와 상태가스(state-gas)를 별도로 계산해, 상태 생성이 다른 연산에 쓸 가스를 깎아먹지 않습니다.",
+        "계정 생성 약 7배, 저장슬롯 생성 약 5배, 24KB 컨트랙트 배포 약 8배로 비용이 오릅니다.",
+        "트랜잭션 가스 한도가 최대 2^32-1까지 늘어나 더 큰 컨트랙트도 한 트랜잭션에서 배포할 수 있게 됩니다."
       ],
       "impact": [
         {
           "who": "사용자",
-          "text": "새 주소로 처음 송금하거나 새 저장 슬롯을 쓰는 거래의 가스가 오릅니다. 원문은 CPSB 1530 기준 새 계정 약 7배, 새 슬롯 약 5배, 24kB 컨트랙트 배포 약 8배 증가로 추산합니다. 지갑과 RPC가 업데이트되면 사용 방식 자체는 바뀌지 않습니다."
+          "text": "새 계정을 만들거나 컨트랙트를 배포할 때 내는 수수료가 눈에 띄게 오릅니다."
         },
         {
           "who": "지갑·앱 개발자",
-          "text": "eth_estimateGas가 실행 가스와 상태 가스를 모두 포함한 tx.gas를 돌려주도록 지갑을 고쳐야 합니다. GAS 명령어 두 번의 차이로 소비량을 재는 컨트랙트는 음수가 나올 수 있고 ERC-4337 번들러와 EntryPoint는 상태 가스를 따로 계산해야 합니다."
+          "text": "eth_estimateGas가 실행가스와 상태가스를 모두 반영해야 하므로 가스 추정 로직을 업데이트해야 합니다."
         },
         {
           "who": "클라이언트 팀",
-          "text": "저수지(reservoir) 모델과 네 개의 새 카운터, 프레임 되돌림 규칙, 블록 수준 2차원 가스 집계, 시스템 콜 가스 한도 변경을 구현해야 합니다."
+          "text": "두 가스 차원을 동시에 추적하는 리저버 모델과 LIFO 환급 로직을 구현해야 합니다."
         },
         {
-          "who": "새 네트워크·L2",
-          "text": "미리 서명된 거래로 배포하는 결정적 배포 팩토리(Nick's method, SingletonFactory, CreateX 등)는 박혀 있는 가스 한도가 모자라 이 EIP를 제네시스부터 켠 새 네트워크에서는 그대로 배포할 수 없습니다. 이미 배포된 메인넷과 L2는 영향이 없습니다."
+          "who": "ERC-4337 번들러",
+          "text": "gasleft() 차이만으로는 상태가스 사용량을 정확히 추적할 수 없어 상태가스 충당·환급을 별도로 계산해야 합니다."
         }
       ],
       "example": {
-        "title": "컨트랙트 배포 거래에서 가스가 나뉘는 순서",
+        "title": "컨트랙트 배포 트랜잭션에서 가스가 나뉘는 과정",
         "steps": [
           {
             "label": "1",
-            "title": "거래 검사",
-            "body": "tx.gas가 TX_MAX_TOTAL_GAS_LIMIT(2^32 - 1) 이하인지, 고유 가스(intrinsic gas)가 EIP-7825 한도 이하인지 확인합니다. 블록의 두 가스 차원 모두에 자리가 있어야 합니다."
+            "title": "가스 한도 설정",
+            "body": "tx.gas에서 intrinsic_gas를 뺀 evm_gas를 구합니다. 실행가스 한도(TX_MAX_GAS_LIMIT)를 넘는 부분은 state_gas_reservoir로 따로 떼어 둡니다."
           },
           {
             "label": "2",
-            "title": "가스 나누기",
-            "body": "tx.gas에서 고유 가스를 뺀 나머지 가운데 EIP-7825 한도까지는 gas_left에, 넘는 부분은 state_gas_reservoir에 넣습니다. 상태 가스는 저수지에서 먼저 빠집니다."
+            "title": "신규 계정 과금",
+            "body": "배포 주소가 아직 존재하지 않으면 계정 생성 비용(120바이트×CPSB)이 state_gas_reservoir에서 먼저 차감됩니다."
           },
           {
             "label": "3",
-            "title": "계정 생성 비용",
-            "body": "배포 주소가 아직 없는 계정이면 CREATE 프레임에 가스를 넘기기 전에 120 x 1530 가스를 상태 가스로 뗍니다. 잔액이 있어 이미 존재하는 주소라면 떼지 않습니다."
+            "title": "코드 배포 과금",
+            "body": "컨트랙트 코드 바이트 수(L)만큼 CPSB를 곱한 비용도 상태가스로 차감되고, 해시 계산 비용은 실행가스(gas_left)에서 빠집니다."
           },
           {
             "label": "4",
-            "title": "코드 저장 비용",
-            "body": "생성자 실행이 끝나고 코드를 저장할 때 코드 1바이트당 1530가스를 상태 가스로 뗍니다. 해시 비용 6 x ceil(len/32)는 실행 가스로 냅니다."
-          },
-          {
-            "label": "5",
-            "title": "실패 시 되돌림",
-            "body": "프레임이 revert하거나 예외로 멈추면 상태 변경이 취소되고 뗐던 상태 가스는 gas_left부터 거꾸로(LIFO) 채웁니다. 저수지에 남은 가스는 거래가 끝날 때 보낸 사람에게 돌아갑니다."
-          },
-          {
-            "label": "6",
-            "title": "블록 집계",
-            "body": "거래가 끝나면 실행 가스와 상태 가스를 각각 블록 카운터에 더합니다. 블록 헤더의 gas_used는 둘 중 큰 값이 되고 이 값으로 블록 한도와 기본 수수료를 계산합니다."
+            "title": "실행 종료",
+            "body": "트랜잭션이 끝나면 쓰지 않은 state_gas_reservoir는 환급되고, 블록에는 실행가스와 상태가스 중 더 많이 쓴 쪽만 집계됩니다."
           }
         ]
       },
       "deep": [
         {
-          "title": "바이트당 비용 CPSB 1530은 어떻게 나왔나",
-          "body": "CPSB는 기준 블록 가스 한도 150M에서 연간 상태 증가를 120 GiB(128,849,018,880바이트)로 맞추도록 정한 상수입니다. 슬롯 시간 12초로 1년에 2,628,000블록이 나오고, 다차원 계량에서는 기본 수수료가 목표치(한도의 절반)로 수렴하므로 블록 가스의 50%를 상태 가스에 쓸 수 있다고 가정합니다. 그러면 1년에 쓸 수 있는 상태 가스는 75,000,000 x 2,628,000 = 1.971 x 10^14이고, 이를 목표 바이트 수로 나누면 약 1530가스/바이트가 나옵니다. 150M은 현재 60M과 예상되는 300M 사이의 중간값으로, 비용을 한 번에 너무 올리지도 않고 나중에 다시 크게 올릴 필요도 없게 고른 값입니다. 블록이 상태 생성으로만 꽉 차는 최악의 경우 상태 증가는 100M에서 80 GiB, 150M에서 120 GiB, 200M에서 160 GiB, 300M에서 240 GiB입니다. 가스 한도가 크게 바뀌어 예상 증가율이 달라지면 후속 EIP로 CPSB를 다시 유도할 수 있습니다.",
+          "title": "CPSB: 바이트당 상태 가스 단가",
+          "body": "CPSB(cost per state byte)는 새 상태 1바이트를 만드는 데 드는 가스값으로, 1530으로 고정됩니다. 기준 블록 가스 한도 150M, 블록당 12초, 상태가스가 평균적으로 한도의 50%만 쓰인다는 전제에서, 연간 쓸 수 있는 전체 상태가스(1.971×10^14)를 목표 상태 성장량인 연 120GiB(약 1.288×10^11바이트)로 나눠 구합니다. 150M은 현재 60M과 미래 300M 사이의 중간값으로 골랐으며, 향후 블록 한도가 크게 바뀌면 CPSB도 새 EIP로 다시 도출해야 합니다.",
           "ref": "원문: Rationale · Deriving the cost per state byte (CPSB)"
         },
         {
-          "title": "새 파라미터와 바뀌는 비용",
-          "body": "새 파라미터는 CPSB 1530, STATE_BYTES_PER_STORAGE_SET 64, STATE_BYTES_PER_NEW_ACCOUNT 120, STATE_BYTES_PER_AUTH_BASE 23, SYSTEM_MAX_SSTORES_PER_CALL 16, TX_MAX_TOTAL_GAS_LIMIT 4,294,967,295(2^32 - 1)입니다. 바이트 수는 디스크에 실제로 쓰이는 크기에서 나왔습니다. 새 계정은 키 해시 32 + 논스 8 + 잔액 16 + 코드 해시 32 + 저장 루트 32로 120바이트, 새 저장 슬롯은 키 해시 32 + 값 32로 64바이트, EIP-7702 위임 표시는 0xef0100 3바이트 + 주소 20바이트로 23바이트입니다. 이에 따라 GAS_CREATE(32,000), GAS_NEW_ACCOUNT(25,000), PER_EMPTY_ACCOUNT_COST(25,000)는 120 x CPSB, GAS_STORAGE_SET(20,000)은 64 x CPSB, GAS_CODE_DEPOSIT(바이트당 200)은 바이트당 CPSB, PER_AUTH_BASE_COST(12,500)는 23 x CPSB의 상태 가스가 됩니다. 여기에 EIP-8038이 정하는 CREATE_ACCESS, ACCOUNT_WRITE, 코드 해시 비용 6 x ceil(len/32), EXECUTION_PER_AUTH_BASE_COST 같은 실행 가스가 따로 붙습니다. EXECUTION_PER_AUTH_BASE_COST는 calldata 1,616(101바이트 x 16) + PRECOMPILE_ECRECOVER + COLD_ACCOUNT_ACCESS + 2 x WARM_ACCESS의 합입니다. EIP-8038 쪽 값은 아직 확정되지 않았습니다.",
-          "ref": "원문: Specification · New parameters, Parameter changes; Rationale · Deriving byte size for new slots and accounts"
+          "title": "연산별 상태 생성 비용 재조정",
+          "body": "계정 생성(GAS_CREATE·GAS_NEW_ACCOUNT·PER_EMPTY_ACCOUNT_COST)은 STATE_BYTES_PER_NEW_ACCOUNT(120바이트)×CPSB로, 저장슬롯 생성(GAS_STORAGE_SET)은 STATE_BYTES_PER_STORAGE_SET(64바이트)×CPSB로, 코드 배포(GAS_CODE_DEPOSIT)는 바이트당 CPSB로, EIP-7702 위임 등록(PER_AUTH_BASE_COST)은 STATE_BYTES_PER_AUTH_BASE(23바이트)×CPSB로 바뀝니다. 해시 계산이나 콜드 액세스처럼 상태 성장과 무관한 부가 비용은 별도의 실행가스 항목(CREATE_ACCESS, ACCOUNT_WRITE 등, EIP-8038에서 정의)으로 분리해 과금합니다.",
+          "ref": "원문: Specification · Parameter changes"
         },
         {
-          "title": "두 가스 차원과 저수지 모델",
-          "body": "가스는 실행 가스(execution-gas)와 상태 가스(state-gas) 두 차원으로 나뉩니다. 거래에는 가스 한도 값이 tx.gas 하나뿐이므로 저수지(reservoir) 모델로 둘을 나눕니다. 사전 실행 단계에서 evm_gas = tx.gas - intrinsic_gas, execution_gas_budget = TX_MAX_GAS_LIMIT - intrinsic_gas로 두고, gas_left = min(execution_gas_budget, evm_gas), state_gas_reservoir = evm_gas - gas_left로 초기화합니다. 즉 EIP-7825 한도를 넘는 가스가 저수지에 들어갑니다. 실행 가스는 gas_left에서만 빠지고 상태 가스는 저수지에서 먼저 빠지다가 바닥나면 gas_left에서 빠지면서 state_gas_from_gas_left를 늘립니다. 되돌릴 때는 반대 순서(LIFO)로 gas_left부터 채웁니다. 새 카운터는 evm_state_gas_used(거래의 총 상태 가스), state_gas_from_gas_left(프레임별, gas_left에서 빌린 상태 가스), state_gas_baseline(프레임 진입 시 저수지 값), state_gas_committed(최상위 프레임만 사용, 되돌리면 안 되는 몫) 넷입니다. 저수지는 자식 프레임에 전부 넘어가고 63/64 규칙은 gas_left에만 적용됩니다. GAS 명령어는 gas_left만 돌려주며 SSTORE의 GAS_CALL_STIPEND 검사도 gas_left만 봅니다.",
-          "ref": "원문: Specification · Multidimensional metering for state creation costs, Transaction-level gas accounting (reservoir model), Pre-state and post-state gas validation"
+          "title": "실행가스와 상태가스, 두 개의 차원",
+          "body": "이 EIP는 가스를 execution-gas와 state-gas 두 차원으로 나눕니다. 상태를 새로 만드는 연산의 '새 상태' 비용만 state-gas로, 그 외 모든 연산은 execution-gas로 과금됩니다. 트랜잭션은 두 차원의 합을 지불하지만, 블록이 가득 찼는지와 다음 블록의 기본 수수료(base fee)를 정할 때는 두 차원 중 더 많이 쓰인 쪽(bottleneck resource)만 봅니다. 즉 블록의 가스 한도와 목표치는 이제 하나의 합산 카운터가 아니라 두 차원 각각을 똑같이 제한하는 값이 됩니다.",
+          "ref": "원문: Specification · Multidimensional metering for state creation costs"
         },
         {
-          "title": "SSTORE, 계정 생성, SELFDESTRUCT의 상태 가스 규칙",
-          "body": "SSTORE는 거래 시작 시점의 원래 값을 기준으로 봅니다. 원래 0이던 슬롯에 0이 아닌 값을 쓰면 64 x CPSB를 상태 가스로 떼고 원래 0이던 슬롯을 다시 0으로 지우면 같은 양을 되돌려 채웁니다. 원래 값이 0이 아니던 슬롯은 어떻게 바꿔도 상태 가스 조정이 없습니다. 계정 생성 비용은 조건부로 뗍니다. 값이 있는 CALL*이 존재하지 않는 계정으로 가면 자식 프레임 직전에 120 x CPSB를 떼고 프레임 진입 전에 실패하거나 자식이 revert·예외 정지하면 되돌려 채웁니다. CREATE/CREATE2는 EIP-7928에 따라 잔액·논스·깊이 검사를 통과한 뒤에야 목적지 주소를 읽는데, 이 한 번의 읽기가 EIP-684 충돌 검사를 겸합니다. 목적지가 없으면 63/64 분배 전에 생성 프레임에서 120 x CPSB를 떼고 잔액만 있는 기존 주소면 떼지 않습니다. 코드 저장 비용 L x CPSB는 평소처럼 코드 저장 시점에 뗍니다. 여기서 존재하는 계정은 EIP-161 기준으로 논스나 잔액이 0이 아니거나 코드가 있는 계정입니다. SELFDESTRUCT는 같은 거래에서 만든 계정을 지워도, 이전부터 있던 계정의 잔액만 옮겨도 상태 가스를 되돌려 주지 않습니다. EIP-6780과 같은 방향입니다.",
-          "ref": "원문: Specification · Gas accounting for SSTORE, Gas accounting for new accounts, Gas refills for SELFDESTRUCT"
+          "title": "리저버 모델: 트랜잭션 하나의 가스를 두 풀로 나누기",
+          "body": "트랜잭션에는 가스 한도(tx.gas) 하나뿐이라, EIP는 이를 실행 단계 진입 전에 gas_left와 state_gas_reservoir로 쪼갭니다. evm_gas(=tx.gas-intrinsic_gas) 중 EIP-7825의 실행가스 한도(TX_MAX_GAS_LIMIT)를 넘는 부분이 state_gas_reservoir로 들어갑니다. 상태가스 과금은 reservoir에서 먼저 빠지고, 다 쓰면 gas_left에서 빠지며 그만큼 state_gas_from_gas_left에 기록됩니다. 상태 생성이 되돌려지면 최근에 빠진 풀(gas_left)부터 먼저 환급하는 LIFO 순서를 따릅니다. GAS 오피코드는 reservoir를 뺀 gas_left만 돌려줍니다.",
+          "ref": "원문: Specification · Transaction-level gas accounting (reservoir model)"
         },
         {
-          "title": "revert·예외 정지와 프레임 병합",
-          "body": "프레임이 revert하거나 예외로 멈추면 상태 가스를 되돌려 채우는 대신 기준값으로 복원합니다. net_state_gas = state_gas_baseline - state_gas_reservoir + state_gas_from_gas_left를 evm_state_gas_used에서 빼고, state_gas_from_gas_left를 gas_left에 더한 뒤 0으로 만들고, 저수지를 기준값으로 되돌립니다. revert면 복원된 gas_left가 부모에게 돌아가고 예외 정지면 gas_left가 0으로 소모됩니다. 최상위 프레임만 기준값이 진입 시점과 다를 수 있는데 EIP-7702 권한 부여가 있을 때입니다. 사전 실행 단계에서 적용된 권한 부여는 최상위 프레임이 revert해도 취소되지 않으므로 그 상태 가스는 state_gas_committed로 묶어 되돌리지 않고, 기준값은 권한 부여 비용 뒤 거래 대상의 계정 생성 비용 앞에서 잡습니다. 자식 프레임이 성공하면 남은 gas_left와 state_gas_from_gas_left를 부모에 합치고, d = min(state_gas_reservoir, state_gas_from_gas_left)만큼 저수지에서 gas_left로 옮깁니다. SSTORE의 원래 값이 거래 시작 기준이라 한 프레임에서 뗀 상태 가스가 다른 프레임에서 되돌아올 수 있기 때문입니다. 이 이동은 상태 생성을 취소하는 것이 아니므로 evm_state_gas_used는 바뀌지 않습니다.",
-          "ref": "원문: Specification · Gas accounting for halts and reverts"
+          "title": "신규 계정 과금은 조건부로, 실제 상태 접근 시점에",
+          "body": "CALL*로 존재하지 않는 계정에 값을 보내거나 CREATE/CREATE2로 존재하지 않는 주소에 배포할 때만 STATE_BYTES_PER_NEW_ACCOUNT×CPSB가 과금됩니다. CREATE 계열은 잔액·논스·호출스택 깊이 검사를 먼저 통과한 뒤 목적지 주소를 읽는 단 한 번의 접근에서 존재 여부와 EIP-684 충돌 검사를 동시에 처리합니다(EIP-7928이 접근 시점을 이렇게 제한합니다). 호출이 실패하거나 되돌려지면 과금된 상태가스는 LIFO로 환급됩니다. 이미 잔액만 있고 코드·논스가 없는 주소는 '존재하는' 계정으로 취급돼 계정 생성비는 면제되고 코드 배포비만 붙습니다.",
+          "ref": "원문: Specification · Gas accounting for new accounts"
         },
         {
-          "title": "거래 가스 사용량, 블록 집계, 영수증",
-          "body": "거래가 끝나면 tx_gas_used_before_refund = tx.gas - gas_left - state_gas_reservoir로 계산하고, 환급은 사용량의 20%(// 5)까지 그대로 둡니다. 그 뒤 EIP-7623의 calldata 하한(calldata_floor_gas_cost)을 max로 적용한 값이 tx_gas_used이며 영수증의 cumulative_gas_used에 들어갑니다. 블록 수준에서는 카운터가 둘입니다. tx_state_gas = evm_state_gas_used이고, tx_execution_gas = max(tx_gas_used_after_refund - tx_state_gas, calldata_floor_gas_cost)입니다. calldata 하한을 실행 가스 쪽에만 비교하는 이유는 상태 생성으로 채운 거래가 calldata를 하한보다 싸게 블록에 넣는 것을 막기 위해서입니다. 그래서 두 차원에 집계된 합이 보낸 사람이 낸 가스보다 클 수 있는데 이는 의도된 것입니다. 블록 헤더의 gas_used는 max(block_execution_gas_used, block_state_gas_used)이고, 이 값이 block.gas_limit 이하여야 하며 기본 수수료 갱신의 gas_used_delta에도 쓰입니다. 상태 가스 되돌림은 EIP-7778이 말하는 환급과 달리 실제로 만들어지지 않은 상태에 대한 것이므로 EIP-7778과 함께 적용해도 evm_state_gas_used에 그대로 반영되고 실행 가스 쪽만 환급 전 값으로 바뀝니다.",
-          "ref": "원문: Specification · Transaction gas used, Block-level gas accounting, Integration with EIP-7778, Receipt semantics"
+          "title": "블록 단위 집계와 캘데이터 플로어",
+          "body": "블록은 block_execution_gas_used와 block_state_gas_used 두 카운터를 따로 누적하고, 블록 헤더의 gas_used는 둘 중 큰 값입니다. EIP-7623의 캘데이터 플로어는 트랜잭션 전체가 아니라 실행가스 몫(tx_gas_used_after_refund - tx_state_gas)과만 비교합니다. 상태가스로 패딩해서 캘데이터 플로어를 실행가스 차원 아래로 숨기는 것을 막기 위한 조치로, 그렇지 않으면 블록당 최대 바이트 수를 보장하는 플로어의 효력이 상태가스 단가 변화에 따라 흔들리게 됩니다.",
+          "ref": "원문: Specification · Block-level gas accounting / Calldata floor in block accounting"
         },
         {
-          "title": "시스템 콜, 하위 호환, 보안 고려",
-          "body": "블록 시작마다 호출되는 시스템 컨트랙트(EIP-2935, 4788, 7002, 7251)의 가스 한도는 30M에서 30,000,000 + 64 x 1530 x 16으로 늘어나고, 늘어난 몫은 state_gas_reservoir에 들어갑니다. 시스템 콜은 EIP-7825 한도와 블록 가스 한도의 영향을 받지 않고 블록 카운터에도 더하지 않습니다. 하위 호환 면에서는 되돌림이 gas_left부터 채워지므로 한 프레임 안에서도, 하위 호출을 사이에 두고도 GAS 값이 작업 전보다 커질 수 있습니다. SSTORE(k, 1); GAS; SSTORE(k, 0); GAS 순서면 두 GAS 값의 차이가 음수가 됩니다. 이미 배포된 컨트랙트가 이런 방식으로 가스를 재면 고칠 수 없습니다. ERC-4337 EntryPoint처럼 gasleft() 차이로 하위 호출 소비량을 재는 번들러는 저수지에서 빠진 상태 가스를 볼 수 없으므로 상태 가스를 명시적으로 계산해야 합니다. Nick's method 팩토리처럼 100,000가스 한도가 박힌 미리 서명된 배포 거래는 새 네트워크에서 실패하므로 제네시스에 미리 배포하거나 거래를 다시 만들어야 합니다. 새 계정 생성 183,600과 단순 송금 21,000의 차이를 노려 먼저 송금으로 계정을 만드는 우회는 EIP-2780이 값이 있는 송금의 고유 가스에 계정 생성 비용을 더해 막습니다. 블록 빌더는 두 차원을 함께 보며 채워야 하지만 한 차원이 찰 때까지 채우는 단순한 방식도 대부분 충분하다고 봅니다.",
-          "ref": "원문: Specification · System contracts and system transactions; Backwards Compatibility; Security Considerations"
+          "title": "하위 호환성: 결정적 배포 팩토리와 가스 추정",
+          "body": "이 EIP는 포크를 통해서만 적용되는 가스 재조정입니다. Nick's method, SingletonFactory, CreateX 등 고정 가스 한도의 사전 서명 트랜잭션으로 배포되는 결정적 배포 팩토리는, 이 EIP가 제네시스부터 적용되는 새 네트워크(데브넷·테스트넷)에서는 기존 서명 트랜잭션의 가스 한도를 넘어서 배포에 실패할 수 있습니다. 메인넷과 이미 팩토리가 배포된 L2는 영향이 없습니다. 지갑과 노드의 eth_estimateGas는 상태가스·실행가스 두 차원과 리저버 모델을 반영하도록 업데이트해야 하며, 그렇지 않으면 가스를 과소 추정해 트랜잭션이 실패할 수 있습니다.",
+          "ref": "원문: Backwards Compatibility"
         },
         {
-          "title": "문서 상태와 코어 개발자 콜 결정",
-          "body": "원문 상태는 Last Call이고 마감은 2026-11-01입니다. 코어 개발자 콜에서는 07.13 ACDT #87에서 블록을 예상 최대치의 8배까지 부풀릴 수 있던 플로어 코스트(floor cost) 버그 수정을 데브넷7에 포함했고 'regular gas'를 'execution gas'로 바꾸는 용어 정리를 07.27 ACDT #89에서 반대 없이 데브넷8에 넣기로 했습니다. 08.13 ACDE #243에서는 가스 재조정 수치가 최종 확정되고 글램스테르담(Glamsterdam)의 200M 가스 한도가 확인됐습니다. 09.03 ACDC #186에서는 크로스 프레임 상태 가스 버그 수정이 승인돼 모든 EL 클라이언트가 DevNet 8에 배포하기로 했고 09.14 ACDT #96에서는 총 상태 가스 한도를 명시하는 PR EIPs#12311이 병합됐습니다. 반면 SELFDESTRUCT 상태 가스 환급을 되살리자는 요청(EIPs PR #12249)은 08.27 ACDE #244에서 글램스테르담에 넣지 않고 헤고타에서 다루기로 보류했고, 08.31 ACDT #94에서 구현 복잡도와 셀프디스트럭트 폐기 방향을 이유로 포함하지 않기로 했으며 09.07 ACDT #95에서 PR을 닫기로 했습니다. 이 결정으로 임시 생성과 셀프디스트럭트를 한 거래에서 쓰는 패턴은 상태를 늘리지 않아도 상태 가스를 냅니다.",
-          "ref": "원문: 머리말(status, last-call-deadline); 콜 기록 07.13 ACDT #87, 07.27 ACDT #89, 08.13 ACDE #243, 08.27 ACDE #244, 08.31 ACDT #94, 09.03 ACDC #186, 09.07 ACDT #95, 09.14 ACDT #96"
+          "title": "현재 진행 상태와 포크 포함 결정",
+          "body": "원문 상태는 Last Call(마감 2026-11-01)입니다. 2026-11-23 ACDT #104 콜에서 EIP-8037 스펙을 바꾸지 않는 것이 기본 입장으로 정해졌고, 2026-11-26 ACDC #192 콜에서 EL 클라이언트들이 EIP-8037을 스펙 변경 없이 그대로 채택해 글램스테르담을 진행하기로 확정했습니다. 재설계하면 포크가 크게 늦어진다는 점이 이유였습니다. 이에 앞서 SELFDESTRUCT 가스 환급 복원안(PR #12249)은 2026-08-27 ACDE #244와 2026-09-07 ACDT #95에서 거절돼, 글램스테르담에 반영되지 않고 추후 헤고타에서 별도 EIP로 다루기로 했습니다.",
+          "ref": "원문: Preamble (status, last-call-deadline)"
         }
       ],
       "glossary": [
         {
-          "term": "상태(state)",
-          "def": "이더리움 노드가 보관하는 모든 계정의 잔액·논스·코드와 저장 슬롯 데이터입니다. 한번 만들어지면 모든 노드가 계속 들고 있어야 합니다."
+          "term": "CPSB",
+          "def": "새 상태 1바이트를 만드는 데 드는 가스 단가로, 이 EIP에서 1530으로 고정됩니다."
         },
         {
-          "term": "상태 가스(state-gas)",
-          "def": "이 EIP가 새로 나누는 가스 차원으로, 새 계정·새 슬롯·코드처럼 상태를 영구히 늘리는 작업에만 매깁니다."
+          "term": "state-gas / execution-gas",
+          "def": "상태를 새로 만드는 비용과 그 외 실행 비용을 따로 세는 두 가스 차원입니다."
         },
         {
-          "term": "실행 가스(execution-gas)",
-          "def": "연산, calldata, 접근 비용 등 상태 증가를 뺀 모든 비용을 매기는 가스 차원입니다. EIP-7825의 거래당 한도는 여기에만 적용됩니다."
+          "term": "리저버 모델(reservoir model)",
+          "def": "트랜잭션 가스 한도 하나를 실행가스와 상태가스 두 풀로 나눠 쓰는 회계 방식입니다."
         },
         {
-          "term": "저수지 모델(reservoir model)",
-          "def": "거래 가스 가운데 EIP-7825 한도를 넘는 부분을 state_gas_reservoir에 따로 담아 상태 가스로 먼저 쓰게 하는 방식입니다."
+          "term": "LIFO 환급",
+          "def": "되돌린 상태 변경의 가스를 가장 나중에 차감한 풀부터 먼저 돌려주는 규칙입니다."
         },
         {
-          "term": "되돌려 채움(refill)",
-          "def": "같은 거래 안에서 상태 생성이 취소됐을 때 뗐던 상태 가스를 gas_left부터 거꾸로(LIFO) 돌려주는 동작입니다. 실행이 끝난 뒤 돌려받는 환급(refund)과는 다릅니다."
+          "term": "캘데이터 플로어(calldata floor)",
+          "def": "EIP-7623이 정한, 데이터가 많은 트랜잭션이 최소한 내야 하는 가스 하한선입니다."
         },
         {
-          "term": "고유 가스(intrinsic gas)",
-          "def": "거래를 실행하기 전에 정해지는 기본 비용입니다. EIP-2780에 따라 상태와 무관해지며 전부 실행 가스로 냅니다."
+          "term": "블록 레벨 액세스 리스트(EIP-7928)",
+          "def": "블록 안에서 어떤 계정·슬롯이 언제 읽히고 쓰였는지 기록하는 구조입니다."
         }
       ],
       "related": [
         {
           "number": 8038,
-          "note": "실행 가스 쪽 접근·쓰기 비용(COLD_ACCOUNT_ACCESS, ACCOUNT_WRITE, CREATE_ACCESS)을 정합니다. 두 EIP가 함께 가스를 재조정하며, 그 값은 아직 확정되지 않았습니다."
-        },
-        {
-          "number": 7825,
-          "note": "거래당 가스 한도 TX_MAX_GAS_LIMIT(16.7M)입니다. 이 EIP는 그 한도를 실행 가스에만 적용합니다."
+          "note": "이 EIP와 짝을 이루는 상태 접근 가스 재조정안으로, COLD_ACCOUNT_ACCESS·ACCOUNT_WRITE·CREATE_ACCESS 등 실행가스 값을 정의합니다."
         },
         {
           "number": 2780,
-          "note": "고유 가스를 상태와 무관하게 만들고 계정 생성·EIP-7702 비용을 사전 실행 단계의 런타임 비용으로 옮깁니다. 송금으로 계정을 먼저 만드는 우회도 막습니다."
+          "note": "상태 의존 비용을 인트린식 가스에서 분리해 실행 전 단계에서 런타임 과금하는 구조를 제공합니다."
         },
         {
-          "number": 7928,
-          "note": "블록 수준 접근 목록입니다. CREATE 목적지를 언제 읽을 수 있는지 정해 조건부 계정 생성 비용을 떼는 시점을 결정합니다."
+          "number": 7825,
+          "note": "트랜잭션 가스 한도(TX_MAX_GAS_LIMIT)를 도입했고, 이 EIP는 그 한도를 실행가스에만 적용하도록 바꿉니다."
+        },
+        {
+          "number": 7702,
+          "note": "EOA에 위임 플래그를 설정하는 연산으로, 이 EIP가 해당 연산의 상태 생성 비용을 재조정합니다."
         },
         {
           "number": 7623,
-          "note": "calldata 하한 비용입니다. 이 EIP에서는 하한을 실행 가스 차원에만 비교해 블록당 바이트 상한을 지킵니다."
+          "note": "캘데이터가 많은 트랜잭션에 적용되는 가스 하한(캘데이터 플로어)으로, 이 EIP의 블록 단위 집계에도 반영됩니다."
         }
       ],
       "meta": {
@@ -57572,164 +57561,159 @@
         ],
         "discussionsTo": "https://ethereum-magicians.org/t/eip-8037-state-creation-gas-cost-increase/25694"
       },
-      "sourceHash": "37abe522c5dee68a",
-      "model": "fable",
-      "generatedAt": "2026-11-02T10:15:54.914Z"
+      "sourceHash": "507571f4cf33c2f6",
+      "model": "sonnet",
+      "generatedAt": "2026-11-27T00:55:04.513Z"
     },
     {
       "number": 8038,
-      "titleKo": "상태 접근 가스비 갱신",
+      "titleKo": "스테이트 접근 가스 비용 개편",
       "topic": "수수료·가스",
-      "summary": "계정이나 저장 슬롯을 읽고 쓰는 명령어의 가스비를 올립니다. 이더리움 상태가 커져 이 작업들이 느려진 만큼, 비용을 접근·쓰기·생성 세 요소로 나누어 다시 매깁니다.",
-      "why": "가스는 노드가 거래를 처리하는 데 드는 시간과 자원을 값으로 환산한 것입니다. 계정 잔액이나 컨트랙트 저장 공간처럼 디스크에 있는 상태(state)를 읽고 쓰는 작업의 가격은 EIP-2929가 2021년 3월 베를린 포크에서 올린 뒤로 그대로였습니다. 그 사이 이더리움 상태는 크게 늘었고 상태를 읽고 쓰는 속도는 그만큼 느려졌습니다. 가격은 그대로인데 실제 시간은 더 걸리니 다른 명령어와 비교해 상태 접근이 너무 싸진 셈입니다. 또 EXTCODESIZE와 EXTCODECOPY는 계정 정보를 한 번 읽고 코드 크기나 바이트코드를 한 번 더 읽어 데이터베이스를 두 번 거치는데도, 한 번만 읽는 BALANCE나 EXTCODEHASH와 같은 값을 냈습니다. 이 제안은 클라이언트별로 실제 측정한 실행 시간을 바탕으로 이런 가격을 다시 맞추고 복합 상수 안에 섞여 있던 쓰기 비용을 이름 있는 상수로 따로 떼어 냅니다.",
+      "summary": "이더리움 상태(state)가 커지면서 느려진 상태 접근 연산의 가스비를 올리고 계좌·스토리지에 값을 쓰는 비용을 접근 비용과 분리해 별도 상수로 매기는 EIP입니다.",
+      "why": "Berlin 포크(EIP-2929, 2021년 3월) 이후 상태 접근 연산의 가스비는 그대로인데, 그 사이 이더리움 전체 상태(state)의 크기가 크게 늘어나 디스크에서 계좌나 스토리지 슬롯을 읽는 실제 처리 시간이 길어졌습니다. 가스비가 실제 처리 시간을 못 따라가면 블록을 만드는 노드가 처리 시간 대비 적은 보상을 받는 셈이 되어 가스 한도를 늘리기도 어려워지고 네트워크 전체가 느려질 위험이 커집니다. 또 EXTCODESIZE·EXTCODECOPY는 디스크를 두 번 읽는데도 BALANCE처럼 한 번만 읽는 연산과 같은 비용을 받아 왔습니다. 이 EIP는 실제 클라이언트에서 측정한 처리 시간을 근거로 상태 접근 비용을 다시 매겨 이 격차를 줄입니다.",
       "before": [
-        "계정을 거래 안에서 처음 읽을 때(cold) 2,600 가스를 냅니다.",
-        "저장 슬롯 값을 바꾸는 비용이 SSTORE 복합 상수(5,000) 안에 섞여 있어 따로 보이지 않습니다.",
-        "EXTCODESIZE·EXTCODECOPY는 데이터베이스를 두 번 읽어도 BALANCE와 같은 값을 냅니다.",
-        "컨트랙트 배포는 GAS_CREATE 32,000 하나로 묶어 냅니다."
+        "COLD_ACCOUNT_ACCESS(계좌를 처음 건드릴 때 드는 비용)가 2,600 가스로, 2021년 Berlin 포크 이후 그대로였습니다.",
+        "계좌나 스토리지 값을 쓰는 비용이 CALL_VALUE, GAS_STORAGE_UPDATE 같은 복합 상수 안에 섞여 있어 따로 떼어볼 수 없었습니다.",
+        "EXTCODESIZE·EXTCODECOPY가 디스크를 두 번 읽으면서도 BALANCE 등 한 번만 읽는 연산과 같은 접근 비용을 받았습니다.",
+        "SSTORE 환급(STORAGE_CLEAR_REFUND)이 4,800 가스로 고정돼 있었습니다."
       ],
       "after": [
-        "계정 처음 읽기는 3,000 가스로 오릅니다. 저장 슬롯 처음 읽기(2,100)와 이미 읽은 것 다시 읽기(100)는 그대로입니다.",
-        "쓰기 비용이 ACCOUNT_WRITE 9,000, STORAGE_WRITE 10,000이라는 별도 상수로 분리됩니다.",
-        "EXTCODESIZE·EXTCODECOPY는 두 번째 읽기 몫으로 WARM_ACCESS 100을 더 냅니다.",
-        "배포는 CREATE_ACCESS 12,000을 실행 가스로 내고, 새 계정 생성 비용은 EIP-8037의 상태 가스로 넘어갑니다."
+        "COLD_ACCOUNT_ACCESS가 3,000 가스로 오릅니다(+15%).",
+        "쓰기 비용이 ACCOUNT_WRITE(9,000), STORAGE_WRITE(10,000)라는 독립 상수로 분리되어 명시됩니다.",
+        "EXTCODESIZE·EXTCODECOPY가 두 번째 읽기에 대해 WARM_ACCESS(100 가스)를 추가로 냅니다.",
+        "STORAGE_CLEAR_REFUND가 11,616 가스로 오릅니다(+142%)."
       ],
       "impact": [
         {
-          "who": "사용자",
-          "text": "거래 수수료 계산 방식이 바뀌지만 지갑과 RPC가 갱신되면 평소대로 쓸 수 있습니다. 저장 슬롯 값을 바꾸는 비용은 크게 오릅니다."
+          "who": "일반 사용자",
+          "text": "전송·스왑 등 상태를 바꾸는 트랜잭션의 수수료(가스비)가 오를 수 있습니다."
         },
         {
           "who": "지갑·앱 개발자",
-          "text": "eth_estimateGas 처리를 새 파라미터에 맞게 반드시 갱신해야 합니다. 그대로 두면 가스를 적게 잡아 거래가 실패할 수 있습니다."
+          "text": "eth_estimateGas 등 가스 추정 로직을 새 비용 모델에 맞춰 업데이트해야 하며 안 하면 가스 부족으로 트랜잭션이 실패할 수 있습니다."
         },
         {
-          "who": "노드 운영자·클라이언트 팀",
-          "text": "RPC의 가스 추정 공식에 새 값을 넣어야 합니다. 수치는 08.13 ACDE #243에서 최종 확정돼 그 뒤 스펙 변경이 없습니다."
+          "who": "클라이언트 팀",
+          "text": "COLD_ACCOUNT_ACCESS, ACCOUNT_WRITE, STORAGE_WRITE 등 새 상수와 SSTORE 환급 규칙을 구현해야 합니다."
         },
         {
-          "who": "dApp 운영자",
-          "text": "상태 접근 비용 변화가 특정 앱의 사용성에 영향을 줄 수 있으며 영향 범위는 더 분석이 필요하다고 원문에 적혀 있습니다."
+          "who": "컨트랙트 개발자",
+          "text": "SELFDESTRUCT로 죽은 계좌에 잔액을 보낼 때, CREATE·CREATE2로 컨트랙트를 배포할 때 비용이 달라집니다."
         }
       ],
       "example": {
-        "title": "저장 슬롯을 바꿨다가 되돌리는 거래의 가스 계산",
+        "title": "빈 스토리지 슬롯에 새 값을 쓸 때 비용이 쌓이는 과정",
         "steps": [
           {
             "label": "1",
-            "title": "거래 시작",
-            "body": "슬롯에 x가 들어 있고 아직 이 거래에서 건드리지 않았습니다. 이 x가 원래 값이고 슬롯은 콜드 상태입니다."
+            "title": "콜드 접근",
+            "body": "이번 트랜잭션에서 처음 건드리는 슬롯이면 COLD_STORAGE_ACCESS(2,100 가스)를 냅니다."
           },
           {
             "label": "2",
-            "title": "x를 y로 바꾸는 SSTORE",
-            "body": "콜드 접근 COLD_STORAGE_ACCESS 2,100에 처음 원래 값에서 벗어나는 쓰기 몫 STORAGE_WRITE 10,000을 더해 12,100을 냅니다."
+            "title": "값 변경",
+            "body": "새 값이 트랜잭션 시작 시점 값과 다르므로 STORAGE_WRITE(10,000 가스)를 추가로 냅니다."
           },
           {
             "label": "3",
-            "title": "y를 z로 다시 바꾸는 SSTORE",
-            "body": "슬롯은 이미 웜이고 현재 값 y가 원래 값 x와 다르므로 쓰기 요소가 붙지 않습니다. WARM_ACCESS 100만 냅니다."
+            "title": "새 슬롯 생성",
+            "body": "원래 0이던 슬롯이 0이 아닌 값으로 바뀌므로 상태 생성 비용(GAS_STORAGE_SET, EIP-8037에서 정함)도 붙습니다."
           },
           {
             "label": "4",
-            "title": "z를 x로 되돌리는 SSTORE",
-            "body": "WARM_ACCESS 100을 내고 새 값이 원래 값과 같으므로 앞서 낸 STORAGE_WRITE 10,000이 환불 카운터에 적립됩니다."
-          },
-          {
-            "label": "5",
-            "title": "거래 종료",
-            "body": "환불은 거래 총 사용 가스의 20%까지만 적용됩니다. 상한 안이라면 이 슬롯은 접근 비용 2,100 + 100 + 100만 낸 셈이 됩니다."
+            "title": "합산",
+            "body": "접근 비용과 쓰기 비용, 상태 생성 비용을 모두 더한 값이 이번 SSTORE의 최종 가스비가 됩니다."
           }
         ]
       },
       "deep": [
         {
-          "title": "비용을 이루는 세 요소: 접근, 쓰기, 상태 생성",
-          "body": "상태를 건드리는 연산의 가스비를 최대 세 가지 독립 요소의 합으로 봅니다. 첫째는 접근(Access)으로, 계정이나 저장 슬롯을 데이터베이스에서 읽어 오는 비용입니다. COLD_ACCOUNT_ACCESS, COLD_STORAGE_ACCESS, WARM_ACCESS가 여기 속하며 EIP-2929 파라미터의 이름을 바꾼 것입니다. 이 EIP는 COLD_ACCOUNT_ACCESS만 올리고 나머지 둘과 콜드·웜 판정 규칙은 그대로 둡니다. 둘째는 쓰기(Write)로, 값이 바뀔 때 리프를 쓰는 비용입니다. 저장 슬롯은 STORAGE_WRITE, 계정의 논스·잔액·코드 해시는 ACCOUNT_WRITE를 내며 둘 다 이 EIP가 새로 만든 상수입니다. 기존 체계에는 이 몫이 GAS_STORAGE_UPDATE, CALL_VALUE, GAS_CREATE 같은 복합 상수 안에 녹아 있었습니다. STORAGE_WRITE는 거래 단위로 순액 계산합니다. 슬롯을 거래 시작 값에서 벗어나게 하는 SSTORE가 내고 나중에 되돌리는 SSTORE가 환불받습니다. ACCOUNT_WRITE는 연산마다 냅니다. 같은 수신자에게 값을 보내는 CALL을 두 번 하면 두 번 냅니다. EIP-7702 authorization 처리에서 권한자당 한 번만 내는 규칙은 EIP-2780에만 있습니다. 셋째는 상태 생성(State creation)으로, 새 슬롯은 GAS_STORAGE_SET, 새 계정은 GAS_NEW_ACCOUNT입니다. 이 EIP는 이 값을 바꾸지 않고 EIP-8037이 상태 가스 차원에서 다시 매깁니다.",
+          "title": "세 가지 비용 요소로 나눈 모델",
+          "body": "이 EIP는 상태를 건드리는 연산의 비용을 access(접근), write(쓰기), state creation(상태 생성) 세 요소의 합으로 정의합니다. 접근 비용은 COLD_ACCOUNT_ACCESS, COLD_STORAGE_ACCESS, WARM_ACCESS로 EIP-2929의 상수를 그대로 이름만 바꾼 것이고 콜드·웜 판정 규칙도 바뀌지 않습니다. 쓰기 비용은 이번에 새로 도입되는 ACCOUNT_WRITE(계좌의 nonce·balance·codeHash 변경)와 STORAGE_WRITE(스토리지 슬롯 값 변경)로, 기존에는 GAS_STORAGE_UPDATE, CALL_VALUE, GAS_CREATE 같은 복합 상수에 숨어 있던 값을 떼어낸 것입니다. 상태 생성 비용은 GAS_STORAGE_SET, GAS_NEW_ACCOUNT이며 이 EIP가 아니라 짝 EIP인 EIP-8037이 값을 정하고 별도의 state-gas 차원으로 과금합니다.",
           "ref": "원문: Specification · Cost components"
         },
         {
-          "title": "바뀌는 파라미터와 기존 값의 환산",
-          "body": "값은 이렇게 바뀝니다. COLD_ACCOUNT_ACCESS(옛 COLD_ACCOUNT_ACCESS_COST) 2,600에서 3,000으로 +15%. COLD_STORAGE_ACCESS(옛 COLD_SLOAD_COST) 2,100 유지. WARM_ACCESS(옛 WARM_STORAGE_READ_COST) 100 유지. ACCOUNT_WRITE 6,700 상당에서 9,000으로 +34%. STORAGE_WRITE 2,800 상당에서 10,000으로 +257%. CREATE_ACCESS 7,000 상당에서 12,000으로 +71%. STORAGE_CLEAR_REFUND(옛 SSTORE_CLEARS_SCHEDULE) 4,800에서 11,616으로 +142%. ACCESS_LIST_STORAGE_KEY_COST 1,900에서 2,000으로 +5%. ACCESS_LIST_ADDRESS_COST 2,400에서 2,900으로 +21%. 새 상수 세 개의 현재 값은 기존 복합 상수에서 뽑아낸 근사치입니다. 6,700은 CALL_VALUE 9,000에서 CALL_STIPEND 2,300을 뺀 값, 2,800은 GAS_STORAGE_UPDATE 5,000에서 GAS_COLD_SLOAD 2,100과 GAS_WARM_ACCESS 100을 뺀 값, 7,000은 GAS_CREATE 32,000에서 GAS_NEW_ACCOUNT 25,000을 뺀 값입니다. 기존 체계는 이 요소들로 딱 떨어지게 나뉘지 않습니다. 웜 SSTORE 2,900은 100 + 2,800으로 맞지만 콜드 SSTORE 5,000은 요소 합보다 100 많습니다. 컨트랙트 생성 거래와 CREATE·CREATE2는 CREATE_ACCESS 한 번만 내고 COLD_ACCOUNT_ACCESS나 ACCOUNT_WRITE를 따로 내지 않습니다. EOA 위임 설정은 EIP-8037의 EXECUTION_PER_AUTH_BASE_COST 안에서만 과금되고 위임 해석은 실행 중에 대상 코드를 읽는 것이라 일반 콜드·웜 접근 비용을 냅니다.",
+          "title": "주요 상수 변경표",
+          "body": "COLD_ACCOUNT_ACCESS 2,600→3,000(+15%), COLD_STORAGE_ACCESS 2,100 유지, WARM_ACCESS 100 유지, 신설된 ACCOUNT_WRITE는 기존 복합 상수에서 환산한 6,700 상당→9,000(+34%), 신설된 STORAGE_WRITE는 2,800 상당→10,000(+257%), 신설된 CREATE_ACCESS(=ACCOUNT_WRITE+COLD_ACCOUNT_ACCESS)는 7,000 상당→12,000(+71%), STORAGE_CLEAR_REFUND 4,800→11,616(+142%), ACCESS_LIST_STORAGE_KEY_COST 1,900→2,000(+5%), ACCESS_LIST_ADDRESS_COST 2,400→2,900(+21%)로 바뀝니다. 기존 복합 상수에서 뽑아낸 환산값은 근사치이며 특히 CREATE 쪽은 각주에서 기존 회계가 내부적으로 딱 맞지 않았다는 점을 밝히고 있습니다.",
           "ref": "원문: Specification · Parameters"
         },
         {
-          "title": "SSTORE 가격 공식과 환불 규칙",
-          "body": "EIP-2200과 같이 원래 값은 거래 시작 시점의 슬롯 값, 현재 값은 SSTORE 직전의 값입니다. 비용은 세 요소의 합입니다. 접근 요소는 슬롯이 콜드면 COLD_STORAGE_ACCESS, 웜이면 WARM_ACCESS입니다. 쓰기 요소 STORAGE_WRITE는 새 값이 현재 값과 다르고 현재 값이 원래 값과 같을 때, 즉 슬롯을 처음 거래 시작 값에서 벗어나게 할 때만 냅니다. 상태 생성 요소 GAS_STORAGE_SET은 원래 값과 현재 값이 0이고 새 값이 0이 아닐 때 EIP-8037의 상태 가스로 냅니다. 환불 규칙은 SSTORE마다 평가합니다. 첫째, 원래 값과 현재 값이 0이 아니고 새 값이 0이면 STORAGE_CLEAR_REFUND를 더합니다. 둘째, 원래 값이 0이 아니고 현재 값이 0이고 새 값이 0이 아니면 STORAGE_CLEAR_REFUND를 뺍니다. 같은 거래에서 지웠다가 다시 채우는 일이 이득이 되지 않게 첫째 규칙을 되돌리는 것입니다. 셋째, 새 값이 원래 값과 같고 현재 값과 다르면 STORAGE_WRITE를 환불합니다. 이 되돌림이 없으면 x에서 0으로, 다시 x로 가는 왕복이 슬롯은 그대로인데 순환불을 남깁니다. 거래 전체로 보면 바뀐 값으로 끝나는 슬롯은 쓰기와 생성 요소를 딱 한 번, 원래 값으로 끝나는 슬롯은 접근 비용만 냅니다. 환불은 거래 환불 카운터에 쌓이고 총 사용 가스의 20%까지만 적용됩니다. 상태 가스의 환급(refill) 규칙은 EIP-8037에 있습니다.",
+          "title": "SSTORE 가스 공식과 환급 규칙",
+          "body": "SSTORE 비용은 접근(콜드/웜), 쓰기(새 값이 현재 값과 다르고 현재 값이 트랜잭션 시작 값과 같을 때만 STORAGE_WRITE 과금), 상태 생성(원래 값·현재 값이 0이고 새 값이 0이 아닐 때만 GAS_STORAGE_SET 과금) 세 요소의 합입니다. 환급은 슬롯을 비울 때(원래 값≠0, 현재 값≠0, 새 값=0) STORAGE_CLEAR_REFUND를 더하고 비웠던 슬롯을 다시 채우면(원래 값≠0, 현재 값=0, 새 값≠0) 그 환급을 되돌리며 트랜잭션 시작 값으로 되돌아가면(새 값=원래 값≠현재 값) STORAGE_WRITE를 환급합니다. 이 세 규칙 덕분에 같은 슬롯을 몇 번 고치든 트랜잭션이 끝난 시점의 최종 값만 기준으로 쓰기·생성 비용이 정확히 한 번씩만 매겨집니다. 환급은 20% 환급 상한 규칙의 적용을 받습니다.",
           "ref": "원문: Specification · SSTORE pricing"
         },
         {
-          "title": "계정 접근 연산별 규칙",
-          "body": "CALL과 CALLCODE에서 CALL_VALUE는 ACCOUNT_WRITE + CALL_STIPEND로 다시 정의되고 CALL_STIPEND 2,300은 그대로입니다. ACCOUNT_WRITE는 수신자 잔액 리프를 쓰는 값이라 값을 보내는 호출마다 냅니다. EIP-161의 죽은 계정에 값을 보내는 CALL은 GAS_NEW_ACCOUNT를 상태 가스로 더 내며 CALLCODE는 수신자가 자기 자신이라 이 비용이 없습니다. CREATE와 CREATE2는 콜드·웜 구분 없이 고정 GAS_CREATE 32,000을 내던 것을 실행 가스 CREATE_ACCESS(ACCOUNT_WRITE + COLD_ACCOUNT_ACCESS)와 상태 가스 GAS_NEW_ACCOUNT로 나눕니다. 이 정의는 각주 3의 7,000과 맞지 않는데, 기존 회계가 애초에 일관되지 않아 그 차이를 그대로 둡니다. SELFDESTRUCT는 수혜자가 콜드면 보내는 잔액과 무관하게 COLD_ACCOUNT_ACCESS를 내고 웜이면 접근 비용이 없습니다. 수혜자가 실행 중인 계정 자신이거나 프리컴파일이어도 EIP-2929의 WARM_ACCESS 면제가 유지됩니다. 양의 잔액을 죽은 계정에 보내면 ACCOUNT_WRITE를 더 내고 GAS_NEW_ACCOUNT는 상태 가스로 그대로 남습니다. EXTCODESIZE와 EXTCODECOPY는 기존 접근 비용에 WARM_ACCESS를 하나 더 냅니다. 계정 객체(nonce, balance, codeHash, storageRoot)를 읽은 뒤 코드 크기나 바이트코드를 또 읽는데, 두 번째 읽기는 이미 웜인 계정 대상이라 WARM_ACCESS로 맞춘 것입니다. DELEGATECALL, STATICCALL, BALANCE, EXTCODEHASH는 쓰기 요소가 없습니다.",
-          "ref": "원문: Specification · Account access pricing, Rationale · Special case for EXTCODESIZE and EXTCODECOPY"
+          "title": "CALL·CREATE·SELFDESTRUCT별 적용 방식",
+          "body": "CALL_VALUE는 ACCOUNT_WRITE+CALL_STIPEND로 재정의되어 값을 보내는 CALL은 호출마다 ACCOUNT_WRITE를 냅니다(계좌별 추적이나 환급은 없음). CALLCODE는 수신자가 호출 계좌 자신이라 상태 생성 비용이 붙지 않습니다. CREATE·CREATE2는 기존 flat 비용인 GAS_CREATE 대신 CREATE_ACCESS(=ACCOUNT_WRITE+COLD_ACCOUNT_ACCESS, 실행 가스)와 GAS_NEW_ACCOUNT(상태 가스, EIP-8037)로 나뉩니다. SELFDESTRUCT는 수혜자가 콜드면 COLD_ACCOUNT_ACCESS를, 거기에 수혜자가 EIP-161 기준 죽은 계좌이고 양의 잔액이 넘어가면 ACCOUNT_WRITE를 추가로 냅니다. 웜 수혜자나 실행 계좌 자신·프리컴파일로 보낼 때는 접근 비용이 면제되는 기존 규칙이 유지됩니다.",
+          "ref": "원문: Specification · Account access pricing"
         },
         {
-          "title": "측정 방법: 클라이언트 벤치마크와 회귀 모델",
-          "body": "가스값은 각 실행 클라이언트가 벤치마크를 실제로 도는 시간에서 나왔습니다. 특정 EVM 연산을 반복하는 합성 블록을 연산 횟수와 인자를 바꿔 가며 만들고(EEST 벤치마크 스위트), Benchmarkoor 도구로 블록 실행 시간과 연산 횟수를 잽니다. 모든 벤치마크는 2026년 3월 메인넷과 같은 크기의 스냅샷 위에서 클라이언트마다 여러 번 돌렸습니다. 연산 하나의 시간은 비음수 최소제곱 회귀(runtime = intercept + slope × operation_count)로 추정합니다. R²가 0.5 이상이고 p값이 0.05 미만인 모델만 씁니다. 테스트에 딸린 보조(glue) 옵코드 시간은 adjusted_slope = slope - sum(ratio_i * glue_runtime_i)로 빼되, 기준을 못 넘긴 glue 추정치는 빼지 않고 결과는 0 아래로 자릅니다. 클라이언트마다 결과가 다르면 최적화할 수 없는 가장 느린 클라이언트 값을 네트워크 전체 기준으로 삼습니다. 대응 관계는 test_account_access(NO_CACHE)의 value_sent=0이 COLD_ACCOUNT_ACCESS, value_sent=1이 COLD_ACCOUNT_WRITE, test_sload_bloated와 test_sstore_bloated(write_new_value=False)가 COLD_STORAGE_ACCESS, write_new_value=True가 COLD_STORAGE_WRITE, test_sload_same_key_benchmark와 test_ext_account_query_warm이 WARM_ACCESS입니다. 쓰기 비용은 쓰기 포함 추정치에서 접근 추정치를 빼서 구합니다. bloated 테스트는 메인넷 최대 컨트랙트와 같은 10기가바이트 저장소를 가진 컨트랙트가 대상입니다. 상태 생성 요소는 실행 시간이 아니라 상태 증가를 매기는 것이라 여기서 추정하지 않습니다.",
+          "title": "EXTCODESIZE·EXTCODECOPY 두 번째 읽기 과금",
+          "body": "다른 계좌 읽기 연산(BALANCE, EXTCODEHASH)은 데이터베이스를 한 번만 읽지만 EXTCODESIZE와 EXTCODECOPY는 먼저 계좌 객체(nonce, balance, codeHash, storageRoot)를 읽은 뒤 코드 크기나 바이트코드를 가져오기 위해 두 번째로 읽습니다. 이 두 번째 읽기는 이미 데워진(warm) 대상에 대한 읽기와 같다고 보아 WARM_ACCESS(100 가스)를 기존 접근 비용에 추가로 부과합니다.",
+          "ref": "원문: Rationale · Special case for EXTCODESIZE and EXTCODECOPY"
+        },
+        {
+          "title": "가스비 산정 방법론",
+          "body": "제안된 수치는 2026년 3월 메인넷과 같은 크기의 스냅샷 위에서, 특정 옵코드를 반복 실행하는 합성 블록을 EEST 벤치마크로 만들고 Benchmarkoor 도구로 각 클라이언트의 실제 실행 시간을 측정해 얻었습니다. 비선형최소제곱 회귀로 옵코드당 실행 시간을 추정하고 함께 실행되는 보조(glue) 옵코드의 기여를 빼서 순수 비용만 분리합니다. 같은 연산·자원 조합에서는 가장 느린(최적화가 어려운) 클라이언트의 값을 기준으로 삼는 보수적 원칙을 따르며 75 Mgas/s를 기준점으로 삼아 실행 시간을 가스로 환산합니다.",
           "ref": "원문: Rationale · Empirical Estimation of Gas Costs"
         },
         {
-          "title": "가스 환산 공식과 파생 값",
-          "body": "실행 시간은 목표 처리량 75 Mgas/s를 기준으로 raw_gas = ceil(anchor_rate * runtime_ms / 1000)으로 가스로 바꿉니다. anchor_rate는 초당 가스(75_000_000), runtime_ms는 회귀에서 나온 연산당 밀리초이며 올림해 정수 가스로 만듭니다. 쓰기 비용은 올림한 추정치끼리 빼서 구합니다. STORAGE_WRITE = max(0, COLD_STORAGE_WRITE - COLD_STORAGE_ACCESS), ACCOUNT_WRITE = max(0, COLD_ACCOUNT_CODE_WRITE - COLD_ACCOUNT_CODE_ACCESS, COLD_ACCOUNT_NOCODE_WRITE - COLD_ACCOUNT_NOCODE_ACCESS)입니다. 나머지는 EIP에서 고른 값에서 파생합니다. STORAGE_CLEAR_REFUND = (STORAGE_WRITE + COLD_STORAGE_ACCESS) * (4800/5000), ACCESS_LIST_STORAGE_KEY_COST = COLD_STORAGE_ACCESS - WARM_ACCESS, ACCESS_LIST_ADDRESS_COST = COLD_ACCOUNT_ACCESS - WARM_ACCESS, CREATE_ACCESS = ACCOUNT_WRITE + COLD_ACCOUNT_ACCESS입니다. 접근 목록 두 값에서 WARM_ACCESS를 빼는 이유는, 목록에 적힌 슬롯이나 계정은 거래가 건드릴 때 이미 웜이라 그 시점에 WARM_ACCESS를 또 내기 때문입니다. 빼지 않으면 한 번만 쓰는 항목이 COLD_ACCESS + WARM_ACCESS가 되어 목록을 쓰는 쪽이 항상 더 비쌉니다. EIP-7928 블록 수준 접근 목록이 가능하게 하는 병렬 디스크 읽기, 병렬 거래 검증, 실행 없는 상태 갱신 같은 최적화는 그 최적화를 구현한 클라이언트에서 벤치마크를 돌려 이미 반영했습니다.",
-          "ref": "원문: Rationale · Conversion to gas costs, Interaction with EIP-7928"
+          "title": "하위 호환성과 지갑·RPC의 대응",
+          "body": "이번 리프라이싱은 하위 호환성이 깨지는 변경이라 예정된 네트워크 업그레이드(포크)로만 적용할 수 있습니다. eth_estimateGas를 쓰는 지갑과 RPC 노드 소프트웨어는 새 가스 파라미터를 반영하도록 반드시 업데이트해야 하며 그렇지 않으면 가스를 과소 추정해 트랜잭션이 실패할 수 있습니다. 반면 일반 사용자는 지갑·RPC가 업데이트되면 평소 쓰던 방식을 그대로 쓸 수 있습니다. 보안 고려사항 항목에서는 상태 접근 비용 변경이 일부 dApp과 사용자 행동에 미칠 영향에 대해 추가 분석이 필요하다고 밝히고 있습니다.",
+          "ref": "원문: Backwards Compatibility · Security Considerations"
         },
         {
-          "title": "호환성과 보안 고려 사항",
-          "body": "하위 호환되지 않는 가스 재조정이라 예정된 네트워크 업그레이드가 필요합니다. 지갑은 eth_estimateGas를 쓸 때 새 가스 파라미터를 제대로 반영하도록 반드시 갱신해야 합니다. 그러지 않으면 가스를 적게 잡아 거래가 실패할 수 있습니다. 노드 소프트웨어의 eth_estimateGas 같은 RPC 메서드도 새 상태 접근 비용이 들어간 공식을 반드시 포함해야 합니다. 사용자는 지갑과 RPC가 갱신되면 평소 방식 그대로 쓸 수 있습니다. 보안 측면에서는 상태 접근 비용 변경이 특정 애플리케이션의 사용성에 영향을 줄 수 있으며 여러 dApp과 사용자 행동에 미치는 효과를 이해하려면 더 분석이 필요하다고 적혀 있습니다.",
-          "ref": "원문: Backwards Compatibility, Security Considerations"
-        },
-        {
-          "title": "원문 상태와 코어 개발자 콜 결정",
-          "body": "원문 상태는 Last Call이며 마감(last-call-deadline)은 2026-11-01입니다. EIP-8037을 요구(requires)합니다. 코어 개발자 콜 기록은 이렇습니다. 07.06 ACDT #86에서 프리즈 이후에는 EIP-8038과 2780의 가스비 같은 파라미터 단독 변경만 허용하고 구조 변경은 막기로 확정했습니다. 상수 값은 손봐도 설계는 바꾸지 않는다는 뜻입니다. 08.03 ACDT #90에서 SLOAD는 현행 2,100 유지, 계정 쓰기는 9K, 앵커는 75 Mgas/s로 고정하기로 하고 모든 EL 클라이언트가 승인했습니다. 옵코드 사이 상대 가격을 지금 확정하고 앞으로는 블록 한도만 조정한다는 뜻입니다. 08.13 ACDE #243에서 가스 재조정 수치가 최종 확정됐고 스펙 변경이 필요 없으며 글램스테르담(Glamsterdam)의 200M 가스 한도가 확인됐습니다. 클라이언트는 코드를 바꾸지 않아도 됩니다. 09.14 ACDT #96에서 SELFDESTRUCT 수혜자 관련 PR EIPs#12317을 EIP 문구 명확화로 승인했으며 스펙이나 클라이언트 동작은 바뀌지 않습니다. 07.02 ACDE #240과 10.26 ACDT #102에서는 논의만 있었고 결정은 없었습니다.",
-          "ref": "원문: 머리말(status, last-call-deadline, requires) · 콜 기록"
+          "title": "현재 진행 상태와 코어 개발자 콜 결정",
+          "body": "이 EIP는 현재 Last Call 단계이며 명시된 마감일은 2026-11-01입니다. 2026-08-03 ACDT #90에서 SLOAD 비용은 2,100 유지, 계좌 쓰기 비용은 9,000, 가스 환산 기준점은 75 Mgas/s로 고정하는 데 모든 실행 클라이언트가 합의했습니다. 2026-08-13 ACDE #243에서는 이 가스 재조정 수치가 글램스테르담(Glamsterdam) 포크 포함으로 최종 확정되어 스펙을 더 바꿀 필요가 없다고 정리됐고 글램스테르담의 200M 가스 한도도 이 수치를 전제로 확인됐습니다. 2026-07-06 ACDT #86에서는 프리즈 이후 이 EIP의 상수 값만 조정하고 설계 구조는 바꾸지 않기로 했으며 2026-09-14 ACDT #96에서는 SELFDESTRUCT 수혜자 관련 문구를 명확히 하는 PR만 승인됐을 뿐 스펙이나 클라이언트 동작은 바뀌지 않았습니다.",
+          "ref": "콜 기록: 2026-07-06 ACDT #86, 2026-08-03 ACDT #90, 2026-08-13 ACDE #243, 2026-09-14 ACDT #96"
         }
       ],
       "glossary": [
         {
-          "term": "콜드·웜 접근(cold/warm access)",
-          "def": "거래 안에서 처음 건드리는 계정이나 슬롯은 콜드, 이미 건드린 것은 웜입니다. 콜드가 훨씬 비싸며 판정 규칙은 EIP-2929에 있습니다."
+          "term": "콜드/웜 접근",
+          "def": "트랜잭션 안에서 계좌나 슬롯을 처음 건드리면 콜드, 이미 건드린 뒤 다시 건드리면 웜이라 부르며 콜드 접근이 더 비쌉니다."
         },
         {
           "term": "상태(state)",
-          "def": "계정 잔액, 논스, 코드, 저장 슬롯처럼 노드가 디스크에 보관하는 데이터 전체입니다."
+          "def": "모든 계좌의 잔액, 코드, 스토리지 값을 모아놓은 이더리움 전체의 데이터입니다."
+        },
+        {
+          "term": "가스(gas)",
+          "def": "트랜잭션이 소모하는 계산량의 단위이자 수수료를 산정하는 기준입니다."
         },
         {
           "term": "SSTORE",
-          "def": "컨트랙트 저장 슬롯에 값을 쓰는 EVM 명령어입니다."
+          "def": "스토리지 슬롯에 값을 쓰는 EVM 명령어입니다."
         },
         {
-          "term": "환불 카운터(refund counter)",
-          "def": "거래 중에 적립되는 가스 환불액입니다. 거래가 끝날 때 총 사용 가스의 20%까지만 돌려줍니다."
+          "term": "죽은 계좌(dead account)",
+          "def": "EIP-161 기준으로 nonce와 코드가 없고 잔액이 0인, 존재하지 않는 것으로 취급되는 계좌입니다."
         },
         {
-          "term": "상태 가스(state gas)",
-          "def": "EIP-8037이 도입하는 별도 가스 차원입니다. 새 계정이나 슬롯을 만드는 상태 증가 비용을 실행 가스와 따로 잽니다."
-        },
-        {
-          "term": "접근 목록(access list)",
-          "def": "EIP-2930 거래에 미리 적어 두는 주소와 슬롯 목록입니다. 선불로 접근 비용을 내고 웜 상태로 시작합니다."
+          "term": "환급(refund)",
+          "def": "트랜잭션이 끝날 때 특정 조건을 만족하면 써낸 가스 일부를 돌려받는 것입니다."
         }
       ],
       "related": [
         {
           "number": 8037,
-          "note": "이 EIP가 요구하는 제안. 새 슬롯·계정 생성 비용(GAS_STORAGE_SET, GAS_NEW_ACCOUNT)을 다시 매기고 상태 가스 차원에서 과금합니다."
+          "note": "상태 생성 비용(GAS_STORAGE_SET, GAS_NEW_ACCOUNT)을 정하는 짝 EIP로, 이 EIP가 requires로 지정해 반드시 함께 필요합니다."
         },
         {
           "number": 2929,
-          "note": "콜드·웜 접근 규칙의 출처. 이 EIP는 그 파라미터 이름을 바꾸고 콜드 계정 접근 비용을 2,600에서 3,000으로 올립니다."
+          "note": "콜드·웜 접근 개념과 COLD_ACCOUNT_ACCESS 등 상수 이름을 이 EIP가 그대로 이어받아 재명명하고 값을 인상합니다."
         },
         {
           "number": 2780,
-          "note": "컨트랙트 생성 거래의 CREATE_ACCESS 부과와 EIP-7702 authorization의 ACCOUNT_WRITE 1회 규칙이 정의된 곳입니다."
+          "note": "EIP-7702 위임 처리 시 ACCOUNT_WRITE를 권한자당 트랜잭션에 한 번만 과금하는 규칙을 정의합니다."
         },
         {
-          "number": 2200,
-          "note": "SSTORE의 원래 값·현재 값 정의와 환불 회계의 기반. SSTORE_RESET_GAS 5,000이 STORAGE_WRITE 환산의 출발점입니다."
+          "number": 7702,
+          "note": "EOA 위임 설정 시 ACCOUNT_WRITE와 COLD_ACCOUNT_ACCESS가 적용되는 대상입니다."
         },
         {
-          "number": 3529,
-          "note": "STORAGE_CLEAR_REFUND의 이전 이름 SSTORE_CLEARS_SCHEDULE(4,800)과 환불 20% 상한의 출처입니다."
+          "number": 161,
+          "note": "SELFDESTRUCT·CALL에서 ACCOUNT_WRITE 추가 과금 여부를 가르는 죽은 계좌 정의를 제공합니다."
         }
       ],
       "meta": {
@@ -57749,9 +57733,9 @@
         ],
         "discussionsTo": "https://ethereum-magicians.org/t/eip-8038-state-access-gas-cost-update/25693"
       },
-      "sourceHash": "ad09e7c9a7c78855",
-      "model": "fable",
-      "generatedAt": "2026-11-02T10:23:43.743Z"
+      "sourceHash": "efa4bc1f7aba5272",
+      "model": "sonnet",
+      "generatedAt": "2026-11-27T01:01:21.400Z"
     },
     {
       "number": 8045,
@@ -63882,151 +63866,147 @@
       "number": 8148,
       "titleKo": "검증자 맞춤 스위프 임계값",
       "topic": "합의·스테이킹",
-      "summary": "합산 출금 자격(0x02)을 쓰는 검증자가 보상이 자동으로 출금 주소로 빠져나가는 잔액 기준을 32 ETH와 2,048 ETH 사이에서 직접 정할 수 있게 합니다.",
-      "why": "지금 합산 출금 자격(0x02) 검증자는 잔액이 2,048 ETH를 넘어야 초과분이 자동으로 출금 주소로 옮겨집니다. 이 기준이 너무 높다고 느끼는 검증자가 많아 0x02로 전환하는 비율이 매우 낮다고 원문은 설명합니다. 대안인 부분 출금은 사용자가 직접 트랜잭션을 보내야 하고 일반 퇴장 대기열을 함께 쓰기 때문에 요청부터 처리까지 걸리는 시간을 예측하기 어렵습니다. 원문은 2025년 10월 퇴장 대기열이 급증한 사례를 듭니다. 예를 들어 128 ETH 검증자는 한 주에 약 0.07 ETH를 보상으로 받는데, 이 작은 금액을 받으려고 매번 부분 출금 트랜잭션을 보내는 것은 무리입니다. 잔액을 계속 지켜보다가 직접 요청해야 하는 부담도 있습니다. 이 제안은 검증자가 원하는 기준을 한 번 정해 두면, 그 위로 쌓인 보상이 스위프(sweep) 주기에 맞춰 자동으로 출금되게 합니다. 기본 동작은 그대로이고 원하는 검증자만 쓰는 선택 기능입니다.",
+      "summary": "EIP-8148은 복리형 출금 자격증명(0x02)을 쓰는 검증자가 보상을 자동으로 인출하는 기준 잔액인 스위프 임계값을 32~2048 ETH 사이에서 직접 정할 수 있게 합니다.",
+      "why": "지금 복리형(0x02) 검증자는 보상이 쌓여 2048 ETH가 될 때까지는 자동 스위프가 일어나지 않습니다. 그 전에 보상을 받고 싶으면 검증자가 직접 부분 인출을 요청해야 하는데, 이 요청은 사용자가 트랜잭션을 보내야 하고 처리 대기열이 네트워크 상황에 따라 길어질 수 있어 언제 처리될지 예측하기 어렵습니다. 또한 32 ETH 규모 검증자가 받는 주당 보상은 0.07 ETH 정도로 작아서 이를 꺼내려고 매번 트랜잭션을 보내는 것도 비합리적입니다. 이런 불편 때문에 0x02로 전환하는 검증자가 매우 적었습니다. 이 EIP는 검증자가 원하는 기준 잔액을 미리 설정해 두면 그 기준을 넘길 때 자동으로 스위프되도록 해서 번거로운 수동 개입 없이도 보상 관리 전략을 유연하게 가져갈 수 있게 합니다.",
       "before": [
-        "0x02 검증자는 잔액이 2,048 ETH를 넘기 전까지 보상이 자동으로 출금되지 않습니다.",
-        "그 전에 보상을 꺼내려면 부분 출금 트랜잭션을 직접 보내고 퇴장 대기열에서 기다려야 합니다.",
-        "출금 자격의 1~11번째 바이트는 쓰이지 않고 비어 있습니다.",
-        "32 ETH에서 자동 출금되길 원하면 0x01 자격을 유지해야 합니다."
+        "복리형(0x02) 검증자는 2048 ETH에 도달해야만 자동 스위프가 일어남",
+        "그전에 보상을 받으려면 수동으로 부분 인출을 요청해야 함",
+        "부분 인출은 대기열 상황에 따라 처리 시간이 불확실함",
+        "이런 번거로움 때문에 0x02로 전환하는 검증자가 적음"
       ],
       "after": [
-        "검증자가 32 ETH와 2,048 ETH 사이에서 1 ETH 단위로 자동 출금 기준을 정할 수 있습니다.",
-        "출금 주소에서 요청 한 번을 보내면 이후 기준 초과분이 스위프 주기마다 자동으로 출금됩니다.",
-        "기준값은 출금 자격의 1~2번째 바이트에 저장되어 비콘 상태에 새 필드가 생기지 않습니다.",
-        "기준을 32 ETH로 두면 0x01 검증자와 같게 동작해 0x02 자격이 모든 경우를 포괄합니다."
+        "검증자가 32~2048 ETH 사이에서 원하는 스위프 기준을 직접 설정",
+        "기준을 넘기면 별도 요청 없이 자동으로 스위프됨",
+        "기준 설정은 실행계층에서 수수료를 내고 요청하며, 인출주소만 변경 가능",
+        "기존 등록·출금·종료 절차는 그대로 유지되는 선택적 기능"
       ],
       "impact": [
         {
-          "who": "검증자·솔로 스테이커",
-          "text": "2,048 ETH까지 기다리지 않고도 0x02로 전환해 원하는 잔액에서 보상을 자동으로 받을 수 있습니다. 기준은 현재 잔액보다 낮게 잡을 수 없습니다."
+          "who": "검증자",
+          "text": "보상을 쌓아둘지 일정 기준에서 자동으로 받을지 직접 전략을 정할 수 있습니다."
         },
         {
-          "who": "스테이킹 프로토콜·노드 운영자",
-          "text": "부분 출금 트랜잭션을 반복해서 보내던 운영을 요청 한 번으로 대체할 수 있습니다. 출금 주소가 컨트랙트라면 그 컨트랙트만 기준을 바꿀 수 있습니다."
+          "who": "지갑·스테이킹 서비스",
+          "text": "임계값 설정 요청을 보내고 수수료를 처리하는 기능을 지원해야 합니다."
         },
         {
           "who": "클라이언트 팀",
-          "text": "실행 계층은 새 시스템 컨트랙트와 0x05 요청 타입을, 합의 계층은 ExecutionRequests의 새 목록과 기준값 처리 로직을 구현해야 합니다."
+          "text": "새로운 EL-CL 요청 타입, 프리컴파일 큐, 시스템 콜 처리 로직을 구현해야 합니다."
         },
         {
-          "who": "출금 자격을 검사하는 앱",
-          "text": "32바이트 전체를 비교하는 EIP-4788 증명 검증기 등은 접두어와 실행 주소만 비교하도록 바꿔야 합니다."
+          "who": "일반 사용자·L2",
+          "text": "이 기능은 선택적이라 사용하지 않는 검증자나 L2 운영에는 영향이 없습니다."
         }
       ],
       "example": {
-        "title": "출금 주소에서 기준값을 바꾸는 흐름",
+        "title": "스위프 임계값을 설정하는 과정",
         "steps": [
           {
             "label": "1",
-            "title": "요청 보내기",
-            "body": "검증자의 출금 주소가 전용 컨트랙트에 수수료와 함께 56바이트 데이터를 보냅니다. 48바이트 검증자 공개키와 8바이트 기준값(Gwei)입니다."
+            "title": "요청 전송",
+            "body": "검증자의 인출주소가 공개키와 원하는 임계값(56바이트)을 넣어 프리컴파일을 호출하고 수수료를 지불합니다."
           },
           {
             "label": "2",
-            "title": "대기열에 넣기",
-            "body": "컨트랙트는 수수료가 충분한지 확인하고 요청을 대기열에 넣은 뒤 로그를 남깁니다. 수수료는 블록당 2건을 넘으면 오르고 밑돌면 내려갑니다."
+            "title": "큐 대기",
+            "body": "요청이 큐에 들어가고 블록당 최대 16개까지 처리됩니다."
           },
           {
             "label": "3",
-            "title": "블록 끝 시스템 콜",
-            "body": "블록의 모든 트랜잭션이 끝나면 프로토콜이 컨트랙트를 호출해 대기열에서 최대 16건을 꺼내 블록의 실행 계층 요청 목록에 담습니다."
+            "title": "시스템 콜 전달",
+            "body": "블록 처리 끝에 시스템 콜이 큐에서 요청을 꺼내 합의계층으로 넘깁니다."
           },
           {
             "label": "4",
-            "title": "합의 계층 검증",
-            "body": "합의 계층은 요청이 출금 주소에서 왔는지, 검증자가 퇴장 중이 아닌지, 기준값이 범위 안이고 현재 잔액 이상인지 확인합니다."
+            "title": "조건 확인 후 기록",
+            "body": "합의계층이 인출주소 일치, 미종료 상태, 현재 잔액 이상 등 조건을 확인하고 자격증명에 새 임계값을 기록합니다."
           },
           {
             "label": "5",
-            "title": "자격 갱신",
-            "body": "조건을 통과하면 출금 자격의 1~2번째 바이트를 새 기준값으로 덮어씁니다. 이후 스위프와 유효 잔액 계산에 이 기준이 쓰입니다."
+            "title": "자동 스위프",
+            "body": "이후 검증자 잔액이 그 임계값을 넘으면 별도 요청 없이 자동으로 스위프됩니다."
           }
         ]
       },
       "deep": [
         {
-          "title": "실행 계층 요청 형식과 컨트랙트 입력",
-          "body": "이 EIP는 EIP-7685 요청 타입 SWEEP_THRESHOLD_REQUEST_TYPE(0x05)을 추가합니다. 요청은 source_address(Bytes20), validator_pubkey(Bytes48), threshold(uint64, Gwei 단위) 세 필드로 구성됩니다. 전용 컨트랙트 SET_SWEEP_THRESHOLD_REQUEST_PREDEPLOY_ADDRESS에 정확히 56바이트를 보내면 0:48은 검증자 공개키, 48:56은 빅엔디언 uint64 기준값으로 해석합니다. 컨트랙트는 msg.value가 get_fee() 이상인지 확인하고 블록 요청 수를 1 늘립니다. 대기열 슬롯 3개에는 msg.sender, 공개키 앞 32바이트, 공개키 뒤 16바이트와 기준값을 저장합니다. 그리고 source_address(20) ++ validator_pubkey(48) ++ threshold(8) 76바이트를 LOG0으로 남깁니다. 엔디언에 주의해야 합니다. 입력과 로그의 threshold는 빅엔디언이지만 시스템 콜이 돌려주는 값과 EIP-7685 인코딩은 리틀엔디언입니다.",
-          "ref": "원문: Specification · Execution layer · Set sweep threshold request / Add Set Sweep Threshold Request"
+          "title": "임계값 저장 위치",
+          "body": "새 필드를 BeaconState나 Validator에 추가하지 않고 복리형(0x02) 출금 자격증명의 비어 있던 1~2번째 바이트에 리틀엔디안 uint16으로 저장합니다. 단위는 EFFECTIVE_BALANCE_INCREMENT(1 ETH)입니다. 기본값은 MAX_EFFECTIVE_BALANCE_ELECTRA이며 이 기본값은 명시적으로 저장되고 범위를 벗어난 값(0 포함)은 기본값으로 읽히지만 저장되지는 않습니다. 모든 검증자 레지스트리에 필드를 추가하면 거의 안 쓰이는 값을 위해 상태가 커지므로, 이미 쓰지 않는 자격증명 바이트를 재활용한 설계입니다.",
+          "ref": "원문: Rationale · Storing the threshold in withdrawal credentials"
         },
         {
-          "title": "수수료와 블록당 처리 한도",
-          "body": "요청 수수료는 EIP-7002와 같은 방식으로 정해집니다. MIN_SET_SWEEP_THRESHOLD_REQUEST_FEE는 1, TARGET_SET_SWEEP_THRESHOLD_REQUESTS_PER_BLOCK은 2, SET_SWEEP_THRESHOLD_REQUEST_FEE_UPDATE_FRACTION은 17입니다. 누적 초과량(excess)을 fake_exponential에 넣어 수수료를 계산합니다. 블록마다 요청 수가 목표인 2건을 넘으면 초과량이 쌓여 수수료가 오르고 밑돌면 줄어듭니다. 한 블록에서 대기열에서 꺼내는 요청은 MAX_SET_SWEEP_THRESHOLD_REQUESTS_PER_BLOCK인 16건까지입니다. 입력 길이가 0이면 현재 수수료를 돌려주는 조회로 처리합니다. 이때 ETH가 함께 오면 자금 손실을 막기 위해 되돌립니다. 첫 시스템 콜 전에는 초과량 슬롯에 EXCESS_INHIBITOR(2**256-1)가 들어 있어 get_fee()가 실패합니다.",
-          "ref": "원문: Specification · Constants / Fee calculation / Fee Getter"
+          "title": "요청 메커니즘과 수수료",
+          "body": "새 요청은 EIP-7685 타입 0x05(SWEEP_THRESHOLD_REQUEST_TYPE)로 정의됩니다. 프리컴파일에 56바이트(공개키 48바이트 + 빅엔디안 uint64 임계값 8바이트)를 입력하면 큐에 등록되고 로그가 남습니다. 수수료는 fake_exponential 함수로 블록당 초과 요청 수(excess)에 따라 계산되며 블록당 최대 16개(MAX_SET_SWEEP_THRESHOLD_REQUESTS_PER_BLOCK), 목표치는 2개(TARGET_SET_SWEEP_THRESHOLD_REQUESTS_PER_BLOCK)입니다. 입력이 0바이트면 현재 수수료를 조회하는 getter로 동작합니다.",
+          "ref": "원문: Specification · Execution layer"
         },
         {
-          "title": "블록 끝 시스템 콜 규칙",
-          "body": "FORK_BLOCK부터 모든 블록은 트랜잭션 처리가 끝난 뒤 SYSTEM_ADDRESS(0xfffffffffffffffffffffffffffffffffffffffe)가 빈 calldata로 컨트랙트를 호출합니다. 컨트랙트는 대기열에서 요청을 꺼내고(dequeue_set_sweep_threshold_requests), 초과량을 갱신하고(update_excess_set_sweep_threshold_requests), 블록 요청 수를 0으로 되돌립니다. 꺼낸 요청은 SSZ로 직렬화해 이어 붙인 바이트열로 반환하며 EIP-7685 요청 목록에 그 순서 그대로 들어가야 합니다. 이 호출은 SYSTEM_TRANSACTION_GAS인 30_000_000 가스를 따로 받고 EIP-7825의 트랜잭션 가스 상한을 받지 않습니다. 쓴 가스는 블록 가스 사용량에 포함되지 않고 EIP-1559 소각도 없습니다. 컨트랙트 주소에 코드가 없거나 호출이 실패하면 블록은 무효입니다. EIP-7910 eth_config를 제공하는 클라이언트는 systemContracts에 SET_SWEEP_THRESHOLD_REQUEST_PREDEPLOY_ADDRESS 키로 이 컨트랙트를 적어야 합니다.",
-          "ref": "원문: Specification · Execution layer · System Call / Chain configuration"
+          "title": "설정 가능 조건",
+          "body": "임계값 설정 요청은 반드시 해당 검증자의 실행계층 인출주소에서 보낸 것만 받아들여집니다. 또한 종료 중이 아닌 복리형 검증자여야 하고 새 임계값은 EFFECTIVE_BALANCE_INCREMENT(1 ETH)의 배수여야 하며 MIN_ACTIVATION_BALANCE(32 ETH)와 MAX_EFFECTIVE_BALANCE_ELECTRA(2048 ETH) 사이여야 하고 검증자의 현재 잔액보다 낮게는 설정할 수 없습니다.",
+          "ref": "원문: Consensus layer"
         },
         {
-          "title": "출금 자격 안에 기준값 저장",
-          "body": "합의 계층은 BeaconState나 Validator에 필드를 추가하지 않고 0x02 출금 자격 안에 기준값을 넣습니다. 0번째 바이트는 COMPOUNDING_WITHDRAWAL_PREFIX(0x02), 1~2번째 바이트는 EFFECTIVE_BALANCE_INCREMENT 단위의 리틀엔디언 uint16 기준값, 3~11번째는 예약, 12~31번째는 실행 주소입니다. 상수 SWEEP_THRESHOLD_CREDENTIAL_OFFSET은 1, SWEEP_THRESHOLD_CREDENTIAL_LENGTH는 2입니다. 기준값이 MAX_EFFECTIVE_BALANCE_ELECTRA이면 0으로 저장하고 범위를 벗어난 값은 기본값으로 읽습니다. 예를 들어 0x02e803...은 1,000 ETH입니다. 스위프와 유효 잔액 계산에서 get_max_effective_balance를 쓰던 자리는 모두 이 기준값을 씁니다. 따라서 기준값은 자동 출금 기준이면서 유효 잔액 상한이기도 합니다. 근거 절은 검증자마다 8바이트 목록을 BeaconState에 추가하면 balances만큼 커지는데, 자격에는 이미 11바이트가 비어 있고 switch_to_compounding_validator가 자격을 다시 쓰는 경로도 있어 여기에 넣었다고 설명합니다. 최대값을 0으로 저장하면 모든 기준값이 인코딩 하나만 갖고 검증자가 원래 자격으로 되돌릴 수도 있습니다.",
-          "ref": "원문: Specification · Consensus layer / Rationale · Storing the threshold in withdrawal credentials"
+          "title": "현재 잔액보다 낮게 설정 금지",
+          "body": "임계값을 현재 잔액보다 낮출 수 없도록 한 이유는 이 기능을 즉시 인출을 트리거하는 우회 수단으로 쓰지 못하게 막기 위해서입니다. 더 낮은 수준으로 잔액을 줄이고 싶다면 먼저 일반 부분 인출을 통해 잔액을 낮춘 뒤, 그 수준에 맞춰 임계값을 설정해야 합니다.",
+          "ref": "원문: Rationale · Only allowing threshold to be set above current balance"
         },
         {
-          "title": "요청 수락 조건과 처리 시점",
-          "body": "기준값 변경 요청은 다음 조건을 모두 만족할 때만 받아들입니다. source_address가 검증자의 실행 주소여야 하고 대상은 퇴장 중이 아닌 합산 출금 검증자여야 합니다. 기준값은 EFFECTIVE_BALANCE_INCREMENT의 배수이고 MIN_ACTIVATION_BALANCE 이상 MAX_EFFECTIVE_BALANCE_ELECTRA 이하이며 검증자의 현재 잔액보다 낮으면 안 됩니다. 현재 잔액 아래로 잡지 못하게 한 이유는 이 기능으로 즉시 출금을 일으키는 것을 막기 위해서입니다. 더 낮은 기준을 원하면 먼저 부분 출금으로 잔액을 줄인 뒤 요청하면 됩니다. 새 0x02 검증자는 자신을 만든 예치의 자격에서 기준값을 가져오고(범위 밖이면 지움), 초기 유효 잔액은 그 기준값까지로 제한됩니다. switch_to_compounding_validator와 포크 전환은 1~2번째 바이트를 지워 기존 검증자와 전환 검증자는 기본값에서 시작합니다. 요청은 부분 출금과 달리 합의 계층 대기열 없이 실행 계층에서 꺼내는 즉시 처리됩니다. ExecutionRequests에 SetSweepThresholdRequest 목록이 추가되고 페이로드당 최대 MAX_SET_SWEEP_THRESHOLD_REQUESTS_PER_PAYLOAD(16)건입니다.",
-          "ref": "원문: Specification · Consensus layer / Rationale · Only allowing threshold to be set above current balance / Immediate requests processing"
+          "title": "합의계층에서는 큐 없이 즉시 처리",
+          "body": "일반 부분 인출 요청은 합의계층에서 별도 큐에 쌓여 처리되지만 스위프 임계값 설정 요청은 실행계층 큐에서 꺼내지는 즉시 합의계층에서 처리됩니다. 별도의 합의계층 큐를 두지 않아 구현이 단순해집니다.",
+          "ref": "원문: Rationale · Immediate requests processing instead of queuing on consensus layer"
         },
         {
-          "title": "호환성, 대기열 중단 장치, 보안",
-          "body": "블록 구조와 검증 규칙이 바뀌므로 하위 호환되지 않지만 사용자 활동과 경험에는 영향이 없다고 원문은 밝힙니다. ExecutionRequests에 새 타입이 들어가므로 포크 시점에 execution_requests_root 검증을 클라이언트 간에 맞춰야 합니다. 기준값을 바꾸면 자격의 1~2번째 바이트가 달라지므로, 32바이트 전체를 비교하는 EIP-4788 증명 검증기 같은 앱은 접두어와 실행 주소만 비교해야 합니다. 변경은 출금 주소만 요청할 수 있어 선택 사항입니다. 이 EIP 이전 도구로 만든 예치는 그 바이트가 0이므로 기본값을 받습니다. 시스템 콜에 빈 calldata가 아닌 값이 오면 초과량 슬롯에 EXCESS_INHIBITOR를 넣어 대기열을 멈춥니다. 이 EIP에서는 모든 시스템 콜이 빈 calldata이므로 닿지 않는 경로이지만 나중에 컨트랙트를 폐기할 때 프로토콜이 호출을 멈춘 뒤에도 요청과 수수료가 빠지지 않는 대기열에 계속 쌓이는 일을 막기 위해 둔 장치입니다. 수수료 과다 지불, 시스템 콜 실패, 빈 코드 같은 보안 고려 사항은 EIP-7002와 같다고 적고 있습니다.",
-          "ref": "원문: Backwards Compatibility / Security Considerations"
+          "title": "기존 자격증명 비교 로직에 미치는 영향",
+          "body": "포크 시점에 기존 복리형 검증자 전원의 자격증명에 기본 임계값이 기록되므로, 자격증명 32바이트 전체를 저장해 두고 비교하던 애플리케이션, 예를 들어 EIP-4788 증명 검증 로직은 포크 이후 값이 달라집니다. 이런 애플리케이션은 전체 바이트 비교 대신 접두사와 실행주소만 비교하도록 바꿔야 합니다.",
+          "ref": "원문: Backwards Compatibility · Usage of the previously unused bytes"
         },
         {
-          "title": "현재 상태와 포크 결정",
-          "body": "이 EIP는 Draft 상태이며 아직 바뀔 수 있습니다. 컨트랙트 주소 SET_SWEEP_THRESHOLD_REQUEST_PREDEPLOY_ADDRESS와 배포 트랜잭션은 원문에 TBD로 비어 있고 합의 계층 전체 명세는 specs/_features/eip8148/beacon-chain.md에 따로 있습니다. 코어 개발자 콜에서는 09.03 ACDC #186에서 논의됐지만 결정은 없었고 10.29 ACDC #190에서 헤고타(Hegota) 포크의 CFI로 정해졌습니다. CFI는 Considered for Inclusion의 약자로 포크 포함 후보로 검토한다는 뜻입니다.",
-          "ref": "원문: Preamble · status / Specification · Deployment / 콜 기록: 09.03 ACDC #186, 10.29 ACDC #190"
+          "title": "현재 상태와 포함 결정",
+          "body": "이 EIP는 현재 Draft 상태로, 프리컴파일 배포 주소 등 TBD로 남은 세부 사항이 앞으로 바뀔 수 있습니다. 2026-10-29 ACDC #190 콜에서 헤고타(Hegota) 하드포크에 CFI(Considered for Inclusion)로 포함됐습니다.",
+          "ref": "콜 기록: 10.29 ACDC #190; 원문 상태: Draft"
         }
       ],
       "glossary": [
         {
           "term": "스위프(sweep)",
-          "def": "프로토콜이 검증자 잔액 중 기준을 넘는 부분을 출금 주소로 자동으로 보내는 과정입니다. 사용자가 요청하지 않아도 검증자를 순서대로 돌면서 처리합니다."
+          "def": "검증자 잔액 중 기준치를 넘는 보상을 별도 요청 없이 자동으로 인출주소로 보내는 과정입니다."
         },
         {
-          "term": "출금 자격(withdrawal credentials)",
-          "def": "검증자의 보상과 원금이 어디로, 어떤 규칙으로 나가는지 정하는 32바이트 값입니다. 첫 바이트가 종류를 나타냅니다."
+          "term": "복리형 출금 자격증명(0x02)",
+          "def": "보상을 바로 꺼내지 않고 검증자 잔액에 계속 쌓아 지분을 불릴 수 있게 하는 자격증명 유형입니다."
         },
         {
-          "term": "합산 출금 자격(0x02)",
-          "def": "EIP-7251로 생긴 자격 종류로, 보상이 검증자 잔액에 쌓여 최대 2,048 ETH까지 유효 잔액으로 인정됩니다."
+          "term": "부분 인출(partial withdrawal)",
+          "def": "검증자가 수동으로 요청해 잔액 중 일부만 꺼내는 절차입니다."
         },
         {
-          "term": "유효 잔액(effective balance)",
-          "def": "보상과 벌칙 계산에 실제로 쓰이는 검증자 잔액으로, 1 ETH 단위(EFFECTIVE_BALANCE_INCREMENT)로 끊어 셉니다."
+          "term": "인출주소(withdrawal address)",
+          "def": "검증자에게서 인출된 자금이 도착하는 실행계층 주소입니다."
         },
         {
-          "term": "부분 출금(partial withdrawal)",
-          "def": "검증자가 퇴장하지 않고 잔액 일부만 꺼내도록 직접 보내는 요청입니다. 원문에 따르면 일반 퇴장 대기열을 함께 씁니다."
+          "term": "실효 잔액(effective balance)",
+          "def": "검증자의 투표 가중치를 계산할 때 쓰는, 일정 단위로 반올림된 잔액입니다."
         },
         {
-          "term": "실행 계층 요청(EIP-7685)",
-          "def": "실행 계층 컨트랙트에서 모은 요청을 블록에 실어 합의 계층으로 넘기는 공통 틀입니다. 타입 번호로 종류를 구분합니다."
+          "term": "EIP-7685 요청",
+          "def": "실행계층에서 합의계층으로 정보를 전달하기 위한 표준 요청 형식입니다."
         }
       ],
       "related": [
         {
           "number": 7251,
-          "note": "requires. 합산 출금 자격(0x02)과 MAX_EFFECTIVE_BALANCE_ELECTRA를 도입한 EIP로, 이 제안은 그 자격의 빈 바이트를 씁니다."
+          "note": "복리형 출금 자격증명(0x02)을 도입한 EIP로, 이 기능이 그 위에서 동작하는 전제입니다."
         },
         {
           "number": 7685,
-          "note": "requires. 이 제안의 요청은 EIP-7685 실행 계층 요청 타입 0x05로 블록에 실립니다."
+          "note": "새 스위프 임계값 설정 요청이 따르는 실행계층 요청 형식의 표준입니다."
         },
         {
           "number": 7002,
-          "note": "출금 요청 컨트랙트의 대기열·수수료·시스템 콜 설계를 그대로 따르며, 보안 고려 사항도 이 EIP를 참조합니다."
+          "note": "큐·수수료·메시징 설계를 그대로 참고한 선행 EIP(출금 요청)입니다."
         },
         {
           "number": 4788,
-          "note": "출금 자격 32바이트 전체를 비교하는 EIP-4788 증명 검증기는 접두어와 실행 주소만 비교하도록 바꿔야 합니다."
-        },
-        {
-          "number": 7825,
-          "note": "블록 끝 시스템 콜은 EIP-7825의 트랜잭션 가스 상한을 받지 않습니다."
+          "note": "자격증명 32바이트 전체를 비교하던 기존 증명 검증 로직이 이 변경으로 영향을 받습니다."
         }
       ],
       "meta": {
@@ -64048,9 +64028,9 @@
         ],
         "discussionsTo": "https://ethereum-magicians.org/t/eip-8148-custom-sweep-threshold-for-validators/27669"
       },
-      "sourceHash": "58a0123e5d983f51",
-      "model": "fable",
-      "generatedAt": "2026-11-02T10:08:12.664Z"
+      "sourceHash": "22e760f4e8a9b6f7",
+      "model": "sonnet",
+      "generatedAt": "2026-11-27T01:05:46.722Z"
     },
     {
       "number": 8149,
