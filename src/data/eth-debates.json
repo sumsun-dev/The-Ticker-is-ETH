@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-25T01:04:47.735Z",
+  "updatedAt": "2026-11-28T01:11:12.265Z",
   "processedDigests": [
     "2026-08-24",
     "2026-08-25",
@@ -40,9 +40,368 @@
     "2026-11-16",
     "2026-11-19",
     "2026-11-22",
-    "2026-11-25"
+    "2026-11-25",
+    "2026-11-28"
   ],
   "debates": [
+    {
+      "id": "glamsterdam-scaling-governance-trust",
+      "title": "이더리움의 스케일링 가속은 거버넌스 신뢰와 불변성 정체성을 희생시키고 있는가?",
+      "category": "거버넌스 · 커뮤니티",
+      "summary": "글램스테르담(Glamsterdam) 가스 한도(gas limit) 확대 결정을 계기로, kennyistyping과 PhiMarHal·hanni_abu는 1000배 스케일링(scaling) 추구가 거버넌스 신뢰와 불변 계약(immutable contract)이라는 정체성을 훼손한다고 우려했고, ryanberckmans는 이번 일이 탈중앙화를 희생한 것이 아니라 예외적 실수라고 선을 그었다. adietrichs는 비판이 타당하다고 인정하면서도 「가정(assumption)」과 「불변식(invariant)」을 구분해야 한다며 중립을 취했다.",
+      "keyPoints": [
+        "스케일링 부족이 실제 이더리움 채택을 가로막는 요인인가?",
+        "이번 가스 한도 사태는 구조적으로 탈중앙화를 희생한 것인가, 일회적 실수인가?",
+        "1000배 스케일링 비전이 불변 계약 지원 같은 이더리움의 정체성과 양립하는가?"
+      ],
+      "background": "글램스테르담은 가스 한도를 약 3.3배 올리는 등 L1 처리량을 크게 확대하는 하드포크(hard fork)로, 리프라이싱(repricing)이 일부 불변 계약의 가정을 뒤늦게 깨뜨린다는 점이 드러났으나 수정 없이 그대로 배포하기로 결정됐다. adietrichs는 EthLabs의 전무로 가스·UX 로드맵을 담당한다. 이 논쟁은 그 결정 이후 스케일링 속도와 거버넌스 신뢰 사이의 긴장을 다룬다.",
+      "whyItMatters": "글램스테르담을 수정 없이 배포하기로 한 뒤에도 스케일링 속도와 거버넌스 신뢰 사이의 긴장은 해소되지 않아 다음 포크 논쟁으로 번질 수 있다. adietrichs가 이더리움의 장기 가치는 처리량만이 아니라 조건을 끊임없이 재협상하지 않아도 되는 신뢰에 달려 있다고 정리한 만큼, 코어 개발 프로세스가 이 신뢰를 어떻게 복원하는지를 지켜봐야 한다.",
+      "keywords": [
+        "Glamsterdam",
+        "gas limit",
+        "immutable contracts",
+        "Ethereum governance"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "스케일링을 위해 신뢰와 정체성이 희생되고 있다",
+          "holders": [
+            {
+              "handle": "kennyistyping",
+              "name": "kenny",
+              "avatar": "https://pbs.twimg.com/profile_images/1769523490967982080/FDrYb1C8_400x400.jpg"
+            },
+            {
+              "name": "PhiMarHal",
+              "watchlist": false
+            },
+            {
+              "handle": "hanni_abu",
+              "name": "hanniabu.eth (Ξ, α)",
+              "role": "Ether Alpha 팀 개발자",
+              "avatar": "https://pbs.twimg.com/profile_images/1602597529820041216/1AxDBUlw_400x400.jpg"
+            },
+            {
+              "name": "me_jango",
+              "watchlist": false
+            }
+          ],
+          "points": [
+            "ETH의 스케일링 부족은 더 많은 사람이 오늘 ETH를 쓰지 않는 이유와 무관하다.",
+            "글램스테르담은 계약이 깨지는 데서 그치지 않고 이더리움 거버넌스 신뢰를 훼손하며, 이는 되돌릴 수 없다.",
+            "지금의 1명은 불변 계약을 지원하는 플랫폼에 접근하지만 미래의 999명은 불변 계약을 억제하는 플랫폼을 쓰게 되며, 스케일을 위해 중요한 것을 희생하면 이더리움은 정체성을 잃는다.",
+            "안전장치 try/catch가 공공 금융 인프라에서 깨지는 것은 합성성(composability)을 훼손한다."
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "탈중앙화 희생이 아니라 예외적 실수다",
+          "holders": [
+            {
+              "handle": "ryanberckmans",
+              "name": "⟠",
+              "role": "이더리움 커뮤니티 멤버·ETH 투자자",
+              "avatar": "https://pbs.twimg.com/profile_images/1517698378259480577/OyjdGW3D_400x400.jpg"
+            }
+          ],
+          "points": [
+            "이더리움의 스케일링 야심이 탈중앙화를 희생하며 이뤄진다는 주장은 대체로 부정확하다.",
+            "최대 탈중앙화를 유지한 스케일링이 목표이고 그 궤도는 순조롭다.",
+            "이번 글램스테르담 가스 사태는 그 흐름에서 벗어난 예외적 실수다."
+          ]
+        },
+        {
+          "stance": "neutral",
+          "label": "비판은 타당하나 가정과 불변식을 구분해야 한다",
+          "holders": [
+            {
+              "handle": "adietrichs",
+              "name": "ansgar.eth",
+              "role": "EthLabs 전무, 가스·UX 로드맵",
+              "avatar": "https://pbs.twimg.com/profile_images/1575685906786402304/P5UbjDt6_400x400.jpg"
+            }
+          ],
+          "points": [
+            "비판 자체는 타당하지만 「가정」과 「불변식」이 충분히 구분되지 않는다.",
+            "과거에도 누군가 명백히 백엔드적인 것에 대해 가정을 세웠다가 그것이 바뀌면서 조정해야 했던 사례가 많았다.",
+            "이더리움의 장기 가치는 처리량만이 아니라, 프로토콜을 지배하는 누구와도 가정을 끊임없이 재협상하지 않고 신뢰할 수 있는 시스템을 만들 수 있느냐에 달려 있다."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-11-26",
+          "by": "kennyistyping",
+          "stance": "pro",
+          "quote": "ETH에 스케일링이 부족하다는 사실은 오늘 더 많은 사람이 ETH를 쓰지 않는 이유와 아무 관련이 없다고 본다. 그 999명은 이미 충분히 쓸 능력이 있다.",
+          "url": "https://x.com/kennyistyping/status/2125994226542669988",
+          "digest": "2026-11-28",
+          "replyTo": "adietrichs",
+          "relation": "reply",
+          "original": "appreciate you taking the time to respond!\n\nand yes this is good because it gets at the fundamental core disagreement, I don't think ETH's lack of scaling has anything to do with the reason why more people are not using ETH today\n\nthose 999 people are more than capable of accessing and exploring Ethereum as-is, they're just not doing it because we have a lack of compelling, practical use cases for them\n\nalternative, \"scaled\" blockchains have been explored tirelessly for 10+ years now, it's worrisome to me that the lesson from that for Ethereum is \"we need to be more like them\" even though those blockchains haven't produced retail adoption either\n\nhttps://t.co/NOKSkULVxh",
+          "author": "kennyistyping",
+          "translation": "답변해주셔서 감사합니다! 그리고 네, 이건 좋은 지적인데 근본적인 핵심 의견 차이를 짚어주기 때문입니다. 저는 ETH의 스케일링 부족이 오늘날 더 많은 사람들이 ETH를 사용하지 않는 이유와는 아무 관련이 없다고 생각합니다. 그 999명의 사람들은 지금 있는 그대로의 이더리움에 충분히 접근하고 탐색할 능력이 있습니다. 그들이 그렇게 하지 않는 이유는 단지 그들에게 매력적이고 실용적인 사용 사례(use case)가 부족하기 때문입니다. 대안적인 '스케일된' 블록체인들은 10년 넘게 끊임없이 탐구되어 왔는데, 그로부터 이더리움이 얻어야 할 교훈이 '우리도 그들처럼 되어야 한다'는 것이라는 점이 저는 우려스럽습니다. 그 블록체인들조차 리테일 채택(retail adoption)을 이뤄내지 못했는데도 말입니다."
+        },
+        {
+          "date": "2026-11-26",
+          "by": "adietrichs",
+          "stance": "neutral",
+          "quote": "비판이 타당하다고 본다. 하지만 '가정'과 '불변식'의 구분이 충분히 이뤄지지 않는다. 과거에도 명백히 백엔드적인 것에 대한 가정이 바뀌면서 조정해야 했던 사례가 많았다.",
+          "url": "https://x.com/adietrichs/status/2125998009963925610",
+          "digest": "2026-11-28",
+          "replyTo": "kennyistyping",
+          "relation": "reply",
+          "original": "Yes I do think the criticism is valid. But I think the distinction between \"assumption\" and \"invariant\" is not made enough. Again, we have had many cases in the past where someone made assumptions about something clearly \"backend\" and then had to adjust as these changed.\n\nChanges to genuine unambiguous \"invariants\" (as in, behavior everyone at some point agreed would be unchanging about Ethereum) have been very rare, I can only think of say the SELFDESTRUCT behavior change.\n\nAnd so gas is in the middle. And I think any discussion about undermining trust that doesn't start by acknowledging the tricky nature of gas is misleading imo. Problem is gas is something where core dev perspective and app dev perspective is quite different. Core devs have always been adamant that gas should not be relied upon. But that's easy to say, and a) that was never all that legible, and b) often there simply wasn't a good choice.\n\nBeyond Glamsterdam, I think this should be a wake up call that we need to fix the gas situation properly (easier said than done) and more generally level up here. Clearly agreed upon invariants, and safe primitives when those invariants are insufficient for important use cases.",
+          "author": "adietrichs",
+          "translation": "네, 저도 그 비판이 타당하다고 생각합니다. 다만 '가정(assumption)'과 '불변성(invariant)'의 구분이 충분히 이루어지지 않고 있다고 봅니다. 다시 말하지만, 과거에도 누군가가 명백히 '백엔드(backend)'적인 것에 대해 가정을 세웠다가 그것이 바뀌면서 조정해야 했던 사례가 많았습니다. 진정으로 모호하지 않은 '불변성'(즉 어느 시점에서든 모두가 이더리움에 대해 변하지 않을 것이라고 합의했던 동작)에 대한 변경은 매우 드물었고, 저로서는 SELFDESTRUCT 동작 변경 정도만 떠오릅니다. 그러니 가스(gas)는 그 중간에 있는 셈입니다. 그리고 가스의 까다로운 성격을 인정하지 않고 시작하는 신뢰 훼손에 관한 논의는 제 생각에 오해를 불러일으킨다고 봅니다. 문제는 가스가 코어 개발자(core dev)의 관점과 앱 개발자(app dev)의 관점이 상당히 다른 영역이라는 점입니다. 코어 개발자들은 항상 가스에 의존해서는 안 된다고 단호하게 말해왔습니다. 하지만 그렇게 말하기는 쉬운 반면, a) 그 기준이 그다지 명확했던 적이 없었고, b) 종종 딱히 좋은 선택지가 없었던 것도 사실입니다. 글램스테르담(Glamsterdam)을 넘어서, 저는 이번 일이 가스 상황을 제대로 고쳐야 한다는(말은 쉽지만 실행은 어려운) 각성의 계기가 되어야 하며, 전반적으로 이 부분의 수준을 끌어올려야 한다고 생각합니다. 명확히 합의된 불변성, 그리고 그 불변성이 중요한 사용 사례에 충분하지 않을 때를 위한 안전한 프리미티브(primitive)가 필요합니다."
+        },
+        {
+          "date": "2026-11-26",
+          "by": "PhiMarHal",
+          "stance": "pro",
+          "quote": "'1000배 스케일링은 오늘 이더리움의 속성에 접근하는 1명당 미래에 999명이 더 생긴다는 뜻'이라는 말은, 내 생각엔 말도 안 되는 믿음이다.",
+          "url": "https://x.com/PhiMarHal/status/2125998309969912116",
+          "digest": "2026-11-28",
+          "replyTo": "adietrichs",
+          "relation": "reply",
+          "original": "@adietrichs @kennyistyping I like your take in general but \"1000x scaling means that for every 1 user that has access to Ethereum's properties today, there will be 999 more users in the future with that access.\" is IMHO a crazy belief to have.",
+          "author": "PhiMarHal",
+          "translation": "@adietrichs @kennyistyping 전반적인 관점은 좋아하지만, '1000배 스케일링(1000x scaling)이란 오늘날 이더리움의 속성에 접근할 수 있는 사용자 1명당, 미래에는 그 접근 권한을 가진 사용자가 999명 더 생긴다는 뜻이다'라는 생각은 제가 보기엔 말도 안 되는 믿음입니다."
+        },
+        {
+          "date": "2026-11-26",
+          "by": "me_jango",
+          "stance": "pro",
+          "quote": "안전장치 try/catch가 깨지는 것은 공공 금융 인프라에서 엄청난 일이다. 합성성을 훼손한다. 가장 기본적인 사례는 외부 구성요소에 수수료를 부과하는 스마트 컨트랙트 루틴이다.",
+          "url": "https://x.com/me_jango/status/2125998741312152036",
+          "digest": "2026-11-28",
+          "replyTo": "adietrichs",
+          "relation": "reply",
+          "original": "Fail safe try/catch is a massive thing for public financial infrastructure to break. It undermines composability.\n\nThe most basic use case: a smart contract routine that charges a fee into an external component. If that external component is temporarily not accepting the payment for whatever reason, you do not want to not let the top level customer from completing their tx… you just want to forgive the fee this time around.\n\nUnder Glam users could always choose whether or not to pay the fee. Contracts that are working as intended are now rendered unproductive.\n\nIt’s not an acceptable tradeoff Ansgar.",
+          "author": "me_jango",
+          "translation": "페일세이프 try/catch(fail safe try/catch)가 망가진다는 것은 공공 금융 인프라에 있어 매우 중대한 문제입니다. 이는 조합성(composability)을 훼손합니다. 가장 기본적인 사용 사례를 들면, 외부 컴포넌트에 수수료를 부과하는 스마트 컨트랙트 루틴이 있습니다. 만약 그 외부 컴포넌트가 어떤 이유로든 일시적으로 결제를 받아들이지 않는다면, 최상위 고객이 트랜잭션(tx)을 완료하지 못하게 막고 싶지는 않을 것입니다... 그저 이번 한 번은 수수료를 면제해주고 싶을 뿐입니다. 글램(Glam) 하에서는 사용자들이 수수료를 지불할지 여부를 항상 선택할 수 있었습니다. 의도한 대로 작동하는 컨트랙트들이 이제는 비생산적인 것으로 전락합니다. 이건 받아들일 수 없는 트레이드오프입니다, Ansgar."
+        },
+        {
+          "date": "2026-11-26",
+          "by": "hanni_abu",
+          "stance": "pro",
+          "quote": "그 1명은 불변 계약을 지원하는 플랫폼에 접근한다. 나머지 999명은 불변 계약을 억제하는 플랫폼에 접근하게 된다. 우리가 무엇을 만들고 있는지 잊어선 안 된다. 스케일을 위해 중요한 것을 희생하기 시작하면 이더리움은 그 정체성을 잃는다.",
+          "url": "https://x.com/hanni_abu/status/2126002248954351846",
+          "digest": "2026-11-28",
+          "replyTo": "adietrichs",
+          "relation": "reply",
+          "original": "That one user has access to a platform that supports immutable contracts\n\nThose other 999 users will have access to a platform that discourages immutable contracts\n\nWe must not forget what we're building here. Start sacrificing things that matter for scale and Ethereum loses it's value prop.",
+          "author": "hanni_abu",
+          "translation": "그 1명의 사용자는 불변 컨트랙트(immutable contracts)를 지원하는 플랫폼에 접근할 수 있습니다. 나머지 999명의 사용자들은 불변 컨트랙트를 장려하지 않는 플랫폼에 접근하게 될 것입니다. 우리가 지금 무엇을 만들고 있는지를 잊어서는 안 됩니다. 스케일을 위해 중요한 것들을 희생하기 시작하면 이더리움은 자신의 가치 제안(value prop)을 잃게 됩니다."
+        },
+        {
+          "date": "2026-11-26",
+          "by": "ryanberckmans",
+          "stance": "con",
+          "quote": "이더리움의 스케일링 야심이 탈중앙화를 희생하며 이뤄진다는 말은 대체로 부정확하다. 최대 탈중앙화를 유지한 스케일링이 목표이고 그 궤도는 순조롭다. 이번 글램 가스 사태는 예외다.",
+          "url": "https://x.com/ryanberckmans/status/2126013493019345264",
+          "digest": "2026-11-28",
+          "replyTo": "kennyistyping",
+          "relation": "reply",
+          "original": "Appreciate your ongoing contributions to these discussions. Yet, imo it's mostly inaccurate to suggest that ethereum's scaling ambitions are coming at the cost of decentralization. Scaling with maximum decentralization is the goal and that's on track. This glam gas debacle is an anomaly; the ~$500k of affected value across a sliver of contracts is small but extremely regrettable and important. Steps are being taken to codify these gas invariants so that future forks avoid similar issues. You're right that this issue sucks and is not ok. However what we are seeing here (moving forwards with Glam) is the right balance to take ethereum to global ubiquity, and nothing like a betrayal of what makes ethereum special.",
+          "author": "ryanberckmans",
+          "translation": "이 논의들에 꾸준히 기여해주셔서 감사합니다. 다만 제 생각에는 이더리움의 스케일링 야심이 탈중앙화(decentralization)를 희생시키고 있다는 주장은 대체로 정확하지 않습니다. 최대한의 탈중앙화를 유지하면서 스케일링하는 것이 목표이고, 그 방향은 순조롭게 진행되고 있습니다. 이번 글램(Glam) 가스 사태는 하나의 예외적 사건입니다. 영향을 받은 일부 컨트랙트들에 걸친 약 50만 달러 상당의 가치는 작지만 매우 아쉽고 중요한 문제입니다. 향후 포크(fork)에서 유사한 문제를 피할 수 있도록 이러한 가스 불변성(gas invariants)을 명문화하기 위한 조치들이 취해지고 있습니다. 이 문제가 안 좋고 받아들일 수 없다는 점에서는 당신이 맞습니다. 하지만 지금 우리가 보고 있는 것(글램을 그대로 진행하는 것)은 이더리움을 전 세계적인 보편성(global ubiquity)으로 이끌기 위한 올바른 균형이며, 이더리움을 특별하게 만드는 것을 배신하는 것과는 전혀 다릅니다."
+        },
+        {
+          "date": "2026-11-26",
+          "by": "kennyistyping",
+          "stance": "pro",
+          "quote": "부정확하다는 데는 동의하지 못하겠다. 나보다 이더리움을 더 잘 아는 사람들도 같은 주장을 하고 있다. 계약이 영향을 받는 것 이상의 문제이며, 글램스테르담은 이더리움 거버넌스에 대한 사람들의 신뢰를 훼손할 것이고 이는 피할 수 없다.",
+          "url": "https://x.com/kennyistyping/status/2126014500252070181",
+          "digest": "2026-11-28",
+          "replyTo": "ryanberckmans",
+          "relation": "reply",
+          "original": "agree to disagree that it's inaccurate, people who know Ethereum better than I do are making the same argument that I am\n\nit's about more than contracts being impacted, Glamsterdam is going to hurt people's trust in Ethereum governance and there's no getting around it\n\n\"ethereum's long-term value is not determined exclusively by throughput, gas limits, or execution efficiency. it also depends on whether people can build systems that remain trustworthy without continually renegotiating their assumptions with whoever governs the protocol\"\n\nhttps://t.co/puYr7j3BMO",
+          "author": "kennyistyping",
+          "translation": "그게 부정확하다는 데는 동의하지 않겠습니다. 저보다 이더리움을 더 잘 아는 사람들도 저와 같은 주장을 하고 있습니다. 이건 단순히 영향을 받는 컨트랙트들의 문제를 넘어서는 것입니다. 글램스테르담(Glamsterdam)은 이더리움 거버넌스(governance)에 대한 사람들의 신뢰를 해칠 것이고, 이는 피할 수 없는 사실입니다. '이더리움의 장기적 가치는 처리량(throughput), 가스 한도(gas limits), 혹은 실행 효율성(execution efficiency)만으로 결정되는 것이 아닙니다. 그것은 또한 사람들이 프로토콜을 지배하는 누군가와 끊임없이 자신들의 가정을 재협상하지 않고도 신뢰할 수 있는 시스템을 구축할 수 있는지에도 달려 있습니다.'"
+        },
+        {
+          "date": "2026-11-26",
+          "by": "adietrichs",
+          "stance": "neutral",
+          "quote": "이더리움의 장기 가치는 처리량이나 가스 한도, 실행 효율로만 결정되지 않는다. 사람들이 프로토콜을 지배하는 누구와도 가정을 끊임없이 재협상하지 않고 신뢰할 수 있는 시스템을 만들 수 있느냐에도 달려 있다.",
+          "url": "https://x.com/adietrichs/status/2126028392885780721",
+          "digest": "2026-11-28",
+          "replyTo": "kennyistyping",
+          "relation": "reply",
+          "original": "> ethereum's long-term value is not determined exclusively by throughput, gas limits, or execution efficiency. it also depends on whether people can build systems that remain trustworthy without continually renegotiating their assumptions with whoever governs the protocol\n\nThat’s literally my position though. But \"not exclusively\" is the key phrase here. Both of these are very important. Equally true when flipped:\n\nethereum's long-term value is not determined exclusively by whether people can build systems that remain trustworthy without continually renegotiating their assumptions with whoever governs the protocol. it also depends on throughput, gas limits, or execution efficiency",
+          "author": "adietrichs",
+          "translation": "> 이더리움의 장기적 가치는 처리량, 가스 한도, 혹은 실행 효율성만으로 결정되는 것이 아닙니다. 그것은 또한 사람들이 프로토콜을 지배하는 누군가와 끊임없이 자신들의 가정을 재협상하지 않고도 신뢰할 수 있는 시스템을 구축할 수 있는지에도 달려 있습니다. 그런데 그건 말 그대로 제 입장이기도 합니다. 다만 여기서 핵심 어구는 '만으로가 아니라'입니다. 이 두 가지 모두 매우 중요합니다. 뒤집어도 똑같이 참입니다. 이더리움의 장기적 가치는 사람들이 프로토콜을 지배하는 누군가와 끊임없이 자신들의 가정을 재협상하지 않고도 신뢰할 수 있는 시스템을 구축할 수 있는지만으로 결정되는 것이 아닙니다. 그것은 또한 처리량, 가스 한도, 혹은 실행 효율성에도 달려 있습니다."
+        }
+      ],
+      "firstSeen": "2026-11-26",
+      "lastActivity": "2026-11-26",
+      "status": "active",
+      "rootUrl": "https://x.com/adietrichs/status/2126028392885780721",
+      "engagement": {
+        "likes": 2,
+        "retweets": 0,
+        "quotes": 0,
+        "replies": 1,
+        "views": 23
+      }
+    },
+    {
+      "id": "acd-consortium-or-cabal",
+      "title": "핵심개발자콜(ACD)은 누구나 참여하는 열린 컨소시엄인가, 소수가 지배하는 구조인가?",
+      "category": "거버넌스 · 커뮤니티",
+      "summary": "binji_x는 ACD가 중앙화된 소수 집단(cabal)이 아니라 머지 이후 합류자가 많은 열린 컨소시엄이며 이견이 매주 공개 콜에서 드러난다고 설명했다. Thealphacruze는 소수의 의견이 전체를 압도하면 그것은 컨소시엄이 아니라 「집단(collective)」이라 반박했고, kennyistyping은 참여 문이 열려 있어도 현 체제에 만족하는 사람만 들어오는 자기선택 편향이 있어 앱 개발자와 다수 사용자는 나타나지 않는다고 지적했다.",
+      "keyPoints": [
+        "ACD는 누구나 참여 가능한 열린 컨소시엄인가, 소수가 지배하는 구조인가?",
+        "참여 문이 열려 있다는 것만으로 대표성이 확보되는가, 아니면 자기선택 편향이 작동하는가?",
+        "이더리움 거버넌스는 더 빠르게 움직여야 하는가, 더 느리고 신중하게 움직여야 하는가?"
+      ],
+      "background": "ACD(All Core Devs)는 이더리움 클라이언트 개발자들이 매주 공개 콜에서 하드포크 범위와 EIP를 논의하는 느슨한 합의(rough consensus) 절차다. binji_x는 EthLabs에서 이더리움·ETH 커뮤니케이션과 커뮤니티를 담당한다. 이 논쟁은 글램스테르담 가스 한도 사태 이후 ACD의 대표성과 의사결정 속도를 두고 벌어졌다.",
+      "whyItMatters": "글램스테르담 사태로 ACD의 대표성 자체가 도마에 오르면서, 다음 포크 과정에서 의사결정 절차 개편 압력으로 번질 수 있다. binji_x가 진단에서 구체적 해법 제안으로 넘어가자고 제안한 만큼, 자기선택 편향을 보정할 실질적 절차 변경안이 나오는지를 지켜봐야 한다.",
+      "keywords": [
+        "ACD",
+        "All Core Devs",
+        "Ethereum governance",
+        "rough consensus"
+      ],
+      "positions": [
+        {
+          "stance": "pro",
+          "label": "열린 컨소시엄이다",
+          "holders": [
+            {
+              "handle": "binji_x",
+              "name": "binji",
+              "role": "EthLabs, 이더리움·ETH 커뮤니케이션·커뮤니티",
+              "avatar": "https://pbs.twimg.com/profile_images/2057797822666473472/Ns8EleJw_400x400.jpg"
+            }
+          ],
+          "points": [
+            "ACD는 'All Core Devs'의 약자로 여러 개별 기여자와 팀을 대표하는 컨소시엄이며, 폐쇄적으로 통제됐다면 현 구성원 100%가 그 자리에 있지 못했을 것이다.",
+            "모두가 동의해도 클라이언트 팀의 구현과 노드 운영자의 채택이 별도로 필요하므로 ACD가 말한다고 바로 이뤄지지 않는다.",
+            "이더리움은 모든 이견이 공개적으로 드러난다는 점에서 특별하며, 3000억 달러 규모의 탈중앙 네트워크가 임의의 인터넷 비평가도 개발에 참여시킨다."
+          ]
+        },
+        {
+          "stance": "con",
+          "label": "소수가 지배하며 대표성이 결여돼 있다",
+          "holders": [
+            {
+              "name": "Thealphacruze",
+              "watchlist": false
+            },
+            {
+              "handle": "kennyistyping",
+              "name": "kenny",
+              "avatar": "https://pbs.twimg.com/profile_images/1769523490967982080/FDrYb1C8_400x400.jpg"
+            },
+            {
+              "handle": "brendonrell",
+              "name": "Brendon.eth",
+              "watchlist": false,
+              "avatar": "https://pbs.twimg.com/profile_images/1504546895695429635/vy9tc6BX_400x400.jpg"
+            }
+          ],
+          "points": [
+            "소수의 의견이 나머지 전체를 압도한다면 그것은 컨소시엄이 아니라 '집단(collective)'에 가까우며, ACDE를 세운 Nix 본인도 이 문제를 언급한 적이 있다.",
+            "문이 열려 있어도 현 체제에 만족하는 사람만 그 문으로 들어오는 자기선택 편향이 늘 있고, 앱 개발자와 다수 사용자는 본래 그런 자리에 나타나지 않는다.",
+            "이더리움은 나이 들어가므로 더 빠르게가 아니라 더 느리고 신중하게 움직여야 한다(pcaversaccio의 권고에 동의).",
+            "핵심 원칙이 끊임없이 재협상된다면 이 ACD 연극은 무의미하며, 집중되고 분별 있는 리더십이 필요하다."
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2026-11-26",
+          "by": "binji_x",
+          "stance": "pro",
+          "quote": "일부는 ACD를 스스로 이더리움에 좋은 것을 고르는 기관처럼 말하지만, 그것은 중앙화된 소수 집단이라기보다 컨소시엄에 가깝다. 말 그대로 'All Core Devs'의 약자이며, 당신도 ACD에 참여할 수 있다.",
+          "url": "https://x.com/binji_x/status/2125951954421678344",
+          "digest": "2026-11-28",
+          "relation": "none",
+          "original": "On fighting propaganda, ACD, and what makes Ethereum special..\n\nI’ve seen some people refer to ACD as some sort of institution that just picks what’s good for Ethereum on its own.\n\nWhile ACD has a lot it can do better, it’s important to know it’s more of a consortium than a centralized cabal. It literally stands for “ALL CORE DEVS” and represents multiple individual contributors and teams !!\n\nLike, YOU can join ACD. In fact, if it were some gatekept thing, 100% of its current members wouldn’t be there. Many members joined after The Merge, which inspired brilliant technical minds to come to Ethereum to help it fulfill its mission (and maybe something as ambitious as the Merge..*ahem ahem* PQAI can do the same).\n\nNow having said all that, there is a difference between a process that is hard to participate in because the work requires a certain level of technical fluency, and a process that is difficult to participate in because it’s gatekept.\n\nACD doesn’t represent an institutional opinion because it mainly represents rough consensus amongst core devs.\nAlso, even if EVERYONE on ACD agrees on something, Client Teams still need to implement it, and Node Operators still need to adopt it. It’s not like things just happen because ACD says so either.\n\nThey literally fight all the time, in public, and you can see it all on an open call every week via Forkcast (https://t.co/Xj1GCkt5qX), thanks to @wolovim ! You’re welcome to fight with ACD too, but please don’t, there’s too much for them to do right now, so you’ll most likely end up fighting with me, and no one wants that.\n\nWhat makes Ethereum special is that its disagreements all happen in public, and its uncertainties and shortcomings are exposed to the whole world as they occur in real time. This sometimes makes Ethereum look more dysfunctional than projects whose disagreements all happen behind closed doors.\n\nDo I think some doors can be more open, or at least have a mailbox next to them? Sure. Do I think we have closed doors? No, but perhaps the stairs to get there should be easier. There must ALWAYS be more room for inquiry, but it’s quite remarkable that we have a 300B dollar decentralized network that lets any random internet critic become someone who may actively shape its development.\n\nNo company or movement in this space has such open, decentralized development, and we should seek to protect this property as much as we seek to improve it",
+          "author": "binji_x",
+          "translation": "프로파간다와 ACD, 그리고 이더리움을 특별하게 만드는 것에 맞서 싸우는 것에 대해... 어떤 사람들이 ACD를 마치 혼자서 이더리움에 좋은 것을 골라내는 일종의 기관처럼 언급하는 것을 봤습니다. ACD가 더 잘할 수 있는 부분이 많긴 하지만, 그것이 중앙화된 카르텔(cabal)이라기보다는 컨소시엄(consortium)에 가깝다는 점을 아는 것이 중요합니다. ACD는 말 그대로 'ALL CORE DEVS(모든 코어 개발자)'를 뜻하며, 여러 개별 기여자들과 팀들을 대표합니다!! 즉, 당신도 ACD에 참여할 수 있습니다. 사실 만약 그것이 어떤 게이트키핑(gatekept)된 것이었다면, 현재 구성원들 100%가 거기에 있지 못했을 것입니다. 많은 구성원들이 더 머지(The Merge) 이후에 합류했는데, 이는 뛰어난 기술적 역량을 가진 사람들이 이더리움의 사명을 이루는 데 도움을 주기 위해 오도록 영감을 주었습니다 (그리고 아마도 머지만큼 야심찬 무언가인... *에헴 에헴* PQAI도 같은 일을 할 수 있을 것입니다). 이렇게 말한 모든 것을 전제로 하더라도, 작업에 일정 수준의 기술적 숙련도가 필요해서 참여하기 어려운 프로세스와, 게이트키핑되어 있어서 참여하기 어려운 프로세스 사이에는 차이가 있습니다. ACD는 주로 코어 개발자들 사이의 대략적인 합의(rough consensus)를 대표하기 때문에 기관적인 의견을 대표하지 않습니다. 또한 ACD의 모든 사람이 어떤 것에 동의한다 하더라도, 클라이언트 팀(Client Teams)들은 여전히 그것을 구현해야 하고, 노드 운영자(Node Operators)들도 여전히 그것을 채택해야 합니다. ACD가 말한다고 해서 그냥 그 일이 일어나는 것도 아닙니다. 그들은 말 그대로 항상, 공개적으로 싸우며, 매주 열리는 공개 콜에서 Forkcast(https://t.co/Xj1GCkt5qX)를 통해 그 모든 것을 볼 수 있습니다, @wolovim 덕분에요! 당신도 ACD와 싸워도 좋지만, 제발 그러지는 말아주세요, 지금 그들이 해야 할 일이 너무 많으니까요, 그러니 아마 결국 저와 싸우게 될 텐데, 아무도 그걸 원하지 않을 겁니다. 이더리움을 특별하게 만드는 것은 그 의견 차이가 모두 공개적으로 일어나고, 그 불확실성과 단점들이 실시간으로 발생하는 그대로 전 세계에 노출된다는 점입니다. 이는 때때로 이더리움을 모든 의견 차이가 비공개로 일어나는 프로젝트들보다 더 기능이 마비된 것처럼 보이게 만들기도 합니다. 저는 일부 문들이 더 열려 있어야 한다고, 혹은 적어도 그 옆에 메일함이라도 있어야 한다고 생각하냐고요? 물론입니다. 우리에게 닫힌 문이 있다고 생각하냐고요? 아니요, 하지만 아마 거기까지 가는 계단은 더 쉬워져야 할 것입니다. 질문할 여지는 항상 더 있어야 하지만, 우리가 아무 무작위 인터넷 비평가라도 그 발전을 실제로 좌우할 수 있는 사람이 될 수 있게 해주는 3000억 달러 규모의 탈중앙화 네트워크를 가지고 있다는 것은 상당히 놀라운 일입니다. 이 분야의 어떤 회사나 운동도 이렇게 열려 있고 탈중앙화된 개발 방식을 가지고 있지 않으며, 우리는 이 특성을 개선하려는 만큼 보호하려고도 노력해야 합니다."
+        },
+        {
+          "date": "2026-11-26",
+          "by": "Thealphacruze",
+          "stance": "con",
+          "quote": "다 좋은 말이지만, 소수의 의견이 나머지 전체를 압도한다면 그것은 컨소시엄이라기보다 '집단'에 가깝다. ACDE를 세운 Nix 본인도 이를 언급한 바 있다.",
+          "url": "https://x.com/Thealphacruze/status/2125954689631932688",
+          "digest": "2026-11-28",
+          "replyTo": "binji_x",
+          "relation": "reply",
+          "original": "That's all well and good, but when a few peoples opinions over power everyone else then yes it is more of a \"collective\" than a consortium 🤔\n\nNix the person who set up ACDE herself made mention of this\n\nSo sure, you can say \"it's a consortium\"\n\nJust like \"EF\", doesn't \"control\" Ethereum\n\nBut in practice? You know that's exactly what's going on\n\nMany many many people have expressed thier displeasure and disagreements with EF and ACD decisions, and yet, EF and ACD continue to push thier own propaganda and strong arm the decisions THEY want to go through 🤷\n\nIt's a collosal joke that Issuance Reduction is still being argued for as an example (pushed by ACD and some core EF members)",
+          "author": "Thealphacruze",
+          "translation": "그건 다 좋은 말이지만, 몇몇 사람들의 의견이 다른 모든 사람들을 압도할 때는 그것이 컨소시엄이라기보다는 '집단(collective)'에 더 가깝습니다. ACDE를 만든 Nix 본인도 이 점을 언급한 적이 있습니다. 그러니 물론 '그건 컨소시엄이다'라고 말할 수 있겠죠. 'EF'가 이더리움을 '통제'하지 않는 것과 마찬가지로요. 하지만 실제로는요? 바로 그런 일이 벌어지고 있다는 걸 당신도 알고 있습니다. 아주 많은 사람들이 EF와 ACD의 결정에 불만과 의견 차이를 표명했지만, 그럼에도 EF와 ACD는 계속해서 자신들만의 프로파간다를 밀어붙이고 자신들이 통과시키고 싶은 결정을 강압적으로 밀어넣고 있습니다. 예를 들어 발행 감소(Issuance Reduction)가 여전히 논의되고 있다는 것(ACD와 일부 핵심 EF 구성원들이 밀고 있는)은 엄청난 농담거리입니다."
+        },
+        {
+          "date": "2026-11-26",
+          "by": "kennyistyping",
+          "stance": "con",
+          "quote": "참여의 문이 누구에게나 열려 있어도, 지금의 이더리움을 즐기는 사람은 그 문으로 들어오지 않는 자기선택 편향은 항상 존재한다. 앱 개발자와 다수 사용자는 본래 그런 자리에 나타나는 사람들이 아니다.",
+          "url": "https://x.com/kennyistyping/status/2125965051869925756",
+          "digest": "2026-11-28",
+          "replyTo": "binji_x",
+          "relation": "reply",
+          "original": "how does ACD correct for the fact that, even though the door is open for anyone to participate, there will always be self-selection bias where the people who enjoy Ethereum how it is will not walk through that door\n\napp devs and many users by nature are not \"meeting\" people, they're not governance enthusiasts, they like their decentralized world computer and simply want to see it continue to work largely as-is\n\nfrom my read of the situation this is how the Glamsterdam drama emerged, the people who want to change things and tweak the chain a lot were in one room talking about doing that while the people who primarily focus on building on and using the chain were busy doing what they do assuming no one would make radical changes to the code we all rely on\n\nI know this is all messy, there are smart people who think changes need to be made, and I don't expect concessions any time soon or a pivot to prioritizing ossification, but I do think researchers need to keep in mind how much they're pushing for changes because they're absolutely certain Ethereum needs those changes vs how much they're pushing for changes because that's their job",
+          "author": "kennyistyping",
+          "translation": "ACD는 누구나 참여할 수 있도록 문이 열려 있다 해도, 지금 있는 그대로의 이더리움을 좋아하는 사람들은 그 문으로 들어오지 않는 자기선택 편향(self-selection bias)이 항상 존재한다는 사실을 어떻게 보정하나요? 앱 개발자들과 많은 사용자들은 본래 '미팅'하는 사람들이 아닙니다. 그들은 거버넌스 애호가가 아니며, 그저 자신들의 탈중앙화된 월드 컴퓨터(world computer)를 좋아하고 그것이 대체로 지금 그대로 계속 작동하는 것을 보고 싶을 뿐입니다. 제가 이 상황을 읽은 바로는, 바로 이런 식으로 글램스테르담(Glamsterdam) 드라마가 발생한 것입니다. 많은 것을 바꾸고 체인을 많이 손보고 싶어하는 사람들은 한 방에 모여 그렇게 하자고 이야기하고 있었고, 반면 주로 체인 위에 뭔가를 만들고 그것을 사용하는 데 집중하는 사람들은 우리 모두가 의존하는 코드에 누구도 급격한 변화를 주지 않을 것이라고 가정한 채 자신들이 하던 일을 바쁘게 하고 있었습니다. 이 모든 게 복잡하다는 걸 알고 있고, 변화가 필요하다고 생각하는 똑똑한 사람들도 있으며, 저도 가까운 시일 내에 양보가 있거나 오시피케이션(ossification, 고착화)을 우선시하는 쪽으로 전환이 있을 거라고는 기대하지 않습니다. 하지만 저는 연구자들이, 자신들이 이더리움에 그 변화가 반드시 필요하다고 절대적으로 확신하기 때문에 변화를 밀어붙이는 것인지, 아니면 그게 그들의 일이기 때문에 변화를 밀어붙이는 것인지를 얼마나 의식하고 있는지 염두에 둘 필요가 있다고 생각합니다."
+        },
+        {
+          "date": "2026-11-26",
+          "by": "kennyistyping",
+          "stance": "con",
+          "quote": "나는 pcaversaccio의 권고에 거의 100% 동의한다. 이더리움은 나이 들어가고 있으므로 더 빠르게가 아니라 더 느리고 신중하게 움직여야 한다(그렇게 해야 노인이 다치지 않는다).",
+          "url": "https://x.com/kennyistyping/status/2125969942566912334",
+          "digest": "2026-11-28",
+          "replyTo": "binji_x",
+          "relation": "reply",
+          "original": "@binji_x I'm basically 100% aligned with the recommendations from @pcaversaccio here\n\nEthereum is getting old, it should move slower and more methodically, not faster (that's how old people get hurt)\n\nhttps://x.com/pcaversaccio/status/2122277228855836959",
+          "author": "kennyistyping",
+          "translation": "@binji_x 저는 여기서 @pcaversaccio의 권고 사항에 거의 100% 공감합니다. 이더리움은 나이가 들어가고 있고, 더 빠르게가 아니라 더 느리고 더 체계적으로 움직여야 합니다 (나이 든 사람들은 그렇게 다치는 법이니까요)."
+        },
+        {
+          "date": "2026-11-26",
+          "by": "brendonrell",
+          "stance": "con",
+          "quote": "사람들이 '가입한' 핵심 원칙이 끊임없이 재협상된다면 이 ACD 연극에는 아무 의미가 없다. 별로 필요 없는데도 개발자들이 자꾸 뭔가를 추가하리라는 것이 분명해졌다.",
+          "url": "https://x.com/brendonrell/status/2125955807384871339",
+          "digest": "2026-11-28",
+          "replyTo": "binji_x",
+          "relation": "reply",
+          "original": "@binji_x This is simply not how effective complex projects move forward &amp; evolve. There's simply no point in this ACD theatre if the core principles, the thing \"people signed up for\" are constantly under re-negotiation. Its become clear devs will add things even if nothing much is needed.",
+          "author": "brendonrell",
+          "translation": "@binji_x 효과적인 복잡한 프로젝트가 앞으로 나아가고 진화하는 방식은 단순히 이게 아닙니다. 핵심 원칙들, 즉 '사람들이 동의하고 들어온 것'이 끊임없이 재협상 대상이 된다면 이런 ACD 극장(theatre)은 아무런 의미가 없습니다. 개발자들이 별로 필요하지 않은 것도 추가하려 한다는 게 분명해졌습니다."
+        },
+        {
+          "date": "2026-11-26",
+          "by": "binji_x",
+          "stance": "pro",
+          "quote": "이 논의를 하게 되어 좋다. 이더리움 업그레이드 절차에서 무엇을 바꾸고, 그 변화를 어떻게 구현하겠는가? 아직 답은 없는 큰 질문이지만, 이제 진단에서 해법 제안으로 넘어가면 좋겠다.",
+          "url": "https://x.com/binji_x/status/2125967642393735374",
+          "digest": "2026-11-28",
+          "replyTo": "kennyistyping",
+          "relation": "reply",
+          "original": "It’s good to be having this discussion!\n\nWhat would you change about the process of Ethereum upgrades, and how would you go about implementing that change? Big question with no answer just yet, but perhaps good to switch this from a diagnosis to a proposed solution now.\n\nI’ve been OOO this week so I’m just logging in and seeing a lot of this stuff, hence the initial tweet!",
+          "author": "binji_x",
+          "translation": "이런 논의를 하는 건 좋은 일입니다! 이더리움 업그레이드 프로세스에서 당신은 무엇을 바꾸고 싶고, 그 변화를 어떻게 구현하시겠습니까? 아직 답이 없는 큰 질문이긴 하지만, 이제는 진단에서 제안된 해결책으로 전환하는 게 좋을 것 같습니다. 이번 주에 자리를 비웠다가(OOO) 막 로그인해서 이 많은 내용들을 보고 있는 중이라, 처음 그 트윗을 올리게 된 겁니다!"
+        }
+      ],
+      "firstSeen": "2026-11-26",
+      "lastActivity": "2026-11-26",
+      "status": "active",
+      "rootUrl": "https://x.com/binji_x/status/2125951954421678344",
+      "engagement": {
+        "likes": 62,
+        "retweets": 6,
+        "quotes": 2,
+        "replies": 8,
+        "views": 3406
+      }
+    },
     {
       "id": "privacy-tool-ragekick-due-process",
       "title": "민간 프라이버시 기업이 이미 서비스한 이용자의 자금 회수(ragequit) 옵션을 적법 절차 없이 임의로 꺼도 되는가?",
@@ -103,7 +462,8 @@
           "holders": [
             {
               "handle": "SweCryptoLawyer",
-              "name": "SweCryptoLawyer"
+              "name": "Crypto Lawyer",
+              "avatar": "https://pbs.twimg.com/profile_images/1812209265274179584/x8WmCOgl_400x400.jpg"
             }
           ],
           "points": [
@@ -338,7 +698,8 @@
             {
               "handle": "URozmej",
               "name": "Łukasz Rozmej",
-              "role": "EIP-8037 공동 저자"
+              "role": "EIP-8037 공동 저자",
+              "avatar": "https://pbs.twimg.com/profile_images/1314105244196974592/SJv1-Hob_400x400.jpg"
             },
             {
               "handle": "Philastru",
@@ -404,7 +765,8 @@
           "holders": [
             {
               "handle": "hammundi7",
-              "name": "hammundi7"
+              "name": "Beefy",
+              "avatar": "https://pbs.twimg.com/profile_images/2119508649387122688/C-StnGC0_400x400.jpg"
             }
           ],
           "points": [
@@ -584,7 +946,7 @@
       ],
       "firstSeen": "2026-11-20",
       "lastActivity": "2026-11-20",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/sakulstra/status/2123758078399250526",
       "engagement": {
         "likes": 3,
@@ -750,7 +1112,7 @@
       ],
       "firstSeen": "2026-11-20",
       "lastActivity": "2026-11-20",
-      "status": "active",
+      "status": "cooling",
       "rootUrl": "https://x.com/apoorveth/status/2123739365000257606",
       "engagement": {
         "likes": 49,
@@ -4087,7 +4449,7 @@
       ],
       "firstSeen": "2026-10-26",
       "lastActivity": "2026-10-27",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/lightclients/status/2115104431494799656",
       "engagement": {
         "likes": 52,
@@ -4242,7 +4604,7 @@
       ],
       "firstSeen": "2026-10-26",
       "lastActivity": "2026-10-27",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/lex_node/status/2114785376279683476",
       "engagement": {
         "likes": 168,
@@ -4367,7 +4729,7 @@
       ],
       "firstSeen": "2026-10-27",
       "lastActivity": "2026-10-27",
-      "status": "cooling",
+      "status": "archived",
       "rootUrl": "https://x.com/ShannaDaphne/status/2115055698979479718",
       "engagement": {
         "likes": 65,
