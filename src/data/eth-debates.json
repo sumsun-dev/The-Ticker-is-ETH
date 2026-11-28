@@ -245,7 +245,8 @@
         "quotes": 0,
         "replies": 1,
         "views": 23
-      }
+      },
+      "publish": true
     },
     {
       "id": "acd-consortium-or-cabal",
@@ -400,7 +401,8 @@
         "quotes": 2,
         "replies": 8,
         "views": 3406
-      }
+      },
+      "publish": true
     },
     {
       "id": "privacy-tool-ragekick-due-process",
